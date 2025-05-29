@@ -5,7 +5,7 @@ import styles from "./footer1.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IconsValues = {
@@ -369,7 +369,7 @@ class Footer1Page extends BaseFooter {
                                 className={this.decorateCSS("icon-wrapper")}
                                 data-animation={item.socialLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
                               >
-                                <ComposerIcon 
+                                <Base.Icon 
                                   propsIcon={{ className: this.decorateCSS("icon") }} 
                                   name={item.socialIcon} 
                                 />

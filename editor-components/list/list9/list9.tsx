@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseContent, BaseList } from "../../EditorComponent";
 import styles from "./list9.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
@@ -192,7 +192,7 @@ class List9 extends BaseList {
                                         className={this.decorateCSS("little-container")}
                                     >
                                         {card.icon && (
-                                            <ComposerIcon
+                                            <Base.Icon
                                                 name={card.icon}
                                                 propsIcon={{ className: this.decorateCSS("icon") }}
                                             />

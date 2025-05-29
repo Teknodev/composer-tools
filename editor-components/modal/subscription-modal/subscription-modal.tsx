@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./subscription-modal.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -89,7 +89,7 @@ class SubscriptionModal extends BaseModal {
           <div className={this.decorateCSS("modal-content")}>
             <div className={this.decorateCSS("close-icon-wrapper")}>
               <ComposerModalClose>
-                <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+                <Base.Icon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
               </ComposerModalClose>
             </div>
 

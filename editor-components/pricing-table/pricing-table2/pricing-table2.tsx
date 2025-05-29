@@ -3,7 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItems = {
@@ -644,7 +644,7 @@ class PricingTable2 extends BasePricingTable {
                       <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
                         {table.cardIcon && (
                           <div className={this.decorateCSS("card-img")}>
-                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={table.cardIcon} />
+                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={table.cardIcon} />
                           </div>
                         )}
                         {table.cardList.length > 0 && (
@@ -656,7 +656,7 @@ class PricingTable2 extends BasePricingTable {
                                 <>
                                   {cardListItem && (
                                     <span key={index} className={this.decorateCSS("card-list-item")}>
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={listIcon}
                                         propsIcon={{
                                           className: this.decorateCSS("list-icon"),

@@ -2,7 +2,6 @@ import * as React from "react";
 import { BaseSocial } from "../../EditorComponent";
 import styles from "./social1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
@@ -579,7 +578,7 @@ class Social1 extends BaseSocial {
                         <div className={this.decorateCSS("button-text")}>
                             {item.text}
                         </div>
-                        <ComposerIcon
+                        <Base.Icon
                             name={item.icon}
                             propsIcon={{
                             className: this.decorateCSS("button-icon"),
@@ -614,7 +613,7 @@ class Social1 extends BaseSocial {
                                                     {(item.icon || item.image) && (
                                                         <div className={this.decorateCSS("image-icon-container")}>
                                                         {item.icon && (
-                                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+                                                            <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
                                                         )}
                                                         {item.image && (
                                                             <img src={item.image} className={this.decorateCSS("image")}/>
@@ -657,7 +656,7 @@ class Social1 extends BaseSocial {
                                                     {(item.icon || item.image) && (
                                                         <div className={this.decorateCSS("image-icon-container")}>
                                                         {item.icon && (
-                                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+                                                            <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
                                                         )}
                                                         {item.image && (
                                                             <img src={item.image} className={this.decorateCSS("image")}/>
@@ -699,7 +698,7 @@ class Social1 extends BaseSocial {
                                         <div className={this.decorateCSS("card-upper")}>
                                             {(item.icon || item.image) && (
                                                 <div className={this.decorateCSS("image-icon-container")}>
-                                                    {item.icon && (<ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>)}
+                                                    {item.icon && (<Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>)}
                                                     {item.image && (<img src={item.image} className={this.decorateCSS("image")}/>)}
                                                 </div>
                                             )}

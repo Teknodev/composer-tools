@@ -1,7 +1,7 @@
 import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list6.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
@@ -202,7 +202,7 @@ class List6 extends BaseList {
                     this.castToString(listItem.itemTitle)) && (
                       <div className={this.decorateCSS("icon-title-container")}>
                         {listItem.itemIcon && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={listItem.itemIcon}
                             propsIcon={{
                               className: this.decorateCSS("icon")
