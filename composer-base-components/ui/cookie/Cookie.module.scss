@@ -52,41 +52,32 @@
   gap: var(--composer-gap-md);
   background: var(--composer-html-background);
   color: var(--composer-font-color-primary);
+  box-shadow: 0px var(--composer-gap-sm) var(--composer-gap-md) 0px #00000066;
   .button {
     border-color: var(--composer-font-color-primary);
   }
 
-  &.left {
-    position: absolute;
-    left: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  &.right {
-    position: absolute;
-    right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  
 
   &.fixedTop {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    width: calc(100% - var(--composer-gap-md));
+    width: calc(100% - var(--composer-gap-lg));
     margin: 10px;
     z-index: 999;
   }
 
   &.fixedBottom {
     position: fixed;
-    bottom: 50px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 200px);
     max-width: 800px;
     z-index: 999;
+    flex-direction: row;
   }
 
   &.fixedLeft {
@@ -346,7 +337,6 @@
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  padding: 2rem 2.5rem 1.5rem 2.5rem;
   gap: 1.2rem;
   .iconWrapper {
     margin-bottom: 0.5rem;
@@ -379,29 +369,5 @@
       font-size: 0.75rem;
       padding: 0.25rem 0.5rem;
     }
-  }
-}
-
-.cookieContainer.left,
-.cookieContainer.right {
-  @container (max-width: 414px) {
-    max-width: 260px;
-    min-width: 0;
-    width: 100%;
-    padding: 0;
-    margin: 0.25rem;
-    box-sizing: border-box;
-    left: 0.25rem;
-    right: auto;
-    top: 50%;
-    bottom: auto;
-    transform: translateY(-50%);
-    position: absolute;
-  }
-}
-.cookieContainer.right {
-  @container (max-width: 414px) {
-    right: 0.25rem;
-    left: auto;
   }
 }

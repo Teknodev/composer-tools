@@ -48,12 +48,7 @@ const Cookie: React.FC<CookieProps> = ({
         <FaCookieBite className={styles.icon} />
       </div>
       <div className={styles.textWrapper}>
-        <p className={styles.text}>{text}</p>
-        {learnMoreLink && (
-          <a href={learnMoreLink} className={styles.learnMore}>
-            Learn More
-          </a>
-        )}
+        <p className={styles.text}>{text}<a href={learnMoreLink} className={styles.learnMore}> Learn More</a></p>
       </div>
       <div className={styles.buttonGroup}>
         <button className={styles.button} onClick={onAccept}>{acceptButtonText}</button>
