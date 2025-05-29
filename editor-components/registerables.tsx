@@ -248,6 +248,7 @@ import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
+import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -266,6 +267,7 @@ function Registerables(composer: ComponentsRegistery) {
     DownloadComponent9,
     DownloadComponent10,
     DownloadComponent11,
+    PrivacyPolicyPage,
     ListComponent1,
     ListComponent2,
     ListComponent3,
