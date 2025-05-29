@@ -135,7 +135,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384e32bb4c4002cf57948?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a2af2bb4c4002cf5e247?alt=media",
             },
             {
               type: "page",
@@ -213,7 +213,7 @@ class Header9 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682385092bb4c4002cf57960?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a2832bb4c4002cf5e23e?alt=media",
             },
             {
               type: "page",

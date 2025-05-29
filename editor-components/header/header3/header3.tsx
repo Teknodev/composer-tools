@@ -80,7 +80,7 @@ class Header3 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384e32bb4c4002cf57948?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a2af2bb4c4002cf5e247?alt=media",
             },
             {
               type: "select",

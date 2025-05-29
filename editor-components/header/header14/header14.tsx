@@ -66,7 +66,7 @@ class Header14 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6827299b2bb4c4002cf7ac6d?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380c6357d0a6002b5d5f9d?alt=media",
             },
 
             {
@@ -98,7 +98,7 @@ class Header14 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682729eb2bb4c4002cf7ad11?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380d3057d0a6002b5d5faf?alt=media",
             },
             {
               type: "array",
@@ -129,7 +129,7 @@ class Header14 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68272a8f2bb4c4002cf7ae2f?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380d3057d0a6002b5d5faf?alt=media",
             },
             {
               type: "array",

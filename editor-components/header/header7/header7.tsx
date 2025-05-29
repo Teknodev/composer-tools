@@ -40,7 +40,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6823844d2bb4c4002cf57937?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380c6357d0a6002b5d5f9d?alt=media",
             },
           ],
         },
@@ -66,7 +66,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825dde32bb4c4002cf715ad?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380d3057d0a6002b5d5faf?alt=media",
             },
           ],
         },
@@ -92,7 +92,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384f22bb4c4002cf57950?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380dcb57d0a6002b5d5fc0?alt=media",
             },
           ],
         },
@@ -118,7 +118,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825de1d2bb4c4002cf71a63?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380fd557d0a6002b5d5fe4?alt=media",
             },
           ],
         },
@@ -144,7 +144,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a2af2bb4c4002cf5e247?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683810b257d0a6002b5d6009?alt=media",
             },
           ],
         },
@@ -170,7 +170,7 @@ class Header7 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825de542bb4c4002cf71c3b?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683811ca57d0a6002b5d61d5?alt=media",
             },
           ],
         },
