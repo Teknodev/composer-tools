@@ -12,12 +12,6 @@
         color: var(--composer-font-color-primary);
         font-size: calc(var(--project-font-size));
         }
-        .date {
-          display: flex;
-          gap:  var(--composer-gap-sm);
-          color: var(--composer-font-color-primary);
-          font-size: calc(var(--project-font-size));
-        }
     }
   }
 }

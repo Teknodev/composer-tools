@@ -9,25 +9,31 @@ class PrivacyPolicyPage extends BasePrivacyPolicy {
 
     this.addProp({
       type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Privacy Policy",
+    });
+
+    this.addProp({
+      type: "string",
       key: "effectiveDate",
       displayer: "Effective Date",
-      value: "2030-01-01",
+      value: "Effective Date: 2030-01-01",
     });
 
     this.addProp({
       type: "string",
       key: "lastUpdated",
       displayer: "Last Updated",
-      value: "2025-01-01",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "siteName",
-      displayer: "Site Name",
-      value: "Blinkpage",
+      value: "Last Updated: 2025-01-01",
     });
     
+    this.addProp({
+      type: "string",
+      key: "introduction",
+      displayer: "Introduction",
+      value: "This Privacy Policy describes how your personal information is collected, used, and shared when you visit or interact with this website Blinkpage.",
+    });
    
     this.addProp({
       type: "string",
@@ -96,15 +102,20 @@ class PrivacyPolicyPage extends BasePrivacyPolicy {
     return "Privacy Policy";
   }
   render() {
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const effectiveDateExist = this.castToString(this.getPropValue("effectiveDate"));
+    const lastUpdatedExist = this.castToString(this.getPropValue("lastUpdated"));
+    const introductionExist = this.castToString(this.getPropValue("introduction"));
+    const textExist = this.castToString(this.getPropValue("text"));
     return (
       <Base.Container className={styles.privacyPolicy}>
         <Base.MaxContent className={styles.maxContent}>
             <Base.VerticalContent className={styles.container}>
-            <span className={styles.text}>Privacy Policy</span>
-            <span className={styles.date}>Effective Date: {this.getPropValue("effectiveDate")}</span>
-            <span className={styles.date}>Last Updated: {this.getPropValue("lastUpdated")}</span>
-            <span className={styles.text}>This Privacy Policy describes how your personal information is collected, used, and shared when you visit or interact with this website {this.getPropValue("siteName")}.</span>
-            <div className={styles.text}>{this.getPropValue("text")}</div>
+            {titleExist &&<span className={styles.text}>{this.getPropValue("title")}</span>}
+            {effectiveDateExist &&<span className={styles.text}>{this.getPropValue("effectiveDate")}</span>}
+            {lastUpdatedExist &&<span className={styles.text}>{this.getPropValue("lastUpdated")}</span>}
+            {introductionExist &&<span className={styles.text}>{this.getPropValue("introduction")}</span>}
+            {textExist &&<div className={styles.text}>{this.getPropValue("text")}</div>}
         </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
