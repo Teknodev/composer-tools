@@ -40,38 +40,45 @@
 
         .crumber-content {
             display: flex;
+            flex-direction: column;
             flex-wrap: wrap;
             align-items: center;
             gap: var(--composer-gap-sm);
             padding: var(--composer-gap-lg) var(--composer-gap-xl);
             background: var(--composer-html-background);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow-active);
             font-size: 1rem;
             color: var(--composer-font-color-primary);
             width: 35%;
             max-width: 80%;
 
             .title {
-                font-size: 4rem;
-                font-family: var(--composer-font-family);
-                font-weight: bold;
-                color: var(--composer-font-color-primary);
+                font-size: 3rem;
+                text-align: center;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .breadcrumb-items {
                 display: flex;
+                justify-content: center;
                 flex-wrap: nowrap;
-                align-items: flex-start;
+                align-items: center;
                 gap: var(--composer-gap-sm);
                 row-gap: var(--composer-gap-xs);
 
                 .home-link {
                     content: "";
+                    flex-shrink: 0;
                 }
 
                 .home-page,
                 .about-page {
                     content: "";
+                    flex-shrink: 1;
                 }
 
                 .home-page:hover {
@@ -82,6 +89,7 @@
                     width: 40px;
                     height: 20px;
                     color: var(--composer-primary-color);
+                    flex-shrink: 0;
                 }
             }
         }
@@ -104,10 +112,6 @@
             .crumber-content {
                 width: 70%;
                 font-size: 1rem;
-
-                .title {
-                    font-size: 3rem;
-                }
             }
         }
     }

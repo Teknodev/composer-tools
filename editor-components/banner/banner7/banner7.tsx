@@ -2,7 +2,6 @@ import styles from "./banner7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Banner7 extends BaseBanner {
   constructor(props?: any) {
@@ -56,7 +55,9 @@ class Banner7 extends BaseBanner {
     const about = this.castToString(this.getPropValue("about"));
     const navigateToFromCrumber = this.getPropValue("navigateTo");
     const navigateToUrl = navigateToFromCrumber || "";
-    const isCrumberVisible = homepage && about;
+    const isBreadcrumbVisible = homepage || about || this.getPropValue("crumberIcon");
+    const isCrumberVisible = isBreadcrumbVisible || isTitleExist;
+
 
     return (
       <Base.Container
@@ -77,29 +78,31 @@ class Banner7 extends BaseBanner {
           <Base.MaxContent className={this.decorateCSS("breadcrumb-wrapper")}>
             <div className={this.decorateCSS("crumber-content")}>
               {isTitleExist && (
-                <Base.MaxContent className={this.decorateCSS("title")}>
+                <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
-                </Base.MaxContent>
+                </Base.SectionTitle>
               )}
-              <div className={this.decorateCSS("breadcrumb-items")}>
-                <ComposerLink
+              {isBreadcrumbVisible && <div className={this.decorateCSS("breadcrumb-items")}>
+                {homepage && <ComposerLink
                   path={navigateToUrl}
                   className={this.decorateCSS("home-link")}
                 >
                   <span className={this.decorateCSS("home-page")}>
                     {this.getPropValue("homepage")}
                   </span>
-                </ComposerLink>
-                <ComposerIcon
-                  name={this.getPropValue("crumberIcon")}
-                  propsIcon={{
-                    className: this.decorateCSS("crumberIcon"),
-                  }}
-                />
-                <span className={this.decorateCSS("about-page")}>
+                </ComposerLink>}
+                {this.getPropValue("crumberIcon") && (
+                  <Base.Icon
+                    name={this.getPropValue("crumberIcon")}
+                    propsIcon={{
+                      className: this.decorateCSS("crumberIcon"),
+                    }}
+                  />
+                )}
+                {about && <span className={this.decorateCSS("about-page")}>
                   {this.getPropValue("about")}
-                </span>
-              </div>
+                </span>}
+              </div>}
             </div>
           </Base.MaxContent>
         )}
