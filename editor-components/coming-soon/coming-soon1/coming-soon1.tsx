@@ -36,7 +36,30 @@ class ComingSoon1 extends BaseComingSoon {
         yearStart: 2000,
       },
     });
-
+    this.addProp({
+      type:"string",
+      key:"dayText",
+      displayer:"Day Text",
+      value:"DAYS"
+    })
+    this.addProp({
+      type:"string",
+      key:"hourText",
+      displayer:"Hour Text",
+      value:"HOURS"
+    })
+    this.addProp({
+      type:"string",
+      key:"minutesText",
+      displayer:"Minutes Text",
+      value:"MINUTES"
+    })
+    this.addProp({
+      type:"string",
+      key:"secondText",
+      displayer:"Second Text",
+      value:"SECONDS"
+    })
     this.addProp({
       type: "array",
       key: "buttons",
@@ -145,32 +168,36 @@ class ComingSoon1 extends BaseComingSoon {
                     <Base.H1 className={this.decorateCSS("days-count")}>
                       {this.getComponentState("days")}
                     </Base.H1>
-                    <div className={this.decorateCSS("days-text")}>DAYS</div>
+                    {this.castToString(this.getPropValue("dayText")) && (
+                      <div className={this.decorateCSS("days-text")}>{this.getPropValue("dayText")}</div>
+                    )}
                   </div>
 
                   <div className={this.decorateCSS("hours-container")}>
                     <Base.H1 className={this.decorateCSS("hours-count")}>
                       {this.getComponentState("hours")}
                     </Base.H1>
-                    <div className={this.decorateCSS("hours-text")}>HOURS</div>
+                    {this.castToString(this.getPropValue("hourText")) && (
+                      <div className={this.decorateCSS("hours-text")}>{this.getPropValue("hourText")}</div>
+                    )}
                   </div>
 
                   <div className={this.decorateCSS("minutes-container")}>
                     <Base.H1 className={this.decorateCSS("minutes-count")}>
                       {this.getComponentState("minutes")}
                     </Base.H1>
-                    <div className={this.decorateCSS("minutes-text")}>
-                      MINUTES
-                    </div>
+                    {this.castToString(this.getPropValue("minutesText")) && (
+                      <div className={this.decorateCSS("minutes-text")}>{this.getPropValue("minutesText")}</div>
+                    )}
                   </div>
 
                   <div className={this.decorateCSS("seconds-container")}>
                     <Base.H1 className={this.decorateCSS("seconds-count")}>
                       {this.getComponentState("seconds")}
                     </Base.H1>
-                    <div className={this.decorateCSS("seconds-text")}>
-                      SECONDS
-                    </div>
+                    {this.castToString(this.getPropValue("secondText")) && (
+                      <div className={this.decorateCSS("seconds-text")}>{this.getPropValue("secondText")}</div>
+                    )}
                   </div>
                 </div>
               )}
