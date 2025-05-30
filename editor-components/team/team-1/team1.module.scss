@@ -20,9 +20,65 @@
       }
     }
     .down-page {
+      gap: var(--composer-gap-xl);
       .all-card {
         min-width: 250px;
         transition: transform 0.3s ease;
+
+        &[data-animation~="animate5"] {
+          .card {
+            .top {
+              .card-name {
+                position: relative;
+                display: inline-block;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  bottom: -2px;
+                  height: 2px;
+                  width: 100%;
+                  background-color: var(--composer-primary-color);
+                  transform: scaleX(0);
+                  transform-origin: left;
+                  transition: transform 0.3s ease;
+                }
+              }
+            }
+          }
+          &:hover {
+            .card {
+              .top {
+                .card-name {
+                  &::after {
+                    transform: scaleX(1);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate7"] {
+          @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+            60% { transform: translateY(2px); }
+          }
+
+          &:hover {
+            .card {
+              .icon-group {
+                .icon {
+                  animation: bounce 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+            }
+          }
+        }
+
         .card {
           flex: 1 1;
           width: 100%;
@@ -41,28 +97,6 @@
               color: var(--composer-font-color-primary);
               word-break: break-all;
               transition: transform 0.3s ease;
-              position: relative;
-              display: inline-block;
-
-              &[data-animation~="animate5"] {
-                &::after {
-                  content: "";
-                  position: absolute;
-                  left: 0;
-                  bottom: -2px;
-                  height: 2px;
-                  width: 100%;
-                  background-color: var(--composer-primary-color);
-                  transform: scaleX(0);
-                  transform-origin: left;
-                  transition: transform 0.3s ease;
-                }
-                &:hover {
-                  &::after {
-                    transform: scaleX(1);
-                  }
-                }
-              }
             }
             .image {
               width: 100px;
@@ -75,43 +109,38 @@
           .card-description {
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
+            word-break: break-word;
           }
           .icon-group {
             display: flex;
             gap: var(--composer-gap-sm);
             margin-top: var(--composer-gap-md);
+
             .icon {
               color: var(--composer-tertiary-color);
               font-size: 1.5rem;
               transform: color 0.3s ease;
             }
 
-            &[data-animation~="animate2"] {
-              .icon {
-                &:hover {
-                  color: var(--composer-primary-color) !important;
-                  transform: color 0.3s ease;
-                }
-              }
-            }
             &[data-animation~="animate7"] {
               @keyframes bounce {
-                0% {
-                  transform: translateY(0);
-                }
-                30% {
-                  transform: translateY(-6px);
-                }
-                60% {
-                  transform: translateY(2px);
-                }
-                100% {
-                  transform: translateY(0);
-                }
+                0%, 100% { transform: translateY(0); }
+                30% { transform: translateY(-6px); }
+                60% { transform: translateY(2px); }
               }
+
               .icon {
-                &:hover {
-                  animation: bounce 0.8s ease;
+                color: var(--composer-tertiary-color);
+                font-size: 1.5rem;
+                transform: color 0.3s ease;
+                animation: none;
+              }
+
+              &:hover {
+                .icon {
+                  animation: bounce 0.5s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.6s);
                 }
               }
             }

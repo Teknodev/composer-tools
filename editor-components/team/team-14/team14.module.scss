@@ -40,14 +40,14 @@
             }
 
             .info {
-              &[data-animation~="animate4"] {
-                transform: translateY(-15%);
+              &[data-animation~="animate1"] {
+                transform: translateY(-5%);
                 opacity: 1;
               }
             }
 
             .image {
-              &[data-animation~="animate1"] {
+              &[data-animation~="animate4"] {
                 filter: grayscale(0%);
               }
 
@@ -85,6 +85,11 @@
               opacity: 0;
               transform: translateY(100%);
               transition: opacity 0.3s, transform 0.5s ease-in-out;
+            }
+
+            &[data-animation~="animate4"] {
+              opacity: 1;
+              transform: translateY(0);
             }
 
             &[data-animation~="animate2"],

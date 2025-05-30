@@ -45,6 +45,44 @@
           }
         }
 
+        &[data-animation~="animate4"] {
+          .icon-container {
+            .icon {
+              animation: none;
+            }
+          }
+
+          &:hover {
+            .icon-container {
+              .icon {
+                animation: bounce 0.8s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate5"] {
+          .icon-container {
+            .icon {
+              animation: none;
+              transform: scale(0.8);
+              opacity: 0.5;
+            }
+          }
+
+          &:hover {
+            .icon-container {
+              .icon {
+                animation: scaleUp 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+        }
+
         .image-container {
           width: 100%;
           display: flex;
@@ -94,26 +132,23 @@
               }
             }
           }
-          &[data-animation~="animate4"] {
-            @keyframes bounce {
-              0% {
-                transform: translateY(0);
-              }
-              30% {
-                transform: translateY(-6px);
-              }
-              60% {
-                transform: translateY(2px);
-              }
-              100% {
-                transform: translateY(0);
-              }
-            }
-            .icon {
-              &:hover {
-                animation: bounce 0.8s ease;
-              }
-            }
+        }
+
+        @keyframes bounce {
+          0% { transform: translateY(0); }
+          30% { transform: translateY(-6px); }
+          60% { transform: translateY(2px); }
+          100% { transform: translateY(0); }
+        }
+
+        @keyframes scaleUp {
+          0% { 
+            transform: scale(0.8);
+            opacity: 0.5;
+          }
+          100% { 
+            transform: scale(1);
+            opacity: 1;
           }
         }
 

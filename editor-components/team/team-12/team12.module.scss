@@ -79,14 +79,35 @@
         }
 
         &[data-animation~="animate3"] { 
-          @keyframes bounce {
-            0%   { transform: translateY(0); }
-            30%  { transform: translateY(-6px); }
-            60%  { transform: translateY(2px); }
-            100% { transform: translateY(0); }
+          @keyframes bounceUp {
+            0%   { transform: translateY(20px); opacity: 0; }
+            50%  { transform: translateY(-10px); opacity: 1; }
+            100% { transform: translateY(0); opacity: 1; }
           }
-          .info .icon:hover {
-            animation: bounce 0.8s ease;
+          .info {
+            .platforms {
+              .platform {
+                .icon {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+              }
+            }
+          }
+          &:hover {
+            .info {
+              .platforms {
+                .platform {
+                  .icon {
+                    animation: bounceUp 0.5s ease forwards;
+                    animation-delay: calc(0.5s + var(--icon-index, 0) * 0.15s);
+                    &:hover {
+                      color: var(--composer-primary-color);
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

@@ -378,6 +378,7 @@ class Team2 extends Team {
                             name={item.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
+                              style: { "--icon-index": indexPlatforms } as React.CSSProperties
                             }}
                           />
                         </ComposerLink>

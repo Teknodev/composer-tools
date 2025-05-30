@@ -90,15 +90,24 @@
               }
 
               &[data-animation~="animate3"] { 
-                @keyframes bounce {
-                  0%   { transform: translateY(0); }
-                  30%  { transform: translateY(-6px); }
-                  60%  { transform: translateY(2px); }
-                  100% { transform: translateY(0); }
+                @keyframes bounceBottomToTop {
+                  0%   { transform: translateY(20px); opacity: 0; color: var(--composer-font-color-secondary); }
+                  50%  { transform: translateY(-10px); opacity: 1; color: var(--composer-font-color-secondary); }
+                  100% { transform: translateY(0); opacity: 1; color: var(--composer-primary-color); }
                 }
                 .icon {
-                  &:hover {
-                    animation: bounce 0.8s ease;
+                  animation: none;
+                  opacity: 0;
+                  color: var(--composer-font-color-secondary);
+                  transition: color 0.3s ease;
+                }
+                &:hover {
+                  .icon {
+                    animation: bounceBottomToTop 0.5s ease forwards;
+                    animation-delay: calc(var(--icon-index, 0) * 0.15s);
+                    &:hover {
+                      color: var(--composer-secondary-color);
+                    }
                   }
                 }
               }

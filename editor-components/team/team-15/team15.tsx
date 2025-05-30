@@ -335,7 +335,7 @@ class Team15 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
   }
@@ -377,7 +377,13 @@ class Team15 extends Team {
                                 return (
                                   <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                                     <ComposerLink path={icon.url}>
-                                      <Base.Icon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                      <Base.Icon 
+                                        name={icon.icon} 
+                                        propsIcon={{ 
+                                          className: this.decorateCSS("icon"),
+                                          style: { "--icon-index": indexIcons } as React.CSSProperties
+                                        }} 
+                                      />
                                     </ComposerLink>
                                   </div>
                                 );

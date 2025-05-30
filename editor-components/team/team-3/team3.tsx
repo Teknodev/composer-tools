@@ -307,7 +307,7 @@ class Team3 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
@@ -354,6 +354,7 @@ class Team3 extends Team {
                                       name={card.icon}
                                       propsIcon={{
                                         className: this.decorateCSS("icons"),
+                                        style: { "--icon-index": indexIcons } as React.CSSProperties
                                       }}
                                     />
                                   </ComposerLink>

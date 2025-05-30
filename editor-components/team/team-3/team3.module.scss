@@ -54,6 +54,64 @@
                 }
               }
             }
+
+            &[data-animation~="animate2"] {
+              @keyframes scale {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.25); }
+              }
+
+              .icons {
+                animation: none;
+              }
+
+              &:hover {
+                .icons {
+                  animation: scale 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              .icons {
+                transition: color 0.3s ease;
+                color: var(--composer-font-color-primary);
+              }
+
+              &:hover {
+                .icons {
+                  animation: colorChange 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+
+              @keyframes colorChange {
+                0% { color: var(--composer-font-color-primary); }
+                100% { color: var(--composer-primary-color); }
+              }
+            }
+
+            &[data-animation~="animate4"] {
+              @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+              }
+
+              .icons {
+                animation: none;
+              }
+
+              &:hover {
+                .icons {
+                  animation: bounce 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+            }
           }
 
           .card-items {
@@ -117,15 +175,6 @@
               transition: 0.3s;
             }
 
-            &[data-animation~="animate2"] {
-              .icons {
-                transition: transform 0.3s ease;
-
-                &:hover {
-                  transform: scale(125%);
-                }
-              }
-            }
             &[data-animation~="animate3"] {
               .icons {
                 transition: color 0.3s ease;

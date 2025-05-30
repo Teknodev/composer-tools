@@ -428,7 +428,7 @@ class Team5 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
     });
   }
@@ -464,7 +464,13 @@ class Team5 extends Team {
                     <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {item.socials.map((value, i) => (
                         <ComposerLink key={i} path={value.url}>
-                          <Base.Icon name={value.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Icon 
+                            name={value.icon} 
+                            propsIcon={{ 
+                              className: this.decorateCSS("icon"),
+                              style: { "--icon-index": i } as React.CSSProperties
+                            }} 
+                          />
                         </ComposerLink>
                       ))}
                     </Base.Row>

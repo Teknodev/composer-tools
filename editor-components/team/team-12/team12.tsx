@@ -275,13 +275,14 @@ class Team12 extends Team {
                       {descriptionExist && <Base.P className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.P>}
                       {teamMember.platforms.length > 0 && (
                         <Base.Row className={this.decorateCSS("platforms")}>
-                          {teamMember.platforms.map((platform: any) => (
-                            <div className={this.decorateCSS("platform")}>
+                          {teamMember.platforms.map((platform: any, index: number) => (
+                            <div className={this.decorateCSS("platform")} key={index}>
                               <ComposerLink path={platform.getPropValue("url")}>
                                 <Base.Icon
                                   name={platform.getPropValue("icon")}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),
+                                    style: { "--icon-index": index } as React.CSSProperties
                                   }}
                                 ></Base.Icon>
                               </ComposerLink>

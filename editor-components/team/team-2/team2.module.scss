@@ -31,6 +31,41 @@
       height: 100%;
       align-items: center;
 
+      &[data-animation~="animate5"] {
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          30% { transform: translateY(-6px); }
+          60% { transform: translateY(2px); }
+        }
+
+        &:hover {
+          .icon-group {
+            .icon {
+              animation: bounce 0.6s ease;
+              animation-fill-mode: both;
+              animation-delay: calc(var(--icon-index, 0) * 0.2s);
+            }
+          }
+        }
+      }
+
+      &[data-animation~="animate4"] {
+        @keyframes scale {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.25); }
+        }
+
+        &:hover {
+          .icon-group {
+            .icon {
+              animation: scale 0.6s ease;
+              animation-fill-mode: both;
+              animation-delay: calc(var(--icon-index, 0) * 0.2s);
+            }
+          }
+        }
+      }
+
       .image {
         display: block;
         width: 100px;
@@ -73,59 +108,28 @@
             }
           }
         }
-        &[data-animation~="animate4"] {
-          .icon {
-            transition: transform 0.3s ease;
+        &[data-animation~="animate1"] {
+          transition: background-color 0.3s ease;
 
-            &:hover {
-              transform: scale(125%);
-            }
+          &:hover {
+            background-color: var(--composer-html-background);
           }
         }
-        &[data-animation~="animate5"] {
-          @keyframes bounce {
-            0% {
-              transform: translateY(0);
-            }
-            30% {
-              transform: translateY(-6px);
-            }
-            60% {
-              transform: translateY(2px);
-            }
-            100% {
-              transform: translateY(0);
-            }
-          }
-          .icon {
-            &:hover {
-              animation: bounce 0.8s ease;
-            }
-          }
-        }
-      }
-
-      &[data-animation~="animate1"] {
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: var(--composer-html-background);
-        }
-      }
-      &[data-animation~="animate3"] {
-        transition: box-shadow 0.3s ease;
-
-        &:hover {
-          box-shadow: 0 0 20px rgba(var(--composer-primary-color-rgb), 0.4);
+        &[data-animation~="animate3"] {
           transition: box-shadow 0.3s ease;
-        }
-      }
-      &[data-animation~="animate6"] {
-        transition: transform 0.3s ease;
 
-        &:hover {
-          transform: scale(1.05);
+          &:hover {
+            box-shadow: 0 0 20px rgba(var(--composer-primary-color-rgb), 0.4);
+            transition: box-shadow 0.3s ease;
+          }
+        }
+        &[data-animation~="animate6"] {
           transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+          }
         }
       }
     }

@@ -378,7 +378,13 @@ class Team11 extends Team {
                             <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               {item.icons.map((el: any, indexIcon: number) => (
                                 <ComposerLink path={el.url} key={indexIcon}>
-                                  <Base.Icon name={el.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  <Base.Icon 
+                                    name={el.icon} 
+                                    propsIcon={{ 
+                                      className: this.decorateCSS("icon"),
+                                      style: { "--icon-index": indexIcon } as React.CSSProperties
+                                    }} 
+                                  />
                                 </ComposerLink>
                               ))}
                             </div>
