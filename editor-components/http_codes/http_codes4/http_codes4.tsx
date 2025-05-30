@@ -2,7 +2,7 @@ import React from "react";
 import { BaseHTTPCodes } from "../../EditorComponent";
 import styles from "./http_codes4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -67,7 +67,7 @@ class HttpCodes4 extends BaseHTTPCodes {
                         buttonExist && (
                           <ComposerLink path={button.link}>
                             <Base.Button buttonType={button.type} key={index} className={this.decorateCSS("button")}>
-                              {button.icon && <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                              {button.icon && <Base.Icon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
                               {buttonTextExist && <div className={this.decorateCSS("button-text")}> {button.text}</div>}
                             </Base.Button>
                           </ComposerLink>

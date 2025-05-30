@@ -58,14 +58,14 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
+          margin: 0;
           font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
 
         .dropdownIcon {
-          font-size: 1.5rem;
+          font-size: calc(1.5 * var(--project-font-size));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -112,7 +112,7 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
@@ -143,7 +143,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -169,6 +169,13 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
+                
+                .dropdownItemTitle {
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                  transition: color 0.3s ease;
+                }
 
                 &::after {
                   content: "";
@@ -208,7 +215,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--project-font-size));
         color: var(--composer-font-color-primary);
       }
     }
@@ -245,13 +252,13 @@
 
   .hamburgerIcon {
     display: none;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--project-font-size));
     color: var(--composer-font-color-primary);
   }
 
   .closeIcon {
     display: none;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--project-font-size));
     color: var(--composer-font-color-primary);
   }
 
@@ -283,7 +290,7 @@
         cursor: pointer;
         color: var(--composer-font-color-primary);
         padding: var(--composer-gap-md) 0;
-        font-size: 2.5rem;
+        font-size: calc(2.5 * var(--project-font-size));
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -305,12 +312,12 @@
   
             .hamburgerMenuItemTitle {
               color: var(--composer-font-color-primary);
-              font-size: 1rem;
+              margin: 0;
               font-weight: bold;
             }
   
             .dropdownIcon {
-              font-size: 1.5rem;
+              font-size: calc(1.5 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: transform 0.3s ease;
   
@@ -340,12 +347,12 @@
   
                 .hamburgerMenuItemTitle {
                   color: var(--composer-font-color-primary);
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                 }
   
                 .dropdownIcon {
-                  font-size: 1.5rem;
+                  font-size: calc(1.5 * var(--project-font-size));
                   transition: transform 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -369,7 +376,7 @@
   
                   .hamburgerSubSubmenuItemTitle {
                     color: var(--composer-font-color-primary);
-                    font-size: 1rem;
+                    margin: 0;
                     font-weight: 400;
                   }
                 }
@@ -386,9 +393,9 @@
   .languageAccordion {
     color: var(--composer-font-color-primary);
 
-    languageAccordionTitle {
+    .languageAccordionTitle {
       margin: 0;
-      font-size: 1rem;
+      font-size: calc(1 * var(--project-font-size));
     }
   }
   .languageAccordionItem {
@@ -484,7 +491,7 @@
           gap: var(--composer-gap-sm);
           .icon {
             color: var(--composer-font-color-primary);
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
           }
         }
       }

@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface CardItem {
@@ -143,7 +143,7 @@ class CallToAction10Page extends BaseCallToAction {
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
                 {this.getPropValue("icon") && (
-                  <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                  <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                 )}
               </Base.SectionTitle>
             )}
@@ -165,7 +165,7 @@ class CallToAction10Page extends BaseCallToAction {
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     {item.cardIcon && (
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <ComposerIcon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Icon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
                     )}
                     {this.castToString(item.cardTitle) && (
