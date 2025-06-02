@@ -284,11 +284,11 @@ type PreSufFix = {
 };
 
 export type InteractionType ={
-  type?: string
-  modal?: string
-  trigger_action?: string
-  visible_on?: string
-  show_once?: false
+  type?: string,
+  modal?: string,
+  trigger_action?: string,
+  visible_on?: string,
+  show_once?: false,
 };
 export type PageInteractionType ={
   type?: string;
@@ -308,7 +308,7 @@ export type TypeLocation = {
 type currencyAdditionalParams ={
   showCode?: boolean;
   showSymbol?:boolean;
-};
+}
 
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
@@ -462,8 +462,8 @@ export abstract class Component
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClasses || { ...sectionsKeyValue },
-        interactions: props?.interactions || { ...sectionsKeyValue },
+        cssClasses: props?.cssClasses || {...sectionsKeyValue},
+        interactions: props?.interactions || {...sectionsKeyValue}
       },
     };
 
@@ -551,6 +551,7 @@ export abstract class Component
     return doc.body.innerHTML;
   }
 
+
   getPropValueAsElement(
     prop: TypeUsableComponentProps,
     properties?: GetPropValueProperties
@@ -611,7 +612,7 @@ export abstract class Component
     };
 
 
-    if (!this.memorizedElements[prop.id]) {
+    if(!this.memorizedElements[prop.id]) {
       this.memorizedElements[prop.id] = {};
     }
 
@@ -735,7 +736,7 @@ export abstract class Component
     cssClass.push(
       generateAutoClassName(this.id, section)
     );
-
+    
     return cssClass.join(" ");
   }
 
