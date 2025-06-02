@@ -4,7 +4,6 @@ import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 type Item = {
   itemTitle: React.JSX.Element;
@@ -255,7 +254,7 @@ class List3 extends BaseList {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
             {(title || description || this.castToString(buttonType.text)) && (
-              <Base.VerticalContent className={this.decorateCSS("first")}>
+              <Base.VerticalContent className={this.decorateCSS("first")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(title || description) && (
                   <Base.VerticalContent className={this.decorateCSS("first-inner")}>
                     {title && (
@@ -272,11 +271,11 @@ class List3 extends BaseList {
                 )}
                 {this.castToString(buttonType.text) && (
                   <ComposerLink path={buttonType.url}>
-                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
                       <div className={this.decorateCSS("button-text")}>
                         {buttonType.text}
                       </div>
-                      <ComposerIcon
+                      <Base.Icon
                         name={"FaArrowRight"}
                         propsIcon={{
                           className: this.decorateCSS("button-icon"),

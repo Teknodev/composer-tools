@@ -160,6 +160,7 @@ class list4 extends BaseList {
                 <div
                   key={index}
                   className={this.decorateCSS("card-item-count")}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
                   <div className={this.decorateCSS("line-box")}>
                     <div className={this.decorateCSS("line-1")}></div>

@@ -34,7 +34,7 @@
           cursor: pointer;
           height: 350px;
           max-height: 350px;
-          transition: transform 0.3s ease-in-out;
+          transition: all 0.3s ease-in-out;
           &[data-animation~="animate5"] {
             &:hover {
               box-shadow: var(--box-shadow-active);

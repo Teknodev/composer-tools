@@ -24,6 +24,26 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        &[data-animation~="animate1"]:hover {
+          .circle, .icon{
+            transform: scale(1.1);
+          }
+        }
+        &[data-animation~="animate2"]:hover {
+          .circle, .icon{
+            transform: rotate(360deg);
+          }          
+        }
+        &[data-animation~="animate3"]:hover {
+          .circle, .icon{
+            animation: bounce 1s ease-in-out;
+          }   
+        }
+        &[data-animation~="animate4"]:hover {
+          .circle, .icon{
+            animation: breathing 2s ease-out infinite normal;
+          }
+        }
       }
 
       .middleBox {
@@ -32,6 +52,26 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
+        &[data-animation~="animate1"]:hover {
+          .circle, .icon{
+            transform: scale(1.1);
+          }
+        }
+        &[data-animation~="animate2"]:hover {
+          .circle, .icon{
+            transform: rotate(360deg);
+          }          
+        }
+        &[data-animation~="animate3"]:hover {
+          .circle, .icon{
+            animation: bounce 1s ease-in-out;
+          }   
+        }
+        &[data-animation~="animate4"]:hover {
+          .circle, .icon{
+            animation: breathing 2s ease-out infinite normal;
+          }
+        }
       }
 
       .circle,
@@ -47,18 +87,6 @@
         transition: transform 0.3s ease-in-out;
         &.with-bg {
           color: white;
-        }
-        &[data-animation~="animate1"]:hover {
-          transform: scale(1.1);
-        }
-        &[data-animation~="animate2"]:hover {
-          transform: rotate(360deg);
-        }
-        &[data-animation~="animate3"]:hover {
-          animation: bounce 1s ease-in-out;
-        }
-        &[data-animation~="animate4"]:hover {
-          animation: breathing 2s ease-out infinite normal;
         }
       }
 

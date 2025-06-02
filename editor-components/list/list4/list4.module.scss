@@ -17,13 +17,7 @@
       color: var(--composer-primary-color);
       font-size: 0rem;
       padding-bottom: var(--composer-gap-xl);
-      &[data-animation~="animate4"] {
-        &.index {
-          &:hover {
-            animation: bounce 1s ease-in-out;
-          }
-        }
-      }
+
       &.index {
         font-size: 2rem;
         padding-bottom: var(--composer-gap-md);
@@ -37,6 +31,41 @@
       .card-item-count {
         position: relative;
         padding: var(--composer-gap-lg);
+
+        &[data-animation~="animate1"] {
+          .line-box{
+            .line-2 {
+              &::before {
+                content: "";
+                position: absolute;
+                left: 90px;
+                top: 0px;
+                background-color: var(--composer-primary-color);
+                height: 1px;
+                width: 0px;
+                z-index: 2;
+                transition: all 0.5s ease-in-out;
+              }
+            }
+          }
+          &:hover{
+            .line-box{
+              .line-2{
+                &::before{
+                  width: calc(100% - 90px);
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate4"]:hover {
+          .card-title{
+            &.index {
+              animation: bounce 1s ease-in-out;
+            }
+          }
+
+        }
 
         .line-box {
           position: absolute;
@@ -100,32 +129,6 @@
               var(--composer-font-color-primary) 5%
             );
             transition: background-color 0.5s ease;
-
-            &[data-animation~="animate1"] {
-              .card-subtitle {
-                position: relative;
-
-                &::after {
-                  content: "";
-                  position: absolute;
-                  bottom: 0;
-                  right: 0;
-                  width: 0;
-                  height: 2px;
-                  background-color: var(--composer-primary-color);
-                  transition: width 1s ease-in-out;
-                  border-radius: var(--composer-border-radius-xs);
-                }
-              }
-
-              &:hover {
-                .card-subtitle::after {
-                  width: 100%;
-                  left: 0;
-                  right: unset;
-                }
-              }
-            }
 
             &[data-animation~="animate2"] {
               &:hover {

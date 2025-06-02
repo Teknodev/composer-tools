@@ -354,8 +354,9 @@ class List1 extends BaseList {
                     )}
 
                     {(this.castToString(item.button.text) || item.icon) && (
+                      <div className={this.decorateCSS("link")}>
                       <ComposerLink path={item.button.url}>
-                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("link")}>
+                        <Base.Button buttonType={item.button.type} >
                           <div className={this.decorateCSS("text")}>
                             {item.button.text}
                           </div >
@@ -369,6 +370,7 @@ class List1 extends BaseList {
                           )}
                         </Base.Button>
                       </ComposerLink>
+                      </div>
                     )}
                   </Base.VerticalContent>
                 );

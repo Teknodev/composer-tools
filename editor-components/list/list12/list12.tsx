@@ -16,7 +16,7 @@ class List12 extends BaseList {
       key: "image",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6830212384626f002ca470c8?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683dbb7557d0a6002b5dbba8?alt=media&timestamp=1748876160309",
     });
 
     this.addProp({
@@ -140,7 +140,7 @@ class List12 extends BaseList {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("boxes")}>
-            <div className={this.decorateCSS("leftBox")}>
+            <div className={this.decorateCSS("leftBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {(box1.item || box1.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box1.item ? (
@@ -165,7 +165,7 @@ class List12 extends BaseList {
                 </div>
               )}
             </div>
-            <div className={this.decorateCSS("middleBox")}>
+            <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {this.castToString(box2.title || box2.subtitle) && (
                 <Base.SectionTitle
                   className={this.decorateCSS("section-wrapper")}
@@ -207,7 +207,7 @@ class List12 extends BaseList {
               )}
             </div>
 
-            <div className={this.decorateCSS("rightBox")}>
+            <div className={this.decorateCSS("rightBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {(box3.item || box3.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box3.item ? (

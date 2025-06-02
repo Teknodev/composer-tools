@@ -15,6 +15,19 @@
       display: flex;
       flex-wrap: wrap;
       max-width: 100%;
+      .item-container.line[data-animation~="animate1"]:hover {
+        transform: scale(1.02);
+        &:last-child::after{
+          transform: scaleX(1.05);
+        }
+        &::before {
+          transform: scaleX(1.05);
+        }
+      
+        + .item-container.line::before {
+          transform: scaleX(1.05);
+        }
+      }
       .item-container {
         width: 100%;
         display: flex;
@@ -22,10 +35,6 @@
         padding: var(--composer-gap-lg) 0px;
         position: relative;
         transition: all 0.4s ease;
-
-        &[data-animation~="animate1"]:hover {
-          transform: scale(1.05);
-        }
 
         &[data-animation~="animate2"] {
           .index {
@@ -122,6 +131,7 @@
             right: 0;
             width: 100%;
             margin: 0;
+            transition: all 0.4s ease;
           }
 
           &::before {
