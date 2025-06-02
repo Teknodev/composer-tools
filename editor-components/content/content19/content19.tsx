@@ -104,6 +104,7 @@ class Content19 extends BaseContent {
                                     </Base.SectionDescription>
                                 )}
                                 {showNavigateContainer &&
+                                <div className={this.decorateCSS("button-wrapper")}>
                                     <Base.Button buttonType={sideButton.type} className={this.decorateCSS("button")}
                                         data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                                         <ComposerLink path={sideButton.url}>
@@ -124,6 +125,7 @@ class Content19 extends BaseContent {
                                             </div>
                                         </ComposerLink>
                                     </Base.Button>
+                                </div>
                                 }
                             </div>
                         </div>
