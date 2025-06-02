@@ -53,9 +53,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   }
 
                   &[data-animation~="animate1"] {
-                    transition: transform 0.3s ease;
+                    transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     &:hover {
-                      transition: transform 0.3s ease;
                       transform: scale(1.1);
                     }
                   }
