@@ -3,7 +3,6 @@ import { Base } from "../../../composer-base-components/base/base";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list11.module.scss";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 interface ListItems {
     itemTitle: React.ReactNode;
@@ -238,7 +237,7 @@ class List11 extends BaseList {
                                                         </div>
                                                     )}
                                                     {item.icon && (
-                                                        <ComposerIcon
+                                                        <Base.Icon
                                                             name={item.icon}
                                                             propsIcon={{
                                                                 className: this.decorateCSS("navigate-icon"),

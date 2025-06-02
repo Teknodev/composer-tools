@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list5.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -250,7 +250,7 @@ class List5 extends BaseList {
                                   <div className={this.decorateCSS("left")}>
                                     <div className={this.decorateCSS("out-icon")}>
                                       <div className={this.decorateCSS("icon-wrapper")}>
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={listItem.uppericon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),
@@ -283,7 +283,7 @@ class List5 extends BaseList {
                               </div>
                             )}
                             {listItem.lowericon && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={listItem.lowericon}
                                 propsIcon={{
                                   className: this.decorateCSS("lower-icon"),
