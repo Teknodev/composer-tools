@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./pricing-table8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -441,7 +441,7 @@ class PricingTable8 extends BasePricingTable {
 
                       {card.iconsButton.icon && (
                         <ComposerLink path={card.iconsButton.url}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={card.iconsButton.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
@@ -456,7 +456,7 @@ class PricingTable8 extends BasePricingTable {
             </ComposerSlider>
 
             {prevIcon && (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("prevIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("prev_icon")}`,
@@ -468,7 +468,7 @@ class PricingTable8 extends BasePricingTable {
               />
             )}
             {nextIcon && (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("nextIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("next_icon")}`,
@@ -499,7 +499,7 @@ class PricingTable8 extends BasePricingTable {
 
                       {card.iconsButton.icon && (
                         <ComposerLink path={card.iconsButton.url}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={card.iconsButton.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),

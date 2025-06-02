@@ -1,11 +1,9 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider3.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
@@ -223,7 +221,7 @@ class Slider3 extends BaseSlider {
               {arrowsExist && (
                 <div className={this.decorateCSS("arrows")}>
                   {previousArrow && (
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("previousArrow")}
                       propsIcon={{
                         className: this.decorateCSS("prevArrow"),
@@ -234,7 +232,7 @@ class Slider3 extends BaseSlider {
                     />
                   )}
                   {nextArrow && (
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("nextArrow")}
                       propsIcon={{
                         className: this.decorateCSS("nextArrow"),

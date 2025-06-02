@@ -54,7 +54,9 @@
             }
         }
     }
-
+    &.with-overlay{
+        z-index: 103;
+    }
     .max-content {
         display: flex;
         justify-content: center;
