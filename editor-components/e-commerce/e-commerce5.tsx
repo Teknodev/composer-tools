@@ -3,8 +3,6 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import styles from "./e-commerce5.module.scss";
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 interface ImageGallery {
   sectionTitle: React.JSX.Element;
@@ -329,8 +327,8 @@ class ECommerce5 extends BaseECommerce {
 
   render() {
     const slides = this.castToObject<ImageGallery[]>("slides");
-    const activeGenderIndex = this.getComponentState("sectionTitle") ?? 0;
-    const content = slides[activeGenderIndex]?.sliderContent || [];
+    const activeCategoryIndex = this.getComponentState("activeCategory") ?? 0;
+    const content = slides[activeCategoryIndex]?.sliderContent || [];
     const maxSlidesToShow = this.getPropValue("slidesToShow", {
       as_string: true,
     });
@@ -383,15 +381,14 @@ class ECommerce5 extends BaseECommerce {
         },
       ],
     };
-    const category = this.getPropValue("title");
-
-    const title = this.castToString(category);
+    const title = this.getPropValue("title");
+    const titleExist = this.castToString(title);
 
     return (
       <div className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("title-tab")}>
-            {title && (
+            {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
@@ -405,24 +402,22 @@ class ECommerce5 extends BaseECommerce {
                     <div
                       key={index}
                       className={
-                        activeGenderIndex === index
+                        activeCategoryIndex === index
                           ? this.decorateCSS("section-active")
                           : this.decorateCSS("section")
                       }
                       onClick={() => {
-                        const currentIndex =
-                          this.getComponentState("sectionTitle");
+                        const currentIndex = this.getComponentState("activeCategory");
                         if (currentIndex !== index) {
                           this.setComponentState("animate", true);
-
                           setTimeout(() => {
-                            this.setComponentState("sectionTitle", index);
+                            this.setComponentState("activeCategory", index);
                             this.setComponentState("animate", false);
                           }, 300);
                         }
                       }}
                     >
-                      {sectionTitle}
+                      {item.sectionTitle}
                     </div>
                   )
                 );
@@ -442,7 +437,7 @@ class ECommerce5 extends BaseECommerce {
                 className={this.decorateCSS("carousel")}
               >
                 {content.map((item: Contents) => {
-                  const collection = this.castToString(item.collection);
+                  const collectionExist = this.castToString(item.collection);
                   return (
                     <div
                       className={this.decorateCSS("slider-inner-div")}
@@ -452,16 +447,16 @@ class ECommerce5 extends BaseECommerce {
                         <div className={this.decorateCSS("image-box")}>
                           <div className={this.decorateCSS("image-wrapper")}>
                             <img
-                              alt=""
+                              alt={this.castToString(item.collection)}
                               src={item.sectionImage}
                               className={this.decorateCSS("img")}
                             />
                           </div>
                         </div>
                       )}
-                      {collection && (
+                      {collectionExist && (
                         <div className={this.decorateCSS("collection")}>
-                          {collection}
+                          {item.collection}
                         </div>
                       )}
                     </div>
