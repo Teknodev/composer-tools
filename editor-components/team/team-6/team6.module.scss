@@ -34,6 +34,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 overflow: hidden;
                 border-radius: var(--composer-border-radius-lg);
                 height: 550px;
+                width: 100%;
+                transition: $transition;
+
+                &.expanded {
+                  max-height: 1000px;
+                }
 
                 .image {
                   width: 100%;
@@ -41,6 +47,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   object-fit: cover;
                   margin-bottom: var(--composer-gap-sm);
                   transition: $transition;
+
+                  &.shrink {
+                    height: 200px;
+                  }
 
                   &[data-animation~="animate1"] {
                     transition: transform 0.3s ease;
@@ -95,11 +105,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     }
                   }
                 }
-              }
-
-              .image.shrink {
-                height: 200px;
-                margin-bottom: var(--composer-gap-md);
               }
             }
 

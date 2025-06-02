@@ -552,7 +552,8 @@ class Team6 extends Team {
                                 ) : (
                                   <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
-                              <div className={this.decorateCSS("image-container")} style={this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? { height: "100%" } : undefined} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                              <div className={`${this.decorateCSS("image-container")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("expanded") : ""}`} 
+                                data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                                 <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                                 <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
                                   {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
