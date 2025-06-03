@@ -50,6 +50,7 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             align-items: center;
+            min-width: 55px;
             .count{
                 margin: 0px;
                 color: var(--composer-font-color-primary);
