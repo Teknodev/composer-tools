@@ -49,8 +49,9 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: center;                    
                     gap: var(--composer-gap-sm);
+                    min-width: 55px;
                     .days-count, .hours-count, .minutes-count, .seconds-count{
                         color: var(--composer-primary-color);
                         margin: 0px;
