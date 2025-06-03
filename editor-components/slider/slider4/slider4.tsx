@@ -3,7 +3,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Card = {
   icon: string;
@@ -274,7 +274,7 @@ class Slider4 extends BaseSlider {
                   <div className={this.decorateCSS("arrows")}>
                     {previousArrow && (
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("previousArrow")}
                           propsIcon={{
                             className: this.decorateCSS("prevArrow"),
@@ -288,7 +288,7 @@ class Slider4 extends BaseSlider {
 
                     {nextArrow && (
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("nextArrow")}
                           propsIcon={{
                             className: this.decorateCSS("nextArrow"),
@@ -316,7 +316,7 @@ class Slider4 extends BaseSlider {
                     key={index}
                   >
                     <Base.Row>
-                      <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("play-icon") }} />
+                      <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("play-icon") }} />
                     </Base.Row>
                     <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
                     <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>

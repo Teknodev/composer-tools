@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./form7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form7 extends BaseContacts {
@@ -348,7 +348,7 @@ class Form7 extends BaseContacts {
                                           className={this.decorateCSS("input")}
                                         />
                                       )}
-                                      <ComposerIcon name={inputObj.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                      <Base.Icon name={inputObj.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                                     </div>
                                     <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
                                   </div>

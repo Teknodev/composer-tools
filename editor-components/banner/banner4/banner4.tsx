@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./banner4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 class Banner4 extends BaseBanner {
@@ -132,7 +131,7 @@ class Banner4 extends BaseBanner {
                     </div>
                   )}
                   {icon && (
-                    <ComposerIcon
+                    <Base.Icon
                       name={icon}
                       propsIcon={{
                         className: `${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("image")}`,

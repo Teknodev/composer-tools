@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -483,7 +483,7 @@ class Navbar5 extends BaseNavigator {
                       item.socialIcon && (
                         <ComposerLink key={indexSocial} path={item.socialLink}>
                           <div onClick={()=> this.closeNav()} className={this.decorateCSS("icon-container")}>
-                            <ComposerIcon
+                            <Base.Icon
                               propsIcon={{
                                 className: this.decorateCSS("icon"),
                               }}
@@ -513,7 +513,7 @@ class Navbar5 extends BaseNavigator {
           {(language || iconsExist) && (
             <div className={this.decorateCSS("navbar")}>
               {language.showLanguage && (
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -526,7 +526,7 @@ class Navbar5 extends BaseNavigator {
                 />
               )}
               {navActive ? (
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("cross-icon")}
                   propsIcon={{
                     className: `${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `,
@@ -536,7 +536,7 @@ class Navbar5 extends BaseNavigator {
                   }}
                 />
               ) : (
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("hamburger-icon")}
                   propsIcon={{
                     className: `${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `,

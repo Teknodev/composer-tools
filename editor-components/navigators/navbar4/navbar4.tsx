@@ -3,7 +3,7 @@ import { BaseNavigator } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
@@ -1402,7 +1402,7 @@ class Navbar4 extends BaseNavigator {
                   <div className={this.decorateCSS("icons")}>
                     {icons.map((icon) => (
                       <ComposerLink path={icon.page}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={icon.icon}
                           propsIcon={{ className: this.decorateCSS("icon") }}
                         />
@@ -1455,7 +1455,7 @@ class Navbar4 extends BaseNavigator {
                           <ComposerLink path={item.navigate_to}>
                             <div className={this.decorateCSS("menuItem")}>
                               {item.menuType === "Dropdown" && (
-                                <ComposerIcon
+                                <Base.Icon
                                   name={this.getPropValue("dropdownIcon")}
                                   propsIcon={{
                                     className: this.decorateCSS("dropdownIcon"),
@@ -1495,7 +1495,7 @@ class Navbar4 extends BaseNavigator {
                                         subItem.sub_items.some((item: any) =>
                                           this.castToString(item.title)
                                         ) && (
-                                          <ComposerIcon
+                                          <Base.Icon
                                             name={this.getPropValue("dropdownIcon")}
                                             propsIcon={{
                                               className:
@@ -1551,7 +1551,7 @@ class Navbar4 extends BaseNavigator {
             )}
             <div className={this.decorateCSS("localizationContainer")}>
               {language.showLanguage && (
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -1567,7 +1567,7 @@ class Navbar4 extends BaseNavigator {
             <div className={this.decorateCSS("mobileRight")}>
             <div className={this.decorateCSS("hamburgerIconContainer")}>
               {isHamburgerActive ? (
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("closeIcon")}
                   propsIcon={{
                     className: this.decorateCSS("closeIcon"),
@@ -1575,7 +1575,7 @@ class Navbar4 extends BaseNavigator {
                   }}
                 />
               ) : (
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("hamburgerIcon")}
                   propsIcon={{
                     className: this.decorateCSS("hamburgerIcon"),
@@ -1589,7 +1589,7 @@ class Navbar4 extends BaseNavigator {
             </div> 
             <div className={this.decorateCSS("mobileLocalizationContainer")}>
               {(language.showLanguage && language.showLocalizationAlways) && (
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -1640,7 +1640,7 @@ class Navbar4 extends BaseNavigator {
                           </Base.P>
                         </ComposerLink>
                         {item.menuType === "Dropdown" && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={this.getPropValue("dropdownIcon")}
                             propsIcon={{
                               className: `${this.decorateCSS("dropdownIcon")} ${
@@ -1693,7 +1693,7 @@ class Navbar4 extends BaseNavigator {
                                       subItem.sub_items.some((item: any) =>
                                         this.castToString(item.title)
                                       ) && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={this.getPropValue("rightIcon")}
                                           propsIcon={{
                                             className: `${this.decorateCSS(
@@ -1761,7 +1761,7 @@ class Navbar4 extends BaseNavigator {
                   ))}
 
                     {(language.showLanguage && !language.showLocalizationAlways) && (
-                      <ComposerLanguage
+                      <Base.Language
                         type="accordion"
                         title={language.label}
                         headerClassName={`${this.decorateCSS("localization")}`}

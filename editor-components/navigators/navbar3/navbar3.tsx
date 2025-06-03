@@ -2,9 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Lane {
@@ -1279,7 +1277,7 @@ class Navbar3 extends BaseNavigator {
 
               {language.showLanguage && (
                 <div className={this.decorateCSS("loacalizationContainer")}>
-                  <ComposerLanguage
+                  <Base.Language
                     type="dropdown"
                     title={language.label}
                     icon={language.icon}
@@ -1340,7 +1338,7 @@ class Navbar3 extends BaseNavigator {
                               {item.title}
                             </Base.P>
                             {item.menuType === "Dropdown" && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={this.getPropValue("dropdownIcon")}
                                 propsIcon={{
                                   className: this.decorateCSS("dropdownIcon"),
@@ -1381,7 +1379,7 @@ class Navbar3 extends BaseNavigator {
                                           subItem.sub_items.some((item: Item) =>
                                             this.castToString(item.title)
                                           ) && (
-                                            <ComposerIcon
+                                            <Base.Icon
                                               name={this.getPropValue(
                                                 "rightIcon"
                                               )}
@@ -1446,7 +1444,7 @@ class Navbar3 extends BaseNavigator {
                     item.icon && (
                       <ComposerLink path={item.page}>
                         <div className={this.decorateCSS("icon-element")}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={item.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
@@ -1494,7 +1492,7 @@ class Navbar3 extends BaseNavigator {
             )}
             <div className={this.decorateCSS("mobileRight")}>
             {hamburgerNavActive ? (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{
                   className: this.decorateCSS("closeIcon"),
@@ -1502,7 +1500,7 @@ class Navbar3 extends BaseNavigator {
                 }}
               />
             ) : (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("hamburgerIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("hamburgerIcon")}`,
@@ -1512,7 +1510,7 @@ class Navbar3 extends BaseNavigator {
             )}
             {(language.showLocalizationAlways && language.showLanguage) && 
               <div className={this.decorateCSS("loacalizationContainer")}>
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -1571,7 +1569,7 @@ class Navbar3 extends BaseNavigator {
                                   </Base.P>
                                 </ComposerLink>
                                 {item.menuType === "Dropdown" && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={this.getPropValue("dropdownIcon")}
                                     propsIcon={{
                                       className: `${this.decorateCSS(
@@ -1635,7 +1633,7 @@ class Navbar3 extends BaseNavigator {
                                                 (item: any) =>
                                                   this.castToString(item.title)
                                               ) && (
-                                                <ComposerIcon
+                                                <Base.Icon
                                                   name={this.getPropValue(
                                                     "rightIcon"
                                                   )}
@@ -1715,7 +1713,7 @@ class Navbar3 extends BaseNavigator {
                       )}
 
                         {(language.showLanguage && !language.showLocalizationAlways) && (
-                          <ComposerLanguage
+                          <Base.Language
                             type="accordion"
                             title={language.label}
                             headerClassName={`${this.decorateCSS("localization")}`}
