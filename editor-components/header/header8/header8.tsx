@@ -201,7 +201,7 @@ class Header8 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 8";
+    return "Hero Section 8";
   }
   handleAnimationEnd = ({
     animationState,

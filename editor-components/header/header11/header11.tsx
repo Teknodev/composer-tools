@@ -48,7 +48,7 @@ class Header11 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 11";
+    return "Hero Section 11";
   }
 
   handlePlayVideo = () => {

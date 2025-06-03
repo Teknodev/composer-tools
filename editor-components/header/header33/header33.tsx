@@ -220,7 +220,7 @@ class Header33 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 33";
+    return "Hero Section 33";
   }
 
   render() {

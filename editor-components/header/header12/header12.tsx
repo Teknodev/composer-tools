@@ -260,7 +260,7 @@ class Header12 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 12";
+    return "Hero Section 12";
   }
 
   render() {

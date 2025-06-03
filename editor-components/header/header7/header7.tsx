@@ -179,7 +179,7 @@ class Header7 extends BaseHeader {
     this.setComponentState("active_image", this.castToObject<ISliderData[]>("pages")[0].image);
   }
   static getName(): string {
-    return "Header 7";
+    return "Hero Section 7";
   }
   render() {
     const handleMouseOver = (image: string) => {

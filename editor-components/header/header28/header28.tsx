@@ -173,7 +173,7 @@ class Header28 extends BaseHeader {
     this.setComponentState("play-video", false);
   }
   static getName(): string {
-    return "Header 28";
+    return "Hero Section 28";
   }
 
   render() {

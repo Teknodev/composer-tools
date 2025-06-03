@@ -137,7 +137,7 @@ class Header6 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 6";
+    return "Hero Section 6";
   }
   render() {
     const title = this.castToObject<TitleItem>("titleItem");

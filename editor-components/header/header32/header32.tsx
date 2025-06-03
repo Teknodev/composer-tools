@@ -219,7 +219,7 @@ class Header32 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 32";
+    return "Hero Section 32";
   }
 
   render() {

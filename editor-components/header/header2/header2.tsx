@@ -188,7 +188,7 @@ class Header2 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 2";
+    return "Hero Section 2";
   }
 
   render() {

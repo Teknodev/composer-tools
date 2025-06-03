@@ -233,7 +233,7 @@ class Header1 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 1";
+    return "Hero Section 1";
   }
   setActiveTab(activeTabIndex: number) {
     this.setComponentState("activeTab", activeTabIndex);
