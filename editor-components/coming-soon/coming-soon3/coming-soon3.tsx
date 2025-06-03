@@ -76,30 +76,24 @@ class ComingSoon3 extends BaseComingSoon {
       const dateStr = this.getPropValue("dateTime");
       const fromDate = new Date(dateStr);
       const now = new Date();
-
+  
       const diffMs = fromDate.getTime() - now.getTime();
-
-      if (diffMs <= 0) {
-        this.setComponentState("days", 0);
-        this.setComponentState("hours", 0);
-        this.setComponentState("minutes", 0);
-        this.setComponentState("seconds", 0);
-        clearInterval(this.interval);
-        return;
-      }
-
-      const totalSeconds = Math.floor(diffMs / 1000);
+  
+      if (isNaN(fromDate.getTime())) return;
+  
+      const totalSeconds = Math.max(0, Math.floor(diffMs / 1000));
       const totalDays = Math.floor(totalSeconds / (60 * 60 * 24));
       const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
       const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
       const seconds = totalSeconds % 60;
-
+  
       this.setComponentState("days", totalDays);
       this.setComponentState("hours", hours);
       this.setComponentState("minutes", minutes);
       this.setComponentState("seconds", seconds);
     }, 1000);
   }
+  
 
   componentWillUnmount() {
     clearInterval(this.interval);

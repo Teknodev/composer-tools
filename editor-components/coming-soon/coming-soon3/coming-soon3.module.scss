@@ -32,6 +32,7 @@
             flex-direction: column;
             gap: var(--composer-gap-lg);
             align-items: center;
+            min-width: 55px;
             .count{
                 color: var(--composer-font-color-primary);
                 margin: 0px; 
