@@ -79,11 +79,54 @@ class ImageGallery3 extends BaseImageGallery {
                         }
                     ]
                 },
+
+                {
+                    type: "object",
+                    key: "image",
+                    displayer: "Image",
+                    value: [
+                        {
+                            type: "image",
+                            key: "image",
+                            displayer: "Image",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245"
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "image",
+                    displayer: "Image",
+                    value: [
+                        {
+                            type: "image",
+                            key: "image",
+                            displayer: "Image",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1731587983245"
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "image",
+                    displayer: "Image",
+                    value: [
+                        {
+                            type: "image",
+                            key: "image",
+                            displayer: "Image",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575"
+                        }
+                    ]
+                },
             ]
         });
 
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("patternButton", "Pattern Button", "Load More", "", null, null, "Primary"));
+        
         this.setComponentState("patternCount", 1);
+        this.setComponentState("showPattern", false);
     }
 
     static getName(): string {
@@ -92,6 +135,10 @@ class ImageGallery3 extends BaseImageGallery {
 
     handleButtonClick = () => {
         this.setComponentState("patternCount", this.getComponentState("patternCount") + 1);
+    };
+
+    handlePatternButtonClick = () => {
+        this.setComponentState("showPattern", true);
     };
 
     render() {
@@ -105,6 +152,7 @@ class ImageGallery3 extends BaseImageGallery {
         const headerImageCount = type === "Header One Image" ? 1 : 2;
         const remainingImages = images.slice(headerImageCount);
         const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const patternButtonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("patternButton");
 
         const pattern = [3, 2, 1];
         const imagesPerPattern = pattern.reduce((a, b) => a + b, 0);
@@ -142,7 +190,15 @@ class ImageGallery3 extends BaseImageGallery {
                     </Base.MaxContent>
                 </div>
 
-                {visibleImages.length > 0 && (
+                {remainingImages.length > 0 && !this.getComponentState("showPattern") && (
+                    <div className={this.decorateCSS("button-wrapper")}>
+                        <Base.Button buttonType={patternButtonType.type} className={this.decorateCSS("button")} onClick={this.handlePatternButtonClick}>
+                            {patternButtonType.text}
+                        </Base.Button>
+                    </div>
+                )}
+
+                {this.getComponentState("showPattern") && visibleImages.length > 0 && (
                     <div className={this.decorateCSS("remaining-images")}>
                         <Base.MaxContent className={this.decorateCSS("max-content")}>
                             {(() => {
@@ -183,7 +239,7 @@ class ImageGallery3 extends BaseImageGallery {
                     </div>
                 )}
 
-                {maxImages < remainingImages.length && (
+                {this.getComponentState("showPattern") && maxImages < remainingImages.length && (
                     <div className={this.decorateCSS("button-wrapper")}>
                         <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick}>
                             {buttonType.text}
