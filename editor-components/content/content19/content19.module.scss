@@ -67,6 +67,10 @@
     }
     .button-wrapper{
       width: 100%;
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       .button {
         position: relative;
         .text-and-icon {
