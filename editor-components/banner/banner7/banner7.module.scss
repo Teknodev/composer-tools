@@ -54,7 +54,8 @@
 
             .title {
                 font-size: 3rem;
-                text-align: center;
+                text-align: left;
+                width: 100%;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
@@ -64,7 +65,8 @@
 
             .breadcrumb-items {
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
+                width: 100%;
                 flex-wrap: nowrap;
                 align-items: center;
                 gap: var(--composer-gap-sm);
