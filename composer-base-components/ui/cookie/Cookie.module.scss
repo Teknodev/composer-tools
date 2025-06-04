@@ -64,20 +64,35 @@
     top: 0;
     left: 0;
     right: 0;
-    width: calc(100% - var(--composer-gap-lg));
-    margin: 10px;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     z-index: 999;
   }
 
   &.fixedBottom {
     position: fixed;
-    bottom: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    z-index: 999;
+  }
+
+  &.fixedBottomCenter {
+    position: fixed;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 200px);
+    width: calc(100% - 100px);
     max-width: 800px;
+    margin: 0;
+    box-shadow: 0px var(--composer-gap-sm) var(--composer-gap-md) 0px #00000066;
     z-index: 999;
-    flex-direction: row;
   }
 
   &.fixedLeft {
@@ -115,8 +130,7 @@
     width: 100%;
   }
   .text {
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: 16px;
     text-align: center;
   }
   .learnMore {
@@ -182,8 +196,8 @@
     padding: var(--composer-gap-sm);
     gap: var(--composer-gap-sm);
     .iconWrapper .icon {
-      width: 2rem;
-      height: 2rem;
+      width: 32px;
+      height: 32px;
     }
     .textWrapper {
       flex-direction: column;
@@ -220,10 +234,10 @@
     margin: var(--composer-gap-sm);
     border-radius: var(--composer-border-radius-sm);
     .iconWrapper {
-      margin-bottom: 0.25rem;
+      margin-bottom: var(--composer-gap-xs);
       .icon {
-        width: 1rem;
-        height: 1rem;
+        width: 16px;
+        height: 16px;
       }
     }
     .textWrapper {
@@ -231,15 +245,14 @@
       align-items: center;
     }
     .text {
-      font-size: 0.75rem;
-      line-height: 1.2;
+      font-size: 14px;
     }
     .learnMore {
-      font-size: 0.7rem;
+      font-size: 14px;
     }
     .buttonGroup .button {
-      font-size: 0.75rem;
-      padding: 0.32rem 0.7rem;
+      font-size: 14px;
+      padding: var(--composer-gap-xs) var(--composer-gap-sm);
       min-width: 90px;
       width: auto;
     }
@@ -254,8 +267,27 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 1.2rem 2.5rem 1.2rem 1.5rem;
-  gap: 1.2rem;
+  padding: var(--composer-gap-sm);
+  gap: var(--composer-gap-sm);
+
+  &.fixedBottomCenter {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 100px);
+    max-width: 800px;
+    margin: 0;
+    border-radius: var(--composer-border-radius-sm);
+    box-shadow: 0px var(--composer-gap-sm) var(--composer-gap-md) 0px #00000066;
+  }
+
+  @media screen and (min-width: 1700px) {
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+  }
+
   .iconWrapper {
     margin-bottom: 0;
     margin-right: 1.2rem;
@@ -278,8 +310,10 @@
     margin-left: 1.5rem;
   }
   @container (max-width: 1024px) {
-    padding: 1rem;
-    gap: 1rem;
+    padding: var(--composer-gap-xs);
+    gap: var(--composer-gap-sm);
+    border-radius: 0;
+    margin: 0;
     .iconWrapper {
       margin-right: 1rem;
     }
@@ -288,12 +322,13 @@
     }
   }
   @container (max-width: 640px) {
-    align-items: stretch;
-    padding: 0.75rem;
-    margin: 0.75rem;
-    gap: 0.75rem;
+    padding: var(--composer-gap-xs);
+    margin: var(--composer-gap-xs);
+    gap: var(--composer-gap-xs);
+    border-radius: 0;
+    margin: 0;
     .iconWrapper {
-      margin: 0 0 0.5rem 0;
+      margin: 0 0 var(--composer-gap-xs) 0;
     }
     .textWrapper {
       flex-direction: column;
@@ -303,7 +338,7 @@
       text-align: center;
     }
     .buttonGroup {
-      gap: 0.5rem;
+      gap: var(--composer-gap-xs);
       .button {
         width: 100%;
         min-width: 0;
@@ -311,21 +346,85 @@
     }
   }
   @container (max-width: 414px) {
-    padding: 0.35rem;
-    margin: 0.35rem;
-    gap: 0.35rem;
+    flex-direction: column;
+    padding: var(--composer-gap-xs);
+    margin: var(--composer-gap-xs);
+    gap: var(--composer-gap-xs);
+    border-radius: 0;
+    margin: 0;
     .iconWrapper {
-      margin: 0 0 0.25rem 0;
+      margin: 0 0 var(--composer-gap-xs) 0;
     }
     .textWrapper {
       flex-direction: column;
       align-items: center;
     }
     .text {
-      font-size: 0.75rem;
+      font-size: 14px;
     }
     .buttonGroup {
-      gap: 0.25rem;
+      gap: var(--composer-gap-xs);
+    }
+  }
+}
+
+.longBannerCenter {
+  width: 100%;
+  max-width: 700px;
+  min-width: 0;
+  border-radius: var(--composer-border-radius-lg);
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--composer-gap-sm);
+  gap: var(--composer-gap-sm);
+
+  .iconWrapper {
+    margin-bottom: 0;
+    margin-right: 16px;
+    .icon {
+      width: 26px;
+      height: 26px;
+    }
+  }
+  .textWrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--composer-gap-sm);
+  }
+  .text {
+    text-align: left;
+    flex: 1;
+    margin: 0;
+  }
+  .learnMore {
+    white-space: nowrap;
+  }
+  .buttonGroup {
+    margin-left: 1.5rem;
+  }
+
+  @container (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+    padding: var(--composer-gap-sm);
+    gap: var(--composer-gap-xs);
+    width: 300px;
+
+    .iconWrapper {
+      margin: 0 0 var(--composer-gap-sm) 0;
+    }
+    .textWrapper {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .text {
+      text-align: center;
+    }
+    .buttonGroup {
+      margin: var(--composer-gap-sm) 0 0 0;
     }
   }
 }
@@ -337,14 +436,15 @@
   border-radius: 20px;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem;
+  gap: var(--composer-gap-sm);
+  padding: var(--composer-gap-sm);
   .iconWrapper {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--composer-gap-xs);
     margin-right: 0;
   }
   .text {
     text-align: center;
-    margin: 0 0 0.5rem 0;
+    margin: var(--composer-gap-xs);
   }
   .buttonGroup {
     margin-left: 0;
@@ -353,21 +453,21 @@
     max-width: 260px;
     min-width: 0;
     width: 100%;
-    padding: 0.35rem;
-    gap: 0.35rem;
-    margin: 0.35rem;
-    border-radius: 8px;
+    padding: var(--composer-gap-sm);
+    gap: var(--composer-gap-xs);
+    margin: var(--composer-gap-xs);
+    border-radius: 20px;
     box-sizing: border-box;
     .iconWrapper {
-      margin-bottom: 0.25rem;
+      margin-bottom: var(--composer-gap-xs);
     }
     .text {
-      font-size: 0.75rem;
-      margin: 0 0 0.25rem 0;
+      font-size: 14px;
+      margin: 0 0 var(--composer-gap-xs) 0;
     }
     .buttonGroup .button {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.5rem;
+      font-size: 14px;
+      padding: var(--composer-gap-xs) var(--composer-gap-sm);
     }
   }
 }
