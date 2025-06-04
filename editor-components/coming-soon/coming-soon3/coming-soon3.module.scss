@@ -65,7 +65,7 @@
             display: flex;
             position: relative;
             min-width: 500px;
-            width: 70%;
+            width: fit-content;
             .title-text {
               font-size: 8rem;
               color: var(--composer-font-color-primary);
@@ -73,12 +73,13 @@
             .error-message {
               position: absolute;
               padding: var(--composer-gap-xs);
-              left: 0px;
-              bottom: var(--composer-gap-xl);
+              left: -50px;
+              top: 50%;
+              transform: translateY(-50%);
               width: fit-content;
               background-color: var(--composer-primary-color);
               border-radius: var(--composer-border-radius-md);
-              .text {
+              .error {
                 color: var(--composer-font-color-secondary);
                 font-size: 1.5rem;
               }
@@ -111,9 +112,16 @@
             animation: slide-in 1s ease-out 1.3s forwards;
           }
         }
-  
+
+        .button-wrapper{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
         .button {
-          content: "";
+          .button-text{
+            content: "";
+          }
   
           &.button-animation {
             opacity: 0;

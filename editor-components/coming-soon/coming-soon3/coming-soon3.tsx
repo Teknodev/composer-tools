@@ -171,7 +171,7 @@ class ComingSoon3 extends BaseComingSoon {
                   )}
                   {this.castToString(subtitle) && (
                     <div className={this.decorateCSS("error-message")}>
-                      <div className={this.decorateCSS("text")}>
+                      <div className={this.decorateCSS("error")}>
                         {subtitle}
                       </div>
                     </div>
@@ -192,16 +192,20 @@ class ComingSoon3 extends BaseComingSoon {
               </div>
             )}
             {this.castToString(button.text) && (
-              <ComposerLink path={button.url}>
-                <Base.Button
-                  buttonType={button.type}
-                  className={`${this.decorateCSS("button")} ${
-                    animationActive && this.decorateCSS("button-animation")
-                  }`}
-                >
-                  {button.text}
-                </Base.Button>
-              </ComposerLink>
+              <div className={this.decorateCSS("button-wrapper")}>
+                <ComposerLink path={button.url}>
+                  <Base.Button
+                    buttonType={button.type}
+                    className={`${this.decorateCSS("button")} ${
+                      animationActive && this.decorateCSS("button-animation")
+                    }`}
+                  >
+                    <div className={this.decorateCSS("button-text")}>
+                      {button.text}
+                    </div>
+                  </Base.Button>
+                </ComposerLink>
+              </div>
             )}
             </div>
             )}
