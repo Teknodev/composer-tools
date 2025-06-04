@@ -28,6 +28,7 @@
         .button-container {
           display: flex;
           gap: var(--composer-gap-md);
+          width: 100%;
           .button {
             .button-text {
               font-size: 2rem;
