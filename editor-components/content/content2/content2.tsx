@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./content2.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 class Content2 extends BaseContent {
@@ -283,13 +283,13 @@ class Content2 extends BaseContent {
                       )}
                       <div className={this.decorateCSS("icons")}>
                         {itemLeft.icon && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={itemLeft.icon}
                             propsIcon={{ className: this.decorateCSS("icon1") }}
                           />
                         )}
                         {itemLeft.icon2 && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={itemLeft.icon2}
                             propsIcon={{ className: this.decorateCSS("icon2") }}
                           />
@@ -332,7 +332,7 @@ class Content2 extends BaseContent {
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemTopRight.icon && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemTopRight.icon}
                                     propsIcon={{
                                       className: this.decorateCSS("icon1"),
@@ -340,7 +340,7 @@ class Content2 extends BaseContent {
                                   />
                                 )}
                                 {itemTopRight.icon2 && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemTopRight.icon2}
                                     propsIcon={{
                                       className: this.decorateCSS("icon2"),
@@ -379,7 +379,7 @@ class Content2 extends BaseContent {
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemTopLeft.icon && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemTopLeft.icon}
                                     propsIcon={{
                                       className: this.decorateCSS("icon1"),
@@ -387,7 +387,7 @@ class Content2 extends BaseContent {
                                   />
                                 )}
                                 {itemTopLeft.icon2 && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemTopLeft.icon2}
                                     propsIcon={{
                                       className: this.decorateCSS("icon2"),
@@ -430,7 +430,7 @@ class Content2 extends BaseContent {
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemBottomLeft.icon && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemBottomLeft.icon}
                                     propsIcon={{
                                       className: this.decorateCSS("icon1"),
@@ -438,7 +438,7 @@ class Content2 extends BaseContent {
                                   />
                                 )}
                                 {itemBottomLeft.icon2 && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemBottomLeft.icon2}
                                     propsIcon={{
                                       className: this.decorateCSS("icon2"),
@@ -477,7 +477,7 @@ class Content2 extends BaseContent {
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemBottomRight.icon && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemBottomRight.icon}
                                     propsIcon={{
                                       className: this.decorateCSS("icon1"),
@@ -485,7 +485,7 @@ class Content2 extends BaseContent {
                                   />
                                 )}
                                 {itemBottomRight.icon2 && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={itemBottomRight.icon2}
                                     propsIcon={{
                                       className: this.decorateCSS("icon2"),

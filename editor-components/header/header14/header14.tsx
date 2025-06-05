@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./header14.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -220,7 +220,7 @@ class Header14 extends BaseHeader {
                   </div>
                   {slides.length > 1 && (
                     <>
-                      <ComposerIcon
+                      <Base.Icon
                         name={this.getPropValue("prevIcon")}
                         propsIcon={{
                           className: `${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("prev-icon")}`,
@@ -229,7 +229,7 @@ class Header14 extends BaseHeader {
                           },
                         }}
                       />
-                      <ComposerIcon
+                      <Base.Icon
                         name={this.getPropValue("nextIcon")}
                         propsIcon={{
                           className: `${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("next-icon")}`,

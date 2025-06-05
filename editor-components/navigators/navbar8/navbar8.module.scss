@@ -46,8 +46,6 @@
     display: flex;
     justify-content: center;
     .titleContainerContent{
-      display: flex;
-      flex-direction: column;
       align-items: center;
     }
 
@@ -62,9 +60,9 @@
     }
 
     .title {
-      font-size: 2.5rem;
       font-weight: 700;
       color: var(--composer-font-color-primary);
+      font-size: calc(2 * (var(--project-font-size) + 4px));
 
       &.openedTitle{
         content: "";
@@ -72,7 +70,8 @@
     }
     
     .subtitle {
-      font-size: 1rem;
+      font-size: calc(1 * (var(--project-font-size)));
+      margin: 0;
       font-weight: 400;
       color: var(--composer-font-color-primary);
       text-align: center;
@@ -93,7 +92,7 @@
 
     .localizationDropdown {
       gap: var(--composer-gap-xs);
-      font-size: 1rem;
+      font-size: calc(1 * var(--project-font-size));
       color: var(--composer-font-color-primary);
     }
 
@@ -119,7 +118,7 @@
 
     .closeIcon,
     .menuIcon {
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--project-font-size));
       color: var(--composer-font-color-primary);
     }
     
@@ -161,25 +160,20 @@
     .dropdownRightSide,
     .dropdownItemList {
       flex: 1;
-      h1,
-      p {
-        margin: 0;
-        padding: 0;
-      }
+      margin: 0;
     }
 
     .dropdownRightSide {
       display: flex;
       flex-direction: column;
       align-items: center;
-
       gap: var(--composer-gap-xl);
       .dropdownTitle {
-        font-size: 2.5rem;
+        font-size: calc(1.5 * (var(--project-font-size) + 4px));
         color: var(--composer-font-color-primary);
+        margin: 0;
       }
       .dropdownDescription {
-        font-size: 1rem;
         text-align: center;
         max-width: 60%;
         color: var(--composer-font-color-primary);
@@ -192,10 +186,11 @@
 
       gap: var(--composer-gap-md);
       .dropdownItem {
+        margin: 0;
         width: 100%;
-        font-size: 2rem;
         text-align: center;
         color: var(--composer-font-color-primary);
+        font-size: calc(1.5 * (var(--project-font-size) + 4px));
       }
 
       .socialMediaLinks {
@@ -207,7 +202,6 @@
         gap: var(--composer-gap-xs);
 
         .socialMediaLinksTitle {
-          font-size: 1.5rem;
           color: var(--composer-font-color-primary);
         }
         .socialMediaLinksList {
@@ -217,7 +211,7 @@
           gap: var(--composer-gap-xs);
           .socialMediaIconContainer{
             .socialMediaIcon {
-              font-size: 2rem;
+              font-size: calc(2 * var(--project-font-size));
               color: var(--composer-font-color-primary);
             }
           }

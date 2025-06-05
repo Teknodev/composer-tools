@@ -1,5 +1,7 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import Slider, { Settings } from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
   const [sliderSettings, setSliderSettings] = useState<Settings>(props);

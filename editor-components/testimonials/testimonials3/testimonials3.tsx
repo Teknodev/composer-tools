@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials3.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
@@ -129,7 +129,7 @@ class Testimonials3Page extends Testimonials {
                   {card.star > 0 && this.getPropValue("star_icon") && (
                     <div className={this.decorateCSS("stars")}>
                       {[...Array(Number(card.star))].map((_: any, index: number) => (
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("star_icon")} />
+                        <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("star_icon")} />
                       ))}
                     </div>
                   )}

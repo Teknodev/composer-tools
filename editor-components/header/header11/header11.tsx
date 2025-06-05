@@ -3,7 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Header11 extends BaseHeader {
@@ -108,7 +108,7 @@ class Header11 extends BaseHeader {
               <div className={this.decorateCSS("icon-box")}>
                 <div className={this.decorateCSS("icon-wrapper")}>
                   <div className={this.decorateCSS("icon")}>
-                    <ComposerIcon name={this.getPropValue("icon")} propsIcon={{
+                    <Base.Icon name={this.getPropValue("icon")} propsIcon={{
                       className: this.decorateCSS("button"),
                       onClick: () => this.handlePlayVideo(),
                     }} />
@@ -130,7 +130,7 @@ class Header11 extends BaseHeader {
                 className={this.decorateCSS("close-button-wrapper")}
                 onClick={this.handleCloseVideoModal}
               >
-                <ComposerIcon name={this.getPropValue("exitButton")}
+                <Base.Icon name={this.getPropValue("exitButton")}
                   propsIcon={{
                     className: this.decorateCSS("close-button"),
                   }}

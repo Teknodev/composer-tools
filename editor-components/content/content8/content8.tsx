@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content8.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 
 type ProgressItem = {
@@ -253,7 +253,7 @@ class Content8 extends BaseContent {
                       this.setComponentState("is_video_visible", true)
                     }}>
                      {videoLinkExist && <div className={this.decorateCSS("icon-container")}>
-                        <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("play-icon") }} />
+                        <Base.Icon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("play-icon") }} />
                       </div>}
                     </div>
                     {this.getComponentState("is_video_visible") && (
@@ -312,7 +312,7 @@ class Content8 extends BaseContent {
                               <div
                                 className={this.decorateCSS("progress-title-icon")}
                               >
-                               <ComposerIcon
+                               <Base.Icon
                                   name={item.icon}
                                   propsIcon={{ className: this.decorateCSS("icon") }}
                                 />

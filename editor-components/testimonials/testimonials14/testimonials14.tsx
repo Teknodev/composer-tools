@@ -2,7 +2,7 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 interface Images {
     authorName: string;
@@ -36,7 +36,7 @@ class Testimonials14 extends Testimonials {
                             type: "image",
                             key: "authorImage",
                             displayer: "User Image",
-                            value: "https://media-hosting.imagekit.io/2860930fc04f447e/d65d9f5e3f90cd91c2315ed717b45988111119a5.jpg?Expires=1841297059&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=g02v-6MPV3OSYGqJ8E587WuiRRmJqXoQjm2Kg5vbtMTiGR1fpwE~emWIxg6g52X2EqQHsHB2x5BIWhEr9aMdLuj9qah75J71mXa26rXOh5abFqYPV~MRpitGKU4Uy~i~tJ1fccOJfaZmiTaa7pAZrjJ09pGp~BWxIRlsyueq6-i0YLqaGyYr8qbDxbFj2PjxKeswkCHMrGyU4Zid7lulzL6jlmELHkG03xACeG1tDvNBmX~WpDxQ7kQyVzzdvojC7vm-ELy4SG-2qj7SBhFj9BLv73j8QE7~9ECV9xn~tym217ST-ZiGR57Ckr~PYVhFlpPSFDrUtb61W~3c~HTASg__"
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c7b9e2bb4c4002cf86e1b?alt=media"
                         },
                         {
                             type: "icon",
@@ -67,7 +67,7 @@ class Testimonials14 extends Testimonials {
                             type: "image",
                             key: "authorImage",
                             displayer: "User Image",
-                            value: "https://media-hosting.imagekit.io/b218a9f4fb8d4abf/cc05c1766155fcfdea32d27701fd197ef857396b.jpg?Expires=1841298396&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=CXP5uXJMNgUO3xBX8cSjMK~voTViiLeFYYyXfQJqticb1XSrKl3z43-3rAT36XBMlawzYD6xhBRMiJX-~bXcvYhd3gh3EJ~~cvYYzdseKqzW8ziDAjJ0tDvEyl75Lax2i6hOZpnVgR6Qc~wqd19rDen~rxF3i3qnJfHBet0oC739oWO8Xr~Cw03EAAU4YTKARlv3wFIgoqPdbZV-ugx5KsGo3OIJjBdzJX0DSrG7sqeQ-FB2GsePudEDb6zPFVIhLjkOOd6ggC-l~OuBeUjxSb1tKU3HgrbcSGb~GUjDbAnMuow6OYCnv6NMeKvXOub0YdRDNDcVNNWT-6DV8zacAQ__"
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b222bb4c4002cf8257e?alt=media"
                         },
                         {
                             type: "icon",
@@ -98,7 +98,7 @@ class Testimonials14 extends Testimonials {
                             type: "image",
                             key: "authorImage",
                             displayer: "User Image",
-                            value: "https://media-hosting.imagekit.io/2b002f2c03554b0b/7faa8eff28d75cfc3c2eff6d2ad901012205d91f.jpg?Expires=1841298399&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=EJDz~PRufujcaRQiZRsYuoH97cKJB6Xvls6lKjda0gfwkFRMcU7b~LWmxjJlfIvNLX9gIo8g95y6ubayADsy7vj1WIsYEyNBjC9tUhj9MTjzYmF8vKdBVpri~sKLn-mmGA0e-GhH4AMptZdkejm65tahtyJJM3b59Ns4Uzypd3W9qVjdLwRfTENsAN39rbz4H~gACQ6qo3aGoVuBzk68EFhgcZAJeSaGXj2rpXEXyoASQ8VTB71kq8D8ysVUpZlocJW9DYYzutlWTPuVjD1fCtO~Zoc7ohpe0SvRMDPh4-LJkkmYylN~QlpUW6y99nvn5UiyMFWigofYXy-ugE1pNg__"
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b402bb4c4002cf825bb?alt=media"
                         },
                         {
                             type: "icon",
@@ -129,7 +129,7 @@ class Testimonials14 extends Testimonials {
                             type: "image",
                             key: "authorImage",
                             displayer: "User Image",
-                            value: "https://media-hosting.imagekit.io/7af961b2a1554675/6037051f27a19eb24d899bd4ba53d5c3de6d1abd.jpg?Expires=1841298404&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pQUplM6AYSfGWJvWMUeNoHvWDWMaAM4~XkMecLsXRARFjACZv2aOeTk8x0jqFzgoph9apDGRjkd9HtuuDVTqzXrH0VmRmiMW3MS51M-kSO7EA0UHVncluTqAs6Mb98NkENljWdS~qa8VLhau7QQ655GPl63WRCev5sbx5vPRHQG5R8uid0VJy7~rIZuZdc8jw67xySsI6zJ0tJDxeLqxiUZVgwWIJOGQXDGhqaiU8a2sRbUj6ok2bIFIlFKabkwAipcXF2e27FanqR6sLbW3r7LmtcW4wxxt7HpEiJO2-rs86YgV22eh3ixAbPZQ~XVjaOw6g0Kci1n67xAXMH42IA__"
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b5a2bb4c4002cf8272a?alt=media"
                         },
                         {
                             type: "icon",
@@ -301,7 +301,7 @@ class Testimonials14 extends Testimonials {
                                 className={`${this.decorateCSS("items")} ${animationClass}`}>
                                 <div className={this.decorateCSS("icon-and-name")}>
                                     {images[activeIndex].icon ? (
-                                        <ComposerIcon
+                                        <Base.Icon
                                             name={images[activeIndex].icon}
                                             propsIcon={{
                                                 className: this.decorateCSS("icon"),
@@ -329,7 +329,7 @@ class Testimonials14 extends Testimonials {
                                         e.stopPropagation();
                                         this.goToPrev();
                                     }}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                         name={arrows.prevArrow}
                                         propsIcon={{ className: this.decorateCSS("arrow") }}
                                     />
@@ -342,7 +342,7 @@ class Testimonials14 extends Testimonials {
                                         e.stopPropagation();
                                         this.goToNext();
                                     }}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                         name={arrows.nextArrow}
                                         propsIcon={{
                                             className: this.decorateCSS("arrow"),

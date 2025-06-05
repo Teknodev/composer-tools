@@ -216,6 +216,7 @@ import ImageGalleryCompanent6 from "./Image_gallery/image_gallery_6/image-galler
 import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-gallery7";
 import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
 import ImageGalleryCompanent9 from "./Image_gallery/image_gallery_9/image-gallery9";
+import ImageGalleryComponent10 from "./Image_gallery/image_gallery_10/image-gallery10";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -248,6 +249,7 @@ import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
 import ECommerce2 from "./e-commerce/e-commerce2";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
+import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -266,6 +268,7 @@ function Registerables(composer: ComponentsRegistery) {
     DownloadComponent9,
     DownloadComponent10,
     DownloadComponent11,
+    PrivacyPolicyPage,
     ListComponent1,
     ListComponent2,
     ListComponent3,
@@ -392,6 +395,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent7,
     ImageGalleryCompanent8,
     ImageGalleryCompanent9,
+    ImageGalleryComponent10,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 type Card = {
   image: string;
@@ -342,7 +342,7 @@ class Testimonials9Page extends Testimonials {
               </Base.GridCell>
               <Base.GridCell className={this.decorateCSS("right-page")}>
                 {this.getPropValue("left_icon") && (
-                  <ComposerIcon
+                  <Base.Icon
                     name={this.getPropValue("left_icon")}
                     propsIcon={{
                       className: this.decorateCSS("left-icon"),
@@ -353,7 +353,7 @@ class Testimonials9Page extends Testimonials {
                   <div className={this.decorateCSS("text")}>{index === activeIndex && this.castToString(item.description) && <Base.H3 className={this.decorateCSS("description")}>{item.description}</Base.H3>}</div>
                 ))}
                 {this.getPropValue("right_icon") && (
-                  <ComposerIcon
+                  <Base.Icon
                     name={this.getPropValue("right_icon")}
                     propsIcon={{
                       className: this.decorateCSS("right-icon"),

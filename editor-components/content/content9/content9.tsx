@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content9.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -164,7 +164,7 @@ class Content9 extends BaseContent {
                     <Base.VerticalContent className={this.decorateCSS("list-item-content")}>
                       <Base.Row className={this.decorateCSS("item-content-top")}>
                         {listItem.icon && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={listItem.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),

@@ -3,7 +3,7 @@ import styles from "./faq2.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
@@ -264,7 +264,7 @@ class Faq2 extends BaseFAQ {
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {item.cardIcon && (
                           <Base.Row className={this.decorateCSS("icon-wrapper")}>
-                            <ComposerIcon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                            <Base.Icon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                           </Base.Row>
                         )}
                         {this.castToString(item.cardTitle) && (

@@ -1,7 +1,6 @@
 import { BaseSocial } from "composer-tools/editor-components/EditorComponent";
 import styles from "./social4.module.scss"
 import { Base } from "composer-tools/composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -1783,8 +1782,8 @@ class Social4 extends BaseSocial {
                                         </div>
                                          )}
                                         <div className={this.decorateCSS("icon-container")}>
-                                            {(this.getPropValue("videoIcon") && this.castToString(item.videoUrl) && item.videoIconActive) && (<ComposerIcon name={this.getPropValue("videoIcon")} propsIcon={{className:this.decorateCSS("icon")}}></ComposerIcon>)}
-                                            {(this.getPropValue("imageIcon") && item.imageItems.length > 1) && (<ComposerIcon name={this.getPropValue("imageIcon")} propsIcon={{className:this.decorateCSS("icon")}}></ComposerIcon>)}
+                                            {(this.getPropValue("videoIcon") && this.castToString(item.videoUrl) && item.videoIconActive) && (<Base.Icon name={this.getPropValue("videoIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
+                                            {(this.getPropValue("imageIcon") && item.imageItems.length > 1) && (<Base.Icon name={this.getPropValue("imageIcon")} propsIcon={{className:this.decorateCSS("icon")}}></Base.Icon>)}
                                         </div>
                                         <div className={this.decorateCSS("overlay")} onClick={() => this.handleClickItem(index)}>
                                         <div className={this.decorateCSS("content-container")}>
@@ -1792,13 +1791,13 @@ class Social4 extends BaseSocial {
                                             <div className={this.decorateCSS("like-and-commnet-container")}>
                                             {(this.getPropValue("likeIcon") || item.likeCount) && (
                                             <div className={this.decorateCSS("like-container")}>
-                                                {this.getPropValue("likeIcon") && (<ComposerIcon name={this.getPropValue("likeIcon")} propsIcon={{className: this.decorateCSS("like-icon")}}></ComposerIcon>)}
+                                                {this.getPropValue("likeIcon") && (<Base.Icon name={this.getPropValue("likeIcon")} propsIcon={{className: this.decorateCSS("like-icon")}}></Base.Icon>)}
                                                 {item.likeCount && (<div className={this.decorateCSS("like-number")}>{item.likeCount}</div>)}
                                             </div>
                                             )}
                                             {(this.getPropValue("commentIcon") || item.commentCount) && (
                                             <div className={this.decorateCSS("comment-container")}>
-                                                {this.getPropValue("commentIcon") && (<ComposerIcon name={this.getPropValue("commentIcon")} propsIcon={{className: this.decorateCSS("comment-icon")}}></ComposerIcon>)}
+                                                {this.getPropValue("commentIcon") && (<Base.Icon name={this.getPropValue("commentIcon")} propsIcon={{className: this.decorateCSS("comment-icon")}}></Base.Icon>)}
                                                 {item.commentCount && (<div className={this.decorateCSS("comment-number")}>{item.commentCount}</div>)}
                                             </div>
                                             )}
@@ -1859,7 +1858,7 @@ class Social4 extends BaseSocial {
                             </ComposerLink>
                             {item.socialIcon && (
                                 <ComposerLink path={item.url}>
-                                    <ComposerIcon name={item.socialIcon} propsIcon={{className: this.decorateCSS("socail-icon")}}></ComposerIcon>
+                                    <Base.Icon name={item.socialIcon} propsIcon={{className: this.decorateCSS("socail-icon")}}></Base.Icon>
                                 </ComposerLink>
                             )}
                         </div>
@@ -1895,7 +1894,7 @@ class Social4 extends BaseSocial {
                                 <div className={this.decorateCSS("share-part")}>
                                 {this.getPropValue("shareIcon") && (
                                 <div className={this.decorateCSS("share-icon-container")}>
-                                    <ComposerIcon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon")}}></ComposerIcon>
+                                    <Base.Icon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon")}}></Base.Icon>
                                 </div>
                                 )}
                                 {this.castToString(this.getPropValue("shareText")) &&(<div className={this.decorateCSS("share-text")}>{this.getPropValue("shareText")}</div>   )}
@@ -1927,7 +1926,7 @@ class Social4 extends BaseSocial {
         {this.getPropValue("closeIcon") && (
             <div className={this.decorateCSS("icon-container")}>
                 <div className={this.decorateCSS("close-icon")}>
-                    <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("icon"),onClick: () => this.handleCloseOverlay()}}></ComposerIcon>
+                    <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("icon"),onClick: () => this.handleCloseOverlay()}}></Base.Icon>
                 </div>
             </div>
         )}

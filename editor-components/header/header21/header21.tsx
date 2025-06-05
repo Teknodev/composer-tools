@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header21.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -109,7 +109,7 @@ class Header21 extends BaseHeader {
                             <ComposerLink path={button.url}>
                               <Base.Button buttonType={button.type} key={index} className={this.decorateCSS("card-button")}>
                                 {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                                {button.icon && <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                                {button.icon && <Base.Icon name={button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
                               </Base.Button>
                             </ComposerLink>
                           )
@@ -128,7 +128,7 @@ class Header21 extends BaseHeader {
                     this.setComponentState("is_video_visible", true);
                   }}
                 >
-                  <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("btn-icon") }} />
+                  <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("btn-icon") }} />
                 </button>}
                 {image && <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />}
                 {this.getComponentState("is_video_visible") && video && image && (

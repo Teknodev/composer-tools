@@ -1,6 +1,6 @@
 import { BaseList } from "../../EditorComponent";
 import styles from "./list12.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 class List12 extends BaseList {
@@ -140,7 +140,7 @@ class List12 extends BaseList {
                       alt="item"
                     />
                   ) : (
-                    <ComposerIcon
+                    <Base.Icon
                       name={box1.icon}
                       propsIcon={{
                         className: this.decorateCSS("icon"),
@@ -181,7 +181,7 @@ class List12 extends BaseList {
                       alt="item"
                     />
                   ) : (
-                    <ComposerIcon
+                    <Base.Icon
                       name={box2.icon}
                       propsIcon={{
                         className: this.decorateCSS("icon"),
@@ -207,7 +207,7 @@ class List12 extends BaseList {
                       alt="item"
                     />
                   ) : (
-                    <ComposerIcon
+                    <Base.Icon
                       name={box3.icon}
                       propsIcon={{
                         className: this.decorateCSS("icon"),

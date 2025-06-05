@@ -106,12 +106,12 @@
             overflow: hidden;
             height: 100%;
             background-color: var(--composer-primary-color);
-            .bottom-left-side-card-image {
+            .bottom-left-side-card-image-container {
               display: flex;
               justify-content: center;
               align-items: center;
               transform: translateY(4rem);
-              > img {
+              .bottom-left-side-card-image {
                 max-height: 500px;
                 object-fit: contain;
               }

@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./pricing-table3.module.scss";
 import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -368,7 +368,7 @@ class PricingTable3 extends BasePricingTable {
 
                         <Base.VerticalContent className={this.decorateCSS("header")}>
                           {card.icon && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={card.icon}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),

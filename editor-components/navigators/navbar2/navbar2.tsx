@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
@@ -225,8 +225,8 @@ class Navbar2 extends BaseNavigator {
 
     this.addProp({
       type: "icon",
-      key: "menuIcon",
-      displayer: "Menu Icon",
+      key: "hamburgerIcon",
+      displayer: "Hamburger Icon",
       value: "FaBars",
     });
 
@@ -382,11 +382,11 @@ class Navbar2 extends BaseNavigator {
                     >
                       <ComposerLink path={item.nav_navigate_to}>
                         <div className={this.decorateCSS("menuItem")}>
-                          <span className={this.decorateCSS("menuItemTitle")}>
+                          <Base.P className={this.decorateCSS("menuItemTitle")}>
                             {item.nav_title}
-                          </span>
+                          </Base.P>
                           {item.menuType === "Dropdown" && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={this.getPropValue("dropdownIcon")}
                               propsIcon={{
                                 className: this.decorateCSS("dropdownIcon"),
@@ -428,7 +428,7 @@ class Navbar2 extends BaseNavigator {
                                       subItem.sub_items.some((item: any) =>
                                         this.castToString(item.nav_title)
                                       ) && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={this.getPropValue("rightIcon")}
                                           propsIcon={{
                                             className:
@@ -483,7 +483,7 @@ class Navbar2 extends BaseNavigator {
               )}
               {divider && <div className={this.decorateCSS("divider")} />}
               {language.showLanguage && (
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -504,15 +504,15 @@ class Navbar2 extends BaseNavigator {
             </nav>
           )}
           <div className={this.decorateCSS("mobileRight")}>
-          <ComposerIcon
-            name={this.getPropValue("menuIcon")}
+          <Base.Icon
+            name={this.getPropValue("hamburgerIcon")}
             propsIcon={{
               className: this.decorateCSS("menuIcon"),
               onClick: this.toggleMobileMenu,
             }}
           />
            {language.showLanguage && language.showLocalizationAlways &&(
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -534,7 +534,7 @@ class Navbar2 extends BaseNavigator {
 
             <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
             ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{
                   className: this.decorateCSS("closeIcon"),
@@ -559,17 +559,17 @@ class Navbar2 extends BaseNavigator {
                             onClick={() => this.navClick(index)}
                           >
                             <ComposerLink path={item.nav_navigate_to}>
-                              <span
+                              <Base.P
                                 className={this.decorateCSS(
                                   "hamburgerMenuItemTitle"
                                 )}
                                 onClick={()=> this.toggleMobileMenu()}
                               >
                                 {item.nav_title}
-                              </span>
+                              </Base.P>
                             </ComposerLink>
                             {item.menuType === "Dropdown" && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={this.getPropValue("rightIcon")}
                                 propsIcon={{
                                   className: `${this.decorateCSS(
@@ -613,20 +613,20 @@ class Navbar2 extends BaseNavigator {
                                       }
                                     >
                                       <ComposerLink path={subItem.nav_navigate_to}>
-                                        <span
+                                        <Base.P
                                           className={this.decorateCSS(
                                             "hamburgerMenuItemTitle"
                                           )}
                                           onClick={()=> this.toggleMobileMenu()}
                                         >
                                           {subItem.nav_title}
-                                        </span>
+                                        </Base.P>
                                       </ComposerLink>
                                       {subItem.sub_items.length > 0 &&
                                         subItem.sub_items.some((item: any) =>
                                           this.castToString(item.nav_title)
                                         ) && (
-                                          <ComposerIcon
+                                          <Base.Icon
                                             name={this.getPropValue(
                                               "rightIcon"
                                             )}
@@ -673,14 +673,14 @@ class Navbar2 extends BaseNavigator {
                                                 <ComposerLink
                                                   path={subSubItem.nav_navigate_to}
                                                 >
-                                                  <span
+                                                  <Base.P
                                                     className={this.decorateCSS(
                                                       "hamburgerSubSubmenuItemTitle"
                                                     )}
                                                     onClick={()=> this.toggleMobileMenu()}
                                                   >
                                                     {subSubItem.nav_title}
-                                                  </span>
+                                                  </Base.P>
                                                 </ComposerLink>
                                               </div>
                                             )
@@ -696,7 +696,7 @@ class Navbar2 extends BaseNavigator {
                       )
                   )}
                   {(!language.showLocalizationAlways && language.showLanguage) &&
-                    <ComposerLanguage
+                    <Base.Language
                     type="accordion"
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}

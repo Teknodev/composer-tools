@@ -2,7 +2,7 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location3.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Address = {
@@ -308,7 +308,7 @@ class Location3 extends Location {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.getPropValue("icon") && (
                   <div className={this.decorateCSS("icon-wrapper")}>
-                    <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("icon")} />
+                    <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("icon")} />
                   </div>
                 )}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}

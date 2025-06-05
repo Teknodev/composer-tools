@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./header29.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -239,7 +239,7 @@ class Header29 extends BaseHeader {
                     {serviceItems.map((item: any, index: number) => (
                       <Base.VerticalContent className={this.decorateCSS("service-card")}>
                         <div className={this.decorateCSS("service-svg")}>
-                          <ComposerIcon name={item.icon} />
+                          <Base.Icon name={item.icon} />
                         </div>
                         <Base.H4 className={this.decorateCSS("service-title")}>
                           {item.title}

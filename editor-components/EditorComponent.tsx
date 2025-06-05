@@ -427,6 +427,7 @@ export enum CATEGORIES {
   ECOMMERCE = "ecommerce",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
+  PRIVACYPOLICY = "privacyPolicy",
 }
 
 export function generateId(key: string): string {
@@ -656,6 +657,16 @@ export abstract class Component
     if (this.getProp(prop.key)) return;
     this.initializeProp(prop);
     this.state.componentProps.props.push(prop);
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
+  }
+
+  removeProp(key: string) {
+    this.shadowProps = this.shadowProps.filter((el) => el.key !== key);
+    this.state.componentProps.props = this.state.componentProps.props.filter(
+      (el: any) => el.key !== key
+    );
+    
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
 
   setProp(key: string, value: any): void {
@@ -902,6 +913,10 @@ export abstract class BaseImageGallery extends Component {
 
 export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
+}
+
+export abstract class BasePrivacyPolicy extends Component {
+  static category = CATEGORIES.PRIVACYPOLICY;
 }
 
 export abstract class LogoClouds extends Component {

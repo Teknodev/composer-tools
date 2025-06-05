@@ -2,8 +2,8 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import { BaseSocial } from "../../EditorComponent";
 import styles from "./social3.module.scss";
 import React from "react";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+
 type PostItem ={
     postTitle: React.JSX.Element,
     postDescription: React.JSX.Element,
@@ -234,7 +234,7 @@ class Social3 extends BaseSocial {
                 {this.castToString(this.getPropValue("userName")) && (<div className={this.decorateCSS("user-name")}>{this.getPropValue("userName")}</div>)}
                 {(this.getPropValue("dateIcon") ||  this.getPropValue("date")) && (
                 <div className={this.decorateCSS("date-container")}>
-                    {this.getPropValue("dateIcon") && (<ComposerIcon name={this.getPropValue("dateIcon")} propsIcon={{className: this.decorateCSS("date-icon")}}/>)}
+                    {this.getPropValue("dateIcon") && (<Base.Icon name={this.getPropValue("dateIcon")} propsIcon={{className: this.decorateCSS("date-icon")}}/>)}
                     {this.getPropValue("date") && (<div className={this.decorateCSS("date")}>{this.getPropValue("date")}</div>)}
                 </div>
                 )}
@@ -254,20 +254,20 @@ class Social3 extends BaseSocial {
             {(likeInteraction.icon || this.castToString(likeInteraction.text)) && (
             <div className={this.decorateCSS("interaction")} onClick={()=> this.handleLikeClick()}>
                 {likeInteraction.icon && (
-                    <ComposerIcon name={likeInteraction.icon} propsIcon={{className: `${this.decorateCSS("icon")} ${this.getComponentState("isLiked") && this.decorateCSS("liked")}`}}/>
+                    <Base.Icon name={likeInteraction.icon} propsIcon={{className: `${this.decorateCSS("icon")} ${this.getComponentState("isLiked") && this.decorateCSS("liked")}`}}/>
                 )}
                 {this.castToString(likeInteraction.text) && (<div className={this.decorateCSS("text")}>{likeInteraction.text}</div>)}
             </div>
             )}
             {(commentInteraction.icon || this.castToString(commentInteraction.text)) && (
             <div className={this.decorateCSS("interaction")}>
-                {commentInteraction.icon && (<ComposerIcon name={commentInteraction.icon} propsIcon={{className: this.decorateCSS("icon")}}/>)}
+                {commentInteraction.icon && (<Base.Icon name={commentInteraction.icon} propsIcon={{className: this.decorateCSS("icon")}}/>)}
                 {this.castToString(commentInteraction.text) && (<div className={this.decorateCSS("text")}>{commentInteraction.text}</div>)}
             </div>
             )}
             {(socials.length > 0 || shareInteraction.icon || this.castToString(shareInteraction.text)) &&(
             <div className={`${this.decorateCSS("interaction")} ${this.decorateCSS("share")}`}>
-                {shareInteraction.icon && (<ComposerIcon name={shareInteraction.icon} propsIcon={{className: this.decorateCSS("icon")}}/>)}
+                {shareInteraction.icon && (<Base.Icon name={shareInteraction.icon} propsIcon={{className: this.decorateCSS("icon")}}/>)}
                 {this.castToString(shareInteraction.text) && (<div className={this.decorateCSS("text")}>{shareInteraction.text}</div>)}
                 {socials.length >  0 && (
                     <div className={this.decorateCSS("socials")}>
@@ -275,7 +275,7 @@ class Social3 extends BaseSocial {
                         return(
                             <ComposerLink path={item.link}>
                                 <div className={this.decorateCSS("social")} key={index}>
-                                    {item.icon && (<ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>)}
+                                    {item.icon && (<Base.Icon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>)}
                                     {this.castToString(item.text) && (<div className={this.decorateCSS("social-text")}>{item.text}</div>)}                          
                                 </div>
                             </ComposerLink>

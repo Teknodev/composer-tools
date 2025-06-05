@@ -3,7 +3,7 @@ import styles from "./formmodal1.module.scss";
 import { BaseModal } from "../../EditorComponent";
 import { Formik, Form } from "formik";
 import ComposerModalClose from "../../../composer-base-components/close/close";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import * as Yup from "yup";
@@ -441,7 +441,7 @@ class FormModal1 extends BaseModal {
         <Base.MaxContent className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")} ${!hasRightPageProps && this.decorateCSS("single-image")}`}>
           <div className={this.decorateCSS("exit-icon")}>
             <ComposerModalClose>
-              <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+              <Base.Icon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
             </ComposerModalClose>
           </div>
 

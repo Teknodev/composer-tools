@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team13.module.scss";
 import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -205,7 +205,7 @@ class Team13 extends Team {
                       return (
                         <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                           <ComposerLink path={icon.url}>
-                            <ComposerIcon
+                            <Base.Icon
                               name={icon.name}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),

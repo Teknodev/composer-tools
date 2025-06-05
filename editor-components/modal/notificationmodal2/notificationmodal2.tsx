@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./notificationmodal2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import * as Yup from "yup";
@@ -86,14 +86,14 @@ class NotificationModal2 extends BaseModal {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("close-icon-wrapper")}>
             <ComposerModalClose>
-              <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+              <Base.Icon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
             </ComposerModalClose>
           </div>
 
           <Base.VerticalContent className={this.decorateCSS("content")}>
             {icon && (
               <div className={this.decorateCSS("icon")}>
-                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon-element") }} name={this.getPropValue("icon")} />
+                <Base.Icon propsIcon={{ className: this.decorateCSS("icon-element") }} name={this.getPropValue("icon")} />
               </div>
             )}
             {title &&

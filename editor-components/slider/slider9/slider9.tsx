@@ -3,7 +3,7 @@ import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type SliderItem = {
   image: string;
@@ -383,7 +383,7 @@ class Slider9 extends BaseSlider {
                   {(verticalPreviousArrow || verticalNextArrow) && (
                     <div className={this.decorateCSS("verticalArrows")}>
                       {verticalPreviousArrow && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={verticalPreviousArrow}
                           propsIcon={{
                             className: this.decorateCSS("verticalPreviousArrow"),
@@ -395,7 +395,7 @@ class Slider9 extends BaseSlider {
                         />
                       )}
                       {verticalNextArrow && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={verticalNextArrow}
                           propsIcon={{
                             className: this.decorateCSS("verticalNextArrow"),
@@ -422,7 +422,7 @@ class Slider9 extends BaseSlider {
                   {(horizontalPreviousArrow || horizontalNextArrow) && (
                     <div className={this.decorateCSS("horizontalArrows")}>
                       {horizontalPreviousArrow && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={horizontalPreviousArrow}
                           propsIcon={{
                             className: this.decorateCSS("horizontalPreviousArrow"),
@@ -434,7 +434,7 @@ class Slider9 extends BaseSlider {
                         />
                       )}
                       {horizontalNextArrow && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={horizontalNextArrow}
                           propsIcon={{
                             className: this.decorateCSS("horizontalNextArrow"),
@@ -451,7 +451,7 @@ class Slider9 extends BaseSlider {
                   <div className={this.decorateCSS("buttons")}>
                     <div className={this.decorateCSS("button-wrapper")}>
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={videoButton}
                           propsIcon={{
                             className: this.decorateCSS("button"),
@@ -466,7 +466,7 @@ class Slider9 extends BaseSlider {
 
                     <div className={this.decorateCSS("button-wrapper")}>
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={fsButton}
                           propsIcon={{
                             className: this.decorateCSS("button"),
@@ -483,7 +483,7 @@ class Slider9 extends BaseSlider {
                   {isFullscreen && (
                     <div className={this.decorateCSS("fullscreen-modal")}>
                       <div className={this.decorateCSS("fullscreen-overlay")} onClick={this.handleCloseFullscreen}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("overlayLeftArrow")}
                           propsIcon={{
                             className: this.decorateCSS("overlay-left-button"),
@@ -494,7 +494,7 @@ class Slider9 extends BaseSlider {
                             },
                           }}
                         />
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("overlayRightArrow")}
                           propsIcon={{
                             className: this.decorateCSS("overlay-right-button"),
@@ -505,7 +505,7 @@ class Slider9 extends BaseSlider {
                           }}
                         />
                         <button className={this.decorateCSS("close-button-wrapper")} onClick={this.handleCloseFullscreen}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={this.getPropValue("exitButton")}
                             propsIcon={{
                               className: this.decorateCSS("close-button"),
@@ -522,7 +522,7 @@ class Slider9 extends BaseSlider {
                       <div className={this.decorateCSS("video-overlay")} onClick={this.handleCloseVideoModal}></div>
                       <div className={this.decorateCSS("video-content")}>
                         <button className={this.decorateCSS("close-button-wrapper")} onClick={this.handleCloseVideoModal}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={this.getPropValue("exitButton")}
                             propsIcon={{
                               className: this.decorateCSS("close-button"),

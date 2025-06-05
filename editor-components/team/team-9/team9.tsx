@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team9.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -277,7 +277,7 @@ class Team9 extends Team {
                                 if (card.icon) {
                                   return (
                                     <ComposerLink key={iconIndex} path={card.url}>
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={card.icon}
                                         propsIcon={{ className: this.decorateCSS("icon") }}
                                       />
@@ -315,7 +315,7 @@ class Team9 extends Team {
                                   if (card.icon)
                                     return (
                                       <ComposerLink key={indexIcons} path={card.url}>
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={card.icon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),

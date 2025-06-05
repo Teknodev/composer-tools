@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team10.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 interface TTeam {
@@ -450,7 +450,7 @@ class Team10 extends Team {
                           iconExist && (
                             <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                               <ComposerLink path={icon.url}>
-                                <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Icon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                               </ComposerLink>
                             </div>
                           )

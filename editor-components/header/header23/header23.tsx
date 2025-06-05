@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./header23.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type SliderItem = {
   topImage: string;
@@ -294,7 +294,7 @@ class Header23 extends BaseHeader {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {slider.length > 1 && previousArrow && (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("previousArrow")}
                 propsIcon={{
                   className: `${this.decorateCSS("prevArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`,
@@ -305,7 +305,7 @@ class Header23 extends BaseHeader {
               />
             )}
             {slider.length > 1 && nextArrow && (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("nextArrow")}
                 propsIcon={{
                   className: `${this.decorateCSS("nextArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`,

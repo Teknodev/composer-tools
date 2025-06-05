@@ -4,7 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
@@ -321,14 +321,14 @@ class Header24 extends BaseHeader {
             <div className={currentBackgroundImage ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
             onClick={() => {sliderRef.current.slickPrev();}}>
               <div className={this.decorateCSS("arrow-prev")}>
-                <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                <Base.Icon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
               </div>
             </div>
           <div
             className={currentBackgroundImage ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
             onClick={() => {sliderRef.current.slickNext();}}>
               <div className={this.decorateCSS("arrow-next")}>
-                <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                <Base.Icon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
               </div>
           </div>
         </div>

@@ -3,8 +3,6 @@ import styles from "./banner6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
-
 class banner6 extends BaseBanner {
   constructor(props: any) {
     super(props, styles);
@@ -109,7 +107,7 @@ class banner6 extends BaseBanner {
                 </div>
               )}
               {icon && (
-                <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon")}} />
+                <Base.Icon name={icon} propsIcon={{ className: this.decorateCSS("icon")}} />
               )}
               {currentExist && (
                 <div className={this.decorateCSS("current-container")}>

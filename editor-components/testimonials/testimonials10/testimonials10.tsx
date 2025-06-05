@@ -3,7 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -308,14 +308,14 @@ class Testimonials10Page extends Testimonials {
                                       </div>
                                     )}
                                     <div className={this.decorateCSS("icons")}>
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={this.getPropValue("previcon")}
                                         propsIcon={{
                                           className: this.decorateCSS("previcon"),
                                           onClick: () => this.getComponentState("slider-ref").current.slickPrev(),
                                         }}
                                       />
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={this.getPropValue("nexticon")}
                                         propsIcon={{
                                           className: this.decorateCSS("nexticon"),
@@ -325,7 +325,7 @@ class Testimonials10Page extends Testimonials {
                                     </div>
                                   </div>
                                   <div className={this.decorateCSS("iconquote")}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                       name={this.getPropValue("quoteicon")}
                                       propsIcon={{
                                         className: this.decorateCSS("quoteicon"),

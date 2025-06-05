@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./pricing-table6.module.scss";
 import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -1091,7 +1091,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       {plan.map((tab: any, index: number) => (
                         <div className={this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} onClick={() => this.setActivePlan(index)} key={index}>
                           <div className={this.decorateCSS("plan-icons")}>
-                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></ComposerIcon>
+                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></Base.Icon>
                             <Base.P className={this.decorateCSS("plan")}> {tab.plan}</Base.P>
                           </div>
                           {this.castToString(tab.tag) && <Base.P className={this.decorateCSS("tag")}> {tab.tag}</Base.P>}
@@ -1119,7 +1119,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               return (
                                 (listValue || iconValue) && (
                                   <div key={listItemIndex} className={`${this.decorateCSS("list-item")} ${!enableValue && this.decorateCSS("list-item-disabled")}`}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                       propsIcon={{
                                         className: this.decorateCSS("dash_icon"),
                                       }}

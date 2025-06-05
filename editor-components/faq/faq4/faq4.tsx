@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./faq4.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
@@ -262,7 +262,7 @@ class Faq4 extends BaseFAQ {
                           {this.getPropValue("icon") && (
                             <div className={this.decorateCSS("card-right")}>
                               <div className={this.decorateCSS("icon-wrapper")}>
-                                <ComposerIcon
+                                <Base.Icon
                                   propsIcon={{
                                     className: `${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
                                       ? this.getComponentState("onclick")

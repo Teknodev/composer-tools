@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./download6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -103,7 +103,7 @@ class Download6 extends BaseDownload {
                               (buttonTextExist || item.icon) && (
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                                   {item.icon && (
-                                    <ComposerIcon
+                                    <Base.Icon
                                       name={item.icon}
                                       propsIcon={{
                                         className: this.decorateCSS("icon"),

@@ -4,7 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
@@ -270,7 +270,7 @@ class Header2 extends BaseHeader {
                                     <Base.Button buttonType={item.button.type} className={this.decorateCSS("link-text")}>
                                       {item.button.text}
                                       {item.button.icon && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={item.button.icon}
                                           propsIcon={{ className: this.decorateCSS("icon") }}
                                         />

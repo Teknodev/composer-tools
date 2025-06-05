@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./team6.module.scss";
 import { Team } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
@@ -540,9 +540,9 @@ class Team6 extends Team {
                             <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                               {card.features.length > 0 &&
                                 (this.getComponentState("activeIndex") === indexItems ? (
-                                  <ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                                  <Base.Icon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ) : (
-                                  <ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                                  <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
                               <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} />
                               <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
@@ -553,7 +553,7 @@ class Team6 extends Team {
                                   <Base.VerticalContent className={this.decorateCSS("features")}>
                                     {card.features.map((feature: Feature, idx: number) => (
                                       <div key={idx} className={this.decorateCSS("feature")}>
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={feature.icon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),
@@ -575,7 +575,7 @@ class Team6 extends Team {
                                 <Base.VerticalContent className={this.decorateCSS("features")}>
                                   {card.features.map((feature: Feature, idx: number) => (
                                     <div key={idx} className={this.decorateCSS("feature")}>
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={feature.icon}
                                         propsIcon={{
                                           className: this.decorateCSS("icon"),

@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./faq6.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 class Faq6 extends BaseFAQ {
@@ -164,7 +164,7 @@ class Faq6 extends BaseFAQ {
                                 <div className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</div>
                               )}
                               {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
-                                <ComposerIcon
+                                <Base.Icon
                                   propsIcon={{ className: `${this.decorateCSS("icon")} ${is_active ? this.decorateCSS("active") : ""}` }}
                                   name={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
                                 />

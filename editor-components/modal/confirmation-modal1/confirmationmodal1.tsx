@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./confirmationmodal1.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -74,7 +74,7 @@ class ConfirmationModal1 extends BaseModal {
               {icon && (
                 <div className={this.decorateCSS("exit-icon")}>
                   <ComposerModalClose>
-                    <ComposerIcon propsIcon={{ className: `${this.decorateCSS("icon")} ${!image && this.decorateCSS("icon-no-image")}` }} name={this.getPropValue("exitIcon")} />
+                    <Base.Icon propsIcon={{ className: `${this.decorateCSS("icon")} ${!image && this.decorateCSS("icon-no-image")}` }} name={this.getPropValue("exitIcon")} />
                   </ComposerModalClose>
                 </div>
               )}
