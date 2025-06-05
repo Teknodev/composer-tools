@@ -13,7 +13,7 @@ class COMING_SOON2 extends BaseComingSoon {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Coming Soon",
+      value: "Something is Coming",
     });
     this.addProp({
       type: "image",
