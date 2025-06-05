@@ -1,6 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  height: 100vh;
   .max-content {
     height: 100%;
     display: flex;
@@ -125,6 +124,12 @@
         }
         .right-side {
           flex: unset;
+          gap: var(--composer-gap-md);
+          .counter{
+            .count{
+              font-size: 3rem;
+            }
+          }
         }
       }
     }
