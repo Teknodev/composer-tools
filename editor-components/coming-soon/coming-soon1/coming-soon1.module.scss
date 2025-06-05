@@ -3,64 +3,56 @@
   height: 100vh;
   .max-content {
     height: 100%;
-    .content-box {
-      height: 100%;
-      display: flex;
-      border-radius: var(--composer-border-radius-xl);
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-      .content {
-        height: 100%;
+    border-radius: var(--composer-border-radius-xl);
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--composer-gap-lg) * 3);
+    width: 100%;
+    padding: var(--composer-gap-md);
+    overflow: hidden;
+    justify-content: center;
+    .top-content{
+        align-items: center;
+        gap: var(--composer-gap-md);
+        .title{
+            margin: 0px;
+            font-size: 5rem;
+            text-align: center;
+        }
+        .description{
+            color: var(--composer-tertiary-color);
+            font-size: 2rem;
+            text-align: center;
+            margin: 0px;
+        }
+        .button-wrapper{
+            .button{
+                content: "";
+            }
+        }
+    }
+    .bottom-side{
         display: flex;
-        flex-direction: column;
-        gap: calc(var(--composer-gap-lg) * 3);
-        width: 100%;
-        padding: var(--composer-gap-md);
-        overflow: hidden;
+        align-items: center;
         justify-content: center;
-        .top-side{
-            .top-content{
-                align-items: center;
-                gap: var(--composer-gap-md);
-                .title{
-                    margin: 0px;
-                    font-size: 5rem;
-                    text-align: center;
-                }
-                .description{
-                    color: var(--composer-tertiary-color);
-                    font-size: 2rem;
-                    text-align: center;
-                    margin: 0px;
-                }
-                .button-wrapper{
-                    .button{
-                        content: "";
-                    }
-                }
-            }
-        }
-        .bottom-side{
+        gap: var(--composer-gap-xl);
+        .counter-container{
             display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
             align-items: center;
-            justify-content: center;
-            gap: var(--composer-gap-xl);
-            .days-container,.hours-container, .minutes-container, .seconds-container{
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-md);
-                align-items: center;
-                min-width: 65px;
-                .days-count,.hours-count, .minutes-count, .seconds-count{
-                    color: var(--composer-font-color-primary);
-                    margin: 0px;
-                }
-                .days-text, .hours-text, .minutes-text, .seconds-text{
-                    color: var(--composer-font-color-primary);
-                    font-size: 1rem;
-                }
+            min-width: 65px;
+            .counter-count{
+                color: var(--composer-font-color-primary);
+                margin: 0px;
+            }
+            .counter-text{
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
             }
         }
-      }
     }
   }
 }
