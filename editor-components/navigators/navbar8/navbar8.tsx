@@ -496,6 +496,7 @@ class Navbar8 extends BaseNavigator {
                       {this.getPropValue("dropdownTitle")}
                     </Base.H1>
                   )}
+                  <div className={this.decorateCSS("line")}></div>
                   {dropdownDescription && (
                     <Base.P className={this.decorateCSS("dropdownDescription")}>
                       {this.getPropValue("dropdownDescription")}
@@ -508,6 +509,7 @@ class Navbar8 extends BaseNavigator {
               )}
               {leftSide && (
                 <div className={this.decorateCSS("dropdownItemList")}>
+                  <div className={this.decorateCSS("dropdownItemContent")}>
                   {itemList.map((item: MenuItems, index: number) =>  {
                     return this.castToString(item.title) && ( 
                       <div
@@ -526,7 +528,10 @@ class Navbar8 extends BaseNavigator {
                     )
                   }
                   )}
+                  </div>
+
                   {socialMediaLinksCondition && (
+                    <div className={this.decorateCSS("socialMediaWrapper")}>
                     <div className={this.decorateCSS("socialMediaLinks")}>
                       <Base.H3 className={this.decorateCSS("socialMediaLinksTitle")}>
                         {this.getPropValue("dropdownSocialMediaTitle")}
@@ -553,6 +558,8 @@ class Navbar8 extends BaseNavigator {
                         ))}
                       </div>
                     </div>
+                    </div>
+
                   )}
                 </div>
               )}

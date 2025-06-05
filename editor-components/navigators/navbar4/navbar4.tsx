@@ -6,7 +6,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 interface Logo {
   image: string;
@@ -66,7 +65,7 @@ class Navbar4 extends BaseNavigator {
           type: "string",
           key: "description",
           value:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
           displayer: "Description Text",
         },
       ],
@@ -1256,7 +1255,7 @@ class Navbar4 extends BaseNavigator {
       displayer: "Animations",
       value: ["animation1","animation2"],
       additionalParams:{
-        selectItems:["animation1", "animation2"]
+        selectItems:["animation1", "animation2", "animation3"]
       }
     });
 
@@ -1450,7 +1449,7 @@ class Navbar4 extends BaseNavigator {
                       this.castToString(item.title) && (
                         <div
                           key={index}
-                          className={this.decorateCSS("menuItemContainer")}
+                          className={`${this.decorateCSS("menuItemContainer")} ${animations}`}
                         >
                           <ComposerLink path={item.navigate_to}>
                             <div className={this.decorateCSS("menuItem")}>
@@ -1623,10 +1622,10 @@ class Navbar4 extends BaseNavigator {
                   {menuItems.map((item: MenuItems, index: number) => (
                     <div
                       key={index}
-                      className={this.decorateCSS("hamburgerMenuItem")}
+                      className={`${this.decorateCSS("hamburgerMenuItem")} `}
                     >
                       <div
-                        className={this.decorateCSS("hamburgerMenuItemHeader")}
+                        className={`${this.decorateCSS("hamburgerMenuItemHeader")} ${animations} ${this.getComponentState("subNavActiveIndex") === index ? this.decorateCSS("active"): ""}`}
                         onClick={() => this.navClick(index)}
                       >
                         <ComposerLink path={item.navigate_to}>
@@ -1672,9 +1671,8 @@ class Navbar4 extends BaseNavigator {
                                   )}
                                 >
                                   <div
-                                    className={this.decorateCSS(
-                                      "hamburgerSubmenuItemHeader"
-                                    )}
+                                    className={`${this.decorateCSS("hamburgerSubmenuItemHeader")} ${animations} ${
+                                      this.getComponentState("subNavActive") === `${index}-${subIndex}` ? this.decorateCSS("active") : ""}`}
                                     onClick={() =>
                                       this.subNavClick(`${index}-${subIndex}`)
                                     }

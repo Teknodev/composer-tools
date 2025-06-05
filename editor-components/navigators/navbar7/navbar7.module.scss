@@ -42,6 +42,17 @@
           font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          position: relative;
+          &::after{
+            content: "";
+            position: absolute;
+            bottom: calc((-1) * var(--composer-gap-xs));
+            left: 0px;
+            width: 0;
+            background-color: var(--composer-primary-color);
+            height: 1px;
+            transition: all 0.3s ease;
+          }
         }
 
         .dropdownIcon {
@@ -49,7 +60,19 @@
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
-
+        &.animation3{
+          &:hover{
+            .menuItemTitle{
+              color: var(--composer-primary-color);
+              &::after{
+                width: 100%;
+              }  
+            }
+            .dropdownIcon {
+            color: var(--composer-primary-color);
+          }
+        }
+      }
         &:hover {
           .dropdownIcon {
             transform: rotate(180deg);
@@ -61,6 +84,7 @@
             transform: translateY(0);
           }
         }
+      
 
         .dropdown {
           position: absolute;
@@ -344,6 +368,16 @@
         flex-direction: column;
 
         .hamburgerMenuItem {
+          &.animation3 {
+            &.active {
+              .hamburgerMenuItemTitle {
+                color: var(--composer-primary-color);
+              }
+              .dropdownIcon {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
           .hamburgerMenuItemHeader {
             display: flex;
             align-items: center;
@@ -356,6 +390,7 @@
               color: var(--composer-font-color-primary);
               margin: 0;
               font-weight: bold;
+              transition: all 0.5s ease;
             }
 
             .dropdownIcon {
@@ -380,7 +415,20 @@
               max-height: 1000px;
             }
 
+
             .hamburgerSubmenuItem {
+              &.animation3{
+                &.active{
+                  .hamburgerSubmenuItemHeader{
+                    .hamburgerMenuItemTitle {
+                      color: var(--composer-primary-color);
+                    }
+                    .dropdownIcon {
+                      color: var(--composer-primary-color);
+                    }
+                  }
+                }
+              }
               .hamburgerSubmenuItemHeader {
                 display: flex;
                 align-items: center;
