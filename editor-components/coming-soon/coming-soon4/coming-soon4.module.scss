@@ -1,5 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
+  min-height: 100vh;
+  display: flex;
   .max-content {
     height: 100%;
     display: flex;
