@@ -89,7 +89,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 border: 1px solid var(--composer-tertiary-color);
                 width: fit-content;
                 color: var(--composer-tertiary-color);
-                padding: var(--composer-gap-sm);
+                padding: var(--composer-gap-xs) var(--composer-gap-sm);
               }
 
               .features {

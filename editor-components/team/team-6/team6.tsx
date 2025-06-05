@@ -584,7 +584,7 @@ class Team6 extends Team {
                           ) : (
                             <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>
                               {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                              {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
+                              {cardPositionExist && <Base.H5 className={this.decorateCSS("position")}>{card.position}</Base.H5>}
 
                               {card.features.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("features")}>
