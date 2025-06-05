@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  height: 100vh;
+  min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -27,12 +27,13 @@
         }
       }
       .left-side {
-        flex: 2;
         display: flex;
         flex-direction: column;
         align-items: end;
+        width: calc(100% - 300px - var(--composer-gap-xl));
         .left-text {
-          width: fit-content;
+          width: 100%;
+          overflow: hidden;
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-lg);
@@ -79,8 +80,6 @@
         }
       }
       .right-side {
-        flex: 1;
-        height: 100%;
         align-items: end;
         justify-content: end;
         display: flex;
@@ -152,6 +151,7 @@
         .left-side {
           flex: unset;
           align-items: start;
+          width: 100%;
           .left-text {
             width: 100%;
             align-items: center;
