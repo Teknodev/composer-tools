@@ -9,13 +9,10 @@
         padding: var(--composer-gap-md);
         color: var(--composer-font-color-primary);
 
-        .text,
-        .date,
-        .title {
+        .text {
           color: var(--composer-font-color-primary);
           font-size: calc(var(--project-font-size));
-          display: inline-block;
-        }
+          }
 
         .dateContainer {
           display: flex;
