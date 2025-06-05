@@ -11,8 +11,6 @@
 }
 
 .container {
-  height: 100vh;
-
   .max-content {
     height: 100%;
     .content {
@@ -73,7 +71,7 @@
             .error-message {
               position: absolute;
               padding: var(--composer-gap-xs);
-              left: -50px;
+              left: -60px;
               top: 50%;
               transform: translateY(-50%);
               width: fit-content;
@@ -144,6 +142,9 @@
               .title-text {
                 font-size: 7rem;
               }
+              .error-message {
+                left: -65px;
+              }
             }
             .line-right,
             .line-left {
@@ -179,6 +180,12 @@
               width: 80%;
               .title-text {
                 font-size: 5.5rem;
+              }
+              .error-message {
+                left: -50px;
+                .error {
+                  font-size: 1rem;
+                }
               }
             }
           }
