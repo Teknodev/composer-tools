@@ -16,16 +16,38 @@ class PrivacyPolicyPage extends BasePrivacyPolicy {
 
     this.addProp({
       type: "string",
-      key: "effectiveDate",
-      displayer: "Effective Date",
-      value: "Effective Date: 2030-01-01",
+      key: "dateText1",
+      displayer: "Date Text",
+      value: "Effective Date: ",
+    });
+
+    this.addProp({
+      type: "dateTime",
+      key: "dateTime1",
+      displayer: "Date Time",
+      value: "2030-01-01 00:00",
+      additionalParams: {
+        yearRange: 1000,
+        yearStart: 2000,
+      },
     });
 
     this.addProp({
       type: "string",
-      key: "lastUpdated",
-      displayer: "Last Updated",
-      value: "Last Updated: 2025-01-01",
+      key: "dateText2",
+      displayer: "Date Text",
+      value: "Last Updated:",
+    });
+
+    this.addProp({
+      type: "dateTime",
+      key: "dateTime2",
+      displayer: "Date Time",
+      value: "2025-01-01 00:00",
+      additionalParams: {
+        yearRange: 1000,
+        yearStart: 2000,
+      },
     });
     
     this.addProp({
@@ -103,19 +125,30 @@ class PrivacyPolicyPage extends BasePrivacyPolicy {
   }
   render() {
     const titleExist = this.castToString(this.getPropValue("title"));
-    const effectiveDateExist = this.castToString(this.getPropValue("effectiveDate"));
-    const lastUpdatedExist = this.castToString(this.getPropValue("lastUpdated"));
+    const dateText1Exist = this.castToString(this.getPropValue("dateText1"));
+    const dateText2Exist = this.castToString(this.getPropValue("dateText2"));
     const introductionExist = this.castToString(this.getPropValue("introduction"));
     const textExist = this.castToString(this.getPropValue("text"));
     return (
       <Base.Container className={styles.privacyPolicy}>
         <Base.MaxContent className={styles.maxContent}>
             <Base.VerticalContent className={styles.container}>
-            {titleExist &&<span className={styles.text}>{this.getPropValue("title")}</span>}
-            {effectiveDateExist &&<span className={styles.text}>{this.getPropValue("effectiveDate")}</span>}
-            {lastUpdatedExist &&<span className={styles.text}>{this.getPropValue("lastUpdated")}</span>}
-            {introductionExist &&<span className={styles.text}>{this.getPropValue("introduction")}</span>}
-            {textExist &&<div className={styles.text}>{this.getPropValue("text")}</div>}
+            {titleExist && <span className={styles.text}>{this.getPropValue("title")}</span>}
+
+           {(dateText1Exist || this.getPropValue("dateTime1")) && 
+            <div className={styles.dateContainer}>
+              {dateText1Exist && <span className={styles.text}>{this.getPropValue("dateText1")}</span>}
+              {this.getPropValue("dateTime1") && <span className={styles.date}>{this.getPropValue("dateTime1")}</span>}
+            </div>}
+
+            {(dateText2Exist || this.getPropValue("dateTime2")) && 
+             <div className={styles.dateContainer}>
+              {dateText2Exist && <span className={styles.text}>{this.getPropValue("dateText2")}</span>}
+              {this.getPropValue("dateTime2") && <span className={styles.date}>{this.getPropValue("dateTime2")}</span>}
+            </div>}
+            
+            {introductionExist && <span className={styles.text}>{this.getPropValue("introduction")}</span>}
+            {textExist && <div className={styles.text}>{this.getPropValue("text")}</div>}
         </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
