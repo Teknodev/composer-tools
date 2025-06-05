@@ -552,29 +552,33 @@ class Team6 extends Team {
                                 ) : (
                                   <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
-                              <div className={`${this.decorateCSS("image-container")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("expanded") : ""}`} 
-                                data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
-                                <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
-                                  {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                                  {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
-
-                                  {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
-                                    <Base.VerticalContent className={this.decorateCSS("features")}>
-                                      {card.features.map((feature: Feature, idx: number) => (
-                                        <div key={idx} className={this.decorateCSS("feature")}>
-                                          <Base.Icon
-                                            name={feature.icon}
-                                            propsIcon={{
-                                              className: this.decorateCSS("icon"),
-                                            }}
-                                          />
-                                          <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
-                                        </div>
-                                      ))}
-                                    </Base.VerticalContent>
-                                  )}
-                                </Base.VerticalContent>
+                              <div className={this.decorateCSS("image-container")}>
+                                <img 
+                                  className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} 
+                                  src={card.image} 
+                                  alt={this.castToString(card.name)} 
+                                  data-animation={this.getPropValue("hoverAnimation").join(" ")} 
+                                />
+                              </div>
+                              <div className={this.decorateCSS("card-info")}>
+                                {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                                {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
+                                
+                                {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
+                                  <Base.VerticalContent className={this.decorateCSS("features")}>
+                                    {card.features.map((feature: Feature, idx: number) => (
+                                      <div key={idx} className={this.decorateCSS("feature")}>
+                                        <Base.Icon
+                                          name={feature.icon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
+                                        />
+                                        <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
+                                      </div>
+                                    ))}
+                                  </Base.VerticalContent>
+                                )}
                               </div>
                             </div>
                           ) : (

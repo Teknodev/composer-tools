@@ -14,6 +14,23 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         gap: var(--composer-gap-md);
 
         .all-card {
+          
+          &[data-animation~="animate2"] {
+            .card-info {
+              .position {
+                transition: border-color 0.3s ease-in-out;
+              }
+            }
+            
+            &:hover {
+              .card-info {
+                .position {
+                  border-color: var(--composer-primary-color);
+                }
+              }
+            }
+          }
+
           .top {
             .image-wrapper {
               width: 100%;
@@ -26,26 +43,21 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 top: var(--composer-gap-xs);
                 right: var(--composer-gap-xs);
                 z-index: 1;
-                font-size: 1.5rem;
-                color: var(--composer-tertiary-color);
+                font-size: 2em;
+                color: var(--composer-font-color-primary);
               }
 
               .image-container {
                 overflow: hidden;
                 border-radius: var(--composer-border-radius-lg);
-                height: 600px;
                 width: 100%;
                 transition: $transition;
 
-                &.expanded {
-                  max-height: 1000px;
-                }
-
                 .image {
                   width: 100%;
-                  height: 100%;
+                  height: 500px;
                   object-fit: cover;
-                  margin-bottom: var(--composer-gap-sm);
+                  margin-bottom: 0;
                   transition: $transition;
 
                   &.shrink {
@@ -59,66 +71,54 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     }
                   }
                 }
-
-                .overlay-bar {
-                  .features {
-                    width: 100%;
-
-                    .feature {
-                      display: flex;
-                      align-items: center;
-                      color: var(--composer-tertiary-color);
-                      margin: 0;
-                      gap: var(--composer-gap-md);
-
-                      .icon {
-                        font-size: 2rem;
-                      }
-
-                      .feature-element {
-                        width: 100%;
-                        text-align: left;
-                      }
-                    }
-                  }
-                }
-
-                &[data-animation~="animate2"] {
-                  display: inline-block;
-                  position: relative;
-
-                  &::after {
-                    content: "";
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    height: 4px;
-                    width: 0%;
-                    background-color: var(--composer-primary-color);
-                    transition: width 0.3s ease-in-out;
-                  }
-
-                  &:hover {
-                    &::after {
-                      width: 100%;
-                    }
-                  }
-                }
               }
             }
 
-            .card-name {
-              color: var(--composer-font-color-primary);
-              margin-top: var(--composer-gap-sm);
-            }
+            .card-info {
+              margin-top: var(--composer-gap-md);
+              
+              .card-name {
+                color: var(--composer-font-color-primary);
+                margin: 0;
+                margin-bottom: var(--composer-gap-xs);
+              }
 
-            .position {
-              margin: 0;
-              border: 1px solid;
-              border-radius: var(--composer-border-radius-lg);
-              width: fit-content;
-              color: var(--composer-tertiary-color);
-              padding: var(--composer-gap-sm);
+              .position {
+                margin: 0;
+                border-radius: var(--composer-border-radius-lg);
+                border: 1px solid var(--composer-tertiary-color);
+                width: fit-content;
+                color: var(--composer-tertiary-color);
+                padding: var(--composer-gap-sm);
+              }
+
+              .features {
+                margin-top: var(--composer-gap-md);
+                width: 100%;
+
+                .feature {
+                  display: flex;
+                  align-items: center;
+                  color: var(--composer-tertiary-color);
+                  margin: 0;
+                  gap: var(--composer-gap-md);
+                  margin-bottom: var(--composer-gap-sm);
+
+                  &:last-child {
+                    margin-bottom: 0;
+                  }
+
+                  .icon {
+                    font-size: 2rem;
+                  }
+
+                  .feature-element {
+                    width: 100%;
+                    text-align: left;
+                    margin: 0;
+                  }
+                }
+              }
             }
           }
         }
