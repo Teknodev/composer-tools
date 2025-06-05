@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  height: 100vh;
+
   .max-content {
     height: 100%;
     border-radius: var(--composer-border-radius-xl);
@@ -60,36 +60,30 @@
 @container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
-            .content-box{
-                .content{
-                    .top-side{
-                        .top-content{
-                            align-items: center;
-                            gap: var(--composer-gap-md);
-                            .title{
-                                margin: 0px;
-                                font-size: 4rem;
-                                text-align: center;
-                            }
-                            .description{
-                                color: var(--composer-tertiary-color);
-                                font-size: 1.5rem;
-                                text-align: center;
-                                margin: 0px;
-                            }
-                        }
+            .top-content{
+                align-items: center;
+                gap: var(--composer-gap-md);
+                .title{
+                    margin: 0px;
+                    font-size: 4rem;
+                    text-align: center;
+                }
+                .description{
+                    color: var(--composer-tertiary-color);
+                    font-size: 1.5rem;
+                    text-align: center;
+                    margin: 0px;
+                }
+            }
+            .bottom-side{
+                gap: var(--composer-gap-md);
+                .days-container,.hours-container, .minutes-container, .seconds-container{
+                    .days-count,.hours-count, .minutes-count, .seconds-count{
+                        font-size: 2rem;
                     }
-                    .bottom-side{
-                        gap: var(--composer-gap-md);
-                        .days-container,.hours-container, .minutes-container, .seconds-container{
-                            .days-count,.hours-count, .minutes-count, .seconds-count{
-                                font-size: 2rem;
-                            }
-                            .days-text, .hours-text, .minutes-text, .seconds-text{
-                                color: var(--composer-font-color-primary);
-                                font-size: 1rem;
-                            }
-                        }
+                    .days-text, .hours-text, .minutes-text, .seconds-text{
+                        color: var(--composer-font-color-primary);
+                        font-size: 1rem;
                     }
                 }
             }
