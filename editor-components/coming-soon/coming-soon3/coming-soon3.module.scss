@@ -11,8 +11,11 @@
 }
 
 .container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
   .max-content {
-    height: 100%;
+    width: 100%;
     .content {
       display: flex;
       flex-direction: column;
@@ -183,6 +186,8 @@
               }
               .error-message {
                 left: -50px;
+                top: 32px;
+                transform: none;
                 .error {
                   font-size: 1rem;
                 }
