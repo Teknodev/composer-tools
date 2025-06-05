@@ -27,7 +27,7 @@ class PrivacyPolicyPage extends BasePrivacyPolicy {
       displayer: "Last Updated",
       value: "Last Updated: 2025-01-01",
     });
-
+    
     this.addProp({
       type: "string",
       key: "introduction",

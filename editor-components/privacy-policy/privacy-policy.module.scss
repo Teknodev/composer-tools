@@ -12,12 +12,6 @@
         .text {
           color: var(--composer-font-color-primary);
           font-size: calc(var(--project-font-size));
-          }
-
-        .dateContainer {
-          display: flex;
-          gap: var(--composer-gap-sm);
-          align-items: center;
         }
     }
   }
