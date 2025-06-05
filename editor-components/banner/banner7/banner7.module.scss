@@ -139,6 +139,23 @@
             .crumber-content {
                 min-width: 75%;
                 font-size: 1rem;
+
+                .title{
+                    font-size: 2.5rem;
+                }
+
+                .breadcrumb-items {
+                    gap: var(--composer-gap-xs);
+                    .home-page {
+                        width: max-content;
+                        max-width: 80px;
+                    }
+                    
+                    .about-page {
+                        width: max-content;
+                        max-width: 80px;
+                    }
+                }
             }
         }
     }
