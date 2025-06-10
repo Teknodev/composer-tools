@@ -647,7 +647,9 @@ class Form3 extends BaseContacts {
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
                         this.insertForm("Contact Us", data);
-                        resetForm();
+                        resetForm({
+                          values: getInitialValue() 
+                        });
                       }}
                     >
                       {({ handleChange, values }) => (
