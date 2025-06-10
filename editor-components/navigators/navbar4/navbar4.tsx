@@ -80,7 +80,7 @@ class Navbar4 extends BaseNavigator {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1914e31d2002b32b378?alt=media",
           displayer: "Image",
         },
         {
@@ -101,7 +101,7 @@ class Navbar4 extends BaseNavigator {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1f54e31d2002b32b3d7?alt=media",
           displayer: "Image",
         },
         {
