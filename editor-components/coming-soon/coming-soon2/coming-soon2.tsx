@@ -6,14 +6,27 @@ import { Base } from "../../../composer-base-components/base/base";
 
 class COMING_SOON2 extends BaseComingSoon {
   interval: NodeJS.Timeout;
+  mobileRef: React.RefObject<any>;
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Something is Coming",
+      key: "title1",
+      displayer: "Title1",
+      value: "Something",
+    });
+    this.addProp({
+      type: "string",
+      key: "title2",
+      displayer: "Title2",
+      value: "Is",
+    });
+    this.addProp({
+      type: "string",
+      key: "title3",
+      displayer: "Title3",
+      value: "Coming",
     });
     this.addProp({
       type: "image",
@@ -52,7 +65,9 @@ class COMING_SOON2 extends BaseComingSoon {
     this.setComponentState("hours", 0);
     this.setComponentState("minutes", 0);
     this.setComponentState("seconds", 0);
+    window.addEventListener('resize', () => {this.setComponentState("windowWidth", window.innerWidth)});
   }
+  
   componentDidMount() {
     this.interval = setInterval(() => {
       const dateStr = this.getPropValue("dateTime");
@@ -84,7 +99,9 @@ class COMING_SOON2 extends BaseComingSoon {
   }
 
   render() {
-    const title = this.getPropValue("title");
+    const title1 = this.getPropValue("title1");
+    const title2 = this.getPropValue("title2");
+    const title3 = this.getPropValue("title3");    
     const home = this.castToString(this.getPropValue("home"));
 
     return (
@@ -96,55 +113,66 @@ class COMING_SOON2 extends BaseComingSoon {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("content")} ${!home && this.decorateCSS("without-right")}`}>
-            {(this.getPropValue("dateTime") || this.castToString(title)) && (
+            {(this.getPropValue("dateTime") || this.castToString(title1) || this.castToString(title2) || this.castToString(title3)) && (
               <div className={this.decorateCSS("left-side")}>
                 <div className={this.decorateCSS("left-text")}>
+                {this.castToString(title1) && (
+                    <Base.SectionTitle
+                      className={`${this.decorateCSS("title")} ${
+                        !this.getPropValue("backgroundImage") &&
+                        this.decorateCSS("without-image")
+                      }`}
+                    >
+                      {title1}
+                    </Base.SectionTitle>
+                  )}
+                  <div className={this.decorateCSS("counter-and-title2")}>
                   {this.getPropValue("dateTime") && (
                     <div className={this.decorateCSS("counter")}>
                       {this.getPropValue("dateTime") && (
                         <div className={this.decorateCSS("counter-content")}>
-                          <div className={this.decorateCSS("days-container")}>
-                            <Base.H1 className={this.decorateCSS("days-count")}>
+                          <div className={this.decorateCSS("counter-container")}>
+                            <Base.H1 className={this.decorateCSS("counter-count")}>
                               {this.getComponentState("days")}
                             </Base.H1>
-                            <div className={this.decorateCSS("days-text")}>
+                            <div className={this.decorateCSS("counter-text")}>
                               DAYS
                             </div>
                           </div>
 
-                          <div className={this.decorateCSS("hours-container")}>
+                          <div className={this.decorateCSS("counter-container")}>
                             <Base.H1
-                              className={this.decorateCSS("hours-count")}
+                              className={this.decorateCSS("counter-count")}
                             >
                               {this.getComponentState("hours")}
                             </Base.H1>
-                            <div className={this.decorateCSS("hours-text")}>
+                            <div className={this.decorateCSS("counter-text")}>
                               HOURS
                             </div>
                           </div>
 
                           <div
-                            className={this.decorateCSS("minutes-container")}
+                            className={this.decorateCSS("counter-container")}
                           >
                             <Base.H1
-                              className={this.decorateCSS("minutes-count")}
+                              className={this.decorateCSS("counter-count")}
                             >
                               {this.getComponentState("minutes")}
                             </Base.H1>
-                            <div className={this.decorateCSS("minutes-text")}>
+                            <div className={this.decorateCSS("counter-text")}>
                               MINUTES
                             </div>
                           </div>
 
                           <div
-                            className={this.decorateCSS("seconds-container")}
+                            className={this.decorateCSS("counter-container")}
                           >
                             <Base.H1
-                              className={this.decorateCSS("seconds-count")}
+                              className={this.decorateCSS("counter-count")}
                             >
                               {this.getComponentState("seconds")}
                             </Base.H1>
-                            <div className={this.decorateCSS("seconds-text")}>
+                            <div className={this.decorateCSS("counter-text")}>
                               SECONDS
                             </div>
                           </div>
@@ -152,14 +180,117 @@ class COMING_SOON2 extends BaseComingSoon {
                       )}
                     </div>
                   )}
-                  {this.castToString(title) && (
+                  {this.castToString(title2) && (
+                    <Base.SectionTitle
+                      className={`${this.decorateCSS("title2")} ${
+                        !this.getPropValue("backgroundImage") &&
+                        this.decorateCSS("without-image")
+                      }`}
+                    >
+                      {title2}
+                    </Base.SectionTitle>
+                  )}
+                  </div>
+    
+                  {this.castToString(title3) && (
                     <Base.SectionTitle
                       className={`${this.decorateCSS("title")} ${
                         !this.getPropValue("backgroundImage") &&
                         this.decorateCSS("without-image")
                       }`}
                     >
-                      {title}
+                      {title3}
+                    </Base.SectionTitle>
+                  )}
+                </div>
+              </div>
+            )}
+            {(this.getPropValue("dateTime") || this.castToString(title1) || this.castToString(title2) || this.castToString(title3)) && (
+              <div className={this.decorateCSS("left-side-mobile")}>
+                <div className={this.decorateCSS("left-text")}>
+                  <div className={this.decorateCSS("counter-and-title2")}>
+                  {this.getPropValue("dateTime") && (
+                    <div className={this.decorateCSS("counter")}>
+                      {this.getPropValue("dateTime") && (
+                        <div className={this.decorateCSS("counter-content")}>
+                          <div className={this.decorateCSS("counter-container")}>
+                            <Base.H1 className={this.decorateCSS("counter-count")}>
+                              {this.getComponentState("days")}
+                            </Base.H1>
+                            <div className={this.decorateCSS("counter-text")}>
+                              DAYS
+                            </div>
+                          </div>
+
+                          <div className={this.decorateCSS("counter-container")}>
+                            <Base.H1
+                              className={this.decorateCSS("counter-count")}
+                            >
+                              {this.getComponentState("hours")}
+                            </Base.H1>
+                            <div className={this.decorateCSS("counter-text")}>
+                              HOURS
+                            </div>
+                          </div>
+
+                          <div
+                            className={this.decorateCSS("counter-container")}
+                          >
+                            <Base.H1
+                              className={this.decorateCSS("counter-count")}
+                            >
+                              {this.getComponentState("minutes")}
+                            </Base.H1>
+                            <div className={this.decorateCSS("counter-text")}>
+                              MINUTES
+                            </div>
+                          </div>
+
+                          <div
+                            className={this.decorateCSS("counter-container")}
+                          >
+                            <Base.H1
+                              className={this.decorateCSS("counter-count")}
+                            >
+                              {this.getComponentState("seconds")}
+                            </Base.H1>
+                            <div className={this.decorateCSS("counter-text")}>
+                              SECONDS
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  </div>
+                  {this.castToString(title1) && (
+                    <Base.SectionTitle
+                      className={`${this.decorateCSS("title")} ${
+                        !this.getPropValue("backgroundImage") &&
+                        this.decorateCSS("without-image")
+                      }`}
+                    >
+                      {title1}
+                    </Base.SectionTitle>
+                  )}
+                  {this.castToString(title2) && (
+                    <Base.SectionTitle
+                      className={`${this.decorateCSS("title2")} ${
+                        !this.getPropValue("backgroundImage") &&
+                        this.decorateCSS("without-image")
+                      }`}
+                    >
+                      {title2}
+                    </Base.SectionTitle>
+                  )}
+                  {this.castToString(title3) && (
+                    <Base.SectionTitle
+                      className={`${this.decorateCSS("title")} ${
+                        !this.getPropValue("backgroundImage") &&
+                        this.decorateCSS("without-image")
+                      }`}
+                    >
+                      {title3}
                     </Base.SectionTitle>
                   )}
                 </div>
