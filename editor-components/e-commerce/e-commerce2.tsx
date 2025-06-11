@@ -2,12 +2,12 @@ import * as React from "react";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import styles from "./e-commerce2.module.scss";
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
-import { ComposerIcon } from "../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import { getCurrencyInfo } from "components/setting-input/inputs/currency";
 
 interface ImageGallery {
-    sectionTitle: string;
+    sectionTitle: React.JSX.Element;
     images: Image[];
 }
 
@@ -21,14 +21,14 @@ interface ArrowItem {
 }
 
 interface Image {
-    title: React.ReactNode;
+    title: React.JSX.Element;
     cardImage: string;
-    price: string;
-    leftText: string;
-    rightText: string;
-    bottomText: string;
+    price: {value: string, currency: string};
+    leftText: React.JSX.Element;
+    rightText: React.JSX.Element;
+    bottomText: React.JSX.Element;
     bottomIcon: string;
-    subTitle: string;
+    subTitle: React.JSX.Element;
     navigateTo: string;
 }
 
@@ -87,10 +87,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "BASKET WITH HANDLES",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -226,10 +226,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "DEPO ACCESSORY",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -365,10 +365,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "FLOWER VASE",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -504,10 +504,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "WALL CLOCK",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -643,10 +643,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "NEWSPAPER STORAGE",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -782,10 +782,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "POTTERY VASE",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -921,10 +921,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "ROSE HOLDBACK",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -1060,10 +1060,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "TABLE LAMP",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -1219,10 +1219,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "TABLE LAMP",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -1378,10 +1378,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "BASKET WITH HANDLES",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -1517,10 +1517,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "ROSE HOLDBACK",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -1676,10 +1676,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "POTTERY VASE",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -1815,10 +1815,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "FLOWER VASE",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -1974,10 +1974,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "DECO ACCESSORY",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -2113,10 +2113,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "WALL CLOCK",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -2252,10 +2252,10 @@ class ECommerce2 extends BaseECommerce {
                                             value: "NEWSPAPER STORAGE",
                                         },
                                         {
-                                            type: "string",
+                                            type: "currency",
                                             key: "price",
                                             displayer: "Price",
-                                            value: "$160",
+                                            value:{value:"160"  , currency:"USD"},
                                         },
                                         {
                                             type: "string",
@@ -2616,7 +2616,7 @@ class ECommerce2 extends BaseECommerce {
                         {filteredImages.map((image, imgIndex) => {
                             const shouldRenderCard =
                                 this.castToString(image.title) ||
-                                this.castToString(image.price) ||
+                                image.price.value ||
                                 this.castToString(image.subTitle) ||
                                 image.cardImage ||
                                 this.castToString(image.bottomText) ||
@@ -2642,7 +2642,7 @@ class ECommerce2 extends BaseECommerce {
                                                     {image.bottomIcon && (
                                                         <div
                                                             className={this.decorateCSS("image-bottom-icon")}>
-                                                            <ComposerIcon name={image.bottomIcon} />
+                                                            <Base.Icon name={image.bottomIcon} />
                                                         </div>
                                                     )}
                                                 </div>
@@ -2673,10 +2673,11 @@ class ECommerce2 extends BaseECommerce {
                                                     {image.title}
                                                 </div>
                                             )}
-                                            {this.castToString(image.price) && (
+                                            {image.price.value && (
                                                 <div className={this.decorateCSS("price")}>
-                                                    {image.price}
+                                                    {image.price.value} {getCurrencyInfo(image.price.currency)?.symbol}
                                                 </div>
+                                                
                                             )}
                                             {this.castToString(image.subTitle) && (
                                                 <div
@@ -2723,7 +2724,7 @@ class ECommerce2 extends BaseECommerce {
                                                     <button
                                                         className={this.decorateCSS("prevArrow")}
                                                         onClick={this.handlePrevImage}>
-                                                        <ComposerIcon
+                                                        <Base.Icon
                                                             name={arrows.prevArrow}
                                                             propsIcon={{
                                                                 className: this.decorateCSS("arrow"),
@@ -2735,7 +2736,7 @@ class ECommerce2 extends BaseECommerce {
                                                     <button
                                                         className={this.decorateCSS("nextArrow")}
                                                         onClick={this.handleNextImage}>
-                                                        <ComposerIcon
+                                                        <Base.Icon
                                                             name={arrows.nextArrow}
                                                             propsIcon={{
                                                                 className: this.decorateCSS("arrow"),
@@ -2749,7 +2750,7 @@ class ECommerce2 extends BaseECommerce {
                                             <button
                                                 className={this.decorateCSS("popup-close")}
                                                 onClick={this.closePopup}>
-                                                <ComposerIcon
+                                                <Base.Icon
                                                     name={this.getPropValue("closeIcon")}
                                                     propsIcon={{ className: this.decorateCSS("arrow") }}
                                                 />
