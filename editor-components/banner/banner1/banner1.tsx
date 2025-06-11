@@ -3,7 +3,6 @@ import styles from "./banner1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type StripItem = {
     homepage: string;
@@ -118,7 +117,7 @@ class Banner1 extends BaseBanner {
                                         {homepage}
                                     </span>
                                 </ComposerLink>
-                                <ComposerIcon
+                                <Base.Icon
                                     name={this.getPropValue("stripIcon")}
                                     propsIcon={{
                                         className: this.decorateCSS("stripIcon"),

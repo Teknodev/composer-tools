@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./pricing-table8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";

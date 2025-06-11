@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -270,14 +270,14 @@ class Stats2Page extends BaseStats {
             {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>}
             {(amount !== null || card.icon || card.secondIcon) && (
               <div className={this.decorateCSS("card-amount-container")}>
-                {card.icon && <ComposerIcon propsIcon={{ className: this.decorateCSS("card-icon") }} name={card.icon} />}
+                {card.icon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon") }} name={card.icon} />}
                 {amount !== null && amount !== "NaN" && (
                   <div className={this.decorateCSS("card-amount")}>
                     {integerPart}
                     {showDecimals && decimalPart && <span>.{decimalPart}</span>}
                   </div>
                 )}
-                {card.secondIcon && <ComposerIcon propsIcon={{ className: this.decorateCSS("card-icon-after") }} name={card.secondIcon} />}
+                {card.secondIcon && <Base.Icon propsIcon={{ className: this.decorateCSS("card-icon-after") }} name={card.secondIcon} />}
               </div>
             )}
           </div>

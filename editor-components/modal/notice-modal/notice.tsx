@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./notice.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerModalClose from "../../../composer-base-components/close/close";
@@ -65,12 +65,12 @@ class Notice extends BaseModal {
           <Base.VerticalContent className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("exit-icon")}>
               <ComposerModalClose>
-                <ComposerIcon propsIcon={{ className: this.decorateCSS("exitIcon") }} name={this.getPropValue("exitIcon")} />
+                <Base.Icon propsIcon={{ className: this.decorateCSS("exitIcon") }} name={this.getPropValue("exitIcon")} />
               </ComposerModalClose>
             </div>
             {icon && (
               <div className={this.decorateCSS("icon")}>
-                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon-element") }} name={icon} />
+                <Base.Icon propsIcon={{ className: this.decorateCSS("icon-element") }} name={icon} />
               </div>
             )}
             <div>

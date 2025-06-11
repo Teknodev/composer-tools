@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./pricing-table4.module.scss";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 

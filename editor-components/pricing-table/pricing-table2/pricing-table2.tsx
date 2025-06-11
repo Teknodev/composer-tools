@@ -3,6 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItems = {

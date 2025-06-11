@@ -2,9 +2,8 @@ import * as React from "react";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -136,7 +136,7 @@ class CallToAction2Page extends BaseCallToAction {
                     className={this.decorateCSS("play-icon-box")}
                     onClick={this.showVideo}
                   >
-                    <ComposerIcon
+                    <Base.Icon
                       name={playIcon}
                       propsIcon={{ className: this.decorateCSS("play-icon") }}
                     />
@@ -167,7 +167,7 @@ class CallToAction2Page extends BaseCallToAction {
                     className={this.decorateCSS("close-icon-box")}
                     onClick={this.hideVideo}
                   >
-                    <ComposerIcon
+                    <Base.Icon
                       propsIcon={{
                         className: this.decorateCSS("close-icon"),
                       }}

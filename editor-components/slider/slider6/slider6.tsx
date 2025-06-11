@@ -1,7 +1,5 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider6.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -217,8 +215,20 @@ class Slider6 extends BaseSlider {
       slidesToScroll: 1,
       adaptiveHeight: true,
       centerMode: true,
-      centerPadding: "300px",
+      centerPadding: "200px",
       responsive: [
+        {
+          breakpoint: 1920,
+          settings: {
+            centerPadding: "180px",
+          },
+        },
+        {
+          breakpoint: 1280,
+          settings: {
+            centerPadding: "160px",
+          },
+        },
         {
           breakpoint: 960,
           settings: {
