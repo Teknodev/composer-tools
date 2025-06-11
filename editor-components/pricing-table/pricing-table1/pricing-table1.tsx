@@ -2,7 +2,6 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table1.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -633,7 +632,7 @@ class PricingTable1 extends BasePricingTable {
                         return (
                           cardExist && (
                             <Base.Row key={index} className={this.decorateCSS("card-list-item")}>
-                              <ComposerIcon
+                              <Base.Icon
                                 name={listItem.buttonIcon}
                                 propsIcon={{
                                   className: this.decorateCSS("icon"),
@@ -681,7 +680,7 @@ class PricingTable1 extends BasePricingTable {
                 return (
                   titleBottomExist && (
                     <div className={this.decorateCSS("title-bottom")}>
-                      {title.getPropValue("icon") && <ComposerIcon name={title.getPropValue("icon")}></ComposerIcon>}
+                      {title.getPropValue("icon") && <Base.Icon name={title.getPropValue("icon")}></Base.Icon>}
                       {textExist && <span className={this.decorateCSS("text")}>{title.getPropValue("text")}</span>}
                     </div>
                   )

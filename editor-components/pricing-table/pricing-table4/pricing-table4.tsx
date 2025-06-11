@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./pricing-table4.module.scss";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -556,7 +555,7 @@ class PricingMultiple extends BasePricingTable {
                               liElement && (
                                 <Base.P key={indexListGroup} className={this.decorateCSS("list-element")}>
                                   <div className={this.decorateCSS("circle-icon")}>
-                                    <ComposerIcon name={item.icons} propsIcon={{ className: this.decorateCSS("icons") }} />
+                                    <Base.Icon name={item.icons} propsIcon={{ className: this.decorateCSS("icons") }} />
                                   </div>
                                   <div className={this.decorateCSS("list-item-text")}>{item.liText}</div>                           
                                 </Base.P>

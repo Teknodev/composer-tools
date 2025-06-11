@@ -2,7 +2,6 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./pricing-table5.module.scss";
 import { BasePricingTable } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -230,7 +229,7 @@ class PricingTable5 extends BasePricingTable {
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
                         <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
-                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")} />
+                          <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")} />
                         </div>
                       </div>
 

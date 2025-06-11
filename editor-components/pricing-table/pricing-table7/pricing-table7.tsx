@@ -2,10 +2,8 @@ import * as React from "react";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { TiThSmall } from "react-icons/ti";
 
 type PricingItem = {
   itemText: string;
@@ -965,7 +963,7 @@ class PricingTable7 extends BasePricingTable {
         >
           {this.getPropValue("text1")}
         </Base.P>
-        <ComposerIcon
+        <Base.Icon
           name={durationIcon}
           propsIcon={{ className: this.decorateCSS("icon") }}
         />
@@ -1115,7 +1113,7 @@ class PricingTable7 extends BasePricingTable {
                               className={this.decorateCSS("features-element")}
                               key={`price7-list-${index}`}
                             >
-                              <ComposerIcon
+                              <Base.Icon
                                 name={data.icon}
                                 propsIcon={{
                                   className: this.decorateCSS("icon"),
