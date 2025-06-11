@@ -635,7 +635,7 @@ export abstract class Component
   getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
     const { cssClasses } = this.state.componentProps;
-
+    
     return sectionName 
       ? cssClasses[sectionName]
       : cssClasses;
@@ -720,7 +720,7 @@ export abstract class Component
   }
   decorateCSS(section: string) {
     let cssClass = [this.styles[section]];
-
+    
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -768,6 +768,7 @@ export abstract class Component
     }
     return propValue;
   }
+  
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
@@ -927,10 +928,6 @@ export abstract class BaseBanner extends Component {
   static category = CATEGORIES.BANNER;
 }
 
-export abstract class BaseECommerce extends Component {
-  static category = CATEGORIES.ECOMMERCE;
-}
-
 export abstract class Location extends Component {
   static category = CATEGORIES.LOCATION;
   protected themes: TTheme[] = THEMES;
@@ -984,3 +981,7 @@ export abstract class BaseSocialWidget extends Component {
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
 };
+
+export abstract class BaseECommerce extends Component {  
+  static category = CATEGORIES.ECOMMERCE;
+}
