@@ -1,16 +1,18 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   .max-content {
-    height: 100%;
+    flex: 1;
     border-radius: var(--composer-border-radius-xl);
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    height: 100%;
     display: flex;
     flex-direction: column;
     gap: calc(var(--composer-gap-lg) * 3);
     width: 100%;
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-lg) var(--composer-gap-md);
     overflow: hidden;
     justify-content: center;
     .top-content{
@@ -47,6 +49,7 @@
             .counter-count{
                 color: var(--composer-font-color-primary);
                 margin: 0px;
+                font-size: 4rem;
             }
             .counter-text{
                 color: var(--composer-font-color-primary);
@@ -77,11 +80,11 @@
             }
             .bottom-side{
                 gap: var(--composer-gap-md);
-                .days-container,.hours-container, .minutes-container, .seconds-container{
-                    .days-count,.hours-count, .minutes-count, .seconds-count{
-                        font-size: 2rem;
+                .counter-container{
+                    .counter-count{
+                        font-size: 3rem;
                     }
-                    .days-text, .hours-text, .minutes-text, .seconds-text{
+                    .counter-text{
                         color: var(--composer-font-color-primary);
                         font-size: 1rem;
                     }
