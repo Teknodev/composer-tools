@@ -377,8 +377,8 @@ class Feature16 extends BaseFeature {
                                                 )}
                                             </div>
                                             {bottomLeftSide.bottomLeftSideImage && (
-                                                <div className={this.decorateCSS("bottom-left-side-card-image")}>
-                                                    <img src={bottomLeftSide.bottomLeftSideImage} alt="Content" />
+                                                <div className={this.decorateCSS("bottom-left-side-card-image-container")}>
+                                                    <img src={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} alt="Content" />
                                                 </div>
                                             )}
                                         </div>
