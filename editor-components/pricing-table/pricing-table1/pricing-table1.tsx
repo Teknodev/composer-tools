@@ -571,6 +571,15 @@ class PricingTable1 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    })
   }
   static getName(): string {
     return "Pricing 1";
@@ -606,7 +615,9 @@ class PricingTable1 extends BasePricingTable {
                 const cardpricingTableTitleExist = this.castToString(table.pricingTableTitle);
 
                 return (
-                  <div key={index} className={`${this.decorateCSS("item-card")} ${table.isActive && this.decorateCSS("active")}`}>
+                  <div key={index} className={`${this.decorateCSS("item-card")} ${this.getPropValue("animations") 
+                  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} 
+                  ${table.isActive && this.decorateCSS("active")} `}>
                     {popularText && (
                       <div className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular && this.decorateCSS("active")}`}>
                         <Base.P className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</Base.P>
@@ -636,17 +647,17 @@ class PricingTable1 extends BasePricingTable {
                     </div>
 
                     <div className={`${this.decorateCSS("card-bottom")}  ${table.isActive && this.decorateCSS("active")}`}>
-                      <div className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")}`}>
-                        {cardPriceExist && <span className={this.decorateCSS("price")}>{table.cardPrice}</span>}
-                        {durationExist ||
-                          (duration1Exist && (
-                            <div className={this.decorateCSS("card-duration")}>
-                              {durationExist && <span className={this.decorateCSS("Duration")}>{table.cardDuration}</span>}
-                              {duration1Exist && <span className={this.decorateCSS("Duration1")}>{table.cardDuration1}</span>}
-                            </div>
-                          ))}
-                      </div>
-
+                      <div className={`${this.decorateCSS("card-bottom-content")} `}>
+                        <div className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")}`}>
+                          {cardPriceExist && <span className={this.decorateCSS("price")}>{table.cardPrice}</span>}
+                          {(durationExist || duration1Exist) && (
+                              <div className={this.decorateCSS("card-duration")}>
+                                {durationExist && <span className={this.decorateCSS("duration")}>{table.cardDuration}</span>}
+                                {duration1Exist && <span className={this.decorateCSS("duration1")}>{table.cardDuration1}</span>}
+                              </div>
+                            )}
+                        </div>
+                     
                       {cardButtonTextExist && (
                         <Base.Button buttonType={table.buttonType.type} className={this.decorateCSS("card-button")}>
                           <ComposerLink path={table.buttonType.url}>{table.buttonType.text}</ComposerLink>
@@ -654,6 +665,7 @@ class PricingTable1 extends BasePricingTable {
                       )}
 
                       {cardpricingTableTitleExist && <span className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</span>}
+                    </div>
                     </div>
                   </div>
                 );
