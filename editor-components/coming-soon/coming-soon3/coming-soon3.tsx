@@ -20,7 +20,30 @@ class ComingSoon3 extends BaseComingSoon {
         yearStart: 2000,
       },
     });
-
+    this.addProp({
+      type: "string",
+      key: "day-text",
+      displayer: "Day Text",
+      value:"DAYS",
+    });
+    this.addProp({
+      type: "string",
+      key: "hour-text",
+      displayer: "Hour Text",
+      value:"HOURS",
+    });
+    this.addProp({
+      type: "string",
+      key: "minute-text",
+      displayer: "Minute Text",
+      value:"MINUTES",
+    });
+    this.addProp({
+      type: "string",
+      key: "second-text",
+      displayer: "Second Text",
+      value:"SECONDS",
+    });
     this.addProp({
       type: "string",
       key: "title",
@@ -111,6 +134,10 @@ class ComingSoon3 extends BaseComingSoon {
       this.castToObject<INPUTS.CastedButton>("button");
 
     const animationActive = this.getPropValue("animationActive");
+    const dayText = this.getPropValue("day-text");
+    const hourText = this.getPropValue("hour-text");
+    const minuteText = this.getPropValue("minute-text");
+    const secondText = this.getPropValue("second-text");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -123,32 +150,36 @@ class ComingSoon3 extends BaseComingSoon {
                   <Base.H1 className={this.decorateCSS("count")}>
                     {this.getComponentState("days")}
                   </Base.H1>
-                  <div className={this.decorateCSS("text")}>DAYS</div>
+                  {this.castToString(dayText) && (
+                    <div className={this.decorateCSS("text")}>{dayText}</div>
+                  )}
                 </div>
 
                 <div className={this.decorateCSS("counter")}>
                   <Base.H1 className={this.decorateCSS("count")}>
                     {this.getComponentState("hours")}
                   </Base.H1>
-                  <div className={this.decorateCSS("text")}>HOURS</div>
+                  {this.castToString(hourText) && (
+                    <div className={this.decorateCSS("text")}>{hourText}</div>
+                  )}
                 </div>
 
                 <div className={this.decorateCSS("counter")}>
                   <Base.H1 className={this.decorateCSS("count")}>
                     {this.getComponentState("minutes")}
                   </Base.H1>
-                  <div className={this.decorateCSS("text")}>
-                    MINUTES
-                  </div>
+                  {this.castToString(minuteText) && (
+                    <div className={this.decorateCSS("text")}>{minuteText}</div>
+                  )}
                 </div>
 
                 <div className={this.decorateCSS("counter")}>
                   <Base.H1 className={this.decorateCSS("count")}>
                     {this.getComponentState("seconds")}
                   </Base.H1>
-                  <div className={this.decorateCSS("text")}>
-                    SECONDS
-                  </div>
+                  {this.castToString(secondText) && (
+                    <div className={this.decorateCSS("text")}>{secondText}</div>
+                  )}
                 </div>
               </div>
             )}
