@@ -141,7 +141,7 @@ class ComingSoon1 extends BaseComingSoon {
                                 buttonType={button.type}
                                 className={this.decorateCSS("button")}
                               >
-                                {button.text}
+                                <div className={this.decorateCSS("button-text")}>{button.text}</div>
                               </Base.Button>
                             </ComposerLink>
                           )}

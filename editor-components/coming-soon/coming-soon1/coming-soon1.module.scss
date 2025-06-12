@@ -30,8 +30,13 @@
             margin: 0px;
         }
         .button-wrapper{
+            width: 100%;
+            display: flex;
+            justify-content: center;
             .button{
-                content: "";
+                .button-text{
+                    content: "";
+                }
             }
         }
     }
