@@ -502,6 +502,15 @@ class PricingMultiple extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2", "animation3"],
+      additionalParams:{
+        selectItems:["animation1","animation2", "animation3"]
+      }
+    })
   }
   static getName(): string {
     return "Pricing 4";
@@ -528,7 +537,8 @@ class PricingMultiple extends BasePricingTable {
                 const hasCardUp = title1 || title2 || pricing;
                 return (
                   <div key={indexCards} className={this.decorateCSS("all-card")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")} ${this.getPropValue("animations") 
+                  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `}>
                       {hasCardUp && (
                         <div className={this.decorateCSS("card-up")}>
                           <Base.VerticalContent className={this.decorateCSS("card-up-texts")}>
@@ -548,7 +558,7 @@ class PricingMultiple extends BasePricingTable {
                                   <div className={this.decorateCSS("circle-icon")}>
                                     <Base.Icon name={item.icons} propsIcon={{ className: this.decorateCSS("icons") }} />
                                   </div>
-                                  {item.liText}
+                                  <div className={this.decorateCSS("list-item-text")}>{item.liText}</div>                           
                                 </Base.P>
                               )
                             );
@@ -560,9 +570,11 @@ class PricingMultiple extends BasePricingTable {
                           const buttonValue = this.castToString(item.buttonType.text);
                           return (
                             buttonValue && (
-                              <ComposerLink key={indexButtons} path={item.buttonType.url}>
-                                <Base.Button buttonType={item.buttonType.type}>{item.buttonType.text}</Base.Button>
-                              </ComposerLink>
+                              <Base.Button buttonType={item.buttonType.type} className={this.decorateCSS("button")}>
+                                  <ComposerLink key={indexButtons} path={item.buttonType.url}>
+                                    {item.buttonType.text}
+                                  </ComposerLink>
+                              </Base.Button>
                             )
                           );
                         })}
