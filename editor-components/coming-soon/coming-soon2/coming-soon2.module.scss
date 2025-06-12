@@ -10,7 +10,7 @@
   }
 }
 @mixin title-tablet{
-  font-size: 6rem;
+  font-size: 7rem;
 }
 @mixin title-phone{
   font-size: 4rem;
@@ -79,7 +79,7 @@
                           display: flex;
                           flex-direction: column;
                           gap: var(--composer-gap-md);
-                          font-size: 4rem;
+                          font-size: 3rem;
                       }
                       .counter-text{
                           color: var(--composer-primary-color);
@@ -105,7 +105,7 @@
         justify-content: end;
         display: flex;
 
-        .home {
+        .button {
           width: 300px;
           height: 300px;
           background-color: var(--composer-primary-color);
@@ -117,7 +117,7 @@
           cursor: pointer;
           overflow: hidden;
 
-          .home-text {
+          .button-text {
             text-align: center;
             font-size: 2rem;
             color: var(--composer-font-color-secondary);
@@ -129,11 +129,12 @@
 }
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    display: flex;
     .max-content {
       .content {
         width: 100%;
-        justify-content: space-between;
         height: 60%;
+        justify-content: center;
         &.without-right{
           .left-side{
             width: 100%;
@@ -159,10 +160,10 @@
         }
         .right-side {
           flex: unset;
-          .home {
+          .button {
             height: 200px;
             width: 200px;
-            .home-text {
+            .button-text {
               font-size: 1.5rem;
             }
           }
@@ -218,7 +219,7 @@
         .right-side {
           flex: unset;
           justify-content: center;
-          .home {
+          .button {
             height: 200px;
             width: 200px;
           }

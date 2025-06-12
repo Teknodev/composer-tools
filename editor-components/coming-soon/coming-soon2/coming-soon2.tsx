@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseComingSoon, BaseHTTPCodes } from "../../EditorComponent";
+import { BaseComingSoon } from "../../EditorComponent";
 import styles from "./coming-soon2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -39,7 +39,7 @@ class COMING_SOON2 extends BaseComingSoon {
     this.addProp({
       type: "page",
       key: "url",
-      displayer: "URL",
+      displayer: "Button URL",
       value: "",
     });
 
@@ -299,8 +299,8 @@ class COMING_SOON2 extends BaseComingSoon {
             {home && (
               <div className={this.decorateCSS("right-side")}>
                 <ComposerLink path={this.getPropValue("url")}>
-                  <div className={this.decorateCSS("home")}>
-                    <div className={this.decorateCSS("home-text")}>
+                  <div className={this.decorateCSS("button")}>
+                    <div className={this.decorateCSS("button-text")}>
                       <div>{this.getPropValue("home")}</div>
                     </div>
                   </div>

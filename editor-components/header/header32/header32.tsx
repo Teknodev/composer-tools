@@ -2,8 +2,8 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type Card = {
   backgroundImage: string;
