@@ -252,6 +252,7 @@ import SocialWidget5 from "../editor-components/social_widget/social_widget5/soc
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
+import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -505,7 +506,8 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget4,
     SocialWidget5,
     ECommerce3,
-    ECommerce4,
+    ECommerce4,,
+    ComingSoon4
   ]);
 }
 

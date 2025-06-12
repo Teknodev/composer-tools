@@ -428,6 +428,7 @@ export enum CATEGORIES {
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
   PRIVACYPOLICY = "privacyPolicy",
+  COMINGSOON = "comingSoon",
 }
 
 export function generateId(key: string): string {
@@ -984,4 +985,8 @@ export function generateAutoClassName(componentId: string, section: string){
 
 export abstract class BaseECommerce extends Component {  
   static category = CATEGORIES.ECOMMERCE;
+}
+
+export abstract class BaseComingSoon extends Component {  
+  static category = CATEGORIES.COMINGSOON;
 }
