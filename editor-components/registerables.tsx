@@ -233,6 +233,7 @@ import Location4 from "./location/location4/location4";
 import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
+import ECommerce5 from "./e-commerce/e-commerce5";
 import BannerComponent1 from "./banner/banner1/banner1";
 import BannerComponent2 from "./banner/banner2/banner2";
 import BannerComponent4 from "./banner/banner4/banner4";
@@ -255,7 +256,6 @@ import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     SocialComponent1,
-
     NotificationModal1,
     ConfirmationModal1,
     DownloadComponent1,
@@ -497,6 +497,7 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent7,
     SocialComponent2,
     SocialComponent3,
+    ECommerce5,
     SocialComponent4,
     SocialWidget1,
     SocialWidget2,
