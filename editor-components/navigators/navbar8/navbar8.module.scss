@@ -247,20 +247,24 @@
             justify-content: space-between;
             gap: var(--composer-gap-xs);
             width: 100%;
-            .socialMediaIconContainer{
-              transition: all 0.3s ease;
-              .socialMediaIcon {
-                font-size: calc(2 * var(--project-font-size));
-                color: var(--composer-font-color-primary);
-              }
-              &.animation2{
-                &:hover{
-                  .socialMediaIcon{
-                    color: var(--composer-primary-color);
+            .socialMediaLink{
+              .socialMediaIconContainer{
+                display: flex;
+                transition: all 0.3s ease;
+                .socialMediaIcon {
+                  font-size: calc(2 * var(--project-font-size));
+                  color: var(--composer-font-color-primary);
+                }
+                &.animation2{
+                  &:hover{
+                    .socialMediaIcon{
+                      color: var(--composer-primary-color);
+                    }
                   }
                 }
               }
             }
+
           }
         }
       }
@@ -356,11 +360,34 @@
         }
   
         .dropdownItemList {
-          .socialMediaLinks {
-            align-items: center;
-            margin-top: var(--composer-gap-md);
-            gap: var(--composer-gap-sm);
+          .socialMediaWrapper{
+            justify-content: center;
+            .socialMediaLinks {
+              align-items: center;
+              margin-top: var(--composer-gap-md);
+              gap: var(--composer-gap-sm);
+              .socialMediaLinksTitle{
+                font-size: var(--project-font-size);
+              }
+              .socialMediaLinksList {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: var(--composer-gap-xs);
+                width: 100%;
+                .socialMediaLink{
+                  .socialMediaIconContainer{
+                    .socialMediaIcon {
+                      font-size: calc(1.5 * var(--project-font-size));
+                    }
+                  }
+                }
+    
+              }
+              
+            }
           }
+
         }
   
         .divider {
