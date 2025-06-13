@@ -1,11 +1,9 @@
 import { BaseNavigator } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar7.module.scss";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 interface Logo {
   image: string;
@@ -1053,7 +1051,15 @@ class Navbar7 extends BaseNavigator {
       displayer: "Close Icon",
       value: "IoMdClose",
     });
-
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2",  "animation3"]
+      }
+    })
     this.setComponentState("isScrolled", false);
     this.setComponentState("isBigScreen", false);
     this.setComponentState("isMobileMenuOpen", false);
@@ -1131,7 +1137,8 @@ class Navbar7 extends BaseNavigator {
 
     const language = this.castToObject<Language>("language");
 
-    const isVisible = (isMobileMenuOpen && !isBigScreen)
+    const isVisible = (isMobileMenuOpen && !isBigScreen);
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
     
     return (
       <>
@@ -1165,7 +1172,7 @@ class Navbar7 extends BaseNavigator {
                 {menuItems.map((item: any, index: any) => (
                   <div
                     key={index}
-                    className={this.decorateCSS("menuItemContainer")}
+                    className={`${this.decorateCSS("menuItemContainer")} ${animations}`}
                   >
                     <ComposerLink path={item.navigate_to}>
                       <div className={this.decorateCSS("menuItem")}>
@@ -1293,14 +1300,10 @@ class Navbar7 extends BaseNavigator {
                     dropdownButtonClassName={`${this.decorateCSS(
                       "localization"
                     )}`}
-                    dropdownLabelClassName={`${this.decorateCSS(
-                      "localizationLabel"
-                    )}`}
+                    dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                     iconClassName={this.decorateCSS("languageIcon")}
-                    dropdownItemClassName={this.decorateCSS("localizationItem")}
-                    dropdownContentClassName={this.decorateCSS(
-                      "localizationContent"
-                    )}
+                    dropdownItemClassName={`${this.decorateCSS("localizationItem")}`}
+                    dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                     divider={language.showDivider}
                   />
                 )}
@@ -1388,8 +1391,12 @@ class Navbar7 extends BaseNavigator {
                   {menuItems.map((item: any, index: number) => (
                     <div
                       key={index}
-                      className={this.decorateCSS("hamburgerMenuItem")}
-                    >
+                      className={`
+                        ${this.decorateCSS("hamburgerMenuItem")}
+                        ${animations}
+                        ${this.getComponentState("subNavActiveIndex") === index ? this.decorateCSS("active") : ""}
+                      `}
+                      >
                       <div
                         className={this.decorateCSS("hamburgerMenuItemHeader")}
                         onClick={() => this.navClick(index)}
@@ -1419,21 +1426,20 @@ class Navbar7 extends BaseNavigator {
                         )}
                       </div>
                       {item.menuType === "Dropdown" && (
-                        <div
-                          className={`${this.decorateCSS("hamburgerSubmenu")} ${
-                            this.getComponentState("subNavActiveIndex") ===
-                            index
-                              ? this.decorateCSS("active")
-                              : ""
-                          }`}
-                        >
+                        <div className={`${this.decorateCSS("hamburgerSubmenu")}
+                        ${this.getComponentState("subNavActiveIndex") ===index? this.decorateCSS("active") : ""}`}>
                           {item.sub_items?.map(
                             (subItem: any, subIndex: number) => (
                               <div
                                 key={subIndex}
-                                className={this.decorateCSS(
-                                  "hamburgerSubmenuItem"
-                                )}
+                                className={`${this.decorateCSS("hamburgerSubmenuItem")} ${animations} 
+                                ${
+                                  this.getComponentState(
+                                    "subNavActive"
+                                  ) === `${index}-${subIndex}`
+                                    ? this.decorateCSS("active")
+                                    : ""
+                                }`}
                               >
                                 <div
                                   className={this.decorateCSS(

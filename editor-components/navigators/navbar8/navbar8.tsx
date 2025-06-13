@@ -2,9 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "composer-tools/composer-base-components/base/base";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Icon = {
@@ -317,6 +315,15 @@ class Navbar8 extends BaseNavigator {
       ],
     });
 
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    });
     this.setComponentState("isScrolled", false);
 
     this.setComponentState("isMenuOpen", false);
@@ -396,6 +403,8 @@ class Navbar8 extends BaseNavigator {
     const socialMediaLinksCondition =
       socialMediaLinks.length > 0 || dropdownSocialMediaTitle;
 
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
+
     return (
       <Base.Navigator.Container screenSize={1960} position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""}`} 
       hamburgerNavActive={isMenuOpen}
@@ -437,12 +446,10 @@ class Navbar8 extends BaseNavigator {
                 title={language.label}
                 icon={language.icon}
                 dropdownButtonClassName={`${this.decorateCSS("localization")}`}
-                dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${backgroundChange && this.decorateCSS("openedLabel")}`}
+                dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${backgroundChange && this.decorateCSS("openedLabel")} ${animations}`}
                 iconClassName={`${this.decorateCSS("localizationIcon")} ${backgroundChange && this.decorateCSS("openedIcon")}`}
                 dropdownItemClassName={this.decorateCSS("localizationItem")}
-                dropdownContentClassName={this.decorateCSS(
-                  "localizationContent"
-                )}
+                dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                 divider={language.showDivider}
               />
             )}
@@ -487,6 +494,7 @@ class Navbar8 extends BaseNavigator {
                       {this.getPropValue("dropdownTitle")}
                     </Base.H1>
                   )}
+                  <div className={this.decorateCSS("line")}></div>
                   {dropdownDescription && (
                     <Base.P className={this.decorateCSS("dropdownDescription")}>
                       {this.getPropValue("dropdownDescription")}
@@ -499,15 +507,16 @@ class Navbar8 extends BaseNavigator {
               )}
               {leftSide && (
                 <div className={this.decorateCSS("dropdownItemList")}>
+                  <div className={this.decorateCSS("dropdownItemContent")}>
                   {itemList.map((item: MenuItems, index: number) =>  {
                     return this.castToString(item.title) && ( 
                       <div
-                          className={this.decorateCSS("dropdownItem")}
+                          className={`${this.decorateCSS("dropdownItem")}`}
                           key={index}
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
-                            <Base.H2 className={this.decorateCSS("dropdownItem")} 
+                            <Base.H2 className={`${this.decorateCSS("dropdownItem")} ${animations}`}
                             onClick={()=> this.handleCloseMenu()}
                             >
                               {item.title}
@@ -517,7 +526,10 @@ class Navbar8 extends BaseNavigator {
                     )
                   }
                   )}
+                  </div>
+
                   {socialMediaLinksCondition && (
+                    <div className={this.decorateCSS("socialMediaWrapper")}>
                     <div className={this.decorateCSS("socialMediaLinks")}>
                       <Base.H3 className={this.decorateCSS("socialMediaLinksTitle")}>
                         {this.getPropValue("dropdownSocialMediaTitle")}
@@ -530,7 +542,7 @@ class Navbar8 extends BaseNavigator {
                             onClick={() => this.setComponentState("isMenuOpen", false)}
                           >
                             <ComposerLink path={item.url}>
-                              <div className={this.decorateCSS("socialMediaIconContainer")} onClick={()=> this.handleCloseMenu()}>
+                              <div className={`${this.decorateCSS("socialMediaIconContainer")} ${animations}`} onClick={()=> this.handleCloseMenu()}>
                               <Base.Icon
                                 name={item.icon}
                                 propsIcon={{
@@ -544,6 +556,8 @@ class Navbar8 extends BaseNavigator {
                         ))}
                       </div>
                     </div>
+                    </div>
+
                   )}
                 </div>
               )}
