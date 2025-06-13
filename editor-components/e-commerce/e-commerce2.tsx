@@ -2698,7 +2698,7 @@ class ECommerce2 extends BaseECommerce {
                                     buttonType={button.type}
                                     className={this.decorateCSS("button")}
                                     onClick={this.handleButtonClick}>
-                                    {button.text}
+                                    <div className={this.decorateCSS("button-text")}>{button.text}</div>
                                 </Base.Button>
                             </div>
                         )}
@@ -2711,8 +2711,10 @@ class ECommerce2 extends BaseECommerce {
                                 isVisible={true}>
                                 <div
                                     className={this.decorateCSS("popup-content-wrapper")}
+                                    onClick={this.closePopup}
+                                    >
+                                    <div className={this.decorateCSS("popup-image-container")}
                                     onClick={(e) => e.stopPropagation()}>
-                                    <div className={this.decorateCSS("popup-image-container")}>
                                         <img
                                             src={this.getComponentState("activePopup").popupImages[this.getComponentState("popupImageIndex")].popupImg}
                                             alt="Popup Image"
