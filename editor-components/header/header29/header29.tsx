@@ -49,7 +49,7 @@ class Header29 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a253bd2970002c626aa7?alt=media&timestamp=1719483639151",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6823844d2bb4c4002cf57937?alt=media",
     });
 
     this.addProp({

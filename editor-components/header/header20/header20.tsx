@@ -76,7 +76,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6823844d2bb4c4002cf57937?alt=media",
             },
             {
               type: "page",
@@ -120,7 +120,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825dde32bb4c4002cf715ad?alt=media",
             },
             {
               type: "page",
@@ -164,7 +164,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384f22bb4c4002cf57950?alt=media",
             },
             {
               type: "page",
@@ -208,7 +208,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384fe2bb4c4002cf57958?alt=media",
             },
             {
               type: "page",
@@ -252,7 +252,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825de1d2bb4c4002cf71a63?alt=media",
             },
             {
               type: "page",
@@ -296,7 +296,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68248e7e2bb4c4002cf5d1c6?alt=media",
             },
             {
               type: "page",
@@ -340,7 +340,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824901f2bb4c4002cf5d319?alt=media",
             },
             {
               type: "page",
@@ -384,7 +384,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825de542bb4c4002cf71c3b?alt=media",
             },
             {
               type: "page",
@@ -428,7 +428,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a2192bb4c4002cf5e1f6?alt=media",
             },
             {
               type: "page",
@@ -472,7 +472,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a2832bb4c4002cf5e23e?alt=media",
             },
             {
               type: "page",
@@ -516,7 +516,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a2af2bb4c4002cf5e247?alt=media",
             },
             {
               type: "page",
