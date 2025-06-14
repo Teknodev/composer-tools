@@ -1,0 +1,318 @@
+@use "../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  background-color: var(--composer-html-background);
+  &.with-overlay {
+    z-index: 103;
+  }
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--composer-gap-xl);
+    .section-title-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-md);
+      flex-wrap: wrap;
+      .section-title {
+        text-align: start;
+        width: fit-content;
+        font-size: 1rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--composer-font-color-primary);
+        opacity: 0.7;
+        &.active-section-title {
+          opacity: 1;
+          color: var(--composer-font-color-primary);
+          font-weight: bold;
+        }
+      }
+    }
+    .grid {
+      .card-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+
+        &:hover {
+          .price {
+            display: none;
+          }
+          .text-container {
+            .subTitle {
+              display: flex;
+            }
+          }
+        }
+        .image-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          position: relative;
+          border-radius: var(--composer-border-radius-sm);
+          background: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
+          aspect-ratio: 600 / 728;
+          &:hover {
+            .image-bottom {
+              display: flex;
+              justify-content: center;
+              text-align: center;
+              position: absolute;
+              bottom: 0;
+              max-width: 50%;
+              .image-bottom-text {
+                display: inline-block;
+                flex: 8;
+                padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                text-align: center;
+                height: 100%;
+                text-wrap: nowrap;
+                font-size: 1rem;
+                cursor: pointer;
+              }
+              .image-bottom-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                flex: 2;
+                padding: var(--composer-gap-xs) var(--composer-gap-sm);
+              }
+            }
+          }
+          .image-bottom {
+            display: none;
+            z-index: 1;
+            color: var(--composer-html-background);
+            font-size: 1rem;
+            animation-duration: 0.5s;
+          }
+          .image-bottom-text {
+            background-color: var(--composer-html-background);
+            color: var(--composer-font-color-primary);
+          }
+          .image-bottom-icon {
+            background: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
+            color: var(--composer-font-color-primary);
+          }
+          .image-text {
+            display: flex;
+            .rightText,
+            .leftText {
+              color: #080808;
+              position: absolute;
+              top: 0;
+              padding: var(--composer-gap-md);
+              font-size: 1rem;
+              flex: 1;
+              max-width: 50%;
+            }
+            .rightText {
+              right: 0;
+            }
+            .leftText {
+              left: 0;
+            }
+          }
+          .image {
+            border-radius: var(--composer-border-radius-md);
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .text-container {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
+          align-items: center;
+          justify-content: space-between;
+          max-width: 100%;
+          max-height: 100%;
+          .title {
+            color: var(--composer-font-color-primary);
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+          }
+          .price {
+            color: var(--composer-tertiary-color);
+            font-size: 1rem;
+          }
+          .subTitle {
+            display: none;
+            cursor: pointer;
+            color: var(--composer-tertiary-color);
+            animation-duration: 0.5s;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+    .button-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      .button {
+        .button-text{
+          content: "";
+        }
+      }
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--composer-overlay-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+
+      .popup-content-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .popup-image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        height: 70%;
+        position: relative;
+
+        .popup-image {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-md);
+        }
+
+        .prevArrow,
+        .nextArrow {
+          position: absolute;
+          width: 3rem;
+          height: 3rem;
+          background-color: transparent;
+          border: none;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 2;
+
+          .arrow {
+            color: var(--composer-tertiary-color);
+            font-size: 1.5rem;
+          }
+        }
+
+        .prevArrow {
+          left: 0;
+        }
+
+        .nextArrow {
+          right: 0;
+        }
+
+        .popup-close {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 3rem;
+          height: 3rem;
+          border: none;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: var(--composer-tertiary-color);
+          background-color: transparent;
+          transition: all 0.3s ease;
+          z-index: 2;
+          font-size: 2rem;
+        }
+      }
+      .image-info {
+        font-weight: bold;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        color: white;
+        font-size: 1rem;
+        width: 30%;
+        bottom: 10%;
+        padding: var(--composer-gap-xs) 0px;
+
+        .image-title {
+          text-align: left;
+          width: 50%;
+          overflow-wrap: break-word;
+        }
+
+        .image-count {
+          text-align: end;
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .popup-image-container {
+    width: 50% !important;
+  }
+  .image-info {
+    width: 50% !important;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .section-title-container {
+        flex-direction: column;
+      }
+
+      .popup-image-container {
+        width: 90% !important;
+        height: 50% !important;
+      }
+
+      .image-info {
+        width: 90% !important;
+        bottom: 20% !important;
+      }
+    }
+  }
+}

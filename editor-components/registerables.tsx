@@ -249,6 +249,7 @@ import SocialWidget2 from "../editor-components/social_widget/social_widget2/soc
 import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
+import ECommerce2 from "./e-commerce/e-commerce2";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
@@ -491,6 +492,7 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
+    ECommerce2,
     BannerComponent4,
     BannerComponent5,
     BannerComponent6,
