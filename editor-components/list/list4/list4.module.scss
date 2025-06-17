@@ -1,13 +1,24 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 .container {
-  .max-content {    
-    .card-title{
+  .max-content {
+    .header {
+      .subtitle {
+        content: "";
+      }
+      .title {
+        content: "";
+      }
+    }
+
+    .card-title {
       position: relative;
       margin: var(--composer-gap-xs) 0px 0px var(--composer-gap-md);
       color: var(--composer-primary-color);
       font-size: 0rem;
       padding-bottom: var(--composer-gap-xl);
-      &.index{
+
+      &.index {
         font-size: 2rem;
         padding-bottom: var(--composer-gap-md);
       }
@@ -16,34 +27,70 @@
     .card-child {
       margin-bottom: var(--composer-gap-md);
       gap: var(--composer-gap-lg);
-      
-      .card-item-count{
+
+      .card-item-count {
         position: relative;
         padding: var(--composer-gap-lg);
-        .line-box{
+
+        &[data-animation~="animate1"] {
+          .line-box{
+            .line-2 {
+              &::before {
+                content: "";
+                position: absolute;
+                left: 90px;
+                top: 0px;
+                background-color: var(--composer-primary-color);
+                height: 1px;
+                width: 0px;
+                z-index: 2;
+                transition: all 0.5s ease-in-out;
+              }
+            }
+          }
+          &:hover{
+            .line-box{
+              .line-2{
+                &::before{
+                  width: calc(100% - 90px);
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate4"]:hover {
+          .card-title{
+            &.index {
+              animation: bounce 1s ease-in-out;
+            }
+          }
+
+        }
+
+        .line-box {
           position: absolute;
           width: calc(100% - 80px);
           height: calc(100% - 80px);
-        
-          .line-1{
-            position:absolute;
+
+          .line-1 {
+            position: absolute;
             top: -10px;
             left: 0px;
             height: calc(100% + 30px);
             width: 1px;
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
-    
-          .line-2{
-            position:absolute;
+
+          .line-2 {
+            position: absolute;
             top: 50px;
             left: -30px;
             height: 1px;
             width: calc(100% + 60px);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            &:after{
+            &:after {
               content: "";
-              position:absolute;
+              position: absolute;
               left: 90px;
               top: 0px;
               background-color: var(--composer-font-color-primary);
@@ -52,8 +99,8 @@
             }
           }
 
-          .line-3{
-            position:absolute;
+          .line-3 {
+            position: absolute;
             top: 0px;
             right: 0px;
             height: calc(100% + 20px);
@@ -61,66 +108,98 @@
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
 
-          .line-4{
-            position:absolute;
+          .line-4 {
+            position: absolute;
             bottom: 0px;
             left: -30px;
             height: 1px;
             width: calc(100% + 60px);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            
           }
         }
         .card {
           position: relative;
-          padding: var(--composer-gap-md) ;
+          padding: var(--composer-gap-md);
 
-          .color-box{
+          .color-box {
             padding: var(--composer-gap-md);
-            background-color:  color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
+            transition: background-color 0.5s ease;
+
+            &[data-animation~="animate2"] {
+              &:hover {
+                background-color: var(--composer-primary-color);
+
+                .icon {
+                  color: var(--composer-html-background);
+                }
+
+                .card-title-wrapper {
+                  .card-subtitle {
+                    color: var(--composer-font-color-primary);
+                  }
+
+                  .card-description {
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+              }
+            }
+
+            &[data-animation~="animate3"]:hover {
+              .icon {
+                transform: rotate(360deg);
+                transition: transform 0.3s;
+              }
+            }
 
             .icon {
-                font-size: 2.5rem;
-                color: var(--composer-primary-color);
-                margin: var(--composer-gap-md) 0;
+              font-size: 2.5rem;
+              color: var(--composer-primary-color);
+              margin: var(--composer-gap-md) 0;
             }
 
-            .card-number{
-                position: absolute;
-                font-size: 3rem;
-                color: var(--composer-font-color-primary);
+            .card-number {
+              position: absolute;
+              font-size: 3rem;
+              color: var(--composer-font-color-primary);
             }
-            .card-title-wrapper{
+            .card-title-wrapper {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
-              .card-subtitle{
+              .card-subtitle {
                 font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 overflow: hidden;
                 margin: 0px;
+                position: relative;
+                display: inline-block;
               }
-  
+
               .card-description {
                 margin: 0px;
                 font-size: 1.5rem;
                 color: var(--composer-tertiary-color);
               }
             }
-  
-          }          
-        }  
-        &:nth-child(3n + 2){
+          }
+        }
+        &:nth-child(3n + 2) {
           transform: translateY(40px);
-        }    
+        }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content{
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
       .card-child {
         gap: var(--composer-gap-xs);
       }
@@ -128,28 +207,40 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
       .card-child {
-        .card-item-count{
+        .card-item-count {
           padding: 0px;
-          .line-box{
+          .line-box {
             width: 100%;
             height: 100%;
-            .line-1{
+            .line-1 {
               top: 10px;
               height: calc(100% + 20px);
             }
-            .line-3{
+            .line-3 {
               top: 10px;
             }
           }
-          &:nth-child(3n + 2){
-          transform: none
-          }    
+          &:nth-child(3n + 2) {
+            transform: none;
+          }
         }
       }
     }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    transform: translateY(-5px);
+    animation-timing-function: ease-in-out;
   }
 }
