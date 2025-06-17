@@ -231,6 +231,15 @@ class List3 extends BaseList {
       displayer: "Show Card Number",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
   }
 
   render() {
@@ -245,7 +254,7 @@ class List3 extends BaseList {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
             {(title || description || this.castToString(buttonType.text)) && (
-              <Base.VerticalContent className={this.decorateCSS("first")}>
+              <Base.VerticalContent className={this.decorateCSS("first")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(title || description) && (
                   <Base.VerticalContent className={this.decorateCSS("first-inner")}>
                     {title && (
@@ -263,7 +272,15 @@ class List3 extends BaseList {
                 {this.castToString(buttonType.text) && (
                   <ComposerLink path={buttonType.url}>
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      {buttonType.text}
+                      <div className={this.decorateCSS("button-text")}>
+                        {buttonType.text}
+                      </div>
+                      <Base.Icon
+                        name={"FaArrowRight"}
+                        propsIcon={{
+                          className: this.decorateCSS("button-icon"),
+                        }}
+                      />
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -271,7 +288,11 @@ class List3 extends BaseList {
             )}
             {listItems.map((listItem: Item, index: number) => {
               return (
-                <div key={index} className={this.decorateCSS("card")}>
+                <div
+                  key={index}
+                  className={this.decorateCSS("card")}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
                       <div className={this.decorateCSS("itemTitle")}>

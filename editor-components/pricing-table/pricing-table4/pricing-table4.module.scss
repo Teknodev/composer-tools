@@ -1,4 +1,17 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+@keyframes breathe {
+  0% {
+    transform: scale(1.1);
+  }
+  
+  50% {
+    transform: scale(1.05);
+  }
+  
+  100% {
+    transform: scale(1.1);
+  }
+}
 
 .container {
   .max-content {
@@ -7,7 +20,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     .page {
       width: 100%;
       padding-bottom: var(--composer-gap-md);
-
+      gap: var(--composer-gap-md);
       .page-up {
         width: 100%;
         overflow: hidden;
@@ -35,10 +48,38 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             box-shadow: var(--box-shadow-active);
             overflow: hidden;
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            transition: 0.8s;
+
+            &.animation1:hover {              
+              transform: translateY(calc(-1 * var(--composer-gap-sm)));
+            }
+
+            &.animation2:hover {              
+              .card-up{
+                .card-up-texts{
+                  transform: scale(1.1);
+                }
+              }
+            }
+            &.animation3:hover{
+              .card-up{
+                .card-up-texts{
+                  .price-pricing{
+                    animation-name: breathe;
+                    animation-duration: 2s;
+                    animation-timing-function: ease-in-out;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                  }
+                }
+              }
+            }
 
             &.focused {
               scale: 1.06;
               background: var(--composer-html-background);
+              z-index: 2;
+              position: relative;
             }
 
             .card-up {
@@ -57,7 +98,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 align-items: center;
                 color: var(--composer-font-color-primary);
                 padding: var(--composer-gap-lg);
-
+                transition: 0.8s;
+                
                 .price-title2 {
                   color: var(--composer-tertiary-color);
                 }
@@ -88,6 +130,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     height: var(--composer-gap-md);
                     color: var(--composer-primary-color);
                   }
+                  .list-item-text{
+                    content: "";
+                  }
                 }
               }
             }
@@ -100,6 +145,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               align-items: center;
               gap: var(--composer-gap-md);
               margin-bottom: var(--composer-gap-md);
+              .button{
+                content: "";
+              }
             }
           }
         }

@@ -154,6 +154,15 @@ class PricingTable5 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2", "animation3"]
+      }
+    })
   }
 
   static getName(): string {
@@ -215,7 +224,9 @@ class PricingTable5 extends BasePricingTable {
                   const planButtonExist = this.castToString(plan.button.text);
 
                   return (
-                    <div className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")}`} onClick={() => this.onPlanClicked(index)}>
+                    <div className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")} 
+                    ${this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `} 
+                    onClick={() => this.onPlanClicked(index)}>
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
                         <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
@@ -232,14 +243,14 @@ class PricingTable5 extends BasePricingTable {
                             {planDescription && <Base.P className={this.decorateCSS("price-description")}>{plan.getPropValue("priceDescription")}</Base.P>}
                           </div>
                         )}
-
-                        <ComposerLink path={plan.button.url}>
                           {planButtonExist && (
                             <Base.Button buttonType={plan.button.type} className={this.decorateCSS("plan-button")}>
+                              <ComposerLink path={plan.button.url}>
                               {plan.button.text}
+                              </ComposerLink>
+                         
                             </Base.Button>
                           )}
-                        </ComposerLink>
                       </div>
                     </div>
                   );

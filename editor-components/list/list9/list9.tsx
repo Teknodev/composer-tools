@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseContent, BaseList } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list9.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
@@ -61,7 +61,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "FaDog",
                         },
                         {
                             type: "string",
@@ -94,7 +94,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "FaHtml5",
                         },
                         {
                             type: "string",
@@ -127,7 +127,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "RiPaintBrushFill",
                         },
                         {
                             type: "string",
@@ -161,6 +161,16 @@ class List9 extends BaseList {
             value: 4,
             max: 4,
         });
+
+        this.addProp({
+            type: "multiSelect",
+            key: "hoverAnimation",
+            displayer: "Hover Animation Style",
+            value: ["animate1"],
+            additionalParams: {
+                selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+            }
+        });
     }
 
     static getName(): string {
@@ -177,7 +187,11 @@ class List9 extends BaseList {
                     >
                         {this.castToObject<Card[]>("cards").map(
                             (card: Card, indexCard: number) => (
-                                <div key={indexCard} className={this.decorateCSS("card")}>
+                                <div
+                                    key={indexCard}
+                                    className={this.decorateCSS("card")}
+                                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                >
                                     <div className={this.decorateCSS("image-container")}>
                                         {card.image && (
                                             <img

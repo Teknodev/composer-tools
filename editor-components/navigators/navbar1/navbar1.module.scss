@@ -44,9 +44,15 @@
         }
 
         .menuItemTitle {
+          font-weight: normal;
+          transition: all 0.8s ease;
           font-weight: 500;
-          transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
         }
 
         .dropdownIcon {
@@ -84,7 +90,7 @@
 
           .dropdownItemContainer {
             padding: var(--composer-gap-sm) var(--composer-gap-sm);
-            transition: all 0.3s ease;
+            transition: all 0.8s ease;
             border-radius: var(--composer-border-radius-sm);
             position: relative;
 
@@ -100,11 +106,15 @@
                 .dropdownItemTitle {
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
-                  transition: all 0.3s ease;
+                  transition: all 0.8s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
                 }
               }
             }
-
             &::after {
               content: "";
               position: absolute;
@@ -115,18 +125,19 @@
               transition: all 0.3s ease;
             }
 
-            &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
-              }
-
-              .subdropdown {
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(0);
-              }
+            &.animation2{
+              &:hover {
+                &::after {
+                  width: calc(100% - (var(--composer-gap-md) * 2));
+                }
+  
+                .subdropdown {
+                  opacity: 1;
+                  visibility: visible;
+                  transform: translateX(0);
+                }
+              }  
             }
-
             .rightIcon {
               font-size: calc(1.5 * var(--project-font-size));
               color: var(--composer-font-color-primary);
@@ -154,6 +165,22 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
+                .subdropdownItemTitle{
+                  font-weight: normal;
+                  transition: all 0.8s ease;                  
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
+                }
+                &.animation2{
+                  &:hover {
+                    &::after {
+                      width: calc(100% - (var(--composer-gap-md) * 2));
+                    }
+                  }
+                }
 
                 &::after {
                   content: "";
@@ -163,12 +190,6 @@
                   height: 1px;
                   background-color: var(--composer-primary-color);
                   transition: all 0.3s ease;
-                }
-
-                &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
-                  }
                 }
               }
             }
@@ -184,39 +205,6 @@
     background-color: var(--composer-primary-color);
     margin-top: var(--composer-gap-md);
   }
-
-  .rightSide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--composer-gap-md);
-
-    .buttons{
-      display: flex;
-      gap: var(--composer-gap-sm);
-    }
-
-    .icon-element {
-      font-size: calc(1.5 * var(--project-font-size));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--composer-font-color-primary);
-    }
-  }
-
-  .hamburgerIcon,
-  .closeIcon {
-    display: none;
-    cursor: pointer;
-    font-size: calc(1.5 * var(--project-font-size));
-    color: var(--composer-font-color-primary);
-  }
-
-  .overlay {
-    content: "";
-  }
-
   .hamburgerNav {
     display: none;
     position: absolute;
@@ -249,11 +237,41 @@
               justify-content: space-between;
               padding: var(--composer-gap-sm) 0;
               cursor: pointer;
+              position: relative;
 
               .hamburgerMenuItemTitle {
                 margin: 0;
                 font-weight: 500;
                 color: var(--composer-font-color-primary);
+                transition: all 0.8s ease;
+                &.animation1{
+                  &:hover{
+                    font-weight: bold;
+                  }
+                }
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--composer-primary-color);
+                transition: all 0.3s ease;
+              }
+  
+              &.animation2{
+                &:hover {
+                  &::after {
+                    width: calc(100% - (var(--composer-gap-md) * 2));
+                  }
+    
+                  .subdropdown {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateX(0);
+                  }
+                }  
               }
             }
 
@@ -276,11 +294,18 @@
                   padding: var(--composer-gap-xs) 0;
                   cursor: pointer;
                   color: var(--composer-font-color-primary);
+                  position: relative;
 
                   .hamburgerMenuItemTitle {
                     margin: 0;
                     font-weight: 400;
                     color: var(--composer-font-color-primary);
+                    transition: all 0.8s ease;
+                    &.animation1{
+                      &:hover{
+                        font-weight: bold;
+                      }
+                    }
                   }
                   .hamburgerDropdownItemTitle{
                     margin: 0;
@@ -292,6 +317,29 @@
                     &.active {
                       transform: rotate(90deg);
                     }
+                  }
+                  &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    width: 0;
+                    height: 1px;
+                    background-color: var(--composer-primary-color);
+                    transition: all 0.3s ease;
+                  }
+      
+                  &.animation2{
+                    &:hover {
+                      &::after {
+                        width: calc(100% - (var(--composer-gap-md) * 2));
+                      }
+        
+                      .subdropdown {
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateX(0);
+                      }
+                    }  
                   }
                 }
 
@@ -305,13 +353,44 @@
                     transition: all 0.3s linear;
                   }
 
-                  .hamburgerSubSubmenuItem {
+                  .localizationLabel {
                     padding: var(--composer-gap-xs) 0;
+                    position: relative;
 
                     .hamburgerSubSubmenuItemTitle {
                       margin: 0;
                       font-weight: 400;
                       color: var(--composer-font-color-primary);
+                      cursor: pointer;
+                      transition: all 0.8s ease;
+                      &.animation1{
+                        &:hover{
+                          font-weight: bold;
+                        }
+                      }
+                    }
+                    &::after {
+                      content: "";
+                      position: absolute;
+                      bottom: 0;
+                      width: 0;
+                      height: 1px;
+                      background-color: var(--composer-primary-color);
+                      transition: all 0.3s ease;
+                    }
+        
+                    &.animation2{
+                      &:hover {
+                        &::after {
+                          width: calc(100% - (var(--composer-gap-md) * 2));
+                        }
+          
+                        .subdropdown {
+                          opacity: 1;
+                          visibility: visible;
+                          transform: translateX(0);
+                        }
+                      }  
                     }
                   }
                 }
@@ -332,6 +411,49 @@
       }
     }
   }
+  .rightSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--composer-gap-md);
+
+    .buttons{
+      display: flex;
+      gap: var(--composer-gap-sm);
+    }
+    .localization{
+      transition: all 0.3s ease;
+      .localizationLabel{
+        font-weight: normal;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        font-weight: normal;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+  }
+
+  .hamburgerIcon,
+  .closeIcon {
+    display: none;
+    cursor: pointer;
+    font-size: calc(1.5 * var(--project-font-size));
+    color: var(--composer-font-color-primary);
+  }
+
+  .overlay {
+    content: "";
+  }
+
+
 
   .accordionLocalization {
     display: none;
@@ -340,16 +462,28 @@
     }
     .localization {
       color: var(--composer-font-color-primary);
-      h3 {
+      .localizationTitle{
         font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
       }
     }
     .localizationItem {
       font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
     }
   }
 }
-
+}
 .maxContent {
   p {
     padding: 0;
@@ -415,6 +549,11 @@
             display: flex;
           }
         }
+        .hamburgerIcon,
+        .closeIcon {
+          display: flex;
+        }
+    
       }
 
       .logo {
@@ -422,10 +561,6 @@
           max-height: 50px;
         }
       }
-    }
-    .hamburgerIcon,
-    .closeIcon {
-      display: flex;
     }
 
     .hamburgerNav {

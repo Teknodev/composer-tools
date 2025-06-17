@@ -1,0 +1,100 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  .max-content {
+    flex: 1;
+    border-radius: var(--composer-border-radius-xl);
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--composer-gap-lg) * 3);
+    width: 100%;
+    padding: var(--composer-gap-lg) var(--composer-gap-md);
+    overflow: hidden;
+    justify-content: center;
+    .top-content{
+        align-items: center;
+        gap: var(--composer-gap-md);
+        .title{
+            margin: 0px;
+            font-size: 5rem;
+            text-align: center;
+        }
+        .description{
+            color: var(--composer-tertiary-color);
+            font-size: 2rem;
+            text-align: center;
+            margin: 0px;
+        }
+        .button-wrapper{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .button{
+                .button-text{
+                    content: "";
+                }
+            }
+        }
+    }
+    .bottom-side{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--composer-gap-xl);
+        .counter-container{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            align-items: center;
+            min-width: 65px;
+            .counter-count{
+                color: var(--composer-font-color-primary);
+                margin: 0px;
+                font-size: 4rem;
+            }
+            .counter-text{
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+            }
+        }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container{
+        .max-content{
+            .top-content{
+                align-items: center;
+                gap: var(--composer-gap-md);
+                .title{
+                    margin: 0px;
+                    font-size: 4rem;
+                    text-align: center;
+                }
+                .description{
+                    color: var(--composer-tertiary-color);
+                    font-size: 1.5rem;
+                    text-align: center;
+                    margin: 0px;
+                }
+            }
+            .bottom-side{
+                gap: var(--composer-gap-md);
+                .counter-container{
+                    .counter-count{
+                        font-size: 3rem;
+                    }
+                    .counter-text{
+                        color: var(--composer-font-color-primary);
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

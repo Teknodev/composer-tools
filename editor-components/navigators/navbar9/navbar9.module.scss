@@ -25,7 +25,28 @@
       .icons {
         flex: 1 1;
       }
-
+      .localizationLabel{
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        .localizationItem{
+          font-weight: normal;
+          transition: all 0.3s ease;
+        }
+        &.animation1{
+          &:hover{
+            .localizationItem{
+              font-weight: bold;
+            }
+          }
+        }
+      }
       .localization, .localizationItem{
         content: "";
       }
@@ -61,6 +82,13 @@
             margin: 0;
             transition: all 0.3s ease;
             color: var(--composer-font-color-primary);
+          }
+          &.animation1{
+            &:hover{
+              .menuItemTitle{
+                font-weight: bold;
+              }
+            }
           }
 
           .dropdownIcon {
@@ -118,6 +146,23 @@
                     transition: color 0.3s ease;
                   }
                 }
+                &.animation1{
+                  &:hover{
+                    .dropdownItemContent{
+                      .dropdownItemTitle{
+                        font-weight: bold;
+                      }
+                    }
+                  }
+                }
+              }
+
+              &.animation2{
+                &:hover{
+                  &::after {
+                    width: calc(100% - (var(--composer-gap-md) * 2));
+                  }
+                }
               }
 
               &::after {
@@ -131,10 +176,6 @@
               }
 
               &:hover {
-                &::after {
-                  width: calc(100% - (var(--composer-gap-md) * 2));
-                }
-
                 .subdropdown {
                   opacity: 1;
                   visibility: visible;
@@ -176,6 +217,19 @@
                   border-radius: var(--composer-border-radius-sm);
                   position: relative;
                   color: var(--composer-font-color-primary);
+                  font-weight: normal;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
+                  &.animation2{
+                    &:hover {
+                      &::after {
+                        width: calc(100% - (var(--composer-gap-md) * 2));
+                      }
+                    }
+                  }
 
                   &::after {
                     content: "";
@@ -187,11 +241,6 @@
                     transition: width 0.3s ease;
                   }
 
-                  &:hover {
-                    &::after {
-                      width: calc(100% - (var(--composer-gap-md) * 2));
-                    }
-                  }
                 }
               }
             }
@@ -385,6 +434,13 @@
       .icon {
         font-size: calc(1.5 * var(--project-font-size));
         color: var(--composer-font-color-primary);
+      }
+      &.animation3{
+        &:hover{
+          .icon{
+            color: var(--composer-primary-color);        
+          }
+        }
       }
     }
   }
