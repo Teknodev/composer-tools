@@ -120,7 +120,6 @@ class COMING_SOON2 extends BaseComingSoon {
   static getName(): string {
     return "Coming Soon 2";
   }
-
   render() {
     const title1 = this.getPropValue("title1");
     const title2 = this.getPropValue("title2");
