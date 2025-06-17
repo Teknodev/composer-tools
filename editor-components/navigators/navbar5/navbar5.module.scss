@@ -54,8 +54,32 @@
     z-index: 20;
 
     .localization, .localizationLabel, .localizationItem, .localizationContent {
-      content: "";
     }
+    .localization{
+      .localizationLabel{
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        transition: all 0.3s ease;
+        .localizationItem{
+          font-weight: normal;
+        }
+        &.animation1{
+          &:hover{
+            .localizationItem{
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+
 
     .language {
       color: var(--composer-font-color-primary);
@@ -145,9 +169,10 @@
           animation: fadeIn 1.5s ease forwards;
           transition: color 0.3s;
           cursor: pointer;
-
-          &:hover {
-            color: var(--composer-tertiary-color);
+          &.animation1{
+            &:hover {
+              color: var(--composer-tertiary-color);
+            }
           }
         }
       }
