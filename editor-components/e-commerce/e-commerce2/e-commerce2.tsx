@@ -2457,7 +2457,9 @@ class ECommerce2 extends BaseECommerce {
         }
         this.setComponentState("selectedSection", firstSectionTitle);
     }
-
+    componentWillUnmount(): void {
+        document.removeEventListener("keydown", this.handleKeyDown);
+    }
     handleSectionClick(sectionTitle: React.ReactNode, index: number): void {
         this.setComponentState("selectedSection", this.castToString(sectionTitle));
         this.setComponentState("selectedIndex", index);
@@ -2636,7 +2638,8 @@ class ECommerce2 extends BaseECommerce {
                                                             onClick={(e) =>
                                                                 this.handleQuickLookClick(image, e)
                                                             }>
-                                                            {this.castToString(image.bottomText)}
+                                                                
+                                                            {image.bottomText}
                                                         </div>
                                                     )}
                                                     {image.bottomIcon && (
