@@ -250,6 +250,7 @@ import ComingSoon3 from "./coming-soon/coming-soon3/coming-soon3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
+import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -499,6 +500,7 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget4,
     SocialWidget5,
     ECommerce3,
+    ComingSoon4,
     ComingSoon3,
     ComingSoon1,
     ECommerce4,

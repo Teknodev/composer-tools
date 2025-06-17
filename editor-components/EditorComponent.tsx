@@ -428,6 +428,7 @@ export enum CATEGORIES {
   ECOMMERCE = "ecommerce",
   COMINGSOON = "comingSoon",
   PRIVACYPOLICY = "privacyPolicy",
+  COMINGSOON = "comingSoon",
 }
 
 export function generateId(key: string): string {
