@@ -42,6 +42,7 @@ import ContentComponent15 from "./content/content15/content15";
 import ContentComponent16 from "./content/content16/content16";
 import ContentComponent17 from "./content/content17/content17";
 import ContentComponent18 from "./content/content18/content18";
+import ContentComponent19 from "./content/content19/content19";
 import ContentComponent20 from "./content/content20/content20";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
@@ -246,10 +247,12 @@ import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
+import ComingSoon3 from "./coming-soon/coming-soon3/coming-soon3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
 import ComingSoon2 from "./coming-soon/coming-soon2/coming-soon2";
+import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -298,6 +301,7 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent16,
     ContentComponent17,
     ContentComponent18,
+    ContentComponent19,
     ContentComponent20,
     SliderComponent1,
     SliderComponent2,
@@ -499,6 +503,8 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget4,
     SocialWidget5,
     ECommerce3,
+    ComingSoon4,
+    ComingSoon3,
     ComingSoon1,
     ECommerce4,
     ComingSoon2,

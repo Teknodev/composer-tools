@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./image-gallery3.module.scss";
 import { BaseImageGallery } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ImageItem {
     image: string;
@@ -78,13 +79,67 @@ class ImageGallery3 extends BaseImageGallery {
                         }
                     ]
                 },
+
+                {
+                    type: "object",
+                    key: "image",
+                    displayer: "Image",
+                    value: [
+                        {
+                            type: "image",
+                            key: "image",
+                            displayer: "Image",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245"
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "image",
+                    displayer: "Image",
+                    value: [
+                        {
+                            type: "image",
+                            key: "image",
+                            displayer: "Image",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1731587983245"
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "image",
+                    displayer: "Image",
+                    value: [
+                        {
+                            type: "image",
+                            key: "image",
+                            displayer: "Image",
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575"
+                        }
+                    ]
+                },
             ]
         });
+
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("patternButton", "Pattern Button", "Load More", "", null, null, "Primary"));
+        
+        this.setComponentState("patternCount", 1);
+        this.setComponentState("showPattern", false);
     }
 
     static getName(): string {
         return "Image Gallery 3";
     }
+
+    handleButtonClick = () => {
+        this.setComponentState("patternCount", this.getComponentState("patternCount") + 1);
+    };
+
+    handlePatternButtonClick = () => {
+        this.setComponentState("showPattern", true);
+    };
 
     render() {
         const type = this.getPropValue("type");
@@ -96,6 +151,13 @@ class ImageGallery3 extends BaseImageGallery {
         const images = this.castToObject<ImageItem[]>("images");
         const headerImageCount = type === "Header One Image" ? 1 : 2;
         const remainingImages = images.slice(headerImageCount);
+        const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const patternButtonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("patternButton");
+
+        const pattern = [3, 2, 1];
+        const imagesPerPattern = pattern.reduce((a, b) => a + b, 0);
+        const maxImages = imagesPerPattern * this.getComponentState("patternCount");
+        const visibleImages = remainingImages.slice(0, maxImages);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -128,26 +190,28 @@ class ImageGallery3 extends BaseImageGallery {
                     </Base.MaxContent>
                 </div>
 
-                {remainingImages.length > 0 && (
+                {remainingImages.length > 0 && !this.getComponentState("showPattern") && (
+                    <div className={this.decorateCSS("button-wrapper")}>
+                        <Base.Button buttonType={patternButtonType.type} className={this.decorateCSS("button")} onClick={this.handlePatternButtonClick}>
+                            {patternButtonType.text}
+                        </Base.Button>
+                    </div>
+                )}
+
+                {this.getComponentState("showPattern") && visibleImages.length > 0 && (
                     <div className={this.decorateCSS("remaining-images")}>
                         <Base.MaxContent className={this.decorateCSS("max-content")}>
                             {(() => {
                                 const rows: React.ReactNode[] = [];
                                 let currentIndex = 0;
                                 
-                                const pattern = [3, 2, 1, 3, 2, 1];
-                                
-                                const totalImages = remainingImages.length;
-                                const imagesPerPattern = pattern.reduce((a, b) => a + b, 0);
-                                const completePatterns = Math.ceil(totalImages / imagesPerPattern);
-                                
-                                for (let patternIndex = 0; patternIndex < completePatterns; patternIndex++) {
+                                for (let patternIndex = 0; patternIndex < this.getComponentState("patternCount"); patternIndex++) {
                                     pattern.forEach((imagesInRow, rowIndex) => {
                                         const startIndex = currentIndex;
-                                        const endIndex = Math.min(startIndex + imagesInRow, totalImages);
+                                        const endIndex = Math.min(startIndex + imagesInRow, visibleImages.length);
                                         
-                                        if (startIndex < totalImages) {
-                                            const rowImages = remainingImages.slice(startIndex, endIndex);
+                                        if (startIndex < visibleImages.length) {
+                                            const rowImages = visibleImages.slice(startIndex, endIndex);
                                             
                                             const isIncompleteRow = rowImages.length < imagesInRow;
                                             
@@ -156,7 +220,7 @@ class ImageGallery3 extends BaseImageGallery {
                                                     key={`${patternIndex}-${rowIndex}`} 
                                                     className={`${this.decorateCSS("image-row")} ${this.decorateCSS(isIncompleteRow ? 'row-1' : `row-${imagesInRow}`)}`}
                                                 >
-                                                    {rowImages.map((item, index) =>  item.image && (
+                                                    {rowImages.map((item, index) => item.image && (
                                                         <div key={`${patternIndex}-${rowIndex}-${index}`} className={this.decorateCSS("image-box")}>
                                                             <img className={this.decorateCSS("image")} src={item.image} />
                                                         </div>
@@ -172,6 +236,14 @@ class ImageGallery3 extends BaseImageGallery {
                                 return rows;
                             })()}
                         </Base.MaxContent>
+                    </div>
+                )}
+
+                {this.getComponentState("showPattern") && maxImages < remainingImages.length && (
+                    <div className={this.decorateCSS("button-wrapper")}>
+                        <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick}>
+                            {buttonType.text}
+                        </Base.Button>
                     </div>
                 )}
             </Base.Container>

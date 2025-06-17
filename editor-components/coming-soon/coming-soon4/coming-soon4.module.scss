@@ -1,0 +1,139 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+.container {
+  min-height: 100vh;
+  display: flex;
+  .max-content {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    .content {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      gap: var(--composer-gap-md);
+      width: 80%;
+      .left-side {
+        flex: 1;
+        gap: var(--composer-gap-md);
+        .title {
+          font-size: 4rem;
+          margin: 0;
+        }
+
+        .description {
+          font-size: 2rem;
+          color: var(--composer-tertiary-color);
+          margin: 0;
+        }
+
+        .button-container {
+          display: flex;
+          gap: var(--composer-gap-md);
+          width: 100%;
+          .button {
+            .button-text {
+              font-size: 2rem;
+            }
+            .icon {
+              display: flex;
+              justify-content: center;
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+      .right-side {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-lg);
+        .counter{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            align-items: center;
+            min-width: 55px;
+            .count{
+                margin: 0px;
+                color: var(--composer-font-color-primary);
+                font-size: 5rem;
+            }
+            .text{
+                color: var(--composer-font-color-primary);
+            }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .content {
+        width: 100%;
+        .left-side {
+          .title {
+            font-size: 3rem;
+          }
+          .description {
+            font-size: 1.5rem;
+          }
+          .button-container {
+            .button {
+              .button-text {
+                font-size: 1.5rem;
+              }
+              .icon {
+                font-size: 1.5rem;
+              }
+            }
+          }
+        }
+        .right-side {
+            .counter{
+                .count{
+                    font-size: 4rem;
+                }
+                .text{
+                    color: var(--composer-font-color-primary);
+                }
+            }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: var(--composer-gap-lg);
+        .left-side {
+          flex: unset;
+          align-items: center;
+          .title {
+            text-align: center;
+          }
+          .description {
+            text-align: center;
+          }
+          .button-container {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+        .right-side {
+          flex: unset;
+          gap: var(--composer-gap-md);
+          .counter{
+            .count{
+              font-size: 3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
