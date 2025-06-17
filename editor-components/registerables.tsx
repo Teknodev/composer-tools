@@ -500,8 +500,8 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget5,
     ECommerce3,
     ComingSoon1,
-    ECommerce4,,
-    ComingSoon2
+    ECommerce4,
+    ComingSoon2,
   ]);
 }
 
