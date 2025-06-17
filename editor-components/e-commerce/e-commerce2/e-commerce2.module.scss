@@ -1,4 +1,4 @@
-@use "../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   background-color: var(--composer-html-background);
@@ -316,3 +316,4 @@
     }
   }
 }
+
