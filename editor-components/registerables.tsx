@@ -203,10 +203,6 @@ import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
-import HttpCodes1 from "./http_codes/http_codes1/http_codes1";
-import HttpCodes2 from "./http_codes/http_codes2/http_codes2";
-import HttpCodes3 from "./http_codes/http_codes3/http_codes3";
-import HttpCodes4 from "./http_codes/http_codes4/http_codes4";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import ImageGalleryComponent2 from "./Image_gallery/image_gallery_2/image-gallery2";
 import ImageGalleryComponent3 from "./Image_gallery/image_gallery_3/image-gallery3";
@@ -250,7 +246,9 @@ import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
+import ComingSoon3 from "./coming-soon/coming-soon3/coming-soon3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
+import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
 import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
 
@@ -485,10 +483,6 @@ function Registerables(composer: ComponentsRegistery) {
     Location4,
     Location5,
     Location6,
-    HttpCodes1,
-    HttpCodes2,
-    HttpCodes3,
-    HttpCodes4,
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
@@ -506,8 +500,10 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget4,
     SocialWidget5,
     ECommerce3,
-    ECommerce4,,
-    ComingSoon4
+    ComingSoon4,
+    ComingSoon3,
+    ComingSoon1,
+    ECommerce4,
   ]);
 }
 

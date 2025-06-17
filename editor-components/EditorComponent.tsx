@@ -422,11 +422,11 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
+  COMINGSOON = "comingSoon",
   PRIVACYPOLICY = "privacyPolicy",
   COMINGSOON = "comingSoon",
 }
@@ -903,10 +903,6 @@ export abstract class BaseSlider extends Component {
 
 export abstract class BaseFAQ extends Component {
   static category = CATEGORIES.FAQ;
-}
-
-export abstract class BaseHTTPCodes extends Component {
-  static category = CATEGORIES.HTTP_CODES;
 }
 
 export abstract class BaseImageGallery extends Component {
