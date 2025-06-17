@@ -2592,7 +2592,7 @@ class ECommerce2 extends BaseECommerce {
                                 className={`${this.decorateCSS("section-title")} 
                                 ${selectedIndex === -1 ? this.decorateCSS("active-section-title") : ""}`}
                                 onClick={() => this.handleSectionClickAll()}>
-                                {allText}
+                                {this.getPropValue("allText")}
                             </button>
                         )}
                         {imageGallery.map((item, index) => {
