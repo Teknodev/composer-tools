@@ -323,8 +323,16 @@ class PricingTable3 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2", "animation3"],
+      additionalParams:{
+        selectItems:["animation1", "animation2", "animation3"]
+      }
+    })
   }
-
   static getName(): string {
     return "Pricing 3";
   }
@@ -337,6 +345,7 @@ class PricingTable3 extends BasePricingTable {
     const buttonExist = this.castToString(featuredButton.text);
     const hasCards = cards?.length > 0;
     const hasVisibleTag = cards?.some((card) => card.tagSettings.showTag);
+    const animations = this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!hasVisibleTag && this.decorateCSS("container-alternate")}`}>
@@ -347,11 +356,11 @@ class PricingTable3 extends BasePricingTable {
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttonExist && (
-                  <ComposerLink path={featuredButton.url}>
-                    <div className={this.decorateCSS("featured-button-container")}>
-                      <Base.Button buttonType={featuredButton.type}>{featuredButton.text}</Base.Button>
-                    </div>
-                  </ComposerLink>
+                      <Base.Button buttonType={featuredButton.type} className={this.decorateCSS("button")}>
+                        <ComposerLink path={featuredButton.url}>
+                          {featuredButton.text}
+                        </ComposerLink>
+                      </Base.Button>  
                 )}
               </Base.VerticalContent>
             )}
@@ -362,10 +371,10 @@ class PricingTable3 extends BasePricingTable {
                   const titleExist = this.castToString(card.title);
 
                   return (
-                    <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")}`}>
+                    <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")} ${this.getPropValue("animations") && animations}`}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {showTag && this.castToString(card.tagSettings.tag) && <div className={this.decorateCSS("tag")}>{card.tagSettings.tag}</div>}
-
+                        <Base.VerticalContent className={`${this.decorateCSS("card-content")} }`}>
                         <Base.VerticalContent className={this.decorateCSS("header")}>
                           {card.icon && (
                             <Base.Icon
@@ -404,6 +413,7 @@ class PricingTable3 extends BasePricingTable {
                             </ComposerLink>
                           </div>
                         )}
+                        </Base.VerticalContent>
                       </Base.VerticalContent>
                     </div>
                   );

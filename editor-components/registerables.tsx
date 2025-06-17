@@ -233,11 +233,13 @@ import Location4 from "./location/location4/location4";
 import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
+import ECommerce5 from "./e-commerce/e-commerce5";
 import BannerComponent1 from "./banner/banner1/banner1";
 import BannerComponent2 from "./banner/banner2/banner2";
 import BannerComponent4 from "./banner/banner4/banner4";
 import BannerComponent5 from "./banner/banner5/banner5";
 import BannerComponent6 from "../editor-components/banner/banner6/banner6";
+import BannerComponent7 from "./banner/banner7/banner7";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
@@ -247,14 +249,14 @@ import SocialWidget2 from "../editor-components/social_widget/social_widget2/soc
 import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
-import ECommerce2 from "./e-commerce/e-commerce2";
+import ECommerce2 from "./e-commerce/e-commerce2/e-commerce2";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
+import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     SocialComponent1,
-
     NotificationModal1,
     ConfirmationModal1,
     DownloadComponent1,
@@ -269,6 +271,7 @@ function Registerables(composer: ComponentsRegistery) {
     DownloadComponent10,
     DownloadComponent11,
     PrivacyPolicyPage,
+    PrivacyPolicyPage,
     ListComponent1,
     ListComponent2,
     ListComponent3,
@@ -280,6 +283,7 @@ function Registerables(composer: ComponentsRegistery) {
     ListComponent9,
     ListComponent10,
     ListComponent11,
+    ListComponent12,
     ListComponent12,
     ContentComponent1,
     ContentComponent2,
@@ -294,6 +298,12 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent11,
     ContentComponent12,
     ContentComponent13,
+    ContentComponent14,
+    ContentComponent15,
+    ContentComponent16,
+    ContentComponent17,
+    ContentComponent18,
+    ContentComponent20,
     ContentComponent14,
     ContentComponent15,
     ContentComponent16,
@@ -396,6 +406,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent8,
     ImageGalleryCompanent9,
     ImageGalleryComponent10,
+    ImageGalleryComponent10,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,
@@ -411,6 +422,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent13,
     FeatureComponent14,
     FeatureComponent15,
+    FeatureComponent16,
     FeatureComponent16,
     CallToAction1,
     CallToAction2,
@@ -441,6 +453,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent11,
     TestimonialsComponent12,
     TestimonialsComponent13,
+    TestimonialsComponent14,
     TestimonialsComponent14,
     StatsComponent1,
     StatsComponent2,
@@ -490,17 +503,28 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
+    BannerComponent4,
+    BannerComponent5,
+    BannerComponent6,
+    BannerComponent7,
+    SocialComponent2,
     ECommerce2,
     BannerComponent4,
     BannerComponent5,
     BannerComponent6,
     SocialComponent2,
     SocialComponent3,
+    ECommerce5,
+    SocialComponent4,
     SocialComponent4,
     SocialWidget1,
     SocialWidget2,
+    SocialWidget2,
     SocialWidget3,
     SocialWidget4,
+    SocialWidget5,
+    ECommerce3,
+    ECommerce4,
     SocialWidget5,
     ECommerce3
   ]);

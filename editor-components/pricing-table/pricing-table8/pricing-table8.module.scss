@@ -27,6 +27,34 @@
         .card-item-count {
           width: 27%;
           height: 100% !important;
+          transition: 0.8s;
+          &.animation1:hover {
+            transform: translateY(calc(-1 * var(--composer-gap-sm)));
+            transition: 0.8s;
+            &.middle-card{
+              transform: scale(1.1) translateY(calc(-1 * var(--composer-gap-sm))); 
+            }
+          }
+          &.animation2:hover {
+            .pricing{
+              .price-big{
+                transform: translateY(calc(-1 * var(--composer-gap-md)));
+                color: var(--composer-font-color-primary);
+              }
+              .pricing-container{
+                .price{
+                  color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                }
+              }
+            }
+          }
+          &.animation3:hover{
+            .pricing{
+              .icon{
+                transform: rotate(360deg);
+              }
+            }
+          }
 
           cursor: pointer;
           .pricing {
@@ -59,6 +87,7 @@
                 text-align: center;
                 margin: var(--composer-gap-md);
                 margin: 0;
+                transition: 0.8s;
               }
 
               .plan {
@@ -73,12 +102,12 @@
 
             .price-big {
               position: absolute;
-              color: var(--composer-font-color-primary);
               font-size: 10rem;
               font-weight: bold;
               color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               top: 15%;
               margin: var(--composer-gap-lg);
+              transition: 0.8s;
             }
 
             .icon {
@@ -90,14 +119,16 @@
               left: 42%;
               border-radius: 50%;
               border: 2px solid var(--composer-secondary-color);
+              transform: rotate(0deg);
+              transition: all 0.8s ease;
             }
+          }
+          &.middle-card {
+            transform: scale(1.1);
+            z-index: 1;
           }
         }
 
-        .middle-card {
-          transform: scale(1.1);
-          z-index: 1;
-        }
       }
 
       .lower-container {
