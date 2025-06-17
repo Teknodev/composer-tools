@@ -422,11 +422,11 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
+  COMINGSOON = "comingSoon",
   PRIVACYPOLICY = "privacyPolicy",
 }
 
@@ -904,10 +904,6 @@ export abstract class BaseFAQ extends Component {
   static category = CATEGORIES.FAQ;
 }
 
-export abstract class BaseHTTPCodes extends Component {
-  static category = CATEGORIES.HTTP_CODES;
-}
-
 export abstract class BaseImageGallery extends Component {
   static category = CATEGORIES.IMAGEGALLERY;
 }
@@ -984,4 +980,8 @@ export function generateAutoClassName(componentId: string, section: string){
 
 export abstract class BaseECommerce extends Component {  
   static category = CATEGORIES.ECOMMERCE;
+}
+
+export abstract class BaseComingSoon extends Component {  
+  static category = CATEGORIES.COMINGSOON;
 }
