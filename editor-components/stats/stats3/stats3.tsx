@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -186,7 +186,7 @@ class Stats3Page extends BaseStats {
                             <div className={this.decorateCSS("inner-content")}>
                               <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                 <div className={this.decorateCSS("first-container")}>
-                                  <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                                   <Base.VerticalContent className={this.decorateCSS("text")}>
                                     {this.castToString(item.number) && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
                                     {this.castToString(item.text) && <Base.P className={this.decorateCSS("right-text")}>{item.text}</Base.P>}
