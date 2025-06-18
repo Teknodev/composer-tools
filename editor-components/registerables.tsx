@@ -252,6 +252,7 @@ import ComingSoon3 from "./coming-soon/coming-soon3/coming-soon3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
+import ComingSoon2 from "./coming-soon/coming-soon2/coming-soon2";
 import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
 
 function Registerables(composer: ComponentsRegistery) {
@@ -508,6 +509,7 @@ function Registerables(composer: ComponentsRegistery) {
     ComingSoon3,
     ComingSoon1,
     ECommerce4,
+    ComingSoon2,
   ]);
 }
 
