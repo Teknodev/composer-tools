@@ -247,9 +247,11 @@ class COMING_SOON2 extends BaseComingSoon {
                             <Base.H1 className={this.decorateCSS("counter-count")}>
                               {this.getComponentState("days")}
                             </Base.H1>
-                            <div className={this.decorateCSS("counter-text")}>
-                              DAYS
-                            </div>
+                           {this.castToString(this.getPropValue("dayText")) && (
+                              <div className={this.decorateCSS("counter-text")}>
+                                {this.getPropValue("dayText")}
+                              </div>
+                            )}
                           </div>
 
                           <div className={this.decorateCSS("counter-container")}>
@@ -258,9 +260,11 @@ class COMING_SOON2 extends BaseComingSoon {
                             >
                               {this.getComponentState("hours")}
                             </Base.H1>
-                            <div className={this.decorateCSS("counter-text")}>
-                              HOURS
-                            </div>
+                            {this.castToString(this.getPropValue("hourText")) && (
+                              <div className={this.decorateCSS("counter-text")}>
+                                {this.getPropValue("hourText")}
+                              </div>
+                            )}
                           </div>
 
                           <div
@@ -271,9 +275,11 @@ class COMING_SOON2 extends BaseComingSoon {
                             >
                               {this.getComponentState("minutes")}
                             </Base.H1>
-                            <div className={this.decorateCSS("counter-text")}>
-                              MINUTES
-                            </div>
+                            {this.castToString(this.getPropValue("minuteText")) && (
+                              <div className={this.decorateCSS("counter-text")}>
+                                {this.getPropValue("minuteText")}
+                              </div>
+                            )}
                           </div>
 
                           <div
@@ -284,9 +290,11 @@ class COMING_SOON2 extends BaseComingSoon {
                             >
                               {this.getComponentState("seconds")}
                             </Base.H1>
-                            <div className={this.decorateCSS("counter-text")}>
-                              SECONDS
-                            </div>
+                            {this.castToString(this.getPropValue("secondText")) && (
+                              <div className={this.decorateCSS("counter-text")}>
+                                {this.getPropValue("secondText")}
+                              </div>
+                            )}
                           </div>
                         </div>
                       )}
