@@ -6,8 +6,6 @@ import ComposerSlider from "composer-tools/composer-base-components/slider/slide
 import React from "react";
 import { getCurrencyInfo } from "components/setting-input/inputs/currency";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { display } from "@mui/system";
-import { validate } from "uuid";
 
 type Image = {
   image: string,
@@ -480,7 +478,7 @@ class ECommerce1 extends BaseECommerce {
                         <div className={this.decorateCSS("img-container")}>
                           {item.image && (
                             <img 
-                            key={index} src={item.image} 
+                            key={index} src={item.image} alt={item.image} 
                             className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
                             onClick={() => handleImageClick(index)}
                           />
@@ -498,7 +496,7 @@ class ECommerce1 extends BaseECommerce {
                       {images.map((item: Image, index: number) => {
                         return (
                           <div className={this.decorateCSS("card")}>
-                            <img src={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                            <img src={item.image} alt={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
                           </div>
                         )
                       })}
@@ -644,11 +642,13 @@ class ECommerce1 extends BaseECommerce {
                         <img
                         key={index}
                         src={img.image}
+                        alt={img.image}
                         className={`${this.decorateCSS("image")} ${((index === activeImage) &&this.decorateCSS("active"))}`}
                         />
                         <img
                         key={index}
                         src={img.image}
+                        alt={img.image}
                         className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex") ) &&  this.decorateCSS("exits")}`}
                       />
                       </>
