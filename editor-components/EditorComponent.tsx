@@ -422,11 +422,12 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
+  PRIVACYPOLICY = "privacyPolicy",
+  COMINGSOON = "comingSoon",
 }
 
 export function generateId(key: string): string {
@@ -903,16 +904,16 @@ export abstract class BaseFAQ extends Component {
   static category = CATEGORIES.FAQ;
 }
 
-export abstract class BaseHTTPCodes extends Component {
-  static category = CATEGORIES.HTTP_CODES;
-}
-
 export abstract class BaseImageGallery extends Component {
   static category = CATEGORIES.IMAGEGALLERY;
 }
 
 export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
+}
+
+export abstract class BasePrivacyPolicy extends Component {
+  static category = CATEGORIES.PRIVACYPOLICY;
 }
 
 export abstract class LogoClouds extends Component {
@@ -966,9 +967,6 @@ export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
 
-export abstract class BaseECommerce extends Component {
-  static category = CATEGORIES.ECOMMERCE;
-}
 export abstract class BaseSocial extends Component {
   static category = CATEGORIES.SOCIAL;
 }
@@ -980,3 +978,11 @@ export abstract class BaseSocialWidget extends Component {
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
 };
+
+export abstract class BaseECommerce extends Component {  
+  static category = CATEGORIES.ECOMMERCE;
+}
+
+export abstract class BaseComingSoon extends Component {  
+  static category = CATEGORIES.COMINGSOON;
+}

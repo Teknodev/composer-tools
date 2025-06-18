@@ -1,6 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
   .max-content {
     height: 100%;
     display: flex;
@@ -12,7 +13,7 @@
       gap: var(--composer-gap-md);
       width: 80%;
       .left-side {
-        flex: 1.5;
+        flex: 1;
         gap: var(--composer-gap-md);
         .title {
           font-size: 4rem;
@@ -28,6 +29,7 @@
         .button-container {
           display: flex;
           gap: var(--composer-gap-md);
+          width: 100%;
           .button {
             .button-text {
               font-size: 2rem;
@@ -44,9 +46,21 @@
         flex: 1;
         display: flex;
         justify-content: center;
-        .text {
-          font-size: 20rem;
-          color: var(--composer-font-color-primary);
+        gap: var(--composer-gap-lg);
+        .counter{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            align-items: center;
+            min-width: 55px;
+            .count{
+                margin: 0px;
+                color: var(--composer-font-color-primary);
+                font-size: 5rem;
+            }
+            .text{
+                color: var(--composer-font-color-primary);
+            }
         }
       }
     }
@@ -76,9 +90,14 @@
           }
         }
         .right-side {
-          .text {
-            font-size: 12rem;
-          }
+            .counter{
+                .count{
+                    font-size: 4rem;
+                }
+                .text{
+                    color: var(--composer-font-color-primary);
+                }
+            }
         }
       }
     }
@@ -88,8 +107,9 @@
   .container {
     .max-content {
       .content {
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: center;
+        gap: var(--composer-gap-lg);
         .left-side {
           flex: unset;
           align-items: center;
@@ -106,6 +126,12 @@
         }
         .right-side {
           flex: unset;
+          gap: var(--composer-gap-md);
+          .counter{
+            .count{
+              font-size: 3rem;
+            }
+          }
         }
       }
     }
