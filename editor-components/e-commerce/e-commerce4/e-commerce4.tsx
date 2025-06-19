@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import styles from "./e-commerce4.module.scss";
-import { BaseECommerce, CurrencyCode } from "composer-tools/editor-components/EditorComponent";
+import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { getCurrencyInfo } from "components/setting-input/inputs/currency";
+import { CurrencyCode, getCurrencyInfo } from "composer-tools/utils/currency";
 
 interface SizeOption {
     sizeName: string;
