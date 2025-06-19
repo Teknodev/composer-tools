@@ -143,6 +143,15 @@ class List8 extends BaseList {
       value: 3,
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", null, null, "Primary"));
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
 
   render() {
@@ -175,7 +184,11 @@ class List8 extends BaseList {
                 gridCount={{ pc: this.getPropValue("itemCount") }}
               >
                 {listItems.map((item: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("boxlower")}>
+                  <div
+                    key={index}
+                    className={this.decorateCSS("boxlower")}
+                    data-animation={this.getPropValue("hoverAnimation")}
+                  >
                     {item.getPropValue("number") && (
                       <div className={this.decorateCSS("circle")}>
                         <div className={this.decorateCSS("index")}>
