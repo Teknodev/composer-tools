@@ -4,8 +4,8 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import React from "react";
-import { getCurrencyInfo } from "components/setting-input/inputs/currency";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { getCurrencyInfo } from "composer-tools/utils/currency";
 
 type Image = {
   image: string,
