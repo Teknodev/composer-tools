@@ -1,12 +1,13 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 .container {
   .max-content {
     display: flex;
     gap: var(--composer-gap-xl);
     flex-direction: column;
-    .sectionTitle{
-      margin:0px;
-      &.animation{
+    .sectionTitle {
+      margin: 0px;
+      &.animation {
         animation: fadeInUp 400ms ease-out;
       }
     }
@@ -14,13 +15,73 @@
       display: flex;
       flex-wrap: wrap;
       max-width: 100%;
+      .item-container.line[data-animation~="animate1"]:hover {
+        transform: scale(1.02);
+        &:last-child::after{
+          transform: scaleX(1.05);
+        }
+        &::before {
+          transform: scaleX(1.05);
+        }
+      
+        + .item-container.line::before {
+          transform: scaleX(1.05);
+        }
+      }
       .item-container {
         width: 100%;
         display: flex;
         align-items: center;
         padding: var(--composer-gap-lg) 0px;
         position: relative;
-       
+        transition: all 0.4s ease;
+
+        &[data-animation~="animate2"] {
+          .index {
+            transition: all 0.4s ease;
+          }
+
+          &:hover {
+            padding-left: var(--composer-gap-lg);
+            border-radius: var(--composer-border-radius-sm);
+
+            .cards {
+              .description {
+                padding-left: var(--composer-gap-sm);
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate3"] {
+          .cards {
+            .icon-title-container {
+              .icon {
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+              }
+            }
+          }
+          &:hover {
+            .cards {
+              .icon-title-container {
+                .icon {
+                  transform: rotate(360deg);
+                  transition: transform 0.3s;
+                }
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate4"]:hover {
+          .index,
+          .icon,
+          .title,
+          .description {
+            animation: breathing 2s ease-out infinite normal;
+          }
+        }
+
         .index {
           flex: 1;
           font-size: 1.5rem;
@@ -46,7 +107,7 @@
               height: 40px;
               color: var(--composer-primary-color);
             }
-  
+
             .title {
               display: flex;
               align-items: center;
@@ -61,33 +122,33 @@
             color: var(--composer-tertiary-color);
           }
         }
-        &.line{
+        &.line {
           &::before,
           &:last-child::after {
-            content: '';
+            content: "";
             position: absolute;
             left: 0;
             right: 0;
             width: 100%;
             margin: 0;
+            transition: all 0.4s ease;
           }
-          
+
           &::before {
             top: 0;
             bottom: auto;
             border-top: 1px solid var(--composer-font-color-primary);
             opacity: 0.2;
           }
-          
+
           &:last-child::after {
             top: auto;
             bottom: 0;
             border-bottom: 1px solid var(--composer-font-color-primary);
             opacity: 0.2;
-          }      
+          }
         }
       }
-
     }
   }
 }
@@ -103,11 +164,11 @@
     transform: translateY(0);
   }
 }
-@container (max-width: #{$composer-tablet-width}){
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .list-item {
-        .item-container{
+        .item-container {
           .cards {
             .icon-title-container {
               .icon {
@@ -122,11 +183,11 @@
     }
   }
 }
-@container (max-width: #{$composer-phone-width}){
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .list-item {
-        .item-container{
+        .item-container {
           flex-direction: column;
           gap: var(--composer-gap-md);
           align-items: flex-start;
@@ -137,5 +198,31 @@
         }
       }
     }
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  25% {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
 }

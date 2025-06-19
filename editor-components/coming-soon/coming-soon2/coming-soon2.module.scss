@@ -1,0 +1,230 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@mixin title{
+  font-size: 10rem;
+  width: 100%;
+  margin: 0;
+  color: #4E5B6E;
+  text-transform: uppercase;
+    &.without-image{
+      color: var(--composer-font-color-primary);
+  }
+}
+@mixin title-tablet{
+  font-size: 7rem;
+}
+@mixin title-phone{
+  font-size: 4rem;
+  text-align: center;
+}
+.container {
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  .max-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .content {
+      width: 70%;
+      display: flex;
+      height: 90%;
+      gap: var(--composer-gap-xl);
+      &.without-right{
+        align-items: center;
+        .left-side{
+          .left-text{
+            width: 100%;
+            align-items: center;
+            .title{
+              text-align: center;
+            }
+          }
+        }
+      }
+      .left-side, .left-side-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        width: calc(100% - 300px - var(--composer-gap-xl));
+        .left-text {
+          width: 100%;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-lg);
+          .counter-and-title2{
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-md);
+            .counter {
+              width: fit-content;
+              border: 3px solid var(--composer-primary-color);
+              border-radius: calc(var(--composer-border-radius-xl) * 6);
+              padding: var(--composer-gap-xl);
+              .counter-content{
+                  display: flex;
+                  gap: var(--composer-gap-xl);
+                  .counter-container{
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;                    
+                      gap: var(--composer-gap-sm);
+                      min-width: 55px;
+                      .counter-count{
+                          color: var(--composer-primary-color);
+                          margin: 0px;
+                          display: flex;
+                          flex-direction: column;
+                          gap: var(--composer-gap-md);
+                          font-size: 3rem;
+                      }
+                      .counter-text{
+                          color: var(--composer-primary-color);
+                      }
+                  }
+              }
+            }
+            .title2 {
+              @include title
+            }
+          }
+          .title{
+            @include title
+          }
+ 
+        }
+      }
+      .left-side-mobile{
+        display: none;
+      }
+      .right-side {
+        align-items: end;
+        justify-content: end;
+        display: flex;
+
+        .button {
+          width: 300px;
+          height: 300px;
+          background-color: var(--composer-primary-color);
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: var(--composer-gap-xl);
+          cursor: pointer;
+          overflow: hidden;
+
+          .button-text {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--composer-font-color-secondary);
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    display: flex;
+    .max-content {
+      .content {
+        width: 100%;
+        height: 60%;
+        justify-content: center;
+        &.without-right{
+          .left-side{
+            width: 100%;
+          }
+        }
+        .left-side {
+          flex: unset;
+          .left-text {
+            .counter-and-title2{
+              .counter{
+                .counter-content{
+                  gap: var(--composer-gap-md);
+                }
+              }
+              .title2 {
+                @include title-tablet
+              }
+            }
+            .title{
+              @include title-tablet
+            }
+          }
+        }
+        .right-side {
+          flex: unset;
+          .button {
+            height: 200px;
+            width: 200px;
+            .button-text {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        height: 70%;
+        .left-side-mobile{
+          display: flex;
+          flex: unset;
+          align-items: start;
+          width: 100%;
+          .left-text {
+            width: 100%;
+            align-items: center;
+            .counter-and-title2{
+              flex-direction: column;
+              .counter{
+                padding:var(--composer-gap-lg) var(--composer-gap-md);
+                .counter-content{
+                    gap: var(--composer-gap-md);
+                    .counter-container{
+                        .counter-count{
+                            font-size: 2.5rem;
+                        }
+
+                    }
+                }
+            }
+            }
+            .title2 {
+              @include title;
+              @include title-phone;
+            }
+            .title{
+              @include title-phone;
+            }
+
+          }
+        }
+        .left-side {
+          display: none;
+        }
+        .right-side {
+          flex: unset;
+          justify-content: center;
+          .button {
+            height: 200px;
+            width: 200px;
+          }
+        }
+      }
+    }
+  }
+}

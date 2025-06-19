@@ -1,6 +1,30 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+@keyframes bounceText {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
 .container {
   .max-content {
@@ -100,29 +124,45 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
               }
             }
-            &:not(.active):hover {
-              background-color: var(--composer-primary-color);
-              .plan-icons,
-              .tag,
+            &.animation1:hover {
+              &:not(.active):hover {
+                background-color: var(--composer-primary-color);
+                .plan-icons,
+                .tag,
+                .item-price {
+                  color: var(--composer-font-color-secondary);
+                }
+
+                .tag {
+                  border: 1px solid var(--composer-font-color-secondary);
+                }
+
+                .per {
+                  color: var(--composer-font-color-secondary);
+                }
+
+                .plan-icons .plan,
+                .item-price .price {
+                  color: var(--composer-font-color-secondary);
+                }
+
+                .plan-icons .icon {
+                  color: var(--composer-font-color-secondary);
+                }
+              }
+            }
+            &.animation2:hover {
               .item-price {
-                color: var(--composer-font-color-secondary);
+                animation: bounceText 0.8s ease-in-out infinite;
               }
-
-              .tag {
-                border: 1px solid var(--composer-font-color-secondary);
-              }
-
-              .per {
-                color: var(--composer-font-color-secondary);
-              }
-
-              .plan-icons .plan,
-              .item-price .price {
-                color: var(--composer-font-color-secondary);
-              }
-
-              .plan-icons .icon {
-                color: var(--composer-font-color-secondary);
+            }
+            &.animation4:hover {
+              .item-price {
+                animation-name: breathe;
+                animation-duration: 1s;
+                animation-timing-function: ease-in-and-out;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
               }
             }
 
@@ -162,6 +202,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               justify-content: flex-end;
               flex-grow: 1;
               color: var(--composer-font-color-primary);
+              transform: scale(1);
+              transition: all 0.8s ease;
               .price,
               .per {
                 padding: var(--composer-gap-xs);
@@ -187,12 +229,22 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           box-shadow: var(--box-shadow-active);
           border-radius: var(--composer-border-radius-md);
           display: flex;
+          &.animation3:hover {
+            .content {
+              .badge {
+                background-color: var(--composer-primary-color);
+                border: 1px solid var(--composer-primary-color);
+                color: var(--composer-font-color-secondary);
+              }
+            }
+          }
 
           .content {
             flex-grow: 1;
             padding: 0;
             max-width: 100%;
             margin-top: var(--composer-gap-md);
+            gap: var(--composer-gap-md);
 
             .badge {
               background-color: transparent;
@@ -203,6 +255,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               border-radius: var(--composer-border-radius-sm);
               margin: 0 var(--composer-gap-md);
               font-size: 1rem;
+              transition: 0.8s;
             }
             .title {
               color: var(--composer-font-color-primary);
@@ -345,8 +398,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               &.active {
-                background-color: var(--composer-secondary-color);
-                color: var(--composer-font-color-secondary);
                 gap: 0;
               }
             }

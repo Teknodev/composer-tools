@@ -6,90 +6,8 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
+import { CurrencyCode } from "composer-tools/utils/currency";
 
-export const currencies = [
-  { code: "AFN", symbol: "؋", name: "Afghan Afghani" },
-  { code: "ALL", symbol: "Lek", name: "Albanian Lek" },
-  { code: "DZD", symbol: "د.ج", name: "Algerian Dinar" },
-  { code: "AOA", symbol: "Kz", name: "Angolan Kwanza" },
-  { code: "ARS", symbol: "$", name: "Argentine Peso" },
-  { code: "AMD", symbol: "֏", name: "Armenian Dram" },
-  { code: "AWG", symbol: "ƒ", name: "Aruban Florin" },
-  { code: "AUD", symbol: "A$", name: "Australian Dollar" },
-  { code: "AZN", symbol: "₼", name: "Azerbaijani Manat" },
-  { code: "BSD", symbol: "B$", name: "Bahamian Dollar" },
-  { code: "BHD", symbol: ".د.ب", name: "Bahraini Dinar" },
-  { code: "BDT", symbol: "৳", name: "Bangladeshi Taka" },
-  { code: "BBD", symbol: "Bds$", name: "Barbadian Dollar" },
-  { code: "BYR", symbol: "Br", name: "Belarusian Ruble" },
-  { code: "BEF", symbol: "fr", name: "Belgian Franc" },
-  { code: "BZD", symbol: "BZ$", name: "Belize Dollar" },
-  { code: "BMD", symbol: "$", name: "Bermudan Dollar" },
-  { code: "BTN", symbol: "Nu.", name: "Bhutanese Ngultrum" },
-  { code: "BTC", symbol: "₿", name: "Bitcoin" },
-  { code: "BOB", symbol: "Bs.", name: "Bolivian Boliviano" },
-  { code: "BAM", symbol: "KM", name: "Bosnia-Herzegovina Convertible Mark" },
-  { code: "BWP", symbol: "P", name: "Botswanan Pula" },
-  { code: "BRL", symbol: "R$", name: "Brazilian Real" },
-  { code: "GBP", symbol: "£", name: "British Pound Sterling" },
-  { code: "BND", symbol: "B$", name: "Brunei Dollar" },
-  { code: "BGN", symbol: "лв", name: "Bulgarian Lev" },
-  { code: "BIF", symbol: "FBu", name: "Burundian Franc" },
-  { code: "KHR", symbol: "៛", name: "Cambodian Riel" },
-  { code: "CAD", symbol: "C$", name: "Canadian Dollar" },
-  { code: "CVE", symbol: "$", name: "Cape Verdean Escudo" },
-  { code: "KYD", symbol: "CI$", name: "Cayman Islands Dollar" }, 
-  { code: "CLP", symbol: "$", name: "Chilean Peso" },
-  { code: "CNY", symbol: "CN¥", name: "Chinese Yuan" },
-  { code: "COP", symbol: "Col$", name: "Colombian Peso" },
-  { code: "CRC", symbol: "₡", name: "Costa Rican Colón" },
-  { code: "HRK", symbol: "kn", name: "Croatian Kuna" },
-  { code: "CZK", symbol: "Kč", name: "Czech Republic Koruna" },
-  { code: "DKK", symbol: "kr", name: "Danish Krone" },
-  { code: "DOP", symbol: "RD$", name: "Dominican Peso" },
-  { code: "EGP", symbol: "E£", name: "Egyptian Pound" },
-  { code: "EUR", symbol: "€", name: "Euro" },
-  { code: "GHS", symbol: "₵", name: "Ghanaian Cedi" },
-  { code: "HKD", symbol: "HK$", name: "Hong Kong Dollar" },
-  { code: "HUF", symbol: "Ft", name: "Hungarian Forint" },
-  { code: "INR", symbol: "₹", name: "Indian Rupee" },
-  { code: "IDR", symbol: "Rp", name: "Indonesian Rupiah" },
-  { code: "ILS", symbol: "₪", name: "Israeli New Sheqel" },
-  { code: "JPY", symbol: "¥", name: "Japanese Yen" },
-  { code: "KES", symbol: "KSh", name: "Kenyan Shilling" },
-  { code: "KRW", symbol: "₩", name: "South Korean Won" },
-  { code: "KWD", symbol: "د.ك", name: "Kuwaiti Dinar" },
-  { code: "LAK", symbol: "₭", name: "Laotian Kip" },
-  { code: "LBP", symbol: "ل.ل", name: "Lebanese Pound" },
-  { code: "LKR", symbol: "Rs", name: "Sri Lankan Rupee" },
-  { code: "MAD", symbol: "د.م.", name: "Moroccan Dirham" },
-  { code: "MXN", symbol: "MEX$", name: "Mexican Peso" },
-  { code: "MYR", symbol: "RM", name: "Malaysian Ringgit" },
-  { code: "NOK", symbol: "kr", name: "Norwegian Krone" },
-  { code: "NZD", symbol: "NZ$", name: "New Zealand Dollar" },
-  { code: "PEN", symbol: "S/.", name: "Peruvian Nuevo Sol" },
-  { code: "PHP", symbol: "₱", name: "Philippine Peso" },
-  { code: "PKR", symbol: "₨", name: "Pakistani Rupee" },
-  { code: "PLN", symbol: "zł", name: "Polish Zloty" },
-  { code: "QAR", symbol: "ر.ق", name: "Qatari Rial" },
-  { code: "RON", symbol: "lei", name: "Romanian Leu" },
-  { code: "RUB", symbol: "₽", name: "Russian Ruble" },
-  { code: "SAR", symbol: "﷼", name: "Saudi Riyal" },
-  { code: "SEK", symbol: "kr", name: "Swedish Krona" },
-  { code: "SGD", symbol: "S$", name: "Singapore Dollar" },
-  { code: "THB", symbol: "฿", name: "Thai Baht" },
-  { code: "TRY", symbol: "₺", name: "Turkish Lira" },
-  { code: "TWD", symbol: "NT$", name: "New Taiwan Dollar" },
-  { code: "UAH", symbol: "₴", name: "Ukrainian Hryvnia" },
-  { code: "USD", symbol: "$", name: "US Dollar" },
-  { code: "VEF", symbol: "Bs", name: "Venezuelan Bolívar" },
-  { code: "VND", symbol: "₫", name: "Vietnamese Dong" },
-  { code: "ZAR", symbol: "R", name: "South African Rand" },
-  { code: "AED", symbol: "د.إ", name: "United Arab Emirates Dirham" },
-  { code: "XAF", symbol: "FCFA", name: "Central African CFA Franc" },
-  { code: "XOF", symbol: "CFA", name: "West African CFA Franc" },
-  { code: "XPF", symbol: "₣", name: "CFP Franc" }
-];
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
   { code: "ab", name: "Abkhaz", nativeName: "аҧсуа" },
@@ -271,9 +189,6 @@ export const LANGUAGES = [
   { code: "za", name: "Zhuang, Chuang", nativeName: "Saɯ cueŋƅ, Saw cuengh" },
 ];
 
-export type CurrencyCode = (typeof currencies )[number]["code"];
-
-
 export function generateComponentId(){
   return uuidv4();
 }
@@ -422,11 +337,12 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
+  PRIVACYPOLICY = "privacyPolicy",
+  COMINGSOON = "comingSoon",
 }
 
 export function generateId(key: string): string {
@@ -903,16 +819,16 @@ export abstract class BaseFAQ extends Component {
   static category = CATEGORIES.FAQ;
 }
 
-export abstract class BaseHTTPCodes extends Component {
-  static category = CATEGORIES.HTTP_CODES;
-}
-
 export abstract class BaseImageGallery extends Component {
   static category = CATEGORIES.IMAGEGALLERY;
 }
 
 export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
+}
+
+export abstract class BasePrivacyPolicy extends Component {
+  static category = CATEGORIES.PRIVACYPOLICY;
 }
 
 export abstract class LogoClouds extends Component {
@@ -979,4 +895,8 @@ export function generateAutoClassName(componentId: string, section: string){
 
 export abstract class BaseECommerce extends Component {  
   static category = CATEGORIES.ECOMMERCE;
+}
+
+export abstract class BaseComingSoon extends Component {  
+  static category = CATEGORIES.COMINGSOON;
 }

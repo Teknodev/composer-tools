@@ -243,6 +243,15 @@ class List1 extends BaseList {
       displayer: "Colored Area",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
 
     this.setComponentState("active-index", 1);
   }
@@ -259,7 +268,7 @@ class List1 extends BaseList {
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: Math.min(3, sliderItems.length),
       slidesToScroll: 1,
@@ -317,10 +326,9 @@ class List1 extends BaseList {
                         this.getComponentState("active-index") === indexSlider
                         ? this.decorateCSS("active")
                         : ""
-                      }
-                   `}
+                      }`}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-
                     {item.image && (
                       <Base.Row className={this.decorateCSS("img-div")}>
                         <img
@@ -331,14 +339,14 @@ class List1 extends BaseList {
                       </Base.Row>
                     )}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                      <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                      <Base.VerticalContent className={this.decorateCSS("titles")}>
                         {this.castToString(item.title) && (
-                          <Base.H1 className={this.decorateCSS("title")}>
+                          <Base.H1 className={this.decorateCSS("card-title")}>
                             {item.title}
                           </Base.H1 >
                         )}
                         {this.castToString(item.subtitle) && (
-                          <Base.H2 className={this.decorateCSS("subtitle")}>
+                          <Base.H2 className={this.decorateCSS("card-subtitle")}>
                             {item.subtitle}
                           </Base.H2>
                         )}
@@ -346,8 +354,9 @@ class List1 extends BaseList {
                     )}
 
                     {(this.castToString(item.button.text) || item.icon) && (
+                      <div className={this.decorateCSS("link")}>
                       <ComposerLink path={item.button.url}>
-                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("link")}>
+                        <Base.Button buttonType={item.button.type} >
                           <div className={this.decorateCSS("text")}>
                             {item.button.text}
                           </div >
@@ -361,6 +370,7 @@ class List1 extends BaseList {
                           )}
                         </Base.Button>
                       </ComposerLink>
+                      </div>
                     )}
                   </Base.VerticalContent>
                 );

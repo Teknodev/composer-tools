@@ -1,5 +1,13 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
-
+@keyframes pulse {
+  0% {
+    transform: scale(1.05);
+  }
+  
+  100% {
+    transform: scale(1.1);
+  }
+}
 .container {
   .max-content {
     .header {
@@ -21,7 +29,7 @@
           align-items: center;
 
           &:not(:first-child) {
-            border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+            border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
 
           .benefit-title {
@@ -38,7 +46,35 @@
 
         .column-item {
           flex: 1;
-
+          &.animation1:hover{
+            .content-item{
+              ::before{
+                width:100%; 
+                left: 0;
+                }
+            }
+          }
+          &.animation2:hover{
+            .title-container{
+              .column-title {
+              color:  var(--composer-primary-color);
+              background-color: var(--composer-font-color-secondary);
+              }
+            }
+          }
+          &.animation3:hover{
+            .column-button-container{
+              .column-button{
+                >blinkpage{
+                  animation-name: pulse;
+                  animation-duration: 1.5s;
+                  animation-timing-function: ease-in-out;
+                  animation-iteration-count: infinite;
+                  animation-direction: alternate;
+                }
+              }
+            }
+          }
           .title-container {
             margin: 0;
             height: var(--composer-gap-xl);
@@ -59,17 +95,31 @@
               text-align: center;
               height: var(--composer-gap-xl);
               overflow: hidden;
+              transition: 0.8s;
             }
           }
 
           .content-item {
             padding: var(--composer-gap-md);
-            border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+            border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
             height: var(--composer-gap-xl);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: var(--composer-gap-sm);
+            position: relative;
+            ::before{
+              content: "";
+              left: 50%;
+              position: absolute;
+              width: 0;
+              height: 1px;
+              background-color:var(--composer-primary-color);
+              bottom: -1px;
+              transition: width 0.8s ease, left 0.8s ease;
+              z-index: 10;
+            }
+
             .content-icon {
               .icon {
                 width: var(--composer-gap-md);
@@ -92,6 +142,9 @@
           }
           .column-button{
             content: "";
+            >blinkpage{
+              transition: all 0.8s ease;
+            }
           }
         }
       }
