@@ -255,6 +255,7 @@ import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
 import ComingSoon2 from "./coming-soon/coming-soon2/coming-soon2";
 import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
+import ECommerce6 from "./e_commerce/e_commerce6/e_commerce6";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -512,6 +513,7 @@ function Registerables(composer: ComponentsRegistery) {
     ComingSoon1,
     ECommerce4,
     ComingSoon2,
+    ECommerce6,
   ]);
 }
 
