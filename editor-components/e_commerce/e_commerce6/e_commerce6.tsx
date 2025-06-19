@@ -1,13 +1,12 @@
 import * as React from "react";
-import { BaseECommerce, CurrencyCode } from "../../EditorComponent";
+import { BaseECommerce } from "../../EditorComponent";
 import styles from "./e_commerce6.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
-import { getCurrencyInfo } from "components/setting-input/inputs/currency";
 import { copyToClipboard } from "utils/copy-utils";
-import { ImageSearch } from "@mui/icons-material";
+import { CurrencyCode, getCurrencyInfo } from "composer-tools/utils/currency";
 
 type Images = {
   item: string;
