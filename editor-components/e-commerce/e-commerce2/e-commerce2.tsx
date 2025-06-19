@@ -4,7 +4,7 @@ import styles from "./e-commerce2.module.scss";
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { getCurrencyInfo } from "components/setting-input/inputs/currency";
+import { getCurrencyInfo } from "composer-tools/utils/currency";
 
 interface ImageGallery {
     sectionTitle: React.JSX.Element;
