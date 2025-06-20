@@ -34,6 +34,7 @@
             max-width: 400px;
             justify-content: center;
             align-items: center;
+            border-radius: 100%;
             .person-image {
               border-radius: 100%;
               width: 100%;
@@ -41,6 +42,7 @@
               border: 1rem solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               position: relative;
               object-fit: cover;
+              transition: transform 0.3s ease;
             }
 
             .icons-bar {
@@ -63,7 +65,7 @@
                 top: 0;
                 width: calc(100% - var(--composer-gap-md));
                 height: calc(100% - var(--composer-gap-md));
-                background-color: var(--composer-overlay-color);
+                background-color: transparent;
                 border-radius: 100%;
                 margin: var(--composer-gap-sm);
               }
@@ -75,6 +77,7 @@
                 transform: translateY(var(--composer-gap-xl));
                 opacity: 1;
                 transition: transform 0.5s ease, opacity 0.5s ease, color 0.3s ease;
+
               }
 
               &:hover .icon {
@@ -83,6 +86,26 @@
 
                 &:hover {
                   color: var(--composer-secondary-color);
+                }
+              }
+
+              &[data-animation~="animate3"] { 
+                @keyframes bounceLeftToRight {
+                  0%   { transform: translateY(20px); opacity: 0; }
+                  50%  { transform: translateY(-10px); opacity: 1; }
+                  100% { transform: translateY(0); opacity: 1; }
+                }
+                .icon {
+                  animation: none;
+                  opacity: 0;
+                  color: var(--composer-font-color-secondary);
+                  transition: color 0.3s ease;
+                }
+                &:hover {
+                  .icon {
+                    animation: bounceLeftToRight 0.5s ease forwards;
+                    animation-delay: calc(var(--icon-index, 0) * 0.15s);
+                  }
                 }
               }
             }
@@ -103,6 +126,26 @@
                 color: var(--composer-tertiary-color);
                 &:hover {
                   color: var(--composer-primary-color);
+                }
+              }
+            }
+          }
+
+          &[data-animation~="animate1"] { 
+            .icons-bar::before {
+              background-color: var(--composer-overlay-color);
+            }
+          }
+
+          &[data-animation~="animate2"] { 
+            &:hover {
+              .hover {
+                .person-image{
+                  transform: scale(1.1);
+                }
+
+                .icons-bar::before {
+                  transform: scale(1.1);
                 }
               }
             }
