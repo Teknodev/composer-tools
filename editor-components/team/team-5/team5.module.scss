@@ -83,6 +83,25 @@
           }
         }
 
+        &[data-animation~="animate3"] {
+          .icon-container {
+            .icon {
+              animation: none;
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          &:hover {
+            .icon-container {
+              .icon {
+                animation: colorChange 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+        }
+
         .image-container {
           width: 100%;
           display: flex;
@@ -124,14 +143,6 @@
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
           }
-
-          &[data-animation~="animate3"] {
-            .icon {
-              &:hover {
-                color: var(--composer-primary-color);
-              }
-            }
-          }
         }
 
         @keyframes bounce {
@@ -150,6 +161,11 @@
             transform: scale(1);
             opacity: 1;
           }
+        }
+
+        @keyframes colorChange {
+          0% { color: var(--composer-font-color-primary); }
+          100% { color: var(--composer-primary-color); }
         }
 
         .members-container {

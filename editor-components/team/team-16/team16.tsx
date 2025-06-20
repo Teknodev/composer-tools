@@ -34,7 +34,7 @@ class Team16 extends Team {
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 4,
+      value: 3,
       max: 5,
     });
 
@@ -133,37 +133,6 @@ class Team16 extends Team {
               key: "image",
               displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "Sylvia Morales",
-            },
-            {
-              type: "string",
-              key: "job",
-              displayer: "Job",
-              value: "Product Manager",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "The inception of this venture has been an immensely rewarding experience, representing a pivotal milestone in my personal.",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1731587983245",
             },
           ],
         },

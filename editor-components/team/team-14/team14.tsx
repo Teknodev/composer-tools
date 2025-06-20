@@ -123,44 +123,13 @@ class Team14 extends Team {
             },
           ],
         },
-        {
-          type: "object",
-          key: "portfolio",
-          displayer: "Portfolio Card",
-          value: [
-            {
-              type: "string",
-              key: "name",
-              displayer: "Name",
-              value: "John",
-            },
-            {
-              type: "string",
-              key: "position",
-              displayer: "Position",
-              value: "Project Manager",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Empower your projects with expertise and precisions",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628418?alt=media&timestamp=1719558632841",
-            },
-          ],
-        },
       ],
     });
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 4,
+      value: 3,
       max: 5,
     });
     this.addProp({

@@ -73,6 +73,9 @@
         }
 
         &[data-animation~="animate2"] { 
+          .info {
+            transition: 0.5s transform ease-out, 0.5s opacity ease-out;
+          }
           .info .icon:hover {
             color: var(--composer-primary-color);
           }
@@ -85,6 +88,7 @@
             100% { transform: translateY(0); opacity: 1; }
           }
           .info {
+            transition: 0.5s transform ease-out, 0.5s opacity ease-out;
             .platforms {
               .platform {
                 .icon {
