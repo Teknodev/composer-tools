@@ -3,10 +3,14 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 interface ComposerToolsData {
   composerToolsLanguages: Array<{code: string; name: string}>;
   composerToolsCurrentLanguage: {code: string; name: string};
+  isProcessable: boolean;
+  isLocalizationChange: boolean;
   setComposerToolsCurrentLanguage: (lang: {code: string; name: string}) => void;
   setComposerToolsLanguages: (languages: Array<{code: string; name: string}>) => void;
   addComposerToolsLanguage: (languageCode: string) => void;
   removeComposerToolsLanguage: (languageCode: string) => void;
+  setIsProcessable: (isProcessable: boolean) => void;
+  setIsLocalizationChange: (isLocalizationChange: boolean) => void;
 }
 
 export const DataContext = createContext<ComposerToolsData | undefined>(undefined);
@@ -18,6 +22,8 @@ interface DataProviderProps {
 export const DataContextProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [composerToolsLanguages, setComposerToolsLanguages] = useState<Array<{code: string; name: string}>>([]);
   const [composerToolsCurrentLanguage, setComposerToolsCurrentLanguage] = useState<{code: string; name: string}>({code: "", name: ""});
+  const [isProcessable, setIsProcessable] = useState(false);
+  const [isLocalizationChange, setIsLocalizationChange] = useState(false);
 
   const addComposerToolsLanguage = (languageCode: string) => {
     if (!composerToolsLanguages.some(lang => lang.code === languageCode)) {
@@ -47,10 +53,14 @@ export const DataContextProvider: React.FC<DataProviderProps> = ({ children }) =
   const value = {
     composerToolsLanguages,
     composerToolsCurrentLanguage,
+    isProcessable,
+    isLocalizationChange,
     addComposerToolsLanguage,
     removeComposerToolsLanguage,
     setComposerToolsCurrentLanguage: setLanguageAsCurrent,
-    setComposerToolsLanguages
+    setComposerToolsLanguages,
+    setIsProcessable,
+    setIsLocalizationChange,
   };
 
   return (
