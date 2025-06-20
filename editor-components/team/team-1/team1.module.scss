@@ -83,6 +83,7 @@
           flex: 1 1;
           width: 100%;
           min-width: 250px;
+          align-items: normal;
           .top {
             margin: 0;
             display: flex;
@@ -164,7 +165,7 @@
                 .top {
                   .position,
                   .card-name {
-                    transform: scale(125%) translateX(20px) !important;
+                    transform: scale(1.1) translateX(20px) !important;
                     transition: transform 0.3s ease;
                   }
                 }
