@@ -472,10 +472,12 @@ export namespace Base {
     const {
       composerToolsLanguages,
       composerToolsCurrentLanguage,
+      isProcessable,
       setComposerToolsCurrentLanguage,
     } = useComposerToolsData();
 
     const handleLanguageChange = async (lang: { code: string; name: string }) => {
+      if(!isProcessable) return;
       setComposerToolsCurrentLanguage(lang);
     
       let currentPath = window.location.pathname;
