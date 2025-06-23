@@ -5,7 +5,6 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
-import { copyToClipboard } from "utils/copy-utils";
 import { CurrencyCode, getCurrencyInfo } from "composer-tools/utils/currency";
 
 type Images = {
@@ -692,7 +691,7 @@ class ECommerce6 extends BaseECommerce {
   };
   handleCopy = () => {
     const currentUrl = window.location.href;
-    copyToClipboard(currentUrl);
+    navigator.clipboard.writeText(currentUrl);
     this.setComponentState("copied", true);
   };
   componentDidUpdate() {
