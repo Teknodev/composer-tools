@@ -195,6 +195,17 @@
               }
             }
           }
+          &.left {
+            &:hover {
+              .card {
+                .top {
+                  .image {
+                    transform: scale(125%) translateX(20px);
+                  }
+                }
+              }
+            }
+          }
         }
         &[data-animation~="animate4"] {
           &:hover {

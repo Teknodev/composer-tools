@@ -305,7 +305,7 @@ class Team3 extends Team {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate1", "animate4"],
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }

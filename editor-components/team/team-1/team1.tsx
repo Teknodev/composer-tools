@@ -329,7 +329,7 @@ class Team1 extends Team {
                       <Base.P className={this.decorateCSS("position")}>{card.value.filter((item: { key: string }) => item.key === "position").map((item: { value: string }) => item.value)}</Base.P>
                     </div>
                     <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>
-                    <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <Base.Row className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {card.platforms.map((item: Platform, indexPlatforms: number) => {
                         return (
                           <ComposerLink key={indexPlatforms} path={item.url}>
@@ -343,7 +343,7 @@ class Team1 extends Team {
                           </ComposerLink>
                         );
                       })}
-                    </div>
+                    </Base.Row>
                   </Base.VerticalContent>
                 </div>
               );

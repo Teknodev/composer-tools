@@ -75,9 +75,27 @@
         &[data-animation~="animate2"] { 
           .info {
             transition: 0.5s transform ease-out, 0.5s opacity ease-out;
+            .platforms {
+              .platform {
+                .icon {
+                  transition: color 0.3s ease, transform 0.3s ease;
+                }
+              }
+            }
           }
-          .info .icon:hover {
-            color: var(--composer-primary-color);
+          
+          &:hover {
+            .info {
+              .platforms {
+                .platform {
+                  .icon {
+                    animation: colorSlideUp 0.6s ease;
+                    animation-fill-mode: both;
+                    animation-delay: calc(0.3s + var(--icon-index, 0) * 0.2s);
+                  }
+                }
+              }
+            }
           }
         }
 
@@ -87,6 +105,22 @@
             50%  { transform: translateY(-10px); opacity: 1; }
             100% { transform: translateY(0); opacity: 1; }
           }
+          
+          @keyframes colorSlideUp {
+            0% { 
+              color: var(--composer-font-color-primary);
+              transform: translateY(0);
+            }
+            50% { 
+              color: var(--composer-primary-color);
+              transform: translateY(-4px);
+            }
+            100% { 
+              color: var(--composer-primary-color);
+              transform: translateY(-2px);
+            }
+          }
+          
           .info {
             transition: 0.5s transform ease-out, 0.5s opacity ease-out;
             .platforms {
