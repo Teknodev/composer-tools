@@ -17,10 +17,8 @@ type CardType = {
   url: string;
 };
 type RightTextItem = {
-  type: string;
-  key: string;
-  displayer: string;
-  value: string;
+  text: React.JSX.Element
+  textUrl: string;
 };
 
 class Content6 extends BaseContent {
@@ -356,9 +354,7 @@ class Content6 extends BaseContent {
     const description = this.getPropValue("description");
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
-    const rightText = this.getPropValue("rightText") as RightTextItem[];
-    const textUrl = rightText.find((item) => item.key === "textUrl")?.value;
-    const text = rightText.find((item) => item.key === "text")?.value;
+    const rightText = this.castToObject<RightTextItem>("rightText");
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
@@ -369,16 +365,16 @@ class Content6 extends BaseContent {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(rightTextArrow || text) && (
+          {(rightTextArrow || this.castToString(rightText.text)) && (
             <div className={this.decorateCSS("right-link")}>
-              <ComposerLink path={textUrl}>
+              <ComposerLink path={rightText.textUrl}>
                 <div className={this.decorateCSS("inner-right-link")}>
                   <div
                     className={
                       `${this.decorateCSS("inner-div")} ${disableAnimation ? this.decorateCSS("no-animation") : ""
                       }`
                     }>
-                    {text}
+                    {rightText.text}
                   </div>
                   <Base.Icon
                     name={rightTextArrow}
