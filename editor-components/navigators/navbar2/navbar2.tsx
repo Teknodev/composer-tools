@@ -284,6 +284,15 @@ class Navbar2 extends BaseNavigator {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    })
 
     this.setComponentState("isScrolled", false);
     this.setComponentState("navActive", false);
@@ -340,9 +349,9 @@ class Navbar2 extends BaseNavigator {
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
     const isBigScreen = this.getComponentState("isBigScreen");
-  
+    const isVisible = isMobileMenuOpen && !isBigScreen;
 
-    const isVisible = isMobileMenuOpen && !isBigScreen
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
       <>
@@ -382,7 +391,7 @@ class Navbar2 extends BaseNavigator {
                     >
                       <ComposerLink path={item.nav_navigate_to}>
                         <div className={this.decorateCSS("menuItem")}>
-                          <Base.P className={this.decorateCSS("menuItemTitle")}>
+                          <Base.P className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
                             {item.nav_title}
                           </Base.P>
                           {item.menuType === "Dropdown" && (
@@ -402,9 +411,7 @@ class Navbar2 extends BaseNavigator {
                               this.castToString(subItem.nav_title) && (
                                 <div
                                   key={subIndex}
-                                  className={this.decorateCSS(
-                                    "dropdownItemContainer"
-                                  )}
+                                  className={`${this.decorateCSS("dropdownItemContainer")} ${animations}`}
                                 >
                                   <div
                                     className={this.decorateCSS("dropdownItem")}
@@ -415,11 +422,7 @@ class Navbar2 extends BaseNavigator {
                                           "dropdownItemContent"
                                         )}
                                       >
-                                        <span
-                                          className={this.decorateCSS(
-                                            "dropdownItemTitle"
-                                          )}
-                                        >
+                                        <span className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
                                           {subItem.nav_title}
                                         </span>
                                       </div>
@@ -453,17 +456,13 @@ class Navbar2 extends BaseNavigator {
                                           ) => (
                                             <div
                                               key={subSubIndex}
-                                              className={this.decorateCSS(
-                                                "subdropdownItem"
-                                              )}
+                                              className={`${this.decorateCSS("subdropdownItem")} ${animations}`}
                                             >
                                               <ComposerLink
                                                 path={subSubItem.nav_navigate_to}
                                               >
                                                 <span
-                                                  className={this.decorateCSS(
-                                                    "dropdownItemTitle"
-                                                  )}
+                                                  className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}
                                                 >
                                                   {subSubItem.nav_title}
                                                 </span>
@@ -487,18 +486,12 @@ class Navbar2 extends BaseNavigator {
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
-                  dropdownButtonClassName={`${this.decorateCSS(
-                    "localization"
-                  )}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
+                  dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
-                  dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS(
-                    "localizationContent"
-                  )}
-                  divider={language.showDivider}
+                  dropdownItemClassName={`${this.decorateCSS("localizationItem")}`}
+                  dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
+                  divider={language.showDivider} 
                 />
               )}
             </nav>
@@ -559,10 +552,8 @@ class Navbar2 extends BaseNavigator {
                             onClick={() => this.navClick(index)}
                           >
                             <ComposerLink path={item.nav_navigate_to}>
-                              <Base.P
-                                className={this.decorateCSS(
-                                  "hamburgerMenuItemTitle"
-                                )}
+
+                              <Base.P className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
                                 onClick={()=> this.toggleMobileMenu()}
                               >
                                 {item.nav_title}
@@ -613,10 +604,7 @@ class Navbar2 extends BaseNavigator {
                                       }
                                     >
                                       <ComposerLink path={subItem.nav_navigate_to}>
-                                        <Base.P
-                                          className={this.decorateCSS(
-                                            "hamburgerMenuItemTitle"
-                                          )}
+                                        <Base.P className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
                                           onClick={()=> this.toggleMobileMenu()}
                                         >
                                           {subItem.nav_title}
@@ -674,9 +662,7 @@ class Navbar2 extends BaseNavigator {
                                                   path={subSubItem.nav_navigate_to}
                                                 >
                                                   <Base.P
-                                                    className={this.decorateCSS(
-                                                      "hamburgerSubSubmenuItemTitle"
-                                                    )}
+                                                    className={`${this.decorateCSS("hamburgerSubSubmenuItemTitle")} ${animations}`}
                                                     onClick={()=> this.toggleMobileMenu()}
                                                   >
                                                     {subSubItem.nav_title}
@@ -700,8 +686,8 @@ class Navbar2 extends BaseNavigator {
                     type="accordion"
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}
-                    itemClassName={this.decorateCSS("languageAccordionItem")}
-                    titleClassName={this.decorateCSS("languageAccordionTitle")}
+                    itemClassName={`${this.decorateCSS("languageAccordionItem")} ${animations}`}
+                    titleClassName={`${this.decorateCSS("languageAccordionTitle")} ${animations}`}
                     accordionIconClassName={this.decorateCSS("languageAccordionIcon")}
                   /> 
                   }

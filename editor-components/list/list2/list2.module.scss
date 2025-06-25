@@ -1,23 +1,31 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 .container {
   font-size: 5em;
+  &[data-animation~="animate4"] {
+    &:hover {
+      .button {
+        animation: breathing 2s ease-out infinite normal;
+      }
+    }
+  }
 
   .max-content {
     display: flex;
     flex-direction: column;
-    .wrapper{
+    .wrapper {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
-      .up-container{
-        .title{
-          content: ""
+      .up-container {
+        .title {
+          content: "";
         }
         .description {
           content: "";
         }
       }
-      
+
       .cards-box {
         .card {
           border-radius: var(--radius-medium);
@@ -26,11 +34,17 @@
           cursor: pointer;
           height: 350px;
           max-height: 350px;
-          .card-image{
+          transition: all 0.3s ease-in-out;
+          &[data-animation~="animate5"] {
+            &:hover {
+              box-shadow: var(--box-shadow-active);
+            }
+          }
+          .card-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 1s;
+            transition: all 0.5s ease;
             height: 100%;
           }
           .overlay,
@@ -39,7 +53,7 @@
             width: 100%;
             height: 100%;
             top: 0;
-            transition: 0.9s;
+            transition: all 0.5s ease;
           }
           .overlay {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
@@ -53,10 +67,15 @@
             z-index: 2;
             opacity: 0;
           }
-          &:hover {
-            .card-image{
-              transform: scale(1.2);
+          &[data-animation~="animate1"]:hover {
+            .card-image {
+              transform: scale(1.1);
             }
+          }
+          &[data-animation~="animate2"]:hover {
+            transform: translateY(calc(var(--composer-gap-sm) * -1));
+          }
+          &[data-animation~="animate3"]:hover {
             .overlay {
               opacity: 0;
             }
@@ -75,32 +94,33 @@
             display: flex;
             color: white;
             z-index: 4;
-  
+
             .stick {
-              width:var(--composer-gap-xs);
+              width: var(--composer-gap-xs);
               background: var(--composer-primary-color);
-              margin-right:var(--composer-gap-md);
+              margin-right: var(--composer-gap-md);
               border-radius: var(--radius-medium);
             }
-  
+
             .labels {
               display: flex;
               flex-direction: column;
               align-items: start;
-  
+
               .first {
                 font-size: 1.5rem;
               }
-  
+
               .second {
-                display:flex;
+                display: flex;
                 gap: var(--composer-gap-xs);
                 margin: var(--composer-gap-xs) 0;
-                background:rgba(var(--composer-primary-color-rgb),0.5);
+                background: rgba(var(--composer-primary-color-rgb), 0.5);
                 padding: var(--composer-gap-xs) var(--composer-gap-xs);
                 border-radius: var(--radius-medium);
-                transition: 0.3s;
-                .second-text{
+                transition: all 0.3s ease;
+                .second-text,
+                .second-count {
                   color: var(--composer-font-color-secondary);
                   font-size: 1rem;
                 }
@@ -108,8 +128,8 @@
             }
           }
         }
-      }            
-      .button-wrapper{
+      }
+      .button-wrapper {
         display: flex;
         justify-content: center;
         .button {
@@ -117,14 +137,13 @@
         }
       }
     }
-
   }
 }
-@container (max-width: #{$composer-phone-width}){
-  .container{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
     font-size: 1em;
-    .max-content{
-      .wrapper{
+    .max-content {
+      .wrapper {
         .cards-box {
           .card {
             height: 300px;
@@ -133,5 +152,31 @@
         }
       }
     }
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  25% {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
 }
