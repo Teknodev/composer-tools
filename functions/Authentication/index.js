@@ -108,7 +108,7 @@ export function changePassword(config) {
     axiosReadValidator(config);
     return axios.request(config).then(r => r.data);
 }
-export function changePasswordEmail(config) {
+export function handlePasswordChangeEmailRequest(config) {
     config = { ...config, method: "post", url: "https://blinkpage-staging-bbc49.hq.spicaengine.com/api/fn-execute/change-password-email" };
     axiosWriteValidator(config);
     axiosReadValidator(config);
@@ -156,6 +156,8 @@ export function forgotPassword(config) {
     axiosReadValidator(config);
     return axios.request(config).then(r => r.data);
 }
+// This statement has been deleted.
+;
 export function passwordRecovery(config) {
     config = { ...config, method: "post", url: "https://blinkpage-staging-bbc49.hq.spicaengine.com/api/fn-execute/password-recovery" };
     axiosWriteValidator(config);

@@ -37,7 +37,7 @@ export function loginWithStrategyFn(config: loginWithStrategyFnRequestConfig & {
 export function changePassword(config: ChangePasswordRequestConfig & {
     [x: string]: any;
 }): Promise<any>;
-export function changePasswordEmail(config: any): any;
+export function handlePasswordChangeEmailRequest(config: any): any;
 /**
  * @typedef ChangeEmailData
  * @type {Object}
