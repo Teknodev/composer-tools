@@ -343,6 +343,7 @@ export enum CATEGORIES {
   ECOMMERCE = "ecommerce",
   PRIVACYPOLICY = "privacyPolicy",
   COMINGSOON = "comingSoon",
+  STICKY = "sticky",
 }
 
 export function generateId(key: string): string {
@@ -899,4 +900,8 @@ export abstract class BaseECommerce extends Component {
 
 export abstract class BaseComingSoon extends Component {  
   static category = CATEGORIES.COMINGSOON;
+}
+
+export abstract class BaseSticky extends Component {  
+  static category = CATEGORIES.STICKY;
 }
