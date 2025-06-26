@@ -221,6 +221,16 @@ class Team9 extends Team {
       value: 4,
       max: 5,
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
 
   static getName(): string {
@@ -268,7 +278,7 @@ class Team9 extends Team {
                   const hasCard = nameExist || item.image || item.icons.length > 0;
                   return (
                     hasCard && (
-                      <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
+                      <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
                         <div className={this.decorateCSS("person-info")}>
                           {item.icons.length > 0 && (
@@ -279,7 +289,10 @@ class Team9 extends Team {
                                     <ComposerLink key={iconIndex} path={card.url}>
                                       <Base.Icon
                                         name={card.icon}
-                                        propsIcon={{ className: this.decorateCSS("icon") }}
+                                        propsIcon={{ 
+                                          className: this.decorateCSS("icon"),
+                                          style: { "--icon-index": iconIndex } as React.CSSProperties
+                                        }}
                                       />
                                     </ComposerLink>
                                   );
@@ -319,6 +332,7 @@ class Team9 extends Team {
                                           name={card.icon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),
+                                            style: { "--icon-index": indexIcons } as React.CSSProperties
                                           }}
                                         />
                                       </ComposerLink>

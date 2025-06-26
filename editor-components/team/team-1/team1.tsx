@@ -281,6 +281,16 @@ class Team1 extends Team {
       displayer: "Item count in a row",
       value: 4,
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6", "animate7"]
+      }
+    });
   }
 
   static getName(): string {
@@ -311,15 +321,15 @@ class Team1 extends Team {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("items").map((card: any, indexItems: number) => {
               return (
-                <div key={indexItems} className={this.decorateCSS("all-card")}>
+                <div key={indexItems} className={`${this.decorateCSS("all-card")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("top")}>
-                      {card.image && <img className={this.decorateCSS("image")} src={card.image} alt="" />}
-                      <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>
+                      {card.image && <img className={this.decorateCSS("image")} src={card.image} alt="" data-animation={this.getPropValue("hoverAnimation").join(" ")}  />}
+                      <Base.H2 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H2>
                       <Base.P className={this.decorateCSS("position")}>{card.value.filter((item: { key: string }) => item.key === "position").map((item: { value: string }) => item.value)}</Base.P>
                     </div>
                     <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>
-                    <div className={this.decorateCSS("icon-group")}>
+                    <Base.Row className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {card.platforms.map((item: Platform, indexPlatforms: number) => {
                         return (
                           <ComposerLink key={indexPlatforms} path={item.url}>
@@ -327,12 +337,13 @@ class Team1 extends Team {
                               name={item.icon}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),
+                                style: { "--icon-index": indexPlatforms } as React.CSSProperties
                               }}
                             />
                           </ComposerLink>
                         );
                       })}
-                    </div>
+                    </Base.Row>
                   </Base.VerticalContent>
                 </div>
               );
