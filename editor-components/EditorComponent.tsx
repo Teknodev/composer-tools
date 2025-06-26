@@ -232,9 +232,9 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
-type RangeInputAdditionalParams = { 
-  maxRange?: number; 
-  minRange?: number; 
+type RangeInputAdditionalParams = {
+  maxRange?: number;
+  minRange?: number;
   step?: number;
 };
 
@@ -349,6 +349,8 @@ export enum CATEGORIES {
 export function generateId(key: string): string {
   return key + "-" + Math.round(Math.random() * 1000000000).toString();
 }
+
+
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -374,22 +376,58 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
+    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
+
     this.state = {
       states: {},
       componentProps: {
-        props: props?.props || [],
+      props: compProps,
         cssClasses: props?.cssClasses || {...sectionsKeyValue},
         interactions: props?.interactions || {...sectionsKeyValue}
       },
     };
 
-    if (props?.props?.length) {
-      props?.props.forEach((prop: TypeUsableComponentProps) => {
-        this.setProp(prop.key, prop.value);
-      });
-    }
 
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
+  }
+
+  componentWillMount(){
+    this.getProps().forEach(({key, value}) => {
+      const propIndex = this.state.componentProps.props.findIndex((prop: any) => prop.key === key);
+      if (propIndex === -1) return;
+
+      const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
+      const shadowProp = this.getShadowProp(key);
+      if (!shadowProp) return;
+
+      const isComplexType = propInState.type === "array" || propInState.type === "object";
+      const isTypeChanged = propInState.type !== shadowProp.type;
+
+      if (isTypeChanged) {
+        
+        propInState.type = shadowProp.type;
+        value = structuredClone(shadowProp.value);
+      }
+
+      if (isComplexType) {
+        this.syncComplexValue(
+          structuredClone(shadowProp.value) as TypeUsableComponentProps[],
+          value as TypeUsableComponentProps[]
+        );
+      }
+
+      const isMatchingValue = 
+        (!isComplexType && propInState.value === value) ||
+        (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
+
+      if (isMatchingValue) return;
+
+      this.state.componentProps.props[propIndex].value = value;
+      this.state.componentProps.props[propIndex] = this.attachValueGetter(
+        this.state.componentProps.props[propIndex]
+      );
+
+    })
   }
 
   static getName(): string {
@@ -586,6 +624,31 @@ export abstract class Component
     EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
 
+  private syncComplexValue(source: TypeUsableComponentProps[], target: TypeUsableComponentProps[]): void {
+    source.forEach(sourceProp => {
+      const targetIndex = target.findIndex(prop => prop.key === sourceProp.key);
+      if (targetIndex === -1) return;
+      
+      const targetProp = target[targetIndex];
+
+      const isTypeChanged = targetProp.type !== sourceProp.type;
+      const isComplexType = sourceProp.type === "array" || sourceProp.type === "object";
+
+      if (isTypeChanged) {
+        targetProp.type = sourceProp.type;
+        targetProp.value = sourceProp.value;
+        return;
+      }
+
+      if (isComplexType) {
+        this.syncComplexValue(
+          sourceProp.value as TypeUsableComponentProps[],
+          targetProp.value as TypeUsableComponentProps[]
+        );
+      }
+    });
+  }
+
   setProp(key: string, value: any): void {
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
@@ -695,8 +758,9 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: React.JSX.Element): string {
-    return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
+  castToString(elem: React.JSX.Element): string | React.JSX.Element {
+    const isValid = React.isValidElement(elem);    
+    return isValid ? elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, ""): elem;
   }
 
   private castingProcess(object: any) {
