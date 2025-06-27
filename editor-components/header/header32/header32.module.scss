@@ -253,10 +253,11 @@
                     }
                     .urlTitles {
                       font-size: 1rem;
-                      max-width: 50%;
+                      max-width: 100%;
                       text-align: center;
                       margin: 0;
                       opacity: 1;
+                      padding-right: var(--composer-gap-md);
                     }
 
                     &.withoutDescription {
