@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./team5.module.scss";
 import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "../../../composer-base-components/base/base";
 
 type eggs = {
@@ -423,6 +422,15 @@ class Team5 extends Team {
       value: 4,
       max: 5,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
   }
 
   static getName(): string {
@@ -448,15 +456,21 @@ class Team5 extends Team {
 
               return (
                 hasItem && (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")}>
-                    <div className={this.decorateCSS("image-container")}>
+                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div className={this.decorateCSS("image-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
                       {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" />}
                       {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />}
                     </div>
-                    <Base.Row className={this.decorateCSS("icon-container")}>
+                    <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {item.socials.map((value, i) => (
                         <ComposerLink key={i} path={value.url}>
-                          <Base.Icon name={value.icon} />
+                          <Base.Icon 
+                            name={value.icon} 
+                            propsIcon={{ 
+                              className: this.decorateCSS("icon"),
+                              style: { "--icon-index": i } as React.CSSProperties
+                            }} 
+                          />
                         </ComposerLink>
                       ))}
                     </Base.Row>

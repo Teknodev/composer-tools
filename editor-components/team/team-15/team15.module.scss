@@ -31,13 +31,6 @@
             object-fit: cover;
             transition: 1s;
           }
-
-          &:hover {
-            .image {
-              transform: scale(1.1);
-            }
-          }
-
           .overlay,
           .overlay2 {
             position: absolute;
@@ -75,11 +68,10 @@
             .title {
               min-width: 100px;
               width: 100%;
-              margin: var(--composer-gap-sm);
+              margin: var(--composer-gap-sm) var(--composer-gap-md);
               color: white;
-              &:hover {
-                color: var(--composer-primary-color);
-              }
+              font-size: 1.5rem;
+              transition: letter-spacing 0.4s ease-in-out;
             }
             .labels {
               position: relative;
@@ -100,8 +92,6 @@
                 bottom: 50%;
                 text-align: center;
                 transform: scaleY(0);
-                transition: height 0.5s, gap 0.5s;
-                -webkit-transition: all 0.5s linear;
                 background-color: white;
                 border-radius: var(--composer-border-radius-sm);
                 padding: calc(3 * var(--composer-gap-xs));
@@ -162,6 +152,73 @@
                   }
                 }
               }
+            }
+          }
+
+          &[data-animation~="animate1"] { 
+            &:hover {
+              .image {
+                transform: scale(1.1);
+              }
+            }
+          }
+
+          &[data-animation~="animate2"] {
+            &:hover {
+              .card-content {
+                .title {
+                  letter-spacing: 4px;
+                }
+              }
+            }
+          }
+
+          &[data-animation~="animate3"] {
+            .icon-list-container {
+              transition: transform 0.5s ease;
+            }
+            &:hover {
+              .icon-list-container {
+                transform: scaleY(1);
+                text-align: end;
+                margin-bottom: var(--composer-gap-md);
+                animation: slideUp 0.5s ease forwards;
+
+                .icon {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  object-fit: cover;
+                  position: relative;
+                  color: black;
+                  opacity: 0;
+                  transform: translateY(20px);
+                  animation: fadeInUp 0.5s ease forwards;
+                  animation-delay: calc(var(--icon-index, 0) * 0.15s);
+                  &:hover {
+                    color: var(--composer-primary-color);
+                  }
+                }
+              }
+            }
+          }
+
+          @keyframes slideUp {
+            0% {
+              transform: scaleY(0);
+            }
+            100% {
+              transform: scaleY(1);
+            }
+          }
+
+          @keyframes fadeInUp {
+            0% {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0);
             }
           }
         }
