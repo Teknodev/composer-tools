@@ -2,8 +2,8 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type Card = {
   backgroundImage: string;
@@ -244,15 +244,29 @@ class Header32 extends BaseHeader {
         }
       },
       dotsClass: this.decorateCSS("dots"),
-      customPaging: (i: number) => {
+      customPaging: (i: number): React.JSX.Element => {
         return (
-          headers.length > 0 &&
           <div>
-            <span className={`${this.decorateCSS("dot")} ${!activeSlideHasImage && this.decorateCSS("colored")}`}></span>
-            <span className={`${this.decorateCSS("dotIndex")} ${!activeSlideHasImage && this.decorateCSS("colored")}`}>{`0${i + 1}`}</span>
+            {headers.length > 0 && (
+              <>
+                <span
+                  className={`${this.decorateCSS("dot")} ${
+                    !activeSlideHasImage && this.decorateCSS("colored")
+                  }`}
+                />
+                <span
+                  className={`${this.decorateCSS("dotIndex")} ${
+                    !activeSlideHasImage && this.decorateCSS("colored")
+                  }`}
+                >
+                  {`0${i + 1}`}
+                </span>
+              </>
+            )}
           </div>
         );
       },
+      
     };
 
     const hasleftButtonIcon = this.getPropValue("leftButtonIcon");
