@@ -209,10 +209,10 @@
         
   
         .wrapper {
-          flex-direction: column;
+          flex-direction: column;// alt alta dizilim çocuk element
           align-items: center;
           text-align: center;
-          gap: 40px;
+          gap: var(--composer-gap-lg);
   
           .header {
             padding-right: 0;
@@ -225,7 +225,7 @@
               margin-bottom: 20px;
   
               .title {
-                font-size: var(--font-size 44px);
+                font-size: 3rem;
               }
   
               .subtitle {
@@ -273,7 +273,7 @@
           flex-direction: column; // Dikey hizala
           align-items: center;
           text-align: center;
-          gap: 20px;
+          gap: var(--composer-gap-md);
   
           .header {
             flex-direction: column;
