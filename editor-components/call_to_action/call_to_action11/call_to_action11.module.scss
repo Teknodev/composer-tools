@@ -89,7 +89,7 @@
   // Butonları yan yana dizer
   gap: var(--composer-gap-md); 
   // Butonlar arası boşluk index.scss’den
-  flex-wrap: wrap; 
+  flex-wrap: nowrap; 
   // Küçük ekranlarda alt satıra geçmelerine izin verir
   align-items: stretch; 
   // Yükseklik eşitlemek için
