@@ -1,0 +1,149 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *; 
+// index.scss'deki container query breakpoints'i almak için (tablet, phone genişlikleri için)
+
+.container {
+  position: relative; 
+  // Base.Container ve index.scss'de container genellikle relative pozisyonlu, overlay gibi durumlar için
+}
+
+.max-content {
+  position: relative; 
+  // Base.MaxContent genelde z-index ve konumlandırma için relative kullanır
+  z-index: 1; 
+  // container overlay üzerinde görünürlük için yeterli z-index
+
+  display: flex; 
+  // İç elemanları yatayda yan yana yerleştirmek için flex kullanıldı
+  justify-content: space-between; 
+  // Elemanlar arası boşluk eşit dağılır (baş ve son eleman kenarlarda)
+  align-items: center; 
+  // Dikeyde ortalama
+  flex-wrap: wrap; 
+  // Küçük ekranlarda satır taşmalarına izin vermek için wrap yapıldı
+  gap: var(--composer-gap-lg); 
+  // index.scss'deki boşluk değişkeni, elemanlar arası büyük boşluk
+}
+
+.wrapper {
+  width: 100%; 
+  // full genişlik alır
+  position: relative; 
+  z-index: 1; 
+  color: var(--composer-font-color-secondary); 
+  // index.scss’den gelen ikincil metin rengi (genelde gri ton)
+  
+  display: flex;
+  flex-direction: column; 
+  // Başlık ve butonları dikeyde alt alta dizmek için
+  justify-content: center; 
+  align-items: center; 
+  // İçerik yatay ve dikeyde ortalanır
+  gap: var(--composer-gap-lg); 
+  // Başlık ve buton arası boşluk index.scss değişkeniyle
+}
+
+.header {
+  display: flex; 
+  // Başlık ve butonları yan yana dizmek için flex
+  align-items: center; 
+  // Dikeyde ortalamak için
+  width: 100%; 
+  // Tam genişlik
+  gap: var(--composer-gap-md); 
+  // Orta boy boşluk index.scss’den
+
+  &.center {
+    flex-direction: column; 
+    // Ortalıysa buton ve başlığı alt alta dizer
+    
+    .button-container {
+      justify-content: center; 
+      // Butonları yatayda ortalar
+    }
+  }
+}
+
+.titles {
+  flex: 1; 
+  // Mümkün olan genişliği alır, buton alanını sınırlar
+  text-align: center; 
+  // Mobilde ortalanır
+
+  @container (min-width: #{$composer-tablet-width}) {
+    text-align: left; 
+    // Tablet ve üstünde sola hizalanır (index.scss container query)
+  }
+}
+
+.title {
+  /* index.scss'deki Base.SectionTitle global stili kullanılır, burada sadece margin sıfırlanır */
+  margin: 0; 
+  color: var(--composer-font-color-secondary); 
+  // index.scss’den gelen ikincil renk kullanıldı
+}
+
+.button-container {
+  width: fit-content; 
+  // İçeriği kadar genişlik alır
+  display: flex; 
+  // Butonları yan yana dizer
+  gap: var(--composer-gap-md); 
+  // Butonlar arası boşluk index.scss’den
+  flex-wrap: wrap; 
+  // Küçük ekranlarda alt satıra geçmelerine izin verir
+  align-items: stretch; 
+  // Yükseklik eşitlemek için
+  max-width: 50%; 
+  // Maksimum genişlik sınırı
+
+  .button {
+    /* Base.Button global stilleri zaten tüm font, border, radius, renk vs içerir */
+    min-width: 180px; 
+    // Minimum genişlik verilerek tutarlılık sağlandı
+    cursor: pointer; 
+    // Butonun üzerine gelince işaretçi değişir
+    text-align: center; 
+    // Metin ortalanır
+
+    &:hover {
+      /* Hover efektleri index.scss Base.Button'dan gelir, burada ekstra yazmaya gerek yok */
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .header {
+    flex-direction: column; 
+    // Tablet ve altı ekranlarda başlık ve buton alt alta dizilir
+    gap: var(--composer-gap-md); 
+    // Boşluk index.scss’den
+
+    .button-container {
+      max-width: 100%; 
+      justify-content: center; 
+      // Butonlar tam genişlikte ve ortalanmış olur
+    }
+
+    .titles {
+      text-align: center; 
+      // Başlık da ortalanır
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .header {
+    flex-direction: column; 
+    // Telefon ekranlarında da alt alta
+    gap: var(--composer-gap-md);
+
+    .button-container {
+      max-width: 100%; 
+      justify-content: center;
+    }
+
+    .titles {
+      text-align: center;
+    }
+  }
+}
