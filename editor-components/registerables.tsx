@@ -153,6 +153,7 @@ import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
 import LogoComponent4 from "./logo-clouds/logo-comp4/logo-comp4";
 import LogoComponent5 from "./logo-clouds/logo-comp5/logo-comp5";
 import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
+import LogoComponent7 from "./logo-clouds/logo-comp7/logo-comp7";
 import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
 import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
 import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
@@ -434,6 +435,7 @@ function Registerables(composer: ComponentsRegistery) {
     LogoComponent4,
     LogoComponent5,
     LogoComponent6,
+    LogoComponent7,
     TestimonialsComponent1,
     TestimonialsComponent2,
     TestimonialsComponent3,
