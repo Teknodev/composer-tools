@@ -17,7 +17,6 @@
   position: absolute; // parenta göre hareket etmeye yarar
   width: 100%; 
   height: 100%;
-  background-color: var(--composer-font-color-primary #000);
   z-index: 0; // arka plan
 
   // Sol üst köşedeki çeyrek daire  deseni
@@ -82,30 +81,29 @@
     margin: 0 auto; // Ortalama
 
     .header {
-      display: flex;
-      align-items: center;
-      width: auto;
-      flex: 1;
-      gap: var(--composer-gap-lg);
-      justify-content: flex-start;
-      .titles {
-        flex: 1;
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin: right 40px;
-
-        .subtitle {
+        align-items: center;
+        justify-content: space-between; // ✅ Başlık sola, buton sağa yaslanır
+        width: 100%; // ✅ Genişlik tam olmalı ki hizalama düzgün çalışsın
+        gap: var(--composer-gap-lg);
+      
+        .titles {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-right: 40px; // ✅ Düzgün yazım
+      
+          .subtitle {
             font-size: 16px;
             letter-spacing: 0.15em;
             margin-bottom: 25px;
             color: #fff;
             font-weight: 400;
             position: relative;
-            padding-right: 20px;
             padding: var(--composer-gap-md);
             display: inline-block;
-          
+      
             &::before {
               content: '';
               position: absolute;
@@ -114,16 +112,14 @@
               transform: translateY(-50%);
               width: 60px;
               height: 1px;
-              background-color:var(--composer-font-color-primary #cccccc) ; // Hafif gri
+              background-color: var(--composer-font-color-primary, #cccccc); // Fallback eklendi
               z-index: 2;
             }
-          
-            /* Arka plan artık span'a özel olacak */
-          
-            .highlight {  // Sadece siyah arka plan olacak kısmın class'ı
+      
+            .highlight {
               position: relative;
               display: inline-block;
-          
+      
               &::after {
                 content: '';
                 position: absolute;
@@ -131,74 +127,73 @@
                 top: -4px;
                 right: -2px;
                 bottom: -4px;
-                background-color: #000; //!! BAKK
+                background-color: #000;
                 transform: skew(-15deg);
                 z-index: -1;
               }
             }
           }
-          
-
-        .title {
-          font-size: 3rem; // yazının büyüklüğü
-          font-weight: 700; // yazının kalınlığı
-          line-height: 1.1; // başlık birden fazla satırdan oluşuyorsa arasındaki boşluk oranı
-          margin: 0;
-          letter-spacing: -0.02em; 
+      
+          .title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin: 0;
+            letter-spacing: -0.02em;
+          }
         }
-      }
-
-      .button-container {
-        width: fit-content;
-        display: flex;
-        gap: var(--composer-gap-md);
-        flex-wrap: nowrap;
-        align-items: center;
-        max-width: none;
-        flex-shrink: 0; 
-        margin-left: auto; 
-
-        .button {
-          background-color: transparent;
-          color: #fff;
-          border: 1.5px solid #fff;  
-          font-size: 1rem;
-          font-weight: 500; 
-          text-transform: uppercase;
-          letter-spacing: 0.1em; 
-          cursor: pointer;
-          transition: all 0.3s ease;
-          border-radius:var (--border-radius-md);
-          position: relative;
-          overflow: hidden;
+      
+        .button-container {
+          width: fit-content;
           display: flex;
-          justify-content: center;
+          gap: var(--composer-gap-md);
+          flex-wrap: nowrap;
           align-items: center;
-          white-space: wrap;
-          min-width: 160px; // Minimum genişlik
-
-          &:hover {
-            background-color: #fff;
-            color:#000;
-            transform: translateY(-2px); // Hover effect
-            
+          flex-shrink: 0;
+          margin-left: auto;
+          margin-bottom: -35px; // eklendi
+      
+          .button {
+            background-color: transparent;
+            color: #fff;
+            border: 1.5px solid #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: var(--border-radius-md); // ✅ Bozuk yazımdan düzeltildi
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap; // ✅ wrap → nowrap ile değiştirildi
+            min-width: 160px;
+      
+            &:hover {
+              background-color: #fff;
+              color: #000;
+              transform: translateY(-2px);
+            }
+      
+            &:active {
+              transform: translateY(0);
+            }
           }
-
-          &:active {
-            transform: translateY(0);
+        }
+      
+        &.center {
+          flex-direction: column;
+          text-align: center;
+      
+          .titles {
+            align-items: center;
           }
         }
       }
-
-      &.center {
-        flex-direction: column;
-        text-align: center;
-        
-        .titles {
-          align-items: center;
-        }
-      }
-    }
+      
   }
 }
 
@@ -290,7 +285,7 @@
                 line-height: 1.3;
                 text-align: center; // Başlığı tamamen ortaladık
               }
-  s
+  
               .subtitle {
                 font-size: 12px;
                 margin-bottom: 10px;

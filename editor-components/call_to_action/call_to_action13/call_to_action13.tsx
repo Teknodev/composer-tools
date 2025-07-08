@@ -8,6 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Button = INPUTS.CastedButton;  //kullanılan butonların tipini belirtiyor
 
+
 class CallToAction13Page extends BaseCallToAction {
   constructor(props?: any) { //başlangıç ayarları (bileşeni dinamik olarak değiştirebilecek propsları(özellikleri) ekleniyor.)
     super(props, styles);
