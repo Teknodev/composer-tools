@@ -516,7 +516,7 @@ export namespace Base {
 
       return (
         <Dropdown
-          buttonLabel={composerToolsCurrentLanguage[title]}
+          buttonLabel={composerToolsCurrentLanguage[title || "code"]}
           labelClassName={`${styles["label"]} ${dropdownLabelClassName}`}
           dropdownButtonClassName={dropdownButtonClassName}
           icon={icon}
@@ -532,7 +532,7 @@ export namespace Base {
               divider={divider && index < composerToolsLanguages.length - 1}
             >
               <span className={`${styles.label} ${dropdownItemClassName}`}>
-                {lang[title].toUpperCase()}
+                {lang[title || "code"].toUpperCase()}
               </span>
             </DropDownItem>
           ))}
@@ -554,7 +554,7 @@ export namespace Base {
       } = props;
       return (
         <Accordion
-          title={composerToolsCurrentLanguage[title]}
+          title={composerToolsCurrentLanguage[title || "code"]}
           headerClassName={headerClassName}
           contentClassName={contentClassName}
           openClassName={openClassName}
