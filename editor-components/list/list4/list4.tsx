@@ -63,7 +63,7 @@ class list4 extends BaseList {
           type: "object",
           key: "card",
           displayer: "Card",
-          value: [,
+          value: [
             {
               type: "string",
               key: "title",
