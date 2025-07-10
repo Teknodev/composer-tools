@@ -5,10 +5,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 
-type TImage = {
-  image: string;
-  imageLink: string;
-};
+type TImage = { image: string; imageLink: string };
 
 class LogoComp7Page extends LogoClouds {
   constructor(props?: any) {
@@ -18,25 +15,14 @@ class LogoComp7Page extends LogoClouds {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Trusted by thousands worldwide",
+      value: "Trusted by thousands from worldwide",
     });
 
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 6,
-      max: 12,
-    });
     this.addProp({
       type: "array",
       key: "image-items",
       displayer: "Images",
       value: [
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
       ],
@@ -48,44 +34,49 @@ class LogoComp7Page extends LogoClouds {
   }
 
   render() {
-    const isTitleExists = this.castToString(this.getPropValue("title"));
-    const images = this.castToObject<TImage[]>("image-items");
+    const title = this.castToString(this.getPropValue("title"));
+    const originals = this.castToObject<TImage[]>("image-items") || [];
+    //en az 14 logo sayısı olacak şekilde ceiling al
+    const repeatCount = Math.round(14 / originals.length);
+    //bu sayıya kadar logo pattern ini tekrarla
+    let lineOfLogos: TImage[] = [];
+    for (let i = 0; i < repeatCount; i++) {
+      lineOfLogos.push(...originals);
+    }
+
+    //oluşturulan logo dizisini double yap
+    const scrollItems = [...lineOfLogos, ...lineOfLogos];
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {isTitleExists && (
+          {title && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {isTitleExists && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
             </Base.VerticalContent>
           )}
 
-          {images.length > 0 && (
-            <Base.ListGrid
-              gridCount={{
-                pc: this.getPropValue("itemCount"),
-                tablet: 3,
-                phone: 2,
-              }}
-              className={this.decorateCSS("images-container")}
+          <div className={this.decorateCSS("images-container")}>
+            <div
+              className={this.decorateCSS("images-track")}
+              //animasyon hızını item sayısına göre sabitleyip ekran boyutundan bağımsız yap
+              style={{ animationDuration: `${scrollItems.length * 2}s` }}
             >
-              {images.map((image: any, index: number) => (
-                <ComposerLink path={image.imageLink}>
-                  <div key={index} className={this.decorateCSS("image-item")}>
+              {scrollItems.map((img, i) => (
+                <ComposerLink key={i} path={img.imageLink}>
+                  <div className={this.decorateCSS("image-item")}>
                     <img
                       className={this.decorateCSS("image")}
-                      key={index}
-                      src={image.image}
-                      alt={image.imageLink || ""}
+                      src={img.image}
+                      alt={img.imageLink || ""}
                     />
                   </div>
                 </ComposerLink>
               ))}
-            </Base.ListGrid>
-          )}
+            </div>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

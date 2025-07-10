@@ -1,39 +1,65 @@
 .container {
+  width: 100%;
+  padding: 0 0 100px;
+
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-xl);
-    .heading {
-      /*text-align: center;*/
-      display: inline-flex;
-      flex-direction: column;
+  }
 
-      /* center the box in its flex container */
-      align-self: center;
+  .heading {
+    align-self: center;
+    text-align: center;
+  }
 
-      /* center text inside */
-      text-align: center;
-      .title {
-        content: "";
-        font-size: 1.5rem;
-      }
+  .title {
+    font-size: calc(1.05 * var(--project-font-size));
+    margin: 0;
+    letter-spacing: 0.01em;
+    content: "";
+  }
+
+  .images-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .images-track {
+    display: flex;
+    gap: var(--composer-gap-md);
+    width: max-content;
+    animation: scroll linear infinite;
+  }
+
+  .image-item {
+    flex: 0 0 auto;
+    padding: 0 15px;
+    //Tüm logoların widthlerini image boyutuna göre ayarla
+
+    .image {
+      display: block;
+      width: 9rem;
+      height: 36px;
+      object-fit: contain;
+
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
     }
 
-    .images-container {
-      .image-item {
-        background: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
-        padding: var(--composer-gap-md);
-        border-radius: var(--composer-border-radius-sm);
-        .image {
-          object-fit: contain;
-          width: 100%;
-          height: 90px;
-        }
-      }
+    &:hover .image {
+      opacity: 1;
+    }
+  }
+  //yarıya gelince 2. line of logos gelecek
+  //Tamamlanınca 0'a dönüp baştan başlayacak
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
 }
