@@ -1,0 +1,61 @@
+.container {
+  width: 100%;
+
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+  }
+
+  .heading {
+    align-self: center;
+    text-align: center;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin: 0;
+    content: "";
+  }
+
+  .images-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .images-track {
+    display: flex;
+    gap: var(--composer-gap-md);
+    width: max-content;
+    animation: scroll linear infinite;
+  }
+
+  .image-item {
+    flex: 0 0 auto;
+    padding: 0 15px;
+
+    .image {
+      display: block;
+      width: auto;
+      height: 36px;
+      object-fit: contain;
+
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover .image {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
