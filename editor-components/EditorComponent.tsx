@@ -203,7 +203,8 @@ export type InteractionType ={
   modal?: string,
   trigger_action?: string,
   visible_on?: string,
-  show_once?: false,
+  display_option?: "show_once" | "show_always" | "show_with_delay",
+  delay_seconds?: number,
 };
 export type PageInteractionType ={
   type?: string;
