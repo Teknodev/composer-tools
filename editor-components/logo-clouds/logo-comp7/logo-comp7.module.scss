@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  padding: 0 0 100px;
 
   .max-content {
     display: flex;
@@ -13,10 +12,9 @@
     text-align: center;
   }
 
-  .title {
-    font-size: calc(1.05 * var(--project-font-size));
+  .description {
+    font-size: 1rem;
     margin: 0;
-    letter-spacing: 0.01em;
     content: "";
   }
 
@@ -36,11 +34,10 @@
   .image-item {
     flex: 0 0 auto;
     padding: 0 15px;
-    //Tüm logoların widthlerini image boyutuna göre ayarla
 
     .image {
       display: block;
-      width: 9rem;
+      width: auto;
       height: 36px;
       object-fit: contain;
 
@@ -52,8 +49,7 @@
       opacity: 1;
     }
   }
-  //yarıya gelince 2. line of logos gelecek
-  //Tamamlanınca 0'a dönüp baştan başlayacak
+
   @keyframes scroll {
     from {
       transform: translateX(0);

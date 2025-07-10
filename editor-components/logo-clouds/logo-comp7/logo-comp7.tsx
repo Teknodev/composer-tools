@@ -13,8 +13,8 @@ class LogoComp7Page extends LogoClouds {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
+      key: "description",
+      displayer: "Description",
       value: "Trusted by thousands from worldwide",
     });
 
@@ -34,17 +34,14 @@ class LogoComp7Page extends LogoClouds {
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("title"));
+    const title = this.castToString(this.getPropValue("description"));
     const originals = this.castToObject<TImage[]>("image-items") || [];
-    //en az 14 logo sayısı olacak şekilde ceiling al
     const repeatCount = Math.round(14 / originals.length);
-    //bu sayıya kadar logo pattern ini tekrarla
     let lineOfLogos: TImage[] = [];
     for (let i = 0; i < repeatCount; i++) {
       lineOfLogos.push(...originals);
     }
 
-    //oluşturulan logo dizisini double yap
     const scrollItems = [...lineOfLogos, ...lineOfLogos];
 
     return (
@@ -52,16 +49,17 @@ class LogoComp7Page extends LogoClouds {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {title && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>
+              <Base.SectionDescription
+                className={this.decorateCSS("description")}
+              >
                 {title}
-              </Base.SectionTitle>
+              </Base.SectionDescription>
             </Base.VerticalContent>
           )}
 
           <div className={this.decorateCSS("images-container")}>
             <div
               className={this.decorateCSS("images-track")}
-              //animasyon hızını item sayısına göre sabitleyip ekran boyutundan bağımsız yap
               style={{ animationDuration: `${scrollItems.length * 2}s` }}
             >
               {scrollItems.map((img, i) => (
