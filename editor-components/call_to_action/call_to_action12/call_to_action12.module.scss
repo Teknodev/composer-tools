@@ -3,25 +3,15 @@
 .container {
   position: relative;
   padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
-  background-color: var(--background-color);
+  background-color: var(--composer-html-background);
 
-  &.overlay-active {
-    &::before {
-      position: absolute;
-      content: "";
-      width: 100%;
-      height: 100%;
-      left: 0px;
-      top: 0px;
-    }
-  }
 
   .max-content {
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-md);
 
     .header {
       align-items: center;
@@ -30,13 +20,13 @@
       .title {
         text-align: center;
         font-size: 2rem;
-        color: var(--primary-text-color);
+        color: var(--composer-font-color-primary);
       }
 
       .description {
         text-align: center;
         font-size: 1rem;
-        color: var(--secondary-text-color);
+        color: var(--composer-tertiary-color);
       }
     }
 
@@ -62,11 +52,16 @@
 
           .input {
             padding: var(--padding-lg) var(--padding-lg);
+            background-color: transparent;
+            border-radius: var(--border-radius-xs);
             height: 100%;
             width: 100%;
             outline: none;
-            border: none;
-            border: 1px solid var(--color-gray)
+            border: 1px solid var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
+            &::placeholder {
+              color: var(--composer-font-color-secondary);
+            }
           }
 
           .error {
@@ -76,25 +71,27 @@
             color: var(--warning);
           }
         }
-
         .submit-button {
           content: "";
-          border: 1px solid var(--color-gray);
-          border-radius: 0;
+          border: 1px solid var(--composer-tertiary-color);
+          border-radius: var(--border-radius-xs);
           padding: var(--padding-lg) calc(var(--padding-lg) * 3 );
         }
       }
     }
 
-    .button-container {
+               .button-container {
       width: 100%;
       display: flex;
       justify-content: center;
-
-      .button {
-        content: "";
-      }
     }
+       .button {
+        content: "";
+
+        &.button-no-item {
+          border-radius: var(--composer-border-radius-xs);
+        }
+      }
   }
 }
 
@@ -105,7 +102,7 @@
     .max-content {
       .header {
         .title {
-          font-size: 2.5rem;
+          font-size: 2rem;
         }
 
         .description {
@@ -138,19 +135,23 @@
       }
 
       .form {
+        flex-direction: column;
+          gap: var(--composer-gap-sm);
         .newsletter {
           width: 100%;
           min-width: 100%;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
 
           .inputs {
+            margin-right: 0px;
             .input {
               padding: var(--composer-gap-sm) var(--composer-gap-sm);
             }
           }
-
-          .submit-button {
-            content: "";
-          }
+           .submit-button {
+          padding: var(--padding-md);
+        }
         }
       }
     }

@@ -11,12 +11,6 @@ class CallToAction12Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
@@ -27,7 +21,7 @@ class CallToAction12Page extends BaseCallToAction {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Get updates by subscribe our weekly newsletter to receive the latest news, evens & promotions,",
+      value: "Get updates by subscribe our weekly newsletter to receive the latest news, evens & promotions",
     });
     
     this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE", "", null, null, "Black"));
@@ -38,6 +32,7 @@ class CallToAction12Page extends BaseCallToAction {
       displayer: "Placeholder",
       value: "Email Address",
     });
+
     this.addProp({
       type: "string",
       key: "submitText",
@@ -76,8 +71,7 @@ class CallToAction12Page extends BaseCallToAction {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.decorateCSS("overlay-active")}`}
+        className={`${this.decorateCSS("container")}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist) && (
@@ -108,21 +102,19 @@ class CallToAction12Page extends BaseCallToAction {
                         <input
                         onFocus={() => this.setComponentState("isInputFocused", true)}
                         onBlur={() => this.setComponentState("isInputFocused", false)}
-                          placeholder={this.getComponentState("isInputFocused")
-    ? ""
-    : this.getComponentState("placeholderText") || placeholder}
+                          placeholder={this.getComponentState("isInputFocused") ? "" : this.getComponentState("placeholderText") || placeholder}
                           type="text"
                           onChange={handleChange}
                           value={values.email}
                           name="email"
-                          className={`${this.decorateCSS("input")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}`}
+                          className={`${this.decorateCSS("input")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}}`}
                         />
                         {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>
                     )}
                     {this.castToString(button.text) && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={button.type}>
-                        {button.text}
+                        <span className={this.decorateCSS("buttonText")}>{button.text}</span>
                       </Base.Button>
                     )}
                   </Form>
