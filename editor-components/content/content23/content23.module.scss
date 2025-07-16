@@ -1,0 +1,68 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  background-color: var(--composer-html-background);    
+  padding: 4rem 0;              
+
+  .max-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    gap: 2rem;                  
+
+.feature {
+  flex: 1 1 30% !important;
+  min-width: 200px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  text-align: left;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  gap: 0.5rem;
+
+  .top-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .icon {
+    font-size: 2.25rem;
+    color: var(--composer-tertiary-color);
+    margin-bottom: 0;
+  }
+
+  .title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color:var(--composer-tertiary-color);
+  }
+
+  .description {
+    margin: 0;
+    margin-left: calc(2.25rem + 0.5rem); 
+    font-size: 0.95rem;
+    color: var(--composer-tertiary-color);
+    line-height: 1.5;
+  }
+}
+
+    @container (max-width: #{$composer-tablet-width}) {
+      flex-wrap: wrap;
+      .feature {
+        flex: 1 1 calc(50% - 1rem);
+      }
+    }
+    @container (max-width: #{$composer-phone-width}) {
+      flex-direction: column;
+      .feature {
+        flex: 1 1 100%;       
+      }
+    }
+  }
+}
