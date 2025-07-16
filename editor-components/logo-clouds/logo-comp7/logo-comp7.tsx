@@ -41,7 +41,7 @@ class LogoComp7Page extends LogoClouds {
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("description"));
+    const title = this.castToString(this.getPropValue("title"));
     const originals = this.castToObject<TImage[]>("image-items") || [];
     const repeatCount = Math.round(14 / originals.length);
     let lineOfLogos: TImage[] = [];
