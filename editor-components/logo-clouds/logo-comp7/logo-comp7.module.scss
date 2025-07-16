@@ -1,52 +1,58 @@
-.container {
-  width: 100%;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 
-  .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-xl);
-  }
+.container {
+  display: flex;
+  flex-direction: column;
 
   .heading {
-    align-self: center;
-    text-align: center;
-  }
+    align-self: center !important;
+    align-items: center !important;
 
-  .description {
-    font-size: 1rem;
-    margin: 0;
-    content: "";
-  }
+    max-width: var(--composer-content-width);
+    margin-bottom: var(--composer-gap-md);
+    margin-right: var(--composer-gap-xl);
+    margin-left: var(--composer-gap-xl);
+    width: calc(100% - (2 * var(--composer-gap-xl)));
 
-  .images-container {
-    width: 100%;
-    overflow: hidden;
-    padding: 0;
-  }
-
-  .images-track {
-    display: flex;
-    gap: var(--composer-gap-md);
-    width: max-content;
-    animation: scroll linear infinite;
-  }
-
-  .image-item {
-    flex: 0 0 auto;
-    padding: 0 15px;
-
-    .image {
-      display: block;
-      width: auto;
-      height: 36px;
-      object-fit: contain;
-
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
+    .title {
+      font-size: 1rem;
+      content: "";
     }
+  }
 
-    &:hover .image {
-      opacity: 1;
+  .gallery {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+
+    .images-container {
+      display: flex;
+      gap: var(--composer-gap-xl);
+      width: fit-content;
+      animation: scroll 10s linear infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      justify-content: space-between;
+
+      .image-child {
+        flex: 0 0 auto;
+        margin: 0;
+
+        .image {
+          width: auto;
+          height: 36px;
+          object-fit: contain;
+
+          opacity: 0.7;
+          transition: opacity 0.3s ease;
+        }
+
+        &:hover .image {
+          opacity: 1;
+        }
+      }
     }
   }
 
@@ -56,6 +62,26 @@
     }
     to {
       transform: translateX(-50%);
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .images-track {
+        gap: var(--composer-gap-lg);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .images-track {
+        gap: var(--composer-gap-lg);
+      }
     }
   }
 }

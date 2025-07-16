@@ -5,7 +5,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 
-type TImage = { image: string; imageLink: string };
+type TImage = {
+  image: string;
+  imageLink: string;
+};
 
 class LogoComp7Page extends LogoClouds {
   constructor(props?: any) {
@@ -13,8 +16,8 @@ class LogoComp7Page extends LogoClouds {
 
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
+      key: "title",
+      displayer: "Text",
       value: "Trusted by thousands from worldwide",
     });
 
@@ -23,8 +26,12 @@ class LogoComp7Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", ""),
+        INPUTS.LOGO("section", ""),
+        INPUTS.LOGO("section", ""),
+        INPUTS.LOGO("section", ""),
+        INPUTS.LOGO("section", ""),
+        INPUTS.LOGO("section", ""),
       ],
     });
   }
@@ -34,7 +41,7 @@ class LogoComp7Page extends LogoClouds {
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("description"));
+    const title = this.castToString(this.getPropValue("title"));
     const originals = this.castToObject<TImage[]>("image-items") || [];
     const repeatCount = Math.round(14 / originals.length);
     let lineOfLogos: TImage[] = [];
@@ -45,27 +52,26 @@ class LogoComp7Page extends LogoClouds {
     const scrollItems = [...lineOfLogos, ...lineOfLogos];
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {title && (
-            <Base.VerticalContent className={this.decorateCSS("heading")}>
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {title}
-              </Base.SectionDescription>
-            </Base.VerticalContent>
-          )}
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        {title && (
+          <Base.VerticalContent className={this.decorateCSS("heading")}>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {title}
+            </Base.SectionTitle>
+          </Base.VerticalContent>
+        )}
 
-          <div className={this.decorateCSS("images-container")}>
+        {scrollItems.length > 0 && (
+          <div className={this.decorateCSS("gallery")}>
             <div
-              className={this.decorateCSS("images-track")}
+              className={this.decorateCSS("images-container")}
               style={{ animationDuration: `${scrollItems.length * 2}s` }}
             >
               {scrollItems.map((img, i) => (
-                <ComposerLink key={i} path={img.imageLink}>
-                  <div className={this.decorateCSS("image-item")}>
+                <ComposerLink path={img.imageLink}>
+                  <div className={this.decorateCSS("image-child")}>
                     <img
+                      key={i}
                       className={this.decorateCSS("image")}
                       src={img.image}
                       alt={img.imageLink || ""}
@@ -75,7 +81,7 @@ class LogoComp7Page extends LogoClouds {
               ))}
             </div>
           </div>
-        </Base.MaxContent>
+        )}
       </Base.Container>
     );
   }
