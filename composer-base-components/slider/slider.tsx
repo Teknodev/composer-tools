@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
-  const [sliderSettings, setSliderSettings] = useState<Settings>(props);
+  const [sliderSettings, setSliderSettings] = useState<Settings>({...props, responsive: []});
   const sliderRef = useRef<Slider>(null);
 
   // Combine the forwarded ref with our local ref
@@ -34,6 +34,7 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
         setSliderSettings((prev) => ({
           ...prev,
           ...(matchedBreakpoint.settings as Settings),
+          responsive: []
         }));
         return;
       }
@@ -43,7 +44,7 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
 
     const handleResize = (entries: ResizeObserverEntry[]) => {
       if (entries.length > 0) {
-        updateSlidesToShow(entries[0].contentRect.width);
+        updateSlidesToShow(sliderRef.current?.innerSlider?.list?.offsetWidth || entries[0].contentRect.width);
       }
     };
 
