@@ -15,7 +15,7 @@
 
     .header {
       align-items: center;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
 
       .title {
         text-align: center;
@@ -60,7 +60,7 @@
             border: 1px solid var(--composer-tertiary-color);
             color: var(--composer-font-color-primary);
             &::placeholder {
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
             }
           }
 
@@ -73,7 +73,6 @@
         }
         .submit-button {
           content: "";
-          border: 1px solid var(--composer-tertiary-color);
           border-radius: var(--border-radius-xs);
           padding: var(--padding-lg) calc(var(--padding-lg) * 3 );
         }
@@ -151,6 +150,7 @@
           }
            .submit-button {
           padding: var(--padding-md);
+          justify-content: center;
         }
         }
       }

@@ -21,7 +21,7 @@ class CallToAction12Page extends BaseCallToAction {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Get updates by subscribe our weekly newsletter to receive the latest news, evens & promotions",
+      value: "Get updates by subscribe our weekly newsletter to receive the latest news, evens & promotions"
     });
     
     this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE", "", null, null, "Black"));
