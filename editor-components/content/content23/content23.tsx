@@ -62,7 +62,8 @@ class Content23 extends BaseContent {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {features.map((feat, idx) => (
-            <div key={idx} className={this.decorateCSS("feature")}>
+            <div key={idx} className={`${this.decorateCSS("feature")} ${!feat.icon ? this.decorateCSS("no-icon") : ""}`}>
+
               <div className={this.decorateCSS("top-row")}>
                 <Base.Icon
                   name={feat.icon}
