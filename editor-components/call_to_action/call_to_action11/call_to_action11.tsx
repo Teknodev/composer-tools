@@ -58,10 +58,9 @@ class CallToAction11 extends BaseCallToAction {
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((button, idx) => (
                     <ComposerLink path={button.url} key={idx}>
-                      <Base.Button
-                        className={this.decorateCSS("button")}
-                        buttonType={button.type}
-                      >
+                      <Base.Button className={`${this.decorateCSS("button")} ${button.type?.toLowerCase() || 'primary'}`} buttonType={button.type}>
+
+
                         <span className={this.decorateCSS("button-text")}>
                           {/* Button text için class eklendi - İstek 8 */}
                           {button.text}

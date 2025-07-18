@@ -2,13 +2,62 @@
 
 .container {
   position: relative;
+  
+  .button-container {
+    display: flex;
+    gap: var(--composer-gap-md);
+    align-items: center;
+    justify-content: center;
+    
+    .button {
+      font-size: var(--project-font-size);
+      border-radius: var(--composer-border-radius-lg);
+      
+      // ✅ DEĞİŞTİRİLDİ: Artık base'deki varsayılan değişkenler kullanılıyor
+      &.primary {
+        background-color: var(--composer-primary-color);
+        color: var(--composer-font-color-secondary);
+        border: 1px solid var(--composer-primary-color);
+        
+        &:hover {
+          background-color: color-mix(in srgb, var(--composer-primary-color), var(--composer-font-color-secondary) 15%);
+          border-color: color-mix(in srgb, var(--composer-primary-color), var(--composer-font-color-secondary) 15%);
+        }
+      }
+      
+      // ✅ DEĞİŞTİRİLDİ: Secondary için base varsayılanları
+      &.secondary {
+        background-color: var(--composer-tertiary-color);
+        color: var(--composer-font-color-secondary);
+        border: 1px solid var(--composer-tertiary-color);
+        
+        &:hover {
+          background-color: color-mix(in srgb, var(--composer-tertiary-color), var(--composer-font-color-secondary) 15%);
+          border-color: color-mix(in srgb, var(--composer-tertiary-color), var(--composer-font-color-secondary) 15%);
+        }
+      }
+      
+      // ✅ DEĞİŞTİRİLDİ: Tertiary için base varsayılanları
+      &.tertiary {
+        background-color: transparent;
+        color: var(--composer-font-color-primary);
+        border: 1px solid var(--composer-font-color-primary);
+        
+        &:hover {
+          background-color: transparent;
+          color: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 15%);
+          border-color: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 15%);
+        }
+      }
+    }
+  }
 }
 
 .max-content {
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: center; // Her zaman center - İstek 4
+  justify-content: center;
   align-items: center;
   width: 100%;
 }
@@ -18,30 +67,27 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: var(--composer-gap-xl); // Text ve button arası daha fazla boşluk - İstek 3
+  gap: var(--composer-gap-xl);
   
   @container (max-width: #{$composer-tablet-width}) {
-    // Tablet'te aynı satırda kalması için justify-content: space-between korundu - İstek 5
     gap: var(--composer-gap-lg);
   }
   
   @container (max-width: #{$composer-phone-width}) {
-    flex-direction: column; // Mobile'da alt alta
+    flex-direction: column;
     align-items: center;
     gap: var(--composer-gap-md);
   }
 }
 
 .text-container {
-  
   justify-content: center;
   display: flex;
-  align-items: center; // Text'i button ile aynı hizada ortalamak için - İstek 4
+  align-items: center;
   max-width: 550px;
   
   @container (max-width: #{$composer-phone-width}) {
-    justify-content: center; // Mobile'da text ortalanır - İstek 6
-
+    justify-content: center;
   }
   @container (max-width: #{$composer-tablet-width}){
     text-align: left;
@@ -49,35 +95,14 @@
 }
 
 .text {
-  margin: 0; // Base margin'ları sıfırla
-  text-align: left; // Desktop'da sol hizalı
+  margin: 0;
+  text-align: left;
   
   @container (max-width: #{$composer-phone-width}) {
-    text-align: center; // Mobile'da ortalanır - İstek 6
-    
-    
+    text-align: center;
   }
-  @container (max-width: #{$composer-tablet-width}){
-    
-  }
-  
-}
-
-.button-container {
-  display: flex;
-  gap: var(--composer-gap-md);
-  align-items: center;
-   
-  
-  justify-content: center;
-}
-
-.button {
-  // Base.Button'a ekstra stil eklenmedi - İstek 5
-  // Sadece gerekli durumlar için override
 }
 
 .button-text {
-  // Button text için class eklendi - İstek 8
-  // Gerekirse burada button text stilleri eklenebilir
+  font-weight: bold;
 }
