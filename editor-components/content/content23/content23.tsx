@@ -3,7 +3,7 @@ import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface FeatureItem {
-  icon: string;
+  icon?: string;
   title: string;
   description: string;
 }
@@ -46,9 +46,15 @@ class Content23 extends BaseContent {
             { type: "string", key: "title", displayer: "Title", value: "Secure Payment" },
             { type: "string", key: "description", displayer: "Description", value: "100% secure payment, consectetur adipim scing elit." },
           ],
-        }
+        },
       ],
- 
+    });
+
+    this.addProp({
+      type: "number",
+      key: "itemsPerRow",
+      displayer: "Items Per Row",
+      value: 3,
     });
   }
 
@@ -58,30 +64,38 @@ class Content23 extends BaseContent {
 
   render() {
     const features = this.castToObject<FeatureItem[]>("features");
+    const itemsPerRow = this.getPropValue("itemsPerRow") ?? 3;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent
+          className={`${this.decorateCSS("max-content")} ${this.decorateCSS(`cols-${itemsPerRow}`)}`}
+        >
           {features.map((feat, idx) => (
-            <div key={idx} className={`${this.decorateCSS("feature")} ${!feat.icon ? this.decorateCSS("no-icon") : ""}`}>
-
+            <div key={idx} className={this.decorateCSS("feature")}>
               <div className={this.decorateCSS("top-row")}>
-                <Base.Icon
-                  name={feat.icon}
-                  propsIcon={{ className: this.decorateCSS("icon") }}
-                />
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {feat.title}
-                </Base.SectionTitle>
+                {feat.icon && (
+                  <Base.Icon
+                    name={feat.icon}
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+                  />
+                )}
+                <div className={this.decorateCSS("text-group")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {feat.title}
+                  </Base.SectionTitle>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {feat.description}
+                  </Base.SectionDescription>
+                </div>
               </div>
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {feat.description}
-              </Base.SectionDescription>
             </div>
           ))}
         </Base.MaxContent>
       </Base.Container>
     );
   }
+
 }
 
 export default Content23;
