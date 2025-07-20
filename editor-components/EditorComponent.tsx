@@ -376,7 +376,9 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
-    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
+    const compProps = (props?.props || [])
+      .filter((p: TypeUsableComponentProps) => this.shadowProps.some(shadowProp => shadowProp.key === p.key))
+      .map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
 
     this.state = {
       states: {},
