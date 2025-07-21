@@ -57,7 +57,6 @@
               .card-title {
                 font-size: 1rem;
                 color: var(--composer-font-color-primary);
-                //transition: color 0.3s ease-in-out;
 
                 &.active {
                   color: var(--composer-primary-color);
@@ -120,7 +119,6 @@
             &.active {
               max-height: 250px;
               .inner-text {
-                //padding: var(--composer-gap-lg) var(--composer-gap-md);
               }
             }
           }

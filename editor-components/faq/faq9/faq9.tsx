@@ -10,7 +10,6 @@ type Question = {
 };
 
 class Faq9 extends BaseFAQ {
-  // holds refs to each answer panel
   private answerRefs: Array<HTMLDivElement | null> = [];
 
   constructor(props?: any) {
@@ -223,7 +222,6 @@ class Faq9 extends BaseFAQ {
             )}
 
             <div className={this.decorateCSS("down-page")}>
-              {/* Left column */}
               <div className={this.decorateCSS("questions-column")}>
                 {leftQuestions.map((questn, i) => {
                   const idx = i;
@@ -287,7 +285,6 @@ class Faq9 extends BaseFAQ {
                 })}
               </div>
 
-              {/* Right column */}
               <div className={this.decorateCSS("questions-column")}>
                 {rightQuestions.map((questn, i) => {
                   const idx = i + midPoint;
