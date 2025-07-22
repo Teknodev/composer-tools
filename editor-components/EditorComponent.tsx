@@ -408,10 +408,9 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
-    const compProps = (props?.props || [])
-      .filter((p: TypeUsableComponentProps) => this.shadowProps.some(shadowProp => shadowProp.key === p.key))
-      .map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
-
+    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) =>
+      this.attachValueGetter(p)
+    );
     this.state = {
       states: {},
       componentProps: {
@@ -432,7 +431,10 @@ export abstract class Component
 
       const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
       const shadowProp = this.getShadowProp(key);
-      if (!shadowProp) return;
+      if (!shadowProp) {
+        this.state.componentProps.props.splice(propIndex, 1);
+        return;
+      }
 
       const isComplexType = propInState.type === "array" || propInState.type === "object";
       const isTypeChanged = propInState.type !== shadowProp.type;
