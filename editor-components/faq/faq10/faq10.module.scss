@@ -1,0 +1,124 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 3rem 0 2rem 0;
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--composer-font-color-primary);
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 1.5rem;
+      color: var(--composer-font-color-secondary);
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .faq-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+      .faq-col {
+        display: contents; // Let grid handle the columns, remove flex
+      }
+    }
+    .card {
+      background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      border-radius: var(--composer-border-radius-sm);
+      box-shadow: 0 2px 8px 0 rgba(16, 30, 54, 0.04);
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      &:hover {
+        box-shadow: 0 4px 16px 0 rgba(16, 30, 54, 0.08);
+      }
+      .card-header {
+        display: flex;
+        align-items: center;
+        padding: 1.5rem 2rem 1.5rem 2rem;
+        .card-title {
+          flex: 1;
+          font-size: 1.35rem;
+          font-weight: 600;
+          color: var(--composer-font-color-primary);
+        }
+        .icon {
+          width: 2rem;
+          height: 2rem;
+          color: var(--composer-font-color-primary);
+          transition: transform 0.3s;
+        }
+        .iconOpen {
+          transform: rotate(180deg);
+        }
+      }
+      .card-body {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 2rem;
+        transition: max-height 0.5s, padding 0.5s;
+        .card-text {
+          opacity: 0;
+          font-size: 1.15rem;
+          color: var(--composer-font-color-secondary);
+          font-weight: 400;
+          transition: opacity 0.5s;
+          padding-bottom: 1.5rem;
+        }
+        &.open {
+          max-height: 300px;
+          padding: 0 2rem 1.5rem 2rem;
+          .card-text {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .title {
+        font-size: 2rem;
+      }
+      .subtitle {
+        font-size: 1rem;
+      }
+      .faq-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        .faq-col {
+          // No need for gap here, handled by grid
+        }
+      }
+      .card {
+        .card-header {
+          padding: 1rem 1rem 1rem 1rem;
+          .card-title {
+            font-size: 1rem;
+          }
+          .icon {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+        }
+        .card-body {
+            max-height: 0;
+          .card-text {
+            font-size: 0.95rem;
+          }
+        }
+      }
+    }
+  }
+}
