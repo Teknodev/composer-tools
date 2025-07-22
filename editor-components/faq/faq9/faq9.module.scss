@@ -1,7 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
+:root {
+  --composer-tablet-width: #{$composer-tablet-width};
+}
+
 .container {
+  container-type: inline-size;
   .max-content {
     .page {
       display: flex;
@@ -59,7 +64,7 @@
                 color: var(--composer-font-color-primary);
 
                 &.active {
-                  color: var(--composer-primary-color);
+                  color: var(--composer-font-color-secondary);
                 }
               }
             }
@@ -70,7 +75,7 @@
               justify-content: center;
 
               .icon {
-                color: var(--composer-tertiary-primary);
+                color: var(--composer-font-color-primary);
                 width: 15px;
                 height: 15px;
                 transform: rotate(0deg);
@@ -80,17 +85,13 @@
               &.active {
                 .icon {
                   transform: rotate(180deg);
-                  color: var(--composer-secondary-color);
+                  color: var(--composer-font-color-secondary);
                 }
               }
             }
 
             &.active {
-              background-color: color-mix(
-                in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              );
+              background-color: var(--composer-primary-color);
             }
           }
 
