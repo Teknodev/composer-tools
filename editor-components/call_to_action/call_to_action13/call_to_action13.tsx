@@ -1,7 +1,7 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
-import styles from "./call_to_action13.module.scss"; 
+import styles from "./call_to_action13.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -13,16 +13,16 @@ class CallToAction13Page extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "highlightBackgroundColor",
-      displayer: "Highlight Background Color",
-      value: "#000",
+      type: "boolean",
+      key: "highlightEnabled",
+      displayer: "Enable Highlight Background",
+      value: true,
     });
 
     this.addProp({
       type: "boolean",
-      key: "highlightEnabled",
-      displayer: "Enable Highlight Background",
+      key: "lineEnabled",
+      displayer: "Enable Line",
       value: true,
     });
 
@@ -59,15 +59,16 @@ class CallToAction13Page extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("primary", "Button", "CONTACT US", "", null, null, "Primary"),
+        INPUTS.BUTTON(
+          "tertiary",
+          "Button",
+          "CONTACT US",
+          "",
+          null,
+          null,
+          "Tertiary"
+        ),
       ],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "lineEnabled",
-      displayer: "Enable Line",
-      value: true,
     });
   }
 
@@ -81,7 +82,7 @@ class CallToAction13Page extends BaseCallToAction {
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const highlightWordCount = this.getPropValue("highlightWordCount") || 2;
-    const highlightBackgroundColor = this.castToString(this.getPropValue("highlightBackgroundColor"));
+
     const highlightEnabled = this.getPropValue("highlightEnabled");
     const backgroundImageUrl = this.getPropValue("backgroundImageUrl");
     const lineEnabled = this.getPropValue("lineEnabled");
@@ -98,10 +99,7 @@ class CallToAction13Page extends BaseCallToAction {
       return (
         <>
           {highlightedWords.length > 0 && highlightEnabled ? (
-            <span
-              className={this.decorateCSS("highlight")}
-              style={{ "--highlight-bg-color": highlightBackgroundColor } as React.CSSProperties}
-            >
+            <span className={this.decorateCSS("highlight")}>
               {highlightedWords.join(" ")}
             </span>
           ) : (
@@ -118,25 +116,41 @@ class CallToAction13Page extends BaseCallToAction {
         <div className={this.decorateCSS("background")}>
           <div
             className={this.decorateCSS("bg-circle-dotted")}
-            style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}
+            style={{
+              backgroundImage: backgroundImageUrl
+                ? `url(${backgroundImageUrl})`
+                : "none",
+            }}
           />
           <div
-            className={`${this.decorateCSS("bg-circle-dotted")} ${this.decorateCSS("bg-circle-dotted-right")}`}
-            style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}
+            className={`${this.decorateCSS(
+              "bg-circle-dotted"
+            )} ${this.decorateCSS("bg-circle-dotted-right")}`}
+            style={{
+              backgroundImage: backgroundImageUrl
+                ? `url(${backgroundImageUrl})`
+                : "none",
+            }}
           />
         </div>
 
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitle || (buttons.length > 0)) && (
+          {(titleExist || subtitle || buttons.length > 0) && (
             <div
-              className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")}`}
+              className={`${this.decorateCSS("header")} ${
+                alignment === "center" && this.decorateCSS("center")
+              }`}
             >
               {(titleExist || subtitle) && (
                 <Base.VerticalContent className={this.decorateCSS("titles")}>
                   {subtitle && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("subtitle")}
+                    >
                       {renderSubtitle()}
-                      {lineEnabled && <span className={this.decorateCSS("line")} />}
+                      {lineEnabled && (
+                        <span className={this.decorateCSS("line")} />
+                      )}
                     </Base.SectionSubTitle>
                   )}
                   {titleExist && (
@@ -152,13 +166,15 @@ class CallToAction13Page extends BaseCallToAction {
                   {buttons.map((button: Button, index: number) => (
                     <ComposerLink key={index} path={button.url}>
                       <Base.Button
-                        className={`${this.decorateCSS("button")} ${this.decorateCSS("custom-border")}`}
+                        className={`${this.decorateCSS(
+                          "button"
+                        )} ${this.decorateCSS("custom-border")}`}
                         buttonType={button.type}
                       >
                         <span className={this.decorateCSS("dsn-border")}></span>
-                        <span className={this.decorateCSS("button-text")}>
+                        <Base.P className={this.decorateCSS("button-text")}>
                           {button.text}
-                        </span>
+                        </Base.P>
                       </Base.Button>
                     </ComposerLink>
                   ))}
