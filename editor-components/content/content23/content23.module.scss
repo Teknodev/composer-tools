@@ -1,0 +1,107 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  background: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  gap: var(--composer-gap-xl);
+  overflow-x: hidden;
+
+  .max-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: var(--composer-gap-xl);
+    width: 100%;
+
+    &.cols-1 .feature {
+      flex: 1 1 100%;
+    }
+
+    &.cols-2 .feature {
+      flex: 1 1 48%;
+    }
+
+    &.cols-3 .feature {
+      flex: 1 1 30%;
+    }
+
+    &.cols-4 .feature {
+      flex: 1 1 22%;
+    }
+
+    .feature {
+      min-width: 150px !important;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: var(--composer-gap-xs);
+      border-radius: var(--composer-border-radius-xs);
+
+      .top-row {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--composer-gap-md);
+        width: 100%;
+      }
+
+      .icon {
+        font-size: 2.5rem;
+        flex-shrink: 0;
+        color: var(--composer-font-color-primary);
+        margin: 0;
+        padding: 0;
+      }
+
+      .title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--composer-font-color-primary);
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      .description {
+        font-size: 1rem;
+        color: var(--composer-tertiary-color);
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      &.no-icon {
+        .top-row {
+          gap: 0;
+        }
+
+        .description {
+          margin-left: 0 !important;
+        }
+      }
+    }
+
+    @container (max-width: #{$composer-tablet-width}) {
+      .feature {
+        flex: 1 1 calc(50% - 1rem);
+      }
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+
+      .feature {
+        flex: 0 0 100%;
+        max-width: 90%;
+        scroll-snap-align: start;
+        scroll-margin-left: 1rem;
+        margin-right: 1rem;
+        border-radius: var(--composer-border-radius-xs);
+      }
+    }
+  }
+}
