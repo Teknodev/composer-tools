@@ -7,6 +7,7 @@ import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
 import { CurrencyCode } from "composer-tools/utils/currency";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -407,8 +408,9 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
-    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
-
+    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) =>
+      this.attachValueGetter(p)
+    );
     this.state = {
       states: {},
       componentProps: {
@@ -429,7 +431,10 @@ export abstract class Component
 
       const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
       const shadowProp = this.getShadowProp(key);
-      if (!shadowProp) return;
+      if (!shadowProp) {
+        this.state.componentProps.props.splice(propIndex, 1);
+        return;
+      }
 
       const isComplexType = propInState.type === "array" || propInState.type === "object";
       const isTypeChanged = propInState.type !== shadowProp.type;
@@ -952,6 +957,16 @@ export abstract class BaseCallToAction extends Component {
 
 export abstract class BaseSlider extends Component {
   static category = CATEGORIES.SLIDER;
+    
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
 }
 
 export abstract class BaseFAQ extends Component {
