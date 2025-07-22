@@ -1,5 +1,6 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState, useCallback } from "react";
 import Slider, { Settings } from "react-slick";
+import { debounce } from "lodash";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -22,7 +23,22 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
     ref.current = slider;
   };
 
+  const restartSlider = useCallback(
+    debounce(() => {
+      props = {
+        ...props,
+        slidesToShow: props.slidesToShow || 1,
+        slidesToScroll: props.slidesToScroll || 1
+      };
+      setSliderSettings({...props, responsive: []});
+      sliderRef.current?.slickPlay();
+    }, 200),
+    [props]
+  );
+
   useEffect(() => {
+    restartSlider();
+
     if (!props.responsive) return;
 
     const sortedBreakpoints = [...props.responsive].sort((a, b) => a.breakpoint - b.breakpoint);
@@ -60,7 +76,7 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
     return () => {
       observer.disconnect();
     };
-  }, [props.slidesToShow, props.responsive]);
+  }, [props, restartSlider]);
 
   return (
     <Slider ref={setRef} {...sliderSettings}>
@@ -69,4 +85,4 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
   );
 });
 
-export default ComposerSlider;
+export default ComposerSlider

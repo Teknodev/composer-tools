@@ -7,6 +7,7 @@ import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
 import { CurrencyCode } from "composer-tools/utils/currency";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -407,7 +408,9 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
-    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
+    const compProps = (props?.props || [])
+      .filter((p: TypeUsableComponentProps) => this.shadowProps.some(shadowProp => shadowProp.key === p.key))
+      .map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
 
     this.state = {
       states: {},
@@ -952,6 +955,16 @@ export abstract class BaseCallToAction extends Component {
 
 export abstract class BaseSlider extends Component {
   static category = CATEGORIES.SLIDER;
+    
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
 }
 
 export abstract class BaseFAQ extends Component {
