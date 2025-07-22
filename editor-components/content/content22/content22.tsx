@@ -32,7 +32,12 @@ class Content22 extends BaseContent {
         },
       ],
     });
-
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line Under Title",
+      value: true,  
+    });
     this.addProp({
       type: "array",
       key: "items",
@@ -130,15 +135,14 @@ class Content22 extends BaseContent {
   render() {
     const mainTitle = this.castToObject<{ title: string; subtitle: string }>("mainTitle");
     const items = this.castToObject<Item[]>("items") || [];
-
-
+    const showLine = this.getPropValue("showLine") as boolean;
     return (
       <Base.Container className={this.decorateCSS("section")}>
         <Base.MaxContent className={this.decorateCSS("wrapper")}>
           <div className={this.decorateCSS("header")}>
-            <h2>{mainTitle.title}</h2>
-            <div className={this.decorateCSS("line")}></div>
-            <p>{mainTitle.subtitle}</p>
+            <Base.SectionTitle>{mainTitle.title}</Base.SectionTitle>
+            {showLine && <div className={this.decorateCSS("line")}></div>}
+            <Base.SectionDescription>{mainTitle.subtitle}</Base.SectionDescription>
           </div>
 
           {items.map((item, i) => (
@@ -159,8 +163,8 @@ class Content22 extends BaseContent {
                 </div>
                 <div className={this.decorateCSS("text")}>
                   <h3>{item.sectionHeading}</h3>
-                  <p>{item.description}</p>
-                  <Base.Button className={this.decorateCSS("read-more")}>READ MORE</Base.Button>
+                  <Base.SectionDescription>{item.description}</Base.SectionDescription>
+                  <Base.Button type="tertiary">READ MORE</Base.Button>
                 </div>
               </div>
               {i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
