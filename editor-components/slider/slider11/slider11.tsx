@@ -81,7 +81,7 @@ class Slider11 extends BaseSlider {
               key: "image",
               displayer: "Image URL",
               value:
-                "https://actualitte.com/media/cache/width_944_webp/uploads/images/hayao-miyazaki-mes-jours-dans-les-longs-metrages-sont-finis-d217a5e0d5cd.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
             },
           ],
         },
@@ -107,7 +107,7 @@ class Slider11 extends BaseSlider {
               type: "string",
               key: "text",
               displayer: "Link Title",
-              value: "Second",
+              value: "Security and infrastructure",
             },
 
             {
@@ -127,7 +127,53 @@ class Slider11 extends BaseSlider {
               key: "image",
               displayer: "Image URL",
               value:
-                "https://actualitte.com/media/cache/width_944_webp/uploads/images/hayao-miyazaki-mes-jours-dans-les-longs-metrages-sont-finis-d217a5e0d5cd.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tabs3",
+          displayer: "Tabs 3",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Tab Title",
+              value: "Sell anything, anytime",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Tab Description",
+              value:
+                "Create highly customizable, SEO-ready eCommerce sites for clients with all the features you need to sell anything to anyone.",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Link Title",
+              value: "Sell online",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Link URL",
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GoArrowRight",
+            },
+
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image URL",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
             },
           ],
         },
