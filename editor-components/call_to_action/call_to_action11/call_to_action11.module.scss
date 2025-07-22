@@ -76,8 +76,7 @@
     gap: var(--composer-gap-lg);
     display: flex;
     
-    justify-content: center;
-    flex-direction: column;
+    
   }
   
   @container (max-width: #{$composer-phone-width}) {
@@ -100,10 +99,7 @@
     text-align: center;
     
   }
-  @container (max-width: #{$composer-tablet-width}){
-    text-align: center;
-    max-width: 100%;
-  }
+
 
   
 }
@@ -118,9 +114,7 @@
    
    text-align: center !important ;
   }
-  @container (max-width: #{$composer-tablet-width}){
-    text-align: center!important ;
-  }  
+ 
 
   
 
