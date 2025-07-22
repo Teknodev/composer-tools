@@ -61,7 +61,7 @@ class Header4 extends BaseHeader {
       displayer: "Image Animation",
       value: true,
     });
-    this.setComponentState("scrollY", 1);
+    this.setComponentState("scrollY", 0);
   }
 
   handleScroll = (e: any) => {
@@ -90,8 +90,8 @@ class Header4 extends BaseHeader {
     function getStyle(direction: "up" | "down") {
       if (!imageAnm) return {};
       const transform = {
-        up: scrollY / 25,
-        down: -(scrollY / 50),
+        up: scrollY / 200,
+        down: -(scrollY / 250),
       };
       return {
         transform: `translate(0%, ${transform[direction]}%) translate3d(0px, 0px, 0px)`,
