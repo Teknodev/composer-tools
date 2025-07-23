@@ -32,12 +32,14 @@ class Content22 extends BaseContent {
         },
       ],
     });
+    
     this.addProp({
       type: "boolean",
       key: "showLine",
       displayer: "Show Line Under Title",
       value: true,  
     });
+    
     this.addProp({
       type: "array",
       key: "items",
@@ -136,41 +138,43 @@ class Content22 extends BaseContent {
     const mainTitle = this.castToObject<{ title: string; subtitle: string }>("mainTitle");
     const items = this.castToObject<Item[]>("items") || [];
     const showLine = this.getPropValue("showLine") as boolean;
+
     return (
-      <Base.Container className={this.decorateCSS("section")}>
-        <Base.MaxContent className={this.decorateCSS("wrapper")}>
-          <div className={this.decorateCSS("header")}>
-            <Base.SectionTitle>{mainTitle.title}</Base.SectionTitle>
-            {showLine && <div className={this.decorateCSS("line")}></div>}
-            <Base.SectionDescription>{mainTitle.subtitle}</Base.SectionDescription>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            <div className={this.decorateCSS("header")}>
+              <Base.SectionTitle>{mainTitle.title}</Base.SectionTitle>
+              {showLine && <div className={this.decorateCSS("line")} />}
+              <Base.SectionDescription>{mainTitle.subtitle}</Base.SectionDescription>
+            </div>
+
+            {items.map((item, i) => (
+              <React.Fragment key={i}>
+                <div
+                  className={`${this.decorateCSS("content")} ${
+                    i % 2 === 1 ? this.decorateCSS("reverse") : ""
+                  }`}
+                >
+                  <div className={this.decorateCSS("image-container")}>
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt={item.sectionHeading}
+                        className={this.decorateCSS("image")}
+                      />
+                    )}
+                  </div>
+                  <div className={this.decorateCSS("text")}>
+                    <h3>{item.sectionHeading}</h3>
+                    <Base.SectionDescription>{item.description}</Base.SectionDescription>
+                    <Base.Button type="tertiary">READ MORE</Base.Button>
+                  </div>
+                </div>
+                {i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
+              </React.Fragment>
+            ))}
           </div>
-
-          {items.map((item, i) => (
-            <React.Fragment key={i}>
-              <div
-                className={`${this.decorateCSS("content")} ${
-                  i % 2 === 1 ? this.decorateCSS("reverse") : ""
-                }`}
-              >
-                <div className={this.decorateCSS("image-container")}>
-                  {item.image && (
-                    <img
-                      src={item.image}
-                      alt={item.sectionHeading}
-                      className={this.decorateCSS("image")}
-                    />
-                  )}
-                </div>
-                <div className={this.decorateCSS("text")}>
-                  <h3>{item.sectionHeading}</h3>
-                  <Base.SectionDescription>{item.description}</Base.SectionDescription>
-                  <Base.Button type="tertiary">READ MORE</Base.Button>
-                </div>
-              </div>
-              {i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
-            </React.Fragment>
-          ))}
-
         </Base.MaxContent>
       </Base.Container>
     );
