@@ -1,0 +1,200 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .wrapper {
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      gap: var(--composer-gap-xl);
+
+      .title-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-bottom: var(--composer-gap-lg);
+        .title {
+          font-size: 3rem;
+          color: var(--composer-primary-color);
+          letter-spacing: 0.2em;
+          margin: 0;
+        }
+      }
+
+      .map-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        .custom-map {
+          position: relative;
+          width: 100%;
+          height: 768px;
+          max-width: 1542px;
+          padding: var(--composeer-gap-md);
+          background: #181818;
+        }
+        .dot {
+          background: #bdbdbd;
+          opacity: 0.7;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          position: absolute;
+          z-index: 1;
+        }
+        .marker {
+          background: #FFD59E;
+          border-radius: 50%;
+          box-shadow: 0 0 24px 8px #FFD59E55;
+          border: 2px solid #FFD59E;
+          width: 18px;
+          height: 18px;
+          position: absolute;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: transform 0.2s;
+          &.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 32px 12px #FFD59E99;
+          }
+        }
+        .background-image {
+          width: 100%;
+          height: 100%;
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          z-index: 0;
+          object-fit: contain;
+        }
+        .marker-image {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          display: block;
+        }
+      }
+
+      .tooltip {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,0.85);
+        color: var(--composer-font-color-primary);
+        border-radius: var(--composer-border-radius-xs);
+        box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+        min-width: 300px;
+        max-width: 350px;
+        padding: var(--composer-gap-lg) var(--composer-gap-xl);
+        z-index: 100;
+        flex-direction: column;
+        align-items: flex-start;
+        .tooltip-header {
+          font-size: 1.7rem;
+          color: var(--composer-primary-color);
+          font-weight: bold;
+          margin-bottom: var(--composer-gap-md);
+          letter-spacing: 0.1em;
+        }
+        .tooltip-content {
+          font-size: 1.2rem;
+          color: var(--composer-font-color-primary);
+          margin-bottom: var(--composer-gap-lg);
+          line-height: 2.2rem;
+        }
+        .tooltip-close {
+          background: none;
+          border: none;
+          color: var(--composer-secondary-color);
+          font-size: 1.1rem;
+          cursor: pointer;
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        gap: var(--composer-gap-md);
+        .map-container {
+          .custom-map {
+            height: 350px;
+            max-width: 100vw;
+          }
+        }
+        .popover {
+          min-width: 180px;
+          .popover-header {
+            font-size: 1.1rem;
+          }
+          .popover-content {
+            font-size: 0.9rem;
+          }
+        }
+        .tooltip {
+          min-width: 250px;
+          max-width: 300px;
+          .tooltip-header {
+            font-size: 1.5rem;
+          }
+          .tooltip-content {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        gap: var(--composer-gap-sm);
+        .title-row {
+          .title {
+            font-size: 2rem;
+            text-align: center;
+          }
+        }
+        .map-container {
+          .custom-map {
+            height: 200px;
+            max-width: 100vw;
+          }
+        }
+        .popover {
+          min-width: 120px;
+          .popover-header {
+            font-size: 0.9rem;
+          }
+          .popover-content {
+            font-size: 0.8rem;
+          }
+        }
+        .tooltip {
+          min-width: 200px;
+          max-width: 250px;
+          .tooltip-header {
+            font-size: 1.3rem;
+          }
+          .tooltip-content {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
