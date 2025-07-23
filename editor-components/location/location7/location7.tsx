@@ -142,7 +142,7 @@ class Location7 extends Location {
               type: "number",
               displayer: "Left %",
               key: "leftPercent",
-              value: 20,
+              value: 30,
             },
             {
               type: "number",
@@ -228,6 +228,14 @@ class Location7 extends Location {
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "showTooltipLine",
+      displayer: "Tooltip Line",
+      value: true,
+    });
+
     this.addProp({
       type: "image",
       key: "background-image",
@@ -242,7 +250,12 @@ class Location7 extends Location {
   }
 
   handleMarkerClick = (index: number) => {
-    this.setComponentState("activeMarkerIndex", index);
+    const currentActiveIndex = this.getComponentState("activeMarkerIndex");
+    if (currentActiveIndex === index) {
+      this.setComponentState("activeMarkerIndex", null);
+    } else {
+      this.setComponentState("activeMarkerIndex", index);
+    }
   };
 
   handleClosePopover = () => {
@@ -252,17 +265,18 @@ class Location7 extends Location {
   render() {
     const addresses: Address[] = this.getPropValue("addresses");
     const title = this.getPropValue("title");
+    const titleExist = this.castToString(title);
     const activeMarkerIndex = this.getComponentState("activeMarkerIndex");
     const bgImage = this.getPropValue("background-image");
-
+    const showTooltipLine = this.getPropValue("showTooltipLine");
 
     // Prepare markers
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const leftPercent = address.value.find((addr: any) => addr.key === "leftPercent")?.value;
-        const topPercent = address.value.find((addr: any) => addr.key === "topPercent")?.value;
-        const popupTitle = address.value.find((addr: any) => addr.key === "popupTitle")?.value;
-        const description = address.value.find((addr: any) => addr.key === "description")?.value;
+        const leftPercent = address.getPropValue("leftPercent");
+        const topPercent = address.getPropValue("topPercent");
+        const popupTitle = address.getPropValue("popupTitle");
+        const description = address.getPropValue("description");
         acc.push({
           leftPercent,
           topPercent,
@@ -279,17 +293,22 @@ class Location7 extends Location {
       <Base.Container className={this.decorateCSS("container")}> 
         <Base.MaxContent className={this.decorateCSS("max-content")}> 
           <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
-            <div className={this.decorateCSS("title-row")}> 
-              <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
-            </div>
+            {titleExist && (
+              <div className={this.decorateCSS("title-row")}> 
+                <Base.SectionTitle className={this.decorateCSS("title")}>{titleExist}</Base.SectionTitle>
+              </div>
+            )}
             <section className={this.decorateCSS("map-container")}> 
               <div
-                className={this.decorateCSS("custom-map")}
-                style={{ position: "relative", width: "100%", aspectRatio: "2/1", height: "auto" }}>
+                className={this.decorateCSS("custom-map")}>
                 {bgImage && (
                   <img src={bgImage} alt="World Map" className={this.decorateCSS("background-image")}/>
                 )}
                 {markers.map((marker, idx) => {
+                  const popupTitle = this.castToString(marker.popupTitle);
+                  const description = this.castToString(marker.description);
+                  const tooltipExist = popupTitle || description ;
+
                   return (
                     <React.Fragment key={idx}>
                       <div
@@ -300,7 +319,7 @@ class Location7 extends Location {
                         }}
                         onClick={() => this.handleMarkerClick(idx)}
                       />
-                      {activeMarkerIndex === idx && (
+                      {activeMarkerIndex === idx && tooltipExist && (
                         <div
                           className={this.decorateCSS("tooltip")}
                           style={{
@@ -308,11 +327,9 @@ class Location7 extends Location {
                             top: `${marker.topPercent}%`,
                           }}
                         >
-                          <div className={this.decorateCSS("tooltip-header")}>{marker.popupTitle}</div>
-                          <div className={this.decorateCSS("tooltip-content")}>{marker.description && marker.description.split("\n").map((line: string, i: number) => <div key={i}>{line}</div>)}</div>
-                          <button className={this.decorateCSS("tooltip-close")}
-                            onClick={this.handleClosePopover}
-                          >Close</button>
+                          {popupTitle && <div className={this.decorateCSS("tooltip-header")}>{popupTitle}</div>}
+                          {showTooltipLine && <div className={this.decorateCSS("tooltip-divider")}></div>}
+                          {description && <div className={this.decorateCSS("tooltip-content")}>{description}</div>}
                         </div>
                       )}
                     </React.Fragment>
