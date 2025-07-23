@@ -1,6 +1,8 @@
+import React, { createRef } from "react";
 import styles from "./content23.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface FeatureItem {
   icon?: string;
@@ -9,6 +11,9 @@ interface FeatureItem {
 }
 
 class Content23 extends BaseContent {
+  containerRef = createRef<HTMLDivElement>();
+  sliderRef = createRef<any>();
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -49,6 +54,18 @@ class Content23 extends BaseContent {
         },
       ],
     });
+    this.addProp({
+      type: "icon",
+      key: "prev-button-icon",
+      displayer: "Previous Slide Button",
+      value: "MdArrowBackIos",
+    });
+    this.addProp({
+      type: "icon",
+      key: "next-button-icon",
+      displayer: "Next Slide Button",
+      value: "MdArrowForwardIos",
+    });
 
     this.addProp({
       type: "number",
@@ -61,15 +78,29 @@ class Content23 extends BaseContent {
   static getName(): string {
     return "Content 23";
   }
+  handlePrev = () => {
+    if (this.sliderRef.current) {
+      this.sliderRef.current.slickPrev();
+    }
+  };
+
+  handleNext = () => {
+    if (this.sliderRef.current) {
+      this.sliderRef.current.slickNext();
+    }
+  };
 
   render() {
     const features = this.castToObject<FeatureItem[]>("features");
     const itemsPerRow = this.getPropValue("itemsPerRow") ?? 3;
+    const prevIcon = this.getPropValue("prev-button-icon");
+    const nextIcon = this.getPropValue("next-button-icon");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent
-          className={`${this.decorateCSS("max-content")} ${this.decorateCSS(`cols-${itemsPerRow}`)}`}
+          className={`${this.decorateCSS("max-content")} ${this.decorateCSS(`cols-${itemsPerRow}`)} ${this.decorateCSS("desktop-wrapper")}`}
+          ref={this.containerRef}
         >
           {features.map((feat, idx) => (
             <div key={idx} className={this.decorateCSS("feature")}>
@@ -92,10 +123,52 @@ class Content23 extends BaseContent {
             </div>
           ))}
         </Base.MaxContent>
+        <div className={this.decorateCSS("mobile-wrapper")}>
+          <ComposerSlider
+            ref={this.sliderRef}
+            className={this.decorateCSS("mobile-slider")}
+            infinite={true}
+            dots={false}
+            speed={0}
+            autoplaySpeed={20000}
+            slidesToShow={1}
+            slidesToScroll={1}
+            arrows={false}
+            autoplay={false}
+          >
+            {features.map((feat, idx) => (
+              <div key={idx} className={this.decorateCSS("feature")}>
+                <div className={this.decorateCSS("top-row")}>
+                  {feat.icon && (
+                    <Base.Icon
+                      name={feat.icon}
+                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    />
+                  )}
+                  <div className={this.decorateCSS("text-group")}>
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {feat.title}
+                    </Base.SectionTitle>
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {feat.description}
+                    </Base.SectionDescription>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </ComposerSlider>
+          <div className={this.decorateCSS("slider-buttons")}>
+            <button onClick={this.handlePrev}>
+              <Base.Icon name={prevIcon} />
+            </button>
+            <button onClick={this.handleNext}>
+              <Base.Icon name={nextIcon} />
+            </button>
+          </div>
+        </div>
       </Base.Container>
     );
   }
-
 }
 
 export default Content23;
