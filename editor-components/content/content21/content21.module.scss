@@ -96,10 +96,6 @@
         .button {
           content: "";
           margin-top: var(--composer-gap-md);
-          transition: background var(--transition);
-          /* &:hover {
-            background: rgba(var(--composer-font-color-primary-rgb), 0.2);
-          } */
         }
       }
 
