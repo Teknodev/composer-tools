@@ -14,7 +14,7 @@
       font-size: var(--project-font-size);
       
       
-      // ✅ DEĞİŞTİRİLDİ: Artık base'deki varsayılan değişkenler kullanılıyor
+      
       &.primary {
         background-color: var(--composer-primary-color);
         color: var(--composer-font-color-secondary);
@@ -26,7 +26,7 @@
         }
       }
       
-      // ✅ DEĞİŞTİRİLDİ: Secondary için base varsayılanları
+      
       &.secondary {
         background-color: var(--composer-tertiary-color);
         color: var(--composer-font-color-secondary);
@@ -38,7 +38,7 @@
         }
       }
       
-      // ✅ DEĞİŞTİRİLDİ: Tertiary için base varsayılanları
+      
       &.tertiary {
         background-color: transparent;
         color: var(--composer-font-color-primary);
