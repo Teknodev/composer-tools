@@ -10,22 +10,31 @@
       align-items: center;
       .title {
         margin: 0px;
+        text-align: center;
       }
       .button {
         content: "";
+
+        .button-text {
+          content: "";
+          margin: 0;
+          color: var(--composer-font-color-secondary);
+        }
       }
       .description {
-        font-size: 1rem;
+        content: "";
         color: var(--composer-font-color-primary);
       }
       .image-container {
         width: fit-content;
         container-type: normal;
+
+        justify-content: center;
         .image-wrapper {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: fit-content;
+          width: 100%;
 
           .image {
             height: 100%;
