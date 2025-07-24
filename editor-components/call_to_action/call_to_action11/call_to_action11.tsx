@@ -31,19 +31,17 @@ class CallToAction11 extends BaseCallToAction {
   }
 
   render() {
-    const alignment = Base.getContentAlignment();
     const buttons = this.castToObject<Button[]>("buttons") || [];
-    const text = this.castToString(this.getPropValue("text"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(text || buttons.length > 0) && (
+          {(this.getPropValue("text") || buttons.length > 0) && (
             <div className={this.decorateCSS("content")}>
-              {text && (
+              {this.getPropValue("text") && (
                 <div className={this.decorateCSS("text-container")}>
                   <Base.SectionDescription className={this.decorateCSS("text")}>
-                    {text}
+                    {this.getPropValue("text")}
                   </Base.SectionDescription>
                 </div>
               )}
@@ -52,7 +50,10 @@ class CallToAction11 extends BaseCallToAction {
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((button, idx) => (
                     <ComposerLink path={button.url} key={idx}>
-                      <Base.Button className={`${this.decorateCSS("button")} ${button.type?.toLowerCase() || 'primary'}`} buttonType={button.type}>
+                      <Base.Button
+                        className={`${this.decorateCSS("button")} ${button.type?.toLowerCase() || "primary"}`}
+                        buttonType={button.type}
+                      >
                         <span className={this.decorateCSS("button-text")}>
                           {button.text}
                         </span>
