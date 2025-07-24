@@ -209,7 +209,7 @@ class Testimonials14 extends Testimonials {
         this.startAutoplay();
     }
 
-    componentWillUnmount() {
+    onComponentWillUnmount() {
         this.stopAutoplay();
     }
 
