@@ -4,8 +4,10 @@ import styles from "./header4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { BaseNavigator } from "../../EditorComponent";
 
 class Header4 extends BaseHeader {
+  imageRef: React.RefObject<HTMLDivElement | null>;
   constructor(props?: any) {
     super(props, styles);
 
@@ -47,7 +49,11 @@ class Header4 extends BaseHeader {
         },
       ],
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "More Projects", "", null, null, "Primary"));
+
+    this.addProp(
+      INPUTS.BUTTON("button", "Button", "More Projects", "", null, null, "Primary")
+    );
+
     this.addProp({
       type: "image",
       key: "image",
@@ -55,20 +61,59 @@ class Header4 extends BaseHeader {
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
     });
+
     this.addProp({
       type: "boolean",
       key: "image-anm",
       displayer: "Image Animation",
       value: true,
     });
-    this.setComponentState("scrollY", 1);
+
+    this.setComponentState("scrollY", 0);
+    this.setComponentState("animate", false);
+    this.imageRef = React.createRef<HTMLDivElement>();
   }
 
-  handleScroll = (e: any) => {
-    const container = e.target;
-    const scrollY = container.scrollTop;
-    this.setComponentState("scrollY", scrollY);
-  };
+  onComponentDidMount() {
+    const container = Base.Navigator.getWrapperContainer();
+    const wrapper = container?.wrapper;
+
+    if (wrapper && typeof wrapper.addEventListener === "function") {
+      wrapper.addEventListener("scroll", this.handleScroll);
+    }
+  }
+
+  onComponentWillUnmount() {
+    const container = Base.Navigator.getWrapperContainer();
+    const wrapper = container?.wrapper;
+
+    if (wrapper && typeof wrapper.removeEventListener === "function") {
+      wrapper.removeEventListener("scroll", this.handleScroll);
+    }
+  }
+
+handleScroll = () => {
+  const scrollY = Base.Navigator.getWrapperContainer()?.scrollY || 0;
+  this.setComponentState("scrollY", scrollY);
+
+  const targetEl = this.imageRef.current;
+  if (!targetEl) return;
+
+  const rect = targetEl.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const isVisible = rect.top < windowHeight && rect.bottom > 0;
+  
+  let progress = 0;
+  if (isVisible) {
+    const elementHeight = rect.height;
+    const visibleDistance = windowHeight - rect.top;
+    progress = Math.min(Math.max(visibleDistance / (windowHeight + elementHeight), 0), 1);
+  }
+  
+  this.setComponentState("animate", isVisible);
+  this.setComponentState("animationProgress", progress);
+};
+
 
   static getName(): string {
     return "Header 4";
@@ -76,7 +121,8 @@ class Header4 extends BaseHeader {
 
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    let card: any = this.castToObject("card");
+    const card: any = this.castToObject("card");
+
     const imageAnm = this.getPropValue("image-anm");
     const image = this.getPropValue("image");
     const subTitle = this.castToString(card.subtitle);
@@ -87,31 +133,47 @@ class Header4 extends BaseHeader {
     const showCard = subTitle || title || description || buttonText || note;
     const scrollY = this.getComponentState("scrollY");
 
-    function getStyle(direction: "up" | "down") {
-      if (!imageAnm) return {};
-      const transform = {
-        up: scrollY / 25,
-        down: -(scrollY / 50),
-      };
-      return {
-        transform: `translate(0%, ${transform[direction]}%) translate3d(0px, 0px, 0px)`,
-      };
-    }
+const getStyle = (direction: "up" | "down") => {
+  const isAnimating = this.getComponentState("animate");
+  const progress = this.getComponentState("animationProgress") || 0;
+  
+  if (!imageAnm || !isAnimating) return {};
+
+  if (direction === "up") {
+    const translateY = -30 * progress;
+    return {
+      transform: `translate(0%, ${translateY}%) translate3d(0px, 0px, 0px)`,
+      transition: "transform 0.1s ease-out",
+      willChange: "transform",
+    };
+  }
+
+  if (direction === "down") {
+    const translateY = 100 - 200 * progress;
+    return {
+      transform: `translate3d(0px, ${translateY}px, 0px)`,
+      transition: "transform 0.1s ease-out",
+      willChange: "transform",
+    };
+  }
+
+  return {};
+};
 
     return (
       <Base.Container
-        className={`${this.decorateCSS(`container`)} ${!imageAnm && this.decorateCSS("no-image-anm")
-          }`}
-        onScroll={this.handleScroll}
+        className={`${this.decorateCSS("container")} ${
+          !imageAnm && this.decorateCSS("no-image-anm")
+        }`}
         isFull={true}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {image && (
-            <div className={this.decorateCSS("image-container")}>
+            <div 
+            ref={this.imageRef} className={this.decorateCSS("image-container")}>
               <img
-                alt={image}
-                className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")
-                  }`}
+                alt="Header visual"
+                className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
                 src={image}
                 style={getStyle("up")}
               />
@@ -129,25 +191,24 @@ class Header4 extends BaseHeader {
                           <hr className={this.decorateCSS("sub-heading-line")} />
                         )}
                         <span className={this.decorateCSS("sub-heading-title")}>
-                          {card.subtitle}
+                          {subTitle}
                         </span>
                       </div>
                     )}
-                    {title && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
+                    {title && <h2 className={this.decorateCSS("title")}>{title}</h2>}
                   </div>
                 )}
-                {description && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
+                {description && <p className={this.decorateCSS("desc")}>{description}</p>}
                 {buttonText && (
                   <div className={this.decorateCSS("button-container")}>
                     <ComposerLink path={card.buttonLink}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        {button.text}</Base.Button>
+                      <Base.Button type="tertiary" className={this.decorateCSS("button")}>
+                        {buttonText}
+                      </Base.Button>
                     </ComposerLink>
                   </div>
                 )}
-                {this.castToString(card.note) && (
-                  <p className={this.decorateCSS("note")}>{card.note}</p>
-                )}
+                {note && <p className={this.decorateCSS("note")}>{note}</p>}
               </div>
             </div>
           )}
