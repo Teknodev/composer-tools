@@ -387,12 +387,6 @@ export abstract class Component
     return this.onShouldComponentUpdate?.(nextProps, nextState) ?? true;
   }
 
-  getSnapshotBeforeUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<{ states: any; componentProps: any; }>
-  ): any {
-    return this.onGetSnapshotBeforeUpdate?.(prevProps, prevState);
-  }
 
   componentDidCatch(error: Error, info: { componentStack: string }): void {
     this.onComponentDidCatch?.(error, info);
@@ -900,14 +894,6 @@ export abstract class Component
     return true;
   }
 
-  onGetSnapshotBeforeUpdate(
-    prevProps: Readonly<any>,
-    prevState: Readonly<any>
-  ): any {
-    // Called right before DOM updates (used with getSnapshotBeforeUpdate)
-    // Override in child components
-    return null;
-  }
 
   onComponentDidCatch(error: Error, info: { componentStack: string }) {
     // Error boundary: catch errors in descendants
