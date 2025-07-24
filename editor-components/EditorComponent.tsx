@@ -706,6 +706,8 @@ export abstract class Component
   }
 
   setComponentState(key: string, value: any): void {
+    const isSameValue = this.state.states[key] === value;
+    if(isSameValue) return;
     this.state.states[key] = value;
     this.setState({ ...this.state });
   }
