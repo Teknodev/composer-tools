@@ -38,7 +38,7 @@ class CallToAction11 extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.getPropValue("text") || buttons.length > 0) && (
             <div className={this.decorateCSS("content")}>
-              {this.getPropValue("text") && (
+              {this.castToString(this.getPropValue("text")) && (
                 <div className={this.decorateCSS("text-container")}>
                   <Base.SectionDescription className={this.decorateCSS("text")}>
                     {this.getPropValue("text")}
