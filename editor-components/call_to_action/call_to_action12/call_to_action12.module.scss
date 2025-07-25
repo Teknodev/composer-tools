@@ -49,9 +49,9 @@
           margin-right: 10px;
 
           .input {
-            padding: var(--padding-lg) var(--padding-lg);
+            padding: var(--composer-gap-sm) var(--composer-gap-sm);
             background-color: transparent;
-            border-radius: var(--border-radius-xs);
+            border-radius: var(--composer-border-radius-sm);
             height: 100%;
             width: 100%;
             outline: none;
@@ -66,22 +66,22 @@
             position: absolute;
             bottom: -20px;
             left: 0;
-            color: var(--warning);
+            color: var(--composer-danger-color);
           }
         }
         .submit-button {
           content: "";
-          border-radius: var(--border-radius-xs);
-          padding: var(--padding-lg) calc(var(--padding-lg) * 3 );
+          border-radius: var(--composer-border-radius-sm);
+          padding: var(--composer-gap-sm) calc(var(--composer-gap-lg) * 3 );
         }
       }
     }
 
-               .button-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
+        .button-container {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+      }
        .button {
         content: "";
 
@@ -147,7 +147,7 @@
             }
           }
            .submit-button {
-          padding: var(--padding-md);
+          padding: var(--composer-gap-sm);
           justify-content: center;
         }
         }
