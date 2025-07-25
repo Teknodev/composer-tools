@@ -56,7 +56,7 @@ class LogoComp7Page extends LogoClouds {
         {title && (
           <Base.VerticalContent className={this.decorateCSS("heading")}>
             <Base.SectionTitle className={this.decorateCSS("title")}>
-              {title}
+              {this.getPropValue("title")}
             </Base.SectionTitle>
           </Base.VerticalContent>
         )}
