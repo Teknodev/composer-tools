@@ -234,6 +234,8 @@ export type TypeMediaInputValue =
       };
     };
 
+export type MediaType = "icon" | "image" | "video";
+
 type currencyAdditionalParams ={
   showCode?: boolean;
   showSymbol?:boolean;
