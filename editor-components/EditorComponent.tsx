@@ -320,7 +320,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  ("icon" | "image" | "video")[]};
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  MediaType[]};
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
