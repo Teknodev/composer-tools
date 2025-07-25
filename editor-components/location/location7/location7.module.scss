@@ -25,6 +25,7 @@
           color: var(--composer-primary-color);
           letter-spacing: 0.2em;
           margin: 0;
+          text-align: center;
         }
       }
 
@@ -37,9 +38,8 @@
         .custom-map {
           position: relative;
           width: 100%;
-          height: 400px;
-          max-width: 800px;
-          padding: var(--composeer-gap-md);
+          height: 0;
+          padding-bottom: 56.25%; /* 16:9 aspect ratio */
         }
         .dot {
           background: var(--composer-font-color-primary);
@@ -65,8 +65,9 @@
           justify-content: center;
           cursor: pointer;
           transition: all 0.3s ease;
+          transform: translate(-50%, -50%);
           &.active {
-            transform: scale(1.2);
+            transform: translate(-50%, -50%) scale(1.2);
             box-shadow: 0 0 32px 12px var(--composer-primary-color);
           }
           &:hover {
@@ -154,8 +155,11 @@
         gap: var(--composer-gap-md);
         .map-container {
           .custom-map {
-            height: 350px;
+            height: 0;
+            padding-bottom: 56.25%;
             max-width: 100vw;
+            padding-left: var(--composeer-gap-md);
+            padding-right: var(--composeer-gap-md);
           }
         }
         .popover {
@@ -195,8 +199,11 @@
         }
         .map-container {
           .custom-map {
-            height: 200px;
+            height: 0;
+            padding-bottom: 56.25%;
             max-width: 100vw;
+            padding-left: var(--composeer-gap-md);
+            padding-right: var(--composeer-gap-md);
           }
           .dot {
             width: 4px;
@@ -205,6 +212,10 @@
           .marker {
             width: 12px;
             height: 12px;
+            transform: translate(-50%, -50%);
+            &.active {
+              transform: translate(-50%, -50%) scale(1.2);
+            }
           }
         }
         .popover {
