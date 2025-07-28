@@ -105,7 +105,7 @@ class ComingSoon4 extends BaseComingSoon {
     }, 1000);
   }
   
-  componentWillUnmount() {
+  onComponentWillUnmount() {
     clearInterval(this.interval);
   }
 

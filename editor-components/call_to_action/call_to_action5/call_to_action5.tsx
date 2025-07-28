@@ -54,7 +54,7 @@ class CallToAction5Page extends BaseCallToAction {
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("placeholder")));
   }
 
-  componentDidUpdate() {
+  onComponentDidUpdate() {
     const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
     const prevPlaceholder = this.getComponentState("placeholderText");
 

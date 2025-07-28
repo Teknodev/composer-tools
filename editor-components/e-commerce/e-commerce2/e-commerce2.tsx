@@ -2457,7 +2457,7 @@ class ECommerce2 extends BaseECommerce {
         }
         this.setComponentState("selectedSection", firstSectionTitle);
     }
-    componentWillUnmount(): void {
+    onComponentWillUnmount(): void {
         document.removeEventListener("keydown", this.handleKeyDown);
     }
     handleSectionClick(sectionTitle: React.ReactNode, index: number): void {

@@ -5,6 +5,7 @@ import Dropdown, { DropDownItem } from "../ui/dropdown/Dropdown";
 import Accordion from "../ui/accordion/Accordion";
 import { IconBaseProps } from "react-icons/lib";
 import { iconLibraries } from "./utitilities/iconList";
+import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
 
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
@@ -577,6 +578,49 @@ export namespace Base {
           </ul>
         </Accordion>
       );
+    }
+  }
+
+  export function Media({
+    value,
+    className,
+    ...props
+  }: {
+    value?: TypeMediaInputValue;
+    className?: string;
+  }) {
+    if (!value) return null;
+
+    switch (value.type) {
+      case "icon":
+        return (
+          <span className={className} {...props}>
+            <Base.Icon name={value.name} />
+          </span>
+        );
+      case "image":
+        return (
+          <img
+            className={className}
+            src={value.url}
+            alt=""
+            {...props}
+          />
+        );
+      case "video":
+        return (
+          <video
+            className={className}
+            src={value.url}
+            autoPlay={!!value.settings?.autoplay}
+            controls={value.settings?.controls !== false}
+            loop={!!value.settings?.loop}
+            muted={!!value.settings?.muted}
+            {...props}
+          />
+        );
+      default:
+        return null;
     }
   }
 }
