@@ -295,7 +295,7 @@ class Location7 extends Location {
           <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
             {titleExist && (
               <div className={this.decorateCSS("title-row")}> 
-                <Base.SectionTitle className={this.decorateCSS("title")}>{titleExist}</Base.SectionTitle>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
               </div>
             )}
             <section className={this.decorateCSS("map-container")}> 
@@ -327,9 +327,9 @@ class Location7 extends Location {
                             top: `${marker.topPercent}%`,
                           }}
                         >
-                          {popupTitle && <div className={this.decorateCSS("tooltip-header")}>{popupTitle}</div>}
+                          {popupTitle && <div className={this.decorateCSS("tooltip-header")}>{marker.popupTitle}</div>}
                           {showTooltipLine && <div className={this.decorateCSS("tooltip-divider")}></div>}
-                          {description && <div className={this.decorateCSS("tooltip-content")}>{description}</div>}
+                          {description && <div className={this.decorateCSS("tooltip-content")}>{marker.description}</div>}
                         </div>
                       )}
                     </React.Fragment>
