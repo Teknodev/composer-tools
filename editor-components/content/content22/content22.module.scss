@@ -1,0 +1,196 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  background: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+
+  .max-content {
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-xl);
+      padding: 80px 50px;
+      container-type: inline-size;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background-color: var(--composer-font-color-primary);
+      margin: 2rem 0;
+      opacity: 0.2;
+    }
+
+    .header {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      flex-direction: column;
+
+      h2 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: var(--composer-font-color-primary);
+      }
+      .line {
+        width: 5rem;
+        height: 2.5px;
+        background-color: var(--composer-secondary-color);
+        border-radius: 4px;
+      }
+      > p {
+        color: var(--composer-tertiary-color);
+      }
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      &:hover {
+        .read-more {
+          display: inline-block;
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+      }
+
+      &.reverse {
+        flex-direction: row-reverse;
+
+        .image-container {
+          justify-content: flex-end;
+        }
+      }
+
+      .image-container {
+        flex: 1 1 40%;
+        display: flex;
+        justify-content: flex-start;
+
+        .image {
+          width: 100%;
+          max-width: 500px;
+          border-radius: var(--composer-border-radius-md);
+          box-shadow: var(--composer-box-shadow);
+          object-fit: cover;
+        }
+      }
+
+      .text {
+        flex: 1 1 50%;
+        text-align: left;
+        position: relative;
+
+        h3 {
+          font-size: 2rem;
+          font-weight: 600;
+          color: var(--composer-font-color-primary) !important;
+          margin-bottom: 2rem;
+
+          * {
+            font-weight: bold !important;
+          }
+        }
+
+        > p {
+          color: var(--composer-tertiary-color);
+          margin-bottom: 3rem;
+        }
+
+        .read-more {
+          padding: 1.5rem 5rem;
+          bottom: 0;
+          left: 0;
+          opacity: 0;
+          transform: translateY(-50px);
+          transition: opacity 0.4s ease, transform 0.3s ease;
+          font-size: 1rem;
+          font-weight: 600;
+          color: var(--composer-font-color-primary);
+          border: 2px solid var(--composer-font-color-primary);
+          background: transparent;
+          border-radius: 4rem;
+
+          &:hover,
+          &:focus {
+            background-color: var(--composer-font-color-primary);
+            color:var(--composer-secondary-color);
+          }
+        }
+        &:hover {
+          .read-more {
+            display: inline-block;
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    }
+  }
+
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .content {
+        text-align: center;
+        gap: 1rem; 
+        .text {
+          text-align: center;
+          padding: 0 1rem;
+          > p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+          }
+          button {
+            display: inline-block;
+            margin: 0 auto;
+          }
+        }
+        .image-container .image {
+          max-width: 400px;
+        }
+      }
+    }
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    .max-content {
+      .wrapper{
+        padding: 0 0rem;
+      }
+      .content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        
+        .text {
+          flex: unset;
+          text-align: center;
+          padding: 0 1rem;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          justify-content: center;
+
+          h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+          }
+
+          > p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
