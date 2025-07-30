@@ -30,7 +30,7 @@ class CallToAction13Page extends BaseCallToAction {
       type: "image",
       key: "backgroundImageUrl",
       displayer: "Background Image",
-      value: "/img/circle-dotted.png",
+      value: "https://eremia-react.vercel.app/img/circle-dotted.png",
     });
 
     this.addProp({
@@ -84,7 +84,9 @@ class CallToAction13Page extends BaseCallToAction {
     const highlightWordCount = this.getPropValue("highlightWordCount") || 2;
 
     const highlightEnabled = this.getPropValue("highlightEnabled");
-    const backgroundImageUrl = this.getPropValue("backgroundImageUrl");
+    /* const backgroundImageUrl = this.castToString(
+      this.getPropValue("backgroundImageUrl")
+    ); */
     const lineEnabled = this.getPropValue("lineEnabled");
 
     const renderSubtitle = () => {
@@ -113,7 +115,7 @@ class CallToAction13Page extends BaseCallToAction {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("background")}>
+        {/* <div className={this.decorateCSS("background")}>
           <div
             className={this.decorateCSS("bg-circle-dotted")}
             style={{
@@ -132,7 +134,7 @@ class CallToAction13Page extends BaseCallToAction {
                 : "none",
             }}
           />
-        </div>
+        </div> */}
 
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitle || buttons.length > 0) && (
@@ -171,7 +173,6 @@ class CallToAction13Page extends BaseCallToAction {
                         )} ${this.decorateCSS("custom-border")}`}
                         buttonType={button.type}
                       >
-                        <span className={this.decorateCSS("dsn-border")}></span>
                         <Base.P className={this.decorateCSS("button-text")}>
                           {button.text}
                         </Base.P>
