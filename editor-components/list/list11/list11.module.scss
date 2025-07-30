@@ -54,7 +54,12 @@
                 transition: transform 0.5s ease-in-out;
               }
             }
-            .card-title {
+            .card-content{
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              
+              .card-title {
               font-size: 1.5rem;
               color: var(--composer-font-color-primary);
               font-weight: bold;
@@ -80,6 +85,7 @@
                 min-width: 10px;
                 min-height: 10px;
               }
+            }
             }
           }
           &[data-animation~="animate1"]:hover {

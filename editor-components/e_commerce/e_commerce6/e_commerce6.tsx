@@ -694,7 +694,7 @@ class ECommerce6 extends BaseECommerce {
     navigator.clipboard.writeText(currentUrl);
     this.setComponentState("copied", true);
   };
-  componentDidUpdate() {
+  onComponentDidUpdate() {
     const currentPropCount =
       this.castToObject<CountSections>("countSection")?.count;
     const lastPropCount = this.getComponentState("lastPropCount");

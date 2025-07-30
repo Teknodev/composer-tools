@@ -7,6 +7,7 @@ import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
 import { CurrencyCode } from "composer-tools/utils/currency";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -220,6 +221,22 @@ export type TypeLocation = {
   lat: number;
 };
 
+export type TypeMediaInputValue =
+  | { type: "image"; url: string }
+  | { type: "icon"; name: string }
+  | {
+      type: "video";
+      url: string;
+      settings: {
+        autoplay?: boolean;
+        controls?: boolean;
+        loop?: boolean;
+        muted?: boolean;
+      };
+    };
+
+export type MediaType = "icon" | "image" | "video";
+
 type currencyAdditionalParams ={
   showCode?: boolean;
   showSymbol?:boolean;
@@ -290,6 +307,7 @@ type AvailablePropTypes =
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
+  | { type: "media"; value: TypeMediaInputValue }
   | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
@@ -303,7 +321,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  MediaType[]};
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -362,8 +380,33 @@ export abstract class Component
   static category: CATEGORIES;
   private memorizedElements: {[id: string]: MemorizedElement} = {};
 
-  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ states: any; componentProps: any; }>, snapshot?: any): void {
+  componentDidUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<{ states: any; componentProps: any; }>,
+    snapshot?: any
+  ): void {
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
+    this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
+  }
+
+  componentDidMount(): void {
+    this.onComponentDidMount?.();
+  }
+
+  componentWillUnmount(): void {
+    this.onComponentWillUnmount?.();
+  }
+
+  shouldComponentUpdate(
+    nextProps: Readonly<{}>,
+    nextState: Readonly<{ states: any; componentProps: any; }>
+  ): boolean {
+    return this.onShouldComponentUpdate?.(nextProps, nextState) ?? true;
+  }
+
+
+  componentDidCatch(error: Error, info: { componentStack: string }): void {
+    this.onComponentDidCatch?.(error, info);
   }
 
   constructor(props: any, styles: any) {
@@ -376,8 +419,9 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
-    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
-
+    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) =>
+      this.attachValueGetter(p)
+    );
     this.state = {
       states: {},
       componentProps: {
@@ -398,7 +442,10 @@ export abstract class Component
 
       const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
       const shadowProp = this.getShadowProp(key);
-      if (!shadowProp) return;
+      if (!shadowProp) {
+        this.state.componentProps.props.splice(propIndex, 1);
+        return;
+      }
 
       const isComplexType = propInState.type === "array" || propInState.type === "object";
       const isTypeChanged = propInState.type !== shadowProp.type;
@@ -676,6 +723,8 @@ export abstract class Component
   }
 
   setComponentState(key: string, value: any): void {
+    const isSameValue = this.state.states[key] === value;
+    if(isSameValue) return;
     this.state.states[key] = value;
     this.setState({ ...this.state });
   }
@@ -834,6 +883,41 @@ export abstract class Component
     this.attachPropId(prop);
     this.attachValueGetter(prop);
   }
+
+
+  onComponentDidMount() {
+  // Called once, immediately after the component is inserted into the DOM
+  // Override in child components
+  }
+
+  onComponentDidUpdate(
+    prevProps: Readonly<any>,
+    prevState: Readonly<any>,
+    snapshot?: any
+  ) {
+    // Called immediately after updating occurs
+    // Override in child components
+  }
+
+  onComponentWillUnmount() {
+    // Called immediately before a component is destroyed
+    // Override in child components
+  }
+
+  onShouldComponentUpdate(
+    nextProps: Readonly<any>,
+    nextState: Readonly<any>
+  ): boolean {
+    // Return true to re-render, false to skip rendering
+    // Override in child components
+    return true;
+  }
+
+
+  onComponentDidCatch(error: Error, info: { componentStack: string }) {
+    // Error boundary: catch errors in descendants
+    // Override in child components
+  }
 }
 
 export abstract class BaseNavigator extends Component {
@@ -878,6 +962,16 @@ export abstract class BaseCallToAction extends Component {
 
 export abstract class BaseSlider extends Component {
   static category = CATEGORIES.SLIDER;
+    
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
 }
 
 export abstract class BaseFAQ extends Component {
