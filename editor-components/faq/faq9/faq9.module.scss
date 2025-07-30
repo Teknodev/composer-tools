@@ -2,7 +2,7 @@
   as *;
 
 :root {
-  --composer-tablet-width: #{$composer-tablet-width};
+  --composer-phone-width: #{$composer-phone-width};
 }
 
 .container {
@@ -23,7 +23,7 @@
       }
       .down-page {
         display: flex;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
         .questions-column {
           flex: 1;
           display: flex;
@@ -134,9 +134,9 @@
     .max-content {
       .page {
         .down-page {
-          flex-direction: column;
+          /* flex-direction: column; */
           .questions-column {
-            width: 100%;
+            /*  width: 100%; */
           }
         }
       }

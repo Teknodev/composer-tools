@@ -184,17 +184,17 @@ class Faq9 extends BaseFAQ {
 
     const width = el.clientWidth;
 
-    const cssTablet = getComputedStyle(document.documentElement)
-      .getPropertyValue("--composer-tablet-width")
+    const cssPhone = getComputedStyle(document.documentElement)
+      .getPropertyValue("--composer-phone-width")
       .trim()
       .replace("px", "");
-    const tabletPx = parseInt(cssTablet, 10) || 0;
+    const phonePx = parseInt(cssPhone, 10) || 0;
 
     const questions = this.castToObject<Question[]>("questions");
 
     const midPoint = Math.ceil(questions.length / 2);
 
-    if (width <= tabletPx) {
+    if (width <= phonePx) {
       this.setComponentState("activeRightQuestionIndex", -1);
       this.updateHeights();
     } else {
