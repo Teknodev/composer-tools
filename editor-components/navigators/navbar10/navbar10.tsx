@@ -1756,37 +1756,6 @@ class Navbar10 extends BaseNavigator {
             },
           ],
         },
-        {
-          type: "object",
-          key: "rightSection",
-          displayer: "Right Side Section",
-          value: [
-            {
-              type: "boolean",
-              key: "enabled",
-              displayer: "Enable Right Section",
-              value: true,
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "ctaTitle",
-              displayer: "CTA Title",
-              value: "All Essentials Included",
-            },
-            {
-              type: "page",
-              key: "ctaLink",
-              displayer: "CTA Link",
-              value: "",
-            },
-          ],
-        },
       ],
     });
 
