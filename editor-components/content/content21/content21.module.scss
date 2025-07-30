@@ -9,17 +9,19 @@
 
     .content-grid {
       display: grid;
-      grid-template-columns: 1.3fr 2fr;
+      grid-template-columns: fit-content 1px fit-content;
+
       gap: 0;
     }
 
     .left {
+      align-self: center;
+      grid-column: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
       padding-right: calc(2 * var(--composer-gap-xl));
-      border-right: 1px solid var(--border-color);
 
       .stats-list {
         display: flex;
@@ -32,7 +34,7 @@
           align-items: baseline;
           gap: var(--composer-gap-md);
           .stat-value {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--composer-primary-color);
             margin: 0;
           }
@@ -64,24 +66,29 @@
         }
       }
     }
+
+    .stick {
+      width: 1px;
+      background-color: white;
+      margin: 0;
+    }
+
     .right {
+      grid-column: 3;
       display: flex;
       flex-direction: column;
       margin-left: var(--composer-gap-lg);
       padding-left: var(--composer-gap-lg);
-      .section-title {
-        content: "";
+      .subTitle {
+        width: fit-content;
         margin-top: 0;
         margin-bottom: var(--composer-gap-sm);
       }
-      .main-title {
-        content: "";
+      .title {
         margin-top: 0;
         margin-bottom: var(--composer-gap-md);
       }
-      .description {
-        content: "";
-        max-inline-size: 80ch;
+      .text {
         width: 100%;
       }
 
@@ -113,8 +120,6 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .content-grid {
-      }
       .left {
         border-right: none;
         padding-right: 0;
@@ -122,6 +127,9 @@
         .image-box {
           margin-top: var(--composer-gap-sm);
         }
+      }
+      .stick {
+        display: none;
       }
       .right {
         margin-left: var(--composer-gap-md);
@@ -145,7 +153,12 @@
           margin-top: var(--composer-gap-sm);
         }
       }
+      .stick {
+        display: none;
+      }
       .right {
+        margin-left: 0;
+        grid-column: inherit;
         padding-left: 0;
       }
     }
