@@ -1,3 +1,5 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 .container {
   background-color: color-mix(
     in srgb,
@@ -28,8 +30,9 @@
       .image-container {
         width: fit-content;
         container-type: normal;
-
         justify-content: center;
+        gap: var(--composer-gap-lg);
+
         .image-wrapper {
           display: flex;
           align-items: center;
@@ -41,6 +44,16 @@
             object-fit: cover;
           }
         }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .image-container {
+        --composer-grid-count-tablet: 3 !important;
       }
     }
   }
