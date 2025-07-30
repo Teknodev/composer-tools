@@ -51,7 +51,13 @@ class Header4 extends BaseHeader {
     });
 
     this.addProp(
-      INPUTS.BUTTON("button", "Button", "More Projects", "", null, null, "Primary")
+      INPUTS.BUTTON("button", 
+        "Button", 
+        "More Projects", 
+        "", 
+        null, 
+        null, 
+        "Tertiary")
     );
 
     this.addProp({
@@ -120,7 +126,7 @@ handleScroll = () => {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const button= this.castToObject("button") as INPUTS.CastedButton;
     const card: any = this.castToObject("card");
 
     const imageAnm = this.getPropValue("image-anm");
@@ -140,7 +146,7 @@ const getStyle = (direction: "up" | "down") => {
   if (!imageAnm || !isAnimating) return {};
 
   if (direction === "up") {
-    const translateY = -30 * progress;
+    const translateY = 10 * progress;
     return {
       transform: `translate(0%, ${translateY}%) translate3d(0px, 0px, 0px)`,
       transition: "transform 0.1s ease-out",
@@ -201,8 +207,10 @@ const getStyle = (direction: "up" | "down") => {
                 {description && <p className={this.decorateCSS("desc")}>{description}</p>}
                 {buttonText && (
                   <div className={this.decorateCSS("button-container")}>
-                    <ComposerLink path={card.buttonLink}>
-                      <Base.Button type="tertiary" className={this.decorateCSS("button")}>
+                    <ComposerLink path={button?.url || '#'}>
+                      <Base.Button 
+                        buttonType={button?.type || "Tertiary"} 
+                        className={this.decorateCSS("button")}>
                         {buttonText}
                       </Base.Button>
                     </ComposerLink>

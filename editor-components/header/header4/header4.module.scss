@@ -16,7 +16,6 @@
 
 .container {
   padding: 0 !important;
-
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -33,18 +32,17 @@
     height: 100%;
 
     .image-container {
-      height: 100%;
+      height: 100vh;
       position: relative;
 
       .image {
-        position: relative;
-        height: 130%;
+        align-self: center;
+        height: 100%;
         width: 100%;
         inset: 0px;
         color: transparent;
-        scale: 1;
+        scale: 1.1;
         object-fit: cover;
-        transition: transform 0.2s ease;
       }
 
       .no-img-anm {
@@ -111,12 +109,6 @@
           color: var(--composer-primary-color);
           margin: 0;
           @include textEllipsis(2);
-        }
-
-        .button-container {
-          .button{
-            content: "";
-          }
         }
       }
     }
