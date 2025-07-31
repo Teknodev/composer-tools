@@ -48,13 +48,3 @@
     }
   }
 }
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .image-container {
-        --composer-grid-count-tablet: 3 !important;
-      }
-    }
-  }
-}
