@@ -2,11 +2,14 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content22.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface Item {
   image: string;
   sectionHeading: string;
   description: string;
+  button: INPUTS.CastedButton;
 }
 
 class Content22 extends BaseContent {
@@ -14,23 +17,10 @@ class Content22 extends BaseContent {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "mainTitle",
-      displayer: "Main Title",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "High Quality Services",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Build a positive impact on your business. Check out what we have to offer.",
-        },
-      ],
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "High Quality Services",
     });
     
     this.addProp({
@@ -38,6 +28,13 @@ class Content22 extends BaseContent {
       key: "showLine",
       displayer: "Show Line Under Title",
       value: true,  
+    });
+    
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Build a positive impact on your business. Check out what we have to offer.",
     });
     
     this.addProp({
@@ -70,6 +67,15 @@ class Content22 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
+            INPUTS.BUTTON(
+                "button", 
+                "Button", 
+                "READ MORE", 
+                "", 
+                null, 
+                null, 
+                "Tertiary"
+            )
           ],
         },
         {
@@ -97,6 +103,15 @@ class Content22 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
+            INPUTS.BUTTON(
+                "button", 
+                "Button", 
+                "READ MORE", 
+                "", 
+                null, 
+                null, 
+                "Tertiary"
+            )
           ],
         },
         {
@@ -124,6 +139,15 @@ class Content22 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
+            INPUTS.BUTTON(
+                "button", 
+                "Button", 
+                "READ MORE", 
+                "", 
+                null, 
+                null, 
+                "Tertiary"
+            )
           ],
         },
       ],
@@ -135,7 +159,8 @@ class Content22 extends BaseContent {
   }
 
   render() {
-    const mainTitle = this.castToObject<{ title: string; subtitle: string }>("mainTitle");
+    const title = this.getPropValue("title") as string;
+    const description = this.getPropValue("description") as string;
     const items = this.castToObject<Item[]>("items") || [];
     const showLine = this.getPropValue("showLine") as boolean;
 
@@ -144,9 +169,9 @@ class Content22 extends BaseContent {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("header")}>
-              <Base.SectionTitle>{mainTitle.title}</Base.SectionTitle>
+              <Base.SectionTitle className={this.decorateCSS("h1")}>{title}</Base.SectionTitle>
               {showLine && <div className={this.decorateCSS("line")} />}
-              <Base.SectionDescription>{mainTitle.subtitle}</Base.SectionDescription>
+              <Base.SectionDescription>{description}</Base.SectionDescription>
             </div>
 
             {items.map((item, i) => (
@@ -168,7 +193,13 @@ class Content22 extends BaseContent {
                   <div className={this.decorateCSS("text")}>
                     <h3>{item.sectionHeading}</h3>
                     <Base.SectionDescription>{item.description}</Base.SectionDescription>
-                    <Base.Button type="tertiary">READ MORE</Base.Button>
+                    {item.button && (
+                      <ComposerLink path={item.button.url || '#'}>
+                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
+                          {item.button.text}
+                        </Base.Button>
+                      </ComposerLink>
+                    )}
                   </div>
                 </div>
                 {i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
