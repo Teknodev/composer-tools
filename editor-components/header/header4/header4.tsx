@@ -146,11 +146,9 @@ const getStyle = (direction: "up" | "down") => {
   if (!imageAnm || !isAnimating) return {};
 
   if (direction === "up") {
-    const translateY = 10 * progress;
+    const translateY = -30 * (1 - progress);
     return {
       transform: `translate(0%, ${translateY}%) translate3d(0px, 0px, 0px)`,
-      transition: "transform 0.1s ease-out",
-      willChange: "transform",
     };
   }
 
@@ -158,8 +156,6 @@ const getStyle = (direction: "up" | "down") => {
     const translateY = 100 - 200 * progress;
     return {
       transform: `translate3d(0px, ${translateY}px, 0px)`,
-      transition: "transform 0.1s ease-out",
-      willChange: "transform",
     };
   }
 
