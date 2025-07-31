@@ -5,9 +5,11 @@ import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { CurrencyCode } from "composer-tools/utils/currency";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { InteractionType } from "./types";
+import { InteractionCommandInvoker, InteractionContext } from "../interactions";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -39,7 +41,11 @@ export const LANGUAGES = [
   { code: "ca", name: "Catalan; Valencian", nativeName: "Català" },
   { code: "ch", name: "Chamorro", nativeName: "Chamoru" },
   { code: "ce", name: "Chechen", nativeName: "нохчийн мотт" },
-  { code: "ny", name: "Chichewa; Chewa; Nyanja", nativeName: "chiCheŵa, chinyanja" },
+  {
+    code: "ny",
+    name: "Chichewa; Chewa; Nyanja",
+    nativeName: "chiCheŵa, chinyanja",
+  },
   { code: "zh", name: "Chinese", nativeName: "中文 (Zhōngwén), 汉语, 漢語" },
   { code: "cv", name: "Chuvash", nativeName: "чӑваш чӗлхи" },
   { code: "kw", name: "Cornish", nativeName: "Kernewek" },
@@ -91,13 +97,25 @@ export const LANGUAGES = [
   { code: "ky", name: "Kirghiz, Kyrgyz", nativeName: "кыргыз тили" },
   { code: "kv", name: "Komi", nativeName: "коми кыв" },
   { code: "kg", name: "Kongo", nativeName: "KiKongo" },
-  { code: "ko", name: "Korean", nativeName: "한국어 (韓國語), 조선말 (朝鮮語)" },
+  {
+    code: "ko",
+    name: "Korean",
+    nativeName: "한국어 (韓國語), 조선말 (朝鮮語)",
+  },
   { code: "ku", name: "Kurdish", nativeName: "Kurdî, كوردی‎" },
   { code: "kj", name: "Kwanyama, Kuanyama", nativeName: "Kuanyama" },
   { code: "la", name: "Latin", nativeName: "latine, lingua latina" },
-  { code: "lb", name: "Luxembourgish, Letzeburgesch", nativeName: "Lëtzebuergesch" },
+  {
+    code: "lb",
+    name: "Luxembourgish, Letzeburgesch",
+    nativeName: "Lëtzebuergesch",
+  },
   { code: "lg", name: "Luganda", nativeName: "Luganda" },
-  { code: "li", name: "Limburgish, Limburgan, Limburger", nativeName: "Limburgs" },
+  {
+    code: "li",
+    name: "Limburgish, Limburgan, Limburger",
+    nativeName: "Limburgs",
+  },
   { code: "ln", name: "Lingala", nativeName: "Lingála" },
   { code: "lo", name: "Lao", nativeName: "ພາສາລາວ" },
   { code: "lt", name: "Lithuanian", nativeName: "lietuvių kalba" },
@@ -163,7 +181,11 @@ export const LANGUAGES = [
   { code: "tg", name: "Tajik", nativeName: "тоҷикӣ, toğikī, تاجیکی‎" },
   { code: "th", name: "Thai", nativeName: "ไทย" },
   { code: "ti", name: "Tigrinya", nativeName: "ትግርኛ" },
-  { code: "bo", name: "Tibetan Standard, Tibetan, Central", nativeName: "བོད་ཡིག" },
+  {
+    code: "bo",
+    name: "Tibetan Standard, Tibetan, Central",
+    nativeName: "བོད་ཡིག",
+  },
   { code: "tk", name: "Turkmen", nativeName: "Türkmen, Түркмен" },
   { code: "tl", name: "Tagalog", nativeName: "Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔" },
   { code: "tn", name: "Tswana", nativeName: "Setswana" },
@@ -190,7 +212,7 @@ export const LANGUAGES = [
   { code: "za", name: "Zhuang, Chuang", nativeName: "Saɯ cueŋƅ, Saw cuengh" },
 ];
 
-export function generateComponentId(){
+export function generateComponentId() {
   return uuidv4();
 }
 
@@ -199,14 +221,7 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType ={
-  type?: string,
-  modal?: string,
-  trigger_action?: string,
-  visible_on?: string,
-  show_once?: false,
-};
-export type PageInteractionType ={
+export type PageInteractionType = {
   type?: string;
   modal?: string;
   scroll_depth?: number;
@@ -237,10 +252,10 @@ export type TypeMediaInputValue =
 
 export type MediaType = "icon" | "image" | "video";
 
-type currencyAdditionalParams ={
+type currencyAdditionalParams = {
   showCode?: boolean;
-  showSymbol?:boolean;
-}
+  showSymbol?: boolean;
+};
 
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
@@ -258,7 +273,7 @@ type RangeInputAdditionalParams = {
 export type CSSClass = {
   id: string;
   class: string;
-}
+};
 
 export type TypeCSSProp = { [key: string]: CSSClass[] };
 
@@ -300,15 +315,32 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "email"; value: string }
   | { type: "location"; value: TypeLocation }
-  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
-  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
-  | { type: "tag"; value: string[]}
+  | {
+      type: "range";
+      value: string;
+      additionalParams?: RangeInputAdditionalParams;
+    }
+  | {
+      type: "currency";
+      value: { value: string; currency?: CurrencyCode };
+      additionalParams?: currencyAdditionalParams;
+    }
+  | { type: "tag"; value: string[] }
   | { type: "phone"; value: string }
-  | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
+  | {
+      type: "dateTime";
+      value: string;
+      additionalParams?: {
+        mode?: string;
+        timeInterval?: number;
+        yearRange?: number;
+        yearStart?: number;
+      };
+    }
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
   | { type: "media"; value: TypeMediaInputValue }
-  | { type: "embededLink"; value: string }
+  | { type: "embededLink"; value: string };
 
 export type TypeReactComponent = {
   type: string;
@@ -321,17 +353,21 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  MediaType[]};
+  additionalParams?: {
+    selectItems?: string[];
+    maxElementCount?: number;
+    availableTypes?: MediaType[];
+  };
   max?: number;
 } & AvailablePropTypes & {
-  getPropValue?: (
-    propName: string,
-    properties?: GetPropValueProperties
-  ) => any;
-};
+    getPropValue?: (
+      propName: string,
+      properties?: GetPropValueProperties
+    ) => any;
+  };
 
 type MemorizedElement = {
-  jsxElement?: React.JSX.Element,
+  jsxElement?: React.JSX.Element;
   value?: string;
 };
 
@@ -368,7 +404,6 @@ export function generateId(key: string): string {
   return key + "-" + Math.round(Math.random() * 1000000000).toString();
 }
 
-
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -378,11 +413,12 @@ export abstract class Component
   private styles: any;
   public id: string;
   static category: CATEGORIES;
-  private memorizedElements: {[id: string]: MemorizedElement} = {};
+  private memorizedElements: { [id: string]: MemorizedElement } = {};
+  private interactionInvoker: InteractionCommandInvoker;
 
   componentDidUpdate(
     prevProps: Readonly<{}>,
-    prevState: Readonly<{ states: any; componentProps: any; }>,
+    prevState: Readonly<{ states: any; componentProps: any }>,
     snapshot?: any
   ): void {
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
@@ -399,11 +435,10 @@ export abstract class Component
 
   shouldComponentUpdate(
     nextProps: Readonly<{}>,
-    nextState: Readonly<{ states: any; componentProps: any; }>
+    nextState: Readonly<{ states: any; componentProps: any }>
   ): boolean {
     return this.onShouldComponentUpdate?.(nextProps, nextState) ?? true;
   }
-
 
   componentDidCatch(error: Error, info: { componentStack: string }): void {
     this.onComponentDidCatch?.(error, info);
@@ -413,45 +448,48 @@ export abstract class Component
     super(props);
     this.styles = styles;
     this.id = props?.id || generateComponentId();
+    this.interactionInvoker = new InteractionCommandInvoker();
 
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
     });
-    
+
     const compProps = (props?.props || []).map((p: TypeUsableComponentProps) =>
       this.attachValueGetter(p)
     );
     this.state = {
       states: {},
       componentProps: {
-      props: compProps,
-        cssClasses: props?.cssClasses || {...sectionsKeyValue},
-        interactions: props?.interactions || {...sectionsKeyValue}
+        props: compProps,
+        cssClasses: props?.cssClasses || { ...sectionsKeyValue },
+        interactions: props?.interactions || { ...sectionsKeyValue },
       },
     };
-
 
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
   }
 
-  componentWillMount(){
-    this.getProps().forEach(({key, value}) => {
-      const propIndex = this.state.componentProps.props.findIndex((prop: any) => prop.key === key);
+  componentWillMount() {
+    this.getProps().forEach(({ key, value }) => {
+      const propIndex = this.state.componentProps.props.findIndex(
+        (prop: any) => prop.key === key
+      );
       if (propIndex === -1) return;
 
-      const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
+      const propInState: TypeUsableComponentProps =
+        this.state.componentProps.props[propIndex];
       const shadowProp = this.getShadowProp(key);
       if (!shadowProp) {
         this.state.componentProps.props.splice(propIndex, 1);
         return;
       }
 
-      const isComplexType = propInState.type === "array" || propInState.type === "object";
+      const isComplexType =
+        propInState.type === "array" || propInState.type === "object";
       const isTypeChanged = propInState.type !== shadowProp.type;
 
       if (isTypeChanged) {
-        
         propInState.type = shadowProp.type;
         value = structuredClone(shadowProp.value);
       }
@@ -463,9 +501,11 @@ export abstract class Component
         );
       }
 
-      const isMatchingValue = 
+      const isMatchingValue =
         (!isComplexType && propInState.value === value) ||
-        (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
+        (isComplexType &&
+          propInState.value.every((item) => item.getPropValue) &&
+          propInState.value === value);
 
       if (isMatchingValue) return;
 
@@ -473,8 +513,9 @@ export abstract class Component
       this.state.componentProps.props[propIndex] = this.attachValueGetter(
         this.state.componentProps.props[propIndex]
       );
+    });
 
-    })
+    this.applyInteractions();
   }
 
   static getName(): string {
@@ -512,8 +553,13 @@ export abstract class Component
     return this.shadowProps;
   }
 
-  private getFilteredProp(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
-    return props.find((prop: TypeUsableComponentProps) => prop.key === key) || null;
+  private getFilteredProp(
+    key: string,
+    props: TypeUsableComponentProps[]
+  ): TypeUsableComponentProps | null {
+    return (
+      props.find((prop: TypeUsableComponentProps) => prop.key === key) || null
+    );
   }
 
   getShadowProp(key: string): TypeUsableComponentProps | null {
@@ -551,7 +597,6 @@ export abstract class Component
 
     return doc.body.innerHTML;
   }
-
 
   getPropValueAsElement(
     prop: TypeUsableComponentProps,
@@ -612,17 +657,19 @@ export abstract class Component
       );
     };
 
-
-    if(!this.memorizedElements[prop.id]) {
+    if (!this.memorizedElements[prop.id]) {
       this.memorizedElements[prop.id] = {};
     }
 
-    const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
-    && prop.value != memorizedElement?.value;
+    const memorizedElement: MemorizedElement = this.memorizedElements[prop.id];
+    const isValueChanged =
+      (!!memorizedElement?.value || memorizedElement?.value == "") &&
+      prop.value != memorizedElement?.value;
 
-    if(!memorizedElement.jsxElement || isValueChanged){
-      memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
+    if (!memorizedElement.jsxElement || isValueChanged) {
+      memorizedElement["jsxElement"] = (
+        <SanitizeHTML html={prop?.value}></SanitizeHTML>
+      );
       memorizedElement["value"] = prop.value as string;
     }
 
@@ -636,10 +683,8 @@ export abstract class Component
   getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
     const { cssClasses } = this.state.componentProps;
-    
-    return sectionName 
-      ? cssClasses[sectionName]
-      : cssClasses;
+
+    return sectionName ? cssClasses[sectionName] : cssClasses;
   }
 
   private attachPropId(_prop: TypeUsableComponentProps) {
@@ -648,7 +693,7 @@ export abstract class Component
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
     } else {
-      _prop.id = generateId(_prop.key)
+      _prop.id = generateId(_prop.key);
     }
 
     return _prop;
@@ -659,7 +704,7 @@ export abstract class Component
     if (this.getProp(prop.key)) return;
     this.initializeProp(prop);
     this.state.componentProps.props.push(prop);
-    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB);
   }
 
   removeProp(key: string) {
@@ -667,19 +712,25 @@ export abstract class Component
     this.state.componentProps.props = this.state.componentProps.props.filter(
       (el: any) => el.key !== key
     );
-    
-    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
+
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB);
   }
 
-  private syncComplexValue(source: TypeUsableComponentProps[], target: TypeUsableComponentProps[]): void {
-    source.forEach(sourceProp => {
-      const targetIndex = target.findIndex(prop => prop.key === sourceProp.key);
+  private syncComplexValue(
+    source: TypeUsableComponentProps[],
+    target: TypeUsableComponentProps[]
+  ): void {
+    source.forEach((sourceProp) => {
+      const targetIndex = target.findIndex(
+        (prop) => prop.key === sourceProp.key
+      );
       if (targetIndex === -1) return;
-      
+
       const targetProp = target[targetIndex];
 
       const isTypeChanged = targetProp.type !== sourceProp.type;
-      const isComplexType = sourceProp.type === "array" || sourceProp.type === "object";
+      const isComplexType =
+        sourceProp.type === "array" || sourceProp.type === "object";
 
       if (isTypeChanged) {
         targetProp.type = sourceProp.type;
@@ -724,7 +775,7 @@ export abstract class Component
 
   setComponentState(key: string, value: any): void {
     const isSameValue = this.state.states[key] === value;
-    if(isSameValue) return;
+    if (isSameValue) return;
     this.state.states[key] = value;
     this.setState({ ...this.state });
   }
@@ -748,7 +799,7 @@ export abstract class Component
   }
   decorateCSS(section: string) {
     let cssClass = [this.styles[section]];
-    
+
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -761,17 +812,17 @@ export abstract class Component
       }
     });
 
-    cssClass.push(
-      generateAutoClassName(this.id, section)
-    );
-    
+    cssClass.push(generateAutoClassName(this.id, section));
+
     return cssClass.join(" ");
   }
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
       if (propValue.type === "multiSelect") {
-        propValue.value = propValue.value.filter((value) => typeof value === "string") as string[];
+        propValue.value = propValue.value.filter(
+          (value) => typeof value === "string"
+        ) as string[];
         return propValue;
       }
       propValue.value = propValue.value.filter((value) => value != null);
@@ -796,7 +847,6 @@ export abstract class Component
     }
     return propValue;
   }
-  
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
@@ -808,8 +858,8 @@ export abstract class Component
   }
 
   castToString(elem: React.JSX.Element): string | React.JSX.Element {
-    const isValid = React.isValidElement(elem);    
-    return isValid ? elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, ""): elem;
+    const isValid = React.isValidElement(elem);
+    return isValid ? elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "") : elem;
   }
 
   private castingProcess(object: any) {
@@ -884,10 +934,9 @@ export abstract class Component
     this.attachValueGetter(prop);
   }
 
-
   onComponentDidMount() {
-  // Called once, immediately after the component is inserted into the DOM
-  // Override in child components
+    // Called once, immediately after the component is inserted into the DOM
+    // Override in child components
   }
 
   onComponentDidUpdate(
@@ -913,10 +962,41 @@ export abstract class Component
     return true;
   }
 
-
   onComponentDidCatch(error: Error, info: { componentStack: string }) {
     // Error boundary: catch errors in descendants
     // Override in child components
+  }
+
+  applyInteractions(): void {
+    try {
+      const interactions = this.getInteractions();
+
+      if (!interactions) return;
+
+      const projectData = getProjectHook() || {};
+
+      const context = {
+        projectId: projectData.id || "",
+        elementId: this.id,
+        modals: projectData.modals || [],
+        pages: projectData.pages || [],
+        animations: projectData.animations || [],
+      };
+
+      console.log(interactions);
+      Object.entries(interactions).forEach(([section, sectionInteractions]) => {
+        if (Array.isArray(sectionInteractions)) {
+          sectionInteractions.forEach((interaction: InteractionType) => {
+            this.interactionInvoker.executeInteraction(interaction, {
+              ...context,
+              elementId: `${this.id}-${section}`,
+            });
+          });
+        }
+      });
+    } catch (error) {
+      console.error("Error applying interactions:", error);
+    }
   }
 }
 
@@ -962,7 +1042,7 @@ export abstract class BaseCallToAction extends Component {
 
 export abstract class BaseSlider extends Component {
   static category = CATEGORIES.SLIDER;
-    
+
   transformSliderValues = (
     sliderProps: TypeUsableComponentProps[]
   ): INPUTS.TYPE_SLIDER_SETTINGS => {
@@ -1048,18 +1128,18 @@ export abstract class BaseSocialWidget extends Component {
   static category = CATEGORIES.SOCIALWIDGET;
 }
 
-export function generateAutoClassName(componentId: string, section: string){
+export function generateAutoClassName(componentId: string, section: string) {
   return `auto-generate-${componentId}-${section}`;
-};
+}
 
-export abstract class BaseECommerce extends Component {  
+export abstract class BaseECommerce extends Component {
   static category = CATEGORIES.ECOMMERCE;
 }
 
-export abstract class BaseComingSoon extends Component {  
+export abstract class BaseComingSoon extends Component {
   static category = CATEGORIES.COMINGSOON;
 }
 
-export abstract class BaseSticky extends Component {  
+export abstract class BaseSticky extends Component {
   static category = CATEGORIES.STICKY;
 }
