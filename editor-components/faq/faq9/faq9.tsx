@@ -164,6 +164,7 @@ class Faq9 extends BaseFAQ {
     });
 
     this.setComponentState("activeLeftQuestionIndex", 0);
+    this.setComponentState("isMobile", false);
   }
 
   static getName(): string {
@@ -190,58 +191,80 @@ class Faq9 extends BaseFAQ {
       .replace("px", "");
     const phonePx = parseInt(cssPhone, 10) || 0;
 
-    const questions = this.castToObject<Question[]>("questions");
+    const isMobile = width <= phonePx;
+    this.setComponentState("isMobile", isMobile);
 
+    const questions = this.castToObject<Question[]>("questions");
     const midPoint = Math.ceil(questions.length / 2);
 
-    if (width <= phonePx) {
-      this.setComponentState("activeRightQuestionIndex", -1);
-      this.updateHeights();
-    } else {
-      this.setComponentState("activeRightQuestionIndex", midPoint);
-    }
+    this.setComponentState(
+      "activeRightQuestionIndex",
+      isMobile ? -1 : midPoint
+    );
+    this.updateHeights();
   }
 
   private updateHeights() {
+    const isMobile = this.getComponentState("isMobile");
     const activeLeft = this.getComponentState("activeLeftQuestionIndex");
     const activeRight = this.getComponentState("activeRightQuestionIndex");
-    const midPoint = Math.ceil(
-      this.castToObject<Question[]>("questions").length / 2
-    );
+    const questions = this.castToObject<Question[]>("questions");
+    const midPoint = Math.ceil(questions.length / 2);
 
     this.answerRefs.forEach((el, idx) => {
       if (!el) return;
-      const isRightColumn = idx >= midPoint;
-      const isActive = isRightColumn ? idx === activeRight : idx === activeLeft;
+
+      let isActive: boolean;
+      if (isMobile) {
+        isActive = idx === activeLeft;
+      } else {
+        const isRightColumn = idx >= midPoint;
+        isActive = isRightColumn ? idx === activeRight : idx === activeLeft;
+      }
+
       el.style.maxHeight = isActive ? `${el.scrollHeight}px` : "0px";
     });
   }
 
-  handleQuestion(index: number) {
-    const midPoint = Math.ceil(
-      this.castToObject<Question[]>("questions").length / 2
-    );
-    const isRightColumn = index >= midPoint;
+  private handleQuestion = (index: number) => {
+    const isMobile = this.getComponentState("isMobile");
+    const questions = this.castToObject<Question[]>("questions");
 
-    if (isRightColumn) {
-      const current = this.getComponentState("activeRightQuestionIndex");
-      const next = current === index ? -1 : index;
-      this.setComponentState("activeRightQuestionIndex", next);
-    } else {
+    if (isMobile) {
       const current = this.getComponentState("activeLeftQuestionIndex");
       const next = current === index ? -1 : index;
       this.setComponentState("activeLeftQuestionIndex", next);
+    } else {
+      const midPoint = Math.ceil(questions.length / 2);
+      const isRightCol = index >= midPoint;
+      if (isRightCol) {
+        const current = this.getComponentState("activeRightQuestionIndex");
+        const next = current === index ? -1 : index;
+        this.setComponentState("activeRightQuestionIndex", next);
+      } else {
+        const current = this.getComponentState("activeLeftQuestionIndex");
+        const next = current === index ? -1 : index;
+        this.setComponentState("activeLeftQuestionIndex", next);
+      }
     }
+
     this.updateHeights();
-  }
+  };
 
   render() {
     const activeLeft = this.getComponentState("activeLeftQuestionIndex");
     const activeRight = this.getComponentState("activeRightQuestionIndex");
     const questions = this.castToObject<Question[]>("questions");
-    const midPoint = Math.ceil(questions.length / 2);
+    const isMobile = this.getComponentState("isMobile");
+    const midPoint = isMobile
+      ? questions.length
+      : Math.ceil(questions.length / 2);
+    if (isMobile) {
+      console.log("Mobile view detected, midPoint set to all questions length");
+    }
+
     const leftQuestions = questions.slice(0, midPoint);
-    const rightQuestions = questions.slice(midPoint);
+    const rightQuestions = isMobile ? [] : questions.slice(midPoint);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -343,83 +366,84 @@ class Faq9 extends BaseFAQ {
                     );
                   })}
                 </div>
-
-                <div className={this.decorateCSS("questions-column")}>
-                  {rightQuestions.map((questn, i) => {
-                    const idx = i + midPoint;
-                    return (
-                      <div
-                        className={this.decorateCSS("card")}
-                        key={idx}
-                        onClick={() => this.handleQuestion(idx)}
-                      >
-                        {(questn.qq || this.getPropValue("icon")) && (
-                          <div
-                            className={`${this.decorateCSS(
-                              "child-container"
-                            )} ${
-                              activeRight === idx
-                                ? this.decorateCSS("active")
-                                : ""
-                            }`}
-                          >
-                            {questn.qq && (
-                              <div
-                                className={this.decorateCSS(
-                                  "card-title-wrapper"
-                                )}
-                              >
+                {!isMobile && (
+                  <div className={this.decorateCSS("questions-column")}>
+                    {rightQuestions.map((questn, i) => {
+                      const idx = i + midPoint;
+                      return (
+                        <div
+                          className={this.decorateCSS("card")}
+                          key={idx}
+                          onClick={() => this.handleQuestion(idx)}
+                        >
+                          {(questn.qq || this.getPropValue("icon")) && (
+                            <div
+                              className={`${this.decorateCSS(
+                                "child-container"
+                              )} ${
+                                activeRight === idx
+                                  ? this.decorateCSS("active")
+                                  : ""
+                              }`}
+                            >
+                              {questn.qq && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "card-title-wrapper"
+                                  )}
+                                >
+                                  <div
+                                    className={`${this.decorateCSS(
+                                      "card-title"
+                                    )} ${
+                                      activeRight === idx
+                                        ? this.decorateCSS("active")
+                                        : ""
+                                    }`}
+                                  >
+                                    {questn.qq}
+                                  </div>
+                                </div>
+                              )}
+                              {this.getPropValue("icon") && (
                                 <div
                                   className={`${this.decorateCSS(
-                                    "card-title"
+                                    "icon-wrapper"
                                   )} ${
                                     activeRight === idx
                                       ? this.decorateCSS("active")
                                       : ""
                                   }`}
                                 >
-                                  {questn.qq}
+                                  <Base.Icon
+                                    name={this.getPropValue("icon")}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon"),
+                                    }}
+                                  />
                                 </div>
-                              </div>
-                            )}
-                            {this.getPropValue("icon") && (
-                              <div
-                                className={`${this.decorateCSS(
-                                  "icon-wrapper"
-                                )} ${
-                                  activeRight === idx
-                                    ? this.decorateCSS("active")
-                                    : ""
-                                }`}
-                              >
-                                <Base.Icon
-                                  name={this.getPropValue("icon")}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                              </div>
-                            )}
-                          </div>
-                        )}
-                        {questn.answer && (
-                          <div
-                            ref={(el) => (this.answerRefs[idx] = el)}
-                            className={`${this.decorateCSS("inner-card")} ${
-                              activeRight === idx
-                                ? this.decorateCSS("active")
-                                : ""
-                            }`}
-                          >
-                            <div className={this.decorateCSS("inner-text")}>
-                              {questn.answer}
+                              )}
                             </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                          )}
+                          {questn.answer && (
+                            <div
+                              ref={(el) => (this.answerRefs[idx] = el)}
+                              className={`${this.decorateCSS("inner-card")} ${
+                                activeRight === idx
+                                  ? this.decorateCSS("active")
+                                  : ""
+                              }`}
+                            >
+                              <div className={this.decorateCSS("inner-text")}>
+                                {questn.answer}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             </div>
           </Base.MaxContent>
