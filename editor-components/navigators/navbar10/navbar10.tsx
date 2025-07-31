@@ -11,6 +11,7 @@ interface CategoryItem {
   description: string;
   url: string;
   icon?: string;
+  image: string;
 }
 
 interface Category {
@@ -18,6 +19,7 @@ interface Category {
   items: CategoryItem[];
   url: string;
   icon?: string;
+  image: string;
 }
 
 interface RightSection {
@@ -86,15 +88,6 @@ class Navbar10 extends BaseNavigator {
         },
       ],
     });
-
-    this.addProp({
-      type: "number",
-      key: "rowCount",
-      displayer: "Row Count",
-      value: 4,
-      max: 6,
-    });
-
     this.addProp({
       type: "array",
       key: "menuItems",
@@ -127,7 +120,7 @@ class Navbar10 extends BaseNavigator {
             {
               type: "number",
               key: "rowCount",
-              displayer: "Row Count",
+              displayer: "Item Count In a Row",
               value: 4,
             },
             {
@@ -150,12 +143,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -198,7 +185,6 @@ class Navbar10 extends BaseNavigator {
                     },
                   ],
                 },
-                // Kategori 2
                 {
                   type: "object",
                   key: "category",
@@ -214,12 +200,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -386,7 +366,6 @@ class Navbar10 extends BaseNavigator {
                     },
                   ],
                 },
-                // Kategori 3
                 {
                   type: "object",
                   key: "category",
@@ -402,12 +381,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -481,7 +454,6 @@ class Navbar10 extends BaseNavigator {
                     },
                   ],
                 },
-                // Kategori 4
                 {
                   type: "object",
                   key: "category",
@@ -497,12 +469,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -531,7 +497,7 @@ class Navbar10 extends BaseNavigator {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -556,7 +522,7 @@ class Navbar10 extends BaseNavigator {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -581,6 +547,31 @@ class Navbar10 extends BaseNavigator {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
+                              value: "FiArrowUpRight",
+                            },
+                          ],
+                        },
+                         {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Label",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
+                              type: "icon",
+                              key: "icon",
+                              displayer: "Item icon",
                               value: "",
                             },
                           ],
@@ -589,7 +580,6 @@ class Navbar10 extends BaseNavigator {
                     },
                   ],
                 },
-                // Kategori 5
                 {
                   type: "object",
                   key: "category",
@@ -605,12 +595,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -779,7 +763,7 @@ class Navbar10 extends BaseNavigator {
             {
               type: "number",
               key: "rowCount",
-              displayer: "Row Count",
+              displayer: "Item Count In a Row",
               value: 3,
             },
             {
@@ -802,12 +786,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -901,12 +879,6 @@ class Navbar10 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
-                      value: "",
-                    },
-                    {
                       type: "array",
                       key: "items",
                       displayer: "Items",
@@ -965,12 +937,6 @@ class Navbar10 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
-                      value: "",
-                    },
-                    {
                       type: "array",
                       key: "items",
                       displayer: "Items",
@@ -996,7 +962,7 @@ class Navbar10 extends BaseNavigator {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -1017,11 +983,11 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                            {
+                          {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -1036,11 +1002,11 @@ class Navbar10 extends BaseNavigator {
                               displayer: "Label",
                               value: "Transportation",
                             },
-                            {
+                           {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -1061,11 +1027,11 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                            {
+                         {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -1104,7 +1070,7 @@ class Navbar10 extends BaseNavigator {
             {
               type: "number",
               key: "rowCount",
-              displayer: "Row Count",
+              displayer: "Item Count In a Row",
               value: 4,
             },
             {
@@ -1127,12 +1093,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -1237,7 +1197,6 @@ class Navbar10 extends BaseNavigator {
                     },
                   ],
                 },
-                // Kategori 2
                 {
                   type: "object",
                   key: "category",
@@ -1253,12 +1212,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -1332,7 +1285,6 @@ class Navbar10 extends BaseNavigator {
                     },
                   ],
                 },
-                // Kategori 3
                 {
                   type: "object",
                   key: "category",
@@ -1348,12 +1300,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -1489,7 +1435,6 @@ class Navbar10 extends BaseNavigator {
                     },
                   ],
                 },
-                // Kategori 4
                 {
                   type: "object",
                   key: "category",
@@ -1505,12 +1450,6 @@ class Navbar10 extends BaseNavigator {
                       type: "page",
                       key: "url",
                       displayer: "URL",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -1535,11 +1474,11 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                            {
+                          {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -1560,11 +1499,11 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                            {
+                          {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              value: "FiArrowUpRight",
                             },
                           ],
                         },
@@ -1603,7 +1542,7 @@ class Navbar10 extends BaseNavigator {
             {
               type: "number",
               key: "rowCount",
-              displayer: "Row Count",
+              displayer: "Item Count In a Row",
               value: 4,
             },
             {
@@ -1620,12 +1559,6 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Category Title",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -1693,7 +1626,7 @@ class Navbar10 extends BaseNavigator {
             {
               type: "number",
               key: "rowCount",
-              displayer: "Row Count",
+              displayer: "Item Count In a Row",
               value: 4,
             },
             {
@@ -1710,12 +1643,6 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Category Title",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Item icon",
                       value: "",
                     },
                     {
@@ -1764,7 +1691,7 @@ class Navbar10 extends BaseNavigator {
       key: "buttons",
       displayer: "Button",
       value: [
-        INPUTS.BUTTON("button", "Button", "Log In", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Log In", "", null, null, "Tertiary"),
         INPUTS.BUTTON(
           "button",
           "Button",
@@ -1772,7 +1699,7 @@ class Navbar10 extends BaseNavigator {
           "",
           null,
           null,
-          "Primary"
+          "Tertiary"
         ),
         INPUTS.BUTTON(
           "button",
@@ -1781,7 +1708,7 @@ class Navbar10 extends BaseNavigator {
           "",
           null,
           null,
-          "Primary"
+          "Tertiary"
         ),
       ],
     });
@@ -1796,6 +1723,13 @@ class Navbar10 extends BaseNavigator {
     });
 
     this.addProp({
+        type: "icon",
+        key: "linkIcon",
+        displayer: "Link Icon",
+        value:"FiArrowUpRight",
+    })
+
+    this.addProp({
       type: "icon",
       key: "closeIcon",
       displayer: "Close Icon",
@@ -1806,7 +1740,7 @@ class Navbar10 extends BaseNavigator {
       type: "icon",
       key: "dropdownIcon",
       displayer: "Dropdown Icon",
-      value: "MdArrowDropDown",
+      value: "BiChevronDown",
     });
     this.addProp({
       type: "icon",
@@ -1819,16 +1753,7 @@ class Navbar10 extends BaseNavigator {
       key: "divider",
       displayer: "Divider",
       value: true,
-    });
-    this.addProp({
-      type: "multiSelect",
-      key: "animations",
-      displayer: "Animations",
-      value: ["animation1", "animation2"],
-      additionalParams: {
-        selectItems: ["animation1", "animation2"],
-      },
-    });
+    })
 
     this.setComponentState("isScrolled", false);
     this.setComponentState("hamburgerNavActive", false);
@@ -1912,12 +1837,6 @@ class Navbar10 extends BaseNavigator {
 
     const isVisible = hamburgerNavActive && !isBigScreen;
 
-    const animations =
-      this.getPropValue("animations") &&
-      this.getPropValue("animations")
-        .map((animation: string) => this.decorateCSS(animation))
-        .join(" ");
-
     return (
       <>
         <Base.Navigator.Container
@@ -1971,7 +1890,7 @@ class Navbar10 extends BaseNavigator {
                         <Base.P
                           className={`${this.decorateCSS(
                             "menuItemTitle"
-                          )} ${animations}`}
+                          )}`}
                         >
                           {item.title}
                         </Base.P>
@@ -2019,7 +1938,7 @@ class Navbar10 extends BaseNavigator {
                                         <Base.H5
                                           className={`${this.decorateCSS(
                                             "dropdownItemTitle"
-                                          )} ${animations}`}
+                                          )}`}
                                         >
                                           {category.title}
                                           {category.icon && (
@@ -2182,13 +2101,13 @@ class Navbar10 extends BaseNavigator {
                             <div
                               className={`${this.decorateCSS(
                                 "hamburgerMenuItemHeader"
-                              )} ${animations}`}
+                              )}`}
                               onClick={() => this.navClick(index)}
                             >
                               <Base.P
                                 className={`${this.decorateCSS(
                                   "hamburgerMenuItemTitle"
-                                )} ${animations}`}
+                                )}`}
                               >
                                 {item.title}
                               </Base.P>
@@ -2226,7 +2145,7 @@ class Navbar10 extends BaseNavigator {
                                         <Base.P
                                           className={`${this.decorateCSS(
                                             "hamburgerCategoryTitle"
-                                          )} ${animations}`}
+                                          )}`}
                                         >
                                           {category.title}
                                           {category.icon && (
@@ -2258,7 +2177,7 @@ class Navbar10 extends BaseNavigator {
                                                 <Base.P
                                                   className={`${this.decorateCSS(
                                                     "hamburgerCategoryItemTitle"
-                                                  )} ${animations}`}
+                                                  )}`}
                                                 >
                                                   {subItem.label}
                                                   {subItem.icon && (
