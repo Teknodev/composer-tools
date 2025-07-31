@@ -1,0 +1,607 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  border-top-left-radius: calc(var(--composer-border-radius-xl) * 4); 
+  border-top-right-radius: calc(var(--composer-border-radius-xl) * 4);
+
+  .content-wrapper {
+    width: 100%;
+    position: sticky;
+    max-width: 1500px;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .header-section {
+    margin-bottom: var(--composer-gap-sm);
+    
+    .max-content {
+      width: 100%;
+      position: sticky;
+      height: 100%;
+      margin: 0 auto;
+      transform: scale(0.85);
+      
+      .header-content {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        width: 100%;
+        
+        .section-title {
+          text-align: left;
+          font-family: 'Anton', sans-serif;
+          text-transform: uppercase;
+          flex: 1;
+          line-height: 0.7;
+
+          .title-normal {
+            color: var(--composer-font-color-primary);
+            display: block;
+            font-size: 8rem;
+            margin-bottom: var(--composer-gap-xs);
+          }
+
+          .title-outline {
+            color: transparent;
+            font-size: 8rem;
+            -webkit-text-stroke: 2px var(--composer-font-color-primary);
+            text-stroke: 2px var(--composer-font-color-primary);
+            display: block;
+            
+            @supports not (-webkit-text-stroke: 2px var(--composer-font-color-primary)) {
+              text-shadow: 
+                -2px -2px 0 var(--composer-font-color-primary),
+                2px -2px 0 var(--composer-font-color-primary),
+                -2px 2px 0 var(--composer-font-color-primary),
+                2px 2px 0 var(--composer-font-color-primary),
+                -2px 0 0 var(--composer-font-color-primary),
+                2px 0 0 var(--composer-font-color-primary),
+                0 -2px 0 var(--composer-font-color-primary),
+                0 2px 0 var(--composer-font-color-primary);
+            }
+          }
+        }
+        
+        .view-all-button {
+          font-size: 1.5rem;
+          padding: var(--composer-gap-md) calc(var(--composer-gap-lg));
+          border-radius: var(--composer-border-radius-sm);
+          border-bottom-right-radius: var(--composer-border-radius-xl);
+          margin-bottom: var(--composer-gap-md);
+          color: var(--composer-font-color-primary);
+          .button-icon{
+            font-size: 1.5rem;
+          }
+          &:hover {
+            background-color: var(--composer-primary-color);
+            border-radius: var(--composer-border-radius-sm);
+            color:var(--composer-html-background);
+          }
+        }
+      }
+    }
+  }
+
+  .games-section {
+    position: sticky;
+    margin: 0 auto;
+    
+    .sticky-container {
+      position: sticky;
+    }
+    
+    .game-card {
+      position: sticky;
+      aspect-ratio: 17 / 9;
+      width: 100%;
+      border-radius: var(--composer-border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--composer-box-shadow);
+      background: var(--composer-html-background);
+      transform: scale(0.85);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      // Sticky animation - sayfaya yapıştığında küçülme efekti
+      animation: stickyCardAnimation linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 30%;
+      
+      @supports not (animation-timeline: view()) {
+        // Fallback için scroll-based animation
+        &.is-sticky {
+          transform: scale(0.75);
+        }
+      }
+      
+      // Dinamik top değerleri JavaScript tarafında inline style olarak ayarlanacak
+      // Artık manuel nth-child'lara gerek yok
+      
+      .game-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        
+        .game-image-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          
+          .game-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+          }
+          
+          .game-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+              to top,
+              rgba(var(--composer-primary-color-rgb), 0.8) 0%,
+              rgba(var(--composer-primary-color-rgb), 0.4) 20%,
+              rgba(var(--composer-primary-color-rgb), 0.1) 40%
+            );
+            display: flex;
+            align-items: flex-end;
+            padding: calc(2 * var(--composer-gap-lg));
+            transition: background 0.3s ease-in-out;
+            
+            .game-info {
+              width: 100%;
+              z-index: 2;
+              
+              .genre-button {
+                font-size: 1.5rem;
+                padding: var(--composer-gap-sm) calc(var(--composer-gap-lg));
+                border-radius: var(--composer-border-radius-xl);
+                margin-bottom: var(--composer-gap-md);
+              }
+              
+              .title-platforms-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                
+                .game-title {
+                  margin: 0;
+                  font-size: 4rem;
+                  color: var(--composer-font-color-primary);
+                  cursor: pointer;
+                  transition: color 0.3s ease-in-out;
+                  flex: 1;
+                  
+                  &:hover {
+                    color: var(--composer-primary-color) !important;
+                  }
+                }
+                
+                .platforms {
+                  display: flex;
+                  align-items: center;
+                  gap: var(--composer-gap-md);
+                  z-index: 3;
+                  flex-shrink: 0;
+                  
+                  .platform-icon {
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    transition: all 0.3s ease-in-out;
+                    position: relative;
+                    
+                    .platform-icon-element {
+                      width: 30px !important;
+                      height: 30px !important;
+                      font-size: 30px !important;
+                      color: var(--composer-font-color-primary);
+                      display: block !important;
+                      line-height: 1 !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Sticky card animation keyframes
+@keyframes stickyCardAnimation {
+  0% {
+    transform: scale(0.85);
+  }
+  
+  100% {
+    transform: scale(0.75);
+  }
+}
+
+// Tablet için sticky animation
+@keyframes stickyCardAnimationTablet {
+  0% {
+    transform: scale(0.9);
+  }
+  
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+// Mobile için sticky animation
+@keyframes stickyCardAnimationMobile {
+  0% {
+    transform: scale(0.9);
+  }
+  
+  100% {
+    transform: scale(0.85);
+  }
+}
+
+// Tablet görünümü için - dinamik yapı ile
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: calc(2 * var(--composer-gap-xl)) 0;
+    border-top-left-radius: var(--composer-border-radius-lg) ; 
+    border-top-right-radius: var(--composer-border-radius-lg) ;
+    
+    .content-wrapper {
+      padding: 0 var(--composer-gap-xl);
+    }
+    
+    .header-section {
+      margin-bottom: calc(2 * var(--composer-gap-xl));
+      
+      .max-content {
+        transform: scale(0.9);
+        
+        .header-content {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: end;
+          
+          .section-title {
+            text-align: left;
+            margin-bottom: var(--composer-gap-md);
+            
+            .title-normal,
+            .title-outline {
+              font-size: 4rem;
+            }
+            
+            .title-outline {
+              -webkit-text-stroke: 1.5px var(--composer-font-color-primary);
+              text-stroke: 1.5px var(--composer-font-color-primary);
+            }
+          }
+          
+          .view-all-button {
+            font-size: 1.25rem;
+            padding: var(--composer-gap-sm) var(--composer-gap-lg);
+            margin-bottom: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-sm);
+            border-bottom-right-radius: var(--composer-border-radius-lg);
+            
+            .button-icon {
+              font-size: 1.25rem;
+            }
+            
+            &:hover {
+              background-color: var(--composer-primary-color);
+              border-radius: var(--composer-border-radius-md);
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+    
+    .games-section {
+      .sticky-container {
+        padding-bottom: calc(var(--composer-gap-xl) * 2);
+      }
+      
+      .game-card {
+        transform: scale(0.9);
+        margin-bottom: calc(var(--composer-gap-lg) * 1.5);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        // Tablet sticky animation
+        animation: stickyCardAnimationTablet linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 30%;
+        
+        @supports not (animation-timeline: view()) {
+          &.is-sticky {
+            transform: scale(0.8);
+          }
+        }
+        
+        // Tablet'te daha az boşluk - JavaScript'te hesaplanacak (20px spacing)
+        
+        .game-content {
+          .game-image-container {
+            .game-overlay {
+              padding: var(--composer-gap-lg);
+              
+              .game-info {
+                .genre-button {
+                  font-size: 1rem;
+                  padding: calc(var(--composer-gap-xs) * 1.5) var(--composer-gap-md);
+                }
+                
+                .title-platforms-row {
+                  flex-direction: column;
+                  align-items: flex-start;
+                  gap: var(--composer-gap-sm);
+                  
+                  .game-title {
+                    font-size: 2rem;
+                    line-height: 1;
+                  }
+                  
+                  .platforms {
+                    align-self: flex-start;
+                    gap: var(--composer-gap-sm);
+                    
+                    .platform-icon {
+                      .platform-icon-element {
+                        width: 24px !important;
+                        height: 24px !important;
+                        font-size: 24px !important;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobil görünüm için (480px ve altı) - dinamik yapı ile
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-xl) 0;
+    
+    .content-wrapper {
+      padding: 0 var(--composer-gap-md);
+    }
+    
+    .header-section {
+      margin-bottom: var(--composer-gap-xl);
+      
+      .max-content {
+        transform: scale(0.9);
+        
+        .header-content {
+          display: block;
+          text-align: center;
+          
+          .section-title {
+            margin-bottom: var(--composer-gap-md);
+            
+            .title-normal,
+            .title-outline {
+              font-size: 2.5rem;
+              line-height: 0.8;
+            }
+            
+            .title-outline {
+              -webkit-text-stroke: 1px var(--composer-font-color-primary);
+              text-stroke: 1px var(--composer-font-color-primary);
+            }
+          }
+          
+          .view-all-button {
+            font-size: 1rem;
+            padding: var(--composer-gap-xs) var(--composer-gap-md);
+            margin-bottom: var(--composer-gap-xs);
+            border-radius: var(--composer-border-radius-sm);
+            border-bottom-right-radius: var(--composer-border-radius-md);
+            width: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--composer-gap-xs);
+            
+            .button-icon {
+              font-size: 1rem;
+            }
+            
+            &:hover {
+              background-color: var(--composer-primary-color);
+              border-radius: var(--composer-border-radius-sm);
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+    
+    .games-section {
+      .sticky-container {
+        padding-bottom: var(--composer-gap-xl);
+      }
+      
+      .game-card {
+        aspect-ratio: 16 / 9;
+        transform: scale(0.9);
+        margin-bottom: var(--composer-gap-md);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        // Mobile sticky animation
+        animation: stickyCardAnimationMobile linear both;
+        animation-timeline: view();
+        animation-range: entry 0% exit 30%;
+        
+        @supports not (animation-timeline: view()) {
+          &.is-sticky {
+            transform: scale(0.85);
+          }
+        }
+        
+        // Mobil'de en az boşluk - JavaScript'te hesaplanacak (10px spacing)
+        
+        .game-content {
+          .game-image-container {
+            .game-overlay {
+              padding: var(--composer-gap-md);
+              
+              .game-info {
+                .genre-button {
+                  font-size: 1rem;
+                  padding: calc(var(--composer-gap-md) / 2) var(--composer-gap-md);
+                  margin-bottom: var(--composer-gap-sm);
+                }
+                
+                .title-platforms-row {
+                  flex-direction: column;
+                  align-items: flex-start;
+                  gap: var(--composer-gap-sm);
+                  
+                  .game-title {
+                    font-size: 1.5rem;
+                    line-height: 1;
+                  }
+                  
+                  .platforms {
+                    gap: var(--composer-gap-sm);
+                    align-self: flex-start;
+                    
+                    .platform-icon {
+                      .platform-icon-element {
+                        width: 20px !important;
+                        height: 20px !important;
+                        font-size: 20px !important;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dinamik spacing için utility class'lar
+.dynamic-spacing {
+  &--small {
+    --dynamic-card-spacing: 10px;
+  }
+  
+  &--medium {
+    --dynamic-card-spacing: 20px;
+  }
+  
+  &--large {
+    --dynamic-card-spacing: 40px;
+  }
+}
+
+// Daha fazla oyun için ek responsive davranışlar
+@container (min-width: 1600px) {
+  .container .games-section .game-card {
+    transform: scale(0.9); // Büyük ekranlarda biraz daha büyük
+    
+    // Büyük ekranlar için sticky animation
+    animation: stickyCardAnimationLarge linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 70%;
+  }
+}
+
+// Büyük ekranlar için sticky animation
+@keyframes stickyCardAnimationLarge {
+  0% {
+    transform: scale(0.9);
+  }
+  
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+// Çok fazla oyun varsa (10+ oyun) için özel durum
+.container[data-game-count="high"] {
+  .games-section .game-card {
+    transform: scale(0.8); // Daha küçük kartlar
+    
+    // Yoğun içerik için sticky animation
+    animation: stickyCardAnimationHigh linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 30%;
+  }
+  
+  @container (max-width: #{$composer-tablet-width}) {
+    .games-section .game-card {
+      transform: scale(0.85);
+      animation: stickyCardAnimationTabletHigh linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 30%;
+    }
+  }
+  
+  @container (max-width: #{$composer-phone-width}) {
+    .games-section .game-card {
+      transform: scale(0.9);
+      animation: stickyCardAnimationMobileHigh linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 30%;
+    }
+  }
+}
+
+// Yoğun içerik için sticky animations
+@keyframes stickyCardAnimationHigh {
+  0% {
+    transform: scale(0.8);
+  }
+  
+  100% {
+    transform: scale(0.7);
+  }
+}
+
+@keyframes stickyCardAnimationTabletHigh {
+  0% {
+    transform: scale(0.85);
+  }
+  
+  100% {
+    transform: scale(0.75);
+  }
+}
+
+@keyframes stickyCardAnimationMobileHigh {
+  0% {
+    transform: scale(0.9);
+  }
+  
+  100% {
+    transform: scale(0.8);
+  }
+}
