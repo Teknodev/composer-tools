@@ -70,7 +70,7 @@ class CallToAction6Page extends BaseCallToAction {
     );
   }
 
-  componentDidUpdate() {
+  onComponentDidUpdate() {
     const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
     const prevPlaceholder = this.getComponentState("placeholderText");
 

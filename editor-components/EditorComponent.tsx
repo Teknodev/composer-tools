@@ -221,6 +221,22 @@ export type TypeLocation = {
   lat: number;
 };
 
+export type TypeMediaInputValue =
+  | { type: "image"; url: string }
+  | { type: "icon"; name: string }
+  | {
+      type: "video";
+      url: string;
+      settings: {
+        autoplay?: boolean;
+        controls?: boolean;
+        loop?: boolean;
+        muted?: boolean;
+      };
+    };
+
+export type MediaType = "icon" | "image" | "video";
+
 type currencyAdditionalParams ={
   showCode?: boolean;
   showSymbol?:boolean;
@@ -291,6 +307,7 @@ type AvailablePropTypes =
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
+  | { type: "media"; value: TypeMediaInputValue }
   | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
@@ -304,7 +321,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  MediaType[]};
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -387,12 +404,6 @@ export abstract class Component
     return this.onShouldComponentUpdate?.(nextProps, nextState) ?? true;
   }
 
-  getSnapshotBeforeUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<{ states: any; componentProps: any; }>
-  ): any {
-    return this.onGetSnapshotBeforeUpdate?.(prevProps, prevState);
-  }
 
   componentDidCatch(error: Error, info: { componentStack: string }): void {
     this.onComponentDidCatch?.(error, info);
@@ -712,6 +723,8 @@ export abstract class Component
   }
 
   setComponentState(key: string, value: any): void {
+    const isSameValue = this.state.states[key] === value;
+    if(isSameValue) return;
     this.state.states[key] = value;
     this.setState({ ...this.state });
   }
@@ -900,14 +913,6 @@ export abstract class Component
     return true;
   }
 
-  onGetSnapshotBeforeUpdate(
-    prevProps: Readonly<any>,
-    prevState: Readonly<any>
-  ): any {
-    // Called right before DOM updates (used with getSnapshotBeforeUpdate)
-    // Override in child components
-    return null;
-  }
 
   onComponentDidCatch(error: Error, info: { componentStack: string }) {
     // Error boundary: catch errors in descendants
