@@ -72,6 +72,8 @@
         color: var(--composer-font-color-primary);
         margin: 0;
         line-height: 1.2;
+        margin-right: auto ;
+        text-align: left;
       }
 
       .description {
@@ -79,6 +81,9 @@
         color: var(--composer-tertiary-color);
         line-height: 1.5;
         margin-top: 10;
+        margin-right: auto !important;
+        text-align: left!important;
+        margin-left: unset;
       }
 
       &.no-icon {
@@ -87,7 +92,9 @@
         }
 
         .description {
-          margin-left: 0 !important;
+          margin-right: auto !important;
+          text-align: left!important;
+          margin-left: unset;
         }
       }
     }
@@ -157,6 +164,8 @@
           color: var(--composer-font-color-primary);
           margin: 0;
           line-height: 1.2;
+          margin-right: auto ;
+          text-align: left;
         }
 
         .description {
@@ -164,6 +173,9 @@
           color: var(--composer-tertiary-color);
           line-height: 1.5;
           margin: 0;
+          margin-right: auto !important;
+          text-align: left!important;
+          margin-left: unset;
         }
       }
 
