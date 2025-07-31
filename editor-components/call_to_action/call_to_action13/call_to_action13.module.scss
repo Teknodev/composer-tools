@@ -33,7 +33,8 @@
         content: "";
         margin-bottom: 0;
         position: relative;
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-md) var(--composer-gap-md)
+          var(--composer-gap-sm);
         display: inline-block;
 
         .highlight {
@@ -67,18 +68,11 @@
       }
 
       .button-container {
-        gap: var(--composer-gap-md);
         grid-column: 2;
         grid-row: 2;
 
-        .button {
-          justify-content: center;
-          padding: var(--composer-gap-md) var(--composer-gap-md);
-        }
-
         .button-text {
           margin: 0;
-          color: var(--composer-primary-color);
         }
       }
     }
@@ -87,11 +81,7 @@
       vertical-align: middle;
       margin-left: var(--composer-gap-md);
       height: 0.5px;
-      background: color-mix(
-        in srgb,
-        var(--composer-html-background),
-        var(--composer-font-color-primary) 5%
-      );
+      color: var(--composer-tertiary-color);
       width: var(--composer-gap-lg);
     }
   }
@@ -131,26 +121,24 @@
       .header {
         gap: var(--composer-gap-lg);
         display: flex;
-        grid-template-columns: none;
-        grid-template-rows: none;
         flex-direction: column;
-        align-items: flex-start;
+        /*         align-items: flex-start;
         justify-content: flex-start;
-        width: 100%;
+        width: 100%; */
 
         .titles {
           display: flex;
-          flex-direction: column;
+          /* flex-direction: column;
           align-items: flex-start;
           width: 100%;
-
-          inline-size: 100%;
+          inline-size: 100%; */
 
           .title {
             max-inline-size: none;
+            margin-bottom: 0;
           }
           .subtitle {
-            margin-bottom: var(--composer-gap-xs);
+            margin-bottom: var(--composer-gap-sm);
             padding: var(--composer-gap-xs);
 
             .highlight {
@@ -159,17 +147,6 @@
                 right: calc(0px - var(--gap-xs));
               }
             }
-          }
-        }
-
-        .button-container {
-          width: auto;
-          justify-content: flex-start;
-          flex-wrap: nowrap;
-
-          .button {
-            min-width: auto;
-            white-space: nowrap;
           }
         }
       }

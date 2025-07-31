@@ -27,13 +27,6 @@ class CallToAction13Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "image",
-      key: "backgroundImageUrl",
-      displayer: "Background Image",
-      value: "https://eremia-react.vercel.app/img/circle-dotted.png",
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       value: "Don't be weird.",
@@ -82,19 +75,13 @@ class CallToAction13Page extends BaseCallToAction {
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const highlightWordCount = this.getPropValue("highlightWordCount") || 2;
-
     const highlightEnabled = this.getPropValue("highlightEnabled");
-    /* const backgroundImageUrl = this.castToString(
-      this.getPropValue("backgroundImageUrl")
-    ); */
     const lineEnabled = this.getPropValue("lineEnabled");
 
     const renderSubtitle = () => {
       if (!subtitle) return null;
-
       const words = subtitle.split(" ");
       const wordCount = Number(highlightWordCount);
-
       const highlightedWords = words.slice(0, wordCount);
       const normalWords = words.slice(wordCount);
 
@@ -115,27 +102,6 @@ class CallToAction13Page extends BaseCallToAction {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {/* <div className={this.decorateCSS("background")}>
-          <div
-            className={this.decorateCSS("bg-circle-dotted")}
-            style={{
-              backgroundImage: backgroundImageUrl
-                ? `url(${backgroundImageUrl})`
-                : "none",
-            }}
-          />
-          <div
-            className={`${this.decorateCSS(
-              "bg-circle-dotted"
-            )} ${this.decorateCSS("bg-circle-dotted-right")}`}
-            style={{
-              backgroundImage: backgroundImageUrl
-                ? `url(${backgroundImageUrl})`
-                : "none",
-            }}
-          />
-        </div> */}
-
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitle || buttons.length > 0) && (
             <div
@@ -162,15 +128,12 @@ class CallToAction13Page extends BaseCallToAction {
                   )}
                 </Base.VerticalContent>
               )}
-
               {buttons?.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((button: Button, index: number) => (
                     <ComposerLink key={index} path={button.url}>
                       <Base.Button
-                        className={`${this.decorateCSS(
-                          "button"
-                        )} ${this.decorateCSS("custom-border")}`}
+                        className={this.decorateCSS("button")}
                         buttonType={button.type}
                       >
                         <Base.P className={this.decorateCSS("button-text")}>
