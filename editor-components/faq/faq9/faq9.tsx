@@ -259,10 +259,6 @@ class Faq9 extends BaseFAQ {
     const midPoint = isMobile
       ? questions.length
       : Math.ceil(questions.length / 2);
-    if (isMobile) {
-      console.log("Mobile view detected, midPoint set to all questions length");
-    }
-
     const leftQuestions = questions.slice(0, midPoint);
     const rightQuestions = isMobile ? [] : questions.slice(midPoint);
 
