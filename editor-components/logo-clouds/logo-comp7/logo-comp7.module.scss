@@ -27,17 +27,18 @@
   .gallery {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
+    overflow: hidden;
+
+    > * {
+      flex: 0 0 100%;
+    }
 
     .images-container {
       display: flex;
       gap: var(--composer-gap-xl);
-      width: fit-content;
-      animation: scroll 10s linear infinite;
-      white-space: nowrap;
-      overflow: hidden;
-      justify-content: space-between;
+      padding-left: var(--composer-gap-xl);
+      animation: scroll 20s linear infinite;
+      will-change: transform;
 
       .image-child {
         flex: 0 0 auto;
@@ -60,11 +61,11 @@
   }
 
   @keyframes scroll {
-    from {
+    0% {
       transform: translateX(0);
     }
-    to {
-      transform: translateX(-50%);
+    100% {
+      transform: translateX(-100%);
     }
   }
 }
