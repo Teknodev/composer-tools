@@ -39,7 +39,7 @@
             margin: 0;
           }
           .stat-label {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin: 0;
             color: var(--composer-font-color-primary);
           }
@@ -69,7 +69,7 @@
 
     .stick {
       width: 1px;
-      background-color: white;
+      background-color: var(--composer-tertiary-color);
       margin: 0;
     }
 
@@ -95,6 +95,7 @@
       .button-container {
         width: fit-content;
         display: flex;
+        flex-direction: row;
         gap: var(--composer-gap-md);
         flex-wrap: wrap;
         align-items: stretch;

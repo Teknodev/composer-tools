@@ -80,7 +80,7 @@ class Content21 extends BaseContent {
     this.addProp({
       type: "string",
       key: "subTitle",
-      displayer: "Sub Title",
+      displayer: "Subtitle",
       value: "Our services",
     });
     this.addProp({
@@ -177,7 +177,10 @@ class Content21 extends BaseContent {
               </div>
               {image && (
                 <div className={this.decorateCSS("image-box")}>
-                  <img className={this.decorateCSS("image")} src={image} />
+                  <Base.Media
+                    className={this.decorateCSS("image")}
+                    value={{ type: "image", url: image }}
+                  />
                 </div>
               )}
             </Base.GridCell>
@@ -207,23 +210,44 @@ class Content21 extends BaseContent {
                   {text2}
                 </Base.SectionDescription>
               )}
-              {buttons.length > 0 &&
-                buttons.map((item: INPUTS.CastedButton, index: number) => {
-                  return (
-                    <div className={this.decorateCSS("button-container")}>
-                      {this.castToString(item.text) && (
-                        <ComposerLink path={item.url}>
-                          <Base.Button
-                            buttonType={item.type}
-                            className={this.decorateCSS("button")}
-                          >
-                            {item.text}
-                          </Base.Button>
-                        </ComposerLink>
-                      )}
-                    </div>
-                  );
-                })}
+
+              {buttons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    return (
+                      <div>
+                        {this.castToString(item.text) && (
+                          <ComposerLink path={item.url}>
+                            <Base.Button
+                              buttonType={item.type}
+                              className={this.decorateCSS("button")}
+                            >
+                              {item.text}
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* {buttons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item, index) =>
+                    this.castToString(item.text) ? (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button
+                          buttonType={item.type}
+                          className={this.decorateCSS("button")}
+                        >
+                          {item.text}
+                        </Base.Button>
+                      </ComposerLink>
+                    ) : null
+                  )}
+                </div>
+              )} */}
             </Base.GridCell>
           </Base.ContainerGrid>
         </Base.MaxContent>
