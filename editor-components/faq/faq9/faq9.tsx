@@ -171,11 +171,11 @@ class Faq9 extends BaseFAQ {
     return "FAQ 9";
   }
 
-  componentDidMount() {
+  onComponentDidMount() {
     this.handleResize();
   }
 
-  componentDidUpdate() {
+  onComponentDidUpdate() {
     this.updateHeights();
   }
 
@@ -229,25 +229,20 @@ class Faq9 extends BaseFAQ {
   private handleQuestion = (index: number) => {
     const isMobile = this.getComponentState("isMobile");
     const questions = this.castToObject<Question[]>("questions");
-
+    const getNextIndex = (key: string) => {
+      const current = this.getComponentState(key);
+      return current === index ? -1 : index;
+    };
+    const leftKey = "activeLeftQuestionIndex";
+    const rightKey = "activeRightQuestionIndex";
     if (isMobile) {
-      const current = this.getComponentState("activeLeftQuestionIndex");
-      const next = current === index ? -1 : index;
-      this.setComponentState("activeLeftQuestionIndex", next);
+      this.setComponentState(leftKey, getNextIndex(leftKey));
     } else {
       const midPoint = Math.ceil(questions.length / 2);
       const isRightCol = index >= midPoint;
-      if (isRightCol) {
-        const current = this.getComponentState("activeRightQuestionIndex");
-        const next = current === index ? -1 : index;
-        this.setComponentState("activeRightQuestionIndex", next);
-      } else {
-        const current = this.getComponentState("activeLeftQuestionIndex");
-        const next = current === index ? -1 : index;
-        this.setComponentState("activeLeftQuestionIndex", next);
-      }
+      const key = isRightCol ? rightKey : leftKey;
+      this.setComponentState(key, getNextIndex(key));
     }
-
     this.updateHeights();
   };
 

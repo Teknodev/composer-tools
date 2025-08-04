@@ -1,10 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
-:root {
-  --composer-phone-width: #{$composer-phone-width};
-}
-
 .container {
   container-type: inline-size;
   .max-content {
@@ -120,23 +116,9 @@
             &.active {
               max-height: 250px;
               .inner-text {
+                content: "";
               }
             }
-          }
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .page {
-        .down-page {
-          /* flex-direction: column; */
-          .questions-column {
-            /*  width: 100%; */
           }
         }
       }
