@@ -44,6 +44,7 @@ import ContentComponent17 from "./content/content17/content17";
 import ContentComponent18 from "./content/content18/content18";
 import ContentComponent19 from "./content/content19/content19";
 import ContentComponent20 from "./content/content20/content20";
+import ContentComponent24 from "./content/content24/content24";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -147,15 +148,12 @@ import CallToAction7 from "./call_to_action/call_to_action7/call_to_action7";
 import CallToAction8 from "./call_to_action/call_to_action8/call_to_action8";
 import CallToAction9 from "./call_to_action/call_to_action9/call_to_action9";
 import CallToAction10 from "./call_to_action/call_to_action10/call_to_action10";
-import CallToAction11 from "./call_to_action/call_to_action11/call_to_action11";
-import CallToAction12 from "./call_to_action/call_to_action12/call_to_action12";
 import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
 import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
 import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
 import LogoComponent4 from "./logo-clouds/logo-comp4/logo-comp4";
 import LogoComponent5 from "./logo-clouds/logo-comp5/logo-comp5";
 import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
-import LogoComponent7 from "./logo-clouds/logo-comp7/logo-comp7";
 import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
 import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
 import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
@@ -232,7 +230,6 @@ import Location3 from "./location/location3/location3";
 import Location4 from "./location/location4/location4";
 import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
-import Location7 from "./location/location7/location7";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 import ECommerce5 from "./e-commerce/e-commerce5";
 import BannerComponent1 from "./banner/banner1/banner1";
@@ -310,6 +307,7 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent18,
     ContentComponent19,
     ContentComponent20,
+    ContentComponent24,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -432,15 +430,12 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction8,
     CallToAction9,
     CallToAction10,
-    CallToAction11,
-    CallToAction12,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
     LogoComponent4,
     LogoComponent5,
     LogoComponent6,
-    LogoComponent7,
     TestimonialsComponent1,
     TestimonialsComponent2,
     TestimonialsComponent3,
@@ -496,7 +491,6 @@ function Registerables(composer: ComponentsRegistery) {
     Location4,
     Location5,
     Location6,
-    Location7,
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
