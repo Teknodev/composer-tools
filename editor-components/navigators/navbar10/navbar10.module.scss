@@ -4,13 +4,18 @@
 .navbarContainer {
   padding: var(--composer-gap-md) var(--composer-gap-xl);
   transition: all 0.3s ease !important;
-  max-width: 1320px;
   margin: auto;
 
   .maxContent {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .leftSection {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-md);
+    }
 
     .logo {
       display: flex;
@@ -49,7 +54,7 @@
 
         .menuItemTitle {
           font-weight: normal;
-          transition: all 0.8s ease;
+          transition: all 0.4s ease;
           font-weight: 500;
           color: var(--composer-font-color-primary);
           &.animation1 {
@@ -81,29 +86,26 @@
           position: absolute;
           top: 100%;
           width: 100%;
-          max-width: 1220px;
           margin: auto;
           right: 0px;
           left: 0px;
           display: flex;
           justify-content: space-evenly;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          background-color: var(--composer-html-background);
           border-radius: var(--composer-border-radius-sm);
           box-shadow: var(--box-shadow-active);
           opacity: 0;
           visibility: hidden;
-          padding: var(--composer-gap-xs);
           transition: all 0.3s ease;
           z-index: 100;
           .dropdownGrid {
-            max-width: 1440px;
             margin: auto;
           }
           .dropdownContentContainer {
             display: flex;
             align-items: flex-start;
             width: 100%;
-            max-width: 1440px;
+            padding: 0px 0px 0px 40px;
             margin: auto;
             gap: var(--composer-gap-sm);
           }
@@ -114,9 +116,17 @@
             gap: var(--composer-gap-sm);
           }
 
+          .dropdownRightColumn {
+            display: flex;
+            flex-direction: column;
+            width: 450px;
+            gap: var(--composer-gap-sm);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          }
+
           .dropdownItem {
             padding: var(--composer-gap-sm) var(--composer-gap-sm);
-            transition: all 0.8s ease;
+            transition: all 0.4s ease;
             border-radius: var(--composer-border-radius-sm);
             position: relative;
 
@@ -127,11 +137,30 @@
               color: var(--composer-tertiary-color);
               text-transform: capitalize;
               margin-bottom: var(--composer-gap-md);
-              transition: all 0.8s ease;
+              transition: all 0.4s ease;
               &.animation1 {
                 &:hover {
                   font-weight: bold;
                 }
+              }
+            }
+
+            .dropdownCategoryImage {
+              margin-top: var(--composer-gap-sm);
+              text-align: center;
+              overflow: hidden;
+              border-radius: var(--composer-border-radius-lg);
+            }
+
+            .categoryImage {
+              width: 100%;
+              height: auto;
+              object-fit: contain;
+              transition: all 0.4s ease;
+              border-radius: var(--composer-border-radius-lg);
+              cursor: pointer;
+              &:hover{
+                transform: scale(1.05);
               }
             }
 
@@ -142,13 +171,13 @@
             .DropdownSectionTitle {
               font-size: 1.5rem;
               font-weight: 500;
-              color: #000;
+              color: var(--composer-font-color-primary);
               margin-bottom: var(--composer-gap-md);
             }
             .DropdownSectionItemDescription {
               font-size: 1rem;
               color: var(--composer-tertiary-color);
-              transition: all 0.8s ease;
+              transition: all 0.4s ease;
             //  margin-bottom: var(--composer-gap-md);
               &.animation1 {
                 &:hover {
@@ -171,8 +200,8 @@
                 font-weight: 600;
                 font-size: 1rem;
                 margin-bottom: var(--composer-gap-xs);
-                color: #000;
-                transition: all 0.8s ease;
+                color: var(--composer-font-color-primary);
+                transition: all 0.4s ease;
                 &.animation1 {
                   &:hover {
                     font-weight: bold;
@@ -206,9 +235,9 @@
               }
             }
             .DropdownSectionItemSectionContainer{
-              transition: 1s;
+              transition: 0.4s;
               &:hover{
-                transition: 1s;
+                transition: 0.4s;
                 margin-left: 10px;
               }
             }
@@ -229,7 +258,6 @@
               opacity: 0;
               visibility: hidden;
               padding: var(--composer-gap-xs);
-              transform: translateX(10px);
               transition: all 0.3s ease;
               z-index: 101;
 
@@ -241,7 +269,7 @@
                 color: var(--composer-font-color-primary);
                 .subdropdownItemTitle {
                   font-weight: normal;
-                  transition: all 0.8s ease;
+                  transition: all 0.4s ease;
                   &.animation1 {
                     &:hover {
                       font-weight: bold;
@@ -297,7 +325,6 @@
 
 .hamburgerLinkItem:hover .hamburgerLinkItemIcon {
   opacity: 1;
-  transform: translateX(4px);
 }
 
   .divider {
@@ -346,7 +373,7 @@
                 margin: 0;
                 font-weight: 500;
                 color: var(--composer-font-color-primary);
-                transition: all 0.8s ease;
+                transition: all 0.4s ease;
                 &.animation1 {
                   &:hover {
                     font-weight: bold;
@@ -407,7 +434,7 @@
                     margin: 0;
                     font-weight: 400;
                     color: var(--composer-font-color-primary);
-                    transition: all 0.8s ease;
+                    transition: all 0.4s ease;
                     &.animation1 {
                       &:hover {
                         font-weight: bold;
@@ -453,7 +480,6 @@
                 .hamburgerSubSubmenu {
                   max-height: 0;
                   overflow-y: hidden;
-                  padding-left: var(--composer-gap-md);
                   transition: all 0.3s linear;
                   &.active {
                     max-height: 1000px;
@@ -469,7 +495,7 @@
                       font-weight: 400;
                       color: var(--composer-font-color-primary);
                       cursor: pointer;
-                      transition: all 0.8s ease;
+                      transition: all 0.4s ease;
                       &.animation1 {
                         &:hover {
                           font-weight: bold;
@@ -658,8 +684,10 @@
   .navbarContainer {
     .maxContent {
       z-index: 101;
-      .pcNavbar {
-        display: none;
+      .leftSection {
+        .pcNavbar {
+          display: none;
+        }
       }
       .rightSide {
         .localization {
@@ -720,6 +748,22 @@
     .DropdownSectionItemIcon {
       width: 26px;
       height: 26px;
+      color: var(--composer-font-color-primary);
+    }
+
+    .dropdownCategoryImage {
+      .categoryImage {
+        width: auto;
+        height: 250px;
+      }
+    }
+
+    .hamburgerCategorySection {
+      &:last-child {
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border-radius: var(--composer-border-radius-sm);
+        padding: var(--composer-gap-sm);
+      }
     }
   }
 }
@@ -735,9 +779,11 @@
   }
   .navbarContainer {
     .maxContent {
-      .logo {
-        .logoImage {
-          max-height: 40px;
+      .leftSection {
+        .logo {
+          .logoImage {
+            max-height: 40px;
+          }
         }
       }
     }
@@ -761,6 +807,7 @@
     .hamburgerCategoryTitle {
       display: flex;
       justify-content: space-between;
+      cursor: pointer;
     }
     .hamburgerCategorySection {
       color: var(--composer-font-color-primary);
@@ -775,10 +822,18 @@
       justify-content: space-between;
       align-items: center;
       font-size: 1rem;
+      cursor: pointer;
     }
     .DropdownSectionItemIcon {
       width: 26px;
       height: 26px;
+    }
+
+    .dropdownCategoryImage {
+      .categoryImage {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }

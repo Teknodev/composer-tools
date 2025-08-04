@@ -35,6 +35,7 @@ interface MenuItems {
   menuType: "Normal" | "Dropdown";
   rowCount?: number;
   categories?: Category[];
+  rightCategories?: Category[];
   rightSection?: RightSection;
 }
 interface Logo {
@@ -121,7 +122,7 @@ class Navbar10 extends BaseNavigator {
               type: "number",
               key: "rowCount",
               displayer: "Item Count In a Row",
-              value: 4,
+              value: 3,
             },
             {
               type: "array",
@@ -182,6 +183,17 @@ class Navbar10 extends BaseNavigator {
                           ],
                         },
                       ],
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Image",
+                      value: "",
+                    },
+                    {type: "string",
+                      key: "imageUrl",
+                      displayer: "Image URL",
+                      value: "",
                     },
                   ],
                 },
@@ -452,131 +464,17 @@ class Navbar10 extends BaseNavigator {
                         },
                       ],
                     },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "category",
-                  displayer: "Category",
-                  value: [
                     {
-                      type: "string",
-                      key: "title",
-                      displayer: "Category Title",
-                      value: "MORE FROM DUDA",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "URL",
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
                       value: "",
                     },
                     {
-                      type: "array",
-                      key: "items",
-                      displayer: "Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "item",
-                          displayer: "Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Label",
-                              value: "Templates",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "URL",
-                              value: "",
-                            },
-                            {
-                              type: "icon",
-                              key: "icon",
-                              displayer: "Item icon",
-                              value: "FiArrowUpRight",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "item",
-                          displayer: "Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Label",
-                              value: "Made with Duda",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "URL",
-                              value: "",
-                            },
-                            {
-                              type: "icon",
-                              key: "icon",
-                              displayer: "Item icon",
-                              value: "FiArrowUpRight",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "item",
-                          displayer: "Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Label",
-                              value: "Accessibility",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "URL",
-                              value: "",
-                            },
-                            {
-                              type: "icon",
-                              key: "icon",
-                              displayer: "Item icon",
-                              value: "FiArrowUpRight",
-                            },
-                          ],
-                        },
-                         {
-                          type: "object",
-                          key: "item",
-                          displayer: "Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Label",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "URL",
-                              value: "",
-                            },
-                            {
-                              type: "icon",
-                              key: "icon",
-                              displayer: "Item icon",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
+                      type: "string",
+                      key: "imageUrl",
+                      displayer: "Category Image URL",
+                      value: "",
                     },
                   ],
                 },
@@ -730,6 +628,163 @@ class Navbar10 extends BaseNavigator {
                         },
                       ],
                     },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "imageUrl",
+                      displayer: "Category Image URL",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "rightCategories",
+              displayer: "Right Categories",
+              value: [
+                {
+                  type: "object",
+                  key: "category",
+                  displayer: "Category",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Category Title",
+                      value: "MORE FROM DUDA",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "URL",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "items",
+                      displayer: "Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Label",
+                              value: "Templates",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
+                              type: "icon",
+                              key: "icon",
+                              displayer: "Item icon",
+                              value: "FiArrowUpRight",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Label",
+                              value: "Made with Duda",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
+                              type: "icon",
+                              key: "icon",
+                              displayer: "Item icon",
+                              value: "FiArrowUpRight",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Label",
+                              value: "Accessibility",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
+                              type: "icon",
+                              key: "icon",
+                              displayer: "Item icon",
+                              value: "FiArrowUpRight",
+                            },
+                          ],
+                        },
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Label",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
+                              type: "icon",
+                              key: "icon",
+                              displayer: "Item icon",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68906a03d3784c002c811913?alt=media&timestamp=1754294795993",
+                    },
+                    {
+                      type: "string",
+                      key: "imageUrl",
+                      displayer: "Category Image URL",
+                      value: "",
+                    },
                   ],
                 },
               ],
@@ -764,7 +819,7 @@ class Navbar10 extends BaseNavigator {
               type: "number",
               key: "rowCount",
               displayer: "Item Count In a Row",
-              value: 3,
+              value: 2,
             },
             {
               type: "array",
@@ -859,6 +914,12 @@ class Navbar10 extends BaseNavigator {
                         },
                       ],
                     },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
                   ],
                 },
                 {
@@ -917,8 +978,27 @@ class Navbar10 extends BaseNavigator {
                         },
                       ],
                     },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "imageUrl",
+                      displayer: "Category Image URL",
+                      value: "",
+                    },
                   ],
                 },
+              ],
+            },
+            {
+              type: "array",
+              key: "rightCategories",
+              displayer: "Right Categories",
+              value: [
                 {
                   type: "object",
                   key: "category",
@@ -983,7 +1063,7 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                          {
+                            {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
@@ -1002,7 +1082,13 @@ class Navbar10 extends BaseNavigator {
                               displayer: "Label",
                               value: "Transportation",
                             },
-                           {
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
@@ -1027,7 +1113,7 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                         {
+                            {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
@@ -1036,6 +1122,12 @@ class Navbar10 extends BaseNavigator {
                           ],
                         },
                       ],
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
                     },
                   ],
                 },
@@ -1071,7 +1163,7 @@ class Navbar10 extends BaseNavigator {
               type: "number",
               key: "rowCount",
               displayer: "Item Count In a Row",
-              value: 4,
+              value: 3,
             },
             {
               type: "array",
@@ -1433,8 +1525,27 @@ class Navbar10 extends BaseNavigator {
                         },
                       ],
                     },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
                   ],
                 },
+              ],
+            },
+            {
+              type: "array",
+              key: "rightCategories",
+              displayer: "Right Categories",
+              value: [
                 {
                   type: "object",
                   key: "category",
@@ -1474,7 +1585,7 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                          {
+                            {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
@@ -1499,7 +1610,7 @@ class Navbar10 extends BaseNavigator {
                               displayer: "URL",
                               value: "",
                             },
-                          {
+                            {
                               type: "icon",
                               key: "icon",
                               displayer: "Item icon",
@@ -1508,6 +1619,18 @@ class Navbar10 extends BaseNavigator {
                           ],
                         },
                       ],
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68906a03d3784c002c811913?alt=media&timestamp=1754294795993",
+                    },
+                    {
+                      type: "string",
+                      key: "imageUrl",
+                      displayer: "Category Image URL",
+                      value: "",
                     },
                   ],
                 },
@@ -1597,6 +1720,76 @@ class Navbar10 extends BaseNavigator {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "rightCategories",
+              displayer: "Right Categories",
+              value: [
+                {
+                  type: "object",
+                  key: "category",
+                  displayer: "Category",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Category Title",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "URL",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "items",
+                      displayer: "Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Label",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
+                              type: "icon",
+                              key: "icon",
+                              displayer: "Item icon",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "imageUrl",
+                      displayer: "Category Image URL",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
         {
@@ -1677,6 +1870,88 @@ class Navbar10 extends BaseNavigator {
                         },
                       ],
                     },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "rightCategories",
+              displayer: "Right Categories",
+              value: [
+                {
+                  type: "object",
+                  key: "category",
+                  displayer: "Category",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Category Title",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "URL",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "items",
+                      displayer: "Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "item",
+                          displayer: "Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "label",
+                              displayer: "Label",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "url",
+                              displayer: "URL",
+                              value: "",
+                            },
+                            {
+                              type: "icon",
+                              key: "icon",
+                              displayer: "Item icon",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Category Image",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "imageUrl",
+                      displayer: "Category Image URL",
+                      value: "",
+                    },
                   ],
                 },
               ],
@@ -1712,8 +1987,6 @@ class Navbar10 extends BaseNavigator {
         ),
       ],
     });
-
-    console.log("AFTER addProp:", this.getPropValue("buttons"));
 
     this.addProp({
       type: "icon",
@@ -1863,21 +2136,22 @@ class Navbar10 extends BaseNavigator {
                 : ""
             }`}
           >
-            {currentLogo && (
-              <div
-                className={this.decorateCSS("logo")}
-                onClick={() => this.handleCloseMenu()}
-              >
-                <ComposerLink path={currentLogo.urlTo}>
-                  <img
-                    src={currentLogo.image}
-                    className={this.decorateCSS("logoImage")}
-                  />
-                </ComposerLink>
-              </div>
-            )}
+            <div className={this.decorateCSS("leftSection")}>
+              {currentLogo && (
+                <div
+                  className={this.decorateCSS("logo")}
+                  onClick={() => this.handleCloseMenu()}
+                >
+                  <ComposerLink path={currentLogo.urlTo}>
+                    <img
+                      src={currentLogo.image}
+                      className={this.decorateCSS("logoImage")}
+                    />
+                  </ComposerLink>
+                </div>
+              )}
 
-            <nav className={this.decorateCSS("pcNavbar")}>
+              <nav className={this.decorateCSS("pcNavbar")}>
               {menuItems
                 .filter((item) => item && item.title)
                 .map((item, index) => (
@@ -1909,6 +2183,7 @@ class Navbar10 extends BaseNavigator {
                         {(() => {
                           const rowCount = item.rowCount || 4;
                           const categories = item.categories || [];
+                          const rightCategories = item.rightCategories || [];
                           const columns: Category[][] = Array.from(
                             { length: rowCount },
                             () => []
@@ -1999,10 +2274,111 @@ class Navbar10 extends BaseNavigator {
                                           </div>
                                         </ComposerLink>
                                       ))}
+                                      {category.image && (
+                                        <div className={this.decorateCSS("dropdownCategoryImage")}>
+                                          <img
+                                            src={category.image}
+                                            alt={category.title}
+                                            className={this.decorateCSS("categoryImage")}
+                                          />
+                                        </div>
+                                      )}
                                     </div>
                                   ))}
                                 </div>
                               ))}
+
+                              {rightCategories.length > 0 && (
+                                <div className={this.decorateCSS("dropdownRightColumn")}>
+                                  {rightCategories.map((category, catIndex) => {
+                                   const rightContainerExists = category.items.length > 0 || category.image || category.url || category.title || category.icon;
+                                    console.log(rightContainerExists, "rightContainerExists");
+                                    return rightContainerExists && (
+                                      <div
+                                      key={catIndex}
+                                      className={this.decorateCSS(
+                                        "dropdownItem"
+                                      )}
+                                    >
+                                      <ComposerLink path={category.url}>
+                                        <Base.H5
+                                          className={`${this.decorateCSS(
+                                            "dropdownItemTitle"
+                                          )}`}
+                                        >
+                                          {category.title}
+                                          {category.icon && (
+                                            <Base.Icon
+                                              name={category.icon}
+                                              propsIcon={{
+                                                className: this.decorateCSS(
+                                                  "DropdownSectionItemIcon"
+                                                ),
+                                              }}
+                                            />
+                                          )}
+                                        </Base.H5>
+                                      </ComposerLink>
+                                      {category.items.map((catItem, iIndex) => (
+                                        <ComposerLink
+                                          key={iIndex}
+                                          path={catItem.url}
+                                        >
+                                          <div
+                                            className={this.decorateCSS(
+                                              "DropdownSectionItemContainer"
+                                            )}
+                                          >
+                                            <div
+                                              className={this.decorateCSS(
+                                                "DropdownSectionItemSectionContainer"
+                                              )}
+                                            >
+                                              <Base.P
+                                                className={this.decorateCSS(
+                                                  "DropdownSectionItemTitle"
+                                                )}
+                                              >
+                                                {catItem.label}
+                                                {catItem.icon && (
+                                                  <Base.Icon
+                                                    name={catItem.icon}
+                                                    propsIcon={{
+                                                      className:
+                                                        this.decorateCSS(
+                                                          "DropdownSectionItemIcon"
+                                                        ),
+                                                    }}
+                                                  />
+                                                )}
+                                              </Base.P>
+                                              {catItem.description && (
+                                                <Base.P
+                                                  className={this.decorateCSS(
+                                                    "DropdownSectionItemDescription"
+                                                  )}
+                                                >
+                                                  {catItem.description}
+                                                </Base.P>
+                                              )}
+                                            </div>
+                                          </div>
+                                        </ComposerLink>
+                                      ))}
+                                      {category.image && (
+                                        <div className={this.decorateCSS("dropdownCategoryImage")}>
+                                          <img
+                                            src={category.image}
+                                            alt={category.title}
+                                            className={this.decorateCSS("categoryImage")}
+                                          />
+                                        </div>
+                                      )}
+                                    </div>
+                                    )
+                                  })}
+                                </div>
+                              )}
                             </div>
                           );
                         })()}
@@ -2025,7 +2401,8 @@ class Navbar10 extends BaseNavigator {
                     )}
                   </div>
                 ))}
-            </nav>
+              </nav>
+            </div>
 
             <div className={this.decorateCSS("rightSide")}>
               {buttons.length > 0 && isBigScreen && (
@@ -2125,8 +2502,7 @@ class Navbar10 extends BaseNavigator {
                               )}
                             </div>
                             {item.menuType === "Dropdown" &&
-                              item.categories &&
-                              item.categories.length > 0 && (
+                              ((item.categories && item.categories.length > 0) || (item.rightCategories && item.rightCategories.length > 0)) && (
                                 <div
                                   className={`${this.decorateCSS(
                                     "hamburgerSubmenu"
@@ -2134,7 +2510,8 @@ class Navbar10 extends BaseNavigator {
                                     isActive ? this.decorateCSS("active") : ""
                                   }`}
                                 >
-                                  {item.categories.map((category, catIndex) => (
+                                  {/* Normal Categories */}
+                                  {item.categories?.map((category, catIndex) => (
                                     <div
                                       className={this.decorateCSS(
                                         "hamburgerCategorySection"
@@ -2197,6 +2574,91 @@ class Navbar10 extends BaseNavigator {
                                           )
                                         )}
                                       </div>
+                                      {category.image && (
+                                        <div className={this.decorateCSS("dropdownCategoryImage")}>
+                                          <img
+                                            src={category.image}
+                                            alt={category.title}
+                                            className={this.decorateCSS("categoryImage")}
+                                          />
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+
+                                  {/* Right Categories */}
+                                  {item.rightCategories?.map((category, catIndex) => (
+                                    <div
+                                      className={this.decorateCSS(
+                                        "hamburgerCategorySection"
+                                      )}
+                                      key={`right-${catIndex}`}
+                                    >
+                                      <ComposerLink path={category.url}>
+                                        <Base.P
+                                          className={`${this.decorateCSS(
+                                            "hamburgerCategoryTitle"
+                                          )}`}
+                                        >
+                                          {category.title}
+                                          {category.icon && (
+                                            <Base.Icon
+                                              name={category.icon}
+                                              propsIcon={{
+                                                className: this.decorateCSS(
+                                                  "DropdownSectionItemIcon"
+                                                ),
+                                              }}
+                                            />
+                                          )}
+                                        </Base.P>
+                                      </ComposerLink>
+                                      <div
+                                        className={this.decorateCSS(
+                                          "hamburgerCategoryItems"
+                                        )}
+                                      >
+                                        {category.items?.map(
+                                          (subItem, subIndex) => (
+                                            <div
+                                              className={this.decorateCSS(
+                                                "hamburgerCategoryItem"
+                                              )}
+                                              key={subIndex}
+                                            >
+                                              <ComposerLink path={subItem.url}>
+                                                <Base.P
+                                                  className={`${this.decorateCSS(
+                                                    "hamburgerCategoryItemTitle"
+                                                  )}`}
+                                                >
+                                                  {subItem.label}
+                                                  {subItem.icon && (
+                                                    <Base.Icon
+                                                      name={subItem.icon}
+                                                      propsIcon={{
+                                                        className:
+                                                          this.decorateCSS(
+                                                            "DropdownSectionItemIcon"
+                                                          ),
+                                                      }}
+                                                    />
+                                                  )}
+                                                </Base.P>
+                                              </ComposerLink>
+                                            </div>
+                                          )
+                                        )}
+                                      </div>
+                                      {category.image && (
+                                        <div className={this.decorateCSS("dropdownCategoryImage")}>
+                                          <img
+                                            src={category.image}
+                                            alt={category.title}
+                                            className={this.decorateCSS("categoryImage")}
+                                          />
+                                        </div>
+                                      )}
                                     </div>
                                   ))}
                                 </div>
