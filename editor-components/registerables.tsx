@@ -311,7 +311,6 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent19,
     ContentComponent20,
     ContentComponent22,
-    ContentComponent23,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
