@@ -164,6 +164,7 @@ class Faq9 extends BaseFAQ {
     });
 
     this.setComponentState("activeLeftQuestionIndex", 0);
+    this.setComponentState("activeRightQuestionIndex", 3);
     this.setComponentState("isMobile", false);
   }
 
@@ -173,34 +174,28 @@ class Faq9 extends BaseFAQ {
 
   onComponentDidMount() {
     this.handleResize();
+    window.addEventListener('resize', this.handleResize);
   }
 
   onComponentDidUpdate() {
     this.updateHeights();
   }
 
-  private handleResize() {
+  onComponentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  private handleResize = () => {
     const el = this.containerRef.current;
     if (!el) return;
 
     const width = el.clientWidth;
 
-    const cssPhone = getComputedStyle(document.documentElement)
-      .getPropertyValue("--composer-phone-width")
-      .trim()
-      .replace("px", "");
-    const phonePx = parseInt(cssPhone, 10) || 0;
+    const phonePx = 768; 
 
     const isMobile = width <= phonePx;
     this.setComponentState("isMobile", isMobile);
 
-    const questions = this.castToObject<Question[]>("questions");
-    const midPoint = Math.ceil(questions.length / 2);
-
-    this.setComponentState(
-      "activeRightQuestionIndex",
-      isMobile ? -1 : midPoint
-    );
     this.updateHeights();
   }
 
@@ -237,6 +232,7 @@ class Faq9 extends BaseFAQ {
     const rightKey = "activeRightQuestionIndex";
     if (isMobile) {
       this.setComponentState(leftKey, getNextIndex(leftKey));
+      this.setComponentState(rightKey, -1); 
     } else {
       const midPoint = Math.ceil(questions.length / 2);
       const isRightCol = index >= midPoint;
