@@ -14,7 +14,7 @@ type ITabs = {
 };
 
 class Slider11 extends BaseSlider {
-  private progressIntervalId?: number;
+  private progressIntervalId?: NodeJS.Timeout;
   private readonly ANIMATION_DURATION = 10000;
 
   constructor(props?: any) {
@@ -181,11 +181,9 @@ class Slider11 extends BaseSlider {
     });
 
     this.setComponentState("activeTab", 0);
-    this.setComponentState("progress", 0);
-    this.setComponentState("isAnimating", false);
   }
 
-  componentDidMount() {
+  onComponentDidMount() {
     this.startProgressAnimation();
   }
 
@@ -194,21 +192,9 @@ class Slider11 extends BaseSlider {
       clearInterval(this.progressIntervalId);
     }
 
-    this.setComponentState("progress", 0);
-    this.setComponentState("isAnimating", true);
-
-    const startTime = Date.now();
-
-    this.progressIntervalId = window.setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const progress = Math.min((elapsed / this.ANIMATION_DURATION) * 100, 100);
-
-      this.setComponentState("progress", progress);
-
-      if (progress >= 100) {
-        this.advanceToNextTab();
-      }
-    }, 50);
+    this.progressIntervalId = setTimeout(() => {
+      this.advanceToNextTab();
+    }, this.ANIMATION_DURATION);
   }
 
   private advanceToNextTab() {
@@ -220,7 +206,7 @@ class Slider11 extends BaseSlider {
     this.startProgressAnimation();
   }
 
-  componentWillUnmount() {
+  onComponentWillUnmount() {
     if (this.progressIntervalId !== undefined) {
       clearInterval(this.progressIntervalId);
     }
@@ -240,7 +226,6 @@ class Slider11 extends BaseSlider {
     const description = this.getPropValue("description");
     const tabs = this.castToObject<ITabs[]>("tabs");
     const active = this.getComponentState("activeTab") as number;
-    const progress = this.getComponentState("progress") as number;
     const alignmentValue = Base.getContentAlignment();
 
     return (
@@ -267,18 +252,19 @@ class Slider11 extends BaseSlider {
           <div className={this.decorateCSS("tabs-layout")}>
             <div className={this.decorateCSS("tabs-left")}>
               {tabs.map((tab: ITabs, index: number) => (
-                <div
-                  key={index}
-                  className={`${this.decorateCSS("tab-item")} ${
-                    active === index ? this.decorateCSS("active") : ""
-                  }`}
-                  onClick={() => this.setActiveTab(index)}
-                  style={
-                    {
-                      "--tab-image-url": `url(${tab.image})`,
-                    } as React.CSSProperties
-                  }
-                >
+                                 <div
+                   key={index}
+                   className={`${this.decorateCSS("tab-item")} ${
+                     active === index ? this.decorateCSS("active") : ""
+                   }`}
+                   onClick={() => this.setActiveTab(index)}
+                 >
+                   <div
+                     className={this.decorateCSS("tab-background")}
+                     style={{
+                       backgroundImage: `url(${tab.image})`,
+                     }}
+                   />
                   {this.castToString(tab.title) && (
                     <Base.H3 className={this.decorateCSS("tab-title")}>
                       {tab.title}
@@ -314,12 +300,11 @@ class Slider11 extends BaseSlider {
                   {tabs.length > 1 && (
                     <div className={this.decorateCSS("progress-container")}>
                       <div className={this.decorateCSS("progress-track")}>
-                        <div
-                          className={this.decorateCSS("progress-fill")}
-                          style={{
-                            width: active === index ? `${progress}%` : "0%",
-                          }}
-                        />
+                                                 <div
+                           className={`${this.decorateCSS("progress-fill")} ${
+                             active === index ? this.decorateCSS("animate") : ""
+                           }`}
+                         />
                       </div>
                     </div>
                   )}
