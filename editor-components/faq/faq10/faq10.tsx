@@ -235,27 +235,32 @@ class Faq10 extends BaseFAQ {
     return "FAQ 10";
   }
 
-  componentDidMount() {
+  onComponentDidMount() {
     this.handleResize();
     this.updateHeights();
     window.addEventListener('resize', this.handleResize);
   }
 
-  componentDidUpdate() {
+  onComponentDidUpdate() {
     this.updateHeights();
   }
 
-  componentWillUnmount() {
+  onComponentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  private updateHeights() {
+  private getColumnCounts() {
     const cards = this.castToObject<FAQ[]>("card");
     const total = cards.length;
     const perColBase = Math.floor(total / 3);
     const rem = total % 3;
     const counts = [perColBase, perColBase, perColBase];
     for (let i = 0; i < rem; i++) counts[i]++;
+    return counts;
+  }
+
+  private updateHeights() {
+    const counts = this.getColumnCounts();
 
     this.bodyRefs.forEach((el, globalIdx) => {
       if (!el) return;
@@ -327,13 +332,8 @@ class Faq10 extends BaseFAQ {
 
   render() {
     const cards = this.castToObject<FAQ[]>("card");
-    const total = cards.length;
     const active = this.getComponentState("activeIndices") as number[];
-
-    const perColBase = Math.floor(total / 3);
-    const rem = total % 3;
-    const counts = [perColBase, perColBase, perColBase];
-    for (let i = 0; i < rem; i++) counts[i]++;
+    const counts = this.getColumnCounts();
 
     const columns: FAQ[][] = [];
     let offset = 0;
@@ -348,7 +348,7 @@ class Faq10 extends BaseFAQ {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div ref={this.containerRef}>
+        <div className={this.decorateCSS("container-inner")} ref={this.containerRef}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {headerExist && 
             <Base.VerticalContent className={this.decorateCSS("header")}>
