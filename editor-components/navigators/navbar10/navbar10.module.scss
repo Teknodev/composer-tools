@@ -41,11 +41,8 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-xs);
-        padding: var(--composer-gap-md) 0;
+        padding: var(--composer-gap-xs) 0;
         cursor: pointer;
-        &:hover {
-          border-bottom: 1px solid var(--color-gray-tertiary)
-        }
 
         .menuItem {
           display: flex;
@@ -102,13 +99,13 @@
             margin: auto;
           }
           .dropdownContentContainer {
-            display: flex;
-            align-items: flex-start;
-            width: 100%;
-            padding: 0px 0px 0px 40px;
-            margin: auto;
-            gap: var(--composer-gap-sm);
-          }
+             display: flex;
+             align-items: stretch;
+             width: 100%;
+             padding: 0px 0px 0px 40px;
+             margin: auto;
+             gap: var(--composer-gap-sm);
+           }
           .dropdownColumn {
             display: flex;
             flex-direction: column;
@@ -116,16 +113,20 @@
             gap: var(--composer-gap-sm);
           }
 
-          .dropdownRightColumn {
-            display: flex;
-            flex-direction: column;
-            width: 450px;
-            gap: var(--composer-gap-sm);
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          }
+                     .dropdownRightColumn {
+              display: flex;
+              flex-direction: column;
+              width: 430px;
+              gap: var(--composer-gap-sm);
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              min-height: 100%;
+              padding: var(--composer-gap-sm);
+              border-radius: var(--composer-border-radius-sm);
+              align-self: stretch;
+            }
 
           .dropdownItem {
-            padding: var(--composer-gap-sm) var(--composer-gap-sm);
+            padding: var(--composer-gap-sm) var(--composer-gap-lg) var(--composer-gap-sm) var(--composer-gap-lg);
             transition: all 0.4s ease;
             border-radius: var(--composer-border-radius-sm);
             position: relative;
@@ -133,11 +134,12 @@
             .dropdownItemTitle {
               display: flex;
               justify-content: space-between;
-              font-size: 1.5rem;
+              font-size: 1rem;
               color: var(--composer-tertiary-color);
               text-transform: capitalize;
               margin-bottom: var(--composer-gap-md);
               transition: all 0.4s ease;
+              padding: 0 var(--composer-gap-xs);
               &.animation1 {
                 &:hover {
                   font-weight: bold;
@@ -172,13 +174,12 @@
               font-size: 1.5rem;
               font-weight: 500;
               color: var(--composer-font-color-primary);
-              margin-bottom: var(--composer-gap-md);
+              margin: var(--composer-gap-xs);
             }
             .DropdownSectionItemDescription {
               font-size: 1rem;
               color: var(--composer-tertiary-color);
               transition: all 0.4s ease;
-            //  margin-bottom: var(--composer-gap-md);
               &.animation1 {
                 &:hover {
                   font-weight: bold;
@@ -198,7 +199,7 @@
                 justify-content: space-between;
                 align-items: center;
                 font-weight: 600;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 margin-bottom: var(--composer-gap-xs);
                 color: var(--composer-font-color-primary);
                 transition: all 0.4s ease;
@@ -236,9 +237,27 @@
             }
             .DropdownSectionItemSectionContainer{
               transition: 0.4s;
+              padding: var(--composer-gap-xs);
+
               &:hover{
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 20%);
                 transition: 0.4s;
                 margin-left: 10px;
+                border-radius: var(--composer-border-radius-sm);
+                
+                .DropdownSectionItemTitle {
+                  .DropdownSectionItemIcon {
+                    transform: translateX(0px);
+                    transition: 0.4s;
+                  }
+                }
+              }
+              
+              .DropdownSectionItemTitle {
+                .DropdownSectionItemIcon {
+                  transform: translateX(-10px);
+                  transition: 0.4s;
+                }
               }
             }
             .rightIcon {
@@ -369,7 +388,7 @@
               position: relative;
 
               .hamburgerMenuItemTitle {
-                font-size: 1.5rem;
+                font-size: 1rem;
                 margin: 0;
                 font-weight: 500;
                 color: var(--composer-font-color-primary);
@@ -730,6 +749,7 @@
     .hamburgerCategoryTitle {
       display: flex;
       justify-content: space-between;
+      color: var(--composer-tertiary-color);
     }
     .hamburgerCategorySection {
       color: var(--composer-font-color-primary);
@@ -769,6 +789,9 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
+  .navbarContainer {
+    padding: var(--composer-gap-md);
+  }
   .rightSide {
     .localization {
       display: none;

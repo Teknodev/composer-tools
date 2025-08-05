@@ -138,7 +138,7 @@ class Navbar10 extends BaseNavigator {
                       type: "string",
                       key: "title",
                       displayer: "Category Title",
-                      value: "Build High Performing Sites",
+                      value: "BUILD HIGH PERFORMING SITES",
                     },
                     {
                       type: "page",
@@ -471,7 +471,7 @@ class Navbar10 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Category Image URL",
                       value: "",
@@ -635,7 +635,7 @@ class Navbar10 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Category Image URL",
                       value: "",
@@ -746,31 +746,6 @@ class Navbar10 extends BaseNavigator {
                             },
                           ],
                         },
-                        {
-                          type: "object",
-                          key: "item",
-                          displayer: "Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "label",
-                              displayer: "Label",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "URL",
-                              value: "",
-                            },
-                            {
-                              type: "icon",
-                              key: "icon",
-                              displayer: "Item icon",
-                              value: "",
-                            },
-                          ],
-                        },
                       ],
                     },
                     {
@@ -780,7 +755,7 @@ class Navbar10 extends BaseNavigator {
                       value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68906a03d3784c002c811913?alt=media&timestamp=1754294795993",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Category Image URL",
                       value: "",
@@ -985,7 +960,7 @@ class Navbar10 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Category Image URL",
                       value: "",
@@ -1627,7 +1602,7 @@ class Navbar10 extends BaseNavigator {
                       value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68906a03d3784c002c811913?alt=media&timestamp=1754294795993",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Category Image URL",
                       value: "",
@@ -1781,7 +1756,7 @@ class Navbar10 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Category Image URL",
                       value: "",
@@ -1947,7 +1922,7 @@ class Navbar10 extends BaseNavigator {
                       value: "",
                     },
                     {
-                      type: "string",
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Category Image URL",
                       value: "",
