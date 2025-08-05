@@ -2,8 +2,6 @@
   as *;
 
 .container {
-  background-color: var(--composer-html-background);
-
   .max-content {
     position: relative;
     z-index: 2;
@@ -29,13 +27,14 @@
         width: fit-content;
         text-align: left;
         margin-left: unset;
-
         content: "";
         margin-bottom: 0;
         position: relative;
         padding: var(--composer-gap-md) var(--composer-gap-md)
           var(--composer-gap-sm);
         display: inline-block;
+        text-wrap: balance;
+        max-inline-size: 1200px;
 
         .highlight {
           position: relative;
@@ -70,19 +69,14 @@
       .button-container {
         grid-column: 2;
         grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
 
         .button-text {
           margin: 0;
         }
       }
-    }
-    .line {
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: var(--composer-gap-md);
-      height: 0.5px;
-      color: var(--composer-tertiary-color);
-      width: var(--composer-gap-lg);
     }
   }
 }
@@ -98,12 +92,6 @@
             padding: var(--composer-gap-sm);
           }
         }
-
-        .button-container {
-          .button {
-            padding: var(--composer-gap-md) var(--composer-gap-md);
-          }
-        }
       }
     }
   }
@@ -114,25 +102,15 @@
     .max-content {
       flex-direction: column;
       align-items: flex-start;
-
       width: 100%;
       gap: var(--composer-gap-lg);
 
       .header {
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-md);
         display: flex;
         flex-direction: column;
-        /*         align-items: flex-start;
-        justify-content: flex-start;
-        width: 100%; */
-
         .titles {
           display: flex;
-          /* flex-direction: column;
-          align-items: flex-start;
-          width: 100%;
-          inline-size: 100%; */
-
           .title {
             max-inline-size: none;
             margin-bottom: 0;
@@ -140,6 +118,7 @@
           .subtitle {
             margin-bottom: var(--composer-gap-sm);
             padding: var(--composer-gap-xs);
+            max-inline-size: none;
 
             .highlight {
               &::after {
@@ -149,9 +128,9 @@
             }
           }
         }
-      }
-      .line {
-        display: none;
+        .button-container {
+          gap: var(--composer-gap-sm);
+        }
       }
     }
   }

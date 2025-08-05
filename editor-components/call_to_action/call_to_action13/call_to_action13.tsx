@@ -2,7 +2,6 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action13.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -19,12 +18,6 @@ class CallToAction13Page extends BaseCallToAction {
       value: true,
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "lineEnabled",
-      displayer: "Enable Line",
-      value: true,
-    });
 
     this.addProp({
       type: "string",
@@ -70,13 +63,11 @@ class CallToAction13Page extends BaseCallToAction {
   }
 
   render() {
-    const alignment = Base.getContentAlignment();
     const buttons = this.castToObject<Button[]>("buttons");
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const highlightWordCount = this.getPropValue("highlightWordCount") || 2;
     const highlightEnabled = this.getPropValue("highlightEnabled");
-    const lineEnabled = this.getPropValue("lineEnabled");
 
     const renderSubtitle = () => {
       if (!subtitle) return null;
@@ -105,9 +96,7 @@ class CallToAction13Page extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitle || buttons.length > 0) && (
             <div
-              className={`${this.decorateCSS("header")} ${
-                alignment === "center" && this.decorateCSS("center")
-              }`}
+              className={`${this.decorateCSS("header")} `}
             >
               {(titleExist || subtitle) && (
                 <Base.VerticalContent className={this.decorateCSS("titles")}>
@@ -116,9 +105,6 @@ class CallToAction13Page extends BaseCallToAction {
                       className={this.decorateCSS("subtitle")}
                     >
                       {renderSubtitle()}
-                      {lineEnabled && (
-                        <span className={this.decorateCSS("line")} />
-                      )}
                     </Base.SectionSubTitle>
                   )}
                   {titleExist && (
