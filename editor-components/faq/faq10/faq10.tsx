@@ -29,13 +29,13 @@ class Faq10 extends BaseFAQ {
     this.addProp({
       type: "icon",
       key: "iconPlus",
-      displayer: "Icon Plus",
+      displayer: "Collapsed Icon",
       value: "IoIosAdd",
     });
     this.addProp({
       type: "icon",
       key: "icon",
-      displayer: "Icon",
+      displayer: "Expanded Icon",
       value: "IoIosRemove",
     });
     this.addProp({
@@ -228,6 +228,7 @@ class Faq10 extends BaseFAQ {
     });
 
     this.setComponentState("activeIndices", [0, 0, 0]);
+    this.setComponentState("isMobile", false);
   }
 
   static getName(): string {
@@ -237,10 +238,15 @@ class Faq10 extends BaseFAQ {
   componentDidMount() {
     this.handleResize();
     this.updateHeights();
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentDidUpdate() {
     this.updateHeights();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   private updateHeights() {
@@ -276,20 +282,28 @@ class Faq10 extends BaseFAQ {
     if (!el) return;
 
     const width = el.clientWidth;
-    const cssPhone = getComputedStyle(document.documentElement)
+
+    const phonePx = getComputedStyle(document.documentElement)
       .getPropertyValue("--composer-phone-width")
       .trim()
       .replace("px", "");
-    const phonePx = parseInt(cssPhone, 10) || 0;
-    if (width <= phonePx) {
+    const phonePxInt = parseInt(phonePx, 10) || 0;
+
+    const isMobile = width <= phonePxInt;
+     
+    const wasMobile = this.getComponentState("isMobile");
+    this.setComponentState("isMobile", isMobile);
+     
+    if (isMobile && !wasMobile) {
       this.setComponentState("activeIndices", [0, -1, -1]);
-    } else {
+    } else if (!isMobile && wasMobile) {
       this.setComponentState("activeIndices", [0, 0, 0]);
     }
     this.updateHeights();
   };
 
   private cardClicked = (columnIndex: number, cardIndexInColumn: number) => {
+    const isMobile = this.getComponentState("isMobile");
     const activeIndices = this.getComponentState("activeIndices") as number[];
 
     const currentActiveInColumn = activeIndices[columnIndex];
@@ -299,7 +313,13 @@ class Faq10 extends BaseFAQ {
     }
 
     const updatedIndices = [...activeIndices];
-    updatedIndices[columnIndex] = cardIndexInColumn;
+    
+    if (isMobile) {
+      updatedIndices.fill(-1);
+      updatedIndices[columnIndex] = cardIndexInColumn;
+    } else {
+      updatedIndices[columnIndex] = cardIndexInColumn;
+    }
 
     this.setComponentState("activeIndices", updatedIndices);
     this.updateHeights();
@@ -322,18 +342,27 @@ class Faq10 extends BaseFAQ {
       offset += count;
     }
 
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const headerExist = titleExist || subtitleExist;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div ref={this.containerRef}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {headerExist && 
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-              <Base.SectionDescription className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionDescription>
-            </Base.VerticalContent>
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {subtitleExist && (
+                <Base.SectionDescription className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>}
             <div className={this.decorateCSS("faq-grid")}>
               {columns.map((colCards, colIdx) => (
                 <div className={this.decorateCSS("faq-col")} key={colIdx}>
@@ -346,6 +375,9 @@ class Faq10 extends BaseFAQ {
 
                     const hasText = Boolean(card.text);
 
+                    const cardSubtitleExist = this.castToString(card.subtitle);
+                    const cardTextExist = this.castToString(card.text);
+                    const iconExist = this.getPropValue("icon") || this.getPropValue("iconPlus");
                     return (
                       <div
                         className={this.decorateCSS("card")}
@@ -355,28 +387,31 @@ class Faq10 extends BaseFAQ {
                         }
                       >
                         <div className={this.decorateCSS("card-header")}>
-                          <Base.P className={this.decorateCSS("card-title")}>
-                            {card.subtitle}
-                          </Base.P>
+                          {cardSubtitleExist && (
+                            <Base.P className={this.decorateCSS("card-title")}>
+                              {card.subtitle}
+                            </Base.P>
+                          )}
                           <span
                             className={[
                               this.decorateCSS("icon-wrapper"),
                               isOpen ? this.decorateCSS("iconOpen") : "",
                             ].join(" ")}
                           >
-                            <Base.Icon
-                              name={
-                                isOpen
-                                  ? this.getPropValue("icon")
-                                  : this.getPropValue("iconPlus")
-                              }
-                              propsIcon={{
-                                className: [
-                                  this.decorateCSS("icon"),
-                                  isOpen ? this.decorateCSS("iconOpen") : "",
-                                ].join(" "),
-                              }}
-                            />
+                            {iconExist && 
+                              <Base.Icon
+                                name={
+                                  isOpen
+                                    ? this.getPropValue("icon")
+                                    : this.getPropValue("iconPlus")
+                                }
+                                propsIcon={{
+                                  className: [
+                                    this.decorateCSS("icon"),
+                                    isOpen ? this.decorateCSS("iconOpen") : "",
+                                  ].join(" "),
+                                }}
+                              />}
                           </span>
                         </div>
                         {hasText && (
@@ -387,9 +422,10 @@ class Faq10 extends BaseFAQ {
                               isOpen ? this.decorateCSS("open") : "",
                             ].join(" ")}
                           >
+                            {cardTextExist &&
                             <Base.P className={this.decorateCSS("card-text")}>
                               {card.text}
-                            </Base.P>
+                            </Base.P>}
                           </div>
                         )}
                       </div>

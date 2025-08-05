@@ -68,6 +68,7 @@
           margin: 0;
           font-size: 1rem;
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
 
         .icon-wrapper {
@@ -136,6 +137,8 @@
           opacity: 0;
           color: var(--composer-font-color-primary);
           transition: opacity 0.5s;
+          font-size: 1rem;
+          text-align: left;
         }
 
         &.open {
@@ -154,7 +157,7 @@
     .max-content {
       .faq-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: var(--composer-gap-xs);
       }
     }
   }
