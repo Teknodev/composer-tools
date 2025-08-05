@@ -17,7 +17,7 @@ class LogoComp8Page extends LogoClouds {
     this.addProp({
       type: "array",
       key: "text-image-items",
-      displayer: "Text & Image Items",
+      displayer: "Items",
       value: [
         {
           type: "object",
