@@ -194,7 +194,16 @@ class Faq9 extends BaseFAQ {
     const phonePx = 768; 
 
     const isMobile = width <= phonePx;
+    const wasMobile = this.getComponentState("isMobile");
     this.setComponentState("isMobile", isMobile);
+    
+    if (isMobile && !wasMobile) {
+      this.setComponentState("activeLeftQuestionIndex", 0);
+      this.setComponentState("activeRightQuestionIndex", -1);
+    } else if (!isMobile && wasMobile) {
+      this.setComponentState("activeLeftQuestionIndex", 0);
+      this.setComponentState("activeRightQuestionIndex", 3);
+    }
 
     this.updateHeights();
   }
