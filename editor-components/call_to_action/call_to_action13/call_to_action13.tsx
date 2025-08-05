@@ -116,7 +116,7 @@ class CallToAction13Page extends BaseCallToAction {
               )}
               {buttons?.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((button: Button, index: number) => (
+                  {buttons.map((button: Button, index: number) => this.castToString(button.text) && (
                     <ComposerLink key={index} path={button.url}>
                       <Base.Button
                         className={this.decorateCSS("button")}

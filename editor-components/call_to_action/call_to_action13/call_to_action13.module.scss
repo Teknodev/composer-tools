@@ -70,8 +70,12 @@
         grid-column: 2;
         grid-row: 2;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: var(--composer-gap-sm);
+        align-items: flex-start;
+        justify-content: flex-start;
+        max-width: 500px;
 
         .button-text {
           margin: 0;
@@ -91,6 +95,9 @@
           .subtitle {
             padding: var(--composer-gap-sm);
           }
+        }
+        .button-container {
+          max-width: 300px;
         }
       }
     }
@@ -129,7 +136,12 @@
           }
         }
         .button-container {
+          flex-direction: row;
+          flex-wrap: wrap;
           gap: var(--composer-gap-sm);
+          align-items: flex-start;
+          justify-content: flex-start;
+          max-width: 100%;
         }
       }
     }
