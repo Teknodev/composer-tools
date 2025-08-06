@@ -77,8 +77,10 @@
         justify-content: flex-start;
         max-width: 500px;
 
-        .button-text {
-          margin: 0;
+        .button{
+          .button-text {
+            margin: 0;
+          }
         }
       }
     }
