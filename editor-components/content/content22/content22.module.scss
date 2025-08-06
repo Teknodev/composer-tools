@@ -18,7 +18,6 @@
       width: 100%;
       height: 1px;
       background-color: var(--composer-font-color-primary);
-      margin: 2rem 0;
       opacity: 0.2;
     }
 
@@ -27,23 +26,22 @@
       text-align: center;
       align-items: center;
       flex-direction: column;
-      .h1{
-        margin-bottom: var(--composer-gap-xs);
-        margin-top: 0;
-        margin-bottom: 1rem;
-      }
       .title {
-        font-size: 3rem;
+        font-size: 4rem;
         font-weight: bold;
         color: var(--composer-font-color-primary);
+        margin-top: 0;
+        margin-bottom: var(--composer-gap-md);
       }
+      
+      
       .line {
         width: 5rem;
         height: 2.5px;
         background-color: var(--composer-secondary-color);
         border-radius: 4px;
       }
-      > p {
+      .description {
         color: var(--composer-tertiary-color);
         margin-top: 2rem;
         margin-bottom: 2rem;
@@ -55,6 +53,8 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
+      margin-bottom: var(--composer-gap-lg);
+      margin-top: var(--composer-gap-lg);
 
       &:hover {
         .button {
@@ -82,7 +82,7 @@
 
         .image {
           width: 100%;
-          max-width: 350px;
+          max-width: 480px;
           border-radius: var(--composer-border-radius-md);
           box-shadow: var(--composer-box-shadow);
           object-fit: cover;
@@ -95,12 +95,8 @@
         margin: 0 2% 0 3%;
         text-align: left !important;
 
-        .desc{
-          text-align: left;
-        }
-
         h3 {
-          font-size: 1.5rem;
+          font-size: 2rem;
           font-weight: 600;
           color: var(--composer-font-color-primary) !important;
           margin-bottom: 2rem;
@@ -110,47 +106,43 @@
           }
         }
       }
+      .desc{
+        text-align: left;
+        color: var(--composer-tertiary-color)!important;
+      }
+    
 
-        > p {
-          color: var(--composer-tertiary-color);
-          margin-bottom: 3rem;
-          font-size: 1rem;
+      .button {
+        padding: 1rem 3rem;
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: opacity 0.4s ease, transform 0.3s ease;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--composer-font-color-primary);
+        border-radius: calc(var(--composer-border-radius-xl)*2);
+
+        &:hover,
+        &:focus {
+          background-color: var(--composer-font-color-primary);
+          color:var(--composer-html-background);
         }
-
+      }
+      &:hover {
         .button {
-          padding: 1rem 3rem;
-          bottom: 0;
-          left: 0;
-          opacity: 0;
-          transform: translateY(-30px);
-          transition: opacity 0.4s ease, transform 0.3s ease;
-          font-size: 1rem;
-          font-weight: 600;
-          color: var(--composer-font-color-primary);
-          border-radius: calc(var(--composer-border-radius-xl)*2);
-
-          &:hover,
-          &:focus {
-            background-color: var(--composer-font-color-primary);
-            color:var(--composer-html-background);
-          }
+          display: inline-block;
+          opacity: 1;
+          transform: translateY(0);
         }
-        &:hover {
-          .button {
-            display: inline-block;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+      }
     }
   }
 
   @container (max-width: #{$composer-tablet-width}) {
     
     .max-content {
-      .wrapper {
-        padding: 40px 100px;
-      }
       
       .content {
         display: flex;
@@ -174,11 +166,11 @@
           padding: 0 1rem;
 
           h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
           }
 
-          > p {
+          .desc {
             font-size: 1rem;
             margin-bottom: 2rem;
           }
@@ -201,18 +193,15 @@
 
   @container (max-width: #{$composer-phone-width}) {
     .max-content {
-      .wrapper {
-        padding: 40px 20px; 
-      }
       .header {
         text-align: center;
         align-items: center;
         flex-direction: column;
-        .h1{
+        .title{
           text-align: center;
-          font-size: 2rem;
+          font-size: 3rem;
         }
-        > p {
+        .description{
           font-size: 1rem;
           text-align: center;
         }
@@ -229,12 +218,12 @@
           padding: 0%;
 
           h3 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
 
           }
 
-          > p {
+          .desc {
             font-size: 1rem;
             margin-bottom: 2rem !important;
             text-align: center !important;

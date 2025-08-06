@@ -29,6 +29,12 @@ class Content22 extends BaseContent {
       displayer: "Show Line Under Title",
       value: true,  
     });
+    this.addProp({
+      type: "boolean",
+      key: "showDividers",
+      displayer: "Show Dividers Between Items",
+      value: true,  
+    });
     
     this.addProp({
       type: "string",
@@ -163,15 +169,16 @@ class Content22 extends BaseContent {
     const description = this.getPropValue("description") as string;
     const items = this.castToObject<Item[]>("items") || [];
     const showLine = this.getPropValue("showLine") as boolean;
+    const showDividers = this.getPropValue("showDividers") as boolean;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("header")}>
-              <Base.SectionTitle className={this.decorateCSS("h1")}>{title}</Base.SectionTitle>
+              <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
               {showLine && <div className={this.decorateCSS("line")} />}
-              <Base.SectionDescription>{description}</Base.SectionDescription>
+              <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
             </div>
 
             {items.map((item, i) => (
@@ -202,7 +209,7 @@ class Content22 extends BaseContent {
                     )}
                   </div>
                 </div>
-                {i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
+                {showDividers && i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
               </React.Fragment>
             ))}
           </div>
