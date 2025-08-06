@@ -47,6 +47,13 @@
         .menuItem {
           display: flex;
           align-items: center;
+          padding-bottom: 2px;
+          border-bottom: 2px solid transparent;
+          transition: border-color 0.3s ease;
+          
+          &.active {
+            border-bottom-color: var(--composer-primary-color);
+          }
         }
 
         .menuItemTitle {
@@ -85,10 +92,21 @@
           background-color: var(--composer-html-background);
           border-radius: var(--composer-border-radius-sm);
           box-shadow: var(--box-shadow-active);
-          opacity: 1;
-          visibility: visible;
           transition: all 0.3s ease;
           z-index: 100;
+          
+          &.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+          }
+          
+          &.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            pointer-events: none;
+          }
           .dropdownGrid {
             margin: auto;
           }
@@ -642,6 +660,15 @@
         }
       }
     }
+  }
+
+  // Visibility classes for tree view compatibility
+  .visible {
+    display: initial;
+  }
+
+  .hidden {
+    display: initial;
   }
 }
 .maxContent {

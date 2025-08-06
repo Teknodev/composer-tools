@@ -2185,7 +2185,9 @@ class Navbar10 extends BaseNavigator {
                   >
                     {item.menuType === "Dropdown" ? (
                       <div 
-                        className={this.decorateCSS("menuItem")}
+                        className={`${this.decorateCSS("menuItem")} ${
+                          activeDropdown === index ? this.decorateCSS("active") : ""
+                        }`}
                         onClick={(e) => this.handleDropdownClick(index, e)}
                       >
                         <Base.P
@@ -2217,8 +2219,10 @@ class Navbar10 extends BaseNavigator {
                         </div>
                       </ComposerLink>
                     )}
-                    {item.menuType === "Dropdown" && item.categories && activeDropdown === index && (
-                      <div className={this.decorateCSS("dropdown")}>
+                    {item.menuType === "Dropdown" && item.categories && (
+                      <div className={`${this.decorateCSS("dropdown")} ${
+                        activeDropdown === index ? this.decorateCSS("visible") : this.decorateCSS("hidden")
+                      }`}>
                         {(() => {
                           const rowCount = item.rowCount || 4;
                           const categories = item.categories || [];
