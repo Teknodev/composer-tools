@@ -65,19 +65,13 @@
           font-size: calc(1.5 * var(--project-font-size));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
-        }
-
-        &:hover {
-          .dropdownIcon {
+          
+          &.active {
             transform: rotate(180deg);
           }
-
-          .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-          }
         }
+
+
 
         .dropdown {
           position: absolute;
@@ -91,8 +85,8 @@
           background-color: var(--composer-html-background);
           border-radius: var(--composer-border-radius-sm);
           box-shadow: var(--box-shadow-active);
-          opacity: 0;
-          visibility: hidden;
+          opacity: 1;
+          visibility: visible;
           transition: all 0.3s ease;
           z-index: 100;
           .dropdownGrid {
@@ -194,12 +188,12 @@
               display: flex;
               flex-direction: column;
               margin-bottom: 20px;
-                             .DropdownSectionItemTitle {
+              .DropdownSectionItemTitle {
                  display: flex;
                  justify-content: space-between;
                  align-items: center;
                  font-weight: 600;
-                 font-size: 1rem;
+                 font-size: 1.25rem;
                  margin-bottom: var(--composer-gap-sm);
                  color: var(--composer-font-color-primary);
                  transition: all 0.4s ease;
@@ -240,7 +234,7 @@
               padding: var(--composer-gap-xs);
 
               &:hover{
-                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 20%);
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
                 transition: 0.4s;
                 padding-left: 10px;
                 border-radius: var(--composer-border-radius-sm);

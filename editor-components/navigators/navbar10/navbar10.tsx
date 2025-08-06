@@ -2013,6 +2013,7 @@ class Navbar10 extends BaseNavigator {
     this.setComponentState("changeBackground", false);
     this.setComponentState("isMobile", false);
     this.setComponentState("navbarOverflowShow", false);
+    this.setComponentState("activeDropdown", null);
   }
 
   static getName(): string {
@@ -2022,10 +2023,12 @@ class Navbar10 extends BaseNavigator {
   onComponentDidMount() {
     this.handleResize();
     window.addEventListener('resize', this.handleResize);
+    document.addEventListener('click', this.handleClickOutside);
   }
 
   onComponentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+    document.removeEventListener('click', this.handleClickOutside);
   }
 
   private handleResize = () => {
@@ -2078,6 +2081,28 @@ class Navbar10 extends BaseNavigator {
     }
   };
 
+  handleDropdownClick = (index: number, e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const currentActive = this.getComponentState("activeDropdown");
+    if (currentActive === index) {
+      this.setComponentState("activeDropdown", null);
+    } else {
+      this.setComponentState("activeDropdown", index);
+    }
+  };
+
+  handleClickOutside = (e: any) => {
+    // Dropdown içindeki tıklamaları kontrol et
+    const dropdownElement = e.target.closest(`.${this.decorateCSS("dropdown")}`);
+    const menuItemElement = e.target.closest(`.${this.decorateCSS("menuItem")}`);
+    
+    // Eğer dropdown içinde veya menu item'da tıklanmadıysa dropdown'ı kapat
+    if (!dropdownElement && !menuItemElement) {
+      this.setComponentState("activeDropdown", null);
+    }
+  };
+
   componentWillUnmount(): void {
     this.handleCloseMenu();
   }
@@ -2091,6 +2116,7 @@ class Navbar10 extends BaseNavigator {
     const navbarOverflowShow = this.getComponentState("navbarOverflowShow");
     const isScrolled = this.getComponentState("isScrolled");
     const isMobile = this.getComponentState("isMobile");
+    const activeDropdown = this.getComponentState("activeDropdown");
 
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
@@ -2157,8 +2183,11 @@ class Navbar10 extends BaseNavigator {
                     key={index}
                     className={this.decorateCSS("menuItemContainer")}
                   >
-                    <ComposerLink path={item.url}>
-                      <div className={this.decorateCSS("menuItem")}>
+                    {item.menuType === "Dropdown" ? (
+                      <div 
+                        className={this.decorateCSS("menuItem")}
+                        onClick={(e) => this.handleDropdownClick(index, e)}
+                      >
                         <Base.P
                           className={`${this.decorateCSS(
                             "menuItemTitle"
@@ -2166,17 +2195,29 @@ class Navbar10 extends BaseNavigator {
                         >
                           {item.title}
                         </Base.P>
-                        {item.menuType === "Dropdown" && (
-                          <Base.Icon
-                            name={this.getPropValue("dropdownIcon")}
-                            propsIcon={{
-                              className: this.decorateCSS("dropdownIcon"),
-                            }}
-                          />
-                        )}
+                        <Base.Icon
+                          name={this.getPropValue("dropdownIcon")}
+                          propsIcon={{
+                            className: `${this.decorateCSS("dropdownIcon")} ${
+                              activeDropdown === index ? this.decorateCSS("active") : ""
+                            }`,
+                          }}
+                        />
                       </div>
-                    </ComposerLink>
-                    {item.menuType === "Dropdown" && item.categories && (
+                    ) : (
+                      <ComposerLink path={item.url}>
+                        <div className={this.decorateCSS("menuItem")}>
+                          <Base.P
+                            className={`${this.decorateCSS(
+                              "menuItemTitle"
+                            )}`}
+                          >
+                            {item.title}
+                          </Base.P>
+                        </div>
+                      </ComposerLink>
+                    )}
+                    {item.menuType === "Dropdown" && item.categories && activeDropdown === index && (
                       <div className={this.decorateCSS("dropdown")}>
                         {(() => {
                           const rowCount = item.rowCount || 4;
