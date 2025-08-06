@@ -44,6 +44,8 @@ interface Logo {
 }
 
 class Navbar10 extends BaseNavigator {
+  private containerRef = React.createRef<HTMLDivElement>();
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -2009,13 +2011,35 @@ class Navbar10 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
-    this.setComponentState("isBigScreen", false);
+    this.setComponentState("isMobile", false);
     this.setComponentState("navbarOverflowShow", false);
   }
 
   static getName(): string {
     return "Navbar 10";
   }
+
+  onComponentDidMount() {
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  onComponentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  private handleResize = () => {
+    const el = this.containerRef.current;
+    
+    if (!el) return;
+    
+    const width = el.clientWidth;
+    const phonePxInt = 640; 
+    
+    const isMobile = width <= phonePxInt;
+    
+    this.setComponentState("isMobile", isMobile);
+  };
 
   handleOpenMenu = () => {
     Base.Navigator.changeScrollBehaviour("hidden");
@@ -2066,7 +2090,7 @@ class Navbar10 extends BaseNavigator {
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const navbarOverflowShow = this.getComponentState("navbarOverflowShow");
     const isScrolled = this.getComponentState("isScrolled");
-    const isBigScreen = this.getComponentState("isBigScreen");
+    const isMobile = this.getComponentState("isMobile");
 
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
@@ -2077,17 +2101,18 @@ class Navbar10 extends BaseNavigator {
 
     const currentLogo =
       (transparentBackground && !changeBackground) ||
-      (hamburgerNavActive && isBigScreen)
+      (hamburgerNavActive && !isMobile)
         ? absoluteLogo
         : defaultLogo;
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-    const isVisible = hamburgerNavActive && !isBigScreen;
+    const isVisible = hamburgerNavActive && isMobile;
 
     return (
       <>
         <Base.Navigator.Container
+          ref={this.containerRef}
           position={position}
           hamburgerNavActive={hamburgerNavActive}
           positionContainer={`${this.decorateCSS("navbarContainer")} ${
@@ -2095,9 +2120,6 @@ class Navbar10 extends BaseNavigator {
           }`}
           setIsScrolled={(val: boolean) =>
             this.setComponentState("isScrolled", val)
-          }
-          setIsBigScreen={(val: boolean) =>
-            this.setComponentState("isBigScreen", val)
           }
           className={this.decorateCSS("filledBackground")}
         >
@@ -2126,6 +2148,7 @@ class Navbar10 extends BaseNavigator {
                 </div>
               )}
 
+              {!isMobile && (
               <nav className={this.decorateCSS("pcNavbar")}>
               {menuItems
                 .filter((item) => item && item.title)
@@ -2377,10 +2400,11 @@ class Navbar10 extends BaseNavigator {
                   </div>
                 ))}
               </nav>
+              )}
             </div>
 
             <div className={this.decorateCSS("rightSide")}>
-              {buttons.length > 0 && isBigScreen && (
+              {buttons.length > 0 && !isMobile && (
                 <div className={this.decorateCSS("buttons")}>
                   {buttons.map((btn, idx) => (
                     <ComposerLink key={idx} path={btn.url}>
@@ -2402,7 +2426,7 @@ class Navbar10 extends BaseNavigator {
                 </div>
               )}
 
-              {!isBigScreen &&
+              {isMobile &&
                 (hamburgerNavActive ? (
                   <Base.Icon
                     name={this.getPropValue("closeIcon")}
@@ -2642,7 +2666,7 @@ class Navbar10 extends BaseNavigator {
                         );
                       })}
                   </div>
-                  {buttons.length > 0 && (
+                  {buttons.length > 0 && isMobile && (
                     <div className={this.decorateCSS("hamburgerButtons")}>
                       {buttons.map((btn, idx) => (
                         <ComposerLink key={idx} path={btn.url}>
