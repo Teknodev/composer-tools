@@ -2093,11 +2093,9 @@ class Navbar10 extends BaseNavigator {
   };
 
   handleClickOutside = (e: any) => {
-    // Dropdown içindeki tıklamaları kontrol et
     const dropdownElement = e.target.closest(`.${this.decorateCSS("dropdown")}`);
     const menuItemElement = e.target.closest(`.${this.decorateCSS("menuItem")}`);
     
-    // Eğer dropdown içinde veya menu item'da tıklanmadıysa dropdown'ı kapat
     if (!dropdownElement && !menuItemElement) {
       this.setComponentState("activeDropdown", null);
     }
