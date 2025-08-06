@@ -13,7 +13,7 @@ interface Platform {
 interface Game {
   title: string;
   titlePage: string;
-  genreButton: INPUTS.CastedButton;
+  genreBadge: string;
   image: TypeMediaInputValue;
   platforms: { platform: Platform }[];
 }
@@ -74,15 +74,12 @@ class Content24 extends BaseContent {
               displayer: "Title Page",
               value: "",
             },
-            INPUTS.BUTTON(
-              "genreButton",
-              "Genre Button",
-              "Action",
-              "",
-              null,
-              null,
-              "Tertiary"
-            ),
+            {
+              type: "string",
+              key: "genreBadge",
+              displayer: "Genre Badge",
+              value: "Action",
+            },
             {
               type: "media",
               key: "image",
@@ -175,15 +172,12 @@ class Content24 extends BaseContent {
               displayer: "Title Page",
               value: "",
             },
-            INPUTS.BUTTON(
-              "genreButton",
-              "Genre Button",
-              "Survival",
-              "",
-              null,
-              null,
-              "Tertiary"
-            ),
+            {
+              type: "string",
+              key: "genreBadge",
+              displayer: "Genre Badge",
+              value: "Survival",
+            },
             {
               type: "media",
               key: "image",
@@ -276,15 +270,12 @@ class Content24 extends BaseContent {
               displayer: "Title Page",
               value: "",
             },
-            INPUTS.BUTTON(
-              "genreButton",
-              "Genre Button", 
-              "Shooting",
-              "",
-              null,
-              null,
-              "Tertiary"
-            ),
+            {
+              type: "string",
+              key: "genreBadge",
+              displayer: "Genre Badge",
+              value: "Shooting",
+            },
             {
               type: "media",
               key: "image",
@@ -377,15 +368,12 @@ class Content24 extends BaseContent {
               displayer: "Title Page",
               value: "",
             },
-            INPUTS.BUTTON(
-              "genreButton",
-              "Genre Button", 
-              "Strategy",
-              "",
-              null,
-              null,
-              "Tertiary"
-            ),
+            {
+              type: "string",
+              key: "genreBadge",
+              displayer: "Genre Badge",
+              value: "Strategy",
+            },
             {
               type: "media",
               key: "image",
@@ -522,7 +510,7 @@ class Content24 extends BaseContent {
     this.sentinelRefs = Array(games.length).fill(null);
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("content-wrapper")}>
           {(titleFirst || titleSecond || viewAllButton?.text) && (
             <div className={this.decorateCSS("header-section")}>
@@ -544,10 +532,10 @@ class Content24 extends BaseContent {
                   {viewAllButton?.text && (
                     <ComposerLink path={viewAllButton.url || "#"}>
                       <Base.Button
-                        buttonType={viewAllButton.type || "Tertiary"}
+                        buttonType={viewAllButton.type}
                         className={this.decorateCSS("view-all-button")}
                       >
-                        <span>{viewAllButton.text}</span>
+                        {viewAllButton.text}
                         {viewAllButton.icon && (
                           <Base.Icon
                             name={viewAllButton.icon}
@@ -561,104 +549,101 @@ class Content24 extends BaseContent {
               </Base.MaxContent>
             </div>
           )}
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("games-section")}>
+              {games.map((game, index) => {
+                const gameTitle = game?.title || "";
+                const gamePage = game?.titlePage || "#";
+                const gameImage = game?.image?.url || "";
+                const genreBadge = game?.genreBadge;
+                const platforms = Array.isArray(game?.platforms) ? game.platforms : [];
 
-          <div className={this.decorateCSS("games-section")}>
-            {games.map((game, index) => {
-              const gameTitle = game?.title || "";
-              const gamePage = game?.titlePage || "#";
-              const gameImage = game?.image?.url || "";
-              const genreBtn = game?.genreButton;
-              const platforms = Array.isArray(game?.platforms) ? game.platforms : [];
-
-              return (
-                <React.Fragment key={`game-${index}`}>
-                  <div ref={(el) => {(this.sentinelRefs[index] = el)}} className={styles.sentinel} />
-                  <div
-                    ref={(el) => {
-                      this.gameCardRefs[index] = el;
-                    }}
-                    className={`${this.decorateCSS("game-card")} ${styles.gameCard}`}
-                    style={this.getTopStyle(index)}
-                  >
-                    <div className={this.decorateCSS("game-content")}>
-                      {gameImage ? (
-                        <div className={this.decorateCSS("game-image-container")}>
-                          <img src={gameImage} alt={gameTitle} className={this.decorateCSS("game-image")} />
-                          <div className={this.decorateCSS("game-overlay")}>
-                            <div className={this.decorateCSS("game-info")}>
-                              {genreBtn?.text && (
-                                <ComposerLink path={genreBtn.url || "#"}>
-                                  <Base.Button
-                                    buttonType={genreBtn.type || "Tertiary"}
-                                    className={this.decorateCSS("genre-button")}
-                                  >
-                                    {genreBtn.text}
-                                  </Base.Button>
-                                </ComposerLink>
-                              )}
-                              <div className={this.decorateCSS("title-platforms-row")}>
-                                <ComposerLink path={gamePage}>
-                                  <h3 className={this.decorateCSS("game-title")}>{gameTitle}</h3>
-                                </ComposerLink>
-                                <div className={this.decorateCSS("platforms")}>
-                                  {platforms.length > 0 ? (
-                                    platforms.map((platformWrapper: any, platformIndex: number) => {
-                                      const platformData = platformWrapper?.value || platformWrapper?.platform;
-                                      let platformIcon, platformPage;
-                                      
-                                      if (Array.isArray(platformData)) {
-                                        const iconObj = platformData.find((item: any) => item.key === 'icon');
-                                        const pageObj = platformData.find((item: any) => item.key === 'page');
-                                        platformIcon = iconObj?.value;
-                                        platformPage = pageObj?.value || '#';
-                                      } else if (platformData && typeof platformData === 'object') {
-                                        platformIcon = platformData.icon;
-                                        platformPage = platformData.page || '#';
-                                      } else {
-                                        console.warn(`Unexpected platform data structure:`, platformData);
-                                        return null;
-                                      }
-                                      
-                                      if (!platformIcon) {
-                                        console.warn(`Missing platform icon at index ${platformIndex}`);
-                                        return null;
-                                      }
-                                      
-                                      return (
-                                        <ComposerLink 
-                                          key={`platform-${index}-${platformIndex}`} 
-                                          path={platformPage}
-                                        >
-                                          <div className={this.decorateCSS("platform-icon")}>
-                                            <Base.Icon 
-                                              name={platformIcon} 
-                                              propsIcon={{ 
-                                                className: this.decorateCSS("platform-icon-element") 
-                                              }} 
-                                            />
-                                          </div>
-                                        </ComposerLink>
-                                      );
-                                    })
-                                  ) : (
-                                    <div style={{color: 'white', fontSize: '12px'}}>
-                                      No platforms available
-                                    </div>
-                                  )}
+                return (
+                  <React.Fragment key={`game-${index}`}>
+                    <div ref={(el) => {(this.sentinelRefs[index] = el)}} className={styles.sentinel} />
+                    <div
+                      ref={(el) => {
+                        this.gameCardRefs[index] = el;
+                      }}
+                      className={`${this.decorateCSS("game-card")} ${styles.gameCard}`}
+                      style={this.getTopStyle(index)}
+                    >
+                      <div className={this.decorateCSS("game-content")}>
+                        {gameImage ? (
+                          <div className={this.decorateCSS("game-image-container")}>
+                            <img src={gameImage} alt={gameTitle} className={this.decorateCSS("game-image")} />
+                            <div className={this.decorateCSS("game-overlay")}>
+                              <div className={this.decorateCSS("game-info")}>
+                                {genreBadge && (
+                                  <span className={this.decorateCSS("genre-badge")}>
+                                    {genreBadge}
+                                  </span>
+                                )}
+                                <div className={this.decorateCSS("title-platforms-row")}>
+                                  <ComposerLink path={gamePage}>
+                                    <h3 className={this.decorateCSS("game-title")}>{gameTitle}</h3>
+                                  </ComposerLink>
+                                  <div className={this.decorateCSS("platforms")}>
+                                    {platforms.length > 0 ? (
+                                      platforms.map((platformWrapper: any, platformIndex: number) => {
+                                        const platformData = platformWrapper?.value || platformWrapper?.platform;
+                                        let platformIcon, platformPage;
+                                        
+                                        if (Array.isArray(platformData)) {
+                                          const iconObj = platformData.find((item: any) => item.key === 'icon');
+                                          const pageObj = platformData.find((item: any) => item.key === 'page');
+                                          platformIcon = iconObj?.value;
+                                          platformPage = pageObj?.value || '#';
+                                        } else if (platformData && typeof platformData === 'object') {
+                                          platformIcon = platformData.icon;
+                                          platformPage = platformData.page || '#';
+                                        } else {
+                                          console.warn(`Unexpected platform data structure:`, platformData);
+                                          return null;
+                                        }
+                                        
+                                        if (!platformIcon) {
+                                          console.warn(`Missing platform icon at index ${platformIndex}`);
+                                          return null;
+                                        }
+                                        
+                                        return (
+                                          <ComposerLink 
+                                            key={`platform-${index}-${platformIndex}`} 
+                                            path={platformPage}
+                                          >
+                                            <div className={this.decorateCSS("platform-icon")}>
+                                              <Base.Icon 
+                                                name={platformIcon} 
+                                                propsIcon={{ 
+                                                  className: this.decorateCSS("platform-icon-element") 
+                                                }} 
+                                              />
+                                            </div>
+                                          </ComposerLink>
+                                        );
+                                      })
+                                    ) : (
+                                      <div style={{color: 'white', fontSize: '12px'}}>
+                                        No platforms available
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      ) : (
-                        <div className={this.decorateCSS("game-placeholder")}>No image for {gameTitle}</div>
-                      )}
+                        ) : (
+                          <div className={this.decorateCSS("game-placeholder")}>No image for {gameTitle}</div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </React.Fragment>
-              );
-            })}
-          </div>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          </Base.MaxContent>
+          
           {viewAllButton?.text && (
             <div className={this.decorateCSS("mobile-button-section")}>
               <ComposerLink path={viewAllButton.url || "#"}>
