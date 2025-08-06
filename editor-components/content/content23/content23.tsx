@@ -158,10 +158,10 @@ class Content23 extends BaseContent {
             ))}
           </ComposerSlider>
           <div className={this.decorateCSS("slider-buttons")}>
-            <button onClick={this.handlePrev}>
+            <button onClick={this.handlePrev} className={this.decorateCSS("prev-button")}>
               <Base.Icon name={prevIcon} />
             </button>
-            <button onClick={this.handleNext}>
+            <button onClick={this.handleNext} className={this.decorateCSS("prev-button")}>
               <Base.Icon name={nextIcon} />
             </button>
           </div>
