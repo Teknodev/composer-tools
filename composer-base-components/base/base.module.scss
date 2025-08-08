@@ -491,4 +491,9 @@
     height: var(--project-font-size);
 }
 
+.card {
+    border: 1px solid var(--composer-tertiary-color);
+    border-radius: var(--composer-border-radius-xs);
+}
+
 
