@@ -75,7 +75,7 @@ class Header21 extends BaseHeader {
     this.setComponentState("is_video_visible", false);
   }
   static getName(): string {
-    return "Header 21";
+    return "Hero Section 21";
   }
   render() {
     const card = this.castToObject<CardState>("card");

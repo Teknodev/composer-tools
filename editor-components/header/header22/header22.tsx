@@ -158,7 +158,7 @@ class Header22 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 22";
+    return "Hero Section 22";
   }
 
   handlePrevClick = () => {

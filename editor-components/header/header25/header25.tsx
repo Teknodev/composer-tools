@@ -261,7 +261,7 @@ class Header25 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 25";
+    return "Hero Section 25";
   }
 
   handleAnimationEnd = ({

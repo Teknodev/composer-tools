@@ -146,7 +146,7 @@ class Header14 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 14";
+    return "Hero Section 14";
   }
 
   render() {

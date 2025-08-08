@@ -145,7 +145,7 @@ class Header3 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 3";
+    return "Hero Section 3";
   }
 
   handleSlideChange(index: number) {

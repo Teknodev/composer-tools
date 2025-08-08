@@ -339,7 +339,7 @@ export enum CATEGORIES {
   NAVIGATOR = "navigator",
   TESTIMONIALS = "testimonials",
   LIST = "list",
-  HEADER = "header",
+  HEADER = "heroSection",
   PRICING = "pricing",
   FOOTER = "footer",
   TEAM = "team",

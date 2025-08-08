@@ -112,7 +112,7 @@ class Header34 extends BaseHeader {
     this.setComponentState("contentAnimationClass", "animate__fadeInUp");
   }
   static getName(): string {
-    return "Header 34";
+    return "Hero Section 34";
   }
 
   render() {

@@ -665,7 +665,7 @@ class Header31 extends BaseHeader {
     this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
   }
   static getName(): string {
-    return "Header 31";
+    return "Hero Section 31";
   }
   handleAnimationEnd = ({
     animationState,

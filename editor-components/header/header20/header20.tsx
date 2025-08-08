@@ -671,7 +671,7 @@ class Header20 extends BaseHeader {
   }
 
   static getName(): string {
-    return "Header 20";
+    return "Hero Section 20";
   }
 
   goToSlide = (nextSlide: number) => {
