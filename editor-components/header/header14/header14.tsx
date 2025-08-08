@@ -66,7 +66,7 @@ class Header14 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380c6357d0a6002b5d5f9d?alt=media",
             },
 
             {
@@ -98,7 +98,7 @@ class Header14 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4e4703b007002cc71de2?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380d3057d0a6002b5d5faf?alt=media",
             },
             {
               type: "array",
@@ -129,7 +129,7 @@ class Header14 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value: "https://mobiles77.com/wp-content/uploads/2022/09/accessories-slide-3.jpg",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68380d3057d0a6002b5d5faf?alt=media",
             },
             {
               type: "array",
