@@ -82,7 +82,7 @@
 
         .image {
           width: 100%;
-          max-width: 480px;
+          min-width: 480px;
           border-radius: var(--composer-border-radius-md);
           box-shadow: var(--composer-box-shadow);
           object-fit: cover;
@@ -113,7 +113,6 @@
     
 
       .button {
-        padding: 1rem 3rem;
         bottom: 0;
         left: 0;
         opacity: 0;
@@ -122,13 +121,6 @@
         font-size: 1rem;
         font-weight: 600;
         color: var(--composer-font-color-primary);
-        border-radius: calc(var(--composer-border-radius-xl)*2);
-
-        &:hover,
-        &:focus {
-          background-color: var(--composer-font-color-primary);
-          color:var(--composer-html-background);
-        }
       }
       &:hover {
         .button {
