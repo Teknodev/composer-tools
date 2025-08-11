@@ -73,6 +73,7 @@ import FaqComponent5 from "./faq/faq5/faq5";
 import FaqComponent6 from "./faq/faq6/faq6";
 import FaqComponent7 from "./faq/faq7/faq7";
 import FaqComponent8 from "./faq/faq8/faq8";
+import FaqComponent10 from "./faq/faq10/faq10";
 import TeamComponent1 from "./team/team-1/team1";
 import TeamComponent2 from "./team/team-2/team2";
 import TeamComponent3 from "./team/team-3/team3";
@@ -341,6 +342,7 @@ function Registerables(composer: ComponentsRegistery) {
     FaqComponent6,
     FaqComponent7,
     FaqComponent8,
+    FaqComponent10,
     TeamComponent1,
     TeamComponent2,
     TeamComponent3,
