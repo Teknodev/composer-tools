@@ -161,7 +161,7 @@ class Content23 extends BaseContent {
             <button onClick={this.handlePrev} className={this.decorateCSS("prev-button")}>
               <Base.Icon name={prevIcon} />
             </button>
-            <button onClick={this.handleNext} className={this.decorateCSS("prev-button")}>
+            <button onClick={this.handleNext} className={this.decorateCSS("next-button")}>
               <Base.Icon name={nextIcon} />
             </button>
           </div>
