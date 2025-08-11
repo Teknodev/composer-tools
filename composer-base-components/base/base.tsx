@@ -97,6 +97,14 @@ export namespace Base {
     );
   }
 
+  export function H6({ className, children, ...props }: any) {
+    return (
+      <h6 className={`${styles.h6} ${className}`} {...props}>
+        {children}
+      </h6>
+    );
+  }
+
   export function P({ className, children, ...props }: any) {
     return (
       <p className={`${styles.p} ${className}`} {...props}>
