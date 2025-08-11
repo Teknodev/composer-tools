@@ -99,7 +99,7 @@ class ComingSoon1 extends BaseComingSoon {
   }
   
 
-  componentWillUnmount() {
+  onComponentWillUnmount() {
     clearInterval(this.interval);
   }
 

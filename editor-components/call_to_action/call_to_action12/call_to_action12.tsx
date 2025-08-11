@@ -1,56 +1,45 @@
 import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
-import styles from "./call_to_action5.module.scss";
+import styles from "./call_to_action12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import * as Yup from "yup";
 
-class CallToAction5Page extends BaseCallToAction {
+class CallToAction12Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "image",
-      key: "background",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Start building today",
+      value: "Subscribe for newsletter",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Get immediate and full access to our solution for 10 days completely free. Onlt $19 per month afterwards.",
+      value: "Get updates by subscribe our weekly newsletter to receive the latest news, evens & promotions"
     });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE NOW", "", null, null, "Primary"));
+    
+    this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE", "", null, null, "Black"));
 
     this.addProp({
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
-      value: "Enter e-mail address",
+      value: "Email Address",
     });
+
     this.addProp({
       type: "string",
       key: "submitText",
       displayer: "Submit Text",
       value: "Form successfully submitted!",
     });
-
+    this.setComponentState("isInputFocused", false);
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("placeholder")));
   }
 
@@ -68,29 +57,27 @@ class CallToAction5Page extends BaseCallToAction {
   });
 
   static getName(): string {
-    return "Call To Action 5";
+    return "Call To Action 12";
   }
 
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const titleExist = this.castToString(this.getPropValue("title"));
-    const subtitleExist = this.castToString(this.getPropValue("description"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.decorateCSS("overlay-active")}`}
-        style={{ backgroundImage: `url(${this.getPropValue("background")})` }}
+        className={`${this.decorateCSS("container")}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist) && (
+          {(titleExist || descriptionExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {subtitleExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
           {this.castToString(button.text) && this.castToString(this.getPropValue("placeholder")) && (
@@ -113,19 +100,21 @@ class CallToAction5Page extends BaseCallToAction {
                     {this.castToString(this.getPropValue("placeholder")) && this.castToString(button.text) && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
-                          placeholder={this.getComponentState("placeholderText") || placeholder}
+                        onFocus={() => this.setComponentState("isInputFocused", true)}
+                        onBlur={() => this.setComponentState("isInputFocused", false)}
+                          placeholder={this.getComponentState("isInputFocused") ? "" : this.getComponentState("placeholderText") || placeholder}
                           type="text"
                           onChange={handleChange}
                           value={values.email}
                           name="email"
-                          className={`${this.decorateCSS("input")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}`}
+                          className={`${this.decorateCSS("input")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}}`}
                         />
                         {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>
                     )}
                     {this.castToString(button.text) && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={button.type}>
-                        {button.text}
+                        <span className={this.decorateCSS("buttonText")}>{button.text}</span>
                       </Base.Button>
                     )}
                   </Form>
@@ -147,4 +136,4 @@ class CallToAction5Page extends BaseCallToAction {
     );
   }
 }
-export default CallToAction5Page;
+export default CallToAction12Page;

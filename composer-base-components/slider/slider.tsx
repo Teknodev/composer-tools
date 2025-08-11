@@ -1,10 +1,30 @@
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState, useCallback } from "react";
 import Slider, { Settings } from "react-slick";
+import { debounce } from "lodash";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+function shallowEqual(objA: any, objB: any) {
+  if (objA === objB) return true;
+  if (!objA || !objB) return false;
+  const keysA = Object.keys(objA);
+  const keysB = Object.keys(objB);
+  if (keysA.length !== keysB.length) return false;
+  for (let key of keysA) {
+    if (objA[key] !== objB[key]) return false;
+  }
+  return true;
+}
+
 const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
-  const [sliderSettings, setSliderSettings] = useState<Settings>({...props, responsive: []});
+  // Manual memoization for props
+  const memoizedPropsRef = useRef<Settings>({ ...props });
+  if (!shallowEqual(props, memoizedPropsRef.current)) {
+    memoizedPropsRef.current = { ...props };
+  }
+  const memoizedProps = memoizedPropsRef.current;
+
+  const [sliderSettings, setSliderSettings] = useState<Settings>({ ...memoizedProps, responsive: [] });
   const sliderRef = useRef<Slider>(null);
 
   // Combine the forwarded ref with our local ref
@@ -16,16 +36,31 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
 
     if (typeof ref === "function") {
       ref(slider);
-        return;
-      }
+      return;
+    }
 
     ref.current = slider;
   };
 
-  useEffect(() => {
-    if (!props.responsive) return;
+  const restartSlider = useCallback(
+    debounce(() => {
+      const newProps = {
+        ...memoizedProps,
+        slidesToShow: memoizedProps.slidesToShow || 1,
+        slidesToScroll: memoizedProps.slidesToScroll || 1
+      };
+      setSliderSettings({ ...newProps, responsive: [] });
+      sliderRef.current?.slickPlay();
+    }, 200),
+    [memoizedProps]
+  );
 
-    const sortedBreakpoints = [...props.responsive].sort((a, b) => a.breakpoint - b.breakpoint);
+  useEffect(() => {
+    restartSlider();
+
+    if (!memoizedProps.responsive) return;
+
+    const sortedBreakpoints = [...memoizedProps.responsive].sort((a, b) => a.breakpoint - b.breakpoint);
 
     const updateSlidesToShow = (width: number) => {
       const matchedBreakpoint = sortedBreakpoints.find(({ breakpoint }) => width <= breakpoint);
@@ -39,7 +74,7 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
         return;
       }
 
-      setSliderSettings(props);
+      setSliderSettings(memoizedProps);
     };
 
     const handleResize = (entries: ResizeObserverEntry[]) => {
@@ -60,11 +95,11 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
     return () => {
       observer.disconnect();
     };
-  }, [props.slidesToShow, props.responsive]);
+  }, [memoizedProps, restartSlider]);
 
   return (
     <Slider ref={setRef} {...sliderSettings}>
-      {props.children}
+      {memoizedProps.children}
     </Slider>
   );
 });

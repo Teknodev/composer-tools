@@ -218,35 +218,37 @@ class List11 extends BaseList {
                                                 <img className={this.decorateCSS("card-image")} src={item.itemImage} alt={item.itemImage} />
                                             </div>
                                         )}
-                                        {this.castToString(item.itemTitle) && (
-                                            <div className={this.decorateCSS("card-title")}>
-                                                {item.itemTitle}
-                                            </div>
-                                        )}
-                                        {this.castToString(item.itemDescription) && (
-                                            <div className={this.decorateCSS("card-description")}>
-                                                {item.itemDescription}
-                                            </div>
-                                        )}
-                                        {(this.castToString(item.navigateToText) || (item.icon)) && (
-                                            <ComposerLink path={item.navigateTo}>
-                                                <div className={this.decorateCSS("navigate-container")}>
-                                                    {this.castToString(item.navigateToText) && (
-                                                        <div className={this.decorateCSS("navigate-to")}>
-                                                            {item.navigateToText}
-                                                        </div>
-                                                    )}
-                                                    {item.icon && (
-                                                        <Base.Icon
-                                                            name={item.icon}
-                                                            propsIcon={{
-                                                                className: this.decorateCSS("navigate-icon"),
-                                                            }}
-                                                        />
-                                                    )}
+                                        <div className={this.decorateCSS("card-content")}>
+                                            {this.castToString(item.itemTitle) && (
+                                                <div className={this.decorateCSS("card-title")}>
+                                                    {item.itemTitle}
                                                 </div>
-                                            </ComposerLink>
-                                        )}
+                                            )}
+                                            {this.castToString(item.itemDescription) && (
+                                                <div className={this.decorateCSS("card-description")}>
+                                                    {item.itemDescription}
+                                                </div>
+                                            )}
+                                            {(this.castToString(item.navigateToText) || (item.icon)) && (
+                                                <ComposerLink path={item.navigateTo}>
+                                                    <div className={this.decorateCSS("navigate-container")}>
+                                                        {this.castToString(item.navigateToText) && (
+                                                            <div className={this.decorateCSS("navigate-to")}>
+                                                                {item.navigateToText}
+                                                            </div>
+                                                        )}
+                                                        {item.icon && (
+                                                            <Base.Icon
+                                                                name={item.icon}
+                                                                propsIcon={{
+                                                                    className: this.decorateCSS("navigate-icon"),
+                                                                }}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                </ComposerLink>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             ))}

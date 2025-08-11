@@ -775,7 +775,7 @@ componentDidMount() {
   
   
   
-  componentWillUnmount() {
+  onComponentWillUnmount() {
     const observer = this.getComponentState("observer");
     if (observer) observer.disconnect();
     const interval = this.getComponentState("intervalId");

@@ -118,7 +118,7 @@ class ComingSoon3 extends BaseComingSoon {
   }
   
 
-  componentWillUnmount() {
+  onComponentWillUnmount() {
     clearInterval(this.interval);
   }
   static getName(): string {
