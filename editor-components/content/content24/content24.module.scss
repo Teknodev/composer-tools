@@ -1,13 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
+  background-color: var(--composer-html-background);
   border-top-left-radius: calc(var(--composer-border-radius-xl) * 4); 
   border-top-right-radius: calc(var(--composer-border-radius-xl) * 4);
+  margin-top: calc(var(--composer-gap-lg) * -2);
+  z-index: 15;
+  position: relative;
+
 
   .content-wrapper {
     width: 100%;
@@ -18,7 +18,7 @@
 
   .header-section {
     margin-bottom: var(--composer-gap-sm);
-    padding: calc(2 * var(--composer-gap-xl)) 0 var(--composer-gap-xl);
+    padding: 0 0 var(--composer-gap-xl);
     
     .max-content {
       width: 100%;
@@ -69,7 +69,6 @@
         
         .view-all-button {
           font-size: 1.5rem;
-          padding: var(--composer-gap-md) calc(var(--composer-gap-lg));
           
           .button-icon {
             font-size: 1.5rem;
@@ -270,7 +269,6 @@
           
           .view-all-button {
             font-size: 1.25rem;
-            padding: var(--composer-gap-sm) var(--composer-gap-lg);
             margin-bottom: var(--composer-gap-sm);
             border-radius: var(--composer-border-radius-sm);
             
@@ -448,13 +446,11 @@
       
       .view-all-button {
         font-size: 1rem;
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
         border-radius: var(--composer-border-radius-sm);
         color: var(--composer-font-color-primary);
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: var(--composer-gap-xs);
         
         .button-icon {
           font-size: 1rem;
