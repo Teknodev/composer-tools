@@ -1,7 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-html-background);
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
   border-top-left-radius: calc(var(--composer-border-radius-xl) * 4); 
   border-top-right-radius: calc(var(--composer-border-radius-xl) * 4);
   margin-top: calc(var(--composer-gap-lg) * -2);
