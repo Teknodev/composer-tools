@@ -268,93 +268,44 @@
     padding: 20px;
     container-type: normal;
     .h1{
-        font-size: calc(3.5625 * var(--project-font-size));
-        line-height: 4rem;
-        letter-spacing: -0.0156rem;
-        font-weight: 400;
+        font-size: calc(2.5 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(3 * var(--project-font-size));
-            line-height: 3.5rem;
-        }
-        @container (max-width: #{$composer-phone-width}) {
-            font-size: calc(2.25 * var(--project-font-size));
-            line-height: 3rem;
+            font-size: calc(2 * var(--project-font-size));
         }
     }
     .h2{
-        font-size: calc(2.8125 * var(--project-font-size));
-        line-height: 3.25rem;
-        letter-spacing: 0rem;
-        font-weight: 400;
+        font-size: calc(2 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(2.25 * var(--project-font-size));
-            line-height: 2.75rem;
-        }
-        @container (max-width: #{$composer-phone-width}) {
-            font-size: calc(2 * var(--project-font-size));
-            line-height: 2.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
         }
     }
     .h3{
-        font-size: calc(2.25 * var(--project-font-size));
-        line-height: 2.75rem;
-        letter-spacing: 0rem;
-        font-weight: 400;
+        font-size: calc(1.5 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(2 * var(--project-font-size));
-            line-height: 2.5rem;
-        }
-        @container (max-width: #{$composer-phone-width}) {
-            font-size: calc(1.75 * var(--project-font-size));
-            line-height: 2.25rem;
+            font-size: calc(1.2 * var(--project-font-size));
         }
     }
     .h4{
-        font-size: calc(2 * var(--project-font-size));
-        line-height: 2.5rem;
-        letter-spacing: 0rem;
-        font-weight: 400;
+        font-size: calc(1.2 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(1.75 * var(--project-font-size));
-            line-height: 2.25rem;
-        }
-        @container (max-width: #{$composer-phone-width}) {
-            font-size: calc(1.5 * var(--project-font-size));
-            line-height: 2rem;
+            font-size: calc(1 * var(--project-font-size));
         }
     }
     .h5{
-        font-size: calc(1.75 * var(--project-font-size));
-        line-height: 2.25rem;
-        letter-spacing: 0rem;
-        font-weight: 400;
+        font-size: calc(1 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(1.5 * var(--project-font-size));
-            line-height: 2rem;
-        }
-        @container (max-width: #{$composer-phone-width}) {
-            font-size: calc(1.25 * var(--project-font-size));
-            line-height: 1.75rem;
+            font-size: calc(0.8 * var(--project-font-size));
         }
     }
     .h6{
-        font-size: calc(1.5 * var(--project-font-size));
-        line-height: 2rem;
-        letter-spacing: 0rem;
-        font-weight: 400;
+        font-size: calc(0.8 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(1.25 * var(--project-font-size));
-            line-height: 1.75rem;
-        }
-        @container (max-width: #{$composer-phone-width}) {
-            font-size: calc(1.125 * var(--project-font-size));
-            line-height: 1.5rem;
+            font-size: calc(0.6 * var(--project-font-size));
         }
     }
     .p{
         font-size: calc(1 * var(--project-font-size));
     }
-
 }
 
 .maxContent{
