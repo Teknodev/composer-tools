@@ -1,5 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.container-bg{
+  background-color: var(--composer-html-background);
+}
 .container {
   background-color: color-mix(
     in srgb,
@@ -8,16 +11,24 @@
   );
   border-top-left-radius: calc(var(--composer-border-radius-xl) * 4); 
   border-top-right-radius: calc(var(--composer-border-radius-xl) * 4);
-  margin-top: calc(var(--composer-gap-lg) * -2);
-  z-index: 15;
-  position: relative;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--composer-html-background);
+    z-index: -1;
+  }
 
   .content-wrapper {
     width: 100%;
     position: relative;
     height: 100%;
     margin: 0 auto;
+    z-index: 1;
   }
 
   .header-section {

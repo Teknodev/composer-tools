@@ -510,160 +510,162 @@ class Content24 extends BaseContent {
     this.sentinelRefs = Array(games.length).fill(null);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("content-wrapper")}>
-          {(titleFirst || titleSecond || viewAllButton?.text) && (
-            <div className={this.decorateCSS("header-section")}>
-              <Base.MaxContent className={this.decorateCSS("max-content")}>
-                <div className={this.decorateCSS("header-content")}>
-                  <h2 className={this.decorateCSS("section-title")}>
-                    {titleFirst && (
-                      <span className={this.decorateCSS("title-normal")}>
-                        {titleFirst}
-                      </span>
+      <div className={this.decorateCSS("container-bg")}>
+        <Base.Container className={this.decorateCSS("container")}>
+          <div className={this.decorateCSS("content-wrapper")}>
+            {(titleFirst || titleSecond || viewAllButton?.text) && (
+              <div className={this.decorateCSS("header-section")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                  <div className={this.decorateCSS("header-content")}>
+                    <h2 className={this.decorateCSS("section-title")}>
+                      {titleFirst && (
+                        <span className={this.decorateCSS("title-normal")}>
+                          {titleFirst}
+                        </span>
+                      )}
+                      {titleFirst && titleSecond && <br />}
+                      {titleSecond && (
+                        <span className={this.decorateCSS("title-outline")}>
+                          {titleSecond}
+                        </span>
+                      )}
+                    </h2>
+                    {viewAllButton?.text && (
+                      <ComposerLink path={viewAllButton.url || "#"}>
+                        <Base.Button
+                          buttonType={viewAllButton.type}
+                          className={this.decorateCSS("view-all-button")}
+                        >
+                          {viewAllButton.text}
+                          {viewAllButton.icon && (
+                            <Base.Icon
+                              name={viewAllButton.icon}
+                              propsIcon={{ className: "button-icon", style: { marginLeft: 8 } }}
+                            />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
                     )}
-                    {titleFirst && titleSecond && <br />}
-                    {titleSecond && (
-                      <span className={this.decorateCSS("title-outline")}>
-                        {titleSecond}
-                      </span>
-                    )}
-                  </h2>
-                  {viewAllButton?.text && (
-                    <ComposerLink path={viewAllButton.url || "#"}>
-                      <Base.Button
-                        buttonType={viewAllButton.type}
-                        className={this.decorateCSS("view-all-button")}
-                      >
-                        {viewAllButton.text}
-                        {viewAllButton.icon && (
-                          <Base.Icon
-                            name={viewAllButton.icon}
-                            propsIcon={{ className: "button-icon", style: { marginLeft: 8 } }}
-                          />
-                        )}
-                      </Base.Button>
-                    </ComposerLink>
-                  )}
-                </div>
-              </Base.MaxContent>
-            </div>
-          )}
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("games-section")}>
-              {games.map((game, index) => {
-                const gameTitle = game?.title || "";
-                const gamePage = game?.titlePage || "#";
-                const gameImage = game?.image?.url || "";
-                const genreBadge = game?.genreBadge;
-                const platforms = Array.isArray(game?.platforms) ? game.platforms : [];
+                  </div>
+                </Base.MaxContent>
+              </div>
+            )}
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+              <div className={this.decorateCSS("games-section")}>
+                {games.map((game, index) => {
+                  const gameTitle = game?.title || "";
+                  const gamePage = game?.titlePage || "#";
+                  const gameImage = game?.image?.url || "";
+                  const genreBadge = game?.genreBadge;
+                  const platforms = Array.isArray(game?.platforms) ? game.platforms : [];
 
-                return (
-                  <React.Fragment key={`game-${index}`}>
-                    <div ref={(el) => {(this.sentinelRefs[index] = el)}} className={styles.sentinel} />
-                    <div
-                      ref={(el) => {
-                        this.gameCardRefs[index] = el;
-                      }}
-                      className={`${this.decorateCSS("game-card")} ${styles.gameCard}`}
-                      style={this.getTopStyle(index)}
-                    >
-                      <div className={this.decorateCSS("game-content")}>
-                        {gameImage ? (
-                          <div className={this.decorateCSS("game-image-container")}>
-                            <img src={gameImage} alt={gameTitle} className={this.decorateCSS("game-image")} />
-                            <div className={this.decorateCSS("game-overlay")}>
-                              <div className={this.decorateCSS("game-info")}>
-                                {genreBadge && (
-                                  <span className={this.decorateCSS("genre-badge")}>
-                                    {genreBadge}
-                                  </span>
-                                )}
-                                <div className={this.decorateCSS("title-platforms-row")}>
-                                  <ComposerLink path={gamePage}>
-                                    <h3 className={this.decorateCSS("game-title")}>{gameTitle}</h3>
-                                  </ComposerLink>
-                                  <div className={this.decorateCSS("platforms")}>
-                                    {platforms.length > 0 ? (
-                                      platforms.map((platformWrapper: any, platformIndex: number) => {
-                                        const platformData = platformWrapper?.value || platformWrapper?.platform;
-                                        let platformIcon, platformPage;
-                                        
-                                        if (Array.isArray(platformData)) {
-                                          const iconObj = platformData.find((item: any) => item.key === 'icon');
-                                          const pageObj = platformData.find((item: any) => item.key === 'page');
-                                          platformIcon = iconObj?.value;
-                                          platformPage = pageObj?.value || '#';
-                                        } else if (platformData && typeof platformData === 'object') {
-                                          platformIcon = platformData.icon;
-                                          platformPage = platformData.page || '#';
-                                        } else {
-                                          console.warn(`Unexpected platform data structure:`, platformData);
-                                          return null;
-                                        }
-                                        
-                                        if (!platformIcon) {
-                                          console.warn(`Missing platform icon at index ${platformIndex}`);
-                                          return null;
-                                        }
-                                        
-                                        return (
-                                          <ComposerLink 
-                                            key={`platform-${index}-${platformIndex}`} 
-                                            path={platformPage}
-                                          >
-                                            <div className={this.decorateCSS("platform-icon")}>
-                                              <Base.Icon 
-                                                name={platformIcon} 
-                                                propsIcon={{ 
-                                                  className: this.decorateCSS("platform-icon-element") 
-                                                }} 
-                                              />
-                                            </div>
-                                          </ComposerLink>
-                                        );
-                                      })
-                                    ) : (
-                                      <div style={{color: 'white', fontSize: '12px'}}>
-                                        No platforms available
-                                      </div>
-                                    )}
+                  return (
+                    <React.Fragment key={`game-${index}`}>
+                      <div ref={(el) => {(this.sentinelRefs[index] = el)}} className={styles.sentinel} />
+                      <div
+                        ref={(el) => {
+                          this.gameCardRefs[index] = el;
+                        }}
+                        className={`${this.decorateCSS("game-card")} ${styles.gameCard}`}
+                        style={this.getTopStyle(index)}
+                      >
+                        <div className={this.decorateCSS("game-content")}>
+                          {gameImage ? (
+                            <div className={this.decorateCSS("game-image-container")}>
+                              <img src={gameImage} alt={gameTitle} className={this.decorateCSS("game-image")} />
+                              <div className={this.decorateCSS("game-overlay")}>
+                                <div className={this.decorateCSS("game-info")}>
+                                  {genreBadge && (
+                                    <span className={this.decorateCSS("genre-badge")}>
+                                      {genreBadge}
+                                    </span>
+                                  )}
+                                  <div className={this.decorateCSS("title-platforms-row")}>
+                                    <ComposerLink path={gamePage}>
+                                      <h3 className={this.decorateCSS("game-title")}>{gameTitle}</h3>
+                                    </ComposerLink>
+                                    <div className={this.decorateCSS("platforms")}>
+                                      {platforms.length > 0 ? (
+                                        platforms.map((platformWrapper: any, platformIndex: number) => {
+                                          const platformData = platformWrapper?.value || platformWrapper?.platform;
+                                          let platformIcon, platformPage;
+                                          
+                                          if (Array.isArray(platformData)) {
+                                            const iconObj = platformData.find((item: any) => item.key === 'icon');
+                                            const pageObj = platformData.find((item: any) => item.key === 'page');
+                                            platformIcon = iconObj?.value;
+                                            platformPage = pageObj?.value || '#';
+                                          } else if (platformData && typeof platformData === 'object') {
+                                            platformIcon = platformData.icon;
+                                            platformPage = platformData.page || '#';
+                                          } else {
+                                            console.warn(`Unexpected platform data structure:`, platformData);
+                                            return null;
+                                          }
+                                          
+                                          if (!platformIcon) {
+                                            console.warn(`Missing platform icon at index ${platformIndex}`);
+                                            return null;
+                                          }
+                                          
+                                          return (
+                                            <ComposerLink 
+                                              key={`platform-${index}-${platformIndex}`} 
+                                              path={platformPage}
+                                            >
+                                              <div className={this.decorateCSS("platform-icon")}>
+                                                <Base.Icon 
+                                                  name={platformIcon} 
+                                                  propsIcon={{ 
+                                                    className: this.decorateCSS("platform-icon-element") 
+                                                  }} 
+                                                />
+                                              </div>
+                                            </ComposerLink>
+                                          );
+                                        })
+                                      ) : (
+                                        <div style={{color: 'white', fontSize: '12px'}}>
+                                          No platforms available
+                                        </div>
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        ) : (
-                          <div className={this.decorateCSS("game-placeholder")}>No image for {gameTitle}</div>
-                        )}
+                          ) : (
+                            <div className={this.decorateCSS("game-placeholder")}>No image for {gameTitle}</div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-          </Base.MaxContent>
-          
-          {viewAllButton?.text && (
-            <div className={this.decorateCSS("mobile-button-section")}>
-              <ComposerLink path={viewAllButton.url || "#"}>
-                <Base.Button
-                  buttonType={viewAllButton.type || "Tertiary"}
-                  className={this.decorateCSS("view-all-button")}
-                >
-                  <span>{viewAllButton.text}</span>
-                  {viewAllButton.icon && (
-                    <Base.Icon
-                      name={viewAllButton.icon}
-                      propsIcon={{ className: "button-icon" }}
-                    />
-                  )}
-                </Base.Button>
-              </ComposerLink>
-            </div>
-          )}
-        </div>
-      </Base.Container>
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+            </Base.MaxContent>
+            
+            {viewAllButton?.text && (
+              <div className={this.decorateCSS("mobile-button-section")}>
+                <ComposerLink path={viewAllButton.url || "#"}>
+                  <Base.Button
+                    buttonType={viewAllButton.type || "Tertiary"}
+                    className={this.decorateCSS("view-all-button")}
+                  >
+                    <span>{viewAllButton.text}</span>
+                    {viewAllButton.icon && (
+                      <Base.Icon
+                        name={viewAllButton.icon}
+                        propsIcon={{ className: "button-icon" }}
+                      />
+                    )}
+                  </Base.Button>
+                </ComposerLink>
+              </div>
+            )}
+          </div>
+        </Base.Container>
+      </div>
     );
   }
 }
