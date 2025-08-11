@@ -39,7 +39,7 @@ class Header4 extends BaseHeader {
           key: "desc",
           displayer: "Description",
           value:
-            "Most of our writings have centered on implementing strategies for business units, with their unique <br /><br /> geeza arse it’s your round grub sloshed burke, my good sir chancer he legged it he lost his bottle pear shaped bugger all mate",
+            "Most of our writings have centered on implementing strategies for business units, with their unique <br /><br /> geeza arse it's your round grub sloshed burke, my good sir chancer he legged it he lost his bottle pear shaped bugger all mate",
         },
         {
           type: "string",
@@ -120,23 +120,18 @@ handleScroll = () => {
   this.setComponentState("animationProgress", progress);
 };
 
-
   static getName(): string {
     return "Header 4";
   }
 
   render() {
-    const button= this.castToObject("button") as INPUTS.CastedButton;
+    const button = this.castToObject("button") as INPUTS.CastedButton;
     const card: any = this.castToObject("card");
 
     const imageAnm = this.getPropValue("image-anm");
     const image = this.getPropValue("image");
-    const subTitle = this.castToString(card.subtitle);
-    const title = this.castToString(card.title);
-    const description = this.castToString(card.desc);
     const buttonText = this.castToString(button.text);
-    const note = this.castToString(card.note);
-    const showCard = subTitle || title || description || buttonText || note;
+    const showCard = card.subtitle || card.title || card.desc || buttonText || card.note;
     const scrollY = this.getComponentState("scrollY");
 
 const getStyle = (direction: "up" | "down") => {
@@ -185,22 +180,22 @@ const getStyle = (direction: "up" | "down") => {
           {showCard && (
             <div className={this.decorateCSS("card")} style={getStyle("down")}>
               <div className={this.decorateCSS("box")}>
-                {(subTitle || title) && (
+                {(card.subtitle || card.title) && (
                   <div className={this.decorateCSS("heading")}>
-                    {subTitle && (
+                    {card.subtitle && (
                       <div className={this.decorateCSS("sub-heading-container")}>
                         {card.subtitle_line && (
                           <hr className={this.decorateCSS("sub-heading-line")} />
                         )}
                         <span className={this.decorateCSS("sub-heading-title")}>
-                          {subTitle}
+                          {card.subtitle}
                         </span>
                       </div>
                     )}
-                    {title && <h2 className={this.decorateCSS("title")}>{title}</h2>}
+                    {card.title && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
                   </div>
                 )}
-                {description && <p className={this.decorateCSS("desc")}>{description}</p>}
+                {card.desc && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
                 {buttonText && (
                   <div className={this.decorateCSS("button-container")}>
                     <ComposerLink path={button?.url || '#'}>
@@ -212,7 +207,7 @@ const getStyle = (direction: "up" | "down") => {
                     </ComposerLink>
                   </div>
                 )}
-                {note && <p className={this.decorateCSS("note")}>{note}</p>}
+                {card.note && <p className={this.decorateCSS("note")}>{card.note}</p>}
               </div>
             </div>
           )}
