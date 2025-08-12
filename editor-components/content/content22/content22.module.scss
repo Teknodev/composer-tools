@@ -232,6 +232,7 @@
           flex: 1 1 50%;
           .image {
             max-width: 400px;
+            min-width: unset !important;
           }
         }
       }
