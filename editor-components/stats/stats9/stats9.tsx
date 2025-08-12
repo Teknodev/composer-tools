@@ -5,11 +5,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-interface SliderItem {
-    image: TypeMediaInputValue;
-    text: string;
-}
-
 interface Stat {
     number: string;
     description: string;
@@ -20,108 +15,6 @@ class Stats9 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
 
-        this.addProp({
-            type: "array",
-            key: "sliderItems",
-            displayer: "Slider Items",
-            value: [
-                {
-                    type: "object",
-                    key: "sliderItem",
-                    displayer: "Slider Item",
-                    value: [
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "GAME DESIGN",
-                        },
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Image",
-                            value: {
-                                type: "image",
-                                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_deco.png",
-                            },
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "sliderItem",
-                    displayer: "Slider Item",
-                    value: [
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "ART DIRECTION",
-                        },
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Image",
-                            value: {
-                                type: "image",
-                                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_deco.png",
-                            },
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "sliderItem",
-                    displayer: "Slider Item",
-                    value: [
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "MULTIPLATFORM DEVELOPMENT",
-                        },
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Image",
-                            value: {
-                                type: "image",
-                                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_deco.png",
-                            },
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "sliderItem",
-                    displayer: "Slider Item",
-                    value: [
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "GAME DEVELOPMENT",
-                        },
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Image",
-                            value: {
-                                type: "image",
-                                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/h1_deco.png",
-                            },
-                        },
-                    ],
-                },
-            ],
-        });
-
-        this.addProp({
-            type: "number",
-            key: "sliderSpeed",
-            displayer: "Slider Animation Speed",
-            value: 30,
-        });
 
         this.addProp({
             type: "string",
@@ -344,7 +237,6 @@ class Stats9 extends BaseStats {
 
     render() {
         let stats:Stat[] = []
-        const sliderItems = this.castToObject<any[]>("sliderItems") || [];
         
         try {
             const rawStats = this.getPropValue("stats");
@@ -385,36 +277,11 @@ class Stats9 extends BaseStats {
             }
         }
         
-        const sliderSpeed = this.getPropValue("sliderSpeed") || 30;
         const animationDuration = this.getPropValue("animationDuration") || 2000;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("slider-section")}>
-                        <div className={this.decorateCSS("slider-container")}>
-                            <div 
-                                className={this.decorateCSS("slider-track")}
-                                style={{ animationDuration: `${sliderSpeed}s` }}
-                            >
-                                {sliderItems && sliderItems.length > 0 && [...sliderItems, ...sliderItems, ...sliderItems].map((item, index) => (
-                                    <div key={index} className={this.decorateCSS("slider-item")}>
-                                        {item.image && item.image.type === "image" && item.image.url && (
-                                            <div className={this.decorateCSS("slider-image-container")}>
-                                                <Base.Media
-                                                    value={item.image}
-                                                    className={this.decorateCSS("slider-image")}
-                                                />
-                                            </div>
-                                        )}
-                                        <Base.P className={this.decorateCSS("slider-text")}>
-                                            {item.text}
-                                        </Base.P>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
                     <div className={this.decorateCSS("main-content")}>
                         <div className={this.decorateCSS("left-content")}>
                             {(title || highlightedTitle || endTitle) && (

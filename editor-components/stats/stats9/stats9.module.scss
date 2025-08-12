@@ -2,77 +2,11 @@
 
 .container {
   background-color: var(--composer-html-background);
-  border-top-left-radius: calc(var(--composer-border-radius-xl) * 3); 
-  border-top-right-radius: calc(var(--composer-border-radius-xl) * 3);
-  overflow: hidden;
-  margin-top:calc(var(--composer-gap-lg)* -2);
-  z-index: 15;
-  position: relative;
 
     .max-content {
     display: flex;
     flex-direction: column;
     gap: calc(2 * var(--composer-gap-xl));
-
-    .slider-section {
-      width: 100vw;
-      position: relative;
-      margin-bottom: var(--composer-gap-xl);
-
-      .slider-container {
-        position: relative;
-
-        &:hover .slider-track {
-          animation-play-state: paused;
-        }
-
-        .slider-track {
-          display: flex;
-          gap: var(--composer-gap-lg);
-          animation: slideLeft linear infinite;
-          will-change: transform;
-          width: max-content;
-
-          .slider-item {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-lg);
-            position: relative;
-
-            .slider-image-container {
-              width: 80px;
-              height: 80px;
-              border-radius: 50%;
-              overflow: hidden;
-              flex-shrink: 0;
-              position: relative;
-
-              .slider-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                filter: brightness(0.8) contrast(1.2);
-                animation: rotateClockwise 8s linear infinite;
-                transform-origin: center center;
-              }
-            }
-
-            .slider-text {
-              font-size: 5rem;
-              font-weight: 1000;
-              color: var(--composer-font-color-primary);
-              text-transform: uppercase;
-              margin: 0;
-              font-weight: bold;
-              &:hover{
-                color: var(--composer-primary-color);
-              }
-            }
-          }
-        }
-      }
-    }
 
     .main-content {
       display: grid;
@@ -120,7 +54,6 @@
           .text-content {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
             flex: 1;
 
             .description {
@@ -167,6 +100,7 @@
             align-items: flex-end;
             line-height: normal;
             line-height: 0.7;
+            margin-bottom: var(--composer-gap-sm);
 
             .stat-number {
               font-family: 'Anton', sans-serif;
@@ -211,60 +145,11 @@
     }
   }
 
-@keyframes slideLeft {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
-  }
-}
-@keyframes rotateClockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    border-top-left-radius: var(--composer-border-radius-xl); 
-    border-top-right-radius: var(--composer-border-radius-xl);
     .max-content {
       gap: var(--composer-gap-lg);
-
-      .slider-section {
-        margin-bottom: var(--composer-gap-md);
-
-        .slider-container {
-          .slider-track {
-            gap: var(--composer-gap-lg);
-
-            .slider-item {
-              gap: var(--composer-gap-lg);
-
-              .slider-image-container {
-                width: 80px;
-                height: 80px;
-                .slider-image{
-                  animation: rotateClockwise 10s linear infinite;
-                }
-              }
-
-              .slider-text {
-                font-size: 2.5rem;
-              }
-
-              &:not(:last-child):after {
-                right: calc(-1 * var(--composer-gap-xl));
-                font-size: 1rem;
-              }
-            }
-          }
-        }
-      }
 
       .main-content {
         display: flex;
@@ -323,18 +208,17 @@
               justify-content: flex-start;
 
               .stat-number {
-                font-size: 4rem;
+                font-size: 6rem;
                 -webkit-text-stroke-width: 2px;
               }
 
               .stat-suffix {
-                font-size: 2rem;
+                font-size: 4rem;
                 -webkit-text-stroke-width: 2px;
               }
-
-              .stat-description{
-                font-size: 1rem !important;
-              }
+            }
+            .stat-description{
+              font-size: 1rem !important;
             }
           }
         }
