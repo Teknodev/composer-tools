@@ -577,7 +577,9 @@ class Content24 extends BaseContent {
                                 <div className={this.decorateCSS("game-info")}>
                                   {genreBadge && (
                                     <span className={this.decorateCSS("genre-badge")}>
-                                      {genreBadge}
+                                      <span className={this.decorateCSS("badge-text")}>
+                                        {genreBadge}
+                                      </span>
                                     </span>
                                   )}
                                   <div className={this.decorateCSS("title-platforms-row")}>

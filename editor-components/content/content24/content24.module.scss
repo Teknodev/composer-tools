@@ -180,6 +180,10 @@
                 color: white;
                 border: 1.5px solid white;
                 transition: all 0.3s ease-in-out;
+
+                .badge-text {
+                  display: inline-block;
+                }
               }
               
               .title-platforms-row {
@@ -316,6 +320,9 @@
                 .genre-badge {
                   font-size: 1rem;
                   padding: calc(var(--composer-gap-xs) * 1.5) var(--composer-gap-md);
+                  .badge-text {
+                    font-size: 1rem;
+                  }
                 }
                 
                 .title-platforms-row {
@@ -419,6 +426,9 @@
                   font-size: 1rem;
                   padding: calc(var(--composer-gap-md) / 2) var(--composer-gap-md);
                   margin-bottom: var(--composer-gap-sm);
+                  .badge-text {
+                    font-size: 1rem;
+                  }
                 }
                 
                 .title-platforms-row {
