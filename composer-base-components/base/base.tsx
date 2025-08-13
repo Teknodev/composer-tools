@@ -97,6 +97,14 @@ export namespace Base {
     );
   }
 
+  export function H6({ className, children, ...props }: any) {
+    return (
+      <h6 className={`${styles.h6} ${className}`} {...props}>
+        {children}
+      </h6>
+    );
+  }
+
   export function P({ className, children, ...props }: any) {
     return (
       <p className={`${styles.p} ${className}`} {...props}>
@@ -579,6 +587,18 @@ export namespace Base {
         </Accordion>
       );
     }
+  }
+
+  export function Card({ 
+    className, 
+    children, 
+    ...props 
+  }: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+      <div className={`${styles.card} ${className}`} {...props}>
+        {children}
+      </div>
+    );
   }
 
   export function Media({
