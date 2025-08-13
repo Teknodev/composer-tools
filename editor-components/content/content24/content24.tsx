@@ -457,11 +457,11 @@ class Content24 extends BaseContent {
     return "Content 24";
   }
 
-  componentDidMount() {
+  onComponentDidMount() {
     this.initializeStickyObservers();
   }
 
-  componentWillUnmount() {
+  onComponentWillUnmount() {
     this.intersectionObservers.forEach((observer) => observer.disconnect());
     this.intersectionObservers = [];
   }
@@ -502,8 +502,8 @@ class Content24 extends BaseContent {
   }
 
   render() {
-    const titleFirst = this.getPropValue("titleFirst");
-    const titleSecond = this.getPropValue("titleSecond");
+    const titleFirst = this.castToString(this.getPropValue("titleFirst"));
+    const titleSecond = this.castToString(this.getPropValue("titleSecond"));
     const viewAllButton = this.castToObject("button") as INPUTS.CastedButton;
     const games = this.castToObject<any[]>("games") || [];
     this.gameCardRefs = Array(games.length).fill(null);
@@ -587,23 +587,10 @@ class Content24 extends BaseContent {
                                       <h3 className={this.decorateCSS("game-title")}>{gameTitle}</h3>
                                     </ComposerLink>
                                     <div className={this.decorateCSS("platforms")}>
-                                      {platforms.length > 0 ? (
+                                      {platforms.length > 0 && (
                                         platforms.map((platformWrapper: any, platformIndex: number) => {
-                                          const platformData = platformWrapper?.value || platformWrapper?.platform;
-                                          let platformIcon, platformPage;
-                                          
-                                          if (Array.isArray(platformData)) {
-                                            const iconObj = platformData.find((item: any) => item.key === 'icon');
-                                            const pageObj = platformData.find((item: any) => item.key === 'page');
-                                            platformIcon = iconObj?.value;
-                                            platformPage = pageObj?.value || '#';
-                                          } else if (platformData && typeof platformData === 'object') {
-                                            platformIcon = platformData.icon;
-                                            platformPage = platformData.page || '#';
-                                          } else {
-                                            console.warn(`Unexpected platform data structure:`, platformData);
-                                            return null;
-                                          }
+                                          const platformIcon = platformWrapper.getPropValue?.("icon");
+                                          const platformPage = platformWrapper.getPropValue?.("page") || '#';
                                           
                                           if (!platformIcon) {
                                             console.warn(`Missing platform icon at index ${platformIndex}`);
@@ -626,10 +613,6 @@ class Content24 extends BaseContent {
                                             </ComposerLink>
                                           );
                                         })
-                                      ) : (
-                                        <div style={{color: 'white', fontSize: '12px'}}>
-                                          No platforms available
-                                        </div>
                                       )}
                                     </div>
                                   </div>

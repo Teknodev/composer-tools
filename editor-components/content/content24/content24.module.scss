@@ -49,7 +49,6 @@
         
         .section-title {
           text-align: left;
-          font-family: 'Anton', sans-serif;
           text-transform: uppercase;
           flex: 1;
           line-height: 0.7;
@@ -287,12 +286,12 @@
           }
           
           .view-all-button {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             margin-bottom: var(--composer-gap-sm);
             border-radius: var(--composer-border-radius-sm);
             
             .button-icon {
-              font-size: 1.25rem;
+              font-size: 1.5rem;
             }
           }
         }
