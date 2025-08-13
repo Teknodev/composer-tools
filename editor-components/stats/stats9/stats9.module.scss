@@ -89,39 +89,38 @@
       .stats-section {
         display: flex;
         flex-direction: column;
-        gap: calc(3 * var(--composer-gap-xl));
+        gap: calc(2 * var(--composer-gap-xl));
 
         .stat-item {
           display: flex;
           flex-direction: column;
-          position: relative;
 
           .stat-number-container {
             display: flex;
             align-items: flex-end;
-            line-height: 0.9;
+            margin-bottom: var(--composer-gap-sm);
+            line-height: 0.8;
 
             .stat-number {
+              font-size: 10rem;
+              margin: 0;
               color: transparent;
-              font-size: 9rem;
-              -webkit-text-stroke: 3px var(--composer-primary-color);
+                -webkit-text-stroke: 2px var(--composer-primary-color);
             }
 
             .stat-suffix {
+              font-size: 8rem;
               color: transparent;
-              font-size: 9rem;
-              -webkit-text-stroke: 3px var(--composer-primary-color);
+                -webkit-text-stroke: 2px var(--composer-primary-color);
             }
           }
 
           .stat-description {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
-            position: absolute;
-            bottom:calc(-2 * var(--composer-gap-sm));
+            margin-top:-1.5rem;
             background-color: var(--composer-html-background);
             padding-top: var(--composer-gap-sm);
-            padding-right: calc(3 * var(--composer-gap-xl));
           }
         }
       }
