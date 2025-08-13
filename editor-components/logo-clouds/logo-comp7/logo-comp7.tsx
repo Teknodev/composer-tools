@@ -80,6 +80,23 @@ class LogoComp7Page extends LogoClouds {
                 </ComposerLink>
               ))}
             </div>
+            <div
+              className={this.decorateCSS("images-container")}
+              style={{ animationDuration: `${scrollItems.length * 2}s` }}
+            >
+              {scrollItems.map((img, i) => (
+                <ComposerLink path={img.imageLink}>
+                  <div className={this.decorateCSS("image-child")}>
+                    <img
+                      key={i}
+                      className={this.decorateCSS("image")}
+                      src={img.image}
+                      alt={img.imageLink || ""}
+                    />
+                  </div>
+                </ComposerLink>
+              ))}
+            </div>
           </div>
         )}
       </Base.Container>
