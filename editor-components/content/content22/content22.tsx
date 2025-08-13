@@ -198,7 +198,7 @@ class Content22 extends BaseContent {
                     )}
                   </div>
                   <div className={this.decorateCSS("text")}>
-                    <h3>{item.sectionHeading}</h3>
+                    <h3 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</h3>
                     <Base.SectionDescription className={this.decorateCSS("desc")}>{item.description}</Base.SectionDescription>
                     {item.button && (
                       <ComposerLink path={item.button.url || '#'}>

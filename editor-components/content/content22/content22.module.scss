@@ -95,15 +95,12 @@
         margin: 0 2% 0 3%;
         text-align: left !important;
 
-        h3 {
+        .section-heading {
           font-size: 2rem;
           font-weight: 600;
           color: var(--composer-font-color-primary) !important;
           margin-bottom: 2rem;
-
-          * {
-            font-weight: bold !important;
-          }
+          font-weight: bold !important;
         }
       }
       .desc{
@@ -157,7 +154,7 @@
           flex: 1 1 50%;
           padding: 0 1rem;
 
-          h3 {
+          .section-heading {
             font-size: 2rem;
             margin-bottom: 1rem;
           }
@@ -209,7 +206,7 @@
           margin: 0% !important;
           padding: 0%;
 
-          h3 {
+          .section-heading {
             font-size: 2rem;
             margin-bottom: 1rem;
 
