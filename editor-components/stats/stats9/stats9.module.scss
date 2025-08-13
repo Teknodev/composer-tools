@@ -89,56 +89,39 @@
       .stats-section {
         display: flex;
         flex-direction: column;
-        gap: calc(2 * var(--composer-gap-xl));
+        gap: calc(3 * var(--composer-gap-xl));
 
         .stat-item {
           display: flex;
           flex-direction: column;
+          position: relative;
 
           .stat-number-container {
             display: flex;
             align-items: flex-end;
-            line-height: normal;
-            line-height: 0.7;
-            margin-bottom: var(--composer-gap-sm);
+            line-height: 0.9;
 
             .stat-number {
-              font-family: 'Anton', sans-serif;
-              font-size: 10rem;
-              font-weight: 800;
-              line-height: 0.7;
-              margin: 0;
-              color: #ffffff00;
-                -webkit-text-stroke-width: 3px;
-                stroke-width: 2px;
-                -webkit-text-stroke-color: var(--composer-primary-color);
-                stroke:var(--composer-primary-color);
-                white-space: nowrap;
-                overflow: hidden;
-
+              color: transparent;
+              font-size: 9rem;
+              -webkit-text-stroke: 3px var(--composer-primary-color);
             }
 
             .stat-suffix {
-              font-family: 'Anton', sans-serif;
-              font-size: 5rem;
-              font-weight: 800;
-              margin-top: var(--composer-gap-xs);
-              margin: 0;
-              color: #ffffff00;
-                -webkit-text-stroke-width: 3px;
-                stroke-width: 2px;
-                -webkit-text-stroke-color: var(--composer-primary-color);
-                stroke:var(--composer-primary-color);
-                white-space: nowrap;
-                overflow: hidden;
-
+              color: transparent;
+              font-size: 9rem;
+              -webkit-text-stroke: 3px var(--composer-primary-color);
             }
           }
 
           .stat-description {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
-            margin: 0;
+            position: absolute;
+            bottom:calc(-2 * var(--composer-gap-sm));
+            background-color: var(--composer-html-background);
+            padding-top: var(--composer-gap-sm);
+            padding-right: calc(3 * var(--composer-gap-xl));
           }
         }
       }
