@@ -227,7 +227,7 @@ export type TypeMediaInputValue =
   | {
       type: "video";
       url: string;
-      settings: {
+      settings?: {
         autoplay?: boolean;
         controls?: boolean;
         loop?: boolean;
