@@ -131,7 +131,11 @@ handleScroll = () => {
     const imageAnm = this.getPropValue("image-anm");
     const image = this.getPropValue("image");
     const buttonText = this.castToString(button.text);
-    const showCard = card.subtitle || card.title || card.desc || buttonText || card.note;
+    const showCard = this.castToString(card.subtitle) || 
+                    this.castToString(card.title) || 
+                    this.castToString(card.desc) || 
+                    buttonText || 
+                    this.castToString(card.note);
     const scrollY = this.getComponentState("scrollY");
 
 const getStyle = (direction: "up" | "down") => {
@@ -180,22 +184,22 @@ const getStyle = (direction: "up" | "down") => {
           {showCard && (
             <div className={this.decorateCSS("card")} style={getStyle("down")}>
               <div className={this.decorateCSS("box")}>
-                {(card.subtitle || card.title) && (
+                {(this.castToString(card.subtitle) || this.castToString(card.title)) && (
                   <div className={this.decorateCSS("heading")}>
-                    {card.subtitle && (
+                    {this.castToString(card.subtitle) && (
                       <div className={this.decorateCSS("sub-heading-container")}>
                         {card.subtitle_line && (
                           <hr className={this.decorateCSS("sub-heading-line")} />
                         )}
                         <span className={this.decorateCSS("sub-heading-title")}>
-                          {card.subtitle}
+                          {this.castToString(card.subtitle)}
                         </span>
                       </div>
                     )}
-                    {card.title && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
+                    {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{this.castToString(card.title)}</h2>}
                   </div>
                 )}
-                {card.desc && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
+                {this.castToString(card.desc) && <p className={this.decorateCSS("desc")}>{this.castToString(card.desc)}</p>}
                 {buttonText && (
                   <div className={this.decorateCSS("button-container")}>
                     <ComposerLink path={button?.url || '#'}>
@@ -207,7 +211,7 @@ const getStyle = (direction: "up" | "down") => {
                     </ComposerLink>
                   </div>
                 )}
-                {card.note && <p className={this.decorateCSS("note")}>{card.note}</p>}
+                {this.castToString(card.note) && <p className={this.decorateCSS("note")}>{this.castToString(card.note)}</p>}
               </div>
             </div>
           )}
