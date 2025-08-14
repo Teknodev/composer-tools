@@ -7,7 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { BaseNavigator } from "../../EditorComponent";
 
 class Header4 extends BaseHeader {
-  imageRef: React.RefObject<HTMLDivElement | null>;
+  imageRef: React.RefObject<HTMLDivElement>;
   constructor(props?: any) {
     super(props, styles);
 
