@@ -57,6 +57,7 @@ import SliderComponent7 from "./slider/slider7/slider7";
 import SliderComponent8 from "./slider/slider8/slider8";
 import SliderComponent9 from "./slider/slider9/slider9";
 import SliderComponent10 from "./slider/slider10/slider10";
+import SliderComponent11 from "./slider/slider11/slider11";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -74,6 +75,8 @@ import FaqComponent5 from "./faq/faq5/faq5";
 import FaqComponent6 from "./faq/faq6/faq6";
 import FaqComponent7 from "./faq/faq7/faq7";
 import FaqComponent8 from "./faq/faq8/faq8";
+import FaqComponent9 from "./faq/faq9/faq9";
+import FaqComponent10 from "./faq/faq10/faq10";
 import TeamComponent1 from "./team/team-1/team1";
 import TeamComponent2 from "./team/team-2/team2";
 import TeamComponent3 from "./team/team-3/team3";
@@ -326,6 +329,7 @@ function Registerables(composer: ComponentsRegistery) {
     SliderComponent8,
     SliderComponent9,
     SliderComponent10,
+    SliderComponent11,
     PricingComponent1,
     PricingComponent2,
     PricingComponent3,
@@ -343,6 +347,8 @@ function Registerables(composer: ComponentsRegistery) {
     FaqComponent6,
     FaqComponent7,
     FaqComponent8,
+    FaqComponent9,
+    FaqComponent10,
     TeamComponent1,
     TeamComponent2,
     TeamComponent3,
