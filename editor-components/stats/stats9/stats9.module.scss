@@ -103,15 +103,23 @@
 
             .stat-number {
               font-size: 10rem;
+              font-weight: 800;
               margin: 0;
-              color: transparent;
-                -webkit-text-stroke: 2px var(--composer-primary-color);
+              color: var(--composer-html-background);
+                -webkit-text-stroke-width: 2px;
+                stroke-width: 2px;
+                -webkit-text-stroke-color: var(--composer-primary-color);
+                stroke:var(--composer-primary-color);
             }
 
             .stat-suffix {
               font-size: 8rem;
-              color: transparent;
-                -webkit-text-stroke: 2px var(--composer-primary-color);
+              font-weight: 800;
+              color: var(--composer-html-background);
+                -webkit-text-stroke-width: 2px;
+                stroke-width: 2px;
+                -webkit-text-stroke-color: var(--composer-primary-color);
+                stroke:var(--composer-primary-color);
             }
           }
 

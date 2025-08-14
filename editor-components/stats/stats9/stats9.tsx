@@ -228,36 +228,21 @@ class Stats9 extends BaseStats {
                         </span>
                     )}
                 </div>
-                <span className={this.decorateCSS("stat-description")}>
-                    {typeof stat.description === 'string' ? stat.description.replace(/<[^>]*>/g, '').trim() : stat.description}
-                </span>
+                <Base.P className={this.decorateCSS("stat-description")}>
+                    {stat.description}
+                </Base.P>
             </div>
         );
     };
 
     render() {
-        let stats:Stat[] = []
-        
-        try {
-            const rawStats = this.getPropValue("stats");
-            if (Array.isArray(rawStats)) {
-                stats = rawStats.map(stat => {
-                    if (stat && typeof stat === 'object' && Array.isArray(stat.value)) {
-                        const processedStat: any = {};
-                        stat.value.forEach((prop: any) => {
-                            if (prop && prop.key) {
-                                processedStat[prop.key] = prop.value;
-                            }
-                        });
-                        return processedStat as Stat;
-                    }
-                    return null;
-                }).filter(Boolean) as Stat[];
-            }
-        } catch (error) {
-            console.error('Stats9 casting error:', error);
-            stats = [];
-        }
+        const statsProp = this.getPropValue("stats");
+        const stats: Stat[] = statsProp.map((item: any) => {
+            const number = this.castToString(item.getPropValue("number") || "0");
+            const suffix = item.getPropValue("suffix") || "";
+            const description = item.getPropValue("description") || "";
+            return { number, suffix, description };
+        });
         
         const title = this.getPropValue("title");
         const highlightedTitle = this.getPropValue("highlightedTitle");
