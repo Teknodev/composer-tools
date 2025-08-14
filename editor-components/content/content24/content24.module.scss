@@ -9,8 +9,8 @@
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%
   );
-  border-top-left-radius: calc(var(--composer-border-radius-xl) * 4); 
-  border-top-right-radius: calc(var(--composer-border-radius-xl) * 4);
+  border-top-left-radius: calc(var(--composer-border-radius-xl) * 4) !important; 
+  border-top-right-radius: calc(var(--composer-border-radius-xl) * 4) !important;
 
   &::before {
     content: '';
@@ -257,8 +257,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    border-top-left-radius: var(--composer-border-radius-lg); 
-    border-top-right-radius: var(--composer-border-radius-lg);
+    border-top-left-radius: var(--composer-border-radius-xl) !important; 
+    border-top-right-radius: var(--composer-border-radius-xl) !important;
     
     
     .header-section {
@@ -365,6 +365,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    border-top-left-radius: var(--composer-border-radius-xl) !important;
+    border-top-right-radius: var(--composer-border-radius-xl) !important;
     .content-wrapper {
       display: flex;
       flex-direction: column;
