@@ -2004,6 +2004,12 @@ class Navbar10 extends BaseNavigator {
       displayer: "Divider",
       value: true,
     })
+    this.addProp({
+      type: "boolean",
+      key: "mobileDivider",
+      displayer: "Mobile Menu Divider",
+      value: true,
+    })
 
     this.setComponentState("isScrolled", false);
     this.setComponentState("hamburgerNavActive", false);
@@ -2115,6 +2121,7 @@ class Navbar10 extends BaseNavigator {
     const isScrolled = this.getComponentState("isScrolled");
     const isMobile = this.getComponentState("isMobile");
     const activeDropdown = this.getComponentState("activeDropdown");
+    const mobileDivider = this.getPropValue("mobileDivider");
 
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
@@ -2220,7 +2227,7 @@ class Navbar10 extends BaseNavigator {
                     {item.menuType === "Dropdown" && item.categories && (
                       <div className={`${this.decorateCSS("dropdown")} ${
                         activeDropdown === index ? this.decorateCSS("visible") : this.decorateCSS("hidden")
-                      }`}>
+                      }`} style={{ display: 'block' }}>
                         {(() => {
                           const rowCount = item.rowCount || 4;
                           const categories = item.categories || [];
@@ -2502,7 +2509,9 @@ class Navbar10 extends BaseNavigator {
             <div
               className={`${this.decorateCSS("hamburgerNav")} ${
                 hamburgerNavActive ? this.decorateCSS("active") : ""
-              } ${navbarOverflowShow ? this.decorateCSS("overflowShow") : ""}`}
+              } ${navbarOverflowShow ? this.decorateCSS("overflowShow") : ""} ${
+                mobileDivider ? this.decorateCSS("mobileDivider") : ""
+              }`}
             >
               <div className={this.decorateCSS("hamburgerNavContainer")}>
                 <div className={this.decorateCSS("hamburgerNavMaxContent")}>

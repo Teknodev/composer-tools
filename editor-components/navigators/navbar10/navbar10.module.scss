@@ -2,9 +2,11 @@
   as *;
 
 .navbarContainer {
-  padding: var(--composer-gap-md) var(--composer-gap-xl);
+  padding: 0 var(--composer-gap-xl) !important;
   transition: all 0.3s ease !important;
   margin: auto;
+  box-shadow: var(--box-shadow-active);
+  min-height: 70px;
 
   .maxContent {
     display: flex;
@@ -41,15 +43,19 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-xs);
-        padding: var(--composer-gap-xs) 0;
         cursor: pointer;
 
         .menuItem {
           display: flex;
           align-items: center;
           padding-bottom: 2px;
-          border-bottom: 2px solid transparent;
+          border-bottom: 3px solid transparent;
           transition: border-color 0.3s ease;
+          min-height: 70px;
+          
+          &:hover {
+            border-bottom-color: var(--composer-primary-color);
+          }
           
           &.active {
             border-bottom-color: var(--composer-primary-color);
@@ -91,33 +97,38 @@
           justify-content: space-evenly;
           background-color: var(--composer-html-background);
           border-radius: var(--composer-border-radius-sm);
-          box-shadow: var(--box-shadow-active);
-          transition: all 0.3s ease;
           z-index: 100;
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 0.5s ease;
           
           &.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            max-height: 1000px;
+            border-top: 1px solid var(--composer-tertiary-color);
+            border-bottom: 1px solid var(--composer-tertiary-color);
           }
           
           &.hidden {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            pointer-events: none;
+            max-height: 0;
+            display: block;
           }
           .dropdownGrid {
             margin: auto;
           }
-          .dropdownContentContainer {
-             display: flex;
-             align-items: stretch;
-             width: 100%;
-             padding: 0px 0px 0px 40px;
-             margin: auto;
-             gap: var(--composer-gap-sm);
-           }
+                     .dropdownContentContainer {
+              display: flex;
+              align-items: stretch;
+              width: 100%;
+              padding: 0px 0px 0px 40px;
+              margin: auto;
+              gap: var(--composer-gap-sm);
+              opacity: 0;
+              transition: opacity 0.5s ease;
+            }
+            
+            &.visible .dropdownContentContainer {
+              opacity: 1;
+            }
           .dropdownColumn {
             display: flex;
             flex-direction: column;
@@ -212,7 +223,6 @@
                  align-items: center;
                  font-weight: 600;
                  font-size: 1.25rem;
-                 margin-bottom: var(--composer-gap-sm);
                  color: var(--composer-font-color-primary);
                  transition: all 0.4s ease;
                  &.animation1 {
@@ -372,10 +382,23 @@
     width: 100%;
     background: var(--composer-html-background);
     max-height: 0;
-    box-shadow: var(--box-shadow-active);
     z-index: 100;
     overflow-y: hidden;
     transition: all 0.3s linear;
+
+    &.mobileDivider {
+      .hamburgerNavMaxContent {
+        .hamburgerMenu {
+          .hamburgerMenuItem {
+            border-bottom: 1px solid var(--composer-tertiary-color);
+              
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
 
     &.active {
       max-height: 70vh;
@@ -400,7 +423,7 @@
               position: relative;
 
               .hamburgerMenuItemTitle {
-                font-size: 1rem;
+                font-size: 1.25rem;
                 margin: 0;
                 font-weight: 500;
                 color: var(--composer-font-color-primary);
@@ -443,7 +466,6 @@
             .hamburgerSubmenu {
               max-height: 0;
               overflow-y: hidden;
-              padding-left: var(--composer-gap-md);
               transition: all 0.3s ease;
 
               &.active {
@@ -723,6 +745,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
+    padding: 0 var(--composer-gap-xl) !important;
     .maxContent {
       z-index: 101;
              .leftSection {
@@ -802,7 +825,7 @@
     .hamburgerCategorySection {
       color: var(--composer-font-color-primary);
       font-size: 1rem;
-      margin-bottom: var(--composer-gap-sm);
+      margin-bottom: var(--composer-gap-md);
       font-weight: bold;
     }
       .hamburgerCategoryItemTitle {
@@ -842,7 +865,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .navbarContainer {
-    padding: var(--composer-gap-md);
+    padding: 0 var(--composer-gap-md) !important;
     
     .maxContent {
       .leftSection {
@@ -874,11 +897,23 @@
       background-color: var(--composer-html-background);
       .hamburgerNavContainer {
         padding: var(--composer-gap-md);
+        .hamburgerNavMaxContent {
+          .hamburgerMenu {
+            .hamburgerMenuItem {
+              margin-bottom: var(--composer-gap-sm);
+              
+              &:last-child {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
         .hamburgerMenuItemHeader {
           justify-content: start;
           padding: var(--composer-gap-sm) 0;
           cursor: pointer;
           position: relative;
+          margin-bottom: var(--composer-gap-sm);
         }
       }
     }
@@ -892,11 +927,12 @@
       justify-content: space-between;
       cursor: pointer;
       margin: 0;
+      font-size: 1rem;
     }
     .hamburgerCategorySection {
       color: var(--composer-font-color-primary);
       font-size: 1rem;
-      margin-bottom: var(--composer-gap-sm);
+      margin-bottom: calc(var(--composer-gap-sm) * 3);
       font-weight: bold;
     }
     .hamburgerCategoryItemTitle {
