@@ -622,6 +622,9 @@
       gap: var(--composer-gap-md);
       flex-wrap: wrap;
       justify-content: flex-end;
+      .buttonText {
+        content: "";
+      }
     }
     .localization {
       transition: all 0.3s ease;
@@ -650,10 +653,7 @@
       font-size: calc(1.5 * var(--project-font-size));
       color: var(--composer-font-color-primary);
     }
- 
-    .overlay {
-      content: "";
-    }
+
 
     .accordionLocalization {
       display: none;
@@ -692,6 +692,12 @@
     display: initial;
   }
 }
+
+.overlay {
+  content: "";
+  width: 100% !important;
+}
+
 .maxContent {
   p {
     padding: 0;

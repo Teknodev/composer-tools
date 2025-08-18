@@ -2066,6 +2066,7 @@ class Navbar10 extends BaseNavigator {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("hamburgerNavActive", false);
     this.setComponentState("navbarOverflowShow", false);
+    this.setComponentState("activeDropdown", null);
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
     }, 200);
@@ -2093,17 +2094,25 @@ class Navbar10 extends BaseNavigator {
     const currentActive = this.getComponentState("activeDropdown");
     if (currentActive === index) {
       this.setComponentState("activeDropdown", null);
+      Base.Navigator.changeScrollBehaviour("auto");
     } else {
       this.setComponentState("activeDropdown", index);
+      Base.Navigator.changeScrollBehaviour("hidden");
     }
   };
 
   handleClickOutside = (e: any) => {
     const dropdownElement = e.target.closest(`.${this.decorateCSS("dropdown")}`);
     const menuItemElement = e.target.closest(`.${this.decorateCSS("menuItem")}`);
+    const playgroundElement = e.target.closest('#playground');
+    
+    if (!playgroundElement) {
+      return;
+    }
     
     if (!dropdownElement && !menuItemElement) {
       this.setComponentState("activeDropdown", null);
+      Base.Navigator.changeScrollBehaviour("auto");
     }
   };
 
@@ -2139,6 +2148,7 @@ class Navbar10 extends BaseNavigator {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const isVisible = hamburgerNavActive && isMobile;
+    const isOverlayVisible = hamburgerNavActive || activeDropdown !== null;
 
     return (
       <>
@@ -2469,7 +2479,7 @@ class Navbar10 extends BaseNavigator {
                         }`}
                         buttonType={btn.type}
                       >
-                        {btn.text}
+                        <span className={this.decorateCSS("buttonText")}>{btn.text}</span>
                       </Base.Button>
                     </ComposerLink>
                   ))}
@@ -2743,7 +2753,7 @@ class Navbar10 extends BaseNavigator {
 
         <Base.Overlay
           className={this.decorateCSS("overlay")}
-          isVisible={isVisible}
+          isVisible={isOverlayVisible}
           onClick={() => this.handleCloseMenu()}
         />
       </>
