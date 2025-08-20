@@ -212,6 +212,7 @@ import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
+import NavbarComponent10 from "./navigators/navbar10/navbar10";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import ImageGalleryComponent2 from "./Image_gallery/image_gallery_2/image-gallery2";
 import ImageGalleryComponent3 from "./Image_gallery/image_gallery_3/image-gallery3";
@@ -407,6 +408,7 @@ function Registerables(composer: ComponentsRegistery) {
     NavbarComponent7,
     NavbarComponent8,
     NavbarComponent9,
+    NavbarComponent10,
     ImageGalleryComponent1,
     ImageGalleryComponent2,
     ImageGalleryComponent3,
