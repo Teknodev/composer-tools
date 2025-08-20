@@ -15,11 +15,13 @@
             position: relative;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 40%, rgba(255, 255, 255, 0) 80%);
             -webkit-background-clip: text;
+            transform: scaleY(1.1);
+            transform-origin: center;
             
             .text {
                 font-weight: 900;
                 text-align: center;
-                font-size: clamp(37px, 10vw, 160px);
+                font-size: 160px;
                 white-space: nowrap;
                 color: var(--composer-primary-color);
                 text-transform: uppercase;
@@ -89,12 +91,51 @@
     }
 }
 
+@container (max-width: 1366px) {
+  .background-text {
+    .text {
+      font-size: 134px !important;
+    }
+  }
+}
 
+@container (max-width: 1200px) {
+  .background-text {
+    .text {
+      font-size: 114px !important;
+    }
+  }
+}
+
+@container (max-width: 1024px) {
+  .background-text {
+    .text {
+      font-size: 94px !important;
+    }
+  }
+}
+
+@container (max-width: 880px) {
+  .background-text {
+    .text {
+      font-size: 74px !important;
+    }
+  }
+}
+
+@container (max-width: 767px) {
+  .background-text {
+    .text {
+      font-size: 54px !important;
+    }
+  }
+}
 
 @container (max-width: #{$composer-tablet-width}) {
   .background-text {
     .text {
-      font-size: clamp(37px, 6vw, 94px) !important;
+      -webkit-text-stroke-width: 3px !important;
+      stroke-width: 3px !important;
     }
   }
 }
@@ -102,7 +143,10 @@
 @container (max-width: #{$composer-phone-width}) {
   .background-text {
     .text {
-      font-size: clamp(37px, 4vw, 37px) !important;
+      font-size: clamp(37px, 4vw, 44px) !important;
+      -webkit-text-stroke-width: 2px !important;
+      stroke-width: 2px !important;
+      letter-spacing: -0.3rem;
     }
   }
   
@@ -110,7 +154,7 @@
     .platform-item {
       .platform-content {
         .platform-logo {
-          scale: 0.7;
+          scale: 0.6;
         }
       }
     }
