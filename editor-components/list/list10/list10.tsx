@@ -17,15 +17,15 @@ class List10 extends BaseList {
         super(props, styles);
         this.addProp({
             type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "The Latest Updates News & Blog",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "Latest updates",
         });
         this.addProp({
             type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: "Discover AI-Enhanced Visual Stories",
+            key: "title",
+            displayer: "Title",
+            value: "The Latest Updates News & Blog",
         });
 
         this.addProp({
@@ -172,27 +172,24 @@ class List10 extends BaseList {
 
     render() {
         const cards = this.castToObject<Card[]>("cards");
-
-        const isTitleExist = this.castToString(this.getPropValue("title"));
-        const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
+        const title = this.getPropValue("title");
+        const subtitle = this.getPropValue("subtitle");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(isSubtitleExists || isTitleExist) && (
-                        <div className={`${this.decorateCSS("up-page")} ${styles[Base.getContentAlignment()]} ${styles[Base.getViewType()]}`}>
-                            {isTitleExist && (
-                                <Base.H1 className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </Base.H1>
-                            )}
-                            {isSubtitleExists && (
-                                <Base.H2 className={this.decorateCSS("subtitle")}>
-                                    {this.getPropValue("subtitle")}
-                                </Base.H2>
-                            )}
-                        </div>
-                    )}
+                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                        {this.castToString(subtitle) && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {subtitle}
+                            </Base.SectionSubTitle>
+                        )}
+                        {this.castToString(title) && (
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {title}
+                            </Base.SectionTitle>
+                        )}
+                    </Base.VerticalContent>
                     <Base.ListGrid
                         gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
                         className={this.decorateCSS("cards-box")}
@@ -207,9 +204,9 @@ class List10 extends BaseList {
                                         className={this.decorateCSS("card")}
                                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                     >
-                                        <div className={this.decorateCSS("badge")}>
+                                        <Base.P className={this.decorateCSS("badge")}>
                                             {card.badge}
-                                        </div>
+                                        </Base.P>
                                         <div className={this.decorateCSS("image-div")}>
                                             {card.image && (
                                                 <img
