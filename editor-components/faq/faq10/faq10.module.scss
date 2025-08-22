@@ -1,9 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
-:root {
-  --composer-phone-width: #{$composer-phone-width};
-}
 @keyframes bubbleClick {
   0% {
     transform: translate(-50%, -50%) scale(1.2);
