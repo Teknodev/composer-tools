@@ -4,6 +4,7 @@ import styles from "./slider1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 
 type Slider = {
@@ -148,6 +149,10 @@ class Slider1 extends BaseSlider {
         },
       ],
     });
+
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("activeSlide", 0);
   }
@@ -157,14 +162,7 @@ class Slider1 extends BaseSlider {
   }
   render() {
     const settings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      adaptiveHeight: false,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       afterChange: (current: number) => {
         if (this.getComponentState("activeSlide") !== current) {
           this.setComponentState("activeSlide", current);
@@ -238,7 +236,7 @@ class Slider1 extends BaseSlider {
             </ComposerSlider>
           </div>
 
-          {sliderItems.length > 1 && (
+          {sliderItems.length > 1 && !!settings.dots && (
             <ul className={`${this.decorateCSS("dots")} ${!ImagesExist && this.decorateCSS("dots-2")}`}>
               {sliderItems.map((_, index) => (
                 <li key={`dot-${index}`} className={`${this.decorateCSS("slick")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>

@@ -7,6 +7,7 @@ import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
 import { CurrencyCode } from "composer-tools/utils/currency";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -220,6 +221,22 @@ export type TypeLocation = {
   lat: number;
 };
 
+export type TypeMediaInputValue =
+  | { type: "image"; url: string }
+  | { type: "icon"; name: string }
+  | {
+      type: "video";
+      url: string;
+      settings?: {
+        autoplay?: boolean;
+        controls?: boolean;
+        loop?: boolean;
+        muted?: boolean;
+      };
+    };
+
+export type MediaType = "icon" | "image" | "video";
+
 type currencyAdditionalParams ={
   showCode?: boolean;
   showSymbol?:boolean;
@@ -290,6 +307,7 @@ type AvailablePropTypes =
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
+  | { type: "media"; value: TypeMediaInputValue }
   | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
@@ -303,7 +321,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  MediaType[]};
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -386,12 +404,6 @@ export abstract class Component
     return this.onShouldComponentUpdate?.(nextProps, nextState) ?? true;
   }
 
-  getSnapshotBeforeUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<{ states: any; componentProps: any; }>
-  ): any {
-    return this.onGetSnapshotBeforeUpdate?.(prevProps, prevState);
-  }
 
   componentDidCatch(error: Error, info: { componentStack: string }): void {
     this.onComponentDidCatch?.(error, info);
@@ -407,8 +419,9 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
-    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
-
+    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) =>
+      this.attachValueGetter(p)
+    );
     this.state = {
       states: {},
       componentProps: {
@@ -429,7 +442,10 @@ export abstract class Component
 
       const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
       const shadowProp = this.getShadowProp(key);
-      if (!shadowProp) return;
+      if (!shadowProp) {
+        this.state.componentProps.props.splice(propIndex, 1);
+        return;
+      }
 
       const isComplexType = propInState.type === "array" || propInState.type === "object";
       const isTypeChanged = propInState.type !== shadowProp.type;
@@ -707,6 +723,8 @@ export abstract class Component
   }
 
   setComponentState(key: string, value: any): void {
+    const isSameValue = this.state.states[key] === value;
+    if(isSameValue) return;
     this.state.states[key] = value;
     this.setState({ ...this.state });
   }
@@ -895,14 +913,6 @@ export abstract class Component
     return true;
   }
 
-  onGetSnapshotBeforeUpdate(
-    prevProps: Readonly<any>,
-    prevState: Readonly<any>
-  ): any {
-    // Called right before DOM updates (used with getSnapshotBeforeUpdate)
-    // Override in child components
-    return null;
-  }
 
   onComponentDidCatch(error: Error, info: { componentStack: string }) {
     // Error boundary: catch errors in descendants
@@ -952,6 +962,16 @@ export abstract class BaseCallToAction extends Component {
 
 export abstract class BaseSlider extends Component {
   static category = CATEGORIES.SLIDER;
+    
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
 }
 
 export abstract class BaseFAQ extends Component {

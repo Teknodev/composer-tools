@@ -306,6 +306,9 @@
             gap: var(--composer-gap-sm);
             justify-content: center;
             align-items: center;
+            .submit-button{
+              content: "";
+            }
           }
         }
       }

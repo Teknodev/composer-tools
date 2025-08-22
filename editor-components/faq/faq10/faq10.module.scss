@@ -1,0 +1,165 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+@keyframes bubbleClick {
+  0% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+.container {
+  .container-inner {
+    .max-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      .header {
+        gap: var(--composer-gap-sm);
+        .title {
+          content: "";
+          margin: 0;
+        }
+  
+        .subtitle {
+          content: "";
+          margin: 0;
+          margin-bottom: var(--composer-gap-sm);
+        }
+      }
+  
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        gap: var(--composer-gap-lg);
+      }
+  
+      .faq-col {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xs);
+      }
+  
+      .card {
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+        width: 100%;
+  
+        .card-header {
+          display: flex;
+          align-items: center;
+          border-radius: var(--composer-border-radius-sm);
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          background: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
+  
+          .card-title {
+            flex: 1;
+            margin: 0;
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            text-align: left;
+          }
+  
+          .icon-wrapper {
+            position: relative;
+            width: 2rem;
+            height: 2rem;
+            margin-left: var(--composer-gap-sm);
+  
+            .icon {
+              position: relative;
+              z-index: 1;
+              width: 100%;
+              height: 100%;
+              color: var(--composer-font-color-primary);
+              transition: transform 0.3s color 0.5s ease;
+            }
+  
+            &::before {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 100%;
+              height: 100%;
+  
+              background: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 10%
+              );
+              border-radius: 50%;
+              transform: translate(-50%, -50%) scale(0);
+              transition: none;
+              pointer-events: none;
+            }
+  
+            &:hover:not(:active):not(.iconOpen)::before {
+              transform: translate(-50%, -50%) scale(1.2);
+              transition: transform 0.3s ease;
+            }
+  
+            &:active::before {
+              transform: translate(-50%, -50%) scale(2);
+              transition: transform 0.6s ease;
+            }
+  
+            &.iconOpen:hover:not(:active)::before {
+              transform: translate(-50%, -50%) scale(1.2);
+              transition: transform 0.6s ease;
+            }
+            &:hover .icon {
+              color: var(--composer-font-color-secondary);
+            }
+          }
+        }
+  
+        .card-body {
+          max-height: 0;
+          overflow: hidden;
+          padding-left: var(--composer-gap-md);
+          padding-right: var(--composer-gap-md);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          background-color: (--composer-html-background);
+  
+          .card-text {
+            opacity: 0;
+            color: var(--composer-font-color-primary);
+            transition: opacity 0.5s;
+            font-size: 1rem;
+            text-align: left;
+          }
+  
+          &.open {
+            .card-text {
+              background: transparent;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .container-inner {
+      .max-content {
+        .faq-grid {
+          grid-template-columns: 1fr;
+          gap: var(--composer-gap-xs);
+        }
+      }
+    }
+  }
+}
