@@ -288,10 +288,7 @@ class Faq10 extends BaseFAQ {
 
     const width = el.clientWidth;
 
-    const phonePx = getComputedStyle(document.documentElement)
-      .getPropertyValue("--composer-phone-width")
-      .trim()
-      .replace("px", "");
+    const phonePx = "640";
     const phonePxInt = parseInt(phonePx, 10) || 0;
 
     const isMobile = width <= phonePxInt;
