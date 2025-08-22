@@ -14,6 +14,19 @@ type Card = {
 class List9 extends BaseList {
     constructor(props?: any) {
         super(props, styles);
+        
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "What we offer",
+        });
         this.addProp({
             type: "array",
             key: "cards",
@@ -178,55 +191,72 @@ class List9 extends BaseList {
     }
 
     render() {
+        const cards = this.castToObject<Card[]>("cards");
+        const title = this.getPropValue("title");
+        const subtitle = this.getPropValue("subtitle");
+        
         return (
-            <Base.Container isFull={true} className={this.decorateCSS("container")}>
+            <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid
+                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                        {this.castToString(subtitle) && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {subtitle}
+                            </Base.SectionSubTitle>
+                        )}
+                        {this.castToString(title) && (
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {title}
+                            </Base.SectionTitle>
+                        )}
+                    </Base.VerticalContent>
+                    
+                </Base.MaxContent>
+                <Base.ListGrid
                         gridCount={{ pc: this.getPropValue("itemCount") }}
                         className={this.decorateCSS("grid-container")}
                     >
-                        {this.castToObject<Card[]>("cards").map(
-                            (card: Card, indexCard: number) => (
-                                <div
-                                    key={indexCard}
-                                    className={this.decorateCSS("card")}
-                                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                                >
-                                    <div className={this.decorateCSS("image-container")}>
-                                        {card.image && (
-                                            <img
-                                                className={this.decorateCSS("image")}
-                                                src={card.image}
-                                                alt={card.image}
-                                            />
-                                        )}
+                    {cards.map(
+                        (card: Card, indexCard: number) => (
+                            <div
+                                key={indexCard}
+                                className={this.decorateCSS("card")}
+                                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                            >
+                                <div className={this.decorateCSS("image-container")}>
+                                    {card.image && (
+                                        <img
+                                            className={this.decorateCSS("image")}
+                                            src={card.image}
+                                            alt={card.image}
+                                        />
+                                    )}
 
-                                    </div>
-                                    <Base.VerticalContent
-                                        className={this.decorateCSS("little-container")}
-                                    >
-                                        {card.icon && (
-                                            <Base.Icon
-                                                name={card.icon}
-                                                propsIcon={{ className: this.decorateCSS("icon") }}
-                                            />
-                                        )}
-                                        {this.castToString(card.title) && (
-                                            <Base.H2 className={this.decorateCSS("title")}>
-                                                {card.title}
-                                            </Base.H2>
-                                        )}
-                                        {this.castToString(card.description) && (
-                                            <Base.P className={this.decorateCSS("description")}>
-                                                {card.description}
-                                            </Base.P>
-                                        )}
-                                    </Base.VerticalContent>
                                 </div>
-                            )
-                        )}
-                    </Base.ListGrid>
-                </Base.MaxContent>
+                                <Base.VerticalContent
+                                    className={this.decorateCSS("little-container")}
+                                >
+                                    {card.icon && (
+                                        <Base.Icon
+                                            name={card.icon}
+                                            propsIcon={{ className: this.decorateCSS("icon") }}
+                                        />
+                                    )}
+                                    {this.castToString(card.title) && (
+                                        <Base.H3 className={this.decorateCSS("title")}>
+                                            {card.title}
+                                        </Base.H3>
+                                    )}
+                                    {this.castToString(card.description) && (
+                                        <Base.P className={this.decorateCSS("description")}>
+                                            {card.description}
+                                        </Base.P>
+                                    )}
+                                </Base.VerticalContent>
+                            </div>
+                        )
+                    )}
+                </Base.ListGrid>
             </Base.Container>
         );
     }

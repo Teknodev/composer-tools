@@ -592,7 +592,7 @@ class Feature1 extends BaseFeature {
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
-                      <span className={this.decorateCSS("link-text")}>
+                      <Base.H4 className={this.decorateCSS("link-text")}>
                         {rightSideTextExist && (
                           this.getPropValue("rightSideText")
                         )}
@@ -602,7 +602,7 @@ class Feature1 extends BaseFeature {
                             propsIcon={{ className: this.decorateCSS("right-side-icon") }}
                           />
                         )}
-                      </span>
+                      </Base.H4>
                     </div>
                   </ComposerLink>
                 </div>

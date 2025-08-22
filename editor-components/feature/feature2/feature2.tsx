@@ -191,7 +191,7 @@ class Feature2 extends BaseFeature {
                   {iconExist && (
                     <>
                       {showBadge && (
-                        <span className={this.decorateCSS("item-index")}>{index + 1}</span>
+                        <Base.P className={this.decorateCSS("item-index")}>{index + 1}</Base.P>
                       )}
                       <Base.Icon
                         name={item.icon}

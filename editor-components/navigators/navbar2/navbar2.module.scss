@@ -52,7 +52,7 @@
         }
 
         .dropdownIcon {
-          font-size: calc(1.5 * var(--project-font-size));
+          font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -100,7 +100,7 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: calc(1 * var(--project-font-size));
+                  font-size: calc(1 * var(--composer-font-size-md));
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
@@ -143,7 +143,7 @@
             }
 
             .rightIcon {
-              font-size: calc(1 * var(--project-font-size));
+              font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -226,7 +226,7 @@
     .menuIcon,
     .closeIcon {
       display: none;
-      font-size: calc(1.5 * var(--project-font-size));
+      font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -264,7 +264,7 @@
           border: none;
           cursor: pointer;
           color: var(--composer-font-color-primary);
-          font-size: calc(2.5 * var(--project-font-size));
+          font-size: calc(2.5 * var(--composer-font-size-md));
           display: flex;
           align-items: center;
           justify-content: center;
@@ -299,7 +299,7 @@
               }
 
               .dropdownIcon {
-                font-size: calc(1.5 * var(--project-font-size));
+                font-size: calc(1.5 * var(--composer-font-size-md));
                 color: var(--composer-font-color-primary);
                 transition: transform 0.3s ease;
 
@@ -341,7 +341,7 @@
                   }
 
                   .dropdownIcon {
-                    font-size: calc(1.5 * var(--project-font-size));
+                    font-size: calc(1.5 * var(--composer-font-size-md));
                     transition: transform 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -389,7 +389,7 @@
 
     .languageDropdownLabel {
       color: var(--composer-font-color-primary);
-      font-size: calc(1 * var(--project-font-size));
+      font-size: calc(1 * var(--composer-font-size-md));
     }
 
     .languageAccordion,
@@ -400,7 +400,7 @@
 
     .languageAccordionTitle {
       color: var(--composer-font-color-primary);
-      font-size: calc(1 * var(--project-font-size));
+      font-size: calc(1 * var(--composer-font-size-md));
     }
   }
 
@@ -469,7 +469,7 @@
         .menuItemContainer {
           .menuItem {
             .dropdownIcon {
-              font-size: calc(2 * var(--project-font-size));
+              font-size: calc(2 * var(--composer-font-size-md));
             }
           }
         }
@@ -499,7 +499,7 @@
             }
           }
           .languageAccordionItem{
-            font-size: calc(1 * var(--project-font-size));
+            font-size: calc(1 * var(--composer-font-size-md));
             font-weight: bold;
             transition: all 0.3s ease;
             &.animation1{
@@ -508,11 +508,11 @@
               }
             }
 
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
             font-weight: bold;
           }
           .languageAccordionIcon {
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
             font-weight: bold;
@@ -536,7 +536,7 @@
           padding-left: var(--composer-gap-md);
           padding-right: var(--composer-gap-md);
           .languageAccordionTitle {
-            font-size: calc(1 * var(--project-font-size));
+            font-size: calc(1 * var(--composer-font-size-md));
             font-weight: bold;
           }
         }

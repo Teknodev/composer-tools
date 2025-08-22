@@ -54,7 +54,7 @@ export namespace Base {
   }
 
   export function setFontSize(size: string) {
-    setStyleValue("--project-font-size", `${size}px`);
+    setStyleValue("--composer-font-size-md", `${size}px`);
   }
 
   export function H1({ className, children, ...props }: any) {

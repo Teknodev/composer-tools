@@ -13,7 +13,7 @@
     align-items: center;
 
     .laneContact {
-      font-size: calc(1 * var(--project-font-size));
+      font-size: calc(1 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -21,7 +21,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: calc(1 * var(--project-font-size));
+      font-size: calc(1 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -84,7 +84,7 @@
       .hamburgerIcon,
       .closeIcon {
         cursor: pointer;
-        font-size: calc(1.5 * var(--project-font-size));
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
       }
@@ -172,7 +172,7 @@
       }
 
       .dropdownIcon {
-        font-size: calc(1.5 * var(--project-font-size));
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
 
       }
@@ -257,7 +257,7 @@
             }  
           }
           .rightIcon {
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
           }
@@ -315,7 +315,7 @@
   .icons {
     gap: var(--composer-gap-sm);
     .icon-element {
-      font-size: calc(1.5 * var(--project-font-size));
+      font-size: calc(1.5 * var(--composer-font-size-md));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -452,7 +452,7 @@
                   color: var(--composer-font-color-primary);
                 }
                 .rightIcon {
-                  font-size: calc(1.5 * var(--project-font-size));
+                  font-size: calc(1.5 * var(--composer-font-size-md));
                   transition: all 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -485,7 +485,7 @@
           }
         }
         .dropdownIcon {
-          font-size: calc(1.5 * var(--project-font-size));
+          font-size: calc(1.5 * var(--composer-font-size-md));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           transform: rotate(-90deg);

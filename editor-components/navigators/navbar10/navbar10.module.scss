@@ -75,7 +75,7 @@
         }
 
         .dropdownIcon {
-          font-size: calc(1.5 * var(--project-font-size));
+          font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
           
@@ -283,7 +283,7 @@
               }
             }
             .rightIcon {
-              font-size: calc(1.5 * var(--project-font-size));
+              font-size: calc(1.5 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -498,7 +498,7 @@
                     margin: 0;
                   }
                   .rightIcon {
-                    font-size: calc(1.5 * var(--project-font-size));
+                    font-size: calc(1.5 * var(--composer-font-size-md));
                     transition: all 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -584,7 +584,7 @@
             }
           }
           .dropdownIcon {
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
             transition: all 0.3s ease;
             color: var(--composer-font-color-primary);
             transform: rotate(0deg);
@@ -650,7 +650,7 @@
     .closeIcon {
       display: none;
       cursor: pointer;
-      font-size: calc(1.5 * var(--project-font-size));
+      font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 

@@ -11,6 +11,13 @@
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xl);
+      
+      .card-titles {
+        .subtitle {
+          content: "";
+        }
+      }
+      
       .section-wrapper {
         .title {
           content: "";
@@ -32,10 +39,10 @@
           flex-direction: column;
           align-items: center;
           gap: var(--composer-gap-md);
-          transition: all 0.5s ease-out;
+          transition: all var(--composer-transition-duration-slow) ease-out;
 
           &[data-animation="animate1"]:hover {
-            box-shadow: var(--box-shadow-active);
+            box-shadow: var(--composer-box-shadow-lg);
           }
 
           &[data-animation="animate2"]:hover {
@@ -47,26 +54,26 @@
 
           &[data-animation="animate3"]:hover {
             transform: scale(1.1);
-            transition: transform 0.5s;
+            transition: transform var(--composer-transition-duration-slow);
           }
 
           &[data-animation="animate4"]:hover {
             .circle {
               transform: translate(-50%, -50%) rotate(360deg);
-              transition: transform 0.3s;
+              transition: transform var(--composer-transition-duration-normal);
             }
           }
 
           .circle {
             position: absolute;
             left: 50%;
-            top: 0px;
+            top: 0;
             transform: translate(-50%, -50%);
             will-change: transform;
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            border: 1px solid
+            width: calc(var(--composer-font-size-xl) * 2);
+            height: calc(var(--composer-font-size-xl) * 2);
+            border-radius: var(--composer-border-radius-full);
+            border: var(--composer-border-width-xs) solid
               color-mix(
                 in srgb,
                 var(--composer-html-background),
@@ -77,7 +84,6 @@
             align-items: center;
             justify-content: center;
             .index {
-              font-size: 3rem;
               color: var(--composer-font-color-primary);
             }
           }
@@ -93,12 +99,12 @@
             gap: var(--composer-gap-md);
             text-align: center;
             .midwriting {
+              text-align: center;
               color: var(--composer-font-color-primary);
-              font-size: 1.5rem;
             }
             .text {
+              text-align: center;
               color: var(--composer-tertiary-color);
-              font-size: 1rem;
             }
           }
         }
