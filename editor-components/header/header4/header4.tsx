@@ -192,14 +192,14 @@ const getStyle = (direction: "up" | "down") => {
                           <hr className={this.decorateCSS("sub-heading-line")} />
                         )}
                         <span className={this.decorateCSS("sub-heading-title")}>
-                          {this.castToString(card.subtitle)}
+                          {card.subtitle}
                         </span>
                       </div>
                     )}
-                    {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{this.castToString(card.title)}</h2>}
+                    {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
                   </div>
                 )}
-                {this.castToString(card.desc) && <p className={this.decorateCSS("desc")}>{this.castToString(card.desc)}</p>}
+                {this.castToString(card.desc) && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
                 {buttonText && (
                   <div className={this.decorateCSS("button-container")}>
                     <ComposerLink path={button?.url || '#'}>
