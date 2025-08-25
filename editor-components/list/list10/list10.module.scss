@@ -3,6 +3,16 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+    
+    .card-titles {
+      .subtitle {
+        content: "";
+      }
+    }
+    
     .up-page {
       display: flex;
       align-items: center;
@@ -10,7 +20,7 @@
 
       &.center {
         flex-direction: column;
-        gap: 0px;
+        gap: 0;
         .title,
         .subtitle {
           text-align: center;
@@ -173,7 +183,6 @@
 
         .badge {
           color: var(--composer-font-color-primary);
-          font-weight: 400;
           height: 1em;
           * {
             max-width: 200px;
@@ -209,8 +218,6 @@
           margin-top: 0px;
           position: relative;
           z-index: 1;
-          font-size: 1.5rem;
-          font-weight: 700;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }

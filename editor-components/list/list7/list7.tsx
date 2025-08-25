@@ -16,6 +16,20 @@ class List7 extends BaseList {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Features",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Our Services",
+    });
+
+    this.addProp({
       type: "array",
       key: "list-items",
       displayer: "List Items",
@@ -110,10 +124,24 @@ class List7 extends BaseList {
   }
   render() {
     const ListItems = this.castToObject<listItem[]>("list-items");
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+            {this.castToString(subtitle) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
+            {this.castToString(title) && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
+            )}
+          </Base.VerticalContent>
           {(ListItems.length > 0) && (
             <Base.ListGrid className={this.decorateCSS("card")} gridCount={{ pc: this.getPropValue("itemCount") }} >
               {ListItems.map((item: any, index: number) => (

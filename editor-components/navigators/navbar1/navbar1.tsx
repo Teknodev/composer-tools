@@ -1204,7 +1204,7 @@ class Navbar1 extends BaseNavigator {
     }
   }
 
-  componentWillUnmount(): void {
+  onComponentWillUnmount(): void {
     this.handleCloseMenu();
   }
 

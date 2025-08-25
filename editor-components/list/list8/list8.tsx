@@ -23,6 +23,12 @@ class List8 extends BaseList {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "How it works",
+    });
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "How It Works?",
@@ -157,6 +163,7 @@ class List8 extends BaseList {
   render() {
     const listItems = this.castToObject<listItem[]>("list-items");
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
     const titledesc = this.getPropValue("titledesc");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -164,16 +171,23 @@ class List8 extends BaseList {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section")}>
-            {(this.castToString(title) || this.castToString(titledesc)) && (
+            <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
+            {this.castToString(titledesc) && (
               <Base.VerticalContent className={this.decorateCSS("section-wrapper")} >
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
                 {this.castToString(titledesc) && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("titledesc")}
+                    {titledesc}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
@@ -191,9 +205,9 @@ class List8 extends BaseList {
                   >
                     {item.getPropValue("number") && (
                       <div className={this.decorateCSS("circle")}>
-                        <div className={this.decorateCSS("index")}>
+                        <Base.H1 className={this.decorateCSS("index")}>
                           {item.getPropValue("number")}
-                        </div>
+                        </Base.H1>
                       </div>
                     )}
                     {item.icon && (
@@ -209,14 +223,14 @@ class List8 extends BaseList {
                     {(this.castToString(item.title) || this.castToString(item.text)) && (
                       <div className={this.decorateCSS("titles")}>
                         {this.castToString(item.title) && (
-                          <div className={this.decorateCSS("midwriting")}>
+                          <Base.H4 className={this.decorateCSS("midwriting")}>
                             {item.title}
-                          </div>
+                          </Base.H4>
                         )}
                         {this.castToString(item.text) && (
-                          <div className={this.decorateCSS("text")}>
+                          <Base.P className={this.decorateCSS("text")}>
                             {item.text}
-                          </div>
+                          </Base.P>
                         )}
                       </div>
                     )}

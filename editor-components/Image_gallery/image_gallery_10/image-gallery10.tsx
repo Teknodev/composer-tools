@@ -473,7 +473,7 @@ class ImageGallery10 extends BaseImageGallery {
         this.startAnimationInterval();
     }
 
-    componentDidUpdate() {
+    onComponentDidUpdate() {
         const animateTexts = this.castToObject<AnimateTexts[]>("animate-texts");
         const newTexts = animateTexts?.map((item: AnimateTexts) => item.animateText) || [];
         const currentTexts = this.getComponentState("texts") as string[];
@@ -493,7 +493,7 @@ class ImageGallery10 extends BaseImageGallery {
         }
     }
 
-    componentWillUnmount() {
+    onComponentWillUnmount() {
         this.clearAnimationInterval();
     }
 

@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 
 
@@ -13,7 +14,7 @@ type SliderItem = {
 class Header12 extends BaseHeader {
   leftSliderRef: any;
   rightSliderRef: any;
-  screenWidth: number;
+
 
   constructor(props?: any) {
     super(props, styles);
