@@ -159,7 +159,7 @@ class Testimonials15Page extends Testimonials {
                     displayer: "Video",
                     value: {
                         type: "video",
-                        url: "http://youtube.com/watch?v=MLpWrANjFbI",
+                        url: "https://www.youtube.com/embed/MLpWrANjFbI?autoplay=1",
                     },
                 },
                 {
@@ -175,13 +175,13 @@ class Testimonials15Page extends Testimonials {
                     type: "icon",
                     key: "playIcon",
                     displayer: "Play Button Icon",
-                    value: "IoPlayCircleSharp",
+                    value: "IoMdPlay",
                 },
                 {
                     type: "icon",
                     key: "closeIcon",
                     displayer: "Close Button Icon",
-                    value: "RxCross2",
+                    value: "IoCloseSharp",
                 },
             ],
         });
@@ -386,9 +386,15 @@ class Testimonials15Page extends Testimonials {
                                         propsIcon={{className: this.decorateCSS("close-icon")}}
                                     />
                                 </button>
-                                <Base.Media
-                                    value={videoBox.video}
+                                <iframe
                                     className={this.decorateCSS("modal-video")}
+                                    width="100%"
+                                    height="450px"
+                                    src={videoBox.video.url}
+                                    title="Video player"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
                                 />
                             </div>
                         </div>
