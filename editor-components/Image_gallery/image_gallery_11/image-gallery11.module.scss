@@ -17,7 +17,7 @@
     overflow: hidden; 
   }
   .bg-image {
-    position: absolute;
+    position: relative;
     inset: 0;
   }
   .bg-overlay {
@@ -303,7 +303,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 32vw;               
+  width: 14%;               
   max-width: 520px;
   background: transparent;   
   border: 0;
