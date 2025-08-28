@@ -1,0 +1,384 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container{
+    width: 100%;
+    min-width: 100%;
+    position: relative;
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    .max-content{
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        .content{
+            display: flex;
+            gap: var(--composer-gap-md);
+
+            .left-card{
+                display: flex;
+                flex: 1;
+                position: relative;
+                border-radius: var(--composer-border-radius-lg);
+                background-color: var(--composer-primary-color);
+                .pattern-bg{
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    .pattern-image{
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+                .left-content-wrapper{
+                    padding: calc(1.5*var(--composer-gap-xl));
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    .left-content{
+                        position: relative;
+                        max-width: 635px;
+                        width: 100%;
+                        margin-inline-start: auto;
+                        
+                        .subtitle{
+                            text-transform: uppercase;
+                            font-size: 1rem;
+                            color: var(--composer-font-color-secondary);
+                            margin-bottom: var(--composer-gap-md);
+                            letter-spacing: 1.5px;
+                            &::before{
+                                background: var(--composer-font-color-secondary) !important;
+                            }
+                        }
+                        .title{
+                            font-size: 5rem;
+                            line-height: 1;
+                            color: var(--composer-font-color-secondary);
+                            margin-bottom: calc(1.5*var(--composer-gap-md));
+                        }
+                        .main-info-wrapper{
+                            max-width: 475px;
+                            margin-inline-start: auto;
+                            margin-top: var(--composer-gap-xl);
+                            .divider-top {
+                                width: 100%;
+                                border-top: 1px dashed var(--composer-tertiary-color);
+                                opacity: 0.2;
+                                margin-bottom: var(--composer-gap-md);
+                            }
+                            .main-info{
+                                display: flex;
+                                align-items: center;
+                                .main-icon-container{
+                                    cursor: pointer;
+                                    .main-icon{
+                                        font-size: 9rem;
+                                        color: var(--composer-primary-color);
+                                        filter: drop-shadow(2px 0 0 var(--composer-font-color-secondary))
+                                                drop-shadow(-2px 0 0 var(--composer-font-color-secondary))
+                                                drop-shadow(0 2px 0 var(--composer-font-color-secondary))
+                                                drop-shadow(0 -2px 0 var(--composer-font-color-secondary));
+                                        transform: rotate(-45deg);
+                                    }
+                                }
+                                .divider-middle {
+                                    width: 1px;
+                                    align-self: stretch; 
+                                    border-left: 1px dashed var(--composer-tertiary-color);
+                                    opacity: 0.2;
+                                }
+                                .description{
+                                    font-size: 1.5rem;
+                                    color: var(--composer-font-color-secondary);
+                                    opacity: 0.7;
+                                    margin-left: var(--composer-gap-md);
+                                }
+                            }
+                            .divider-bottom {
+                                width: 100%;
+                                border-top: 1px dashed var(--composer-tertiary-color);
+                                opacity: 0.2;
+                                margin-top: var(--composer-gap-md);
+                            }
+                        }
+                    }
+                    &::before{
+                        content: "";
+                        position: absolute;
+                        top: 5%;
+                        inset-inline-start: 5%;
+                        width: 350px;
+                        height: 350px;
+                        border-radius: 50%;
+                        background: var(--composer-secondary-color);
+                        -webkit-filter: blur(65px);
+                        filter: blur(65px);
+                        opacity: 0.25;
+                        backdrop-filter: blur(10px);
+                    }
+                }
+                .scroll-section{
+                    position: absolute;
+                    left: 40px;
+                    bottom: 50px;
+                    display: flex;
+                    flex-direction: row-reverse;
+                    writing-mode: sideways-lr;
+                    gap: var(--composer-gap-sm);
+                    align-items: center;
+                    opacity: 0.5;
+                    cursor: pointer;
+                    
+                    .scroll-text{
+                        color: var(--composer-font-color-secondary);
+                        font-size: 1rem;
+                    }
+                    .scroll-icon-container{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        top: 50%;
+                        left: 50%;
+                        width: 35px;
+                        height: 35px;
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 50%;
+                        .scroll-icon{
+                            color: var(--composer-font-color-secondary);
+                            font-size: 1rem;
+                        }
+                    }
+                    &:hover{
+                        opacity: 1;
+                    }
+                }
+            }
+            .right-card{
+                display: flex;
+                flex: 1;
+                .image-container{
+                    position: relative;
+                    .image{
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        overflow: hidden;
+                        object-fit: cover;
+                        border-radius: var(--composer-border-radius-lg);
+                    }
+                    .box-area {
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 35%;
+                        width: 30%;
+                        background-color: color-mix(in srgb, var(--composer-html-background), 
+                            var(--composer-font-color-primary) 5%);
+                        padding: 15px 15px 0 0;
+                        border-top-right-radius: var(--composer-border-radius-lg);
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 20px;
+                            height: 20px;
+                            margin-top: -1.4rem;
+                            transform: rotate(-90deg);
+                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
+                            background-color: color-mix(in srgb, var(--composer-html-background), 
+                                var(--composer-font-color-primary) 5%);
+                            z-index: 1;
+                        }
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            right: 0;
+                            width: 20px;
+                            height: 20px;
+                            margin-right: -1.4rem;
+                            transform: rotate(-90deg);
+                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
+                            background-color: color-mix(in srgb, var(--composer-html-background), 
+                                var(--composer-font-color-primary) 5%);
+                            z-index: 1;
+                        }
+
+                        .customer-box {
+                            height: 100%;
+                            width: 100%;
+                            background-color: var(--composer-html-background);
+                            border-radius: var(--composer-border-radius-lg);
+                            padding: calc(1.5 * var(--composer-gap-md));
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+
+                            .customer-images {
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: var(--composer-gap-sm);
+
+                                .customer-img {
+                                    width: 60px;
+                                    height: 60px;
+                                    border-radius: 50%;
+                                    box-shadow: 0 0 0 2px var(--composer-html-background);
+                                    margin-right: -15px;
+                                    object-fit: cover;
+                                }
+
+                                .customer-icon-container {
+                                    width: 60px;
+                                    height: 60px;
+                                    border-radius: 50%;
+                                    background-color: var(--composer-secondary-color);
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin-right: -15px;
+                                    box-shadow: 0 0 0 2px var(--composer-html-background);
+
+                                    .customer-icon {
+                                        font-size: 1.5rem;
+                                        color: var(--composer-font-color-secondary);
+                                    }
+                                }
+                            }
+
+                            .customer-info {
+                                .customer-number {
+                                    font-size: 4rem;
+                                    font-weight: bold;
+                                    color: var(--composer-font-color-primary);
+                                    margin-bottom: var(--composer-gap-sm);
+                                }
+
+                                .customer-desc {
+                                    font-size: 1rem;
+                                    color: var(--composer-font-color-primary);
+                                    line-height: 1.5;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container{
+        .max-content{
+            .content{
+                flex-direction: column;
+                .left-card{
+                    order: 1;
+                    .left-content-wrapper{
+                        padding: var(--composer-gap-xl) 0;
+                        .left-content{
+                            max-width: 720px;
+                            margin: 0 auto;
+                            .title{
+                                font-size: 3.5rem;
+                                margin-bottom: var(--composer-gap-md);
+                            }
+                            .main-info-wrapper{
+                                .main-info{
+                                    .main-icon-container{
+                                        margin-right: var(--composer-gap-sm);
+                                        .main-icon{
+                                            font-size: 5rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .scroll-section{
+                        display: none;
+                    }
+                }
+                .right-card{
+                    order: 2;
+                }
+            }
+        }
+    }
+}
+@container (max-width: #{$composer-phone-width}) {
+    .container{
+        .max-content{
+            .content{
+                flex-direction: column;
+                .left-card{
+                    order: 1;
+                    .left-content-wrapper{
+                        padding: var(--composer-gap-xl) 0;
+                        .left-content{
+                            max-width: 720px;
+                            margin: 0 auto;
+                            padding: 0 var(--composer-gap-sm);
+                            .title{
+                                font-size: 2.6rem;
+                                margin-bottom: var(--composer-gap-md);
+                            }
+                            .main-info-wrapper{
+                                .main-info{
+                                    .main-icon-container{
+                                        margin-right: var(--composer-gap-sm);
+                                        .main-icon{
+                                            font-size: 5rem;
+                                        }
+                                    }
+                                    .description{
+                                        font-size: 1rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .scroll-section{
+                        display: none;
+                    }
+                }
+                .right-card{
+                    order: 2;
+                    .image-container{
+                        height: 450px;
+                        .box-area{
+                            height: 50%;
+                            width: 55%;
+                            max-height: 210px;
+                            max-width: 200px;
+                            .customer-box{
+                                padding: var(--composer-gap-md);
+                                .customer-images{
+                                    .customer-img{
+                                        width: 40px;
+                                        height: 40px;
+                                    }
+                                    .customer-icon-container{
+                                        width: 40px;
+                                        height: 40px;
+                                        .customer-icon{
+                                            font-size: 1rem;
+                                        }
+                                    }
+                                }
+                                .customer-info{
+                                    .customer-number{
+                                        font-size: 3rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
