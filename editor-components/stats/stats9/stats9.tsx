@@ -222,15 +222,17 @@ class Stats9 extends BaseStats {
                     <span className={this.decorateCSS("stat-number")}>
                         {animatedNumber}
                     </span>
-                    {stat.suffix && (
+                    {this.castToString(stat.suffix) && (
                         <span className={this.decorateCSS("stat-suffix")}>
                             {typeof stat.suffix === 'string' ? stat.suffix.replace(/<[^>]*>/g, '').trim() : stat.suffix}
                         </span>
                     )}
                 </div>
-                <Base.P className={this.decorateCSS("stat-description")}>
-                    {stat.description}
-                </Base.P>
+                {this.castToString(stat.description) && (
+                    <Base.P className={this.decorateCSS("stat-description")}>
+                        {stat.description}
+                    </Base.P>
+                )}
             </div>
         );
     };
@@ -239,8 +241,8 @@ class Stats9 extends BaseStats {
         const statsProp = this.getPropValue("stats");
         const stats: Stat[] = statsProp.map((item: any) => {
             const number = this.castToString(item.getPropValue("number") || "0");
-            const suffix = item.getPropValue("suffix") || "";
-            const description = item.getPropValue("description") || "";
+            const suffix = this.castToString(item.getPropValue("suffix")) || "";
+            const description = this.castToString(item.getPropValue("description")) || "";
             return { number, suffix, description };
         });
         
@@ -269,7 +271,7 @@ class Stats9 extends BaseStats {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("main-content")}>
                         <div className={this.decorateCSS("left-content")}>
-                            {(title || highlightedTitle || endTitle) && (
+                            {(this.castToString(title) || this.castToString(highlightedTitle) || this.castToString(endTitle)) && (
                                 <div className={this.decorateCSS("title-section")}>
                                     <Base.H1 className={this.decorateCSS("main-title")}>
                                         {title}
