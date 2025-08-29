@@ -1,0 +1,273 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container {
+    background-color: var(--composer-html-background);
+    .max-content{
+        .grid-container{
+            display: flex;
+            height: 800px;
+            .card {
+                position: relative;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                
+                &:hover {
+                    .card-description,
+                    .card-button{
+                        opacity: 1;
+                    }
+                }
+
+                .card-content {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .media-container {
+                    position: relative;
+                    width: 100%;
+                    height: 600px; // Sabit yükseklik - hiç değişmez
+                    overflow: hidden;
+
+                    .card-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                        transition: transform 0.4s ease;
+                    }
+
+                    .card-video {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                .text-content {
+                    position: absolute; // Tekrar absolute yaptık
+                    bottom: 0; // Bottom: 0 geri geldi
+                    left: 0;
+                    right: 0;
+                    padding: var(--composer-gap-md);
+                    transform: translateY(0);
+                    transition: all 0.4s ease;
+                    height: 200px; // Sabit yükseklik
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    z-index: 2;
+                }
+
+                .card-title {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin: 0 0 var(--composer-gap-xs) 0;
+                    line-height: 1.4;
+                    color: var(--composer-font-color-primary);
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition: all 0.3s ease;
+                }
+
+                .sub-text{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: var(--composer-gap-sm);
+                }
+
+                .card-description {
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    color: var(--composer-font-color-primary);
+                    opacity: 0;
+                    transition: all 0.3s ease 0.1s;
+                }
+
+                .card-button {
+                    color: var(--composer-font-color-primary);
+                    font-size: 1rem;
+                    font-weight: 550;
+                    opacity: 0;
+                    transition: all 0.3s ease 0.2s;
+                    flex-shrink: 0;
+                    white-space: nowrap;
+
+                    &:hover {
+                        background: var(--composer-primary-color);
+                        border-color: var(--composer-primary-color);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Default state - all cards equal width
+.cardDefault {
+  flex: 1;
+  min-width: 200px;
+  
+  // Media ve text yükseklikleri zaten sabit tanımlandı
+}
+
+// Expanded state - hovered card takes more space
+.cardExpanded {
+  flex: 2;
+  min-width: 300px;
+
+  .text-content {
+    padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md);
+    // Yükseklik sabit kalıyor - 200px
+  }
+
+  .card-description {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .media-container .card-image {
+    transform: scale(1.05);
+  }
+}
+
+// Collapsed state - non-hovered cards shrink
+.cardCollapsed {
+  flex: 0.8;
+  min-width: 150px;
+  
+  .text-content {
+    // Text content sabit boyutunu korur - 200px yükseklik
+    // Sadece genişlik küçülür, yükseklik aynı kalır
+    overflow: visible;
+    z-index: 10; // Diğer cardların üzerine binsin
+    
+    // Yan cardların üzerine binmesi için:
+    left: -15px; // Sol tarafa taşır
+    right: -15px; // Sağ tarafa da genişletir
+    width: calc(100% + 30px); // Toplam genişlik artışı
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Tablet styles
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: var(--composer-gap-md) 0;
+  }
+
+  .max-content {
+    padding: 0 var(--composer-gap-sm);
+  }
+
+  .grid-container {
+    flex-direction: column;
+    height: auto;
+    gap: var(--composer-gap-md);
+
+    .card {
+      height: 300px;
+      flex: none !important;
+      min-width: auto !important;
+
+      .card-content {
+        flex-direction: column;
+      }
+
+      .text-content {
+        position: relative;
+        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        color: var(--composer-font-color-primary);
+        padding: var(--composer-gap-md);
+        transform: translateY(0);
+        flex-shrink: 0;
+        height: auto; // Tablet'te height auto
+      }
+
+      .card-title {
+        color: var(--composer-font-color-primary);
+        font-size: 1.2rem;
+      }
+
+      .card-description {
+        color: var(--composer-font-color-secondary);
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0s;
+      }
+
+      .card-button {
+        background: var(--composer-primary-color);
+        color: white;
+        border: none;
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0s;
+
+        &:hover {
+          background: var(--composer-primary-color-dark);
+        }
+      }
+
+      .media-container {
+        height: 60%;
+        flex: none;
+      }
+    }
+
+    .cardDefault,
+    .cardExpanded,
+    .cardCollapsed {
+      flex: none;
+      min-width: auto;
+      
+      .text-content {
+        margin-left: 0;
+        margin-right: 0;
+        box-shadow: none;
+        left: 0;
+        right: 0;
+        width: auto;
+      }
+    }
+  }
+}
+
+// Phone styles
+@container (max-width: #{$composer-phone-width}) {
+  .max-content {
+    padding: 0 var(--composer-gap-xs);
+  }
+
+  .grid-container {
+    gap: var(--composer-gap-sm);
+
+    .card {
+      height: 280px;
+
+      .card-title {
+        font-size: 1.1rem;
+      }
+
+      .card-description {
+        font-size: 0.9rem;
+      }
+
+      .card-button {
+        font-size: 0.85rem;
+        padding: var(--composer-gap-xs) var(--composer-gap-sm);
+      }
+    }
+  }
+}
