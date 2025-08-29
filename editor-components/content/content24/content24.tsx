@@ -479,11 +479,8 @@ class Content24 extends BaseContent {
 
         const observer = new IntersectionObserver(
           ([entry]) => {
-            if (entry.intersectionRatio === 0) {
-              card.classList.add(styles.scaled);
-            } else {
-              card.classList.remove(styles.scaled);
-            }
+            const isScaled = entry.intersectionRatio === 0;
+            card.className = `${this.decorateCSS("game-card")} ${styles.gameCard} ${isScaled ? this.decorateCSS("scaled") : ''}`.trim();
           },
           {
             threshold: [0],
@@ -520,13 +517,13 @@ class Content24 extends BaseContent {
                     <h2 className={this.decorateCSS("section-title")}>
                       {titleFirst && (
                         <span className={this.decorateCSS("title-normal")}>
-                          {titleFirst}
+                          {this.getPropValue("titleFirst")}
                         </span>
                       )}
                       {titleFirst && titleSecond && <br />}
                       {titleSecond && (
                         <span className={this.decorateCSS("title-outline")}>
-                          {titleSecond}
+                          {this.getPropValue("titleSecond")}
                         </span>
                       )}
                     </h2>
@@ -575,7 +572,7 @@ class Content24 extends BaseContent {
                               <img src={gameImage} alt={gameTitle} className={this.decorateCSS("game-image")} />
                               <div className={this.decorateCSS("game-overlay")}>
                                 <div className={this.decorateCSS("game-info")}>
-                                  {genreBadge && (
+                                  {this.castToString(game?.genreBadge) && (
                                     <span className={this.decorateCSS("genre-badge")}>
                                       <span className={this.decorateCSS("badge-text")}>
                                         {genreBadge}
@@ -593,7 +590,6 @@ class Content24 extends BaseContent {
                                           const platformPage = platformWrapper.getPropValue?.("page") || '#';
                                           
                                           if (!platformIcon) {
-                                            console.warn(`Missing platform icon at index ${platformIndex}`);
                                             return null;
                                           }
                                           
@@ -630,7 +626,7 @@ class Content24 extends BaseContent {
               </div>
             </Base.MaxContent>
             
-            {viewAllButton?.text && (
+            {this.castToString(viewAllButton?.text) && (
               <div className={this.decorateCSS("mobile-button-section")}>
                 <ComposerLink path={viewAllButton.url || "#"}>
                   <Base.Button
