@@ -503,10 +503,16 @@ class Slider12 extends BaseSlider {
     const nextName =
       (typeof nextMedia === "string" && nextMedia) ||
       nextMedia?.name || nextMedia?.value?.name || "FiArrowRight";
-    const bg = this.getPropValue("background-image");
-    const bgUrl =
-      bg?.url ?? bg?.src ?? (Array.isArray(bg?.sources) ? bg.sources[0]?.src : "");
 
+    const bgRaw = this.getPropValue("background-image");           // prop
+    const bgObj = (bgRaw && typeof bgRaw === "object" && "value" in bgRaw)
+        ? (bgRaw as any).value
+        : bgRaw;
+    const bgUrl =
+        (typeof bgObj === "string" ? bgObj
+        : (bgObj?.url ?? bgObj?.src
+          ?? (Array.isArray(bgObj?.sources) ? bgObj.sources[0]?.src : "")));  
+            
     const containerStyle: React.CSSProperties | undefined = bgUrl
       ? {
           backgroundImage: `url("${bgUrl}")`,
