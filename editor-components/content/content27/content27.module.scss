@@ -1,0 +1,103 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+$content27-gap: 48px;
+$content27-padding-y: 60px;
+$content27-radius: 14px;
+$content27-accent: var(--content27-accent, #ff5922);
+$list-accent: var(--content27-accent, #ff5922);
+$bp-lg: 1024px;
+
+.content27 { padding: $content27-padding-y 20px; background:#fff; }
+.maxContent { margin: 0 auto; width: 100%; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $content27-gap;
+  @media (min-width: $bp-lg) { grid-template-columns: 5fr 7fr; align-items: start; }
+}
+
+.header { margin-bottom: 8px; }
+.description { opacity: .7; margin: 0; }
+
+.leftTitle {
+  font-size: clamp(28px, 3.2vw + 14px, 48px);
+  font-weight: 800; line-height: 1.15; letter-spacing: -0.01em;
+  margin: 0 0 28px;
+}
+
+.list { 
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: grid; 
+    gap: 24px; 
+}
+
+.listItem {
+    /* BUTON RESETİ — gri kutuyu yok et */
+    display: inline-flex;
+    align-items: center;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 0;
+    padding: 0 0 0 14px; 
+    margin: 0;
+    font: inherit;                
+    font-size: 22px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    color: #111827;
+    text-align: left;
+    cursor: pointer;
+    transition: color .2s ease, opacity .2s ease;
+  
+    &:focus-visible { outline: 2px solid rgba(0,0,0,.15); outline-offset: 2px; }
+    &:hover { opacity: .85; }
+  }
+
+  .listItem.isActive,
+.listItem.isHighlight {
+  color: $list-accent;         /* turuncu */
+  font-weight: 700;
+}
+.listItem.isActive::before,
+.listItem.isHighlight::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 4px; height: 1.4em;
+  background: $list-accent;
+  border-radius: 999px;
+}
+  .leftTitle {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 40px;
+  }
+
+.imageBox {
+  margin: 0 0 24px; border-radius: $content27-radius; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+.image { width: 100%; height: auto; display: block; border-radius: $content27-radius; }
+
+.info { display: grid; gap: 10px; }
+.infoLine { margin: 0 0 18px; font-size: 16px; line-height: 1.7; color: #111827;
+  strong { font-weight: 800; }
+}
+
+.left {
+    @media (min-width: $bp-lg) {
+      padding-right: 48px;
+       /* referanstaki ince dikey çizgi */
+    }
+    border-right: 1px solid #e5e7eb;
+    align-items: center;
+
+  }
+.right { }

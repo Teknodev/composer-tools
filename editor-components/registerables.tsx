@@ -47,6 +47,7 @@ import ContentComponent20 from "./content/content20/content20";
 import ContentComponent21 from "./content/content21/content21";
 import ContentComponent22 from "./content/content22/content22";
 import ContentComponent23 from "./content/content23/content23";
+import ContentComponent27 from "./content/content27/content27";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -58,6 +59,7 @@ import SliderComponent8 from "./slider/slider8/slider8";
 import SliderComponent9 from "./slider/slider9/slider9";
 import SliderComponent10 from "./slider/slider10/slider10";
 import SliderComponent11 from "./slider/slider11/slider11";
+import SliderComponent12 from "./slider/slider12/slider12";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -322,6 +324,7 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent21,
     ContentComponent22,
     ContentComponent23,
+    ContentComponent27,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -333,6 +336,7 @@ function Registerables(composer: ComponentsRegistery) {
     SliderComponent9,
     SliderComponent10,
     SliderComponent11,
+    SliderComponent12,
     PricingComponent1,
     PricingComponent2,
     PricingComponent3,
