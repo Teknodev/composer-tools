@@ -224,6 +224,7 @@ export type TypeLocation = {
 export type TypeMediaInputValue =
   | { type: "image"; url: string }
   | { type: "icon"; name: string }
+  | { type: "lottie"; url: string }
   | {
       type: "video";
       url: string;
@@ -235,7 +236,7 @@ export type TypeMediaInputValue =
       };
     };
 
-export type MediaType = "icon" | "image" | "video";
+export type MediaType = "icon" | "image" | "video" | "lottie";
 
 type currencyAdditionalParams ={
   showCode?: boolean;
@@ -294,6 +295,7 @@ type AvailablePropTypes =
   | { type: "array"; value: TypeUsableComponentProps[] }
   | { type: "object"; value: TypeUsableComponentProps[] }
   | { type: "image"; value: string }
+  | { type: "lottie"; value: string }
   | { type: "video"; value: string }
   | { type: "select"; value: string }
   | { type: "color"; value: string }
