@@ -112,7 +112,7 @@ class Content26 extends BaseContent{
     }
 
     startAutoTabCycle() {
-        this.stopAutoTabCycle(); // Önceki interval'i temizle
+        this.stopAutoTabCycle();
         
         this.autoTabInterval = setInterval(() => {
             const tabs = this.castToObject<Tabs[]>("tabs");
@@ -131,10 +131,8 @@ class Content26 extends BaseContent{
 
     setActiveTab(activeTabIndex: number) {
         
-        // Geçiş animasyonu başlat
         this.setComponentState("isTransitioning", true);
         
-        // Kısa bir gecikme sonrasında aktif tab'ı değiştir
         setTimeout(() => {
             this.setComponentState("activeTab", activeTabIndex);
             setTimeout(() => {
@@ -143,7 +141,6 @@ class Content26 extends BaseContent{
             }, 100);
         }, 200);
         
-        // Otomatik döngüyü yeniden başlat
         setTimeout(() => {
             this.startAutoTabCycle();
         }, 500);
