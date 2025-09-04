@@ -639,6 +639,18 @@ export namespace Base {
             {...props}
           />
         );
+      case "lottie":
+        return (
+          <lottie-player
+            className={className}
+            src={value.url}
+            background="transparent"
+            speed="1"
+            loop={!!value.settings?.loop}
+            autoplay={!!value.settings?.autoplay}
+            {...props}
+          />
+        );
       default:
         return null;
     }
