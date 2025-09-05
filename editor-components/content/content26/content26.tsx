@@ -1,32 +1,13 @@
 import * as React from "react";
 import { BaseContent, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./content26.module.scss";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { display } from "@mui/system";
 
 type Tabs={
     tabText: React.JSX.Element;
     lottie_container: {
-        lottie: string;
+        lottie: TypeMediaInputValue;
     }
-}
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'lottie-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        src?: string;
-        background?: string;
-        speed?: string;
-        loop?: boolean;
-        autoplay?: boolean;
-        style?: React.CSSProperties;
-      };
-    }
-  }
 }
 
 class Content26 extends BaseContent{
@@ -38,7 +19,7 @@ class Content26 extends BaseContent{
         
         const dummyData = (
             tabTitle: string,
-            lottie: string,
+            lottieUrl: string,
         ) => {
             return {
                 type: "object",
@@ -62,8 +43,12 @@ class Content26 extends BaseContent{
                                 displayer: "Lottie",
                                 value: {
                                     type: "lottie",
-                                    url: lottie,
-                                },
+                                    url: lottieUrl,
+                                    settings: {
+                                        loop: true,
+                                        autoplay: false
+                                    }
+                                } as TypeMediaInputValue,
                             },
                         ],
                     },
@@ -149,7 +134,7 @@ class Content26 extends BaseContent{
     static getName(): string {
         return "Content 26";
     }
-    
+
     render() {
         const title = this.getPropValue("title");
         const isTransitioning = this.getComponentState("isTransitioning");
@@ -206,8 +191,16 @@ class Content26 extends BaseContent{
                             >
                                 {tabs.map(
                                     (tab: Tabs, index: number) => {
-                                        const lottieUrl = tab.lottie_container.lottie?.url || tab.lottie_container.lottie || '';
-                                        const isLottieContainerVisible = lottieUrl;
+                                        const lottieValue: TypeMediaInputValue = {
+                                            type: "lottie",
+                                            url: (tab.lottie_container.lottie?.type === "lottie" && tab.lottie_container.lottie?.url) 
+                                                ? tab.lottie_container.lottie.url 
+                                                : '',
+                                            settings: {
+                                                loop: true,
+                                                autoplay: activeTab === index
+                                            }
+                                        };
 
                                         return (
                                             <div 
@@ -218,14 +211,10 @@ class Content26 extends BaseContent{
                                                 }}
                                             >
                                                 <div className={this.decorateCSS("content")}>
-                                                    {isLottieContainerVisible && (
+                                                    {lottieValue.url && (
                                                         <div className={this.decorateCSS("lottie-container")}>
-                                                            <lottie-player
-                                                                src={lottieUrl}
-                                                                background="transparent"
-                                                                speed="1"
-                                                                loop={true}
-                                                                autoplay={activeTab === index}
+                                                            <Base.Media 
+                                                                value={lottieValue}
                                                                 className={this.decorateCSS("lottie")}
                                                             />
                                                         </div>
