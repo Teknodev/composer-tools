@@ -7,6 +7,21 @@ import { IconBaseProps } from "react-icons/lib";
 import { iconLibraries } from "./utitilities/iconList";
 import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lottie-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src?: string;
+        background?: string;
+        speed?: string;
+        loop?: boolean;
+        autoplay?: boolean;
+        style?: React.CSSProperties;
+      };
+    }
+  }
+}
+
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
 export type TypeSubtitle = "line" | "badge" | "none";
@@ -640,17 +655,16 @@ export namespace Base {
           />
         );
       case "lottie":
-        return (
-          <lottie-player
-            className={className}
-            src={value.url}
-            background="transparent"
-            speed="1"
-            loop={!!value.settings?.loop}
-            autoplay={!!value.settings?.autoplay}
-            {...props}
-          />
-        );
+        return React.createElement('lottie-player', {
+          className,
+          src: value.url,
+          background: "transparent",
+          speed: "1",
+          loop: !!value.settings?.loop,
+          autoplay: !!value.settings?.autoplay,
+          style: { width: '100%', height: '100%' },
+          ...props
+        });
       default:
         return null;
     }
