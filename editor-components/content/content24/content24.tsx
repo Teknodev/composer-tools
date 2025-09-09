@@ -4,7 +4,7 @@ import styles from "./content24.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { useEffect, useRef } from 'react';
+
 interface Platform {
   icon: string;
   page: string;
@@ -28,16 +28,9 @@ class Content24 extends BaseContent {
 
     this.addProp({
         type:"string",
-        key:"titleFirst",
-        displayer:"Title First Part",
-        value:"OUR",
-    });
-
-    this.addProp({
-        type:"string",
-        key:"titleSecond", 
-        displayer:"Title Second Part (Outline)",
-        value:"GAMES",
+        key:"title",
+        displayer:"Title",
+        value:"OUR <span style='color: transparent; -webkit-text-stroke: 2px var(--composer-font-color-primary); text-stroke: 2px var(--composer-font-color-primary);'>GAMES</span>",
     });
     
     this.addProp(
@@ -499,10 +492,9 @@ class Content24 extends BaseContent {
   }
 
   render() {
-    const titleFirst = this.castToString(this.getPropValue("titleFirst"));
-    const titleSecond = this.castToString(this.getPropValue("titleSecond"));
+    const title = this.castToString(this.getPropValue("title"));
     const viewAllButton = this.castToObject("button") as INPUTS.CastedButton;
-    const games = this.castToObject<any[]>("games") || [];
+    const games = this.castToObject<Game[]>("games") || [];
     this.gameCardRefs = Array(games.length).fill(null);
     this.sentinelRefs = Array(games.length).fill(null);
 
@@ -510,23 +502,13 @@ class Content24 extends BaseContent {
       <div className={this.decorateCSS("container-bg")}>
         <Base.Container className={this.decorateCSS("container")}>
           <div className={this.decorateCSS("content-wrapper")}>
-            {(titleFirst || titleSecond || viewAllButton?.text) && (
+            {(title || viewAllButton?.text) && (
               <div className={this.decorateCSS("header-section")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                   <div className={this.decorateCSS("header-content")}>
-                    <h2 className={this.decorateCSS("section-title")}>
-                      {titleFirst && (
-                        <span className={this.decorateCSS("title-normal")}>
-                          {this.getPropValue("titleFirst")}
-                        </span>
-                      )}
-                      {titleFirst && titleSecond && <br />}
-                      {titleSecond && (
-                        <span className={this.decorateCSS("title-outline")}>
-                          {this.getPropValue("titleSecond")}
-                        </span>
-                      )}
-                    </h2>
+                    <span className={this.decorateCSS("section-title")}>
+                      {this.getPropValue("title")}
+                    </span>
                     {viewAllButton?.text && (
                       <ComposerLink path={viewAllButton.url || "#"}>
                         <Base.Button
@@ -549,11 +531,11 @@ class Content24 extends BaseContent {
             )}
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <div className={this.decorateCSS("games-section")}>
-                {games.map((game, index) => {
+                {games.map((game: Game, index: number) => {
                   const gameTitle = game?.title || "";
                   const gamePage = game?.titlePage || "#";
                   const gameImage = game?.image?.url || "";
-                  const genreBadge = game?.genreBadge;
+                  const genreBadge = game?.genreBadge || "";
                   const platforms = Array.isArray(game?.platforms) ? game.platforms : [];
 
                   return (
@@ -572,7 +554,7 @@ class Content24 extends BaseContent {
                               <img src={gameImage} alt={gameTitle} className={this.decorateCSS("game-image")} />
                               <div className={this.decorateCSS("game-overlay")}>
                                 <div className={this.decorateCSS("game-info")}>
-                                  {this.castToString(game?.genreBadge) && (
+                                  {game?.genreBadge && (
                                     <span className={this.decorateCSS("genre-badge")}>
                                       <span className={this.decorateCSS("badge-text")}>
                                         {genreBadge}
@@ -586,8 +568,8 @@ class Content24 extends BaseContent {
                                     <div className={this.decorateCSS("platforms")}>
                                       {platforms.length > 0 && (
                                         platforms.map((platformWrapper: any, platformIndex: number) => {
-                                          const platformIcon = platformWrapper.getPropValue?.("icon");
-                                          const platformPage = platformWrapper.getPropValue?.("page") || '#';
+                                          const platformIcon = platformWrapper.icon;
+                                          const platformPage = platformWrapper.page || '#';
                                           
                                           if (!platformIcon) {
                                             return null;
