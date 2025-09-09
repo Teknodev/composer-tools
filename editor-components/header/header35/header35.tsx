@@ -3,7 +3,6 @@ import {BaseHeader} from "../../EditorComponent";
 import styles from "./header35.module.scss";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base"; 
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Header35 extends BaseHeader {
     private containerRef = React.createRef<HTMLDivElement>();
@@ -187,16 +186,28 @@ class Header35 extends BaseHeader {
     }
 
     render() {
-        const leftCard = this.castToObject<any>("leftCard") || {};
-        const rightCard = this.castToObject<any>("rightCard") || {};
+        const leftCard = this.castToObject("leftCard") || {};
+        const rightCard = this.castToObject("rightCard") || {};
         const customerBox = rightCard?.customerBox || {};
         const page = leftCard?.page;
+
+        const leftCardSubtitleExist = this.castToString(leftCard.subtitle);
+        const leftCardTitleExist = this.castToString(leftCard.title);
+        const leftCardDescriptionExist = this.castToString(leftCard.description);
+        const leftCardTextExist = this.castToString(leftCard.text);
+
+        const customerBoxDescriptionExist = this.castToString(customerBox.customerDesc);
+        const customerBoxImageExist = customerBox.customer1Image || customerBox.customer2Image || customerBox.customer3Image || customerBox.customerIcon;
+        const customerBoxNumberExist = this.castToString(customerBox.customerNumber);
+        const leftCardExist = leftCard.pattern || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || leftCard.smallIcon || leftCard.mainIcon;
+        const customerBoxExist = customerBoxImageExist || customerBoxDescriptionExist || customerBoxNumberExist;
+        const rightCardExist = rightCard.image || customerBoxExist;
 
         return(
             <Base.Container ref={this.containerRef} className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
-                        {leftCard && Object.keys(leftCard).length > 0 && (
+                        {leftCardExist && Object.keys(leftCard).length > 0 && (
                             <div className={this.decorateCSS("left-card")}>
                                 {leftCard.pattern && (
                                     <div className={this.decorateCSS("pattern-bg")}>
@@ -207,18 +218,18 @@ class Header35 extends BaseHeader {
                                     </div>
                                 )}
                                 <div className={this.decorateCSS("left-content-wrapper")}>
-                                    <div className={this.decorateCSS("left-content")}>
-                                        {leftCard.subtitle && (
+                                    {(leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <div className={this.decorateCSS("left-content")}>
+                                        {leftCardSubtitleExist && (
                                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                                 {leftCard.subtitle}
                                             </Base.SectionSubTitle>
                                         )}
-                                        {leftCard.title && (
+                                        {leftCardTitleExist && (
                                             <Base.SectionTitle className={this.decorateCSS("title")}>
                                                 {leftCard.title}
                                             </Base.SectionTitle>
                                         )}
-                                        {(leftCard.mainIcon || leftCard.description) && (
+                                        {(leftCard.mainIcon || leftCardDescriptionExist) && (
                                             <div className={this.decorateCSS("main-info-wrapper")}>
                                                 {this.getPropValue("dividerTop") && (
                                                     <div className={this.decorateCSS("divider-top")}></div>
@@ -248,7 +259,7 @@ class Header35 extends BaseHeader {
                                                     {this.getPropValue("dividerMiddle") && (
                                                         <div className={this.decorateCSS("divider-middle")}></div>
                                                     )}
-                                                    {leftCard.description && (
+                                                    {leftCardDescriptionExist && (
                                                         <div className={this.decorateCSS("description")}>
                                                             {leftCard.description}
                                                         </div>
@@ -259,14 +270,14 @@ class Header35 extends BaseHeader {
                                                 )}
                                             </div>
                                         )}
-                                    </div>
+                                    </div>}
                                 </div>
-                                {(leftCard.text || leftCard.smallIcon) && (
+                                {(leftCardTextExist || leftCard.smallIcon) && (
                                     <div 
                                     className={this.decorateCSS("scroll-section")}
                                     onClick={this.scrollToNextViewport}
                                     >
-                                        {leftCard.text && (
+                                        {leftCardTextExist && (
                                             <span className={this.decorateCSS("scroll-text")}>
                                                 {leftCard.text}
                                             </span>
@@ -283,8 +294,8 @@ class Header35 extends BaseHeader {
                                 )}
                             </div>
                         )}
-                        {rightCard && Object.keys(rightCard).length > 0 && (
-                            <div className={this.decorateCSS("right-card")}>
+                        {rightCard && Object.keys(rightCard).length > 0 && rightCardExist && (
+                            <div className={leftCardExist ? this.decorateCSS("right-card") : this.decorateCSS("right-card-no-left-card")}>
                                 <div className={this.decorateCSS("image-container")}>
                                     {rightCard.image && (
                                         <Base.Media
@@ -292,10 +303,10 @@ class Header35 extends BaseHeader {
                                             className={this.decorateCSS("image")}
                                         />
                                     )}
-                                    {customerBox && customerBox.visibility && Object.keys(customerBox).length > 1 && (
+                                    {customerBox && customerBox.visibility && Object.keys(customerBox).length > 1 && customerBoxExist && (
                                         <div className={this.decorateCSS("box-area")}>
                                             <div className={this.decorateCSS("customer-box")}>
-                                                <div className={this.decorateCSS("customer-images")}>
+                                                {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
                                                     {customerBox.customer1Image && (
                                                         <Base.Media
                                                             value={customerBox.customer1Image}
@@ -322,19 +333,19 @@ class Header35 extends BaseHeader {
                                                             />
                                                         </div>
                                                     )}  
-                                                </div>
-                                                <div className={this.decorateCSS("customer-info")}>
-                                                    {customerBox.customerNumber && (
+                                                </div>}
+                                                {(customerBoxDescriptionExist || customerBox.customerNumber) && <div className={this.decorateCSS("customer-info")}>
+                                                    {customerBoxNumberExist && (
                                                         <div className={this.decorateCSS("customer-number")}>
                                                             {customerBox.customerNumber}
                                                         </div>
                                                     )}
-                                                    {customerBox.customerDesc && (
+                                                    {customerBoxDescriptionExist && (
                                                         <div className={this.decorateCSS("customer-desc")}>
                                                             {customerBox.customerDesc}
                                                         </div>
                                                     )}
-                                                </div>
+                                                </div>}
                                             </div>
                                         </div>
                                     )}
