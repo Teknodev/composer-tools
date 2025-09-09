@@ -1,11 +1,9 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
-    background-color: var(--composer-html-background);
     .max-content{
         .grid-container{
             display: flex;
-            height: 800px;
             .card {
                 position: relative;
                 cursor: pointer;
@@ -52,8 +50,8 @@
                     position: relative;
                     background-color: var(--composer-html-background);
                     bottom: 0;
-                    height: 200px;
-                    padding: var(--composer-gap-md);
+                    height: 0px;
+                    padding: 0;
                     transform: translateY(0);
                     transition: all 0.4s ease;
                     display: flex;
@@ -69,7 +67,7 @@
                         right: 0;
                         top: 0;
                         z-index: 10;
-                        background: linear-gradient(270deg, var(--composer-html-background) 9.72%, rgba(22, 17, 17, 0) 100%);
+                        background: linear-gradient(270deg, var(--composer-html-background) 10%, rgba(22, 17, 17, 0) 100%);
                         transition: opacity 0.4s ease;
                         opacity: 0;
                         pointer-events: none;
@@ -92,14 +90,13 @@
 
                 .card-title {
                     font-size: 1.5rem;
-                    font-weight: 600;
                     margin-top: var(--composer-gap-md);
                     margin-bottom: 0;
                     white-space: nowrap;
                     line-height: 1.4;
                     color: var(--composer-font-color-primary);
-                    opacity: 1;
-                    transition: all 0.3s ease;
+                    opacity: 0;
+                    transition: all 0.3s ease 0.5s;
                 }
 
                 .card-description {
@@ -107,18 +104,21 @@
                     line-height: 1.5;
                     color: var(--composer-font-color-primary);
                     opacity: 0;
-                    transition: all 0.3s ease 0.1s;
+                    transition: all 0.3s ease 0.6s;
                     margin: 0;
                 }
 
                 .card-button {
-                    color: var(--composer-font-color-primary);
-                    font-size: 1rem;
-                    font-weight: 500;
                     opacity: 0;
-                    transition: all 0.3s ease 0.2s;
+                    transition: all 0.3s ease 0.7s;
                     flex-shrink: 0;
                     white-space: nowrap;
+
+                    .button-text {
+                        color: var(--composer-font-color-primary);
+                        font-size: 1rem;
+                        white-space: nowrap;
+                    }
 
                     &:hover {
                         background: var(--composer-primary-color);
@@ -140,6 +140,7 @@
     min-width: 300px;
 
     .text-content {
+        height: 150px !important;
         padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md);
         
         &::after {
@@ -147,14 +148,9 @@
         }
     }
 
-    .card-description {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .card-button {
-        opacity: 1;
-        transform: translateY(0);
+    .card-title, .card-description, .card-button{
+        opacity: 1 !important;
+        transform: translateY(0) !important;
     }
 }
 
@@ -200,7 +196,7 @@
     .grid-container {
         flex-direction: column;
         height: auto !important;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-lg);
 
         .card {
             height: auto;
@@ -213,8 +209,8 @@
             }
 
             .text-content {
-                height: auto !important;
-                padding: var(--composer-gap-sm);
+                height: 100% !important;
+                padding: 0 !important;
             }
 
             .card-title {
@@ -240,6 +236,12 @@
             width: 100%;
             min-width: auto;
             height: auto;
+
+            .text-content {
+                height: 100% !important;
+                padding: 0 !important;
+                
+            }
 
             .card-description,
             .card-button {

@@ -255,15 +255,21 @@ class Content25 extends BaseContent{
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("grid-container")} >
-                        {cards.map((card, index) => {
-                            const cardImage = card?.image?.url || "";
+                        {cards.map((card: Card, index: number) => {
+                            const cardImage = card?.image?.url;
                             const cardVideo = card?.video?.url || "";
-                            const cardTitle = card?.title || "";
-                            const cardDescription = card?.description || "";
+                            const cardTitle = card?.title;
+                            const cardTitleExist = this.castToString(cardTitle);
+                            const cardDescription = card?.description;
+                            const cardDescriptionExist = this.castToString(cardDescription);
                             const button = card?.button || null;
+                            const buttonTextExist = this.castToString(button.text)
+                            const buttonExist = buttonTextExist ||  button.icon
                             const flexClass = this.getCardFlexClass(index);
+                            const cardImageExist = cardImage || cardVideo
+                            const cardExist = cardImageExist || cardTitleExist || cardDescriptionExist || buttonExist
 
-                            return(
+                            return cardExist && (
                                 <div 
                                     key={`card-${index}`}
                                     className={`${this.decorateCSS("card")} ${this.decorateCSS(flexClass)}`}
@@ -271,7 +277,7 @@ class Content25 extends BaseContent{
                                     onMouseLeave={this.handleCardLeave}
                                 >
                                     <div className={this.decorateCSS("card-content")}>
-                                        <div className={this.decorateCSS("media-container")}>
+                                        {cardImageExist && <div className={this.decorateCSS("media-container")}>
                                             {hoveredIndex === index && cardVideo ? (
                                                 <video 
                                                     className={this.decorateCSS("card-video")}
@@ -289,28 +295,31 @@ class Content25 extends BaseContent{
                                                     className={this.decorateCSS("card-image")}
                                                 />
                                             )}
-                                        </div>
+                                        </div>}
+                                        { 
                                         <div className={this.decorateCSS("text-content")}>
-                                            <div className={this.decorateCSS("left-side")}>
-                                                {cardTitle && (
+                                            {<div className={this.decorateCSS("left-side")}>
+                                                {cardTitleExist && (
                                                     <h3 className={this.decorateCSS("card-title")}>
                                                         {cardTitle}
                                                     </h3>
                                                 )}
-                                                {cardDescription && (
+                                                {cardDescriptionExist && (
                                                     <p className={this.decorateCSS("card-description")}>
                                                         {cardDescription}
                                                     </p>
                                                 )}
-                                            </div>
-                                            <div className={this.decorateCSS("right-side")}>
-                                                {button && button.text && (
+                                            </div>}
+                                            {buttonExist && <div className={this.decorateCSS("right-side")}>
+                                                {buttonExist && (
                                                     <ComposerLink path={button.url || "#"}>
                                                         <Base.Button
                                                             buttonType={button.type || "Tertiary"}
                                                             className={this.decorateCSS("card-button")}
                                                         >
-                                                            {button.text}
+                                                           {buttonTextExist && <span className={this.decorateCSS("button-text")}>
+                                                                {button.text}
+                                                            </span>}
                                                             {button.icon && (
                                                                 <Base.Icon
                                                                     name={button.icon}
@@ -322,8 +331,9 @@ class Content25 extends BaseContent{
                                                         </Base.Button>
                                                     </ComposerLink>
                                                 )}
-                                            </div>
+                                            </div>}
                                         </div>
+                                        }
                                     </div>
                                 </div>
                             );
