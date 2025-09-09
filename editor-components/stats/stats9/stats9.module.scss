@@ -13,6 +13,14 @@
       grid-template-columns: 2fr 1fr;
       gap: calc(2 * var(--composer-gap-xl));
       align-items: start;
+      
+      &.stats-only {
+        grid-template-columns: 1fr !important;
+      }
+      
+      &.left-only {
+        grid-template-columns: 1fr !important;
+      }
 
       .left-content {
         display: flex;
@@ -22,15 +30,9 @@
         .title-section {
           .main-title {
             font-size: 3rem;
-            font-weight: 1000;
-            color: var(--composer-tertiary-color);
             text-transform: uppercase;
             margin: 0;
-
-            .highlighted-title {
-                color: var(--composer-font-color-primary);
-                font-weight: bold, 1000;
-              }
+            text-align: left;
             }
           }
         }
@@ -57,20 +59,24 @@
             flex: 1;
 
             .description {
-              font-size: 1rem;
+              font-size: 1.25rem;
               color: var(--composer-tertiary-color);
               margin: 0 0 var(--composer-gap-lg) 0;
+              letter-spacing: 1px;
+              text-align: left;
             }
 
             .button-wrapper {
               .more-button {
-                font-size: 1rem;
-                font-weight: bold;
-                padding: var(--composer-gap-sm) var(--composer-gap-md);
+                padding: var(--composer-gap-sm) 0;
                 display: inline-flex;
                 align-items: center;
                 gap: var(--composer-gap-xs);
-                text-transform: uppercase;
+
+                .button-text {
+                  font-size: 1rem;
+                  text-transform: uppercase;
+                }
 
                 .button-icon {
                   font-size: 1.5rem;
@@ -126,10 +132,56 @@
           .stat-description {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
+            margin: 0;
             margin-top:-1.5rem;
             background-color: var(--composer-html-background);
             padding-top: var(--composer-gap-sm);
+            text-align: left;
           }
+        }
+      }
+    }
+  }
+
+
+
+  @container (max-width: #{$composer-tablet-width}) {
+    .container {
+      .max-content {
+        .stats-section {
+          gap: var(--composer-gap-md);
+          .stat-item {
+            .stat-number-container {
+              .stat-number {
+                font-size: 6rem;
+              }
+              .stat-suffix {
+                font-size: 4rem;
+              }
+            }
+          }
+        }
+        .main-content {
+            .content-section {
+              .image-container {
+                width: 150px;
+                height: auto;
+                .content-image {
+                  width: 150px;
+                  height: auto;
+                }
+              }
+              .text-content {
+                .description {
+                  margin: 0 0 var(--composer-gap-md) 0;
+                }
+                .button-wrapper {
+                  .more-button {
+                    padding: var(--composer-gap-sm);
+                  }
+                }
+              }
+            }
         }
       }
     }
@@ -146,16 +198,17 @@
         flex-direction: column;
         align-items: unset;
         gap: var(--composer-gap-lg);
+        
+        &.stats-only,
+        &.left-only {
+          grid-template-columns: unset;
+        }
         .left-content {
+          gap: var(--composer-gap-lg);
           .title-section {
             .main-title {
               font-size: 2.5rem;
               line-height: 0.9;
-
-              .highlighted-title {
-                -webkit-text-stroke: 1px var(--composer-font-color-primary);
-                text-stroke: 1px var(--composer-font-color-primary);
-              }
             }
           }
 
@@ -176,7 +229,8 @@
               .button-wrapper {
                 .more-button {
                   font-size: 1rem;
-                  padding: var(--composer-gap-md) var(--composer-gap-lg);
+                  padding: 0;
+                  margin-top: var(--composer-gap-md);
 
                   .button-icon {
                     font-size: 1rem;

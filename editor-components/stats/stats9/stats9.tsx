@@ -20,21 +20,7 @@ class Stats9 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "WE ARE THE GAME DEVELOPMENT STUDIO KNOWN FOR CRAFTING DISTINCTIVE AND ",
-        });
-
-        this.addProp({
-            type: "string",
-            key: "highlightedTitle",
-            displayer: "Highlighted Title",
-            value: "IMMERSE GAMES ",
-        });
-
-        this.addProp({
-            type: "string",
-            key: "endTitle",
-            displayer: "End Title",
-            value: "THAT STAND OUT IN THE MARKET"
+            value: "WE ARE THE GAME DEVELOPMENT STUDIO KNOWN FOR CRAFTING DISTINCTIVE AND <span style='color: var(--composer-tertiary-color); font-weight: bold;'>IMMERSE GAMES</span> THAT STAND OUT IN THE MARKET",
         });
 
         this.addProp({
@@ -222,13 +208,13 @@ class Stats9 extends BaseStats {
                     <span className={this.decorateCSS("stat-number")}>
                         {animatedNumber}
                     </span>
-                    {this.castToString(stat.suffix) && (
+                    {stat.suffix && (
                         <span className={this.decorateCSS("stat-suffix")}>
                             {typeof stat.suffix === 'string' ? stat.suffix.replace(/<[^>]*>/g, '').trim() : stat.suffix}
                         </span>
                     )}
                 </div>
-                {this.castToString(stat.description) && (
+                {stat.description && (
                     <Base.P className={this.decorateCSS("stat-description")}>
                         {stat.description}
                     </Base.P>
@@ -247,12 +233,9 @@ class Stats9 extends BaseStats {
         });
         
         const title = this.getPropValue("title");
-        const highlightedTitle = this.getPropValue("highlightedTitle");
-        const endTitle = this.getPropValue("endTitle");
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
         const description = this.getPropValue("description");
         const isDescriptionExist = this.castToString(description);
-        
         let image: TypeMediaInputValue | null = null;
         try {
             image = this.castToObject<TypeMediaInputValue>("image");
@@ -266,20 +249,26 @@ class Stats9 extends BaseStats {
         
         const animationDuration = this.getPropValue("animationDuration") || 2000;
 
+        const leftContentexist = this.castToString(title) || isDescriptionExist || this.castToString(button.text) || image;
+        const hasStats = stats && stats.length > 0;
+
+        let mainContentClass = this.decorateCSS("main-content");
+        if (!leftContentexist && hasStats) {
+            mainContentClass += ` ${this.decorateCSS("stats-only")}`;
+        } else if (leftContentexist && !hasStats) {
+            mainContentClass += ` ${this.decorateCSS("left-only")}`;
+        }
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("main-content")}>
-                        <div className={this.decorateCSS("left-content")}>
-                            {(this.castToString(title) || this.castToString(highlightedTitle) || this.castToString(endTitle)) && (
+                    <div className={mainContentClass}>
+                        {leftContentexist && <div className={this.decorateCSS("left-content")}>
+                            {(this.castToString(title)) && (
                                 <div className={this.decorateCSS("title-section")}>
-                                    <Base.H1 className={this.decorateCSS("main-title")}>
-                                        {title}
-                                        <span className={this.decorateCSS("highlighted-title")}>
-                                            {highlightedTitle}
-                                        </span>
-                                        {endTitle}
-                                    </Base.H1>
+                                    <Base.SectionTitle className={this.decorateCSS("main-title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
                                 </div>
                             )}
 
@@ -307,7 +296,7 @@ class Stats9 extends BaseStats {
                                                     buttonType={button.type}
                                                     className={this.decorateCSS("more-button")}
                                                 >
-                                                    {button.text}
+                                                    <span className={this.decorateCSS("button-text")}>{button.text}</span>
                                                     {button.icon && (
                                                         <Base.Icon
                                                             name={button.icon}
@@ -320,8 +309,8 @@ class Stats9 extends BaseStats {
                                     )}
                                 </div>
                             </div>
-                        </div>
-                        <div className={this.decorateCSS("stats-section")}>
+                        </div>}
+                        {stats && stats.length > 0 && <div className={this.decorateCSS("stats-section")}>
                             {stats && Array.isArray(stats) && stats.length > 0 && 
                              stats.map((stat, index) => (
                                 <this.AnimatedStat
@@ -330,7 +319,7 @@ class Stats9 extends BaseStats {
                                     animationDuration={animationDuration}
                                 />
                             ))}
-                        </div>
+                        </div>}
                     </div>
                 </Base.MaxContent>
             </Base.Container>
