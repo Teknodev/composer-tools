@@ -211,6 +211,7 @@ class Content25 extends BaseContent{
         
         this.handleCardHover = this.handleCardHover.bind(this);
         this.handleCardLeave = this.handleCardLeave.bind(this);
+        this.handleCardClick = this.handleCardClick.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
@@ -230,9 +231,16 @@ class Content25 extends BaseContent{
         this.setComponentState("hoveredIndex", null);
     };
 
+    handleCardClick = (index: number): void => {
+        const currentHoveredIndex = this.getComponentState("hoveredIndex");
+        if (currentHoveredIndex === index) {
+            return;
+        }
+        this.setComponentState("hoveredIndex", index);
+    };
+
     handleButtonClick = (card: Card, event: React.MouseEvent): void => {
         event.stopPropagation();
-        console.log(`Button clicked for: ${card.title}`);
     };
 
     getCardFlexClass = (index: number): string => {
@@ -275,6 +283,7 @@ class Content25 extends BaseContent{
                                     className={`${this.decorateCSS("card")} ${this.decorateCSS(flexClass)}`}
                                     onMouseEnter={() => this.handleCardHover(index)}
                                     onMouseLeave={this.handleCardLeave}
+                                    onClick={() => this.handleCardClick(index)}
                                 >
                                     <div className={this.decorateCSS("card-content")}>
                                         {cardImageExist && <div className={this.decorateCSS("media-container")}>
