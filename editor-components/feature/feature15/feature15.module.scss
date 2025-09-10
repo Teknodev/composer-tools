@@ -107,7 +107,7 @@
                 transform: translate(-50%, -50%);
                 color: var(--composer-font-color-primary);
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: 50%; 
+                border-radius: var(--composer-border-radius-full); 
                 padding: var(--composer-gap-md);
                 display: flex;
                 align-items: center;

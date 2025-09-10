@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 .container {
-  font-size: 5em;
   &[data-animation~="animate4"] {
     &:hover {
       .button {
@@ -18,6 +17,9 @@
       flex-direction: column;
       gap: var(--composer-gap-md);
       .up-container {
+        .subtitle {
+          content: "";
+        }
         .title {
           content: "";
         }
@@ -28,23 +30,23 @@
 
       .cards-box {
         .card {
-          border-radius: var(--radius-medium);
+          border-radius: var(--composer-border-radius-md);
           overflow: hidden;
           position: relative;
           cursor: pointer;
           height: 350px;
           max-height: 350px;
-          transition: all 0.3s ease-in-out;
+          transition: all var(--composer-transition-duration-normal) ease-in-out;
           &[data-animation~="animate5"] {
             &:hover {
-              box-shadow: var(--box-shadow-active);
+              box-shadow: var(--composer-box-shadow-lg);
             }
           }
           .card-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.5s ease;
+            transition: all var(--composer-transition-duration-slow) ease;
             height: 100%;
           }
           .overlay,
@@ -53,16 +55,16 @@
             width: 100%;
             height: 100%;
             top: 0;
-            transition: all 0.5s ease;
+            transition: all var(--composer-transition-duration-slow) ease;
           }
           .overlay {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            background: linear-gradient(var(--composer-overlay-color), var(--composer-overlay-color));
             z-index: 1;
             opacity: 1;
           }
           .overlay2 {
             background: linear-gradient(
-              (rgba(var(--composer-primary-color-rgb), 0.7), rgba(0, 0, 0, 0.7))
+              (rgba(var(--composer-primary-color-rgb), 0.7), rgba(var(--composer-overlay-color-rgb), 0.7))
             );
             z-index: 2;
             opacity: 0;
@@ -99,7 +101,7 @@
               width: var(--composer-gap-xs);
               background: var(--composer-primary-color);
               margin-right: var(--composer-gap-md);
-              border-radius: var(--radius-medium);
+              border-radius: var(--composer-border-radius-md);
             }
 
             .labels {
@@ -107,22 +109,17 @@
               flex-direction: column;
               align-items: start;
 
-              .first {
-                font-size: 1.5rem;
-              }
-
               .second {
                 display: flex;
                 gap: var(--composer-gap-xs);
                 margin: var(--composer-gap-xs) 0;
                 background: rgba(var(--composer-primary-color-rgb), 0.5);
                 padding: var(--composer-gap-xs) var(--composer-gap-xs);
-                border-radius: var(--radius-medium);
-                transition: all 0.3s ease;
+                border-radius: var(--composer-border-radius-md);
+                transition: all var(--composer-transition-duration-normal) ease;
                 .second-text,
                 .second-count {
                   color: var(--composer-font-color-secondary);
-                  font-size: 1rem;
                 }
               }
             }
@@ -141,7 +138,6 @@
 }
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    font-size: 1em;
     .max-content {
       .wrapper {
         .cards-box {

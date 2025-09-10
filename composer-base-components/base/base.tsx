@@ -54,7 +54,7 @@ export namespace Base {
   }
 
   export function setFontSize(size: string) {
-    setStyleValue("--project-font-size", `${size}px`);
+    setStyleValue("--composer-font-size-md", `${size}px`);
   }
 
   export function H1({ className, children, ...props }: any) {
@@ -94,6 +94,14 @@ export namespace Base {
       <h5 className={`${styles.h5} ${className}`} {...props}>
         {children}
       </h5>
+    );
+  }
+
+  export function H6({ className, children, ...props }: any) {
+    return (
+      <h6 className={`${styles.h6} ${className}`} {...props}>
+        {children}
+      </h6>
     );
   }
 
@@ -579,6 +587,18 @@ export namespace Base {
         </Accordion>
       );
     }
+  }
+
+  export function Card({ 
+    className, 
+    children, 
+    ...props 
+  }: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+      <div className={`${styles.card} ${className}`} {...props}>
+        {children}
+      </div>
+    );
   }
 
   export function Media({

@@ -268,14 +268,14 @@ class Feature8 extends BaseFeature {
                       />
                     )}
                     {titleExist && (
-                      <div className={this.decorateCSS("title")}>
+                      <Base.H3 className={this.decorateCSS("title")}>
                         {card.title}
-                      </div>
+                      </Base.H3>
                     )}
                     {descExist && (
-                      <div className={this.decorateCSS("description")}>
+                      <Base.P className={this.decorateCSS("description")}>
                         {card.description}
-                      </div>
+                      </Base.P>
                     )}
                   </div>
                 );

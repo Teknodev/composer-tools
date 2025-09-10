@@ -37,12 +37,12 @@
         flex-direction: column;
         gap: var(--composer-gap-xs);
         .informationTitle {
-          font-size: calc(1 * var(--project-font-size));
+          font-size: calc(1 * var(--composer-font-size-md));
           font-weight: 600;
           color: var(--composer-font-color-primary);
         }
         .informationDescription {
-          font-size: calc(1 * var(--project-font-size));
+          font-size: calc(1 * var(--composer-font-size-md));
           font-weight: 400;
           max-width: 200px;
           color: var(--composer-font-color-primary);
@@ -54,7 +54,7 @@
       gap: var(--composer-gap-sm);
 
       .icon {
-        font-size: calc(1.5 * var(--project-font-size));
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
     }
@@ -157,7 +157,7 @@
         }
 
         .dropdownIcon {
-          font-size: calc(1 * var(--project-font-size));
+          font-size: calc(1 * var(--composer-font-size-md));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
@@ -257,7 +257,7 @@
             }
 
             .rightIcon {
-              font-size: calc(1 * var(--project-font-size));
+              font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -446,7 +446,7 @@
                     color: var(--composer-font-color-primary);
                   }
                   .rightIcon {
-                    font-size: calc(1.5 * var(--project-font-size));
+                    font-size: calc(1.5 * var(--composer-font-size-md));
                     transition: all 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -479,7 +479,7 @@
             }
           }
           .dropdownIcon {
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
             transition: all 0.3s ease;
             color: var(--composer-font-color-primary);
             transform: rotate(0deg);
@@ -520,7 +520,7 @@
   cursor: pointer;
   .hamburgerIcon,
   .closeIcon {
-    font-size: calc(1.5 * var(--project-font-size));
+    font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
   }
   .hamburgerMenuTitle {

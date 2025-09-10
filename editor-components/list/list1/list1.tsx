@@ -341,14 +341,14 @@ class List1 extends BaseList {
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                       <Base.VerticalContent className={this.decorateCSS("titles")}>
                         {this.castToString(item.title) && (
-                          <Base.H1 className={this.decorateCSS("card-title")}>
+                          <Base.H4 className={this.decorateCSS("card-title")}>
                             {item.title}
-                          </Base.H1 >
+                          </Base.H4 >
                         )}
                         {this.castToString(item.subtitle) && (
-                          <Base.H2 className={this.decorateCSS("card-subtitle")}>
+                          <Base.H6 className={this.decorateCSS("card-subtitle")}>
                             {item.subtitle}
-                          </Base.H2>
+                          </Base.H6>
                         )}
                       </Base.VerticalContent>
                     )}
@@ -357,9 +357,9 @@ class List1 extends BaseList {
                       <div className={this.decorateCSS("link")}>
                       <ComposerLink path={item.button.url}>
                         <Base.Button buttonType={item.button.type} >
-                          <div className={this.decorateCSS("text")}>
+                          <Base.P className={this.decorateCSS("text")}>
                             {item.button.text}
-                          </div >
+                          </Base.P>
                           {item.icon && (
                             <Base.Icon
                               name={item.icon}
