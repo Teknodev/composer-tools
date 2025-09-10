@@ -201,7 +201,7 @@ class Header35 extends BaseHeader {
         const customerBoxNumberExist = this.castToString(customerBox.customerNumber);
         const leftCardExist = leftCard.pattern || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || leftCard.smallIcon || leftCard.mainIcon;
         const customerBoxExist = customerBoxImageExist || customerBoxDescriptionExist || customerBoxNumberExist;
-        const rightCardExist = rightCard.image || customerBoxExist;
+        const rightCardExist = rightCard.image || (customerBoxExist && customerBox.visibility);
 
         return(
             <Base.Container ref={this.containerRef} className={this.decorateCSS("container")}>
@@ -218,7 +218,7 @@ class Header35 extends BaseHeader {
                                     </div>
                                 )}
                                 <div className={this.decorateCSS("left-content-wrapper")}>
-                                    {(leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <div className={this.decorateCSS("left-content")}>
+                                    {(leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <div className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
                                         {leftCardSubtitleExist && (
                                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                                 {leftCard.subtitle}
@@ -294,7 +294,7 @@ class Header35 extends BaseHeader {
                                 )}
                             </div>
                         )}
-                        {rightCard && Object.keys(rightCard).length > 0 && rightCardExist && (
+                        {rightCardExist && (
                             <div className={leftCardExist ? this.decorateCSS("right-card") : this.decorateCSS("right-card-no-left-card")}>
                                 <div className={this.decorateCSS("image-container")}>
                                     {rightCard.image && (

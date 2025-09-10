@@ -30,11 +30,17 @@
                     width: 100%;
                     display: flex;
                     align-items: center;
-                    .left-content{
-                        position: relative;
-                        max-width: 635px;
-                        width: 100%;
-                        margin-inline-start: auto;
+                        .left-content{
+                            position: relative;
+                            max-width: 635px;
+                            width: 100%;
+                            margin-inline-start: auto;
+                            
+                            &.full-width {
+                                max-width: 100%;
+                                margin-inline-start: 0;
+                                padding: var(--composer-gap-sm) var(--composer-gap-md);
+                            }
                         
                         .subtitle{
                             text-align: left;
@@ -167,8 +173,7 @@
                         left: 0;
                         height: 35%;
                         width: 40%;
-                        background-color: color-mix(in srgb, var(--composer-html-background), 
-                            var(--composer-font-color-primary) 5%);
+                        background-color: var(--composer-html-background);
                         padding: 15px 15px 0 0;
                         border-top-right-radius: var(--composer-border-radius-lg);
                         border-bottom-left-radius: var(--composer-border-radius-lg);
@@ -198,7 +203,7 @@
                         .customer-box {
                             height: 100%;
                             width: 100%;
-                            background-color: var(--composer-html-background);
+                            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                             border-radius: var(--composer-border-radius-lg);
                             padding: calc(1.5 * var(--composer-gap-md));
                             display: flex;
@@ -301,7 +306,7 @@
                     order: 2;
                 }
                 .right-card-no-left-card{
-                    max-height: 500px;
+                    max-height: fit-content;
                 }
             }
         }
@@ -319,7 +324,7 @@
                         .left-content{
                             max-width: 720px;
                             margin: 0 auto;
-                            padding: 0 var(--composer-gap-sm);
+                            padding: var(--composer-gap-sm) var(--composer-gap-md);
                             .title{
                                 font-size: 2.6rem;
                                 margin-bottom: var(--composer-gap-md);
