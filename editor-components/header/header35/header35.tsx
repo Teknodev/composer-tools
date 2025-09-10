@@ -304,7 +304,7 @@ class Header35 extends BaseHeader {
                                         />
                                     )}
                                     {customerBox && customerBox.visibility && Object.keys(customerBox).length > 1 && customerBoxExist && (
-                                        <div className={this.decorateCSS("box-area")}>
+                                        <div className={`${this.decorateCSS("box-area")} ${!rightCard.image ? this.decorateCSS("full-size") : ""}`}>
                                             <div className={this.decorateCSS("customer-box")}>
                                                 {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
                                                     {customerBox.customer1Image && (

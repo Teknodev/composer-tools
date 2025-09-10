@@ -177,6 +177,13 @@
                         padding: 15px 15px 0 0;
                         border-top-right-radius: var(--composer-border-radius-lg);
                         border-bottom-left-radius: var(--composer-border-radius-lg);
+                        
+                        &.full-size {
+                            position: relative;
+                            height: 100%;
+                            width: 100%;
+                            border-radius: var(--composer-border-radius-lg);
+                        }
                         &::before {
                             content: '';
                             position: absolute;
@@ -208,7 +215,7 @@
                             padding: calc(1.5 * var(--composer-gap-md));
                             display: flex;
                             flex-direction: column;
-                            justify-content: space-between;
+                            gap: var(--composer-gap-md);
                             overflow: hidden;
 
                             .customer-images {
