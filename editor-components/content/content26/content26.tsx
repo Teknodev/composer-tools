@@ -156,12 +156,13 @@ class Content26 extends BaseContent{
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
+        const alignmentValue = Base.getContentAlignment();
         return(
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(subtitleExist || titleExist) && (
                         <Base.VerticalContent className={this.decorateCSS("header")}>
-                            {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                            {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${alignmentValue === "left" ? this.decorateCSS("subtitle-center") : ""}`}>
                                 {this.getPropValue("subtitle")}
                             </Base.SectionSubTitle>}
                             {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>

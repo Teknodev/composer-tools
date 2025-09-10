@@ -17,6 +17,13 @@
       .title, .subtitle {
         text-align: center;
       }
+      
+      .subtitle-center {
+        &:before {
+          display: none !important;
+        }
+        transform: none !important;
+      }
     }
 
     .content-wrapper {
@@ -132,7 +139,6 @@
         width: 90%;
         .title {
           width: 90%;
-          font-size: 3.5rem;
         }
       }
       
@@ -152,7 +158,6 @@
         .title {
           text-align: center;
           width: 100%;
-          font-size: 2rem;
         }
       }
       
