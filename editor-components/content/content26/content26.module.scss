@@ -11,7 +11,7 @@
       align-items: center;
       margin: 0 auto;
       text-align: center;
-      margin-bottom: var(--composer-gap-xl);
+      margin-bottom: var(--composer-gap-lg);
       width: 70%;
       
       .title, .subtitle {
@@ -147,7 +147,7 @@
   .container {
     .max-content {
       .header {
-        margin-bottom: var(--composer-gap-md);
+        margin-bottom: var(--composer-gap-xs);
         width: 90%;
         .title {
           text-align: center;
