@@ -20,7 +20,7 @@ class Stats9 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "WE ARE THE GAME DEVELOPMENT STUDIO KNOWN FOR CRAFTING DISTINCTIVE AND <span style='color: var(--composer-tertiary-color); font-weight: bold;'>IMMERSE GAMES</span> THAT STAND OUT IN THE MARKET",
+            value: "WE ARE THE GAME DEVELOPMENT STUDIO KNOWN FOR CRAFTING DISTINCTIVE AND <span style='color: var(--composer-tertiary-color); font-weight: bold;'>IMMERSE GAMES</span> THAT STAND OUT IN THE MARKET.",
         });
 
         this.addProp({

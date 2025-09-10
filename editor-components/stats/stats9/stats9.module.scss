@@ -50,6 +50,7 @@
               aspect-ratio: 10/11;
               border-radius: var(--composer-border-radius-lg);
               overflow: hidden;
+              object-fit: cover;
             }
           }
 
@@ -149,25 +150,34 @@
     .container {
       .max-content {
         .stats-section {
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-xl);
           .stat-item {
             .stat-number-container {
               .stat-number {
-                font-size: 6rem;
+                font-size: 7rem;
               }
               .stat-suffix {
-                font-size: 4rem;
+                font-size: 5rem;
               }
             }
           }
         }
         .main-content {
+          gap: var(--composer-gap-xl);
+          .left-content {
+            .title-section {
+              .main-title {
+                font-size: 2.25rem;
+              }
+            }
+          }
             .content-section {
+              gap: var(--composer-gap-md);
               .image-container {
-                width: 150px;
+                width: 200px;
                 height: auto;
                 .content-image {
-                  width: 150px;
+                  width: 200px;
                   height: auto;
                 }
               }
