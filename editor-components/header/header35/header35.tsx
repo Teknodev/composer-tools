@@ -230,7 +230,7 @@ class Header35 extends BaseHeader {
                                             </Base.SectionTitle>
                                         )}
                                         {(leftCard.mainIcon || leftCardDescriptionExist) && (
-                                            <div className={this.decorateCSS("main-info-wrapper")}>
+                                                <div className={`${this.decorateCSS("main-info-wrapper")} ${!rightCardExist ? this.decorateCSS("center-wrapper") : ""}`}>
                                                 {this.getPropValue("dividerTop") && (
                                                     <div className={this.decorateCSS("divider-top")}></div>
                                                 )}
