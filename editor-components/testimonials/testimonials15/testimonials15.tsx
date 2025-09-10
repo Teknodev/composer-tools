@@ -205,44 +205,49 @@ class Testimonials15Page extends Testimonials {
         };
     }
 
-    getRightSideClass(visibleBoxes:string[], visibleCount:number) {
-        if (visibleCount == 0) return this.decorateCSS("right-section-hidden");
-        if (visibleCount == 1) return this.decorateCSS("right-section-single");
-        if (visibleCount == 2) {
-            if (visibleBoxes.includes('topRightBox') && visibleBoxes.includes('bottomRightBox')) {
-                return this.decorateCSS("right-section-vertical");
-            }
-            if (visibleBoxes.includes('topRightBox') && visibleBoxes.includes('videoBox')) {
-                return this.decorateCSS("right-section-top-video");
-            }
-            if (visibleBoxes.includes('bottomRightBox') && visibleBoxes.includes('videoBox')) {
-                return this.decorateCSS("right-section-bottom-video");
-            }
-        }
+    getGridLayoutClass(leftExist: boolean, rightExist: boolean) {
+        if (!leftExist) return this.decorateCSS("grid-right-only");
+        if (!rightExist) return this.decorateCSS("grid-left-only");
+        return this.decorateCSS("grid-both-sides");
+    }
+
+    getRightSideClass(topExist: boolean, bottomExist: boolean, videoExist: boolean) {
+        if (!topExist && !bottomExist && !videoExist) return this.decorateCSS("right-section-hidden");
+        if (topExist && !bottomExist && !videoExist) return this.decorateCSS("right-section-top-only");
+        if (!topExist && bottomExist && !videoExist) return this.decorateCSS("right-section-bottom-only");
+        if (!topExist && !bottomExist && videoExist) return this.decorateCSS("right-section-video-only");
+        if (topExist && bottomExist && !videoExist) return this.decorateCSS("right-section-vertical");
+        if (topExist && !bottomExist && videoExist) return this.decorateCSS("right-section-top-video");
+        if (!topExist && bottomExist && videoExist) return this.decorateCSS("right-section-bottom-video");
         return this.decorateCSS("right-section-full");
     }
 
     render() {
         const bottomLeftBox = this.castToObject<any>("bottomLeftBox");
         const topRightBox = this.castToObject<any>("topRightBox");
-        console.log("topright",topRightBox)
         const bottomRightBox = this.castToObject<any>("bottomRightBox");
         const videoBox = this.castToObject<any>("videoBox");
         const closeIcon: string = videoBox.closeIcon;
         const {visibleBoxes, visibleCount} = this.getVisibilityInfo(topRightBox, bottomRightBox, videoBox);
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
         const buttonTextExist = this.castToString(button.text);
-        console.log("Button icon:", button.icon);
 
         const renderLeftSide = bottomLeftBox.visibility;
         const renderRightSide = visibleCount > 0;
 
-        const rightSectionClass = this.getRightSideClass(visibleBoxes, visibleCount);
+        const leftExist = bottomLeftBox.visibility && (this.getPropValue("image") || this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number);
+        const topExist = topRightBox.visibility && (this.castToString(topRightBox.text) || this.castToString(topRightBox.mainTitle) || button.icon || this.castToString(button.text));
+        const bottomExist = bottomRightBox.visibility && (this.castToString(bottomRightBox.description) || this.castToString(bottomRightBox.name) || bottomRightBox.starNumber);
+        const videoExist = videoBox.visibility;
         
+        const rightExist = topExist || bottomExist || videoExist;
+        
+        const rightSectionClass = this.getRightSideClass(topExist, bottomExist, videoExist);
+        const gridLayoutClass = this.getGridLayoutClass(leftExist, rightExist);
         return(
             <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ContainerGrid className={this.decorateCSS("content-grid")}>
+                    <Base.ContainerGrid className={`${this.decorateCSS("content-grid")} ${gridLayoutClass}`}>
                         <div className={this.decorateCSS("left-section")}>
                             {this.getPropValue("image") && (
                                 <div className={this.decorateCSS("main-image-container")}>
@@ -290,9 +295,9 @@ class Testimonials15Page extends Testimonials {
                                                 </span>
                                             </Base.SectionSubTitle>
                                             <div className={this.decorateCSS("main-content")}>
-                                                <h2 className={this.decorateCSS("main-title")}>
+                                                <Base.SectionTitle className={this.decorateCSS("main-title")}>
                                                     {topRightBox.mainTitle}
-                                                </h2>
+                                                </Base.SectionTitle>
                                             </div>
                                             {(!button.image && (button.icon || button.text)) && (
                                                 <div className={this.decorateCSS("button-wrapper")}>
@@ -373,32 +378,32 @@ class Testimonials15Page extends Testimonials {
                                 )}
                             </div>
                         )}
-                    </Base.ContainerGrid>
-                    {this.getComponentState("isVideoVisible") && (
-                        <div className={this.decorateCSS("video-modal")}>
-                            <div className={this.decorateCSS("video-modal-content")}>
-                                <button
-                                    className={this.decorateCSS("close-button")}
-                                    onClick={() => this.setComponentState("isVideoVisible", false)}
-                                >
-                                    <Base.Icon
-                                        name={closeIcon}
-                                        propsIcon={{className: this.decorateCSS("close-icon")}}
+                        {this.getComponentState("isVideoVisible") && (
+                            <div className={this.decorateCSS("video-modal")}>
+                                <div className={this.decorateCSS("video-modal-content")}>
+                                    <button
+                                        className={this.decorateCSS("close-button")}
+                                        onClick={() => this.setComponentState("isVideoVisible", false)}
+                                    >
+                                        <Base.Icon
+                                            name={closeIcon}
+                                            propsIcon={{className: this.decorateCSS("close-icon")}}
+                                        />
+                                    </button>
+                                    <iframe
+                                        className={this.decorateCSS("modal-video")}
+                                        width="100%"
+                                        height="450px"
+                                        src={videoBox.video.url}
+                                        title="Video player"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
                                     />
-                                </button>
-                                <iframe
-                                    className={this.decorateCSS("modal-video")}
-                                    width="100%"
-                                    height="450px"
-                                    src={videoBox.video.url}
-                                    title="Video player"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    referrerPolicy="strict-origin-when-cross-origin"
-                                    allowFullScreen
-                                />
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    </Base.ContainerGrid>
                 </Base.MaxContent>
             </Base.Container>
         )

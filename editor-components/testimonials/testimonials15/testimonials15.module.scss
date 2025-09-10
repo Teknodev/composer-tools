@@ -2,6 +2,7 @@
 
 .container {
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    position: relative;
     .max-content {
         display: flex;
         flex-direction: column;
@@ -9,27 +10,65 @@
         .content-grid {
             display: flex;
             gap: var(--composer-gap-md);
+            align-items: stretch;
+            
+            &.grid-right-only {
+                .left-section {
+                    display: none;
+                }
+                
+                .right-section {
+                    flex: 1;
+                }
+            }
+            
+            &.grid-left-only {
+                .right-section {
+                    display: none;
+                }
+                
+                .left-section {
+                    flex: 1;
+                    
+                    .main-image-container {
+                        max-height: 700px;
+                        
+                        .main-image {
+                            max-height: 700px;
+                        }
+                    }
+                }
+            }
+            
+            &.grid-both-sides {
+                .left-section {
+                    flex: 1;
+                }
+                .right-section {
+                    flex: 1;
+                }
+            }
 
             .left-section {
-                flex: 1;
                 display: flex;
                 flex-direction: column;
-                border-radius: var(--composer-border-radius-md);
+                border-radius: var(--composer-border-radius-lg);
                 padding: 0px;
-                height: 100%; 
+                flex: 1;
+                min-height: 0;
 
                 .main-image-container {
                     position: relative;
-                    border-radius: 12px;
+                    border-radius: var(--composer-border-width-lg);
                     overflow: hidden;
-                    height: 100%; 
-                    min-height: 600px;
+                    flex: 1;
+                    min-height: 0;
 
                     .main-image {
                         width: 100%;
                         height: 100%;
                         position: relative;
-                        border-radius: 12px;
+                        border-radius: var(--composer-border-width-lg);
                         overflow: hidden;
                         object-fit: cover;
                         object-position: center center;
@@ -41,7 +80,7 @@
                         position: absolute;
                         bottom: 0;
                         left: 0;
-                        height: 45%;
+                        height: fit-content;
                         width: 45%;
                         background-color:   
                             color-mix(in srgb, var(--composer-html-background), 
@@ -57,7 +96,6 @@
                             height: 20px;
                             margin-top: -1.4rem;
                             transform: rotate(-90deg);
-                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
                             background-color: color-mix(in srgb, var(--composer-html-background), 
                                 var(--composer-font-color-primary) 5%);
                             z-index: 1;
@@ -72,7 +110,6 @@
                             height: 20px;
                             margin-right: -1.4rem;
                             transform: rotate(-90deg);
-                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
                             background-color: color-mix(in srgb, var(--composer-html-background), 
                                 var(--composer-font-color-primary) 5%);
                             z-index: 1;
@@ -122,18 +159,21 @@
             }
 
             .right-section {
-                flex: 1;
                 display: flex;
                 flex-direction: column;
                 gap: 0px;
-                //min-height: 600px; 
                 padding: 0px;
+                flex: 1;
+                min-height: 0;
 
                 &.right-section-full {
                     .top-right-content {
                         flex: 2;
-                        //min-height: 400px;
                         margin-bottom: var(--composer-gap-md);
+
+                        .content-wrapper {
+                            align-items: baseline;
+                        }
                     }
                     
                     .bottom-row {
@@ -167,11 +207,32 @@
                         height: 100%;
                     }
                 }
+                
+                &.right-section-top-only {
+                    .top-right-content {
+                        flex: 1;
+                        height: 100%;
+                    }
+                }
+                
+                &.right-section-bottom-only {
+                    .bottom-right-content {
+                        flex: 1;
+                        height: 100%;
+                    }
+                }
+                
+                &.right-section-video-only {
+                    .video-content {
+                        flex: 1;
+                        height: 100%;
+                    }
+                }
 
                 &.right-section-vertical {
+                    flex: 1;
                     .top-right-content {
-                        flex: 2;
-                        //min-height: 400px;
+                        flex: 1;
                         margin-bottom: var(--composer-gap-md);
                     }
                     .bottom-right-content {
@@ -180,26 +241,26 @@
                 }
 
                 &.right-section-top-video {
+                    flex: 1;
                     .top-right-content {
-                        flex: 2;
-                        //min-height: 400px;
+                        flex: 1;
                         margin-bottom: var(--composer-gap-md);
                     }
                     .video-content {
                         flex: 1;
-                        width: 35%;
+                        width: 100%;
                     }
                 }
 
                 &.right-section-bottom-video {
+                    flex: 1;
                     .bottom-right-content {
-                        flex: 2;
-                        //min-height: 400px;
+                        flex: 1;
                         margin-bottom: var(--composer-gap-md);
                     }
                     .video-content {
                         flex: 1;
-                        width: 35%;
+                        width: 100%;
                     }
                 }
 
@@ -209,7 +270,6 @@
 
                 .top-right-content {
                     display: flex;
-                    //min-height: 400px;
                     flex-direction: column;
                     width: 100%;
                     height: initial;
@@ -219,19 +279,14 @@
                     gap: 0px;
                     row-gap: 0px;
                     column-gap: 0px;
-                    border-radius: 12px;
+                    border-radius: var(--composer-border-width-lg);
                     padding: 30px;
                     background-color: var(--composer-html-background);
 
                     .content-header {
-                        display: flex;
-                        align-items: center;
                         width: fit-content;
-                        font-weight: bold;
-                        gap: var(--composer-gap-sm);
-
+                        margin: 0;
                         .header-text {
-                            color: var(--composer-font-color-primary);
                             font-size: 1rem;
                             text-transform: uppercase;
                         }
@@ -240,8 +295,6 @@
                     .main-content {
                         .main-title {
                             font-size: 3.5rem;
-                            color: var(--composer-font-color-primary);
-                            font-weight: 500;
                             letter-spacing: 0.1rem;
                             margin-top: 0;
                             margin-bottom: 6rem;
@@ -270,7 +323,7 @@
                     display: flex;
                     padding: 0px;
                     background-color: var(--composer-primary-color);
-                    border-radius: var(--composer-border-radius-md);
+                    border-radius: var(--composer-border-radius-lg);
 
                     .quote-container {
                         height: 100%;
@@ -290,7 +343,7 @@
 
                         .quote-text {
                             color: var(--composer-font-color-secondary);
-                            font-size: 1.2rem;
+                            font-size: 1.5rem;
                             line-height: 1.5;
                             margin: 0;
                             flex: 1;
@@ -330,12 +383,12 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    border-radius: 12px;
+                    border-radius: var(--composer-border-width-lg);
                     padding: 0px;
                 
                     .video-container {
                         position: relative;
-                        border-radius: var(--composer-border-radius-md);
+                        border-radius: var(--composer-border-radius-lg);
                         overflow: hidden;
                         cursor: pointer;
                         height: 100%;
@@ -381,12 +434,13 @@
 
     &.with-overlay {
         .video-modal {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            background: var(--composer-overlay-color);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -397,7 +451,7 @@
                 width: 90%;
                 max-width: 800px;
                 background: var(--composer-html-background);
-                border-radius: var(--composer-border-radius-md);
+                border-radius: var(--composer-border-radius-lg);
 
                 .close-button {
                     position: absolute;
@@ -434,15 +488,17 @@
   .container {
     .max-content {
       .content-grid {
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
         .left-section {
           order: 2;
           width: 100%;
+          flex: none;
           
           .main-image-container {
             width: 100%;
-            height: auto;
-            min-height: auto;
+            height: 400px;
+            min-height: 400px;
             
             .main-image {
               width: 100%;
@@ -487,16 +543,18 @@
   .container {
     .max-content {
       .content-grid {
+        display: flex;
         flex-direction: column;
         
         .left-section {
           order: 2;
           width: 100%;
+          flex: none;
           
           .main-image-container {
             width: 100%;
-            height: auto;
-            min-height: auto;
+            height: 300px;
+            min-height: 300px;
             
             .main-image {
               width: 100%;
@@ -537,10 +595,8 @@
         
         .right-section {
           order: 1;
-          min-height: auto; 
           display: flex; 
           flex-direction: column; 
-          height: 400px; 
           
           .top-right-content {
             min-height: auto;
@@ -612,7 +668,6 @@
           &.right-section-top-video {
                     .top-right-content {
                         flex: 2;
-                        //min-height: 400px;
                         margin-bottom: var(--composer-gap-md);
                     }
                     .video-content {
@@ -624,7 +679,6 @@
                 &.right-section-bottom-video {
                     .bottom-right-content {
                         flex: 2;
-                        //min-height: 400px;
                         margin-bottom: var(--composer-gap-md);
                     }
                     .video-content {
