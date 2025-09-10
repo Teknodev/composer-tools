@@ -26,12 +26,6 @@ class CallToAction13Page extends BaseCallToAction {
       displayer: "Subtitle",
     });
 
-    this.addProp({
-      type: "number",
-      key: "highlightWordCount",
-      value: 2,
-      displayer: "Number of Words to Highlight",
-    });
 
     this.addProp({
       type: "string",
@@ -66,31 +60,9 @@ class CallToAction13Page extends BaseCallToAction {
     const buttons = this.castToObject<Button[]>("buttons");
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const highlightWordCount = this.getPropValue("highlightWordCount") || 2;
     const highlightEnabled = this.getPropValue("highlightEnabled");
 
-    const renderSubtitle = () => {
-      if (!subtitle) return null;
-      const words = subtitle.split(" ");
-      const wordCount = Number(highlightWordCount);
-      const highlightedWords = words.slice(0, wordCount);
-      const normalWords = words.slice(wordCount);
-
-      return (
-        <>
-          {highlightedWords.length > 0 && highlightEnabled ? (
-            <span className={this.decorateCSS("highlight")}>
-              {highlightedWords.join(" ")}
-            </span>
-          ) : (
-            highlightedWords.join(" ")
-          )}
-          {normalWords.length > 0 && " "}
-          {normalWords.join(" ")}
-        </>
-      );
-    };
-
+    
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -102,9 +74,9 @@ class CallToAction13Page extends BaseCallToAction {
                 <Base.VerticalContent className={this.decorateCSS("titles")}>
                   {subtitle && (
                     <Base.SectionSubTitle
-                      className={this.decorateCSS("subtitle")}
+                      className={`${this.decorateCSS("subtitle")} ${highlightEnabled ? this.decorateCSS("highlight-enabled") : ""}`}
                     >
-                      {renderSubtitle()}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {titleExist && (
