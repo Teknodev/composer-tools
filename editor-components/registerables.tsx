@@ -47,6 +47,8 @@ import ContentComponent20 from "./content/content20/content20";
 import ContentComponent21 from "./content/content21/content21";
 import ContentComponent22 from "./content/content22/content22";
 import ContentComponent23 from "./content/content23/content23";
+import ContentComponent24 from "./content/content24/content24";
+import ContentComponent26 from "./content/content26/content26";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -162,6 +164,7 @@ import LogoComponent4 from "./logo-clouds/logo-comp4/logo-comp4";
 import LogoComponent5 from "./logo-clouds/logo-comp5/logo-comp5";
 import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
 import LogoComponent7 from "./logo-clouds/logo-comp7/logo-comp7";
+import LogoComponent8 from "./logo-clouds/logo-comp8/logo-comp8";
 import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
 import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
 import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
@@ -320,6 +323,8 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent21,
     ContentComponent22,
     ContentComponent23,
+    ContentComponent24,
+    ContentComponent26,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -455,6 +460,7 @@ function Registerables(composer: ComponentsRegistery) {
     LogoComponent5,
     LogoComponent6,
     LogoComponent7,
+    LogoComponent8,
     TestimonialsComponent1,
     TestimonialsComponent2,
     TestimonialsComponent3,
