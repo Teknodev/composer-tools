@@ -224,7 +224,14 @@ export type TypeLocation = {
 export type TypeMediaInputValue =
   | { type: "image"; url: string }
   | { type: "icon"; name: string }
-  | { type: "lottie"; url: string }
+  | { 
+      type: "lottie"; 
+      url: string;
+      settings?: {
+        autoplay?: boolean;
+        loop?: boolean;
+      };
+    }
   | {
       type: "video";
       url: string;
