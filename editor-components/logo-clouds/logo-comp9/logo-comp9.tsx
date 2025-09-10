@@ -1,6 +1,5 @@
-import * as React from "react";
 import { LogoClouds } from "../../EditorComponent";
-import styles from "./logo-comp8.module.scss";
+import styles from "./logo-comp9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -10,7 +9,7 @@ type TTextImageItem = {
   link: string;
 };
 
-class LogoComp8Page extends LogoClouds {
+class LogoComp9Page extends LogoClouds {
   constructor(props?: any) {
     super(props, styles);
 
@@ -124,7 +123,7 @@ class LogoComp8Page extends LogoClouds {
   }
 
   static getName(): string {
-    return "Logo Cloud 8";
+    return "Logo Cloud 9";
   }
 
   render() {
@@ -170,4 +169,4 @@ class LogoComp8Page extends LogoClouds {
   }
 }
 
-export default LogoComp8Page; 
+export default LogoComp9Page; 
