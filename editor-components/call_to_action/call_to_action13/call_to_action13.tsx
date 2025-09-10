@@ -81,7 +81,7 @@ class CallToAction13Page extends BaseCallToAction {
                   )}
                   {titleExist && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {titleExist}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
                 </Base.VerticalContent>
