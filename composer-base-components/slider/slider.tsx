@@ -50,7 +50,9 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
         slidesToScroll: memoizedProps.slidesToScroll || 1
       };
       setSliderSettings({ ...newProps, responsive: [] });
-      sliderRef.current?.slickPlay();
+      if (memoizedProps.autoplay) {
+        sliderRef.current?.slickPlay();
+      }
     }, 200),
     [memoizedProps]
   );
@@ -69,6 +71,8 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
         setSliderSettings((prev) => ({
           ...prev,
           ...(matchedBreakpoint.settings as Settings),
+          autoplay: memoizedProps.autoplay,
+          autoplaySpeed: memoizedProps.autoplaySpeed,
           responsive: []
         }));
         return;
