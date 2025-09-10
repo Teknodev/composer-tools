@@ -2,22 +2,37 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+
     .header {
       display: flex;
       justify-content: center;
+      align-items: center;
+      margin: 0 auto;
       text-align: center;
       margin-bottom: var(--composer-gap-xl);
+      width: 70%;
       
-      .title {
-        width: 70%;
-        color: var(--composer-font-color-primary);
-        font-size: 4rem;
-        font-weight: bold;
+      .title, .subtitle {
+        text-align: center;
       }
     }
 
+    .content-wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .description {
+      margin-top: var(--composer-gap-xl) !important;
+      text-align: center;
+      width: 70%;
+      margin: 0 auto;
+    }
+
     .box {
-      background: var(--composer-secondary-color);
+      background: var(--composer-primary-color);
       border-radius: calc(4*var(--composer-border-radius-md));
       align-items: center;
       overflow: hidden;
@@ -53,6 +68,7 @@
           
           &.active {
             background: var(--composer-html-background);
+            box-shadow: var(--box-shadow-active);
             
             .tabText {
               color: var(--composer-primary-color);
@@ -88,7 +104,7 @@
               width: 100%;
               height: 100%;
               
-              .lottie-container {
+              .media-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -113,10 +129,15 @@
   .container {
     .max-content {
       .header {
+        width: 90%;
         .title {
           width: 90%;
           font-size: 3.5rem;
         }
+      }
+      
+      .description {
+        width: 90%;
       }
     }
   }
@@ -127,11 +148,22 @@
     .max-content {
       .header {
         margin-bottom: var(--composer-gap-md);
+        width: 90%;
         .title {
-          text-align: left;
+          text-align: center;
           width: 100%;
           font-size: 2rem;
         }
+      }
+      
+      .content-wrapper {
+        flex-direction: column;
+      }
+
+      .description {
+        margin: var(--composer-gap-md);
+        margin-top: 0 !important;
+        width: 90%;
       }
       
       .box {

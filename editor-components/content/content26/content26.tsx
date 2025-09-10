@@ -24,18 +24,18 @@ class Content26 extends BaseContent{
             return {
                 type: "object",
                 key: "tab",
-                displayer: "Tab 1",
+                displayer: "Tab",
                 value: [
                     {
                         type: "string",
                         key: "tabText",
-                        displayer: "Tab 1 Text",
+                        displayer: "Tab Title",
                         value: tabTitle,
                     },
                     {
                         type: "object",
                         key: "lottie_container",
-                        displayer: "Lottie Container",
+                        displayer: "Media",
                         value: [
                             {
                                 type: "media",
@@ -55,6 +55,13 @@ class Content26 extends BaseContent{
                 ],
             } as TypeUsableComponentProps;
         };
+
+        this.addProp({
+            type: "string",
+            key:"subtitle",
+            displayer: "Subtitle",
+            value: "All-in-One Commerce"
+        });
 
         this.addProp({
             type: "string",
@@ -81,6 +88,13 @@ class Content26 extends BaseContent{
                     "https://du-cdn.cdn-website.com/duda_website/images/ecommerce/json/Inventory_LOTTIE_v3.json",
                 ),
             ],
+        });
+
+        this.addProp({
+            type: "string",
+            key:"description",
+            displayer: "Description",
+            value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         });
         
         this.setComponentState("activeTab", 0);
@@ -136,97 +150,109 @@ class Content26 extends BaseContent{
     }
 
     render() {
-        const title = this.getPropValue("title");
         const isTransitioning = this.getComponentState("isTransitioning");
         const tabs = this.castToObject<Tabs[]>("tabs");
         const activeTab = this.getComponentState("activeTab");
-        
+        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
         return(
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(this.castToString(title)) && (
-                        <div className={this.decorateCSS("header")}>
-                            <div className={this.decorateCSS("title")}>
-                                {title}
-                            </div>
-                        </div>
+                    {(subtitleExist || titleExist) && (
+                        <Base.VerticalContent className={this.decorateCSS("header")}>
+                            {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {this.getPropValue("subtitle")}
+                            </Base.SectionSubTitle>}
+                            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {this.getPropValue("title")}
+                            </Base.SectionTitle>}
+                        </Base.VerticalContent>
                     )}
-                    <Base.VerticalContent className={this.decorateCSS("box")}>
-                        <div className={this.decorateCSS("tab-buttons")}>
-                            {tabs.map(
-                                (tab: Tabs, index: number) => {
-                                    const isTabTextVisible = this.castToString(tab.tabText);
-                                    const isTabVisible = isTabTextVisible;
-                                    return (
-                                        isTabVisible && (
-                                            <div 
-                                                key={index}
-                                                className={
-                                                    `${this.decorateCSS("tab-button")} ${activeTab === index
-                                                        ? this.decorateCSS("active")
-                                                        : ""
-                                                    }`
-                                                }
-                                                onClick={() => this.setActiveTab(index)}
-                                            >
-                                                {isTabTextVisible && (
-                                                    <div className={this.decorateCSS("tabText")}>
-                                                        {tab.tabText}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        )
-                                    );
-                                }
-                            )}
-                        </div>
+                    <div className={this.decorateCSS("content-wrapper")}>
+                        {descriptionExist && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {this.getPropValue("description")}
+                            </Base.SectionDescription>
+                        )}
                         
-                        <div className={this.decorateCSS("tabs-container")}>
-                            <div 
-                                className={`${this.decorateCSS("tabs-wrapper")} ${isTransitioning ? this.decorateCSS("transitioning") : ""}`}
-                                style={{
-                                    transform: `translateX(-${activeTab * (100 / tabs.length)}%)`,
-                                    width: `${tabs.length * 100}%`
-                                }}
-                            >
+                        <Base.VerticalContent className={this.decorateCSS("box")}>
+                            <div className={this.decorateCSS("tab-buttons")}>
                                 {tabs.map(
                                     (tab: Tabs, index: number) => {
-                                        const lottieValue: TypeMediaInputValue = {
-                                            type: "lottie",
-                                            url: (tab.lottie_container.lottie?.type === "lottie" && tab.lottie_container.lottie?.url) 
-                                                ? tab.lottie_container.lottie.url 
-                                                : '',
-                                            settings: {
-                                                loop: true,
-                                                autoplay: activeTab === index
-                                            }
-                                        };
-
+                                        const isTabTextVisible = this.castToString(tab.tabText);
+                                        const isTabVisible = isTabTextVisible;
                                         return (
-                                            <div 
-                                                key={`${index}-${activeTab === index ? 'active' : 'inactive'}`}
-                                                className={`${this.decorateCSS("tab-slide")}`}
-                                                style={{
-                                                    width: `${100 / tabs.length}%`
-                                                }}
-                                            >
-                                                <div className={this.decorateCSS("content")}>
-                                                    {lottieValue.url && (
-                                                        <div className={this.decorateCSS("lottie-container")}>
-                                                            <Base.Media 
-                                                                value={lottieValue}
-                                                                className={this.decorateCSS("lottie")}
-                                                            />
+                                            isTabVisible && (
+                                                <div 
+                                                    key={index}
+                                                    className={
+                                                        `${this.decorateCSS("tab-button")} ${activeTab === index
+                                                            ? this.decorateCSS("active")
+                                                            : ""
+                                                        }`
+                                                    }
+                                                    onClick={() => this.setActiveTab(index)}
+                                                >
+                                                    {isTabTextVisible && (
+                                                        <div className={this.decorateCSS("tabText")}>
+                                                            {tab.tabText}
                                                         </div>
                                                     )}
                                                 </div>
-                                            </div>
-                                        )
+                                            )
+                                        );
                                     }
                                 )}
                             </div>
-                        </div>
-                    </Base.VerticalContent>
+                            
+                            <div className={this.decorateCSS("tabs-container")}>
+                                <div 
+                                    className={`${this.decorateCSS("tabs-wrapper")} ${isTransitioning ? this.decorateCSS("transitioning") : ""}`}
+                                    style={{
+                                        transform: `translateX(-${activeTab * (100 / tabs.length)}%)`,
+                                        width: `${tabs.length * 100}%`
+                                    }}
+                                >
+                                    {tabs.map(
+                                        (tab: Tabs, index: number) => {
+                                            const lottieValue: TypeMediaInputValue = {
+                                                type: "lottie",
+                                                url: (tab.lottie_container.lottie?.type === "lottie" && tab.lottie_container.lottie?.url) 
+                                                    ? tab.lottie_container.lottie.url 
+                                                    : '',
+                                                settings: {
+                                                    loop: true,
+                                                    autoplay: activeTab === index
+                                                }
+                                            };
+
+                                            return (
+                                                <div 
+                                                    key={`${index}-${activeTab === index ? 'active' : 'inactive'}`}
+                                                    className={`${this.decorateCSS("tab-slide")}`}
+                                                    style={{
+                                                        width: `${100 / tabs.length}%`
+                                                    }}
+                                                >
+                                                    <div className={this.decorateCSS("content")}>
+                                                        {lottieValue.url && (
+                                                            <div className={this.decorateCSS("media-container")}>
+                                                                <Base.Media 
+                                                                    value={lottieValue}
+                                                                    className={this.decorateCSS("lottie")}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    )}
+                                </div>
+                            </div>
+                        </Base.VerticalContent>
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         )
