@@ -64,11 +64,17 @@ class Content21 extends BaseContent {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image" , "video"]
+      },
       value:
-        "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp",
+        {
+          type: "image",
+          url: "https://woodmart.xtemos.com/wp-content/uploads/2023/03/w-architecture-image.jpg.webp"
+        },
     });
     this.addProp({
       type: "boolean",
@@ -177,9 +183,9 @@ class Content21 extends BaseContent {
               </div>
               {image && (
                 <div className={this.decorateCSS("image-box")}>
-                  <Base.Media
+                 <Base.Media 
                     className={this.decorateCSS("image")}
-                    value={{ type: "image", url: image }}
+                    value={image}
                   />
                 </div>
               )}

@@ -31,32 +31,43 @@ class CallToAction2Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f51c3292c6002b23c4f6?alt=media",
+      {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f51c3292c6002b23c4f6?alt=media",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "playIcon",
       displayer: "Play Button Icon",
-      value: "FaPlay",
+      value: {
+        type: "icon",
+        name: "FaPlay",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Button Icon",
-      value: "RxCross2",
+      value: {
+        type: "icon",
+        name: "RxCross2",
+      },
     });
 
     this.addProp({
-      type: "page",
+      type: "media",
       displayer: "Video",
       key: "video",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
+      value: {
+        type: "video",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
+      },
     });
     this.setComponentState("isVideoVisible", false);
   }
@@ -78,8 +89,8 @@ class CallToAction2Page extends BaseCallToAction {
     const buttons = this.castToObject<Button[]>("buttons");
 
     const image = this.getPropValue("image");
-    const playIcon: string = this.getPropValue("playIcon");
-    const closeIcon: string = this.getPropValue("closeIcon");
+    const playIcon: string = typeof this.getPropValue("playIcon") === 'object' ? this.getPropValue("playIcon").name : this.getPropValue("playIcon");
+    const closeIcon: string = typeof this.getPropValue("closeIcon") === 'object' ? this.getPropValue("closeIcon").name : this.getPropValue("closeIcon");
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -126,7 +137,7 @@ class CallToAction2Page extends BaseCallToAction {
             {image && (
               <div
                 style={{
-                  backgroundImage: `url(${this.getPropValue("image")})`,
+                  backgroundImage: `url(${typeof this.getPropValue("image") === 'object' ? this.getPropValue("image").url : this.getPropValue("image")})`,
                 }}
                 className={this.decorateCSS("image-container")}
                 onClick={this.showVideo}
@@ -158,7 +169,7 @@ class CallToAction2Page extends BaseCallToAction {
                     <video
                       controls
                       className={this.decorateCSS("player")}
-                      src={this.getPropValue("video")}
+                      src={typeof this.getPropValue("video") === 'object' ? this.getPropValue("video").url : this.getPropValue("video")}
                     ></video>
                   </div>
                 </div>

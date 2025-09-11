@@ -18,10 +18,13 @@ class Download3 extends BaseDownload {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
+      },
     });
 
     this.addProp({
@@ -61,7 +64,7 @@ class Download3 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         {imageExist && (
           <div className={this.decorateCSS("image-container")}>
-            <img src={this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
+            <img src={this.getPropValue("image")?.url || this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
           </div>
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -76,10 +79,10 @@ class Download3 extends BaseDownload {
                       const buttonTextExist = this.castToString(item.text);
                       return (
                         <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
-                          <ComposerLink path={item.url}>
-                            {item.image ? (
-                              <img src={item.image} alt={item.image} className={this.decorateCSS("button-logo")} />
-                            ) : (
+                        <ComposerLink path={item.url}>
+                          {item.image ? (
+                            <img src={typeof item.image === 'object' ? item.image.url : item.image} alt={typeof item.image === 'object' ? item.image.url : item.image} className={this.decorateCSS("button-logo")} />
+                          ) : (
                               (buttonTextExist || item.icon) && (
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                                   {item.icon && (
@@ -114,7 +117,7 @@ class Download3 extends BaseDownload {
                       <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                         <ComposerLink path={item.url}>
                           {item.image ? (
-                            <img src={item.image} alt={item.image} className={this.decorateCSS("button-logo")} />
+                            <img src={typeof item.image === 'object' ? item.image.url : item.image} alt={typeof item.image === 'object' ? item.image.url : item.image} className={this.decorateCSS("button-logo")} />
                           ) : (
                             buttonTextExist && (
                               <Base.Button className={this.decorateCSS("button-element")}>
