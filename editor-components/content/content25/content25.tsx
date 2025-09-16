@@ -288,19 +288,26 @@ class Content25 extends BaseContent{
                                     <div className={this.decorateCSS("card-content")}>
                                         {cardImageExist && <div className={this.decorateCSS("media-container")}>
                                             {hoveredIndex === index && cardVideo ? (
-                                                <video 
+                                                <Base.Media
+                                                    value={{
+                                                        type: "video",
+                                                        url: cardVideo,
+                                                        settings: {
+                                                            autoplay: true,
+                                                            muted: true,
+                                                            loop: true,
+                                                            playsInline: true,
+                                                            controls: false
+                                                        }
+                                                    }}
                                                     className={this.decorateCSS("card-video")}
-                                                    autoPlay
-                                                    muted
-                                                    loop
-                                                    playsInline
-                                                >
-                                                    <source src={cardVideo} type="video/mp4" />
-                                                </video>
+                                                />
                                             ) : cardImage && (
-                                                <img 
-                                                    src={cardImage} 
-                                                    alt={cardTitle}
+                                                <Base.Media
+                                                    value={{
+                                                        type: "image",
+                                                        url: cardImage
+                                                    }}
                                                     className={this.decorateCSS("card-image")}
                                                 />
                                             )}
