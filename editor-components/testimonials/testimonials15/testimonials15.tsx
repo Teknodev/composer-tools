@@ -245,167 +245,178 @@ class Testimonials15Page extends Testimonials {
         const rightSectionClass = this.getRightSideClass(topExist, bottomExist, videoExist);
         const gridLayoutClass = this.getGridLayoutClass(leftExist, rightExist);
         return(
-            <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ContainerGrid className={`${this.decorateCSS("content-grid")} ${gridLayoutClass}`}>
-                        <div className={this.decorateCSS("left-section")}>
-                            {this.getPropValue("image") && (
-                                <div className={this.decorateCSS("main-image-container")}>
-                                    <Base.Media
-                                        value={this.getPropValue("image")}
-                                        className={this.decorateCSS("main-image")}
-                                    />
-                                    {renderLeftSide && (
-                                        <div className={this.decorateCSS("box-area")}>
-                                            <div className={this.decorateCSS("experience-card")}>
-                                                <div className={this.decorateCSS("experience-header")}>
-                                                    <div className={this.decorateCSS("experience-title")}>
-                                                        {bottomLeftBox.title}
+            <>
+                <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
+                    <Base.MaxContent className={this.decorateCSS("max-content")}>
+                        <Base.ContainerGrid className={`${this.decorateCSS("content-grid")} ${gridLayoutClass}`}>
+                            <div className={this.decorateCSS("left-section")}>
+                                {this.getPropValue("image") && (
+                                    <div className={this.decorateCSS("main-image-container")}>
+                                        <Base.Media
+                                            value={this.getPropValue("image")}
+                                            className={this.decorateCSS("main-image")}
+                                        />
+                                        {renderLeftSide && (
+                                            <div className={this.decorateCSS("box-area")}>
+                                                <div className={this.decorateCSS("experience-card")}>
+                                                    <div className={this.decorateCSS("experience-header")}>
+                                                        <div className={this.decorateCSS("experience-title")}>
+                                                            {bottomLeftBox.title}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className={this.decorateCSS("experience-content")}>
-                                                    <div className={this.decorateCSS("experience-number")}>
-                                                        {bottomLeftBox.number}
-                                                        {bottomLeftBox.numberIcon && (
-                                                            <Base.Icon
-                                                                name={bottomLeftBox.numberIcon}
-                                                                propsIcon={{className: this.decorateCSS("number-icon")}}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                    <div className={this.decorateCSS("experience-subtitle")}>
-                                                        {bottomLeftBox.subtitle}
+                                                    <div className={this.decorateCSS("experience-content")}>
+                                                        <div className={this.decorateCSS("experience-number")}>
+                                                            {bottomLeftBox.number}
+                                                            {bottomLeftBox.numberIcon && (
+                                                                <Base.Icon
+                                                                    name={bottomLeftBox.numberIcon}
+                                                                    propsIcon={{className: this.decorateCSS("number-icon")}}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                        <div className={this.decorateCSS("experience-subtitle")}>
+                                                            {bottomLeftBox.subtitle}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                            {renderRightSide && (
+                                <div className={`${this.decorateCSS("right-section")} ${rightSectionClass}`}>
+                                    {topRightBox.visibility && (
+                                        <div className={this.decorateCSS("top-right-content")}>
+                                            <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
+                                                <Base.SectionSubTitle className={this.decorateCSS("content-header")}>
+                                                    {topRightBox.textIcon}  
+                                                    <span className={this.decorateCSS("header-text")}>
+                                                        {topRightBox.text}
+                                                    </span>
+                                                </Base.SectionSubTitle>
+                                                <div className={this.decorateCSS("main-content")}>
+                                                    <Base.SectionTitle className={this.decorateCSS("main-title")}>
+                                                        {topRightBox.mainTitle}
+                                                    </Base.SectionTitle>
+                                                </div>
+                                                {(!button.image && (button.icon || button.text)) && (
+                                                    <div className={this.decorateCSS("button-wrapper")}>
+                                                        <ComposerLink path={button.url}>
+                                                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                                {button.icon && (
+                                                                    <Base.Icon
+                                                                        propsIcon={{
+                                                                            className: this.decorateCSS("button-icon"),
+                                                                        }}
+                                                                        name={button.icon}
+                                                                    />
+                                                                )}
+                                                                {buttonTextExist && <div className={this.decorateCSS("button-text")}>{button.text}</div>}
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    </div>
+                                                )}
+                                            </Base.VerticalContent>
+                                        </div>
+                                    )}
+                                    {(bottomRightBox.visibility || videoBox.visibility) && (
+                                        <div className={this.decorateCSS("bottom-row")}>
+                                            {bottomRightBox.visibility && (
+                                                <Base.VerticalContent className={this.decorateCSS("bottom-right-content")}>
+                                                    <div className={this.decorateCSS("quote-container")}>
+                                                        <div className={this.decorateCSS("stars-container")}>
+                                                            {Array.from({length: bottomRightBox.starNumber}, (_, i) => (
+                                                                <Base.Icon
+                                                                    key={i}
+                                                                    name={bottomRightBox.starIcon}
+                                                                    propsIcon={{className: this.decorateCSS("star-icon")}}
+                                                                />
+                                                            ))}
+                                                        </div>
+                                                        <p className={this.decorateCSS("quote-text")}>
+                                                            {bottomRightBox.description}
+                                                        </p>
+                                                        <div className={this.decorateCSS("author-info")}>
+                                                            <div className={this.decorateCSS("author-details")}>
+                                                                <span className={this.decorateCSS("author-name")}>
+                                                                    {bottomRightBox.name}
+                                                                </span>
+                                                                <span className={this.decorateCSS("author-position")}>
+                                                                    {bottomRightBox.position}
+                                                                </span>
+                                                            </div>
+                                                            {bottomRightBox.quoteIcon && (
+                                                                <Base.Icon 
+                                                                    name={bottomRightBox.quoteIcon}
+                                                                    propsIcon={{className: this.decorateCSS("quote-icon")}}
+                                                                />
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                </Base.VerticalContent>
+                                            )}
+                                            {videoBox.visibility && (
+                                                <div className={this.decorateCSS("video-content")}>
+                                                    <div 
+                                                        className={this.decorateCSS("video-container")}
+                                                        onClick={() => this.setComponentState("isVideoVisible", true)}
+                                                    >
+                                                        <Base.Media
+                                                            value={videoBox.coverImage}
+                                                            className={this.decorateCSS("video-cover")}
+                                                        />
+                                                        <div className={this.decorateCSS("play-button")}>
+                                                            <Base.Icon
+                                                                name={videoBox.playIcon}
+                                                                propsIcon={{className: this.decorateCSS("play-icon")}}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                 </div>
                             )}
+                        </Base.ContainerGrid>
+                    </Base.MaxContent>
+                </Base.Container>
+                {this.getComponentState("isVideoVisible") && (
+                    <Base.Overlay
+                        onClick={() => this.setComponentState("isVideoVisible", false)}
+                        className={this.decorateCSS("overlay")}
+                        isVisible={true}
+                    >
+                        <div className={this.decorateCSS("video-container")}>
+                            <div
+                                className={this.decorateCSS("video")}
+                                onClick={() => this.setComponentState("isVideoVisible", false)}
+                            >
+                                <iframe
+                                    className={this.decorateCSS("modal-video")}
+                                    width="100%"
+                                    height="450px"
+                                    src={videoBox.video.url}
+                                    title="Video player"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                />
+                            </div>
                         </div>
-                        {renderRightSide && (
-                            <div className={`${this.decorateCSS("right-section")} ${rightSectionClass}`}>
-                                {topRightBox.visibility && (
-                                    <div className={this.decorateCSS("top-right-content")}>
-                                        <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
-                                            <Base.SectionSubTitle className={this.decorateCSS("content-header")}>
-                                                {topRightBox.textIcon}  
-                                                <span className={this.decorateCSS("header-text")}>
-                                                    {topRightBox.text}
-                                                </span>
-                                            </Base.SectionSubTitle>
-                                            <div className={this.decorateCSS("main-content")}>
-                                                <Base.SectionTitle className={this.decorateCSS("main-title")}>
-                                                    {topRightBox.mainTitle}
-                                                </Base.SectionTitle>
-                                            </div>
-                                            {(!button.image && (button.icon || button.text)) && (
-                                                <div className={this.decorateCSS("button-wrapper")}>
-                                                    <ComposerLink path={button.url}>
-                                                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                                            {button.icon && (
-                                                                <Base.Icon
-                                                                    propsIcon={{
-                                                                        className: this.decorateCSS("button-icon"),
-                                                                    }}
-                                                                    name={button.icon}
-                                                                />
-                                                            )}
-                                                            {buttonTextExist && <div className={this.decorateCSS("button-text")}>{button.text}</div>}
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                </div>
-                                            )}
-                                        </Base.VerticalContent>
-                                    </div>
-                                )}
-                                {(bottomRightBox.visibility || videoBox.visibility) && (
-                                    <div className={this.decorateCSS("bottom-row")}>
-                                        {bottomRightBox.visibility && (
-                                            <Base.VerticalContent className={this.decorateCSS("bottom-right-content")}>
-                                                <div className={this.decorateCSS("quote-container")}>
-                                                    <div className={this.decorateCSS("stars-container")}>
-                                                        {Array.from({length: bottomRightBox.starNumber}, (_, i) => (
-                                                            <Base.Icon
-                                                                key={i}
-                                                                name={bottomRightBox.starIcon}
-                                                                propsIcon={{className: this.decorateCSS("star-icon")}}
-                                                            />
-                                                        ))}
-                                                    </div>
-                                                    <p className={this.decorateCSS("quote-text")}>
-                                                        {bottomRightBox.description}
-                                                    </p>
-                                                    <div className={this.decorateCSS("author-info")}>
-                                                        <div className={this.decorateCSS("author-details")}>
-                                                            <span className={this.decorateCSS("author-name")}>
-                                                                {bottomRightBox.name}
-                                                            </span>
-                                                            <span className={this.decorateCSS("author-position")}>
-                                                                {bottomRightBox.position}
-                                                            </span>
-                                                        </div>
-                                                        {bottomRightBox.quoteIcon && (
-                                                            <Base.Icon 
-                                                                name={bottomRightBox.quoteIcon}
-                                                                propsIcon={{className: this.decorateCSS("quote-icon")}}
-                                                            />
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </Base.VerticalContent>
-                                        )}
-                                        {videoBox.visibility && (
-                                            <div className={this.decorateCSS("video-content")}>
-                                                <div 
-                                                    className={this.decorateCSS("video-container")}
-                                                    onClick={() => this.setComponentState("isVideoVisible", true)}
-                                                >
-                                                    <Base.Media
-                                                        value={videoBox.coverImage}
-                                                        className={this.decorateCSS("video-cover")}
-                                                    />
-                                                    <div className={this.decorateCSS("play-button")}>
-                                                        <Base.Icon
-                                                            name={videoBox.playIcon}
-                                                            propsIcon={{className: this.decorateCSS("play-icon")}}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                        {this.getComponentState("isVideoVisible") && (
-                            <div className={this.decorateCSS("video-modal")}>
-                                <div className={this.decorateCSS("video-modal-content")}>
-                                    <button
-                                        className={this.decorateCSS("close-button")}
-                                        onClick={() => this.setComponentState("isVideoVisible", false)}
-                                    >
-                                        <Base.Icon
-                                            name={closeIcon}
-                                            propsIcon={{className: this.decorateCSS("close-icon")}}
-                                        />
-                                    </button>
-                                    <iframe
-                                        className={this.decorateCSS("modal-video")}
-                                        width="100%"
-                                        height="450px"
-                                        src={videoBox.video.url}
-                                        title="Video player"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        referrerPolicy="strict-origin-when-cross-origin"
-                                        allowFullScreen
-                                    />
-                                </div>
-                            </div>
-                        )}
-                    </Base.ContainerGrid>
-                </Base.MaxContent>
-            </Base.Container>
+                        <div
+                            className={this.decorateCSS("close-icon-box")}
+                            onClick={() => this.setComponentState("isVideoVisible", false)}
+                        >
+                            <Base.Icon
+                                name={closeIcon}
+                                propsIcon={{className: this.decorateCSS("close-icon")}}
+                            />
+                        </div>
+                    </Base.Overlay>
+                )}
+            </>
         )
     }
 }
