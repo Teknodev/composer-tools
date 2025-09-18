@@ -239,7 +239,7 @@ export namespace Base {
   }) {
     return (
       <button
-        className={`${styles.button} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
+        className={`${styles.baseButton} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
           } ${className}`}
         {...props}
       ></button>
@@ -610,7 +610,7 @@ export namespace Base {
     ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-      <div className={`${styles.card} ${className}`} {...props}>
+      <div className={`${styles.baseCard} ${className}`} {...props}>
         {children}
       </div>
     );
