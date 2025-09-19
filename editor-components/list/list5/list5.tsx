@@ -22,6 +22,12 @@ class List5 extends BaseList {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Services",
+    });
+    this.addProp({
+      type: "string",
       key: "header",
       displayer: "Header",
       value: "Bringing Your Vision to Life - AI Image Generation Service",
@@ -212,21 +218,31 @@ class List5 extends BaseList {
   }
   render(): ReactNode {
     const ListItems = this.castToObject<ListItem[]>("list-items");
+    const subtitle = this.getPropValue("subtitle");
+    const header = this.getPropValue("header");
+    const image = this.getPropValue("image");
 
     return (
       <>
         <Base.Container className={this.decorateCSS("container")}
           style={{
-            backgroundImage: `url(${this.getPropValue("image")})`,
+            backgroundImage: `url(${image})`,
             backgroundSize: "cover"
           }}
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {this.castToString(this.getPropValue("header")) && (
+            {(this.castToString(subtitle) || this.castToString(header)) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${this.getPropValue("image") && this.decorateCSS("dark")}`}>
-                  {this.getPropValue("header")}
-                </Base.SectionTitle>
+                {this.castToString(subtitle) && (
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("dark")}`}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {this.castToString(header) && (
+                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${image && this.decorateCSS("dark")}`}>
+                    {header}
+                  </Base.SectionTitle>
+                )}
               </Base.VerticalContent>
             )}
             {(ListItems.length > 0) && (
@@ -262,25 +278,25 @@ class List5 extends BaseList {
                                 )}
                                 {this.getPropValue("showIndex") && (
                                   <div className={this.decorateCSS("right")}>
-                                    <div className={this.decorateCSS("item-index")}>
+                                    <Base.H1 className={this.decorateCSS("item-index")}>
                                       {(index + 1).toLocaleString("en-US", {
                                         minimumIntegerDigits: 2,
                                         useGrouping: false,
                                       })}
-                                    </div>
+                                    </Base.H1>
                                   </div>
                                 )}
                               </div>
                             )}
                             {this.castToString(listItem.title) && (
-                              <div className={this.decorateCSS("list-item-title")}>
+                              <Base.H3 className={this.decorateCSS("list-item-title")}>
                                 {listItem.title}
-                              </div>
+                              </Base.H3>
                             )}
                             {this.castToString(listItem.text) && (
-                              <div className={this.decorateCSS("list-item-text")}>
+                              <Base.P className={this.decorateCSS("list-item-text")}>
                                 {listItem.text}
-                              </div>
+                              </Base.P>
                             )}
                             {listItem.lowericon && (
                               <Base.Icon

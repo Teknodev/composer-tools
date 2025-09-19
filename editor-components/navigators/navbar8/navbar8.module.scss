@@ -61,7 +61,7 @@
     .title {
       font-weight: 700;
       color: var(--composer-font-color-primary);
-      font-size: calc(2 * (var(--project-font-size) + 4px));
+      font-size: calc(2 * (var(--composer-font-size-md) + 4px));
 
       &.openedTitle{
         content: "";
@@ -69,7 +69,7 @@
     }
     
     .subtitle {
-      font-size: calc(1 * (var(--project-font-size)));
+      font-size: calc(1 * (var(--composer-font-size-md)));
       margin: 0;
       font-weight: 400;
       color: var(--composer-font-color-primary);
@@ -89,7 +89,7 @@
 
     .localizationDropdown {
       gap: var(--composer-gap-xs);
-      font-size: calc(1 * var(--project-font-size));
+      font-size: calc(1 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -134,7 +134,7 @@
 
     .closeIcon,
     .menuIcon {
-      font-size: calc(1.5 * var(--project-font-size));
+      font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
     
@@ -185,7 +185,7 @@
       align-items: center;
       gap: var(--composer-gap-xl);
       .dropdownTitle {
-        font-size: calc(1.5 * (var(--project-font-size) + 4px));
+        font-size: calc(1.5 * (var(--composer-font-size-md) + 4px));
         color: var(--composer-font-color-primary);
         margin: 0;
       }
@@ -215,7 +215,7 @@
           margin: 0;
           text-align: start;
           color: var(--composer-font-color-primary);
-          font-size: calc(1.5 * (var(--project-font-size) + 4px));
+          font-size: calc(1.5 * (var(--composer-font-size-md) + 4px));
           font-weight: normal;
           transition: all 0.3s ease;
           &.animation1{
@@ -252,7 +252,7 @@
                 display: flex;
                 transition: all 0.3s ease;
                 .socialMediaIcon {
-                  font-size: calc(2 * var(--project-font-size));
+                  font-size: calc(2 * var(--composer-font-size-md));
                   color: var(--composer-font-color-primary);
                 }
                 &.animation2{
@@ -371,7 +371,7 @@
               margin-top: var(--composer-gap-md);
               gap: var(--composer-gap-sm);
               .socialMediaLinksTitle{
-                font-size: var(--project-font-size);
+                font-size: var(--composer-font-size-md);
               }
               .socialMediaLinksList {
                 display: flex;
@@ -382,7 +382,7 @@
                 .socialMediaLink{
                   .socialMediaIconContainer{
                     .socialMediaIcon {
-                      font-size: calc(1.5 * var(--project-font-size));
+                      font-size: calc(1.5 * var(--composer-font-size-md));
                     }
                   }
                 }

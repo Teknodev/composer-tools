@@ -1,18 +1,27 @@
 .container {
   .max-content {
     display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+    
+    .card-titles {
+      .subtitle {
+        content: "";
+      }
+    }
+    
     .card {
       .all-card {
         height: 100%;
         .item-content {
           height: 100%;
-          border: 1px solid var(--composer-primary-color);
+          border: var(--composer-border-width-xs) solid var(--composer-primary-color);
           border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-lg);
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
-          transition: all 0.3s ease;
+          transition: all var(--composer-transition-duration-normal) ease;
           position: relative;
 
           &[data-animation="animate1"]:hover {
@@ -22,9 +31,9 @@
             &::after {
               content: "";
               position: absolute;
-              inset: -2px;
+              inset: calc(-1 * var(--composer-border-width-sm));
               border-radius: var(--composer-border-radius-md);
-              padding: 2px;
+              padding: var(--composer-border-width-sm);
               background: linear-gradient(
                 45deg,
                 transparent 0%,
@@ -44,7 +53,7 @@
           }
 
           &[data-animation="animate2"]:hover {
-            box-shadow: var(--box-shadow-active);
+            box-shadow: var(--composer-box-shadow-lg);
           }
 
           &[data-animation="animate3"]:hover {
@@ -53,9 +62,9 @@
             &::before {
               content: "";
               position: absolute;
-              inset: -2px;
+              inset: calc(-1 * var(--composer-border-width-sm));
               border-radius: var(--composer-border-radius-md);
-              padding: 2px;
+              padding: var(--composer-border-width-sm);
               background: conic-gradient(
                 from var(--angle),
                 rgba(var(--composer-primary-color-rgb), 1) 0deg 90deg,
@@ -74,24 +83,21 @@
           &[data-animation="animate4"]:hover {
             .index {
               transform: rotate(360deg);
-              transition: transform 0.3s;
+              transition: transform var(--composer-transition-duration-normal);
             }
           }
 
           .index {
-            font-size: 2.5rem;
             color: var(--composer-primary-color);
-            margin: 0px;
+            margin: 0;
           }
           .title {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
-            margin: 0px;
+            margin: 0;
           }
           .description {
-            font-size: 1rem;
             color: var(--composer-font-color-primary);
-            margin: 0px;
+            margin: 0;
           }
         }
       }

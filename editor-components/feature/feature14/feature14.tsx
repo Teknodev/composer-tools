@@ -225,10 +225,10 @@ class Feature14 extends BaseFeature {
 
                     <div className={this.decorateCSS("card-content")}>
                       {this.castToString(item.title) && (
-                        <div className={this.decorateCSS("card-title")}>{item.title}</div>
+                        <Base.H3 className={this.decorateCSS("card-title")}>{item.title}</Base.H3>
                       )}
                       {this.castToString(item.description) && (
-                        <div className={this.decorateCSS("card-description")}>{item.description}</div>
+                        <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
                       )}
                     </div>
                   </div>

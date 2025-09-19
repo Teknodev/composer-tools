@@ -62,7 +62,7 @@
         display: block;
         height: 500px;
         width: 100%;
-        transition: transform 0.3s ease;
+        transition: var(--composer-transition-duration-normal);
         object-fit: cover;
         text-align: center;
       }
@@ -102,8 +102,8 @@
       >a .title {
         margin: var(--composer-gap-sm);
         margin-top: 0;
-        font-weight: 400;
-        font-size: 2.5rem;
+
+
         color: var(--composer-font-color-primary);
       }
     }
@@ -134,15 +134,7 @@
           padding: var(--composer-gap-sm);
           padding-top: 0;
         }
-
-        >div .title,
-        >a .title {
-          font-size: 2rem;
-          line-height: 2rem;
-        }
       }
     }
   }
 }
-
-@container (max-width: #{$composer-phone-width}) {}

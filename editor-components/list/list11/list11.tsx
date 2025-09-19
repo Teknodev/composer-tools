@@ -17,6 +17,12 @@ class List11 extends BaseList {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "Smart solutions"
+        });
+        this.addProp({
             type: "number",
             key: "itemCount",
             displayer: "Item Count in a Row",
@@ -187,23 +193,31 @@ class List11 extends BaseList {
 
     render() {
         const listItems = this.castToObject<ListItems[]>("listItems");
+        const title = this.getPropValue("title");
+        const subtitle = this.getPropValue("subtitle");
+        const subTitle = this.getPropValue("subTitle");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                            {this.castToString(this.getPropValue("title")) && (
-                                <div className={this.decorateCSS("title-container")}>
+                            <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                                {this.castToString(subtitle) && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {subtitle}
+                                    </Base.SectionSubTitle>
+                                )}
+                                {this.castToString(title) && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
+                                        {title}
                                     </Base.SectionTitle>
-                                </div>
-                            )}
-                            {this.castToString(this.getPropValue("subTitle")) && (
+                                )}
+                            </Base.VerticalContent>
+                            {this.castToString(subTitle) && (
                                 <div className={this.decorateCSS("subTitle-container")}>
                                     <Base.SectionDescription className={this.decorateCSS("subTitle")}>
-                                        {this.getPropValue("subTitle")}
+                                        {subTitle}
                                     </Base.SectionDescription>
                                 </div>
                             )}
@@ -220,22 +234,22 @@ class List11 extends BaseList {
                                         )}
                                         <div className={this.decorateCSS("card-content")}>
                                             {this.castToString(item.itemTitle) && (
-                                                <div className={this.decorateCSS("card-title")}>
+                                                <Base.H3 className={this.decorateCSS("card-title")}>
                                                     {item.itemTitle}
-                                                </div>
+                                                </Base.H3>
                                             )}
                                             {this.castToString(item.itemDescription) && (
-                                                <div className={this.decorateCSS("card-description")}>
+                                                <Base.P className={this.decorateCSS("card-description")}>
                                                     {item.itemDescription}
-                                                </div>
+                                                </Base.P>
                                             )}
                                             {(this.castToString(item.navigateToText) || (item.icon)) && (
                                                 <ComposerLink path={item.navigateTo}>
                                                     <div className={this.decorateCSS("navigate-container")}>
                                                         {this.castToString(item.navigateToText) && (
-                                                            <div className={this.decorateCSS("navigate-to")}>
+                                                            <Base.P className={this.decorateCSS("navigate-to")}>
                                                                 {item.navigateToText}
-                                                            </div>
+                                                            </Base.P>
                                                         )}
                                                         {item.icon && (
                                                             <Base.Icon

@@ -283,23 +283,23 @@ class Feature9 extends BaseFeature {
                             }
                             <div className={this.decorateCSS("card-title-container")}>
                               {numExist &&
-                                <div className={this.decorateCSS("card-number")}>
+                                <Base.H2 className={this.decorateCSS("card-number")}>
                                   {card.num}
-                                </div>
+                                </Base.H2>
                               }
                               {titleExist &&
-                                <div className={this.decorateCSS("card-title")}>
+                                <Base.H3 className={this.decorateCSS("card-title")}>
                                   {card.title}
-                                </div>
+                                </Base.H3>
                               }
                             </div>
                           </div>
                         }
                         {descExist &&
                           <div className={this.decorateCSS("description-container")}>
-                            <div className={this.decorateCSS("description")}>
+                            <Base.P className={this.decorateCSS("description")}>
                               {card.description}
-                            </div>
+                            </Base.P>
                           </div>
                         }
                       </div>

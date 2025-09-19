@@ -20,6 +20,12 @@ class List6 extends BaseList {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Process",
+    });
+    this.addProp({
+      type: "string",
       key: "description",
       displayer: "Description",
       value:
@@ -186,17 +192,27 @@ class List6 extends BaseList {
 
   render() {
     const listItems = this.castToObject<listItem[]>("listItems");
-    const description = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
+    const subtitle = this.getPropValue("subtitle");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {description && (
-            <Base.SectionTitle
-              className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
-            >
-              {this.getPropValue("description")}
-            </Base.SectionTitle>
+          {(this.castToString(subtitle) || this.castToString(description)) && (
+            <Base.VerticalContent className={this.decorateCSS("header-section")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(description) && (
+                <Base.SectionTitle
+                  className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                >
+                  {description}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
@@ -205,9 +221,9 @@ class List6 extends BaseList {
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 {this.castToString(listItem.itemIndex) && (
-                  <div className={this.decorateCSS("index")}>
+                  <Base.H3 className={this.decorateCSS("index")}>
                     {listItem.itemIndex}
-                  </div>
+                  </Base.H3>
                 )}
                 <div className={this.decorateCSS("cards")}>
                   {(listItem.itemIcon ||
@@ -222,17 +238,17 @@ class List6 extends BaseList {
                           />
                         )}
                         {this.castToString(listItem.itemTitle) && (
-                          <div className={this.decorateCSS("title")}>
+                          <Base.H4 className={this.decorateCSS("title")}>
                             {listItem.itemTitle}
-                          </div>
+                          </Base.H4>
                         )}
                       </div>
                     )}
 
                   {this.castToString(listItem.itemText) && (
-                    <div className={this.decorateCSS("description")}>
+                    <Base.P className={this.decorateCSS("description")}>
                       {listItem.itemText}
-                    </div>
+                    </Base.P>
                   )}
                 </div>
               </div>
