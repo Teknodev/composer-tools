@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials15.module.scss";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -78,7 +77,7 @@ class Testimonials15Page extends Testimonials {
                     type: "string",
                     key: "mainTitle",
                     displayer: "Title",
-                    value: "Empowering Businesses with Innovation, Expertise, and for <span style='color: var(--composer-primary-color)'>Succes.</span>",
+                    value: "Empowering Businesses with Innovation, Expertise, and for <span style='color: var(--composer-primary-color)'>Success.</span>",
                 },
             ],
         });
@@ -228,14 +227,13 @@ class Testimonials15Page extends Testimonials {
         const bottomRightBox = this.castToObject<any>("bottomRightBox");
         const videoBox = this.castToObject<any>("videoBox");
         const closeIcon: string = videoBox.closeIcon;
-        const {visibleBoxes, visibleCount} = this.getVisibilityInfo(topRightBox, bottomRightBox, videoBox);
+        const {visibleCount} = this.getVisibilityInfo(topRightBox, bottomRightBox, videoBox);
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
         const buttonTextExist = this.castToString(button.text);
 
-        const renderLeftSide = bottomLeftBox.visibility;
         const renderRightSide = visibleCount > 0;
 
-        const leftExist = bottomLeftBox.visibility && (this.getPropValue("image") || this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number);
+        const leftExist = this.getPropValue("image") || (bottomLeftBox.visibility && (this.castToString(bottomLeftBox.title) || this.castToString(bottomLeftBox.subtitle) || bottomLeftBox.number));
         const topExist = topRightBox.visibility && (this.castToString(topRightBox.text) || this.castToString(topRightBox.mainTitle) || button.icon || this.castToString(button.text));
         const bottomExist = bottomRightBox.visibility && (this.castToString(bottomRightBox.description) || this.castToString(bottomRightBox.name) || bottomRightBox.starNumber);
         const videoExist = videoBox.visibility;
@@ -256,7 +254,7 @@ class Testimonials15Page extends Testimonials {
                                             value={this.getPropValue("image")}
                                             className={this.decorateCSS("main-image")}
                                         />
-                                        {renderLeftSide && (
+                                        {bottomLeftBox.visibility && (
                                             <div className={this.decorateCSS("box-area")}>
                                                 <div className={this.decorateCSS("experience-card")}>
                                                     <div className={this.decorateCSS("experience-header")}>

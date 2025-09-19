@@ -59,7 +59,6 @@
 
                 .main-image-container {
                     position: relative;
-                    border-radius: var(--composer-border-width-lg);
                     overflow: hidden;
                     flex: 1;
                     min-height: 0;
@@ -108,8 +107,6 @@
                             height: 20px;
                             margin-right: -1.4rem;
                             transform: rotate(-90deg);
-                            background-color: color-mix(in srgb, var(--composer-html-background), 
-                                var(--composer-font-color-primary) 5%);
                             z-index: 1;
                         }
                         .experience-card {
@@ -296,6 +293,7 @@
                             letter-spacing: 0.1rem;
                             margin-top: 0;
                             margin-bottom: 6rem;
+                            text-align: left;
                         }
                     }
 
