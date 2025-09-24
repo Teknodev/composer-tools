@@ -10,12 +10,17 @@
       flex-direction: column;
       gap: var(--composer-gap-md);
       .vertical-content {
+        .card-titles {
+          .subtitle {
+            content: "";
+          }
+        }
+        
         .title-container {
           display: flex;
           flex-direction: column;
           .title {
             margin: 0;
-            font-weight: bold;
           }
         }
         .subTitle-container {
@@ -37,7 +42,7 @@
           );
           border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-md);
-          transition: all 0.5s ease-in-out;
+          transition: all var(--composer-transition-duration-slow) ease-in-out;
           .card-items {
             display: flex;
             flex-direction: column;
@@ -60,12 +65,9 @@
               gap: var(--composer-gap-md);
               
               .card-title {
-              font-size: 1.5rem;
               color: var(--composer-font-color-primary);
-              font-weight: bold;
             }
             .card-description {
-              font-size: 1rem;
               color: var(--composer-tertiary-color);
             }
             .navigate-container {
@@ -74,22 +76,20 @@
               color: var(--composer-primary-color);
               overflow: hidden;
               width: 100%;
-              transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+              transition: transform var(--composer-transition-duration-normal) ease-in-out, opacity var(--composer-transition-duration-normal) ease-in-out;
               .navigate-to {
-                font-size: 1rem;
-                margin-right: 0.5rem;
-                font-weight: bold;
+                margin-right: calc(var(--composer-gap-xs) / 2);
                 white-space: nowrap;
               }
               .navigate-icon {
-                min-width: 10px;
-                min-height: 10px;
+                min-width: var(--composer-gap-sm);
+                min-height: var(--composer-gap-sm);
               }
             }
             }
           }
           &[data-animation~="animate1"]:hover {
-            transform: translateY(-10px);
+            transform: translateY(calc(-1 * var(--composer-gap-sm)));
           }
 
           &[data-animation~="animate2"]:hover {
@@ -144,13 +144,13 @@
     transform: translateX(0);
   }
   25% {
-    transform: translateX(5px);
+    transform: translateX(var(--composer-gap-xs));
   }
   50% {
-    transform: translateX(-5px);
+    transform: translateX(calc(-1 * var(--composer-gap-xs)));
   }
   75% {
-    transform: translateX(5px);
+    transform: translateX(var(--composer-gap-xs));
   }
   100% {
     transform: translateX(0);

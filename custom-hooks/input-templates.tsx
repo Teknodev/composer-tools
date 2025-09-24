@@ -131,6 +131,7 @@ export namespace INPUTS {
 
   export type TYPE_SLIDER_SETTINGS = {
     dots?: boolean;
+    arrows?: boolean;
     infinite?: boolean;
     speed?: number;
     autoplay?: boolean;
@@ -144,6 +145,7 @@ export namespace INPUTS {
     displayer: string,
     defaultValues: TYPE_SLIDER_SETTINGS = {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -163,6 +165,12 @@ export namespace INPUTS {
           key: "dots",
           displayer: "Dots",
           value: defaultValues.dots,
+        },
+        {
+          type: "boolean",
+          key: "arrows",
+          displayer: "Arrows",
+          value: defaultValues.arrows,
         },
         {
           type: "boolean",

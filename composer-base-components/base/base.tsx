@@ -7,6 +7,21 @@ import { IconBaseProps } from "react-icons/lib";
 import { iconLibraries } from "./utitilities/iconList";
 import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lottie-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src?: string;
+        background?: string;
+        speed?: string;
+        loop?: boolean;
+        autoplay?: boolean;
+        style?: React.CSSProperties;
+      };
+    }
+  }
+}
+
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
 export type TypeSubtitle = "line" | "badge" | "none";
@@ -54,7 +69,7 @@ export namespace Base {
   }
 
   export function setFontSize(size: string) {
-    setStyleValue("--project-font-size", `${size}px`);
+    setStyleValue("--composer-font-size-md", `${size}px`);
   }
 
   export function H1({ className, children, ...props }: any) {
@@ -94,6 +109,14 @@ export namespace Base {
       <h5 className={`${styles.h5} ${className}`} {...props}>
         {children}
       </h5>
+    );
+  }
+
+  export function H6({ className, children, ...props }: any) {
+    return (
+      <h6 className={`${styles.h6} ${className}`} {...props}>
+        {children}
+      </h6>
     );
   }
 
@@ -216,7 +239,7 @@ export namespace Base {
   }) {
     return (
       <button
-        className={`${styles.button} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
+        className={`${styles.baseButton} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
           } ${className}`}
         {...props}
       ></button>
@@ -581,6 +604,18 @@ export namespace Base {
     }
   }
 
+  export function Card({ 
+    className, 
+    children, 
+    ...props 
+  }: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+      <div className={`${styles.baseCard} ${className}`} {...props}>
+        {children}
+      </div>
+    );
+  }
+
   export function Media({
     value,
     className,
@@ -619,6 +654,17 @@ export namespace Base {
             {...props}
           />
         );
+      case "lottie":
+        return React.createElement('lottie-player', {
+          className,
+          src: value.url,
+          background: "transparent",
+          speed: "1",
+          loop: !!value.settings?.loop,
+          autoplay: !!value.settings?.autoplay,
+          style: { width: '100%', height: '100%' },
+          ...props
+        });
       default:
         return null;
     }

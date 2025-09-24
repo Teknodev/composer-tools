@@ -92,7 +92,7 @@
           }
 
           .dropdownIcon {
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
           }
@@ -184,7 +184,7 @@
               }
 
               .rightIcon {
-                font-size: calc(1 * var(--project-font-size));
+                font-size: calc(1 * var(--composer-font-size-md));
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
               }
@@ -279,7 +279,7 @@
   .hamburgerIcon {
     display: none;
     cursor: pointer;
-    font-size: calc(1.5 * var(--project-font-size));
+    font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
   }
 
@@ -323,7 +323,7 @@
 
           .dropdownIcon {
             color: var(--composer-font-color-primary);
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
             transform: rotate(-90deg);
             transition: transform 0.3s ease;
 
@@ -363,7 +363,7 @@
                 color: var(--composer-font-color-primary);
               }
               .dropdownIcon{
-                font-size: calc(1.5 * var(--project-font-size));
+                font-size: calc(1.5 * var(--composer-font-size-md));
                 transition: transform 0.3s ease;
                 color: var(--composer-font-color-primary);
                 &.active {
@@ -372,7 +372,7 @@
               }
 
               .rightIcon {
-                font-size: calc(1 * var(--project-font-size));
+                font-size: calc(1 * var(--composer-font-size-md));
                 transition: transform 0.3s ease;
                 color: var(--composer-font-color-primary);
                 &.active {
@@ -432,7 +432,7 @@
     margin-top: var(--composer-gap-sm);
     .icon-container{
       .icon {
-        font-size: calc(1.5 * var(--project-font-size));
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
       &.animation3{
@@ -543,7 +543,7 @@
           .hamburgerMenuItem {
             .hamburgerMenuItemHeader {
               .dropdownIcon {
-                font-size: calc(1.5 * var(--project-font-size));
+                font-size: calc(1.5 * var(--composer-font-size-md));
               }
             }
           }

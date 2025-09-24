@@ -193,9 +193,9 @@ class Feature7 extends BaseFeature {
                                 </div>
                               )}
                               {titleExist && (
-                                <div className={this.decorateCSS("featureTitle")}>
+                                <Base.H4 className={this.decorateCSS("featureTitle")}>
                                   {item.title}
-                                </div>
+                                </Base.H4>
                               )}
                             </div>
                           );
@@ -212,7 +212,7 @@ class Feature7 extends BaseFeature {
                               <ComposerLink path={item.url}>
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
                                   {item.text}
-                                  < ComposerIcon
+                                  <Base.Icon
                                     name={item.icon}
                                     propsIcon={{ className: this.decorateCSS("iconLink") }}
                                   />

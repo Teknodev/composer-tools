@@ -94,7 +94,6 @@
           }
 
           .long-text {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             text-align: center;
             overflow: hidden;
@@ -133,7 +132,7 @@
           .icon-container-no-bg {
             width: 60px;
             height: 60px;
-            border-radius: 50%;
+            border-radius: var(--composer-border-radius-full);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -195,12 +194,7 @@
             justify-content: center;
             align-items: center;
 
-            .title {
-              font-size: 1rem;
-            }
-
             .subtitle {
-              font-size: 1rem;
               text-align: center;
             }
           }

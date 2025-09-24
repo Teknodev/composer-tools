@@ -19,6 +19,13 @@ class List2 extends BaseList {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle", 
+      value: "Explore",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Most Popular Cities/Towns",
@@ -312,21 +319,29 @@ class List2 extends BaseList {
 
     const cards = this.castToObject<CardItem[]>("cards");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
 
     return (
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
+            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
               <Base.VerticalContent className={this.decorateCSS("up-container")}>
-                {this.castToString(this.getPropValue("title")) && (
+                {this.castToString(subtitle) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {this.castToString(title) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
+                    {title}
                   </Base.SectionTitle>
                 )}
-                {this.castToString(this.getPropValue("description")) && (
+                {this.castToString(description) && (
                   <Base.SectionDescription className={this.decorateCSS("description")} >
-                    {this.getPropValue("description")}
+                    {description}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
@@ -356,21 +371,21 @@ class List2 extends BaseList {
                         {(this.castToString(item.card_text) || item.count || this.castToString(item.count_text)) && (
                           <div className={this.decorateCSS("labels")}>
                             {this.castToString(item.card_text) && (
-                              <div className={this.decorateCSS("first")}>
+                              <Base.H4 className={this.decorateCSS("first")}>
                                 {item.card_text}
-                              </div>
+                              </Base.H4>
                             )}
                             {(item.count || this.castToString(item.count_text)) && (
                               <div className={this.decorateCSS("second")}>
                                 {item.count && (
-                                  <div className={this.decorateCSS("second-text")}>
+                                  <Base.H5 className={this.decorateCSS("second-text")}>
                                     {item.count}
-                                  </div>
+                                  </Base.H5>
                                 )}
                                 {this.castToString(item.count_text) && (
-                                  <div className={this.decorateCSS("second-count")}>
+                                  <Base.P className={this.decorateCSS("second-count")}>
                                     {item.count_text}
-                                  </div>
+                                  </Base.P>
                                 )}
                               </div>
                             )}

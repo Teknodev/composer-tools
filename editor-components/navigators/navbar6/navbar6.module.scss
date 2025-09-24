@@ -70,7 +70,7 @@
         }
 
         .dropdownIcon {
-          font-size: calc(1.5 * var(--project-font-size));
+          font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -156,7 +156,7 @@
             }
 
             .rightIcon {
-              font-size: calc(1 * var(--project-font-size));
+              font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -234,7 +234,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: calc(1.5 * var(--project-font-size));
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
     }
@@ -290,13 +290,13 @@
 
   .hamburgerIcon {
     display: none;
-    font-size: calc(1.5 * var(--project-font-size));
+    font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
   }
 
   .closeIcon {
     display: none;
-    font-size: calc(1.5 * var(--project-font-size));
+    font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
   }
 
@@ -328,7 +328,7 @@
         cursor: pointer;
         color: var(--composer-font-color-primary);
         padding: var(--composer-gap-md) 0;
-        font-size: calc(2.5 * var(--project-font-size));
+        font-size: calc(2.5 * var(--composer-font-size-md));
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -355,7 +355,7 @@
             }
   
             .dropdownIcon {
-              font-size: calc(1.5 * var(--project-font-size));
+              font-size: calc(1.5 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: transform 0.3s ease;
   
@@ -390,7 +390,7 @@
                 }
   
                 .dropdownIcon {
-                  font-size: calc(1.5 * var(--project-font-size));
+                  font-size: calc(1.5 * var(--composer-font-size-md));
                   transition: transform 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -434,7 +434,7 @@
       margin: 0;
       font-weight: normal;
       transition: all 0.3s ease;
-      font-size: calc(1 * var(--project-font-size));
+      font-size: calc(1 * var(--composer-font-size-md));
       &.animation1{
         &:hover{
           font-weight: bold;
@@ -535,7 +535,7 @@
           gap: var(--composer-gap-sm);
           .icon {
             color: var(--composer-font-color-primary);
-            font-size: calc(1.5 * var(--project-font-size));
+            font-size: calc(1.5 * var(--composer-font-size-md));
           }
         }
       }
