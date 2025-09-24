@@ -183,7 +183,7 @@ class Header29 extends BaseHeader {
                     validationSchema={this.validationSchema}
                     onSubmit={(data, { resetForm }) => {
                       this.setComponentState("placeholderText", this.castToString(submitText));
-                      this.insertForm("Call Me Back", data);
+                      this.insertForm("Header 29 - NewsletterForm", data);
                       setTimeout(() => {
                         const defaultPlaceholder = this.getPropValue("placeholder");
                         this.setComponentState(

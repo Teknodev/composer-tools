@@ -314,7 +314,7 @@ class Footer1Page extends BaseFooter {
                             this.setComponentState("placeholderText", defaultPlaceholder);
                           }, 2000);
 
-                          this.insertForm("Subscribe", data);
+                          this.insertForm("Footer 1 - NewsletterForm", data);
                           resetForm();
                         }}
                       >

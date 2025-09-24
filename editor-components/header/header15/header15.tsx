@@ -119,7 +119,7 @@ class Header15 extends BaseHeader {
                         <Formik
                           initialValues={{ ...getInitialValue() }}
                           onSubmit={(data, { resetForm }) => {
-                            this.insertForm("Make Order", data);
+                            this.insertForm("Header 15 - NewsletterForm", data);
                             resetForm();
                           }}
                         >
