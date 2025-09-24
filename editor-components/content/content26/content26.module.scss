@@ -1,0 +1,197 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: var(--composer-gap-lg);
+      width: 70%;
+      
+      .title, .subtitle {
+        text-align: center;
+      }
+      
+      .subtitle-center {
+        &:before {
+          display: none !important;
+        }
+        transform: none !important;
+      }
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .description {
+      margin-top: var(--composer-gap-xl) !important;
+      text-align: center;
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .box {
+      background: var(--composer-primary-color);
+      border-radius: calc(4*var(--composer-border-radius-md));
+      align-items: center;
+      overflow: hidden;
+      
+      .tab-buttons {
+        display: flex;
+        flex-direction: row;
+        margin-top: var(--composer-gap-lg);
+        gap: var(--composer-gap-xs);
+        background-color: rgba(var(--composer-html-background-rgb), 0.7);
+        padding: var(--composer-gap-xs);
+        border-radius: calc(4*var(--composer-border-radius-md));
+        z-index: 2;
+        position: relative;
+        
+        .tab-button {
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          border-radius: calc(4*var(--composer-border-radius-md));
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+          
+          .tabText {
+            color: var(--composer-font-color-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+          }
+          
+          &:hover {
+            background: rgba(var(--composer-html-background-rgb), 0.5);
+          }
+          
+          &.active {
+            background: var(--composer-html-background);
+            box-shadow: var(--box-shadow-active);
+            
+            .tabText {
+              color: var(--composer-primary-color);
+            }
+          }
+        }
+      }
+      
+      .tabs-container {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        
+        .tabs-wrapper {
+          display: flex;
+          transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+          
+          &.transitioning {
+            transition-duration: 0.8s;
+          }
+          
+          .tab-slide {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            
+            .content {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              height: 100%;
+              
+              .media-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                opacity: 1;
+                transition: opacity 0.3s ease;
+                
+                .lottie {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .header {
+        width: 90%;
+        .title {
+          width: 90%;
+        }
+      }
+      
+      .description {
+        width: 90%;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .header {
+        margin-bottom: var(--composer-gap-xs);
+        width: 90%;
+        .title {
+          text-align: center;
+          width: 100%;
+        }
+      }
+      
+      .content-wrapper {
+        flex-direction: column;
+      }
+
+      .description {
+        margin: var(--composer-gap-md);
+        margin-top: 0 !important;
+        width: 90%;
+      }
+      
+      .box {
+        .tab-buttons {
+          margin-top: var(--composer-gap-md);
+          .tab-button {
+            padding: var(--composer-gap-xs) var(--composer-gap-sm);
+            min-width: 80px;
+            
+            .tabText {
+              font-size: 1rem;
+            }
+          }
+        }
+        
+        .tabs-container {
+          .tabs-wrapper {
+            .tab-slide {
+              min-height: 200px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

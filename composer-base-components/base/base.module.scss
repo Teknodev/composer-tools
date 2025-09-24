@@ -386,7 +386,7 @@
     } 
 }
 
-.button {
+.baseButton {
   display: flex;
   align-items: center;
   gap: var(--composer-gap-sm);
@@ -585,7 +585,7 @@
     height: var(--composer-font-size-md);
 }
 
-.card {
+.baseCard {
     border: 1px solid var(--composer-tertiary-color);
     border-radius: var(--composer-border-radius-xs);
 }

@@ -7,6 +7,21 @@ import { IconBaseProps } from "react-icons/lib";
 import { iconLibraries } from "./utitilities/iconList";
 import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lottie-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src?: string;
+        background?: string;
+        speed?: string;
+        loop?: boolean;
+        autoplay?: boolean;
+        style?: React.CSSProperties;
+      };
+    }
+  }
+}
+
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
 export type TypeSubtitle = "line" | "badge" | "none";
@@ -224,7 +239,7 @@ export namespace Base {
   }) {
     return (
       <button
-        className={`${styles.button} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
+        className={`${styles.baseButton} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
           } ${className}`}
         {...props}
       ></button>
@@ -595,7 +610,7 @@ export namespace Base {
     ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-      <div className={`${styles.card} ${className}`} {...props}>
+      <div className={`${styles.baseCard} ${className}`} {...props}>
         {children}
       </div>
     );
@@ -639,6 +654,17 @@ export namespace Base {
             {...props}
           />
         );
+      case "lottie":
+        return React.createElement('lottie-player', {
+          className,
+          src: value.url,
+          background: "transparent",
+          speed: "1",
+          loop: !!value.settings?.loop,
+          autoplay: !!value.settings?.autoplay,
+          style: { width: '100%', height: '100%' },
+          ...props
+        });
       default:
         return null;
     }
