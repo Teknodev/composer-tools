@@ -289,25 +289,12 @@ class Content25 extends BaseContent{
                                         {cardImageExist && <div className={this.decorateCSS("media-container")}>
                                             {hoveredIndex === index && cardVideo ? (
                                                 <Base.Media
-                                                    value={{
-                                                        type: "video",
-                                                        url: cardVideo,
-                                                        settings: {
-                                                            autoplay: true,
-                                                            muted: true,
-                                                            loop: true,
-                                                            playsInline: true,
-                                                            controls: false
-                                                        }
-                                                    }}
+                                                    value={card.video}
                                                     className={this.decorateCSS("card-video")}
                                                 />
                                             ) : cardImage && (
                                                 <Base.Media
-                                                    value={{
-                                                        type: "image",
-                                                        url: cardImage
-                                                    }}
+                                                    value={card.image}
                                                     className={this.decorateCSS("card-image")}
                                                 />
                                             )}
