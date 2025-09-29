@@ -12,7 +12,12 @@ type VideoPlayerProps = {
   forwardedRef?: React.Ref<HTMLVideoElement | null>;
 };
 
-function VideoPlayer({ src, className, onReady, forwardedRef }: VideoPlayerProps) {
+function VideoPlayer({
+  src,
+  className,
+  onReady,
+  forwardedRef,
+}: VideoPlayerProps) {
   const innerRef = React.useRef<HTMLVideoElement>(null);
   const triedRef = React.useRef(false);
 
@@ -39,19 +44,21 @@ function VideoPlayer({ src, className, onReady, forwardedRef }: VideoPlayerProps
         });
       }
     };
-      const onLoaded = () => {
-        onReady?.();
-        tryPlay();
-      };
-        el.addEventListener("loadedmetadata", onLoaded);
-        el.addEventListener("loadeddata", onLoaded);
-        tryPlay();
-      return () => {
-        el.removeEventListener("loadedmetadata", onLoaded);
-        el.removeEventListener("loadeddata", onLoaded);
-        try { el.pause(); } catch {}
-      };
-    }, [src, onReady]);
+    const onLoaded = () => {
+      onReady?.();
+      tryPlay();
+    };
+    el.addEventListener("loadedmetadata", onLoaded);
+    el.addEventListener("loadeddata", onLoaded);
+    tryPlay();
+    return () => {
+      el.removeEventListener("loadedmetadata", onLoaded);
+      el.removeEventListener("loadeddata", onLoaded);
+      try {
+        el.pause();
+      } catch {}
+    };
+  }, [src, onReady]);
 
   return (
     <video
@@ -120,15 +127,13 @@ class Slider12 extends BaseSlider {
                 type: "video",
                 url: "https://vid.cdn-website.com/a8ff2f1c/videos/E2xnAgaRzmoErKzfdTDC_upload+images+v2-v.mp4",
               },
-                additionalParams: { 
-                availableTypes: ["video", "image"] 
-              }
+              additionalParams: { availableTypes: ["video", "image"] },
             },
-            { 
-              type: "string", 
-              key: "header", 
-              displayer: "Header", 
-              value: "Onboard effortlessly" 
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Onboard effortlessly",
             },
             {
               type: "string",
@@ -137,12 +142,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Leverage Duda's AI Content Collection form or White Label AI Site Builder to make client onboarding painless (finally).",
             },
-            { 
-              type: "page", 
-              key: "link", 
-              displayer: "Card Link", 
-              value: "" 
-            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
           ],
         },
         {
@@ -158,15 +158,13 @@ class Slider12 extends BaseSlider {
                 type: "video",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dc6a536675f002dbbfbfe?alt=media",
               },
-                additionalParams: { 
-                availableTypes: ["video", "image"] 
-              }
+              additionalParams: { availableTypes: ["video", "image"] },
             },
-            { 
-              type: "string", 
-              key: "header", 
-              displayer: "Header", 
-              value: "Permission required" 
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Permission required",
             },
             {
               type: "string",
@@ -175,12 +173,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Lock access to specific features behind ultra-customizable permissions for both client and team accounts.",
             },
-            { 
-              type: "page", 
-              key: "link", 
-              displayer: "Card Link", 
-              value: "" 
-            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
           ],
         },
         {
@@ -196,15 +189,13 @@ class Slider12 extends BaseSlider {
                 type: "video",
                 url: "https://vid.cdn-website.com/a8ff2f1c/videos/AWajF0QTiOJfKkVco7PK_Permission-v.mp4",
               },
-                additionalParams: { 
-                availableTypes: ["video", "image"] 
-              }
+              additionalParams: { availableTypes: ["video", "image"] },
             },
-            { 
-              type: "string", 
-              key: "header", 
-              displayer: "Header", 
-              value: "Hands-off hand-offs" 
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Hands-off hand-offs",
             },
             {
               type: "string",
@@ -213,12 +204,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Grant your clients white label access to the editor. Don’t worry, they won’t receive any branded communications from Duda. Your customers are your own.",
             },
-            { 
-              type: "page", 
-              key: "link", 
-              displayer: "Card Link", 
-              value: "" 
-            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
           ],
         },
         {
@@ -234,15 +220,13 @@ class Slider12 extends BaseSlider {
                 type: "video",
                 url: "https://lirp.cdn-website.com/a8ff2f1c/dms3rep/multi/opt/Frame+1171275952-a56ad42b-1920w.png",
               },
-                additionalParams: { 
-                availableTypes: ["video", "image"] 
-              }
+              additionalParams: { availableTypes: ["video", "image"] },
             },
-            { 
-              type: "string", 
-              key: "header", 
-              displayer: "Header", 
-              value: "Collabor-elated" 
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Collabor-elated",
             },
             {
               type: "string",
@@ -251,12 +235,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Work alongside clients and teammates with in-line comment threads that support image and file uploads, right where you need them.",
             },
-            { 
-              type: "page", 
-              key: "link", 
-              displayer: "Card Link", 
-              value: "" 
-            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
           ],
         },
       ],
@@ -267,9 +246,7 @@ class Slider12 extends BaseSlider {
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
       value: { type: "icon", name: "FiArrowLeft" },
-        additionalParams: { 
-        availableTypes: ["icon"] 
-      }
+      additionalParams: { availableTypes: ["icon"] },
     });
 
     this.addProp({
@@ -277,14 +254,15 @@ class Slider12 extends BaseSlider {
       key: "nextArrow",
       displayer: "Next Arrow Icon",
       value: { type: "icon", name: "FiArrowRight" },
-        additionalParams: { 
-        availableTypes: ["icon"] 
-      }
+      additionalParams: { availableTypes: ["icon"] },
     });
 
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("mediaRefs", [] as Array<React.RefObject<HTMLVideoElement | HTMLImageElement>>);
+    this.setComponentState(
+      "mediaRefs",
+      [] as Array<React.RefObject<HTMLVideoElement | HTMLImageElement>>
+    );
     this.setComponentState("imgWidths", [] as number[]);
     this.setComponentState("canPrev", false);
     this.setComponentState("canNext", true);
@@ -320,20 +298,31 @@ class Slider12 extends BaseSlider {
 
   private handleResize = () => {
     if (this.resizeTimer) window.clearTimeout(this.resizeTimer);
-    this.resizeTimer = window.setTimeout(() => this.updateAllWidths(), 120) as unknown as number;
+    this.resizeTimer = window.setTimeout(
+      () => this.updateAllWidths(),
+      120
+    ) as unknown as number;
   };
 
   private ensureMediaRefs(len: number) {
-    let refs = this.getComponentState("mediaRefs") as Array<React.RefObject<HTMLVideoElement | HTMLImageElement>>;
+    let refs = this.getComponentState("mediaRefs") as Array<
+      React.RefObject<HTMLVideoElement | HTMLImageElement>
+    >;
     if (refs.length !== len) {
-      refs = Array.from({ length: len }, (_, i) => refs[i] ?? React.createRef<HTMLVideoElement | HTMLImageElement>());
+      refs = Array.from(
+        { length: len },
+        (_, i) =>
+          refs[i] ?? React.createRef<HTMLVideoElement | HTMLImageElement>()
+      );
       this.setComponentState("mediaRefs", refs);
     }
     return refs;
   }
 
   private updateWidthAt(index: number) {
-    const refs = this.getComponentState("mediaRefs") as Array<React.RefObject<HTMLVideoElement | HTMLImageElement>>;
+    const refs = this.getComponentState("mediaRefs") as Array<
+      React.RefObject<HTMLVideoElement | HTMLImageElement>
+    >;
     const el = refs[index]?.current;
     if (!el) return;
 
@@ -343,10 +332,11 @@ class Slider12 extends BaseSlider {
       w = el.getBoundingClientRect().width;
       if (!w && el.naturalWidth && el.naturalHeight && el.clientHeight) {
         const h = el.clientHeight || 350;
-    w = (el.naturalWidth * h) / el.naturalHeight;
+        w = (el.naturalWidth * h) / el.naturalHeight;
       }
     } else if (el instanceof HTMLVideoElement) {
-      const vw = el.videoWidth, vh = el.videoHeight;
+      const vw = el.videoWidth,
+        vh = el.videoHeight;
       if (vw && vh && el.clientHeight) {
         w = (vw * el.clientHeight) / vh;
       } else {
@@ -355,10 +345,12 @@ class Slider12 extends BaseSlider {
     }
 
     if (!w || w < 200) {
-  const container = (refs[index]?.current as HTMLElement)?.closest(`.${this.decorateCSS("media-container")}`) as HTMLElement | null;
-  const h = container?.clientHeight || 350; 
-  w = Math.round((h * 16) / 9);            
-}
+      const container = (refs[index]?.current as HTMLElement)?.closest(
+        `.${this.decorateCSS("media-container")}`
+      ) as HTMLElement | null;
+      const h = container?.clientHeight || 350;
+      w = Math.round((h * 16) / 9);
+    }
 
     const widths = [...(this.getComponentState("imgWidths") as number[])];
     widths[index] = Math.round(w);
@@ -366,12 +358,16 @@ class Slider12 extends BaseSlider {
   }
 
   private updateAllWidths() {
-    const items = this.castToObject<Card[]>("slider").filter((i) => (i as any).media);
+    const items = this.castToObject<Card[]>("slider").filter(
+      (i) => (i as any).media
+    );
     for (let i = 0; i < items.length; i++) this.updateWidthAt(i);
   }
 
   private wireMediaLoadHandlers() {
-    const nodes = document.querySelectorAll(`.${this.decorateCSS("media-container")}`) as NodeListOf<HTMLElement>;
+    const nodes = document.querySelectorAll(
+      `.${this.decorateCSS("media-container")}`
+    ) as NodeListOf<HTMLElement>;
 
     nodes.forEach((node) => {
       const idxStr = node.dataset.mediaIdx;
@@ -383,29 +379,49 @@ class Slider12 extends BaseSlider {
 
       if (img && !(img as any).__widthBound) {
         (img as any).__widthBound = true;
-        img.addEventListener("load", () => this.updateWidthAt(idx), { once: true });
+        img.addEventListener("load", () => this.updateWidthAt(idx), {
+          once: true,
+        });
       }
 
       if (video && !(video as any).__widthBound) {
         (video as any).__widthBound = true;
-        video.addEventListener("loadedmetadata", () => this.updateWidthAt(idx), { once: true });
-        video.addEventListener("loadeddata", () => this.updateWidthAt(idx), { once: true });
+        video.addEventListener(
+          "loadedmetadata",
+          () => this.updateWidthAt(idx),
+          { once: true }
+        );
+        video.addEventListener("loadeddata", () => this.updateWidthAt(idx), {
+          once: true,
+        });
       }
     });
   }
 
   private playVisibleSlideVideos() {
-    const root = document.querySelector(`.${this.decorateCSS("slider-parent")}`);
+    const root = document.querySelector(
+      `.${this.decorateCSS("slider-parent")}`
+    );
     if (!root) return;
 
-    const allVideos = Array.from(root.querySelectorAll("video")) as HTMLVideoElement[];
-    const activeSlides = Array.from(root.querySelectorAll(".slick-slide.slick-active"));
+    const allVideos = Array.from(
+      root.querySelectorAll("video")
+    ) as HTMLVideoElement[];
+    const activeSlides = Array.from(
+      root.querySelectorAll(".slick-slide.slick-active")
+    );
 
-    allVideos.forEach(v => { try { v.pause(); } catch {} });
+    allVideos.forEach((v) => {
+      try {
+        v.pause();
+      } catch {}
+    });
 
-    activeSlides.forEach(slide => {
-      const vids = Array.from(slide.querySelectorAll("video")) as HTMLVideoElement[];
-      vids.forEach(v => {
+    activeSlides.forEach((slide) => {
+      const vids = Array.from(
+        slide.querySelectorAll("video")
+      ) as HTMLVideoElement[];
+      vids.forEach((v) => {
         v.muted = true;
         (v as any).playsInline = true;
         v.loop = true;
@@ -420,69 +436,112 @@ class Slider12 extends BaseSlider {
   }
 
   private hardStopAutoplay() {
-      const s: any = this.getComponentState("slider-ref")?.current;
-      if (!s) return;
-      s.slickPause?.();
-      const inner = s.innerSlider;
-      inner?.pause?.();
-      try {
-        if (inner?.autoPlayTimer) {
-          clearInterval(inner.autoPlayTimer);
-          inner.autoPlayTimer = null;
-        }
-        if (inner && typeof inner.autoPlay === "function") {
-          inner.autoPlay = () => {};
-        }
-      } catch {}
-    }
+    const s: any = this.getComponentState("slider-ref")?.current;
+    if (!s) return;
+    s.slickPause?.();
+    const inner = s.innerSlider;
+    inner?.pause?.();
+    try {
+      if (inner?.autoPlayTimer) {
+        clearInterval(inner.autoPlayTimer);
+        inner.autoPlayTimer = null;
+      }
+      if (inner && typeof inner.autoPlay === "function") {
+        inner.autoPlay = () => {};
+      }
+    } catch {}
+  }
 
   private getSlidesToShow(): number {
     const s: any = this.getComponentState("slider-ref")?.current;
-    return s?.innerSlider?.props?.slidesToShow ?? 3; 
+    return s?.innerSlider?.props?.slidesToShow ?? 3;
   }
 
   private updateArrows(nextIndex?: number) {
-  if (typeof window === "undefined" || typeof document === "undefined") return;
+    try {
+      const s: any = this.getComponentState("slider-ref")?.current;
+      const inner = s?.innerSlider;
+      const items = this.castToObject<Card[]>("slider").filter(
+        (i) => (i as any).media
+      );
+      const slidesToShow =
+        inner?.props?.slidesToShow ?? this.getSlidesToShow() ?? 1;
 
-  try {
-    const root = document.querySelector(`.${this.decorateCSS("slider-parent")}`) as HTMLElement | null;
-    const listEl  = root?.querySelector(".slick-list")  as HTMLElement | null;   // görünür pencere
-    const trackEl = root?.querySelector(".slick-track") as HTMLElement | null;   // tüm slaytların şeridi
+      const cur =
+        typeof nextIndex === "number"
+          ? nextIndex
+          : inner?.state?.currentSlide ??
+            this.getComponentState("centerSlide") ??
+            0;
 
-    if (listEl && trackEl) {
-      const cs = window.getComputedStyle(listEl);
-      const padL = parseFloat(cs.paddingLeft || "0");
-      const padR = parseFloat(cs.paddingRight || "0");
-      const listInnerW = listEl.getBoundingClientRect().width - padL - padR;
-      const trackW = trackEl.getBoundingClientRect().width;
-      const tr = window.getComputedStyle(trackEl).transform;
-      let tx = 0;
-      const canPrev = tx < -1;
-      const canNext = trackW + tx - listInnerW > 1; 
+      const canPrev = cur > 0;
+      const canNext = cur + slidesToShow < items.length;
 
-      if (tr && tr !== "none") {
-        const m3 = tr.match(/matrix3d\(([^)]+)\)/);
-        if (m3) { const parts = m3[1].split(","); tx = parseFloat(parts[12] || "0"); }
-        else { const m2 = tr.match(/matrix\(([^)]+)\)/); if (m2) { const parts = m2[1].split(","); tx = parseFloat(parts[4] || "0"); } }
-      }
       this.setComponentState("canPrev", canPrev);
       this.setComponentState("canNext", canNext);
       return;
+    } catch {
+      /* düşerse alttaki DOM tabanlı yedek çalışır */
     }
-  } catch {}
 
-  const items = this.castToObject<Card[]>("slider").filter((i) => (i as any).media);
-  const slidesToShow = this.getSlidesToShow();
-  const idx = typeof nextIndex === "number" ? nextIndex : (this.getComponentState("centerSlide") ?? 0);
-  const canPrev = idx > 0;
-  const canNext = idx + slidesToShow < items.length;
+    // --- Yedek: DOM ölçümü (nadiren gerekir)
+    try {
+      const root = document.querySelector(
+        `.${this.decorateCSS("slider-parent")}`
+      ) as HTMLElement | null;
+      const listEl = root?.querySelector(".slick-list") as HTMLElement | null;
+      const trackEl = root?.querySelector(".slick-track") as HTMLElement | null;
 
-  this.setComponentState("canPrev", canPrev);
-  this.setComponentState("canNext", canNext);
-}
+      if (listEl && trackEl) {
+        const cs = window.getComputedStyle(listEl);
+        const padL = parseFloat(cs.paddingLeft || "0");
+        const padR = parseFloat(cs.paddingRight || "0");
+        const listInnerW = listEl.getBoundingClientRect().width - padL - padR;
+        const trackW = trackEl.getBoundingClientRect().width;
+        const tr = window.getComputedStyle(trackEl).transform;
+
+        let tx = 0;
+        if (tr && tr !== "none") {
+          const m3 = tr.match(/matrix3d\(([^)]+)\)/);
+          if (m3) {
+            const parts = m3[1].split(",");
+            tx = parseFloat(parts[12] || "0");
+          } else {
+            const m2 = tr.match(/matrix\(([^)]+)\)/);
+            if (m2) {
+              const parts = m2[1].split(",");
+              tx = parseFloat(parts[4] || "0");
+            }
+          }
+        }
+
+        const canPrev = tx < -1;
+        const canNext = trackW + tx - listInnerW > 1;
+        this.setComponentState("canPrev", canPrev);
+        this.setComponentState("canNext", canNext);
+        return;
+      }
+    } catch {}
+
+    const items = this.castToObject<Card[]>("slider").filter(
+      (i) => (i as any).media
+    );
+    const slidesToShow = this.getSlidesToShow();
+    const idx =
+      typeof nextIndex === "number"
+        ? nextIndex
+        : this.getComponentState("centerSlide") ?? 0;
+    const canPrev = idx > 0;
+    const canNext = idx + slidesToShow < items.length;
+
+    this.setComponentState("canPrev", canPrev);
+    this.setComponentState("canNext", canNext);
+  }
 
   render() {
-    const items = this.castToObject<Card[]>("slider").filter((item: Card) => (item as any).media);
+    const items = this.castToObject<Card[]>("slider").filter(
+      (item: Card) => (item as any).media
+    );
     const isCardExist = items.length > 0;
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
@@ -494,32 +553,39 @@ class Slider12 extends BaseSlider {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const arrowsExist = items.length > 1 && (previousArrow || nextArrow);
-    const prevMedia = this.getPropValue("previousArrow");   
+    const prevMedia = this.getPropValue("previousArrow");
     const nextMedia = this.getPropValue("nextArrow");
 
     const prevName =
       (typeof prevMedia === "string" && prevMedia) ||
-      prevMedia?.name || prevMedia?.value?.name || "FiArrowLeft";
+      prevMedia?.name ||
+      prevMedia?.value?.name ||
+      "FiArrowLeft";
     const nextName =
       (typeof nextMedia === "string" && nextMedia) ||
-      nextMedia?.name || nextMedia?.value?.name || "FiArrowRight";
+      nextMedia?.name ||
+      nextMedia?.value?.name ||
+      "FiArrowRight";
 
-    const bgRaw = this.getPropValue("background-image");           // prop
-    const bgObj = (bgRaw && typeof bgRaw === "object" && "value" in bgRaw)
+    const bgRaw = this.getPropValue("background-image");
+    const bgObj =
+      bgRaw && typeof bgRaw === "object" && "value" in bgRaw
         ? (bgRaw as any).value
         : bgRaw;
     const bgUrl =
-        (typeof bgObj === "string" ? bgObj
-        : (bgObj?.url ?? bgObj?.src
-          ?? (Array.isArray(bgObj?.sources) ? bgObj.sources[0]?.src : "")));  
-            
+      typeof bgObj === "string"
+        ? bgObj
+        : bgObj?.url ??
+          bgObj?.src ??
+          (Array.isArray(bgObj?.sources) ? bgObj.sources[0]?.src : "");
+
     const containerStyle: React.CSSProperties | undefined = bgUrl
       ? {
           backgroundImage: `url("${bgUrl}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundColor: "transparent", 
+          backgroundColor: "transparent",
         }
       : undefined;
 
@@ -528,7 +594,7 @@ class Slider12 extends BaseSlider {
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,
-      variableWidth: true,   
+      variableWidth: true,
       centerMode: false,
       arrows: false,
       cssEase: "linear",
@@ -545,9 +611,7 @@ class Slider12 extends BaseSlider {
       beforeChange: (_c: number, next: number) => {
         this.setComponentState("centerSlide", next);
         this.updateArrows(next);
-        setTimeout(() => {
-          this.playVisibleSlideVideos();
-        }, 0);
+        setTimeout(() => this.playVisibleSlideVideos(), 0);
       },
 
       afterChange: () => {
@@ -557,90 +621,157 @@ class Slider12 extends BaseSlider {
         const cur = s?.innerSlider?.state?.currentSlide ?? 0;
         this.updateArrows(cur);
       },
+
       responsive: [
-        { breakpoint: 960, settings: { variableWidth: false, autoplay: false,} },
-        { breakpoint: 640, settings: { dots: true, variableWidth: false, autoplay: false } },
+        {
+          breakpoint: 960,
+          settings: {
+            variableWidth: false,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            autoplay: false,
+          },
+        },
+        {
+          breakpoint: 640,
+          settings: {
+            dots: true,
+            variableWidth: false,
+            slidesToShow: 1, // mobil: tek kart
+            slidesToScroll: 1,
+            autoplay: false,
+          },
+        },
       ],
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")} style={containerStyle}>
+      <Base.Container
+        className={this.decorateCSS("container")}
+        style={containerStyle}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(title) || this.castToString(description) || previousArrow || nextArrow) && (
+          {(this.castToString(title) ||
+            this.castToString(description) ||
+            previousArrow ||
+            nextArrow) && (
             <div
               className={`${this.decorateCSS("header")}
-              ${!this.castToString(title) && !this.castToString(description) && this.decorateCSS("no-header-titles")}`}
+              ${
+                !this.castToString(title) &&
+                !this.castToString(description) &&
+                this.decorateCSS("no-header-titles")
+              }`}
             >
               {(this.castToString(description) || this.castToString(title)) && (
                 <Base.VerticalContent
-                  className={`${this.decorateCSS("header-content")} 
-                  ${!arrowsExist && this.decorateCSS("no-arrows")}`}
+                  className={`${this.decorateCSS("header-content")} ${
+                    !arrowsExist && this.decorateCSS("no-arrows")
+                  }`}
                 >
                   {this.castToString(title) && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
                   )}
                   {this.castToString(description) && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
+                    <Base.SectionDescription
+                      className={this.decorateCSS("description")}
+                    >
+                      {description}
+                    </Base.SectionDescription>
                   )}
                 </Base.VerticalContent>
               )}
             </div>
           )}
+
           <div className={this.decorateCSS("slider-parent")}>
             {arrowsExist && (
-                  <div className={this.decorateCSS("arrows")}>
-                    {previousArrow && (
-                      <Base.Icon
-                        name={prevName}
-                        propsIcon={{
-                          className: `${this.decorateCSS("prevArrow")} ${!canPrev ? this.decorateCSS("disabled") : ""}`,
-                          role: "button",
-                          tabIndex: 0,
-                          "aria-label": "Previous",
-                          "aria-disabled": !canPrev,
-                          onClick: () => { if (canPrev) this.getComponentState("slider-ref").current?.slickPrev(); },
-                        }}
-                      />
-                    )}
-                    {nextArrow && (
-                      <Base.Icon
-                        name={nextName}
-                        propsIcon={{
-                          className: `${this.decorateCSS("nextArrow")} ${!canNext ? this.decorateCSS("disabled") : ""}`,
-                          role: "button",
-                          tabIndex: 0,
-                          "aria-label": "Next",
-                          "aria-disabled": !canNext,
-                          onClick: () => { if (canNext) this.getComponentState("slider-ref").current?.slickNext(); },
-                        }}
-                      />
-                    )}
-                  </div>
+              <div className={this.decorateCSS("arrows")}>
+                {previousArrow && (
+                  <Base.Icon
+                    name={prevName}
+                    propsIcon={{
+                      className: `${this.decorateCSS("prevArrow")} ${
+                        !canPrev ? this.decorateCSS("disabled") : ""
+                      }`,
+                      role: "button",
+                      tabIndex: 0,
+                      "aria-label": "Previous",
+                      "aria-disabled": !canPrev,
+                      onClick: () => {
+                        if (canPrev)
+                          this.getComponentState(
+                            "slider-ref"
+                          ).current?.slickPrev();
+                      },
+                    }}
+                  />
                 )}
+                {nextArrow && (
+                  <Base.Icon
+                    name={nextName}
+                    propsIcon={{
+                      className: `${this.decorateCSS("nextArrow")} ${
+                        !canNext ? this.decorateCSS("disabled") : ""
+                      }`,
+                      role: "button",
+                      tabIndex: 0,
+                      "aria-label": "Next",
+                      "aria-disabled": !canNext,
+                      onClick: () => {
+                        if (canNext)
+                          this.getComponentState(
+                            "slider-ref"
+                          ).current?.slickNext();
+                      },
+                    }}
+                  />
+                )}
+              </div>
+            )}
+
             {isCardExist && (
               <ComposerSlider
                 {...settings}
                 ref={sliderRef}
                 autoplay={false}
-                autoplaySpeed={0} 
-                className={`${this.decorateCSS("carousel")} ${this.decorateCSS("carousel--multipleCards")}`}
+                autoplaySpeed={0}
+                className={`${this.decorateCSS("carousel")} ${this.decorateCSS(
+                  "carousel--multipleCards"
+                )}`}
               >
                 {items.map((rawItem: any, index: number) => {
-                  const mediaVal = rawItem.media?.value ?? rawItem.media ?? null;
+                  const mediaVal =
+                    rawItem.media?.value ?? rawItem.media ?? null;
                   const url =
                     mediaVal?.url ??
                     mediaVal?.src ??
-                    (Array.isArray(mediaVal?.sources) ? mediaVal.sources[0]?.src : "");
+                    (Array.isArray(mediaVal?.sources)
+                      ? mediaVal.sources[0]?.src
+                      : "");
                   const isVideo = !!url && /\.(mp4|webm|ogg)$/i.test(url);
                   const slideW = imgWidths[index];
                   const ref = mediaRefs[index];
+
                   const Inner = (
-                    <div className={this.decorateCSS("card")}
-                    style={slideW ? ({ width: `${slideW}px` } as React.CSSProperties) : undefined}>
+                    <div
+                      className={this.decorateCSS("card")}
+                      style={
+                        slideW
+                          ? ({ width: `${slideW}px` } as React.CSSProperties)
+                          : undefined
+                      }
+                    >
                       <div
                         className={this.decorateCSS("media-container")}
                         data-media-idx={index}
-                        style={slideW ? ({ width: `${slideW}px` } as React.CSSProperties) : undefined}
+                        style={
+                          slideW
+                            ? ({ width: `${slideW}px` } as React.CSSProperties)
+                            : undefined
+                        }
                       >
                         {isVideo ? (
                           <VideoPlayer
@@ -659,26 +790,54 @@ class Slider12 extends BaseSlider {
                           />
                         )}
                       </div>
-                      {(this.castToString(rawItem.header) || this.castToString(rawItem.description)) && (
+                      {(this.castToString(rawItem.header) ||
+                        this.castToString(rawItem.description)) && (
                         <Base.VerticalContent
                           className={this.decorateCSS("content-container")}
-                          style={slideW ? ({ width: `${slideW}px` } as React.CSSProperties) : undefined}
+                          style={
+                            slideW
+                              ? ({
+                                  width: `${slideW}px`,
+                                } as React.CSSProperties)
+                              : undefined
+                          }
                         >
                           {this.castToString(rawItem.header) && (
-                            <Base.H2 className={this.decorateCSS("content-title")}>{rawItem.header}</Base.H2>
+                            <Base.H2
+                              className={this.decorateCSS("content-title")}
+                            >
+                              {rawItem.header}
+                            </Base.H2>
                           )}
                           {this.castToString(rawItem.description) && (
-                            <Base.P className={this.decorateCSS("content-description")}>{rawItem.description}</Base.P>
+                            <Base.P
+                              className={this.decorateCSS(
+                                "content-description"
+                              )}
+                            >
+                              {rawItem.description}
+                            </Base.P>
                           )}
                         </Base.VerticalContent>
                       )}
                     </div>
                   );
+
+                  // Güvenli link çözümü
+                  const linkRaw = rawItem.link as any;
+                  const linkPath =
+                    typeof linkRaw === "string"
+                      ? linkRaw
+                      : linkRaw?.path ?? linkRaw?.url ?? linkRaw?.href ?? "";
+                  const hasLink = !!(linkPath && String(linkPath).trim());
+
                   return (
                     <div key={index}>
-                      <ComposerLink path={rawItem.link}>
-                        {Inner}
-                      </ComposerLink>
+                      {hasLink ? (
+                        <ComposerLink path={linkPath}>{Inner}</ComposerLink>
+                      ) : (
+                        Inner
+                      )}
                     </div>
                   );
                 })}
