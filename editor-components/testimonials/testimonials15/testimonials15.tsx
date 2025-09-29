@@ -288,7 +288,7 @@ class Testimonials15Page extends Testimonials {
                                     {topRightBox.visibility && (
                                         <div className={this.decorateCSS("top-right-content")}>
                                             <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
-                                                <Base.SectionSubTitle className={this.decorateCSS("content-header")}>
+                                                <Base.SectionSubTitle className={`${this.decorateCSS("content-header")} ${this.decorateCSS("line")}`}>
                                                     {topRightBox.textIcon}  
                                                     <span className={this.decorateCSS("header-text")}>
                                                         {topRightBox.text}

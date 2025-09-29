@@ -300,6 +300,20 @@
                     .content-header {
                         width: fit-content;
                         margin: 0;
+                        &.line{
+                            position: relative;
+                            transform: translateX(3rem);
+                            &:before{
+                                content: "";
+                                position: absolute;
+                                left: -3rem;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                width: 2rem;
+                                height: 2px;
+                                background: currentColor;
+                            }
+                        }
                         .header-text {
                             font-size: 1rem;
                             text-transform: uppercase;
