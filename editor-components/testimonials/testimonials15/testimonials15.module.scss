@@ -115,18 +115,25 @@
                             margin-top: -1.4rem;
                             transform: rotate(-90deg);
                             z-index: 1;
+                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
+                            background-color: color-mix(in srgb, var(--composer-html-background), 
+                                var(--composer-font-color-primary) 5%);
+                            z-index: 1;
                         }
                     
                         &::after {
                             content: '';
                             position: absolute;
-                            bottom: 0;
+                            bottom: 15px;
                             right: 0;
                             width: 20px;
                             height: 20px;
                             margin-right: -1.4rem;
+                            margin-bottom: -1.4rem;
                             transform: rotate(-90deg);
-                            z-index: 1;
+                            z-index: 2;
+                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
+                            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                         }
                         .experience-card {
                             height: 100%;
