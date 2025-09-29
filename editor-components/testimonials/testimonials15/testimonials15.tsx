@@ -242,45 +242,46 @@ class Testimonials15Page extends Testimonials {
         
         const rightSectionClass = this.getRightSideClass(topExist, bottomExist, videoExist);
         const gridLayoutClass = this.getGridLayoutClass(leftExist, rightExist);
+        const isImageExist = Boolean(this.getPropValue("image"));
         return(
             <>
                 <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
                     <Base.MaxContent className={this.decorateCSS("max-content")}>
                         <Base.ContainerGrid className={`${this.decorateCSS("content-grid")} ${gridLayoutClass}`}>
                             <div className={this.decorateCSS("left-section")}>
-                                {this.getPropValue("image") && (
-                                    <div className={this.decorateCSS("main-image-container")}>
+                                <div className={`${this.decorateCSS("main-image-container")} ${!isImageExist ? this.decorateCSS("box-alone") : ""}`}>
+                                    {isImageExist && (
                                         <Base.Media
                                             value={this.getPropValue("image")}
                                             className={this.decorateCSS("main-image")}
                                         />
-                                        {bottomLeftBox.visibility && (
-                                            <div className={this.decorateCSS("box-area")}>
-                                                <div className={this.decorateCSS("experience-card")}>
-                                                    <div className={this.decorateCSS("experience-header")}>
-                                                        <div className={this.decorateCSS("experience-title")}>
-                                                            {bottomLeftBox.title}
-                                                        </div>
+                                    )}
+                                    {bottomLeftBox.visibility && (
+                                        <div className={this.decorateCSS("box-area")}>
+                                            <div className={this.decorateCSS("experience-card")}>
+                                                <div className={this.decorateCSS("experience-header")}>
+                                                    <div className={this.decorateCSS("experience-title")}>
+                                                        {bottomLeftBox.title}
                                                     </div>
-                                                    <div className={this.decorateCSS("experience-content")}>
-                                                        <div className={this.decorateCSS("experience-number")}>
-                                                            {bottomLeftBox.number}
-                                                            {bottomLeftBox.numberIcon && (
-                                                                <Base.Icon
-                                                                    name={bottomLeftBox.numberIcon}
-                                                                    propsIcon={{className: this.decorateCSS("number-icon")}}
-                                                                />
-                                                            )}
-                                                        </div>
-                                                        <div className={this.decorateCSS("experience-subtitle")}>
-                                                            {bottomLeftBox.subtitle}
-                                                        </div>
+                                                </div>
+                                                <div className={this.decorateCSS("experience-content")}>
+                                                    <div className={this.decorateCSS("experience-number")}>
+                                                        {bottomLeftBox.number}
+                                                        {bottomLeftBox.numberIcon && (
+                                                            <Base.Icon
+                                                                name={bottomLeftBox.numberIcon}
+                                                                propsIcon={{className: this.decorateCSS("number-icon")}}
+                                                            />
+                                                        )}
+                                                    </div>
+                                                    <div className={this.decorateCSS("experience-subtitle")}>
+                                                        {bottomLeftBox.subtitle}
                                                     </div>
                                                 </div>
                                             </div>
-                                        )}
-                                    </div>
-                                )}
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             {renderRightSide && (
                                 <div className={`${this.decorateCSS("right-section")} ${rightSectionClass}`}>
@@ -364,12 +365,12 @@ class Testimonials15Page extends Testimonials {
                                                             value={videoBox.coverImage}
                                                             className={this.decorateCSS("video-cover")}
                                                         />
-                                                        <div className={this.decorateCSS("play-button")}>
+                                                        {videoBox.playIcon && <div className={this.decorateCSS("play-button")}>
                                                             <Base.Icon
                                                                 name={videoBox.playIcon}
                                                                 propsIcon={{className: this.decorateCSS("play-icon")}}
                                                             />
-                                                        </div>
+                                                        </div>}
                                                     </div>
                                                 </div>
                                             )}
