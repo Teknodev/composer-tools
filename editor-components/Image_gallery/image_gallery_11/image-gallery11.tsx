@@ -3,7 +3,7 @@ import { FiZoomIn, FiZoomOut } from "react-icons/fi";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
- 
+
 
 type TImage = { image: string; title?: string; imageLink: string };
 class ImageGallery11 extends BaseImageGallery {
@@ -61,20 +61,13 @@ class ImageGallery11 extends BaseImageGallery {
       value: "IoIosArrowForward",
     });
 
+
     this.addProp({
       type: "icon",
       key: "zoom-in-icon",
       displayer: "Zoom In Icon",
       value: "MdOutlineZoomIn",
     });
-
-    this.addProp({
-      type: "icon",
-      key: "zoom-out-icon",
-      displayer: "Zoom Out Icon",
-      value: "MdOutlineZoomOut",
-    });
-
 
     this.addProp({
       type: "array",
@@ -93,11 +86,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b16de36675f002db9baf2?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_1" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_1"
             },
           ],
         },
@@ -113,11 +106,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b177536675f002db9bbfe?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_2" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_2"
             },
           ],
         },
@@ -133,11 +126,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b17fb36675f002db9bcd0?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_3" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_3"
             },
           ],
         },
@@ -153,11 +146,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b186b36675f002db9bdb5?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_4" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_4"
             },
           ],
         },
@@ -173,11 +166,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b188936675f002db9bde7?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_5" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_5"
             },
           ],
         },
@@ -193,11 +186,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b18be36675f002db9be9c?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_6" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_6"
             },
           ],
         },
@@ -213,11 +206,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b18f336675f002db9bf2a?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_7" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_7"
             },
           ],
         },
@@ -233,11 +226,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b191b36675f002db9bffd?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "blog_8" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "blog_8"
             },
           ],
         },
@@ -261,11 +254,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1a6036675f002db9c11e?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-1" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-1"
             },
           ],
         },
@@ -281,11 +274,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1a9836675f002db9c143?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-2" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-2"
             },
           ],
         },
@@ -301,11 +294,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1aba36675f002db9c164?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-3" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-3"
             },
           ],
         },
@@ -321,11 +314,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1ad836675f002db9c1cf?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-4" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-4"
             },
           ],
         },
@@ -341,11 +334,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1aff36675f002db9c2f3?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-5" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-5"
             },
           ],
         },
@@ -361,11 +354,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1c1e36675f002db9c57f?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-6" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-6"
             },
           ],
         },
@@ -381,11 +374,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1c4636675f002db9c592?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-7" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-7"
             },
           ],
         },
@@ -401,11 +394,11 @@ class ImageGallery11 extends BaseImageGallery {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b188936675f002db9bde7?alt=media",
             },
-            { 
-              type: "string", 
-              key: "image-title", 
-              displayer: "Image Title", 
-              value: "photo-8" 
+            {
+              type: "string",
+              key: "image-title",
+              displayer: "Image Title",
+              value: "photo-8"
             },
           ],
         },
@@ -425,7 +418,7 @@ class ImageGallery11 extends BaseImageGallery {
   private isPanning = false;
   private panStartX = 0;
   private panStartY = 0;
-  private baseScale = 1;   
+  private baseScale = 1;
 
   private canvasRef = React.createRef<HTMLDivElement>();
   private topTrackRef = React.createRef<HTMLDivElement>();
@@ -434,11 +427,11 @@ class ImageGallery11 extends BaseImageGallery {
   private botWrapRef = React.createRef<HTMLDivElement>();
   private topInnerA = React.createRef<HTMLDivElement>();
   private botInnerA = React.createRef<HTMLDivElement>();
-  private closeBtnRef = React.createRef<HTMLButtonElement>(); 
+  private closeBtnRef = React.createRef<HTMLButtonElement>();
 
   private isDragging = false;
   private dragMoved = false;
-  private dragThreshold = 5;          
+  private dragThreshold = 5;
   private clickSuppressUntil = 0
   private startX = 0;
   private activeTrack: HTMLDivElement | null = null;
@@ -479,110 +472,110 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   private setLoopWidths = () => {
-  const apply = (track?: HTMLElement | null, innerA?: HTMLElement | null) => {
-    if (!track || !innerA) return;
-    const W = innerA.scrollWidth;                 
-    track.style.setProperty("--loopW", `${W}px`);
+    const apply = (track?: HTMLElement | null, innerA?: HTMLElement | null) => {
+      if (!track || !innerA) return;
+      const W = innerA.scrollWidth;
+      track.style.setProperty("--loopW", `${W}px`);
+    };
+    apply(this.topTrackRef.current, this.topInnerA.current);
+    apply(this.botTrackRef.current, this.botInnerA.current);
   };
-  apply(this.topTrackRef.current, this.topInnerA.current);
-  apply(this.botTrackRef.current, this.botInnerA.current);
-};
-private normalizeDrag = (wrap: HTMLDivElement, track: HTMLDivElement) => {
-  const half = track.scrollWidth / 2; 
-  let cur = parseFloat(getComputedStyle(wrap).getPropertyValue("--drag")) || 0;
+  private normalizeDrag = (wrap: HTMLDivElement, track: HTMLDivElement) => {
+    const half = track.scrollWidth / 2;
+    let cur = parseFloat(getComputedStyle(wrap).getPropertyValue("--drag")) || 0;
 
-  if (half > 0) {
-    cur = ((cur % half) + half) % half;
-    if (cur > 0) cur -= half;
-  } else {
-    cur = 0;
-  }
-  wrap.style.setProperty("--drag", `${Math.round(cur)}px`);
-};
+    if (half > 0) {
+      cur = ((cur % half) + half) % half;
+      if (cur > 0) cur -= half;
+    } else {
+      cur = 0;
+    }
+    wrap.style.setProperty("--drag", `${Math.round(cur)}px`);
+  };
 
 
   private onDragStart = (
-  e: React.MouseEvent | React.TouchEvent,
-  wrapRef: React.RefObject<HTMLDivElement | null>,
-  trackRef: React.RefObject<HTMLDivElement | null>
-) => {
-  (e as any).preventDefault?.();
-  const wrap = wrapRef.current;
-  const track = trackRef.current;
-  if (!wrap || !track) return;
+    e: React.MouseEvent | React.TouchEvent,
+    wrapRef: React.RefObject<HTMLDivElement | null>,
+    trackRef: React.RefObject<HTMLDivElement | null>
+  ) => {
+    (e as any).preventDefault?.();
+    const wrap = wrapRef.current;
+    const track = trackRef.current;
+    if (!wrap || !track) return;
 
-  this.isDragging = true;
-  this.dragMoved = false;                 
-  this.activeWrap = wrap;
-  this.activeTrack = track;
+    this.isDragging = true;
+    this.dragMoved = false;
+    this.activeWrap = wrap;
+    this.activeTrack = track;
 
-  const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-  this.startX = clientX;
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    this.startX = clientX;
 
-  const current = getComputedStyle(wrap).getPropertyValue('--drag').trim();
-  this.startDragOffset = parseFloat(current || '0') || 0;
+    const current = getComputedStyle(wrap).getPropertyValue('--drag').trim();
+    this.startDragOffset = parseFloat(current || '0') || 0;
 
-  wrap.classList.add(this.decorateCSS('dragging'));
-};
+    wrap.classList.add(this.decorateCSS('dragging'));
+  };
 
   private onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
-  if (!this.isDragging || !this.activeWrap || !this.activeTrack) return;
+    if (!this.isDragging || !this.activeWrap || !this.activeTrack) return;
 
-  const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-  const delta = clientX - this.startX;
-  const next = this.startDragOffset + delta;
+    const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    const delta = clientX - this.startX;
+    const next = this.startDragOffset + delta;
     if (Math.abs(delta) >= this.dragThreshold) this.dragMoved = true;
-  this.activeWrap.style.setProperty('--drag', `${next}px`);
-  this.normalizeDrag(this.activeWrap, this.activeTrack);
-  (e as any).preventDefault?.();
-};
+    this.activeWrap.style.setProperty('--drag', `${next}px`);
+    this.normalizeDrag(this.activeWrap, this.activeTrack);
+    (e as any).preventDefault?.();
+  };
 
-private onDragEnd = () => {
+  private onDragEnd = () => {
     if (!this.isDragging) return;
-  this.isDragging = false;
+    this.isDragging = false;
     if (this.activeWrap) this.activeWrap.classList.remove(this.decorateCSS('dragging'));
     if (this.activeWrap && this.activeTrack) {
-    this.normalizeDrag(this.activeWrap, this.activeTrack);
-  }
+      this.normalizeDrag(this.activeWrap, this.activeTrack);
+    }
 
     if (this.dragMoved) {
-    this.clickSuppressUntil = performance.now() + 350; 
-  }
+      this.clickSuppressUntil = performance.now() + 350;
+    }
 
-  this.dragMoved = false;
-  this.activeWrap = null;
-  this.activeTrack = null;
-};
+    this.dragMoved = false;
+    this.activeWrap = null;
+    this.activeTrack = null;
+  };
 
-private pauseTracks = () => {
-  this.topTrackRef?.current?.classList.add("paused");
-  this.botTrackRef?.current?.classList.add("paused");
-};
+  private pauseTracks = () => {
+    this.topTrackRef?.current?.classList.add("paused");
+    this.botTrackRef?.current?.classList.add("paused");
+  };
 
-private resumeTracks = () => {
-  this.topTrackRef?.current?.classList.remove("paused");
-  this.botTrackRef?.current?.classList.remove("paused");
-};
+  private resumeTracks = () => {
+    this.topTrackRef?.current?.classList.remove("paused");
+    this.botTrackRef?.current?.classList.remove("paused");
+  };
 
   private modalIndex = 0;
   private setZoom = (next: number) => {
-  const cover = this.computeCoverScale?.() ?? 1;
-  const isZoomed = next > 1;
-  const z = isZoomed ? Math.max(next, cover) : 1;
-  const prevZoom = this.zoom;
-  this.zoom = z;
+    const cover = this.computeCoverScale?.() ?? 1;
+    const isZoomed = next > 1;
+    const z = isZoomed ? Math.max(next, cover) : 1;
+    const prevZoom = this.zoom;
+    this.zoom = z;
 
-  if (this.zoom === 1) {
-    this.panX = 0;
-    this.panY = 0;
-  } else if (prevZoom !== this.zoom) {
-    this.clampPan(this.zoom);
-  }
-  this.forceUpdate();
-};
-  
+    if (this.zoom === 1) {
+      this.panX = 0;
+      this.panY = 0;
+    } else if (prevZoom !== this.zoom) {
+      this.clampPan(this.zoom);
+    }
+    this.forceUpdate();
+  };
+
   private toggleZoom = (e?: React.MouseEvent | React.TouchEvent) => {
-    if (this.zoom > 1) { 
+    if (this.zoom > 1) {
       this.setZoom(1);
       this.forceUpdate();
       return;
@@ -591,13 +584,13 @@ private resumeTracks = () => {
     const z1 = Math.max(1, this.zoom);
     const z2 = Math.max(cover, 1);
     let x = 0, y = 0;
-      if (e && this.canvasRef.current) {
-        const rect = this.canvasRef.current.getBoundingClientRect();
-        const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-        const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
-        x = clientX - (rect.left + rect.width  / 2);
-        y = clientY - (rect.top  + rect.height / 2);
-      }
+    if (e && this.canvasRef.current) {
+      const rect = this.canvasRef.current.getBoundingClientRect();
+      const clientX = 'touches' in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+      const clientY = 'touches' in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
+      x = clientX - (rect.left + rect.width / 2);
+      y = clientY - (rect.top + rect.height / 2);
+    }
 
     this.panX = this.panX - (x / z1) + (x / z2);
     this.panY = this.panY - (y / z1) + (y / z2);
@@ -608,26 +601,26 @@ private resumeTracks = () => {
     requestAnimationFrame(() => { this.clampPan(this.zoom); this.forceUpdate(); });
   };
 
-private clampPan(nextZoom?: number) {
-  const canvas = this.canvasRef.current;
-  const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-  if (!canvas || !imgEl || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
+  private clampPan(nextZoom?: number) {
+    const canvas = this.canvasRef.current;
+    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
+    if (!canvas || !imgEl || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
 
-  const { width: cW, height: cH } = canvas.getBoundingClientRect();
-  const nW = imgEl.naturalWidth, nH = imgEl.naturalHeight;
-  const contain = Math.min(cW / nW, cH / nH);
-  const zUser = nextZoom ?? this.zoom;
-  const zTotal = Math.max(1, zUser) * this.baseScale; 
-  const scaledW = nW * contain * zTotal;
-  const scaledH = nH * contain * zTotal;
-  const SAFE = 0;
-  const maxX = scaledW <= cW ? 0 : (scaledW - cW) / 2 + SAFE;
-  const maxY = scaledH <= cH ? 0 : (scaledH - cH) / 2 + SAFE;
-  this.panX = Math.max(-maxX, Math.min(maxX, this.panX));
-  this.panY = Math.max(-maxY, Math.min(maxY, this.panY));
-  this.panX = Math.round(this.panX);
-  this.panY = Math.round(this.panY);
-}
+    const { width: cW, height: cH } = canvas.getBoundingClientRect();
+    const nW = imgEl.naturalWidth, nH = imgEl.naturalHeight;
+    const contain = Math.min(cW / nW, cH / nH);
+    const zUser = nextZoom ?? this.zoom;
+    const zTotal = Math.max(1, zUser) * this.baseScale;
+    const scaledW = nW * contain * zTotal;
+    const scaledH = nH * contain * zTotal;
+    const SAFE = 0;
+    const maxX = scaledW <= cW ? 0 : (scaledW - cW) / 2 + SAFE;
+    const maxY = scaledH <= cH ? 0 : (scaledH - cH) / 2 + SAFE;
+    this.panX = Math.max(-maxX, Math.min(maxX, this.panX));
+    this.panY = Math.max(-maxY, Math.min(maxY, this.panY));
+    this.panX = Math.round(this.panX);
+    this.panY = Math.round(this.panY);
+  }
 
   private onPanStart = (e: React.MouseEvent | React.TouchEvent) => {
     if (this.zoom <= 1) return;
@@ -641,15 +634,15 @@ private clampPan(nextZoom?: number) {
   };
 
   private onPanMove = (e: React.MouseEvent | React.TouchEvent) => {
-     if (!this.isPanning) return;
-  const clientX = "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
-  const clientY = "touches" in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
+    if (!this.isPanning) return;
+    const clientX = "touches" in e ? e.touches[0].clientX : (e as React.MouseEvent).clientX;
+    const clientY = "touches" in e ? e.touches[0].clientY : (e as React.MouseEvent).clientY;
 
-  let nextX = clientX - this.panStartX;
-  let nextY = clientY - this.panStartY;
+    let nextX = clientX - this.panStartX;
+    let nextY = clientY - this.panStartY;
 
-  const canvas = this.canvasRef.current;
-  const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
+    const canvas = this.canvasRef.current;
+    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
     if (canvas && imgEl && imgEl.naturalWidth && imgEl.naturalHeight) {
       const { width: cW, height: cH } = canvas.getBoundingClientRect();
       const nW = imgEl.naturalWidth, nH = imgEl.naturalHeight;
@@ -661,85 +654,85 @@ private clampPan(nextZoom?: number) {
       const maxY = scaledH <= cH ? 0 : (scaledH - cH) / 2;
 
       const rubber = 0.25;
-      if (nextX >  maxX) nextX = maxX + (nextX - maxX) * rubber;
+      if (nextX > maxX) nextX = maxX + (nextX - maxX) * rubber;
       if (nextX < -maxX) nextX = -maxX + (nextX + maxX) * rubber;
-      if (nextY >  maxY) nextY = maxY + (nextY - maxY) * rubber;
+      if (nextY > maxY) nextY = maxY + (nextY - maxY) * rubber;
       if (nextY < -maxY) nextY = -maxY + (nextY + maxY) * rubber;
     }
 
-  this.panX = nextX;
-  this.panY = nextY;
+    this.panX = nextX;
+    this.panY = nextY;
 
-  (e as any).preventDefault?.();
-  this.forceUpdate();
-};
+    (e as any).preventDefault?.();
+    this.forceUpdate();
+  };
 
-private onPanEnd = () => {
-  this.isPanning = false;
-  const canvas = this.canvasRef.current;
-  canvas?.classList.add(this.decorateCSS("snapping"));
-  this.clampPan();
-  this.forceUpdate();
-  setTimeout(() => canvas?.classList.remove(this.decorateCSS("snapping")), 160);
-};
+  private onPanEnd = () => {
+    this.isPanning = false;
+    const canvas = this.canvasRef.current;
+    canvas?.classList.add(this.decorateCSS("snapping"));
+    this.clampPan();
+    this.forceUpdate();
+    setTimeout(() => canvas?.classList.remove(this.decorateCSS("snapping")), 160);
+  };
 
   private onImgLoad = () => {
-  if (!this.modalVisible) return;
-  this.baseScale = this.computeCoverScale();
-  this.clampPan();
-  this.forceUpdate();
-};
+    if (!this.modalVisible) return;
+    this.baseScale = this.computeCoverScale();
+    this.clampPan();
+    this.forceUpdate();
+  };
 
   private closeModal = () => {
     this.modalVisible = false;
     this.resumeTracks();
     this.unlockScroll();
     this.forceUpdate();
-};
+  };
 
   private openAt = (absIndex: number) => {
-  this.modalIndex = absIndex;
-  this.modalVisible = true;
-  this.pauseTracks();
-  this.lockScroll();
+    this.modalIndex = absIndex;
+    this.modalVisible = true;
+    this.pauseTracks();
+    this.lockScroll();
 
-  this.baseScale = this.computeCoverScale();
-  this.zoom = 1;            
-  this.panX = 0;
-  this.panY = 0;
+    this.baseScale = this.computeCoverScale();
+    this.zoom = 1;
+    this.panX = 0;
+    this.panY = 0;
 
-  this.forceUpdate();
-  requestAnimationFrame(() => {
-    this.clampPan();        
     this.forceUpdate();
-    this.closeBtnRef.current?.focus();
-  });
-  this.forceUpdate?.();
-};
+    requestAnimationFrame(() => {
+      this.clampPan();
+      this.forceUpdate();
+      this.closeBtnRef.current?.focus();
+    });
+    this.forceUpdate?.();
+  };
 
   private next = () => {
-  const total = this.getAllImages().length;
-  if (!total) return;
-  this.modalIndex = (this.modalIndex + 1) % total;
-  this.zoom = 1; this.panX = 0; this.panY = 0;
-  this.forceUpdate();
-};
+    const total = this.getAllImages().length;
+    if (!total) return;
+    this.modalIndex = (this.modalIndex + 1) % total;
+    this.zoom = 1; this.panX = 0; this.panY = 0;
+    this.forceUpdate();
+  };
 
-private prev = () => {
-  const total = this.getAllImages().length;
-  if (!total) return;
-  this.modalIndex = (this.modalIndex - 1 + total) % total;
-  this.zoom = 1; this.panX = 0; this.panY = 0;
-  this.forceUpdate();
-};
+  private prev = () => {
+    const total = this.getAllImages().length;
+    if (!total) return;
+    this.modalIndex = (this.modalIndex - 1 + total) % total;
+    this.zoom = 1; this.panX = 0; this.panY = 0;
+    this.forceUpdate();
+  };
 
   private onKeyDown = (e: KeyboardEvent) => {
-  if (!this.modalVisible) return;
-  if (e.key === "Escape") this.closeModal();
-  if (e.key === "ArrowRight") this.next();
-  if (e.key === "ArrowLeft") this.prev();
-  if (e.key === " " || e.key === "Enter") { e.preventDefault(); this.toggleZoom(); }
-};
+    if (!this.modalVisible) return;
+    if (e.key === "Escape") this.closeModal();
+    if (e.key === "ArrowRight") this.next();
+    if (e.key === "ArrowLeft") this.prev();
+    if (e.key === " " || e.key === "Enter") { e.preventDefault(); this.toggleZoom(); }
+  };
 
   private computeCoverScale = (): number => {
     const canvas = this.canvasRef.current;
@@ -752,9 +745,9 @@ private prev = () => {
     const rW = cW / nW;
     const rH = cH / nH;
     const coverOverContain = Math.max(rW, rH) / Math.min(rW, rH);
-    return coverOverContain ; 
+    return coverOverContain;
   };
-  
+
   componentDidMount(): void {
     this.setLoopWidths();
     window.addEventListener("resize", this.setLoopWidths);
@@ -770,14 +763,14 @@ private prev = () => {
     window.removeEventListener("resize", this.onResizeRecomputeZoom);
   }
   private onResizeRecomputeZoom = () => {
-  if (!this.modalVisible) return;
-  this.baseScale = this.computeCoverScale();
-  this.clampPan();
-  this.forceUpdate();
-};
+    if (!this.modalVisible) return;
+    this.baseScale = this.computeCoverScale();
+    this.clampPan();
+    this.forceUpdate();
+  };
 
-  
-  
+
+
   private getImages(propKey: string): TImage[] {
     const raw = this.castToObject<any[]>(propKey) || [];
     return raw
@@ -815,7 +808,7 @@ private prev = () => {
     const containerStyle: React.CSSProperties & Record<string, any> = {
       backgroundImage: hasBackgroundImage ? `url(${backgroundImage})` : "none",
       backgroundSize: "cover",
-      backgroundPosition: "center 150%",      
+      backgroundPosition: "center 150%",
       backgroundRepeat: "no-repeat",
     };
     const row1Speed = "200s";
@@ -830,20 +823,20 @@ private prev = () => {
         data-overlay-enabled={overlayEnabled && hasBackgroundImage ? "true" : "false"}
         style={containerStyle}
       >
-            {hasBackgroundImage && (
-        <div className={this.decorateCSS("bg-wrap")}>
-          <div
-            className={this.decorateCSS("bg-image")}
-            style={{
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center 150%",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-          {overlayEnabled && <div className={this.decorateCSS("bg-overlay")} />}
-        </div>
-      )}
+        {hasBackgroundImage && (
+          <div className={this.decorateCSS("bg-wrap")}>
+            <div
+              className={this.decorateCSS("bg-image")}
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center 150%",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
+            {overlayEnabled && <div className={this.decorateCSS("bg-overlay")} />}
+          </div>
+        )}
         {this.modalVisible && total > 0 && (
           <>
             <div className={this.decorateCSS("lightbox-overlay")} onClick={this.closeModal}></div>
@@ -854,23 +847,22 @@ private prev = () => {
               aria-modal="true"
               aria-label="Image viewer"
             >
-            {/* counter moved inside image area */}
+              {/* counter moved inside image area */}
 
               <div
-                     className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`}
-                     onClick={this.prev}
-                  >
-                    <Base.Icon
-                      propsIcon={{ className: this.decorateCSS("nav-prev-icon") }}
-                      name={this.getPropValue("nav-prev-icon")}
-                    />
-                  </div>
+                className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`}
+                onClick={this.prev}
+              >
+                <Base.Icon
+                  propsIcon={{ className: this.decorateCSS("nav-prev-icon") }}
+                  name={this.getPropValue("nav-prev-icon")}
+                />
+              </div>
 
               <div
                 ref={this.canvasRef}
-                className={`${this.decorateCSS("lightbox-canvas")} ${
-                  this.zoom > 1 ? this.decorateCSS("zoomable") : ""
-                } ${this.isPanning ? this.decorateCSS("panning") : ""}`}
+                className={`${this.decorateCSS("lightbox-canvas")} ${this.zoom > 1 ? this.decorateCSS("zoomable") : ""
+                  } ${this.isPanning ? this.decorateCSS("panning") : ""}`}
                 onMouseDown={this.onPanStart}
                 onMouseMove={this.onPanMove}
                 onMouseUp={this.onPanEnd}
@@ -880,11 +872,11 @@ private prev = () => {
                 onTouchEnd={this.onPanEnd}
                 onDoubleClick={(e) => this.toggleZoom(e)}
               >
-                
+
                 {active && (
                   <div
                     className={this.decorateCSS("lightbox-img-wrap")}
-                    style={{ transform: `translate(${this.panX}px, ${this.panY}px) scale(${this.zoom })` }}
+                    style={{ transform: `translate(${this.panX}px, ${this.panY}px) scale(${this.zoom})` }}
                     onMouseDown={this.onPanStart}
                     onMouseMove={this.onPanMove}
                     onMouseUp={this.onPanEnd}
@@ -921,7 +913,10 @@ private prev = () => {
                       onPointerDown={(e) => e.stopPropagation()}
                       onClick={(e) => { e.stopPropagation(); e.preventDefault(); this.closeModal(); }}
                     >
-                      <span className={this.decorateCSS("close-icon")} aria-hidden>×</span>
+                      <Base.Icon
+                        propsIcon={{ className: this.decorateCSS("close-icon") }}
+                        name={this.getPropValue("close-icon")}
+                      />
                     </button>
 
                     <button
@@ -937,49 +932,55 @@ private prev = () => {
                       onClick={(e) => { e.stopPropagation(); e.preventDefault(); this.toggleZoom(); }}
                     >
                       {this.zoom > 1 ? (
-                        <FiZoomOut className={this.decorateCSS("zoom-icon")} />
+                        <Base.Icon
+                          propsIcon={{ className: this.decorateCSS("zoom-icon") }}
+                          name={this.getPropValue("zoom-out-icon")}
+                        />
                       ) : (
-                        <FiZoomIn className={this.decorateCSS("zoom-icon")} />
+                        <Base.Icon
+                          propsIcon={{ className: this.decorateCSS("zoom-icon") }}
+                          name={this.getPropValue("zoom-in-icon")}
+                        />
                       )}
                     </button>
                   </div>
                 )}
               </div>
               <button
-  className={this.decorateCSS("side-hit") + " " + this.decorateCSS("left")}
-  onClick={() => {
-    if (this.isPanning) return;
-    if (this.dragMoved) return;
-    if (performance.now() < this.clickSuppressUntil) return;
-    this.prev();
-  }}
-  aria-label="Previous image"
-  disabled={this.zoom > 1}
-/>
-<button
-  className={this.decorateCSS("side-hit") + " " + this.decorateCSS("right")}
-  onClick={() => {
-    if (this.isPanning) return;
-    if (this.dragMoved) return;
-    if (performance.now() < this.clickSuppressUntil) return;
-    this.next();
-  }}
-  aria-label="Next image"
-  disabled={this.zoom > 1}
-/>
+                className={this.decorateCSS("side-hit") + " " + this.decorateCSS("left")}
+                onClick={() => {
+                  if (this.isPanning) return;
+                  if (this.dragMoved) return;
+                  if (performance.now() < this.clickSuppressUntil) return;
+                  this.prev();
+                }}
+                aria-label="Previous image"
+                disabled={this.zoom > 1}
+              />
+              <button
+                className={this.decorateCSS("side-hit") + " " + this.decorateCSS("right")}
+                onClick={() => {
+                  if (this.isPanning) return;
+                  if (this.dragMoved) return;
+                  if (performance.now() < this.clickSuppressUntil) return;
+                  this.next();
+                }}
+                aria-label="Next image"
+                disabled={this.zoom > 1}
+              />
 
 
 
               <div
-                     className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`}
-                     onClick={this.next}
-                  >
-                    <Base.Icon
-                      propsIcon={{ className: this.decorateCSS("nav-next-icon") }}
-                      name={this.getPropValue("nav-next-icon")}
-                    />
-                  </div>
-                  
+                className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`}
+                onClick={this.next}
+              >
+                <Base.Icon
+                  propsIcon={{ className: this.decorateCSS("nav-next-icon") }}
+                  name={this.getPropValue("nav-next-icon")}
+                />
+              </div>
+
             </div>
           </>
         )}
@@ -1035,7 +1036,7 @@ private prev = () => {
                             if (this.isDragging) return;
                             if (this.dragMoved) return;
                             if (performance.now() < this.clickSuppressUntil) return;
-                            this.openAt(i); 
+                            this.openAt(i);
                           }}
                         >
                           <img className={this.decorateCSS("image")} src={it.image} alt="" loading="lazy" draggable={false} />
@@ -1106,7 +1107,7 @@ private prev = () => {
                             if (this.isDragging) return;
                             if (this.dragMoved) return;
                             if (performance.now() < this.clickSuppressUntil) return;
-                            this.openAt(topLen + i); 
+                            this.openAt(topLen + i);
                           }}
                         >
                           <img className={this.decorateCSS("image")} src={it.image} alt="" loading="lazy" draggable={false} />
@@ -1127,11 +1128,11 @@ private prev = () => {
                             track?.classList.remove("paused");
                           }}
                           onClick={() => {
-                              if (this.isDragging) return;
-                              if (this.dragMoved) return;
-                              if (performance.now() < this.clickSuppressUntil) return;
-                              this.openAt(topLen + i); 
-                            }}
+                            if (this.isDragging) return;
+                            if (this.dragMoved) return;
+                            if (performance.now() < this.clickSuppressUntil) return;
+                            this.openAt(topLen + i);
+                          }}
                         >
                           <img className={this.decorateCSS("image")} src={it.image} alt="" loading="lazy" draggable={false} />
                         </div>
