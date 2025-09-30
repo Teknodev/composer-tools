@@ -22,6 +22,7 @@ function VideoPlayer({
   const triedRef = React.useRef(false);
 
   React.useImperativeHandle(forwardedRef, () => innerRef.current);
+
   React.useEffect(() => {
     const el = innerRef.current;
     if (!el) return;
@@ -44,13 +45,16 @@ function VideoPlayer({
         });
       }
     };
+
     const onLoaded = () => {
       onReady?.();
       tryPlay();
     };
+
     el.addEventListener("loadedmetadata", onLoaded);
     el.addEventListener("loadeddata", onLoaded);
     tryPlay();
+
     return () => {
       el.removeEventListener("loadedmetadata", onLoaded);
       el.removeEventListener("loadeddata", onLoaded);
@@ -122,7 +126,7 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video Url",
+              displayer: "Video / Image",
               value: {
                 type: "video",
                 url: "https://vid.cdn-website.com/a8ff2f1c/videos/E2xnAgaRzmoErKzfdTDC_upload+images+v2-v.mp4",
@@ -153,7 +157,7 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video Url",
+              displayer: "Video / Image",
               value: {
                 type: "video",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dc6a536675f002dbbfbfe?alt=media",
@@ -184,7 +188,7 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video Url",
+              displayer: "Video / Image",
               value: {
                 type: "video",
                 url: "https://vid.cdn-website.com/a8ff2f1c/videos/AWajF0QTiOJfKkVco7PK_Permission-v.mp4",
@@ -215,9 +219,9 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video Url",
+              displayer: "Video / Image",
               value: {
-                type: "video",
+                type: "image",
                 url: "https://lirp.cdn-website.com/a8ff2f1c/dms3rep/multi/opt/Frame+1171275952-a56ad42b-1920w.png",
               },
               additionalParams: { availableTypes: ["video", "image"] },
@@ -234,6 +238,100 @@ class Slider12 extends BaseSlider {
               displayer: "Description",
               value:
                 "Work alongside clients and teammates with in-line comment threads that support image and file uploads, right where you need them.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+        /* +3 ekstra kart */
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1440&auto=format&fit=crop",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "AI assist",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Draft content, summarize feedback and speed up routine tasks.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1440&auto=format&fit=crop",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "File uploads",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Collect files in one place with version history and previews.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1528784351875-d797d86873a1?q=80&w=1440&auto=format&fit=crop",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Custom branding",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Keep everything on-brand with logos, colors and typography.",
             },
             { type: "page", key: "link", displayer: "Card Link", value: "" },
           ],
@@ -266,16 +364,25 @@ class Slider12 extends BaseSlider {
     this.setComponentState("imgWidths", [] as number[]);
     this.setComponentState("canPrev", false);
     this.setComponentState("canNext", true);
+
+    // variableWidth sadece desktop’ta
+    const isDesktop =
+      typeof window !== "undefined" ? window.innerWidth > 1220 : true;
+    this.setComponentState("isVarWidth", isDesktop);
   }
 
   static getName(): string {
     return "Slider 12";
   }
 
+  private computeIsVarWidth = () =>
+    typeof window !== "undefined" ? window.innerWidth > 1220 : true;
+
   componentDidMount(): void {
     const sliderRef = this.getComponentState("slider-ref");
     sliderRef?.current?.slickPause?.();
     window.addEventListener("resize", this.handleResize);
+    this.setComponentState("isVarWidth", this.computeIsVarWidth());
     this.playVisibleSlideVideos();
     this.wireMediaLoadHandlers();
     this.hardStopAutoplay();
@@ -298,10 +405,10 @@ class Slider12 extends BaseSlider {
 
   private handleResize = () => {
     if (this.resizeTimer) window.clearTimeout(this.resizeTimer);
-    this.resizeTimer = window.setTimeout(
-      () => this.updateAllWidths(),
-      120
-    ) as unknown as number;
+    this.resizeTimer = window.setTimeout(() => {
+      this.setComponentState("isVarWidth", this.computeIsVarWidth());
+      this.updateAllWidths();
+    }, 120) as unknown as number;
   };
 
   private ensureMediaRefs(len: number) {
@@ -311,8 +418,7 @@ class Slider12 extends BaseSlider {
     if (refs.length !== len) {
       refs = Array.from(
         { length: len },
-        (_, i) =>
-          refs[i] ?? React.createRef<HTMLVideoElement | HTMLImageElement>()
+        (_, i) => refs[i] ?? React.createRef()
       );
       this.setComponentState("mediaRefs", refs);
     }
@@ -320,6 +426,9 @@ class Slider12 extends BaseSlider {
   }
 
   private updateWidthAt(index: number) {
+    const isVarWidth = !!this.getComponentState("isVarWidth");
+    if (!isVarWidth) return; // sadece desktop’ta ölç
+
     const refs = this.getComponentState("mediaRefs") as Array<
       React.RefObject<HTMLVideoElement | HTMLImageElement>
     >;
@@ -358,6 +467,9 @@ class Slider12 extends BaseSlider {
   }
 
   private updateAllWidths() {
+    const isVarWidth = !!this.getComponentState("isVarWidth");
+    if (!isVarWidth) return; // mobil/tablet’te ölçme
+
     const items = this.castToObject<Card[]>("slider").filter(
       (i) => (i as any).media
     );
@@ -365,10 +477,12 @@ class Slider12 extends BaseSlider {
   }
 
   private wireMediaLoadHandlers() {
+    const isVarWidth = !!this.getComponentState("isVarWidth");
+    if (!isVarWidth) return;
+
     const nodes = document.querySelectorAll(
       `.${this.decorateCSS("media-container")}`
     ) as NodeListOf<HTMLElement>;
-
     nodes.forEach((node) => {
       const idxStr = node.dataset.mediaIdx;
       const idx = idxStr ? parseInt(idxStr, 10) : -1;
@@ -389,7 +503,9 @@ class Slider12 extends BaseSlider {
         video.addEventListener(
           "loadedmetadata",
           () => this.updateWidthAt(idx),
-          { once: true }
+          {
+            once: true,
+          }
         );
         video.addEventListener("loadeddata", () => this.updateWidthAt(idx), {
           once: true,
@@ -458,33 +574,9 @@ class Slider12 extends BaseSlider {
   }
 
   private updateArrows(nextIndex?: number) {
-    try {
-      const s: any = this.getComponentState("slider-ref")?.current;
-      const inner = s?.innerSlider;
-      const items = this.castToObject<Card[]>("slider").filter(
-        (i) => (i as any).media
-      );
-      const slidesToShow =
-        inner?.props?.slidesToShow ?? this.getSlidesToShow() ?? 1;
-
-      const cur =
-        typeof nextIndex === "number"
-          ? nextIndex
-          : inner?.state?.currentSlide ??
-            this.getComponentState("centerSlide") ??
-            0;
-
-      const canPrev = cur > 0;
-      const canNext = cur + slidesToShow < items.length;
-
-      this.setComponentState("canPrev", canPrev);
-      this.setComponentState("canNext", canNext);
+    if (typeof window === "undefined" || typeof document === "undefined")
       return;
-    } catch {
-      /* düşerse alttaki DOM tabanlı yedek çalışır */
-    }
 
-    // --- Yedek: DOM ölçümü (nadiren gerekir)
     try {
       const root = document.querySelector(
         `.${this.decorateCSS("slider-parent")}`
@@ -523,6 +615,7 @@ class Slider12 extends BaseSlider {
       }
     } catch {}
 
+    // fallback
     const items = this.castToObject<Card[]>("slider").filter(
       (i) => (i as any).media
     );
@@ -543,19 +636,13 @@ class Slider12 extends BaseSlider {
       (item: Card) => (item as any).media
     );
     const isCardExist = items.length > 0;
+
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
-    const sliderRef = this.getComponentState("slider-ref");
-    const mediaRefs = this.ensureMediaRefs(items.length);
-    const imgWidths = (this.getComponentState("imgWidths") as number[]) || [];
-    const canPrev = this.getComponentState("canPrev");
-    const canNext = this.getComponentState("canNext");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
     const arrowsExist = items.length > 1 && (previousArrow || nextArrow);
+
     const prevMedia = this.getPropValue("previousArrow");
     const nextMedia = this.getPropValue("nextArrow");
-
     const prevName =
       (typeof prevMedia === "string" && prevMedia) ||
       prevMedia?.name ||
@@ -566,6 +653,9 @@ class Slider12 extends BaseSlider {
       nextMedia?.name ||
       nextMedia?.value?.name ||
       "FiArrowRight";
+
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
     const bgRaw = this.getPropValue("background-image");
     const bgObj =
@@ -589,15 +679,23 @@ class Slider12 extends BaseSlider {
         }
       : undefined;
 
+    const sliderRef = this.getComponentState("slider-ref");
+    const mediaRefs = this.ensureMediaRefs(items.length);
+    const imgWidths = (this.getComponentState("imgWidths") as number[]) || [];
+    const canPrev = this.getComponentState("canPrev");
+    const canNext = this.getComponentState("canNext");
+    const isVarWidth: boolean = !!this.getComponentState("isVarWidth");
+
     const settings = {
       dots: false,
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,
-      variableWidth: true,
+      variableWidth: isVarWidth, // yalnızca desktop
       centerMode: false,
       arrows: false,
-      cssEase: "linear",
+      cssEase: "cubic-bezier(.16,1,.3,1)",
+      speed: 620,
       adaptiveHeight: false,
       draggable: true,
       swipe: true,
@@ -605,8 +703,8 @@ class Slider12 extends BaseSlider {
       accessibility: true,
       autoplay: false,
       swipeToSlide: true,
-      waitForAnimate: false,
-      edgeFriction: 0,
+      waitForAnimate: true,
+      edgeFriction: 0.18,
 
       beforeChange: (_c: number, next: number) => {
         this.setComponentState("centerSlide", next);
@@ -622,26 +720,11 @@ class Slider12 extends BaseSlider {
         this.updateArrows(cur);
       },
 
+      // breakpoint’lerde sadece slidesToShow değişir — variableWidth state’ten geliyor
       responsive: [
-        {
-          breakpoint: 960,
-          settings: {
-            variableWidth: false,
-            slidesToShow: 2,
-            slidesToScroll: 1,
-            autoplay: false,
-          },
-        },
-        {
-          breakpoint: 640,
-          settings: {
-            dots: true,
-            variableWidth: false,
-            slidesToShow: 1, // mobil: tek kart
-            slidesToScroll: 1,
-            autoplay: false,
-          },
-        },
+        { breakpoint: 1220, settings: { slidesToShow: 2 } },
+        { breakpoint: 1024, settings: { dots: false, slidesToShow: 1 } },
+        { breakpoint: 640, settings: { dots: true, slidesToShow: 1 } },
       ],
     };
 
@@ -653,21 +736,11 @@ class Slider12 extends BaseSlider {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(title) ||
             this.castToString(description) ||
-            previousArrow ||
-            nextArrow) && (
-            <div
-              className={`${this.decorateCSS("header")}
-              ${
-                !this.castToString(title) &&
-                !this.castToString(description) &&
-                this.decorateCSS("no-header-titles")
-              }`}
-            >
+            arrowsExist) && (
+            <div className={this.decorateCSS("header")}>
               {(this.castToString(description) || this.castToString(title)) && (
                 <Base.VerticalContent
-                  className={`${this.decorateCSS("header-content")} ${
-                    !arrowsExist && this.decorateCSS("no-arrows")
-                  }`}
+                  className={this.decorateCSS("header-content")}
                 >
                   {this.castToString(title) && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -738,9 +811,7 @@ class Slider12 extends BaseSlider {
                 ref={sliderRef}
                 autoplay={false}
                 autoplaySpeed={0}
-                className={`${this.decorateCSS("carousel")} ${this.decorateCSS(
-                  "carousel--multipleCards"
-                )}`}
+                className={this.decorateCSS("carousel")}
               >
                 {items.map((rawItem: any, index: number) => {
                   const mediaVal =
@@ -755,31 +826,27 @@ class Slider12 extends BaseSlider {
                   const slideW = imgWidths[index];
                   const ref = mediaRefs[index];
 
+                  // variableWidth sadece desktop’ta → inline width yalnızca desktop’ta ver
+                  const widthStyle: React.CSSProperties | undefined =
+                    isVarWidth && slideW
+                      ? ({ width: `${slideW}px` } as React.CSSProperties)
+                      : undefined;
+
                   const Inner = (
                     <div
                       className={this.decorateCSS("card")}
-                      style={
-                        slideW
-                          ? ({ width: `${slideW}px` } as React.CSSProperties)
-                          : undefined
-                      }
+                      style={widthStyle}
                     >
                       <div
                         className={this.decorateCSS("media-container")}
                         data-media-idx={index}
-                        style={
-                          slideW
-                            ? ({ width: `${slideW}px` } as React.CSSProperties)
-                            : undefined
-                        }
+                        style={widthStyle}
                       >
                         {isVideo ? (
                           <VideoPlayer
                             src={url}
                             forwardedRef={ref as React.Ref<HTMLVideoElement>}
-                            onReady={() => {
-                              this.updateWidthAt(index);
-                            }}
+                            onReady={() => this.updateWidthAt(index)}
                           />
                         ) : (
                           <img
@@ -790,17 +857,12 @@ class Slider12 extends BaseSlider {
                           />
                         )}
                       </div>
+
                       {(this.castToString(rawItem.header) ||
                         this.castToString(rawItem.description)) && (
                         <Base.VerticalContent
                           className={this.decorateCSS("content-container")}
-                          style={
-                            slideW
-                              ? ({
-                                  width: `${slideW}px`,
-                                } as React.CSSProperties)
-                              : undefined
-                          }
+                          style={widthStyle}
                         >
                           {this.castToString(rawItem.header) && (
                             <Base.H2
@@ -823,8 +885,7 @@ class Slider12 extends BaseSlider {
                     </div>
                   );
 
-                  // Güvenli link çözümü
-                  const linkRaw = rawItem.link as any;
+                  const linkRaw = (rawItem as any).link;
                   const linkPath =
                     typeof linkRaw === "string"
                       ? linkRaw
