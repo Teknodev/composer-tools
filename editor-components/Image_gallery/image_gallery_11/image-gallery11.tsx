@@ -1,25 +1,11 @@
 import * as React from "react";
+import { FiZoomIn, FiZoomOut } from "react-icons/fi";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import * as IO from "react-icons/io"; 
-import type { IconType } from "react-icons";
-import { MdOutlineZoomOut } from "react-icons/md";
-import { MdOutlineZoomIn } from "react-icons/md";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosClose } from "react-icons/io";
+ 
 
 type TImage = { image: string; title?: string; imageLink: string };
-
-function getIconComponent(name: unknown): IconType | null {
-  if (typeof name !== "string" || !name.trim()) return null;
-  const lib = IO as unknown as Record<string, IconType>;
-  const Comp = lib[name];
-
-  return typeof Comp === "function" ? Comp : null;
-}
-
 class ImageGallery11 extends BaseImageGallery {
   constructor(props?: any) {
     super(props, styles);
@@ -517,8 +503,8 @@ private normalizeDrag = (wrap: HTMLDivElement, track: HTMLDivElement) => {
 
   private onDragStart = (
   e: React.MouseEvent | React.TouchEvent,
-  wrapRef: React.RefObject<HTMLDivElement>,
-  trackRef: React.RefObject<HTMLDivElement>
+  wrapRef: React.RefObject<HTMLDivElement | null>,
+  trackRef: React.RefObject<HTMLDivElement | null>
 ) => {
   (e as any).preventDefault?.();
   const wrap = wrapRef.current;
@@ -790,11 +776,7 @@ private prev = () => {
   this.forceUpdate();
 };
 
-  private renderIcon = (propKey: string, fallback: React.ReactNode) => {
-  const iconName = this.getPropValue(propKey); 
-  const Comp = getIconComponent(iconName);
-  return Comp ? <Comp /> : fallback;
-};
+  
   
   private getImages(propKey: string): TImage[] {
     const raw = this.castToObject<any[]>(propKey) || [];
@@ -872,7 +854,7 @@ private prev = () => {
               aria-modal="true"
               aria-label="Image viewer"
             >
-              <div className={this.decorateCSS("counter")}>{this.modalIndex + 1}/{total}</div>
+            {/* counter moved inside image area */}
 
               <div
                      className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`}
@@ -898,22 +880,74 @@ private prev = () => {
                 onTouchEnd={this.onPanEnd}
                 onDoubleClick={(e) => this.toggleZoom(e)}
               >
+                
                 {active && (
-                  <img
-                    className={this.decorateCSS("lightbox-img")}
-                    src={active.image}
-                    alt={active.title || ""}
-                    draggable={false}
-                    onLoad={this.onImgLoad}
-                      style={{
-                       transform: `translate(${this.panX}px, ${this.panY}px) scale(${this.zoom })`
-                      }}                  />
+                  <div
+                    className={this.decorateCSS("lightbox-img-wrap")}
+                    style={{ transform: `translate(${this.panX}px, ${this.panY}px) scale(${this.zoom })` }}
+                    onMouseDown={this.onPanStart}
+                    onMouseMove={this.onPanMove}
+                    onMouseUp={this.onPanEnd}
+                    onMouseLeave={this.onPanEnd}
+                    onTouchStart={this.onPanStart}
+                    onTouchMove={this.onPanMove}
+                    onTouchEnd={this.onPanEnd}
+                  >
+                    <img
+                      className={this.decorateCSS("lightbox-img")}
+                      src={active.image}
+                      alt={active.title || ""}
+                      draggable={false}
+                      onLoad={this.onImgLoad}
+                    />
+                    <div className={this.decorateCSS("counter-badge")}>
+                      {this.modalIndex + 1}/{total}
+                    </div>
+                    {active?.title && (
+                      <div className={this.decorateCSS("title-badge")}>
+                        {active.title}
+                      </div>
+                    )}
+                    <button
+                      ref={this.closeBtnRef}
+                      type="button"
+                      className={this.decorateCSS("close-btn")}
+                      aria-label="Close"
+                      title="Close"
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onMouseUp={(e) => e.stopPropagation()}
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onTouchEnd={(e) => e.stopPropagation()}
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onClick={(e) => { e.stopPropagation(); e.preventDefault(); this.closeModal(); }}
+                    >
+                      <span className={this.decorateCSS("close-icon")} aria-hidden>×</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className={this.decorateCSS("zoom-btn")}
+                      aria-label={this.zoom > 1 ? "Zoom out" : "Zoom in"}
+                      title={this.zoom > 1 ? "Zoom out" : "Zoom in"}
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onMouseUp={(e) => e.stopPropagation()}
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onTouchEnd={(e) => e.stopPropagation()}
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onClick={(e) => { e.stopPropagation(); e.preventDefault(); this.toggleZoom(); }}
+                    >
+                      {this.zoom > 1 ? (
+                        <FiZoomOut className={this.decorateCSS("zoom-icon")} />
+                      ) : (
+                        <FiZoomIn className={this.decorateCSS("zoom-icon")} />
+                      )}
+                    </button>
+                  </div>
                 )}
               </div>
               <button
   className={this.decorateCSS("side-hit") + " " + this.decorateCSS("left")}
-  onClick={(e) => {
-    // Drag/pan sonrası yanlış tıklamayı engelle
+  onClick={() => {
     if (this.isPanning) return;
     if (this.dragMoved) return;
     if (performance.now() < this.clickSuppressUntil) return;
@@ -924,7 +958,7 @@ private prev = () => {
 />
 <button
   className={this.decorateCSS("side-hit") + " " + this.decorateCSS("right")}
-  onClick={(e) => {
+  onClick={() => {
     if (this.isPanning) return;
     if (this.dragMoved) return;
     if (performance.now() < this.clickSuppressUntil) return;
@@ -945,35 +979,7 @@ private prev = () => {
                       name={this.getPropValue("nav-next-icon")}
                     />
                   </div>
-              <div className={this.decorateCSS("tools")}>
-                    <div
-  className={this.decorateCSS("icon-btn")}
-  onClick={() => this.toggleZoom()}
-  aria-label={this.zoom > 1 ? "Zoom out" : "Zoom in"}
->
-  {this.zoom > 1 
-    ? <Base.Icon
-        propsIcon={{ className: this.decorateCSS("nav-next-icon") }}
-        name={this.getPropValue("zoom-out-icon")}
-      />
-    : <Base.Icon
-        propsIcon={{ className: this.decorateCSS("nav-next-icon") }}
-        name={this.getPropValue("zoom-in-icon")}
-      />
-  }
-</div>
-                  <div
-                     className={this.decorateCSS("close")}
-                     onClick={this.closeModal}
-                  >
-                    <Base.Icon
-                      propsIcon={{ className: this.decorateCSS("close-icon") }}
-                      name={this.getPropValue("close-icon")}
-                    />
-                  </div>
-              </div>
-
-              {active?.title && <div className={this.decorateCSS("caption")}>{active.title}</div>}
+                  
             </div>
           </>
         )}
