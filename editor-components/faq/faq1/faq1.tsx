@@ -3,7 +3,6 @@ import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
-
 type FAQ = {
   subtitle: React.JSX.Element;
   text: React.JSX.Element;
