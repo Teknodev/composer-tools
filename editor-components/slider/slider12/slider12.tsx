@@ -97,7 +97,6 @@ class Slider12 extends BaseSlider {
       displayer: "Title",
       value: "Collaborative tools built for the pros. Like you",
     });
-
     this.addProp({
       type: "string",
       key: "description",
@@ -105,7 +104,6 @@ class Slider12 extends BaseSlider {
       value:
         "Supercharge your productivity with client management and collaboration tools that let you do it all from a single dashboard.",
     });
-
     this.addProp({
       type: "image",
       key: "background-image",
@@ -242,7 +240,6 @@ class Slider12 extends BaseSlider {
             { type: "page", key: "link", displayer: "Card Link", value: "" },
           ],
         },
-        /* +3 ekstra kart */
         {
           type: "object",
           key: "item",
@@ -346,7 +343,6 @@ class Slider12 extends BaseSlider {
       value: { type: "icon", name: "FiArrowLeft" },
       additionalParams: { availableTypes: ["icon"] },
     });
-
     this.addProp({
       type: "media",
       key: "nextArrow",
@@ -365,7 +361,6 @@ class Slider12 extends BaseSlider {
     this.setComponentState("canPrev", false);
     this.setComponentState("canNext", true);
 
-    // variableWidth sadece desktop’ta
     const isDesktop =
       typeof window !== "undefined" ? window.innerWidth > 1220 : true;
     this.setComponentState("isVarWidth", isDesktop);
@@ -408,6 +403,7 @@ class Slider12 extends BaseSlider {
     this.resizeTimer = window.setTimeout(() => {
       this.setComponentState("isVarWidth", this.computeIsVarWidth());
       this.updateAllWidths();
+      this.updateArrows();
     }, 120) as unknown as number;
   };
 
@@ -427,7 +423,7 @@ class Slider12 extends BaseSlider {
 
   private updateWidthAt(index: number) {
     const isVarWidth = !!this.getComponentState("isVarWidth");
-    if (!isVarWidth) return; // sadece desktop’ta ölç
+    if (!isVarWidth) return;
 
     const refs = this.getComponentState("mediaRefs") as Array<
       React.RefObject<HTMLVideoElement | HTMLImageElement>
@@ -446,11 +442,8 @@ class Slider12 extends BaseSlider {
     } else if (el instanceof HTMLVideoElement) {
       const vw = el.videoWidth,
         vh = el.videoHeight;
-      if (vw && vh && el.clientHeight) {
-        w = (vw * el.clientHeight) / vh;
-      } else {
-        w = el.getBoundingClientRect().width;
-      }
+      if (vw && vh && el.clientHeight) w = (vw * el.clientHeight) / vh;
+      else w = el.getBoundingClientRect().width;
     }
 
     if (!w || w < 200) {
@@ -468,8 +461,7 @@ class Slider12 extends BaseSlider {
 
   private updateAllWidths() {
     const isVarWidth = !!this.getComponentState("isVarWidth");
-    if (!isVarWidth) return; // mobil/tablet’te ölçme
-
+    if (!isVarWidth) return;
     const items = this.castToObject<Card[]>("slider").filter(
       (i) => (i as any).media
     );
@@ -503,9 +495,7 @@ class Slider12 extends BaseSlider {
         video.addEventListener(
           "loadedmetadata",
           () => this.updateWidthAt(idx),
-          {
-            once: true,
-          }
+          { once: true }
         );
         video.addEventListener("loadeddata", () => this.updateWidthAt(idx), {
           once: true,
@@ -573,6 +563,7 @@ class Slider12 extends BaseSlider {
     return s?.innerSlider?.props?.slidesToShow ?? 3;
   }
 
+  /** ESKİ OK SİSTEMİ: geometri tabanlı durum */
   private updateArrows(nextIndex?: number) {
     if (typeof window === "undefined" || typeof document === "undefined")
       return;
@@ -609,13 +600,14 @@ class Slider12 extends BaseSlider {
 
         const canPrev = tx < -1;
         const canNext = trackW + tx - listInnerW > 1;
+
         this.setComponentState("canPrev", canPrev);
         this.setComponentState("canNext", canNext);
         return;
       }
     } catch {}
 
-    // fallback
+    // Fallback (index tabanlı) – değişmeden bırakıyoruz
     const items = this.castToObject<Card[]>("slider").filter(
       (i) => (i as any).media
     );
@@ -691,7 +683,7 @@ class Slider12 extends BaseSlider {
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,
-      variableWidth: isVarWidth, // yalnızca desktop
+      variableWidth: isVarWidth,
       centerMode: false,
       arrows: false,
       cssEase: "cubic-bezier(.16,1,.3,1)",
@@ -706,7 +698,7 @@ class Slider12 extends BaseSlider {
       waitForAnimate: true,
       edgeFriction: 0.18,
 
-      beforeChange: (_c: number, next: number) => {
+      beforeChange: (_: number, next: number) => {
         this.setComponentState("centerSlide", next);
         this.updateArrows(next);
         setTimeout(() => this.playVisibleSlideVideos(), 0);
@@ -717,10 +709,9 @@ class Slider12 extends BaseSlider {
         this.hardStopAutoplay();
         const s: any = this.getComponentState("slider-ref")?.current;
         const cur = s?.innerSlider?.state?.currentSlide ?? 0;
-        this.updateArrows(cur);
+        requestAnimationFrame(() => this.updateArrows(cur));
       },
 
-      // breakpoint’lerde sadece slidesToShow değişir — variableWidth state’ten geliyor
       responsive: [
         { breakpoint: 1220, settings: { slidesToShow: 2 } },
         { breakpoint: 1024, settings: { dots: false, slidesToShow: 1 } },
@@ -774,10 +765,11 @@ class Slider12 extends BaseSlider {
                       "aria-label": "Previous",
                       "aria-disabled": !canPrev,
                       onClick: () => {
-                        if (canPrev)
+                        if (this.getComponentState("canPrev")) {
                           this.getComponentState(
                             "slider-ref"
                           ).current?.slickPrev();
+                        }
                       },
                     }}
                   />
@@ -794,10 +786,11 @@ class Slider12 extends BaseSlider {
                       "aria-label": "Next",
                       "aria-disabled": !canNext,
                       onClick: () => {
-                        if (canNext)
+                        if (this.getComponentState("canNext")) {
                           this.getComponentState(
                             "slider-ref"
                           ).current?.slickNext();
+                        }
                       },
                     }}
                   />
@@ -826,7 +819,6 @@ class Slider12 extends BaseSlider {
                   const slideW = imgWidths[index];
                   const ref = mediaRefs[index];
 
-                  // variableWidth sadece desktop’ta → inline width yalnızca desktop’ta ver
                   const widthStyle: React.CSSProperties | undefined =
                     isVarWidth && slideW
                       ? ({ width: `${slideW}px` } as React.CSSProperties)
@@ -902,6 +894,18 @@ class Slider12 extends BaseSlider {
                     </div>
                   );
                 })}
+
+                {/* görünmez kısa tampon – sağda küçük bir pay */}
+                <div aria-hidden="true">
+                  <div
+                    style={{
+                      width: "var(--slider-gutter)",
+                      height: 1,
+                      pointerEvents: "none",
+                      opacity: 0,
+                    }}
+                  />
+                </div>
               </ComposerSlider>
             )}
           </div>
