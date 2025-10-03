@@ -1,0 +1,736 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+$list-accent: var(--composer-primary-color, #f97316);
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+.content27 {
+  width: 100%;
+  background-color: var(--composer-html-background, #fff);
+  color: var(--composer-font-color-primary, #000000);
+  container-type: inline-size;
+}
+
+/* Desktop Styles (Default) */
+.maxContent {
+  margin: 0 auto;
+  width: 100%;
+  max-width: var(--composer-content-width);
+  padding-top: 0;
+  padding-bottom: var(--composer-gap-xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 40px) minmax(0, 1fr);
+  gap: var(--grid-gap, 40px);
+  align-items: stretch;
+  width: 100%;
+  margin-top: 0;
+}
+
+.dividerColumn {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+}
+
+.dividerWrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+}
+
+.dividerLine {
+  display: block;
+  width: 2px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.leftColumn {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--left-spacing, 140px) * 0.6);
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  margin-left: auto;
+}
+
+
+
+.leftTitle {
+  font-size: var(--title-font-size, 36px);
+  line-height: var(--title-line-height, 1.1);
+  letter-spacing: -0.02em;
+  font-weight: var(--composer-font-weight-bold);
+  color: var(--composer-font-color-primary, #000000);
+  margin: 0;
+  max-width: var(--title-max-width, 22ch);
+  white-space: pre-line;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100px;
+  /* Ensure layout doesn't collapse when empty */
+}
+
+.listItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 12px 0 12px 12px;
+  background: transparent;
+  border: none;
+  color: var(--composer-font-color-primary, #000000);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-content: flex-start;
+}
+
+.listItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0; /* collapsed by default */
+  border-radius: 999px;
+  background-color: transparent;
+  opacity: 0;
+  transition: height 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
+}
+
+
+.listItem.isActive {
+  color: var(--composer-primary-color, #f97316);
+  font-weight: var(--composer-font-weight-bold);
+  transform: translateX(4px);
+}
+
+.listItem.isActive::before {
+  background-color: currentColor;
+  height: 1.2em; /* vertical accent height */
+  opacity: 1;
+}
+
+
+
+.rightColumn {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.rightContentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  gap: 32px;
+  height: 100%;
+  min-height: 300px;
+  /* Ensure layout doesn't collapse when empty */
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  height: 100%;
+}
+
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.rightContent.isActive {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mediaSection {
+  display: flex;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.imageBox {
+  background: var(--composer-section-background, #fff);
+  border: 1px solid var(--composer-border-color, #e5e7eb);
+  border-radius: var(--imagebox-border-radius, 16px);
+  padding: var(--imagebox-padding, 16px);
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--imagebox-border-radius, 16px) - 4px);
+  object-fit: cover;
+}
+
+.detailsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1;
+}
+
+.infoLine {
+  line-height: 1.6;
+  color: var(--composer-font-color-primary, #000000);
+  font-weight: 400;
+}
+
+.infoLine strong {
+  font-weight: 700;
+  color: var(--composer-font-color-primary, #000000);
+  margin-right: 8px;
+}
+
+.infoLine span {
+  color: var(--composer-font-color-primary, #000000);
+  font-weight: 400;
+}
+
+.buttonSection {
+  display: none;
+}
+
+
+.ctaSection {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 40px) minmax(0, 1fr);
+  gap: var(--grid-gap, 40px);
+  width: 100%;
+  margin-top: var(--grid-gap, 40px);
+  padding-bottom: 0;
+}
+
+.ctaLeftPlaceholder,
+.ctaDividerPlaceholder {
+  display: none;
+}
+
+.ctaColumn {
+  grid-column: 3 / 4;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* Animation and Transition Classes */
+.fadeIn {
+  animation: fadeInAnimation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.show {
+  opacity: 1;
+}
+
+.activeBar {
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: currentColor;
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(-50%) scale(0);
+}
+
+.listItem.isActive .activeBar {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* CTA Button Styles - Genel yapı ve hover efektleri */
+.ctaWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Base CTA Button - Genel stiller */
+.ctaButton {
+  min-height: 48px;
+  padding: 16px 36px;
+  font-size: 16px;
+  font-weight: var(--composer-font-weight-bold);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButton::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.ctaButton:hover {
+  opacity: 0.95;
+}
+
+.ctaButton:hover::before {
+  left: 100%;
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+/* CTA Button Variants - Sadece değişen özellikler */
+/* Primary (Default) */
+.ctaButton.baseButton.primary,
+.ctaButton.baseButton {
+  background-color: var(--composer-primary-color, #f97316);
+  color: var(--composer-html-background, #fff);
+  border: none;
+}
+
+/* Secondary */
+.ctaButton.baseButton.secondary {
+  background-color: transparent;
+  color: var(--composer-primary-color, #f97316);
+  border: 2px solid var(--composer-primary-color, #f97316);
+}
+
+.ctaButton.baseButton.secondary:hover {
+  background-color: var(--composer-primary-color, #f97316);
+  color: var(--composer-html-background, #fff);
+}
+
+/* Tertiary */
+.ctaButton.baseButton.tertiary {
+  background-color: transparent;
+  color: var(--composer-primary-color, #f97316);
+  border: 1px solid var(--composer-border-color, #e5e7eb);
+}
+
+.ctaButton.baseButton.tertiary:hover {
+  background-color: var(--composer-primary-color, #f97316);
+  color: var(--composer-html-background, #fff);
+  border-color: var(--composer-primary-color, #f97316);
+}
+
+/* Link */
+.ctaButton.baseButton.link {
+  background-color: transparent;
+  color: var(--composer-primary-color, #f97316);
+  border: none;
+  padding: 8px 16px;
+  min-height: auto;
+}
+
+.ctaButton.baseButton.link:hover {
+  text-decoration: underline;
+}
+
+/* White */
+.ctaButton.baseButton.white {
+  background-color: var(--composer-html-background, #fff);
+  color: var(--composer-font-color-primary, #000000);
+  border: 2px solid var(--composer-border-color, #e5e7eb);
+}
+
+.ctaButton.baseButton.white:hover {
+  background-color: var(--composer-section-background-hover, #f8f9fa);
+  border-color: var(--composer-border-color-hover, #d1d5db);
+}
+
+/* Black */
+.ctaButton.baseButton.black {
+  background-color: var(--composer-font-color-secondary, #374151);
+  color: var(--composer-html-background, #fff);
+  border: 2px solid var(--composer-font-color-secondary, #374151);
+}
+
+.ctaButton.baseButton.black:hover {
+  background-color: var(--composer-font-color-primary, #111827);
+  border-color: var(--composer-font-color-primary, #111827);
+}
+
+/* Tablet Styles */
+@container (max-width: #{$composer-tablet-width}) {
+
+  .grid {
+    grid-template-columns: 0.9fr 1px 1.1fr;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .left {
+    gap: 24px;
+  }
+
+  .leftTitle {
+    font-size: 30px;
+    max-width: none;
+  }
+
+  .list {
+    gap: 14px;
+  }
+
+  .listItem {
+    font-size: 16px;
+    padding: 10px 0 10px 12px; /* space for accent bar */
+  }
+
+  .listItem.isActive::before {
+    background-color: currentColor;
+    height: 1.1em;
+    opacity: 1;
+  }
+
+  .right {
+    gap: 28px;
+  }
+
+  .imageBox {
+    padding: 12px;
+    background: var(--composer-section-background, #fff);
+    border: 1px solid var(--composer-border-color, #e5e7eb);
+    border-radius: 12px;
+  }
+
+  .image {
+    height: 100%;
+  }
+
+  .info {
+    gap: 18px;
+  }
+
+  .infoLine {
+    font-size: 15px;
+  }
+
+  .ctaWrapper {
+    margin-top: 36px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .ctaButton {
+    min-height: 46px;
+    padding: 15px 30px;
+    font-size: 15px;
+    min-width: 150px;
+  }
+
+  .ctaButton.baseButton.primary,
+  .ctaButton.baseButton {
+    background-color: var(--composer-primary-color, #f97316);
+  }
+
+  .ctaButton.baseButton.secondary {
+    background-color: transparent;
+    color: var(--composer-primary-color, #f97316);
+    border: 2px solid var(--composer-primary-color, #f97316);
+  }
+
+  .ctaButton.baseButton.tertiary {
+    background-color: transparent;
+    color: var(--composer-primary-color, #f97316);
+    border: 1px solid var(--composer-border-color, #e5e7eb);
+  }
+
+  .ctaButton.baseButton.link {
+    background-color: transparent;
+    color: var(--composer-primary-color, #f97316);
+    padding: 8px 16px;
+    min-height: auto;
+  }
+
+  .ctaButton.baseButton.white {
+    background-color: var(--composer-html-background, #fff);
+    color: var(--composer-font-color-primary, #000000);
+    border: 2px solid var(--composer-border-color, #e5e7eb);
+  }
+
+  .ctaButton.baseButton.black {
+    background-color: var(--composer-font-color-secondary, #374151);
+    color: var(--composer-html-background, #fff);
+    border: 2px solid var(--composer-font-color-secondary, #374151);
+  }
+}
+
+/* CTA Button Styles - Desktop genel */
+.ctaWrapper {
+  margin-top: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.ctaButton {
+  min-width: 160px;
+  gap: 8px;
+  align-self: flex-start;
+}
+
+
+/* Mobile Styles */
+@container (max-width: #{$composer-phone-width}) {
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .left {
+    gap: 16px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leftContent {
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .listWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .leftTitle {
+    font-size: 24px;
+    text-align: center;
+    max-width: none;
+  }
+
+  .list {
+    gap: 10px;
+    align-items: center;
+  }
+
+  .listItem {
+    font-size: 15px;
+    padding: 10px 0 10px 12px; /* space for accent bar */
+    text-align: left;
+    justify-content: flex-start;
+    transform: none;
+  }
+
+  .listItem.isActive {
+    transform: none;
+    color: var(--composer-primary-color, #f97316);
+    font-weight: var(--composer-font-weight-bold);
+  }
+
+  .listItem.isActive::before {
+    background-color: currentColor;
+    height: 1.1em;
+    opacity: 1;
+  }
+
+  /* base ::before preserved at desktop; only height changes here */
+
+  .right {
+    gap: 24px;
+  }
+
+  .imageBox {
+    padding: 8px;
+    max-width: 100%;
+    background: var(--composer-section-background, #fff);
+    border: 1px solid var(--composer-border-color, #e5e7eb);
+    border-radius: 8px;
+  }
+
+  .image {
+    height: 100%;
+  }
+
+  .info {
+    gap: 10px;
+    text-align: center;
+  }
+
+  .infoLine {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .ctaWrapper {
+    margin-top: 32px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .ctaSection {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaLeftPlaceholder,
+  .ctaDividerPlaceholder {
+    display: none;
+  }
+
+  .ctaColumn {
+    grid-column: auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+  }
+
+  .ctaButton {
+    min-height: 44px;
+    padding: 14px 28px;
+    font-size: 15px;
+    min-width: 140px;
+    width: auto;
+    max-width: none;
+  }
+
+  .ctaButton.baseButton.primary,
+  .ctaButton.baseButton {
+    min-height: 40px;
+    padding: 12px 20px;
+    font-size: 14px;
+    background-color: var(--composer-primary-color, #f97316);
+  }
+
+  .ctaButton.baseButton.secondary {
+    background-color: transparent;
+    color: var(--composer-primary-color, #f97316);
+    border: 2px solid var(--composer-primary-color, #f97316);
+  }
+
+  .ctaButton.baseButton.tertiary {
+    background-color: transparent;
+    color: var(--composer-primary-color, #f97316);
+    border: 1px solid var(--composer-border-color, #e5e7eb);
+  }
+
+  .ctaButton.baseButton.link {
+    background-color: transparent;
+    color: var(--composer-primary-color, #f97316);
+    padding: 8px 12px;
+    min-height: auto;
+  }
+
+  .ctaButton.baseButton.white {
+    background-color: var(--composer-html-background, #fff);
+    color: var(--composer-font-color-primary, #000000);
+    border: 2px solid var(--composer-border-color, #e5e7eb);
+  }
+
+  .ctaButton.baseButton.black {
+    background-color: var(--composer-font-color-secondary, #374151);
+    color: var(--composer-html-background, #fff);
+    border: 2px solid var(--composer-font-color-secondary, #374151);
+  }
+}
+
+/* Empty State Styles - Shown when no items are present */
+.emptyState {
+  list-style: none;
+  padding: 20px;
+  text-align: center;
+  color: var(--composer-font-color-primary, #000000);
+
+  p {
+    margin: 0;
+    font-style: italic;
+  }
+}
+
+.emptyContentState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+
+  p {
+    margin: 0;
+    font-style: italic;
+    color: var(--composer-font-color-primary, #000000);
+  }
+}
