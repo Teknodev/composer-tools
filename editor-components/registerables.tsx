@@ -48,6 +48,7 @@ import ContentComponent21 from "./content/content21/content21";
 import ContentComponent22 from "./content/content22/content22";
 import ContentComponent23 from "./content/content23/content23";
 import ContentComponent24 from "./content/content24/content24";
+import ContentComponent25 from "./content/content25/content25";
 import ContentComponent26 from "./content/content26/content26";
 import ContentComponent28 from "./content/content28/content28";
 import SliderComponent1 from "./slider/slider1/slider1";
@@ -183,6 +184,7 @@ import TestimonialsComponent11 from "./testimonials/testimonials11/testimonials1
 import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials12";
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
 import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
+import TestimonialsComponent15 from "./testimonials/testimonials15/testimonials15";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -329,6 +331,7 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent22,
     ContentComponent23,
     ContentComponent24,
+    ContentComponent25,
     ContentComponent26,
     ContentComponent28,
     SliderComponent1,
@@ -484,6 +487,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent12,
     TestimonialsComponent13,
     TestimonialsComponent14,
+    TestimonialsComponent15,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
