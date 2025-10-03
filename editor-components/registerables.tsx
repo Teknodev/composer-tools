@@ -548,11 +548,11 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget4,
     SocialWidget5,
     ECommerce3,
-    ComingSoon4,
-    ComingSoon3,
     ComingSoon1,
-    ECommerce4,
     ComingSoon2,
+    ComingSoon3,
+    ComingSoon4,
+    ECommerce4,
     ECommerce6,
   ]);
 }
