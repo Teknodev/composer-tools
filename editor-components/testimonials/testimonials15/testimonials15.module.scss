@@ -75,10 +75,6 @@
                                 height: 100%;
                                 padding: 0;
                                 background-color: transparent;
-                                &::before,
-                                &::after {
-                                    display: none;
-                                }
                             }
                         }
 
@@ -105,36 +101,7 @@
                                 var(--composer-font-color-primary) 5%);
                         padding: 15px 15px 0 0;
                         border-top-right-radius: var(--composer-border-radius-lg);
-                        &::before {
-                            content: '';
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 20px;
-                            height: 20px;
-                            margin-top: -1.4rem;
-                            transform: rotate(-90deg);
-                            z-index: 1;
-                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
-                            background-color: color-mix(in srgb, var(--composer-html-background), 
-                                var(--composer-font-color-primary) 5%);
-                            z-index: 1;
-                        }
-                    
-                        &::after {
-                            content: '';
-                            position: absolute;
-                            bottom: 15px;
-                            right: 0;
-                            width: 20px;
-                            height: 20px;
-                            margin-right: -1.4rem;
-                            margin-bottom: -1.4rem;
-                            transform: rotate(-90deg);
-                            z-index: 2;
-                            mask: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
-                            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                        }
+
                         .experience-card {
                             height: 100%;
                             width: 100%;
@@ -309,17 +276,7 @@
                         margin: 0;
                         &.line{
                             position: relative;
-                            transform: translateX(3rem);
-                            &:before{
-                                content: "";
-                                position: absolute;
-                                left: -3rem;
-                                top: 50%;
-                                transform: translateY(-50%);
-                                width: 2rem;
-                                height: 2px;
-                                background: currentColor;
-                            }
+                            transform: translateX(48px);
                         }
                         .header-text {
                             font-size: 1rem;
@@ -717,10 +674,8 @@
         }
       }
     }
+    
   }
-}
-
-@container (max-width: #{$composer-phone-width}) {
   .overlay {
     .video-container {
       max-width: 350px;
