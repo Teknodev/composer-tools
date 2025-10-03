@@ -17,7 +17,7 @@ $bp-lg: 1024px;
   margin: 0 auto;
   width: 100%;
   max-width: var(--composer-content-width);
-  padding-top: var(--composer-gap-xl);
+  padding-top: 0;
   padding-bottom: var(--composer-gap-xl);
 }
 
@@ -27,7 +27,7 @@ $bp-lg: 1024px;
   gap: var(--grid-gap, 40px);
   align-items: stretch;
   width: 100%;
-  margin-top: clamp(0px, var(--content27-grid-margin, 40px), 40px);
+  margin-top: 0;
 }
 
 .dividerColumn {
@@ -239,7 +239,7 @@ $bp-lg: 1024px;
   gap: var(--grid-gap, 40px);
   width: 100%;
   margin-top: var(--grid-gap, 40px);
-  padding-bottom: var(--composer-gap-xxl);
+  padding-bottom: 0;
 }
 
 .ctaLeftPlaceholder,
