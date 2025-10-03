@@ -22,6 +22,37 @@ import ListComponent9 from "./list/list9/list9";
 import ListComponent10 from "./list/list10/list10";
 import ListComponent11 from "./list/list11/list11";
 import ListComponent12 from "./list/list12/list12";
+<<<<<<< HEAD
+=======
+import LocationComponent1 from "./location/location1/location1";
+import LocationComponent3 from "./location/location3/location3";
+import ContentComponent1 from "./content/content1/content1";
+import ContentComponent2 from "./content/content2/content2";
+import ContentComponent3 from "./content/content3/content3";
+import ContentComponent4 from "./content/content4/content4";
+import ContentComponent5 from "./content/content5/content5";
+import ContentComponent6 from "./content/content6/content6";
+import ContentComponent7 from "./content/content7/content7";
+import ContentComponent8 from "./content/content8/content8";
+import ContentComponent9 from "./content/content9/content9";
+import ContentComponent10 from "./content/content10/content10";
+import ContentComponent11 from "./content/content11/content11";
+import ContentComponent12 from "./content/content12/content12";
+import ContentComponent13 from "./content/content13/content13";
+import ContentComponent14 from "./content/content14/content14";
+import ContentComponent15 from "./content/content15/content15";
+import ContentComponent16 from "./content/content16/content16";
+import ContentComponent17 from "./content/content17/content17";
+import ContentComponent18 from "./content/content18/content18";
+import ContentComponent19 from "./content/content19/content19";
+import ContentComponent20 from "./content/content20/content20";
+import ContentComponent21 from "./content/content21/content21";
+import ContentComponent22 from "./content/content22/content22";
+import ContentComponent23 from "./content/content23/content23";
+import ContentComponent24 from "./content/content24/content24";
+import ContentComponent26 from "./content/content26/content26";
+import ContentComponent28 from "./content/content28/content28";
+>>>>>>> 7d7cff27 (feat: Create Content28 component with its styles)
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
