@@ -1,0 +1,10 @@
+Banner Component Rules 
+- All banners with a background image should have an overlay prop added.
+- The overlay should be added as a div and must have a class name.
+- Add media will be used.
+- Prop names should be reviewed to ensure consistency within the banner category.
+- All displayers should have their first letters capitalized.
+- All divs should have class names.
+- Extra divs, if any, should be checked and removed.
+- Missing divs should be added if necessary.
+- All divs should have class names.

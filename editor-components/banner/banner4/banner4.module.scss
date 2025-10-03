@@ -78,6 +78,7 @@
                         -webkit-box-orient: vertical;
                         overflow: hidden !important;
                         text-overflow: ellipsis !important;
+                        width: 100%;
 
                         &.image {
                             color: black !important;
@@ -91,7 +92,7 @@
                         align-items: center;
 
                         .link {
-                            .homepage {
+                            .text {
                                 font-size: 1rem !important;
                                 &.image {
                                     color: var(--composer-font-color-primary) !important;
@@ -112,9 +113,25 @@
                             }
                         }
 
-                        .currentPage {
+                        .current-page-container {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--gap-sm);
+                            content: "";
+                        }
+                        .current-page-text {
                             font-size: 1rem !important;
                             font-weight: bold;
+                            content: "";
+                            &.image {
+                                color: var(--composer-font-color-primary) !important;
+                            }
+                        }
+                        .current-page-icon {
+                            min-width: 15px;
+                            min-height: 15px;
+                            flex-shrink: 0;
+                            content: "";
                             &.image {
                                 color: var(--composer-font-color-primary) !important;
                             }

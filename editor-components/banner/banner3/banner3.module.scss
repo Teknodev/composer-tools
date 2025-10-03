@@ -4,28 +4,29 @@
     position: relative;
     min-height: 400px;
     overflow: hidden;
-    object-fit: cover;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 
-    &::before {
-        content: "";
+    .background-image {
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.4);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
+
+    .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
         z-index: 1;
+        background-color: var(--composer-overlay-color);
     }
 
     &.no-background {
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-
-        &::before {
-            content: none;
-        }
     }
 
     >* {
@@ -35,7 +36,6 @@
 
     .breadcrumb-wrapper {
         position: absolute;
-        left: 10%;
         bottom: 0;
 
         .crumber-content {
@@ -43,7 +43,7 @@
             flex-direction: column;
             flex-wrap: wrap;
             align-items: center;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
             padding: var(--composer-gap-lg) var(--composer-gap-xl);
             background: var(--composer-html-background);
             box-shadow: var(--box-shadow-active);
@@ -54,7 +54,6 @@
             max-width: 60%;
 
             .title {
-                font-size: 3rem;
                 text-align: left;
                 width: 100%;
                 display: -webkit-box;
@@ -116,6 +115,18 @@
                     height: 20px;
                     color: var(--composer-primary-color);
                     flex-shrink: 0;
+                }
+                .current-page-container {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--composer-gap-sm);
+                    width: 100%;
+                }
+                .current-page-icon {
+                    min-width: 15px;
+                    min-height: 15px;
+                    flex-shrink: 0;
+                    color: var(--composer-font-color-primary);
                 }
             }
         }

@@ -4,6 +4,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
+type BreadcrumbItem = {
+    title: string;
+    navigateTo: string;
+};
+
 
 class Banner2 extends BaseBanner {
   constructor(props?: any) {
@@ -15,22 +20,55 @@ class Banner2 extends BaseBanner {
       value: "The Best Time to Celebrate",
     });
     this.addProp({
-      type: "string",
-      key: "homepage",
-      displayer: "Home Page",
-      value: "Home Page",
+      type: "array",
+      key: "breadcrumbItems",
+      displayer: "Breadcrumb Items",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Home",
+            },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
     this.addProp({
-      type: "page",
-      key: "navigateTo",
-      displayer: "Navigate To",
-      value: "",
+      type: "boolean",
+      key: "showBreadcrumb",
+      displayer: "Show Breadcrumb",
+      value: true,
     });
     this.addProp({
-      type: "string",
-      key: "currentpage",
+      type: "object",
+      key: "currentPage",
       displayer: "Current Page",
-      value: "Current Page",
+      value: [
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Current Page",
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "",
+        },
+      ],
     });
     this.addProp({
       type: "boolean",
@@ -40,9 +78,15 @@ class Banner2 extends BaseBanner {
     });
     this.addProp({
       type: "icon",
-      key: "crumberIcon",
-      displayer: "Icon",
+      key: "breadcrumbIcon",
+      displayer: "Breadcrumb Icon",
       value: "RxSlash",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
   }
 
@@ -51,14 +95,14 @@ class Banner2 extends BaseBanner {
   }
 
   render() {
+    const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const isTitleExist = this.castToString(this.getPropValue("title"));
-    const homepage = this.castToString(this.getPropValue("homepage"));
-    const currentpage = this.castToString(this.getPropValue("currentpage"));
-    const navigateToFromCrumber = this.getPropValue("navigateTo");
-    const navigateToUrl = navigateToFromCrumber || "";
+    const showBreadcrumb = this.getPropValue("showBreadcrumb");
+    const currentPage = this.castToObject("currentPage");
+    const currentPageTitle = currentPage?.title || "";
+    const currentPageIcon = currentPage?.icon || "";
     const showGradient = this.getPropValue("showGradient");
-    const isCrumberVisible = homepage && currentpage;
-
+    const overlay = this.getPropValue("overlay");
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
@@ -67,24 +111,51 @@ class Banner2 extends BaseBanner {
             : this.decorateCSS("noGradient")
         }`}
       >
-        {isCrumberVisible && (
+        {overlay && <div className={this.decorateCSS("overlay")}></div>}
+        {showBreadcrumb && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("crumber-content")}>
-              <ComposerLink path={navigateToUrl}>
-                <span className={this.decorateCSS("home-page")}>
-                  {this.getPropValue("homepage")}
-                </span>
-              </ComposerLink>
-              <Base.Icon
-                name={this.getPropValue("crumberIcon")}
-                propsIcon={{
-                  className: this.decorateCSS("crumberIcon"),
-                }}
-              />
-              <span className={this.decorateCSS("current-page")}>
-                {this.getPropValue("currentpage")}
-              </span>
-            </div>
+            <Base.Row className={this.decorateCSS("crumber-content")}>
+              {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
+                <React.Fragment key={index}>
+                  <ComposerLink path={item.navigateTo}>
+                    <span className={this.decorateCSS("home-page")}>
+                      {item.title}
+                    </span>
+                  </ComposerLink>
+                  {index < breadcrumbItems.length - 1 && (
+                    <Base.Icon
+                      name={this.getPropValue("breadcrumbIcon")}
+                      propsIcon={{
+                        className: this.decorateCSS("crumberIcon"),
+                      }}
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+              {breadcrumbItems.length > 0 && (
+                <>
+                  <Base.Icon
+                    name={this.getPropValue("breadcrumbIcon")}
+                    propsIcon={{
+                      className: this.decorateCSS("crumberIcon"),
+                    }}
+                  />
+                  <div className={this.decorateCSS("current-page-container")}>
+                    {currentPageIcon && (
+                      <Base.Icon
+                        name={currentPageIcon}
+                        propsIcon={{
+                          className: this.decorateCSS("current-page-icon"),
+                        }}
+                      />
+                    )}
+                    <span className={this.decorateCSS("current-page")}>
+                      {currentPageTitle}
+                    </span>
+                  </div>
+                </>
+              )}
+            </Base.Row>
           </Base.MaxContent>
         )}
         {isTitleExist && (

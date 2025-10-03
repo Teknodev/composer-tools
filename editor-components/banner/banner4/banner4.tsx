@@ -4,44 +4,73 @@ import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
+type BreadcrumbItem = {
+    title: string;
+    navigateTo: string;
+};
+
 class Banner4 extends BaseBanner {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
+      type: "object",
       key: "vector1",
-      displayer: "Vector 1",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e67fb049c002cc23bf1?alt=media",
+      displayer: "Object 1",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Image",
+          additionalParams: { availableTypes: ["image", "icon"] },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e67fb049c002cc23bf1?alt=media" },
+        },
+        {
+          type: "boolean",
+          key: "animation",
+          displayer: "Animation",
+          value: true,
+        },
+      ],
     });
     this.addProp({
-      type: "boolean",
-      key: "vector1animation",
-      displayer: "Vector 1 Animation",
-      value: true,
-    });
-    this.addProp({
-      type: "image",
+      type: "object",
       key: "vector2",
-      displayer: "Vector 2",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e7efb049c002cc23bf9?alt=media",
+      displayer: "Object 2",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Image",
+          additionalParams: { availableTypes: ["image", "icon"] },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e7efb049c002cc23bf9?alt=media" },
+        },
+        {
+          type: "boolean",
+          key: "animation",
+          displayer: "Animation",
+          value: true,
+        },
+      ],
     });
     this.addProp({
-      type: "boolean",
-      key: "vector2animation",
-      displayer: "Vector 2 Animation",
-      value: true,
-    });
-    this.addProp({
-      type: "image",
+      type: "object",
       key: "vector3",
-      displayer: "Vector 3",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e90fb049c002cc23c02?alt=media",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "vector3animation",
-      displayer: "Vector 3 Animation",
-      value: true,
+      displayer: "Object 3",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Image",
+          additionalParams: { availableTypes: ["image", "icon"] },
+          value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e90fb049c002cc23c02?alt=media" },
+        },
+        {
+          type: "boolean",
+          key: "animation",
+          displayer: "Animation",
+          value: true,
+        },
+      ],
     });
     this.addProp({
       type: "image",
@@ -56,27 +85,60 @@ class Banner4 extends BaseBanner {
       value: "About Us",
     });
     this.addProp({
-      type: "string",
-      key: "homepage",
-      displayer: "Home Page",
-      value: "Home Page",
+      type: "array",
+      key: "breadcrumbItems",
+      displayer: "Breadcrumb Items",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Home",
+            },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
     this.addProp({
-      type: "page",
-      key: "navigateTo",
-      displayer: "Navigate To",
-      value: "",
+      type: "boolean",
+      key: "showBreadcrumb",
+      displayer: "Show Breadcrumb",
+      value: true,
     });
     this.addProp({
-      type: "string",
-      key: "currentpage",
+      type: "object",
+      key: "currentPage",
       displayer: "Current Page",
-      value: "Current Page",
+      value: [
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Current Page",
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "",
+        },
+      ],
     });
     this.addProp({
       type: "icon",
-      key: "crumberIcon",
-      displayer: "Icon",
+      key: "breadcrumbIcon",
+      displayer: "Breadcrumb Icon",
       value: "MdKeyboardArrowRight",
     });
   } 
@@ -86,34 +148,38 @@ class Banner4 extends BaseBanner {
   }
 
   render() {
-    const vector1animation = this.getPropValue("vector1animation");
-    const vector2animation = this.getPropValue("vector2animation");
-    const vector3animation = this.getPropValue("vector3animation");
-
-    const vector1 = this.getPropValue("vector1");
-    const vector2 = this.getPropValue("vector2");
-    const vector3 = this.getPropValue("vector3");
+    const vector1 = this.castToObject<any>("vector1");
+    const vector2 = this.castToObject<any>("vector2");
+    const vector3 = this.castToObject<any>("vector3");
     const backgroundImage = this.getPropValue("backgroundImage");
     const title = this.getPropValue("title");
-    const homepage = this.getPropValue("homepage");
-    const page = this.getPropValue("navigateTo");
-    const icon = this.getPropValue("crumberIcon");
-    const currentpage = this.getPropValue("currentpage");
+    const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
+    const showBreadcrumb = this.getPropValue("showBreadcrumb");
+    const currentPage = this.castToObject<any>("currentPage");
+    const currentPageTitle = currentPage?.title || "";
+    const currentPageIcon = currentPage?.icon || "";
 
     const titleExist = this.castToString(title);
-    const homepageExist = this.castToString(homepage);
-    const currentpageExist = this.castToString(currentpage);
 
     return(
       <div className={this.decorateCSS("container-main")}>
-        {vector1 && (
-          <img src={vector1} className={`${this.decorateCSS("vector1")} ${vector1animation ? this.decorateCSS("animated") : ""}`} />
+        {vector1 && vector1.image && (
+          <Base.Media 
+            value={vector1.image}
+            className={`${this.decorateCSS("vector1")} ${vector1.animation ? this.decorateCSS("animated") : ""}`} 
+          />
         )}
-        {vector2 && (
-          <img src={vector2} className={`${this.decorateCSS("vector2")} ${vector2animation ? this.decorateCSS("animated") : ""}`} />
+        {vector2 && vector2.image && (
+          <Base.Media 
+            value={vector2.image} 
+            className={`${this.decorateCSS("vector2")} ${vector2.animation ? this.decorateCSS("animated") : ""}`} 
+          />
         )}
-        {vector3 && (
-          <img src={vector3} className={`${this.decorateCSS("vector3")} ${vector3animation ? this.decorateCSS("animated") : ""}`} />
+        {vector3 && vector3.image && (
+          <Base.Media 
+            value={vector3.image} 
+            className={`${this.decorateCSS("vector3")} ${vector3.animation ? this.decorateCSS("animated") : ""}`} 
+          />
         )}
         <div className={this.decorateCSS("section")} style={{ backgroundImage: `url(${backgroundImage})` }}>
           <Base.Container className={this.decorateCSS("container")}>
@@ -122,26 +188,52 @@ class Banner4 extends BaseBanner {
                 {titleExist && (
                   <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImage && this.decorateCSS("image")}`}>{title}</Base.SectionTitle>
                 )}
-                <div className={this.decorateCSS("pages")}>
-                  {homepageExist && (
-                    <div className={this.decorateCSS("link")}>
-                      <ComposerLink path={page}>
-                        <span className={`${this.decorateCSS("homepage")} ${!backgroundImage && this.decorateCSS("image")}`}>{homepage}</span>
-                      </ComposerLink>
-                    </div>
-                  )}
-                  {icon && (
-                    <Base.Icon
-                      name={icon}
-                      propsIcon={{
-                        className: `${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("image")}`,
-                      }}
-                    />
-                  )}
-                  {currentpageExist && (
-                    <span className={`${this.decorateCSS("currentPage")} ${!backgroundImage && this.decorateCSS("image")}`}>{currentpage}</span>
-                  )}
-                </div>
+                {showBreadcrumb && (
+                  <div className={this.decorateCSS("pages")}>
+                    {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
+                      <React.Fragment key={index}>
+                        <div className={this.decorateCSS("link")}>
+                          <ComposerLink path={item.navigateTo}>
+                            <span className={`${this.decorateCSS("text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
+                              {item.title}
+                            </span>
+                          </ComposerLink>
+                        </div>
+                        {index < breadcrumbItems.length - 1 && (
+                          <Base.Icon
+                            name={this.getPropValue("breadcrumbIcon")}
+                            propsIcon={{
+                              className: `${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("icon-without-image")}`,
+                            }}
+                          />
+                        )}
+                      </React.Fragment>
+                    ))}
+                    {breadcrumbItems.length > 0 && (
+                      <>
+                        <Base.Icon
+                          name={this.getPropValue("breadcrumbIcon")}
+                          propsIcon={{
+                            className: `${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("icon-without-image")}`,
+                          }}
+                        />
+                        <div className={this.decorateCSS("current-page-container")}>
+                          {currentPageIcon && (
+                            <Base.Icon
+                              name={currentPageIcon}
+                              propsIcon={{
+                                className: `${this.decorateCSS("current-page-icon")} ${!backgroundImage && this.decorateCSS("icon-without-image")}`,
+                              }}
+                            />
+                          )}
+                          <span className={`${this.decorateCSS("current-page-text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
+                            {currentPageTitle}
+                          </span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
               </Base.VerticalContent>
             </Base.MaxContent>
           </Base.Container>

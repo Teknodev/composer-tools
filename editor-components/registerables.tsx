@@ -48,7 +48,6 @@ import ContentComponent21 from "./content/content21/content21";
 import ContentComponent22 from "./content/content22/content22";
 import ContentComponent23 from "./content/content23/content23";
 import ContentComponent24 from "./content/content24/content24";
-import ContentComponent25 from "./content/content25/content25";
 import ContentComponent26 from "./content/content26/content26";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
@@ -252,10 +251,10 @@ import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-
 import ECommerce5 from "./e-commerce/e-commerce5";
 import BannerComponent1 from "./banner/banner1/banner1";
 import BannerComponent2 from "./banner/banner2/banner2";
+import BannerComponent3 from "./banner/banner3/banner3";
 import BannerComponent4 from "./banner/banner4/banner4";
 import BannerComponent5 from "./banner/banner5/banner5";
 import BannerComponent6 from "../editor-components/banner/banner6/banner6";
-import BannerComponent7 from "./banner/banner7/banner7";
 import ECommerce1 from "./e-commerce/e-commerce1/e-commerce1";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
@@ -329,7 +328,6 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent22,
     ContentComponent23,
     ContentComponent24,
-    ContentComponent25,
     ContentComponent26,
     SliderComponent1,
     SliderComponent2,
@@ -531,10 +529,10 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent1,
     BannerComponent2,
     ECommerce2,
+    BannerComponent3,
     BannerComponent4,
     BannerComponent5,
     BannerComponent6,
-    BannerComponent7,
     SocialComponent2,
     ECommerce1,
     SocialComponent3,
