@@ -493,7 +493,6 @@ class ImageGallery11 extends BaseImageGallery {
     wrap.style.setProperty("--drag", `${Math.round(cur)}px`);
   };
 
-
   private onDragStart = (
     e: React.MouseEvent | React.TouchEvent,
     wrapRef: React.RefObject<HTMLDivElement | null>,
@@ -577,7 +576,6 @@ class ImageGallery11 extends BaseImageGallery {
   private toggleZoom = (e?: React.MouseEvent | React.TouchEvent) => {
     if (this.zoom > 1) {
       this.setZoom(1);
-      this.forceUpdate();
       return;
     }
     const cover = this.computeCoverScale();
