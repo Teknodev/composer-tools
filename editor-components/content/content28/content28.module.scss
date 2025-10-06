@@ -61,8 +61,7 @@
         display: contents;
       }
 
-      /* Başlıklar: temanın ikinci rengi */
-      .heading,
+      /* Başlık renkleri: başlık (SectionTitle) tema tarafından belirlensin */
       .feature-title {
         color: var(--composer-secondary-color);
       }
@@ -70,7 +69,6 @@
         font-size: clamp(calc(2rem * var(--c28-scale)), calc(4vw * var(--c28-scale)), calc(3.25rem * var(--c28-scale)));
         line-height: 1.15;
         font-weight: 700;
-        color: var(--composer-font-color-primary);
         margin: 0 0 var(--composer-gap-lg) 0;
         overflow-wrap: anywhere;
       }
