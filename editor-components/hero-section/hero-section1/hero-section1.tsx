@@ -373,4 +373,3 @@ class HeroSection1 extends BaseHeroSection {
 }
 
 export default HeroSection1;
-
