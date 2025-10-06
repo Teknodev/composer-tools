@@ -143,9 +143,9 @@ class Banner1 extends BaseBanner {
                                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                                     <div key={index} className={this.decorateCSS("breadcrumb-item")}>
                                         {this.castToString(item.title) && <ComposerLink path={item.navigateTo}>
-                                            <span className={this.decorateCSS("home-page")}>
+                                            <Base.P className={this.decorateCSS("home-page")}>
                                                 {item.title}
-                                            </span>
+                                            </Base.P>
                                         </ComposerLink>}
                                         {index < breadcrumbItems.length - 1 && this.getPropValue("breadcrumbIcon") && (
                                             <Base.Icon
@@ -175,9 +175,9 @@ class Banner1 extends BaseBanner {
                                                 />
                                             )}
                                             {this.castToString(currentPageTitle) && 
-                                            <span className={this.decorateCSS("current-page")}>
+                                            <Base.P className={this.decorateCSS("current-page")}>
                                                 {currentPageTitle}
-                                            </span>}
+                                            </Base.P>}
                                         </div>
                                     </div>
                                 )}

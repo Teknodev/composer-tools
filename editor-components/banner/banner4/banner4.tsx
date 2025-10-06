@@ -194,9 +194,9 @@ class Banner4 extends BaseBanner {
                       <React.Fragment key={index}>
                         <div className={this.decorateCSS("link")}>
                           <ComposerLink path={item.navigateTo}>
-                            <span className={`${this.decorateCSS("text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
+                            <Base.P className={`${this.decorateCSS("text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
                               {item.title}
-                            </span>
+                            </Base.P>
                           </ComposerLink>
                         </div>
                         {index < breadcrumbItems.length - 1 && (
@@ -226,9 +226,9 @@ class Banner4 extends BaseBanner {
                               }}
                             />
                           )}
-                          <span className={`${this.decorateCSS("current-page-text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
+                          <Base.P className={`${this.decorateCSS("current-page-text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
                             {currentPageTitle}
-                          </span>
+                          </Base.P>
                         </div>
                       </>
                     )}
