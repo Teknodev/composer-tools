@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -16,7 +16,7 @@ interface IAnimationProps {
   startingAnimation: string;
 }
 
-class HeroSection8 extends BaseHeader {
+class HeroSection8 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

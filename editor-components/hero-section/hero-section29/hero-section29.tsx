@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section29.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { Form, Formik } from "formik";
@@ -13,7 +13,7 @@ interface ServiceItem {
   icon: string;
 }
 
-class HeroSection29 extends BaseHeader {
+class HeroSection29 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({

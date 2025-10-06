@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section23.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "composer-tools/composer-base-components/base/base";
 
@@ -15,7 +15,7 @@ type SliderItem = {
   background4: string;
 };
 
-class HeroSection23 extends BaseHeader {
+class HeroSection23 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

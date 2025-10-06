@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section15.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { Form, Formik } from "formik";
@@ -10,7 +10,7 @@ interface InputItem {
   placeholder: React.JSX.Element;
 }
 
-class HeroSection15 extends BaseHeader {
+class HeroSection15 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

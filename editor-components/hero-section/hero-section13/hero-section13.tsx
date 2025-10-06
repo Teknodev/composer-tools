@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section13.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -16,7 +16,7 @@ type LeftItem = {
   link: string;
 };
 
-class HeroSection13 extends BaseHeader {
+class HeroSection13 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

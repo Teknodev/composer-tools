@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "composer-tools/composer-base-components/base/base";
@@ -11,7 +11,7 @@ type SliderItem = {
   image: string;
 };
 
-class HeroSection12 extends BaseHeader {
+class HeroSection12 extends BaseHeroSection {
   leftSliderRef: any;
   rightSliderRef: any;
 

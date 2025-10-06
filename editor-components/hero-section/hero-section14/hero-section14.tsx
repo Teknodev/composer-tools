@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section14.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -17,7 +17,7 @@ type Slides = {
 
 type Buttons = INPUTS.CastedButton;
 
-class HeroSection14 extends BaseHeader {
+class HeroSection14 extends BaseHeroSection {
   slideRefs: React.RefObject<HTMLDivElement>[] = [];
   constructor(props?: any) {
     super(props, styles);

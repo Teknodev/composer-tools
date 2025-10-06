@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -27,7 +27,7 @@ interface ButtonItem {
   buttonAnimation: boolean;
 }
 
-class HeroSection6 extends BaseHeader {
+class HeroSection6 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({

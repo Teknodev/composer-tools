@@ -945,7 +945,7 @@ export abstract class BaseList extends Component {
   static category = CATEGORIES.LIST;
 }
 
-export abstract class BaseHeader extends Component {
+export abstract class BaseHeroSection extends Component {
   static category = CATEGORIES.HERO_SECTION;
 }
 
@@ -1007,7 +1007,7 @@ export abstract class LogoClouds extends Component {
   static category = CATEGORIES.LOGOCLOUDS;
 }
 
-export abstract class BaseBanner extends Component {
+export abstract class BaseTopBanner extends Component {
   static category = CATEGORIES.TOP_BANNER;
 }
 

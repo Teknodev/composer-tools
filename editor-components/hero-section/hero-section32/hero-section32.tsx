@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -12,7 +12,7 @@ type Card = {
   urlTitle: React.JSX.Element;
   url: string;
 };
-class HeroSection32 extends BaseHeader {
+class HeroSection32 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

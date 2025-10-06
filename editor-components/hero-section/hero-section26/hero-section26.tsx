@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section26.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -12,7 +12,7 @@ type Slide = {
   image: string;
 };
 
-class HeroSection26 extends BaseHeader {
+class HeroSection26 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

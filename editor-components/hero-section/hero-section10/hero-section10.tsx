@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeader, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseHeroSection, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./hero-section10.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -18,7 +18,7 @@ type SliderObject = {
   button: INPUTS.CastedButton[];
 };
 
-class HeroSection10 extends BaseHeader {
+class HeroSection10 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

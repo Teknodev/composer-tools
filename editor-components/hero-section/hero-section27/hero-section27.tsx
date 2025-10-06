@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section27.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -26,7 +26,7 @@ type SliderItemType = {
   pageNumberPart: boolean;
 };
 
-class HeroSection27 extends BaseHeader {
+class HeroSection27 extends BaseHeroSection {
   static getName(): string {
     return "Hero Section 27";
   }

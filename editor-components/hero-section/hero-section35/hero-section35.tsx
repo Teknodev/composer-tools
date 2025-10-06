@@ -1,10 +1,10 @@
 import * as React from "react";
-import {BaseHeader} from "../../EditorComponent";
+import {BaseHeroSection} from "../../EditorComponent";
 import styles from "./hero-section35.module.scss";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base"; 
 
-class HeroSection35 extends BaseHeader {
+class HeroSection35 extends BaseHeroSection {
     private containerRef = React.createRef<HTMLDivElement>();
     constructor(props?: any) {
         super(props, styles);

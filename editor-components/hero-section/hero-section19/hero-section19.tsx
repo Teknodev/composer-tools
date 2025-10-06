@@ -1,11 +1,11 @@
 import * as React from "react";
 import styles from "./hero-section19.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class HeroSection19 extends BaseHeader {
+class HeroSection19 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({

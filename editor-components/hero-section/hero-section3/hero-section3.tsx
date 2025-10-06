@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section3.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -14,7 +14,7 @@ type ISliderData = {
   button: INPUTS.CastedButton;
 };
 
-class HeroSection3 extends BaseHeader {
+class HeroSection3 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({

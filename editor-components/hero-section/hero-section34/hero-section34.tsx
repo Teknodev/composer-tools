@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section34.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -11,7 +11,7 @@ interface Slider {
   button: INPUTS.CastedButton;
 }
 
-class HeroSection34 extends BaseHeader {
+class HeroSection34 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({

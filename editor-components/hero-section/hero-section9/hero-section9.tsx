@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -16,7 +16,7 @@ type ISocial = {
   socialUrl: string;
 };
 
-class HeroSection9 extends BaseHeader {
+class HeroSection9 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

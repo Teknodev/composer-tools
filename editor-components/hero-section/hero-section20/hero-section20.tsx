@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section20.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -20,7 +20,7 @@ type SocialIcon = {
   link: string;
 };
 
-class HeroSection20 extends BaseHeader {
+class HeroSection20 extends BaseHeroSection {
   sliderRef: React.RefObject<any>;
   titleSliderRef: React.RefObject<any>;
   commentSliderRef: React.RefObject<any>;

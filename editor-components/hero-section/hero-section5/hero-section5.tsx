@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -15,7 +15,7 @@ type Heading = {
   backgroundImage: string;
 };
 
-class HeroSection5 extends BaseHeader {
+class HeroSection5 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({

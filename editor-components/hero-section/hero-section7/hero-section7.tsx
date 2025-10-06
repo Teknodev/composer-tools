@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -10,7 +10,7 @@ type ISliderData = {
   pagepath: string;
 };
 
-class HeroSection7 extends BaseHeader {
+class HeroSection7 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({

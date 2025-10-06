@@ -1,9 +1,9 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-class Header1 extends BaseHeader {
+class Header1 extends BaseHeroSection {
   sliderRef: React.RefObject<any>;
 
   constructor(props?: any) {

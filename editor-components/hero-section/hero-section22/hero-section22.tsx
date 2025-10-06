@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section22.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -16,7 +16,7 @@ type SliderObject = {
 
 
 
-class HeroSection22 extends BaseHeader {
+class HeroSection22 extends BaseHeroSection {
   private sliderRef: React.RefObject<any>;
 
   constructor(props?: any) {

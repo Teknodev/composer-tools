@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section16.module.scss";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
@@ -12,7 +12,7 @@ type ISliderData = {
   subtitle: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
-class HeroSection16 extends BaseHeader {
+class HeroSection16 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 

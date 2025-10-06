@@ -1,9 +1,9 @@
 import * as React from "react";
-import { BaseHeader } from "../../EditorComponent";
+import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section28.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-class HeroSection28 extends BaseHeader {
+class HeroSection28 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
