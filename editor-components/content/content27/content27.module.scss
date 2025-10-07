@@ -1,9 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-$list-accent: var(--composer-primary-color, #f97316);
-$bp-sm: 480px;
-$bp-md: 768px;
-$bp-lg: 1024px;
+// removed unused local variables; rely on global CSS vars
 
 .content27 {
   width: 100%;
@@ -69,6 +66,19 @@ $bp-lg: 1024px;
   margin-left: auto;
 }
 
+/* Respect global alignment setting (Base.Container adds .center/.left) */
+.content27:global(.center) {
+  .leftContent {
+    align-items: center;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .listWrapper { justify-content: center; }
+  .list { align-items: center; }
+  .ctaWrapper { justify-content: center; }
+}
+
 
 
 .leftTitle {
@@ -81,6 +91,8 @@ $bp-lg: 1024px;
   max-width: var(--title-max-width, 22ch);
   white-space: pre-line;
 }
+
+// removed custom colorful variant; color is handled by Base.SectionTitle with theme
 
 .list {
   display: flex;
@@ -186,10 +198,10 @@ $bp-lg: 1024px;
 }
 
 .imageBox {
-  background: var(--composer-section-background, #fff);
-  border: 1px solid var(--composer-border-color, #e5e7eb);
+  background: transparent; /* remove box */
+  border: none;
   border-radius: var(--imagebox-border-radius, 16px);
-  padding: var(--imagebox-padding, 16px);
+  padding: 0; /* overlay should cover full image */
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -202,6 +214,83 @@ $bp-lg: 1024px;
   height: auto;
   border-radius: calc(var(--imagebox-border-radius, 16px) - 4px);
   object-fit: cover;
+}
+
+/* Hover animations similar to content9 */
+.grid[data-animation~="animate1"] {
+  .imageBox { position: relative; overflow: hidden; }
+
+  .image {
+    transition: transform 1s;
+  }
+
+  .imageBox::before,
+  .imageBox::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: opacity 0.9s;
+    border-radius: var(--imagebox-border-radius, 16px);
+    pointer-events: none;
+  }
+
+  .imageBox::before {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    opacity: 1;
+  }
+
+  .imageBox::after {
+    background: linear-gradient(
+      rgba(var(--composer-primary-color-rgb), 0.7),
+      rgba(0, 0, 0, 0.7)
+    );
+    z-index: 2;
+    opacity: 0;
+  }
+
+  .imageBox:hover {
+    .image {
+      transform: scale(1.2);
+    }
+    &::before { opacity: 0; }
+    &::after { opacity: 1; }
+  }
+}
+
+.grid[data-animation~="animate2"] {
+  .imageBox { position: relative; overflow: hidden; }
+
+  .imageBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 0;
+    background: linear-gradient(
+      to right,
+      rgba(var(--composer-primary-color-rgb), 0.8),
+      transparent
+    );
+    transition: left 0.5s ease;
+    z-index: 1;
+    border-radius: var(--imagebox-border-radius, 16px);
+    pointer-events: none;
+  }
+
+  .image {
+    transition: filter 0.5s ease;
+  }
+
+  .imageBox:hover::before { left: 0; }
+
+  .imageBox:hover .image {
+    filter: brightness(1.1) contrast(1.1);
+  }
 }
 
 .detailsSection {
@@ -456,10 +545,10 @@ $bp-lg: 1024px;
   }
 
   .imageBox {
-    padding: 12px;
-    background: var(--composer-section-background, #fff);
-    border: 1px solid var(--composer-border-color, #e5e7eb);
-    border-radius: 12px;
+    padding: 0; /* remove box on tablet */
+    background: transparent;
+    border: none;
+    border-radius: var(--imagebox-border-radius, 16px);
   }
 
   .image {
@@ -612,11 +701,11 @@ $bp-lg: 1024px;
   }
 
   .imageBox {
-    padding: 8px;
+    padding: 0; /* remove box on mobile */
     max-width: 100%;
-    background: var(--composer-section-background, #fff);
-    border: 1px solid var(--composer-border-color, #e5e7eb);
-    border-radius: 8px;
+    background: transparent;
+    border: none;
+    border-radius: var(--imagebox-border-radius, 16px);
   }
 
   .image {

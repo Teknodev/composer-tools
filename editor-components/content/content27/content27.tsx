@@ -29,8 +29,10 @@ class Content27 extends BaseContent {
     this.addProp({ type: "number", key: "info-line-font-size", displayer: "Info Text Font Size", value: 20 });
 
     // Other properties
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.addProp({ type: "string", key: "main-text", displayer: "Main Text", value: "" });
     this.addProp({ type: "image", key: "background-image", displayer: "Background Image", value: "" });
+    // Title color now follows global theme (Colorful/Monochrome) via Base.SectionTitle
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -198,10 +200,9 @@ class Content27 extends BaseContent {
     return this.getPropValue("componentType", { parent_object: value, as_string: true });
   };
 
-  private extractItemsByComponentType = (
-    items: any[],
-    type: "header" | "content" | "cta"
-  ) => items.filter((item: any) => this.getComponentType(item) === type);
+  private extractItemsByComponentType(items: any[], type: "header" | "content" | "cta") {
+    return items.filter((item: any) => this.getComponentType(item) === type);
+  }
 
   private getContentItems(items: any[]) {
     return this.extractItemsByComponentType(items, "content").map((item: any) => this.getItemValue(item));
@@ -234,35 +235,31 @@ class Content27 extends BaseContent {
     return requestedIndex;
   }
 
-  private toPlainString(value: any): string {
-    const casted = this.castToString(value);
-    return typeof casted === "string" ? casted.trim() : "";
-  }
-
   private hasContent(value: string | React.JSX.Element): boolean {
     if (typeof value === "string") {
       return value.trim().length > 0;
     }
-    return this.toPlainString(value).length > 0;
+    const text = this.castToString(value as React.JSX.Element);
+    return typeof text === "string" && text.trim().length > 0;
   }
 
   private resolveCTA(ctaData: any) {
-    if (ctaData) {
-      const ctaButtonArray = this.getPropValue("button", { parent_object: ctaData });
-      if (Array.isArray(ctaButtonArray)) {
-        return {
+    const ctaButtonArray = ctaData ? this.getPropValue("button", { parent_object: ctaData }) : null;
+    const fromItem = Array.isArray(ctaButtonArray)
+      ? {
           text: this.getPropValue("text", { parent_object: ctaButtonArray }) || "",
           url: this.getPropValue("url", { parent_object: ctaButtonArray }) || "",
-          type: (this.getPropValue("type", { parent_object: ctaButtonArray }) || "Primary") as TypeButton
-        };
-      }
-    }
+          type: (this.getPropValue("type", { parent_object: ctaButtonArray }) || "Primary") as TypeButton,
+        }
+      : null;
+
+    if (fromItem) return fromItem;
 
     const fallback = this.castToObject("cta-button") as any;
     return {
       text: fallback?.text || "",
       url: fallback?.url || "",
-      type: (fallback?.type || "Primary") as TypeButton
+      type: (fallback?.type || "Primary") as TypeButton,
     };
   }
 
@@ -320,6 +317,7 @@ class Content27 extends BaseContent {
     const headerText = headerData
       ? this.getPropValue("text", { parent_object: headerData })
       : this.getPropValue("main-text");
+    const subtitleText = this.getPropValue("subtitle");
     const { text: ctaText, url: ctaLink, type: ctaType } = this.resolveCTA(ctaData);
     // Auto-hide divider when the layout has no content to show
     const hasHeader = this.hasContent(headerText);
@@ -363,8 +361,13 @@ class Content27 extends BaseContent {
             >
               <div className={this.decorateCSS("leftContent")}
               >
+                {this.castToString(subtitleText) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitleText}
+                  </Base.SectionSubTitle>
+                )}
                 {this.castToString(headerText) && (
-                  <h2
+                  <Base.SectionTitle
                     className={this.decorateCSS("leftTitle")}
                     style={{
                       ["--title-font-size" as any]: `${titleFontSize}px`,
@@ -373,7 +376,7 @@ class Content27 extends BaseContent {
                     }}
                   >
                     {headerText}
-                  </h2>
+                  </Base.SectionTitle>
                 )}
                 <div className={this.decorateCSS("listWrapper")}
                 >
