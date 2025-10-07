@@ -69,18 +69,30 @@ class Breadcrumb3 extends BaseBreadcrumb {
           value: "About",
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon",
-          value: "",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "",
+          },
         },
       ],
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "breadcrumbIcon",
       displayer: "Breadcrumb Icon",
-      value: "IoIosArrowForward",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowForward",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -100,7 +112,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
     const currentPage = this.castToObject("currentPage");
     const currentPageTitle = currentPage?.title || "";
-    const currentPageIcon = currentPage?.icon || "";
+    const currentPageIcon = currentPage?.icon.name || "";
     const overlay = this.getPropValue("overlay");
     const isBreadcrumbVisible = breadcrumbItems.length > 0 || currentPageTitle || this.getPropValue("breadcrumbIcon");
     const isCrumberVisible = isBreadcrumbVisible || isTitleExist;
@@ -138,30 +150,24 @@ class Breadcrumb3 extends BaseBreadcrumb {
                       </Base.P>
                     </ComposerLink>
                     {index < breadcrumbItems.length - 1 && (
-                      <Base.Icon
-                        name={this.getPropValue("breadcrumbIcon")}
-                        propsIcon={{
-                          className: this.decorateCSS("crumberIcon"),
-                        }}
+                      <Base.Media
+                        value={this.getPropValue("breadcrumbIcon")}
+                        className={this.decorateCSS("crumberIcon")}
                       />
                     )}
                   </div>
                 ))}
                 {breadcrumbItems.length > 0 && (
                   <>
-                    <Base.Icon
-                      name={this.getPropValue("breadcrumbIcon")}
-                      propsIcon={{
-                        className: this.decorateCSS("crumberIcon"),
-                      }}
+                    <Base.Media
+                      value={this.getPropValue("breadcrumbIcon")}
+                      className={this.decorateCSS("crumberIcon")}
                     />
                     <div className={this.decorateCSS("current-page-container")}>
                       {currentPageIcon && (
-                        <Base.Icon
-                          name={currentPageIcon}
-                          propsIcon={{
-                            className: this.decorateCSS("current-page-icon"),
-                          }}
+                        <Base.Media
+                          value={currentPageIcon}
+                          className={this.decorateCSS("current-page-icon")}
                         />
                       )}
                       <Base.P className={this.decorateCSS("about-page")}>

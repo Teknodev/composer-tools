@@ -45,10 +45,16 @@ class Breadcrumb5 extends BaseBreadcrumb {
             value: true,
         });
         this.addProp({
-            type: "icon",
+            type: "media",
             key: "breadcrumbIcon",
             displayer: "Breadcrumb Icon",
-            value: "RxDividerVertical",
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
+            value: {
+                type: "icon",
+                name: "RxDividerVertical",
+            },
         });
         this.addProp({
             type: "object",
@@ -62,10 +68,16 @@ class Breadcrumb5 extends BaseBreadcrumb {
                     value: "Current Page",
                 },
                 {
-                    type: "icon",
+                    type: "media",
                     key: "icon",
                     displayer: "Icon",
-                    value: "",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "",
+                    },
                 },
             ],
         });
@@ -80,7 +92,7 @@ class Breadcrumb5 extends BaseBreadcrumb {
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
         const currentPage = this.castToObject<any>("currentPage");
         const currentPageTitle = currentPage?.title || "";
-        const currentPageIcon = currentPage?.icon || "";
+        const currentPageIcon = currentPage?.icon.name || "";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -95,30 +107,24 @@ class Breadcrumb5 extends BaseBreadcrumb {
                                         </Base.P>
                                     </ComposerLink>
                                     {index < breadcrumbItems.length - 1 && (
-                                        <Base.Icon
-                                            name={this.getPropValue("breadcrumbIcon")}
-                                            propsIcon={{
-                                                className: this.decorateCSS("icon"),
-                                            }}
+                                        <Base.Media
+                                            value={this.getPropValue("breadcrumbIcon")}
+                                            className={this.decorateCSS("icon")}
                                         />
                                     )}
                                 </div>
                             ))}
                             {breadcrumbItems.length > 0 && (
                                 <div className={this.decorateCSS("current-page-wrapper")}>
-                                    <Base.Icon
-                                        name={this.getPropValue("breadcrumbIcon")}
-                                        propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                        }}
+                                    <Base.Media
+                                        value={this.getPropValue("breadcrumbIcon")}
+                                        className={this.decorateCSS("icon")}
                                     />
                                     <div className={this.decorateCSS("current-page-container")}>
                                         {currentPageIcon && (
-                                            <Base.Icon
-                                                name={currentPageIcon}
-                                                propsIcon={{
-                                                    className: this.decorateCSS("current-page-icon"),
-                                                }}
+                                            <Base.Media
+                                                value={currentPageIcon}
+                                                className={this.decorateCSS("current-page-icon")}
                                             />
                                         )}
                                         <Base.P className={this.decorateCSS("current-page-title")}>

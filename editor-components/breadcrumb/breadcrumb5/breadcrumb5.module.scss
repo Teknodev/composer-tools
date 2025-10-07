@@ -52,15 +52,11 @@
       content: "";
     }
 
-    .current-page-icon {
+    .current-page-icon, .icon {
       content: "";
       color: var(--composer-font-color-primary);
+      font-size: 1rem;
     }
 
-    .icon {
-      color: var(--composer-font-color-primary);
-      min-width: 1.5rem;
-      min-height: 1.5rem;
-    }
   }
 }

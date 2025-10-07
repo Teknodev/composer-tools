@@ -84,8 +84,7 @@
         cursor: pointer;
       }
       .stripIcon {
-        min-width: 15px;
-        min-height: 15px;
+        font-size: 1rem;
         flex-shrink: 0;
       }
       .current-page-container {
@@ -98,8 +97,7 @@
         cursor: text;
       }
       .current-page-icon {
-        min-width: 15px;
-        min-height: 15px;
+        font-size: 1rem;
         flex-shrink: 0;
         color: var(--composer-font-color-primary);
       }
