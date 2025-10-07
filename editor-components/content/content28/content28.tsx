@@ -2,15 +2,21 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content28.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
+// Feature item structure
 interface FeatureItem {
   title: string;
   text: string;
 }
 
+/**
+ * Content28: Two-column layout with image and feature showcase
+ * Features: Optional vertical divider, hover effects, responsive grid
+ */
 class Content28 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
 
+    // Main portrait/profile image
     this.addProp({
       type: "image",
       key: "image",
@@ -18,6 +24,7 @@ class Content28 extends BaseContent {
       value: "https://res.cloudinary.com/dyjpupuop/image/upload/v1759404710/content28_img.png"
     });
 
+    // Main heading text
     this.addProp({
       type: "array",
       key: "headings",
@@ -28,12 +35,13 @@ class Content28 extends BaseContent {
           key: "headingItem",
           displayer: "Heading Item",
           value: [
-            { type: "string", key: "text", displayer: "Heading", value: "I’m Alexander Green, an independent digital designer" }
+            { type: "string", key: "text", displayer: "Heading", value: "I'm Alexander Green, an independent digital designer" }
           ]
         }
       ]
     });
 
+    // Introduction paragraph
     this.addProp({
       type: "array",
       key: "intros",
@@ -50,6 +58,7 @@ class Content28 extends BaseContent {
       ]
     });
 
+    // Feature items with title and description
     this.addProp({
       type: "array",
       key: "features",
@@ -76,6 +85,21 @@ class Content28 extends BaseContent {
       ]
     });
 
+    // Toggle vertical divider line between columns
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Line (enabled/disabled)",
+      value: false
+    });
+
+    // Highlight specific feature (for future use)
+    this.addProp({
+      type: "number",
+      key: "activeIndex",
+      displayer: "Active Feature Index",
+      value: 0
+    });
   }
 
   static getName(): string {
@@ -83,54 +107,82 @@ class Content28 extends BaseContent {
   }
 
   render() {
-    const imageSrc = this.getPropValue("image") as any;
-    const headingItems = (this.castToObject<{ text?: string }[]>("headings") || []) as { text?: string }[];
-    const headingEl: any = headingItems[0]?.text;
-    const introItems = (this.castToObject<{ text?: string }[]>("intros") || []) as { text?: string }[];
-    const introEl: any = introItems[0]?.text;
-    const featuresRaw = (this.castToObject<FeatureItem[]>("features") || []) as any[];
-    const features = (featuresRaw || []).filter((f: any) => f && typeof f === "object") as FeatureItem[];
+    // Extract and prepare data from props
+    const imageSrc = this.getPropValue("image");
+    const headingItems = this.castToObject<{ text?: string }[]>("headings") || [];
+    const heading = headingItems[0]?.text;
+    const introItems = this.castToObject<{ text?: string }[]>("intros") || [];
+    const intro = introItems[0]?.text;
+    const featuresRaw = this.castToObject<FeatureItem[]>("features") || [];
+    const features = featuresRaw.filter((f) => f && typeof f === "object");
+    const showLine = !!this.getPropValue("showLine");
+    const activeIndex = Number(this.getPropValue("activeIndex") ?? 0);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("grid") }>
-            {this.castToString(imageSrc as any) && (
+          {/* Main grid: image + optional divider + content */}
+          <div className={`${this.decorateCSS("grid")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
+            
+            {/* Left column: Image */}
+            {this.castToString(imageSrc) && (
               <div className={this.decorateCSS("col-image")}>
-                <img src={imageSrc as any} alt={(typeof headingEl === "string" && headingEl) || "portrait"} className={this.decorateCSS("image")} />
+                <img 
+                  src={imageSrc} 
+                  alt={heading || "portrait"} 
+                  className={this.decorateCSS("image")} 
+                />
               </div>
             )}
-            <div className={this.decorateCSS("col-content")}>
-              <div className={this.decorateCSS("block-header")}>
-                {this.castToString(headingEl) && (
-                  <Base.SectionTitle className={this.decorateCSS("heading")}>{headingEl as any}</Base.SectionTitle>
-                )}
-              </div>
-              <div className={this.decorateCSS("block-intro")}>
-                {this.castToString(introEl) && (
-                  <Base.SectionDescription className={this.decorateCSS("intro")}>{introEl as any}</Base.SectionDescription>
-                )}
-              </div>
+
+            {/* Optional vertical divider */}
+            {showLine && <div className={this.decorateCSS("center-line")} />}
+
+            {/* Right column: Content */}
+            <Base.VerticalContent className={this.decorateCSS("col-content")}>
+              
+              {/* Header section with heading and intro */}
+              {(heading || intro) && (
+                <Base.VerticalContent className={this.decorateCSS("header")}>
+                  {heading && (
+                    <Base.SectionTitle className={this.decorateCSS("heading")}>
+                      {heading}
+                    </Base.SectionTitle>
+                  )}
+                  {intro && (
+                    <Base.SectionDescription className={this.decorateCSS("intro")}>
+                      {intro}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              )}
+
+              {/* Features grid */}
               {features.length > 0 && (
-                <div className={this.decorateCSS("block-features")}>
-                  <div className={this.decorateCSS("features") }>
-                    {features.map((feature: FeatureItem, index: number) => (
-                      <div className={this.decorateCSS("feature")} key={index}>
-                        <div className={this.decorateCSS("feature-inner")}>
-                          {this.castToString(feature?.title as any) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("feature-title")}>{feature?.title as any}</Base.SectionSubTitle>
-                          )}
-                          {this.castToString(feature?.text as any) && (
-                            <Base.SectionDescription className={this.decorateCSS("feature-text")}>{feature?.text as any}</Base.SectionDescription>
-                          )}
-                        </div>
-                      </div>
+                <div className={this.decorateCSS("features-block")}>
+                  <div className={this.decorateCSS("features")}>
+                    {features.map((feature, index) => (
+                      <Base.VerticalContent 
+                        className={`${this.decorateCSS("feature")} ${index === activeIndex ? this.decorateCSS("active") : ""}`} 
+                        key={index}
+                      >
+                        {feature?.title && (
+                          <Base.SectionSubTitle className={this.decorateCSS("feature-title")}>
+                            {feature.title}
+                          </Base.SectionSubTitle>
+                        )}
+                        {feature?.text && (
+                          <Base.P className={this.decorateCSS("feature-text")}>
+                            {feature.text}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
                     ))}
                   </div>
                 </div>
               )}
-              </div>
-            </div>
+            </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
