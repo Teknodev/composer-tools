@@ -11,9 +11,16 @@ class CallToAction14 extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Grow Your Business",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "Are you ready to turn more ad clicks into conversions?",
+      value: "Optimize Your Online Advertising",
     });
     this.addProp({
       type: "string",
@@ -51,6 +58,11 @@ class CallToAction14 extends BaseCallToAction {
           className={this.decorateCSS("max-content")}
           data-animation={this.getPropValue("hoverAnimation").join(" ")}
         >
+          {this.castToString(this.getPropValue("subtitle")) && (
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {this.getPropValue("subtitle")}
+            </Base.SectionSubTitle>
+          )}
           {this.castToString(this.getPropValue("title")) && (
             <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.getPropValue("title")}

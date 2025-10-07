@@ -1,17 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
   .max-content {
-    .call-to-action9-page {
+    .content {
       gap: var(--composer-gap-lg);
       align-items: center;
-      .title {
-        margin: 0px;
+      .title,
+      .subtitle {
+        content: "";
         text-align: center;
       }
       .button {
@@ -25,7 +21,7 @@
       }
       .description {
         content: "";
-        color: var(--composer-font-color-primary);
+        text-align: center
       }
       .image-container {
         width: fit-content;

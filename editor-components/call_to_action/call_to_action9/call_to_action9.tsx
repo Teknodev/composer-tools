@@ -11,6 +11,14 @@ interface ImageItem {
 class CallToAction9Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Features",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -53,11 +61,16 @@ class CallToAction9Page extends BaseCallToAction {
           displayer: "Image Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
             },
           ],
         },
@@ -67,11 +80,16 @@ class CallToAction9Page extends BaseCallToAction {
           displayer: "Image Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf003?alt=media&timestamp=1719584962573",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf003?alt=media&timestamp=1719584962573",
+              },
             },
           ],
         },
@@ -81,11 +99,16 @@ class CallToAction9Page extends BaseCallToAction {
           displayer: "Image Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf050?alt=media&timestamp=1719584962573",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf050?alt=media&timestamp=1719584962573",
+              },
             },
           ],
         },
@@ -95,11 +118,16 @@ class CallToAction9Page extends BaseCallToAction {
           displayer: "Image Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf006?alt=media&timestamp=1719584962573",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf006?alt=media&timestamp=1719584962573",
+              },
             },
           ],
         },
@@ -109,11 +137,16 @@ class CallToAction9Page extends BaseCallToAction {
           displayer: "Image Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573",
+              },
             },
           ],
         },
@@ -123,11 +156,16 @@ class CallToAction9Page extends BaseCallToAction {
           displayer: "Image Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573",
+              },
             },
           ],
         },
@@ -148,8 +186,13 @@ class CallToAction9Page extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent
-            className={this.decorateCSS("call-to-action9-page")}
+            className={this.decorateCSS("content")}
           >
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
@@ -168,9 +211,9 @@ class CallToAction9Page extends BaseCallToAction {
               </ComposerLink>
             )}
             {this.castToString(this.getPropValue("description")) && (
-              <Base.P className={this.decorateCSS("description")}>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
-              </Base.P>
+              </Base.SectionDescription>
             )}
             {images.length > 0 && (
               <Base.ListGrid
@@ -180,11 +223,10 @@ class CallToAction9Page extends BaseCallToAction {
                 {images.map((item: ImageItem, index: number) => (
                   <div className={this.decorateCSS("image-wrapper")}>
                     {item.image && (
-                      <img
-                        alt={item.image}
-                        src={item.image}
+                      <Base.Media
+                        value={item.image}
                         className={this.decorateCSS("image")}
-                      ></img>
+                      />
                     )}
                   </div>
                 ))}

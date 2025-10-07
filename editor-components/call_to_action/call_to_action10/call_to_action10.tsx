@@ -17,15 +17,28 @@ class CallToAction10Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Features",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Ready to give your brain a boost?",
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "BsHandIndexThumb"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsHandIndexThumb",
+      },
     });
     this.addProp({
       type: "string",
@@ -53,10 +66,16 @@ class CallToAction10Page extends BaseCallToAction {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "cardIcon",
               displayer: "Card Icon",
-              value: "HiOutlineDocumentText"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "HiOutlineDocumentText",
+              },
             },
             {
               type: "string",
@@ -78,10 +97,16 @@ class CallToAction10Page extends BaseCallToAction {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "cardIcon",
               displayer: "Card Icon",
-              value: "BsUpload"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BsUpload",
+              },
             },
             {
               type: "string",
@@ -103,10 +128,16 @@ class CallToAction10Page extends BaseCallToAction {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "cardIcon",
               displayer: "Card Icon",
-              value: "CiMail"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "CiMail",
+              },
             },
             {
               type: "string",
@@ -138,14 +169,21 @@ class CallToAction10Page extends BaseCallToAction {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("call-to-action10-page")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
             {this.castToString(this.getPropValue("title") || this.getPropValue("icon")) && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
+              <div className={this.decorateCSS("title-container")}>
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
                 {this.getPropValue("icon") && (
-                  <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                  <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
                 )}
-              </Base.SectionTitle>
+              </div>
             )}
             {this.castToString(this.getPropValue("description")) && (
               <Base.SectionDescription className={this.decorateCSS("description")}>
@@ -165,7 +203,7 @@ class CallToAction10Page extends BaseCallToAction {
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     {item.cardIcon && (
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
                       </div>
                     )}
                     {this.castToString(item.cardTitle) && (

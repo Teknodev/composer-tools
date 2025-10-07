@@ -38,12 +38,16 @@
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       opacity: 0.5;
       z-index: -1;
-      border-radius: var(--composer-border-radius-xs);
+      border-radius: var(--composer-border-radius-md);
     }
 
     .content {
       align-items: center;
       gap: var(--composer-gap-lg);
+
+      .subtitle {
+        content: "";
+      }
 
       .title {
         text-align: center;
@@ -67,7 +71,7 @@
         color: var(--composer-html-background);
         width: 30%;
         padding: var(--composer-gap-md);
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-sm);
         border: 1px solid var(--composer-font-color-primary);
         background-color: var(--composer-font-color-primary);
         outline: none;

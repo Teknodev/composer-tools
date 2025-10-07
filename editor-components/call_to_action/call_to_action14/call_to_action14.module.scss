@@ -6,23 +6,27 @@
         gap: var(--composer-gap-md);
         transition: all 0.3s ease;
 
+        .subtitle {
+            margin: 0 auto;
+        }
+
         &[data-animation~="animate1"] {
             &:hover {
                 transform: translateY(-10px) scale(1.1);
 
-                .title, .description, .button-container {
+                .title, .description, .subtitle, .button-container {
                     transform: translateY(-5px);
                 }
             }
 
-            .title, .description, .button-container {
+            .title, .description, .subtitle, .button-container {
                 transition: transform 0.3s ease;
             }
         }
 
         &[data-animation~="animate2"] {
             &:hover {
-                .title {
+                .title, .subtitle {
                     transform: scale(1.05);
                     color: var(--composer-primary-color);
                     transition-delay: 0s;
@@ -40,7 +44,7 @@
                 }
             }
 
-            .title, .description, .button-container {
+            .title, .description, .subtitle, .button-container {
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
@@ -51,7 +55,7 @@
 
         &[data-animation~="animate3"] {
             &:hover {
-                .title {
+                .title, .subtitle {
                     animation: bounceAndGlow 1s ease-in-out;
                     color: var(--composer-primary-color);
                 }

@@ -104,10 +104,14 @@
   
 }
 
+.content:not(:has(.button-container)) .text-container {
+  max-width: 100%;
+}
+
 
 .text {
   margin: 0;
-  text-align: left;
+  text-align: left !important;
   
   
   @container (max-width: #{$composer-phone-width}) {

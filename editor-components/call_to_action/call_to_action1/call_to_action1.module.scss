@@ -7,19 +7,15 @@
             align-items: center;
 
             .icon {
-                width: 70px;
-                height: 70px;
+                font-size: 3rem;
                 color: var(--composer-primary-color);
             }
 
             .title {
-                font-size: 3.5rem;
                 text-align: center;
             }
 
             .description {
-                font-size: 2rem;
-                color: var(--composer-font-color-primary);
                 text-align: center;
             }
 
@@ -30,22 +26,6 @@
                 }
             }
 
-        }
-    }
-}
-
-@container (max-width : #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .content {
-                .title {
-                    font-size: 3rem;
-                }
-
-                .description {
-                    font-size: 1.5rem;
-                }
-            }
         }
     }
 }
