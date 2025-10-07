@@ -91,6 +91,7 @@
                     text-overflow: ellipsis;
                     min-width: 0;
                     width: 100%;
+                    text-align: left;
                 }
 
                 .about-page {
@@ -104,6 +105,8 @@
                     min-width: 0;
                     width: 100%;
                     max-width: 45%;
+                    margin: 0;
+                    text-align: left;
                 }
 
                 .home-page:hover {
