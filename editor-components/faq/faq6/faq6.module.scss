@@ -12,8 +12,8 @@
                     flex: 1.5;
                     display: flex;
                     flex-direction: column;
-                    .title-wrapper{
-                        .title{
+                    .header-wrapper{
+                        .title, .subtitle{
                             content: "";
                         }
                     }
@@ -34,8 +34,9 @@
                                 }
             
                                 .icon {
-                                    width: 15px;
-                                    height: 15px;
+                                    width: 16px;
+                                    height: 16px;
+                                    font-size: 1rem;
                                     color: var(--composer-primary-color);
                                     transition: color 0.5s ease;
                                     &.active{

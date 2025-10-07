@@ -5,7 +5,7 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             .up-page {
-                .title, .description {
+                .title, .description, .subtitle {
                     content: "";
                 }
             }
@@ -58,8 +58,9 @@
                             justify-content: center;            
                             .icon {
                                 color: var(--composer-font-color-primary);
-                                width: 15px;
-                                height: 15px;
+                                width: 16px;
+                                height: 16px;
+                                font-size: 1rem;
                             }
                         }
                     }

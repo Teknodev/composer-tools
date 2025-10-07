@@ -7,7 +7,7 @@
       flex-direction: column;
       gap:var(--composer-gap-xl);
       .up-page {
-        .title, .description {
+        .title, .description, .subtitle {
           content: "";
         }
       }
@@ -32,15 +32,16 @@
             .icon{
               width: 30px;
               height: 30px;
+              font-size: 2rem;
               color: var(--composer-font-color-secondary);
             }
           }
-          .title {
+          .card-title {
             color: var(--composer-font-color-primary);
             margin: 0px;
           }
 
-          .description {
+          .card-description {
             color: var(--composer-tertiary-color);
             margin: 0px;
           }
@@ -61,12 +62,12 @@
           flex: 1;
           gap: var(--composer-gap-lg);
           align-items: start;
-          .title{
+          .down-title{
             margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
           }
-          .description{
+          .down-description{
             margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
@@ -102,10 +103,10 @@
           gap: var(--composer-gap-xl);
           .content{
             align-items: center;
-            .title{
+            .down-title{
               text-align: center;
             }
-            .description{
+            .down-description{
               text-align: center;
             }
           }

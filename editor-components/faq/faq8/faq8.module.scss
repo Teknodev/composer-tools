@@ -6,7 +6,7 @@
       flex-direction: column;
       gap:var(--composer-gap-lg);
       .up-page {
-        .badge, .subtitle {
+        .subtitle, .title {
           content: "";
         }
       }
@@ -14,7 +14,7 @@
         width: 100%;
         display: flex;
         gap: var(--composer-gap-md);
-        .category-flex {
+        .category-container {
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -41,6 +41,7 @@
               gap: var(--composer-gap-xs);
               .bullet-icon {
                 color: var(--composer-font-color-primary);
+                font-size: 1rem;
                 transition: color 0.5s ease;
               }
               .category-name {
@@ -63,8 +64,9 @@
               .arrow-right {
                 transform: rotate(-30deg);
                 transition: transform 0.5s ease;
-                width: 15px;
-                height: 15px;
+                width: 16px;
+                height: 16px;
+                font-size: 1.25rem;
               }
             }
             &.active-category {
@@ -135,7 +137,7 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
-          .text {
+          .question-container {
             background-color: color-mix(
               in srgb,
               var(--composer-html-background),
@@ -157,8 +159,9 @@
                 }
               }
               .question-icon{
-                width: 15px;
-                height: 15px;
+                width: 16px;
+                height: 16px;
+                font-size: 1rem;
                 color: var(--composer-font-color-primary);
                 &.active{
                   transform: rotate(180deg);
@@ -196,7 +199,7 @@
     .max-content{
       .page {
         .down-page {
-          .category-flex {
+          .category-container {
             padding: var(--composer-gap-md);
           }
         }

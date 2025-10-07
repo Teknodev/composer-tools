@@ -24,6 +24,13 @@ class Faq3 extends BaseFAQ {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Frequently Asked Questions",
+    });
+
+    this.addProp({
+      type: "string",
       key: "mainTitle",
       displayer: "Title",
       value: "Got Questions? We’ve Got Answers!",
@@ -61,10 +68,10 @@ class Faq3 extends BaseFAQ {
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
             {
-              type: "number",
+              type: "string",
               key: "index",
               displayer: "Index",
-              value: 1,
+              value: "1.",
             },
           ],
         },
@@ -87,10 +94,10 @@ class Faq3 extends BaseFAQ {
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
             {
-              type: "number",
+              type: "string",
               key: "index",
               displayer: "Index",
-              value: 2,
+              value: "2.",
             },
           ],
         },
@@ -113,10 +120,10 @@ class Faq3 extends BaseFAQ {
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
             {
-              type: "number",
+              type: "string",
               key: "index",
               displayer: "Index",
-              value: 3,
+              value: "3.",
             },
           ],
         },
@@ -139,10 +146,10 @@ class Faq3 extends BaseFAQ {
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
             {
-              type: "number",
+              type: "string",
               key: "index",
               displayer: "Index",
-              value: 4,
+              value: "4.",
             },
           ],
         },
@@ -165,10 +172,10 @@ class Faq3 extends BaseFAQ {
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
             {
-              type: "number",
+              type: "string",
               key: "index",
               displayer: "Index",
-              value: 5,
+              value: "5.",
             },
           ],
         },
@@ -176,17 +183,29 @@ class Faq3 extends BaseFAQ {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       displayer: "Active Icon",
       key: "active_icon",
-      value: "FaPlus",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaPlus",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       displayer: "Inactive Icon",
       key: "inactive_icon",
-      value: "FaMinus",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaMinus",
+      },
     });
 
     this.addProp({
@@ -277,6 +296,11 @@ class Faq3 extends BaseFAQ {
           <div className={this.decorateCSS("content")}>
             {(mainTitleExist || mainSubtitleExist || showLine) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
                 {mainTitleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("mainTitle")}
@@ -290,7 +314,7 @@ class Faq3 extends BaseFAQ {
               </Base.VerticalContent>
             )}
             {((faqItems?.length > 0) || (infoArray?.length > 0)) && (
-              <div className={this.decorateCSS("contentContainer")}>
+              <div className={this.decorateCSS("bottom-container")}>
                 {faqItems?.length > 0 && (
                   <div className={this.decorateCSS("content-left")}>
                     {faqItems.map((item: Faq, index: number) => {
@@ -311,7 +335,7 @@ class Faq3 extends BaseFAQ {
                                 <div className={this.decorateCSS("card-left")}>
                                   {item.index && (
                                     <div className={this.decorateCSS("question-index")}>
-                                      {item.index}.
+                                      {item.index}
                                     </div>
                                   )}
                                   {titleExist && (
@@ -322,15 +346,13 @@ class Faq3 extends BaseFAQ {
                                 </div>
                                 {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
                                   <div className={this.decorateCSS("card-right")}>
-                                    <Base.Icon
-                                      propsIcon={{
-                                        className: this.decorateCSS("icon"),
-                                      }}
-                                      name={
+                                    <Base.Media
+                                      value={
                                         is_active
                                           ? this.getPropValue("inactive_icon")
                                           : this.getPropValue("active_icon")
                                       }
+                                      className={this.decorateCSS("icon")}
                                     />
                                   </div>
                                 )}

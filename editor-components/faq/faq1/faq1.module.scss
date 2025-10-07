@@ -35,6 +35,7 @@
                         transform: rotate(0deg);
                         height: 30px;
                         width: 30px;
+                        font-size: 2rem;
                         transition: transform 0.4s;
                         color: var(--composer-font-color-primary);
                         &.rotate {
@@ -80,6 +81,7 @@
                         .icon {
                             width: 20px;
                             height: 20px;
+                            font-size: 1rem;
                         }
                     }
                     .card-inner {

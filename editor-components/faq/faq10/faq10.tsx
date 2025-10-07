@@ -16,14 +16,20 @@ class Faq10 extends BaseFAQ {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "FAQ",
+    });
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Pricing FAQs",
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "description",
+      displayer: "Description",
       value: "Looking for something else? Let’s talk",
     });
     this.addProp({
@@ -340,26 +346,32 @@ class Faq10 extends BaseFAQ {
     }
 
     const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-    const headerExist = titleExist || subtitleExist;
+    const headerExist = titleExist || descriptionExist || subtitleExist;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("container-inner")} ref={this.containerRef}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")} ref={this.containerRef}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
             {headerExist && 
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {subtitleExist && (
-                <Base.SectionDescription className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>}
+
             <div className={this.decorateCSS("faq-grid")}>
               {columns.map((colCards, colIdx) => (
                 <div className={this.decorateCSS("faq-col")} key={colIdx}>
@@ -432,7 +444,6 @@ class Faq10 extends BaseFAQ {
               ))}
             </div>
           </Base.MaxContent>
-        </div>
       </Base.Container>
     );
   }

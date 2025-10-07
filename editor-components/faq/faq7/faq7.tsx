@@ -13,11 +13,19 @@ type Card = {
 class Faq7 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "FAQ",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "FAQ",
+      value: "Frequently Asked Questions",
     });
     this.addProp({
       type: "string",
@@ -26,16 +34,28 @@ class Faq7 extends BaseFAQ {
       value: "Frequently Asked Questions About Dental Treatments in Turkey",
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "iconInactive",
       displayer: "Inactive Icon",
-      value: "SlArrowDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowDown",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "iconActive",
       displayer: "Active Icon",
-      value: "SlArrowUp",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowUp",
+      },
     });
     this.addProp({
       type: "number",
@@ -176,6 +196,14 @@ class Faq7 extends BaseFAQ {
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Enable Line",
+      value: true,
+    })
+
     this.addProp(INPUTS.BUTTON("button", "Button", "More", null, null, null, "Primary"));
 
     this.setComponentState("activeIndex", -1);
@@ -207,6 +235,9 @@ class Faq7 extends BaseFAQ {
           <div className={this.decorateCSS("page")}>
             {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
               <Base.VerticalContent className={this.decorateCSS("up-page")}>
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+                )}
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
                 )}
@@ -222,7 +253,7 @@ class Faq7 extends BaseFAQ {
                     const isActive = this.getComponentState("activeIndex") === indexCard;
                     return (
                       <div className={this.decorateCSS("card")} key={indexCard} onClick={() => this.handleButton(indexCard)}>
-                        <div className={this.decorateCSS("line")}></div>
+                        {this.getPropValue("line") && (<div className={this.decorateCSS("line")}></div>)}
                         {(this.castToString(card.title) || this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
                           <div className={this.decorateCSS("child-container")}>
                             {this.castToString(card.title) && (
@@ -232,7 +263,7 @@ class Faq7 extends BaseFAQ {
                             )}
                             {(this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
                               <div className={this.decorateCSS("icon-wrapper")}>
-                                <Base.Icon name={isActive ? this.getPropValue("iconActive") : this.getPropValue("iconInactive")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Media value={isActive ? this.getPropValue("iconActive") : this.getPropValue("iconInactive")} className={this.decorateCSS("icon")} />
                               </div>
                             )}
                           </div>

@@ -6,7 +6,7 @@
       flex-direction: column;
       gap: var(--composer-gap-xl);
       .up-page {
-        .badge, .subtitle, .description {
+        .subtitle, .title, .description {
           content: "";
         }
       }
@@ -18,7 +18,7 @@
         flex-wrap: wrap;
         .sections{
           display: flex;
-          .title{
+          .section-title{
             color: var(--composer-font-color-primary);
             font-size: 1rem;
             border-bottom: 2px solid transparent;
@@ -73,8 +73,9 @@
                   justify-content: center;
                   .icon{
                     color: var(--composer-tertiary-color);
-                    width: 15px;
-                    height: 15px;
+                    width: 14px;
+                    height: 14px;
+                    font-size: 1rem;
                     transform: rotate(0deg);
                     transition: transform 1s ease;
                     &.active{
@@ -87,7 +88,7 @@
             &.active{
               padding-bottom: 0px;
             }
-            .hide {
+            .hide-card {
               overflow: hidden;
               padding: 0px;
               transition:padding 0.5s linear;

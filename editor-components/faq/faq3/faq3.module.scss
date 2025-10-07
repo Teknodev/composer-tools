@@ -6,11 +6,11 @@
       flex-direction: column;
       gap: var(--composer-gap-xl);
       .header {
-        .title, .description {
+        .title, .description, .subtitle {
           content: "";
         }
       }
-      .contentContainer {
+      .bottom-container {
         display: flex;
         width: 100%;
         gap: calc(var(--composer-gap-xl) * 2);
@@ -122,7 +122,7 @@
   .container{
     .max-content{
       .content{
-        .contentContainer {
+        .bottom-container {
           gap: var(--composer-gap-xl);
         }
       }
@@ -133,7 +133,7 @@
   .container{
     .max-content{
       .content{
-        .contentContainer {
+        .bottom-container {
           flex-direction: column;
         }
       }

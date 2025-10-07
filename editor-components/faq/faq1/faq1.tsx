@@ -25,10 +25,16 @@ class Faq1 extends BaseFAQ {
       value: "Have Any Questions?"
     })
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "IoIosArrowDown"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowDown",
+      },
     })
 
     this.addProp({
@@ -147,10 +153,11 @@ class Faq1 extends BaseFAQ {
                         <div className={this.decorateCSS("card-subtitle")}>{card.subtitle}</div>
                       )}
                       {this.getPropValue("icon") && (
-                        <Base.Icon name={this.getPropValue("icon")} propsIcon={{
-                          className: `${this.decorateCSS("icon")} 
-                           ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`
-                        }}></Base.Icon>
+                        <Base.Media 
+                          value={this.getPropValue("icon")} 
+                          className={`${this.decorateCSS("icon")} 
+                           ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`}
+                        />
                       )}
                     </div>
                   )}

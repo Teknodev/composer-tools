@@ -6,11 +6,11 @@
       gap: var(--composer-gap-xl);
       .left-page {
         flex: 1;
-        .badge, .subtitle, .title-p {
+        .subtitle, .title, .description {
           content: "";
         }
       }
-      .right{
+      .right-page{
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -39,14 +39,14 @@
             
           }
         }
-        .right-page {
+        .bottom-wrapper {
           display: flex;
-          .right-wrapper{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            .card {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+            
+          .card {
               width: 100%;
               display: flex;
               flex-direction: column;
@@ -83,7 +83,7 @@
                   }
                 }
 
-                .title {
+                .card-title {
                   flex: 1;
                   font-size: 1rem;
                   color: var(--composer-font-color-primary);
@@ -95,6 +95,7 @@
                   .icon {
                     width: 25px;
                     height: 25px;
+                    font-size: 2rem;
                     color: var(--composer-font-color-primary);
                   }
                 }
@@ -120,8 +121,7 @@
                   max-height: 150px;
                 }
               }
-            }
-          }
+           }
         }
       }
 
@@ -133,7 +133,7 @@
   .container{
     .max-content{
       .page{
-        .right{
+        .right-page{
           .section-wrapper{
             border-bottom: none;
           }
