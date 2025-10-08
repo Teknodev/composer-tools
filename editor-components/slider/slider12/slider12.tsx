@@ -151,8 +151,6 @@ class Slider12 extends BaseSlider {
   private isTransitioning = false;
   private dragStartTime = 0;
   private lastSlideChangeTime = 0;
-  private isMobileOrTablet = false;
-  private lastDeviceCheck = 0;
 
   constructor(props?: any) {
     super(props, styles);
@@ -349,72 +347,47 @@ class Slider12 extends BaseSlider {
     };
   }
 
-  private checkDeviceType() {
-    // Cache device check to avoid layout thrashing
-    const now = Date.now();
-    if (now - this.lastDeviceCheck < 1000) return this.isMobileOrTablet;
-
-    this.lastDeviceCheck = now;
-    const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-    this.isMobileOrTablet = windowWidth > 0 && windowWidth <= 1024;
-    return this.isMobileOrTablet;
-  }
-
   private handleBeforeChange = (oldIndex: number, newIndex: number) => {
     if (this.isTransitioning) return;
 
     this.isTransitioning = true;
-
-    // Only update component state if not on mobile/tablet to prevent re-renders
-    if (!this.checkDeviceType()) {
-      this.setComponentState("is-transitioning", true);
-    }
+    this.setComponentState("is-transitioning", true);
 
     const container = document.querySelector(
       `.${this.decorateCSS("slider-parent")}`
     );
 
     if (container) {
-      container.setAttribute("data-transitioning", "true");
-      container.setAttribute(
-        "data-direction",
-        newIndex > oldIndex ? "next" : "prev"
-      );
+      requestAnimationFrame(() => {
+        container.setAttribute("data-transitioning", "true");
+        container.setAttribute(
+          "data-direction",
+          newIndex > oldIndex ? "next" : "prev"
+        );
+      });
     }
   };
 
   private handleAfterChange = (index: number) => {
-    // Update the current slide index without triggering re-render on mobile
-    if (!this.checkDeviceType()) {
-      this.setComponentState("current", index);
-    } else {
-      // For mobile, just update the internal property without state change
-      this.componentState["current"] = index;
-    }
-
+    this.setComponentState("current", index);
     this.lastSlideChangeTime = Date.now();
 
     if (this.transitionTimer) window.clearTimeout(this.transitionTimer);
     this.transitionTimer = window.setTimeout(() => {
       this.isTransitioning = false;
-
-      // Only update state on non-mobile devices
-      if (!this.checkDeviceType()) {
-        this.setComponentState("is-transitioning", false);
-      }
+      this.setComponentState("is-transitioning", false);
 
       const container = document.querySelector(
         `.${this.decorateCSS("slider-parent")}`
       );
       if (container) {
-        container.removeAttribute("data-transitioning");
-        container.removeAttribute("data-direction");
+        requestAnimationFrame(() => {
+          container.removeAttribute("data-transitioning");
+          container.removeAttribute("data-direction");
+        });
       }
 
-      // Optimize video playback management for mobile
-      if (!this.checkDeviceType()) {
-        this.manageVideoPlayback();
-      }
+      this.manageVideoPlayback();
     }, 300) as unknown as number;
   };
 
@@ -496,9 +469,6 @@ class Slider12 extends BaseSlider {
   };
 
   private manageVideoPlayback = () => {
-    // Skip video management on mobile/tablet to improve performance
-    if (this.checkDeviceType()) return;
-
     requestAnimationFrame(() => {
       const sliderElement = document.querySelector(
         `.${this.decorateCSS("slider-parent")}`
@@ -515,7 +485,6 @@ class Slider12 extends BaseSlider {
 
       if (!allVideos.length) return;
 
-      // Use Set for faster lookups
       const activeVideoSet = new Set<HTMLVideoElement>();
 
       activeSlides.forEach((slide) => {
@@ -525,32 +494,17 @@ class Slider12 extends BaseSlider {
         videos.forEach((video) => activeVideoSet.add(video));
       });
 
-      // Batch video operations to minimize reflows
-      const toPlay: HTMLVideoElement[] = [];
-      const toPause: HTMLVideoElement[] = [];
-
       allVideos.forEach((video) => {
         if (activeVideoSet.has(video)) {
-          toPlay.push(video);
-        } else {
-          toPause.push(video);
-        }
-      });
-
-      // Execute batched video operations
-      requestAnimationFrame(() => {
-        toPlay.forEach((video) => {
           video.muted = true;
           video.loop = true;
           video.playsInline = true;
           video.play?.().catch(() => {});
-        });
-
-        toPause.forEach((video) => {
+        } else {
           try {
             video.pause();
           } catch {}
-        });
+        }
       });
     });
   };
@@ -611,7 +565,7 @@ class Slider12 extends BaseSlider {
       useCSS: true,
       useTransform: true,
       accessibility: true,
-      autoplay: false,
+      autoplay: true,
       beforeChange: this.handleBeforeChange,
       afterChange: this.handleAfterChange,
       swipeStart: this.handleSwipeStart,
