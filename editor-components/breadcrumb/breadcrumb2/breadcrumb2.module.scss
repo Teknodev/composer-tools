@@ -45,16 +45,23 @@
         gap: var(--composer-gap-xs);
         text-decoration: none;
         cursor: pointer;
+        
+        &:hover {
+          .home-page {
+            color: var(--composer-primary-color);
+          }
+          .crumberIcon {
+            color: var(--composer-primary-color);
+          }
+        }
       }
       .home-page {
         content: "";
-        &:hover {
-          color: var(--composer-primary-color);
-        }
       }
 
       .crumberIcon {
         content: "";
+        font-size: 1rem;
       }
 
       .current-page-container {

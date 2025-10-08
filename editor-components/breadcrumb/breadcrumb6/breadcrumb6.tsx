@@ -6,6 +6,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
     title: string;
+    icon: string;
     navigateTo: string;
 };
 class Breadcrumb6 extends BaseBreadcrumb {
@@ -186,17 +187,19 @@ class Breadcrumb6 extends BaseBreadcrumb {
                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                   <React.Fragment key={index}>
                     <div className={this.decorateCSS("home-container")}>
-      <ComposerLink path={item.navigateTo}>
-        <div className={this.decorateCSS("breadcrumb-link")}>
-          {item.icon && (
-            <Base.Media
-              value={item.icon}
-              className={this.decorateCSS("icon")}
-            />
-          )}
-          <Base.P className={this.decorateCSS("home")}>{item.title}</Base.P>
-        </div>
-      </ComposerLink>
+                      {(this.castToString(item.title) || item.icon.name) && (
+                        <ComposerLink path={item.navigateTo}>
+                          <div className={this.decorateCSS("breadcrumb-link")}>
+                            {item.icon.name && (
+                              <Base.Media
+                                value={item.icon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            )}
+                            {this.castToString(item.title) && <Base.P className={this.decorateCSS("home")}>{item.title}</Base.P>}
+                          </div>
+                        </ComposerLink>
+                      )}
                     </div>
                   </React.Fragment>
                 ))}
@@ -208,13 +211,13 @@ class Breadcrumb6 extends BaseBreadcrumb {
                     />
                     <div className={this.decorateCSS("current-container")}>
                       <div className={this.decorateCSS("current-page-container")}>
-                        {currentPageIcon && (
+                        {currentPageIcon.name && (
                           <Base.Media 
                             value={currentPageIcon} 
                             className={this.decorateCSS("current-page-icon")} 
                           />
                         )}
-                        <Base.P className={this.decorateCSS("current")}>{currentPageTitle}</Base.P>
+                        {this.castToString(currentPageTitle) && <Base.P className={this.decorateCSS("current")}>{currentPageTitle}</Base.P>}
                       </div>
                     </div>
                   </>

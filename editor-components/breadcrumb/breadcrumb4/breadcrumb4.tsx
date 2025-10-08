@@ -6,6 +6,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
     title: string;
+    icon: string;
     navigateTo: string;
 };
 
@@ -77,6 +78,12 @@ class Breadcrumb4 extends BaseBreadcrumb {
       key: "backgroundImage",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da9c05fb049c002cc245da?alt=media",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
     this.addProp({
       type: "string",
@@ -176,6 +183,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
     const vector2 = this.castToObject<any>("vector2");
     const vector3 = this.castToObject<any>("vector3");
     const backgroundImage = this.getPropValue("backgroundImage");
+    const overlay = this.getPropValue("overlay");
     const title = this.getPropValue("title");
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
@@ -205,7 +213,14 @@ class Breadcrumb4 extends BaseBreadcrumb {
             className={`${this.decorateCSS("vector3")} ${vector3.animation ? this.decorateCSS("animated") : ""}`} 
           />
         )}
-        <div className={this.decorateCSS("section")} style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className={this.decorateCSS("section")}>
+          {backgroundImage && (
+            <Base.Media
+              value={{ type: "image", url: backgroundImage }}
+              className={this.decorateCSS("background-image")}
+            />
+          )}
+          {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
           <Base.Container className={this.decorateCSS("container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("items")}>
@@ -217,19 +232,21 @@ class Breadcrumb4 extends BaseBreadcrumb {
                     {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                       <React.Fragment key={index}>
                         <div className={this.decorateCSS("link")}>
-                          <ComposerLink path={item.navigateTo}>
-                            <div className={this.decorateCSS("breadcrumb-link")}>
-                              {item.icon && (
-                                <Base.Media
-                                  value={item.icon}
-                                  className={`${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("icon-without-image")}`}
-                                />
-                              )}
-                              <Base.P className={`${this.decorateCSS("text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
-                                {item.title}
-                              </Base.P>
-                            </div>
-                          </ComposerLink>
+                          {(this.castToString(item.title) || item.icon.name) && (
+                            <ComposerLink path={item.navigateTo}>
+                              <div className={this.decorateCSS("breadcrumb-link")}>
+                                {item.icon.name && (
+                                  <Base.Media
+                                    value={item.icon}
+                                    className={`${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("icon-without-image")}`}
+                                  />
+                                )}
+                                {this.castToString(item.title) && <Base.P className={`${this.decorateCSS("text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
+                                  {item.title}
+                                </Base.P>}
+                              </div>
+                            </ComposerLink>
+                          )}
                         </div>
                       </React.Fragment>
                     ))}
@@ -240,15 +257,15 @@ class Breadcrumb4 extends BaseBreadcrumb {
                           className={`${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("icon-without-image")}`}
                         />
                         <div className={this.decorateCSS("current-page-container")}>
-                          {currentPageIcon && (
+                          {currentPageIcon.name && (
                             <Base.Media
                               value={currentPageIcon}
                               className={`${this.decorateCSS("current-page-icon")} ${!backgroundImage && this.decorateCSS("icon-without-image")}`}
                             />
                           )}
-                          <Base.P className={`${this.decorateCSS("current-page-text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
+                          {this.castToString(currentPageTitle) && <Base.P className={`${this.decorateCSS("current-page-text")} ${!backgroundImage && this.decorateCSS("text-without-image")}`}>
                             {currentPageTitle}
-                          </Base.P>
+                          </Base.P>}
                         </div>
                       </>
                     )}

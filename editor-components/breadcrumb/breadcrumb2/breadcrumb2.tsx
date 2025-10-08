@@ -142,19 +142,23 @@ class Breadcrumb2 extends BaseBreadcrumb {
             <Base.Row className={this.decorateCSS("crumber-content")}>
               {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                 <React.Fragment key={index}>
-                  <ComposerLink path={item.navigateTo}>
-                    <div className={this.decorateCSS("breadcrumb-link")}>
-                      {item.icon && (
-                        <Base.Media
-                          value={item.icon}
-                          className={this.decorateCSS("crumberIcon")}
-                        />
-                      )}
-                      <Base.P className={this.decorateCSS("home-page")}>
-                        {item.title}
-                      </Base.P>
-                    </div>
-                  </ComposerLink>
+                  {(this.castToString(item.title) || item.icon) && (
+                    <ComposerLink path={item.navigateTo}>
+                      <div className={this.decorateCSS("breadcrumb-link")}>
+                        {item.icon && (
+                          <Base.Media
+                            value={item.icon}
+                            className={this.decorateCSS("crumberIcon")}
+                          />
+                        )}
+                        {this.castToString(item.title) && (
+                          <Base.P className={this.decorateCSS("home-page")}>
+                            {item.title}
+                          </Base.P>
+                        )}
+                      </div>
+                    </ComposerLink>
+                  )}
                 </React.Fragment>
               ))}
               {breadcrumbItems.length > 0 && (
@@ -164,7 +168,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
                     className={this.decorateCSS("crumberIcon")}
                   />
                   <div className={this.decorateCSS("current-page-container")}>
-                    {currentPageIcon && (
+                    {currentPageIcon.name && (
                       <Base.Media
                         value={currentPageIcon}
                         className={this.decorateCSS("current-page-icon")}

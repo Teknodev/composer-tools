@@ -130,8 +130,6 @@ class Breadcrumb1 extends BaseBreadcrumb {
         const overlay = this.getPropValue("overlay");
         const alignmentValue = Base.getContentAlignment();
 
-        console.log(currentPageIcon,"currentPageIcon")
-
         return (
             <>
                 {(bgImage?.url || isTitleExist) && (
@@ -169,29 +167,31 @@ class Breadcrumb1 extends BaseBreadcrumb {
                             >
                                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                                     <div key={index} className={this.decorateCSS("breadcrumb-item")}>
-                                        {this.castToString(item.title) && <ComposerLink path={item.navigateTo}>
+                                        {(this.castToString(item.title) || item.icon.name) && <ComposerLink path={item.navigateTo}>
                                             <div className={this.decorateCSS("breadcrumb-link")}>
-                                                {item.icon && (
+                                                {item.icon.name && (
                                                     <Base.Media
                                                         value={item.icon}
                                                         className={this.decorateCSS("stripIcon")}
                                                     />
                                                 )}
-                                                <Base.P className={this.decorateCSS("home-page")}>
-                                                    {item.title}
-                                                </Base.P>
+                                                {this.castToString(item.title) && (
+                                                    <Base.P className={this.decorateCSS("home-page")}>
+                                                        {item.title}
+                                                    </Base.P>
+                                                )}
                                             </div>
                                         </ComposerLink>}
                                     </div>
                                 ))}
                                 {breadcrumbItems.length > 0 && (
                                     <div className={this.decorateCSS("current-page-wrapper")}>
-                                        {this.getPropValue("breadcrumbIcon") && <Base.Media
+                                        {this.getPropValue("breadcrumbIcon").name && <Base.Media
                                             value={this.getPropValue("breadcrumbIcon")}
                                             className={this.decorateCSS("stripIcon")}
                                         />}
                                         <div className={this.decorateCSS("current-page-container")}>
-                                            {currentPageIcon && (
+                                            {currentPageIcon.name && (
                                                 <Base.Media
                                                     value={currentPageIcon}
                                                     className={this.decorateCSS("current-page-icon")}

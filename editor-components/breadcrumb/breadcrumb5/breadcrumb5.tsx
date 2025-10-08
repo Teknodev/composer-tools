@@ -6,6 +6,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
     title: string;
+    icon: string;
     navigateTo: string;
 };
 
@@ -113,19 +114,21 @@ class Breadcrumb5 extends BaseBreadcrumb {
                         <div className={this.decorateCSS("section")}>
                             {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                                 <div key={index} className={this.decorateCSS("breadcrumb-item")}>
-        <ComposerLink path={item.navigateTo}>
-            <div className={this.decorateCSS("breadcrumb-link")}>
-                {item.icon && (
-                    <Base.Media
-                        value={item.icon}
-                        className={this.decorateCSS("icon")}
-                    />
-                )}
-                <Base.P className={this.decorateCSS("home-page-title")}>
-                    {item.title}
-                </Base.P>
-            </div>
-        </ComposerLink>
+                                    {(this.castToString(item.title) || item.icon.name) && (
+                                        <ComposerLink path={item.navigateTo}>
+                                            <div className={this.decorateCSS("breadcrumb-link")}>
+                                                {item.icon.name && (
+                                                    <Base.Media
+                                                        value={item.icon}
+                                                        className={this.decorateCSS("icon")}
+                                                    />
+                                                )}
+                                                {this.castToString(item.title) && <Base.P className={this.decorateCSS("home-page-title")}>
+                                                    {item.title}
+                                                </Base.P>}
+                                            </div>
+                                        </ComposerLink>
+                                    )}
                                 </div>
                             ))}
                             {breadcrumbItems.length > 0 && (
@@ -135,15 +138,15 @@ class Breadcrumb5 extends BaseBreadcrumb {
                                         className={this.decorateCSS("icon")}
                                     />
                                     <div className={this.decorateCSS("current-page-container")}>
-                                        {currentPageIcon && (
+                                        {currentPageIcon.name && (
                                             <Base.Media
                                                 value={currentPageIcon}
                                                 className={this.decorateCSS("current-page-icon")}
                                             />
                                         )}
-                                        <Base.P className={this.decorateCSS("current-page-title")}>
+                                        {this.castToString(currentPageTitle) && <Base.P className={this.decorateCSS("current-page-title")}>
                                             {currentPageTitle}
-                                        </Base.P>
+                                        </Base.P>}
                                     </div>
                                 </div>
                             )}
