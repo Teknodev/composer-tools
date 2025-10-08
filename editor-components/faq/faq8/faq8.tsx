@@ -754,9 +754,9 @@ class Faq8 extends BaseFAQ {
                       >
                         {(this.castToString(question.qq)) && (
                           <div className={this.decorateCSS("question")}>
-                            <Base.H3 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
+                            <Base.H4 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
-                            </Base.H3>
+                            </Base.H4>
                             <Base.Media value={this.getPropValue("arrow-down")} className={`${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`} />
                           </div>
                         )}

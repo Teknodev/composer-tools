@@ -192,7 +192,7 @@ class Faq6 extends BaseFAQ {
                           {(this.castToString(item.getPropValue("title")) || this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
                             <div className={this.decorateCSS("title-box")}>
                               {this.castToString(item.getPropValue("title")) && (
-                                <Base.H3 className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</Base.H3>
+                                <Base.H4 className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</Base.H4>
                               )}
                               {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
                                 <Base.Media

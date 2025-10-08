@@ -329,7 +329,7 @@ class Faq9 extends BaseFAQ {
                                   "card-title-wrapper"
                                 )}
                               >
-                                <Base.H3
+                                <Base.H4
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${
@@ -339,7 +339,7 @@ class Faq9 extends BaseFAQ {
                                   }`}
                                 >
                                   {questn.qq}
-                                </Base.H3>
+                                </Base.H4>
                               </div>
                             )}
                             {this.getPropValue("icon") && (
@@ -404,7 +404,7 @@ class Faq9 extends BaseFAQ {
                                     "card-title-wrapper"
                                   )}
                                 >
-                                  <Base.H3
+                                  <Base.H4
                                     className={`${this.decorateCSS(
                                       "card-title"
                                     )} ${
@@ -414,7 +414,7 @@ class Faq9 extends BaseFAQ {
                                     }`}
                                   >
                                     {questn.qq}
-                                  </Base.H3>
+                                  </Base.H4>
                                 </div>
                               )}
                               {this.getPropValue("icon") && (

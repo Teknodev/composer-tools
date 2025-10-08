@@ -259,9 +259,9 @@ class Faq4 extends BaseFAQ {
                         <div className={this.decorateCSS("child-container")}>
                           {this.castToString(item.title) && (
                             <div className={this.decorateCSS("card-left")}>
-                              <Base.H3 className={this.decorateCSS("card-title")}>
+                              <Base.H4 className={this.decorateCSS("card-title")}>
                                 {item.title}
-                              </Base.H3>
+                              </Base.H4>
                             </div>
                           )}
                           {this.getPropValue("icon") && (

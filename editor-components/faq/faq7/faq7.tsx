@@ -258,7 +258,7 @@ class Faq7 extends BaseFAQ {
                           <div className={this.decorateCSS("child-container")}>
                             {this.castToString(card.title) && (
                               <div className={this.decorateCSS("card-title-wrapper")}>
-                                <Base.H3 className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</Base.H3>
+                                <Base.H4 className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</Base.H4>
                               </div>
                             )}
                             {(this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (

@@ -334,14 +334,14 @@ class Faq3 extends BaseFAQ {
                               <div className={this.decorateCSS("top-card")}>
                                 <div className={this.decorateCSS("card-left")}>
                                   {item.index && (
-                                    <Base.H3 className={this.decorateCSS("question-index")}>
+                                    <Base.H4 className={this.decorateCSS("question-index")}>
                                       {item.index}
-                                    </Base.H3>
+                                    </Base.H4>
                                   )}
                                   {titleExist && (
-                                    <Base.H3 className={this.decorateCSS("card-subtitle")}>
+                                    <Base.H4 className={this.decorateCSS("card-subtitle")}>
                                       {item.title}
-                                    </Base.H3>
+                                    </Base.H4>
                                   )}
                                 </div>
                                 {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
@@ -375,9 +375,9 @@ class Faq3 extends BaseFAQ {
                     {infoArray.map((item: InfoArrayItem, index: number) => (
                       <Base.VerticalContent key={index} className={this.decorateCSS("info-items")}>
                         {this.castToString(item.title) && (
-                          <Base.H3 className={this.decorateCSS("title-info")}>
+                          <Base.H4 className={this.decorateCSS("title-info")}>
                             {item.title}
-                          </Base.H3>
+                          </Base.H4>
                         )}
                         {this.castToString(item.description) && (
                           <Base.P className={this.decorateCSS("description-info")}>

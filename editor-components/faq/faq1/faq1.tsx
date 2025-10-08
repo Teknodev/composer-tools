@@ -150,7 +150,7 @@ class Faq1 extends BaseFAQ {
                   {(this.castToString(card.subtitle) || this.getPropValue("icon")) && (
                     <div className={this.decorateCSS("in-box")}>
                       {this.castToString(card.subtitle) && (
-                        <Base.H3 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H3>
+                        <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H4>
                       )}
                       {this.getPropValue("icon") && (
                         <Base.Media 
