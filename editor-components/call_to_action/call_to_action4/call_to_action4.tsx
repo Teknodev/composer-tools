@@ -201,7 +201,7 @@ class CallToAction4Page extends BaseCallToAction {
                             <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
                           </div>
                         )}
-                        {this.castToString(item.description) && <div className={this.decorateCSS("description")}>{item.description}</div>}
+                        {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
                       </div>
                     ))}
                   </Base.ListGrid>

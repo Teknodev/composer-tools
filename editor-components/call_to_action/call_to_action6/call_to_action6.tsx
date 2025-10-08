@@ -178,9 +178,9 @@ class CallToAction6Page extends BaseCallToAction {
                     {(commentExist || this.castToString(button.text)) && (
                       <div className={this.decorateCSS("bottom-container")}>
                         {commentExist && (
-                          <h4 className={this.decorateCSS("comment")}>
+                          <Base.P className={this.decorateCSS("comment")}>
                             {this.getPropValue("comment")}
-                          </h4>
+                          </Base.P>
                         )}
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
