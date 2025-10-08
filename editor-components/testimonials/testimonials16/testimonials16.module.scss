@@ -1,0 +1,371 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background: linear-gradient(135deg, var(--color-gray-secondary) 0%, var(--color-gray-tertiary) 50%, var(--color-gray-secondary) 100%);
+    padding: 80px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.maxContent {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--composer-gap-xl);
+    gap: var(--composer-gap-lg);
+
+    @container (max-width: #{$composer-tablet-width}) {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+    }
+}
+
+.title {
+    font-size: calc(4 * var(--composer-font-size-md));
+    font-weight: var(--composer-font-weight-bold);
+    color: var(--composer-font-color-primary);
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+
+    @container (max-width: #{$composer-tablet-width}) {
+        font-size: calc(3 * var(--composer-font-size-md));
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+        font-size: calc(2.5 * var(--composer-font-size-md));
+    }
+}
+
+.links {
+    display: flex;
+    gap: var(--composer-gap-lg);
+    align-items: center;
+
+    @container (max-width: #{$composer-phone-width}) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-md);
+    }
+}
+
+.link {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: var(--composer-font-size-md);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: var(--composer-gap-xs);
+    transition: opacity var(--composer-transition-duration-normal) var(--composer-transition-easing);
+
+    &:hover {
+        opacity: 0.8;
+        color: var(--composer-primary-color);
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.sliderContainer {
+    position: relative;
+    overflow: hidden; // Prevent cards from being visible outside container
+}
+
+.cardWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    background: var(--composer-html-background);
+    border-radius: var(--composer-border-radius-lg);
+    padding: var(--composer-gap-lg);
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: var(--composer-gap-xl);
+    align-items: center;
+    box-shadow: var(--composer-box-shadow-lg);
+    transition: transform 0.6s var(--composer-transition-easing),
+        opacity 0.6s var(--composer-transition-easing);
+    position: relative;
+
+    &.slideIn {
+        animation: slideIn 0.6s var(--composer-transition-easing) forwards;
+    }
+
+    &.slideOut {
+        animation: slideOut 0.6s var(--composer-transition-easing) forwards;
+    }
+
+    &.slideInReverse {
+        animation: slideInReverse 0.6s var(--composer-transition-easing) forwards;
+    }
+
+    &.slideOutReverse {
+        animation: slideOutReverse 0.6s var(--composer-transition-easing) forwards;
+    }
+
+    @container (max-width: #{$composer-tablet-width}) {
+        grid-template-columns: 250px 1fr;
+        gap: var(--composer-gap-lg);
+        padding: var(--composer-gap-md);
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+        grid-template-columns: 1fr;
+        gap: var(--composer-gap-md);
+        padding: var(--composer-gap-md);
+    }
+}
+
+.imageSection {
+    position: relative;
+}
+
+.testimonialImage {
+    width: 100%;
+    height: auto;
+    border-radius: var(--composer-border-radius-md);
+    object-fit: cover;
+    aspect-ratio: 3/4;
+
+    @container (max-width: #{$composer-phone-width}) {
+        aspect-ratio: 16/9;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+.contentSection {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+    padding: var(--composer-gap-md) 0;
+
+    @container (max-width: #{$composer-phone-width}) {
+        padding: 0;
+    }
+}
+
+.logo {
+    height: 40px;
+    display: flex;
+    align-items: center;
+
+    @container (max-width: #{$composer-phone-width}) {
+        height: 32px;
+    }
+}
+
+.logoImage {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.quoteContainer {
+    position: relative;
+    padding-top: var(--composer-gap-md);
+    margin-bottom: var(--composer-gap-md);
+}
+
+.quoteMarks {
+    position: absolute;
+    top: -15px;
+    left: -10px;
+    color: var(--composer-primary-color);
+    line-height: 0;
+}
+
+.quote {
+    position: relative;
+    font-size: calc(1.8 * var(--composer-font-size-md));
+    font-weight: 500;
+    color: var(--color-black);
+    margin: 0;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    z-index: 1;
+    font-style: normal;
+
+    @container (max-width: #{$composer-tablet-width}) {
+        font-size: calc(1.5 * var(--composer-font-size-md));
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+        font-size: calc(1.2 * var(--composer-font-size-md));
+    }
+}
+
+.author {
+    padding-top: var(--composer-gap-md);
+    border-top: 1px solid var(--color-gray);
+    font-size: var(--composer-font-size-md);
+    color: var(--color-gray-200);
+
+    @container (max-width: #{$composer-phone-width}) {
+        font-size: 0.9rem;
+    }
+}
+
+.name {
+    font-weight: var(--composer-font-weight-bold);
+    color: var(--color-black);
+}
+
+.separator {
+    color: var(--color-gray-100);
+}
+
+.position {
+    color: var(--color-gray-200);
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--composer-gap-md);
+    margin-top: var(--composer-gap-lg);
+}
+
+.navButton {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--composer-border-radius-full);
+    background: rgba(var(--color-white-rgb), 0.1);
+    border: none;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--composer-transition-duration-normal) var(--composer-transition-easing);
+
+    &:hover {
+        background: rgba(var(--color-white-rgb), 0.2);
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.dots {
+    display: flex;
+    gap: var(--composer-gap-xs);
+    padding: 0 var(--composer-gap-md);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--composer-border-radius-full);
+    background: rgba(var(--color-white-rgb), 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all var(--composer-transition-duration-normal) var(--composer-transition-easing);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        background: rgba(var(--color-white-rgb), 0.5);
+    }
+}
+
+.dotActive {
+    width: 40px;
+    border-radius: var(--composer-border-radius-xs);
+    background: rgba(var(--color-white-rgb), 0.3);
+}
+
+.dotProgress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--color-white-rgb), 0.8);
+    transform-origin: left;
+    animation: progressAnimation 5s linear forwards;
+}
+
+@keyframes progressAnimation {
+    0% {
+        transform: scaleX(0);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+// Animation keyframes
+@keyframes slideIn {
+    0% {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInReverse {
+    0% {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutReverse {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+}
