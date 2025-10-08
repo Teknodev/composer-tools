@@ -357,63 +357,62 @@ class Content27 extends BaseContent {
                 : ({ ["--content27-grid-margin" as any]: `${gridMargin}px` } as React.CSSProperties)
             }
           >
-            <div className={this.decorateCSS("leftColumn")}
-            >
-              <div className={this.decorateCSS("leftContent")}
-              >
-                {this.castToString(subtitleText) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitleText}
-                  </Base.SectionSubTitle>
-                )}
-                {this.castToString(headerText) && (
-                  <Base.SectionTitle
-                    className={this.decorateCSS("leftTitle")}
-                    style={{
-                      ["--title-font-size" as any]: `${titleFontSize}px`,
-                      ["--title-line-height" as any]: titleLineHeight,
-                      ["--title-max-width" as any]: `${titleMaxWidth}ch`
-                    }}
-                  >
-                    {headerText}
-                  </Base.SectionTitle>
-                )}
-                <div className={this.decorateCSS("listWrapper")}
-                >
-                  {hasContentItems && (
-                    <ul
-                      className={this.decorateCSS("list")}
-                      role="tablist"
-                      aria-label="Success Stories"
-                      aria-orientation="vertical"
-                      style={{ fontSize: `${listFontSize}px` }}
-                    >
-                      {contentItems.map((item: any, i: number) => {
-                        const isActive = i === activeIndex;
-                        const itemTitle = this.getNestedPropValue(item, "title");
-                        const itemTitleString = this.getNestedPropValue(item, "title", true);
-                        const ariaLabel = this.castToString(itemTitle)?.toString() || itemTitleString || undefined;
-
-                        return (
-                          <li key={i} role="presentation">
-                            <button
-                              type="button"
-                              className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""} `}
-                              onClick={() => this.setActiveTab(i)}
-                              role="tab"
-                              aria-selected={isActive}
-                              aria-controls={`tabpanel-${i}`}
-                              id={`tab-${i}`}
-                              tabIndex={isActive ? 0 : -1}
-                              aria-label={ariaLabel}
-                            >
-                              {itemTitle}
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
+            <div className={this.decorateCSS("leftColumn")}>
+              <div className={this.decorateCSS("leftContent")}>
+                <div className={this.decorateCSS("leftTextSection")}>
+                  {this.castToString(subtitleText) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {subtitleText}
+                    </Base.SectionSubTitle>
                   )}
+                  {this.castToString(headerText) && (
+                    <Base.SectionTitle
+                      className={this.decorateCSS("leftTitle")}
+                      style={{
+                        ["--title-font-size" as any]: `${titleFontSize}px`,
+                        ["--title-line-height" as any]: titleLineHeight,
+                        ["--title-max-width" as any]: `${titleMaxWidth}ch`
+                      }}
+                    >
+                      {headerText}
+                    </Base.SectionTitle>
+                  )}
+                  <div className={this.decorateCSS("listWrapper")}>
+                    {hasContentItems && (
+                      <ul
+                        className={this.decorateCSS("list")}
+                        role="tablist"
+                        aria-label="Success Stories"
+                        aria-orientation="vertical"
+                        style={{ fontSize: `${listFontSize}px` }}
+                      >
+                        {contentItems.map((item: any, i: number) => {
+                          const isActive = i === activeIndex;
+                          const itemTitle = this.getNestedPropValue(item, "title");
+                          const itemTitleString = this.getNestedPropValue(item, "title", true);
+                          const ariaLabel = this.castToString(itemTitle)?.toString() || itemTitleString || undefined;
+
+                          return (
+                            <li key={i} role="presentation">
+                              <button
+                                type="button"
+                                className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""} `}
+                                onClick={() => this.setActiveTab(i)}
+                                role="tab"
+                                aria-selected={isActive}
+                                aria-controls={`tabpanel-${i}`}
+                                id={`tab-${i}`}
+                                tabIndex={isActive ? 0 : -1}
+                                aria-label={ariaLabel}
+                              >
+                                {itemTitle}
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

@@ -7,6 +7,7 @@
   background-color: var(--composer-html-background, #fff);
   color: var(--composer-font-color-primary, #000000);
   container-type: inline-size;
+  padding: 80px 50px;
 }
 
 /* Desktop Styles (Default) */
@@ -15,7 +16,7 @@
   width: 100%;
   max-width: var(--composer-content-width);
   padding-top: 0;
-  padding-bottom: var(--composer-gap-xl);
+  padding-bottom: 0;
 }
 
 .grid {
@@ -64,6 +65,239 @@
   max-width: 480px;
   height: 100%;
   margin-left: auto;
+}
+
+.leftTextSection {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--left-spacing, 140px) * 0.6);
+  width: 100%;
+}
+
+/* Editor Design Panel Alignment Controls */
+.content27 {
+  /* Text alignment controls - CSS class support */
+  &.text-align-left,
+  &[style*="text-align: left"] {
+    .leftContent {
+      align-items: flex-start;
+      text-align: left;
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .leftTextSection {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .listWrapper { justify-content: flex-start; }
+    .list { align-items: flex-start; }
+    .ctaWrapper { justify-content: flex-start; }
+    .rightContentContainer {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .detailsSection {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .leftTitle {
+      text-align: left;
+    }
+    .subtitle {
+      text-align: left;
+    }
+    .infoLine {
+      text-align: left;
+    }
+  }
+
+  &.text-align-center,
+  &[style*="text-align: center"] {
+    .leftContent {
+      align-items: center;
+      text-align: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .leftTextSection {
+      align-items: center;
+      text-align: center;
+    }
+    .listWrapper { justify-content: center; }
+    .list { align-items: center; }
+    .ctaWrapper { justify-content: center; }
+    .rightContentContainer {
+      align-items: center;
+      text-align: center;
+    }
+    .detailsSection {
+      align-items: center;
+      text-align: center;
+    }
+    .leftTitle {
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+    }
+    .infoLine {
+      text-align: center;
+    }
+  }
+
+  &.text-align-right,
+  &[style*="text-align: right"] {
+    .leftContent {
+      align-items: flex-end;
+      text-align: right;
+      margin-left: 0;
+      margin-right: auto;
+    }
+    .leftTextSection {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .listWrapper { justify-content: flex-end; }
+    .list { align-items: flex-end; }
+    .ctaWrapper { justify-content: flex-end; }
+    .rightContentContainer {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .detailsSection {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .leftTitle {
+      text-align: right;
+    }
+    .subtitle {
+      text-align: right;
+    }
+    .infoLine {
+      text-align: right;
+    }
+  }
+
+  &.text-align-justify,
+  &[style*="text-align: justify"] {
+    .leftContent {
+      align-items: flex-start;
+      text-align: justify;
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .leftTextSection {
+      align-items: flex-start;
+      text-align: justify;
+    }
+    .listWrapper { justify-content: flex-start; }
+    .list { align-items: flex-start; }
+    .ctaWrapper { justify-content: flex-start; }
+    .rightContentContainer {
+      align-items: flex-start;
+      text-align: justify;
+    }
+    .detailsSection {
+      align-items: flex-start;
+      text-align: justify;
+    }
+    .leftTitle {
+      text-align: justify;
+    }
+    .subtitle {
+      text-align: justify;
+    }
+    .infoLine {
+      text-align: justify;
+    }
+  }
+
+  /* Justify-content controls */
+  &[style*="justify-content: flex-start"] {
+    .leftContent {
+      align-items: flex-start;
+      text-align: left;
+      margin-left: auto;
+      margin-right: 0;
+    }
+    .listWrapper { justify-content: flex-start; }
+    .list { align-items: flex-start; }
+    .ctaWrapper { justify-content: flex-start; }
+  }
+
+  &[style*="justify-content: center"] {
+    .leftContent {
+      align-items: center;
+      text-align: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .listWrapper { justify-content: center; }
+    .list { align-items: center; }
+    .ctaWrapper { justify-content: center; }
+  }
+
+  &[style*="justify-content: flex-end"] {
+    .leftContent {
+      align-items: flex-end;
+      text-align: right;
+      margin-left: 0;
+      margin-right: auto;
+    }
+    .listWrapper { justify-content: flex-end; }
+    .list { align-items: flex-end; }
+    .ctaWrapper { justify-content: flex-end; }
+  }
+
+  /* Align-items controls */
+  &[style*="align-items: flex-start"] {
+    .leftContent {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .list { align-items: flex-start; }
+    .rightContentContainer {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .detailsSection {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+
+  &[style*="align-items: center"] {
+    .leftContent {
+      align-items: center;
+      text-align: center;
+    }
+    .list { align-items: center; }
+    .rightContentContainer {
+      align-items: center;
+      text-align: center;
+    }
+    .detailsSection {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &[style*="align-items: flex-end"] {
+    .leftContent {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .list { align-items: flex-end; }
+    .rightContentContainer {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .detailsSection {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
 }
 
 /* Respect global alignment setting (Base.Container adds .center/.left) */
@@ -194,7 +428,7 @@
 .mediaSection {
   display: flex;
   width: 100%;
-  margin-bottom: 32px;
+  margin-bottom: 0;
 }
 
 .imageBox {
@@ -327,7 +561,7 @@
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 40px) minmax(0, 1fr);
   gap: var(--grid-gap, 40px);
   width: 100%;
-  margin-top: var(--grid-gap, 40px);
+  margin-top: 0;
   padding-bottom: 0;
 }
 
@@ -564,7 +798,7 @@
   }
 
   .ctaWrapper {
-    margin-top: 36px;
+    margin-top: 0;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -617,7 +851,7 @@
 
 /* CTA Button Styles - Desktop genel */
 .ctaWrapper {
-  margin-top: 40px;
+  margin-top: 0;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -723,7 +957,7 @@
   }
 
   .ctaWrapper {
-    margin-top: 32px;
+    margin-top: 0;
     justify-content: center;
     display: flex;
     align-items: center;
