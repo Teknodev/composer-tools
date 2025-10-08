@@ -6,6 +6,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
     title: string;
+    icon: string;
     navigateTo: string;
 };
 
@@ -40,6 +41,18 @@ class Breadcrumb1 extends BaseBreadcrumb {
                             key: "title",
                             displayer: "Title",
                             value: "Home",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "",
+                            },
                         },
                         {
                             type: "page",
@@ -112,7 +125,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
         const currentPage = this.castToObject("currentPage");
         const currentPageTitle = currentPage?.title || "";
-        const currentPageIcon = currentPage?.icon.name || "";
+        const currentPageIcon = currentPage?.icon || "";
         const bgImage = this.getPropValue("image");
         const overlay = this.getPropValue("overlay");
         const alignmentValue = Base.getContentAlignment();
@@ -148,7 +161,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                 {showBreadcrumb && (
                     <Base.Container className={this.decorateCSS("strip-container")}>
                         <Base.MaxContent className={this.decorateCSS("strip-max-content")}>
-                            <div
+                            <Base.P
                                 className={`${this.decorateCSS("strip-content")} ${alignmentValue === "center"
                                     ? this.decorateCSS("center")
                                     : this.decorateCSS("left")
@@ -157,16 +170,18 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                                     <div key={index} className={this.decorateCSS("breadcrumb-item")}>
                                         {this.castToString(item.title) && <ComposerLink path={item.navigateTo}>
-                                            <Base.P className={this.decorateCSS("home-page")}>
-                                                {item.title}
-                                            </Base.P>
+                                            <div className={this.decorateCSS("breadcrumb-link")}>
+                                                {item.icon && (
+                                                    <Base.Media
+                                                        value={item.icon}
+                                                        className={this.decorateCSS("stripIcon")}
+                                                    />
+                                                )}
+                                                <Base.P className={this.decorateCSS("home-page")}>
+                                                    {item.title}
+                                                </Base.P>
+                                            </div>
                                         </ComposerLink>}
-                                        {index < breadcrumbItems.length - 1 && this.getPropValue("breadcrumbIcon") && (
-                                            <Base.Media
-                                                value={this.getPropValue("breadcrumbIcon")}
-                                                className={this.decorateCSS("stripIcon")}
-                                            />
-                                        )}
                                     </div>
                                 ))}
                                 {breadcrumbItems.length > 0 && (
@@ -189,7 +204,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                         </div>
                                     </div>
                                 )}
-                            </div>
+                            </Base.P>
                         </Base.MaxContent>
                     </Base.Container>
                 )}

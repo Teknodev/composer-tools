@@ -14,14 +14,14 @@ class Breadcrumb6 extends BaseBreadcrumb {
     this.addProp({
       type: "media",
       key: "vector1",
-      displayer: "Vector 1",
+      displayer: "Image 1",
       additionalParams: { availableTypes: ["image", "icon"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da787bfb049c002cc22f10?alt=media" },
     });
     this.addProp({
       type: "media",
       key: "vector2",
-      displayer: "Vector 2",
+      displayer: "Image 2",
       additionalParams: { availableTypes: ["image", "icon"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da788bfb049c002cc22f19?alt=media" },
     });
@@ -58,6 +58,18 @@ class Breadcrumb6 extends BaseBreadcrumb {
               key: "title",
               displayer: "Title",
               value: "Home",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "page",
@@ -135,7 +147,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
     const currentPage = this.castToObject("currentPage");
     const currentPageTitle = currentPage?.title || "";
-    const currentPageIcon = currentPage?.icon.name || "";
+    const currentPageIcon = currentPage?.icon || "";
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
@@ -174,16 +186,18 @@ class Breadcrumb6 extends BaseBreadcrumb {
                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                   <React.Fragment key={index}>
                     <div className={this.decorateCSS("home-container")}>
-                      <ComposerLink path={item.navigateTo}>
-                        <Base.P className={this.decorateCSS("home")}>{item.title}</Base.P>
-                      </ComposerLink>
+      <ComposerLink path={item.navigateTo}>
+        <div className={this.decorateCSS("breadcrumb-link")}>
+          {item.icon && (
+            <Base.Media
+              value={item.icon}
+              className={this.decorateCSS("icon")}
+            />
+          )}
+          <Base.P className={this.decorateCSS("home")}>{item.title}</Base.P>
+        </div>
+      </ComposerLink>
                     </div>
-                    {index < breadcrumbItems.length - 1 && (
-                      <Base.Media 
-                        value={this.getPropValue("breadcrumbIcon")} 
-                        className={this.decorateCSS("icon")} 
-                      />
-                    )}
                   </React.Fragment>
                 ))}
                 {breadcrumbItems.length > 0 && (

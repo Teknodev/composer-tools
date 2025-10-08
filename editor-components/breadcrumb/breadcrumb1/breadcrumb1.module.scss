@@ -58,7 +58,6 @@
       align-items: center;
       gap: var(--composer-gap-sm);
       padding: calc(var(--padding-xl) * 1.5) 0;
-      font-size: 1rem;
       color: var(--composer-font-color-primary);
       flex-wrap: nowrap;
       &.center {
@@ -77,6 +76,13 @@
         align-items: center;
         gap: var(--composer-gap-sm);
       }
+      .breadcrumb-link {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-xs);
+        text-decoration: none;
+        cursor: pointer;
+      }
       .home-page {
         color: var(--composer-primary-color);
         text-decoration: none;
@@ -86,6 +92,7 @@
       .stripIcon {
         font-size: 1rem;
         flex-shrink: 0;
+        color: var(--composer-primary-color);
       }
       .current-page-container {
         display: flex;
@@ -100,6 +107,7 @@
         font-size: 1rem;
         flex-shrink: 0;
         color: var(--composer-font-color-primary);
+        align-self: self-end;
       }
       .home-page,
       .current-page {

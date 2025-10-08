@@ -22,18 +22,30 @@ class Breadcrumb5 extends BaseBreadcrumb {
                     key: "item",
                     displayer: "Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Home",
-                        },
-                        {
-                            type: "page",
-                            key: "navigateTo",
-                            displayer: "Navigate To",
-                            value: "",
-                        },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Home",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
+            },
                     ],
                 },
             ],
@@ -92,7 +104,7 @@ class Breadcrumb5 extends BaseBreadcrumb {
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
         const currentPage = this.castToObject<any>("currentPage");
         const currentPageTitle = currentPage?.title || "";
-        const currentPageIcon = currentPage?.icon.name || "";
+        const currentPageIcon = currentPage?.icon || "";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -101,17 +113,19 @@ class Breadcrumb5 extends BaseBreadcrumb {
                         <div className={this.decorateCSS("section")}>
                             {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                                 <div key={index} className={this.decorateCSS("breadcrumb-item")}>
-                                    <ComposerLink path={item.navigateTo}>
-                                        <Base.P className={this.decorateCSS("home-page-title")}>
-                                            {item.title}
-                                        </Base.P>
-                                    </ComposerLink>
-                                    {index < breadcrumbItems.length - 1 && (
-                                        <Base.Media
-                                            value={this.getPropValue("breadcrumbIcon")}
-                                            className={this.decorateCSS("icon")}
-                                        />
-                                    )}
+        <ComposerLink path={item.navigateTo}>
+            <div className={this.decorateCSS("breadcrumb-link")}>
+                {item.icon && (
+                    <Base.Media
+                        value={item.icon}
+                        className={this.decorateCSS("icon")}
+                    />
+                )}
+                <Base.P className={this.decorateCSS("home-page-title")}>
+                    {item.title}
+                </Base.P>
+            </div>
+        </ComposerLink>
                                 </div>
                             ))}
                             {breadcrumbItems.length > 0 && (

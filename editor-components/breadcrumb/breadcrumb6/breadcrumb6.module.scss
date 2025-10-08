@@ -87,6 +87,13 @@
                     width: 100%;
                 }
 
+                .breadcrumb-link {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--composer-gap-xs);
+                    text-decoration: none;
+                    cursor: pointer;
+                }
                 .home {
                     color: var(--composer-font-color-primary);
                     &:hover {

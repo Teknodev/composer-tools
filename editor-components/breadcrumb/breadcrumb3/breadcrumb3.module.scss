@@ -47,7 +47,6 @@
             padding: var(--composer-gap-lg) var(--composer-gap-xl);
             background: var(--composer-html-background);
             box-shadow: var(--box-shadow-active);
-            font-size: 1rem;
             color: var(--composer-font-color-primary);
             width: fit-content;
             min-width: 35%;
@@ -79,6 +78,13 @@
                     display: flex;
                     align-items: center;
                     max-width: 45%;
+                }
+                .breadcrumb-link {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--composer-gap-xs);
+                    text-decoration: none;
+                    cursor: pointer;
                 }
 
                 .home-page {
@@ -150,10 +156,8 @@
         .breadcrumb-wrapper {
             .crumber-content {
                 min-width: 75%;
-                font-size: 1rem;
 
                 .title{
-                    font-size: 2.5rem;
                 }
 
                 .breadcrumb-items {

@@ -6,6 +6,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
     title: string;
+    icon: string;
     navigateTo: string;
 };
 
@@ -34,6 +35,18 @@ class Breadcrumb2 extends BaseBreadcrumb {
               key: "title",
               displayer: "Title",
               value: "Home",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "page",
@@ -112,7 +125,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
     const currentPage = this.castToObject("currentPage");
     const currentPageTitle = currentPage?.title || "";
-    const currentPageIcon = currentPage?.icon.name || "";
+    const currentPageIcon = currentPage?.icon || "";
     const showGradient = this.getPropValue("showGradient");
     const overlay = this.getPropValue("overlay");
     return (
@@ -130,16 +143,18 @@ class Breadcrumb2 extends BaseBreadcrumb {
               {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
                 <React.Fragment key={index}>
                   <ComposerLink path={item.navigateTo}>
-                    <Base.P className={this.decorateCSS("home-page")}>
-                      {item.title}
-                    </Base.P>
+                    <div className={this.decorateCSS("breadcrumb-link")}>
+                      {item.icon && (
+                        <Base.Media
+                          value={item.icon}
+                          className={this.decorateCSS("crumberIcon")}
+                        />
+                      )}
+                      <Base.P className={this.decorateCSS("home-page")}>
+                        {item.title}
+                      </Base.P>
+                    </div>
                   </ComposerLink>
-                  {index < breadcrumbItems.length - 1 && (
-                    <Base.Media
-                      value={this.getPropValue("breadcrumbIcon")}
-                      className={this.decorateCSS("crumberIcon")}
-                    />
-                  )}
                 </React.Fragment>
               ))}
               {breadcrumbItems.length > 0 && (
