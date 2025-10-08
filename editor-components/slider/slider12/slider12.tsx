@@ -151,6 +151,7 @@ class Slider12 extends BaseSlider {
   private isTransitioning = false;
   private dragStartTime = 0;
   private lastSlideChangeTime = 0;
+  private lockResize = false;
 
   constructor(props?: any) {
     super(props, styles);
@@ -298,9 +299,7 @@ class Slider12 extends BaseSlider {
   }
 
   private items() {
-    return this.castToObject<any[]>("slider").filter(
-      (item) => item?.media || (item.value && item.value.media)
-    );
+    return this.castToObject<any[]>("slider");
   }
 
   private getMediaInfo(val: any) {
@@ -351,6 +350,7 @@ class Slider12 extends BaseSlider {
     if (this.isTransitioning) return;
 
     this.isTransitioning = true;
+    this.lockResize = true;
     this.setComponentState("is-transitioning", true);
 
     const container = document.querySelector(
@@ -375,6 +375,7 @@ class Slider12 extends BaseSlider {
     if (this.transitionTimer) window.clearTimeout(this.transitionTimer);
     this.transitionTimer = window.setTimeout(() => {
       this.isTransitioning = false;
+      this.lockResize = false;
       this.setComponentState("is-transitioning", false);
 
       const container = document.querySelector(
@@ -388,7 +389,7 @@ class Slider12 extends BaseSlider {
       }
 
       this.manageVideoPlayback();
-    }, 300) as unknown as number;
+    }, 900) as unknown as number;
   };
 
   private handleSwipeStart = () => {
@@ -415,6 +416,8 @@ class Slider12 extends BaseSlider {
     this.manageVideoPlayback();
 
     this.sliderObserver = new ResizeObserver((entries) => {
+      if (this.lockResize || this.isTransitioning) return;
+
       for (const entry of entries) {
         if (entry.contentRect) {
           const slider = this.getComponentState("slider-ref").current;
@@ -445,6 +448,8 @@ class Slider12 extends BaseSlider {
   }
 
   private handleResize = () => {
+    if (this.lockResize || this.isTransitioning) return;
+
     const container = document.querySelector(
       `.${this.decorateCSS("container")}`
     ) as HTMLElement | null;
@@ -453,7 +458,7 @@ class Slider12 extends BaseSlider {
     if (this.resizeTimer) window.clearTimeout(this.resizeTimer);
     this.resizeTimer = window.setTimeout(() => {
       if (container) container.removeAttribute("data-resizing");
-    }, 120) as unknown as number;
+    }, 200) as unknown as number;
   };
 
   private navigateToSlide = (index: number) => {
@@ -553,7 +558,7 @@ class Slider12 extends BaseSlider {
       variableWidth: false,
       centerMode: false,
       arrows: false,
-      speed: 400,
+      speed: 800,
       cssEase: "cubic-bezier(0.2, 0, 0.15, 1)",
       waitForAnimate: true,
       adaptiveHeight: false,
@@ -565,7 +570,8 @@ class Slider12 extends BaseSlider {
       useCSS: true,
       useTransform: true,
       accessibility: true,
-      autoplay: true,
+      autoplay: false,
+      edgeFriction: 0.15,
       beforeChange: this.handleBeforeChange,
       afterChange: this.handleAfterChange,
       swipeStart: this.handleSwipeStart,
@@ -580,10 +586,6 @@ class Slider12 extends BaseSlider {
         },
         {
           breakpoint: 1024,
-          settings: { slidesToShow: 1, variableWidth: false },
-        },
-        {
-          breakpoint: 1280,
           settings: { slidesToShow: 1, variableWidth: false },
         },
         {
@@ -678,12 +680,34 @@ class Slider12 extends BaseSlider {
                 className={carouselClassName}
               >
                 {items.map((item: any, index: number) => {
-                  const mediaVal = item.media ?? item?.value ?? item;
-                  const { url, isVideo } = this.getMediaInfo(mediaVal);
-                  const linkPath = this.getLinkPath((item as any).link);
+                  const mediaItem = Array.isArray(item)
+                    ? item.find((prop) => prop.key === "media")
+                    : item.media;
 
-                  const header = this.castToString(item.header);
-                  const description = this.castToString(item.description);
+                  const headerItem = Array.isArray(item)
+                    ? item.find((prop) => prop.key === "header")
+                    : item;
+
+                  const descItem = Array.isArray(item)
+                    ? item.find((prop) => prop.key === "description")
+                    : item;
+
+                  const linkItem = Array.isArray(item)
+                    ? item.find((prop) => prop.key === "link")
+                    : item?.link;
+
+                  const mediaVal = mediaItem?.value || mediaItem;
+                  const { url, isVideo } = this.getMediaInfo(mediaVal);
+
+                  const header = this.castToString(
+                    headerItem?.value || item.header
+                  );
+                  const description = this.castToString(
+                    descItem?.value || item.description
+                  );
+                  const linkPath = this.getLinkPath(
+                    linkItem?.value || item.link
+                  );
 
                   const CardContent = (
                     <SlideCard

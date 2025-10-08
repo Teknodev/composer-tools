@@ -1,13 +1,15 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+/* ==================== Slider 12 ==================== */
 :root {
   --arrow-icon-size: 50px;
   --arrow-glyph-size: 23px;
   --arrow-pad: 12px;
-  --slide-speed: 900ms;
+  --slide-speed: 400ms;
   --right-margin: clamp(20px, 5vw, 60px);
 }
 
+/* --------------------- Layout --------------------- */
 .container {
   container-type: inline-size;
 
@@ -302,11 +304,6 @@
       -webkit-backface-visibility: hidden;
       /* Only add will-change during transitions */
       will-change: auto;
-
-      @media (max-width: #{$composer-tablet-width}) {
-        /* Shorter transition time on mobile for better performance */
-        transition: transform 400ms cubic-bezier(0.2, 0, 0.15, 1) !important;
-      }
     }
 
     .slick-list {
@@ -353,32 +350,6 @@
 
   .carousel :global(.slick-track) {
     transition: none !important;
-  }
-}
-
-/* Mobile optimizations to prevent re-renders */
-@media (max-width: #{$composer-tablet-width}) {
-  .container .slider-parent .carousel {
-
-    /* Simplify animations on mobile */
-    :global(.slick-track) {
-      /* Use simpler transform for better performance */
-      transition: transform 300ms ease !important;
-    }
-
-    /* Disable unnecessary animations */
-    .card,
-    .media-container,
-    .content-container {
-      transition: none !important;
-    }
-  }
-
-  /* Prevent hover effects on mobile that cause re-rendering */
-  .container .max-content .header .prevArrow:not([aria-disabled="true"]):hover,
-  .container .max-content .header .nextArrow:not([aria-disabled="true"]):hover,
-  .slider-parent .dot:hover {
-    transform: none;
   }
 }
 
