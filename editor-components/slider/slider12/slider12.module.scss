@@ -1,17 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-/* ==================== Slider 12 ==================== */
 :root {
   --arrow-icon-size: 50px;
   --arrow-glyph-size: 23px;
   --arrow-pad: 12px;
-  --slide-speed: 800ms;
-  /* Reduced from 620ms for smoother transitions */
+  --slide-speed: 1000ms;
   --right-margin: clamp(20px, 5vw, 60px);
-  /* Right side margin for desktop */
 }
 
-/* --------------------- Layout --------------------- */
 .container {
   container-type: inline-size;
 
@@ -51,7 +47,6 @@
       align-items: center;
       margin-bottom: clamp(12px, 2vw, 24px);
       position: relative;
-      /* absolute arrows için referans */
       width: 100%;
       z-index: 1;
 
@@ -60,7 +55,6 @@
         max-width: var(--composer-content-width);
       }
 
-      /* Base arrow styles - position will be set by container queries */
       .arrows {
         display: flex;
         gap: 15px;
@@ -76,12 +70,10 @@
         place-items: center;
         cursor: pointer;
         color: var(--composer-font-color-primary);
-        /* ikon rengi */
         width: var(--arrow-icon-size);
         height: var(--arrow-icon-size);
         transition: border-color .15s ease, transform .12s ease;
         line-height: 0;
-        /* svg’yi tam ortalar */
       }
 
       .prevArrow,
@@ -89,18 +81,14 @@
         @extend %arrowBase;
         border: 2px solid var(--composer-font-color-primary);
         color: var(--composer-font-color-primary) !important;
-        /* Force icon color */
 
-        /* Only border changes on hover/active */
         &:hover,
         &:focus,
         &:active {
           border-color: var(--composer-primary-color) !important;
           color: var(--composer-font-color-primary) !important;
-          /* Keep icon color consistent */
         }
 
-        /* Disabled state */
         &[aria-disabled="true"] {
           border-color: var(--color-gray-100) !important;
           color: var(--color-gray-100) !important;
@@ -114,7 +102,6 @@
           }
         }
 
-        /* Force icon color consistency */
         svg {
           width: var(--arrow-glyph-size);
           height: var(--arrow-glyph-size);
@@ -125,21 +112,6 @@
             fill: none !important;
           }
         }
-      }
-
-      /* İKON GÖRÜNÜRLÜK FIX */
-      .prevArrow svg,
-      .nextArrow svg {
-        width: var(--arrow-glyph-size);
-        height: var(--arrow-glyph-size);
-        display: block;
-      }
-
-      .prevArrow svg *,
-      .nextArrow svg * {
-        stroke: currentColor !important;
-        fill: none !important;
-        /* Feather/Fi ikonları stroke tabanlı */
       }
 
       .prevArrow:not([aria-disabled="true"]):hover,
@@ -167,7 +139,6 @@
       .prevArrow,
       .nextArrow {
 
-        /* Ensure consistent colors for hover and active states */
         &:hover,
         &:focus,
         &:active {
@@ -175,10 +146,9 @@
           border-color: var(--composer-primary-color) !important;
         }
 
-        /* Only disable the hover effect when aria-disabled=true */
         &[aria-disabled="true"] {
           border-color: var(--color-gray-100) !important;
-          color: var (--color-gray-100) !important;
+          color: var(--color-gray-100) !important;
 
           &:hover,
           &:focus,
@@ -199,10 +169,8 @@
 /* --------------------- Arrow Color Fix --------------------- */
 .container .max-content .header {
 
-  /* Ok stillerinin düzenlenmesi */
   .prevArrow,
   .nextArrow {
-    /* Temel ok stili */
     padding: var(--arrow-pad);
     border-radius: 9999px;
     border: 2px solid var(--composer-font-color-primary);
@@ -214,19 +182,15 @@
     height: var(--arrow-icon-size);
     line-height: 0;
     color: var(--composer-font-color-primary) !important;
-    /* İkon rengi */
     outline: none !important;
 
-    /* Browser focus outline fix */
     &::-moz-focus-inner {
       border: 0;
     }
 
-    /* Transform için smooth geçiş */
     transition: transform 0.12s ease,
     border-color 0.12s ease;
 
-    /* İkon stilleri */
     svg {
       width: var(--arrow-glyph-size);
       height: var(--arrow-glyph-size);
@@ -238,30 +202,22 @@
       }
     }
 
-    /* Aktif durumundaki okların stili (disabled değilken) */
     &:not([aria-disabled="true"]) {
-
-      /* Hover durumu - border rengi değişir */
       &:hover {
         border-color: var(--composer-primary-color) !important;
         transform: scale(1.08);
       }
 
-      /* Focus durumu */
       &:focus {
         border-color: var(--composer-primary-color) !important;
       }
 
-      /* Tıklama anında (active durumu) */
       &:active {
         border-color: var(--composer-primary-color) !important;
         transform: scale(0.95);
       }
-
-      /* .active sınıfını kaldırdık */
     }
 
-    /* Disabled durumu */
     &[aria-disabled="true"] {
       border-color: var(--color-gray-100) !important;
       color: var(--color-gray-100) !important;
@@ -282,7 +238,6 @@
 
 /* -------- Arrow Positioning (Container-based) -------- */
 
-/* Small containers: arrows below description, left-aligned */
 @container (max-width: 960px) {
   .container .max-content .header .arrows {
     position: static;
@@ -303,7 +258,6 @@
   }
 }
 
-/* Medium containers: arrows top-right, medium-sized */
 @container (min-width: 961px) and (max-width: 1280px) {
   .container .max-content .header .arrows {
     position: absolute;
@@ -317,7 +271,6 @@
   }
 }
 
-/* Large containers: arrows top-right, standard size */
 @container (min-width: 1281px) {
   .container .max-content .header .arrows {
     position: absolute;
@@ -331,198 +284,101 @@
   }
 }
 
-/* Anti-flicker styles - prevent layout shifts */
+/* ==================== ANTI-FLICKER OPTIMIZATIONS ==================== */
+
+/* Base slider setup with GPU acceleration */
 .container .slider-parent {
-  will-change: transform;
-  contain: layout style paint;
-  transform: translate3d(0, 0, 0);
-
-  /* Add right margin for desktop view */
-  @container (min-width: 1024px) {
-    .carousel:after {
-      content: '';
-      display: block;
-      width: var(--right-margin);
-      flex: 0 0 var(--right-margin);
-      position: absolute;
-      right: calc(-1 * var(--right-margin));
-      top: 0;
-      height: 1px;
-    }
-
-    /* Add padding to ensure last card is fully visible with right margin */
-    .carousel :global(.slick-list) {
-      padding-right: var(--right-margin) !important;
-      margin-right: calc(-1 * var(--right-margin));
-    }
-  }
-
-  /* Enhanced GPU acceleration for all slider elements */
   .carousel {
-    perspective: 1000px;
 
+    /* Single source of truth for track animation */
     :global(.slick-track) {
       display: flex !important;
-      will-change: transform;
-      backface-visibility: hidden;
+      /* GPU-accelerated transform */
       transform: translate3d(0, 0, 0);
-      transition: transform var(--slide-speed) cubic-bezier(.16, 1, .3, 1) !important;
+      /* Match JS speed setting (400ms) */
+      transition: transform var(--slide-speed) cubic-bezier(0.2, 0, 0.15, 1) !important;
+      /* Prevent flickering */
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      /* Only add will-change during transitions */
+      will-change: auto;
+
+      @media (max-width: #{$composer-tablet-width}) {
+        /* Shorter transition time on mobile for better performance */
+        transition: transform 400ms cubic-bezier(0.2, 0, 0.15, 1) !important;
+      }
     }
 
     .slick-list {
-      overflow: visible;
+      overflow: hidden;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      contain: paint layout;
-      will-change: transform;
-      transform: translate3d(0, 0, 0);
-      clip-path: inset(0);
-      /* Use clip-path instead of overflow for smoother transitions */
-      overflow: hidden !important;
-      /* Double protection against overflows */
     }
 
+    /* Fixed dimensions to prevent layout shifts */
     :global(.slick-slide) {
       float: none !important;
       display: block !important;
       min-width: 0;
-      backface-visibility: hidden;
-      transform: translate3d(0, 0, 0);
-      will-change: transform;
-      width: 100% !important;
-      max-width: 100% !important;
-      transition-property: transform;
-      position: relative;
-      box-sizing: border-box;
+      flex-shrink: 0;
 
-      >div,
-      .card {
-        width: 100% !important;
-        max-width: 100%;
-        transform: translate3d(0, 0, 0);
-        backface-visibility: hidden;
-      }
-
-      .media-container {
-        transform: translate3d(0, 0, 0);
-        backface-visibility: hidden;
-        will-change: transform;
-      }
-
-      /* Better media containment */
-      img,
-      video {
-        object-fit: cover !important;
-        width: 100% !important;
-        height: 100% !important;
-        transform: translate3d(0, 0, 0);
-        backface-visibility: hidden;
-        will-change: transform;
-        contain: strict;
+      >div {
+        width: 100%;
+        height: 100%;
       }
     }
   }
+}
 
-  /* Ensure slide cards maintain consistent width */
-  .carousel :global(.slick-slide) {
-    width: 100% !important;
-    max-width: 100%;
-    will-change: transform;
-
-    /* Prevent internal sizing shifts */
-    >div {
-      width: 100% !important;
-      max-width: 100%;
-    }
-
-    .card {
-      width: 100% !important;
-      max-width: 100%;
-      transform: translate3d(0, 0, 0);
-      backface-visibility: hidden;
-    }
-  }
-
-  /* Force GPU compositing on track */
+/* Add will-change ONLY during transitions */
+.container .slider-parent[data-transitioning="true"] {
   .carousel :global(.slick-track) {
     will-change: transform;
-    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Disable transitions during swipe for smooth dragging */
+.slider-parent[data-swiping="true"] {
+  .carousel :global(.slick-track) {
+    transition: none !important;
+  }
+}
+
+/* Disable all animations during resize to prevent jank */
+.container[data-resizing="true"] .slider-parent {
+  .carousel * {
+    transition: none !important;
+    animation: none !important;
   }
 
-  /* More aggressive position control during transitions */
-  &[data-transitioning="true"] {
-    :global(.slick-slide) {
-      contain: strict;
+  .carousel :global(.slick-track) {
+    transition: none !important;
+  }
+}
 
-      >div,
-      .card,
-      .media-container {
-        contain: strict;
-      }
+/* Mobile optimizations to prevent re-renders */
+@media (max-width: #{$composer-tablet-width}) {
+  .container .slider-parent .carousel {
+
+    /* Simplify animations on mobile */
+    :global(.slick-track) {
+      /* Use simpler transform for better performance */
+      transition: transform 300ms ease !important;
     }
 
-    /* Force fixed dimensions during transitions */
-    .card {
+    /* Disable unnecessary animations */
+    .card,
+    .media-container,
+    .content-container {
       transition: none !important;
-      width: 100% !important;
     }
   }
 
-  /* Add additional space on the right when last slides are visible */
-  &[data-last-slide-visible="true"] {
-    .carousel :global(.slick-list) {
-      padding-right: 35% !important;
-      /* Increased from 25% to 35% for better visibility */
-    }
-  }
-
-  /* Ensure the last-slide-visible class applies the padding */
-  .last-slide-visible :global(.slick-list) {
-    padding-right: 35% !important;
-  }
-
-  /* Specific adjustment for laptop screens */
-  @media (max-width: 1440px) {
-    &[data-last-slide-visible="true"] {
-      .carousel :global(.slick-list) {
-        padding-right: 45% !important;
-        /* Even more padding for laptop screens */
-      }
-    }
-
-    .last-slide-visible :global(.slick-list) {
-      padding-right: 45% !important;
-    }
-  }
-}
-
-/* Resize guard */
-.container[data-resizing="true"] .carousel * {
-  transition: none !important;
-  animation: none !important;
-}
-
-.container[data-resizing="true"] .carousel :global(.slick-track) {
-  transition: none !important;
-}
-
-/* Split title/desc on wider containers */
-@container (min-width: 900px) {
-
-  .container .max-content .header .header-content .title,
-  .container .max-content .header .header-content .description {
-    width: 40%;
-  }
-}
-
-/* Split title/desc on wider containers - adjust width percentage for tablet */
-@container (min-width: 900px) and (max-width: 1200px) {
-
-  .container .max-content .header .header-content .title,
-  .container .max-content .header .header-content .description {
-    width: 80%;
-    /* Increased from 60% to 80% for tablet-sized containers */
+  /* Prevent hover effects on mobile that cause re-rendering */
+  .container .max-content .header .prevArrow:not([aria-disabled="true"]):hover,
+  .container .max-content .header .nextArrow:not([aria-disabled="true"]):hover,
+  .slider-parent .dot:hover {
+    transform: none;
   }
 }
 
@@ -530,7 +386,6 @@
 .slider-parent {
   --media-h: 350px;
   position: relative;
-  /* Base padding will be adjusted by container queries */
 }
 
 @media (max-width: #{$composer-tablet-width}) {
@@ -553,45 +408,33 @@
     width: auto;
     padding-bottom: var(--composer-gap-lg);
 
-    :global(.slick-track) {
-      display: flex !important;
-      will-change: transform;
-      backface-visibility: hidden;
-      transform: translate3d(0, 0, 0);
-      transition: transform var(--slide-speed) cubic-bezier(.16, 1, .3, 1) !important;
-    }
-
     .slick-list {
       overflow: hidden;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      contain: paint layout;
-      will-change: transform;
-      transform: translate3d(0, 0, 0);
     }
 
-    /* Lock padding to consistent values */
+    /* Consistent padding that doesn't change based on position */
     :global(.slick-slide) .card {
-      padding: var(--composer-gap-md) var(--composer-gap-sm) 0;
-      width: 100% !important;
+      padding: var(--composer-gap-md) calc(var(--composer-gap-sm) / 2) 0;
+      width: 100%;
+      box-sizing: border-box;
     }
 
+    /* Remove first/last child padding changes to prevent layout shifts */
     :global(.slick-slide:first-child) .card {
-      padding-left: 0;
+      padding-left: calc(var(--composer-gap-sm) / 2);
     }
 
-    :global(.slick-slide:last-child).card {
-      padding-right: 0 !important;
+    :global(.slick-slide:last-child) .card {
+      padding-right: calc(var(--composer-gap-sm) / 2);
     }
 
     .slick-slide {
       float: none !important;
       display: block !important;
       min-width: 0;
-      backface-visibility: hidden;
-      transform: translate3d(0, 0, 0);
-      will-change: transform;
 
       >div {
         display: block;
@@ -604,44 +447,35 @@
     .card {
       display: flex;
       flex-direction: column;
-      width: 100% !important;
-      /* Force consistent width */
+      width: 100%;
       height: 100%;
       overflow: hidden;
-      /* Contain any internal overflow */
-      will-change: transform;
-      backface-visibility: hidden;
-      transform: translate3d(0, 0, 0);
-      /* Better than translateZ for compositing */
       justify-content: flex-start;
       align-items: flex-start;
       box-sizing: border-box;
 
       .media-container {
-        width: 100% !important;
+        width: 100%;
+        /* Fixed height to prevent layout shifts */
         height: var(--media-h);
+        min-height: var(--media-h);
+        max-height: var(--media-h);
         overflow: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: var(--composer-border-radius-xl);
         margin-bottom: var(--composer-gap-md);
-        will-change: transform;
-        backface-visibility: hidden;
-        transform: translate3d(0, 0, 0);
-        contain: paint layout size;
+        background-color: var(--composer-background-secondary, #f5f5f5);
 
         :global(video),
         :global(img) {
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover !important;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
           display: block;
-          backface-visibility: hidden;
-          transform: translate3d(0, 0, 0);
-          contain: strict;
-          margin: 0 !important;
-          padding: 0 !important;
+          margin: 0;
+          padding: 0;
         }
       }
 
@@ -651,7 +485,7 @@
         gap: var(--composer-gap-md);
         display: flex;
         flex-direction: column;
-        width: 100% !important;
+        width: 100%;
 
         .content-title {
           margin: 0;
@@ -684,7 +518,6 @@
     cursor: pointer;
   }
 
-  /* -------- Custom Dots (her kart için 1 dot) -------- */
   .dot-nav {
     display: flex;
     justify-content: center;
@@ -693,7 +526,6 @@
     margin-top: var(--composer-gap-sm);
     user-select: none;
 
-    /* Hide dots on desktop */
     @media (min-width: 1024px) {
       display: none;
     }
@@ -704,13 +536,10 @@
     height: 10px;
     border-radius: 50%;
     background-color: var(--composer-primary-color);
-    /* Use solid primary color for dots */
     border: none;
-    /* Remove border completely */
     cursor: pointer;
     transition: transform .12s ease, opacity .12s ease;
     opacity: 0.4;
-    /* Make inactive dots semi-transparent */
   }
 
   .dot:hover {
@@ -720,17 +549,14 @@
 
   .dot[aria-current="true"] {
     opacity: 1;
-    /* Full opacity for active dot */
     transform: scale(1.15);
   }
 }
 
 /* --------------------- Responsive --------------------- */
-/* Adjust for small viewports regardless of container size */
 @media (max-width: #{$composer-tablet-width}) {
   .container .max-content .header .header-content {
     max-width: clamp(720px, 95vw, 1440px);
-    /* Increased from 85vw to 95vw for wider display */
   }
 
   .container .max-content .header .header-content .title {
@@ -757,6 +583,22 @@
 
   .slider-parent .carousel .card .content-container .content-description {
     font-size: clamp(13px, 4.6vw, 16px);
+  }
+}
+
+@container (min-width: 1024px) {
+
+  .container .max-content .header .header-content .title,
+  .container .max-content .header .header-content .description {
+    width: 40%;
+  }
+}
+
+@container (min-width: 900px) and (max-width: 1200px) {
+
+  .container .max-content .header .header-content .title,
+  .container .max-content .header .header-content .description {
+    width: 80%;
   }
 }
 

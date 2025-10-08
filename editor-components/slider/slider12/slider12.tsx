@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider12.module.scss";
@@ -27,13 +29,12 @@ const VideoPlayer = React.memo(
       const videoEl = videoRef.current;
       if (!videoEl) return;
 
-      // Configure video properties
-      (videoEl as any).muted = true;
-      (videoEl as any).loop = true;
-      (videoEl as any).playsInline = true;
-      (videoEl as any).autoplay = true;
+      videoEl.muted = true;
+      videoEl.loop = true;
+      videoEl.playsInline = true;
+      videoEl.autoplay = true;
+      videoEl.preload = "auto";
 
-      // Set required attributes
       const attributes = {
         muted: "true",
         playsinline: "true",
@@ -44,27 +45,28 @@ const VideoPlayer = React.memo(
         videoEl.setAttribute(attr, val)
       );
 
-      // Handle play attempts
       const tryPlay = () => {
-        const playPromise = videoEl.play?.();
-        if (playPromise && typeof playPromise.catch === "function") {
-          playPromise.catch(() => {
-            if (!attemptedPlay.current) {
-              attemptedPlay.current = true;
-              setTimeout(() => videoEl.play?.().catch(() => {}), 120);
-            }
-          });
-        }
+        setTimeout(() => {
+          if (videoEl && document.body.contains(videoEl)) {
+            videoEl.play?.().catch(() => {
+              if (!attemptedPlay.current) {
+                attemptedPlay.current = true;
+                setTimeout(() => videoEl.play?.().catch(() => {}), 120);
+              }
+            });
+          }
+        }, 10);
       };
 
-      // Event handlers
       const handleLoaded = () => {
-        requestAnimationFrame(() => onReady?.());
+        onReady?.();
         tryPlay();
       };
 
       videoEl.addEventListener("loadedmetadata", handleLoaded);
       videoEl.addEventListener("loadeddata", handleLoaded);
+
+      videoEl.load();
       tryPlay();
 
       return () => {
@@ -91,14 +93,70 @@ const VideoPlayer = React.memo(
   }
 );
 
+const SlideCard = React.memo(
+  ({
+    url,
+    isVideo,
+    header,
+    description,
+    cardClassName,
+    mediaClassName,
+    contentClassName,
+    titleClassName,
+    descClassName,
+  }: {
+    url: string;
+    isVideo: boolean;
+    header: string;
+    description: string;
+    cardClassName: string;
+    mediaClassName: string;
+    contentClassName: string;
+    titleClassName: string;
+    descClassName: string;
+  }) => {
+    return (
+      <div className={cardClassName}>
+        <div className={mediaClassName}>
+          {isVideo ? (
+            <VideoPlayer src={url} />
+          ) : (
+            <img
+              src={url || "/placeholder.svg"}
+              alt=""
+              decoding="async"
+              loading="lazy"
+            />
+          )}
+        </div>
+
+        {(header || description) && (
+          <Base.VerticalContent className={contentClassName}>
+            {header && <Base.H2 className={titleClassName}>{header}</Base.H2>}
+            {description && (
+              <Base.P className={descClassName}>{description}</Base.P>
+            )}
+          </Base.VerticalContent>
+        )}
+      </div>
+    );
+  }
+);
+
 /* ==================== Slider Component ==================== */
 class Slider12 extends BaseSlider {
   private resizeTimer?: number;
+  private transitionTimer?: number;
+  private sliderObserver?: ResizeObserver;
+  private isTransitioning = false;
+  private dragStartTime = 0;
+  private lastSlideChangeTime = 0;
+  private isMobileOrTablet = false;
+  private lastDeviceCheck = 0;
 
   constructor(props?: any) {
     super(props, styles);
 
-    // Define component props
     this.addProp({
       type: "string",
       key: "title",
@@ -203,7 +261,6 @@ class Slider12 extends BaseSlider {
       additionalParams: { availableTypes: ["icon"] },
     });
 
-    // Initialize state
     this.setComponentState("current", 0);
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("is-transitioning", false);
@@ -213,49 +270,41 @@ class Slider12 extends BaseSlider {
     return "Slider 12";
   }
 
-  // Helper method to create slider items consistently
   private createSliderItem(item: {
     media: any;
     header: string;
     description: string;
   }) {
-    return {
-      type: "object",
-      key: "item",
-      displayer: "Slider Item",
-      value: [
-        {
-          type: "media",
-          key: "media",
-          displayer: "Video / Image",
-          value: item.media,
-          additionalParams: { availableTypes: ["video", "image"] },
-        },
-        {
-          type: "string",
-          key: "header",
-          displayer: "Title",
-          value: item.header,
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: item.description,
-        },
-        { type: "page", key: "link", displayer: "Card Link", value: "" },
-      ],
-    };
+    return [
+      {
+        type: "media",
+        key: "media",
+        displayer: "Video / Image",
+        value: item.media,
+        additionalParams: { availableTypes: ["video", "image"] },
+      },
+      {
+        type: "string",
+        key: "header",
+        displayer: "Title",
+        value: item.header,
+      },
+      {
+        type: "string",
+        key: "description",
+        displayer: "Description",
+        value: item.description,
+      },
+      { type: "page", key: "link", displayer: "Card Link", value: "" },
+    ];
   }
 
-  // Extract slider items with optimized filtering
   private items() {
     return this.castToObject<any[]>("slider").filter(
       (item) => item?.media || (item.value && item.value.media)
     );
   }
 
-  // Extract media URL and type
   private getMediaInfo(val: any) {
     if (!val) return { url: "", isVideo: false };
 
@@ -271,7 +320,6 @@ class Slider12 extends BaseSlider {
     return { url, isVideo };
   }
 
-  // Extract link path
   private getLinkPath(raw: any): string {
     if (!raw) return "";
     return typeof raw === "string"
@@ -279,12 +327,10 @@ class Slider12 extends BaseSlider {
       : raw?.path ?? raw?.url ?? raw?.href ?? "";
   }
 
-  // Get number of slides shown (FIXED ordering of breakpoints)
   private getSlidesToShow(): number {
     const slider = this.getComponentState("slider-ref")?.current;
     const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
 
-    // Default values by screen size (<=1024:1, <=1440:2, otherwise 3)
     let defaultValue = 3;
     if (windowWidth > 0 && windowWidth <= 1024) {
       defaultValue = 1;
@@ -295,7 +341,6 @@ class Slider12 extends BaseSlider {
     return slider?.innerSlider?.props?.slidesToShow ?? defaultValue;
   }
 
-  // Determine if prev/next buttons should be enabled
   private getNavigationState(current: number, totalSlides: number) {
     const slidesToShow = this.getSlidesToShow();
     return {
@@ -304,18 +349,128 @@ class Slider12 extends BaseSlider {
     };
   }
 
-  // Lifecycle methods
+  private checkDeviceType() {
+    // Cache device check to avoid layout thrashing
+    const now = Date.now();
+    if (now - this.lastDeviceCheck < 1000) return this.isMobileOrTablet;
+
+    this.lastDeviceCheck = now;
+    const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+    this.isMobileOrTablet = windowWidth > 0 && windowWidth <= 1024;
+    return this.isMobileOrTablet;
+  }
+
+  private handleBeforeChange = (oldIndex: number, newIndex: number) => {
+    if (this.isTransitioning) return;
+
+    this.isTransitioning = true;
+
+    // Only update component state if not on mobile/tablet to prevent re-renders
+    if (!this.checkDeviceType()) {
+      this.setComponentState("is-transitioning", true);
+    }
+
+    const container = document.querySelector(
+      `.${this.decorateCSS("slider-parent")}`
+    );
+
+    if (container) {
+      container.setAttribute("data-transitioning", "true");
+      container.setAttribute(
+        "data-direction",
+        newIndex > oldIndex ? "next" : "prev"
+      );
+    }
+  };
+
+  private handleAfterChange = (index: number) => {
+    // Update the current slide index without triggering re-render on mobile
+    if (!this.checkDeviceType()) {
+      this.setComponentState("current", index);
+    } else {
+      // For mobile, just update the internal property without state change
+      this.componentState["current"] = index;
+    }
+
+    this.lastSlideChangeTime = Date.now();
+
+    if (this.transitionTimer) window.clearTimeout(this.transitionTimer);
+    this.transitionTimer = window.setTimeout(() => {
+      this.isTransitioning = false;
+
+      // Only update state on non-mobile devices
+      if (!this.checkDeviceType()) {
+        this.setComponentState("is-transitioning", false);
+      }
+
+      const container = document.querySelector(
+        `.${this.decorateCSS("slider-parent")}`
+      );
+      if (container) {
+        container.removeAttribute("data-transitioning");
+        container.removeAttribute("data-direction");
+      }
+
+      // Optimize video playback management for mobile
+      if (!this.checkDeviceType()) {
+        this.manageVideoPlayback();
+      }
+    }, 300) as unknown as number;
+  };
+
+  private handleSwipeStart = () => {
+    this.dragStartTime = Date.now();
+    const container = document.querySelector(
+      `.${this.decorateCSS("slider-parent")}`
+    );
+    if (container) {
+      container.setAttribute("data-swiping", "true");
+    }
+  };
+
+  private handleSwipeEnd = () => {
+    const container = document.querySelector(
+      `.${this.decorateCSS("slider-parent")}`
+    );
+    if (container) {
+      container.removeAttribute("data-swiping");
+    }
+  };
+
   componentDidMount(): void {
     window.addEventListener("resize", this.handleResize);
     this.manageVideoPlayback();
+
+    this.sliderObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect) {
+          const slider = this.getComponentState("slider-ref").current;
+          if (slider && typeof slider.slickGoTo === "function") {
+            const current = this.getComponentState("current") || 0;
+            slider.slickGoTo(current, true);
+          }
+        }
+      }
+    });
+
+    const sliderElement = document.querySelector(
+      `.${this.decorateCSS("slider-parent")}`
+    );
+    if (sliderElement && this.sliderObserver) {
+      this.sliderObserver.observe(sliderElement);
+    }
   }
 
   componentWillUnmount(): void {
     window.removeEventListener("resize", this.handleResize);
     if (this.resizeTimer) window.clearTimeout(this.resizeTimer);
+    if (this.transitionTimer) window.clearTimeout(this.transitionTimer);
+
+    if (this.sliderObserver) {
+      this.sliderObserver.disconnect();
+    }
   }
 
-  // Handle resize with debounce
   private handleResize = () => {
     const container = document.querySelector(
       `.${this.decorateCSS("container")}`
@@ -328,7 +483,6 @@ class Slider12 extends BaseSlider {
     }, 120) as unknown as number;
   };
 
-  // Navigate to specific dot
   private navigateToSlide = (index: number) => {
     const slider = this.getComponentState("slider-ref").current;
     if (!slider) return;
@@ -341,8 +495,10 @@ class Slider12 extends BaseSlider {
     slider.slickGoTo?.(targetIndex);
   };
 
-  // Optimize video playback based on visible slides
   private manageVideoPlayback = () => {
+    // Skip video management on mobile/tablet to improve performance
+    if (this.checkDeviceType()) return;
+
     requestAnimationFrame(() => {
       const sliderElement = document.querySelector(
         `.${this.decorateCSS("slider-parent")}`
@@ -352,34 +508,50 @@ class Slider12 extends BaseSlider {
       const activeSlides = Array.from(
         sliderElement.querySelectorAll(".slick-slide.slick-active")
       );
+
       const allVideos = Array.from(
         sliderElement.querySelectorAll("video")
       ) as HTMLVideoElement[];
-      const activeVideos: HTMLVideoElement[] = [];
 
-      // Play videos in active slides
+      if (!allVideos.length) return;
+
+      // Use Set for faster lookups
+      const activeVideoSet = new Set<HTMLVideoElement>();
+
       activeSlides.forEach((slide) => {
         const videos = Array.from(
           slide.querySelectorAll("video")
         ) as HTMLVideoElement[];
-        videos.forEach((video) => {
-          (video as any).muted = true;
-          (video as any).loop = true;
-          (video as any).playsInline = true;
-          (video as any).autoplay = true;
-          video.play?.().catch(() => {});
-          activeVideos.push(video);
-        });
+        videos.forEach((video) => activeVideoSet.add(video));
       });
 
-      // Pause videos in inactive slides
-      allVideos
-        .filter((video) => !activeVideos.includes(video))
-        .forEach((video) => {
+      // Batch video operations to minimize reflows
+      const toPlay: HTMLVideoElement[] = [];
+      const toPause: HTMLVideoElement[] = [];
+
+      allVideos.forEach((video) => {
+        if (activeVideoSet.has(video)) {
+          toPlay.push(video);
+        } else {
+          toPause.push(video);
+        }
+      });
+
+      // Execute batched video operations
+      requestAnimationFrame(() => {
+        toPlay.forEach((video) => {
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          video.play?.().catch(() => {});
+        });
+
+        toPause.forEach((video) => {
           try {
             video.pause();
           } catch {}
         });
+      });
     });
   };
 
@@ -387,7 +559,6 @@ class Slider12 extends BaseSlider {
     const items = this.items();
     const totalSlides = items.length;
 
-    // Get component props
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const current = this.getComponentState("current") ?? 0;
@@ -395,7 +566,6 @@ class Slider12 extends BaseSlider {
     const { canPrev, canNext } = this.getNavigationState(current, totalSlides);
     const sliderRef = this.getComponentState("slider-ref");
 
-    // Process arrow icons
     const prevIcon = this.getPropValue("previousArrow");
     const nextIcon = this.getPropValue("nextArrow");
     const prevIconName =
@@ -407,7 +577,6 @@ class Slider12 extends BaseSlider {
         ? nextIcon
         : nextIcon?.name || nextIcon?.value?.name || "FiArrowRight";
 
-    // Process background image
     const bgImage = this.getPropValue("background-image");
     const bgUrl =
       typeof bgImage === "string"
@@ -422,35 +591,37 @@ class Slider12 extends BaseSlider {
         }
       : undefined;
 
-    // Slider settings
     const sliderSettings = {
       dots: false,
       infinite: false,
-      slidesToShow: 3, // Default for large screens
+      slidesToShow: 3,
       slidesToScroll: 1,
       variableWidth: false,
       centerMode: false,
       arrows: false,
-      cssEase: "cubic-bezier(.16,1,.3,1)",
-      speed: 620,
-      waitForAnimate: false,
+      speed: 400,
+      cssEase: "cubic-bezier(0.2, 0, 0.15, 1)",
+      waitForAnimate: true,
       adaptiveHeight: false,
       draggable: true,
       swipe: true,
       touchMove: true,
+      swipeToSlide: true,
+      touchThreshold: 5,
+      useCSS: true,
+      useTransform: true,
       accessibility: true,
       autoplay: false,
-      swipeToSlide: true,
-      edgeFriction: 0.18,
-      beforeChange: () => this.setComponentState("is-transitioning", true),
-      afterChange: (index: number) => {
-        this.setComponentState("current", index);
-        this.setComponentState("is-transitioning", false);
-        this.manageVideoPlayback();
-      },
+      beforeChange: this.handleBeforeChange,
+      afterChange: this.handleAfterChange,
+      swipeStart: this.handleSwipeStart,
+      swipeEnd: this.handleSwipeEnd,
+      pauseOnHover: true,
+      pauseOnFocus: true,
+      lazyLoad: "ondemand",
       responsive: [
         {
-          breakpoint: 1440, // Laptop
+          breakpoint: 1440,
           settings: { slidesToShow: 2, variableWidth: false },
         },
         {
@@ -458,13 +629,16 @@ class Slider12 extends BaseSlider {
           settings: { slidesToShow: 1, variableWidth: false },
         },
         {
-          breakpoint: 640,
+          breakpoint: 1280,
+          settings: { slidesToShow: 1, variableWidth: false },
+        },
+        {
+          breakpoint: 960,
           settings: { slidesToShow: 1, variableWidth: false },
         },
       ],
     };
 
-    // Use real-time slidesToShow value to detect last set (FIX)
     const slidesToShowNow = this.getSlidesToShow();
     const isLastSlideSet =
       current >= Math.max(0, totalSlides - slidesToShowNow);
@@ -473,13 +647,18 @@ class Slider12 extends BaseSlider {
       isLastSlideSet ? this.decorateCSS("last-slide-visible") : ""
     }`;
 
+    const cardClassName = this.decorateCSS("card");
+    const mediaClassName = this.decorateCSS("media-container");
+    const contentClassName = this.decorateCSS("content-container");
+    const titleClassName = this.decorateCSS("content-title");
+    const descClassName = this.decorateCSS("content-description");
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
         style={containerStyle}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {/* Header Section */}
           {(this.castToString(title) || this.castToString(description)) && (
             <div className={this.decorateCSS("header")}>
               <Base.VerticalContent
@@ -498,7 +677,6 @@ class Slider12 extends BaseSlider {
                   </Base.SectionDescription>
                 )}
 
-                {/* Navigation Arrows */}
                 <div className={this.decorateCSS("arrows")}>
                   <Base.Icon
                     name={prevIconName}
@@ -535,7 +713,6 @@ class Slider12 extends BaseSlider {
             </div>
           )}
 
-          {/* Slider Section */}
           <div
             className={this.decorateCSS("slider-parent")}
             data-last-slide-visible={isLastSlideSet ? "true" : "false"}
@@ -545,64 +722,31 @@ class Slider12 extends BaseSlider {
                 {...sliderSettings}
                 ref={sliderRef}
                 className={carouselClassName}
-                data-transitioning={
-                  this.getComponentState("is-transitioning")
-                    ? "true"
-                    : undefined
-                }
               >
                 {items.map((item: any, index: number) => {
-                  // Extract item data
                   const mediaVal = item.media ?? item?.value ?? item;
                   const { url, isVideo } = this.getMediaInfo(mediaVal);
                   const linkPath = this.getLinkPath((item as any).link);
-                  const eager = index < 2 && !isVideo;
 
-                  // Card content
+                  const header = this.castToString(item.header);
+                  const description = this.castToString(item.description);
+
                   const CardContent = (
-                    <div className={this.decorateCSS("card")}>
-                      <div className={this.decorateCSS("media-container")}>
-                        {isVideo ? (
-                          <VideoPlayer src={url} />
-                        ) : (
-                          <img
-                            src={url}
-                            alt=""
-                            loading={eager ? "eager" : "lazy"}
-                            decoding="async"
-                          />
-                        )}
-                      </div>
-
-                      {(this.castToString(item.header) ||
-                        this.castToString(item.description)) && (
-                        <Base.VerticalContent
-                          className={this.decorateCSS("content-container")}
-                        >
-                          {this.castToString(item.header) && (
-                            <Base.H2
-                              className={this.decorateCSS("content-title")}
-                            >
-                              {item.header}
-                            </Base.H2>
-                          )}
-                          {this.castToString(item.description) && (
-                            <Base.P
-                              className={this.decorateCSS(
-                                "content-description"
-                              )}
-                            >
-                              {item.description}
-                            </Base.P>
-                          )}
-                        </Base.VerticalContent>
-                      )}
-                    </div>
+                    <SlideCard
+                      url={url}
+                      isVideo={isVideo}
+                      header={header}
+                      description={description}
+                      cardClassName={cardClassName}
+                      mediaClassName={mediaClassName}
+                      contentClassName={contentClassName}
+                      titleClassName={titleClassName}
+                      descClassName={descClassName}
+                    />
                   );
 
-                  // Wrap with link if provided
                   return (
-                    <div key={index}>
+                    <div key={`slide-${index}`}>
                       {linkPath ? (
                         <ComposerLink path={linkPath}>
                           {CardContent}
@@ -616,7 +760,6 @@ class Slider12 extends BaseSlider {
               </ComposerSlider>
             )}
 
-            {/* Dot Navigation (Mobile) */}
             {totalSlides > 0 && (
               <div className={this.decorateCSS("dot-nav")}>
                 {items.map((_, i) => (
