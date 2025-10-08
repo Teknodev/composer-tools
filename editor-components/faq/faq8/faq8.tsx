@@ -722,9 +722,9 @@ class Faq8 extends BaseFAQ {
                                 />
                               )}
                               {this.castToString(category.categoryName) && (
-                                <div className={this.decorateCSS("category-name")}>
+                                <Base.H3 className={this.decorateCSS("category-name")}>
                                   {category.categoryName}
-                                </div>
+                                </Base.H3>
                               )}
                             </div>
                           )}
@@ -754,17 +754,17 @@ class Faq8 extends BaseFAQ {
                       >
                         {(this.castToString(question.qq)) && (
                           <div className={this.decorateCSS("question")}>
-                            <div className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
+                            <Base.H3 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
-                            </div>
+                            </Base.H3>
                             <Base.Media value={this.getPropValue("arrow-down")} className={`${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`} />
                           </div>
                         )}
                         {this.castToString(question.answer) && (
                           <div className={`${this.decorateCSS("inner-text-wrapper")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
-                            <div className={this.decorateCSS("inner-text")}>
+                            <Base.P className={this.decorateCSS("inner-text")}>
                               {question.answer}
-                            </div>
+                            </Base.P>
                           </div>
                         )}
                       </div>

@@ -39,7 +39,7 @@
 
     .card {
       cursor: pointer;
-      transition: box-shadow 0.2s;
+      transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       width: 100%;
 
       .card-header {
@@ -56,7 +56,6 @@
         .card-title {
           flex: 1;
           margin: 0;
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
           text-align: left;
         }
@@ -74,7 +73,7 @@
             height: 100%;
             font-size: 1rem;
             color: var(--composer-font-color-primary);
-            transition: transform 0.3s color 0.5s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           }
 
           &::before {
@@ -98,17 +97,17 @@
 
           &:hover:not(:active):not(.iconOpen)::before {
             transform: translate(-50%, -50%) scale(1.2);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           }
 
           &:active::before {
             transform: translate(-50%, -50%) scale(2);
-            transition: transform 0.6s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           }
 
           &.iconOpen:hover:not(:active)::before {
             transform: translate(-50%, -50%) scale(1.2);
-            transition: transform 0.6s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           }
           &:hover .icon {
             color: var(--composer-font-color-secondary);
@@ -127,8 +126,7 @@
         .card-text {
           opacity: 0;
           color: var(--composer-font-color-primary);
-          transition: opacity 0.5s;
-          font-size: 1rem;
+          transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           text-align: left;
         }
 

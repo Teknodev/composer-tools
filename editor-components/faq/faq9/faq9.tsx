@@ -329,7 +329,7 @@ class Faq9 extends BaseFAQ {
                                   "card-title-wrapper"
                                 )}
                               >
-                                <div
+                                <Base.H3
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${
@@ -339,7 +339,7 @@ class Faq9 extends BaseFAQ {
                                   }`}
                                 >
                                   {questn.qq}
-                                </div>
+                                </Base.H3>
                               </div>
                             )}
                             {this.getPropValue("icon") && (
@@ -369,9 +369,9 @@ class Faq9 extends BaseFAQ {
                                 : ""
                             }`}
                           >
-                            <div className={this.decorateCSS("inner-text")}>
+                              <Base.P className={this.decorateCSS("inner-text")}>
                               {questn.answer}
-                            </div>
+                            </Base.P>
                           </div>
                         )}
                       </div>
@@ -404,7 +404,7 @@ class Faq9 extends BaseFAQ {
                                     "card-title-wrapper"
                                   )}
                                 >
-                                  <div
+                                  <Base.H3
                                     className={`${this.decorateCSS(
                                       "card-title"
                                     )} ${
@@ -414,7 +414,7 @@ class Faq9 extends BaseFAQ {
                                     }`}
                                   >
                                     {questn.qq}
-                                  </div>
+                                  </Base.H3>
                                 </div>
                               )}
                               {this.getPropValue("icon") && (
@@ -444,9 +444,9 @@ class Faq9 extends BaseFAQ {
                                   : ""
                               }`}
                             >
-                              <div className={this.decorateCSS("inner-text")}>
+                              <Base.P className={this.decorateCSS("inner-text")}>
                                 {questn.answer}
-                              </div>
+                              </Base.P>
                             </div>
                           )}
                         </div>

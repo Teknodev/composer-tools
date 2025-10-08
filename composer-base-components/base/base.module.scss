@@ -7,6 +7,7 @@
      font-weight: 400;
      margin-top: 0;
      margin-bottom: 0;
+     width: 100%;
 
      @container (max-width: #{$composer-tablet-width}) {
           font-size: calc(3 * var(--composer-font-size-md));
@@ -26,6 +27,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(2.25 * var(--composer-font-size-md));
@@ -45,6 +47,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(2 * var(--composer-font-size-md));
@@ -64,6 +67,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1.75 * var(--composer-font-size-md));
@@ -83,6 +87,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1.5 * var(--composer-font-size-md));
@@ -102,6 +107,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1.25 * var(--composer-font-size-md));
@@ -119,6 +125,7 @@
     font-size: calc(1 * var(--composer-font-size-md));
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1 * var(--composer-font-size-md));
@@ -233,10 +240,11 @@
             text-align: center;
         }
     }
-
+    
     .sectionSubTitle{
         position: relative;
         font-weight: 500;
+        width: auto;
         &.badge{
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-xl);

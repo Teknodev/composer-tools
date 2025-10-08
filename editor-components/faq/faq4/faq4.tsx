@@ -243,9 +243,9 @@ class Faq4 extends BaseFAQ {
               <div className={this.decorateCSS("middle-page")}>
                 {card.map((card: Card, index: number) => (
                   <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
-                    <div className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
+                    <Base.H4 className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
                       {card.sectionTitle}
-                    </div>
+                    </Base.H4>
                   </div>
                 ))}
               </div>
@@ -259,9 +259,9 @@ class Faq4 extends BaseFAQ {
                         <div className={this.decorateCSS("child-container")}>
                           {this.castToString(item.title) && (
                             <div className={this.decorateCSS("card-left")}>
-                              <div className={this.decorateCSS("card-title")}>
+                              <Base.H3 className={this.decorateCSS("card-title")}>
                                 {item.title}
-                              </div>
+                              </Base.H3>
                             </div>
                           )}
                           {this.getPropValue("icon") && (
@@ -283,9 +283,9 @@ class Faq4 extends BaseFAQ {
                       )}
                       {this.castToString(item.description) && (
                         <div className={`${this.decorateCSS("hide-card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
-                          <div className={this.decorateCSS("text")}>
+                          <Base.P className={this.decorateCSS("text")}>
                             {item.description}
-                          </div>
+                          </Base.P>
                         </div>
                       )}
                     </div>

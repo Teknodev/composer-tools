@@ -23,7 +23,7 @@
           gap: var(--composer-gap-md);
         }
         .card {
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
           width: 100%;
           position: relative;
           display: flex;
@@ -38,7 +38,7 @@
             gap: var(--composer-gap-xs);
             padding: var(--composer-gap-md);
             background-color: var(--composer-html-background);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             z-index: 2;
             border: 1px solid
@@ -52,7 +52,6 @@
               flex: 1;
 
               .card-title {
-                font-size: 1rem;
                 color: var(--composer-font-color-primary);
 
                 &.active {
@@ -72,7 +71,7 @@
                 height: 16px;
                 font-size: 1rem;
                 transform: rotate(0deg);
-                transition: transform 0.3s ease-in-out;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               }
 
               &.active {
@@ -104,10 +103,9 @@
                   transparent
                 );
               border-top: 0;
-              font-size: 1rem;
               color: var(--composer-tertiary-color);
               padding: var(--composer-gap-lg) var(--composer-gap-md);
-              transition: padding 0.4s ease;
+              transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
             &.active {

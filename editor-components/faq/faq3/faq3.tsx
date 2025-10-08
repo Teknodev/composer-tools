@@ -334,14 +334,14 @@ class Faq3 extends BaseFAQ {
                               <div className={this.decorateCSS("top-card")}>
                                 <div className={this.decorateCSS("card-left")}>
                                   {item.index && (
-                                    <div className={this.decorateCSS("question-index")}>
+                                    <Base.H3 className={this.decorateCSS("question-index")}>
                                       {item.index}
-                                    </div>
+                                    </Base.H3>
                                   )}
                                   {titleExist && (
-                                    <div className={this.decorateCSS("card-subtitle")}>
+                                    <Base.H3 className={this.decorateCSS("card-subtitle")}>
                                       {item.title}
-                                    </div>
+                                    </Base.H3>
                                   )}
                                 </div>
                                 {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
@@ -360,9 +360,9 @@ class Faq3 extends BaseFAQ {
                             )}
                             {descExist && (
                               <div className={`${this.decorateCSS("text-box")} ${is_active && this.decorateCSS("active")}`} >
-                                <div className={`${this.decorateCSS("card-text")} ${is_active && this.decorateCSS("active")}`}>
+                                <Base.P className={`${this.decorateCSS("card-text")} ${is_active && this.decorateCSS("active")}`}>
                                   {item.description}
-                                </div>
+                                </Base.P>
                               </div>
                             )}
                           </div>
@@ -375,9 +375,9 @@ class Faq3 extends BaseFAQ {
                     {infoArray.map((item: InfoArrayItem, index: number) => (
                       <Base.VerticalContent key={index} className={this.decorateCSS("info-items")}>
                         {this.castToString(item.title) && (
-                          <div className={this.decorateCSS("title-info")}>
+                          <Base.H3 className={this.decorateCSS("title-info")}>
                             {item.title}
-                          </div>
+                          </Base.H3>
                         )}
                         {this.castToString(item.description) && (
                           <Base.P className={this.decorateCSS("description-info")}>

@@ -26,7 +26,6 @@
                     padding:var(--composer-gap-md);
                     .card-subtitle {
                         flex: 1;
-                        font-size: 1.5rem;
                         color: var(--composer-font-color-primary);
                         cursor: pointer;
                     }
@@ -36,7 +35,7 @@
                         height: 30px;
                         width: 30px;
                         font-size: 2rem;
-                        transition: transform 0.4s;
+                        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                         color: var(--composer-font-color-primary);
                         &.rotate {
                             transform: rotate(180deg);
@@ -48,12 +47,11 @@
                     padding:0px var(--composer-gap-md);
                     display: flex;
                     max-height: 0px;
-                    transition: max-height, padding 0.5s ease;
+                    transition: max-height, padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     .card-text{
                         opacity: 0; 
-                        font-size: 1.5rem;
                         color: var(--composer-tertiary-color);
-                        transition: opacity 0.5s ease;
+                        transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     }
                     &.cardActive {
                         max-height: 500px;   
@@ -75,18 +73,17 @@
             .page{
                 .card{
                     .in-box{
-                        .card-subtitle{
-                            font-size: 1rem;
+                        .card-subtitle {
+                            content: "";
                         }
                         .icon {
                             width: 20px;
                             height: 20px;
-                            font-size: 1rem;
                         }
                     }
                     .card-inner {
-                        .card-text{
-                            font-size: 1rem;
+                        .card-text {
+                            content: "";
                         }
                     }
                 }

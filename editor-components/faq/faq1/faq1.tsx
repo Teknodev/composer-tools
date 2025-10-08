@@ -150,7 +150,7 @@ class Faq1 extends BaseFAQ {
                   {(this.castToString(card.subtitle) || this.getPropValue("icon")) && (
                     <div className={this.decorateCSS("in-box")}>
                       {this.castToString(card.subtitle) && (
-                        <div className={this.decorateCSS("card-subtitle")}>{card.subtitle}</div>
+                        <Base.H3 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H3>
                       )}
                       {this.getPropValue("icon") && (
                         <Base.Media 
@@ -163,9 +163,9 @@ class Faq1 extends BaseFAQ {
                   )}
                   {this.castToString(card.text) && (
                     <div className={`${this.decorateCSS("card-inner")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardActive") : ""}`}>
-                      <div className={this.decorateCSS("card-text")}>
+                      <Base.P className={this.decorateCSS("card-text")}>
                         {card.text}
-                      </div>
+                      </Base.P>
                     </div>
                   )}
                 </div>

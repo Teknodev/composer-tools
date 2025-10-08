@@ -554,11 +554,11 @@ class Faq5 extends BaseFAQ {
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("section-wrapper")}>
                   {cards.map((card: Card, indexCard: any) => (
-                    <div className={`${this.decorateCSS("section")} 
+                    <Base.H4 className={`${this.decorateCSS("section")} 
                           ${this.getComponentState("activeSection") === indexCard ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.handleSection(indexCard)}>
                       {card.sectionTitle}
-                    </div>
+                    </Base.H4>
                   ))}
                 </div>
                 {(cards[this.getComponentState("activeSection")].items.length > 0) && (
@@ -569,15 +569,15 @@ class Faq5 extends BaseFAQ {
                             <div className={this.decorateCSS("little-container")}>
                               {this.castToString(item.cardIndex) && (
                                 <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                                  <Base.P className={this.decorateCSS("index")}>
+                                  <Base.H6 className={this.decorateCSS("index")}>
                                     {item.cardIndex}
-                                  </Base.P>
+                                  </Base.H6>
                                 </div>
                               )}
                               {this.castToString(item.cardTitle) && (
-                                <Base.P className={this.decorateCSS("card-title")}>
+                                <Base.H3 className={this.decorateCSS("card-title")}>
                                   {item.cardTitle}
-                                </Base.P>
+                                </Base.H3>
                               )}
                               {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                                 <div className={this.decorateCSS("icon-wrapper")}>

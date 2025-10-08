@@ -258,7 +258,7 @@ class Faq7 extends BaseFAQ {
                           <div className={this.decorateCSS("child-container")}>
                             {this.castToString(card.title) && (
                               <div className={this.decorateCSS("card-title-wrapper")}>
-                                <div className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</div>
+                                <Base.H3 className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</Base.H3>
                               </div>
                             )}
                             {(this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
@@ -270,9 +270,9 @@ class Faq7 extends BaseFAQ {
                         )}
                         {this.castToString(card.description) && (
                           <div className={`${this.decorateCSS("inner-card")} ${isActive ? this.decorateCSS("active") : ""}`} >
-                            <div className={`${this.decorateCSS("inner-text")} ${isActive ? this.decorateCSS("active") : ""}`}>
+                            <Base.P className={`${this.decorateCSS("inner-text")} ${isActive ? this.decorateCSS("active") : ""}`}>
                               {card.description}
-                            </div>
+                            </Base.P>
                           </div>
                         )}
                       </div>
