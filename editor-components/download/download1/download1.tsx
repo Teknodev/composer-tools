@@ -69,26 +69,32 @@ class Download1 extends BaseDownload {
             <div className={this.decorateCSS("box")}>
               {buttons.map((item: INPUTS.CastedButton, index: number) => {
                 const buttonTitleExist = this.castToString(item.text);
-                const iconExist = item.icon;
-                const buttonExist = buttonTitleExist || iconExist;
+                const iconExist = item.icon && item.icon.name;
+                const imageExist = item.image && item.image.url;
                 return (
-                  buttonExist && (
-                    <div className={this.decorateCSS("button-wrapper")}>
-                      <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
+                  <div className={this.decorateCSS("button-wrapper")}>
+                    <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
+                      {imageExist ? (
+                        <div className={this.decorateCSS("image-container")}>
+                          <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                        </div>
+                      ) : (
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          <div className={this.decorateCSS("button-text")}>
-                            {item.text}
-                          </div>
-                          <Base.Icon
-                            name={item.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
-                          />
+                          {buttonTitleExist && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text}
+                            </Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media
+                              value={item.icon}
+                              className={this.decorateCSS("icon")}
+                            />
+                          )}
                         </Base.Button>
-                      </ComposerLink>
-                    </div>
-                  )
+                      )}
+                    </ComposerLink>
+                  </div>
                 );
               })}
             </div>

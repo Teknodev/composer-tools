@@ -18,10 +18,16 @@ class Download8 extends BaseDownload {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794",
+      },
     });
 
     this.addProp({
@@ -69,10 +75,16 @@ class Download8 extends BaseDownload {
               value: "App Store",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "FaApple",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaApple",
+              },
             },
           ],
         },
@@ -88,10 +100,16 @@ class Download8 extends BaseDownload {
               value: "Google Play",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "FaGooglePlay",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaGooglePlay",
+              },
             },
           ],
         },
@@ -142,7 +160,7 @@ class Download8 extends BaseDownload {
           {imageExist && (
             <div className={this.decorateCSS("image-child")}>
               <div className={overlay && this.decorateCSS("overlay")}></div>
-              <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="" />
+              <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />
             </div>
           )}
           <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>
@@ -166,11 +184,9 @@ class Download8 extends BaseDownload {
                         hasItemExist && (
                           <Base.Row className={this.decorateCSS("list-element")}>
                             {item.itemIcon && (
-                              <Base.Icon
-                                name={item.itemIcon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
+                              <Base.Media
+                                value={item.itemIcon}
+                                className={this.decorateCSS("icon")}
                               />
                             )}
                             {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
@@ -186,19 +202,19 @@ class Download8 extends BaseDownload {
                   <div className={this.decorateCSS("buttons-container")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
+                      const iconExist = item.icon && item.icon.name;
+                      const imageExist = item.image && item.image.url;
                       return (
                         <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
-                          {item.image ? (
+                          {imageExist ? (
                             <div className={this.decorateCSS("image-container")}>
-                              <img src={item.image} className={this.decorateCSS("image")} alt="button" />
+                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
                             </div>
                           ) : (
-                            (item.icon || buttonTextExist) && (
-                              <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                                {buttonTextExist && item.text && <div className={this.decorateCSS("text")}>{item.text}</div>}
-                              </Base.Button>
-                            )
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
+                            </Base.Button>
                           )}
                         </ComposerLink>
                       );

@@ -15,11 +15,8 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-sm);
-        .subtitle, .title  {
+        .subtitle, .title, .description {
           content: "";
-        }
-        .description {
-          color: var(--composer-tertiary-color);
         }
 
         .button-group {
@@ -50,7 +47,6 @@
           display: flex;
           flex-direction: column;
           .stats-title {
-            font-size: 1rem;
             color: var(--composer-font-color-primary);
           }
           .down-description {
@@ -71,7 +67,6 @@
             }
 
             .info {
-              font-size: 1rem;
               color: var(--composer-tertiary-color);
             }
           }

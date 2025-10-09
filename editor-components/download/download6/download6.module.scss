@@ -8,11 +8,11 @@
 
     @mixin column-styles {
       .title {
-        font-size: 4rem;
+        content: "";
       }
 
       .description {
-        color: var(--composer-tertiary-color);
+        content: "";
       }
 
       .buttons-container {
@@ -20,25 +20,18 @@
         flex-wrap: wrap;
         align-items: center;
         gap: var(--composer-gap-md);
-        .button-wrapper {
-          width: 170px;
-          height: 50px;
-          >div{
-            width: 100% !important;
-            height: 100%; 
-          }
           .button-image {
-            width: 100%;
-            height: 100%;
+            width: 200px;
+            height: 50px;
             cursor: pointer;
             border-radius: var(--composer-border-radius-sm);
             object-fit: cover;
           }
           .button-element {
+            height: 50px;
             .icon, .button-text{
               content: "";
             }
-          }
         }
       }
     }
@@ -71,11 +64,9 @@
     .max-content {
       .left-column {
         .title {
-          font-size: 2rem;
         }
 
         .description {
-          font-size: 1rem;
         }
       }
       .right-column {

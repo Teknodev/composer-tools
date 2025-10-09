@@ -6,7 +6,7 @@
       width: 100%;
       background-size: cover;
       background-position: center;
-      border-radius: var(--composer-border-radius-xl);
+      border-radius: var(--composer-border-radius-md);
       position: relative;
 
       .overlay {
@@ -16,7 +16,7 @@
         width: 100%;
         height: 100%;
         background-color: var(--composer-overlay-color);
-        border-radius: var(--composer-border-radius-xl);
+        border-radius: var(--composer-border-radius-md);
         z-index: 1;
       }
 
@@ -27,12 +27,11 @@
         z-index: 2;
         &.image{
           min-height: 600px;
-          padding: var(--composer-gap-md) var(--composer-gap-xl);
+          padding: var(--composer-gap-md) var(--composer-gap-md);
           align-items: center;
           text-align: center;
         }
         .title {
-          font-size: 1.5rem;
           content: "";
           &.image{
             color: white;
@@ -40,7 +39,7 @@
         }
 
         .description {
-          font-size: 2rem;
+          content: "";
           &.image{
             color: white;
           }
@@ -59,7 +58,7 @@
               object-fit: cover;
             }
             .button-element {
-              .icon, .button-text {
+              .button-icon, .button-text {
                 content: "";
               }
             }
@@ -77,12 +76,6 @@
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-          .title {
-            font-size: 1rem;
-          }
-          .description {
-            font-size: 1.5rem;
-          }
         }
       }
     }

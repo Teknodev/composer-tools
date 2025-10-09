@@ -34,26 +34,12 @@
             }
           }
 
-          .device {
-            font-size: 1rem;
-            color: var(--composer-font-color-primary);
-            margin: 0;
-          }
-
-          .platform {
-            font-size: 2rem;
-            color: var(--composer-font-color-primary);
-            margin: 0;
-          }
-
-          .description {
-            font-size: 1rem;
+          .device, .platform, .card-description {
             color: var(--composer-font-color-primary);
             margin: 0;
           }
 
           .button-container {
-            .button-element {
               .button {
                 .button-icon, .button-text {
                   content: "";
@@ -65,7 +51,6 @@
                   border-radius: var(--composer-border-radius-sm);
                 }
               }
-            }
           }
 
           &:hover {
@@ -81,7 +66,7 @@
 
             .device,
             .platform,
-            .description {
+            .card-description {
               color: var(--composer-html-background);
             }
           }
@@ -98,13 +83,11 @@
         .cards{
           .card{
             .button-container {
-              .button-element {
                 .button {
                   .image {
                     width: 120px;
                     height: 100%;
                   }
-                }
               }
             }
           }

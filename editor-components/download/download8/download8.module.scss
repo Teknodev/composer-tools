@@ -53,11 +53,13 @@
         position: relative;
 
         .title {
+          content: "";
           &.image{
             color: white;
           }
         }
         .description {
+          content: "";
           &.image{
             color: white;
           } 
@@ -229,7 +231,7 @@
                   height: var(--composer-gap-md);
                 }
                 .text {
-                  font-size: 1rem;
+                  content: "";
                 }
               }
             }

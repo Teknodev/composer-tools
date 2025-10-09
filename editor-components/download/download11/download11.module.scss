@@ -18,7 +18,7 @@
         }  
         .card {
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-xl);
+          border-radius: var(--composer-border-radius-lg);
           height: 100%;
           justify-content: center;
           padding: var(--composer-gap-md);
@@ -30,7 +30,7 @@
             height: 400px;
             margin: 0 auto;
             object-fit: cover;
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-md);
             &.no-full{
               margin-bottom: var(--composer-gap-lg);
             }
@@ -50,7 +50,7 @@
                 font-size: 1.5rem;
               }
               .button-text {
-                font-size: 1.5rem;
+                content: "";
               }
             }
           }
@@ -70,7 +70,7 @@
 
           .card {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-lg);
             padding: var(--composer-gap-md);
             display: flex;
             align-items: center;
@@ -92,7 +92,7 @@
                     font-size: 1.5rem;
                   }
                   .button-text {
-                    font-size: 1.5rem;
+                    content: "";
                   }
                 }
               }
@@ -101,7 +101,7 @@
               width: 40%;
               min-height: 400px;
               object-fit: cover;
-              border-radius: var(--composer-border-radius-xl);
+              border-radius: var(--composer-border-radius-md);
               &.full {
                 width: 100%;
                 height: 300px;
@@ -116,7 +116,7 @@
 
           .card {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-lg);
             padding: var(--composer-gap-md);
             display: flex;
             justify-content: space-between;

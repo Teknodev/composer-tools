@@ -43,10 +43,16 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaDesktop",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaDesktop",
+              },
             },
             {
               type: "string",
@@ -75,10 +81,16 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaApple",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaApple",
+              },
             },
             {
               type: "string",
@@ -107,10 +119,16 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoLogoAndroid",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoLogoAndroid",
+              },
             },
             {
               type: "string",
@@ -139,7 +157,7 @@ class Download2 extends BaseDownload {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
     });
   }
@@ -175,42 +193,34 @@ class Download2 extends BaseDownload {
                   <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
                       <Base.Row className={this.decorateCSS("icon-container")}>
-                        <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Media value={card.icon} className={this.decorateCSS("icon")} />
                       </Base.Row>
                     )}
 
-                    {deviceExist && <Base.P className={this.decorateCSS("device")}>{card.device}</Base.P>}
+                    {deviceExist && <Base.H4 className={this.decorateCSS("device")}>{card.device}</Base.H4>}
 
-                    {platformExist && <Base.P className={this.decorateCSS("platform")}>{card.platform}</Base.P>}
+                    {platformExist && <Base.H2 className={this.decorateCSS("platform")}>{card.platform}</Base.H2>}
 
-                    {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.description}</Base.P>}
+                    {descriptionExist && <Base.H4 className={this.decorateCSS("card-description")}>{card.description}</Base.H4>}
 
-                    {(card.button.image || card.button.text || card.button.icon) && (
-                      <div className={this.decorateCSS("button-container")}>
-                        <ComposerLink path={card?.button.url}>
-                          {card?.button.image ? (
-                            <div className={this.decorateCSS("button-element")}>
-                              <div className={this.decorateCSS("button")}>
-                                <img src={card?.button.image} alt="" className={this.decorateCSS("image")} />
-                              </div>
+                    <div className={this.decorateCSS("button-container")}>
+                      <ComposerLink path={card?.button.url}>
+                        {card?.button.image && card?.button.image.url ? (
+                          <div className={this.decorateCSS("button-element")}>
+                            <div className={this.decorateCSS("button")}>
+                              <Base.Media value={card?.button.image} className={this.decorateCSS("image")} />
                             </div>
-                          ) : (
-                            (buttonTextExist || card.button.icon) && (
-                              <div className={this.decorateCSS("button-element")}>
-                                {(buttonTextExist || card.button.icon) && (
-                                  <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
-                                    {card.button.icon && (
-                                      <Base.Icon name={card.button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
-                                    )}
-                                    {this.castToString(card.button.text) && <div className={this.decorateCSS("button-text")}>{card.button.text}</div>}
-                                  </Base.Button>
-                                )}
-                              </div>
-                            )
-                          )}
-                        </ComposerLink>
-                      </div>
-                    )}
+                          </div>
+                        ) : (
+                            <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
+                              {card.button.icon && card.button.icon.name && (
+                                <Base.Media value={card.button.icon} className={this.decorateCSS("button-icon")} />
+                              )}
+                              {this.castToString(card.button.text) && <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P>}
+                            </Base.Button>
+                        )}
+                      </ComposerLink>
+                    </div>
                   </Base.VerticalContent>
                 );
               })}
