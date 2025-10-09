@@ -29,6 +29,13 @@ class Download3 extends BaseDownload {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
       },
     });
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
 
     this.addProp({
       type: "string",
@@ -42,7 +49,7 @@ class Download3 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
         INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257", "Primary"),
       ],
     });
@@ -55,6 +62,7 @@ class Download3 extends BaseDownload {
   render() {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const overlay = this.getPropValue("overlay");
 
     const imageExist = this.getPropValue("image");
     const titleExist = this.castToString(title);
@@ -68,6 +76,7 @@ class Download3 extends BaseDownload {
         {imageExist && (
           <div className={this.decorateCSS("image-container")}>
             <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
+            {overlay && <div className={this.decorateCSS("overlay")} />}
           </div>
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -82,7 +91,8 @@ class Download3 extends BaseDownload {
                       const buttonTextExist = this.castToString(item.text);
                       const iconExist = item.icon && item.icon.name;
                       const imageExist = item.image && item.image.url;
-                      return (
+                      const buttonExist = buttonTextExist || iconExist || imageExist;
+                      return buttonExist && (
                         <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                           <ComposerLink path={item.url}>
                             {imageExist ? (

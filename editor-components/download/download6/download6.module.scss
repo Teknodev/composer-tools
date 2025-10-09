@@ -7,11 +7,7 @@
     align-items: center;
 
     @mixin column-styles {
-      .title {
-        content: "";
-      }
-
-      .description {
+      .title, .description, .subtitle {
         content: "";
       }
 
@@ -62,13 +58,6 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .left-column {
-        .title {
-        }
-
-        .description {
-        }
-      }
       .right-column {
         .image {
           min-height: 300px;

@@ -12,6 +12,13 @@ class Download5 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let's start now!",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       value: "Available On All App Store",
       displayer: "Title",
@@ -62,7 +69,8 @@ class Download5 extends BaseDownload {
   render() {
     const backgroundImage = this.getPropValue("backgroundImage");
     const overlay = this.getPropValue("overlay");
-
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
 
@@ -80,6 +88,7 @@ class Download5 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("page")} ${!backgroundImageUrl && this.decorateCSS("no-image")}`}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{desc}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -90,7 +99,8 @@ class Download5 extends BaseDownload {
                   const buttonTextExist = this.castToString(item?.text);
                   const iconExist = item.icon && item.icon.name;
                   const imageExist = item.image && item.image.url;
-                  return (
+                  const buttonExist = buttonTextExist || iconExist || imageExist;
+                  return buttonExist && (
                     <div className={this.decorateCSS("button-wrapper")}>
                       <ComposerLink key={index} path={item.url}>
                         {imageExist ? (

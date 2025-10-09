@@ -138,6 +138,7 @@ class Download11 extends BaseDownload {
     const titleExist = this.castToString(leftItems.title);
     const descriptionExist = this.castToString(leftItems.description);
     const buttonTextExist = this.castToString(buttonLeft.text);
+    const buttonExist = buttonTextExist || buttonLeft.icon || buttonLeft.image;
 
     const leftCardExist = subtitleExist || titleExist || descriptionExist || buttonTextExist;
     const hasValidCard = (leftCardExist || leftItems.image) && leftItems.visibility;
@@ -170,7 +171,7 @@ class Download11 extends BaseDownload {
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItems.subtitle}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{leftItems.title}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{leftItems.description}</Base.SectionDescription>}
-                    <div className={this.decorateCSS("button-wrapper")}>
+                    {buttonExist && <div className={this.decorateCSS("button-wrapper")}>
                       <ComposerLink path={buttonLeft.url}>
                         {buttonLeft.image && buttonLeft.image.url ? (
                           <Base.Media value={buttonLeft.image} className={this.decorateCSS("button-image")} />
@@ -186,7 +187,7 @@ class Download11 extends BaseDownload {
                           </Base.Button>
                         )}
                       </ComposerLink>
-                    </div>
+                    </div>}
                   </Base.VerticalContent>
                 )}
               </div>

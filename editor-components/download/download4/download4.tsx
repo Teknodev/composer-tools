@@ -12,6 +12,13 @@ class Download4 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let's start now!",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Download app",
@@ -43,7 +50,7 @@ class Download4 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
         INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257", "Primary"),
       ],
     });
@@ -57,7 +64,8 @@ class Download4 extends BaseDownload {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const image = this.getPropValue("image");
-
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
@@ -67,6 +75,7 @@ class Download4 extends BaseDownload {
           <div className={this.decorateCSS("page")}>
             {(titleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
               </Base.VerticalContent>
@@ -77,7 +86,8 @@ class Download4 extends BaseDownload {
                   const buttonTextExist = this.castToString(item.text);
                   const iconExist = item.icon && item.icon.name;
                   const imageExist = item.image && item.image.url;
-                  return (
+                  const buttonExist = buttonTextExist || iconExist || imageExist;
+                  return buttonExist && (
                     <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
                       {imageExist ? (
                         <div className={this.decorateCSS("image-wrapper")}>

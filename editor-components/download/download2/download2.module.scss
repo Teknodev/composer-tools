@@ -2,11 +2,8 @@
 .container {
   .max-content {
     .header {
-      .title {
+      .title, .description, .subtitle {
         content: "";
-      }
-      .description {
-        color: var(--composer-font-color-primary);
       }
     }
     .cards-container {

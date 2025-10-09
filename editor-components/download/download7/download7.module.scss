@@ -31,19 +31,23 @@
           align-items: center;
           text-align: center;
         }
-        .title {
+        .subtitle {
           content: "";
-          &.image{
+          transform: translateX(0);
+          &::before{
+            display: none;
+          }
+          &.with-image{
+            color: white;
+          }
+        }
+        .title, .description {
+          content: "";
+          &.with-image{
             color: white;
           }
         }
 
-        .description {
-          content: "";
-          &.image{
-            color: white;
-          }
-        }
 
         .buttons-container {
           display: flex;
@@ -97,7 +101,7 @@
             flex-direction: column;
             .button-wrapper{
               .button-image{
-                width: 120px;
+                width: 150px;
                 height: 40px;
               }
             }

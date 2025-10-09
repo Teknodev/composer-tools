@@ -34,6 +34,7 @@
             border-radius: var(--composer-border-radius-sm);
           }
           .button-element {
+            height: 50px;
             .button-icon {
               content: "";
             }
@@ -118,6 +119,9 @@
         gap: var(--composer-gap-md);
         .left-container{
           .button-group{
+            .button-element{
+              height: 40px;
+            }
             .button-image{
               width: 150px;
               height: 40px;

@@ -20,6 +20,13 @@ class Download2 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let's start now!",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Transform your Communication with Instant Connectivity",
@@ -110,7 +117,7 @@ class Download2 extends BaseDownload {
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+            INPUTS.BUTTON("button", "Button", "", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
           ],
         },
         {
@@ -169,15 +176,17 @@ class Download2 extends BaseDownload {
   render() {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-
+    const subtitle = this.getPropValue("subtitle");
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
+    const subtitleExist = this.castToString(subtitle);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -189,7 +198,11 @@ class Download2 extends BaseDownload {
                 const platformExist = this.castToString(card.platform);
                 const descriptionExist = this.castToString(card.description);
                 const buttonTextExist = this.castToString(card.button.text);
-                return (
+                const buttonIconExist = card.button.icon && card.button.icon.name;
+                const buttonImageExist = card.button.image && card.button.image.url;
+                const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
+                const cardExist = deviceExist || platformExist || descriptionExist || buttonExist;
+                return cardExist && (
                   <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
                       <Base.Row className={this.decorateCSS("icon-container")}>
@@ -203,6 +216,7 @@ class Download2 extends BaseDownload {
 
                     {descriptionExist && <Base.H4 className={this.decorateCSS("card-description")}>{card.description}</Base.H4>}
 
+                   {buttonExist && 
                     <div className={this.decorateCSS("button-container")}>
                       <ComposerLink path={card?.button.url}>
                         {card?.button.image && card?.button.image.url ? (
@@ -220,7 +234,7 @@ class Download2 extends BaseDownload {
                             </Base.Button>
                         )}
                       </ComposerLink>
-                    </div>
+                    </div>}
                   </Base.VerticalContent>
                 );
               })}

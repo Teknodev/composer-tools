@@ -122,7 +122,7 @@ class Download8 extends BaseDownload {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Download", "", "FaAndroid", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732790517206", "Primary"),
-        INPUTS.BUTTON("button", "Button", "Download", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
       ],
       additionalParams: {
         maxElementCount: 4,
@@ -204,7 +204,8 @@ class Download8 extends BaseDownload {
                       const buttonTextExist = this.castToString(item.text);
                       const iconExist = item.icon && item.icon.name;
                       const imageExist = item.image && item.image.url;
-                      return (
+                      const buttonExist = buttonTextExist || iconExist || imageExist;
+                      return buttonExist && (
                         <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
                           {imageExist ? (
                             <div className={this.decorateCSS("image-container")}>

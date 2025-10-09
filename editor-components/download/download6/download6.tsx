@@ -7,6 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type LeftCol = {
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -35,6 +36,12 @@ class Download6 extends BaseDownload {
           key: "title",
           displayer: "Title",
           value: "Create amazing posts and share with the world.",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "Let's start now!",
         },
         {
           type: "string",
@@ -83,8 +90,7 @@ class Download6 extends BaseDownload {
     const leftcolumn = this.castToObject<LeftCol>("left-column");
     const rightcolumn = this.castToObject<RightCol>("right-column");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-
-    const isLeftColumnVisible = this.castToString(leftcolumn.title) || this.castToString(leftcolumn.description) || buttons?.length > 0;
+    const isLeftColumnVisible = this.castToString(leftcolumn.title) || this.castToString(leftcolumn.description) || this.castToString(leftcolumn.subtitle) || buttons?.length > 0;
     const isRightColumnVisible = rightcolumn.image;
 
     return (
@@ -92,6 +98,7 @@ class Download6 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isLeftColumnVisible && (
             <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!isRightColumnVisible && this.decorateCSS("no-image")}`} >
+              {this.castToString(leftcolumn.subtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftcolumn.subtitle}</Base.SectionSubTitle>}
               {this.castToString(leftcolumn.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{leftcolumn.title}</Base.SectionTitle>}
               {this.castToString(leftcolumn.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{leftcolumn.description}</Base.SectionDescription>}
 
@@ -101,7 +108,8 @@ class Download6 extends BaseDownload {
                     const buttonTextExist = this.castToString(item?.text);
                     const iconExist = item.icon && item.icon.name;
                     const imageExist = item.image && item.image.url;
-                    return (
+                    const buttonExist = buttonTextExist || iconExist || imageExist;
+                    return buttonExist && (
                         <ComposerLink key={index} path={item.url}>
                           {imageExist ? (
                             <Base.Media value={item.image} className={this.decorateCSS("button-image")} />

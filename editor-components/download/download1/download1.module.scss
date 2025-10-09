@@ -8,6 +8,13 @@
 
     .header {
       align-items: center;
+      .subtitle {
+        text-align: center;
+        transform: translateX(0);
+        &::before{
+          display: none;
+        }
+      }
       .title {
         &.line{
           position: relative;
@@ -25,7 +32,6 @@
         }
       }
       .description {
-        color: var(--composer-font-color-primary);
         text-align: center;
       }
     }
@@ -44,6 +50,7 @@
             width: 200px;
             height: 70px;
             object-fit: cover;
+            border-radius: var(--composer-border-radius-sm);
           }
         }
         .button {
