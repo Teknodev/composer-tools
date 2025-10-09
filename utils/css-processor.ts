@@ -9,9 +9,9 @@ export type GuiQueries = {
 export const GUI_QUERIES: GuiQueries = {
   // TODO: Remove 'all' in future updates
   all: null,
-  desktop: "@container (min-width: 1280px)",
-  tablet: "@container (min-width: 641px) and (max-width: 1279px)",
-  mobile: "@container (max-width: 640px)"
+  desktop: "@container playground (min-width: 1280px)",
+  tablet: "@container playground (min-width: 641px) and (max-width: 1279px)",
+  mobile: "@container playground (max-width: 640px)"
 };
 
 export const TABS = ['desktop', 'tablet', 'mobile'] as const;
