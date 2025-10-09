@@ -30,7 +30,6 @@ class Content27 extends BaseContent {
 
     // Generic content props
     this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
-    this.addProp({ type: "string", key: "main-text", displayer: "Main Text", value: "" });
     this.addProp({ type: "image", key: "background-image", displayer: "Background Image", value: "" });
     // Title color follows global theme via Base.SectionTitle
     this.addProp({
@@ -322,9 +321,10 @@ class Content27 extends BaseContent {
         }
       : { title: "", image: "", titleString: "", infos: [] as TypeUsableComponentProps[] };
     // background-image is no longer applied inline; keep for future use if needed
+    // Header text only from header item (no main-text fallback)
     const headerText = headerData
       ? this.getPropValue("text", { parent_object: headerData })
-      : this.getPropValue("main-text");
+      : "";
     const subtitleText = this.getPropValue("subtitle");
     const { text: ctaText, url: ctaLink, type: ctaType } = this.resolveCTA(ctaData);
     // Divider line control via prop
