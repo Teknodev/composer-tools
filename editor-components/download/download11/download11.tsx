@@ -55,7 +55,7 @@ class Download11 extends BaseDownload {
         {
           type: "boolean",
           key: "visibility",
-          displayer: "visibility",
+          displayer: "Visibility",
           value: true,
         },
         {
@@ -95,7 +95,7 @@ class Download11 extends BaseDownload {
           {
             type: "boolean",
             key: "visibility",
-            displayer: "visibility",
+            displayer: "Visibility",
             value: true,
           },
           {
