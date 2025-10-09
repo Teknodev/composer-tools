@@ -110,6 +110,9 @@
             }
             .button-info {
               width: fit-content;
+              .button-text {
+                content: "";
+              }
             }
           }
         }

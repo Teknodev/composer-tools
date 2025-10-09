@@ -83,7 +83,9 @@
           justify-content: end;
           height: fit-content;
           .button{
-            content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
     

@@ -284,7 +284,7 @@ class Faq7 extends BaseFAQ {
             {(this.getPropValue("card").length > this.getComponentState("cardCount")) && (
               <div className={this.decorateCSS("button-wrapper")}>
                 <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                  {button.text}
+                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                 </Base.Button>
               </div>
             )}

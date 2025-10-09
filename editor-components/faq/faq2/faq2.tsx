@@ -355,7 +355,7 @@ class Faq2 extends BaseFAQ {
                       return this.castToString(button.text) && (
                         <ComposerLink path={button.url}>
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       )
