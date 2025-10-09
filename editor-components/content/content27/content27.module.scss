@@ -2,13 +2,19 @@
 
 // removed unused local variables; rely on global CSS vars
 
+/* Root container spacing; aligns with section paddings */
 .content27 {
   width: 100%;
   background-color: var(--composer-html-background, #fff);
   color: var(--composer-font-color-primary, #000000);
   container-type: inline-size;
+  /* Standard component spacing: 80px top/bottom, 50px left/right */
   padding: 80px 50px;
 }
+
+/* Reset default inner element margins/paddings; spacing is controlled via gap */
+.content27 :where(h1, h2, h3, h4, h5, h6, p) { margin: 0; }
+.content27 :where(ul, ol) { margin: 0; padding: 0; }
 
 /* Desktop Styles (Default) */
 .maxContent {
@@ -19,10 +25,11 @@
   padding-bottom: 0;
 }
 
+/* 3-column grid: left | divider | right */
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 40px) minmax(0, 1fr);
-  gap: var(--grid-gap, 40px);
+  grid-template-columns: 1fr 40px 2fr; /* 1:2 ratio with fixed divider */
+  gap: var(--grid-gap, 2.5rem);
   align-items: stretch;
   width: 100%;
   margin-top: 0;
@@ -44,33 +51,36 @@
 
 .dividerLine {
   display: block;
-  width: 2px;
+  width: 0.125rem;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.12);
 }
 
 .leftColumn {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-start; /* stick to left, no extra left padding */
   width: 100%;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .leftContent {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--left-spacing, 140px) * 0.6);
-  align-items: flex-start;
+  gap: calc(var(--left-spacing, 8.75rem) * 0.6);
+  align-items: flex-start; /* left align */
   text-align: left;
   width: 100%;
-  max-width: 480px;
+  max-width: 30rem; /* a bit wider to control wrapping like reference */
   height: 100%;
-  margin-left: auto;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .leftTextSection {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--left-spacing, 140px) * 0.6);
+  gap: calc(var(--left-spacing, 8.75rem) * 0.6);
   width: 100%;
 }
 
@@ -82,7 +92,7 @@
     .leftContent {
       align-items: flex-start;
       text-align: left;
-      margin-left: auto;
+      margin-left: 0;
       margin-right: 0;
     }
     .leftTextSection {
@@ -151,7 +161,7 @@
       align-items: flex-end;
       text-align: right;
       margin-left: 0;
-      margin-right: auto;
+      margin-right: 0;
     }
     .leftTextSection {
       align-items: flex-end;
@@ -300,6 +310,43 @@
   }
 }
 
+/* Enable alignment when applied directly on the inner left container (editor selection) */
+.leftContent.text-align-left,
+.leftContent[style*="text-align: left"] {
+  align-items: flex-start;
+  text-align: left;
+  .listWrapper { justify-content: flex-start; }
+  .list { align-items: flex-start; }
+  .ctaWrapper { justify-content: flex-start; }
+}
+
+.leftContent.text-align-center,
+.leftContent[style*="text-align: center"] {
+  align-items: center;
+  text-align: center;
+  .listWrapper { justify-content: center; }
+  .list { align-items: center; }
+  .ctaWrapper { justify-content: center; }
+}
+
+.leftContent.text-align-right,
+.leftContent[style*="text-align: right"] {
+  align-items: flex-end;
+  text-align: right;
+  .listWrapper { justify-content: flex-end; }
+  .list { align-items: flex-end; }
+  .ctaWrapper { justify-content: flex-end; }
+}
+
+.leftContent.text-align-justify,
+.leftContent[style*="text-align: justify"] {
+  align-items: flex-start;
+  text-align: justify;
+  .listWrapper { justify-content: flex-start; }
+  .list { align-items: flex-start; }
+  .ctaWrapper { justify-content: flex-start; }
+}
+
 /* Respect global alignment setting (Base.Container adds .center/.left) */
 .content27:global(.center) {
   .leftContent {
@@ -316,14 +363,16 @@
 
 
 .leftTitle {
-  font-size: var(--title-font-size, 36px);
-  line-height: var(--title-line-height, 1.1);
-  letter-spacing: -0.02em;
-  font-weight: var(--composer-font-weight-bold);
+  font-size: clamp(2.25rem, 3vw + 0.75rem, 3rem);
+  line-height: 1.25; /* more breathing like reference */
+  letter-spacing: 0; /* default tracking */
+  word-spacing: 0.02em;
+  font-weight: 700; /* lighter weight similar to sample */
   color: var(--composer-font-color-primary, #000000);
-  margin: 0;
-  max-width: var(--title-max-width, 22ch);
+  margin: 0 0 0.75rem 0;
+  max-width: 30ch; /* allow fewer line breaks */
   white-space: pre-line;
+  hyphens: none;
 }
 
 // removed custom colorful variant; color is handled by Base.SectionTitle with theme
@@ -331,23 +380,31 @@
 .list {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 1.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100px;
+  min-height: 6.25rem;
   /* Ensure layout doesn't collapse when empty */
+  font-size: 1.5rem; /* larger left items */
+  align-items: flex-start; /* left align list items */
 }
 
 .listItem {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 48px;
-  padding: 12px 0 12px 12px;
+  min-height: 3rem;
+  padding: 0.75rem 0 0.75rem 0.75rem;
   background: transparent;
   border: none;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
   color: var(--composer-font-color-primary, #000000);
   font: inherit;
   text-align: left;
@@ -356,13 +413,14 @@
   justify-content: flex-start;
 }
 
+/* Accent bar left to the active list item */
 .listItem::before {
   content: "";
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 3px;
+  width: 0.1875rem;
   height: 0; /* collapsed by default */
   border-radius: 999px;
   background-color: transparent;
@@ -374,7 +432,7 @@
 .listItem.isActive {
   color: var(--composer-primary-color, #f97316);
   font-weight: var(--composer-font-weight-bold);
-  transform: translateX(4px);
+  transform: none; /* keep same starting x for all items */
 }
 
 .listItem.isActive::before {
@@ -389,23 +447,16 @@
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.rightContentContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  gap: 32px;
-  height: 100%;
-  min-height: 300px;
-  /* Ensure layout doesn't collapse when empty */
-}
+/* rightContentContainer removed - content moved to rightContent */
 
 .right {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 2rem;
   width: 100%;
   height: 100%;
 }
@@ -413,11 +464,13 @@
 .rightContent {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 1.25rem;
   width: 100%;
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(1.5rem);
   transition: opacity 0.4s ease, transform 0.4s ease;
+  margin: 0;
+  padding: 0;
 }
 
 .rightContent.isActive {
@@ -425,125 +478,55 @@
   transform: translateY(0);
 }
 
-.mediaSection {
-  display: flex;
-  width: 100%;
-  margin-bottom: 0;
-}
+/* mediaSection removed - imageBox moved directly to rightContent */
 
 .imageBox {
-  background: transparent; /* remove box */
-  border: none;
-  border-radius: var(--imagebox-border-radius, 16px);
-  padding: 0; /* overlay should cover full image */
+  /* Prefer container background; fallback to app background */
+  background: var(--composer-html-background, var(--background));
+  border: 1px solid rgba(229, 231, 235, 0.75);
+  border-radius: var(--imagebox-border-radius, 1rem);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --imagebox-padding: 25px;
+  padding: var(--imagebox-padding); /* frame thickness */
   width: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end; /* align to right like content9 */
+  margin: 0;
+  position: relative;
+  overflow: hidden; /* clip scaled image */
 }
 
 .image {
   width: 100%;
   height: auto;
-  border-radius: calc(var(--imagebox-border-radius, 16px) - 4px);
+  /* Inner image corner radius (frame radius minus inner gap) */
+  --image-inner-radius: calc(var(--imagebox-border-radius, 1rem) - 0.25rem);
+  border-radius: var(--image-inner-radius);
   object-fit: cover;
+  position: relative;
+  display: block;
 }
 
-/* Hover animations similar to content9 */
-.grid[data-animation~="animate1"] {
-  .imageBox { position: relative; overflow: hidden; }
+/* Hover effects removed */
 
-  .image {
-    transition: transform 1s;
-  }
-
-  .imageBox::before,
-  .imageBox::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transition: opacity 0.9s;
-    border-radius: var(--imagebox-border-radius, 16px);
-    pointer-events: none;
-  }
-
-  .imageBox::before {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-    z-index: 1;
-    opacity: 1;
-  }
-
-  .imageBox::after {
-    background: linear-gradient(
-      rgba(var(--composer-primary-color-rgb), 0.7),
-      rgba(0, 0, 0, 0.7)
-    );
-    z-index: 2;
-    opacity: 0;
-  }
-
-  .imageBox:hover {
-    .image {
-      transform: scale(1.2);
-    }
-    &::before { opacity: 0; }
-    &::after { opacity: 1; }
-  }
-}
-
-.grid[data-animation~="animate2"] {
-  .imageBox { position: relative; overflow: hidden; }
-
-  .imageBox::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -100%;
-    right: 0;
-    background: linear-gradient(
-      to right,
-      rgba(var(--composer-primary-color-rgb), 0.8),
-      transparent
-    );
-    transition: left 0.5s ease;
-    z-index: 1;
-    border-radius: var(--imagebox-border-radius, 16px);
-    pointer-events: none;
-  }
-
-  .image {
-    transition: filter 0.5s ease;
-  }
-
-  .imageBox:hover::before { left: 0; }
-
-  .imageBox:hover .image {
-    filter: brightness(1.1) contrast(1.1);
-  }
-}
-
-.detailsSection {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  flex: 1;
-}
+/* detailsSection removed - infoLine moved directly to rightContent */
 
 .infoLine {
   line-height: 1.6;
   color: var(--composer-font-color-primary, #000000);
   font-weight: 400;
+  margin: 0;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
 }
 
 .infoLine strong {
   font-weight: 700;
   color: var(--composer-font-color-primary, #000000);
-  margin-right: 8px;
+  margin-right: 0.5rem;
 }
 
 .infoLine span {
@@ -556,26 +539,9 @@
 }
 
 
-.ctaSection {
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 40px) minmax(0, 1fr);
-  gap: var(--grid-gap, 40px);
-  width: 100%;
-  margin-top: 0;
-  padding-bottom: 0;
-}
+/* ctaSection removed - button moved to rightContent */
 
-.ctaLeftPlaceholder,
-.ctaDividerPlaceholder {
-  display: none;
-}
-
-.ctaColumn {
-  grid-column: 3 / 4;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
+/* ctaLeftPlaceholder, ctaDividerPlaceholder, ctaColumn removed - button moved to rightContent */
 
 /* Animation and Transition Classes */
 .fadeIn {
@@ -586,13 +552,14 @@
   opacity: 1;
 }
 
+/* Legacy helper dot (kept for compatibility) */
 .activeBar {
   position: absolute;
-  left: -16px;
+  left: -1rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
+  width: 0.375rem;
+  height: 0.375rem;
   background-color: currentColor;
   border-radius: 50%;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -608,12 +575,12 @@
 @keyframes fadeInAnimation {
   0% {
     opacity: 0;
-    transform: translateY(30px) scale(0.95);
+    transform: translateY(1.875rem) scale(0.95);
   }
 
   50% {
     opacity: 0.7;
-    transform: translateY(10px) scale(0.98);
+    transform: translateY(0.625rem) scale(0.98);
   }
 
   100% {
@@ -622,150 +589,45 @@
   }
 }
 
-/* CTA Button Styles - Genel yapı ve hover efektleri */
+/* CTA Button Styles - Use Base.Button like other components */
 .ctaWrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* align with text */
   width: 100%;
 }
 
-/* Base CTA Button - Genel stiller */
 .ctaButton {
-  min-height: 48px;
-  padding: 16px 36px;
-  font-size: 16px;
-  font-weight: var(--composer-font-weight-bold);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.ctaButton::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
-}
-
-.ctaButton:hover {
-  opacity: 0.95;
-}
-
-.ctaButton:hover::before {
-  left: 100%;
-}
-
-.ctaButton:active {
-  transform: translateY(0);
-}
-
-/* CTA Button Variants - Sadece değişen özellikler */
-/* Primary (Default) */
-.ctaButton.baseButton.primary,
-.ctaButton.baseButton {
-  background-color: var(--composer-primary-color, #f97316);
-  color: var(--composer-html-background, #fff);
-  border: none;
-}
-
-/* Secondary */
-.ctaButton.baseButton.secondary {
-  background-color: transparent;
-  color: var(--composer-primary-color, #f97316);
-  border: 2px solid var(--composer-primary-color, #f97316);
-}
-
-.ctaButton.baseButton.secondary:hover {
-  background-color: var(--composer-primary-color, #f97316);
-  color: var(--composer-html-background, #fff);
-}
-
-/* Tertiary */
-.ctaButton.baseButton.tertiary {
-  background-color: transparent;
-  color: var(--composer-primary-color, #f97316);
-  border: 1px solid var(--composer-border-color, #e5e7eb);
-}
-
-.ctaButton.baseButton.tertiary:hover {
-  background-color: var(--composer-primary-color, #f97316);
-  color: var(--composer-html-background, #fff);
-  border-color: var(--composer-primary-color, #f97316);
-}
-
-/* Link */
-.ctaButton.baseButton.link {
-  background-color: transparent;
-  color: var(--composer-primary-color, #f97316);
-  border: none;
-  padding: 8px 16px;
-  min-height: auto;
-}
-
-.ctaButton.baseButton.link:hover {
-  text-decoration: underline;
-}
-
-/* White */
-.ctaButton.baseButton.white {
-  background-color: var(--composer-html-background, #fff);
-  color: var(--composer-font-color-primary, #000000);
-  border: 2px solid var(--composer-border-color, #e5e7eb);
-}
-
-.ctaButton.baseButton.white:hover {
-  background-color: var(--composer-section-background-hover, #f8f9fa);
-  border-color: var(--composer-border-color-hover, #d1d5db);
-}
-
-/* Black */
-.ctaButton.baseButton.black {
-  background-color: var(--composer-font-color-secondary, #374151);
-  color: var(--composer-html-background, #fff);
-  border: 2px solid var(--composer-font-color-secondary, #374151);
-}
-
-.ctaButton.baseButton.black:hover {
-  background-color: var(--composer-font-color-primary, #111827);
-  border-color: var(--composer-font-color-primary, #111827);
+  content: ""; /* Disable custom styles, use Base.Button */
 }
 
 /* Tablet Styles */
 @container (max-width: #{$composer-tablet-width}) {
 
   .grid {
-    grid-template-columns: 0.9fr 1px 1.1fr;
-    gap: 32px;
+    grid-template-columns: 1fr 0.0625rem 1.6fr; /* widen right a bit but smaller than desktop */
+    gap: 2rem;
     align-items: center;
   }
 
   .left {
-    gap: 24px;
+    gap: 1.5rem;
   }
 
   .leftTitle {
-    font-size: 30px;
-    max-width: none;
+    font-size: clamp(2rem, 2.2vw + 1rem, 2.6rem);
+    line-height: 1.25;
+    max-width: 30ch;
   }
 
   .list {
-    gap: 14px;
+    gap: 0.875rem;
+    align-items: flex-start; /* left align like desktop */
   }
 
   .listItem {
-    font-size: 16px;
-    padding: 10px 0 10px 12px; /* space for accent bar */
+    font-size: 1.125rem;
+    padding: 0.625rem 0 0.625rem 0.75rem; /* space for accent bar */
   }
 
   .listItem.isActive::before {
@@ -775,14 +637,19 @@
   }
 
   .right {
-    gap: 28px;
+    gap: 1.75rem;
   }
 
   .imageBox {
-    padding: 0; /* remove box on tablet */
-    background: transparent;
-    border: none;
-    border-radius: var(--imagebox-border-radius, 16px);
+    background: var(--composer-html-background, var(--background));
+    border: 1px solid rgba(229, 231, 235, 0.75);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    --imagebox-padding: 14px;
+    padding: var(--imagebox-padding);
+    border-radius: var(--imagebox-border-radius, 1rem);
+    width: 100%;
+    margin: 0;
+    justify-content: flex-end; /* align to right like content9 */
   }
 
   .image {
@@ -790,79 +657,22 @@
   }
 
   .info {
-    gap: 18px;
+    gap: 1.125rem;
   }
 
   .infoLine {
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 
   .ctaWrapper {
-    margin-top: 0;
-    display: flex;
-    align-items: flex-start;
+    margin-top: 16px;
     justify-content: flex-start;
-    width: 100%;
   }
 
-  .ctaButton {
-    min-height: 46px;
-    padding: 15px 30px;
-    font-size: 15px;
-    min-width: 150px;
-  }
-
-  .ctaButton.baseButton.primary,
-  .ctaButton.baseButton {
-    background-color: var(--composer-primary-color, #f97316);
-  }
-
-  .ctaButton.baseButton.secondary {
-    background-color: transparent;
-    color: var(--composer-primary-color, #f97316);
-    border: 2px solid var(--composer-primary-color, #f97316);
-  }
-
-  .ctaButton.baseButton.tertiary {
-    background-color: transparent;
-    color: var(--composer-primary-color, #f97316);
-    border: 1px solid var(--composer-border-color, #e5e7eb);
-  }
-
-  .ctaButton.baseButton.link {
-    background-color: transparent;
-    color: var(--composer-primary-color, #f97316);
-    padding: 8px 16px;
-    min-height: auto;
-  }
-
-  .ctaButton.baseButton.white {
-    background-color: var(--composer-html-background, #fff);
-    color: var(--composer-font-color-primary, #000000);
-    border: 2px solid var(--composer-border-color, #e5e7eb);
-  }
-
-  .ctaButton.baseButton.black {
-    background-color: var(--composer-font-color-secondary, #374151);
-    color: var(--composer-html-background, #fff);
-    border: 2px solid var(--composer-font-color-secondary, #374151);
-  }
+  /* Button styles removed - use Base.Button */
 }
 
-/* CTA Button Styles - Desktop genel */
-.ctaWrapper {
-  margin-top: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.ctaButton {
-  min-width: 160px;
-  gap: 8px;
-  align-self: flex-start;
-}
+/* Desktop button styles removed - use Base.Button */
 
 
 /* Mobile Styles */
@@ -870,8 +680,14 @@
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 1.25rem;
     align-items: center;
+  }
+
+  /* align content under image; keep both centered and full width constraints */
+  .rightContent {
+    align-items: center;
+    text-align: center;
   }
 
   .divider {
@@ -879,41 +695,51 @@
   }
 
   .left {
-    gap: 16px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+    gap: 1rem;
+    text-align: left;
+    align-items: center; /* center the column block */
+    justify-content: center; /* center the column block */
   }
 
   .leftContent {
-    margin-left: 0;
-    align-items: center;
-    text-align: center;
+    margin-left: auto; /* center the block */
+    margin-right: auto; /* center the block */
+    align-items: flex-start; /* keep inner items left-aligned */
+    text-align: left;
   }
 
   .listWrapper {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .leftTitle {
-    font-size: 24px;
-    text-align: center;
-    max-width: none;
+    font-size: clamp(1.75rem, 4.5vw + 0.5rem, 2.25rem);
+    line-height: 1.25;
+    text-align: left;
+    max-width: 30ch;
   }
 
   .list {
-    gap: 10px;
-    align-items: center;
+    gap: 0.625rem;
+    align-items: flex-start;
   }
 
   .listItem {
-    font-size: 15px;
-    padding: 10px 0 10px 12px; /* space for accent bar */
+    font-size: 1rem;
+    padding: 0.625rem 0 0.625rem 0.75rem; /* space for accent bar */
     text-align: left;
     justify-content: flex-start;
     transform: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0; /* align all from same x */
   }
 
   .listItem.isActive {
@@ -928,32 +754,39 @@
     opacity: 1;
   }
 
+/* Remove default focus ring/outline on mobile and desktop */
+.listItem:focus,
+.listItem:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
   /* base ::before preserved at desktop; only height changes here */
 
   .right {
-    gap: 24px;
+    gap: 1.5rem;
   }
 
   .imageBox {
-    padding: 0; /* remove box on mobile */
-    max-width: 100%;
-    background: transparent;
-    border: none;
-    border-radius: var(--imagebox-border-radius, 16px);
+    --imagebox-padding: 12px; /* thicker on mobile */
+    padding: var(--imagebox-padding);
+    width: 100%;
+    background: var(--composer-html-background, var(--background));
+    border: 1px solid rgba(229, 231, 235, 0.75);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    border-radius: var(--imagebox-border-radius, 1rem);
+    justify-content: center; /* center on mobile */
+    margin: 0;
   }
 
   .image {
     height: 100%;
   }
 
-  .info {
-    gap: 10px;
-    text-align: center;
-  }
-
   .infoLine {
-    font-size: 13px;
+    font-size: 0.8125rem;
     text-align: center;
+    margin-bottom: 1rem;
   }
 
   .ctaWrapper {
@@ -982,59 +815,13 @@
     display: flex;
   }
 
-  .ctaButton {
-    min-height: 44px;
-    padding: 14px 28px;
-    font-size: 15px;
-    min-width: 140px;
-    width: auto;
-    max-width: none;
-  }
-
-  .ctaButton.baseButton.primary,
-  .ctaButton.baseButton {
-    min-height: 40px;
-    padding: 12px 20px;
-    font-size: 14px;
-    background-color: var(--composer-primary-color, #f97316);
-  }
-
-  .ctaButton.baseButton.secondary {
-    background-color: transparent;
-    color: var(--composer-primary-color, #f97316);
-    border: 2px solid var(--composer-primary-color, #f97316);
-  }
-
-  .ctaButton.baseButton.tertiary {
-    background-color: transparent;
-    color: var(--composer-primary-color, #f97316);
-    border: 1px solid var(--composer-border-color, #e5e7eb);
-  }
-
-  .ctaButton.baseButton.link {
-    background-color: transparent;
-    color: var(--composer-primary-color, #f97316);
-    padding: 8px 12px;
-    min-height: auto;
-  }
-
-  .ctaButton.baseButton.white {
-    background-color: var(--composer-html-background, #fff);
-    color: var(--composer-font-color-primary, #000000);
-    border: 2px solid var(--composer-border-color, #e5e7eb);
-  }
-
-  .ctaButton.baseButton.black {
-    background-color: var(--composer-font-color-secondary, #374151);
-    color: var(--composer-html-background, #fff);
-    border: 2px solid var(--composer-font-color-secondary, #374151);
-  }
+  /* Mobile button styles removed - use Base.Button */
 }
 
 /* Empty State Styles - Shown when no items are present */
 .emptyState {
   list-style: none;
-  padding: 20px;
+  padding: 1.25rem;
   text-align: center;
   color: var(--composer-font-color-primary, #000000);
 
@@ -1049,7 +836,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 200px;
+  min-height: 12.5rem;
 
   p {
     margin: 0;

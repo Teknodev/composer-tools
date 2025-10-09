@@ -13,7 +13,7 @@ class Content27 extends BaseContent {
   }
 
   private initializeProps() {
-    // Typography properties
+    // Typography controls (kept for editor design panel)
     this.addProp({ type: "number", key: "title-font-size", displayer: "Title Font Size", value: 45 });
     this.addProp({ type: "number", key: "list-font-size", displayer: "List Font Size", value: 22 });
     this.addProp({
@@ -28,11 +28,11 @@ class Content27 extends BaseContent {
     this.addProp({ type: "number", key: "description-line-height", displayer: "Description Line Height", value: 1.6 });
     this.addProp({ type: "number", key: "info-line-font-size", displayer: "Info Text Font Size", value: 20 });
 
-    // Other properties
+    // Generic content props
     this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.addProp({ type: "string", key: "main-text", displayer: "Main Text", value: "" });
     this.addProp({ type: "image", key: "background-image", displayer: "Background Image", value: "" });
-    // Title color now follows global theme (Colorful/Monochrome) via Base.SectionTitle
+    // Title color follows global theme via Base.SectionTitle
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -44,7 +44,15 @@ class Content27 extends BaseContent {
     // CTA button configuration
     this.addProp(INPUTS.BUTTON("cta-button", "CTA Button", "", "", null, null, "Primary"));
 
-    // Items
+    // Divider line control (boolean to match other components)
+    this.addProp({
+      type: "boolean",
+      key: "showDivider",
+      displayer: "Show Divider Line",
+      value: true,
+    });
+
+    // Main items (header + 3 content + cta)
     this.addProp({ type: "array", key: "items", displayer: "Items", value: Content27.createDefaultItemsPreset() });
   }
 
@@ -313,49 +321,30 @@ class Content27 extends BaseContent {
           infos: rawInfos,
         }
       : { title: "", image: "", titleString: "", infos: [] as TypeUsableComponentProps[] };
-    const bgImage = this.getPropValue("background-image");
+    // background-image is no longer applied inline; keep for future use if needed
     const headerText = headerData
       ? this.getPropValue("text", { parent_object: headerData })
       : this.getPropValue("main-text");
     const subtitleText = this.getPropValue("subtitle");
     const { text: ctaText, url: ctaLink, type: ctaType } = this.resolveCTA(ctaData);
-    // Auto-hide divider when the layout has no content to show
+    // Divider line control via prop
+    const showDivider = this.getPropValue("showDivider") as boolean;
     const hasHeader = this.hasContent(headerText);
     const hasList = hasContentItems;
     const hasCTA = this.hasContent(ctaText);
-    const showDividerLine = hasHeader || hasList || hasCTA;
+    const showDividerLine = showDivider && (hasHeader || hasList || hasCTA);
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
-
-    // Typography Properties
-    const titleFontSize = this.getPropValue("title-font-size") || 28;
-    const titleFontWeight = this.getPropValue("title-font-weight") || "bold";
-    const titleLineHeight = this.getPropValue("title-line-height") || 1.2;
-    const titleMaxWidth = this.getPropValue("title-max-width") || 18;
-    const listFontSize = this.getPropValue("list-font-size") || 18;
-    const infoLineFontSize = this.getPropValue("info-line-font-size") || 16;
-    const gridMargin = hasHeader ? undefined : 0;
 
     return (
       <Base.Container
         className={this.decorateCSS("content27")}
-        style={{
-          ...(bgImage ? { backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center" } : {}),
-          ["--title-font-size" as any]: `${titleFontSize}px`,
-          ["--title-font-weight" as any]: titleFontWeight,
-          ["--title-line-height" as any]: titleLineHeight.toString(),
-          ["--title-max-width" as any]: `${titleMaxWidth}ch`
-        }}
         onKeyDown={this.handleKeyDown}
       >
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
           <div
             className={this.decorateCSS("grid")}
             data-animation={hoverAnimation.join(" ")}
-            style={
-              gridMargin === undefined
-                ? undefined
-                : ({ ["--content27-grid-margin" as any]: `${gridMargin}px` } as React.CSSProperties)
-            }
+            style={undefined}
           >
             <div className={this.decorateCSS("leftColumn")}>
               <div className={this.decorateCSS("leftContent")}>
@@ -368,11 +357,6 @@ class Content27 extends BaseContent {
                   {this.castToString(headerText) && (
                     <Base.SectionTitle
                       className={this.decorateCSS("leftTitle")}
-                      style={{
-                        ["--title-font-size" as any]: `${titleFontSize}px`,
-                        ["--title-line-height" as any]: titleLineHeight,
-                        ["--title-max-width" as any]: `${titleMaxWidth}ch`
-                      }}
                     >
                       {headerText}
                     </Base.SectionTitle>
@@ -384,7 +368,7 @@ class Content27 extends BaseContent {
                         role="tablist"
                         aria-label="Success Stories"
                         aria-orientation="vertical"
-                        style={{ fontSize: `${listFontSize}px` }}
+                        style={undefined}
                       >
                         {contentItems.map((item: any, i: number) => {
                           const isActive = i === activeIndex;
@@ -423,75 +407,59 @@ class Content27 extends BaseContent {
                 </div>
               </div>
             )}
-            <div className={this.decorateCSS("rightColumn")}
-            >
-              <div className={this.decorateCSS("rightContentContainer")}
-              >
-                {hasContentItems && (
-                  <div
-                    key={activeIndex}
-                    className={`${this.decorateCSS("rightContent")} ${this.decorateCSS("isActive")}`}
-                    role="tabpanel"
-                    aria-labelledby={`tab-${activeIndex}`}
-                    id={`tabpanel-${activeIndex}`}
-                  >
-                    {activeItem.image && (
-                      <div className={this.decorateCSS("mediaSection")}>
-                        <div className={this.decorateCSS("imageBox")}>
-                          <img
-                            src={activeItem.image}
-                            className={this.decorateCSS("image")}
-                            loading="lazy"
-                            alt={`${activeItem.titleString || ""} - Success Story`}
-                          />
-                        </div>
-                      </div>
-                    )}
-                    <div className={this.decorateCSS("detailsSection")} role="region" aria-label="Story Details">
-                      {activeItem.infos && activeItem.infos.length > 0 && activeItem.infos.map((info: TypeUsableComponentProps, idx: number) => {
-                        const infoData = info.value || info;
-                        const label = this.getNestedPropValue(infoData, "label");
-                        const text = this.getNestedPropValue(infoData, "text");
-                        const labelString = this.castToString(label);
-
-                        if (!labelString) return null;
-
-                        return (
-                          <div
-                            key={idx}
-                            className={this.decorateCSS("infoLine")}
-                            style={{ fontSize: `${infoLineFontSize}px`, lineHeight: 1.7 }}
-                          >
-                            <strong>{label}</strong>
-                            <span>{text}</span>
-                          </div>
-                        );
-                      })}
+            <div className={this.decorateCSS("rightColumn")}>
+              {hasContentItems && (
+                <div
+                  key={activeIndex}
+                  className={`${this.decorateCSS("rightContent")} ${this.decorateCSS("isActive")}`}
+                  role="tabpanel"
+                  aria-labelledby={`tab-${activeIndex}`}
+                  id={`tabpanel-${activeIndex}`}
+                >
+                  {activeItem.image && (
+                    <div className={this.decorateCSS("imageBox")}>
+                      <img
+                        src={activeItem.image}
+                        className={this.decorateCSS("image")}
+                        loading="lazy"
+                        alt={`${activeItem.titleString || ""} - Success Story`}
+                      />
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                  {activeItem.infos && activeItem.infos.length > 0 && activeItem.infos.map((info: TypeUsableComponentProps, idx: number) => {
+                    const infoData = info.value || info;
+                    const label = this.getNestedPropValue(infoData, "label");
+                    const text = this.getNestedPropValue(infoData, "text");
+                    const labelString = this.castToString(label);
+
+                    if (!labelString) return null;
+
+                    return (
+                      <div
+                        key={idx}
+                        className={this.decorateCSS("infoLine")}
+                      >
+                        <strong>{label}</strong>
+                        <span>{text}</span>
+                      </div>
+                    );
+                  })}
+                  {hasCTA && (
+                    <div className={this.decorateCSS("ctaWrapper")}>
+                      <ComposerLink path={ctaLink}>
+                        <Base.Button
+                          buttonType={ctaType}
+                          className={this.decorateCSS("ctaButton")}
+                        >
+                          {ctaText}
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
-          {hasCTA && (
-            <div className={this.decorateCSS("ctaSection")}>
-              <div className={this.decorateCSS("ctaLeftPlaceholder")} aria-hidden="true" />
-              {showDividerLine && <div className={this.decorateCSS("ctaDividerPlaceholder")} aria-hidden="true" />}
-              <div className={this.decorateCSS("ctaColumn")}>
-                <div className={this.decorateCSS("ctaWrapper")}
-                >
-                  <ComposerLink path={ctaLink}>
-                    <Base.Button
-                      buttonType={ctaType}
-                      className={this.decorateCSS("ctaButton")}
-                    >
-                      {ctaText}
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              </div>
-            </div>
-          )}
         </Base.MaxContent>
       </Base.Container>
     );
