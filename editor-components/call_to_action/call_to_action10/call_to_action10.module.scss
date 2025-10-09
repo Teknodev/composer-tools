@@ -22,6 +22,10 @@
 
             .subtitle{
                 content: "";
+                transform: translateX(0);
+                &::before {
+                    display: none;
+                }
             }
 
             .description{
@@ -30,6 +34,9 @@
 
             .button {
                 content: "";
+                .button-text {
+                    content: "";
+                }
             }
             .card-container{
                 width: 100%;

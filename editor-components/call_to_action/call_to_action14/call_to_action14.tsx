@@ -80,7 +80,7 @@ class CallToAction14 extends BaseCallToAction {
                   {this.castToString(item.text) && (
                     <ComposerLink path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                        {item.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   )}

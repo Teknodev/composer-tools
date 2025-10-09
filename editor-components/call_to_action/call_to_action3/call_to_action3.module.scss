@@ -36,6 +36,13 @@
         }
       }
 
+      .subtitle {
+        transform: translateX(0);
+        &::before {
+          display: none;
+        }
+      }
+
       .description {
         text-align: center !important;
 
@@ -53,6 +60,9 @@
 
         .button {
           content: "";
+          .button-text {
+            content: "";
+          }
         }
       }
     }

@@ -136,7 +136,7 @@ class CallToAction2Page extends BaseCallToAction {
                       return this.castToString(button.text) && (
                         <ComposerLink path={button.url}>
                           <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       )

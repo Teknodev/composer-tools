@@ -36,6 +36,13 @@
         text-align: center;
       }
 
+      .subtitle {
+        transform: translateX(0);
+        &::before {
+          display: none;
+        }
+      }
+
       &.with-image {
         .title,
         .description,
@@ -98,6 +105,9 @@
           content: "";
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -152,6 +162,9 @@
 
           .submit-button {
             content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
       }

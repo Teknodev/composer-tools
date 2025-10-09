@@ -122,7 +122,7 @@ class CallToAction12Page extends BaseCallToAction {
                     )}
                     {this.castToString(button.text) && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={button.type}>
-                        <span className={this.decorateCSS("buttonText")}>{button.text}</span>
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     )}
                   </Form>
@@ -134,7 +134,7 @@ class CallToAction12Page extends BaseCallToAction {
             <div className={this.decorateCSS("button-container")}>
               <ComposerLink path={button.url}>
                 <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${!this.castToString(this.getPropValue("placeholder")) && this.decorateCSS("button-no-item")}`}>
-                  {button.text}
+                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                 </Base.Button>
               </ComposerLink>
             </div>

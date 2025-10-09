@@ -20,6 +20,13 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Subscribe for now",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Get notified on latest updates and new releases.",
@@ -184,7 +191,7 @@ class CallToAction6Page extends BaseCallToAction {
                         )}
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         )}
                       </div>

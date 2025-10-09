@@ -402,6 +402,7 @@
   cursor: pointer;
   font-size: var(--composer-font-size-md);
   border-radius: var(--composer-border-radius-sm);
+  font-family: var(--composer-font-family);
 
   &.primary {
     background-color: var(--composer-primary-color);

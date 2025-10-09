@@ -91,7 +91,7 @@ class CallToAction3Page extends BaseCallToAction {
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type}
                             className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         )}
                       </ComposerLink>

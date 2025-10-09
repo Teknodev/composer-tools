@@ -49,6 +49,9 @@
           gap: var(--composer-gap-md);
           .button {
             content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
       }

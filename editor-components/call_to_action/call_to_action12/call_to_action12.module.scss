@@ -20,6 +20,13 @@
       .title, .subtitle, .description {
         text-align: center;
       }
+
+      .subtitle {
+        transform: translateX(0);
+        &::before {
+          display: none;
+        }
+      }
     }
 
     .form {
@@ -67,6 +74,9 @@
           content: "";
           border-radius: var(--composer-border-radius-sm);
           padding: var(--composer-gap-sm) calc(var(--composer-gap-lg) * 3 );
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -81,6 +91,9 @@
 
         &.button-no-item {
           border-radius: var(--composer-border-radius-xs);
+        }
+        .button-text {
+          content: "";
         }
       }
   }
@@ -123,6 +136,9 @@
            .submit-button {
           padding: var(--composer-gap-sm);
           justify-content: center;
+          .button-text {
+            content: "";
+          }
         }
         }
       }

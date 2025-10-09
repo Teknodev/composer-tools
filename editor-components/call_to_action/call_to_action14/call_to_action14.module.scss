@@ -8,6 +8,10 @@
 
         .subtitle {
             margin: 0 auto;
+            transform: translateX(0) !important;
+            &::before {
+                display: none;
+            }
         }
 
         &[data-animation~="animate1"] {
@@ -96,6 +100,9 @@
             gap: var(--composer-gap-sm);
             .button{
                 content: "";
+                .button-text {
+                    content: "";
+                }
             }
         }
     }

@@ -153,7 +153,7 @@ class CallToAction7Page extends BaseCallToAction {
                             )}
                             {this.castToString(button.text) && (
                               <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                {button.text}
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                               </Base.Button>
                             )}
                           </Form>
@@ -164,7 +164,7 @@ class CallToAction7Page extends BaseCallToAction {
                   {(!placeholder && this.castToString(button.text) && (
                     <ComposerLink path={button.url}>
                       <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   ))}

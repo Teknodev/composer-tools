@@ -73,7 +73,7 @@ class CallToAction8Page extends BaseCallToAction {
                         buttonType={button.type}
                         className={this.decorateCSS("button-element")}
                       >
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   </Base.Row>
