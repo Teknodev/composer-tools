@@ -139,7 +139,7 @@ class Download2 extends BaseDownload {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item count in a row",
       value: 3,
     });
   }
