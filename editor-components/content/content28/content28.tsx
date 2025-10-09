@@ -100,37 +100,53 @@ class Content28 extends BaseContent {
       displayer: "Active Feature Index",
       value: 0
     });
+
+    // Number of feature items per row
+    this.addProp({
+      type: "number",
+      key: "itemsPerRow",
+      displayer: "Items Per Row",
+      value: 2
+    });
   }
 
   static getName(): string {
     return "Content 28";
   }
 
+  // Helpers
+  private getFirstTextFromArray(propKey: string): string | undefined {
+    const arr = this.castToObject<{ text?: string }[]>(propKey) || [];
+    return arr[0]?.text;
+  }
+
+  private getFeatures(): FeatureItem[] {
+    const raw = this.castToObject<FeatureItem[]>("features") || [];
+    return raw.filter((f) => f && typeof f === "object");
+  }
+
   render() {
     // Extract and prepare data from props
     const imageSrc = this.getPropValue("image");
-    const headingItems = this.castToObject<{ text?: string }[]>("headings") || [];
-    const heading = headingItems[0]?.text;
-    const introItems = this.castToObject<{ text?: string }[]>("intros") || [];
-    const intro = introItems[0]?.text;
-    const featuresRaw = this.castToObject<FeatureItem[]>("features") || [];
-    const features = featuresRaw.filter((f) => f && typeof f === "object");
+    const heading = this.getFirstTextFromArray("headings");
+    const intro = this.getFirstTextFromArray("intros");
+    const features = this.getFeatures();
     const showLine = !!this.getPropValue("showLine");
     const activeIndex = Number(this.getPropValue("activeIndex") ?? 0);
+    const itemsPerRow = Number(this.getPropValue("itemsPerRow") ?? 2);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {/* Main grid: image + optional divider + content */}
           <div className={`${this.decorateCSS("grid")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
-            
             {/* Left column: Image */}
             {this.castToString(imageSrc) && (
               <div className={this.decorateCSS("col-image")}>
-                <img 
-                  src={imageSrc} 
-                  alt={heading || "portrait"} 
-                  className={this.decorateCSS("image")} 
+                <img
+                  src={imageSrc}
+                  alt={heading || "portrait"}
+                  className={this.decorateCSS("image")}
                 />
               </div>
             )}
@@ -140,7 +156,6 @@ class Content28 extends BaseContent {
 
             {/* Right column: Content */}
             <Base.VerticalContent className={this.decorateCSS("col-content")}>
-              
               {/* Header section with heading and intro */}
               {(heading || intro) && (
                 <Base.VerticalContent className={this.decorateCSS("header")}>
@@ -160,10 +175,13 @@ class Content28 extends BaseContent {
               {/* Features grid */}
               {features.length > 0 && (
                 <div className={this.decorateCSS("features-block")}>
-                  <div className={this.decorateCSS("features")}>
+                  <div
+                    className={this.decorateCSS("features")}
+                    style={{ "--items-per-row": itemsPerRow } as React.CSSProperties}
+                  >
                     {features.map((feature, index) => (
-                      <Base.VerticalContent 
-                        className={`${this.decorateCSS("feature")} ${index === activeIndex ? this.decorateCSS("active") : ""}`} 
+                      <Base.VerticalContent
+                        className={`${this.decorateCSS("feature")} ${index === activeIndex ? this.decorateCSS("active") : ""}`}
                         key={index}
                       >
                         {feature?.title && (
