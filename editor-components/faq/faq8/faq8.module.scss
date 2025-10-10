@@ -54,7 +54,7 @@
             .right {
               background: var(--composer-html-background);
               color: var(--composer-font-color-primary);
-              padding: var(--composer-gap-sm);
+              padding: var(--composer-gap-xs);
               border-radius: 50%;
               display: flex;
               align-items: center;
@@ -63,9 +63,9 @@
               .arrow-right {
                 transform: rotate(-30deg);
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                width: 16px;
-                height: 16px;
-                font-size: 1.25rem;
+                width: 14px;
+                height: 14px;
+                font-size: 1rem;
               }
             }
             &.active-category {

@@ -722,9 +722,9 @@ class Faq8 extends BaseFAQ {
                                 />
                               )}
                               {this.castToString(category.categoryName) && (
-                                <Base.H3 className={this.decorateCSS("category-name")}>
+                                <Base.H4 className={this.decorateCSS("category-name")}>
                                   {category.categoryName}
-                                </Base.H3>
+                                </Base.H4>
                               )}
                             </div>
                           )}
