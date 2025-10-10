@@ -6,23 +6,40 @@
         gap: var(--composer-gap-md);
         transition: all 0.3s ease;
 
+        .header {
+            content: "";
+            .title,
+            .subtitle,
+            .description {
+                text-align: center;
+            }
+        }
+
+        .subtitle {
+            margin: 0 auto;
+            transform: translateX(0) !important;
+            &::before {
+                display: none;
+            }
+        }
+
         &[data-animation~="animate1"] {
             &:hover {
                 transform: translateY(-10px) scale(1.1);
 
-                .title, .description, .button-container {
+                .title, .description, .subtitle, .button-container {
                     transform: translateY(-5px);
                 }
             }
 
-            .title, .description, .button-container {
+            .title, .description, .subtitle, .button-container {
                 transition: transform 0.3s ease;
             }
         }
 
         &[data-animation~="animate2"] {
             &:hover {
-                .title {
+                .title, .subtitle {
                     transform: scale(1.05);
                     color: var(--composer-primary-color);
                     transition-delay: 0s;
@@ -40,7 +57,7 @@
                 }
             }
 
-            .title, .description, .button-container {
+            .title, .description, .subtitle, .button-container {
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
@@ -51,7 +68,7 @@
 
         &[data-animation~="animate3"] {
             &:hover {
-                .title {
+                .title, .subtitle {
                     animation: bounceAndGlow 1s ease-in-out;
                     color: var(--composer-primary-color);
                 }
@@ -77,14 +94,6 @@
             }
         }
 
-        .title {
-            margin: 0px;
-            text-align: center;
-        }
-        .description {
-            margin: 0px;
-            text-align: center;
-        }
         .button-container {
             display: flex;
             flex-wrap: wrap;
@@ -92,6 +101,9 @@
             gap: var(--composer-gap-sm);
             .button{
                 content: "";
+                .button-text {
+                    content: "";
+                }
             }
         }
     }
