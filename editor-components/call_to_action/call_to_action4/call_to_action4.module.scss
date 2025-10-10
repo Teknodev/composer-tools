@@ -9,11 +9,14 @@
         flex-direction: column;
         flex: 1;
         gap: var(--composer-gap-lg);
-        .title,
-        .subtitle {
-          margin: 0px;
-          text-align: left;
+        .header {
+          .title,
+          .subtitle {
+            margin: 0px;
+            text-align: left;
+          }
         }
+        
         .list-container {
           margin: 0px;
           .list {

@@ -58,21 +58,23 @@ class CallToAction14 extends BaseCallToAction {
           className={this.decorateCSS("max-content")}
           data-animation={this.getPropValue("hoverAnimation").join(" ")}
         >
-          {this.castToString(this.getPropValue("subtitle")) && (
-            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-              {this.getPropValue("subtitle")}
-            </Base.SectionSubTitle>
-          )}
-          {this.castToString(this.getPropValue("title")) && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </Base.SectionTitle>
-          )}
-          {this.castToString(this.getPropValue("description")) && (
-            <Base.SectionDescription className={this.decorateCSS("description")}>
-              {this.getPropValue("description")}
-            </Base.SectionDescription>
-          )}
+          <Base.VerticalContent className={this.decorateCSS("header")}>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+            )}
+            {this.castToString(this.getPropValue("description")) && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
+            )}
+          </Base.VerticalContent>
           {(buttons.length > 0) && (
             buttons.map((item: INPUTS.CastedButton, index: number) => {
               return (

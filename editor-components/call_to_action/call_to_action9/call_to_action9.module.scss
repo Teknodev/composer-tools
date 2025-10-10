@@ -5,17 +5,22 @@
     .content {
       gap: var(--composer-gap-lg);
       align-items: center;
-      .title,
-      .subtitle {
-        content: "";
-        text-align: center;
-      }
-      .subtitle {
-        transform: translateX(0);
-        &::before {
-          display: none;
+      .header {
+        .title,
+        .subtitle {
+          content: "";
+          text-align: center;
+        }
+
+        .subtitle {
+          width: 100%;
+          transform: translateX(0);
+          &::before {
+            display: none;
+          }
         }
       }
+
       .button {
         content: "";
 
@@ -46,6 +51,16 @@
             object-fit: cover;
           }
         }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        gap: var(--composer-gap-md);
       }
     }
   }

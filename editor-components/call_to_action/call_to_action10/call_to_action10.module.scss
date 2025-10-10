@@ -4,33 +4,38 @@
         .content {
             align-items: center;
             gap: var(--composer-gap-md);
-            .title-container{
-                content: "";
-                position: relative;
-                padding-bottom: var(--composer-gap-lg);
-                .title{
-                    width: fit-content;
+            .header {
+                .title-container{
+                    content: "";
+                    position: relative;
+                    padding-bottom: var(--composer-gap-lg);
+                    .title{
+                        width: fit-content;
+                        text-align: center;
+                    }
+                    .icon {
+                        position: absolute;
+                        bottom: 0rem;
+                        right: 0;
+                        font-size: 3rem;
+                        color: var(--composer-font-color-primary);
+                    }
                 }
-                .icon {
-                    position: absolute;
-                    bottom: 0rem;
-                    right: 0;
-                    font-size: 3rem;
-                    color: var(--composer-font-color-primary);
+    
+                .subtitle{
+                    text-align: center;
+                    transform: translateX(0);
+                    width: 100%;
+                    &::before {
+                        display: none;
+                    }
+                }
+    
+                .description{
+                    text-align: center;
                 }
             }
 
-            .subtitle{
-                content: "";
-                transform: translateX(0);
-                &::before {
-                    display: none;
-                }
-            }
-
-            .description{
-                text-align: center;
-            }
 
             .button {
                 content: "";
@@ -77,6 +82,10 @@
             .content{
                 .title-container{
                     padding-bottom: var(--composer-gap-md);
+
+                    .title{
+                        text-align: center;
+                    }
                     .icon {
                         font-size: 1.5rem;
                     }

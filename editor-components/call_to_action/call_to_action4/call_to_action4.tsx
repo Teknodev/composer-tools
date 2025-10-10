@@ -190,8 +190,10 @@ class CallToAction4Page extends BaseCallToAction {
           <div className={this.decorateCSS("content")}>
             {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
               <div className={this.decorateCSS("left-page")}>
-                {this.castToString(this.getPropValue("subtitle")) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                <Base.VerticalContent className={this.decorateCSS("header")}>
+                  {this.castToString(this.getPropValue("subtitle")) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                </Base.VerticalContent>
                 {listItems.length > 0 && (
                   <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
                     {listItems.map((item: ListItem, index: number) => (

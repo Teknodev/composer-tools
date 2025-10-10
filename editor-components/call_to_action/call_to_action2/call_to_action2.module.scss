@@ -223,6 +223,20 @@
           flex-direction: column;
           gap: var(--composer-gap-md);
 
+          .titles {
+            .subtitle, .title {
+              content: "";
+              text-align: center;
+            }
+            .subtitle {
+              width: 100%;
+              transform: translateX(0);
+              &::before {
+                display: none;
+              }
+            }
+          }
+
           .button-container {
             max-width: 100%;
           }

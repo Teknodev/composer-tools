@@ -188,16 +188,18 @@ class CallToAction9Page extends BaseCallToAction {
           <Base.VerticalContent
             className={this.decorateCSS("content")}
           >
+           <Base.VerticalContent className={this.decorateCSS("header")}>  
             {this.castToString(this.getPropValue("subtitle")) && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(this.getPropValue("title")) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+           </Base.VerticalContent>
             {this.castToString(button.text) && (
               <ComposerLink path={button.url}>
                 <Base.Button
