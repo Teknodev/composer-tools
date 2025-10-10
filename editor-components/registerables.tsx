@@ -236,11 +236,11 @@ import Location7 from "./location/location7/location7";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 import ECommerce5 from "./e-commerce/e-commerce5";
 import BreadcrumbComponent1 from "./breadcrumb/breadcrumb1/breadcrumb1";
+import BreadcrumbComponent3 from "./breadcrumb/breadcrumb3/breadcrumb3";
 import BreadcrumbComponent2 from "./breadcrumb/breadcrumb2/breadcrumb2";
 import BreadcrumbComponent4 from "./breadcrumb/breadcrumb4/breadcrumb4";
 import BreadcrumbComponent5 from "./breadcrumb/breadcrumb5/breadcrumb5";
 import BreadcrumbComponent6 from "./breadcrumb/breadcrumb6/breadcrumb6";
-import BreadcrumbComponent7 from "./breadcrumb/breadcrumb7/breadcrumb7";
 import ECommerce1 from "./e-commerce/e-commerce1/e-commerce1";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
@@ -292,10 +292,10 @@ function Registerables(composer: ComponentsRegistery) {
     DownloadComponent11,
     BreadcrumbComponent1,
     BreadcrumbComponent2,
+    BreadcrumbComponent3,
     BreadcrumbComponent4,
     BreadcrumbComponent5,
     BreadcrumbComponent6,
-    BreadcrumbComponent7,
     PrivacyPolicyPage,
     ListComponent1,
     ListComponent2,

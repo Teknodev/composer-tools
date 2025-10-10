@@ -4,9 +4,9 @@ import { Base } from "../../../composer-base-components/base/base";
 import { BaseBreadcrumb } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
-type StripItem = {
-    homepage: string;
-    currentpage: string;
+type BreadcrumbItem = {
+    title: string;
+    icon: string;
     navigateTo: string;
 };
 
@@ -20,48 +20,98 @@ class Breadcrumb1 extends BaseBreadcrumb {
             value: "Home",
         });
         this.addProp({
-            type: "image",
+            type: "media",
             key: "image",
             displayer: "Background Image",
-            value:
-                "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg",
+            additionalParams: { availableTypes: ["image", "video"] },
+            value: { type: "image", url: "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg" },
         });
         this.addProp({
-            type: "object",
-            key: "strip",
-            displayer: "Strip Items",
+            type: "array",
+            key: "breadcrumbItems",
+            displayer: "Breadcrumb Items",
             value: [
                 {
-                    type: "string",
-                    key: "homepage",
-                    displayer: "Home Page",
-                    value: "Home Page",
-                },
-                {
-                    type: "page",
-                    key: "navigateTo",
-                    displayer: "Navigate to",
-                    value: "",
-                },
-                {
-                    type: "string",
-                    key: "currentpage",
-                    displayer: "Current Page",
-                    value: "Current Page",
+                    type: "object",
+                    key: "item",
+                    displayer: "Item",
+                    value: [
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Home",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "",
+                            },
+                        },
+                        {
+                            type: "page",
+                            key: "navigateTo",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
+                    ],
                 },
             ],
         });
         this.addProp({
             type: "boolean",
-            key: "showStrip",
-            displayer: "Show Strip",
+            key: "showBreadcrumb",
+            displayer: "Show Breadcrumb",
             value: true,
         });
         this.addProp({
-            type: "icon",
-            key: "stripIcon",
-            displayer: "Icon",
-            value: "RxDoubleArrowRight",
+            type: "media",
+            key: "breadcrumbIcon",
+            displayer: "Breadcrumb Icon",
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
+            value: {
+                type: "icon",
+                name: "RxDoubleArrowRight",
+            },
+        });
+        this.addProp({
+            type: "object",
+            key: "currentPage",
+            displayer: "Current Page",
+            value: [
+                {
+                    type: "string",
+                    key: "title",
+                    displayer: "Title",
+                    value: "Current Page",
+                },
+                {
+                    type: "media",
+                    key: "icon",
+                    displayer: "Icon",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "",
+                    },
+                },
+            ],
+        });
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: true,
         });
     }
 
@@ -70,28 +120,34 @@ class Breadcrumb1 extends BaseBreadcrumb {
     }
 
     render() {
-        const strip = this.castToObject<StripItem>("strip");
+        const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
         const isTitleExist = this.castToString(this.getPropValue("title"));
-        const homepage = strip.homepage || "";
-        const currentpage = strip.currentpage || "";
-        const navigateToUrl = strip.navigateTo || "";
-        const showStrip = this.getPropValue("showStrip");
-        const bgImage = this.getPropValue("image")?.trim();
+        const showBreadcrumb = this.getPropValue("showBreadcrumb");
+        const currentPage = this.castToObject("currentPage");
+        const currentPageTitle = currentPage?.title || "";
+        const currentPageIcon = currentPage?.icon || "";
+        const bgImage = this.getPropValue("image");
+        const overlay = this.getPropValue("overlay");
         const alignmentValue = Base.getContentAlignment();
 
         return (
             <>
-                {(bgImage || isTitleExist) && (
+                {(bgImage?.url || isTitleExist) && (
                     <Base.Container
                         className={this.decorateCSS("container")}
-                        style={{
-                            backgroundImage: `url(${bgImage})`,
-                        }}
                     >
+                        {bgImage?.url && (
+                            <Base.Media
+                                value={bgImage}
+                                className={this.decorateCSS("background-image")}
+                            />
+                        )}
+                        {overlay && bgImage?.url && <div className={this.decorateCSS("overlay")}></div>}
+
                         {isTitleExist && (
                             <Base.MaxContent className={this.decorateCSS("max-content")}>
                                 <Base.SectionTitle
-                                    className={`${this.decorateCSS("title-main")} ${bgImage && this.decorateCSS("title-with-bg")
+                                    className={`${this.decorateCSS("title-main")} ${bgImage?.url && this.decorateCSS("title-with-bg")
                                         } }`}
                                 >
                                     {this.getPropValue("title")}
@@ -100,33 +156,55 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         )}
                     </Base.Container>
                 )}
-                {showStrip && (
+                {showBreadcrumb && (
                     <Base.Container className={this.decorateCSS("strip-container")}>
                         <Base.MaxContent className={this.decorateCSS("strip-max-content")}>
-                            <div
+                            <Base.P
                                 className={`${this.decorateCSS("strip-content")} ${alignmentValue === "center"
                                     ? this.decorateCSS("center")
                                     : this.decorateCSS("left")
                                     }`}
                             >
-                                <ComposerLink
-                                    path={navigateToUrl}
-                                    className={this.decorateCSS("home-link")}
-                                >
-                                    <span className={this.decorateCSS("home-page")}>
-                                        {homepage}
-                                    </span>
-                                </ComposerLink>
-                                <Base.Icon
-                                    name={this.getPropValue("stripIcon")}
-                                    propsIcon={{
-                                        className: this.decorateCSS("stripIcon"),
-                                    }}
-                                />
-                                <span className={this.decorateCSS("current-page")}>
-                                    {currentpage}
-                                </span>
-                            </div>
+                                {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
+                                    <div key={index} className={this.decorateCSS("breadcrumb-item")}>
+                                        {(this.castToString(item.title) || item.icon.name) && <ComposerLink path={item.navigateTo}>
+                                            <div className={this.decorateCSS("breadcrumb-link")}>
+                                                {item.icon.name && (
+                                                    <Base.Media
+                                                        value={item.icon}
+                                                        className={this.decorateCSS("stripIcon")}
+                                                    />
+                                                )}
+                                                {this.castToString(item.title) && (
+                                                    <Base.P className={this.decorateCSS("home-page")}>
+                                                        {item.title}
+                                                    </Base.P>
+                                                )}
+                                            </div>
+                                        </ComposerLink>}
+                                    </div>
+                                ))}
+                                {breadcrumbItems.length > 0 && (
+                                    <div className={this.decorateCSS("current-page-wrapper")}>
+                                        {this.getPropValue("breadcrumbIcon") && <Base.Media
+                                            value={this.getPropValue("breadcrumbIcon")}
+                                            className={this.decorateCSS("stripIcon")}
+                                        />}
+                                        <div className={this.decorateCSS("current-page-container")}>
+                                            {currentPageIcon.name && (
+                                                <Base.Media
+                                                    value={currentPageIcon}
+                                                    className={this.decorateCSS("current-page-icon")}
+                                                />
+                                            )}
+                                            {this.castToString(currentPageTitle) && 
+                                            <Base.P className={this.decorateCSS("current-page")}>
+                                                {currentPageTitle}
+                                            </Base.P>}
+                                        </div>
+                                    </div>
+                                )}
+                            </Base.P>
                         </Base.MaxContent>
                     </Base.Container>
                 )}
