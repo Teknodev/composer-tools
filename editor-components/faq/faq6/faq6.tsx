@@ -9,23 +9,48 @@ class Faq6 extends BaseFAQ {
     super(props, styles);
 
     this.addProp({
-      type: "icon",
+      type: "media",
       displayer: "Inactive Icon",
       key: "inactive_icon",
-      value: "FaMinus"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaMinus",
+      },
     })
     this.addProp({
-      type: "icon",
+      type: "media",
       displayer: "Active Icon",
       key: "active_icon",
-      value: "FaPlus"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaPlus",
+      },
     })
 
     this.addProp({
-      type: "image",
+      type: "media",
       displayer: "Image",
       key: "image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd34bd2970002c62977c?alt=media&timestamp=1719584962578"
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd34bd2970002c62977c?alt=media&timestamp=1719584962578",
+      },
+    })
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "FAQ"
     })
 
     this.addProp({
@@ -48,14 +73,14 @@ class Faq6 extends BaseFAQ {
             {
               type: "string",
               key: "title",
-              displayer: "Title of Item",
+              displayer: "Title",
               value: "Ut Neque Augue Interdum Ad Integer Tempus Convallis?"
             },
             {
               type: "string",
               key: "description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description of Item"
+              displayer: "Description"
             }
           ]
         },
@@ -67,14 +92,14 @@ class Faq6 extends BaseFAQ {
             {
               type: "string",
               key: "title",
-              displayer: "Title of Item",
+              displayer: "Title",
               value: "Dictum Feugiat Tincidunt Nam Commodo?"
             },
             {
               type: "string",
               key: "description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description of Item"
+              displayer: "Description"
             }
           ]
         },
@@ -86,14 +111,14 @@ class Faq6 extends BaseFAQ {
             {
               type: "string",
               key: "title",
-              displayer: "Title of Item",
+              displayer: "Title",
               value: "Scelerisque Metus Sem Nostra Pulvinar Sagittis?"
             },
             {
               type: "string",
               key: "description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description of Item"
+              displayer: "Description"
             }
           ]
         },
@@ -105,14 +130,14 @@ class Faq6 extends BaseFAQ {
             {
               type: "string",
               key: "title",
-              displayer: "Title of Item",
+              displayer: "Title",
               value: "Consectetur Scelerisque Lacus Gravida Proin Dolor Sem?"
             },
             {
               type: "string",
               key: "description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
-              displayer: "Description of Item"
+              displayer: "Description"
             }
           ]
         }
@@ -145,8 +170,14 @@ class Faq6 extends BaseFAQ {
             <div className={this.decorateCSS("content")}>
               {(this.castToString(this.getPropValue("title")) || (this.getPropValue("list_items").length > 0)) && (
                 <div className={this.decorateCSS("items-wrapper")}>
-                  {this.castToString(this.getPropValue("title")) && (
-                    <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
+                  {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subtitle"))) && (
+                    <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
+                      {this.castToString(this.getPropValue("subtitle")) && (
+                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                          {this.getPropValue("subtitle")}
+                        </Base.SectionSubTitle>
+                      )}
+
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("title")}
                       </Base.SectionTitle>
@@ -161,19 +192,19 @@ class Faq6 extends BaseFAQ {
                           {(this.castToString(item.getPropValue("title")) || this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
                             <div className={this.decorateCSS("title-box")}>
                               {this.castToString(item.getPropValue("title")) && (
-                                <div className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</div>
+                                <Base.H4 className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</Base.H4>
                               )}
                               {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
-                                <Base.Icon
-                                  propsIcon={{ className: `${this.decorateCSS("icon")} ${is_active ? this.decorateCSS("active") : ""}` }}
-                                  name={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
+                                <Base.Media
+                                  value={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
+                                  className={`${this.decorateCSS("icon")} ${is_active ? this.decorateCSS("active") : ""}`}
                                 />
                               )}
                             </div>
                           )}
                           {this.castToString(item.getPropValue("description")) && (
                             <div className={`${this.decorateCSS("description-box")} ${is_active && this.decorateCSS("active")}`}>
-                              <div className={this.decorateCSS("description-text")}>{item.getPropValue("description")}</div>
+                              <Base.P className={this.decorateCSS("description-text")}>{item.getPropValue("description")}</Base.P>
                             </div>
                           )}
                         </div>
@@ -184,7 +215,7 @@ class Faq6 extends BaseFAQ {
               )}
               {this.getPropValue("image") && (
                 <div className={this.decorateCSS("image-box")}>
-                  <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+                  <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
                 </div>
               )}
             </div>
