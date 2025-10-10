@@ -188,7 +188,7 @@ class List11 extends BaseList {
     }
 
     static getName(): string {
-        return "List11";
+        return "List 11";
     }
 
     render() {
