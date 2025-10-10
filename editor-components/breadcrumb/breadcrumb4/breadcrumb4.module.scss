@@ -9,6 +9,7 @@
         position: absolute;
         left: 550px;
         top: 100px;
+        z-index: 3;
 
         &.animated {
             animation: animation1 1s infinite alternate;
@@ -18,6 +19,7 @@
         position: absolute;
         left: var(--composer-gap-lg);
         bottom: var(--composer-gap-lg);
+        z-index: 3;
 
         &.animated {
             animation: animation1 1.3s infinite alternate;
@@ -27,6 +29,7 @@
         position: absolute;
         right: var(--composer-gap-xl);
         bottom: var(--composer-gap-md);
+        z-index: 3;
 
         &.animated {
             animation: animation2 1s infinite alternate;

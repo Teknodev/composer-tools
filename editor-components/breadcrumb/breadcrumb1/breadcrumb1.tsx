@@ -186,7 +186,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                 ))}
                                 {breadcrumbItems.length > 0 && (
                                     <div className={this.decorateCSS("current-page-wrapper")}>
-                                        {this.getPropValue("breadcrumbIcon").name && <Base.Media
+                                        {this.getPropValue("breadcrumbIcon") && <Base.Media
                                             value={this.getPropValue("breadcrumbIcon")}
                                             className={this.decorateCSS("stripIcon")}
                                         />}
