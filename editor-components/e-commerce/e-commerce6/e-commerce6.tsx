@@ -278,7 +278,7 @@ class ECommerce6 extends BaseECommerce {
   }
 
   static getName(): string {
-    return "E-Commerce 6";
+    return "ECommerce 6";
   }
 
   render() {
