@@ -8,51 +8,71 @@
   padding-bottom: var(--composer-gap-md);
 
   .max-content {
+    content: "";
+    
     .section {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-xs);
+    }
 
-      .link {
-        display: flex;
-        align-items: center;
-        gap: var(--composer-gap-xs);
-        cursor: pointer;
-        .pageIcon {
-          display: flex;
-          align-items: center;
-          color: var(--composer-font-color-primary) !important;
-          min-width: 1rem;
-          min-height: 1rem;
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+    }
 
-          &:hover {
-            color: var(--composer-primary-color) !important;
-          }
-        }
-
-        .home-page-title,
-        .current-page-title {
-          font-size: 1rem;
-          color: var(--composer-font-color-primary);
-        }
-
+    .breadcrumb-link {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+      text-decoration: none;
+      cursor: pointer;
+      
+      &:hover {
         .home-page-title {
-          &:hover {
-            color: var(--composer-primary-color);
-          }
+          color: var(--composer-primary-color);
         }
-      }
-
-      .item {
-        display: flex;
-        align-items: center;
         .icon {
-          color: var(--composer-font-color-primary);
-          min-width: 1.5rem;
-          min-height: 1.5rem;
+          color: var(--composer-primary-color);
         }
       }
     }
+    .home-page-title {
+      color: var(--composer-font-color-primary);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--composer-primary-color);
+      }
+    }
+
+    .current-page-wrapper {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+    }
+
+    .current-page-container {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+      content: "";
+    }
+
+    .current-page-title {
+      color: var(--composer-font-color-primary);
+      content: "";
+    }
+
+    .current-page-icon, .icon {
+      content: "";
+      color: var(--composer-font-color-primary);
+      font-size: 1rem;
+      width: 14px;
+      height: 14px;
+    }
+
   }
 }
