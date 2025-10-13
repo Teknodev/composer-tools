@@ -32,14 +32,24 @@ class Testimonials16 extends Testimonials {
       key: "links",
       displayer: "Links",
       value: [
-        [
-          { type: "string", key: "text", displayer: "Text", value: "Read Blinkpage reviews" },
-          { type: "page",   key: "url",  displayer: "URL",  value: "#" },
+      {
+        type: "object",
+        key: "link",
+        displayer: "Link",
+        value: [
+        { type: "string", key: "text", displayer: "Text", value: "Read Blinkpage reviews" },
+        { type: "page", key: "url", displayer: "URL", value: "#" },
         ],
-        [
-          { type: "string", key: "text", displayer: "Text", value: "View all success stories" },
-          { type: "page",   key: "url",  displayer: "URL",  value: "#" },
+      },
+      {
+        type: "object",
+        key: "link",
+        displayer: "Link",
+        value: [
+        { type: "string", key: "text", displayer: "Text", value: "View all success stories" },
+        { type: "page", key: "url", displayer: "URL", value: "#" },
         ],
+      },
       ],
     });
 
@@ -236,14 +246,14 @@ class Testimonials16 extends Testimonials {
 
           {/* Header */}
           <div className={this.decorateCSS("hdr")}>
-            <h1 className={this.decorateCSS("title")}>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.renderEditableSpan(
                 title,
                 (val) => this.setTopLevelString("title", val),
                 this.decorateCSS("title"),
                 "Title"
               )}
-            </h1>
+            </Base.SectionTitle>
             <div className={this.decorateCSS("lnks")}>
               {links.map((l: any, i: number) => (
                 <ComposerLink
