@@ -20,6 +20,13 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Subscribe for now",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Get notified on latest updates and new releases.",
@@ -28,7 +35,7 @@ class CallToAction6Page extends BaseCallToAction {
     this.addProp({
       type: "string",
       key: "placeholder",
-      displayer: "Place Holder",
+      displayer: "Placeholder",
       value: "Enter E-mail Address",
     });
 
@@ -91,7 +98,7 @@ class CallToAction6Page extends BaseCallToAction {
 
   render() {
     const spaceLineExist = this.getPropValue("spaceLine");
-
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const placeholderExist = this.castToString(this.getPropValue("placeholder"));
     const commentExist = this.castToString(this.getPropValue("comment"));
@@ -110,11 +117,16 @@ class CallToAction6Page extends BaseCallToAction {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
+            {subtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
             {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </Base.SectionTitle>
-            )}
+            )}  
 
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
@@ -173,13 +185,13 @@ class CallToAction6Page extends BaseCallToAction {
                     {(commentExist || this.castToString(button.text)) && (
                       <div className={this.decorateCSS("bottom-container")}>
                         {commentExist && (
-                          <h4 className={this.decorateCSS("comment")}>
+                          <Base.P className={this.decorateCSS("comment")}>
                             {this.getPropValue("comment")}
-                          </h4>
+                          </Base.P>
                         )}
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         )}
                       </div>

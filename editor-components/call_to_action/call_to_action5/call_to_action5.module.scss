@@ -28,25 +28,28 @@
 
     .header {
       align-items: center;
-      gap: var(--composer-gap-md);
 
-      .title {
+      .title,
+      .description,
+      .subtitle {
         text-align: center;
-        font-size: 3.5rem;
       }
 
-      .description {
-        text-align: center;
-        font-size: 2rem;
+      .subtitle {
+        transform: translateX(0);
+        &::before {
+          display: none;
+        }
       }
 
       &.with-image {
-        .title {
+        .title,
+        .description,
+        .subtitle {
           color: white;
-        }
-
-        .description {
-          color: white;
+          &::before {
+            color: white;
+          }
         }
       }
     }
@@ -101,6 +104,9 @@
           content: "";
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -128,16 +134,6 @@
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
 
     .max-content {
-      .header {
-        .title {
-          font-size: 3rem;
-        }
-
-        .description {
-          font-size: 1.5rem;
-        }
-      }
-
       .form {
         .newsletter {
           width: 70%;
@@ -152,16 +148,6 @@
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
 
     .max-content {
-      .header {
-        .title {
-          font-size: 2rem;
-        }
-
-        .description {
-          font-size: 1rem;
-        }
-      }
-
       .form {
         .newsletter {
           width: 100%;
@@ -175,6 +161,9 @@
 
           .submit-button {
             content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
       }

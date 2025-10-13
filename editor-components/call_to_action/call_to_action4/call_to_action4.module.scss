@@ -9,10 +9,14 @@
         flex-direction: column;
         flex: 1;
         gap: var(--composer-gap-lg);
-        .title {
-          margin: 0px;
-          text-align: left;
+        .header {
+          .title,
+          .subtitle {
+            margin: 0px;
+            text-align: left;
+          }
         }
+        
         .list-container {
           margin: 0px;
           .list {
@@ -22,7 +26,6 @@
             .description {
               display: flex;
               align-items: center;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
               width: fit-content;
             }
@@ -49,6 +52,9 @@
           gap: var(--composer-gap-md);
           .button {
             content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
       }
