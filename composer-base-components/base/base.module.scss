@@ -181,6 +181,7 @@
         }
         .sectionSubTitle{
             text-align: left;
+            width: fit-content;
             &.line{
                 transform: translateX(3rem);
                 &:before{

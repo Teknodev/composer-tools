@@ -13,7 +13,6 @@
       justify-content: center;
       .title, .subtitle {
         text-align: left;
-        width: 100%;
       }
 
         .description-div {
@@ -94,6 +93,10 @@
         position: relative;
         align-self: center;
         overflow: hidden;
+
+        &.video-only {
+          max-height: 900px;
+        }
 
         &[data-animation~="animate1"] {
           &::before {
@@ -236,10 +239,72 @@
       .video-part{
         width: 100%;
         flex: auto;
+        height: 500px;
+
+        &.video-only {
+          max-height: 500px;
+        }
+
+        .play-container {
+          .play-image {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+      }
+
+      .text-side {
+        .author {
+          .author-icon {
+            .icon {
+              font-size: 2.5rem;
+            }
+          }
+        }
       }
     }
   }
 }
+
+@container (max-width: #{$composer-phone-width}) {
+  .container{
+    .max-content{
+      .video-part{
+        height: 300px;
+        &.video-only {
+          max-height: 300px;
+        }
+
+        .play-container {
+          .play-image {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+        }
+      }
+
+      .text-side {
+        .author {
+          .author-icon {
+            .icon {
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+    }
+
+    .overlay {
+      .close-icon-box {
+        .close-icon {
+          width: 1.2em;
+          height: 1.2em;
+        }
+      }
+    }
+  }
+}
+
 
 @keyframes pulse {
   0% {

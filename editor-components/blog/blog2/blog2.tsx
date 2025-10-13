@@ -9,6 +9,28 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 class Blog2 extends BaseBlog {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Latest News",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "We Think About Reflections On The Wisdom From The Planets",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Donec orci enim, vulputate et rutrum id, varius at nibh. Sed sagittis feugiat augue maximus hendrerit. Phasellus volutpat dictum sem, sed dignissim diam sodales eu. Suspendisse ut lorem posuere, tincidunt leo a, ultricies odio. Nulla porta sagittis turpis vel tristique. Curabitur ac maximus est. Proin placerat mauris eu eros varius imperdiet id at ligula.",
+    });
+
     this.addProp({
       type: "object",
       key: "video-section",
@@ -65,26 +87,6 @@ class Blog2 extends BaseBlog {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Latest News",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title-text",
-      displayer: "Title",
-      value: "We Think About Reflections On The Wisdom From The Planets",
-    });
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "Donec orci enim, vulputate et rutrum id, varius at nibh. Sed sagittis feugiat augue maximus hendrerit. Phasellus volutpat dictum sem, sed dignissim diam sodales eu. Suspendisse ut lorem posuere, tincidunt leo a, ultricies odio. Nulla porta sagittis turpis vel tristique. Curabitur ac maximus est. Proin placerat mauris eu eros varius imperdiet id at ligula.",
-    });
     this.addProp({
       type: "boolean",
       key: "line",
@@ -155,7 +157,7 @@ class Blog2 extends BaseBlog {
     const line = this.getPropValue("line");
     const authorName = this.getPropValue("author-name");
     const authorDescription = this.getPropValue("author-description");
-    const titleText = this.getPropValue("title-text");
+    const titleText = this.getPropValue("title");
 
     const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
@@ -174,7 +176,7 @@ class Blog2 extends BaseBlog {
           <Base.ContainerGrid>
             {videoSection && videoSection.videoImage && videoSection.videoImage.url && (
               <div 
-                className={this.decorateCSS("video-part")}
+                className={`${this.decorateCSS("video-part")} ${!displayContent ? this.decorateCSS("video-only") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 <Base.Media
@@ -212,7 +214,7 @@ class Blog2 extends BaseBlog {
                 )}
                 {(this.castToString(description) || line) && (
                   <div className={this.decorateCSS("description-div")}>
-                    {line && (
+                    {(line && this.castToString(description)) && (
                       <hr className={this.decorateCSS("line")} />
                     )}
                     {this.castToString(description) && (
