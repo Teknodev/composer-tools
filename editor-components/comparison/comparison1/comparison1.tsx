@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Card {
   direction: boolean;
-  subtitle: string;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   button: INPUTS.CastedButton;
   leftImage: { type: string; url: string };
@@ -28,10 +28,17 @@ class Comparison1 extends BaseComparison {
       },
       value: {
         type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68eccb6affd791002b81a47e?alt=media",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68ecd3cdffd791002b81d875?alt=media",
       },
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    })
+    
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -157,6 +164,7 @@ class Comparison1 extends BaseComparison {
 
   render() {
     const coverImage = this.getPropValue("cover-image");
+    const overlay = this.getPropValue("overlay");
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);
     const subtitle = this.getPropValue("subtitle");
@@ -188,101 +196,100 @@ class Comparison1 extends BaseComparison {
               </Base.SectionTitle>
             )}
           </Base.VerticalContent>
-          <div className={this.decorateCSS("down-page")}>
-            {this.castToObject<Card[]>("cards").map(
-              (card: Card, indexCards: number) => {
-                return (
-                  <Base.ContainerGrid key={indexCards} className={
-                    `${this.decorateCSS("card")} ${card.direction ? styles["reverse"] : ""
-                    }`
-                  }
-                  >
-                    {(this.castToString(card.title) ||
-                      this.castToString(card.description)) && (
-                        <Base.VerticalContent
-                          className={this.decorateCSS("left-card")}
-                        >
-                          {this.castToString(card.subtitle) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
-                              {card.subtitle}
-                            </Base.SectionSubTitle>
-                          )}
-                          {this.castToString(card.title) && (
-                            <Base.SectionTitle className={this.decorateCSS("card-title")}>
-                              {card.title}
-                            </Base.SectionTitle>
-                          )}
-                          {this.castToString(card.description) && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                              {card.description}
-                            </Base.SectionDescription>
-                          )}
-                          {this.castToString(card.button.text) && (
-                            <ComposerLink path={card.button.url}>
-                              <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
-                                {card.button.text}
-                              </Base.Button>
-                            </ComposerLink>
-                          )}
-                        </Base.VerticalContent>
-                      )}
-
-                    {(card.leftImage?.url || card.rightImage?.url) && (
-                      <div className={this.decorateCSS("right-card")}>
-                        <div
-                          className={`${this.decorateCSS("image-container")} ${card.leftImage?.url && card.rightImage?.url ? styles["active"] : ""}`}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                        >
-                          {card.leftImage?.url && (
-                            <Base.Media
-                              value={card.leftImage}
-                              className={this.decorateCSS("background-image")}
-                            />
-                          )}
-
-                          {card.rightImage?.url && (
-                            <Base.Media
-                              ref={this.getComponentState("foregroundImageRef")}
-                              value={card.rightImage}
-                              className={this.decorateCSS("foreground-image")}
-                            />
-                          )}
-
-                          {card.rightImage?.url && card.leftImage?.url && (
-                            <div className={this.decorateCSS("slider-wrapper")}>
-                              <input
-                                type="range"
-                                min="0"
-                                max="100"
-                                defaultValue="50"
-                                className={this.decorateCSS("slider")}
-                                id={`slider-${indexCards}`}
-                                onChange={this.handleSliderChange}
-                              />
-                              <div className={this.decorateCSS("text")}>
-                                <Base.P
-                                  className={this.decorateCSS("left-text")}
-                                >
-                                  {card.leftText}
-                                </Base.P>
-                                <Base.P className={this.decorateCSS("right-text")}>
-                                  {card.rightText}
-                                </Base.P>
-                              </div>
-                              <div
-                                ref={this.getComponentState("sliderButtonRef")}
-                                className={this.decorateCSS("slider-button")}
-                              ></div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
+          {this.castToObject<Card[]>("cards").map(
+            (card: Card, indexCards: number) => {
+              return (
+                <Base.ContainerGrid key={indexCards} className={
+                  `${this.decorateCSS("card")} ${card.direction ? styles["reverse"] : ""
+                  }`
+                }
+                >
+                  {(this.castToString(card.title) ||
+                    this.castToString(card.description) || this.castToString(card.subtitle) || this.castToString(card.button.text)) && (
+                      <Base.VerticalContent
+                        className={this.decorateCSS("left-card")}
+                      >
+                        {this.castToString(card.subtitle) && (
+                          <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
+                            {card.subtitle}
+                          </Base.SectionSubTitle>
+                        )}
+                        {this.castToString(card.title) && (
+                          <Base.SectionTitle className={this.decorateCSS("card-title")}>
+                            {card.title}
+                          </Base.SectionTitle>
+                        )}
+                        {this.castToString(card.description) && (
+                          <Base.SectionDescription className={this.decorateCSS("card-description")}>
+                            {card.description}
+                          </Base.SectionDescription>
+                        )}
+                        {this.castToString(card.button.text) && (
+                          <ComposerLink path={card.button.url}>
+                            <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>
                     )}
-                  </Base.ContainerGrid>
-                );
-              }
-            )}
-          </div>
+
+                  {(card.leftImage?.url || card.rightImage?.url) && (
+                    <div className={this.decorateCSS("right-card")}>
+                      <div
+                        className={`${this.decorateCSS("image-container")} ${card.leftImage?.url && card.rightImage?.url ? styles["active"] : ""}`}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
+                        {card.leftImage?.url && (
+                          <Base.Media
+                            value={card.leftImage}
+                            className={this.decorateCSS("left-image")}
+                          />
+                        )}
+
+                        {card.rightImage?.url && (
+                          <Base.Media
+                            ref={this.getComponentState("foregroundImageRef")}
+                            value={card.rightImage}
+                            className={this.decorateCSS("right-image")}
+                          />
+                        )}
+
+                        {card.rightImage?.url && card.leftImage?.url && (
+                          <div className={this.decorateCSS("slider-wrapper")}>
+                            {overlay && <div className={this.decorateCSS("overlay")} />}
+                            <input
+                              type="range"
+                              min="0"
+                              max="100"
+                              defaultValue="50"
+                              className={this.decorateCSS("slider")}
+                              id={`slider-${indexCards}`}
+                              onChange={this.handleSliderChange}
+                            />
+                            <div className={this.decorateCSS("comparison-text")}>
+                              {this.castToString(card.leftText) && <Base.P
+                                className={this.decorateCSS("left-text")}
+                              >
+                                {card.leftText}
+                              </Base.P>}
+                              {this.castToString(card.rightText) && <Base.P className={this.decorateCSS("right-text")}>
+                                {card.rightText}
+                              </Base.P>}
+                            </div>
+                            <div
+                              ref={this.getComponentState("sliderButtonRef")}
+                              className={this.decorateCSS("slider-button")}
+                            ></div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </Base.ContainerGrid>
+              );
+            }
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

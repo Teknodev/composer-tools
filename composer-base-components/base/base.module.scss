@@ -7,6 +7,7 @@
      font-weight: 400;
      margin-top: 0;
      margin-bottom: 0;
+     width: 100%;
 
      @container (max-width: #{$composer-tablet-width}) {
           font-size: calc(3 * var(--composer-font-size-md)) !important;
@@ -26,6 +27,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(2.25 * var(--composer-font-size-md)) !important;
@@ -45,6 +47,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(2 * var(--composer-font-size-md)) !important;
@@ -64,6 +67,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1.75 * var(--composer-font-size-md)) !important;
@@ -83,6 +87,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1.5 * var(--composer-font-size-md)) !important;
@@ -102,6 +107,7 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1.25 * var(--composer-font-size-md)) !important;
@@ -119,6 +125,7 @@
     font-size: calc(1 * var(--composer-font-size-md));
     margin-top: 0;
     margin-bottom: 0;
+    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
         font-size: calc(1 * var(--composer-font-size-md)) !important;
@@ -394,6 +401,7 @@
   cursor: pointer;
   font-size: var(--composer-font-size-md);
   border-radius: var(--composer-border-radius-sm);
+  font-family: var(--composer-font-family);
 
   &.primary {
     background-color: var(--composer-primary-color);
