@@ -12,6 +12,13 @@ class CallToAction3Page extends BaseCallToAction {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      value: "Our Services",
+      displayer: "Subtitle",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Protecting Your People , Property & Life",
@@ -42,7 +49,7 @@ class CallToAction3Page extends BaseCallToAction {
     this.addProp({
       type: "boolean",
       key: "overlayActive",
-      displayer: "Overlay Active",
+      displayer: "Overlay",
       value: true,
     });
   }
@@ -58,6 +65,11 @@ class CallToAction3Page extends BaseCallToAction {
         style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
                 {this.getPropValue("title")}
@@ -79,7 +91,7 @@ class CallToAction3Page extends BaseCallToAction {
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type}
                             className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         )}
                       </ComposerLink>

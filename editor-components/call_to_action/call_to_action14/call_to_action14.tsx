@@ -11,9 +11,16 @@ class CallToAction14 extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Grow Your Business",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "Are you ready to turn more ad clicks into conversions?",
+      value: "Optimize Your Online Advertising",
     });
     this.addProp({
       type: "string",
@@ -51,16 +58,23 @@ class CallToAction14 extends BaseCallToAction {
           className={this.decorateCSS("max-content")}
           data-animation={this.getPropValue("hoverAnimation").join(" ")}
         >
-          {this.castToString(this.getPropValue("title")) && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </Base.SectionTitle>
-          )}
-          {this.castToString(this.getPropValue("description")) && (
-            <Base.SectionDescription className={this.decorateCSS("description")}>
-              {this.getPropValue("description")}
-            </Base.SectionDescription>
-          )}
+          <Base.VerticalContent className={this.decorateCSS("header")}>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+            )}
+            {this.castToString(this.getPropValue("description")) && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
+            )}
+          </Base.VerticalContent>
           {(buttons.length > 0) && (
             buttons.map((item: INPUTS.CastedButton, index: number) => {
               return (
@@ -68,7 +82,7 @@ class CallToAction14 extends BaseCallToAction {
                   {this.castToString(item.text) && (
                     <ComposerLink path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                        {item.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   )}
