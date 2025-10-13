@@ -1,371 +1,361 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+/* Sayfa zemini */
+.root {
+    background: var(--composer-html-background);
+    padding: 56px 0 80px;
+}
 
-.container {
-    background: linear-gradient(135deg, var(--color-gray-secondary) 0%, var(--color-gray-tertiary) 50%, var(--color-gray-secondary) 100%);
-    padding: 80px 20px;
-    min-height: 100vh;
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header */
+.hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.title {
+    margin: 0;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1.1;
+    white-space: pre-line;
+    color: var(--composer-font-color-primary);
+}
+
+.lnks {
+    display: flex;
+    gap: 24px;
+    padding-top: 10px;
+}
+
+.lnk {
+    color: #dfe3ea;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: opacity .2s ease;
+}
+
+.lnk:hover {
+    opacity: .75;
+}
+
+/* Kart */
+.cardWrapper {
+    position: relative;
+}
+
+.card {
+    position: relative;
+    background: #fff;
+    color: #0f1115;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+    padding: 40px 32px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 36px;
+}
+
+.imgBox {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.imgFallback {
+    background: linear-gradient(135deg, #b8d4a8 0%, #a8c89b 100%);
+}
+
+.cnt {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+    margin-bottom: 8px;
+}
+
+.logoText {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1a1f29;
+    line-height: 1;
+}
+
+.logoImg {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Quote + author kartın içinde, altta (editable Base bileşenleri) */
+.quote {
+    margin: 12px 0 20px;
+    font-size: 28px;
+    line-height: 1.35;
+    font-weight: 700;
+    color: #0e1016;
+}
+
+.hr {
+    height: 1px;
+    background: #e6e8ef;
+    margin: auto 0 8px;
+}
+
+.author {
+    position: absolute;
+    bottom: 40px;
+    left: calc(360px + 36px + 32px);
+    /* img width + gap + card padding */
+    right: 32px;
+    /* card padding */
+    font-size: 14px;
+    color: #3b3f46;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.author strong {
+    color: #0e1016;
+}
+
+/* Navigasyon */
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 16px;
+}
+
+/* Oklar — ikon rengi site rengiyle aynı */
+.btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, .08);
+    color: var(--composer-font-color-primary);
+    /* ok rengi */
+    display: grid;
+    place-items: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 10px 22px rgba(0, 0, 0, .25);
+    backdrop-filter: saturate(120%) blur(.5px);
+    cursor: pointer;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, .12);
+    border-color: rgba(255, 255, 255, .28);
+}
+
+/* Orta kapsül (rail) — gri transparan */
+.rail {
+    min-width: 240px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(128, 128, 128, .22);
+    border: 1px solid rgba(255, 255, 255, .12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 12px 26px rgba(0, 0, 0, .20);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.maxContent {
-    max-width: 1400px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--composer-gap-xl);
-    gap: var(--composer-gap-lg);
-
-    @container (max-width: #{$composer-tablet-width}) {
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-    }
-}
-
-.title {
-    font-size: calc(4 * var(--composer-font-size-md));
-    font-weight: var(--composer-font-weight-bold);
-    color: var(--composer-font-color-primary);
-    margin: 0;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-
-    @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(3 * var(--composer-font-size-md));
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(2.5 * var(--composer-font-size-md));
-    }
-}
-
-.links {
-    display: flex;
-    gap: var(--composer-gap-lg);
-    align-items: center;
-
-    @container (max-width: #{$composer-phone-width}) {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--composer-gap-md);
-    }
-}
-
-.link {
-    color: var(--color-white);
-    text-decoration: none;
-    font-size: var(--composer-font-size-md);
-    font-weight: 500;
+/* Dots + progress */
+.dots {
     display: flex;
     align-items: center;
-    gap: var(--composer-gap-xs);
-    transition: opacity var(--composer-transition-duration-normal) var(--composer-transition-easing);
+    gap: 12px;
+}
 
-    &:hover {
-        opacity: 0.8;
-        color: var(--composer-primary-color);
+.dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .35);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: width .22s cubic-bezier(.25, .8, .25, 1), height .22s cubic-bezier(.25, .8, .25, 1),
+        background .22s ease, border-radius .22s ease;
+}
+
+.dot_on {
+    width: 74px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .14);
+    position: relative;
+    overflow: hidden;
+}
+
+.track {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .20);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.bar {
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    background: #ffffff;
+    opacity: .95;
+    border-radius: inherit;
+    animation: t16-fill linear forwards;
+    z-index: 1;
+}
+
+@keyframes t16-fill {
+    from {
+        width: 0%;
     }
 
-    svg {
-        width: 16px;
-        height: 16px;
+    to {
+        width: 100%;
     }
 }
 
-.sliderContainer {
-    position: relative;
-    overflow: hidden; // Prevent cards from being visible outside container
-}
-
-.cardWrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.card {
-    background: var(--composer-html-background);
-    border-radius: var(--composer-border-radius-lg);
-    padding: var(--composer-gap-lg);
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: var(--composer-gap-xl);
-    align-items: center;
-    box-shadow: var(--composer-box-shadow-lg);
-    transition: transform 0.6s var(--composer-transition-easing),
-        opacity 0.6s var(--composer-transition-easing);
-    position: relative;
-
-    &.slideIn {
-        animation: slideIn 0.6s var(--composer-transition-easing) forwards;
-    }
-
-    &.slideOut {
-        animation: slideOut 0.6s var(--composer-transition-easing) forwards;
-    }
-
-    &.slideInReverse {
-        animation: slideInReverse 0.6s var(--composer-transition-easing) forwards;
-    }
-
-    &.slideOutReverse {
-        animation: slideOutReverse 0.6s var(--composer-transition-easing) forwards;
-    }
-
-    @container (max-width: #{$composer-tablet-width}) {
-        grid-template-columns: 250px 1fr;
-        gap: var(--composer-gap-lg);
-        padding: var(--composer-gap-md);
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
+/* Responsive */
+@media (max-width: 1200px) {
+    .card {
         grid-template-columns: 1fr;
-        gap: var(--composer-gap-md);
-        padding: var(--composer-gap-md);
     }
-}
 
-.imageSection {
-    position: relative;
-}
-
-.testimonialImage {
-    width: 100%;
-    height: auto;
-    border-radius: var(--composer-border-radius-md);
-    object-fit: cover;
-    aspect-ratio: 3/4;
-
-    @container (max-width: #{$composer-phone-width}) {
-        aspect-ratio: 16/9;
-        max-width: 300px;
-        margin: 0 auto;
-        display: block;
-    }
-}
-
-.contentSection {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
-    padding: var(--composer-gap-md) 0;
-
-    @container (max-width: #{$composer-phone-width}) {
+    .author {
+        position: static;
+        margin-top: 16px;
         padding: 0;
     }
 }
 
-.logo {
-    height: 40px;
-    display: flex;
+@media (max-width: 1024px) {
+    .title {
+        font-size: 44px;
+    }
+
+    .img {
+        height: 360px;
+    }
+
+    .card {
+        padding: 28px 20px;
+        gap: 20px;
+    }
+
+    .author {
+        padding: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .title {
+        font-size: 36px;
+    }
+
+    .card {
+        padding: 28px 20px 40px;
+        gap: 20px;
+    }
+
+    .img {
+        height: 280px;
+    }
+
+    .quote {
+        font-size: 24px;
+    }
+
+    .rail {
+        min-width: 200px;
+        height: 40px;
+    }
+
+    .dot_on {
+        width: 64px;
+        height: 9px;
+    }
+
+    .dot {
+        width: 7px;
+        height: 7px;
+    }
+}
+
+/* ===========================
+   Link görünümü + ok animasyonu
+   (mevcut kuralları silme; sadece ekle)
+   =========================== */
+
+.lnkEnh {
+    /* İstenen renk */
+    --lnk-color: var(--composer-font-color-primary);
+    color: var(--lnk-color);
+
+    display: inline-flex;
     align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    line-height: 1.2;
+    padding: 4px 6px;
+    /* hover alanı rahat */
 
-    @container (max-width: #{$composer-phone-width}) {
-        height: 32px;
-    }
+    /* mevcut .lnk sınıfın stillerini override etme; yan yana uyumlu kalsın */
 }
 
-.logoImage {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
+.lnkEnh:hover {
+    text-decoration: none;
 }
 
-.quoteContainer {
-    position: relative;
-    padding-top: var(--composer-gap-md);
-    margin-bottom: var(--composer-gap-md);
+.lnkText {
+    /* Gerekirse tipografi burada */
+    /* font-weight: 600;  // istersen aç */
 }
 
-.quoteMarks {
-    position: absolute;
-    top: -15px;
-    left: -10px;
-    color: var(--composer-primary-color);
-    line-height: 0;
+.lnkArrow {
+    display: inline-block;
+    vertical-align: middle;
+
+    /* Başlangıçta ↗ görünmesi için 45° */
+    transform: rotate(45deg);
+    transform-origin: 50% 50%;
+
+    /* Yumuşak geçiş */
+    transition: transform 220ms ease, opacity 220ms ease;
+
+    /* Ok rengini linkten al */
+    color: var(--composer-font-color-primary);
 }
 
-.quote {
-    position: relative;
-    font-size: calc(1.8 * var(--composer-font-size-md));
-    font-weight: 500;
-    color: var(--color-black);
-    margin: 0;
-    line-height: 1.4;
-    letter-spacing: -0.01em;
-    z-index: 1;
-    font-style: normal;
-
-    @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1.5 * var(--composer-font-size-md));
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.2 * var(--composer-font-size-md));
-    }
-}
-
-.author {
-    padding-top: var(--composer-gap-md);
-    border-top: 1px solid var(--color-gray);
-    font-size: var(--composer-font-size-md);
-    color: var(--color-gray-200);
-
-    @container (max-width: #{$composer-phone-width}) {
-        font-size: 0.9rem;
-    }
-}
-
-.name {
-    font-weight: var(--composer-font-weight-bold);
-    color: var(--color-black);
-}
-
-.separator {
-    color: var(--color-gray-100);
-}
-
-.position {
-    color: var(--color-gray-200);
-}
-
-.navigation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--composer-gap-md);
-    margin-top: var(--composer-gap-lg);
-}
-
-.navButton {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--composer-border-radius-full);
-    background: rgba(var(--color-white-rgb), 0.1);
-    border: none;
-    color: var(--color-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all var(--composer-transition-duration-normal) var(--composer-transition-easing);
-
-    &:hover {
-        background: rgba(var(--color-white-rgb), 0.2);
-        transform: scale(1.05);
-    }
-
-    &:active {
-        transform: scale(0.95);
-    }
-
-    svg {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-.dots {
-    display: flex;
-    gap: var(--composer-gap-xs);
-    padding: 0 var(--composer-gap-md);
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: var(--composer-border-radius-full);
-    background: rgba(var(--color-white-rgb), 0.3);
-    border: none;
-    cursor: pointer;
-    transition: all var(--composer-transition-duration-normal) var(--composer-transition-easing);
-    padding: 0;
-    position: relative;
-    overflow: hidden;
-
-    &:hover {
-        background: rgba(var(--color-white-rgb), 0.5);
-    }
-}
-
-.dotActive {
-    width: 40px;
-    border-radius: var(--composer-border-radius-xs);
-    background: rgba(var(--color-white-rgb), 0.3);
-}
-
-.dotProgress {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(var(--color-white-rgb), 0.8);
-    transform-origin: left;
-    animation: progressAnimation 5s linear forwards;
-}
-
-@keyframes progressAnimation {
-    0% {
-        transform: scaleX(0);
-    }
-
-    100% {
-        transform: scaleX(1);
-    }
-}
-
-// Animation keyframes
-@keyframes slideIn {
-    0% {
-        transform: translateX(30px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOut {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateX(-30px);
-        opacity: 0;
-    }
-}
-
-@keyframes slideInReverse {
-    0% {
-        transform: translateX(-30px);
-        opacity: 0;
-    }
-
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutReverse {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateX(30px);
-        opacity: 0;
-    }
+.lnkEnh:hover .lnkArrow {
+    /* Hover'da sağ oku göster: 0° + hafif sağa kaydır */
+    transform: rotate(0deg) translateX(2px);
 }
