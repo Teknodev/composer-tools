@@ -13,7 +13,7 @@ type CardType = {
   imageSubtitle: React.JSX.Element;
   imageTitle: React.JSX.Element;
   imageDescription: React.JSX.Element;
-  image: string;
+  image: { type: string; url: string };
   url: string;
 };
 type RightTextItem = {
@@ -24,6 +24,14 @@ type RightTextItem = {
 class Blog1 extends BaseBlog {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Blog",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -50,10 +58,16 @@ class Blog1 extends BaseBlog {
       ],
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "right-arrow",
       displayer: "Right Text Arrow",
-      value: "LuArrowUpRight",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "LuArrowUpRight",
+      },
     });
     this.addProp({
       type: "string",
@@ -64,7 +78,7 @@ class Blog1 extends BaseBlog {
     });
     this.addProp({
       type: "boolean",
-      key: "faintLine",
+      key: "line",
       displayer: "Faint Line",
       value: true,
     });
@@ -92,11 +106,16 @@ class Blog1 extends BaseBlog {
               value: "Smart Cities of Tomorrow",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media",
+              additionalParams: {
+                availableTypes: ["image" , "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media",
+              },
             },
             {
               type: "page",
@@ -124,11 +143,16 @@ class Blog1 extends BaseBlog {
               value: "Architectural Marvels",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac468003b007002cc74497?alt=media",
+              additionalParams: {
+                availableTypes: ["image" , "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac468003b007002cc74497?alt=media",
+              },
             },
             {
               type: "page",
@@ -156,11 +180,16 @@ class Blog1 extends BaseBlog {
               value: "Exploring the Evolution of Architecture",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac46a203b007002cc744a3?alt=media",
+              additionalParams: {
+                availableTypes: ["image" , "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac46a203b007002cc744a3?alt=media",
+              },
             },
             {
               type: "page",
@@ -188,11 +217,16 @@ class Blog1 extends BaseBlog {
               value: "Nature is Good",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac472103b007002cc744b0?alt=media",
+              additionalParams: {
+                availableTypes: ["image" , "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac472103b007002cc744b0?alt=media",
+              },
             },
             {
               type: "page",
@@ -220,11 +254,16 @@ class Blog1 extends BaseBlog {
               value: "New Day New You",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac476903b007002cc744bc?alt=media",
+              additionalParams: {
+                availableTypes: ["image" , "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac476903b007002cc744bc?alt=media",
+              },
             },
             {
               type: "page",
@@ -240,25 +279,37 @@ class Blog1 extends BaseBlog {
     this.addProp({
       type: "boolean",
       key: "disableAnimation",
-      displayer: "Disable Animation",
-      value: false,
+      displayer: "Animation",
+      value: true,
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
-      value: "FaArrowLeft",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next-button-icon",
       displayer: "Next Slide Button",
-      value: "FaArrowRight",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowRight",
+      },
     });
     this.addProp({
       type: "number",
       key: "slide-count",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 
@@ -313,7 +364,7 @@ class Blog1 extends BaseBlog {
   render() {
     const items = this.castToObject<CardType[]>("items").filter(
       (item: CardType) =>
-        item.image || item.imageTitle || item.imageSubtitle || item.url
+        item.image?.url || item.imageTitle || item.imageSubtitle || item.url
     );
     const settings = {
       arrows: false,
@@ -352,6 +403,8 @@ class Blog1 extends BaseBlog {
 
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
     const rightText = this.castToObject<RightTextItem>("rightText");
@@ -359,7 +412,7 @@ class Blog1 extends BaseBlog {
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
     const rightTextArrow: string = this.getPropValue("right-arrow");
-    const faintLine = this.getPropValue("faintLine");
+    const line = this.getPropValue("line");
     const disableAnimation = this.getPropValue("disableAnimation");
 
     return (
@@ -369,38 +422,37 @@ class Blog1 extends BaseBlog {
             <div className={this.decorateCSS("right-link")}>
               <ComposerLink path={rightText.textUrl}>
                 <div className={this.decorateCSS("inner-right-link")}>
-                  <div
+                  <Base.P
                     className={
-                      `${this.decorateCSS("inner-div")} ${disableAnimation ? this.decorateCSS("no-animation") : ""
+                      `${this.decorateCSS("inner-div")} ${!disableAnimation ? this.decorateCSS("no-animation") : ""
                       }`
                     }>
-                    {rightText.text}
-                  </div>
-                  <Base.Icon
-                    name={rightTextArrow}
-                    propsIcon={{
-                      className: `${this.decorateCSS("icon")} ${disableAnimation && this.decorateCSS("no-animation")}`
-                    }}
-                  ></Base.Icon>
+                    <Base.P className={this.decorateCSS("text")}>{rightText.text}</Base.P>
+                  </Base.P>
+                  <Base.Media
+                    value={this.getPropValue("right-arrow")}
+                    className={`${this.decorateCSS("icon")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
+                  />
                 </div>
               </ComposerLink>
             </div>
           )}
-          <header>
+          <Base.VerticalContent className={this.decorateCSS("header")}>
+            {subtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+            )}
             {isTitleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
             )}
-            {faintLine && <hr className={this.decorateCSS("faint-line")} />}
+            {line && <hr className={this.decorateCSS("line")} />}
             {isDescriptionExist && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}
               </Base.SectionDescription>
             )}
-          </header>
+          </Base.VerticalContent>
 
           <main
             className={`${this.decorateCSS("wrapper")} ${items.length <= 3 ? this.decorateCSS("no-slider") : ""
@@ -413,87 +465,77 @@ class Blog1 extends BaseBlog {
                 }}
                 className={this.decorateCSS("slider-button-left")}
               >
-                <Base.Icon
-                  propsIcon={{
-                    className: this.decorateCSS("icon"),
-                  }}
-                  name={prevIcon}
+                <Base.Media
+                  value={this.getPropValue("prev-button-icon")}
+                  className={this.decorateCSS("icon")}
                 />
               </button>
             )}
             {items.length > 0 && (
               <div className={this.decorateCSS("slider-parent")}>
-                {
-                  <>
-                    <ComposerSlider
-                      ref={sliderRef}
-                      {...settings}
-                      className={this.decorateCSS("carousel")}
+                <ComposerSlider
+                  ref={sliderRef}
+                  {...settings}
+                  className={this.decorateCSS("carousel")}
+                >
+                  {items.map((item: CardType, index: number) => (
+                    <article
+                      className={`${this.decorateCSS("slider-item")} ${
+                        this.getComponentState("prevSlide") === index
+                        ? this.decorateCSS("prevSlide")
+                        : ""
+                      } ${
+                        this.getComponentState("nextSlide") === index
+                        ? this.decorateCSS("nextSlide")
+                        : ""
+                      }`}
+                      key={index}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
-                      {items.map((item: CardType, index: number) => (
-                        <article
-                          className={`${this.decorateCSS("slider-inner-div")} ${
-                            this.getComponentState("prevSlide") === index
-                            ? this.decorateCSS("prevSlide")
-                            : ""
-                          } ${
-                            this.getComponentState("nextSlide") === index
-                            ? this.decorateCSS("nextSlide")
-                            : ""
-                          }`}
-                          key={index}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                        >
-                          <div className={this.decorateCSS("content-div")}>
-                            {item.image && (
-                              <div className={this.decorateCSS("img-div")}>
-                                <ComposerLink path={item.url}>
-                                  <img
-                                    alt={
-                                      this.castToString(item.imageTitle) ||
-                                      this.castToString(item.imageSubtitle)
-                                    }
-                                    src={item.image}
-                                    className={this.decorateCSS("img")}
-                                  />
-                                </ComposerLink>
-                              </div>
-                            )}
-                            {(this.castToString(item.imageSubtitle) ||
-                              this.castToString(item.imageTitle)) && (
-                                <Base.VerticalContent
-                                  className={this.decorateCSS("item-page")}
-                                >
-                                  {this.castToString(item.imageSubtitle) && (
-                                    <Base.P
-                                      className={this.decorateCSS("first-item")}
-                                    >
-                                      {item.imageSubtitle}
-                                    </Base.P>
-                                  )}
-                                  {this.castToString(item.imageTitle) && (
-                                    <Base.H2
-                                      className={`${this.decorateCSS(
-                                        "item-title"
-                                      )} ${disableAnimation
-                                        ? this.decorateCSS(
-                                          "no-animation-item-title"
-                                        )
-                                        : ""
-                                        }`}
-                                    >
-                                      {item.imageTitle}
-                                    </Base.H2>
-                                  )}
-                                </Base.VerticalContent>
-                              )}
+                      <div className={this.decorateCSS("card")}>
+                        {item.image?.url && (
+                          <div className={this.decorateCSS("media-wrapper")}>
+                            <ComposerLink path={item.url}>
+                              <Base.Media
+                                value={item.image}
+                                className={this.decorateCSS("media")}
+                              />
+                            </ComposerLink>
                           </div>
-                        </article>
-                      ))}
-                    </ComposerSlider>
-                    {items.length > 3 && this.renderDots()}
-                  </>
-                }
+                        )}
+                        {(this.castToString(item.imageSubtitle) ||
+                          this.castToString(item.imageTitle)) && (
+                            <Base.VerticalContent
+                              className={this.decorateCSS("content")}
+                            >
+                              {this.castToString(item.imageSubtitle) && (
+                                <Base.P
+                                  className={this.decorateCSS("card-subtitle")}
+                                >
+                                  {item.imageSubtitle}
+                                </Base.P>
+                              )}
+                              {this.castToString(item.imageTitle) && (
+                                <Base.H2
+                                  className={`${this.decorateCSS(
+                                    "card-title"
+                                  )} ${!disableAnimation
+                                    ? this.decorateCSS(
+                                      "no-animation-card-title"
+                                    )
+                                    : ""
+                                    }`}
+                                >
+                                  {item.imageTitle}
+                                </Base.H2>
+                              )}
+                            </Base.VerticalContent>
+                          )}
+                      </div>
+                    </article>
+                  ))}
+                </ComposerSlider>
+                {items.length > 3 && this.renderDots()}
               </div>
             )}
             {nextIcon && items.length > 3 && (
@@ -503,11 +545,9 @@ class Blog1 extends BaseBlog {
                 }}
                 className={this.decorateCSS("slider-button-right")}
               >
-                <Base.Icon
-                  propsIcon={{
-                    className: this.decorateCSS("icon"),
-                  }}
-                  name={nextIcon}
+                <Base.Media
+                  value={this.getPropValue("next-button-icon")}
+                  className={this.decorateCSS("icon")}
                 />
               </button>
             )}

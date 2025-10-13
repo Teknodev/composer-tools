@@ -14,12 +14,10 @@
     transition: $transition;
   }
   .max-content {
-      // Styles
     .right-link {
       display: flex;
+      gap: var(--composer-gap-xs);
       color: var(--composer-font-color-primary);
-      font-weight: 600;
-      font-size: 1.5rem;
       text-decoration: none;
       align-items: center;
       justify-content: flex-end;
@@ -34,6 +32,9 @@
 
         .inner-div {
           position: relative;
+          .text {
+            content: "";
+          }
           &::after {
             content: '';
             position: absolute;
@@ -62,31 +63,31 @@
         }
 
         .icon {
-          width: 20px;
-          height: 20px;
+          width: 15px;
+          height: 15px;
+          font-size: 1.5rem;
+          transition: transform 0.3s ease-in-out;
         }
       }
 
       &:hover {
         .icon {
-          transform: scale(1.2);
+          transform: scale(1.1);
         }
       }
     }
 
-    .title{
-      margin-top: 0px;
-    }
+    .header {
+      .title, .subtitle, .description{
+        content: "";
+      }
 
-    .faint-line {
-      border: none;
-      border-top: 1px solid var(--composer-font-color-primary);
-      margin-bottom: var(--composer-gap-lg);
-    }
-
-    .description {
-      color: var(--composer-font-color-primary);
-      font-weight: lighter;
+      .line {
+        width: 100%;
+        border: none;
+        border-top: 1px solid var(--composer-font-color-primary);
+        margin-bottom: var(--composer-gap-lg);
+      }
     }
 
     .wrapper {
@@ -142,12 +143,12 @@
       width: 100%;
       height: 100%;
 
-      .slider-inner-div {
+      .slider-item {
         padding: var(--composer-gap-sm);
         position: relative;
 
         &[data-animation~="animate1"] {
-          .content-div {
+          .card {
             position: relative;
 
             &::before {
@@ -167,11 +168,11 @@
           }
 
           &:hover {
-            .content-div::before {
+            .card::before {
               opacity: 1;
             }
 
-            .item-page {
+            .content {
               color: var(--composer-font-color-secondary);
               position: relative;
               z-index: 1;
@@ -185,7 +186,7 @@
         }
 
         &[data-animation~="animate2"] {
-          .content-div {
+          .card {
             position: relative;
 
             &::before {
@@ -205,24 +206,24 @@
           }
 
           &:hover {
-            .content-div::before {
+            .card::before {
               opacity: 1;
             }
 
-            .item-page {
+            .content {
               color: var(--composer-font-color-secondary);
               position: relative;
               z-index: 1;
             }
 
             .first-item,
-            .item-title {
+            .card-title {
               color: var(--composer-font-color-secondary);
             }
           }
         }
 
-        .content-div {
+        .card {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -230,13 +231,13 @@
           transition: filter 0.5s;
         }
 
-          .img-div {
+          .media-wrapper {
             width: 100%;
             overflow: hidden;
             border-radius: var(--composer-border-radius-sm);
             margin-bottom: var(--composer-gap-sm);
 
-            .img {
+            .media {
               width: 100%;
               height: 225px;
               object-fit: cover;
@@ -244,27 +245,24 @@
             }
           }
 
-          .item-page {
+          .content {
             width: 100%;
             padding: var(--composer-gap-sm);
             transition: color 0.3s ease;
 
-            .first-item,
-            .item-title {
+            .card-subtitle,
+            .card-title {
             color: var(--composer-font-color-primary);
             word-break: break-word;
           }
 
-          .first-item {
-            font-size: 0.8rem;
+          .card-subtitle {
+          content: "";
           }
 
-          .item-title {
-            font-weight: 700;
-            letter-spacing: 1.2px;
+          .card-title {
             position: relative;
             display: inline-block;
-            white-space: normal;
             word-wrap: break-word;
             overflow: hidden;
 
@@ -277,7 +275,7 @@
             }
           }
 
-          .no-animation-item-title {
+          .no-animation-card-title {
             &::after {
               @include item-title-after(hidden, 0, none);
             }
@@ -342,11 +340,11 @@
     }
   }
 
-  .faint-line {
+  .line {
     margin-bottom: var(--composer-gap-md) !important;
   }
 
-  .img-div img {
+  .media-wrapper .media {
     height: 150px !important;
   }
 }
