@@ -490,6 +490,9 @@ class Content27 extends BaseContent {
                           className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""}`}
                           onClick={() => this.setActiveTab(i)}
                           id={`tab-${i}`}
+                          role="tab"
+                          aria-selected={isActive}
+                          aria-controls={`tabpanel-${i}`}
                         >
                           {titleString && titleString.trim().length > 0 ? (
                             <Base.H2 className={this.decorateCSS("listItemText")}>{hasText ? displayNode : placeholder}</Base.H2>
