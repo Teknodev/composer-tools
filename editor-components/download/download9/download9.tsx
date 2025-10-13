@@ -123,7 +123,7 @@ class Download9 extends BaseDownload {
           {imageExist && <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />}
           {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
           <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist && this.decorateCSS("image")}`}>
-            {(titleExist || descriptionExist) && (
+            {(titleExist || subtitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("middle-container")}>
                 {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
