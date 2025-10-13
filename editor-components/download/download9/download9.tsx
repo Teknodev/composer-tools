@@ -21,7 +21,7 @@ class Download9 extends BaseDownload {
       key: "image",
       displayer: "Background Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",

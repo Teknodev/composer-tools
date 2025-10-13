@@ -40,8 +40,8 @@
           }
           .button-wrapper {
             .button-image {
-              min-width: 170px;
-              height: 50px;
+              width: 200px;
+              height: 40px;
               border-radius: var(--composer-border-radius-sm);
               object-fit: cover;
             }
@@ -82,8 +82,8 @@
             .left {
               .button-wrapper {
                 .button-image {
-                  min-width: 200px;
-                  height: var(--composer-gap-xl);
+                  width: 200px;
+                  height: 40px;
                   border-radius: var(--composer-border-radius-sm);
                   object-fit: cover;
                 }
@@ -125,8 +125,8 @@
             width: 100%;
             .button-wrapper {
               .button-image {
-                min-width: 200px;
-                height: var(--composer-gap-xl);
+                width: 200px;
+                height: 40px;
                 border-radius: var(--composer-border-radius-sm);
                 object-fit: cover;
               }

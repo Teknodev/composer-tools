@@ -12,15 +12,6 @@ type LeftCol = {
   description: React.JSX.Element;
 };
 
-type Button = {
-  button_text: React.JSX.Element;
-  link: string;
-  icon: string;
-};
-
-type RightCol = {
-  image: string;
-};
 
 class Download6 extends BaseDownload {
   constructor(props?: any) {
@@ -62,23 +53,16 @@ class Download6 extends BaseDownload {
     });
 
     this.addProp({
-      type: "object",
-      key: "right-column",
-      displayer: "Right Column",
-      value: [
-        {
-          type: "media",
-          key: "image",
-          displayer: "Image",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdb43307399d002cb4160b?alt=media",
-          },
-        },
-      ],
+      type: "media",
+      key: "image",
+      displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdb43307399d002cb4160b?alt=media",
+      },
     });
   }
 
@@ -88,10 +72,10 @@ class Download6 extends BaseDownload {
 
   render() {
     const leftcolumn = this.castToObject<LeftCol>("left-column");
-    const rightcolumn = this.castToObject<RightCol>("right-column");
+    const image = this.getPropValue("image");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const isLeftColumnVisible = this.castToString(leftcolumn.title) || this.castToString(leftcolumn.description) || this.castToString(leftcolumn.subtitle) || buttons?.length > 0;
-    const isRightColumnVisible = rightcolumn.image;
+    const isRightColumnVisible = image;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -134,7 +118,7 @@ class Download6 extends BaseDownload {
 
           {isRightColumnVisible && (
             <div className={this.decorateCSS("right-column")}>
-              <Base.Media value={rightcolumn.image} className={this.decorateCSS("image")} />
+              <Base.Media value={image} className={this.decorateCSS("image")} />
             </div>
           )}
         </Base.MaxContent>

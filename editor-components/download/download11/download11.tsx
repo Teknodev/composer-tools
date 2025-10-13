@@ -138,7 +138,9 @@ class Download11 extends BaseDownload {
     const titleExist = this.castToString(leftItems.title);
     const descriptionExist = this.castToString(leftItems.description);
     const buttonTextExist = this.castToString(buttonLeft.text);
-    const buttonExist = buttonTextExist || buttonLeft.icon || buttonLeft.image;
+    const buttonIconExist = buttonLeft.icon && buttonLeft.icon.name;
+    const buttonImageExist = buttonLeft.image && buttonLeft.image.url;
+    const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
 
     const leftCardExist = subtitleExist || titleExist || descriptionExist || buttonTextExist;
     const hasValidCard = (leftCardExist || leftItems.image) && leftItems.visibility;
@@ -147,12 +149,18 @@ class Download11 extends BaseDownload {
     const rightTitleExist = this.castToString(rightItems.title);
     const rightDescriptionExist = this.castToString(rightItems.description);
     const rightbuttonTextExist = this.castToString(buttonRight.text);
+    const rightButtonIconExist = buttonRight.icon && buttonRight.icon.name;
+    const rightButtonImageExist = buttonRight.image && buttonRight.image.url;
+    const rightButtonExist = rightbuttonTextExist || rightButtonIconExist || rightButtonImageExist;
 
     const hasValidRightCardTexts = rightSubtitleExist || rightTitleExist || rightDescriptionExist || rightbuttonTextExist;
     const hasValidRightCard = (hasValidRightCardTexts || rightItems.image) && rightItems.visibility;
 
     const rightBottomTitleExist = this.castToString(rightBottomItems.title);
-    const rightBottomButtonExist = this.castToString(buttonRightBottom.text);
+    const rightBottomButtonTextExist = this.castToString(buttonRightBottom.text);
+    const rightBottomButtonIconExist = buttonRightBottom.icon && buttonRightBottom.icon.name;
+    const rightBottomButtonImageExist = buttonRightBottom.image && buttonRightBottom.image.url;
+    const rightBottomButtonExist = rightBottomButtonTextExist || rightBottomButtonIconExist || rightBottomButtonImageExist;
     const hasValidBottomRightCard = (rightBottomTitleExist || rightBottomButtonExist) && rightBottomItems.visibility;
 
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
@@ -171,23 +179,25 @@ class Download11 extends BaseDownload {
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItems.subtitle}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{leftItems.title}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{leftItems.description}</Base.SectionDescription>}
-                    {buttonExist && <div className={this.decorateCSS("button-wrapper")}>
-                      <ComposerLink path={buttonLeft.url}>
-                        {buttonLeft.image && buttonLeft.image.url ? (
-                          <Base.Media value={buttonLeft.image} className={this.decorateCSS("button-image")} />
-                        ) : (
-                          <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
-                            {buttonLeft.icon && buttonLeft.icon.name && (
-                              <Base.Media
-                                value={buttonLeft.icon}
-                                className={this.decorateCSS("button-icon")}
-                              />
-                            )}
-                            {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonLeft.text}</Base.P>}
-                          </Base.Button>
-                        )}
-                      </ComposerLink>
-                    </div>}
+                    {buttonExist && (
+                      <div className={this.decorateCSS("button-wrapper")}>
+                        <ComposerLink path={buttonLeft.url}>
+                          {buttonLeft.image && buttonLeft.image.url ? (
+                            <Base.Media value={buttonLeft.image} className={this.decorateCSS("button-image")} />
+                          ) : (
+                            <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
+                              {buttonLeft.icon && buttonLeft.icon.name && (
+                                <Base.Media
+                                  value={buttonLeft.icon}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonLeft.text}</Base.P>}
+                            </Base.Button>
+                          )}
+                        </ComposerLink>
+                      </div>
+                    )}
                   </Base.VerticalContent>
                 )}
               </div>
@@ -202,23 +212,25 @@ class Download11 extends BaseDownload {
                           {rightSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rightItems.subtitle}</Base.SectionSubTitle>}
                           {rightTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{rightItems.title}</Base.SectionTitle>}
                           {rightDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{rightItems.description}</Base.SectionDescription>}
-                          <div className={this.decorateCSS("button-wrapper")}>
-                            <ComposerLink path={buttonRight.url}>
-                              {buttonRight.image && buttonRight.image.url ? (
-                                <Base.Media value={buttonRight.image} className={this.decorateCSS("button-image")} />
-                              ) : (
-                                <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("button")}>
-                                  {buttonRight.icon && buttonRight.icon.name && (
-                                    <Base.Media
-                                      value={buttonRight.icon}
-                                      className={this.decorateCSS("button-icon")}
-                                    />
-                                  )}
-                                  {rightbuttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRight.text}</Base.P>}
-                                </Base.Button>
-                              )}
-                            </ComposerLink>
-                          </div>
+                          {rightButtonExist && (
+                             <div className={this.decorateCSS("button-wrapper")}>
+                               <ComposerLink path={buttonRight.url}>
+                                 {buttonRight.image && buttonRight.image.url ? (
+                                   <Base.Media value={buttonRight.image} className={this.decorateCSS("button-image")} />
+                                 ) : (
+                                   <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("button")}>
+                                     {buttonRight.icon && buttonRight.icon.name && (
+                                       <Base.Media
+                                         value={buttonRight.icon}
+                                         className={this.decorateCSS("button-icon")}
+                                       />
+                                     )}
+                                     {rightbuttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRight.text}</Base.P>}
+                                   </Base.Button>
+                                 )}
+                               </ComposerLink>
+                             </div>
+                           )}
                         </Base.VerticalContent>
                       )}
                       {rightItems.image && <Base.Media value={rightItems.image} className={`${this.decorateCSS("image")} ${!hasValidRightCardTexts && this.decorateCSS("full")}`} />}
@@ -229,23 +241,25 @@ class Download11 extends BaseDownload {
                   <div className={this.decorateCSS("buttom-card")}>
                     <div className={`${this.decorateCSS("card")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                       {this.castToString(rightBottomItems.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.SectionTitle>}
-                      <div className={this.decorateCSS("button-wrapper")}>
-                        <ComposerLink path={buttonRightBottom.url}>
-                          {buttonRightBottom.image && buttonRightBottom.image.url ? (
-                            <Base.Media value={buttonRightBottom.image} className={this.decorateCSS("button-image")} />
-                          ) : (
-                            <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
-                              {buttonRightBottom.icon && buttonRightBottom.icon.name && (
-                                <Base.Media
-                                  value={buttonRightBottom.icon}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              )}
-                              {rightBottomTitleExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</Base.P>}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
-                      </div>
+                      {rightBottomButtonExist && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                          <ComposerLink path={buttonRightBottom.url}>
+                            {buttonRightBottom.image && buttonRightBottom.image.url ? (
+                              <Base.Media value={buttonRightBottom.image} className={this.decorateCSS("button-image")} />
+                            ) : (
+                              <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
+                                {buttonRightBottom.icon && buttonRightBottom.icon.name && (
+                                  <Base.Media
+                                    value={buttonRightBottom.icon}
+                                    className={this.decorateCSS("button-icon")}
+                                  />
+                                )}
+                                {rightBottomButtonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</Base.P>}
+                              </Base.Button>
+                            )}
+                          </ComposerLink>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
