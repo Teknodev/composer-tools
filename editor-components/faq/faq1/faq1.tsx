@@ -3,6 +3,7 @@ import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
+
 type FAQ = {
   subtitle: React.JSX.Element;
   text: React.JSX.Element;
@@ -25,16 +26,10 @@ class Faq1 extends BaseFAQ {
       value: "Have Any Questions?"
     })
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "icon",
       displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoIosArrowDown",
-      },
+      value: "IoIosArrowDown"
     })
 
     this.addProp({
@@ -150,22 +145,21 @@ class Faq1 extends BaseFAQ {
                   {(this.castToString(card.subtitle) || this.getPropValue("icon")) && (
                     <div className={this.decorateCSS("in-box")}>
                       {this.castToString(card.subtitle) && (
-                        <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H4>
+                        <div className={this.decorateCSS("card-subtitle")}>{card.subtitle}</div>
                       )}
                       {this.getPropValue("icon") && (
-                        <Base.Media 
-                          value={this.getPropValue("icon")} 
-                          className={`${this.decorateCSS("icon")} 
-                           ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`}
-                        />
+                        <Base.Icon name={this.getPropValue("icon")} propsIcon={{
+                          className: `${this.decorateCSS("icon")} 
+                           ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`
+                        }}></Base.Icon>
                       )}
                     </div>
                   )}
                   {this.castToString(card.text) && (
                     <div className={`${this.decorateCSS("card-inner")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardActive") : ""}`}>
-                      <Base.P className={this.decorateCSS("card-text")}>
+                      <div className={this.decorateCSS("card-text")}>
                         {card.text}
-                      </Base.P>
+                      </div>
                     </div>
                   )}
                 </div>

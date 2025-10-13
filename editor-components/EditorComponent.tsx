@@ -348,11 +348,11 @@ export enum CATEGORIES {
   NAVIGATOR = "navigator",
   TESTIMONIALS = "testimonials",
   LIST = "list",
-  HERO_SECTION = "heroSection",
+  HEADER = "header",
   PRICING = "pricing",
   FOOTER = "footer",
   TEAM = "team",
-  BLOG = "blog",
+  CONTENT = "content",
   FORM = "form",
   DOWNLOAD = "download",
   CALLTOACTION = "callToAction",
@@ -364,17 +364,13 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  TOP_BANNER = "topBanner",
+  BANNER = "banner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
-  LEGAL = "legal",
+  PRIVACYPOLICY = "privacyPolicy",
   COMINGSOON = "comingSoon",
   STICKY = "sticky",
-  BREADCRUMB = "breadcrumb",
-  ABOUT = "about",
-  PORTFOLIO = "portfolio",
-  COMPARISON = "comparison",
 }
 
 export function generateId(key: string): string {
@@ -945,8 +941,8 @@ export abstract class BaseList extends Component {
   static category = CATEGORIES.LIST;
 }
 
-export abstract class BaseHeroSection extends Component {
-  static category = CATEGORIES.HERO_SECTION;
+export abstract class BaseHeader extends Component {
+  static category = CATEGORIES.HEADER;
 }
 
 export abstract class BasePricingTable extends Component {
@@ -961,8 +957,8 @@ export abstract class Team extends Component {
   static category = CATEGORIES.TEAM;
 }
 
-export abstract class BaseBlog extends Component {
-  static category = CATEGORIES.BLOG;
+export abstract class BaseContent extends Component {
+  static category = CATEGORIES.CONTENT;
 }
 
 export abstract class BaseDownload extends Component {
@@ -999,16 +995,16 @@ export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
 }
 
-export abstract class BaseLegal extends Component {
-  static category = CATEGORIES.LEGAL;
+export abstract class BasePrivacyPolicy extends Component {
+  static category = CATEGORIES.PRIVACYPOLICY;
 }
 
 export abstract class LogoClouds extends Component {
   static category = CATEGORIES.LOGOCLOUDS;
 }
 
-export abstract class BaseTopBanner extends Component {
-  static category = CATEGORIES.TOP_BANNER;
+export abstract class BaseBanner extends Component {
+  static category = CATEGORIES.BANNER;
 }
 
 export abstract class Location extends Component {
@@ -1075,20 +1071,4 @@ export abstract class BaseComingSoon extends Component {
 
 export abstract class BaseSticky extends Component {  
   static category = CATEGORIES.STICKY;
-}
-
-export abstract class BaseBreadcrumb extends Component {
-  static category = CATEGORIES.BREADCRUMB;
-}
-
-export abstract class BaseAbout extends Component {
-  static category = CATEGORIES.ABOUT;
-}
-
-export abstract class BasePortfolio extends Component {
-  static category = CATEGORIES.PORTFOLIO;
-}
-
-export abstract class BaseComparison extends Component {
-  static category = CATEGORIES.COMPARISON;
 }

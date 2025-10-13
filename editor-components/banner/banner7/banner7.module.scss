@@ -1,0 +1,162 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    position: relative;
+    min-height: 400px;
+    overflow: hidden;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+
+    &.no-background {
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+        &::before {
+            content: none;
+        }
+    }
+
+    >* {
+        position: relative;
+        z-index: 2;
+    }
+
+    .breadcrumb-wrapper {
+        position: absolute;
+        left: 10%;
+        bottom: 0;
+
+        .crumber-content {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+            padding: var(--composer-gap-lg) var(--composer-gap-xl);
+            background: var(--composer-html-background);
+            box-shadow: var(--box-shadow-active);
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            width: fit-content;
+            min-width: 35%;
+            max-width: 60%;
+
+            .title {
+                font-size: 3rem;
+                text-align: left;
+                width: 100%;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .breadcrumb-items {
+                display: flex;
+                justify-content: flex-start;
+                width: 100%;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: var(--composer-gap-sm);
+                row-gap: var(--composer-gap-xs);
+                min-width: 0;
+
+                .home-link {
+                    content: "";
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    max-width: 45%;
+                }
+
+                .home-page {
+                    content: "";
+                    flex: 0 0 auto;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    min-width: 0;
+                    width: 100%;
+                }
+
+                .about-page {
+                    content: "";
+                    flex: 0 0 auto;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    min-width: 0;
+                    width: 100%;
+                    max-width: 45%;
+                }
+
+                .home-page:hover {
+                    color: var(--composer-primary-color);
+                }
+
+                .crumberIcon {
+                    width: 40px;
+                    height: 20px;
+                    color: var(--composer-primary-color);
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .breadcrumb-wrapper {
+            .crumber-content {
+                min-width: 45%;
+                max-width: 60%;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .breadcrumb-wrapper {
+            .crumber-content {
+                min-width: 75%;
+                font-size: 1rem;
+
+                .title{
+                    font-size: 2.5rem;
+                }
+
+                .breadcrumb-items {
+                    gap: var(--composer-gap-xs);
+                    .home-page {
+                        width: max-content;
+                        max-width: 80px;
+                    }
+                    
+                    .about-page {
+                        width: max-content;
+                        max-width: 80px;
+                    }
+                }
+            }
+        }
+    }
+}

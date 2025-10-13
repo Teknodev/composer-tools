@@ -7,16 +7,15 @@
      font-weight: 400;
      margin-top: 0;
      margin-bottom: 0;
-     width: 100%;
 
      @container (max-width: #{$composer-tablet-width}) {
-          font-size: calc(3 * var(--composer-font-size-md)) !important;
-          line-height: 3.5rem !important;
+          font-size: calc(3 * var(--composer-font-size-md));
+          line-height: 3.5rem;
      }
 
      @container (max-width: #{$composer-phone-width}) {
-          font-size: calc(2.25 * var(--composer-font-size-md)) !important;
-          line-height: 3rem !important;
+          font-size: calc(2.25 * var(--composer-font-size-md));
+          line-height: 3rem;
      }
 }
 
@@ -27,16 +26,15 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
-    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(2.25 * var(--composer-font-size-md)) !important;
-        line-height: 2.75rem !important;
+        font-size: calc(2.25 * var(--composer-font-size-md));
+        line-height: 2.75rem;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(2 * var(--composer-font-size-md)) !important;
-        line-height: 2.5rem !important;
+        font-size: calc(2 * var(--composer-font-size-md));
+        line-height: 2.5rem;
     }
 }
 
@@ -47,16 +45,15 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
-    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(2 * var(--composer-font-size-md)) !important;
-        line-height: 2.5rem !important;
+        font-size: calc(2 * var(--composer-font-size-md));
+        line-height: 2.5rem;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.75 * var(--composer-font-size-md)) !important;
-        line-height: 2.25rem !important;
+        font-size: calc(1.75 * var(--composer-font-size-md));
+        line-height: 2.25rem;
     }
 }
 
@@ -67,16 +64,15 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
-    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1.75 * var(--composer-font-size-md)) !important;
-        line-height: 2.25rem !important;
+        font-size: calc(1.75 * var(--composer-font-size-md));
+        line-height: 2.25rem;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.5 * var(--composer-font-size-md)) !important;
-        line-height: 2rem !important;
+        font-size: calc(1.5 * var(--composer-font-size-md));
+        line-height: 2rem;
     }
 }
 
@@ -87,16 +83,15 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
-    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1.5 * var(--composer-font-size-md)) !important;
-        line-height: 2rem !important;
+        font-size: calc(1.5 * var(--composer-font-size-md));
+        line-height: 2rem;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.25 * var(--composer-font-size-md)) !important;
-        line-height: 1.75rem !important;
+        font-size: calc(1.25 * var(--composer-font-size-md));
+        line-height: 1.75rem;
     }
 }
 
@@ -107,16 +102,15 @@
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
-    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1.25 * var(--composer-font-size-md)) !important;
-        line-height: 1.75rem !important;
+        font-size: calc(1.25 * var(--composer-font-size-md));
+        line-height: 1.75rem;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.125 * var(--composer-font-size-md)) !important;
-        line-height: 1.5rem !important;
+        font-size: calc(1.125 * var(--composer-font-size-md));
+        line-height: 1.5rem;
     }
 }
 
@@ -125,16 +119,15 @@
     font-size: calc(1 * var(--composer-font-size-md));
     margin-top: 0;
     margin-bottom: 0;
-    width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1 * var(--composer-font-size-md)) !important;
-        line-height: 1.75rem !important;
+        font-size: calc(1 * var(--composer-font-size-md));
+        line-height: 1.75rem;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1 * var(--composer-font-size-md)) !important;
-        line-height: 1.5rem !important;
+        font-size: calc(1 * var(--composer-font-size-md));
+        line-height: 1.5rem;
     }
 }
 
@@ -153,11 +146,11 @@
     }
 
     @container (max-width: #{$composer-tablet-width}) {
-        padding: 80px 40px !important;
+        padding: 80px 40px;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        padding: 50px 20px !important;
+        padding: 50px 20px;
     }
 
 
@@ -240,11 +233,10 @@
             text-align: center;
         }
     }
-    
+
     .sectionSubTitle{
         position: relative;
         font-weight: 500;
-        width: auto;
         &.badge{
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-xl);
@@ -289,37 +281,37 @@
     .h1{
         font-size: calc(2.5 * var(--composer-font-size-md));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(2 * var(--composer-font-size-md)) !important;
+            font-size: calc(2 * var(--composer-font-size-md));
         }
     }
     .h2{
         font-size: calc(2 * var(--composer-font-size-md));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(1.5 * var(--composer-font-size-md)) !important;
+            font-size: calc(1.5 * var(--composer-font-size-md));
         }
     }
     .h3{
         font-size: calc(1.5 * var(--composer-font-size-md));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(1.2 * var(--composer-font-size-md)) !important;
+            font-size: calc(1.2 * var(--composer-font-size-md));
         }
     }
     .h4{
         font-size: calc(1.2 * var(--composer-font-size-md));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(1 * var(--composer-font-size-md)) !important;
+            font-size: calc(1 * var(--composer-font-size-md));
         }
     }
     .h5{
         font-size: calc(1 * var(--composer-font-size-md));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(0.8 * var(--composer-font-size-md)) !important;
+            font-size: calc(0.8 * var(--composer-font-size-md));
         }
     }
     .h6{
         font-size: calc(0.8 * var(--composer-font-size-md));
         @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(0.6 * var(--composer-font-size-md)) !important;
+            font-size: calc(0.6 * var(--composer-font-size-md));
         }
     }
     .p{
@@ -364,10 +356,10 @@
     gap: var(--composer-gap-md);
     container-type: inline-size;
     @container (max-width: #{$composer-tablet-width}) {
-        grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr) !important;
+        grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr);
     }
     @container (max-width: #{$composer-phone-width}) {
-        grid-template-columns: repeat(var(--composer-grid-count-phone), 1fr) !important;
+        grid-template-columns: repeat(var(--composer-grid-count-phone), 1fr);
     }
 }
 
@@ -380,7 +372,7 @@
         padding: 0px;
     }
     @container (max-width: $composer-tablet-width-sm) {
-        flex-direction: column !important;
+        flex-direction: column;
     }
 }
 
@@ -390,7 +382,7 @@
     min-width: 0;
     padding: var(--composer-gap-md);
     @container (max-width: $composer-tablet-width-sm) {
-        width: 100% !important;
+        width: 100%;
     } 
 }
 
@@ -402,7 +394,6 @@
   cursor: pointer;
   font-size: var(--composer-font-size-md);
   border-radius: var(--composer-border-radius-sm);
-  font-family: var(--composer-font-family);
 
   &.primary {
     background-color: var(--composer-primary-color);
@@ -553,11 +544,11 @@
     align-items: center;
 
     @container (max-width: #{$composer-tablet-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        padding: var(--composer-gap-md) !important;
+        padding: var(--composer-gap-md);
     }
 
 }

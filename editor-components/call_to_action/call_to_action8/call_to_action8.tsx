@@ -11,29 +11,17 @@ class CallToAction8Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Our Features",
-    });
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Discover new perspectives in a vibrant and inclusive community.",
     });
 
     this.addProp({
-      type: "media",
+      type: "image",
       key: "image",
       displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
-      },
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
@@ -47,25 +35,20 @@ class CallToAction8Page extends BaseCallToAction {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const buttonText = this.castToString(button.text);
     const title = this.castToString(this.getPropValue("title"));
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(subtitleExist || title || buttonText) && (
+            {(title || buttonText) && (
               <div className={this.decorateCSS("title-box")}>
-                <Base.VerticalContent className={this.decorateCSS("title-content")}>
-                  {subtitleExist && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {title && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
-                      </Base.SectionTitle>
-                  )}
-                </Base.VerticalContent>
+                {title && (
+                  <Base.VerticalContent className={this.decorateCSS("title")}>
+                    <Base.SectionTitle className={this.decorateCSS("text")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  </Base.VerticalContent>
+                )}
                 {buttonText && (
                   <Base.Row className={this.decorateCSS("button")}>
                     <ComposerLink path={button.url}>
@@ -73,7 +56,7 @@ class CallToAction8Page extends BaseCallToAction {
                         buttonType={button.type}
                         className={this.decorateCSS("button-element")}
                       >
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        {button.text}
                       </Base.Button>
                     </ComposerLink>
                   </Base.Row>
@@ -83,9 +66,10 @@ class CallToAction8Page extends BaseCallToAction {
             {this.getPropValue("image") && (
               <div
                 className={this.decorateCSS("image-box")}>
-                <Base.Media
-                  value={this.getPropValue("image")}
+                <img
                   className={this.decorateCSS("image")}
+                  src={this.getPropValue("image")}
+                  alt={this.getPropValue("image")}
                 />
               </div>
             )}
