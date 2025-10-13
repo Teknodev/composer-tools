@@ -7,7 +7,7 @@
       flex-direction: column;
       gap:var(--composer-gap-xl);
       .up-page {
-        .title, .description, .subtitle {
+        .title, .description {
           content: "";
         }
       }
@@ -18,7 +18,7 @@
           gap: var(--composer-gap-md);
           flex-direction: column;  
           background-color: color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%);   
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-xs);
           padding: var(--composer-gap-xl);   
           .icon-wrapper {
             display: flex;
@@ -32,16 +32,15 @@
             .icon{
               width: 30px;
               height: 30px;
-              font-size: 2rem;
               color: var(--composer-font-color-secondary);
             }
           }
-          .card-title {
+          .title {
             color: var(--composer-font-color-primary);
             margin: 0px;
           }
 
-          .card-description {
+          .description {
             color: var(--composer-tertiary-color);
             margin: 0px;
           }
@@ -62,12 +61,12 @@
           flex: 1;
           gap: var(--composer-gap-lg);
           align-items: start;
-          .down-title{
+          .title{
             margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
           }
-          .down-description{
+          .description{
             margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
@@ -83,9 +82,7 @@
           justify-content: end;
           height: fit-content;
           .button{
-            .button-text {
-              content: "";
-            }
+            content: "";
           }
         }
     
@@ -105,10 +102,10 @@
           gap: var(--composer-gap-xl);
           .content{
             align-items: center;
-            .down-title{
+            .title{
               text-align: center;
             }
-            .down-description{
+            .description{
               text-align: center;
             }
           }

@@ -1,47 +1,26 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
     .max-content {
-        .content {
+        .call-to-action10-page {
             align-items: center;
             gap: var(--composer-gap-md);
-            .header {
-                .title-container{
-                    content: "";
-                    position: relative;
-                    padding-bottom: var(--composer-gap-lg);
-                    .title{
-                        width: fit-content;
-                        text-align: center;
-                    }
-                    .icon {
-                        position: absolute;
-                        bottom: 0rem;
-                        right: 0;
-                        font-size: 3rem;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-    
-                .subtitle{
-                    text-align: center;
-                    transform: translateX(0);
-                    width: 100%;
-                    &::before {
-                        display: none;
-                    }
-                }
-    
-                .description{
-                    text-align: center;
+            .title {
+                position: relative;
+                margin: 0px;
+                padding-bottom: var(--composer-gap-lg);
+                .icon {
+                    position: absolute;
+                    bottom: 0rem;
+                    right: 0;
+                    font-size: 3rem;
                 }
             }
-
+            .description {
+                margin: 0px;
+            }
 
             .button {
                 content: "";
-                .button-text {
-                    content: "";
-                }
             }
             .card-container{
                 width: 100%;
@@ -58,7 +37,8 @@
                         width: fit-content;
                         .icon{
                             color: var(--composer-font-color-secondary);
-                            font-size: 1.5rem;
+                            width: 25px;
+                            height: 25px;
 
                         }
                     }
@@ -79,15 +59,11 @@
 @container (max-width: #{$composer-phone-width}){
     .container{
         .max-content{
-            .content{
-                .title-container{
+            .call-to-action10-page{
+                .title{
                     padding-bottom: var(--composer-gap-md);
-
-                    .title{
-                        text-align: center;
-                    }
                     .icon {
-                        font-size: 1.5rem;
+                        font-size: 2rem;
                     }
                 }
             }

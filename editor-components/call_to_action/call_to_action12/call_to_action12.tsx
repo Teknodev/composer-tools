@@ -12,12 +12,6 @@ class CallToAction12Page extends BaseCallToAction {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Newsletter",
-    });
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Subscribe for newsletter",
@@ -71,7 +65,6 @@ class CallToAction12Page extends BaseCallToAction {
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const submitText = this.castToString(this.getPropValue("submitText"));
@@ -81,9 +74,8 @@ class CallToAction12Page extends BaseCallToAction {
         className={`${this.decorateCSS("container")}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || descriptionExist || subtitleExist) && (
+          {(titleExist || descriptionExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -122,7 +114,7 @@ class CallToAction12Page extends BaseCallToAction {
                     )}
                     {this.castToString(button.text) && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={button.type}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        <span className={this.decorateCSS("buttonText")}>{button.text}</span>
                       </Base.Button>
                     )}
                   </Form>
@@ -134,7 +126,7 @@ class CallToAction12Page extends BaseCallToAction {
             <div className={this.decorateCSS("button-container")}>
               <ComposerLink path={button.url}>
                 <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${!this.castToString(this.getPropValue("placeholder")) && this.decorateCSS("button-no-item")}`}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  {button.text}
                 </Base.Button>
               </ComposerLink>
             </div>

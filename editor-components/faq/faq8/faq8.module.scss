@@ -6,7 +6,7 @@
       flex-direction: column;
       gap:var(--composer-gap-lg);
       .up-page {
-        .subtitle, .title {
+        .badge, .subtitle {
           content: "";
         }
       }
@@ -14,7 +14,7 @@
         width: 100%;
         display: flex;
         gap: var(--composer-gap-md);
-        .category-container {
+        .category-flex {
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -24,7 +24,7 @@
             var(--composer-font-color-primary) 5%
           );
           height: fit-content;
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           padding:var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-lg);
           .categories {
             display: flex;
@@ -32,7 +32,7 @@
             padding: var(--composer-gap-md) var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
             cursor: pointer;
             color: var(--composer-font-color-primary);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s ease ;
             position: relative;
             .category {
               flex: 1;
@@ -41,12 +41,12 @@
               gap: var(--composer-gap-xs);
               .bullet-icon {
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
-                transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: color 0.5s ease;
               }
               .category-name {
                 text-align: left;
                 margin: 0;
+                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 opacity: 0.7;
               }
@@ -54,18 +54,17 @@
             .right {
               background: var(--composer-html-background);
               color: var(--composer-font-color-primary);
-              padding: var(--composer-gap-xs);
+              padding: var(--composer-gap-sm);
               border-radius: 50%;
               display: flex;
               align-items: center;
               justify-content: center;
-              transition: background-color, color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              transition: background-color, color 0.5s ease;
               .arrow-right {
                 transform: rotate(-30deg);
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                width: 14px;
-                height: 14px;
-                font-size: 1rem;
+                transition: transform 0.5s ease;
+                width: 15px;
+                height: 15px;
               }
             }
             &.active-category {
@@ -97,7 +96,7 @@
               width: 100%;
               height: 1px;
               background: var(--composer-secondary-color);
-              transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              transition: width 1s ease;
             }
             &::after{
               content: '';
@@ -107,7 +106,7 @@
               width: 0;
               height: 1px;
               background: var(--composer-primary-color);
-              transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              transition: width 1s ease;
             }
             &:hover{
               .category{
@@ -136,14 +135,14 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
-          .question-container {
+          .text {
             background-color: color-mix(
               in srgb,
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%
             );    
             padding: var(--composer-gap-md);
-            border-radius: var(--composer-border-radius-sm);
+            border-radius: var(--composer-border-radius-md);
             display: flex;
             flex-direction: column;
             .question {
@@ -152,14 +151,14 @@
               .question-title{
                 color: var(--composer-font-color-primary);
                 flex:1;
+                font-size:1.5rem;
                 &.active{
                   color: var(--composer-primary-color);
                 }
               }
               .question-icon{
-                width: 16px;
-                height: 16px;
-                font-size: 1rem;
+                width: 15px;
+                height: 15px;
                 color: var(--composer-font-color-primary);
                 &.active{
                   transform: rotate(180deg);
@@ -170,12 +169,13 @@
             .inner-text-wrapper{          
               overflow: hidden;
               max-height: 0px;
-              transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              transition: max-height 0.5s ease , padding 0.5s ease;
               .inner-text{
                 overflow: hidden;
                 opacity: 0;
+                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
-                transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: opacity 0.5s ease;
               }            
               &.active {
                 max-height: 150px;
@@ -196,7 +196,7 @@
     .max-content{
       .page {
         .down-page {
-          .category-container {
+          .category-flex {
             padding: var(--composer-gap-md);
           }
         }

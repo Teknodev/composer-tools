@@ -9,7 +9,11 @@
       flex-direction: column;
       gap: var(--composer-gap-md);
       .up-page {
-        .title, .description, .subtitle {
+        .title {
+          content: "";
+        }
+        .description {
+          color: var(--composer-tertiary-color);
           content: "";
         }
       }
@@ -23,7 +27,7 @@
           gap: var(--composer-gap-md);
         }
         .card {
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-xs);
           width: 100%;
           position: relative;
           display: flex;
@@ -38,7 +42,7 @@
             gap: var(--composer-gap-xs);
             padding: var(--composer-gap-md);
             background-color: var(--composer-html-background);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease-in-out;
             position: relative;
             z-index: 2;
             border: 1px solid
@@ -52,6 +56,7 @@
               flex: 1;
 
               .card-title {
+                font-size: 1rem;
                 color: var(--composer-font-color-primary);
 
                 &.active {
@@ -67,11 +72,10 @@
 
               .icon {
                 color: var(--composer-font-color-primary);
-                width: 16px;
-                height: 16px;
-                font-size: 1rem;
+                width: 15px;
+                height: 15px;
                 transform: rotate(0deg);
-                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: transform 0.3s ease-in-out;
               }
 
               &.active {
@@ -103,9 +107,10 @@
                   transparent
                 );
               border-top: 0;
+              font-size: 1rem;
               color: var(--composer-tertiary-color);
               padding: var(--composer-gap-lg) var(--composer-gap-md);
-              transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              transition: padding 0.4s ease;
             }
 
             &.active {

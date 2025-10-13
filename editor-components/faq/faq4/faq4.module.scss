@@ -6,7 +6,7 @@
       flex-direction: column;
       gap: var(--composer-gap-xl);
       .up-page {
-        .subtitle, .title, .description {
+        .badge, .subtitle, .description {
           content: "";
         }
       }
@@ -18,12 +18,14 @@
         flex-wrap: wrap;
         .sections{
           display: flex;
-          .section-title{
+          .title{
             color: var(--composer-font-color-primary);
+            font-size: 1rem;
             border-bottom: 2px solid transparent;
             padding-bottom: var(--composer-gap-sm);
+            font-size: 1rem;
             opacity: 0.7;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s ease;
             &.active{
               border-bottom: 2px solid var(--composer-font-color-primary);
               opacity: 1;
@@ -53,6 +55,7 @@
                 flex: 1;
                 .card-title {
                   color: var(--composer-font-color-primary);
+                  font-size: 1.5rem;
                 }
               }
     
@@ -70,11 +73,10 @@
                   justify-content: center;
                   .icon{
                     color: var(--composer-tertiary-color);
-                    width: 14px;
-                    height: 14px;
-                    font-size: 1rem;
+                    width: 15px;
+                    height: 15px;
                     transform: rotate(0deg);
-                    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    transition: transform 1s ease;
                     &.active{
                       transform: rotate(180deg);
                     }
@@ -85,14 +87,15 @@
             &.active{
               padding-bottom: 0px;
             }
-            .hide-card {
+            .hide {
               overflow: hidden;
               padding: 0px;
-              transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              transition:padding 0.5s linear;
               .text{
+                font-size: 1rem;
                 max-height: 0px;
                 opacity: 0;
-                transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: opacity 0.3s linear;
                 color: var( --composer-tertiary-color);
               }
               &.active {

@@ -21,7 +21,7 @@
     top: 0px;
     left: 0px;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    height: 80%;
+    height: 70%;
     width: 100%;
   }
 
@@ -32,6 +32,7 @@
     .wrapper {
       .left-page {
         display: flex;
+        justify-content: center;
 
         .image {
           width: 70%;
@@ -49,12 +50,9 @@
         .right-content {
           height: 100%;
           display: flex;
-          flex-direction: column;
           justify-content: center;
 
-          .title, .subtitle {
-            content: "";
-          }
+          .title {}
 
           .input-button-wrapper {
             display: flex;
@@ -98,9 +96,7 @@
 
               .button {
                 content: "";
-                .button-text {
-                  content: "";
-                }
+                flex: 2;
               }
             }
           }

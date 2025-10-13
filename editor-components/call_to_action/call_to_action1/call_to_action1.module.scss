@@ -3,18 +3,23 @@
 .container {
     .max-content {
         .content {
+            gap: var(--composer-gap-md);
             align-items: center;
 
             .icon {
-                font-size: 3rem;
+                width: 70px;
+                height: 70px;
                 color: var(--composer-primary-color);
             }
 
             .title {
+                font-size: 3.5rem;
                 text-align: center;
             }
 
             .description {
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
                 text-align: center;
             }
 
@@ -22,12 +27,25 @@
                 display: flex;
                 .button{
                     content: "";
-                    .button-text {
-                        content: "";
-                    }
                 }
             }
 
+        }
+    }
+}
+
+@container (max-width : #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .content {
+                .title {
+                    font-size: 3rem;
+                }
+
+                .description {
+                    font-size: 1.5rem;
+                }
+            }
         }
     }
 }

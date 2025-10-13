@@ -22,13 +22,6 @@ class Faq2 extends BaseFAQ {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Have Any Questions?",
-    });
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Frequently asked questions",
@@ -70,16 +63,10 @@ class Faq2 extends BaseFAQ {
                 "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "cardIcon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiQuestionMark",
-              },
+              value: "BiQuestionMark"
             }
           ],
         },
@@ -102,16 +89,10 @@ class Faq2 extends BaseFAQ {
                 "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "cardIcon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiQuestionMark",
-              },
+              value: "BiQuestionMark"
             }
           ],
         },
@@ -134,16 +115,10 @@ class Faq2 extends BaseFAQ {
                 " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "cardIcon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiQuestionMark",
-              },
+              value: "BiQuestionMark"
             }
           ],
         },
@@ -166,16 +141,10 @@ class Faq2 extends BaseFAQ {
                 "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "cardIcon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiQuestionMark",
-              },
+              value: "BiQuestionMark"
             }
           ],
         },
@@ -198,16 +167,10 @@ class Faq2 extends BaseFAQ {
                 "Yes, we offer discounts and promotions from time to time. You can sign up for our newsletter to receive updates on our latest promotions.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "cardIcon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiQuestionMark",
-              },
+              value: "BiQuestionMark"
             }
           ],
         },
@@ -230,16 +193,10 @@ class Faq2 extends BaseFAQ {
                 "We accept credit/debit cards, PayPal, and other digital payment methods. You can select your preferred payment method during checkout.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "cardIcon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiQuestionMark",
-              },
+              value: "BiQuestionMark"
             }
           ],
         },
@@ -248,7 +205,7 @@ class Faq2 extends BaseFAQ {
     this.addProp({
       type: "object",
       key: "downContainer",
-      displayer: "Bottom Container",
+      displayer: "Container",
       value: [
         {
           type: "string",
@@ -285,13 +242,8 @@ class Faq2 extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
+            {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
               <Base.VerticalContent className={this.decorateCSS("up-page")}>
-                {this.castToString(this.getPropValue("subtitle")) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
-                  </Base.SectionSubTitle>
-                )}
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
@@ -312,16 +264,16 @@ class Faq2 extends BaseFAQ {
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {item.cardIcon && (
                           <Base.Row className={this.decorateCSS("icon-wrapper")}>
-                            <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
+                            <Base.Icon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                           </Base.Row>
                         )}
                         {this.castToString(item.cardTitle) && (
-                          <Base.H3 className={this.decorateCSS("card-title")}>
+                          <Base.H3 className={this.decorateCSS("title")}>
                             {item.cardTitle}
                           </Base.H3>
                         )}
                         {this.castToString(item.description) && (
-                          <Base.P className={this.decorateCSS("card-description")}>
+                          <Base.P className={this.decorateCSS("description")}>
                             {item.description}
                           </Base.P>
                         )}
@@ -338,12 +290,12 @@ class Faq2 extends BaseFAQ {
                 {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
                   <div className={this.decorateCSS("content")}>
                     {this.castToString(downContainer.title) && (
-                      <Base.H2 className={this.decorateCSS("down-title")}>
+                      <Base.H2 className={this.decorateCSS("title")}>
                         {downContainer.title}
                       </Base.H2>
                     )}
                     {this.castToString(downContainer.description) && (
-                      <Base.P className={this.decorateCSS("down-description")}>
+                      <Base.P className={this.decorateCSS("description")}>
                         {downContainer.description}
                       </Base.P>
                     )}
@@ -352,10 +304,10 @@ class Faq2 extends BaseFAQ {
                 {(this.getPropValue("buttons").length > 0) && (
                   <div className={this.decorateCSS("buttons")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) => {
-                      return this.castToString(button.text) && (
+                      return (
                         <ComposerLink path={button.url}>
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            {button.text}
                           </Base.Button>
                         </ComposerLink>
                       )
