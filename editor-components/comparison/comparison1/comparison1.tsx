@@ -179,15 +179,18 @@ class Comparison1 extends BaseComparison {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("up-page")}>
             {isSubtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${coverImage?.url
+                ? this.decorateCSS("with-image")
+                : ""
+              }`}>
                 {subtitle}
               </Base.SectionSubTitle>
             )}
             {isTitleExist && (
               <Base.SectionTitle
                 className={
-                  `${this.decorateCSS("title")} ${!coverImage?.url
-                    ? this.decorateCSS("no-image")
+                  `${this.decorateCSS("title")} ${coverImage?.url
+                    ? this.decorateCSS("with-image")
                     : ""
                   }`
                 }
@@ -255,32 +258,38 @@ class Comparison1 extends BaseComparison {
                           />
                         )}
 
-                        {card.rightImage?.url && card.leftImage?.url && (
+                        {(card.rightImage?.url || card.leftImage?.url) && (
                           <div className={this.decorateCSS("slider-wrapper")}>
                             {overlay && <div className={this.decorateCSS("overlay")} />}
-                            <input
-                              type="range"
-                              min="0"
-                              max="100"
-                              defaultValue="50"
-                              className={this.decorateCSS("slider")}
-                              id={`slider-${indexCards}`}
-                              onChange={this.handleSliderChange}
-                            />
-                            <div className={this.decorateCSS("comparison-text")}>
-                              {this.castToString(card.leftText) && <Base.P
-                                className={this.decorateCSS("left-text")}
-                              >
-                                {card.leftText}
-                              </Base.P>}
-                              {this.castToString(card.rightText) && <Base.P className={this.decorateCSS("right-text")}>
-                                {card.rightText}
-                              </Base.P>}
-                            </div>
-                            <div
-                              ref={this.getComponentState("sliderButtonRef")}
-                              className={this.decorateCSS("slider-button")}
-                            ></div>
+                            {card.rightImage?.url && card.leftImage?.url && (
+                              <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                defaultValue="50"
+                                className={this.decorateCSS("slider")}
+                                id={`slider-${indexCards}`}
+                                onChange={this.handleSliderChange}
+                              />
+                            )}
+                            {card.rightImage?.url && card.leftImage?.url && (
+                              <>
+                                <div className={this.decorateCSS("comparison-text")}>
+                                  {this.castToString(card.leftText) && <Base.P
+                                    className={this.decorateCSS("left-text")}
+                                  >
+                                    {card.leftText}
+                                  </Base.P>}
+                                  {this.castToString(card.rightText) && <Base.P className={this.decorateCSS("right-text")}>
+                                    {card.rightText}
+                                  </Base.P>}
+                                </div>
+                                <div
+                                  ref={this.getComponentState("sliderButtonRef")}
+                                  className={this.decorateCSS("slider-button")}
+                                ></div>
+                              </>
+                            )}
                           </div>
                         )}
                       </div>
