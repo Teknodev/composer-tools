@@ -6,10 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Card {
   direction: boolean;
+  subtitle: string;
   title: React.JSX.Element;
   button: INPUTS.CastedButton;
-  leftImage: string;
-  rightImage: string;
+  leftImage: { type: string; url: string };
+  rightImage: { type: string; url: string };
   description: React.JSX.Element;
   leftText: string;
   rightText: string;
@@ -19,12 +20,24 @@ class Comparison1 extends BaseComparison {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "cover-image",
       displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c62866f?alt=media&timestamp=1719561551671",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68eccb6affd791002b81a47e?alt=media",
+      },
     });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Compare",
+    })
 
     this.addProp({
       type: "string",
@@ -51,6 +64,12 @@ class Comparison1 extends BaseComparison {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Compare",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "BEDROOM RENOVATION",
@@ -64,11 +83,16 @@ class Comparison1 extends BaseComparison {
             },
             INPUTS.BUTTON("button", "Button", "VIEW DETAILS", "", null, null, "Primary"),
             {
-              type: "image",
+              type: "media",
               key: "leftImage",
               displayer: "Left Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628671?alt=media&timestamp=1719561551671",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628671?alt=media&timestamp=1719561551671",
+              },
             },
             {
               type: "string",
@@ -77,11 +101,16 @@ class Comparison1 extends BaseComparison {
               value: "Before",
             },
             {
-              type: "image",
+              type: "media",
               key: "rightImage",
               displayer: "Right Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628670?alt=media&timestamp=1719561551671",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b8d0bd2970002c628670?alt=media&timestamp=1719561551671",
+              },
             },
             {
               type: "string",
@@ -127,26 +156,38 @@ class Comparison1 extends BaseComparison {
   };
 
   render() {
+    const coverImage = this.getPropValue("cover-image");
+    const title = this.getPropValue("title");
+    const isTitleExist = this.castToString(title);
+    const subtitle = this.getPropValue("subtitle");
+    const isSubtitleExist = this.castToString(subtitle);
     return (
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+          backgroundImage: coverImage?.url && `url(${coverImage.url})`,
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(this.getPropValue("title")) && (
-            <Base.SectionTitle
-              className={
-                `${this.decorateCSS("title")} ${!this.getPropValue("cover-image")
-                  ? this.decorateCSS("no-image")
-                  : ""
-                }`
-              }
-            >
-              {this.getPropValue("title")}
-            </Base.SectionTitle>
-          )}
+          <Base.VerticalContent className={this.decorateCSS("up-page")}>
+            {isSubtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
+            {isTitleExist && (
+              <Base.SectionTitle
+                className={
+                  `${this.decorateCSS("title")} ${!coverImage?.url
+                    ? this.decorateCSS("no-image")
+                    : ""
+                  }`
+                }
+              >
+                {title}
+              </Base.SectionTitle>
+            )}
+          </Base.VerticalContent>
           <div className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("cards").map(
               (card: Card, indexCards: number) => {
@@ -161,15 +202,20 @@ class Comparison1 extends BaseComparison {
                         <Base.VerticalContent
                           className={this.decorateCSS("left-card")}
                         >
+                          {this.castToString(card.subtitle) && (
+                            <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
+                              {card.subtitle}
+                            </Base.SectionSubTitle>
+                          )}
                           {this.castToString(card.title) && (
-                            <Base.H2 className={this.decorateCSS("card-title")}>
+                            <Base.SectionTitle className={this.decorateCSS("card-title")}>
                               {card.title}
-                            </Base.H2>
+                            </Base.SectionTitle>
                           )}
                           {this.castToString(card.description) && (
-                            <Base.P className={this.decorateCSS("description")}>
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
                               {card.description}
-                            </Base.P>
+                            </Base.SectionDescription>
                           )}
                           {this.castToString(card.button.text) && (
                             <ComposerLink path={card.button.url}>
@@ -181,30 +227,28 @@ class Comparison1 extends BaseComparison {
                         </Base.VerticalContent>
                       )}
 
-                    {(card.leftImage || card.rightImage) && (
+                    {(card.leftImage?.url || card.rightImage?.url) && (
                       <div className={this.decorateCSS("right-card")}>
                         <div
-                          className={`${this.decorateCSS("image-container")} ${card.leftImage && card.rightImage ? styles["active"] : ""}`}
+                          className={`${this.decorateCSS("image-container")} ${card.leftImage?.url && card.rightImage?.url ? styles["active"] : ""}`}
                           data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         >
-                          {card.leftImage && (
-                            <img
-                              src={card.leftImage}
-                              alt=""
+                          {card.leftImage?.url && (
+                            <Base.Media
+                              value={card.leftImage}
                               className={this.decorateCSS("background-image")}
                             />
                           )}
 
-                          {card.rightImage && (
-                            <img
+                          {card.rightImage?.url && (
+                            <Base.Media
                               ref={this.getComponentState("foregroundImageRef")}
-                              src={card.rightImage}
-                              alt=""
+                              value={card.rightImage}
                               className={this.decorateCSS("foreground-image")}
                             />
                           )}
 
-                          {card.rightImage && card.leftImage && (
+                          {card.rightImage?.url && card.leftImage?.url && (
                             <div className={this.decorateCSS("slider-wrapper")}>
                               <input
                                 type="range"
@@ -216,14 +260,14 @@ class Comparison1 extends BaseComparison {
                                 onChange={this.handleSliderChange}
                               />
                               <div className={this.decorateCSS("text")}>
-                                <div
+                                <Base.P
                                   className={this.decorateCSS("left-text")}
                                 >
                                   {card.leftText}
-                                </div>
-                                <div className={this.decorateCSS("right-text")}>
+                                </Base.P>
+                                <Base.P className={this.decorateCSS("right-text")}>
                                   {card.rightText}
-                                </div>
+                                </Base.P>
                               </div>
                               <div
                                 ref={this.getComponentState("sliderButtonRef")}

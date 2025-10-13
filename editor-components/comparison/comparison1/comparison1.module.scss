@@ -3,8 +3,10 @@
 .container {
   background-size: cover;
   .max-content {
-    .title {        
-      margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+    .title, .subtitle {        
       &:not(.no-image){
         color: white;
       }
@@ -134,7 +136,6 @@
                 justify-content: space-between;
                 align-items: center;
                 pointer-events: none;
-                font-size: 1rem;
                 color: white;
                 opacity: 0;
                 transition: opacity 0.3s ease;
