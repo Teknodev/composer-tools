@@ -247,6 +247,9 @@ class Comparison1 extends BaseComparison {
                           <Base.Media
                             value={card.leftImage}
                             className={this.decorateCSS("left-image")}
+                            style={{
+                              clipPath: card.rightImage?.url ? undefined : 'none'
+                            }}
                           />
                         )}
 
@@ -255,6 +258,9 @@ class Comparison1 extends BaseComparison {
                             ref={this.getComponentState("foregroundImageRef")}
                             value={card.rightImage}
                             className={this.decorateCSS("right-image")}
+                            style={{
+                              clipPath: card.leftImage?.url ? undefined : 'none'
+                            }}
                           />
                         )}
 

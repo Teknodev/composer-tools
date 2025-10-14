@@ -13,7 +13,9 @@
     }
 
     .subtitle{
+      width: fit-content;
       &.with-image{
+        background: transparent;
         &::before{
           background-color: white;
         }
@@ -45,6 +47,8 @@
         .card-title, .card-subtitle, .card-description {
           content: "";
           text-align: left;
+          margin-left: 0;
+          width: fit-content;
         }
 
         .button {
