@@ -9,24 +9,41 @@ class About2 extends BaseAbout {
     super(props, styles);
     this.addProp(INPUTS.BUTTON("button", "Button", "Play me here", null, null, null, "Link"));
     this.addProp({
-      type: "video",
+      type: "media",
       key: "videoUrl",
       displayer: "Video Url",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
+      additionalParams: {
+        availableTypes: ["video"],
+      },
+      value: {
+        type: "video",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
+      }
     })
 
     this.addProp({
-      type: "image",
+      type: "media",
       displayer: "Cover image of video",
       key: "cover-image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Button Icon",
-      value: "RxCross2",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "RxCross2",
+      },
     });
 
     this.addProp({
@@ -54,7 +71,7 @@ class About2 extends BaseAbout {
       <Base.Container
         className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}
         style={{
-          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+          backgroundImage: `url(${this.getPropValue("cover-image")?.url})`,
         }}
         data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
@@ -65,11 +82,11 @@ class About2 extends BaseAbout {
               this.setComponentState("is_video_visible", true);
             }}
           >
-            <Base.Button buttonType={button.type} className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image") && this.decorateCSS("image")}`}>
+            <Base.Button buttonType={button.type} className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image")?.url && this.decorateCSS("image")}`}>
               {button.text}
             </Base.Button>
           </div>
-          {(this.getComponentState("is_video_visible") && this.getPropValue("videoUrl")) && (
+          {(this.getComponentState("is_video_visible") && this.getPropValue("videoUrl")?.url) && (
 
             <Base.Overlay
               onClick={() => this.setComponentState("is_video_visible", false)}
@@ -80,24 +97,21 @@ class About2 extends BaseAbout {
                 <div
                   className={this.decorateCSS("video")}
                 >
-                  <video
+                  <Base.Media
+                    value={this.getPropValue("videoUrl")}
+                    className={this.decorateCSS("player")}
                     onClick={(event) => {
                       event.stopPropagation();
                     }}
-                    controls
-                    className={this.decorateCSS("player")}
-                    src={this.getPropValue("videoUrl")}
-                  ></video>
+                  />
 
                 </div>
               </div>
               {closeIcon && (
                 <div className={this.decorateCSS("close-icon-box")}>
-                  <Base.Icon
-                    propsIcon={{
-                      className: this.decorateCSS("close-icon"),
-                    }}
-                    name={closeIcon}
+                  <Base.Media
+                    value={this.getPropValue("closeIcon")}
+                    className={this.decorateCSS("close-icon")}
                   />
                 </div>
               )}

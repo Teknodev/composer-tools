@@ -10,7 +10,7 @@ interface ListItem {
   description: string;
 }
 interface Icon {
-  icon: string;
+  icon: { type: string; name: string };
   link: string;
 }
 class About1 extends BaseAbout {
@@ -25,18 +25,29 @@ class About1 extends BaseAbout {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "GoChevronDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GoChevronDown",
+      },
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9f9bd2970002c6286f3?alt=media&timestamp=1719564173697",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9f9bd2970002c6286f3?alt=media&timestamp=1719564173697",
+      },
     });
 
     this.addProp({
@@ -118,10 +129,16 @@ class About1 extends BaseAbout {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaFacebook",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebook",
+              },
             },
             {
               type: "page",
@@ -137,10 +154,16 @@ class About1 extends BaseAbout {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaInstagram",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
             {
               type: "page",
@@ -156,10 +179,16 @@ class About1 extends BaseAbout {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaPinterest",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaPinterest",
+              },
             },
             {
               type: "page",
@@ -175,10 +204,16 @@ class About1 extends BaseAbout {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaLinkedin",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedin",
+              },
             },
             {
               type: "page",
@@ -221,9 +256,9 @@ class About1 extends BaseAbout {
                   {this.getPropValue("sectionTitle")}
                 </Base.SectionTitle>
                 {icon && (
-                  <Base.Icon
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                    name={this.getPropValue("icon")}
+                  <Base.Media
+                    value={this.getPropValue("icon")}
+                    className={this.decorateCSS("icon")}
                   />
                 )}
               </Base.Row>
@@ -235,10 +270,9 @@ class About1 extends BaseAbout {
                 className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
-                <img
+                <Base.Media
+                  value={this.getPropValue("image")}
                   className={this.decorateCSS("image")}
-                  src={image}
-                  alt={this.castToString(title)}
                 />
               </Base.GridCell>
             )}
@@ -267,9 +301,9 @@ class About1 extends BaseAbout {
                 return (
                   icons.icon && (
                     <ComposerLink path={icons.link}>
-                      <Base.Icon
-                        propsIcon={{ className: this.decorateCSS("Icon") }}
-                        name={icons.icon}
+                      <Base.Media
+                        value={icons.icon}
+                        className={this.decorateCSS("Icon")}
                       />
                     </ComposerLink>
                   )

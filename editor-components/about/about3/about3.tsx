@@ -55,26 +55,42 @@ class About3 extends BaseAbout {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "phoneIcon",
       displayer: "Icon",
-      value: "BsTelephoneOutbound",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsTelephoneOutbound",
+      },
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image1",
       displayer: "image1",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media",
+      },
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image2",
       displayer: "image2",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media",
+      },
     });
 
     this.addProp({
@@ -162,9 +178,9 @@ class About3 extends BaseAbout {
 
                 {(this.getPropValue("phoneIcon") || isPhoneExist) && (
                   <div className={this.decorateCSS("phone-icon")}>
-                    <Base.Icon
-                      propsIcon={{ className: this.decorateCSS("icon") }}
-                      name={this.getPropValue("phoneIcon")}
+                    <Base.Media
+                      value={this.getPropValue("phoneIcon")}
+                      className={this.decorateCSS("icon")}
                     />
                     {isPhoneExist && (
                       <Base.H2 className={this.decorateCSS("phone")}>
@@ -196,17 +212,15 @@ class About3 extends BaseAbout {
                   )}
                 </div>
                 {isImage1Exist && (
-                  <img
-                    src={this.getPropValue("image1")}
-                    alt="Image 1"
+                  <Base.Media
+                    value={this.getPropValue("image1")}
                     className={`${this.decorateCSS("image1")} ${!isImage2Exist ? this.decorateCSS("no-image") : ""}`}
                   />
                 )}
 
                 {isImage2Exist && (
-                  <img
-                    src={this.getPropValue("image2")}
-                    alt="Image 2"
+                  <Base.Media
+                    value={this.getPropValue("image2")}
                     className={`${this.decorateCSS("image2")} ${!isImage1Exist ? this.decorateCSS("no-image") : ""} `}
                   />
                 )}

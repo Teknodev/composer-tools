@@ -31,10 +31,16 @@ class About6 extends BaseAbout {
             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a liquip ex ea commodo consequat. Duis aute irure dolor in reprehen derit in voluptate velit esse cillum dolore eu fugiat nulla pariatur ullamco laboris nisi ut."
         })
         this.addProp({
-            type: "image",
+            type: "media",
             key: "signature",
             displayer: "Signature",
-            value: "https://swissdelight.qodeinteractive.com/wp-content/uploads/2021/01/h1-author-img2.png"
+            additionalParams: {
+                availableTypes: ["image"],
+            },
+            value: {
+                type: "image",
+                url: "https://swissdelight.qodeinteractive.com/wp-content/uploads/2021/01/h1-author-img2.png"
+            }
         })
         this.addProp({
             type: "string",
@@ -115,7 +121,10 @@ class About6 extends BaseAbout {
                                 )}>
                                     {signature && (
                                         <div className={this.decorateCSS("signature")}>
-                                            <img src={signature} alt={signature} className={this.decorateCSS("signature-image")} />
+                                            <Base.Media
+                                                value={this.getPropValue("signature")}
+                                                className={this.decorateCSS("signature-image")}
+                                            />
                                         </div>
                                     )}
                                     {this.castToString(name) && (

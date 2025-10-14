@@ -3,7 +3,7 @@ import styles from "./about7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type ItemType ={
-    image: string;
+    image: { type: string; url: string };
     year: number;
     subtitle: React.JSX.Element;
     title: React.JSX.Element;
@@ -18,10 +18,16 @@ class About7 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-        type: "image",
+        type: "media",
         key: "backgroundImage",
         displayer: "Background Image",
-        value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6819c14f2bb4c4002cf20be0?alt=media",
+        additionalParams: {
+            availableTypes: ["image"],
+        },
+        value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6819c14f2bb4c4002cf20be0?alt=media",
+        },
     });
     this.addProp({
         type: "array",
@@ -34,10 +40,16 @@ class About7 extends BaseAbout {
                 displayer: "Item",
                 value:[
                     {
-                        type: "image",
+                        type: "media",
                         key: "image",
                         displayer: "Image",
-                        value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680f7e4bc1ef0f002c966f97?alt=media&timestamp=1745845837054",
+                        additionalParams: {
+                            availableTypes: ["image"],
+                        },
+                        value: {
+                            type: "image",
+                            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680f7e4bc1ef0f002c966f97?alt=media&timestamp=1745845837054",
+                        },
                     },
                     {
                         type: "number",
@@ -95,10 +107,16 @@ class About7 extends BaseAbout {
                 displayer: "Item",
                 value:[
                     {
-                        type: "image",
+                        type: "media",
                         key: "image",
                         displayer: "Image",
-                        value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680f8a2bc1ef0f002c967e7e?alt=media&timestamp=1745848879366",
+                        additionalParams: {
+                            availableTypes: ["image"],
+                        },
+                        value: {
+                            type: "image",
+                            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680f8a2bc1ef0f002c967e7e?alt=media&timestamp=1745848879366",
+                        },
                     },
                     {
                         type: "number",
@@ -162,7 +180,7 @@ class About7 extends BaseAbout {
     const items = this.castToObject<ItemType[]>("items");
     const isBackgroundImageExist = this.getPropValue("backgroundImage")
     return (
-      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${this.getPropValue("backgroundImage")})`}}>
+      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${this.getPropValue("backgroundImage")?.url})`}}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {items.map((item, index: number)=> {
             return(
@@ -170,7 +188,10 @@ class About7 extends BaseAbout {
                     {item.image && (
                     <div className={this.decorateCSS("left-container")}>
                         <div className={this.decorateCSS("image-wrapper")}>
-                            <img src={item.image} className={this.decorateCSS("image")}/>
+                            <Base.Media
+                                value={item.image}
+                                className={this.decorateCSS("image")}
+                            />
                         </div>
                     </div>
                     )}
