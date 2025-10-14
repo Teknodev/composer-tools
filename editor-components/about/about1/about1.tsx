@@ -6,8 +6,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 
 interface ListItem {
-  title: string;
-  description: string;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 }
 interface Icon {
   icon: { type: string; name: string };
@@ -16,6 +16,13 @@ interface Icon {
 class About1 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Story",
+    });
 
     this.addProp({
       type: "string",
@@ -48,6 +55,13 @@ class About1 extends BaseAbout {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9f9bd2970002c6286f3?alt=media&timestamp=1719564173697",
       },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
 
     this.addProp({
@@ -241,6 +255,7 @@ class About1 extends BaseAbout {
   }
   render() {
     const image = this.getPropValue("image");
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("sectionTitle");
     const icon = this.getPropValue("icon");
     const rightItems = this.castToObject<Icon[]>("right-items")
@@ -249,19 +264,24 @@ class About1 extends BaseAbout {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {title && (
+          {(this.castToString(subtitle) || this.castToString(title) || icon) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              <Base.Row className={this.decorateCSS("title")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {this.getPropValue("sectionTitle")}
+                  {title}
                 </Base.SectionTitle>
-                {icon && (
+              )}
+              {icon && (
                   <Base.Media
                     value={this.getPropValue("icon")}
                     className={this.decorateCSS("icon")}
                   />
                 )}
-              </Base.Row>
             </Base.VerticalContent>
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
@@ -274,18 +294,21 @@ class About1 extends BaseAbout {
                   value={this.getPropValue("image")}
                   className={this.decorateCSS("image")}
                 />
+                {this.getPropValue("overlay") && (
+                  <div className={this.decorateCSS("overlay")} />
+                )}
               </Base.GridCell>
             )}
             {textContent.length > 0 && (
               <Base.GridCell className={this.decorateCSS("content-right")}>
                 {textContent.map((item) => (
                   <Base.VerticalContent className={this.decorateCSS("item")}>
-                    {item.title && (
+                    {this.castToString(item.title) && (
                       <Base.H2 className={this.decorateCSS("title")}>
                         {item.title}
                       </Base.H2>
                     )}
-                    {item.description && (
+                    {this.castToString(item.description) && (
                       <Base.P className={this.decorateCSS("description")}>
                         {item.description}
                       </Base.P>
@@ -303,7 +326,7 @@ class About1 extends BaseAbout {
                     <ComposerLink path={icons.link}>
                       <Base.Media
                         value={icons.icon}
-                        className={this.decorateCSS("Icon")}
+                        className={this.decorateCSS("icon-item")}
                       />
                     </ComposerLink>
                   )

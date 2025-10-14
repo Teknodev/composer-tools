@@ -4,7 +4,8 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type ItemType ={
     image: { type: string; url: string };
-    year: number;
+    overlay: boolean;
+    year: React.JSX.Element;
     subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
@@ -18,17 +19,31 @@ class About7 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-        type: "media",
-        key: "backgroundImage",
+        type: "object",
+        key: "background-image",
         displayer: "Background Image",
-        additionalParams: {
-            availableTypes: ["image"],
-        },
-        value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6819c14f2bb4c4002cf20be0?alt=media",
-        },
+        value: [
+            {
+                type: "media",
+                key: "image",
+                displayer: "Image",
+                additionalParams: {
+                    availableTypes: ["image"],
+                },
+                value: {
+                    type: "image",
+                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6819c14f2bb4c4002cf20be0?alt=media",
+                },
+            },
+            {
+                type: "boolean",
+                key: "overlay",
+                displayer: "Overlay",
+                value: false,
+            },
+        ],
     });
+
     this.addProp({
         type: "array",
         key: "items",
@@ -52,10 +67,16 @@ class About7 extends BaseAbout {
                         },
                     },
                     {
-                        type: "number",
+                        type: "boolean",
+                        key: "overlay",
+                        displayer: "Overlay",
+                        value: false,
+                    },
+                    {
+                        type: "string",
                         key: "year",
-                        displayer: "Year",
-                        value: 1930,
+                        displayer: "Progress Text",
+                        value: "1930",
                     },
                     {
                         type: "string",
@@ -119,10 +140,16 @@ class About7 extends BaseAbout {
                         },
                     },
                     {
-                        type: "number",
+                        type: "boolean",
+                        key: "overlay",
+                        displayer: "Overlay",
+                        value: false,
+                    },
+                    {
+                        type: "string",
                         key: "year",
                         displayer: "Year",
-                        value: 1960,
+                        value: "1960",
                     },
                     {
                         type: "string",
@@ -178,9 +205,13 @@ class About7 extends BaseAbout {
 
   render() {
     const items = this.castToObject<ItemType[]>("items");
-    const isBackgroundImageExist = this.getPropValue("backgroundImage")
+    const backgroundImage = this.castToObject<any>("background-image");
+    const isBackgroundImageExist = backgroundImage?.image;
     return (
-      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${this.getPropValue("backgroundImage")?.url})`}}>
+      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${backgroundImage?.image?.url})`}}>
+        {backgroundImage?.overlay && backgroundImage.image && (
+          <div className={this.decorateCSS("background-overlay")} />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {items.map((item, index: number)=> {
             return(
@@ -192,10 +223,13 @@ class About7 extends BaseAbout {
                                 value={item.image}
                                 className={this.decorateCSS("image")}
                             />
+                            {item.overlay && (
+                                <div className={this.decorateCSS("overlay")} />
+                            )}
                         </div>
                     </div>
                     )}
-                    {(item.lineActive || item.dotActive || item.middleLineActive || item.year)  && (
+                    {(item.lineActive || item.dotActive || item.middleLineActive || this.castToString(item.year))  && (
                         <div className={this.decorateCSS("middle-container")}>
                             {item.lineActive && (<div className={this.decorateCSS("line-wrapper")}><div className={`${this.decorateCSS("line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div></div>)}
                             {item.dotActive && (
@@ -203,11 +237,11 @@ class About7 extends BaseAbout {
                                     <div className={`${this.decorateCSS("dot")} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}></div>
                                 </div>
                             )}
-                            {(item.middleLineActive || item.year) && (
+                            {(item.middleLineActive || this.castToString(item.year)) && (
                                 <div className={`${this.decorateCSS("middle-line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
                                     <div className={`${this.decorateCSS("line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
                                         {item.middleLineActive && (<div className={`${this.decorateCSS("middle-line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div>)}                                
-                                        {item.year && (<div className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}>{item.year}</div>)}
+                                        {this.castToString(item.year) && (<div className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}>{item.year}</div>)}
                                     </div>
                                 </div>
                             )}

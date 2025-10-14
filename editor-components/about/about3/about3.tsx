@@ -12,14 +12,14 @@ class About3 extends BaseAbout {
 
     this.addProp({
       type: "string",
-      key: "aboutTitle",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "About resorts",
     });
 
     this.addProp({
       type: "string",
-      key: "mainTitle",
+      key: "title",
       displayer: "Title",
       value: "Relax at the luxury resorts around the entire world.",
     });
@@ -43,14 +43,14 @@ class About3 extends BaseAbout {
     this.addProp({
       type: "string",
       key: "rightWeakText",
-      displayer: "Right Weak Text",
+      displayer: "Upper Text",
       value: "Started In",
     });
 
     this.addProp({
       type: "string",
       key: "rightBoldText",
-      displayer: "Right Bold Text",
+      displayer: "Lower Text",
       value: "1995",
     });
 
@@ -68,29 +68,55 @@ class About3 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
-      key: "image1",
-      displayer: "image1",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media",
-      },
+      type: "object",
+      key: "back-image",
+      displayer: "Back Image",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
-      type: "media",
-      key: "image2",
-      displayer: "image2",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media",
-      },
+      type: "object",
+      key: "front-image",
+      displayer: "Front Image",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -112,9 +138,9 @@ class About3 extends BaseAbout {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const isAboutTitleExist = this.castToString(
-      this.getPropValue("aboutTitle")
+      this.getPropValue("subtitle")
     );
-    const isMainTitleExist = this.castToString(this.getPropValue("mainTitle"));
+    const isMainTitleExist = this.castToString(this.getPropValue("title"));
     const isDescriptionExist = this.castToString(
       this.getPropValue("description")
     );
@@ -126,8 +152,10 @@ class About3 extends BaseAbout {
     const isRightBoldTextExist = this.castToString(
       this.getPropValue("rightBoldText")
     );
-    const isImage1Exist = this.getPropValue("image1");
-    const isImage2Exist = this.getPropValue("image2");
+    const backImage = this.castToObject<any>("back-image");
+    const frontImage = this.castToObject<any>("front-image");
+    const isImage1Exist = backImage?.image;
+    const isImage2Exist = frontImage?.image;
     const showDiv =
       isRightWeakTextExist ||
       isRightBoldTextExist ||
@@ -149,14 +177,14 @@ class About3 extends BaseAbout {
             >
               {isAboutTitleExist && (
                 <Base.SectionSubTitle
-                  className={this.decorateCSS("about-title")}
+                  className={this.decorateCSS("subtitle")}
                 >
-                  {this.getPropValue("aboutTitle")}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
               {isMainTitleExist && (
-                <Base.SectionTitle className={this.decorateCSS("maintitle")}>
-                  {this.getPropValue("mainTitle")}
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
               {isDescriptionExist && (
@@ -167,25 +195,25 @@ class About3 extends BaseAbout {
                 </Base.SectionDescription>
               )}
 
-              <div className={this.decorateCSS("button-icon")}>
+              <div className={this.decorateCSS("button-container")}>
                 {isButtonTextExist && (
                   <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("about-button")}>
-                      {button.text}
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                     </Base.Button>
                   </ComposerLink>
                 )}
 
                 {(this.getPropValue("phoneIcon") || isPhoneExist) && (
-                  <div className={this.decorateCSS("phone-icon")}>
+                  <div className={this.decorateCSS("phone-section")}>
                     <Base.Media
                       value={this.getPropValue("phoneIcon")}
                       className={this.decorateCSS("icon")}
                     />
                     {isPhoneExist && (
-                      <Base.H2 className={this.decorateCSS("phone")}>
+                      <Base.H4 className={this.decorateCSS("text")}>
                         {this.getPropValue("phone")}
-                      </Base.H2>
+                      </Base.H4>
                     )}
                   </div>
                 )}
@@ -201,28 +229,38 @@ class About3 extends BaseAbout {
               >
                 <div className={this.decorateCSS("image-text")}>
                   {isRightWeakTextExist && (
-                    <Base.P className={this.decorateCSS("weak-text")}>
+                    <Base.P className={this.decorateCSS("upper-text")}>
                       {this.getPropValue("rightWeakText")}
                     </Base.P>
                   )}
                   {isRightBoldTextExist && (
-                    <Base.P className={this.decorateCSS("bold-text")}>
+                    <Base.P className={this.decorateCSS("lower-text")}>
                       {this.getPropValue("rightBoldText")}
                     </Base.P>
                   )}
                 </div>
                 {isImage1Exist && (
-                  <Base.Media
-                    value={this.getPropValue("image1")}
-                    className={`${this.decorateCSS("image1")} ${!isImage2Exist ? this.decorateCSS("no-image") : ""}`}
-                  />
+                  <div className={`${this.decorateCSS("back-image")} ${!isImage2Exist ? this.decorateCSS("no-image") : ""}`}>
+                    <Base.Media
+                      value={backImage.image}
+                      className={this.decorateCSS("image")}
+                    />
+                    {backImage?.overlay && (
+                      <div className={this.decorateCSS("overlay")} />
+                    )}
+                  </div>
                 )}
 
                 {isImage2Exist && (
-                  <Base.Media
-                    value={this.getPropValue("image2")}
-                    className={`${this.decorateCSS("image2")} ${!isImage1Exist ? this.decorateCSS("no-image") : ""} `}
-                  />
+                  <div className={`${this.decorateCSS("front-image")} ${!isImage1Exist ? this.decorateCSS("no-image") : ""} `}>
+                    <Base.Media
+                      value={frontImage.image}
+                      className={this.decorateCSS("image")}
+                    />
+                    {frontImage?.overlay && (
+                      <div className={this.decorateCSS("overlay")} />
+                    )}
+                  </div>
                 )}
               </div>
             </div>

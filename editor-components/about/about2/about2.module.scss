@@ -8,6 +8,17 @@
     overflow: hidden;
     min-height: 700px;
 
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--composer-overlay-color);
+        z-index: 0;
+        pointer-events: none;
+    }
+
     &[data-animation~="animate1"] {
         &::before {
             content: '';
@@ -61,15 +72,16 @@
         display: flex;
         justify-content: center;
         z-index: 1;
-        .title-wrapper{
             .title{
-                font-size: 2rem;
-                &.image{
+                &.with-image{
                     color: white;
-                    text-decoration-color: white;
+                    border-bottom: 1px solid white;
+         
+                }
+                .text {
+                    content: "";
                 }
             }
-        }
         .overlay {
             .video-container {
               height: fit-content;
@@ -114,12 +126,5 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         min-height: 500px;
-        .max-content {
-            .title-wrapper{
-                .title, .title-no-image {
-                    font-size: 2rem;
-                }
-            }
-        }
     }
 }

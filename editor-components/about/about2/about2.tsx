@@ -23,7 +23,7 @@ class About2 extends BaseAbout {
 
     this.addProp({
       type: "media",
-      displayer: "Cover image of video",
+      displayer: "Image",
       key: "cover-image",
       additionalParams: {
         availableTypes: ["image"],
@@ -33,6 +33,15 @@ class About2 extends BaseAbout {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206",
       },
     });
+
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
     this.addProp({
       type: "media",
       key: "closeIcon",
@@ -75,22 +84,19 @@ class About2 extends BaseAbout {
         }}
         data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
+        {this.getPropValue("overlay") && (
+          <div className={this.decorateCSS("overlay")} />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("title-wrapper")}
-            onClick={() => {
-              this.setComponentState("is_video_visible", true);
-            }}
-          >
-            <Base.Button buttonType={button.type} className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image")?.url && this.decorateCSS("image")}`}>
-              {button.text}
+            <Base.Button onClick={() => {this.setComponentState("is_video_visible", true);}}
+             buttonType={button.type} className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image")?.url && this.decorateCSS("with-image")}`}>
+              <Base.P className={this.decorateCSS("text")}>{button.text}</Base.P>
             </Base.Button>
-          </div>
           {(this.getComponentState("is_video_visible") && this.getPropValue("videoUrl")?.url) && (
 
             <Base.Overlay
               onClick={() => this.setComponentState("is_video_visible", false)}
-              className={this.decorateCSS("overlay")}
+              className={this.decorateCSS("video-overlay")}
               isVisible={true}
             >
               <div className={this.decorateCSS("video-container")}>
