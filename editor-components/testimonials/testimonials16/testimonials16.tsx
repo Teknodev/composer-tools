@@ -8,7 +8,15 @@ import { Base } from "../../../composer-base-components/base/base";
 
 class Testimonials16 extends Testimonials {
   private timer: any = null;
+  // drag/swipe state
+  private dragStartX: number | null = null;
+  private dragging: boolean = false;
 
+  // anim lock
+  private animating = false;
+
+  // --- BG crossfade state (yalnızca arka plan için eklendi) ---
+  // İki katman: A ve B. showA true ise A görünür, false ise B.
   constructor(props?: any) {
     super(props, styles);
 
@@ -16,9 +24,18 @@ class Testimonials16 extends Testimonials {
     this.setComponentState("idx", 0);
     this.setComponentState("imgErrIdx", -1);
     this.setComponentState("logoErrIdx", -1);
-    this.setComponentState("autoplayMs", 6000); // progress ile eşit
+    this.setComponentState("autoplayMs", 6000);
 
-    // Başlık (Duda -> Blinkpage)
+    // anim state
+    this.setComponentState("animCls", "");   // card anim class
+    this.setComponentState("quoteKey", 0);   // quote yeniden mount için
+
+    // BG state
+    this.setComponentState("bgA", "");       // aktif url (katman A)
+    this.setComponentState("bgB", "");       // pasif url (katman B)
+    this.setComponentState("bgShowA", true); // hangi katman görünür
+
+    // Başlık
     this.addProp({
       type: "string",
       key: "title",
@@ -26,34 +43,34 @@ class Testimonials16 extends Testimonials {
       value: "Hear from\nBlinkpage's customers",
     });
 
-    // Üst sağ linkler (yan panelden ayarlanır)
+    // Üst sağ linkler
     this.addProp({
       type: "array",
       key: "links",
       displayer: "Links",
       value: [
-      {
-        type: "object",
-        key: "link",
-        displayer: "Link",
-        value: [
-        { type: "string", key: "text", displayer: "Text", value: "Read Blinkpage reviews" },
-        { type: "page", key: "url", displayer: "URL", value: "#" },
-        ],
-      },
-      {
-        type: "object",
-        key: "link",
-        displayer: "Link",
-        value: [
-        { type: "string", key: "text", displayer: "Text", value: "View all success stories" },
-        { type: "page", key: "url", displayer: "URL", value: "#" },
-        ],
-      },
+        {
+          type: "object",
+          key: "link",
+          displayer: "Link",
+          value: [
+            { type: "string", key: "text", displayer: "Text", value: "Read Blinkpage reviews" },
+            { type: "page", key: "url", displayer: "URL", value: "" },
+          ],
+        },
+        {
+          type: "object",
+          key: "link",
+          displayer: "Link",
+          value: [
+            { type: "string", key: "text", displayer: "Text", value: "View all success stories" },
+            { type: "page", key: "url", displayer: "URL", value: "" },
+          ],
+        },
       ],
     });
 
-    // REGISTER (Duda -> Blinkpage)
+    // Liste
     this.addProp({
       type: "array",
       key: "testimonials",
@@ -73,7 +90,7 @@ class Testimonials16 extends Testimonials {
           { type: "string", key: "quote",   displayer: "Quote",   value: "Blinkpage’s AI Assistant should save us 3 to 6 hours on most websites." },
           { type: "string", key: "author",  displayer: "Author",  value: "Sarah Johnson" },
           { type: "string", key: "role",    displayer: "Role",    value: "Tech Journalist" },
-          { type: "string", key: "company", displayer: "Company", value: "Forbes" },
+          { type: "string", key: "company", displayer: "Company", value: "" },
         ],
         [
           { type: "string", key: "logo",    displayer: "Logo",    value: "https://irp.cdn-website.com/a8ff2f1c/dms3rep/multi/fix8_logo.svg" },
@@ -81,7 +98,7 @@ class Testimonials16 extends Testimonials {
           { type: "string", key: "quote",   displayer: "Quote",   value: "If I can give my clients value—even if they don’t have the budget—I will. Blinkpage’s AI tools make that possible." },
           { type: "string", key: "author",  displayer: "Author",  value: "Michael Chen" },
           { type: "string", key: "role",    displayer: "Role",    value: "Senior Writer" },
-          { type: "string", key: "company", displayer: "Company", value: "Wired" },
+          { type: "string", key: "company", displayer: "Company", value: "fix8" },
         ],
       ],
     });
@@ -91,87 +108,8 @@ class Testimonials16 extends Testimonials {
     return "Testimonials 16";
   }
 
-  // ===== helpers (mevcudu bozmadan eklediklerim) =====
-  private val = (row: any, key: string, fb = "") => {
-    if (!row) return fb;
-    if (Array.isArray(row)) return (row.find((x: any) => x?.key === key)?.value) ?? fb;
-    if (typeof row === "object") return (row as any)[key] ?? fb;
-    return fb;
-  };
-  private autoplayMs = () => this.getComponentState("autoplayMs") || 6000;
-
-  /** Editörde miyiz? */
-  private isEditor = (): boolean => {
-    try {
-      if (typeof (this as any).isEditing === "function") return (this as any).isEditing();
-    } catch {}
-    try {
-      if (typeof window !== "undefined" && (window as any).__IS_EDITOR__ === true) return true;
-    } catch {}
-    return false;
-  };
-
-  /** Inline edit span — kart içi metinler için */
-  private renderEditableSpan(
-    value: string,
-    onCommit: (val: string) => void,
-    className?: string,
-    placeholder?: string
-  ): JSX.Element {
-    const canEdit = this.isEditor();
-    return (
-      <span
-        contentEditable={canEdit}
-        suppressContentEditableWarning
-        className={className}
-        role={canEdit ? "textbox" : undefined}
-        aria-label={placeholder}
-        onMouseDown={(e) => { if (canEdit) e.stopPropagation(); }}
-        onClick={(e) => { if (canEdit) { e.preventDefault(); e.stopPropagation(); } }}
-        onBlur={(e) => onCommit((e.currentTarget as HTMLElement).innerText)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            (e.currentTarget as HTMLElement).blur();
-          }
-        }}
-        style={{ pointerEvents: "auto", userSelect: "text", outline: "none" }}
-      >
-        {value || placeholder || ""}
-      </span>
-    );
-  }
-
-  /** Prop setter'lar */
-  private setTopLevelString = (key: string, val: string) => {
-    (this as any).setPropValue?.(key, val);
-  };
-  private setArrayField = (
-    arrayKey: "testimonials" | "links",
-    index: number,
-    fieldKey: string,
-    val: string
-  ) => {
-    const cur = (this.getPropValue(arrayKey) as any[]) || [];
-    const next = cur.map((row, i) => {
-      if (i !== index) return row;
-      if (Array.isArray(row)) {
-        return row.map((cell: any) => (cell?.key === fieldKey ? { ...cell, value: val } : cell));
-      }
-      return { ...row, [fieldKey]: val };
-    });
-    (this as any).setPropValue?.(arrayKey, next);
-  };
-
-  /** 6 üstü kart eklenmesini sınırla */
-  componentDidUpdate(): void {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
-    if (Array.isArray(list) && list.length > 6) {
-      (this as any).setPropValue?.("testimonials", list.slice(0, 6));
-    }
-  }
-
   // ===== autoplay =====
+  private autoplayMs = () => this.getComponentState("autoplayMs") || 6000;
   private start = () => {
     if (this.timer) return;
     const items = (this.getPropValue("testimonials") as any[]) || [];
@@ -181,26 +119,89 @@ class Testimonials16 extends Testimonials {
   private stop = () => { if (this.timer) { clearTimeout(this.timer); this.timer = null; } };
   private restart = () => { this.stop(); this.start(); };
 
-  componentDidMount(): void { this.start(); }
+  componentDidMount(): void {
+    // İlk arka planı mevcut karttan başlat
+    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const idx = this.getComponentState("idx") || 0;
+    const row = list[idx] || [];
+    const img = (this.getPropValue("image", { parent_object: row, as_string: true }) as string) || "";
+    this.setComponentState("bgA", img);
+    this.start();
+  }
+
   componentWillUnmount(): void { this.stop(); }
 
-  private prev = () => {
+  componentDidUpdate(): void {
+    // 6 üstü kart eklenmesini sınırla
+    const list = (this.getPropValue("testimonials") as any[]) || [];
+    if (Array.isArray(list) && list.length > 6) {
+      (this as any).setPropValue?.("testimonials", list.slice(0, 6));
+    }
+  }
+
+  // --- Yardımcı: BG crossfade'i tetikle ---
+  private crossfadeBgToIndex(nextIdx: number) {
+    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const rowNext = list[nextIdx] || [];
+    const urlNext = (this.getPropValue("image", { parent_object: rowNext, as_string: true }) as string) || "";
+    if (!urlNext) return;
+
+    const showA = !!this.getComponentState("bgShowA");
+    if (showA) {
+      this.setComponentState("bgB", urlNext);
+    } else {
+      this.setComponentState("bgA", urlNext);
+    }
+    // Görünür katmanı değiştir -> opacity transition devreye girer
+    this.setComponentState("bgShowA", !showA);
+  }
+
+  // === TRANSITION ANIMATION ===
+  private playTransition = (dir: "next" | "prev") => {
+    // animating lock kaldırıldı, her tıklamada animasyon başlatılır
+    const outCls = dir === "next" ? "card--slide-out-left" : "card--slide-out-right";
+    const inCls  = dir === "next" ? "card--slide-in-right" : "card--slide-in-left";
+
+    const cur = this.getComponentState("idx") || 0;
     const list = (this.getPropValue("testimonials") as any[]) || [];
     const total = list.length || 1;
-    const cur = this.getComponentState("idx") || 0;
-    const target = (cur - 1 + total) % total;
-    this.setComponentState("idx", target);
-    this.restart();
+
+    this.setComponentState("animCls", outCls);
+
+    const OUT_MS = 300;
+    const IN_MS  = 2000; // orijinalinden aynen bırakıldı
+
+    // BG crossfade'ini HEMEN başlat (kart animasyonuyla aynı anda)
+    const targetPreview = dir === "next" ? (cur + 1) % total : (cur - 1 + total) % total;
+    this.crossfadeBgToIndex(targetPreview);
+
+    window.setTimeout(() => {
+      const target = targetPreview;
+      this.setComponentState("idx", target);
+      this.setComponentState("quoteKey", (this.getComponentState("quoteKey") || 0) + 1);
+      this.setComponentState("animCls", inCls);
+
+      window.setTimeout(() => {
+        this.setComponentState("animCls", "");
+        // animating lock yok, tekrar tıklanabilir
+        this.restart();
+      }, IN_MS);
+    }, OUT_MS);
   };
-  private next = (_fromAuto = false) => {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
-    const total = list.length || 1;
+
+  private prev = () => this.playTransition("prev");
+  private next = (_fromAuto = false) => this.playTransition("next");
+  private go = (i: number) => {
     const cur = this.getComponentState("idx") || 0;
-    const target = (cur + 1) % total;
-    this.setComponentState("idx", target);
-    this.restart();
+    if (i === cur) return;
+    const dir = i > cur ? "next" : "prev";
+    const step = () => {
+      const now = this.getComponentState("idx") || 0;
+      if (now === i) return;
+      this.playTransition(dir);
+    };
+    step();
   };
-  private go = (i: number) => { this.setComponentState("idx", i); this.restart(); };
 
   // error handlers
   private onImgError = (atIdx: number) => {
@@ -212,86 +213,143 @@ class Testimonials16 extends Testimonials {
     if (badIdx !== atIdx) this.setComponentState("logoErrIdx", atIdx);
   };
 
+  // Mouse/touch swipe
+  private onDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    this.dragging = true;
+    this.dragStartX = "touches" in e ? e.touches[0].clientX : e.clientX;
+  };
+  private onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!this.dragging || this.dragStartX === null) return;
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const dx = clientX - this.dragStartX;
+    if (dx > 60) { this.prev(); this.dragging = false; this.dragStartX = null; }
+    else if (dx < -60) { this.next(); this.dragging = false; this.dragStartX = null; }
+  };
+  private onDragEnd = () => { this.dragging = false; this.dragStartX = null; };
+
   render() {
-    const title = (this.getPropValue("title") as string) || "";
+    const titleEl = this.getPropValue("title");
     const links = (this.getPropValue("links") as any[]) || [];
-    const list  = ((this.getPropValue("testimonials") as any[]) || []).slice(0, 6); // render güvenliği
+    const list  = ((this.getPropValue("testimonials") as any[]) || []).slice(0, 6);
 
     const idx  = this.getComponentState("idx") || 0;
-    const row  = list[idx] || {};
+    const row  = list[idx] || ([] as any[]);
+    const quoteEl   = this.getPropValue("quote",   { parent_object: row });
+    const authorEl  = this.getPropValue("author",  { parent_object: row });
+    const roleEl    = this.getPropValue("role",    { parent_object: row });
+    const companyEl = this.getPropValue("company", { parent_object: row });
 
-    const logoRaw = this.val(row, "logo");
-    const imgVal  = this.val(row, "image");
-    const quote   = this.val(row, "quote");
-    const author  = this.val(row, "author");
-    const role    = this.val(row, "role");
-    const comp    = this.val(row, "company");
+    const authorStr  = (this.getPropValue("author",  { parent_object: row, as_string: true }) as string) || "";
+    const companyStr = (this.getPropValue("company", { parent_object: row, as_string: true }) as string) || "";
 
-    const rawUrl = typeof imgVal === "string" ? imgVal : (imgVal?.url ?? "");
-    const useImgFallback = this.getComponentState("imgErrIdx") === idx || !rawUrl;
+    const imgUrl  = (this.getPropValue("image", { parent_object: row, as_string: true }) as string) || "";
+    const logoStr = (this.getPropValue("logo",  { parent_object: row, as_string: true }) as string) || "";
+    const useImgFallback = this.getComponentState("imgErrIdx") === idx || !imgUrl;
 
     const isLogoUrl =
-      typeof logoRaw === "string" &&
-      (logoRaw.startsWith("http://") ||
-        logoRaw.startsWith("https://") ||
-        logoRaw.startsWith("data:image"));
-
+      typeof logoStr === "string" &&
+      (logoStr.startsWith("http://") || logoStr.startsWith("https://") || logoStr.startsWith("data:image"));
     const logoBroken = this.getComponentState("logoErrIdx") === idx;
 
     const durationMs = this.autoplayMs();
+    const animCls = this.getComponentState("animCls") || "";
+    const quoteKey = this.getComponentState("quoteKey") || 0;
+
+    // --- BG current values (render) ---
+    const bgA = (this.getComponentState("bgA") as string) || "";
+    const bgB = (this.getComponentState("bgB") as string) || "";
+    const bgShowA = !!this.getComponentState("bgShowA");
 
     return (
-      <Base.Container className={this.decorateCSS("root")}>
-        <Base.MaxContent className={this.decorateCSS("wrap")}>
+      // container'ı relative yapıp background katmanlarını yerleştiriyorum
+      <Base.Container className={this.decorateCSS("root")} style={{ position: "relative" }}>
+        {/* --- Çift katmanlı BLUR/ZOOOM arka plan: cross-fade ile yumuşak geçiş --- */}
+        {bgA && (
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 0,
+              backgroundImage: `url(${bgA})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              filter: "blur(28px)",
+              transform: "scale(1.12)",
+              opacity: bgShowA ? 1 : 0,
+              transition: "opacity 300ms ease-in-out",
+              pointerEvents: "none",
+            }}
+          />
+        )}
+        {bgB && (
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 0,
+              backgroundImage: `url(${bgB})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              filter: "blur(28px)",
+              transform: "scale(1.12)",
+              opacity: bgShowA ? 0 : 1,
+              transition: "opacity 300ms ease-in-out",
+              pointerEvents: "none",
+            }}
+          />
+        )}
+
+        <Base.MaxContent className={this.decorateCSS("wrap")} style={{ position: "relative", zIndex: 1 }}>
 
           {/* Header */}
           <div className={this.decorateCSS("hdr")}>
             <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.renderEditableSpan(
-                title,
-                (val) => this.setTopLevelString("title", val),
-                this.decorateCSS("title"),
-                "Title"
-              )}
+              {titleEl}
             </Base.SectionTitle>
+
             <div className={this.decorateCSS("lnks")}>
-              {links.map((l: any, i: number) => (
-                <ComposerLink
-                  key={i}
-                  path={this.val(l, "url", "#")}
-                  className={`${this.decorateCSS("lnk")} ${styles.lnkEnh}`}
-                >
-                  <span className={styles.lnkText}>{this.val(l, "text", "")}</span>
-                  {/* ok ikonları: başlangıçta ↗; hover'da → */}
-                  <svg
-                    className={styles.lnkArrow}
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    {/* düz sağ ok; başlangıçta CSS'te -45° döndürülüyor (↗ görünür) */}
-                    <path d="M3 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </ComposerLink>
-              ))}
+              {links.map((l: any, i: number) => {
+                const textEl = l?.getPropValue ? l.getPropValue("text") : null;
+                const href   = l?.getPropValue ? (l.getPropValue("url", { as_string: true }) as string) : "#";
+                return (
+                  <ComposerLink key={i} path={href || "#"} className={`${this.decorateCSS("lnkEnh")} ${styles.lnkEnh}`}>
+                    <span className={styles.lnkText}>{textEl}</span>
+                    <svg className={styles.lnkArrow} width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M3 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </ComposerLink>
+                );
+              })}
             </div>
           </div>
 
-          {/* Card (yazar bilgisi içeride, altta) */}
-          <div className={this.decorateCSS("card")}>
+          {/* Card */}
+          <div
+            className={`${this.decorateCSS("card")} ${animCls ? this.decorateCSS(animCls) : ""}`}
+            onMouseDown={this.onDragStart}
+            onMouseMove={this.onDragMove}
+            onMouseUp={this.onDragEnd}
+            onMouseLeave={this.onDragEnd}
+            onTouchStart={this.onDragStart}
+            onTouchMove={this.onDragMove}
+            onTouchEnd={this.onDragEnd}
+            style={{ touchAction: "pan-y" }}
+          >
             <div className={this.decorateCSS("imgBox")}>
               {useImgFallback ? (
                 <div className={`${this.decorateCSS("img")} ${this.decorateCSS("imgFallback")}`} />
               ) : (
                 <img
-                  src={rawUrl}
-                  alt={author || "testimonial"}
+                  src={imgUrl}
+                  alt={authorStr || "testimonial"}
                   className={this.decorateCSS("img")}
                   onError={() => this.onImgError(idx)}
                   loading="lazy"
+                  decoding="async"
+                  draggable={false}
                 />
               )}
             </div>
@@ -300,56 +358,36 @@ class Testimonials16 extends Testimonials {
               <div className={this.decorateCSS("logo")}>
                 {isLogoUrl && !logoBroken ? (
                   <img
-                    src={logoRaw}
-                    alt={comp || "logo"}
+                    src={logoStr}
+                    alt={companyStr || "logo"}
                     className={this.decorateCSS("logoImg")}
                     onError={() => this.onLogoError(idx)}
                     loading="lazy"
+                    decoding="async"
+                    draggable={false}
                   />
                 ) : (
-                  <span className={this.decorateCSS("logoText")}>{logoRaw}</span>
+                  <span className={this.decorateCSS("logoText")}>{logoStr}</span>
                 )}
               </div>
 
-              {/* QUOTE: inline edit */}
-              <blockquote className={this.decorateCSS("quote")}>
-                &quot;
-                {this.renderEditableSpan(
-                  quote,
-                  (val) => this.setArrayField("testimonials", idx, "quote", val),
-                  this.decorateCSS("quote"),
-                  "Quote"
-                )}
-                &quot;
+              {/* ORTA KISIM (quote) — animasyon burada */}
+              <blockquote
+                key={quoteKey}
+                className={`${this.decorateCSS("quote")} ${this.decorateCSS("quote_in")}`}
+              >
+                &quot;{this.getPropValue("quote", { parent_object: row })}&quot;
               </blockquote>
 
               <div className={this.decorateCSS("hr")} />
             </div>
 
-            {/* AUTHOR / ROLE / COMPANY: inline edit */}
             <p className={this.decorateCSS("author")}>
-              <strong>
-                {this.renderEditableSpan(
-                  author,
-                  (val) => this.setArrayField("testimonials", idx, "author", val),
-                  this.decorateCSS("author"),
-                  "Author"
-                )}
-              </strong>
-              {role ? " - " : ""}
-              {this.renderEditableSpan(
-                role,
-                (val) => this.setArrayField("testimonials", idx, "role", val),
-                this.decorateCSS("role"),
-                "Role"
-              )}
-              {comp ? ", " : ""}
-              {this.renderEditableSpan(
-                comp,
-                (val) => this.setArrayField("testimonials", idx, "company", val),
-                this.decorateCSS("company"),
-                "Company"
-              )}
+              <strong>{authorEl}</strong>
+              {roleEl ? " - " : ""}
+              {roleEl}
+              {companyEl ? ", " : ""}
+              {companyEl}
             </p>
           </div>
 

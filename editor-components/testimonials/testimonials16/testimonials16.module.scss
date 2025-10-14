@@ -3,10 +3,9 @@
 /* Sayfa zemini */
 .root {
     background: var(--composer-html-background);
+    position: relative;
+    z-index: 0;
 }
-
-
-
 
 /* Header */
 .hdr {
@@ -26,20 +25,7 @@
     display: flex;
     gap: 24px;
     padding-top: 10px;
-}
-
-.lnk {
-    color: #dfe3ea;
-    text-decoration: none;
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: opacity .2s ease;
-}
-
-.lnk:hover {
-    opacity: .75;
+    flex-wrap: wrap;
 }
 
 /* Kart */
@@ -57,6 +43,78 @@
     display: grid;
     grid-template-columns: 360px 1fr;
     gap: 36px;
+    transition: transform 1.5s cubic-bezier(.500, .30, .50, 1), opacity 1.5s cubic-bezier(.25, .8, .25, 1);
+    will-change: transform, opacity;
+    cursor: grab;
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+/* Animasyonlu geçiş class'ları */
+.card--slide-in-right {
+    animation: t16-slide-in-right 1.5s cubic-bezier(.25, .8, .25, 1);
+}
+
+.card--slide-in-left {
+    animation: t16-slide-in-left 1.5s cubic-bezier(.25, .8, .25, 1);
+}
+
+.card--slide-out-left {
+    animation: t16-slide-out-left 1.5s cubic-bezier(.25, .8, .25, 1);
+}
+
+.card--slide-out-right {
+    animation: t16-slide-out-right 1.5s cubic-bezier(.25, .8, .25, 1);
+}
+
+@keyframes t16-slide-in-right {
+    from {
+        transform: translateX(100%);
+        opacity: 0.3;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes t16-slide-in-left {
+    from {
+        transform: translateX(-100%);
+        opacity: 0.3;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes t16-slide-out-left {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(-100%);
+        opacity: 0.3;
+    }
+}
+
+@keyframes t16-slide-out-right {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0.3;
+    }
 }
 
 .imgBox {
@@ -67,8 +125,9 @@
 .img {
     width: 100%;
     height: 420px;
-    object-fit: cover;
+    object-fit: contain; // cover yerine contain
     display: block;
+    background: #fff; // opsiyonel: arka plan beyaz, kenarlar boşsa
 }
 
 .imgFallback {
@@ -300,15 +359,11 @@
     }
 }
 
-/* ===========================
-   Link görünümü + ok animasyonu
-   (mevcut kuralları silme; sadece ekle)
-   =========================== */
 
 .lnkEnh {
     /* İstenen renk */
     --lnk-color: var(--composer-font-color-primary);
-    color: var(--lnk-color);
+    color: var(--composer-font-color-primary);
 
     display: inline-flex;
     align-items: center;
@@ -316,18 +371,17 @@
     text-decoration: none;
     line-height: 1.2;
     padding: 4px 6px;
-    /* hover alanı rahat */
-
-    /* mevcut .lnk sınıfın stillerini override etme; yan yana uyumlu kalsın */
+    transition: opacity .2s ease;
+    cursor: pointer;
 }
 
 .lnkEnh:hover {
-    text-decoration: none;
+    text-decoration: underline;
+    opacity: .75;
 }
 
 .lnkText {
-    /* Gerekirse tipografi burada */
-    /* font-weight: 600;  // istersen aç */
+    color: var(--composer-font-color-primary);
 }
 
 .lnkArrow {
@@ -335,11 +389,11 @@
     vertical-align: middle;
 
     /* Başlangıçta ↗ görünmesi için 45° */
-    transform: rotate(45deg);
+    transform: rotate(315deg);
     transform-origin: 50% 50%;
 
     /* Yumuşak geçiş */
-    transition: transform 220ms ease, opacity 220ms ease;
+    transition: transform 220ms ease;
 
     /* Ok rengini linkten al */
     color: var(--composer-font-color-primary);
@@ -348,4 +402,16 @@
 .lnkEnh:hover .lnkArrow {
     /* Hover'da sağ oku göster: 0° + hafif sağa kaydır */
     transform: rotate(0deg) translateX(2px);
+}
+
+/* Küçük ekranlarda biraz küçült */
+@media (max-width: 640px) {
+    .lnkEnh {
+        font-size: 14px;
+    }
+
+    .lnkArrow {
+        width: 14px;
+        height: 14px;
+    }
 }
