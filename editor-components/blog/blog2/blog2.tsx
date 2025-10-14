@@ -61,6 +61,12 @@ class Blog2 extends BaseBlog {
           },
         },
         {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+        {
           type: "media",
           key: "closeIcon",
           displayer: "Close Button Icon",
@@ -183,6 +189,9 @@ class Blog2 extends BaseBlog {
                   value={videoSection.videoImage}
                   className={this.decorateCSS("video-image")}
                 />
+                {videoSection?.overlay && (
+                  <div className={this.decorateCSS("overlay")} />
+                )}
                 <div className={this.decorateCSS("play-part")}>
                   <span
                     className={this.decorateCSS("as-play")}

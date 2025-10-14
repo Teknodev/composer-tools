@@ -88,6 +88,13 @@ class Blog1 extends BaseBlog {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "items",
       displayer: "Items",
@@ -504,6 +511,9 @@ class Blog1 extends BaseBlog {
                                 value={item.image}
                                 className={this.decorateCSS("media")}
                               />
+                              {this.getPropValue("overlay") && (
+                                <div className={this.decorateCSS("overlay")} />
+                              )}
                             </ComposerLink>
                           </div>
                         )}
