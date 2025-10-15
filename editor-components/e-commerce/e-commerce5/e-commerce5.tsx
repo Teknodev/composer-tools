@@ -445,7 +445,7 @@ class ECommerce5 extends BaseECommerce {
     const titleExist = this.castToString(title);
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container isFull className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("title-tab")}>
             {titleExist && (
@@ -459,7 +459,7 @@ class ECommerce5 extends BaseECommerce {
                 const sectionTitle = this.castToString(item.sectionTitle);
                 return (
                   sectionTitle && (
-                    <div
+                    <Base.H4
                       key={index}
                       className={
                         activeCategoryIndex === index
@@ -478,7 +478,7 @@ class ECommerce5 extends BaseECommerce {
                       }}
                     >
                       {item.sectionTitle}
-                    </div>
+                    </Base.H4>
                   )
                 );
               })}
@@ -514,9 +514,9 @@ class ECommerce5 extends BaseECommerce {
                         </div>
                       )}
                       {collectionExist && (
-                        <div className={this.decorateCSS("collection")}>
+                        <Base.P className={this.decorateCSS("collection")}>
                           {item.collection}
-                        </div>
+                        </Base.P>
                       )}
                     </div>
                   );
@@ -525,7 +525,7 @@ class ECommerce5 extends BaseECommerce {
             </div>
           </div>
         </Base.MaxContent>
-      </div>
+      </Base.Container>
     );
   }
 }

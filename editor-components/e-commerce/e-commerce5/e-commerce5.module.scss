@@ -8,14 +8,14 @@
 
     100% {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(var(--composer-gap-md));
     }
 }
 
 @keyframes fadeSlideIn {
     0% {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(var(--composer-gap-md));
     }
 
     100% {
@@ -34,8 +34,6 @@
 
 .container {
     padding: var(--composer-gap-md) 0;
-    background-color: var(--composer-html-background);
-
     .max-content {
         width: 100%;
         padding: 0 var(--composer-gap-md);
@@ -50,10 +48,7 @@
             align-items: center;
 
             .title {
-                color: var(--composer-font-color-primary);
-                font-size: 2.5rem;
                 text-align: center;
-                margin: 0;
             }
 
             .section-title-container {
@@ -65,12 +60,13 @@
 
                 .section {
                     position: relative;
-                    font-size: 1rem;
                     color: var(--composer-font-color-primary);
                     cursor: pointer;
                     transition: color 0.3s ease;
                     padding: var(--composer-gap-xs);
                     text-align: center;
+                    width: fit-content;
+                    margin: 0;
 
                     &::after {
                         content: '';
@@ -97,9 +93,10 @@
                 .section-active {
                     position: relative;
                     color: var(--composer-primary-color);
-                    font-size: 1rem;
                     padding: var(--composer-gap-xs);
-
+                    width: fit-content;
+                    margin: 0;
+                    
                     &::after {
                         content: '';
                         position: absolute;
@@ -159,7 +156,6 @@
                         }
 
                         .collection {
-                            font-size: 1rem;
                             text-align: center;
                             color: var(--composer-font-color-primary);
                             transition: color 0.3s ease-in-out;

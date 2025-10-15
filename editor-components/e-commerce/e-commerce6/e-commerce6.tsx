@@ -347,9 +347,9 @@ class ECommerce6 extends BaseECommerce {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {isTabTextVisible && (
-                        <div className={this.decorateCSS("tabText")}>
+                        <Base.H4 className={this.decorateCSS("tabText")}>
                           {tab.tabText}
-                        </div>
+                        </Base.H4>
                       )}
                       {isTabIconVisible && (
                         <Base.Media
@@ -406,12 +406,12 @@ class ECommerce6 extends BaseECommerce {
                           <div className={this.decorateCSS("box-container")}>
                             {isBox1Visible && (
                               <div className={this.decorateCSS("box1")}>
-                                <div className={this.decorateCSS("box1-text")}>
+                                <Base.P className={this.decorateCSS("box1-text")}>
                                   {tab.image_container.box1_text}
-                                </div>
-                                <div className={this.decorateCSS("box1-lower-text")}>
+                                </Base.P>
+                                <Base.H3 className={this.decorateCSS("box1-lower-text")}>
                                   {tab.image_container.box1_lowerText}
-                                </div>
+                                </Base.H3>
                               </div>
                             )}
                             {isBox2Visible && (
