@@ -87,7 +87,7 @@ class Download5 extends BaseDownload {
       <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`} style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("page")} ${!backgroundImageUrl && this.decorateCSS("no-image")}`}>
-            {subtitleExist || titleExist || descExist && 
+            {(subtitleExist || titleExist || descExist) && 
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
