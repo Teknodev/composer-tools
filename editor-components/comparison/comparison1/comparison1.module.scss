@@ -16,6 +16,7 @@
       width: fit-content;
       &.with-image{
         background: transparent;
+        padding: 0;
         &::before{
           background-color: white;
         }
