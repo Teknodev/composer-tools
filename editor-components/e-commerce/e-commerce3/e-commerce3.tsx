@@ -275,7 +275,7 @@ class ECommerce3 extends BaseECommerce {
                   <>
                     {this.castToString(item.tabTitle) && (
                       <div className={`${this.decorateCSS("tab")} ${index === activeTab && this.decorateCSS("active")}`} onClick={() => handleChangeTab(index)}>
-                        <span className={this.decorateCSS("tab-title")}>{item.tabTitle}</span>
+                        <Base.H5 className={this.decorateCSS("tab-title")}>{item.tabTitle}</Base.H5>
                       </div>
                     )}
                   </>                  
@@ -292,25 +292,25 @@ class ECommerce3 extends BaseECommerce {
                   index === activeTab && (
                     <div className={this.decorateCSS("tab-content")}>
                       <Base.VerticalContent className={this.decorateCSS("vertical")}>
-                        {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                        {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
                         {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
                         <div className={this.decorateCSS("content")}>
                           <div className={this.decorateCSS("left")}>
                           {(item.details ?? []).map((detail: Details) => {
                             return this.castToString(detail.title) || this.castToString(detail.value)? (
-                              <span className={this.decorateCSS("detail-title")}>{detail.title}</span>
+                              <Base.P className={this.decorateCSS("detail-title")}>{detail.title}</Base.P>
                             ) : null;
                           })}
                           {(item.properties ?? []).map((property: Properties, index:number) => {
                             return (this.castToString(property.title) || property.items.length > 0) ? (
-                              <span className={this.decorateCSS("property-title")}>{property.title}</span>
+                              <Base.P className={this.decorateCSS("property-title")}>{property.title}</Base.P>
                             ) : null;
                           })}
                           </div>
                           <div className={this.decorateCSS("right")}>
                           {(item.details ?? []).map((detail: Details) => {
                             return this.castToString(detail.value) || this.castToString(detail.title) ? (
-                              <span className={this.decorateCSS("detail-value")}>{detail.value}</span>
+                              <Base.P className={this.decorateCSS("detail-value")}>{detail.value}</Base.P>
                             ) : null;
                           })}
 
@@ -321,13 +321,13 @@ class ECommerce3 extends BaseECommerce {
                               {(property.items ?? []).length > 0 ? property.items.map((propItem, index) => {
                                 return(
                                   <>
-                                      <span key={index} className={this.decorateCSS("property-value")}>
+                                      <Base.P key={index} className={this.decorateCSS("property-value")}>
                                       {propItem.title}
-                                      </span>
+                                      </Base.P>
                                   </>
                                 )
                               }
-                              ) : (<span key={index} className={this.decorateCSS("property-value")}></span>)}
+                              ) : null}
                             </div>
                             )}
                             </>

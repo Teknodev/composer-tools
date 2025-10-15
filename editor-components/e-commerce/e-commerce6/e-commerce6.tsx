@@ -10,16 +10,16 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   tabText: React.JSX.Element;
-  icon: string;
+  icon: { type: "icon"; name: string };
   image_container: {
-    image: string;
+    image: { type: "image"; url: string };
     box1_text: React.JSX.Element;
     box1_lowerText: React.JSX.Element;
     box2_text: React.JSX.Element;
-    box2_icon: string;
+    box2_icon: { type: "icon"; name: string };
     link: string;
   };
-  icons_container: Array<{ icon: string; text: React.JSX.Element }>;
+  icons_container: Array<{ icon: { type: "icon"; name: string }; text: React.JSX.Element }>;
 };
 
 class ECommerce6 extends BaseECommerce {
@@ -69,10 +69,16 @@ class ECommerce6 extends BaseECommerce {
             value: contentDescription,
           },
           {
-            type: "icon",
+            type: "media",
             key: "icon",
             displayer: "Tab 1 Icon",
-            value: "GoArrowRight",
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
+            value: {
+                type: "icon",
+                name: "GoArrowRight",
+            },
           },
           {
             type: "object",
@@ -80,10 +86,16 @@ class ECommerce6 extends BaseECommerce {
             displayer: "Image Container",
             value: [
               {
-                type: "image",
+                type: "media",
                 key: "image",
                 displayer: "Image",
-                value: image,
+                additionalParams: {
+                  availableTypes: ["image", "video"],
+                },
+                value: {
+                  type: "image",
+                  url: image,
+                },
               },
               {
                 type: "string",
@@ -104,10 +116,23 @@ class ECommerce6 extends BaseECommerce {
                 value: box2Text,
               },
               {
-                type: "icon",
+                type: "media",
                 key: "box2_icon",
                 displayer: "Button Icon",
-                value: "GoArrowRight",
+                additionalParams: {
+                    availableTypes: ["icon"],
+                },
+                value: {
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "GoArrowRight",
+                    },
+                    name: "GoArrowRight",
+                },
               },
               {
                 type: "page",
@@ -128,10 +153,16 @@ class ECommerce6 extends BaseECommerce {
                 displayer: "Icon 1 Container",
                 value: [
                   {
-                    type: "icon",
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "GoArrowRight",
+                    },
                     key: "icon",
                     displayer: "Icon",
-                    value: "FaCarRear",
                   },
                   {
                     type: "string",
@@ -147,10 +178,16 @@ class ECommerce6 extends BaseECommerce {
                 displayer: "Icon 2 Container",
                 value: [
                   {
-                    type: "icon",
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "GoArrowRight",
+                    },
                     key: "icon",
                     displayer: "Icon",
-                    value: "FaCarRear",
                   },
                   {
                     type: "string",
@@ -166,10 +203,16 @@ class ECommerce6 extends BaseECommerce {
                 displayer: "Icon 3 Container",
                 value: [
                   {
-                    type: "icon",
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "GoArrowRight",
+                    },
                     key: "icon",
                     displayer: "Icon",
-                    value: "FaCarRear",
                   },
                   {
                     type: "string",
@@ -309,11 +352,9 @@ class ECommerce6 extends BaseECommerce {
                         </div>
                       )}
                       {isTabIconVisible && (
-                        <Base.Icon
-                          name={tab.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
+                        <Base.Media
+                          value={tab.icon}
+                          className={this.decorateCSS("icon")}
                         />
                       )}
                     </div>
@@ -356,9 +397,9 @@ class ECommerce6 extends BaseECommerce {
                   <div className={this.decorateCSS("content")}>
                     {isImageContainerVisible && (
                       <div className={this.decorateCSS("image-container")}>
-                        <img
+                        <Base.Media
                           className={this.decorateCSS("image")}
-                          src={tab.image_container.image}
+                          value={tab.image_container.image}
                           data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
                         {isBoxContainerVisible && (
@@ -384,11 +425,9 @@ class ECommerce6 extends BaseECommerce {
                                   >
                                     {tab.image_container.box2_text}
                                   </div>
-                                  <Base.Icon
-                                    name={tab.image_container.box2_icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("box2-icon"),
-                                    }}
+                                  <Base.Media
+                                    value={tab.image_container.box2_icon}
+                                    className={this.decorateCSS("box2-icon")}
                                   />
                                 </div>
                               </ComposerLink>
@@ -434,11 +473,9 @@ class ECommerce6 extends BaseECommerce {
                                 isIconContainerVisible && (
                                   <div className={this.decorateCSS("icon-container")}>
                                     {iconContainer.icon && (
-                                      <Base.Icon
-                                        name={iconContainer.icon}
-                                        propsIcon={{
-                                          className: this.decorateCSS("icon"),
-                                        }}
+                                      <Base.Media
+                                        value={iconContainer.icon}
+                                        className={this.decorateCSS("icon")}
                                       />
                                     )}
                                     {isTextVisible && (

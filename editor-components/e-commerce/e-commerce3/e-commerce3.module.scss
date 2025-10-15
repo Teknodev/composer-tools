@@ -16,8 +16,6 @@
                     border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                     border-bottom: none !important;
                     .tab-title{
-                        font-size: 1rem;
-                        font-weight: bold;
                         color: var(--composer-font-color-primary);
                     }
         
@@ -48,14 +46,11 @@
                             gap: var(--composer-gap-md);
                         }
                         .title {
-                            font-size: 2rem;
-                            text-align: start;
-                            margin: 0;
+                            color: var(--composer-font-color-primary);
+                            text-align: left;
                         }
                         .description{
-                            color: var(--composer-font-color-primary);
-                            text-align: start;
-                            margin: 0;
+                            text-align: left;
                         }
                         .content {
                             display: flex;
@@ -66,7 +61,6 @@
                                 gap: var(--composer-gap-sm);
                                 .detail-title, .property-title {
                                     color: var(--composer-font-color-primary);
-                                    font-size: 1rem;
                                 }
                             }
                             .right {
@@ -76,7 +70,6 @@
     
                                 .detail-value {
                                     color: var(--composer-font-color-primary);
-                                    font-size: 1rem;
                                 }
 
                                 .box {
@@ -84,7 +77,6 @@
                                     min-height: 16px;
                                     .property-value {
                                         color: var(--composer-font-color-primary);
-                                        font-size: 1rem;
                                         padding-right: var(--composer-gap-sm);
                                     }
                                 }

@@ -8,21 +8,21 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { getCurrencyInfo } from "composer-tools/utils/currency";
 
 type Image = {
-  image: string,
+  image: { type: string; url: string },
 }
 type Tag = {
   tag: string,
 }
 type  WishlistItem={
-  wishlistIcon: string,
+  wishlistIcon: { type: string; name: string },
   wishlistText: React.JSX.Element,
   wishlistUrl: string,
 }
 type  ReviewItem={
   reviewText: React.JSX.Element,
   reviewCount: number,
-  starIcon: string,
-  starIconBorder: string,
+  starIcon: { type: string; name: string },
+  starIconBorder: { type: string; name: string },
   point: number
 }
 
@@ -47,93 +47,153 @@ class ECommerce1 extends BaseECommerce {
       value: [
         {
           type: "object",
-          key: "item1",
+          key: "item",
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
+              },
             },
           ]
         },
         {
           type: "object",
-          key: "item2",
+          key: "item",
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
+              },
             },
           ]
         },
         {
           type: "object",
-          key: "item3",
+          key: "item",
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
+              },
             },
           ]
         },
         {
           type: "object",
-          key: "item4",
+          key: "item",
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
+              },
             },
           ]
         },
       ],
     });
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "leftArrowImage",
       displayer: "Left Arrow Image",
-      value: "SlArrowLeft"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowLeft",
+      },
     });
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "rightArrowImage",
       displayer: "Right Arrow Image",
-      value: "SlArrowRight"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowRight",
+      },
     });
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Icon",
-      value: "MdClose"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdClose",
+      },
     });
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "closeIconPopup",
       displayer: "Close Icon Popup",
-      value: "MdClose"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdClose",
+      },
     });
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "leftArrowPopup",
       displayer: "Left Arrow Popup",
-      value: "IoMdArrowDropleft"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdArrowDropleft",
+      },
     });
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "rightArrowPopup",
       displayer: "Right Arrow Popup",
-      value: "IoMdArrowDropright"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdArrowDropright",
+      },
     });
     this.addProp({
       type: "string",
@@ -175,16 +235,28 @@ class ECommerce1 extends BaseECommerce {
         max: 5,
       },
       {
-        type: "icon",
+        type: "media",
         key: "starIcon",
         displayer: "Star Icon",
-        value:"MdOutlineStar"
+        additionalParams: {
+          availableTypes: ["icon"],
+        },
+        value: {
+          type: "icon",
+          name: "MdOutlineStar",
+        },
       },
       {
-        type: "icon",
+        type: "media",
         key: "starIconBorder",
         displayer: "Star Icon Border",
-        value:"MdOutlineStarBorder"
+        additionalParams: {
+          availableTypes: ["icon"],
+        },
+        value: {
+          type: "icon",
+          name: "MdOutlineStarBorder",
+        },
       }
     ]
     })
@@ -201,16 +273,28 @@ class ECommerce1 extends BaseECommerce {
       value:"Quantity"
     })
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "leftArrow",
       displayer: "Left Arrow",
-      value: "IoMdArrowDropleft"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdArrowDropleft",
+      },
     });
     this.addProp({
-      type:"icon",
+      type: "media",
       key: "rightArrow",
       displayer: "Right Arrow",
-      value: "IoMdArrowDropright"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdArrowDropright",
+      },
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Black"));
     this.addProp({
@@ -219,10 +303,16 @@ class ECommerce1 extends BaseECommerce {
       displayer: "Wishlist",
       value: [
       {
-        type: "icon",
+        type: "media",
         key: "wishlistIcon",
         displayer: "Wishlist Icon",
-        value:"FaHeart",
+        additionalParams: {
+          availableTypes: ["icon"],
+        },
+        value: {
+          type: "icon",
+          name: "FaHeart",
+        },
       },
       {
         type: "string",
@@ -315,7 +405,7 @@ class ECommerce1 extends BaseECommerce {
       value: [
         {
           type: "object",
-          key: "item1",
+          key: "item",
           displayer: "Item",
           value: [
             {
@@ -328,7 +418,7 @@ class ECommerce1 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "item1",
+          key: "item",
           displayer: "Item",
           value: [
             {
@@ -476,9 +566,9 @@ class ECommerce1 extends BaseECommerce {
                   {images.map((item: Image, index: number) => {
                       return (
                         <div className={this.decorateCSS("img-container")}>
-                          {item.image && (
-                            <img 
-                            key={index} src={item.image} alt={item.image} 
+                          {item.image?.url && (
+                            <Base.Media 
+                            key={index} value={item.image} 
                             className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
                             onClick={() => handleImageClick(index)}
                           />
@@ -488,15 +578,15 @@ class ECommerce1 extends BaseECommerce {
                     })}
                 </div>
                 <div className={`${this.decorateCSS("right-image")} ${!isRightExist && this.decorateCSS("without-right")}`}>
-                  {this.castToString(this.getPropValue("newText")) && (<span className={this.decorateCSS("new")}>{this.getPropValue("newText")}</span>)}
-                  <Base.Icon name={leftIconImage} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
-                  <Base.Icon name={rightIconImage} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
+                  {this.castToString(this.getPropValue("newText")) && (<Base.P className={this.decorateCSS("new")}>{this.getPropValue("newText")}</Base.P>)}
+                  <Base.Media value={this.getPropValue("leftArrowImage")} className={this.decorateCSS("left-arrow")} onClick={moveLeftSlider} />
+                  <Base.Media value={this.getPropValue("rightArrowImage")} className={this.decorateCSS("right-arrow")} onClick={moveRightSlider} />
                   {images.length > 0 && (
                     <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
                       {images.map((item: Image, index: number) => {
                         return (
                           <div className={this.decorateCSS("card")}>
-                            <img src={item.image} alt={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                            <Base.Media value={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
                           </div>
                         )
                       })}
@@ -511,7 +601,7 @@ class ECommerce1 extends BaseECommerce {
                 {(titleExist || price.value) && (
                   <div className={this.decorateCSS("title-and-price")}>
                     {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
-                    {price.value && (<span className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</span>)}
+                    {price.value && (<Base.H3 className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</Base.H3>)}
                   </div>
                 )}
                 {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder || descriptionExist) &&(
@@ -522,9 +612,9 @@ class ECommerce1 extends BaseECommerce {
                         <div className={this.decorateCSS("stars")}>
                           {[...Array(5)].map((_, index) => {
                             return (
-                              <Base.Icon
-                                name={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
-                                propsIcon={{ className: this.decorateCSS("star") }}
+                              <Base.Media
+                                value={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
+                                className={this.decorateCSS("star")}
                               />
                             );
                           })}
@@ -533,22 +623,22 @@ class ECommerce1 extends BaseECommerce {
                       {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
                         <div className={this.decorateCSS("review")}>
                           <span className={this.decorateCSS("brackets")}>(</span>
-                          {reviewItem.reviewCount && (<div className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</div>)}
-                          {this.castToString(reviewItem.reviewText) && (<div className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</div>)}
+                          {reviewItem.reviewCount && (<Base.P className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</Base.P>)}
+                          {this.castToString(reviewItem.reviewText) && (<Base.P className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</Base.P>)}
                           <span className={this.decorateCSS("brackets")}>)</span> 
                         </div>
                       )}
                     </div>
                   )}
-                  {descriptionExist && (<div className={this.decorateCSS("description")}>{description}</div>)}
+                  {descriptionExist && (<Base.P className={this.decorateCSS("description")}>{description}</Base.P>)}
                   </div>
                 )}
                   {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || this.castToString(button.text)) && (
                     <div className={this.decorateCSS("inputs")}>
                       {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon) && (
                         <div className={`${this.decorateCSS("count-input")} ${this.castToString(button.text) && this.decorateCSS("with-button")}`}>
-                          {this.castToString(this.getPropValue("quantityText")) && (<label className={this.decorateCSS("label")}>{this.getPropValue("quantityText")}</label>)}
-                          {leftIcon && (<Base.Icon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>)}
+                          {this.castToString(this.getPropValue("quantityText")) && (<Base.P className={this.decorateCSS("label")}>{this.getPropValue("quantityText")}</Base.P>)}
+                          {leftIcon && (<Base.Media value={this.getPropValue("leftArrow")} className={this.decorateCSS("left-icon")} onClick={handleLeftClick}/>)}
                           <input
                               type="number"
                               min={1}
@@ -572,7 +662,7 @@ class ECommerce1 extends BaseECommerce {
                               }}
                             />
 
-                          {rightIcon && (<Base.Icon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>)}
+                          {rightIcon && (<Base.Media value={this.getPropValue("rightArrow")} className={this.decorateCSS("right-icon")} onClick={handleRightClick}/>)}
                         </div>
                       )}
                       {this.castToString(button.text) && (
@@ -585,7 +675,7 @@ class ECommerce1 extends BaseECommerce {
                   {(this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon) &&(
                     <ComposerLink path={wishlist.wishlistUrl}>
                       <div className={this.decorateCSS("wishlist")}>
-                        <Base.Icon name={wishlist.wishlistIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
+                        <Base.Media value={wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
                         {this.castToString(wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{wishlist.wishlistText}</span>)}
                       </div>
                     </ComposerLink>
@@ -594,18 +684,18 @@ class ECommerce1 extends BaseECommerce {
                     <div className={this.decorateCSS("bottom")}>
                       {(this.castToString(productItem.text) || this.castToString(productItem.code)) && (
                         <div className={this.decorateCSS("code-area")}>
-                          {this.castToString(productItem.text) && (<span className={this.decorateCSS("code-tag")}>{productItem.text}</span>)}
-                          {this.castToString(productItem.code) && (<span className={this.decorateCSS("code")}>{productItem.code}</span>)}
+                          {this.castToString(productItem.text) && (<Base.P className={this.decorateCSS("code-tag")}>{productItem.text}</Base.P>)}
+                          {this.castToString(productItem.code) && (<Base.P className={this.decorateCSS("code")}>{productItem.code}</Base.P>)}
                         </div>
                       )}
                       {(this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0)) && (
                         <div className={this.decorateCSS("categories")}>
-                          {this.castToString(this.getPropValue("categoriesText")) && (<span className={this.decorateCSS("categoryLabel")}>{this.getPropValue("categoriesText")}</span>)}
+                          {this.castToString(this.getPropValue("categoriesText")) && (<Base.P className={this.decorateCSS("categoryLabel")}>{this.getPropValue("categoriesText")}</Base.P>)}
                           {(categoryItem.length > 0) && (
                             <div className={this.decorateCSS("categoryText")}>
                               {categoryItem.map((item) => {
                               return (
-                                <span className={this.decorateCSS("category")}>{item.category}</span>
+                                <Base.P className={this.decorateCSS("category")}>{item.category}</Base.P>
                               )
                               })}
                             </div>
@@ -614,12 +704,12 @@ class ECommerce1 extends BaseECommerce {
                       )}
                       {(this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)) && (
                         <div className={this.decorateCSS("tags")}>
-                          {this.castToString(this.getPropValue("tagsText")) && (<span className={this.decorateCSS("tagLabel")}>{this.getPropValue("tagsText")}</span>)}
+                          {this.castToString(this.getPropValue("tagsText")) && (<Base.P className={this.decorateCSS("tagLabel")}>{this.getPropValue("tagsText")}</Base.P>)}
                           {(tags.length > 0) && (
                             <div className={this.decorateCSS("tagText")}>
                               {tags.map((item: Tag) => {
                                 return (
-                                  <span className={this.decorateCSS("tag")}>{item.tag}</span>
+                                  <Base.P className={this.decorateCSS("tag")}>{item.tag}</Base.P>
                                 )
                               })}
                             </div>
@@ -633,22 +723,20 @@ class ECommerce1 extends BaseECommerce {
             )}
           </div>
           {isActive && (
-            <div className={this.decorateCSS("image-popup")}>
+            <Base.Overlay isVisible={true} className={this.decorateCSS("image-popup")}>
               <div className={this.decorateCSS("popup-content")}>
                 <div className={this.decorateCSS("image-container")}>
                   {images.map((img: Image, index) => { 
                     return(
                       <>
-                        <img
+                        <Base.Media
                         key={index}
-                        src={img.image}
-                        alt={img.image}
+                        value={img.image}
                         className={`${this.decorateCSS("image")} ${((index === activeImage) &&this.decorateCSS("active"))}`}
                         />
-                        <img
+                        <Base.Media
                         key={index}
-                        src={img.image}
-                        alt={img.image}
+                        value={img.image}
                         className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex") ) &&  this.decorateCSS("exits")}`}
                       />
                       </>
@@ -658,16 +746,16 @@ class ECommerce1 extends BaseECommerce {
                 </div>
                 <div className={this.decorateCSS("items")}>
                   <div className={this.decorateCSS("icon-group")}>
-                    <Base.Icon name={this.getPropValue("leftArrowPopup")} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
-                    <Base.Icon name={this.getPropValue("rightArrowPopup")} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRight}} />
+                    <Base.Media value={this.getPropValue("leftArrowPopup")} className={this.decorateCSS("left-arrow")} onClick={moveLeft} />
+                    <Base.Media value={this.getPropValue("rightArrowPopup")} className={this.decorateCSS("right-arrow")} onClick={moveRight} />
                   </div>
-                  <span className={this.decorateCSS("pages")}>
+                  <Base.P className={this.decorateCSS("pages")}>
                     {activeImage+1}/{images.length}
-                  </span>
-                  <Base.Icon name={this.getPropValue("closeIconPopup")} propsIcon={{className: this.decorateCSS("close"), onClick: handleClose}} />
+                  </Base.P>
+                  <Base.Media value={this.getPropValue("closeIconPopup")} className={this.decorateCSS("close")} onClick={handleClose} />
                 </div>
               </div>
-            </div>
+            </Base.Overlay>
           )}
         </Base.MaxContent>
       </Base.Container>

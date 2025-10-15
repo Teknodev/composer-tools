@@ -11,15 +11,14 @@
     align-items: center;
     gap: var(--composer-gap-xl);
     .section-title-container {
-      width: 100%;
+      width: fit-content;
       display: flex;
       align-items: center;
       gap: var(--composer-gap-md);
       flex-wrap: wrap;
       .section-title {
-        text-align: start;
+        text-align: left;
         width: fit-content;
-        font-size: 1rem;
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -79,7 +78,6 @@
                 text-align: center;
                 height: 100%;
                 text-wrap: nowrap;
-                font-size: 1rem;
                 cursor: pointer;
               }
               .image-bottom-icon {
@@ -89,6 +87,9 @@
                 text-align: center;
                 flex: 2;
                 padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                .icon {
+                  font-size: 1.25rem;
+                }
               }
             }
           }
@@ -96,7 +97,6 @@
             display: none;
             z-index: 1;
             color: var(--composer-html-background);
-            font-size: 1rem;
             animation-duration: 0.5s;
           }
           .image-bottom-text {
@@ -119,9 +119,9 @@
               position: absolute;
               top: 0;
               padding: var(--composer-gap-md);
-              font-size: 1rem;
               flex: 1;
               max-width: 50%;
+              width: fit-content;
             }
             .rightText {
               right: 0;
@@ -149,20 +149,20 @@
           max-height: 100%;
           .title {
             color: var(--composer-font-color-primary);
-            font-size: 1rem;
             font-weight: bold;
             text-align: center;
           }
           .price {
             color: var(--composer-tertiary-color);
-            font-size: 1rem;
+            text-align: center;
           }
           .subTitle {
             display: none;
             cursor: pointer;
             color: var(--composer-tertiary-color);
             animation-duration: 0.5s;
-            font-size: 1rem;
+            text-align: center;
+            width: fit-content;
           }
         }
       }
@@ -268,7 +268,6 @@
         display: flex;
         justify-content: space-between;
         color: white;
-        font-size: 1rem;
         width: 30%;
         bottom: 10%;
         padding: var(--composer-gap-xs) 0px;
