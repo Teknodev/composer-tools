@@ -17,7 +17,6 @@
 // Ana container
 .container {
   position: relative;
-  overflow-x: clip;
 }
 
 // İçerik alanı
@@ -25,12 +24,12 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: var(--composer-gap-md);
 }
 
 // Başlık alanı
 .header {
   text-align: center;
+  margin-bottom: 3rem; // ✅ Alt başlıkla kartlar arası mesafe eklendi
 
   // Eğer başlık veya alt başlık yoksa boşluk bırakma
   &:empty {
@@ -51,41 +50,60 @@
   font-size: 1.25rem;
   opacity: 0.95;
   line-height: 1.6;
-  margin: 0 0 50px;
+  margin-bottom: 1rem; // ✅ Alt başlık altına da mesafe eklendi
 }
 
-// Grid yapı
+// Grid yapı - TAMAMEN YENİLENDİ ✅
 .features-grid {
   display: grid;
   gap: var(--composer-gap-md);
   width: 100%;
+  
+  // Varsayılan değer - base class için
+  grid-template-columns: repeat(4, 1fr);
+}
 
-  // Satır sayısına göre kolonlar
-  &-1 { grid-template-columns: repeat(1, 1fr); }
-  &-2 { grid-template-columns: repeat(2, 1fr); }
-  &-3 { grid-template-columns: repeat(3, 1fr); }
-  &-4,
-  & { grid-template-columns: repeat(4, 1fr); }
-  &-5 { grid-template-columns: repeat(5, 1fr); }
-  &-6 { grid-template-columns: repeat(6, 1fr); }
+// Grid varyasyonları - AYRI TANIMLANDI ✅
+.features-grid-1 {
+  grid-template-columns: repeat(1, 1fr) !important;
+}
 
-  // Ortalanmış hizalama
-  &.alignment-center {
-    justify-items: center;
+.features-grid-2 {
+  grid-template-columns: repeat(2, 1fr) !important;
+}
+
+.features-grid-3 {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.features-grid-4 {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.features-grid-5 {
+  grid-template-columns: repeat(5, 1fr) !important;
+}
+
+.features-grid-6 {
+  grid-template-columns: repeat(6, 1fr) !important;
+}
+
+// Ortalanmış hizalama
+.features-grid.alignment-center {
+  justify-items: center;
+  text-align: center;
+
+  .feature-card {
+    align-items: center;
+  }
+
+  .icon-container {
+    justify-content: center;
+  }
+
+  .content {
+    align-items: center;
     text-align: center;
-
-    .feature-card {
-      align-items: center;
-    }
-
-    .icon-container {
-      justify-content: center;
-    }
-
-    .content {
-      align-items: center;
-      text-align: center;
-    }
   }
 }
 
@@ -100,10 +118,10 @@
 .icon-container {
   height: 20px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   margin: 0 0 20px;
   color: var(--composer-font-color-secondary);
+  justify-content: flex-start;
 }
 
 // İkon
@@ -161,16 +179,25 @@
   border-radius: 4px;
 }
 
+// Yeni özellik: Kart arkaplanı
+.features-grid.with-background .feature-card { 
+  background: var(--composer-background-secondary); 
+  padding: 1rem; 
+  border-radius: 8px; 
+  border: 1px solid var(--composer-border-color);
+}
+
 // Tablet ekranları
 @container (max-width: #{$composer-tablet-width}) {
-  .features-grid {
-    &,
-    &-3,
-    &-4,
-    &-5,
-    &-6 {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .features-grid-3,
+  .features-grid-4,
+  .features-grid-5,
+  .features-grid-6 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .header {
+    margin-bottom: 2rem; // ✅ Tablet'te biraz daha az mesafe
   }
 }
 
@@ -180,12 +207,19 @@
     font-size: 2.25rem;
   }
 
-  .features-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
-    max-width: 800px;
-    margin: 0 auto;
+  .features-grid,
+  .features-grid-1,
+  .features-grid-2,
+  .features-grid-3,
+  .features-grid-4,
+  .features-grid-5,
+  .features-grid-6 {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+  }
+
+  .header {
+    margin-bottom: 1.5rem; // ✅ Mobil'de daha az mesafe
   }
 
   .title {

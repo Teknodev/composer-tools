@@ -104,7 +104,7 @@ class Feature17 extends BaseFeature {
       displayer: "Items Count in a Row",
       value: 4,
       min: 1,
-      max: 4
+      max: 6
     });
   }
 
