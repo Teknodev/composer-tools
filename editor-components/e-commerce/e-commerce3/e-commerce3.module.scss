@@ -38,13 +38,9 @@
         background-color: var(--composer-html-background);
 
         .wrapper {
-            .section {
-                .tabs {
-                    .tab-content {
-                        .vertical{
+            .tab-content {
                             align-items: start;
                             gap: var(--composer-gap-md);
-                        }
                         .title {
                             color: var(--composer-font-color-primary);
                             text-align: left;
@@ -82,8 +78,6 @@
                                 }
                             }
                         }
-                    }
-                }
             }
         }
     }

@@ -310,6 +310,14 @@ class ECommerce6 extends BaseECommerce {
         selectItems: ["animate1"]
       }
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
     this.setActiveTab(0);
   }
 
@@ -325,6 +333,8 @@ class ECommerce6 extends BaseECommerce {
   }
 
   render() {
+    const overlay = this.getPropValue("overlay");
+    
     return (
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -402,6 +412,9 @@ class ECommerce6 extends BaseECommerce {
                           value={tab.image_container.image}
                           data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
+                        {overlay && (
+                          <div className={this.decorateCSS("overlay")}></div>
+                        )}
                         {isBoxContainerVisible && (
                           <div className={this.decorateCSS("box-container")}>
                             {isBox1Visible && (
@@ -420,11 +433,11 @@ class ECommerce6 extends BaseECommerce {
                                   className={this.decorateCSS("box2")}
                                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                 >
-                                  <div
+                                  <Base.H3
                                     className={this.decorateCSS("box2-text")}
                                   >
                                     {tab.image_container.box2_text}
-                                  </div>
+                                  </Base.H3>
                                   <Base.Media
                                     value={tab.image_container.box2_icon}
                                     className={this.decorateCSS("box2-icon")}
@@ -479,9 +492,9 @@ class ECommerce6 extends BaseECommerce {
                                       />
                                     )}
                                     {isTextVisible && (
-                                      <div className={this.decorateCSS("text")}>
+                                      <Base.P className={this.decorateCSS("text")}>
                                         {iconContainer.text}
-                                      </div>
+                                      </Base.P>
                                     )}
                                   </div>
                                 )

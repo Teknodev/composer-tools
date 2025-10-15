@@ -373,6 +373,13 @@ class ECommerce5 extends BaseECommerce {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "number",
       key: "slidesToShow",
       displayer: "Slides To Show",
@@ -443,6 +450,7 @@ class ECommerce5 extends BaseECommerce {
     };
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
+    const overlay = this.getPropValue("overlay");
 
     return (
       <Base.Container isFull className={this.decorateCSS("container")}>
@@ -508,8 +516,11 @@ class ECommerce5 extends BaseECommerce {
                           <div className={this.decorateCSS("image-wrapper")}>
                             <Base.Media
                               value={item.sectionImage}
-                              className={this.decorateCSS("img")}
+                              className={this.decorateCSS("image")}
                             />
+                            {overlay && (
+                              <div className={this.decorateCSS("overlay")}></div>
+                            )}
                           </div>
                         </div>
                       )}

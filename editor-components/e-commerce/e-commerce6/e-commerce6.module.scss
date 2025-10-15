@@ -135,6 +135,17 @@
                     flex-basis: 50%;
                     overflow: hidden;
 
+                    .overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: var(--composer-overlay-color);
+                        opacity: 0.3;
+                        pointer-events: none;
+                        transition: opacity 0.3s ease;
+                    }
                     .image {
                         top: 0px;
                         left: 0px;
@@ -239,7 +250,6 @@
                             }
             
                             .box2-text {
-                                font-size: 1.5rem;
                                 text-wrap: wrap;
                             }
             
@@ -306,7 +316,7 @@
                             }
             
                             .text {
-                                font-size: 1.1rem;
+                                text-align: center;
                                 padding-top: var(--composer-gap-xs);
                                 color: var(--composer-font-color-primary)
                             }
@@ -342,18 +352,7 @@
                     .image-container{
                         aspect-ratio: 1;
                         .box-container{
-                            .box1{
-                                .box1-text{
-                                    font-size: 1.1rem;
-                                }
-                                .box1-lower-text{
-                                    font-size: 1.6rem;
-                                }
-                            }
                             .box2{
-                                .box2-text{
-                                    font-size: 1.2rem;
-                                }
                                 .box2-icon{
                                     font-size: 2.5rem;
                                     padding: var(--composer-gap-sm);

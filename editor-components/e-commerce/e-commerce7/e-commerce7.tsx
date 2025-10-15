@@ -929,7 +929,7 @@ class ECommerce7 extends BaseECommerce {
                   {images.map((item: Images, index: number) => {
                     return (
                       <div
-                        className={`${this.decorateCSS("small-image")}`}
+                        className={`${this.decorateCSS("small-image")} ${this.getComponentState("selectedImage") === index ? this.decorateCSS("active") : ""}`}
                         key={index}
                       >
                         <div onClick={() => this.handleDotClick(index)}>
@@ -959,7 +959,7 @@ class ECommerce7 extends BaseECommerce {
                   {images.map((item: Images, index: number) => {
                     return (
                       <div
-                        className={this.decorateCSS("small-image")}
+                        className={`${this.decorateCSS("small-image")} ${this.getComponentState("selectedImage") === index ? this.decorateCSS("active") : ""}`}
                         key={index}
                       >
                         <Base.Media
@@ -1092,9 +1092,9 @@ class ECommerce7 extends BaseECommerce {
                                 />
                               )}
                               {isSahreTitle && (
-                                <div className={this.decorateCSS("title")}>
+                                <Base.H4 className={this.decorateCSS("title")}>
                                   {shareSection.title}
-                                </div>
+                                </Base.H4>
                               )}
                               {socials.length > 0 && (
                                 <div className={this.decorateCSS("socials")}>
@@ -1118,13 +1118,13 @@ class ECommerce7 extends BaseECommerce {
                                               )}
                                               {item.text && (
                                                 <ComposerLink path={item.link}>
-                                                  <div
+                                                  <Base.P
                                                     className={this.decorateCSS(
                                                       "social-text"
                                                     )}
                                                   >
                                                     {item.text}
-                                                  </div>
+                                                  </Base.P>
                                                 </ComposerLink>
                                               )}
                                             </div>
@@ -1142,7 +1142,7 @@ class ECommerce7 extends BaseECommerce {
                                         value={shareCopyLink.icon}
                                         className={this.decorateCSS("social-icon")}
                                       />
-                                      <div
+                                      <Base.P
                                         className={this.decorateCSS(
                                           "social-text"
                                         )}
@@ -1150,7 +1150,7 @@ class ECommerce7 extends BaseECommerce {
                                         {this.getComponentState("copied")
                                           ? shareCopyLink.copiedText
                                           : shareCopyLink.text}
-                                      </div>
+                                      </Base.P>
                                     </div>
                                   )}
                                 </div>
@@ -1162,12 +1162,12 @@ class ECommerce7 extends BaseECommerce {
                     )}
                     {currencyValue && (
                       <div className={this.decorateCSS("cost")}>
-                        <div className={this.decorateCSS("value")}>
+                        <Base.H3 className={this.decorateCSS("value")}>
                           {currencyValue}
-                        </div>
-                        <div className={this.decorateCSS("currency-code")}>
+                        </Base.H3>
+                        <Base.H3 className={this.decorateCSS("currency-code")}>
                           {currencySymbol}
-                        </div>
+                        </Base.H3>
                       </div>
                     )}
                   </Base.VerticalContent>
@@ -1180,9 +1180,9 @@ class ECommerce7 extends BaseECommerce {
                 <>
                   <div className={this.decorateCSS("size-container")}>
                     {isSizeLabel && (
-                      <div className={this.decorateCSS("label")}>
+                      <Base.P className={this.decorateCSS("label")}>
                         {this.getPropValue("sizeLabel")}
-                      </div>
+                      </Base.P>
                     )}
                     {sizeSections.length > 0 && (
                       <div className={this.decorateCSS("size-selects")}>
@@ -1201,14 +1201,14 @@ class ECommerce7 extends BaseECommerce {
                                 key={index}
                               >
                                 {item.size && (
-                                  <div className={this.decorateCSS("size")}>
+                                  <Base.P className={this.decorateCSS("size")}>
                                     {item.size}
-                                  </div>
+                                  </Base.P>
                                 )}
                                 {this.castToString(item.type) && (
-                                  <div className={this.decorateCSS("type")}>
+                                  <Base.P className={this.decorateCSS("type")}>
                                     {item.type}
-                                  </div>
+                                  </Base.P>
                                 )}
                               </div>
                             );
@@ -1285,7 +1285,7 @@ class ECommerce7 extends BaseECommerce {
                           buttonType={button.type}
                           className={this.decorateCSS("button")}
                         >
-                          {button.text}
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -1301,9 +1301,9 @@ class ECommerce7 extends BaseECommerce {
                         key={index}
                       >
                         {this.castToString(item.description) && (
-                          <div className={this.decorateCSS("delivery")}>
+                          <Base.P className={this.decorateCSS("delivery")}>
                             {item.description}
-                          </div>
+                          </Base.P>
                         )}
                       </div>
                     );
@@ -1313,9 +1313,9 @@ class ECommerce7 extends BaseECommerce {
               {(isItemDetailTitle || itemDetails.length > 0) && (
                 <div className={this.decorateCSS("item-detail-wrapper")}>
                   {isItemDetailTitle && (
-                    <div className={this.decorateCSS("item-detail-title")}>
+                    <Base.P className={this.decorateCSS("item-detail-title")}>
                       {this.getPropValue("itemDetailTitle")}
-                    </div>
+                    </Base.P>
                   )}
                   {itemDetails.length > 0 && (
                     <div className={this.decorateCSS("item-detail-container")}>
@@ -1343,13 +1343,13 @@ class ECommerce7 extends BaseECommerce {
                                         }
                                       >
                                         {this.castToString(item.title) && (
-                                          <div
+                                          <Base.P
                                             className={this.decorateCSS(
                                               "title"
                                             )}
                                           >
                                             {item.title}
-                                          </div>
+                                          </Base.P>
                                         )}
                                         {(this.getPropValue("upArrowIcon") ||
                                           this.getPropValue(
@@ -1383,11 +1383,11 @@ class ECommerce7 extends BaseECommerce {
                                           this.decorateCSS("active")
                                         }`}
                                       >
-                                        <div
+                                        <Base.P
                                           className={this.decorateCSS("text")}
                                         >
                                           {item.description}
-                                        </div>
+                                        </Base.P>
                                       </div>
                                     )}
                                   </div>
@@ -1404,8 +1404,8 @@ class ECommerce7 extends BaseECommerce {
           )}
         </Base.MaxContent>
         <Base.Overlay
-          className={this.decorateCSS("zoom-image")}
           isVisible={this.getComponentState("zoomImage")}
+          className={this.decorateCSS("zoom-image")}
         >
           {this.getPropValue("closeIcon") && (
             <div

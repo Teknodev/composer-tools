@@ -296,42 +296,42 @@ class ECommerce3 extends BaseECommerce {
                         {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
                         <div className={this.decorateCSS("content")}>
                           <div className={this.decorateCSS("left")}>
-                          {(item.details ?? []).map((detail: Details) => {
-                            return this.castToString(detail.title) || this.castToString(detail.value)? (
-                              <Base.P className={this.decorateCSS("detail-title")}>{detail.title}</Base.P>
-                            ) : null;
-                          })}
-                          {(item.properties ?? []).map((property: Properties, index:number) => {
-                            return (this.castToString(property.title) || property.items.length > 0) ? (
-                              <Base.P className={this.decorateCSS("property-title")}>{property.title}</Base.P>
-                            ) : null;
-                          })}
+                            {(item.details ?? []).map((detail: Details) => {
+                              return this.castToString(detail.title) || this.castToString(detail.value) ? (
+                                <Base.P className={this.decorateCSS("detail-title")}>{detail.title}</Base.P>
+                              ) : null;
+                            })}
+                            {(item.properties ?? []).map((property: Properties, index: number) => {
+                              return (this.castToString(property.title) || property.items.length > 0) ? (
+                                <Base.P className={this.decorateCSS("property-title")}>{property.title}</Base.P>
+                              ) : null;
+                            })}
                           </div>
                           <div className={this.decorateCSS("right")}>
-                          {(item.details ?? []).map((detail: Details) => {
-                            return this.castToString(detail.value) || this.castToString(detail.title) ? (
-                              <Base.P className={this.decorateCSS("detail-value")}>{detail.value}</Base.P>
-                            ) : null;
-                          })}
+                            {(item.details ?? []).map((detail: Details) => {
+                              return this.castToString(detail.value) || this.castToString(detail.title) ? (
+                                <Base.P className={this.decorateCSS("detail-value")}>{detail.value}</Base.P>
+                              ) : null;
+                            })}
 
-                          {(item.properties ?? []).map((property: Properties) => (
-                            <>
-                            {(this.castToString(property.title)|| (property.items.length > 0)) && (
-                              <div className={this.decorateCSS("box")}>
-                              {(property.items ?? []).length > 0 ? property.items.map((propItem, index) => {
-                                return(
-                                  <>
-                                      <Base.P key={index} className={this.decorateCSS("property-value")}>
-                                      {propItem.title}
-                                      </Base.P>
-                                  </>
-                                )
-                              }
-                              ) : null}
-                            </div>
-                            )}
-                            </>
-                          ))}
+                            {(item.properties ?? []).map((property: Properties) => (
+                              <>
+                                {(this.castToString(property.title) || (property.items.length > 0)) && (
+                                  <div className={this.decorateCSS("box")}>
+                                    {(property.items ?? []).length > 0 ? property.items.map((propItem, index) => {
+                                      return (
+                                        <>
+                                          <Base.P key={index} className={this.decorateCSS("property-value")}>
+                                            {propItem.title}
+                                          </Base.P>
+                                        </>
+                                      )
+                                    }
+                                    ) : null}
+                                  </div>
+                                )}
+                              </>
+                            ))}
                           </div>
                         </div>
                       </Base.VerticalContent>
