@@ -128,17 +128,15 @@
           gap: var(--composer-gap-sm);
           padding: var(--composer-gap-md) var(--composer-gap-lg);
 
-          .title {
-            content: "";
-            width: 100%;
-          }
-          .description {
+          .title, .description {
+            text-align: center;
             width: 100%;
           }
           .button-group {
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: center !important;
+            align-items: center;
             gap: var(--composer-gap-md);
             justify-content: unset;
             width: 100%;
@@ -166,13 +164,6 @@
           gap: var(--composer-gap-sm);
           padding: var(--composer-gap-md);
 
-          .title {
-            content: "";
-            width: 100%;
-          }
-          .description {
-            width: 100%;
-          }
           .button-group {
             gap: var(--composer-gap-sm);
             .button {

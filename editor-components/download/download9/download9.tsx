@@ -53,14 +53,14 @@ class Download9 extends BaseDownload {
     this.addProp({
       type: "string",
       key: "cardTitle",
-      displayer: "Card Title",
+      displayer: "Hover Title",
       value: "Download now by clicking the button",
     });
 
     this.addProp({
       type: "string",
       key: "cardDescription",
-      displayer: "Card Description",
+      displayer: "Hover Description",
       value: " By using clear and concise language, and providing a simple and easy-to-use download button, businesses and developers can increase the chances of users downloading and using their product.",
     });
 
