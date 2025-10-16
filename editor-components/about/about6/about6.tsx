@@ -69,8 +69,6 @@ class About6 extends BaseAbout {
 
         const subTitleType = Base.getSectionSubTitleType();
 
-        console.log("subTitleType", subTitleType)
-
         return (
             <Base.Container className={`${this.decorateCSS("container")} `}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>

@@ -210,9 +210,6 @@ class About7 extends BaseAbout {
 
     const alignment = Base.getContentAlignment();
 
-    console.log("alignment", alignment)
-
-
     return (
       <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${backgroundImage?.image?.url})`}}>
         {backgroundImage?.overlay && backgroundImage.image && (
