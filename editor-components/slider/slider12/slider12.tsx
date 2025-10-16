@@ -1,157 +1,130 @@
-"use client";
-
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import type { Settings, ResponsiveObject } from "react-slick";
 
-/* ==================== Video Player Component ==================== */
-const VideoPlayer = React.memo(
-  ({
-    src,
-    className,
-    onReady,
+type VideoPlayerProps = {
+  src: string;
+  className?: string;
+  onReady?: () => void;
+  forwardedRef?: React.Ref<HTMLVideoElement>;
+};
+
+const VideoPlayer = React.memo(function VideoPlayer({
+  src,
+  className,
+  onReady,
+  forwardedRef,
+}: VideoPlayerProps) {
+  const innerRef = React.useRef<HTMLVideoElement>(null);
+  const triedRef = React.useRef(false);
+  const [failed, setFailed] = React.useState(false);
+
+  React.useImperativeHandle(
     forwardedRef,
-  }: {
-    src: string;
-    className?: string;
-    onReady?: () => void;
-    forwardedRef?: React.Ref<HTMLVideoElement | null>;
-  }) => {
-    const videoRef = React.useRef<HTMLVideoElement>(null);
-    const attemptedPlay = React.useRef(false);
+    () => innerRef.current as unknown as HTMLVideoElement
+  );
 
-    React.useImperativeHandle(forwardedRef, () => videoRef.current);
+  React.useEffect(() => {
+    setFailed(false);
+  }, [src]);
 
-    React.useEffect(() => {
-      const videoEl = videoRef.current;
-      if (!videoEl) return;
+  React.useEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
 
-      videoEl.muted = true;
-      videoEl.loop = true;
-      videoEl.playsInline = true;
-      videoEl.autoplay = true;
-      videoEl.preload = "auto";
+    el.muted = true;
+    el.loop = true;
+    (el as any).playsInline = true;
+    el.setAttribute("muted", "true");
+    el.setAttribute("playsinline", "true");
+    el.setAttribute("preload", "auto");
 
-      const attributes = {
-        muted: "true",
-        playsinline: "true",
-        autoplay: "true",
-        preload: "auto",
-      };
-      Object.entries(attributes).forEach(([attr, val]) =>
-        videoEl.setAttribute(attr, val)
-      );
-
-      const tryPlay = () => {
-        setTimeout(() => {
-          if (videoEl && document.body.contains(videoEl)) {
-            videoEl.play?.().catch(() => {
-              if (!attemptedPlay.current) {
-                attemptedPlay.current = true;
-                setTimeout(() => videoEl.play?.().catch(() => {}), 120);
-              }
-            });
+    const tryPlay = () => {
+      const p = el.play?.();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          if (!triedRef.current) {
+            triedRef.current = true;
+            setTimeout(() => el.play?.().catch(() => {}), 150);
           }
-        }, 10);
-      };
+        });
+      }
+    };
 
-      const handleLoaded = () => {
-        onReady?.();
-        tryPlay();
-      };
-
-      videoEl.addEventListener("loadedmetadata", handleLoaded);
-      videoEl.addEventListener("loadeddata", handleLoaded);
-
-      videoEl.load();
+    const onLoaded = () => {
+      onReady?.();
       tryPlay();
+    };
 
-      return () => {
-        videoEl.removeEventListener("loadedmetadata", handleLoaded);
-        videoEl.removeEventListener("loadeddata", handleLoaded);
-        try {
-          videoEl.pause();
-        } catch {}
-      };
-    }, [src, onReady]);
+    const onError = () => {
+      setFailed(true);
+    };
 
+    el.addEventListener("loadedmetadata", onLoaded);
+    el.addEventListener("loadeddata", onLoaded);
+    el.addEventListener("error", onError);
+    tryPlay();
+
+    return () => {
+      el.removeEventListener("loadedmetadata", onLoaded);
+      el.removeEventListener("loadeddata", onLoaded);
+      el.removeEventListener("error", onError);
+      try {
+        if (!el.paused) el.pause();
+      } catch {}
+    };
+  }, [src, onReady]);
+
+  if (failed) {
     return (
-      <video
-        ref={videoRef}
-        src={src}
-        autoPlay
-        muted
-        playsInline
-        loop
-        preload="auto"
+      <div
         className={className}
-      />
-    );
-  }
-);
-
-const SlideCard = React.memo(
-  ({
-    url,
-    isVideo,
-    header,
-    description,
-    cardClassName,
-    mediaClassName,
-    contentClassName,
-    titleClassName,
-    descClassName,
-  }: {
-    url: string;
-    isVideo: boolean;
-    header: string;
-    description: string;
-    cardClassName: string;
-    mediaClassName: string;
-    contentClassName: string;
-    titleClassName: string;
-    descClassName: string;
-  }) => {
-    return (
-      <div className={cardClassName}>
-        <div className={mediaClassName}>
-          {isVideo ? (
-            <VideoPlayer src={url} />
-          ) : (
-            <img
-              src={url || "/placeholder.svg"}
-              alt=""
-              decoding="async"
-              loading="lazy"
-            />
-          )}
-        </div>
-
-        {(header || description) && (
-          <Base.VerticalContent className={contentClassName}>
-            {header && <Base.H2 className={titleClassName}>{header}</Base.H2>}
-            {description && (
-              <Base.P className={descClassName}>{description}</Base.P>
-            )}
-          </Base.VerticalContent>
-        )}
+        style={{ display: "grid", placeItems: "center" }}
+      >
+        <span style={{ fontSize: 12, opacity: 0.7 }}>Video yüklenemedi.</span>
       </div>
     );
   }
-);
 
-/* ==================== Slider Component ==================== */
+  return (
+    <video
+      ref={innerRef}
+      autoPlay
+      muted
+      playsInline
+      loop
+      preload="auto"
+      className={className}
+      draggable={false}
+      onDragStart={(e) => e.preventDefault()}
+      crossOrigin="anonymous"
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+});
+
+type Card = {
+  image?: string;
+  media?: { type: "video" | "image"; url: string };
+  header: React.JSX.Element;
+  description: React.JSX.Element;
+  link: string;
+};
+
 class Slider12 extends BaseSlider {
-  private resizeTimer?: number;
-  private transitionTimer?: number;
-  private sliderObserver?: ResizeObserver;
-  private isTransitioning = false;
-  private dragStartTime = 0;
-  private lastSlideChangeTime = 0;
-  private lockResize = false;
+  private currentIndex = 0;
+  private dragging = false;
+
+  private responsive!: ResponsiveObject[];
+  private settings!: Settings;
+
+  private sliderRef = React.createRef<any>();
+  private containerRef = React.createRef<HTMLDivElement>();
 
   constructor(props?: any) {
     super(props, styles);
@@ -162,598 +135,516 @@ class Slider12 extends BaseSlider {
       displayer: "Title",
       value: "Collaborative tools built for the pros. Like you",
     });
+
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value:
         "Supercharge your productivity with client management and collaboration tools that let you do it all from a single dashboard.",
     });
+
     this.addProp({
       type: "image",
       key: "background-image",
       displayer: "Background Image",
       value: "",
     });
+
     this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
       value: [
-        this.createSliderItem({
-          media: {
-            type: "video",
-            url: "https://vid.cdn-website.com/a8ff2f1c/videos/E2xnAgaRzmoErKzfdTDC_upload+images+v2-v.mp4",
-          },
-          header: "Onboard effortlessly",
-          description:
-            "Leverage Duda's AI Content Collection form or White Label AI Site Builder to make client onboarding painless (finally).",
-        }),
-        this.createSliderItem({
-          media: {
-            type: "video",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dc6a536675f002dbbfbfe?alt=media",
-          },
-          header: "Permission required",
-          description:
-            "Lock access to specific features behind ultra-customizable permissions for both client and team accounts.",
-        }),
-        this.createSliderItem({
-          media: {
-            type: "video",
-            url: "https://vid.cdn-website.com/a8ff2f1c/videos/AWajF0QTiOJfKkVco7PK_Permission-v.mp4",
-          },
-          header: "Hands-off hand-offs",
-          description:
-            "Grant your clients white label access to the editor. Don't worry, they won't receive any branded communications from Duda. Your customers are your own.",
-        }),
-        this.createSliderItem({
-          media: {
-            type: "image",
-            url: "https://lirp.cdn-website.com/a8ff2f1c/dms3rep/multi/opt/Frame+1171275952-a56ad42b-1920w.png",
-          },
-          header: "Collabor-elated",
-          description:
-            "Work alongside clients and teammates with in-line comment threads that support image and file uploads, right where you need them.",
-        }),
-        this.createSliderItem({
-          media: {
-            type: "image",
-            url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1440&auto=format&fit=crop",
-          },
-          header: "AI assist",
-          description:
-            "Draft content, summarize feedback and speed up routine tasks.",
-        }),
-        this.createSliderItem({
-          media: {
-            type: "image",
-            url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1440&auto=format&fit=crop",
-          },
-          header: "File uploads",
-          description:
-            "Collect files in one place with version history and previews.",
-        }),
-        this.createSliderItem({
-          media: {
-            type: "image",
-            url: "https://images.unsplash.com/photo-1528784351875-d797d86873a1?q=80&w=1440&auto=format&fit=crop",
-          },
-          header: "Custom branding",
-          description:
-            "Keep everything on-brand with logos, colors and typography.",
-        }),
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "video",
+                url: "https://vid.cdn-website.com/a8ff2f1c/videos/E2xnAgaRzmoErKzfdTDC_upload+images+v2-v.mp4",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Onboard effortlessly",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Leverage Duda's AI Content Collection form or White Label AI Site Builder to make client onboarding painless (finally).",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://lirp.cdn-website.com/a8ff2f1c/dms3rep/multi/opt/Frame+1171275952-a56ad42b-1920w.png",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Collabor-elated",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Work alongside clients and teammates with in-line comment threads that support image and file uploads, right where you need them.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "video",
+                url: "https://vid.cdn-website.com/a8ff2f1c/videos/AWajF0QTiOJfKkVco7PK_Permission-v.mp4",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Hands-off hand-offs",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Grant your clients white label access to the editor. Don’t worry, they won’t receive any branded communications from Duda. Your customers are your own.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1440&auto=format&fit=crop",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "AI assist",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Draft content, summarize feedback and speed up routine tasks.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1440&auto=format&fit=crop",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "File uploads",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Collect files in one place with version history and previews.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1528784351875-d797d86873a1?q=80&w=1440&auto=format&fit=crop",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Custom branding",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Keep everything on-brand with logos, colors and typography.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Video / Image",
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1440&auto=format&fit=crop",
+              },
+              additionalParams: { availableTypes: ["video", "image"] },
+            },
+            {
+              type: "string",
+              key: "header",
+              displayer: "Title",
+              value: "Automation workflows",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Build multi-step approvals and notifications with role-based permissions.",
+            },
+            { type: "page", key: "link", displayer: "Card Link", value: "" },
+          ],
+        },
       ],
     });
+
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
-      value: { type: "icon", name: "FiArrowLeft" },
-      additionalParams: { availableTypes: ["icon"] },
+      value: "BsArrowLeftCircle",
     });
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "nextArrow",
       displayer: "Next Arrow Icon",
-      value: { type: "icon", name: "FiArrowRight" },
-      additionalParams: { availableTypes: ["icon"] },
+      value: "BsArrowRightCircle",
     });
 
-    this.setComponentState("current", 0);
-    this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("is-transitioning", false);
+    this.responsive = [
+      { breakpoint: 1280, settings: { slidesToShow: 3, dots: false } },
+      { breakpoint: 1024, settings: { slidesToShow: 2, dots: false } },
+      { breakpoint: 640, settings: { slidesToShow: 1, dots: true } },
+    ];
+
+    this.settings = {
+      dots: false,
+      infinite: false,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      centerMode: false,
+      arrows: false,
+      speed: 620,
+      cssEase: "cubic-bezier(.22,.61,.36,1)",
+      edgeFriction: 0.18,
+      swipeToSlide: true,
+      touchThreshold: 12,
+      waitForAnimate: false,
+      useCSS: true,
+      useTransform: true,
+      swipe: true,
+      autoplay: false,
+      variableWidth: true,
+      onSwipe: () => {
+        this.dragging = true;
+        window.setTimeout(() => (this.dragging = false), 180);
+      },
+      afterChange: (index: number) => {
+        this.currentIndex = index;
+        this.playOnlyVideoAt(index);
+      },
+      responsive: this.responsive,
+    };
   }
 
   static getName(): string {
     return "Slider 12";
   }
 
-  private createSliderItem(item: {
-    media: any;
-    header: string;
-    description: string;
-  }) {
-    return [
-      {
-        type: "media",
-        key: "media",
-        displayer: "Video / Image",
-        value: item.media,
-        additionalParams: { availableTypes: ["video", "image"] },
-      },
-      {
-        type: "string",
-        key: "header",
-        displayer: "Title",
-        value: item.header,
-      },
-      {
-        type: "string",
-        key: "description",
-        displayer: "Description",
-        value: item.description,
-      },
-      { type: "page", key: "link", displayer: "Card Link", value: "" },
-    ];
-  }
-
-  private items() {
-    return this.castToObject<any[]>("slider");
-  }
-
-  private getMediaInfo(val: any) {
-    if (!val) return { url: "", isVideo: false };
-
-    const media = val.value ?? val;
-    const url =
-      media?.url ??
-      media?.src ??
-      (Array.isArray(media?.sources) ? media.sources[0]?.src : "");
-
-    const isVideo =
-      !!url && (media?.type === "video" || /\.(mp4|webm|ogg)$/i.test(url));
-
-    return { url, isVideo };
-  }
-
-  private getLinkPath(raw: any): string {
-    if (!raw) return "";
-    return typeof raw === "string"
-      ? raw
-      : raw?.path ?? raw?.url ?? raw?.href ?? "";
-  }
-
-  private getSlidesToShow(): number {
-    const slider = this.getComponentState("slider-ref")?.current;
-    const windowWidth = typeof window !== "undefined" ? window.innerWidth : 0;
-
-    let defaultValue = 3;
-    if (windowWidth > 0 && windowWidth <= 1024) {
-      defaultValue = 1;
-    } else if (windowWidth > 0 && windowWidth <= 1440) {
-      defaultValue = 2;
-    }
-
-    return slider?.innerSlider?.props?.slidesToShow ?? defaultValue;
-  }
-
-  private getNavigationState(current: number, totalSlides: number) {
-    const slidesToShow = this.getSlidesToShow();
-    return {
-      canPrev: current > 0,
-      canNext: current < Math.max(0, totalSlides - slidesToShow),
-    };
-  }
-
-  private handleBeforeChange = (oldIndex: number, newIndex: number) => {
-    if (this.isTransitioning) return;
-
-    this.isTransitioning = true;
-    this.lockResize = true;
-    this.setComponentState("is-transitioning", true);
-
-    const container = document.querySelector(
-      `.${this.decorateCSS("slider-parent")}`
-    );
-
-    if (container) {
-      requestAnimationFrame(() => {
-        container.setAttribute("data-transitioning", "true");
-        container.setAttribute(
-          "data-direction",
-          newIndex > oldIndex ? "next" : "prev"
-        );
-      });
-    }
-  };
-
-  private handleAfterChange = (index: number) => {
-    this.setComponentState("current", index);
-    this.lastSlideChangeTime = Date.now();
-
-    if (this.transitionTimer) window.clearTimeout(this.transitionTimer);
-    this.transitionTimer = window.setTimeout(() => {
-      this.isTransitioning = false;
-      this.lockResize = false;
-      this.setComponentState("is-transitioning", false);
-
-      const container = document.querySelector(
-        `.${this.decorateCSS("slider-parent")}`
-      );
-      if (container) {
-        requestAnimationFrame(() => {
-          container.removeAttribute("data-transitioning");
-          container.removeAttribute("data-direction");
-        });
-      }
-
-      this.manageVideoPlayback();
-    }, 900) as unknown as number;
-  };
-
-  private handleSwipeStart = () => {
-    this.dragStartTime = Date.now();
-    const container = document.querySelector(
-      `.${this.decorateCSS("slider-parent")}`
-    );
-    if (container) {
-      container.setAttribute("data-swiping", "true");
-    }
-  };
-
-  private handleSwipeEnd = () => {
-    const container = document.querySelector(
-      `.${this.decorateCSS("slider-parent")}`
-    );
-    if (container) {
-      container.removeAttribute("data-swiping");
-    }
-  };
-
   componentDidMount(): void {
-    window.addEventListener("resize", this.handleResize);
-    this.manageVideoPlayback();
-
-    this.sliderObserver = new ResizeObserver((entries) => {
-      if (this.lockResize || this.isTransitioning) return;
-
-      for (const entry of entries) {
-        if (entry.contentRect) {
-          const slider = this.getComponentState("slider-ref").current;
-          if (slider && typeof slider.slickGoTo === "function") {
-            const current = this.getComponentState("current") || 0;
-            slider.slickGoTo(current, true);
-          }
-        }
-      }
-    });
-
-    const sliderElement = document.querySelector(
-      `.${this.decorateCSS("slider-parent")}`
-    );
-    if (sliderElement && this.sliderObserver) {
-      this.sliderObserver.observe(sliderElement);
-    }
+    this.currentIndex = 0;
+    this.playOnlyVideoAt(this.currentIndex);
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener("resize", this.handleResize);
-    if (this.resizeTimer) window.clearTimeout(this.resizeTimer);
-    if (this.transitionTimer) window.clearTimeout(this.transitionTimer);
-
-    if (this.sliderObserver) {
-      this.sliderObserver.disconnect();
-    }
+    const root = this.containerRef.current ?? document;
+    const vids = root.querySelectorAll("video") as NodeListOf<HTMLVideoElement>;
+    vids.forEach((v) => {
+      try {
+        if (!v.paused) v.pause();
+      } catch {}
+    });
   }
 
-  private handleResize = () => {
-    if (this.lockResize || this.isTransitioning) return;
-
-    const container = document.querySelector(
-      `.${this.decorateCSS("container")}`
-    ) as HTMLElement | null;
-    if (container) container.setAttribute("data-resizing", "true");
-
-    if (this.resizeTimer) window.clearTimeout(this.resizeTimer);
-    this.resizeTimer = window.setTimeout(() => {
-      if (container) container.removeAttribute("data-resizing");
-    }, 200) as unknown as number;
-  };
-
-  private navigateToSlide = (index: number) => {
-    const slider = this.getComponentState("slider-ref").current;
-    if (!slider) return;
-
-    const totalSlides = this.items().length;
-    const slidesToShow = this.getSlidesToShow();
-    const maxStartIndex = Math.max(0, totalSlides - slidesToShow);
-    const targetIndex = Math.min(index, maxStartIndex);
-
-    slider.slickGoTo?.(targetIndex);
-  };
-
-  private manageVideoPlayback = () => {
-    requestAnimationFrame(() => {
-      const sliderElement = document.querySelector(
-        `.${this.decorateCSS("slider-parent")}`
-      );
-      if (!sliderElement) return;
-
-      const activeSlides = Array.from(
-        sliderElement.querySelectorAll(".slick-slide.slick-active")
-      );
-
-      const allVideos = Array.from(
-        sliderElement.querySelectorAll("video")
-      ) as HTMLVideoElement[];
-
-      if (!allVideos.length) return;
-
-      const activeVideoSet = new Set<HTMLVideoElement>();
-
-      activeSlides.forEach((slide) => {
-        const videos = Array.from(
-          slide.querySelectorAll("video")
-        ) as HTMLVideoElement[];
-        videos.forEach((video) => activeVideoSet.add(video));
-      });
-
-      allVideos.forEach((video) => {
-        if (activeVideoSet.has(video)) {
-          video.muted = true;
-          video.loop = true;
-          video.playsInline = true;
-          video.play?.().catch(() => {});
+  private playOnlyVideoAt(index: number) {
+    const root = this.containerRef.current ?? document;
+    const slideSelector = `.${this.decorateCSS("slide")}`;
+    const allVideos = root.querySelectorAll<HTMLVideoElement>(
+      `${slideSelector} video`
+    );
+    allVideos.forEach((v, i) => {
+      try {
+        if (i === index) {
+          setTimeout(() => v.play?.().catch(() => {}), 120);
         } else {
-          try {
-            video.pause();
-          } catch {}
+          if (!v.paused) v.pause();
+          v.currentTime = 0;
         }
-      });
+      } catch {}
     });
+  }
+
+  private SafeWrap: React.FC<React.PropsWithChildren<{ href?: string }>> = ({
+    href,
+    children,
+  }) => {
+    const hasLink = Boolean(href && href.trim());
+    const onClick: React.MouseEventHandler = (e) => {
+      if (this.dragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+    return hasLink ? (
+      <ComposerLink path={href!} isFullWidth={false} {...({ onClick } as any)}>
+        {children}
+      </ComposerLink>
+    ) : (
+      <>{children}</>
+    );
   };
 
   render() {
-    const items = this.items();
-    const totalSlides = items.length;
+    const rawItems = this.castToObject<Card[]>("slider");
+    const items = rawItems
+      .filter((item) => item?.media || item?.image)
+      .filter((item) => {
+        const url = item?.media?.url || item?.image;
+        return Boolean(url);
+      });
 
+    const itemCount = items.length;
+    if (itemCount === 0) return null;
+
+    const prevMedia = this.getPropValue("previousArrow");
+    const nextMedia = this.getPropValue("nextArrow");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const current = this.getComponentState("current") ?? 0;
 
-    const { canPrev, canNext } = this.getNavigationState(current, totalSlides);
-    const sliderRef = this.getComponentState("slider-ref");
+    const prevName =
+      (typeof prevMedia === "string" && prevMedia) ||
+      (prevMedia as any)?.name ||
+      (prevMedia as any)?.value?.name;
 
-    const prevIcon = this.getPropValue("previousArrow");
-    const nextIcon = this.getPropValue("nextArrow");
-    const prevIconName =
-      typeof prevIcon === "string"
-        ? prevIcon
-        : prevIcon?.name || prevIcon?.value?.name || "FiArrowLeft";
-    const nextIconName =
-      typeof nextIcon === "string"
-        ? nextIcon
-        : nextIcon?.name || nextIcon?.value?.name || "FiArrowRight";
+    const nextName =
+      (typeof nextMedia === "string" && nextMedia) ||
+      (nextMedia as any)?.name ||
+      (nextMedia as any)?.value?.name;
 
-    const bgImage = this.getPropValue("background-image");
-    const bgUrl =
-      typeof bgImage === "string"
-        ? bgImage
-        : bgImage?.value?.url || bgImage?.url || "";
-    const containerStyle = bgUrl
-      ? {
-          backgroundImage: `url("${bgUrl}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }
-      : undefined;
+    const hasTitle = Boolean(this.castToString(title));
+    const hasDesc = Boolean(this.castToString(description));
+    const showHeader = hasTitle || hasDesc;
+    const hasPrev = Boolean(prevName);
+    const hasNext = Boolean(nextName);
 
-    const sliderSettings = {
-      dots: false,
-      infinite: false,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      variableWidth: false,
-      centerMode: false,
-      arrows: false,
-      speed: 800,
-      cssEase: "cubic-bezier(0.2, 0, 0.15, 1)",
-      waitForAnimate: true,
-      adaptiveHeight: false,
-      draggable: true,
-      swipe: true,
-      touchMove: true,
-      swipeToSlide: true,
-      touchThreshold: 5,
-      useCSS: true,
-      useTransform: true,
-      accessibility: true,
-      autoplay: false,
-      edgeFriction: 0.15,
-      beforeChange: this.handleBeforeChange,
-      afterChange: this.handleAfterChange,
-      swipeStart: this.handleSwipeStart,
-      swipeEnd: this.handleSwipeEnd,
-      pauseOnHover: true,
-      pauseOnFocus: true,
-      lazyLoad: "ondemand",
-      responsive: [
-        {
-          breakpoint: 1440,
-          settings: { slidesToShow: 2, variableWidth: false },
-        },
-        {
-          breakpoint: 1024,
-          settings: { slidesToShow: 1, variableWidth: false },
-        },
-        {
-          breakpoint: 960,
-          settings: { slidesToShow: 1, variableWidth: false },
-        },
-      ],
-    };
+    const showArrows = itemCount > 1 && (hasPrev || hasNext);
 
-    const slidesToShowNow = this.getSlidesToShow();
-    const isLastSlideSet =
-      current >= Math.max(0, totalSlides - slidesToShowNow);
+    const bg = this.getPropValue("background-image");
+    const bgUrl = typeof bg === "string" ? bg : bg?.url ?? "";
+    const hasBg = Boolean(bgUrl);
 
-    const carouselClassName = `${this.decorateCSS("carousel")} ${
-      isLastSlideSet ? this.decorateCSS("last-slide-visible") : ""
-    }`;
-
-    const cardClassName = this.decorateCSS("card");
-    const mediaClassName = this.decorateCSS("media-container");
-    const contentClassName = this.decorateCSS("content-container");
-    const titleClassName = this.decorateCSS("content-title");
-    const descClassName = this.decorateCSS("content-description");
+    const SafeWrap = this.SafeWrap;
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={containerStyle}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(title) || this.castToString(description)) && (
-            <div className={this.decorateCSS("header")}>
-              <Base.VerticalContent
-                className={this.decorateCSS("header-content")}
-              >
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {this.castToString(description) && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
+      <div ref={this.containerRef}>
+        <Base.Container
+          className={this.decorateCSS("container")}
+          {...(hasBg ? { style: { backgroundImage: `url(${bgUrl})` } } : {})}
+        >
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {showHeader && (
+              <Base.VerticalContent>
+                <div className={this.decorateCSS("header")}>
+                  <Base.VerticalContent
+                    className={this.decorateCSS("header-content")}
                   >
-                    {description}
-                  </Base.SectionDescription>
-                )}
+                    {hasTitle && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {hasDesc && (
+                      <Base.SectionDescription
+                        className={this.decorateCSS("description")}
+                      >
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
+                </div>
+              </Base.VerticalContent>
+            )}
 
+            {showArrows && (
+              <div className={this.decorateCSS("slider-wrap")}>
                 <div className={this.decorateCSS("arrows")}>
                   <Base.Icon
-                    name={prevIconName}
+                    name={prevName}
                     propsIcon={{
                       className: this.decorateCSS("prevArrow"),
-                      role: "button",
-                      tabIndex: 0,
-                      "aria-label": "Previous",
-                      "aria-disabled": !canPrev,
-                      onClick: () => {
-                        if (canPrev) {
-                          sliderRef.current?.slickPrev();
-                        }
-                      },
+                      onClick: () => this.sliderRef.current?.slickPrev(),
                     }}
                   />
                   <Base.Icon
-                    name={nextIconName}
+                    name={nextName}
                     propsIcon={{
                       className: this.decorateCSS("nextArrow"),
-                      role: "button",
-                      tabIndex: 0,
-                      "aria-label": "Next",
-                      "aria-disabled": !canNext,
-                      onClick: () => {
-                        if (canNext) {
-                          sliderRef.current?.slickNext();
-                        }
-                      },
+                      onClick: () => this.sliderRef.current?.slickNext(),
                     }}
                   />
                 </div>
-              </Base.VerticalContent>
-            </div>
-          )}
+              </div>
+            )}
 
-          <div
-            className={this.decorateCSS("slider-parent")}
-            data-last-slide-visible={isLastSlideSet ? "true" : "false"}
-          >
-            {totalSlides > 0 && (
-              <ComposerSlider
-                {...sliderSettings}
-                ref={sliderRef}
-                className={carouselClassName}
-              >
-                {items.map((item: any, index: number) => {
-                  const mediaItem = Array.isArray(item)
-                    ? item.find((prop) => prop.key === "media")
-                    : item.media;
+            <div className={this.decorateCSS("slider-parent")}>
+              <ComposerSlider ref={this.sliderRef} {...this.settings}>
+                {items.map((item, i) => {
+                  const isWideDesktop = i % 3 === 2;
 
-                  const headerItem = Array.isArray(item)
-                    ? item.find((prop) => prop.key === "header")
-                    : item;
+                  const media = item.media;
+                  const isVideo = media?.type === "video";
+                  const url = media?.url || item.image || "";
+                  const rawPath = (item.link ?? "").trim();
 
-                  const descItem = Array.isArray(item)
-                    ? item.find((prop) => prop.key === "description")
-                    : item;
+                  const hasHeaderText = Boolean(item.header);
+                  const hasCardDesc = Boolean(item.description);
 
-                  const linkItem = Array.isArray(item)
-                    ? item.find((prop) => prop.key === "link")
-                    : item?.link;
+                  const CardInner = (
+                    <div
+                      className={this.decorateCSS("card")}
+                      onMouseDown={(e) => e.preventDefault()}
+                    >
+                      <div className={this.decorateCSS("media")}>
+                        {isVideo ? (
+                          <VideoPlayer
+                            src={url}
+                            className={this.decorateCSS("video")}
+                          />
+                        ) : (
+                          <img
+                            src={url}
+                            alt=""
+                            className={this.decorateCSS("image")}
+                            draggable={false}
+                            onDragStart={(e) => e.preventDefault()}
+                          />
+                        )}
+                      </div>
 
-                  const mediaVal = mediaItem?.value || mediaItem;
-                  const { url, isVideo } = this.getMediaInfo(mediaVal);
-
-                  const header = this.castToString(
-                    headerItem?.value || item.header
-                  );
-                  const description = this.castToString(
-                    descItem?.value || item.description
-                  );
-                  const linkPath = this.getLinkPath(
-                    linkItem?.value || item.link
-                  );
-
-                  const CardContent = (
-                    <SlideCard
-                      url={url}
-                      isVideo={isVideo}
-                      header={header}
-                      description={description}
-                      cardClassName={cardClassName}
-                      mediaClassName={mediaClassName}
-                      contentClassName={contentClassName}
-                      titleClassName={titleClassName}
-                      descClassName={descClassName}
-                    />
+                      {(hasHeaderText || hasCardDesc) && (
+                        <div className={this.decorateCSS("text")}>
+                          {hasHeaderText && (
+                            <div className={this.decorateCSS("header")}>
+                              {item.header}
+                            </div>
+                          )}
+                          {hasCardDesc && (
+                            <div className={this.decorateCSS("desc")}>
+                              {item.description}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   );
 
                   return (
-                    <div key={`slide-${index}`}>
-                      {linkPath ? (
-                        <ComposerLink path={linkPath}>
-                          {CardContent}
-                        </ComposerLink>
-                      ) : (
-                        CardContent
-                      )}
+                    <div
+                      key={i}
+                      className={
+                        this.decorateCSS("slide") +
+                        (isWideDesktop ? " " + this.decorateCSS("wide") : "")
+                      }
+                    >
+                      <SafeWrap href={rawPath}>{CardInner}</SafeWrap>
                     </div>
                   );
                 })}
               </ComposerSlider>
-            )}
-
-            {totalSlides > 0 && (
-              <div className={this.decorateCSS("dot-nav")}>
-                {items.map((_, i) => (
-                  <button
-                    key={i}
-                    className={this.decorateCSS("dot")}
-                    aria-current={i === current ? "true" : "false"}
-                    aria-label={`Go to slide ${i + 1}`}
-                    onClick={() => this.navigateToSlide(i)}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </Base.MaxContent>
-      </Base.Container>
+            </div>
+          </Base.MaxContent>
+        </Base.Container>
+      </div>
     );
   }
 }

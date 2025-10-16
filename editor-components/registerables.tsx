@@ -252,7 +252,7 @@ import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 import PrivacyPolicyPage from "./legal/privacy-policy";
 import ComingSoon2 from "./coming-soon/coming-soon2/coming-soon2";
 import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
-import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";  
+import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
 import Blog1 from "./blog/blog1/blog1";
 import Blog2 from "./blog/blog2/blog2";
 import About1 from "./about/about1/about1";
@@ -265,7 +265,7 @@ import About7 from "./about/about7/about7";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
-import Comparison1 from "./comparison/comparison1/comparison1"; 
+import Comparison1 from "./comparison/comparison1/comparison1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
