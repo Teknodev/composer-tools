@@ -195,7 +195,7 @@
 
   :global(.slick-track) {
     display: flex !important;
-    gap: var(--slider-gutter);
+    gap: 2rem;
     align-items: stretch;
     transition-property: transform !important;
     transition-duration: var(--slide-speed) !important;
@@ -233,7 +233,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-radius: var(--composer-border-radius-xl);
+  border-radius: var(--composer-border-radius-sm);
   user-select: none;
   -webkit-user-select: none;
 }
@@ -243,7 +243,7 @@
   width: var(--media-w);
   height: var(--media-h);
   overflow: hidden;
-  border-radius: var(--composer-border-radius-xl);
+  border-radius: var(--composer-border-radius-sm);
   background: color-mix(in srgb, var(--composer-html-background), black 8%);
   display: grid;
   place-items: center;

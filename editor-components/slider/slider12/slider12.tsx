@@ -483,18 +483,11 @@ class Slider12 extends BaseSlider {
       <>{children}</>
     );
   };
-
   render() {
     const rawItems = this.castToObject<Card[]>("slider");
-    const items = rawItems
-      .filter((item) => item?.media || item?.image)
-      .filter((item) => {
-        const url = item?.media?.url || item?.image;
-        return Boolean(url);
-      });
+    const items = (rawItems || []).filter(Boolean);
 
     const itemCount = items.length;
-    if (itemCount === 0) return null;
 
     const prevMedia = this.getPropValue("previousArrow");
     const nextMedia = this.getPropValue("nextArrow");
@@ -514,10 +507,12 @@ class Slider12 extends BaseSlider {
     const hasTitle = Boolean(this.castToString(title));
     const hasDesc = Boolean(this.castToString(description));
     const showHeader = hasTitle || hasDesc;
+
     const hasPrev = Boolean(prevName);
     const hasNext = Boolean(nextName);
 
-    const showArrows = itemCount > 1 && (hasPrev || hasNext);
+    const showSlider = itemCount > 0; // ← yeni
+    const showArrows = showSlider && itemCount > 1 && (hasPrev || hasNext); // ← güncel
 
     const bg = this.getPropValue("background-image");
     const bgUrl = typeof bg === "string" ? bg : bg?.url ?? "";
@@ -525,6 +520,7 @@ class Slider12 extends BaseSlider {
 
     const SafeWrap = this.SafeWrap;
 
+    // ESKİDEKİ: if (itemCount === 0) return null;  ← SİL
     return (
       <div ref={this.containerRef}>
         <Base.Container
@@ -555,93 +551,122 @@ class Slider12 extends BaseSlider {
               </Base.VerticalContent>
             )}
 
-            {showArrows && (
-              <div className={this.decorateCSS("slider-wrap")}>
-                <div className={this.decorateCSS("arrows")}>
-                  <Base.Icon
-                    name={prevName}
-                    propsIcon={{
-                      className: this.decorateCSS("prevArrow"),
-                      onClick: () => this.sliderRef.current?.slickPrev(),
-                    }}
-                  />
-                  <Base.Icon
-                    name={nextName}
-                    propsIcon={{
-                      className: this.decorateCSS("nextArrow"),
-                      onClick: () => this.sliderRef.current?.slickNext(),
-                    }}
-                  />
-                </div>
-              </div>
-            )}
+            {showSlider && (
+              <>
+                {showArrows && (
+                  <div className={this.decorateCSS("slider-wrap")}>
+                    <div className={this.decorateCSS("arrows")}>
+                      <Base.Icon
+                        name={prevName}
+                        propsIcon={{
+                          className: this.decorateCSS("prevArrow"),
+                          onClick: () => this.sliderRef.current?.slickPrev(),
+                        }}
+                      />
+                      <Base.Icon
+                        name={nextName}
+                        propsIcon={{
+                          className: this.decorateCSS("nextArrow"),
+                          onClick: () => this.sliderRef.current?.slickNext(),
+                        }}
+                      />
+                    </div>
+                  </div>
+                )}
 
-            <div className={this.decorateCSS("slider-parent")}>
-              <ComposerSlider ref={this.sliderRef} {...this.settings}>
-                {items.map((item, i) => {
-                  const isWideDesktop = i % 3 === 2;
+                <div className={this.decorateCSS("slider-parent")}>
+                  <ComposerSlider ref={this.sliderRef} {...this.settings}>
+                    {items.map((item, i) => {
+                      const isWideDesktop = i % 3 === 2;
+                      const media = item.media;
+                      const mediaType =
+                        media?.type ?? (item.image ? "image" : undefined);
+                      const url = media?.url ?? item.image ?? "";
+                      const hasMedia = Boolean(mediaType && url);
+                      const rawPath = (item.link ?? "").trim();
+                      const hasHeaderText = Boolean(item.header);
+                      const hasCardDesc = Boolean(item.description);
 
-                  const media = item.media;
-                  const isVideo = media?.type === "video";
-                  const url = media?.url || item.image || "";
-                  const rawPath = (item.link ?? "").trim();
+                      const CardInner = (
+                        <div
+                          className={this.decorateCSS("card")}
+                          onMouseDown={(e) => e.preventDefault()}
+                        >
+                          <div className={this.decorateCSS("media")}>
+                            {hasMedia ? (
+                              mediaType === "video" ? (
+                                <VideoPlayer
+                                  src={url}
+                                  className={this.decorateCSS("video")}
+                                />
+                              ) : (
+                                <img
+                                  src={url}
+                                  alt=""
+                                  className={this.decorateCSS("image")}
+                                  draggable={false}
+                                  onDragStart={(e) => e.preventDefault()}
+                                />
+                              )
+                            ) : (
+                              <div
+                                className={this.decorateCSS("placeholder")}
+                                aria-label="Media placeholder"
+                              >
+                                <div
+                                  className={this.decorateCSS(
+                                    "placeholderMark"
+                                  )}
+                                />
+                                <span
+                                  className={this.decorateCSS(
+                                    "placeholderText"
+                                  )}
+                                >
+                                  Media unavailable
+                                </span>
+                              </div>
+                            )}
+                          </div>
 
-                  const hasHeaderText = Boolean(item.header);
-                  const hasCardDesc = Boolean(item.description);
-
-                  const CardInner = (
-                    <div
-                      className={this.decorateCSS("card")}
-                      onMouseDown={(e) => e.preventDefault()}
-                    >
-                      <div className={this.decorateCSS("media")}>
-                        {isVideo ? (
-                          <VideoPlayer
-                            src={url}
-                            className={this.decorateCSS("video")}
-                          />
-                        ) : (
-                          <img
-                            src={url}
-                            alt=""
-                            className={this.decorateCSS("image")}
-                            draggable={false}
-                            onDragStart={(e) => e.preventDefault()}
-                          />
-                        )}
-                      </div>
-
-                      {(hasHeaderText || hasCardDesc) && (
-                        <div className={this.decorateCSS("text")}>
-                          {hasHeaderText && (
-                            <div className={this.decorateCSS("header")}>
-                              {item.header}
-                            </div>
-                          )}
-                          {hasCardDesc && (
-                            <div className={this.decorateCSS("desc")}>
-                              {item.description}
+                          {(hasHeaderText || hasCardDesc) && (
+                            <div className={this.decorateCSS("text")}>
+                              {hasHeaderText && (
+                                <div className={this.decorateCSS("header")}>
+                                  {item.header}
+                                </div>
+                              )}
+                              {hasCardDesc && (
+                                <div className={this.decorateCSS("desc")}>
+                                  {item.description}
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
-                      )}
-                    </div>
-                  );
+                      );
 
-                  return (
-                    <div
-                      key={i}
-                      className={
-                        this.decorateCSS("slide") +
-                        (isWideDesktop ? " " + this.decorateCSS("wide") : "")
-                      }
-                    >
-                      <SafeWrap href={rawPath}>{CardInner}</SafeWrap>
-                    </div>
-                  );
-                })}
-              </ComposerSlider>
-            </div>
+                      return (
+                        <div
+                          key={i}
+                          className={
+                            this.decorateCSS("slide") +
+                            (isWideDesktop
+                              ? " " + this.decorateCSS("wide")
+                              : "")
+                          }
+                        >
+                          <SafeWrap href={rawPath}>{CardInner}</SafeWrap>
+                        </div>
+                      );
+                    })}
+                  </ComposerSlider>
+                </div>
+              </>
+            )}
+
+            {/* İstersen tüm slaytlar silinince küçük bir boş durum gösterebilirsin:
+          {!showSlider && <div className={this.decorateCSS("empty")}>No slides yet</div>} */}
           </Base.MaxContent>
         </Base.Container>
       </div>
