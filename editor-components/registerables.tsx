@@ -246,7 +246,6 @@ import ECommerce2 from "./e-commerce/e-commerce2/e-commerce2";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ECommerce5 from "./e-commerce/e-commerce5";
-import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "./social/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
