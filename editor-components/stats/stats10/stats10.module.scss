@@ -1,0 +1,346 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+.container {
+  .max-content {
+    .page {
+      display: flex;
+      gap: calc(var(--composer-gap-xl) * 2);
+      width: 100%;
+      .left-page {
+        flex:1.5;
+        min-height: 50vh;
+        max-height: 100vh;
+        width: 100%;
+        position: relative;
+        .up-image{
+          height: 80%;
+          overflow: hidden;
+
+          &[data-animation~="animate1"] {
+            .image1 {
+              transition: transform 0.5s ease;
+            }
+
+            &:hover .image1 {
+              transform: scale(1.1);
+            }
+          }
+
+          &[data-animation~="animate2"] {
+            .image1 {
+              transition: all 0.8s ease;
+              transform-origin: center;
+            }
+
+            &:hover .image1 {
+              transform: rotate(-3deg) scale(1.15);
+              filter: saturate(1.3);
+            }
+          }
+
+          .image1 {
+            width:90%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--composer-gap-sm);
+          }
+          &.without-image2{
+            height: 100% ;
+            .image1{
+              width: 100%;
+            }
+          }
+        }
+        .down-image {
+          width: 70%;
+          height: 70%;
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+          overflow: hidden;
+
+          &[data-animation~="animate1"] {
+            .image2 {
+              transition: transform 0.5s ease;
+            }
+
+            &:not(.video-active):hover .image2 {
+              transform: scale(1.1);
+            }
+          }
+
+          &[data-animation~="animate2"] {
+            .image2 {
+              transition: all 0.8s ease;
+              transform-origin: center;
+            }
+
+            &:not(.video-active):hover .image2 {
+              transform: rotate(3deg) scale(1.15);
+              filter: saturate(1.3);
+            }
+          }
+          .image2 {
+            width: 100%;
+            height: 100%;
+            border: 10px solid var(--composer-html-background);
+            border-radius: 20px !important;
+            object-fit: cover;
+          }
+          .player{
+            position: absolute;
+            top:0px;
+            width: 100%;
+            height: 100%;
+          }
+          &.without-image1{
+            height: 100%;
+            width: 100%;
+            .image2{
+              border: none !important;
+            }
+          }
+        }
+
+        .player-container{
+          .icon-container{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top:0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .play-icon{
+              width: 50px;
+              height: 50px;
+              cursor: pointer;
+              color: var(--composer-font-color-secondary);
+            }
+          }
+        }
+      }
+
+      .right-page {
+        flex:1;
+        .badge {
+          content: "";
+        }
+        .title {
+          content: "";
+        }
+        .description {
+          content: "";
+        }
+        .progress-container {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          width: 100%;
+          .item {
+            transition: 0.3s;
+            gap:10px;
+            display: flex;
+            flex-direction: column;
+            &[data-animation~="animate1"] {
+              &:hover {
+                .progress-bar-container {
+                  .progress-bar {
+                    .progress {
+                      animation: refillProgress 1.5s ease;
+                    }
+                  }
+                }
+              }
+            }
+            &[data-animation~="animate2"] {
+              .progress-title-container {
+                .progress-title, .icon {
+                  transition: color 0.3s ease;
+                }
+              }
+
+              .progress-text {
+                transition: color 0.3s ease;
+              }
+
+              &:hover {
+                .progress-title-container {
+                  .progress-title, .icon {
+                    color: var(--composer-primary-color);
+                  }
+                }
+
+                .progress-text {
+                  color: var(--composer-primary-color);
+                }
+              }
+            }
+            .progress-content{
+              display: flex;
+              flex-direction: row;
+              .progress-title-container {
+                display: flex;
+                gap: 10px;
+                font-size: 1.5rem;
+                width: 100%;
+                color: var(--composer-font-color-primary);
+                .progress-title-icon {
+                  display: flex;
+                  align-items: center;
+                }
+                .progress-title{
+                  font-size:1.5rem;
+                }
+              }
+              .progress-text-container {
+                width: 10%;
+                justify-content:end;
+                align-items:flex-end;
+                display: flex;
+                .progress-text{
+                  font-size:1.5rem;
+                  color: var(--composer-font-color-primary);                
+                }
+              }
+            }
+            .progress-bar-container {
+              position: relative;
+              .progress-bar {
+                width: 100%;
+                background-color: #f0f0f0;
+                border-radius: 10px;
+                overflow: hidden;
+                .progress {
+                  height: 8px;
+                  background-color: var(--composer-primary-color);
+                  width: 0;
+                  transition: width 1.5s ease-in-out;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .page {
+        flex-direction: column !important;
+        flex-direction: column-reverse !important;
+        gap:50px;
+        .right-page {
+          flex: auto !important;
+          position: static !important;
+
+        }
+        .left-page {
+          flex: auto !important;
+          position: relative !important;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          min-height: 400px !important;
+          .up-image{
+            width: 100% !important;
+            height: 70% !important;
+            .image1{
+              width: 100% !important;
+              object-fit: cover;
+            }
+          }
+          .down-image,.without-image1{
+            position: absolute;
+            width: 70% !important;
+            right: auto;
+            .image2{
+              height: 100% !important;
+            }
+          }
+          .without-image1{
+            margin-top: 0px !important;
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    height: 100%;
+    .max-content {
+      .page {
+        flex-direction: column;
+        width: 100%;
+
+        .left-page {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          gap: 10px;
+          min-height: 300px !important;
+          .up-image {
+            .image1 {
+              content: "";
+            }
+          }
+          .down-image {
+            margin-top: 0px !important;
+            width: 100% !important;
+            position:  relative !important;
+            .image2 {
+              border:none !important;
+              border-radius: 10px !important;
+            }
+            .icon-container{
+              .play-icon{
+                width: 30px;
+                height: 30px;
+              }
+            }
+          }
+          .without-image1{
+            width: 100% !important;
+          }
+        }
+
+        .right-page {
+
+          width: 100% !important;
+          .badge{
+            font-size:1.3rem ;
+          }
+          .title {
+            font-size: 2rem;
+          }
+          .description{
+            font-size: 1.3rem
+          }
+          .progress-container {
+            width: 100% !important;
+            .item{
+              .progress-title-container{
+                font-size: 1.3rem;
+              }
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes refillProgress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: var(--progress-width);
+  }
+}

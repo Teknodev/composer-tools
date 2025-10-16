@@ -5,7 +5,7 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             .up-page {
-                .title, .description {
+                .title, .description, .subtitle {
                     content: "";
                 }
             }
@@ -14,7 +14,7 @@
                 flex-direction: column;
                 gap: var(--composer-gap-md);
                 .card {
-                    border-radius: var(--composer-border-radius-xs);
+                    border-radius: var(--composer-border-radius-sm);
                     width: 100%;
                     background-color: color-mix(
                         in srgb,
@@ -44,9 +44,8 @@
                         .card-title-wrapper {
                             flex:1;
                             .card-title {
-                                font-size:1rem;
                                 color: var(--composer-font-color-primary);
-                                transition: color 0.5s ease;
+                                transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                                 &.active{
                                    color: var(--composer-primary-color); 
                                 }
@@ -58,23 +57,23 @@
                             justify-content: center;            
                             .icon {
                                 color: var(--composer-font-color-primary);
-                                width: 15px;
-                                height: 15px;
+                                width: 16px;
+                                height: 16px;
+                                font-size: 1rem;
                             }
                         }
                     }
                     .inner-card {
                         overflow: hidden;
                         max-height: 0px;
-                        transition: max-height 1s linear;
+                        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                         &.active {
                             max-height: 150px;
                         }
                         .inner-text{
-                            font-size: 1rem;
                             color: var( --composer-tertiary-color);
                             opacity: 0;
-                            transition: opacity 1s linear;
+                            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                             padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) 0px;
                             &.active {
                                 opacity: 1;
@@ -88,7 +87,9 @@
                 display: flex;
                 justify-content: center;
                 .button{
-                    content: "";
+                    .button-text {
+                        content: "";
+                    }
                 }
             }
         }

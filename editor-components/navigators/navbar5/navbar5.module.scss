@@ -1,10 +1,11 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
   position: relative;
+  z-index: 101;
 }
 
 .maxContent {
@@ -19,14 +20,16 @@
       display: flex;
       align-items: center;
       gap: var(--composer-gap-sm);
-      .icon {
-        font-size: 1.5rem;
-        color: var(--composer-font-color-primary);
-        transition: color 0.3s;
-        cursor: pointer;
-
-        &:hover {
-          color: var(--composer-tertiary-color);
+      .icon-container{
+        .icon {
+          font-size: 1.5rem;
+          color: var(--composer-font-color-primary);
+          transition: color 0.3s;
+          cursor: pointer;
+  
+          &:hover {
+            color: var(--composer-tertiary-color);
+          }
         }
       }
     }
@@ -51,8 +54,32 @@
     z-index: 20;
 
     .localization, .localizationLabel, .localizationItem, .localizationContent {
-      content: "";
     }
+    .localization{
+      .localizationLabel{
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        transition: all 0.3s ease;
+        .localizationItem{
+          font-weight: normal;
+        }
+        &.animation1{
+          &:hover{
+            .localizationItem{
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+
 
     .language {
       color: var(--composer-font-color-primary);
@@ -92,13 +119,7 @@
 }
 
  .overlay {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--composer-overlay-color);
+  content: "";
   }
 
 .dropdownMenu {
@@ -109,11 +130,13 @@
 
   &.active {
     height: 85vh;
-    overflow: visible;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     transition: all 0.3s ease;
+  }
+  &.overflowShow{
+    overflow-y: auto;
   }
 
   .up {
@@ -146,9 +169,10 @@
           animation: fadeIn 1.5s ease forwards;
           transition: color 0.3s;
           cursor: pointer;
-
-          &:hover {
-            color: var(--composer-tertiary-color);
+          &.animation1{
+            &:hover {
+              color: var(--composer-tertiary-color);
+            }
           }
         }
       }
@@ -222,8 +246,10 @@
 .transparentBackground {
   .socialMediaBox {
     .social {
-      .icon {
-        color: white;
+      .icon-container{
+        .icon {
+          color: white;
+        }
       }
     }
   }
@@ -246,13 +272,15 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .maxContent {
     .socialMediaBox {
       .social {
         gap: var(--composer-gap-sm);
-        .icon {
-          font-size: 1.5rem;
+        .icon-container{
+          .icon {
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -313,11 +341,6 @@
     }
 
   }
-  .overlay {
-      &.overlayActive {
-        display: block;
-      }
-    }
   .dropdownMenu {
     &.active {
       height: 75vh;

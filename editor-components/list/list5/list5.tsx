@@ -2,15 +2,15 @@ import { ReactNode } from "react";
 import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list5.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ListItem = {
-  title: JSX.Element;
-  uppericon: JSX.Element;
+  title: React.JSX.Element;
+  uppericon: React.JSX.Element;
   text: string;
-  lowericon: JSX.Element;
+  lowericon: React.JSX.Element;
   url: string;
 }
 
@@ -20,6 +20,12 @@ class List5 extends BaseList {
   }
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Services",
+    });
     this.addProp({
       type: "string",
       key: "header",
@@ -200,24 +206,43 @@ class List5 extends BaseList {
       displayer: "Show Index",
       value: true
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6"]
+      }
+    });
   }
   render(): ReactNode {
     const ListItems = this.castToObject<ListItem[]>("list-items");
+    const subtitle = this.getPropValue("subtitle");
+    const header = this.getPropValue("header");
+    const image = this.getPropValue("image");
 
     return (
       <>
         <Base.Container className={this.decorateCSS("container")}
           style={{
-            backgroundImage: `url(${this.getPropValue("image")})`,
+            backgroundImage: `url(${image})`,
             backgroundSize: "cover"
           }}
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {this.castToString(this.getPropValue("header")) && (
+            {(this.castToString(subtitle) || this.castToString(header)) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${this.getPropValue("image") && this.decorateCSS("dark")}`}>
-                  {this.getPropValue("header")}
-                </Base.SectionTitle>
+                {this.castToString(subtitle) && (
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("dark")}`}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {this.castToString(header) && (
+                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${image && this.decorateCSS("dark")}`}>
+                    {header}
+                  </Base.SectionTitle>
+                )}
               </Base.VerticalContent>
             )}
             {(ListItems.length > 0) && (
@@ -233,6 +258,7 @@ class List5 extends BaseList {
                           <div
                             key={index}
                             className={this.decorateCSS("item-container")}
+                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
                           >
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
                               <div className={this.decorateCSS("header-line")}>
@@ -240,7 +266,7 @@ class List5 extends BaseList {
                                   <div className={this.decorateCSS("left")}>
                                     <div className={this.decorateCSS("out-icon")}>
                                       <div className={this.decorateCSS("icon-wrapper")}>
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={listItem.uppericon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),
@@ -252,28 +278,28 @@ class List5 extends BaseList {
                                 )}
                                 {this.getPropValue("showIndex") && (
                                   <div className={this.decorateCSS("right")}>
-                                    <div className={this.decorateCSS("item-index")}>
+                                    <Base.H1 className={this.decorateCSS("item-index")}>
                                       {(index + 1).toLocaleString("en-US", {
                                         minimumIntegerDigits: 2,
                                         useGrouping: false,
                                       })}
-                                    </div>
+                                    </Base.H1>
                                   </div>
                                 )}
                               </div>
                             )}
                             {this.castToString(listItem.title) && (
-                              <div className={this.decorateCSS("list-item-value-h1")}>
+                              <Base.H3 className={this.decorateCSS("list-item-title")}>
                                 {listItem.title}
-                              </div>
+                              </Base.H3>
                             )}
                             {this.castToString(listItem.text) && (
-                              <div className={this.decorateCSS("list-item-value-p")}>
+                              <Base.P className={this.decorateCSS("list-item-text")}>
                                 {listItem.text}
-                              </div>
+                              </Base.P>
                             )}
                             {listItem.lowericon && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={listItem.lowericon}
                                 propsIcon={{
                                   className: this.decorateCSS("lower-icon"),

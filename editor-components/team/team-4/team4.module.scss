@@ -2,7 +2,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-xl);
 
     .up-content {
       .title .description {
@@ -11,6 +11,7 @@
     }
 
     .team-members {
+      gap: var(--composer-gap-lg);
       .team-member {
         flex: 1 1;
         min-width: 250px;
@@ -24,13 +25,39 @@
           width: 100%;
           border-radius: var(--composer-border-radius-xl);
           object-fit: cover;
+          &[data-animation~="animate3"] {
+            filter: grayscale(100%);
+            transition: filter 0.5s ease-in-out;
+
+            &:hover {
+              filter: grayscale(0%);
+            }
+          }
         }
         .name-and-position {
           .team-member-name {
             color: var(--composer-font-color-primary);
+            font-size: 2rem;
           }
           .team-member-position {
             color: var(--composer-primary-color);
+          }
+        }
+
+        &[data-animation~="animate1"] {
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transition: transform 0.3s ease;
+            transform: translateY(-25px);
+          }
+        }
+        &[data-animation~="animate2"] {
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transition: transform 0.3s ease;
+            transform: scale(1.1);
           }
         }
       }

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team15.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
@@ -328,6 +328,16 @@ class Team15 extends Team {
       value: 4,
       max: 6,
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1", "animate3"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -354,12 +364,12 @@ class Team15 extends Team {
                 const cardExists = imageExists || titleExists || descriptionExists;
                 return (
                   cardExists && (
-                    <div key={index} className={this.decorateCSS("card")}>
+                    <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {imageExists && <img src={card.getPropValue("image")} className={this.decorateCSS("image")} alt="" />}
                       {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                       <div className={this.decorateCSS("card-content")}>
-                        {titleExists && <Base.H2 className={this.decorateCSS("title")}>{card.getPropValue("title")}</Base.H2>}
+                        {titleExists && <Base.H2 className={this.decorateCSS("title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.getPropValue("title")}</Base.H2>}
                         <div className={this.decorateCSS("labels")}>
                           {card.icons.length > 0 && firstIcon && (
                             <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
@@ -367,7 +377,13 @@ class Team15 extends Team {
                                 return (
                                   <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                                     <ComposerLink path={icon.url}>
-                                      <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                      <Base.Icon 
+                                        name={icon.icon} 
+                                        propsIcon={{ 
+                                          className: this.decorateCSS("icon"),
+                                          style: { "--icon-index": indexIcons } as React.CSSProperties
+                                        }} 
+                                      />
                                     </ComposerLink>
                                   </div>
                                 );
@@ -377,11 +393,11 @@ class Team15 extends Team {
                           {descriptionExists && <Base.P className={this.decorateCSS("description")}>{card.getPropValue("description")}</Base.P>}
                           <div className={this.decorateCSS("icons")}>
                             <ComposerLink path={card.getPropValue("firstIconUrl")}>
-                              <ComposerIcon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
+                              <Base.Icon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
                             </ComposerLink>
 
                             <ComposerLink path={card.getPropValue("secondIconUrl")}>
-                              <ComposerIcon name={card.getPropValue("secondIcon")} propsIcon={{ className: this.decorateCSS("secondIcon") }} />
+                              <Base.Icon name={card.getPropValue("secondIcon")} propsIcon={{ className: this.decorateCSS("secondIcon") }} />
                             </ComposerLink>
                           </div>
                         </div>

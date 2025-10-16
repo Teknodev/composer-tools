@@ -1,0 +1,91 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-lg);
+
+  .heading {
+    align-self: center !important;
+    align-items: center !important;
+
+    max-width: var(--composer-content-width);
+    margin-bottom: 0;
+    margin-right: var(--composer-gap-xl);
+    margin-left: var(--composer-gap-xl);
+    width: calc(100% - (2 * var(--composer-gap-xl)));
+
+    .title {
+      font-size: 1rem;
+      margin-bottom: 0;
+      text-align: center !important;
+      content: "";
+    }
+  }
+
+  .gallery {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+
+    > * {
+      flex: 0 0 100%;
+    }
+
+    .images-container {
+      display: flex;
+      gap: var(--composer-gap-xl);
+      padding-left: var(--composer-gap-xl);
+      animation: scroll 20s linear infinite;
+      will-change: transform;
+
+      .image-child {
+        flex: 0 0 auto;
+        margin: 0;
+
+        .image {
+          width: auto;
+          height: 36px;
+          object-fit: contain;
+
+          opacity: 0.7;
+          transition: opacity 0.3s ease;
+        }
+
+        &:hover .image {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .images-track {
+        gap: var(--composer-gap-lg);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .images-track {
+        gap: var(--composer-gap-lg);
+      }
+    }
+  }
+}

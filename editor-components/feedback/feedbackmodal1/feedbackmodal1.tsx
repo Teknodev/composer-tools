@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./feedbackmodal1.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
@@ -10,7 +10,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Emoji = {
   value: string;
-  label: JSX.Element;
+  label: React.JSX.Element;
   image?: string;
   emoji?: string;
 };
@@ -273,7 +273,7 @@ class FeedbackModal1 extends BaseModal {
           <div className={this.decorateCSS("header-content")}>
             <div className={this.decorateCSS("feedback-modal-header")}>
               {isFeedbackIconExist && (
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("feedback_icon")}
                   propsIcon={{
                     className: `${this.decorateCSS("icon")}`,
@@ -284,7 +284,7 @@ class FeedbackModal1 extends BaseModal {
             </div>
             <button className={this.decorateCSS("feedback-modal-close-button")}>
               <ComposerModalClose>
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("close_icon")}
                   propsIcon={{
                     className: `${this.decorateCSS("close_icon")}`,
@@ -348,7 +348,7 @@ class FeedbackModal1 extends BaseModal {
                           </div>
                         ) : (
                           <div className={this.decorateCSS("emoji-wrapper")}>
-                            <ComposerIcon
+                            <Base.Icon
                               name={item.emoji}
                               propsIcon={{
                                 className: `${this.decorateCSS("feedbackModalEmojiIcon")}`,

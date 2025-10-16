@@ -1,4 +1,31 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base/utitilities/viewports.module.scss"
+  as *;
+
+@keyframes bounceText {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
 .container {
   .max-content {
@@ -17,7 +44,8 @@
           gap: var(--composer-gap-md);
         }
 
-        .subtitle, .title {
+        .subtitle,
+        .title {
           content: "";
         }
 
@@ -49,7 +77,11 @@
 
         .plan {
           width: 100%;
-          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          background: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
           padding: var(--composer-gap-sm) var(--composer-gap-md);
           border-radius: var(--composer-gap-xs) !important;
           display: flex;
@@ -58,6 +90,44 @@
           box-shadow: var(--box-shadow-active);
           color: var(--composer-font-color-primary);
           cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--composer-primary-color);
+            transition: width 0.8s ease-in-out;
+          }
+          &.animation1:hover {
+            &::before {
+              width: 100%;
+            }
+          }
+          &.animation2:hover {
+            .plan-price-box {
+              .labels {
+                animation: bounceText 0.8s ease-in-out infinite;
+              }
+              .plan-button {
+                content: "";
+              }
+            }
+          }
+          &.animation3:hover {
+            .plan-price-box {
+              .labels {
+                animation-name: breathe;
+                animation-duration: 1s;
+                animation-timing-function: ease-in-and-out;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+              }
+            }
+          }
 
           &.active {
             background: var(--composer-primary-color);
@@ -67,7 +137,7 @@
             .plan-description {
               max-height: 250px;
               overflow: auto;
-              padding: var(--composer-gap-md) 0;
+              padding: var(--composer-gap-md) var(--composer-gap-sm);
               opacity: 1;
             }
 
@@ -148,7 +218,7 @@
           }
 
           .plan-upper {
-            padding: var(--composer-gap-sm) 0;
+            padding: var(--composer-gap-sm);
           }
 
           .plan-price-box {
@@ -160,10 +230,10 @@
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
-
+              transition: all 0.5s ease;
+              transform: scale(1);
               .price {
                 font-size: 2rem;
-                transition: color 0.5s ease;
               }
             }
           }
@@ -173,7 +243,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     position: relative;
 

@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team9.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -13,7 +13,7 @@ type Icon = {
 
 interface Card {
   image: string;
-  name: JSX.Element;
+  name: React.JSX.Element;
   icons: Icon[];
 }
 
@@ -221,6 +221,16 @@ class Team9 extends Team {
       value: 4,
       max: 5,
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
 
   static getName(): string {
@@ -268,7 +278,7 @@ class Team9 extends Team {
                   const hasCard = nameExist || item.image || item.icons.length > 0;
                   return (
                     hasCard && (
-                      <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
+                      <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
                         <div className={this.decorateCSS("person-info")}>
                           {item.icons.length > 0 && (
@@ -277,9 +287,12 @@ class Team9 extends Team {
                                 if (card.icon) {
                                   return (
                                     <ComposerLink key={iconIndex} path={card.url}>
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={card.icon}
-                                        propsIcon={{ className: this.decorateCSS("icon") }}
+                                        propsIcon={{ 
+                                          className: this.decorateCSS("icon"),
+                                          style: { "--icon-index": iconIndex } as React.CSSProperties
+                                        }}
                                       />
                                     </ComposerLink>
                                   );
@@ -315,10 +328,11 @@ class Team9 extends Team {
                                   if (card.icon)
                                     return (
                                       <ComposerLink key={indexIcons} path={card.url}>
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={card.icon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),
+                                            style: { "--icon-index": indexIcons } as React.CSSProperties
                                           }}
                                         />
                                       </ComposerLink>

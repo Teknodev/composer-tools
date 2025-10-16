@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .laneContainer {
   background-color: color-mix(
@@ -13,7 +13,7 @@
     align-items: center;
 
     .laneContact {
-      font-size: 1rem;
+      font-size: calc(1 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -21,7 +21,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: calc(1 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -33,8 +33,17 @@
     .laneContact, .laneNews, .loacalizationContainer{
       flex:1;
     }
-    .localizationLabel, .languageIcon, .localizationItem, .localizationContent{
+    .languageIcon, .localizationItem{
       content: "";
+    }
+    .localizationLabel, .localizationContent{
+      font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
     }
   }
   .lane > :first-child{
@@ -53,6 +62,7 @@
 
 .smallDeviceNavbarContainer{
   display: none;
+  z-index: 101;
 
   .filledBackground{
     background: transparent !important;
@@ -74,7 +84,7 @@
       .hamburgerIcon,
       .closeIcon {
         cursor: pointer;
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
       }
@@ -83,14 +93,28 @@
           padding: var(--composer-gap-sm) 0;
           .localizationItemTitle{
             color: var(--composer-font-color-primary);
-            font-weight: normal;
             margin: 0;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight: bold;
+              }
+            }
           }
           .accordionIcon{
             color: var(--composer-font-color-primary);
           }
-
          }
+         .localizationItem{
+          font-weight: normal;
+          transition: all 0.3s ease;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
+        }
 
   }
 }
@@ -136,13 +160,19 @@
       }
 
       .menuItemTitle {
-        font-size: 1rem;
         font-weight: 500;
         color: var(--composer-font-color-primary);
+        margin: 0;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
       }
 
       .dropdownIcon {
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
 
       }
@@ -190,10 +220,15 @@
               align-items: center;
 
               .dropdownItemTitle {
-                font-size: 1rem;
+                margin: 0;
                 font-weight: 400;
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
+                &.animation1{
+                  &:hover{
+                    font-weight: bold;
+                  }
+                }
               }
             }
           }
@@ -207,21 +242,22 @@
             background-color: var(--composer-primary-color);
             transition: all 0.3s ease;
           }
-
-          &:hover {
-            &::after {
-              width: calc(100% - (var(--composer-gap-md) * 2));
-            }
-
+          &:hover{
             .subdropdown {
               opacity: 1;
               visibility: visible;
               transform: translateX(0);
             }
           }
-
+          &.animation2{
+            &:hover {
+              &::after {
+                width: calc(100% - (var(--composer-gap-md) * 2));
+              }
+            }  
+          }
           .rightIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
           }
@@ -247,7 +283,19 @@
               border-radius: var(--composer-border-radius-sm);
               position: relative;
               color: var(--composer-font-color-primary);
-
+              font-weight: normal;
+              &.animation1{
+                &:hover{
+                  font-weight: bold;
+                }
+              }
+              &.animation2{
+                &:hover {
+                  &::after {
+                    width: calc(100% - (var(--composer-gap-md) * 2));
+                  }
+                }  
+              }
               &::after {
                 content: "";
                 position: absolute;
@@ -256,12 +304,6 @@
                 height: 1px;
                 background-color: var(--composer-primary-color);
                 transition: all 0.3s ease;
-              }
-
-              &:hover {
-                &::after {
-                  width: calc(100% - (var(--composer-gap-md) * 2));
-                }
               }
             }
           }
@@ -273,7 +315,7 @@
   .icons {
     gap: var(--composer-gap-sm);
     .icon-element {
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--composer-font-size-md));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -331,14 +373,7 @@
 }
 
 .overlay {
-  display: none;
-  position: absolute;
-  top: 6%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 98;
-  background: var(--composer-overlay-color);
+  content: "";
 }
 
 .hamburgerNav {
@@ -354,9 +389,12 @@
   overflow: hidden;
   transition: all 0.3s linear;
 
+  &.overflowShow{
+    overflow-y: auto;
+  }
+
   &.active {
     max-height: 70vh;
-    overflow: scroll;
     transition: all 0.3s linear;
   }
 
@@ -373,15 +411,20 @@
             cursor: pointer;
 
             .hamburgerMenuItemTitle {
-              font-size: 1rem;
+              margin: 0;
               font-weight: 500;
+              color: var(--composer-font-color-primary);
+            }
+            .hamburgerDropdownItemTitle{
+              margin: 0;
+              font-weight: 400;
               color: var(--composer-font-color-primary);
             }
           }
 
           .hamburgerSubmenu {
             max-height: 0;
-            overflow: scroll;
+            overflow-y: hidden;
             padding-left: var(--composer-gap-md);
             transition: all 0.3s ease;
 
@@ -398,15 +441,18 @@
                 padding: var(--composer-gap-xs) 0;
                 cursor: pointer;
                 color: var(--composer-font-color-primary);
-
                 .hamburgerMenuItemTitle {
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                 }
-
+                .hamburgerDropdownItemTitle{
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                }
                 .rightIcon {
-                  font-size: 1.5rem;
+                  font-size: calc(1.5 * var(--composer-font-size-md));
                   transition: all 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -417,7 +463,7 @@
 
               .hamburgerSubSubmenu {
                 max-height: 0;
-                overflow: scroll;
+                overflow-y: hidden;
                 padding-left: var(--composer-gap-md);
                 transition: all 0.3s linear;
                 &.active {
@@ -429,7 +475,7 @@
                   padding: var(--composer-gap-xs) 0;
 
                   .hamburgerSubSubmenuItemTitle {
-                    font-size: 1rem;
+                    margin: 0;
                     font-weight: 400;
                     color: var(--composer-font-color-primary);
                   }
@@ -439,7 +485,7 @@
           }
         }
         .dropdownIcon {
-          font-size: 1.5rem;
+          font-size: calc(1.5 * var(--composer-font-size-md));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           transform: rotate(-90deg);
@@ -453,7 +499,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .laneContainer{
     display: none;
   }
@@ -464,6 +510,13 @@
 
   .smallDeviceNavbarContainer{
     display: block;
+    .maxContent{
+      .mobileRight{
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+      }
+    }
 
     &.filledBackground {
       background: var(--composer-html-background) !important;
@@ -476,12 +529,6 @@
 
   .hamburgerIcon {
     display: flex;
-  }
-
-  .overlay {
-    &.overlayActive {
-      display: block;
-    }
   }
 }
 

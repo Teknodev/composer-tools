@@ -2,32 +2,32 @@ import * as React from "react";
 import styles from "./pricing-table6.module.scss";
 import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   product: Array<{
     cardTitle1: string;
     description: string;
-    badge: JSX.Element;
+    badge: React.JSX.Element;
     property: string;
-    title: JSX.Element;
+    title: React.JSX.Element;
     subtitle: string;
     product: {
       per: string;
       price: string;
       plan: string;
-      tag: JSX.Element;
+      tag: React.JSX.Element;
       check_icon: string;
       circle_icon: string;
     }[];
     right_items: {
       enable: boolean;
-      text: JSX.Element;
-      badge: JSX.Element;
-      title: JSX.Element;
+      text: React.JSX.Element;
+      badge: React.JSX.Element;
+      title: React.JSX.Element;
       list: {
         property: string;
         dash_icon: string;
@@ -1039,6 +1039,16 @@ class PricingMultipleTwo extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2", "animation3"],
+      additionalParams:{
+        selectItems:["animation1", "animation2", "animation3", "animation4"]
+      }
+    })
+
     this.setActiveTab(0);
     this.setActivePlan(0);
   }
@@ -1058,8 +1068,8 @@ class PricingMultipleTwo extends BasePricingTable {
     const hasPlans = Array.isArray(plans) && plans.length > 0 && activeTab !== undefined && plans[activeTab];
     const plan = hasPlans ? plans[activeTab].product : [];
     const planIndex = this.getComponentState("activePlan");
-
     const rightItemExist = plan[planIndex]?.right_items?.list.length > 0;
+    const animations = this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -1089,9 +1099,11 @@ class PricingMultipleTwo extends BasePricingTable {
                   <>
                     <div className={this.decorateCSS("left-page")}>
                       {plan.map((tab: any, index: number) => (
-                        <div className={this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} onClick={() => this.setActivePlan(index)} key={index}>
+                        <div className={`${this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} 
+                        ${this.getPropValue("animations")  && animations} `} 
+                        onClick={() => this.setActivePlan(index)} key={index}>
                           <div className={this.decorateCSS("plan-icons")}>
-                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></ComposerIcon>
+                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></Base.Icon>
                             <Base.P className={this.decorateCSS("plan")}> {tab.plan}</Base.P>
                           </div>
                           {this.castToString(tab.tag) && <Base.P className={this.decorateCSS("tag")}> {tab.tag}</Base.P>}
@@ -1103,7 +1115,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       ))}
                     </div>
                     {rightItemExist && (
-                      <div className={this.decorateCSS("right-page")}>
+                      <div className={`${this.decorateCSS("right-page")} ${this.getPropValue("animations")  
+                      && animations} `}>
                         <Base.VerticalContent className={this.decorateCSS("content")}>
                           {plan[planIndex].right_items.badge && this.castToString(plan[planIndex].right_items.badge) && <Base.H5 className={this.decorateCSS("badge")}>{plan[planIndex].right_items.badge}</Base.H5>}
                           {this.castToString(plan[planIndex].right_items.title) && <Base.H2 className={this.decorateCSS("title")}>{plan[planIndex].right_items.title}</Base.H2>}
@@ -1119,7 +1132,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               return (
                                 (listValue || iconValue) && (
                                   <div key={listItemIndex} className={`${this.decorateCSS("list-item")} ${!enableValue && this.decorateCSS("list-item-disabled")}`}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                       propsIcon={{
                                         className: this.decorateCSS("dash_icon"),
                                       }}
@@ -1134,24 +1147,31 @@ class PricingMultipleTwo extends BasePricingTable {
 
                           {plan[planIndex]?.right_items?.buttons.length > 0 && (
                             <div className={this.decorateCSS("body-bottom")}>
-                              <div className={this.decorateCSS("buttons")}>
+                              <div className={this.decorateCSS("button-container")}>
                                 {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
                                   const buttonText = this.castToString(button.getPropValue("text"));
-
                                   return (
                                     buttonText && (
                                       <ComposerLink key={buttonIndex} path={button.getPropValue("url")}>
-                                        <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button")}>
-                                          {button.getPropValue("text")}
+                                        <Base.Button
+                                          buttonType={button.getPropValue("type")}
+                                          className={this.decorateCSS("button")}
+                                        >
+                                          {buttonText}
                                         </Base.Button>
                                       </ComposerLink>
                                     )
                                   );
                                 })}
                               </div>
-                              {plan[planIndex].right_items.text && <span className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</span>}
+                              {plan[planIndex]?.right_items?.text && (
+                                <span className={this.decorateCSS("bottom-text")}>
+                                  {plan[planIndex].right_items.text}
+                                </span>
+                              )}
                             </div>
                           )}
+
                         </Base.VerticalContent>
                       </div>
                     )}

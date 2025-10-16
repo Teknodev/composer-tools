@@ -2,12 +2,12 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Card = {
   icon: string;
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Feature8 extends BaseFeature {
@@ -218,15 +218,15 @@ class Feature8 extends BaseFeature {
   };
 
   setupObserver = () => {
-    const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
+    // const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
 
-    this.observer = new IntersectionObserver(this.callback, this.options);
+    // this.observer = new IntersectionObserver(this.callback, this.options);
 
-    cardElements.forEach((card) => {
-      this.observer.observe(card);
-    });
+    // cardElements.forEach((card) => {
+    //   this.observer.observe(card);
+    // });
 
-    this.setComponentState("cardsCount", cardElements.length);
+    // this.setComponentState("cardsCount", cardElements.length);
   };
 
   static getName(): string {
@@ -262,20 +262,20 @@ class Feature8 extends BaseFeature {
                 return (
                   <div className={this.decorateCSS("card")}>
                     {card.icon && (
-                      <ComposerIcon
+                      <Base.Icon
                         name={card.icon}
                         propsIcon={{ className: this.decorateCSS("icon") }}
                       />
                     )}
                     {titleExist && (
-                      <div className={this.decorateCSS("title")}>
+                      <Base.H3 className={this.decorateCSS("title")}>
                         {card.title}
-                      </div>
+                      </Base.H3>
                     )}
                     {descExist && (
-                      <div className={this.decorateCSS("description")}>
+                      <Base.P className={this.decorateCSS("description")}>
                         {card.description}
-                      </div>
+                      </Base.P>
                     )}
                   </div>
                 );

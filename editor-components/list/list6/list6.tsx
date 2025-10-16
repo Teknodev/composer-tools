@@ -1,14 +1,14 @@
 import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list6.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
-  itemIndex: JSX.Element;
-  itemTitle: JSX.Element;
+  itemIndex: React.JSX.Element;
+  itemTitle: React.JSX.Element;
   itemIcon: string;
-  itemText: JSX.Element;
+  itemText: React.JSX.Element;
 };
 
 class List6 extends BaseList {
@@ -18,6 +18,12 @@ class List6 extends BaseList {
 
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Process",
+    });
     this.addProp({
       type: "string",
       key: "description",
@@ -36,6 +42,15 @@ class List6 extends BaseList {
       key: "lineActive",
       displayer: "Line Active",
       value: true,
+    });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
     });
 
     this.addProp({
@@ -177,32 +192,45 @@ class List6 extends BaseList {
 
   render() {
     const listItems = this.castToObject<listItem[]>("listItems");
-    const description = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
+    const subtitle = this.getPropValue("subtitle");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {description && (
-            <Base.SectionTitle
-              className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
-            >
-              {this.getPropValue("description")}
-            </Base.SectionTitle>
+          {(this.castToString(subtitle) || this.castToString(description)) && (
+            <Base.VerticalContent className={this.decorateCSS("header-section")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(description) && (
+                <Base.SectionTitle
+                  className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                >
+                  {description}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
-              <div className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}>
+              <div
+                className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
+                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              >
                 {this.castToString(listItem.itemIndex) && (
-                  <div className={this.decorateCSS("index")}>
+                  <Base.H3 className={this.decorateCSS("index")}>
                     {listItem.itemIndex}
-                  </div>
+                  </Base.H3>
                 )}
                 <div className={this.decorateCSS("cards")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (
                       <div className={this.decorateCSS("icon-title-container")}>
                         {listItem.itemIcon && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={listItem.itemIcon}
                             propsIcon={{
                               className: this.decorateCSS("icon")
@@ -210,17 +238,17 @@ class List6 extends BaseList {
                           />
                         )}
                         {this.castToString(listItem.itemTitle) && (
-                          <div className={this.decorateCSS("title")}>
+                          <Base.H4 className={this.decorateCSS("title")}>
                             {listItem.itemTitle}
-                          </div>
+                          </Base.H4>
                         )}
                       </div>
                     )}
 
                   {this.castToString(listItem.itemText) && (
-                    <div className={this.decorateCSS("description")}>
+                    <Base.P className={this.decorateCSS("description")}>
                       {listItem.itemText}
-                    </div>
+                    </Base.P>
                   )}
                 </div>
               </div>

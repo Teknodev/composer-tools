@@ -1,19 +1,32 @@
 import * as React from "react";
-import { BaseContent, BaseList } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list9.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
     icon: string;
     image: string;
-    title: JSX.Element;
-    description: JSX.Element;
+    title: React.JSX.Element;
+    description: React.JSX.Element;
 };
 
 class List9 extends BaseList {
     constructor(props?: any) {
         super(props, styles);
+        
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "What we offer",
+        });
         this.addProp({
             type: "array",
             key: "cards",
@@ -61,7 +74,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "FaDog",
                         },
                         {
                             type: "string",
@@ -94,7 +107,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "FaHtml5",
                         },
                         {
                             type: "string",
@@ -127,7 +140,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "RiPaintBrushFill",
                         },
                         {
                             type: "string",
@@ -161,6 +174,16 @@ class List9 extends BaseList {
             value: 4,
             max: 4,
         });
+
+        this.addProp({
+            type: "multiSelect",
+            key: "hoverAnimation",
+            displayer: "Hover Animation Style",
+            value: ["animate1"],
+            additionalParams: {
+                selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+            }
+        });
     }
 
     static getName(): string {
@@ -168,51 +191,72 @@ class List9 extends BaseList {
     }
 
     render() {
+        const cards = this.castToObject<Card[]>("cards");
+        const title = this.getPropValue("title");
+        const subtitle = this.getPropValue("subtitle");
+        
         return (
-            <Base.Container isFull={true} className={this.decorateCSS("container")}>
+            <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid
+                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                        {this.castToString(subtitle) && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {subtitle}
+                            </Base.SectionSubTitle>
+                        )}
+                        {this.castToString(title) && (
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {title}
+                            </Base.SectionTitle>
+                        )}
+                    </Base.VerticalContent>
+                    
+                </Base.MaxContent>
+                <Base.ListGrid
                         gridCount={{ pc: this.getPropValue("itemCount") }}
                         className={this.decorateCSS("grid-container")}
                     >
-                        {this.castToObject<Card[]>("cards").map(
-                            (card: Card, indexCard: number) => (
-                                <div key={indexCard} className={this.decorateCSS("card")}>
-                                    <div className={this.decorateCSS("image-container")}>
-                                        {card.image && (
-                                            <img
-                                                className={this.decorateCSS("image")}
-                                                src={card.image}
-                                                alt={card.image}
-                                            />
-                                        )}
+                    {cards.map(
+                        (card: Card, indexCard: number) => (
+                            <div
+                                key={indexCard}
+                                className={this.decorateCSS("card")}
+                                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                            >
+                                <div className={this.decorateCSS("image-container")}>
+                                    {card.image && (
+                                        <img
+                                            className={this.decorateCSS("image")}
+                                            src={card.image}
+                                            alt={card.image}
+                                        />
+                                    )}
 
-                                    </div>
-                                    <Base.VerticalContent
-                                        className={this.decorateCSS("little-container")}
-                                    >
-                                        {card.icon && (
-                                            <ComposerIcon
-                                                name={card.icon}
-                                                propsIcon={{ className: this.decorateCSS("icon") }}
-                                            />
-                                        )}
-                                        {this.castToString(card.title) && (
-                                            <Base.H2 className={this.decorateCSS("title")}>
-                                                {card.title}
-                                            </Base.H2>
-                                        )}
-                                        {this.castToString(card.description) && (
-                                            <Base.P className={this.decorateCSS("description")}>
-                                                {card.description}
-                                            </Base.P>
-                                        )}
-                                    </Base.VerticalContent>
                                 </div>
-                            )
-                        )}
-                    </Base.ListGrid>
-                </Base.MaxContent>
+                                <Base.VerticalContent
+                                    className={this.decorateCSS("little-container")}
+                                >
+                                    {card.icon && (
+                                        <Base.Icon
+                                            name={card.icon}
+                                            propsIcon={{ className: this.decorateCSS("icon") }}
+                                        />
+                                    )}
+                                    {this.castToString(card.title) && (
+                                        <Base.H3 className={this.decorateCSS("title")}>
+                                            {card.title}
+                                        </Base.H3>
+                                    )}
+                                    {this.castToString(card.description) && (
+                                        <Base.P className={this.decorateCSS("description")}>
+                                            {card.description}
+                                        </Base.P>
+                                    )}
+                                </Base.VerticalContent>
+                            </div>
+                        )
+                    )}
+                </Base.ListGrid>
             </Base.Container>
         );
     }

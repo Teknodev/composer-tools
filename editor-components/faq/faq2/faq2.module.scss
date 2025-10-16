@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
   .max-content {
@@ -7,7 +7,7 @@
       flex-direction: column;
       gap:var(--composer-gap-xl);
       .up-page {
-        .title, .description {
+        .title, .description, .subtitle {
           content: "";
         }
       }
@@ -18,7 +18,7 @@
           gap: var(--composer-gap-md);
           flex-direction: column;  
           background-color: color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%);   
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
           padding: var(--composer-gap-xl);   
           .icon-wrapper {
             display: flex;
@@ -32,15 +32,16 @@
             .icon{
               width: 30px;
               height: 30px;
+              font-size: 2rem;
               color: var(--composer-font-color-secondary);
             }
           }
-          .title {
+          .card-title {
             color: var(--composer-font-color-primary);
             margin: 0px;
           }
 
-          .description {
+          .card-description {
             color: var(--composer-tertiary-color);
             margin: 0px;
           }
@@ -61,12 +62,12 @@
           flex: 1;
           gap: var(--composer-gap-lg);
           align-items: start;
-          .title{
+          .down-title{
             margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
           }
-          .description{
+          .down-description{
             margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
@@ -82,7 +83,9 @@
           justify-content: end;
           height: fit-content;
           .button{
-            content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
     
@@ -102,10 +105,10 @@
           gap: var(--composer-gap-xl);
           .content{
             align-items: center;
-            .title{
+            .down-title{
               text-align: center;
             }
-            .description{
+            .down-description{
               text-align: center;
             }
           }

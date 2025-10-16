@@ -149,31 +149,38 @@ this.addProp({
 #### Array
 
 ```javascript
-{
+this.addProp({
   type: "array",
   key: "items",
   displayer: "Items",
   value: [
     {
-      type: "string",
+      type: "object",
       key: "item",
       displayer: "Item",
-      value: "Bow"
-    },
-    {
-      type: "string",
-      key: "item",
-      displayer: "Item",
-      value: "Arrow"
-    },
-    {
-      type: "string",
-      key: "item",
-      displayer: "Item",
-      value: "Sword"
-    },
+      value: [
+        {
+          type: "string",
+          key: "item",
+          displayer: "Item",
+          value: "Bow"
+        },
+        {
+          type: "string",
+          key: "item",
+          displayer: "Item",
+          value: "Arrow"
+        },
+        {
+          type: "string",
+          key: "item",
+          displayer: "Item",
+          value: "Sword"
+        },
+      ]
+    }
   ]
-},
+})
 ```
 
 ## How to Approach Props?
@@ -226,15 +233,15 @@ For the prop above, the type will be like:
 
 ```javascript
 type CardItemType = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   value: number;
   icon: string;
 }
 ```
 
-### Why JSX.Element for a String??
+### Why React.JSX.Element for a String??
 
-For a property that user can enter a value by hand, we use JSX.Element.
+For a property that user can enter a value by hand, we use React.JSX.Element.
 For these props the entered value is returned with a `<blinkpage>` element and will be rendered with it.
 
 That is why we should check if a singular prop does exist or not using `this.castToString()`. Because
@@ -301,14 +308,14 @@ We should cast our arrays and its items to map. It will make our job easier to d
 Let's assume we have a type named "Card". This Card will take props like: title, background image, button text, button link etc.
 ```javascript
 type Card = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   backgroundImage: string;
-  buttonText: JSX.Element;
+  buttonText: React.JSX.Element;
   buttonLink: string;
 }
 ```
 
-Why JSX.Element and not string? You can read [here](#why-jsxelement-for-a-string).<br>
+Why React.JSX.Element and not string? You can read [here](#why-jsxelement-for-a-string).<br>
 Then we need to map our array which contains so many "Card"s.
 
 **TIP:** It's better to reference our array between `render` and `return` statements. It will better for a much more cleaner code.
@@ -346,6 +353,23 @@ Then we are finally ready to map our array.
   ))
 ```
 
-If you have questions, or you think there is something missing in this documentation, please tell.
+## Why all tags must have className?
 
-author: [@dogusmiuw](https://github.com/dogusmiuw)
+Users may want to customize the component to suit their preferences. To facilitate this, the system displays a tree structure that allows for easy customization.
+This tree is generated based on the class names of elements in the DOM, ensuring proper organization. Therefore, every tag must have a class name. 
+If a conditional class name is applied, at least one primary class must always be present.
+
+FOR EXAMPLE:
+```javascript
+  <div
+    className={`${this.decorateCSS("title")} ${
+      condition && this.decorateCSS("active")
+    }`}
+  />
+```
+
+## Why shouldn't ID be given to tags when making components??
+
+In the system, users can customize the class names of components. However, there may be cases where styling a specific element rather than an entire class is necessary or preferred.
+To accommodate this, the system automatically assigns an ID to every element. 
+As a result, any manually assigned IDs will be overridden, meaning you won't have access to the custom ID you specify.

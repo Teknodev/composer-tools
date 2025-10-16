@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   background-color: var(--composer-html-background);
@@ -66,7 +66,7 @@
                 text-decoration: none;
                 padding-left: var(--composer-gap-sm);
                 padding-right: var(--composer-gap-sm);
-                font-size: 1.5rem;
+
                 color: var(--composer-font-color-primary);
                 background-color: transparent;
                 border: none;
@@ -99,7 +99,7 @@
                 color: var(--composer-font-color-primary);
             
                 .progress-percent {
-                  font-weight: 600;
+
                 }
               }
             

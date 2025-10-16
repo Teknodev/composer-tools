@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   background: var(--composer-html-background);
@@ -93,9 +93,7 @@
           gap: var(--composer-gap-sm);
 
           .description {
-            font-size: 1rem;
             margin: 0;  
-            font-size: 1.5rem;
           }
 
           .button-text-container {
@@ -129,9 +127,7 @@
         height: fit-content;
         color: var(--composer-font-color-primary);
         width: 100%;
-        font-size: 2rem;
         box-sizing: border-box;
-        font-weight: 800;
         padding: 0 var(--composer-gap-lg);
       }
 
@@ -180,8 +176,8 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-          font-size: 1.5rem;
-          font-weight: 700;
+
+
           padding: 0 var(--composer-gap-md);
           display: flex;
           height: 100%;
@@ -209,8 +205,8 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-          font-size: 1.5rem;
-          font-weight: 700;
+
+
           padding: 0 var(--composer-gap-md);
           display: flex;
           height: 100%;
@@ -238,8 +234,8 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-          font-size: 1.5rem;
-          font-weight: 700;
+
+
           padding: 0 var(--composer-gap-md);
           display: flex;
           height: 100%;
@@ -296,7 +292,7 @@
         }
 
         .second .text {
-          font-size: 1.5rem;
+
         }
 
         .first {
@@ -328,7 +324,7 @@
             justify-content: center;
             padding: var(--composer-gap-sm);
             margin: 0;
-            font-size: 1rem;
+
             width: 100%;
           }
         }
@@ -347,7 +343,7 @@
             justify-content: center;
             padding: var(--composer-gap-sm);
             margin: 0;
-            font-size: 1rem;
+
             width: 100%;
           }
         }
@@ -366,7 +362,7 @@
             justify-content: center;
             padding: var(--composer-gap-sm);
             margin: 0;
-            font-size: 1rem;
+
             width: 100%;
           }
         }
@@ -387,7 +383,7 @@
         }
 
         .title {
-          font-weight: 700;
+
           width: 100%;
           min-height: auto;
           margin-left: 0;
@@ -422,7 +418,7 @@
             gap: var(--composer-gap-sm);
 
             .button-text {
-              font-size: 1rem;
+
               border-bottom: 2px solid var(--composer-font-color-primary);
               padding: var(--composer-gap-xs) 0;
               margin-bottom: var(--composer-gap-md);
@@ -436,7 +432,7 @@
           width: 100%;
           align-items: center;
           justify-content: center;
-          font-size: 1rem;
+
           min-height: 140px;
         }
 
@@ -489,7 +485,7 @@
           .subtitle {
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+
             width: 100%;
             max-width: 100%;
             height: auto;
@@ -510,7 +506,7 @@
           .subtitle {
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+
             width: 100%;
             max-width: 100%;
             height: auto;

@@ -3,13 +3,13 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 interface CardItem {
-  description: JSX.Element;
+  description: React.JSX.Element;
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
 }
 
 class Testimonials12Page extends Testimonials {
@@ -245,12 +245,12 @@ class Testimonials12Page extends Testimonials {
                 <div className={this.decorateCSS("arrows")}>
                   {this.getPropValue("prevIcon") && cards.length > 1 && (
                     <button onClick={() => this.handleSlideChange("prev")} className={this.decorateCSS("button")}>
-                      <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }} />
+                      <Base.Icon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }} />
                     </button>
                   )}
                   {this.getPropValue("nextIcon") && cards.length > 1 && (
                     <button onClick={() => this.handleSlideChange("next")} className={this.decorateCSS("button")}>
-                      <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("next-arrow") }} />
+                      <Base.Icon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("next-arrow") }} />
                     </button>
                   )}
                 </div>
@@ -264,7 +264,7 @@ class Testimonials12Page extends Testimonials {
 
                 return (
                   <div className={this.decorateCSS("card")}>
-                    <Base.Row>{this.getPropValue("icon") && <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("span-image") }} />}</Base.Row>
+                    <Base.Row>{this.getPropValue("icon") && <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("span-image") }} />}</Base.Row>
                     {this.castToString(card.description) && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                     <Base.Row>
                       {(card.image || this.castToString(card.name) || this.castToString(card.position)) && (

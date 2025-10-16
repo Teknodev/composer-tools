@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team12.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Platform = { url: string; icon: string };
@@ -240,6 +240,16 @@ class Team12 extends Team {
       value: 4,
       max: 6,
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
   static getName(): string {
     return "Team 12";
@@ -257,7 +267,7 @@ class Team12 extends Team {
               const hasItem = nameExist || professionExist || descriptionExist || teamMember.image || teamMember.platforms.length > 0;
               return (
                 hasItem && (
-                  <div className={this.decorateCSS("member")}>
+                  <div className={this.decorateCSS("member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
                     {teamMember.image && <img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
                       {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.getPropValue("name")}</Base.H2>}
@@ -265,15 +275,16 @@ class Team12 extends Team {
                       {descriptionExist && <Base.P className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.P>}
                       {teamMember.platforms.length > 0 && (
                         <Base.Row className={this.decorateCSS("platforms")}>
-                          {teamMember.platforms.map((platform: any) => (
-                            <div className={this.decorateCSS("platform")}>
+                          {teamMember.platforms.map((platform: any, index: number) => (
+                            <div className={this.decorateCSS("platform")} key={index}>
                               <ComposerLink path={platform.getPropValue("url")}>
-                                <ComposerIcon
+                                <Base.Icon
                                   name={platform.getPropValue("icon")}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),
+                                    style: { "--icon-index": index } as React.CSSProperties
                                   }}
-                                ></ComposerIcon>
+                                ></Base.Icon>
                               </ComposerLink>
                             </div>
                           ))}

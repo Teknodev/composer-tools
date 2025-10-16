@@ -2,7 +2,7 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location2.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Address = {
@@ -31,9 +31,9 @@ type MarkerObject = {
 
 type ContentItemType = {
   contentIcon: string;
-  contentTitle: JSX.Element;
+  contentTitle: React.JSX.Element;
   contentDescriptionArray: {
-    text: JSX.Element;
+    text: React.JSX.Element;
   }[];
 };
 
@@ -453,7 +453,7 @@ class Location2 extends Location {
                           item.icon && (
                             <div className={this.decorateCSS("socials-container")}>
                               <div className={this.decorateCSS("social-button")}>
-                                <ComposerIcon name={item.icon} />
+                                <Base.Icon name={item.icon} />
                               </div>
                             </div>
                           )
@@ -478,7 +478,7 @@ class Location2 extends Location {
                 if (isContTitleExist || isContIconExist || isDesExist) {
                   return (
                     <div className={this.decorateCSS("element-container")}>
-                      {isContIconExist && <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.contentIcon} />}
+                      {isContIconExist && <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.contentIcon} />}
                       {isContTitleExist && (
                         <div className={this.decorateCSS("content-title-container")}>
                           <Base.H3 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H3>

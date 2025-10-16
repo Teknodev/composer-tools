@@ -1,0 +1,260 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+@mixin textEllipsis($line, $important: "") {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line#{$important};
+}
+
+.container {
+  background-color: var(--composer-html-background);
+  padding: 0px 50px 20px 50px;
+  .max-content {
+    width: 100%;
+
+    .child-container {
+      display: flex;
+      gap: var(--composer-gap-md);
+      justify-content: space-between;
+
+      .left-content,
+      .right-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .left-content {
+        word-wrap: break-word;
+        gap: var(--composer-gap-lg);
+        .title-container {
+          .title {
+            @include textEllipsis(2);
+            font-size: 8rem;
+            color: var(--composer-font-color-primary);
+            line-height: 1.1;
+            font-weight: bold;
+            margin: 0px;
+            opacity: 0;
+            animation: fade-in 1s ease-in-out 0.7s forwards;
+            &.noanimation{
+              opacity: 1 ;
+              animation: none ;
+            }
+          }
+
+          .title2 {
+            @include textEllipsis(2);
+            font-weight: 400;
+            line-height: 1.1;
+            font-size: 8rem;
+            margin: 0;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--composer-font-color-primary);
+            opacity: 0;
+            animation: fade-in 1s ease-in-out 0.7s forwards;
+            &.noanimation{
+              opacity: 1 ;
+              animation: none ;
+            }
+          }
+        }
+        .description{
+          @include textEllipsis(3);
+          font-weight: 400;
+          font-size: 1.5rem;
+          margin: 0;
+          color: var(--composer-font-color-primary);
+          line-height: 1;
+          opacity: 0;
+          animation: fade-in 1s ease-in-out 1s forwards;
+          &.noanimation{
+            opacity: 1 ;
+            animation: none ;
+          }
+        }
+        .buttondiv {
+          display: flex;
+          flex-direction: row;
+          gap: var(--composer-gap-md);
+          flex-wrap: wrap;
+          z-index: 1;
+
+          .button{
+            opacity: 0;
+            animation: fade-in 1s ease-in-out 1.2s forwards;
+            &.noanimation{
+              opacity: 1 ;
+              animation: none ;
+            }
+          }
+        }
+      }
+      .right-content {
+        position: relative;
+        align-items: center;
+        word-wrap: break-word;
+
+        .image1 {
+          position: relative;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-md);
+          max-width: 100%;
+        }
+        .image2{
+          position: absolute;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-md);
+          z-index: 1;
+          max-width: 100%;
+          max-height: 100%;
+          scale: 0.8;
+          opacity: 0;
+          animation: fade-in 1s ease-in-out 1.2s forwards, scaleUp 0.5s ease-in-out 1.2s forwards;
+          &.without-image1{
+            content: "";
+          }
+          &.noanimation{
+            opacity: 1 ;
+            scale: 1 ;
+            animation: none ;
+          }
+        }
+      }
+    }
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  to {
+    scale: 1;
+  }
+}
+
+@mixin textFull {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  word-break: break-word;
+}
+@container (max-width: #{$composer-tablet-width}) {
+  .container{
+    padding: 0px 40px 20px 40px;
+    .max-content {
+      position: relative;
+      .child-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        flex-direction: row;
+        .left-content {
+          align-self: flex-start;
+          max-width: 100%;
+          .title-container {
+            @include textFull;
+            .title,
+            .title2 {
+              font-size: 4rem;
+              line-height: 1.2;
+              @include textFull;
+            }
+          }
+          .description {
+            font-size: 1.5rem;
+            line-height: 1.5;
+            @include textFull;
+          }
+        }
+        .right-content {
+          align-items: center;
+          word-wrap: break-word;
+          position: static;
+          width: 100%;
+          min-height: 200px;
+          .image1 {
+            border-radius: 6px;
+            max-width: 100%;
+          }
+          .image2 {
+            animation: fade-in 1s ease-in-out 0.5s forwards;
+            max-width: 100%;
+            position: absolute;
+            &.without-image1{
+              position: static;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: 0px 20px 20px 20px;
+    .max-content {
+      max-height: 100%;
+      height: 100%;
+      .child-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-md);
+
+        .left-content {
+          min-width: fit-content;
+
+          .title,
+          .title2 {
+            font-size: 3rem;
+          }
+          .title {
+            line-height: 40px;
+          }
+          .description {
+            font-size: 1rem;
+            width: 85%;
+            line-height: 20px;
+            z-index: 2;
+          }
+          .buttondiv {
+            position: relative;
+            z-index: 2;
+            .button {
+              font-size: 1rem;
+              padding: 10px 20px;
+            }
+          }
+        }
+        .right-content {
+          position: relative;
+
+          .image1 {
+            width: 100%;
+            max-width: 100%;
+          }
+          .image2 {
+            animation: fade-in 1s ease-in-out 0.5s forwards;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

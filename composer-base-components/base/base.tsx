@@ -1,5 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./base.module.scss";
+import { useComposerToolsData } from "../../context/DataContext";
+import Dropdown, { DropDownItem } from "../ui/dropdown/Dropdown";
+import Accordion from "../ui/accordion/Accordion";
+import { IconBaseProps } from "react-icons/lib";
+import { iconLibraries } from "./utitilities/iconList";
+import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lottie-player': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src?: string;
+        background?: string;
+        speed?: string;
+        loop?: boolean;
+        autoplay?: boolean;
+        style?: React.CSSProperties;
+      };
+    }
+  }
+}
 
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
@@ -12,7 +33,7 @@ export type TypeButton =
   | "White"
   | "Black";
 export namespace Base {
-  const rootStyles = (typeof window !== 'undefined') ? getComputedStyle(document.documentElement) : {getPropertyValue: () => ""};
+  const rootStyles = (typeof window !== 'undefined') ? getComputedStyle(document.documentElement) : { getPropertyValue: () => "" };
 
   function getStyleValue(cssVariable: string) {
     return rootStyles.getPropertyValue(cssVariable).trim();
@@ -48,7 +69,7 @@ export namespace Base {
   }
 
   export function setFontSize(size: string) {
-    setStyleValue("--project-font-size", `${size}px`);
+    setStyleValue("--composer-font-size-md", `${size}px`);
   }
 
   export function H1({ className, children, ...props }: any) {
@@ -91,6 +112,14 @@ export namespace Base {
     );
   }
 
+  export function H6({ className, children, ...props }: any) {
+    return (
+      <h6 className={`${styles.h6} ${className}`} {...props}>
+        {children}
+      </h6>
+    );
+  }
+
   export function P({ className, children, ...props }: any) {
     return (
       <p className={`${styles.p} ${className}`} {...props}>
@@ -110,11 +139,9 @@ export namespace Base {
     const viewType = getViewType();
     return (
       <div
-        className={`${styles.container} ${styles[alignment]} ${
-          styles[viewType]
-        } ${className} ${isModal ? styles.modalContainer : ""} ${
-          isFull ? styles.full : ""
-        }`}
+        className={`${styles.container} ${styles[alignment]} ${styles[viewType]
+          } ${className} ${isModal ? styles.modalContainer : ""} ${isFull ? styles.full : ""
+          }`}
         {...props}
       >
         {children}
@@ -212,9 +239,8 @@ export namespace Base {
   }) {
     return (
       <button
-        className={`${styles.button} ${
-          styles[(buttonType || "Primary").toLocaleLowerCase()]
-        } ${className}`}
+        className={`${styles.baseButton} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
+          } ${className}`}
         {...props}
       ></button>
     );
@@ -224,14 +250,49 @@ export namespace Base {
     return <div className={`${styles.row} ${className}`} {...props}></div>;
   }
 
-  export function Overlay({ className, ...props }: any) {
+  export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
+
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);    
+    const [y, setY] = useState(0);
+    const [currentOpacity, setCurrentOpacity] = useState(0);
+
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
+      let playgroundEl = document.getElementById("playground");
+
+      let resizeObserver = new ResizeObserver(() => { 
+        const boundingClient = playgroundEl.getBoundingClientRect();
+        setWidth(boundingClient.width);
+        setHeight(boundingClient.height);
+        setY(boundingClient.y);
+      }); 
+
+      resizeObserver.observe(playgroundEl); 
+      if (isVisible) {
+        setCurrentOpacity(1);
+      }
+
+      if(!isVisible){
+        resizeObserver.disconnect();
+        setCurrentOpacity(0);
+      }
+
       return () => {
         document.documentElement.style.overflow = "";
+        resizeObserver.disconnect();
       };
-    }, []);
-    return <div className={`${styles.overlay} ${className}`} {...props}></div>;
+    }, [isVisible ,width]);
+    if(isVisible) {
+      return (
+        <div
+          style={{ width, height, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
+          className={`${styles.overlay} ${className}`}
+          {...props}
+        >
+        </div>
+      );
+    }
   }
 
   export namespace Navigator {
@@ -240,8 +301,9 @@ export namespace Base {
       children,
       position,
       hamburgerNavActive = false,
-      setIsScrolled = (scrolled: boolean) => {},
-      setIsBigScreen = (bigScreen: boolean) => {},
+      setIsScrolled = (scrolled: boolean) => { },
+      setIsBigScreen = (bigScreen: boolean) => { },
+      screenSize,
       ...props
     }: {
       className?: string;
@@ -251,6 +313,7 @@ export namespace Base {
       setIsScrolled?: (scrolled: boolean) => void;
       setIsBigScreen?: (bigScreen: boolean) => void;
       [key: string]: any;
+      screenSize?: number
     }) {
       const positionClass = position
         ?.split(" ")
@@ -258,8 +321,7 @@ export namespace Base {
         .join("");
 
       const resizeObserverRef = useRef<ResizeObserver | null>(null);
-      const mediaSize = 1025;
-
+      const mediaSize = screenSize ? screenSize : 1025;
       useEffect(() => {
         const wrapperContainer = getWrapperContainer();
         const handleScroll = () => {
@@ -286,36 +348,45 @@ export namespace Base {
           }
         };
 
-        if(!hamburgerNavActive){
+        if (!hamburgerNavActive) {
           changeNavbarBackground(wrapperContainer.scrollY > 50 && positionClass !== "absolute");
         }
-
         const handleResize = () => {
-          const wrapperContainer = getWrapperContainer();
-          const matchedMedia =
-            wrapperContainer.wrapper === window
-              ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
-              : (wrapperContainer.wrapper as HTMLElement).clientWidth >=
-                mediaSize;
-          if (matchedMedia) {
-            Base.Navigator.changeScrollBehaviour("auto");
-            setIsBigScreen && setIsBigScreen(true);
-          } else if (hamburgerNavActive) {
-            Base.Navigator.changeScrollBehaviour("hidden");
-            setIsBigScreen && setIsBigScreen(false);
-          }
+          requestAnimationFrame(() => {
+            const wrapperContainer = getWrapperContainer();
+            const matchedMedia =
+              wrapperContainer.wrapper === window
+                ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
+                : (wrapperContainer.wrapper as HTMLElement).clientWidth >= mediaSize;
+            if (matchedMedia) {
+              Base.Navigator.changeScrollBehaviour("auto");
+              setIsBigScreen && setIsBigScreen(true);
+            } else if (hamburgerNavActive) {
+              Base.Navigator.changeScrollBehaviour("hidden");
+              setIsBigScreen && setIsBigScreen(false);
+            }else if (!matchedMedia){
+              setIsBigScreen && setIsBigScreen(false);
+            }
+          });
         };
 
+
         const createResizeListener = () => {
+          if (resizeObserverRef.current) {
+            resizeObserverRef.current.disconnect(); // Ensure old observer is removed
+          }
+
           const wrapperContainer = getWrapperContainer();
           if (wrapperContainer.wrapper === window) {
             window.addEventListener("resize", handleResize);
             return;
           }
-          resizeObserverRef.current = new ResizeObserver(handleResize);
-          resizeObserverRef.current.observe(
-            wrapperContainer.wrapper as HTMLElement
-          );
+
+          resizeObserverRef.current = new ResizeObserver(() => {
+            requestAnimationFrame(handleResize); // Avoid infinite loops
+          });
+
+          resizeObserverRef.current.observe(wrapperContainer.wrapper as HTMLElement);
         };
 
         wrapperContainer.wrapper.addEventListener("scroll", handleScroll);
@@ -346,6 +417,7 @@ export namespace Base {
     }
 
     export function getWrapperContainer() {
+      if(typeof window === 'undefined') return;
       const playground = document.getElementById("playground") as HTMLElement;
       const isPlayground = !!playground;
       return {
@@ -359,7 +431,242 @@ export namespace Base {
     export function changeScrollBehaviour(behaviour: "hidden" | "auto") {
       const wrapperContainer = getWrapperContainer();
       if (!wrapperContainer) return;
-      wrapperContainer.style.overflow = behaviour;
+      wrapperContainer.style.overflowY = behaviour;
+    }
+  }
+
+  export interface IconProps {
+    name: string;
+    propsIcon?: IconBaseProps;
+  }
+
+  export function Icon({ name, propsIcon }: IconProps): React.JSX.Element {
+    if (!name) return <></>;
+
+    let ElementIcon: any = null;
+
+    for (const iconLibrary of iconLibraries) {
+      if (ElementIcon) break;
+
+      for (const [iconName, Icon] of Object.entries(iconLibrary)) {
+        if (iconName === name) {
+          ElementIcon = Icon;
+          break;
+        }
+      }
+    }
+
+    if (!ElementIcon) {
+      console.warn(`Icon "${name}" not found.`);
+      return <></>;
+    }
+
+    return <ElementIcon {...propsIcon} />;
+  }
+
+  interface LanguageCommonProps {
+    icon?: string;
+    title?: "code" | "name";
+  }
+
+  interface LanguageDropdownProps extends LanguageCommonProps {
+    type: "dropdown";
+    dropdownButtonClassName?: string;
+    dropdownLabelClassName?: string;
+    dropdownItemClassName?: string;
+    dropdownContentClassName?: string;
+    iconClassName?: string;
+    divider?: boolean;
+  }
+
+  interface LanguageAccordionProps extends LanguageCommonProps {
+    type: "accordion";
+    headerClassName?: string;
+    contentClassName?: string;
+    languageAccordionClassName?: string;
+    itemClassName?: string;
+    openClassName?: string;
+    accordionIconClassName?: string;
+    titleClassName?: string;
+  }
+
+  type LanguageProps = LanguageDropdownProps | LanguageAccordionProps;
+
+  export function Language(props: LanguageProps) {
+    const {
+      composerToolsLanguages,
+      composerToolsCurrentLanguage,
+      isProcessable,
+      setComposerToolsCurrentLanguage,
+    } = useComposerToolsData();
+
+    const handleLanguageChange = async (lang: { code: string; name: string }) => {
+      if(!isProcessable) return;
+      setComposerToolsCurrentLanguage(lang);
+    
+      let currentPath = window.location.pathname;
+      const normalizedPath = currentPath.replace(/\/$/, "");
+      const pathParts = normalizedPath.split("/");
+    
+      const isLanguageSlugMissing = pathParts.length < 2;
+      const isFirstSegmentNotALanguageCode = !pathParts[1]?.match(/^[a-z]{2}$/i);
+    
+      if (isLanguageSlugMissing || isFirstSegmentNotALanguageCode) {
+        pathParts.splice(1, 0, lang.code);
+      } else {
+        pathParts[1] = lang.code;
+      }
+    
+      let newUrl = pathParts.join("/") + window.location.search + window.location.hash;
+      const isUrlChanged = newUrl !== window.location.pathname + window.location.search + window.location.hash;
+    
+      if (isUrlChanged) {
+        window.history.pushState(null, "", newUrl);
+        window.dispatchEvent(new Event("popstate"));
+      }
+    };
+
+    if (props.type === "dropdown") {
+      const {
+        dropdownButtonClassName,
+        dropdownLabelClassName,
+        dropdownItemClassName,
+        icon = "GrLanguage",
+        title = "name",
+        iconClassName,
+        dropdownContentClassName,
+        divider = true,
+      } = props;
+
+      return (
+        <Dropdown
+          buttonLabel={composerToolsCurrentLanguage[title || "code"]}
+          labelClassName={`${styles["label"]} ${dropdownLabelClassName}`}
+          dropdownButtonClassName={dropdownButtonClassName}
+          icon={icon}
+          iconClassName={`${styles.languageIcon} ${iconClassName}`}
+          disabled={false}
+          dropdownContentClassName={dropdownContentClassName}
+        >
+          {composerToolsLanguages.map((lang, index) => (
+            <DropDownItem
+              key={lang.code}
+              className={dropdownItemClassName}
+              onClick={() => handleLanguageChange(lang)}
+              divider={divider && index < composerToolsLanguages.length - 1}
+            >
+              <span className={`${styles.label} ${dropdownItemClassName}`}>
+                {lang[title || "code"].toUpperCase()}
+              </span>
+            </DropDownItem>
+          ))}
+        </Dropdown>
+      );
+    }
+
+    if (props.type === "accordion") {
+      const {
+        headerClassName,
+        contentClassName,
+        itemClassName,
+        openClassName,
+        languageAccordionClassName,
+        icon = "MdArrowDropDown",
+        title = "name",
+        accordionIconClassName,
+        titleClassName,
+      } = props;
+      return (
+        <Accordion
+          title={composerToolsCurrentLanguage[title || "code"]}
+          headerClassName={headerClassName}
+          contentClassName={contentClassName}
+          openClassName={openClassName}
+          icon={icon}
+          accordionIconClassName={`${styles.languageIcon} ${accordionIconClassName}`}
+          titleClassName={titleClassName}
+        >
+          <ul
+            className={`${styles["accordionList"]} ${languageAccordionClassName}`}
+          >
+            {composerToolsLanguages.map((lang) => (
+              <li
+                key={lang.code}
+                className={`${styles["accordionItem"]} ${itemClassName}`}
+                onClick={() => handleLanguageChange(lang)}
+              >
+                {lang.name}
+              </li>
+            ))}
+          </ul>
+        </Accordion>
+      );
+    }
+  }
+
+  export function Card({ 
+    className, 
+    children, 
+    ...props 
+  }: React.HTMLAttributes<HTMLDivElement>) {
+    return (
+      <div className={`${styles.baseCard} ${className}`} {...props}>
+        {children}
+      </div>
+    );
+  }
+
+  export function Media({
+    value,
+    className,
+    ...props
+  }: {
+    value?: TypeMediaInputValue;
+    className?: string;
+  }) {
+    if (!value) return null;
+
+    switch (value.type) {
+      case "icon":
+        return (
+          <span className={className} {...props}>
+            <Base.Icon name={value.name} />
+          </span>
+        );
+      case "image":
+        return (
+          <img
+            className={className}
+            src={value.url}
+            alt=""
+            {...props}
+          />
+        );
+      case "video":
+        return (
+          <video
+            className={className}
+            src={value.url}
+            autoPlay={!!value.settings?.autoplay}
+            controls={value.settings?.controls !== false}
+            loop={!!value.settings?.loop}
+            muted={!!value.settings?.muted}
+            {...props}
+          />
+        );
+      case "lottie":
+        return React.createElement('lottie-player', {
+          className,
+          src: value.url,
+          background: "transparent",
+          speed: "1",
+          loop: !!value.settings?.loop,
+          autoplay: !!value.settings?.autoplay,
+          style: { width: '100%', height: '100%' },
+          ...props
+        });
+      default:
+        return null;
     }
   }
 }

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Icons = {
@@ -12,8 +12,8 @@ type Icons = {
 
 interface Card {
   profile: string;
-  name: JSX.Element;
-  position: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
   icons: { icon: string; url: string }[];
 }
 
@@ -300,6 +300,16 @@ class Team3 extends Team {
       value: 3,
       max: 5,
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1", "animate4"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
 
   static getName(): string {
@@ -311,7 +321,9 @@ class Team3 extends Team {
     const subtitle = this.getPropValue("subtitle");
 
     const titleValue = title.props.html;
-    const subTitleValue = subtitle.props.html;
+    const subTitleValue = this.castToString(subtitle);
+    console.log("subTitleValue: ", subTitleValue);
+    
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -328,22 +340,23 @@ class Team3 extends Team {
                 const hasContent = item.profile || itemName || itemPosition || (item.icons && item.icons.length > 0);
 
                 return hasContent ? (
-                  <div key={indexCard} className={this.decorateCSS("all-card")}>
-                    <div className={`${this.decorateCSS("card")} ${item.profile ? this.decorateCSS("card-image") : ""}`}>
+                  <div key={indexCard} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div className={`${this.decorateCSS("card")} ${item.profile ? this.decorateCSS("card-image") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("card-items")}>
                         <div className={this.decorateCSS("item-content")}>
                           {item.profile && <div className={this.decorateCSS("box-image")}>{item.profile && <img className={this.decorateCSS("profile-image")} src={item.profile} alt="" />}</div>}
                           <Base.VerticalContent className={item.profile ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
                             <Base.H2 className={this.decorateCSS("item-name")}>{item.name}</Base.H2>
                             <Base.P className={this.decorateCSS("item-position")}>{item.position}</Base.P>
-                            <div className={this.decorateCSS("icon-group")}>
+                            <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               {item.icons &&
                                 item.icons.map((card: Icons, indexIcons: number) => (
                                   <ComposerLink key={indexIcons} path={card.url}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                       name={card.icon}
                                       propsIcon={{
                                         className: this.decorateCSS("icons"),
+                                        style: { "--icon-index": indexIcons } as React.CSSProperties
                                       }}
                                     />
                                   </ComposerLink>

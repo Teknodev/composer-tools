@@ -1,18 +1,18 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import styles from "./feature13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Tab = {
-  title: JSX.Element;
-  content: JSX.Element;
+  title: React.JSX.Element;
+  content: React.JSX.Element;
 };
 
 type Progress = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   percentage: number;
-  utility: JSX.Element;
+  utility: React.JSX.Element;
 };
 
 type SliderImage = {
@@ -293,16 +293,17 @@ class Feature13 extends BaseFeature {
       displayer: "Slider Right Button Icon",
       value: "FaArrowRight",
     });
+    
+    this.setComponentState("activeTab", 0);
   }
 
   static getName(): string {
     return "Feature 13";
   }
 
-  activeTab: number = 0;
 
   switchTab(tabIndex: number) {
-    this.activeTab = tabIndex;
+    this.setComponentState("activeTab", tabIndex);
   }
 
   resetSliderInterval = () => {
@@ -363,6 +364,7 @@ class Feature13 extends BaseFeature {
     const descExist = this.getPropValue("description", { as_string: true });
     const tabList = this.castToObject<Tab[]>("tab-items");
     const progressList = this.castToObject<Progress[]>("progresses");
+    const activeTab = this.getComponentState("activeTab");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -410,7 +412,7 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderPrev}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           propsIcon={{ className: this.decorateCSS("Icon") }}
                           name={this.getPropValue("sliderGoLeft")}
                         />
@@ -421,7 +423,7 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderNext}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           propsIcon={{ className: this.decorateCSS("Icon") }}
                           name={this.getPropValue("sliderGoRight")}
                         />
@@ -451,7 +453,7 @@ class Feature13 extends BaseFeature {
                                   onClick={() => {
                                     this.switchTab(index);
                                   }}
-                                  className={`${this.decorateCSS("button")} ${this.activeTab === index
+                                  className={`${this.decorateCSS("button")} ${activeTab === index
                                     ? this.decorateCSS("active")
                                     : ""
                                     }`}
@@ -463,10 +465,10 @@ class Feature13 extends BaseFeature {
                           })}
                         </div>
                       </div>
-                      {this.castToString(tabList[this.activeTab].title) &&
-                        this.castToString(tabList[this.activeTab].content) && (
+                      {this.castToString(tabList[activeTab].title) &&
+                        this.castToString(tabList[activeTab].content) && (
                           <Base.P className={this.decorateCSS("comp-body-content")}>
-                            {tabList[this.activeTab].content}
+                            {tabList[activeTab].content}
                           </Base.P>
                         )}
                     </>

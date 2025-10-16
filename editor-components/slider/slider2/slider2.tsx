@@ -1,18 +1,16 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   image: string;
-  text: JSX.Element;
-  button: JSX.Element;
+  text: React.JSX.Element;
+  button: React.JSX.Element;
   url: string;
-  number: JSX.Element;
+  number: React.JSX.Element;
 };
 
 class Slider2 extends BaseSlider {

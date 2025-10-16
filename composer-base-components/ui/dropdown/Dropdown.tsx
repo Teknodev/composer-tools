@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
-import { ComposerIcon } from '../../icon/icon';
 import { Base } from "composer-tools/composer-base-components/base/base";
 
 
 export interface DropDownItem {
   className?: string;
   onClick?: () => void;
+  onClose?: () => void;
   children: React.ReactNode;
   divider?: boolean;
 }
@@ -20,6 +20,7 @@ interface DropdownProps {
   dropdownContentClassName?: string;
   disabled?: boolean;
   children: React.ReactNode;
+  onClose?: () => void
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ 
@@ -30,8 +31,9 @@ const Dropdown: React.FC<DropdownProps> = ({
   iconClassName,
   dropdownContentClassName,
   disabled = false,
-  children 
-}) => {
+  children,
+  onClose
+})=> {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldOpenLeft, setShouldOpenLeft] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -50,6 +52,10 @@ const Dropdown: React.FC<DropdownProps> = ({
       setIsOpen(!isOpen);
     }
   };
+  const closeDropdown = () => {
+    setIsOpen(false);
+    onClose?.();
+  };
 
   return (
     <div className={`${styles.dropdownContainer} ${dropdownButtonClassName || ''}`} ref={dropdownRef}>
@@ -59,12 +65,12 @@ const Dropdown: React.FC<DropdownProps> = ({
         disabled={disabled}
       >
         <span className={`${styles.label} ${labelClassName || ''}`}>{buttonLabel}</span>
-        {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles.icon} ${iconClassName || ''}`}}/>}
+        {icon && <Base.Icon name={icon} propsIcon={{className: `${styles.icon} ${iconClassName || ''}`}}/>}
       </button>
       {isOpen && (
-        <div className={`${styles.dropdownContent} ${dropdownContentClassName || ''} ${shouldOpenLeft ? styles.openLeft : ''}`}>
+        <div className={`${styles.dropdownContent} ${dropdownContentClassName || ''} ${shouldOpenLeft ? styles.openLeft : ''}`} onClick={closeDropdown}>
           {children}
-        </div>
+      </div>
       )}
     </div>
   );
@@ -74,13 +80,19 @@ export const DropDownItem: React.FC<DropDownItem> = ({
   className,
   onClick,
   children,
-  divider 
-}) => {
+  divider,
+  onClose
+  }) => {
+  const handleClick = () => {
+    onClick?.();
+    onClose?.();
+  };
+
   return (
     <>
       <div
         className={`${styles.dropdownItem} ${className || ''}`}
-        onClick={onClick}
+        onClick={handleClick} 
       >
         {children}
       </div>
@@ -88,5 +100,6 @@ export const DropDownItem: React.FC<DropDownItem> = ({
     </>
   );
 };
+
 
 export default Dropdown;

@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
   .max-content {
     .page {
@@ -6,11 +6,11 @@
       gap: var(--composer-gap-xl);
       .left-page {
         flex: 1;
-        .badge, .subtitle, .title-p {
+        .subtitle, .title, .description {
           content: "";
         }
       }
-      .right{
+      .right-page{
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -25,12 +25,12 @@
           );
           flex-wrap: wrap;
           .section{
-            font-size: 1rem;  
             border-bottom: 1px solid transparent;
             color: var(--composer-font-color-primary);
             opacity: 0.7;
             padding-bottom: var(--composer-gap-sm);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            width: fit-content;
             &.active{
               border-bottom: 1px solid var(--composer-font-color-primary);
               opacity: 1;
@@ -39,20 +39,20 @@
             
           }
         }
-        .right-page {
+        .bottom-wrapper {
           display: flex;
-          .right-wrapper{
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            .card {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+            
+          .card {
               width: 100%;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              border-radius: var(--composer-border-radius-xs);
+              border-radius: var(--composer-border-radius-sm);
               background-color: color-mix(
                 in srgb,
                 var(--composer-html-background),
@@ -69,11 +69,11 @@
                   padding: var(--composer-gap-xs) var(--composer-gap-sm);
                   background-color: var(--composer-html-background);
                   height: fit-content;
-                  transition: background-color 0.5s ease;
+                  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                   border-radius: var(--composer-gap-xs);
                   .index{
                     color: var(--composer-font-color-primary);
-                    transition: color 0.5s ease;
+                    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                   }
                   &.active{
                     background-color: var(--composer-primary-color);
@@ -83,9 +83,8 @@
                   }
                 }
 
-                .title {
+                .card-title {
                   flex: 1;
-                  font-size: 1rem;
                   color: var(--composer-font-color-primary);
                 }
                 .icon-wrapper{
@@ -95,6 +94,7 @@
                   .icon {
                     width: 25px;
                     height: 25px;
+                    font-size: 2rem;
                     color: var(--composer-font-color-primary);
                   }
                 }
@@ -104,12 +104,11 @@
                 width: 100%;
                 overflow: hidden;
                 max-height: 0px;
-                transition: max-height 0.5s ease, padding 0.5s;
+                transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 padding:0px var(--composer-gap-xl);
                 .text{
                   opacity: 0;
-                  transition: opacity 0.2s ease;
-                  font-size: 1rem;
+                  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                   color: var(--composer-tertiary-color);
                   &.active{
                     opacity: 1;
@@ -120,8 +119,7 @@
                   max-height: 150px;
                 }
               }
-            }
-          }
+           }
         }
       }
 
@@ -133,7 +131,7 @@
   .container{
     .max-content{
       .page{
-        .right{
+        .right-page{
           .section-wrapper{
             border-bottom: none;
           }

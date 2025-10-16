@@ -1,4 +1,5 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -30,18 +31,31 @@
           width: 90%;
           max-width: 100%;
           height: 600px;
+          border-radius: var(--composer-border-radius-md);
           transition: width 0.4s ease;
 
           &:hover {
-            width: 100%;
-
             .info {
-              transform: translateY(-15%);
-              opacity: 1;
+              &[data-animation~="animate1"] {
+                transform: translateY(-5%);
+                opacity: 1;
+              }
             }
 
             .image {
-              filter: grayscale(0%);
+              &[data-animation~="animate3"] {
+                filter: blur(0px);
+                transition: all 0.3s ease;
+              }
+
+              &[data-animation~="animate4"] {
+                filter: grayscale(0%);
+              }
+
+              &[data-animation~="animate2"] {
+                transition: transform 0.3s ease;
+                transform: scale(1.1);
+              }
             }
           }
 
@@ -51,7 +65,13 @@
             height: 100%;
             object-fit: cover;
             border-radius: var(--composer-border-radius-md);
-            transition: filter 0.3s, border-radius 0.3s;
+            transition: filter 0.3s ease, border-radius 0.3s ease,
+              transform 0.3s ease;
+
+            &[data-animation~="animate3"] {
+              filter: blur(3px) grayscale(100%);
+              transition: all 0.3s ease;
+            }
           }
 
           .info {
@@ -59,12 +79,35 @@
             bottom: 0;
             width: 70%;
             max-width: 100%;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 10%
+            );
             padding: 1rem;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: opacity 0.3s, transform 0.5s ease-in-out;
             border-radius: var(--composer-border-radius-md);
+
+            &[data-animation~="animate1"] {
+              opacity: 0;
+              transform: translateY(100%);
+              transition: opacity 0.3s, transform 0.5s ease-in-out;
+            }
+
+            &[data-animation~="animate4"] {
+              opacity: 1;
+              transform: translateY(0);
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+            }
+
+            &[data-animation~="animate2"],
+            &[data-animation~="animate3"] {
+              opacity: 1;
+              transform: translateY(0);
+              transition: opacity 0.3s, transform 0.5s ease-in-out;
+              border-bottom-left-radius: 0;
+              border-bottom-right-radius: 0;
+            }
 
             .name,
             .position,
@@ -78,7 +121,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .down-page {
@@ -89,11 +132,25 @@
             .info {
               max-height: 400px;
               overflow: auto;
+
+              &[data-animation~="animate1"] {
+                opacity: 0;
+                transform: translateY(100%);
+              }
             }
 
             &:hover {
               .info {
-                transform: translateY(-5%);
+                &[data-animation~="animate1"] {
+                  transform: translateY(-5%);
+                  opacity: 1;
+                }
+
+                &[data-animation~="animate2"],
+                &[data-animation~="animate3"] {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
               }
             }
           }
@@ -117,6 +174,26 @@
             .info {
               max-height: 300px;
               overflow: auto;
+
+              &[data-animation~="animate1"] {
+                opacity: 0;
+                transform: translateY(100%);
+              }
+            }
+
+            &:hover {
+              .info {
+                &[data-animation~="animate1"] {
+                  transform: translateY(-5%);
+                  opacity: 1;
+                }
+
+                &[data-animation~="animate2"],
+                &[data-animation~="animate3"] {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
             }
           }
         }

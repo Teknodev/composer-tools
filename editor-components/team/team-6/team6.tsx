@@ -1,19 +1,18 @@
 import * as React from "react";
 import styles from "./team6.module.scss";
 import { Team } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
-  feature: JSX.Element;
+  feature: React.JSX.Element;
   icon: string;
 };
 
 type Card = {
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
-  description: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  description: React.JSX.Element;
   features: Feature[];
 };
 
@@ -493,6 +492,15 @@ class Team6 extends Team {
       value: 4,
       max: 5,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
     this.setComponentState("activeIndex", null);
   }
 
@@ -533,27 +541,34 @@ class Team6 extends Team {
 
                 return (
                   hasCard && (
-                    <div key={indexItems} className={this.decorateCSS("all-card")}>
+                    <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
                           {card.image ? (
                             <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                               {card.features.length > 0 &&
                                 (this.getComponentState("activeIndex") === indexItems ? (
-                                  <ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                                  <Base.Icon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ) : (
-                                  <ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                                  <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
-                              <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} />
-                              <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
+                              <div className={this.decorateCSS("image-container")}>
+                                <img 
+                                  className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} 
+                                  src={card.image} 
+                                  alt={this.castToString(card.name)} 
+                                  data-animation={this.getPropValue("hoverAnimation").join(" ")} 
+                                />
+                              </div>
+                              <div className={this.decorateCSS("card-info")}>
                                 {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
                                 {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
-
+                                
                                 {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
                                   <Base.VerticalContent className={this.decorateCSS("features")}>
                                     {card.features.map((feature: Feature, idx: number) => (
                                       <div key={idx} className={this.decorateCSS("feature")}>
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={feature.icon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),
@@ -564,18 +579,18 @@ class Team6 extends Team {
                                     ))}
                                   </Base.VerticalContent>
                                 )}
-                              </Base.VerticalContent>
+                              </div>
                             </div>
                           ) : (
                             <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>
                               {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                              {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
+                              {cardPositionExist && <Base.H5 className={this.decorateCSS("position")}>{card.position}</Base.H5>}
 
                               {card.features.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("features")}>
                                   {card.features.map((feature: Feature, idx: number) => (
                                     <div key={idx} className={this.decorateCSS("feature")}>
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={feature.icon}
                                         propsIcon={{
                                           className: this.decorateCSS("icon"),

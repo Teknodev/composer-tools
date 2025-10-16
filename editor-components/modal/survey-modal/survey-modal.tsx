@@ -5,7 +5,7 @@ import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./survey-modal.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -230,7 +230,7 @@ class SurveyModal extends BaseModal {
             <div className={this.decorateCSS("border")}></div>
             <div className={this.decorateCSS("exit-icon")}>
               <ComposerModalClose>
-                <ComposerIcon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
+                <Base.Icon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
               </ComposerModalClose>
             </div>
             <Formik
@@ -260,7 +260,7 @@ class SurveyModal extends BaseModal {
                                 }}
                               >
                                 <div className={this.decorateCSS("icon-wrapper")}>
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={item.icon}
                                     propsIcon={{
                                       className: `${this.decorateCSS("icon")}`,
@@ -304,7 +304,7 @@ class SurveyModal extends BaseModal {
                               {button.text}
                             </Base.Button>
                           ) : (
-                            <ComposerLink page={button.url}>
+                            <ComposerLink path={button.url}>
                               <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>{button.text}</Base.Button>
                             </ComposerLink>
                           )}

@@ -5,7 +5,7 @@ import styles from "./footer1.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IconsValues = {
@@ -21,7 +21,7 @@ class Footer1Page extends BaseFooter {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Vela Newsletter",
+      value: "Blinkpage Newsletter",
     });
 
     this.addProp({
@@ -241,6 +241,16 @@ class Footer1Page extends BaseFooter {
       ],
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
+
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
   }
 
@@ -280,8 +290,8 @@ class Footer1Page extends BaseFooter {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <Base.Container>
-            <Base.MaxContent>
+          <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {upperExist && (
                 <div className={this.decorateCSS("footer-upper")}>
                   {(titleExist || descriptionExist) && (
@@ -338,10 +348,10 @@ class Footer1Page extends BaseFooter {
               )}
             </Base.MaxContent>
           </Base.Container>
-          {line && <div className={this.decorateCSS("line")} />}
+          {line && <div className={`${this.decorateCSS("line")} ${!upperExist && this.decorateCSS("without-padding") }`} />}
 
-          <Base.Container>
-            <Base.MaxContent>
+          <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.MaxContent className={this.decorateCSS("second-max-content")} >
               {footerBottomExist && (
                 <div className={this.decorateCSS("footer-bottom")}>
                   {copyrightExist && (
@@ -355,7 +365,15 @@ class Footer1Page extends BaseFooter {
                         (item: IconsValues, indexSocial: number) =>
                           item.socialIcon && (
                             <ComposerLink key={indexSocial} path={item.socialLink}>
-                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
+                              <div 
+                                className={this.decorateCSS("icon-wrapper")}
+                                data-animation={item.socialLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                <Base.Icon 
+                                  propsIcon={{ className: this.decorateCSS("icon") }} 
+                                  name={item.socialIcon} 
+                                />
+                              </div>
                             </ComposerLink>
                           )
                       )}
@@ -368,7 +386,12 @@ class Footer1Page extends BaseFooter {
                         return (
                           pageTitleExist && (
                             <ComposerLink key={indexSocial} path={item.pageLink}>
-                              <Base.P className={this.decorateCSS("text")}>{item.pageTitle}</Base.P>
+                              <Base.P 
+                                className={this.decorateCSS("text")}
+                                data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                {item.pageTitle}
+                              </Base.P>
                             </ComposerLink>
                           )
                         );

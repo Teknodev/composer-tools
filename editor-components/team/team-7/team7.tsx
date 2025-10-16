@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team7.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Icons = {
@@ -12,8 +12,8 @@ type Icons = {
 
 interface Card {
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
   icons: { icon: string; url: string }[];
 }
 
@@ -243,6 +243,15 @@ class Team7 extends Team {
       value: 4,
       max: 5,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -286,10 +295,10 @@ class Team7 extends Team {
                 const hasItem = itemName || itemPosition || item.image || item.icons.length > 0;
                 return (
                   hasItem && (
-                    <div key={indexCard} className={this.decorateCSS("card")}>
+                    <div key={indexCard} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("image-container")}>
                         {item.image && (
-                          <div className={this.decorateCSS("image-wrapper")}>
+                          <div className={this.decorateCSS("image-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
                           </div>
                         )}
@@ -298,7 +307,7 @@ class Team7 extends Team {
                           {item.icons &&
                             item.icons.map((card: Icons, indexIcons: number) => (
                               <ComposerLink key={indexIcons} path={card.url}>
-                                <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                               </ComposerLink>
                             ))}
                         </div>

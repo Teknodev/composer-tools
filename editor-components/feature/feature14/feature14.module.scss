@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -19,7 +19,7 @@
                 }
                 .link {                    
                     .button{
-                        font-size: 1.5rem;
+
                     }
                 }
             }
@@ -36,7 +36,7 @@
                 }
                 .link {                    
                     .button{
-                        font-size: 1.5rem;
+
                     }
                 }
             }
@@ -76,12 +76,12 @@
                         flex-direction: column;
                         gap: var(--composer-gap-md);
                         .card-title {
-                            font-size: 2rem;
+
                             color: var(--composer-font-color-primary);
                         }
 
                         .card-description {
-                            font-size: 1.5rem;
+
                             color: var(--composer-tertiary-color);
                         }
                     }
@@ -109,11 +109,11 @@
                         }
                         .card-content {
                             .card-title {
-                                font-size: 1.5rem;
+
                             }
     
                             .card-description {
-                                font-size: 1rem;
+
                             }
                         }
                     }

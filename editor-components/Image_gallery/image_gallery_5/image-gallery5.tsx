@@ -2,13 +2,13 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface GalleryItem {
   image: string;
-  caption: JSX.Element;
+  caption: React.JSX.Element;
 }
 
 class ImageGallery5 extends BaseImageGallery {
@@ -300,7 +300,7 @@ class ImageGallery5 extends BaseImageGallery {
                 <div className={this.decorateCSS("middle-content")}>
                   {closeIcon && (
                     <button className={this.decorateCSS("image-close-button")}>
-                      <ComposerIcon name={closeIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      <Base.Icon name={closeIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                     </button>
                   )}
                   {galleries[clickedImageIndex].image && (
@@ -313,7 +313,7 @@ class ImageGallery5 extends BaseImageGallery {
                             this.handlePrevImage();
                           }}
                         >
-                          <ComposerIcon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Icon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
                       <img
@@ -333,7 +333,7 @@ class ImageGallery5 extends BaseImageGallery {
                             this.handleNextImage();
                           }}
                         >
-                          <ComposerIcon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Icon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
                     </div>

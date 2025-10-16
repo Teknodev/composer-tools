@@ -1,126 +1,181 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 .container {
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
   .max-content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
-      .carousel {
-        overflow: hidden;
-        >div{
-          >div{
-            display: flex;
-            align-items: stretch;
-            >div{
-              height: auto;
-              margin-bottom: calc(2 * var(--composer-gap-md));
-              >div{
-                height: 100%;
-              }
-            }
-          }
-        }
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
 
-        .dots {
-          display: flex !important;
-          width: 100%;
-          gap: var(--composer-gap-sm);
-          list-style-type: none;
-          padding: 0;
-          bottom: 0px;
-          position: absolute;
-          justify-content: center;
-          li {
-            button {
-              border: none;
-              transition: 0.3s;
-              content-visibility: hidden;
-              background-color: var(--composer-html-background);
-              width: 10px;
-              height: 10px;
-              border-radius: var(--composer-border-radius-xl);
-              cursor: pointer;
-            }
-          }
-        }
-        .dots :global(li.slick-active) button {
-          padding: 0 var(--composer-gap-md);
-        }
-        .card {
-          height: 100%;
-          margin: 0px var(--composer-gap-md); 
-          position: relative;
-          display: flex !important;
-          flex-direction: column;
-          padding: var(--composer-gap-lg);
-          background-color: var(--composer-html-background);
-          border-radius: var(--composer-border-radius-xs);
-          gap: var(--composer-gap-md);
-          height: 100%;
-          .img-div {
-            margin: 0px;
-            .img {
-              border-radius: 50%;
-              width: 100%;
+    .card-titles {
+      .subtitle {
+        content: "";
+      }
+      .title {
+        content: "";
+      }
+    }
+
+    .carousel {
+      overflow: hidden;
+      > div {
+        > div {
+          display: flex;
+          align-items: stretch;
+          > div {
+            height: auto;
+            margin-bottom: calc(2 * var(--composer-gap-md));
+            > div {
               height: 100%;
-              max-width: 200px;
-              max-height: 200px;
-            }
-          }
-
-          .card-titles {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            margin: 0px;
-            .title {
-              font-size: 1rem;
-              color: var(--composer-font-color-primary);
-            }
-            .subtitle {
-              font-size: 1rem;
-              color: var(--composer-font-color-primary);
-            }
-          }
-          .link {
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-xs);
-            cursor: pointer;
-
-            .icon {
-              font-size: 1rem;
-              min-width: fit-content;
-            }
-            .text {
-              font-size: 1rem;
-            }
-            &:hover {
-              color: var(--composer-primary-color);
-              transition: 1s;
-            }
-          }
-
-          &.active {
-            &::after {
-              content: "";
-              position: absolute;
-              width: calc(100% + var(--composer-gap-md) * 4);
-              height: 85%;
-              bottom: calc(-2 * var(--composer-gap-md));
-              left: calc(0px - 2 * var(--composer-gap-md));
-              background-color: var(--composer-primary-color);
-              z-index: -1;
-              opacity: 1;
-              border-radius: var(--composer-border-radius-xs);
             }
           }
         }
       }
+
+      .dots {
+        display: flex !important;
+        width: 100%;
+        gap: var(--composer-gap-sm);
+        list-style-type: none;
+        padding: 0;
+        bottom: 0;
+        position: absolute;
+        justify-content: center;
+        li {
+          button {
+            border: none;
+            transition: var(--composer-transition-duration-normal);
+            content-visibility: hidden;
+            background-color: var(--composer-html-background);
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-xl);
+            cursor: pointer;
+          }
+        }
+      }
+      .dots :global(li.slick-active) button {
+        padding: 0 var(--composer-gap-md);
+      }
+      .card {
+        height: 100%;
+        margin: 0 var(--composer-gap-md);
+        position: relative;
+        display: flex !important;
+        flex-direction: column;
+        padding: var(--composer-gap-lg);
+        background-color: var(--composer-html-background);
+        border-radius: var(--composer-border-radius-xs);
+        gap: var(--composer-gap-md);
+        height: 100%;
+
+        .img-div {
+          margin: 0;
+          overflow: hidden;
+          border-radius: var(--composer-border-radius-full);
+          .img {
+            border-radius: var(--composer-border-radius-full);
+            width: 100%;
+            height: 100%;
+            max-width: 200px;
+            max-height: 200px;
+            transition: all var(--composer-transition-duration-slow) var(--composer-transition-easing);
+          }
+        }
+
+        .titles {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          margin: 0;
+          .card-title {
+            color: var(--composer-font-color-primary);
+          }
+          .card-subtitle {
+            color: var(--composer-tertiary-color);
+          }
+        }
+        .link {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          &::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: var(--composer-border-width-xs);
+            background-color: var(--composer-primary-color);
+          }
+
+          .icon {
+            font-size: 1rem;
+            min-width: fit-content;
+          }
+        }
+
+        &.active {
+          &::after {
+            content: "";
+            position: absolute;
+            width: calc(100% + var(--composer-gap-md) * 4);
+            height: 85%;
+            bottom: calc(-2 * var(--composer-gap-md));
+            left: calc(0px - 2 * var(--composer-gap-md));
+            background-color: var(--composer-primary-color);
+            z-index: -1;
+            opacity: 1;
+            border-radius: var(--composer-border-radius-xs);
+          }
+        }
+
+        &[data-animation~="animate1"]:hover {
+          .img-div .img {
+            transform: scale(1.1);
+            transition: transform var(--composer-transition-duration-slow) ease-in-out;
+          }
+        }
+
+        &[data-animation~="animate2"]:hover {
+          .img-div .img {
+            transform: rotate(360deg);
+            transition: transform var(--composer-transition-duration-normal) ease-in-out;
+          }
+        }
+        &[data-animation~="animate3"]:hover {
+          .link {
+            &::before {
+              width: 100%;
+              animation: slideIn var(--composer-transition-duration-slow) ease-in-out forwards;
+            }
+
+            &:not(:hover)::before {
+              width: 100%;
+              animation: slideOut var(--composer-transition-duration-slow) ease-in-out forwards;
+            }
+          }
+        }
+        
+
+        &[data-animation~="animate4"]:hover {
+          .link {
+            animation: breathing 2s infinite ease-in-out;
+          }
+        }
+      }
+    }
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .carousel {
@@ -133,5 +188,37 @@
         }
       }
     }
+  }
+}
+
+@keyframes breathing {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.9);
+  }
+  
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
   }
 }

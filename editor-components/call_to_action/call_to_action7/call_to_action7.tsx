@@ -12,15 +12,27 @@ class CallToAction7Page extends BaseCallToAction {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Get your free e-book",
+    });
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Level up your portfolio, read the book today!",
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value: "https://vault.uicore.co/e-book/wp-content/uploads/sites/51/2022/08/E-Book-Book.webp",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://vault.uicore.co/e-book/wp-content/uploads/sites/51/2022/08/E-Book-Book.webp",
+      },
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Get your FREE copy", null, null, null, "Primary"));
@@ -51,7 +63,7 @@ class CallToAction7Page extends BaseCallToAction {
     );
   }
 
-  componentDidUpdate() {
+  onComponentDidUpdate() {
     const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
     const prevPlaceholder = this.getComponentState("placeholderText");
 
@@ -71,6 +83,7 @@ class CallToAction7Page extends BaseCallToAction {
   }
 
   render() {
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
@@ -84,13 +97,16 @@ class CallToAction7Page extends BaseCallToAction {
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
             {this.getPropValue("image") &&
               (<Base.GridCell className={this.decorateCSS("left-page")}>
-                <img className={`${this.decorateCSS("image")} ${disableAnimation && this.decorateCSS("no-animation")}`}
-                  src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+                <Base.Media 
+                  value={this.getPropValue("image")} 
+                  className={`${this.decorateCSS("image")} ${disableAnimation && this.decorateCSS("no-animation")}`}
+                />
               </Base.GridCell>)
             }
-            {(placeholder || title) &&
+            {(subtitleExist || placeholder || title) &&
               (<Base.GridCell className={this.decorateCSS("right-page")}>
                 <Base.VerticalContent className={this.decorateCSS("right-content")}>
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {placeholder &&
                     <div className={this.decorateCSS("input-button-wrapper")}>
@@ -137,7 +153,7 @@ class CallToAction7Page extends BaseCallToAction {
                             )}
                             {this.castToString(button.text) && (
                               <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                {button.text}
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                               </Base.Button>
                             )}
                           </Form>
@@ -148,7 +164,7 @@ class CallToAction7Page extends BaseCallToAction {
                   {(!placeholder && this.castToString(button.text) && (
                     <ComposerLink path={button.url}>
                       <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   ))}

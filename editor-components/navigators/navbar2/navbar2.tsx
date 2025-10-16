@@ -2,14 +2,14 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 type Item = {
-  title: JSX.Element;
-  navigate_to: string;
+  nav_title: React.JSX.Element;
+  nav_navigate_to: string;
 };
 
 interface Logo {
@@ -21,6 +21,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -31,23 +32,23 @@ class Navbar2 extends BaseNavigator {
     this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Position"));
     this.addProp({
       type: "array",
-      key: "menuItems",
+      key: "nav",
       displayer: "Menu",
       value: [
         {
           type: "object",
-          key: "item",
+          key: "nav_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "nav_title",
               displayer: "Title",
               value: "HOME",
             },
             {
               type: "page",
-              key: "navigate_to",
+              key: "nav_navigate_to",
               displayer: "Navigate to",
               value: "",
             },
@@ -55,302 +56,25 @@ class Navbar2 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Dropdown",
+              value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
-            },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "FASHION HOME",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "WINERY HOME",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "NEW ARRIVALS",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "MEN & WOMEN",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "TREND COLLECTION",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "CREATIVE",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
         {
           type: "object",
-          key: "item",
+          key: "nav_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "nav_title",
               displayer: "Title",
               value: "FEATURES",
             },
             {
               type: "page",
-              key: "navigate_to",
+              key: "nav_navigate_to",
               displayer: "Navigate to",
               value: "",
             },
@@ -361,74 +85,22 @@ class Navbar2 extends BaseNavigator {
               value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
             },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "SUB ITEM1",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
           ],
         },
         {
           type: "object",
-          key: "item",
+          key: "nav_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "nav_title",
               displayer: "Title",
               value: "POST BLOCKS",
             },
             {
               type: "page",
-              key: "navigate_to",
+              key: "nav_navigate_to",
               displayer: "Navigate to",
               value: "",
             },
@@ -436,302 +108,25 @@ class Navbar2 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Dropdown",
+              value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
-            },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "ABOUT US",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "LOOKBOOK",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "TYPOGRAPHY",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "SHORTCODES",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "COMING SOON",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "PAGE 404",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
         {
           type: "object",
-          key: "item",
+          key: "nav_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "nav_title",
               displayer: "Title",
               value: "NEWS",
             },
             {
               type: "page",
-              key: "navigate_to",
+              key: "nav_navigate_to",
               displayer: "Navigate to",
               value: "",
             },
@@ -739,129 +134,25 @@ class Navbar2 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Dropdown",
+              value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
-            },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "BLOG POSTS",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "MASONARY",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "select",
-                      key: "menuType",
-                      displayer: "Type",
-                      value: "Normal",
-                      additionalParams: { selectItems: ["Dropdown", "Normal"] },
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
         {
           type: "object",
-          key: "item",
+          key: "nav_item",
           displayer: "Item",
           value: [
             {
               type: "string",
-              key: "title",
+              key: "nav_title",
               displayer: "Title",
               value: "CONTACTS",
             },
             {
               type: "page",
-              key: "navigate_to",
+              key: "nav_navigate_to",
               displayer: "Navigate to",
               value: "",
             },
@@ -871,136 +162,6 @@ class Navbar2 extends BaseNavigator {
               displayer: "Type",
               value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
-            },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "CONTACTS SUB ITEM",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "CONTACTS SUB SUB ITEM ",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "BUY THEME",
-            },
-            {
-              type: "page",
-              key: "navigate_to",
-              displayer: "Navigate to",
-              value: "",
-            },
-            {
-              type: "select",
-              key: "menuType",
-              displayer: "Type",
-              value: "Normal",
-              additionalParams: { selectItems: ["Dropdown", "Normal"] },
-            },
-            {
-              type: "array",
-              key: "sub_items",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "sub_item",
-                  displayer: "Sub Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "",
-                    },
-                    {
-                      type: "page",
-                      key: "navigate_to",
-                      displayer: "Navigate to",
-                      value: "",
-                    },
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "sub_item",
-                          displayer: "Sub Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
@@ -1064,8 +225,8 @@ class Navbar2 extends BaseNavigator {
 
     this.addProp({
       type: "icon",
-      key: "menuIcon",
-      displayer: "Menu Icon",
+      key: "hamburgerIcon",
+      displayer: "Hamburger Icon",
       value: "FaBars",
     });
 
@@ -1086,12 +247,12 @@ class Navbar2 extends BaseNavigator {
     this.addProp({
       type: "object",
       key: "language",
-      displayer: "Language",
+      displayer: "Language Settings",
       value: [
         {
           type: "select",
           key: "label",
-          displayer: "Label",
+          displayer: "Language Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -1102,6 +263,12 @@ class Navbar2 extends BaseNavigator {
           key: "icon",
           displayer: "Icon",
           value: "GrLanguage",
+        },
+        {
+          type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Pin to Navbar",
+          value: true,
         },
         {
           type: "boolean",
@@ -1117,6 +284,15 @@ class Navbar2 extends BaseNavigator {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    })
 
     this.setComponentState("isScrolled", false);
     this.setComponentState("navActive", false);
@@ -1124,6 +300,7 @@ class Navbar2 extends BaseNavigator {
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
     this.setComponentState("isBigScreen", false);
+    this.setComponentState("navbarOverflowShow", false);
   }
   static getName(): string {
     return "Navbar 2";
@@ -1133,6 +310,9 @@ class Navbar2 extends BaseNavigator {
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
     this.setComponentState("isMobileMenuOpen", !isMobileMenuOpen);
     Base.Navigator.changeScrollBehaviour(!isMobileMenuOpen ? "hidden" : "auto");
+    setTimeout(() => {
+      this.setComponentState("navbarOverflowShow", true);
+    }, 300)
   };
 
   navClick(index: number) {
@@ -1140,6 +320,7 @@ class Navbar2 extends BaseNavigator {
     this.setComponentState("navActive", !isActive);
     this.setComponentState("subNavActiveIndex", isActive ? null : index);
     this.setComponentState("subNavActive", null);
+
   }
 
   subNavClick(index: any) {
@@ -1164,16 +345,22 @@ class Navbar2 extends BaseNavigator {
 
     const currentLogo =
       transparentBackground ? absoluteLogo : defaultLogo;
-    const menuItems = this.castToObject<Item[]>("menuItems");
+    const menuItems = this.castToObject<Item[]>("nav");
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
+    const isBigScreen = this.getComponentState("isBigScreen");
+    const isVisible = isMobileMenuOpen && !isBigScreen;
+
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <Base.Navigator.Container
+      <>
+       <Base.Navigator.Container
         position={position}
         positionContainer={this.decorateCSS("container")}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
         setIsScrolled={(value) => this.setComponentState("isScrolled", value)}
+        className={this.decorateCSS("container")}
       >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
@@ -1188,6 +375,7 @@ class Navbar2 extends BaseNavigator {
                 <img
                   src={currentLogo.image}
                   className={this.decorateCSS("logoImg")}
+                  onClick={()=> this.toggleMobileMenu()}
                 />
               </div>
             </ComposerLink>
@@ -1196,18 +384,18 @@ class Navbar2 extends BaseNavigator {
             <nav className={this.decorateCSS("pcNavbar")}>
               {menuItems.map(
                 (item: any, index: any) =>
-                  this.castToString(item.title) && (
+                  this.castToString(item.nav_title) && (
                     <div
                       key={index}
                       className={this.decorateCSS("menuItemContainer")}
                     >
-                      <ComposerLink path={item.navigate_to}>
+                      <ComposerLink path={item.nav_navigate_to}>
                         <div className={this.decorateCSS("menuItem")}>
-                          <span className={this.decorateCSS("menuItemTitle")}>
-                            {item.title}
-                          </span>
+                          <Base.P className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
+                            {item.nav_title}
+                          </Base.P>
                           {item.menuType === "Dropdown" && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={this.getPropValue("dropdownIcon")}
                               propsIcon={{
                                 className: this.decorateCSS("dropdownIcon"),
@@ -1220,36 +408,30 @@ class Navbar2 extends BaseNavigator {
                         <div className={this.decorateCSS("dropdown")}>
                           {item.sub_items?.map(
                             (subItem: any, subIndex: number) =>
-                              this.castToString(subItem.title) && (
+                              this.castToString(subItem.nav_title) && (
                                 <div
                                   key={subIndex}
-                                  className={this.decorateCSS(
-                                    "dropdownItemContainer"
-                                  )}
+                                  className={`${this.decorateCSS("dropdownItemContainer")} ${animations}`}
                                 >
                                   <div
                                     className={this.decorateCSS("dropdownItem")}
                                   >
-                                    <ComposerLink path={subItem.navigate_to}>
+                                    <ComposerLink path={subItem.nav_navigate_to}>
                                       <div
                                         className={this.decorateCSS(
                                           "dropdownItemContent"
                                         )}
                                       >
-                                        <span
-                                          className={this.decorateCSS(
-                                            "dropdownItemTitle"
-                                          )}
-                                        >
-                                          {subItem.title}
+                                        <span className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
+                                          {subItem.nav_title}
                                         </span>
                                       </div>
                                     </ComposerLink>
                                     {subItem.sub_items.length > 0 &&
                                       subItem.sub_items.some((item: any) =>
-                                        this.castToString(item.title)
+                                        this.castToString(item.nav_title)
                                       ) && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={this.getPropValue("rightIcon")}
                                           propsIcon={{
                                             className:
@@ -1260,7 +442,7 @@ class Navbar2 extends BaseNavigator {
                                   </div>
                                   {subItem.sub_items.length > 0 &&
                                     subItem.sub_items.some((item: any) =>
-                                      this.castToString(item.title)
+                                      this.castToString(item.nav_title)
                                     ) && (
                                       <div
                                         className={this.decorateCSS(
@@ -1274,19 +456,15 @@ class Navbar2 extends BaseNavigator {
                                           ) => (
                                             <div
                                               key={subSubIndex}
-                                              className={this.decorateCSS(
-                                                "subdropdownItem"
-                                              )}
+                                              className={`${this.decorateCSS("subdropdownItem")} ${animations}`}
                                             >
                                               <ComposerLink
-                                                path={subSubItem.navigate_to}
+                                                path={subSubItem.nav_navigate_to}
                                               >
                                                 <span
-                                                  className={this.decorateCSS(
-                                                    "dropdownItemTitle"
-                                                  )}
+                                                  className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}
                                                 >
-                                                  {subSubItem.title}
+                                                  {subSubItem.nav_title}
                                                 </span>
                                               </ComposerLink>
                                             </div>
@@ -1304,12 +482,35 @@ class Navbar2 extends BaseNavigator {
               )}
               {divider && <div className={this.decorateCSS("divider")} />}
               {language.showLanguage && (
-                <ComposerLanguage
+                <Base.Language
+                  type="dropdown"
+                  title={language.label}
+                  icon={language.icon}
+                  dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownItemClassName={`${this.decorateCSS("localizationItem")}`}
+                  dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
+                  divider={language.showDivider} 
+                />
+              )}
+            </nav>
+          )}
+          <div className={this.decorateCSS("mobileRight")}>
+          <Base.Icon
+            name={this.getPropValue("hamburgerIcon")}
+            propsIcon={{
+              className: this.decorateCSS("menuIcon"),
+              onClick: this.toggleMobileMenu,
+            }}
+          />
+           {language.showLanguage && language.showLocalizationAlways &&(
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
                   dropdownButtonClassName={`${this.decorateCSS(
-                    "localization"
+                    "localizationMobile"
                   )}`}
                   dropdownLabelClassName={`${this.decorateCSS(
                     "localizationLabel"
@@ -1322,18 +523,11 @@ class Navbar2 extends BaseNavigator {
                   divider={language.showDivider}
                 />
               )}
-            </nav>
-          )}
+          </div>
 
-          <ComposerIcon
-            name={this.getPropValue("menuIcon")}
-            propsIcon={{
-              className: this.decorateCSS("menuIcon"),
-              onClick: this.toggleMobileMenu,
-            }}
-          />
-            <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}`}>
-              <ComposerIcon
+            <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
+            ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
+              <Base.Icon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{
                   className: this.decorateCSS("closeIcon"),
@@ -1341,11 +535,12 @@ class Navbar2 extends BaseNavigator {
                 }}
               />
 
+
               {menuItems.length > 0 && (
                 <nav className={this.decorateCSS("hamburgerMenu")}>
                   {menuItems.map(
                     (item: any, index: number) =>
-                      this.castToString(item.title) && (
+                      this.castToString(item.nav_title) && (
                         <div
                           key={index}
                           className={this.decorateCSS("hamburgerMenuItem")}
@@ -1356,17 +551,16 @@ class Navbar2 extends BaseNavigator {
                             )}
                             onClick={() => this.navClick(index)}
                           >
-                            <ComposerLink path={item.navigate_to}>
-                              <span
-                                className={this.decorateCSS(
-                                  "hamburgerMenuItemTitle"
-                                )}
+                            <ComposerLink path={item.nav_navigate_to}>
+
+                              <Base.P className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
+                                onClick={()=> this.toggleMobileMenu()}
                               >
-                                {item.title}
-                              </span>
+                                {item.nav_title}
+                              </Base.P>
                             </ComposerLink>
                             {item.menuType === "Dropdown" && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={this.getPropValue("rightIcon")}
                                 propsIcon={{
                                   className: `${this.decorateCSS(
@@ -1409,20 +603,18 @@ class Navbar2 extends BaseNavigator {
                                         this.subNavClick(`${index}-${subIndex}`)
                                       }
                                     >
-                                      <ComposerLink path={subItem.navigate_to}>
-                                        <span
-                                          className={this.decorateCSS(
-                                            "hamburgerMenuItemTitle"
-                                          )}
+                                      <ComposerLink path={subItem.nav_navigate_to}>
+                                        <Base.P className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
+                                          onClick={()=> this.toggleMobileMenu()}
                                         >
-                                          {subItem.title}
-                                        </span>
+                                          {subItem.nav_title}
+                                        </Base.P>
                                       </ComposerLink>
                                       {subItem.sub_items.length > 0 &&
                                         subItem.sub_items.some((item: any) =>
-                                          this.castToString(item.title)
+                                          this.castToString(item.nav_title)
                                         ) && (
-                                          <ComposerIcon
+                                          <Base.Icon
                                             name={this.getPropValue(
                                               "rightIcon"
                                             )}
@@ -1442,7 +634,7 @@ class Navbar2 extends BaseNavigator {
                                     </div>
                                     {subItem.sub_items.length > 0 &&
                                       subItem.sub_items.some((item: any) =>
-                                        this.castToString(item.title)
+                                        this.castToString(item.nav_title)
                                       ) && (
                                         <div
                                           className={`${this.decorateCSS(
@@ -1467,15 +659,14 @@ class Navbar2 extends BaseNavigator {
                                                 )}
                                               >
                                                 <ComposerLink
-                                                  path={subSubItem.navigate_to}
+                                                  path={subSubItem.nav_navigate_to}
                                                 >
-                                                  <span
-                                                    className={this.decorateCSS(
-                                                      "hamburgerSubSubmenuItemTitle"
-                                                    )}
+                                                  <Base.P
+                                                    className={`${this.decorateCSS("hamburgerSubSubmenuItemTitle")} ${animations}`}
+                                                    onClick={()=> this.toggleMobileMenu()}
                                                   >
-                                                    {subSubItem.title}
-                                                  </span>
+                                                    {subSubItem.nav_title}
+                                                  </Base.P>
                                                 </ComposerLink>
                                               </div>
                                             )
@@ -1490,25 +681,28 @@ class Navbar2 extends BaseNavigator {
                         </div>
                       )
                   )}
-                  <ComposerLanguage
+                  {(!language.showLocalizationAlways && language.showLanguage) &&
+                    <Base.Language
                     type="accordion"
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}
-                    itemClassName={this.decorateCSS("languageAccordionItem")}
-                    titleClassName={this.decorateCSS("languageAccordionTitle")}
+                    itemClassName={`${this.decorateCSS("languageAccordionItem")} ${animations}`}
+                    titleClassName={`${this.decorateCSS("languageAccordionTitle")} ${animations}`}
                     accordionIconClassName={this.decorateCSS("languageAccordionIcon")}
-                  />
+                  /> 
+                  }
                 </nav>
               )}
             </div>
         </Base.MaxContent>
-        <div
-          className={`${this.decorateCSS("overlay")} ${
-            isMobileMenuOpen ? this.decorateCSS("overlayActive") : ""
-          }`}
-          onClick={() => this.toggleMobileMenu()}
-        />
+
       </Base.Navigator.Container>
+      <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.toggleMobileMenu()}
+          isVisible= {isVisible}
+        />
+      </>
     );
   }
 }

@@ -6,11 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Item = {
-  itemTitle: JSX.Element;
+  itemTitle: React.JSX.Element;
   texts: TextItem[];
 };
 type TextItem = {
-  itemText: JSX.Element;
+  itemText: React.JSX.Element;
 };
 
 class List3 extends BaseList {
@@ -19,6 +19,12 @@ class List3 extends BaseList {
   }
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Schedule",
+    });
     this.addProp({
       type: "string",
       key: "title",
@@ -231,12 +237,21 @@ class List3 extends BaseList {
       displayer: "Show Card Number",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"));
-
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
     const listItems = this.castToObject<Item[]>("listItems");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -244,18 +259,23 @@ class List3 extends BaseList {
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
-            {(title || description || this.castToString(buttonType.text)) && (
-              <Base.VerticalContent className={this.decorateCSS("first")}>
-                {(title || description) && (
+            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text)) && (
+              <Base.VerticalContent className={this.decorateCSS("first")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
                   <Base.VerticalContent className={this.decorateCSS("first-inner")}>
-                    {title && (
+                    {this.castToString(subtitle) && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {subtitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {this.castToString(title) && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
+                        {title}
                       </Base.SectionTitle>
                     )}
-                    {description && (
+                    {this.castToString(description) && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {this.getPropValue("description")}
+                        {description}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
@@ -263,7 +283,15 @@ class List3 extends BaseList {
                 {this.castToString(buttonType.text) && (
                   <ComposerLink path={buttonType.url}>
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      {buttonType.text}
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {buttonType.text}
+                      </Base.P>
+                      <Base.Icon
+                        name={"FaArrowRight"}
+                        propsIcon={{
+                          className: this.decorateCSS("button-icon"),
+                        }}
+                      />
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -271,26 +299,30 @@ class List3 extends BaseList {
             )}
             {listItems.map((listItem: Item, index: number) => {
               return (
-                <div key={index} className={this.decorateCSS("card")}>
+                <div
+                  key={index}
+                  className={this.decorateCSS("card")}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
-                      <div className={this.decorateCSS("itemTitle")}>
+                      <Base.H5 className={this.decorateCSS("itemTitle")}>
                         {listItem.itemTitle}
-                      </div>
+                      </Base.H5>
                     )}
                     {listItem.texts.map((item: TextItem, index: number) => (
                       <Base.VerticalContent className={this.decorateCSS("cardItem")}>
                         <div className={this.decorateCSS("spanItem")}></div>
-                        <Base.H1 className={this.decorateCSS("itemText")}>
+                        <Base.P className={this.decorateCSS("itemText")}>
                           {item.itemText}
-                        </Base.H1>
+                        </Base.P>
                       </Base.VerticalContent>
                     ))}
                   </Base.VerticalContent>
                   {this.getPropValue("showCardNumber") && (
-                    <div className={this.decorateCSS("index")}>
+                    <Base.H1 className={this.decorateCSS("index")}>
                       {index < 9 ? `0${index + 1}` : index + 1}
-                    </div>
+                    </Base.H1>
                   )}
                 </div>
               );

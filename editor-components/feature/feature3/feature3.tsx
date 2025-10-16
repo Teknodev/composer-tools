@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature3.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -11,7 +11,7 @@ type Logo = {
 };
 
 type Card = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   icon: string;
 };
 
@@ -319,15 +319,15 @@ class Feature3 extends BaseFeature {
                         <div key={index} className={this.decorateCSS("card")}>
                           <div className={this.decorateCSS("card-content")}>
                             {iconExist && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={card.icon}
                                 propsIcon={{ className: this.decorateCSS("card-icon") }}
                               />
                             )}
                             {titleExist && (
-                              <div className={this.decorateCSS("card-title")}>
+                              <Base.H3 className={this.decorateCSS("card-title")}>
                                 {card.title}
-                              </div>
+                              </Base.H3>
                             )}
                           </div>
                         </div>

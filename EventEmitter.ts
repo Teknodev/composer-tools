@@ -9,7 +9,10 @@ export enum EVENTS {
   MODAL_COMPONENT = "modalComponent",
   CLEAR_CHANGES = "clearChanges",
   COMPONENT_ADDED = "componentAdded",
-  INSERT_FORM = "insertForm"
+  INSERT_FORM = "insertForm",
+  RENDER_CONTENT_TAB = "renderContentTab",
+  COMPONENT_DID_UPDATE = "componentDidUpdate",
+  CSS_CLASSES_CHANGED = "cssClassesChanged"
 }
 
 class EventQ {

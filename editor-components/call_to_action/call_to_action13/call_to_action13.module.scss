@@ -1,0 +1,148 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    gap: var(--composer-gap-xl);
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        gap: var(--composer-gap-lg);
+        width: 100%;
+        align-items: center;
+
+        .titles {
+          content: "";
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
+        }
+
+        .subtitle {
+          width: fit-content;
+          text-align: left;
+          margin-left: unset;
+          content: "";
+          margin-bottom: 0;
+          position: relative;
+          padding: var(--composer-gap-md) var(--composer-gap-md)
+            var(--composer-gap-sm);
+          display: inline-block;
+          text-wrap: balance;
+          max-inline-size: 1200px;
+          
+          &.highlight-enabled::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 155px;
+            height: 100%;
+            background: var(--composer-tertiary-color);
+            z-index: -1;
+            transform: skewX(-15deg);
+          }
+        }
+      }
+
+        .title {
+          text-align: left;
+          margin-left: unset;
+          content: "";
+          text-wrap: balance;
+          display: block;
+          max-inline-size: 1200px;
+          margin-bottom: 0;
+        }
+
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        align-items: flex-start;
+        justify-content: flex-end;
+        max-width: 500px;
+
+        .button{
+          .button-text {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-lg);
+
+      .header {
+        .titles {
+          .subtitle {
+            padding: var(--composer-gap-sm);
+            
+            &.highlight-enabled::after {
+              width: 85px;
+              transform: skewX(-12deg);
+            }
+          }
+        }
+        .button-container {
+          max-width: 300px;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      gap: var(--composer-gap-lg);
+
+      .header {
+        gap: var(--composer-gap-md);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .titles {
+          display: flex;
+          .title {
+            max-inline-size: none;
+            margin-bottom: 0;
+          }
+          .subtitle {
+            margin-bottom: var(--composer-gap-sm);
+            padding: var(--composer-gap-xs);
+            max-inline-size: none;
+            
+            &.highlight-enabled::after {
+              width: 70px;
+              transform: skewX(-10deg);
+            }
+          }
+        }
+        .button-container {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          align-items: flex-start;
+          justify-content: flex-start;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}

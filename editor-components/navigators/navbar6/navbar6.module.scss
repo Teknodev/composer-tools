@@ -1,6 +1,7 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  z-index: 101;
   &.filledBackground {
     background: transparent !important;
     transition: all 0.3s ease;
@@ -11,8 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-
 
   .pcNavbarContainer {
     display: flex;
@@ -59,14 +58,19 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
+          margin: 0;
           font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
         }
 
         .dropdownIcon {
-          font-size: 1.5rem;
+          font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -113,10 +117,15 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
                 }
               }
             }
@@ -130,12 +139,15 @@
               background-color: var(--composer-primary-color);
               transition: width 0.3s ease;
             }
+            &.animation2{
+              &:hover{
+                &::after {
+                  width: calc(100% - (var(--composer-gap-md) * 2));
+                }
+              }
+            }
 
             &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
-              }
-
               .subdropdown {
                 opacity: 1;
                 visibility: visible;
@@ -144,7 +156,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -170,6 +182,24 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
+                font-weight: normal;
+                &.animation1{
+                  &:hover{
+                    font-weight: bold;
+                  }
+                }
+                &.animation2{
+                  &:hover{
+                    &::after {
+                      width: calc(100% - (var(--composer-gap-md) * 2));
+                    }
+                  }              
+                .dropdownItemTitle {
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                  transition: color 0.3s ease;
+                }
 
                 &::after {
                   content: "";
@@ -180,12 +210,6 @@
                   background-color: var(--composer-primary-color);
                   transition: width 0.3s ease;
                 }
-
-                &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
-                  }
-                }
               }
             }
           }
@@ -193,7 +217,10 @@
       }
     }
   }
-
+}
+  .mobileRight{
+    display: none;
+  }
   .iconsContainer {
     display: flex;
     align-items: center;
@@ -207,7 +234,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
       }
     }
@@ -222,13 +249,32 @@
     .localization, .localizationItem, .localizationContent{
       content: "";
     }
-
-    .localizationLabel {
-      color: var(--composer-font-color-primary);
-      gap: var(--composer-gap-xs);
-      font-weight: bold;
+    .localization{
+      .localizationLabel {
+        color: var(--composer-font-color-primary);
+        gap: var(--composer-gap-xs);
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        .localizationItem{
+          font-weight: normal;
+          transition: all 0.3s ease;
+        }
+        &.animation1{
+          &:hover{
+            .localizationItem{
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
-
   }
 
   .pcNavbarContainer > :first-child {
@@ -244,13 +290,13 @@
 
   .hamburgerIcon {
     display: none;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
   }
 
   .closeIcon {
     display: none;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
   }
 
@@ -270,8 +316,10 @@
   
       &.open {
         max-height: 65vh;
-        overflow: scroll;
         transition: all 0.3s linear;
+      }
+      &.overflowShow{
+        overflow-y: auto;
       }
   
       .mobileCloseButton {
@@ -280,7 +328,7 @@
         cursor: pointer;
         color: var(--composer-font-color-primary);
         padding: var(--composer-gap-md) 0;
-        font-size: 2.5rem;
+        font-size: calc(2.5 * var(--composer-font-size-md));
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -302,12 +350,12 @@
   
             .hamburgerMenuItemTitle {
               color: var(--composer-font-color-primary);
-              font-size: 1rem;
+              margin: 0;
               font-weight: bold;
             }
   
             .dropdownIcon {
-              font-size: 1.5rem;
+              font-size: calc(1.5 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: transform 0.3s ease;
   
@@ -337,12 +385,12 @@
   
                 .hamburgerMenuItemTitle {
                   color: var(--composer-font-color-primary);
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                 }
   
                 .dropdownIcon {
-                  font-size: 1.5rem;
+                  font-size: calc(1.5 * var(--composer-font-size-md));
                   transition: transform 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -366,7 +414,7 @@
   
                   .hamburgerSubSubmenuItemTitle {
                     color: var(--composer-font-color-primary);
-                    font-size: 1rem;
+                    margin: 0;
                     font-weight: 400;
                   }
                 }
@@ -376,16 +424,22 @@
         }
       }
     }
-
-
- 
-
+    .accordion{
+      gap: var(--composer-gap-md);
+    }
   .languageAccordion {
     color: var(--composer-font-color-primary);
 
-    languageAccordionTitle {
+    .languageAccordionTitle {
       margin: 0;
-      font-size: 1rem;
+      font-weight: normal;
+      transition: all 0.3s ease;
+      font-size: calc(1 * var(--composer-font-size-md));
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
     }
   }
   .languageAccordionItem {
@@ -443,7 +497,7 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .maxContent {
     .closeIcon {
       display: flex;
@@ -465,6 +519,11 @@
         display: none;
       }
     }
+    .mobileRight{
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+    }
 
       .mobileMenu {
         display: flex;
@@ -476,7 +535,7 @@
           gap: var(--composer-gap-sm);
           .icon {
             color: var(--composer-font-color-primary);
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--composer-font-size-md));
           }
         }
       }

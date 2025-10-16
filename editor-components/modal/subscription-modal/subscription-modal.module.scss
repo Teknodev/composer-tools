@@ -1,9 +1,8 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   max-width: 800px;
   max-height: 800px;
-  width: auto;
   overflow: auto;
   position: relative;
   padding: 0;
@@ -70,7 +69,7 @@
             }
 
             .error {
-              color: var(--danger-color);
+              color: var(--composer-danger-color);
               font-size: 1rem;
               word-break: keep-all;
               margin: var(--composer-gap-xs);
@@ -89,7 +88,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     max-width: 700px;
     max-height: 750px;

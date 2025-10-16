@@ -2,15 +2,15 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type listItem = {
   number: number;
-  icon: JSX.Element;
-  title: JSX.Element;
-  text: JSX.Element;
+  icon: React.JSX.Element;
+  title: React.JSX.Element;
+  text: React.JSX.Element;
 };
 
 class List8 extends BaseList {
@@ -21,6 +21,12 @@ class List8 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "How it works",
+    });
     this.addProp({
       type: "string",
       key: "title",
@@ -143,11 +149,21 @@ class List8 extends BaseList {
       value: 3,
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", null, null, "Primary"));
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
 
   render() {
     const listItems = this.castToObject<listItem[]>("list-items");
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
     const titledesc = this.getPropValue("titledesc");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -155,16 +171,23 @@ class List8 extends BaseList {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section")}>
-            {(this.castToString(title) || this.castToString(titledesc)) && (
+            <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
+            {this.castToString(titledesc) && (
               <Base.VerticalContent className={this.decorateCSS("section-wrapper")} >
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
                 {this.castToString(titledesc) && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("titledesc")}
+                    {titledesc}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
@@ -175,17 +198,21 @@ class List8 extends BaseList {
                 gridCount={{ pc: this.getPropValue("itemCount") }}
               >
                 {listItems.map((item: any, index: number) => (
-                  <div key={index} className={this.decorateCSS("boxlower")}>
+                  <div
+                    key={index}
+                    className={this.decorateCSS("boxlower")}
+                    data-animation={this.getPropValue("hoverAnimation")}
+                  >
                     {item.getPropValue("number") && (
                       <div className={this.decorateCSS("circle")}>
-                        <div className={this.decorateCSS("index")}>
+                        <Base.H1 className={this.decorateCSS("index")}>
                           {item.getPropValue("number")}
-                        </div>
+                        </Base.H1>
                       </div>
                     )}
                     {item.icon && (
                       <div className={this.decorateCSS("icon-box")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={item.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
@@ -196,14 +223,14 @@ class List8 extends BaseList {
                     {(this.castToString(item.title) || this.castToString(item.text)) && (
                       <div className={this.decorateCSS("titles")}>
                         {this.castToString(item.title) && (
-                          <div className={this.decorateCSS("midwriting")}>
+                          <Base.H4 className={this.decorateCSS("midwriting")}>
                             {item.title}
-                          </div>
+                          </Base.H4>
                         )}
                         {this.castToString(item.text) && (
-                          <div className={this.decorateCSS("text")}>
+                          <Base.P className={this.decorateCSS("text")}>
                             {item.text}
-                          </div>
+                          </Base.P>
                         )}
                       </div>
                     )}

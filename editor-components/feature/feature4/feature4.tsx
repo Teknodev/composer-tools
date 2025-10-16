@@ -1,19 +1,24 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./feature4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   icon: string;
-  description: JSX.Element;
+  description: React.JSX.Element;
   image: string;
-  buttons: INPUTS.CastedButton[];
+  buttons: Button[];
 };
+
+type Button = {
+  text: React.JSX.Element,
+  page: string,
+}
 
 class Feature4 extends BaseFeature {
   constructor(props?: any) {
@@ -100,7 +105,25 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -150,7 +173,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -200,7 +241,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -250,7 +309,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -300,7 +377,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -325,40 +420,43 @@ class Feature4 extends BaseFeature {
 
     const imageOverlay = !!this.getPropValue("imageOverlay");
 
+    const subtitleType = Base.getSectionSubTitleType();
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
-        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}
-      >
+        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist || linkTextExist) && (
-              <div className={this.decorateCSS("featured-card")}>
+              <Base.VerticalContent className={this.decorateCSS("featured-card")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
-                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage") && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  <Base.SectionTitle className={`
+                    ${this.decorateCSS("section-title")}
+                    ${this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                  `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {linkTextExist && (
                   <Base.Row className={this.decorateCSS("card-link-container")} >
                     <ComposerLink path={linkButton.url}>
-                      <Base.Button buttonType={linkButton.type} className={this.decorateCSS("featured-card-link")}>
+                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
                         {linkButton.text}
                       </Base.Button>
                     </ComposerLink>
                   </Base.Row>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
-
             {cards?.length > 0 && cards.map((card: Card, index: number) => {
               const titleExist = !!this.castToString(card.title);
               const subtitleExist = !!this.castToString(card.subtitle);
@@ -373,87 +471,87 @@ class Feature4 extends BaseFeature {
                 return (
                   <div
                     key={index}
-                    className={this.decorateCSS("card-item-count")}
-                  >
-                    <div className={this.decorateCSS("vertical")}>
+                    className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
+                    <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
-                        <div className={this.decorateCSS("icon-container")}>
-                          <ComposerIcon
+
+                        <div className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
+                          <Base.Icon
                             propsIcon={{ className: this.decorateCSS("icon") }}
                             name={card.icon}
                           />
                         </div>
-                      )}
-                      {titleExist && (
-                        <Base.H3 className={this.decorateCSS("title")}>
-                          {card.title}
-                        </Base.H3>
-                      )}
-                      {subtitleExist && (
-                        <Base.P className={this.decorateCSS("subtitle")}>
-                          {card.subtitle}
-                        </Base.P>
-                      )}
-                    </div>
+                      )
+                      }
+                      {
+                        titleExist && (
+                          <Base.H3 className={`${this.decorateCSS("title")}
+                    ${this.getPropValue("backgroundImage") && this.decorateCSS("title-with-bg")} } `}>
+                            {card.title}
+                          </Base.H3>
+                        )
+                      }
+                      {
+                        subtitleExist && (
+                          <Base.P className={`${this.decorateCSS("subtitle")} 
+                        ${this.getPropValue("backgroundImage") && this.decorateCSS("subtitle-with-bg")} }`}>
+                            {card.subtitle}
+                          </Base.P>
+                        )
+                      }
+                    </Base.VerticalContent>
 
-                    {(descExist || card?.buttons?.length > 0) && (
-                      <div
-                        className={this.decorateCSS("overlay")}
-                        style={{ backgroundImage: `url(${card.image})` }}
-                      >
+                    {
+                      (descExist || card?.buttons?.length > 0) && (
                         <div
-                          className={`
-                            ${this.decorateCSS("overlay-content")}
-                            ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
-                          `}
-                        >
-                          {descExist && (
-                            <Base.P
-                              className={`
+                          className={this.decorateCSS("overlay")}
+                          style={{ backgroundImage: `url(${card.image})` }}>
+                          <Base.VerticalContent className={`${this.decorateCSS("overlay-content")}
+                            ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}`}>
+                            {descExist && (
+                              <Base.P
+                                className={`
                                 ${this.decorateCSS("long-text")}
                                 ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
                               `}
-                            >
-                              {card.description}
-                            </Base.P>
-                          )}
+                              >
+                                {card.description}
+                              </Base.P>
+                            )}
 
-                          {card?.buttons?.length > 0 && (
-                            <div className={this.decorateCSS("overlay-links-container")}>
-                              {card?.buttons.map(
-                                (item: INPUTS.CastedButton, index: number) => {
-                                  if (!this.castToString(item.text)) return null;
-
-                                  return (
-                                    <Base.Button
-                                      buttonType={item.type}
-                                      key={index}
-                                      className={`
-                                        ${this.decorateCSS("overlay-link")}
-                                        ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
-                                      `}
-                                    >
-                                      <ComposerLink path={item.url}>
-                                        {item.text}
-                                      </ComposerLink>
-                                    </Base.Button>
-                                  );
-                                }
-                              )}
-                            </div>
-                          )}
+                            {card?.buttons?.length > 0 && (
+                              <div className={this.decorateCSS("overlay-links-container")}>
+                                {card?.buttons.map(
+                                  (item: Button, index: number) => {
+                                    if (!this.castToString(item.text)) return null;
+                                    {
+                                      return (
+                                        <Base.Button
+                                          buttonType={"Tertiary"}
+                                          key={index}
+                                          className={`${this.decorateCSS("overlay-link")} 
+                                              ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
+                                          <ComposerLink path={item.page}>
+                                            {item.text}
+                                          </ComposerLink>
+                                        </Base.Button>
+                                      );
+                                    }
+                                  }
+                                )}
+                              </div>
+                            )}
+                          </Base.VerticalContent>
                         </div>
-                      </div>
-                    )}
+                      )
+                    }
                   </div>
                 );
               }
-
-              return null;
             })}
-          </Base.ListGrid>
-        </Base.MaxContent>
-      </Base.Container>
+          </Base.ListGrid >
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }

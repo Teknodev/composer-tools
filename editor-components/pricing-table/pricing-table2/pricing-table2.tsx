@@ -3,14 +3,14 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItems = {
   button: any;
-  cardTitle: JSX.Element;
-  cardPrice: JSX.Element;
-  cardDuration: JSX.Element;
+  cardTitle: React.JSX.Element;
+  cardPrice: React.JSX.Element;
+  cardDuration: React.JSX.Element;
   cardIcon: string;
   cardList: ListItem[];
   buttonType: INPUTS.CastedButton;
@@ -18,7 +18,7 @@ type PricingItems = {
 
 type ListItem = {
   listIcon: string;
-  cardListItem: JSX.Element;
+  cardListItem: React.JSX.Element;
 };
 
 class PricingTable2 extends BasePricingTable {
@@ -593,6 +593,15 @@ class PricingTable2 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    })
   }
 
   static getName(): string {
@@ -629,7 +638,8 @@ class PricingTable2 extends BasePricingTable {
                 const cardDuration = this.castToString(table.cardDuration);
 
                 return (
-                  <Base.VerticalContent className={this.decorateCSS("card-item-count")}>
+                  <Base.VerticalContent className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") &&
+                   this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`}>
                     <div key={index} className={this.decorateCSS("item-card")}>
                       <Base.VerticalContent className={`${this.decorateCSS("card-upper")} ${cardTitle || cardPrice || cardDuration ? "" : this.decorateCSS("hidden")}`}>
                         {cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H2>}
@@ -644,7 +654,7 @@ class PricingTable2 extends BasePricingTable {
                       <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
                         {table.cardIcon && (
                           <div className={this.decorateCSS("card-img")}>
-                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={table.cardIcon} />
+                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={table.cardIcon} />
                           </div>
                         )}
                         {table.cardList.length > 0 && (
@@ -656,7 +666,7 @@ class PricingTable2 extends BasePricingTable {
                                 <>
                                   {cardListItem && (
                                     <span key={index} className={this.decorateCSS("card-list-item")}>
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={listIcon}
                                         propsIcon={{
                                           className: this.decorateCSS("list-icon"),
@@ -671,11 +681,11 @@ class PricingTable2 extends BasePricingTable {
                           </Base.VerticalContent>
                         )}
                         {this.castToString(table.button.text) && (
-                          <ComposerLink path={table.button.url}>
                             <Base.Button buttonType={table.button.type} className={this.decorateCSS("card-button")}>
-                              {table.button.text}
+                               <ComposerLink path={table.button.url}>
+                                 {table.button.text}
+                               </ComposerLink>
                             </Base.Button>
-                          </ComposerLink>
                         )}
                       </Base.VerticalContent>
                     </div>

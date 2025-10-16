@@ -2,10 +2,8 @@ import * as React from "react";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -709,6 +707,15 @@ class PricingTable9 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2", "animation3"],
+      additionalParams:{
+        selectItems:["animation1", "animation2", "animation3"]
+      }
+    })
   }
 
   static getName(): string {
@@ -767,14 +774,15 @@ class PricingTable9 extends BasePricingTable {
                 const buttonTextExist = this.castToString(column?.buttonType.text);
                 const titleExist = this.castToString(column?.title);
                 return (
-                  <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
+                  <div key={`column-${index}`} className={`${this.decorateCSS("column-item")}
+                   ${this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `}>
                     <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>
                     <div className={this.decorateCSS("column-contents")}>
                       {column?.contents.map((content: any, contentIndex: any) => (
                         <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
                           {content?.icon && (
                             <span className={this.decorateCSS("content-icon")}>
-                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
+                              <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
                             </span>
                           )}
                           {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}
@@ -818,7 +826,7 @@ class PricingTable9 extends BasePricingTable {
                           <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
                             {content?.icon && (
                               <span className={this.decorateCSS("content-icon")}>
-                                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
+                                <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
                               </span>
                             )}
                             {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}

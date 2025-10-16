@@ -3,7 +3,7 @@ import { BaseContacts } from "../../EditorComponent";
 import styles from "./form3.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { TypeUsableComponentProps } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
@@ -12,7 +12,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Left = {
   contactName: string;
   contactIcon: string;
-  image: JSX.Element;
+  image: React.JSX.Element;
 };
 
 type Social = {
@@ -606,7 +606,7 @@ class Form3 extends BaseContacts {
                         <div className={this.decorateCSS("contacts")}>
                           {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
                             <div className={this.decorateCSS("contact")}>
-                              <ComposerIcon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              <Base.Icon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                               {this.castToString(contact.contactName) && <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>}
                             </div>
                           ))}
@@ -620,8 +620,8 @@ class Form3 extends BaseContacts {
 
                           return (
                             <div className={`${this.decorateCSS("icon-container")} ${!background && this.decorateCSS("icon-container-no-image")}`}>
-                              <ComposerLink key={index} path={social.url} className={this.decorateCSS("icon-element")}>
-                                <ComposerIcon
+                              <ComposerLink key={index} path={social.url}>
+                                <Base.Icon
                                   name={social.icon}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),

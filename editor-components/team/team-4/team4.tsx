@@ -5,8 +5,8 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type TeamMember = {
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
   platforms: { icon: string; url: string }[];
 };
 class Team4 extends Team {
@@ -139,6 +139,15 @@ class Team4 extends Team {
       value: 4,
       max: 4,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -165,8 +174,8 @@ class Team4 extends Team {
               const teamMemberPosition = this.castToString(teamMember.position);
               return (
                 (teamMemberName || teamMemberPosition || teamMember.image) && (
-                  <Base.VerticalContent key={indexTeamMembers} className={this.decorateCSS("team-member")}>
-                    {teamMember.image && <img className={this.decorateCSS("member-image")} src={teamMember.image} alt={teamMemberName} />}
+                  <Base.VerticalContent key={indexTeamMembers} className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    {teamMember.image && <img className={this.decorateCSS("member-image")} src={teamMember.image} alt={teamMemberName} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                     <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
                       {teamMemberName && <Base.H2 className={this.decorateCSS("team-member-name")}>{teamMember.name}</Base.H2>}
                       {teamMemberPosition && <Base.P className={this.decorateCSS("team-member-position")}>{teamMember.position}</Base.P>}

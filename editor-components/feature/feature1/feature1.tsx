@@ -1,20 +1,20 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature1.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
   image: string;
   mini: boolean;
-  date: JSX.Element;
-  readTime: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
+  date: React.JSX.Element;
+  readTime: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   profileImage: string;
-  fullname: JSX.Element;
-  profileDescription: JSX.Element;
+  fullname: React.JSX.Element;
+  profileDescription: React.JSX.Element;
   url: string;
 };
 
@@ -444,7 +444,7 @@ class Feature1 extends BaseFeature {
                 {(dateExist) && (
                   <div className={this.decorateCSS("date")}>
                     {dateIcon &&
-                      <ComposerIcon
+                      <Base.Icon
                         name={dateIcon}
                         propsIcon={{
                           className: this.decorateCSS("date-icon"),
@@ -459,7 +459,7 @@ class Feature1 extends BaseFeature {
                 {(readTimeExist) && (
                   <div className={this.decorateCSS("time")}>
                     {timeIcon &&
-                      <ComposerIcon
+                      <Base.Icon
                         name={timeIcon}
                         propsIcon={{
                           className: this.decorateCSS("time-icon"),
@@ -523,7 +523,7 @@ class Feature1 extends BaseFeature {
     };
 
     const Blocks = ({ cards }: { cards: CardData[]; }) => {
-      const blocks: JSX.Element[] = [];
+      const blocks: React.JSX.Element[] = [];
       const data: any = [];
 
       for (let i = 0; i < cards.length; i++) {
@@ -575,7 +575,7 @@ class Feature1 extends BaseFeature {
       return <>{blocks.map((block, index) => <React.Fragment key={index}>{block}</React.Fragment>)}</>;
     };
 
-    const Block = ({ children }: { children: JSX.Element; }) => {
+    const Block = ({ children }: { children: React.JSX.Element; }) => {
       return (
         <div className={this.decorateCSS("block")}>
           {children}
@@ -592,17 +592,17 @@ class Feature1 extends BaseFeature {
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
-                      <span className={this.decorateCSS("link-text")}>
+                      <Base.H4 className={this.decorateCSS("link-text")}>
                         {rightSideTextExist && (
                           this.getPropValue("rightSideText")
                         )}
                         {!!rightSideIcon && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={rightSideIcon}
                             propsIcon={{ className: this.decorateCSS("right-side-icon") }}
                           />
                         )}
-                      </span>
+                      </Base.H4>
                     </div>
                   </ComposerLink>
                 </div>

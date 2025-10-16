@@ -4,8 +4,8 @@ import styles from "./list7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
-  text: JSX.Element;
-  title: JSX.Element;
+  text: React.JSX.Element;
+  title: React.JSX.Element;
 }
 
 class List7 extends BaseList {
@@ -14,6 +14,20 @@ class List7 extends BaseList {
   }
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Features",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Our Services",
+    });
 
     this.addProp({
       type: "array",
@@ -98,13 +112,36 @@ class List7 extends BaseList {
       displayer: "Show Index",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
   render() {
     const ListItems = this.castToObject<listItem[]>("list-items");
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+            {this.castToString(subtitle) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
+            {this.castToString(title) && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
+            )}
+          </Base.VerticalContent>
           {(ListItems.length > 0) && (
             <Base.ListGrid className={this.decorateCSS("card")} gridCount={{ pc: this.getPropValue("itemCount") }} >
               {ListItems.map((item: any, index: number) => (
@@ -113,7 +150,10 @@ class List7 extends BaseList {
                   className={this.decorateCSS("all-card")}
                 >
                   {(this.getPropValue("showIndex") || this.castToString(item.title) || this.castToString(item.text)) && (
-                    <Base.VerticalContent className={this.decorateCSS("item-content")}>
+                    <Base.VerticalContent
+                      className={this.decorateCSS("item-content")}
+                      data-animation={this.getPropValue("hoverAnimation")}
+                    >
                       {this.getPropValue("showIndex") && (
                         <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
                       )}
@@ -121,7 +161,7 @@ class List7 extends BaseList {
                         <Base.H3 className={this.decorateCSS("title")}>{item.title}</Base.H3>
                       )}
                       {this.castToString(item.text) && (
-                        <Base.P className={this.decorateCSS("list-item-p")}>{item.text}</Base.P>
+                        <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
                       )}
                     </Base.VerticalContent>
                   )}

@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
   .max-content {
     .wrapper {
@@ -52,7 +52,7 @@
                 }
               }
               .featureTitle {
-                font-size: 1.5rem;
+
                 color: var(--composer-font-color-primary);
               }
             }
@@ -70,7 +70,7 @@
                 display: flex;
                 gap: var(--composer-gap-sm);
                 .linkText {
-                  font-size: 1.5rem;
+
                   position: relative;
                   &::after {
                     content: "";
@@ -124,7 +124,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 20px 40px !important;
     .max-content{

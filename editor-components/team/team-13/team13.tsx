@@ -2,14 +2,14 @@ import * as React from "react";
 import styles from "./team13.module.scss";
 import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Card {
   image: string;
-  name: JSX.Element;
-  job: JSX.Element;
+  name: React.JSX.Element;
+  job: React.JSX.Element;
   icons: { icon: string; url: string }[];
 }
 interface Icon {
@@ -165,6 +165,15 @@ class Team13 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6"]
+      }
+    });
   }
 
   static getName(): string {
@@ -190,7 +199,7 @@ class Team13 extends Team {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: 3, tablet: 2, phone: 1 }} className={this.decorateCSS("content")}>
             {hasFeaturedCard && (
-              <Base.VerticalContent className={this.decorateCSS("featured-card")}>
+              <Base.VerticalContent className={this.decorateCSS("featured-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
                 <Base.VerticalContent className={this.decorateCSS("label")}>
                   <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
@@ -205,10 +214,11 @@ class Team13 extends Team {
                       return (
                         <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                           <ComposerLink path={icon.url}>
-                            <ComposerIcon
+                            <Base.Icon
                               name={icon.name}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),
+                                style: { "--icon-index": indexIcons } as React.CSSProperties
                               }}
                             />
                           </ComposerLink>
@@ -225,7 +235,11 @@ class Team13 extends Team {
               const jobExist = this.castToString(card.job);
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-card")}>
-                  {card.image && <img className={this.decorateCSS("image")} src={card.image} />}
+                  {card.image && (
+                    <div className={this.decorateCSS("img-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
+                      <img className={this.decorateCSS("image")} src={card.image} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                    </div>
+                  )}
                   {nameExist && <Base.H4 className={this.decorateCSS("name")}>{card.name}</Base.H4>}
                   {jobExist && <Base.H5 className={this.decorateCSS("job")}>{card.job}</Base.H5>}
                 </Base.VerticalContent>

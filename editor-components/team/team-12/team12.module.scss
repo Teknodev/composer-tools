@@ -1,4 +1,4 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   padding: 0;
@@ -26,7 +26,6 @@
         .info {
           position: relative;
           transform: translateX(-100%);
-          transition: 0.5s transform ease-out, 0.5s opacity ease-out;
           opacity: 0;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           top: 0px;
@@ -55,10 +54,6 @@
                 width: 1.5rem;
                 height: 1.5rem;
                 transition: 0.8s;
-
-                &:hover {
-                  color: var(--composer-primary-color);
-                }
               }
             }
           }
@@ -70,12 +65,95 @@
             opacity: 1;
           }
         }
+
+        &[data-animation~="animate1"] { 
+          .info {
+            transition: 0.5s transform ease-out, 0.5s opacity ease-out;
+          }
+        }
+
+        &[data-animation~="animate2"] { 
+          .info {
+            transition: 0.5s transform ease-out, 0.5s opacity ease-out;
+            .platforms {
+              .platform {
+                .icon {
+                  transition: color 0.3s ease, transform 0.3s ease;
+                }
+              }
+            }
+          }
+          
+          &:hover {
+            .info {
+              .platforms {
+                .platform {
+                  .icon {
+                    animation: colorSlideUp 0.6s ease;
+                    animation-fill-mode: both;
+                    animation-delay: calc(0.3s + var(--icon-index, 0) * 0.2s);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate3"] { 
+          @keyframes bounceUp {
+            0%   { transform: translateY(20px); opacity: 0; }
+            50%  { transform: translateY(-10px); opacity: 1; }
+            100% { transform: translateY(0); opacity: 1; }
+          }
+          
+          @keyframes colorSlideUp {
+            0% { 
+              color: var(--composer-font-color-primary);
+              transform: translateY(0);
+            }
+            50% { 
+              color: var(--composer-primary-color);
+              transform: translateY(-4px);
+            }
+            100% { 
+              color: var(--composer-primary-color);
+              transform: translateY(-2px);
+            }
+          }
+          
+          .info {
+            transition: 0.5s transform ease-out, 0.5s opacity ease-out;
+            .platforms {
+              .platform {
+                .icon {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+              }
+            }
+          }
+          &:hover {
+            .info {
+              .platforms {
+                .platform {
+                  .icon {
+                    animation: bounceUp 0.5s ease forwards;
+                    animation-delay: calc(0.5s + var(--icon-index, 0) * 0.15s);
+                    &:hover {
+                      color: var(--composer-primary-color);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .cards {

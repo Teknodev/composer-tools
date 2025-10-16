@@ -2,16 +2,16 @@ import * as React from "react";
 import styles from "./faq5.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Card = {
-  sectionTitle: JSX.Element;
+  sectionTitle: React.JSX.Element;
   items: Item[];
 };
 type Item = {
-  cardIndex: JSX.Element;
-  cardTitle: JSX.Element;
-  description: JSX.Element;
+  cardIndex: React.JSX.Element;
+  cardTitle: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 class Faq5 extends BaseFAQ {
@@ -20,33 +20,45 @@ class Faq5 extends BaseFAQ {
 
     this.addProp({
       type: "string",
-      key: "badge",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "FAQ",
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
+      key: "title",
       displayer: "Title",
-      value: "FAQ",
+      value: "Frequently Asked Questions",
     });
     this.addProp({
       type: "string",
-      key: "title",
+      key: "description",
       displayer: "Description",
       value: "FAQ stands for Frequently Asked Questions. It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions. ",
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "inactiveIcon",
       displayer: "Inactive Icon",
-      value: "IoIosArrowDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowDown",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "activeIcon",
       displayer: "Active Icon",
-      value: "IoIosArrowUp",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowUp",
+      },
     });
     this.addProp({
       type: "array",
@@ -525,58 +537,55 @@ class Faq5 extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("badge")) ||
-              this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))) && (
-                <Base.VerticalContent className={this.decorateCSS("left-page")}>
-                  {this.castToString(this.getPropValue("badge")) && (
-                    <Base.SectionSubTitle className={this.decorateCSS("badge")}>
-                      {this.getPropValue("badge")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {this.castToString(this.getPropValue("subtitle")) && (
-                    <Base.SectionTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionTitle>
-                  )}
-                  {this.castToString(this.getPropValue("title")) && (
-                    <Base.SectionDescription className={this.decorateCSS("title-p")}>{this.getPropValue("title")}</Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-              )}
+            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
+              <Base.VerticalContent className={this.decorateCSS("left-page")}>
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+                )}
+                {this.castToString(this.getPropValue("title")) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+                )}
+                {this.castToString(this.getPropValue("description")) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
             {(cards.length > 0) && (
-              <div className={this.decorateCSS("right")}>
+              <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("section-wrapper")}>
                   {cards.map((card: Card, indexCard: any) => (
-                    <div className={`${this.decorateCSS("section")} 
+                    <Base.H4 className={`${this.decorateCSS("section")} 
                           ${this.getComponentState("activeSection") === indexCard ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.handleSection(indexCard)}>
                       {card.sectionTitle}
-                    </div>
+                    </Base.H4>
                   ))}
                 </div>
                 {(cards[this.getComponentState("activeSection")].items.length > 0) && (
-                  <div className={this.decorateCSS("right-page")}>
-                    <div className={this.decorateCSS("right-wrapper")} >
-                      {cards[this.getComponentState("activeSection")].items.map((item: Item, index: number) => (
+                  <div className={this.decorateCSS("bottom-wrapper")}>
+                    {cards[this.getComponentState("activeSection")].items.map((item: Item, index: number) => (
                         <div className={this.decorateCSS("card")} onClick={() => this.handleCard(index)}>
                           {(this.castToString(item.cardIndex) || this.castToString(item.cardTitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                             <div className={this.decorateCSS("little-container")}>
                               {this.castToString(item.cardIndex) && (
                                 <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                                  <div className={this.decorateCSS("index")}>
+                                  <Base.H6 className={this.decorateCSS("index")}>
                                     {item.cardIndex}
-                                  </div>
+                                  </Base.H6>
                                 </div>
                               )}
                               {this.castToString(item.cardTitle) && (
-                                <div className={this.decorateCSS("title")}>
-                                  <div className={this.decorateCSS("card-title")}>{item.cardTitle}</div>
-                                </div>
+                                <Base.H4 className={this.decorateCSS("card-title")}>
+                                  {item.cardTitle}
+                                </Base.H4>
                               )}
                               {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                                 <div className={this.decorateCSS("icon-wrapper")}>
-                                  <ComposerIcon name={this.getComponentState("activeCard") === index
-                                    ? this.getPropValue("activeIcon")
-                                    : this.getPropValue("inactiveIcon")}
-                                    propsIcon={{ className: this.decorateCSS("icon") }}
+                                  <Base.Media 
+                                    value={this.getComponentState("activeCard") === index
+                                      ? this.getPropValue("activeIcon")
+                                      : this.getPropValue("inactiveIcon")}
+                                    className={this.decorateCSS("icon")}
                                   />
                                 </div>
                               )}
@@ -584,14 +593,13 @@ class Faq5 extends BaseFAQ {
                           )}
                           {this.castToString(item.description) && (
                             <div className={`${this.decorateCSS("text-wrapper")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                              <div className={`${this.decorateCSS("text")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                              <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
                                 {item.description}
-                              </div>
+                              </Base.P>
                             </div>
                           )}
                         </div>
-                      ))}
-                    </div>
+                    ))}
                   </div>
                 )}
               </div>

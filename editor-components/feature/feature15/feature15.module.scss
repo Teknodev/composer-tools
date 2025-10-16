@@ -1,10 +1,12 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     position: relative;
     padding-top: 0px;
     padding-bottom: 0px;
-
+    &.with-overlay{
+        z-index: 103;
+    }
     &.no-image{
         padding-top: var(--composer-gap-md);
         padding-bottom: var(--composer-gap-md);
@@ -105,7 +107,7 @@
                 transform: translate(-50%, -50%);
                 color: var(--composer-font-color-primary);
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: 50%; 
+                border-radius: var(--composer-border-radius-full); 
                 padding: var(--composer-gap-md);
                 display: flex;
                 align-items: center;
@@ -151,7 +153,7 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
         padding: 0px;
         .max-content {

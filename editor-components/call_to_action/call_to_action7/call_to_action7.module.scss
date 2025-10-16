@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 @keyframes fadeInFromRight {
   0% {
@@ -21,7 +21,7 @@
     top: 0px;
     left: 0px;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    height: 70%;
+    height: 80%;
     width: 100%;
   }
 
@@ -32,7 +32,6 @@
     .wrapper {
       .left-page {
         display: flex;
-        justify-content: center;
 
         .image {
           width: 70%;
@@ -50,9 +49,12 @@
         .right-content {
           height: 100%;
           display: flex;
+          flex-direction: column;
           justify-content: center;
 
-          .title {}
+          .title, .subtitle {
+            content: "";
+          }
 
           .input-button-wrapper {
             display: flex;
@@ -96,7 +98,9 @@
 
               .button {
                 content: "";
-                flex: 2;
+                .button-text {
+                  content: "";
+                }
               }
             }
           }

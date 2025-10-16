@@ -1,21 +1,21 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials5.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface LeftItem {
-  subtitle: JSX.Element;
-  title: JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   prevIcon: string;
   nextIcon: string;
 }
 
 interface SliderItem {
   image: string;
-  sliderTitle: JSX.Element;
-  description: JSX.Element;
+  sliderTitle: React.JSX.Element;
+  description: React.JSX.Element;
   nextIcon: string;
   star: number;
   starIcon: string;
@@ -269,12 +269,12 @@ class Testimonials5Page extends Testimonials {
                     <div className={this.decorateCSS("arrow")}>
                       {leftItem.prevIcon && (
                         <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("prevArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("prevArrowPrimary")}`}>
-                          <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Icon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
                       {leftItem.nextIcon && (
                         <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("nextArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("nextArrowPrimary")}`}>
-                          <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Icon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
                     </div>
@@ -300,7 +300,7 @@ class Testimonials5Page extends Testimonials {
                       {item.starIcon && item.star > 0 && (
                         <div className={`${this.decorateCSS("stars")} ${!this.getPropValue("background-image") && this.decorateCSS("starsPrimary")}`}>
                           {[...Array(Number(item.star))].map((_: any, index: number) => (
-                            <ComposerIcon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
+                            <Base.Icon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
                           ))}
                         </div>
                       )}

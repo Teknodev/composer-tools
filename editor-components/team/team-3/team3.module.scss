@@ -1,15 +1,16 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
     display: flex;
     .page {
       width: 100%;
-      .text-group{
-        .title{
+      .text-group {
+        .title {
           content: "";
         }
-        .subtilte{
+        .subtilte {
           content: "";
         }
       }
@@ -22,16 +23,105 @@
             min-width: 300px;
             position: relative;
             padding: var(--composer-gap-md);
-            border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border: 1px solid
+              color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              );
             &.card-image {
               margin-left: var(--composer-gap-lg);
+            }
+
+            &[data-animation~="animate1"] {
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 1px;
+                background-color: var(--composer-primary-color);
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform 0.5s ease;
+                z-index: 1;
+              }
+              &:hover {
+                &::after {
+                  transform: scaleY(1);
+                  transition: transform 0.5s ease;
+                }
+              }
+            }
+
+            &[data-animation~="animate2"] {
+              @keyframes scale {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.25); }
+              }
+
+              .icons {
+                animation: none;
+              }
+
+              &:hover {
+                .icons {
+                  animation: scale 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              .icons {
+                transition: color 0.3s ease;
+                color: var(--composer-font-color-primary);
+              }
+
+              &:hover {
+                .icons {
+                  animation: colorChange 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+
+              @keyframes colorChange {
+                0% { color: var(--composer-font-color-primary); }
+                100% { color: var(--composer-primary-color); }
+              }
+            }
+
+            &[data-animation~="animate4"] {
+              @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+              }
+
+              .icons {
+                animation: none;
+              }
+
+              &:hover {
+                .icons {
+                  animation: bounce 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
             }
           }
 
           .card-items {
             height: 100%;
             padding: var(--composer-gap-md) 0;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
           }
           .item-content {
             margin-left: -55px;
@@ -44,11 +134,13 @@
             height: 100%;
 
             .profile-image {
+              position: relative;
               width: 100%;
               max-width: 300px;
               min-height: 200px;
               height: 100%;
               object-fit: cover;
+              z-index: 100;
             }
           }
           .box-text {
@@ -81,9 +173,15 @@
               margin: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
               transition: 0.3s;
+            }
 
-              &:hover {
-                color: var(--composer-primary-color);
+            &[data-animation~="animate3"] {
+              .icons {
+                transition: color 0.3s ease;
+
+                &:hover {
+                  color: var(--composer-primary-color);
+                }
               }
             }
           }
@@ -93,10 +191,10 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    .max-content{
-      .page{
+    .max-content {
+      .page {
         .down-page {
           .all-card {
             .card {
@@ -117,21 +215,21 @@
 
   @container (max-width: #{$composer-phone-width}) {
     .container {
-      .max-content{
-        .page{
-          .down-page{
+      .max-content {
+        .page {
+          .down-page {
             .all-card {
-              .card{
+              .card {
                 margin-left: var(--composer-gap-md);
-                .card-items{
-                  .item-content{
-                    .box-image{
+                .card-items {
+                  .item-content {
+                    .box-image {
                       .profile-image {
                         margin-left: var(--composer-gap-md);
                       }
                     }
-                    .box-text{
-                      padding: 0 var(--composer-gap-lg) 
+                    .box-text {
+                      padding: 0 var(--composer-gap-lg);
                     }
                     .icon-group {
                       gap: var(--composer-gap-xs) !important;
@@ -146,7 +244,7 @@
               }
             }
           }
-        }      
+        }
       }
     }
   }

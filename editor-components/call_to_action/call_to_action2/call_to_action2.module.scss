@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 @keyframes button {
   70% {
@@ -14,7 +14,9 @@
 
 .container {
   position: relative;
-
+  &.with-overlay{
+    z-index: 103;
+  }
   .background {
     top: 0px;
     left: 0px;
@@ -67,6 +69,9 @@
 
           .button {
             content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
 
@@ -218,6 +223,20 @@
           flex-direction: column;
           gap: var(--composer-gap-md);
 
+          .titles {
+            .subtitle, .title {
+              content: "";
+              text-align: center;
+            }
+            .subtitle {
+              width: 100%;
+              transform: translateX(0);
+              &::before {
+                display: none;
+              }
+            }
+          }
+
           .button-container {
             max-width: 100%;
           }
@@ -226,6 +245,15 @@
         .image-container {
           width: 100%;
           min-height: 300px;
+
+          .play-icon-box {
+            width: 50px;
+            height: 50px;
+
+            .play-icon {
+              font-size: 1rem;
+            }
+          }
         }
       }
     }

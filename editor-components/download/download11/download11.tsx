@@ -4,7 +4,6 @@ import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 class Download11 extends BaseDownload {
   constructor(props?: any) {
@@ -164,7 +163,7 @@ class Download11 extends BaseDownload {
                         <ComposerLink path={buttonLeft.url}>
                           <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
                             {buttonLeft.icon && (
-                              <ComposerIcon
+                              <Base.Icon
                                 propsIcon={{
                                   className: this.decorateCSS("button-icon"),
                                 }}
@@ -202,7 +201,7 @@ class Download11 extends BaseDownload {
                               <ComposerLink path={buttonRight.url}>
                                 <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("button")}>
                                   {buttonRight.icon && (
-                                    <ComposerIcon
+                                    <Base.Icon
                                       propsIcon={{
                                         className: this.decorateCSS("button-icon"),
                                       }}
@@ -236,7 +235,7 @@ class Download11 extends BaseDownload {
                           <ComposerLink path={buttonRightBottom.url}>
                             <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
                               {buttonRightBottom.icon && (
-                                <ComposerIcon
+                                <Base.Icon
                                   propsIcon={{
                                     className: this.decorateCSS("button-icon"),
                                   }}

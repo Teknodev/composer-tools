@@ -3,14 +3,14 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   url: string;
 };
 
@@ -315,7 +315,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickPrev();
                     }}
                     className={this.decorateCSS("arrow-left")}>
-                    <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></ComposerIcon>
+                    <Base.Icon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></Base.Icon>
                   </button>
                 )}
                 {this.getPropValue("rightArrow") && (
@@ -324,7 +324,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickNext();
                     }}
                     className={this.decorateCSS("arrow-right")}>
-                    <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                    <Base.Icon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                   </button>
                 )}
               </div>
@@ -356,14 +356,14 @@ class Feature10 extends BaseFeature {
                           {(titleExist || descExist) && (
                             <div className={this.decorateCSS("bottom")}>
                               {titleExist && (
-                                <div className={this.decorateCSS("title")}>
+                                <Base.H3 className={this.decorateCSS("title")}>
                                   {item.title}
-                                </div>
+                                </Base.H3>
                               )}
                               {descExist && (
-                                <div className={this.decorateCSS("description")}>
+                                <Base.P className={this.decorateCSS("description")}>
                                   {item.description}
-                                </div>
+                                </Base.P>
                               )}
                             </div>
                           )}

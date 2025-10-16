@@ -1,7 +1,5 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider6.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -9,12 +7,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  subtitle: JSX.Element;
-  title: JSX.Element;
-  vertText: JSX.Element;
-  image_subtitle: JSX.Element;
-  image_title: JSX.Element;
-  image_description: JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  vertText: React.JSX.Element;
+  image_subtitle: React.JSX.Element;
+  image_title: React.JSX.Element;
+  image_description: React.JSX.Element;
   image: string;
   button: INPUTS.CastedButton;
   link: string;
@@ -217,8 +215,20 @@ class Slider6 extends BaseSlider {
       slidesToScroll: 1,
       adaptiveHeight: true,
       centerMode: true,
-      centerPadding: "300px",
+      centerPadding: "200px",
       responsive: [
+        {
+          breakpoint: 1920,
+          settings: {
+            centerPadding: "180px",
+          },
+        },
+        {
+          breakpoint: 1280,
+          settings: {
+            centerPadding: "160px",
+          },
+        },
         {
           breakpoint: 960,
           settings: {

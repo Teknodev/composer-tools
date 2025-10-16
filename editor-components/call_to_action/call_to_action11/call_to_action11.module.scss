@@ -1,0 +1,99 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container {
+  position: relative;
+  
+  
+  .button-container {
+    display: flex;
+    gap: var(--composer-gap-md);
+    align-items: center;
+    justify-content: center;
+    
+    .button {
+      .button-text {
+        content: "";
+      }
+    }
+  }
+}
+
+.max-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: var(--composer-gap-xl);
+  
+  
+  @container (max-width: #{$composer-tablet-width}) {
+    gap: var(--composer-gap-lg);
+    display: flex;
+    
+    
+  }
+  
+  @container (max-width: #{$composer-phone-width}) {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--composer-gap-md);
+    text-align: center;
+  }
+}
+
+.text-container {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  max-width: 550px;
+  
+  
+  @container (max-width: #{$composer-phone-width}) {
+    justify-content: center;
+    text-align: center;
+    
+  }
+
+
+  
+}
+
+.content:not(:has(.button-container)) .text-container {
+  max-width: 100%;
+}
+
+
+.text {
+  margin: 0;
+  text-align: left !important;
+  
+  
+  @container (max-width: #{$composer-phone-width}) {
+   
+   text-align: center !important ;
+  }
+ 
+
+  
+
+
+}
+ 
+  
+
+
+
+  
+.button-text {
+  font-weight: bold;
+}

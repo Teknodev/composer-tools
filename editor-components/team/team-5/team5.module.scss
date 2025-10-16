@@ -1,4 +1,5 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -15,7 +16,7 @@
 
       .title-container {
         width: 40%;
-        .title{
+        .title {
           margin: 0px;
         }
       }
@@ -36,6 +37,70 @@
       .egg-item {
         justify-content: center;
         align-items: center;
+        transition: transform 0.3s ease;
+
+        &[data-animation~="animate1"] {
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        &[data-animation~="animate4"] {
+          .icon-container {
+            .icon {
+              animation: none;
+            }
+          }
+
+          &:hover {
+            .icon-container {
+              .icon {
+                animation: bounce 0.8s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate5"] {
+          .icon-container {
+            .icon {
+              animation: none;
+              transform: scale(0.8);
+              opacity: 0.5;
+            }
+          }
+
+          &:hover {
+            .icon-container {
+              .icon {
+                animation: scaleUp 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate3"] {
+          .icon-container {
+            .icon {
+              animation: none;
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          &:hover {
+            .icon-container {
+              .icon {
+                animation: colorChange 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
+        }
 
         .image-container {
           width: 100%;
@@ -47,6 +112,7 @@
 
           .background-image,
           .member-image {
+            transition: transform 0.3s ease;
             width: 80%;
             aspect-ratio: 1;
           }
@@ -70,20 +136,59 @@
           justify-content: center;
           position: relative;
           column-gap: var(--composer-gap-sm);
-          color: var(--composer-primary-color);
           font-size: 2rem;
           margin-top: 1.5rem;
+
+          .icon {
+            color: var(--composer-font-color-primary);
+            transition: transform 0.3s ease;
+          }
+        }
+
+        @keyframes bounce {
+          0% { transform: translateY(0); }
+          30% { transform: translateY(-6px); }
+          60% { transform: translateY(2px); }
+          100% { transform: translateY(0); }
+        }
+
+        @keyframes scaleUp {
+          0% { 
+            transform: scale(0.8);
+            opacity: 0.5;
+          }
+          100% { 
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        @keyframes colorChange {
+          0% { color: var(--composer-font-color-primary); }
+          100% { color: var(--composer-primary-color); }
         }
 
         .members-container {
           align-items: center;
           .name {
             color: var(--composer-font-color-primary);
+            transition: transform 0.3s ease;
           }
 
           .occupation {
             text-align: center;
             color: var(--composer-tertiary-color);
+            transition: transform 0.3s ease;
+          }
+        }
+
+        &[data-animation~="animate2"] {
+          &:hover {
+            .name,
+            .occupation {
+              transition: transform 0.3s ease;
+              transform: scale(1.1);
+            }
           }
         }
       }
@@ -91,7 +196,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .container-top {

@@ -1,22 +1,20 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type SliderItem = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   image: string;
   index: number;
 };
 
 type FeaturedItem = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   image: string;
   link: string;
 };
@@ -411,7 +409,7 @@ class Slider10 extends BaseSlider {
                         }}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           propsIcon={{
                             className: this.decorateCSS("slider-arrow-icon"),
                           }}
@@ -426,7 +424,7 @@ class Slider10 extends BaseSlider {
                           sliderRef.current.slickNext();
                         }}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           name={nextIcon}
                           propsIcon={{
                             className: this.decorateCSS("slider-arrow-icon"),

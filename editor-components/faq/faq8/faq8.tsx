@@ -1,11 +1,11 @@
 import * as React from "react";
 import styles from "./faq8.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Category = {
-  categoryName: JSX.Element;
+  categoryName: React.JSX.Element;
   questions: Array<any>;
 };
 
@@ -14,33 +14,51 @@ class Faq8 extends BaseFAQ {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "badge",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "FAQ",
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
+      key: "title",
       displayer: "Title",
       value: "Frequently Asked Questions",
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "dot_icon",
       displayer: "Dot icon",
-      value: "GoDotFill",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GoDotFill",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "arrow-right",
       displayer: "Right Arrow icon",
-      value: "IoMdArrowRoundForward",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdArrowRoundForward",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "arrow-down",
       displayer: "Down Arrow icon",
-      value: "FaAngleDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaAngleDown",
+      },
     });
 
     this.addProp({
@@ -671,24 +689,20 @@ class Faq8 extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("badge")) || this.castToString(this.getPropValue("subtitle"))) && (
+            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))) && (
               <Base.VerticalContent className={this.decorateCSS("up-page")}>
-                {this.castToString(this.getPropValue("badge")) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("badge")}>
-                    {this.getPropValue("badge")}
-                  </Base.SectionSubTitle>
-                )}
                 {this.castToString(this.getPropValue("subtitle")) && (
-                  <Base.SectionTitle className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
-                  </Base.SectionTitle>
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+                )}
+                {this.castToString(this.getPropValue("title")) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
                 )}
               </Base.VerticalContent>
             )}
 
             <div className={this.decorateCSS("down-page")}>
               {(this.getPropValue("categories").length > 0) && (
-                <div className={this.decorateCSS("category-flex")}>
+                <div className={this.decorateCSS("category-container")}>
                   {this.castToObject<Category[]>("categories").map(
                     (category: Category, indexCategory: any) => {
                       return (
@@ -702,29 +716,23 @@ class Faq8 extends BaseFAQ {
                           {(this.getPropValue("dot_icon") || this.getPropValue("arrow-right") || this.castToString(category.categoryName)) && (
                             <div className={this.decorateCSS("category")}>
                               {this.getPropValue("dot_icon") && (
-                                <ComposerIcon
-                                  name={this.getPropValue("dot_icon")}
-                                  propsIcon={{
-                                    className: `${this.decorateCSS(
-                                      "bullet-icon"
-                                    )}`,
-                                  }}
+                                <Base.Media
+                                  value={this.getPropValue("dot_icon")}
+                                  className={this.decorateCSS("bullet-icon")}
                                 />
                               )}
                               {this.castToString(category.categoryName) && (
-                                <div className={this.decorateCSS("category-name")}>
+                                <Base.H4 className={this.decorateCSS("category-name")}>
                                   {category.categoryName}
-                                </div>
+                                </Base.H4>
                               )}
                             </div>
                           )}
                           {this.getPropValue("arrow-right") && (
                             <div className={this.decorateCSS("right")}>
-                              <ComposerIcon
-                                name={this.getPropValue("arrow-right")}
-                                propsIcon={{
-                                  className: this.decorateCSS("arrow-right")
-                                }}
+                              <Base.Media
+                                value={this.getPropValue("arrow-right")}
+                                className={this.decorateCSS("arrow-right")}
                               />
                             </div>
                           )}
@@ -742,21 +750,21 @@ class Faq8 extends BaseFAQ {
                     return (
                       <div
                         onClick={() => this.handleAnswer(questionIndex)}
-                        className={this.decorateCSS("text")}
+                        className={this.decorateCSS("question-container")}
                       >
                         {(this.castToString(question.qq)) && (
                           <div className={this.decorateCSS("question")}>
-                            <div className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
+                            <Base.H4 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
-                            </div>
-                            <ComposerIcon name={this.getPropValue("arrow-down")} propsIcon={{ className: `${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}` }} />
+                            </Base.H4>
+                            <Base.Media value={this.getPropValue("arrow-down")} className={`${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`} />
                           </div>
                         )}
                         {this.castToString(question.answer) && (
                           <div className={`${this.decorateCSS("inner-text-wrapper")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
-                            <div className={this.decorateCSS("inner-text")}>
+                            <Base.P className={this.decorateCSS("inner-text")}>
                               {question.answer}
-                            </div>
+                            </Base.P>
                           </div>
                         )}
                       </div>

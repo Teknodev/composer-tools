@@ -1,4 +1,4 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   padding: 0;
@@ -35,7 +35,7 @@
       .title-wrapper{
 
       .title {      
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-md) var(--composer-gap-xl);
         z-index: 2;
         &.image{
           color: white;
@@ -81,11 +81,13 @@
               background-color: var(--composer-primary-color);
               padding: var(--composer-gap-sm);
               color: var(--composer-font-color-secondary);
-              transition: opacity 0.5s ease;
+              transition: background-color 0.5s ease;
               cursor: pointer;
 
-              &:hover {
-                background-color:color-mix(in srgb, var(--composer-primary-color), var(--composer-font-color-secondary) 15%);
+              &[data-animation~="animate2"] { 
+                &:hover {
+                  background-color:color-mix(in srgb, var(--composer-primary-color), var(--composer-font-color-secondary) 15%);
+                }
               }
             }
           }
@@ -102,8 +104,11 @@
         }
 
         .info {
-          padding: var(--composer-gap-xl);
+          padding: var(--composer-gap-lg);
           box-sizing: border-box;
+          height: 50%;
+          overflow: hidden;
+          margin: 0;
 
           .subtitle {
             font-size: 1rem;
@@ -113,6 +118,8 @@
           .title {
             font-size: 3rem;
             color: var(--composer-primary-color);
+            transition: opacity 0.3s ease;
+            margin: 0;
           }
 
           .meta-info {
@@ -122,13 +129,16 @@
 
             .meta {
               .label {
-                font-size: 1rem;
                 color: var(--composer-font-color-primary);
                 .value-title {
                   color: var(--composer-tertiary-color);
+                  font-size: 1rem;
+                  margin: var(--composer-gap-xs);
                 }
                 .value-description {
                   color: var(--composer-font-color-primary);
+                  font-size: 1rem;
+                  margin: var(--composer-gap-xs);
                 }
               }
             }
@@ -141,7 +151,7 @@
 
         .image-container {
           width: 100%;
-          height: 555px;
+          height: 50%;
           overflow: hidden;
           position: relative;
         
@@ -162,22 +172,36 @@
             width: 100%;
             background-color: var(--composer-overlay-color);
             transition: opacity 0.5s ease;
-            &:hover {
-              opacity: 1;
-            }
           }
-
         }
 
         &:nth-child(2n) {
           flex-direction: column-reverse;
+        }
+
+        &:hover {
+          .info {
+            .title {
+              &[data-animation~="animate1"] { 
+                opacity: 0.5;
+              }
+            }
+          }
+
+          .image-container {
+            .image-overlay {
+              &[data-animation~="animate1"] { 
+                opacity: 1;
+              }
+            }
+          }
         }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container{
     height: 100%;
     .wrapper {

@@ -1,4 +1,5 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -19,40 +20,214 @@
       }
     }
     .down-page {
+      gap: var(--composer-gap-xl);
       .all-card {
         min-width: 250px;
+        transition: transform 0.3s ease;
+
+        &[data-animation~="animate5"] {
+          .card {
+            .top {
+              .card-name {
+                position: relative;
+                display: inline-block;
+                &::after {
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  bottom: -2px;
+                  height: 2px;
+                  width: 100%;
+                  background-color: var(--composer-primary-color);
+                  transform: scaleX(0);
+                  transform-origin: left;
+                  transition: transform 0.3s ease;
+                }
+              }
+            }
+          }
+          &:hover {
+            .card {
+              .top {
+                .card-name {
+                  &::after {
+                    transform: scaleX(1);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        &[data-animation~="animate7"] {
+          @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+            60% { transform: translateY(2px); }
+          }
+
+          &:hover {
+            .card {
+              .icon-group {
+                .icon {
+                  animation: bounce 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+            }
+          }
+        }
+
         .card {
           flex: 1 1;
           width: 100%;
           min-width: 250px;
+          align-items: normal;
           .top {
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: var(--composer-content-alignment);
             .position {
               color: var(--composer-primary-color);
               word-break: break-all;
+              transition: transform 0.3s ease;
             }
             .card-name {
               color: var(--composer-font-color-primary);
               word-break: break-all;
+              transition: transform 0.3s ease;
             }
             .image {
               width: 100px;
               height: 100px;
               border-radius: 50%;
               object-fit: cover;
+              transition: transform 0.3s ease;
             }
           }
           .card-description {
             color: var(--composer-font-color-primary);
+            transition: transform 0.3s ease;
+            word-break: break-word;
           }
           .icon-group {
             display: flex;
             gap: var(--composer-gap-sm);
             margin-top: var(--composer-gap-md);
+
             .icon {
               color: var(--composer-tertiary-color);
               font-size: 1.5rem;
+              transform: color 0.3s ease;
             }
+
+            &[data-animation~="animate7"] {
+              @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                30% { transform: translateY(-6px); }
+                60% { transform: translateY(2px); }
+              }
+
+              .icon {
+                color: var(--composer-tertiary-color);
+                font-size: 1.5rem;
+                transform: color 0.3s ease;
+                animation: none;
+              }
+
+              &:hover {
+                .icon {
+                  animation: bounce 0.5s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.6s);
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate1"] {
+          &:hover {
+            .card {
+              .top {
+                .position,
+                .card-name {
+                  transform: scale(125%);
+                  transition: transform 0.3s ease;
+                }
+              }
+            }
+          }
+          &.left {
+            &:hover {
+              .card {
+                .top {
+                  .position,
+                  .card-name {
+                    transform: scale(1.1) translateX(20px) !important;
+                    transition: transform 0.3s ease;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate2"] {
+          &:hover {
+            .card {
+              .top {
+                .image {
+                  transform: rotate(360deg);
+                  transition: transform 0.6s ease;
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate3"] {
+          &:hover {
+            .card {
+              .top {
+                .image {
+                  transform: scale(125%);
+                }
+              }
+            }
+          }
+          &.left {
+            &:hover {
+              .card {
+                .top {
+                  .image {
+                    transform: scale(125%) translateX(20px);
+                  }
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate4"] {
+          &:hover {
+            .card {
+              .card-description {
+                transform: scale(1.1);
+              }
+            }
+          }
+          &.left {
+            &:hover {
+              .card {
+                .card-description {
+                  transform: scale(1.1) translateX(20px) !important;
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate6"] {
+          &:hover {
+            transform: translateY(-20px);
           }
         }
       }
@@ -60,7 +235,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .down-page {
       gap: var(--composer-gap-xl);

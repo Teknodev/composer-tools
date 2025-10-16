@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Platform = {
@@ -327,6 +327,15 @@ class Team2 extends Team {
       displayer: "Item count in a row",
       value: 3,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6"]
+      }
+    });
   }
 
   static getName(): string {
@@ -356,19 +365,20 @@ class Team2 extends Team {
               const description = this.castToString(team.description);
 
               return (
-                <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index}>
+                <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {team.image && <img className={this.decorateCSS("image")} src={team.image} alt="" />}
                   {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
                   {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
                   {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
-                  <div className={this.decorateCSS("icon-group")}>
+                  <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {team.platforms &&
                       team.platforms.map((item: Platform, indexPlatforms: number) => (
                         <ComposerLink key={indexPlatforms} path={item.url}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={item.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
+                              style: { "--icon-index": indexPlatforms } as React.CSSProperties
                             }}
                           />
                         </ComposerLink>

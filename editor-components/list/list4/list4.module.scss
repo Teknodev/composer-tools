@@ -1,13 +1,24 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 .container {
-  .max-content {    
-    .card-title{
+  .max-content {
+    .header {
+      .subtitle {
+        content: "";
+      }
+      .title {
+        content: "";
+      }
+    }
+
+    .card-title {
       position: relative;
-      margin: var(--composer-gap-xs) 0px 0px var(--composer-gap-md);
+      margin: var(--composer-gap-xs) 0 0 var(--composer-gap-md);
       color: var(--composer-primary-color);
-      font-size: 0rem;
+      font-size: 0;
       padding-bottom: var(--composer-gap-xl);
-      &.index{
+
+      &.index {
         font-size: 2rem;
         padding-bottom: var(--composer-gap-md);
       }
@@ -16,111 +27,176 @@
     .card-child {
       margin-bottom: var(--composer-gap-md);
       gap: var(--composer-gap-lg);
-      
-      .card-item-count{
+
+      .card-item-count {
         position: relative;
         padding: var(--composer-gap-lg);
-        .line-box{
+
+        &[data-animation~="animate1"] {
+          .line-box{
+            .line-2 {
+              &::before {
+                content: "";
+                position: absolute;
+                left: 90px;
+                top: 0;
+                background-color: var(--composer-primary-color);
+                height: var(--composer-border-width-xs);
+                width: 0;
+                z-index: 2;
+                transition: all var(--composer-transition-duration-slow) ease-in-out;
+              }
+            }
+          }
+          &:hover{
+            .line-box{
+              .line-2{
+                &::before{
+                  width: calc(100% - 90px);
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate4"]:hover {
+          .card-title{
+            &.index {
+              animation: bounce 1s ease-in-out;
+            }
+          }
+
+        }
+
+        .line-box {
           position: absolute;
           width: calc(100% - 80px);
           height: calc(100% - 80px);
-        
-          .line-1{
-            position:absolute;
-            top: -10px;
-            left: 0px;
+
+          .line-1 {
+            position: absolute;
+            top: calc(-1 * var(--composer-gap-sm));
+            left: 0;
             height: calc(100% + 30px);
-            width: 1px;
+            width: var(--composer-border-width-xs);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
-    
-          .line-2{
-            position:absolute;
-            top: 50px;
-            left: -30px;
-            height: 1px;
+
+          .line-2 {
+            position: absolute;
+            top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
+            left: calc(-1 * var(--composer-gap-xl));
+            height: var(--composer-border-width-xs);
             width: calc(100% + 60px);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            &:after{
+            &:after {
               content: "";
-              position:absolute;
+              position: absolute;
               left: 90px;
-              top: 0px;
+              top: 0;
               background-color: var(--composer-font-color-primary);
-              height: 1px;
+              height: var(--composer-border-width-xs);
               width: calc(100% - 90px);
             }
           }
 
-          .line-3{
-            position:absolute;
-            top: 0px;
-            right: 0px;
-            height: calc(100% + 20px);
-            width: 1px;
+          .line-3 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: calc(100% + var(--composer-gap-md));
+            width: var(--composer-border-width-xs);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
 
-          .line-4{
-            position:absolute;
-            bottom: 0px;
-            left: -30px;
-            height: 1px;
+          .line-4 {
+            position: absolute;
+            bottom: 0;
+            left: calc(-1 * var(--composer-gap-xl));
+            height: var(--composer-border-width-xs);
             width: calc(100% + 60px);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            
           }
         }
         .card {
           position: relative;
-          padding: var(--composer-gap-md) ;
+          padding: var(--composer-gap-md);
 
-          .color-box{
+          .color-box {
             padding: var(--composer-gap-md);
-            background-color:  color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
+            transition: background-color var(--composer-transition-duration-slow) ease;
+
+            &[data-animation~="animate2"] {
+              &:hover {
+                background-color: var(--composer-primary-color);
+
+                .icon {
+                  color: var(--composer-html-background);
+                }
+
+                .card-title-wrapper {
+                  .card-subtitle {
+                    color: var(--composer-font-color-primary);
+                  }
+
+                  .card-description {
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+              }
+            }
+
+            &[data-animation~="animate3"]:hover {
+              .icon {
+                transform: rotate(360deg);
+                transition: transform var(--composer-transition-duration-normal);
+              }
+            }
 
             .icon {
-                font-size: 2.5rem;
-                color: var(--composer-primary-color);
-                margin: var(--composer-gap-md) 0;
+              font-size: 2.5rem;
+              color: var(--composer-primary-color);
+              margin: var(--composer-gap-md) 0;
             }
 
-            .card-number{
-                position: absolute;
-                font-size: 3rem;
-                color: var(--composer-font-color-primary);
+            .card-number {
+              position: absolute;
+              color: var(--composer-font-color-primary);
             }
-            .card-title-wrapper{
+            .card-title-wrapper {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
-              .card-subtitle{
-                font-size: 1.5rem;
+              .card-subtitle {
                 color: var(--composer-font-color-primary);
                 overflow: hidden;
-                margin: 0px;
+                margin: 0;
+                position: relative;
+                display: inline-block;
               }
-  
+
               .card-description {
-                margin: 0px;
-                font-size: 1.5rem;
+                margin: 0;
                 color: var(--composer-tertiary-color);
               }
             }
-  
-          }          
-        }  
-        &:nth-child(3n + 2){
-          transform: translateY(40px);
-        }    
+          }
+        }
+        &:nth-child(3n + 2) {
+          transform: translateY(var(--composer-gap-lg));
+        }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}){
-  .container{
-    .max-content{
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
       .card-child {
         gap: var(--composer-gap-xs);
       }
@@ -128,28 +204,40 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
       .card-child {
-        .card-item-count{
-          padding: 0px;
-          .line-box{
+        .card-item-count {
+          padding: 0;
+          .line-box {
             width: 100%;
             height: 100%;
-            .line-1{
-              top: 10px;
-              height: calc(100% + 20px);
+            .line-1 {
+              top: var(--composer-gap-sm);
+              height: calc(100% + var(--composer-gap-md));
             }
-            .line-3{
-              top: 10px;
+            .line-3 {
+              top: var(--composer-gap-sm);
             }
           }
-          &:nth-child(3n + 2){
-          transform: none
-          }    
+          &:nth-child(3n + 2) {
+            transform: none;
+          }
         }
       }
     }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    transform: translateY(calc(-1 * var(--composer-gap-xs)));
+    animation-timing-function: ease-in-out;
   }
 }

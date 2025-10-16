@@ -2,11 +2,11 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Box = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   icon: string;
 };
 
@@ -191,9 +191,9 @@ class Feature2 extends BaseFeature {
                   {iconExist && (
                     <>
                       {showBadge && (
-                        <span className={this.decorateCSS("item-index")}>{index + 1}</span>
+                        <Base.P className={this.decorateCSS("item-index")}>{index + 1}</Base.P>
                       )}
-                      <ComposerIcon
+                      <Base.Icon
                         name={item.icon}
                         propsIcon={{ className: this.decorateCSS("icon") }}
                       />

@@ -1,19 +1,19 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   icon: string;
 };
 
 type FirstItem = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   backgroundImage: string;
   overlay: boolean;
 };
@@ -251,21 +251,21 @@ class Feature12 extends BaseFeature {
                         <div className={this.decorateCSS("message")}>
                           {card.icon && (
                             <div className={this.decorateCSS("icon-container")}>
-                              <ComposerIcon
+                              <Base.Icon
                                 name={card.icon}
                                 propsIcon={{ className: this.decorateCSS("icon") }}
                               />
                             </div>
                           )}
                           {titleExist && (
-                            <div className={this.decorateCSS("title")}>
+                            <Base.H3 className={this.decorateCSS("title")}>
                               {card.title}
-                            </div>
+                            </Base.H3>
                           )}
                           {descExist && (
-                            <div className={this.decorateCSS("long-text")}>
+                            <Base.P className={this.decorateCSS("long-text")}>
                               {card.description}
-                            </div>
+                            </Base.P>
                           )}
                         </div>
                       )}

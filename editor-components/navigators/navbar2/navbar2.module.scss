@@ -1,8 +1,9 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
+  z-index: 101;
 
   .maxContent {
     display: flex;
@@ -40,14 +41,18 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
           font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
         }
 
         .dropdownIcon {
-          font-size: 1.2rem;
+          font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -95,14 +100,18 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
+                  font-size: calc(1 * var(--composer-font-size-md));
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
                 }
               }
             }
-
             &::after {
               content: "";
               position: absolute;
@@ -112,12 +121,20 @@
               background-color: var(--composer-primary-color);
               transition: width 0.3s ease;
             }
-
-            &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
+            &.animation2{
+              &:hover{
+                &::after {
+                  width: calc(100% - (var(--composer-gap-md) * 2));
+                }
+  
+                .subdropdown {
+                  opacity: 1;
+                  visibility: visible;
+                  transform: translateX(0);
+                }
               }
-
+            }
+            &:hover{
               .subdropdown {
                 opacity: 1;
                 visibility: visible;
@@ -126,7 +143,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -152,7 +169,16 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
-
+                .dropdownItemTitle{
+                  color: var(--composer-font-color-primary);
+                  font-weight: normal;
+                  transition: all 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
+                }
                 &::after {
                   content: "";
                   position: absolute;
@@ -162,10 +188,11 @@
                   background-color: var(--composer-primary-color);
                   transition: width 0.3s ease;
                 }
-
-                &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
+                &.animation2{
+                  &:hover {
+                    &::after {
+                      width: calc(100% - (var(--composer-gap-md) * 2));
+                    }
                   }
                 }
               }
@@ -173,12 +200,33 @@
           }
         }
       }
+      .localization{
+        transition: all 0.3s ease;
+        .localizationLabel{
+          font-weight: normal;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
+        }
+        .localizationContent{
+          font-weight: normal;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
-
+.mobileRight{
+  display: none;
+}
     .menuIcon,
     .closeIcon {
       display: none;
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -204,6 +252,9 @@
         &.open {
           transform: translateX(0);
         }
+        &.overflowShow{
+          overflow-y: auto;
+        }
 
         .mobileCloseButton {
           position: absolute;
@@ -213,7 +264,7 @@
           border: none;
           cursor: pointer;
           color: var(--composer-font-color-primary);
-          font-size: 2.5rem;
+          font-size: calc(2.5 * var(--composer-font-size-md));
           display: flex;
           align-items: center;
           justify-content: center;
@@ -235,13 +286,20 @@
               cursor: pointer;
 
               .hamburgerMenuItemTitle {
+                margin: 0;
                 color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
-                font-weight: bold;
+                font-weight: normal;
+                transition: all 0.8s ease;
+                &.animation1{
+                  &:hover{
+                    font-weight: bold;
+                  }
+                }
               }
 
               .dropdownIcon {
-                font-size: 1.5rem;
+                font-size: calc(1.5 * var(--composer-font-size-md));
                 color: var(--composer-font-color-primary);
                 transition: transform 0.3s ease;
 
@@ -271,12 +329,19 @@
 
                   .hamburgerMenuItemTitle {
                     color: var(--composer-font-color-primary);
-                    font-size: 1rem;
                     font-weight: 400;
+                    margin: 0;
+                    font-size: 1rem;
+                    transition: all 0.8s ease;
+                    &.animation1{
+                      &:hover{
+                        font-weight: bold;
+                      }
+                    }
                   }
 
                   .dropdownIcon {
-                    font-size: 1.5rem;
+                    font-size: calc(1.5 * var(--composer-font-size-md));
                     transition: transform 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -300,8 +365,13 @@
 
                     .hamburgerSubSubmenuItemTitle {
                       color: var(--composer-font-color-primary);
-                      font-size: 1rem;
                       font-weight: 400;
+                      margin: 0;
+                      &.animation1{
+                        &:hover{
+                          font-weight: bold;
+                        }
+                      }
                     }
                   }
                 }
@@ -319,19 +389,18 @@
 
     .languageDropdownLabel {
       color: var(--composer-font-color-primary);
-      font-size: 1rem;
+      font-size: calc(1 * var(--composer-font-size-md));
     }
 
     .languageAccordion,
     .languageAccordionItem {
       color: var(--composer-font-color-primary);
       text-transform: uppercase;
-      font-weight: bold;
     }
 
     .languageAccordionTitle {
       color: var(--composer-font-color-primary);
-      font-size: 1rem;
+      font-size: calc(1 * var(--composer-font-size-md));
     }
   }
 
@@ -381,11 +450,16 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .maxContent {
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+      }
       .logo {
         .logoImg {
+          width: fit-content;
           max-height: 50px;
         }
       }
@@ -395,10 +469,13 @@
         .menuItemContainer {
           .menuItem {
             .dropdownIcon {
-              font-size: 2rem;
+              font-size: calc(2 * var(--composer-font-size-md));
             }
           }
         }
+      }
+      .localizationMobile{
+        display: flex;
       }
       .menuIcon,
       .closeIcon {
@@ -413,20 +490,34 @@
           }
           .languageAccordionTitle {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight:bold
+              }
+            }
           }
           .languageAccordionItem{
-            font-size: 1rem;
+            font-size: calc(1 * var(--composer-font-size-md));
+            font-weight: bold;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight:bold
+              }
+            }
+
+            font-size: calc(1.5 * var(--composer-font-size-md));
             font-weight: bold;
           }
           .languageAccordionIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
             font-weight: bold;
           }
         }
-      // }
    
     }
     .overlay {
@@ -444,17 +535,8 @@
         .mobileMenu {
           padding-left: var(--composer-gap-md);
           padding-right: var(--composer-gap-md);
-          .hamburgerMenu {
-            .hamburgerMenuItem {
-              .hamburgerMenuItemHeader {
-                .hamburgerMenuItemTitle {
-                  font-size: 1rem;
-                }
-              }
-            }
-          }
           .languageAccordionTitle {
-            font-size: 1rem;
+            font-size: calc(1 * var(--composer-font-size-md));
             font-weight: bold;
           }
         }

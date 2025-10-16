@@ -3,15 +3,15 @@ import { BaseList } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  text: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  text: React.JSX.Element;
   url: string;
   icon: string;
   button: INPUTS.CastedButton;
@@ -243,6 +243,15 @@ class List1 extends BaseList {
       displayer: "Colored Area",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
 
     this.setComponentState("active-index", 1);
   }
@@ -259,7 +268,7 @@ class List1 extends BaseList {
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: Math.min(3, sliderItems.length),
       slidesToScroll: 1,
@@ -317,10 +326,9 @@ class List1 extends BaseList {
                         this.getComponentState("active-index") === indexSlider
                         ? this.decorateCSS("active")
                         : ""
-                      }
-                   `}
+                      }`}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-
                     {item.image && (
                       <Base.Row className={this.decorateCSS("img-div")}>
                         <img
@@ -331,28 +339,29 @@ class List1 extends BaseList {
                       </Base.Row>
                     )}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                      <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                      <Base.VerticalContent className={this.decorateCSS("titles")}>
                         {this.castToString(item.title) && (
-                          <Base.H1 className={this.decorateCSS("title")}>
+                          <Base.H4 className={this.decorateCSS("card-title")}>
                             {item.title}
-                          </Base.H1 >
+                          </Base.H4 >
                         )}
                         {this.castToString(item.subtitle) && (
-                          <Base.H2 className={this.decorateCSS("subtitle")}>
+                          <Base.H6 className={this.decorateCSS("card-subtitle")}>
                             {item.subtitle}
-                          </Base.H2>
+                          </Base.H6>
                         )}
                       </Base.VerticalContent>
                     )}
 
                     {(this.castToString(item.button.text) || item.icon) && (
+                      <div className={this.decorateCSS("link")}>
                       <ComposerLink path={item.button.url}>
-                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("link")}>
-                          <div className={this.decorateCSS("text")}>
+                        <Base.Button buttonType={item.button.type} >
+                          <Base.P className={this.decorateCSS("text")}>
                             {item.button.text}
-                          </div >
+                          </Base.P>
                           {item.icon && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={item.icon}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),
@@ -361,6 +370,7 @@ class List1 extends BaseList {
                           )}
                         </Base.Button>
                       </ComposerLink>
+                      </div>
                     )}
                   </Base.VerticalContent>
                 );

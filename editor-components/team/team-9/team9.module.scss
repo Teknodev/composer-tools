@@ -1,4 +1,5 @@
-@import "../../../../composer-tools/composer-base-components/base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components/base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -23,11 +24,6 @@
             border-radius: var(--composer-border-radius-sm);
           }
 
-          .person-image:hover {
-            border-radius: 45%;
-            transition: 0.4s;
-          }
-
           .person-info {
             width: 95%;
             height: auto;
@@ -43,13 +39,14 @@
                 font-size: 1.5rem;
                 font-weight: bold;
                 margin: var(--composer-gap-sm);
+                transition: color 0.3s ease;
               }
             }
 
             .icons-bar {
               display: flex;
               flex-direction: row;
-              opacity: 0;
+              opacity: 1;
               gap: var(--composer-gap-sm);
               width: 100%;
               transition: opacity 0.3s ease-in-out;
@@ -59,8 +56,7 @@
                 border-radius: 50%;
                 border: 1px solid var(--composer-font-color-primary);
                 padding: var(--composer-gap-sm);
-                opacity: 0;
-                transform: translateY(20px);
+                opacity: 1;
                 transition: color 300ms;
                 cursor: pointer;
                 &:hover {
@@ -70,13 +66,83 @@
             }
           }
 
-          &:hover {
-            .icons-bar {
-              opacity: 1;
+          &[data-animation~="animate1"] {
+            &:hover {
+              .person-image {
+                border-radius: 45%;
+                transition: 0.4s;
+              }
+              
+              .icons-bar {
+                .icon {
+                  border-color: var(--composer-primary-color);
+                  transition: border-color 0.5s ease;
+                }
+              }
             }
           }
-          &:hover .icons-bar .icon {
-            animation: icon-fade-in 0.8s ease forwards;
+
+          &[data-animation~="animate2"] {
+            .icons-bar {
+              display: flex;
+              flex-direction: row;
+              opacity: 0;
+              gap: var(--composer-gap-sm);
+              width: 100%;
+              transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+              transform: translateY(10px);
+
+              .icon {
+                font-size: 2.5rem;
+                color: var(--composer-font-color-primary);
+                border-radius: 50%;
+                border: 1px solid var(--composer-font-color-primary);
+                padding: var(--composer-gap-sm);
+                opacity: 0;
+                transform: translateZ(20px);
+                transition: color 500ms, opacity 0.5s ease-in-out,
+                  transform 0.5s ease-in-out;
+              }
+            }
+
+            &:hover {
+              .icons-bar {
+                opacity: 1;
+                transform: translateY(0);
+
+                .icon {
+                  opacity: 1;
+                  transform: translateZ(0);
+                  animation: icon-fade-in 0.8s ease forwards;
+                }
+              }
+            }
+          }
+
+          &[data-animation~="animate3"] {
+            &:hover {
+              .item-name {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
+
+          &[data-animation~="animate4"] {
+            .icons-bar {
+              .icon {
+                animation: none;
+              }
+            }
+
+            &:hover {
+              .icons-bar {
+                .icon {
+                  animation: bounce 0.6s ease;
+                  animation-fill-mode: both;
+                  animation-delay: calc(var(--icon-index, 0) * 0.2s);
+                }
+              }
+            }
           }
         }
 
@@ -92,7 +158,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .basic-page {
@@ -228,10 +294,14 @@
 @keyframes icon-fade-in {
   from {
     opacity: 0;
-    transform: translateY(var(--composer-gap-xl));
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+  60% { transform: translateY(4px); }
 }

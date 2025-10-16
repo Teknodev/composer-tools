@@ -3,14 +3,14 @@ import styles from "./download2.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
-  device: JSX.Element;
-  platform: JSX.Element;
-  description: JSX.Element;
+  device: React.JSX.Element;
+  platform: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 
@@ -175,7 +175,7 @@ class Download2 extends BaseDownload {
                   <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
                       <Base.Row className={this.decorateCSS("icon-container")}>
-                        <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </Base.Row>
                     )}
 
@@ -200,7 +200,7 @@ class Download2 extends BaseDownload {
                                 {(buttonTextExist || card.button.icon) && (
                                   <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
                                     {card.button.icon && (
-                                      <ComposerIcon name={card.button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
+                                      <Base.Icon name={card.button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
                                     )}
                                     {this.castToString(card.button.text) && <div className={this.decorateCSS("button-text")}>{card.button.text}</div>}
                                   </Base.Button>

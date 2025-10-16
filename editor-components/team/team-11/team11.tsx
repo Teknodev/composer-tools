@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team11.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -306,6 +306,16 @@ class Team11 extends Team {
       ],
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
+
     this.setComponentState("slider-ref", React.createRef());
   }
   static getName(): string {
@@ -361,14 +371,20 @@ class Team11 extends Team {
                 return (
                   itemExits && (
                     <div key={indexSlider} className={this.decorateCSS("item")}>
-                      <Base.VerticalContent className={this.decorateCSS("card")}>
+                      <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         <div className={this.decorateCSS("hover")}>
                           <img className={this.decorateCSS("person-image")} src={item.image} alt={" "} />
                           {item.icons && item.icons.length > 0 && (
-                            <div className={this.decorateCSS("icons-bar")}>
+                            <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               {item.icons.map((el: any, indexIcon: number) => (
                                 <ComposerLink path={el.url} key={indexIcon}>
-                                  <ComposerIcon name={el.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  <Base.Icon 
+                                    name={el.icon} 
+                                    propsIcon={{ 
+                                      className: this.decorateCSS("icon"),
+                                      style: { "--icon-index": indexIcon } as React.CSSProperties
+                                    }} 
+                                  />
                                 </ComposerLink>
                               ))}
                             </div>
@@ -388,7 +404,7 @@ class Team11 extends Team {
             </ComposerSlider>
 
             <div className={slider.length > 3 ? this.decorateCSS("nav-buttons") : this.decorateCSS("visible-navs")}>
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("prevIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("prev_icon")}`,
@@ -398,7 +414,7 @@ class Team11 extends Team {
                   },
                 }}
               />
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("nextIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("next_icon")}`,

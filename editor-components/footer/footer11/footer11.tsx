@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer11.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Icons = {
@@ -108,6 +108,16 @@ class Footer11Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
   }
   static getName(): string {
     return "Footer 11";
@@ -127,8 +137,11 @@ class Footer11Page extends BaseFooter {
                 return (
                   item.icon && (
                     <ComposerLink key={index} path={item.url}>
-                      <div className={this.decorateCSS("socials-element")}>
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                      <div 
+                        className={this.decorateCSS("socials-element")}
+                        data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                      >
+                        <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                       </div>
                     </ComposerLink>
                   )

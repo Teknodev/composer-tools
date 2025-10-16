@@ -1,0 +1,184 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *; 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.container {
+  width: 100%;
+  background-color: var(--composer-html-background);
+  padding: 0px;
+  height: 100vh;
+  .max-content {
+    width: 100%;
+    .carousel {
+      height: 100%;
+      .slide {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        .bg-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: contrast(0.9);
+        }
+        .arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          margin: 0 auto;
+          color: black;
+          cursor: pointer;
+          font-size: 2.5rem;
+          &.prev-icon {
+            left: 50px;
+          }
+          &.next-icon {
+            right: 50px;
+          }
+          &.no-bg {
+            color: var(--composer-font-color-primary);
+          }
+        }
+        .content-wrapper{
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          &.fade-in {
+            animation: fade-in 3s ease-in-out forwards;
+          }
+          .content, .content-full, .content-left, .content-right {
+            width : 85%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            &.no-bg {
+              .description {
+                color: var(--composer-font-color-primary);
+                width: 100%;
+              }
+            }
+  
+            .title {
+              font-size: 5rem;
+              width: 50%;
+              margin: 0;
+
+              &.title-with-image{
+              color: black;
+
+              }
+            }
+            .description {
+              width:50%;
+              font-size: 1.5rem;
+              color: black;
+            }
+            .buttons-container {
+              display: flex;
+              gap: var(--composer-gap-sm);
+              flex-wrap: wrap;
+              width: 50%;
+              .button {
+                content: "";
+              }
+            }
+          }
+          .content-left{
+            width: 100%;
+            padding: 20px 50px;
+            padding-right: calc(100px + var(--composer-gap-md));
+          }
+          .content-right{
+            width: 100%;
+            padding: 20px 50px;
+            padding-left: calc(100px + var(--composer-gap-md));
+          }
+          .content-full{
+            width: 100%;
+            padding: 20px 50px;
+          }
+        }
+      }
+      .customDots {
+        bottom: 60px;
+        &.noDots-img li button::before {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .carousel {
+        .slide {
+          .arrow {
+            display: none;
+          }
+          .content-wrapper{
+            .content, .content-full, .content-left, .content-right {
+              width: 100%;
+              padding: 20px 40px;
+              .title {
+                font-size: 4rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .carousel {
+        .slide {
+          .content-wrapper{
+            .content, .content-full, .content-left, .content-right {
+              padding: 20px;
+              .title {
+                width: 100%;
+                font-size: 3rem;
+                text-align: center;
+              }
+              .description {
+                width: 100%;
+                font-size: 1rem;
+                text-align: center;
+              }
+  
+              .buttons-container {
+                width: 100%;
+                justify-content: center;
+              }
+            }
+          }
+        }
+        .customDots {
+          bottom: 40px;
+        }
+      }
+    }
+  }
+}

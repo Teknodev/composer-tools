@@ -3,11 +3,11 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  icon: JSX.Element,
+  icon: React.JSX.Element,
   title: string,
   description: string,
 };
@@ -179,7 +179,7 @@ class Feature14 extends BaseFeature {
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                           {button.text}
-                          <ComposerIcon name={button.icon} />
+                          <Base.Icon name={button.icon} />
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -202,7 +202,7 @@ class Feature14 extends BaseFeature {
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                           {button.text}
-                          <ComposerIcon name={button.icon} />
+                          <Base.Icon name={button.icon} />
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -219,16 +219,16 @@ class Feature14 extends BaseFeature {
                   <div className={this.decorateCSS("card")}>
                     {item.icon && (
                       <div className={this.decorateCSS("icon-box")}>
-                        <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
                     )}
 
                     <div className={this.decorateCSS("card-content")}>
                       {this.castToString(item.title) && (
-                        <div className={this.decorateCSS("card-title")}>{item.title}</div>
+                        <Base.H3 className={this.decorateCSS("card-title")}>{item.title}</Base.H3>
                       )}
                       {this.castToString(item.description) && (
-                        <div className={this.decorateCSS("card-description")}>{item.description}</div>
+                        <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
                       )}
                     </div>
                   </div>

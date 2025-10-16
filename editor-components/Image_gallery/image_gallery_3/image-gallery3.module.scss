@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -49,8 +49,63 @@
       }
     }
   }
-}
 
+  .remaining-images {
+    margin-top: 20px;
+    .max-content {
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+
+      .image-row {
+        display: flex;
+        gap: var(--composer-gap-lg);
+        width: 100%;
+
+        .image-box {
+          flex: 1;
+          max-width: calc(33.333% - var(--composer-gap-md));
+
+          .image {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 8 / 9;
+            object-fit: cover;
+            max-height: 500px;
+            border-radius: var(--composer-border-radius-sm);
+          }
+        }
+
+        &.row-3 {
+          .image-box {
+            max-width: calc(33.333% - var(--composer-gap-md));
+          }
+        }
+
+        &.row-2 {
+          .image-box {
+            max-width: calc(50% - var(--composer-gap-md));
+          }
+        }
+
+        &.row-1 {
+          .image-box {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--composer-gap-lg);
+    
+    .button {
+      content: "";
+    }
+  }
+}
 
 @container (max-width: #{$composer-phone-width}) {
   .container{
@@ -61,6 +116,19 @@
         max-width: unset;
         .line {
           height: 45px !important;
+        }
+      }
+    }
+  }
+
+  .remaining-images {
+    .max-content {
+      .image-row {
+        flex-direction: column;
+        gap: var(--composer-gap-md) !important;
+
+        .image-box {
+          max-width: 100% !important;
         }
       }
     }

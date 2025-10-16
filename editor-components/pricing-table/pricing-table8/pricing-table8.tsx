@@ -1,22 +1,22 @@
 import * as React from "react";
 import styles from "./pricing-table8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IIconBoxes = {
-  planTitle: JSX.Element;
+  planTitle: React.JSX.Element;
   bars: any;
   description: any;
   list: any;
-  title: JSX.Element;
+  title: React.JSX.Element;
   image: string;
-  price: JSX.Element;
-  priceBig: JSX.Element;
-  plan: JSX.Element;
+  price: React.JSX.Element;
+  priceBig: React.JSX.Element;
+  plan: React.JSX.Element;
   link: string;
   iconsButton: Button;
 };
@@ -389,6 +389,15 @@ class PricingTable8 extends BasePricingTable {
       displayer: "Next icon",
       value: "IoMdArrowDropright",
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2", "animation3"],
+      additionalParams:{
+        selectItems:["animation1", "animation2", "animation3"]
+      }
+    })
   }
 
   static getName(): string {
@@ -441,7 +450,7 @@ class PricingTable8 extends BasePricingTable {
 
                       {card.iconsButton.icon && (
                         <ComposerLink path={card.iconsButton.url}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={card.iconsButton.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
@@ -456,7 +465,7 @@ class PricingTable8 extends BasePricingTable {
             </ComposerSlider>
 
             {prevIcon && (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("prevIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("prev_icon")}`,
@@ -468,7 +477,7 @@ class PricingTable8 extends BasePricingTable {
               />
             )}
             {nextIcon && (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("nextIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("next_icon")}`,
@@ -487,7 +496,8 @@ class PricingTable8 extends BasePricingTable {
                 const cardPriceBigExist = this.castToString(card.priceBig);
                 const cardPlanExist = this.castToString(card.plan);
                 return (
-                  <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}`} key={index} onClick={() => handleCardClick(index)}>
+                  <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}
+                  ${this.getPropValue("animations")  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`} key={index} onClick={() => handleCardClick(index)}>
                     <Base.VerticalContent className={this.decorateCSS("pricing")}>
                       {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
                       {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
@@ -499,7 +509,7 @@ class PricingTable8 extends BasePricingTable {
 
                       {card.iconsButton.icon && (
                         <ComposerLink path={card.iconsButton.url}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={card.iconsButton.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),

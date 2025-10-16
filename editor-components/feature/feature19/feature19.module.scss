@@ -1,0 +1,165 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-lg);
+        .right-image {
+            flex: 1;
+            align-items: center;
+            position: relative;
+
+            .img {
+                max-height: 100%;
+                width: 100%;
+                border-radius: var(--composer-border-radius-sm);
+                aspect-ratio: 1;
+                object-fit: cover;
+            }
+
+            &.no-content{
+                .img{
+                    aspect-ratio: 16/9;
+                }
+            }
+
+            &[data-animation~="animate1"] {
+                overflow: hidden;
+
+                .img {
+                    transition: transform 1s;
+                }
+
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    transition: opacity 0.9s;
+                }
+
+                &::before {
+                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+                    z-index: 1;
+                    opacity: 1;
+                }
+
+                &::after {
+                    background: linear-gradient(
+                        rgba(var(--composer-primary-color-rgb), 0.7),
+                        rgba(0, 0, 0, 0.7)
+                    );
+                    z-index: 2;
+                    opacity: 0;
+                }
+
+                &:hover {
+                    .img {
+                        transform: scale(1.2);
+                    }
+
+                    &::before {
+                        opacity: 0;
+                    }
+
+                    &::after {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &[data-animation~="animate2"] {
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                        to right,
+                        rgba(var(--composer-primary-color-rgb), 0.8),
+                        transparent
+                    );
+                    transition: left 0.5s ease;
+                    z-index: 1;
+                    border-radius: var(--composer-border-radius-sm);
+                }
+
+                .img {
+                    transition: filter 0.5s ease;
+                }
+
+                &:hover {
+                    &::before {
+                        left: 0;
+                    }
+
+                    .img {
+                        filter: brightness(1.1) contrast(1.1);
+                    }
+                }
+            }
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xl);
+            flex: 1;
+            .header {
+                .subtitle{
+                    content: "";
+                }
+                .title {
+                    content: "";
+                }
+                .description {
+                    margin-bottom: 0px
+                }
+            }
+            .item-block {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
+
+                    .list-item-content{
+                        .item-content-top{
+                            display: flex;
+                            gap: var(--composer-gap-md);
+                            align-items: center;
+                            .icon{
+                                min-width: 3rem;
+                                font-size: 3rem;
+                                color: var(--composer-primary-color);
+                            }
+                            .list-item-title{
+                                margin-top: 0px;
+                                margin-bottom: var(--composer-gap-sm);
+                                color: var(--composer-font-color-primary);
+                                margin: 0px;
+                            }
+                        }
+                        .texts-inside {
+                            margin-bottom: 0px;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                
+            }
+            .button {content: "";}
+        }
+    }
+}
+@container (max-width: #{$composer-tablet-width}) {
+    .container{
+        .max-content{
+            flex-direction: column;
+        }
+    }
+}

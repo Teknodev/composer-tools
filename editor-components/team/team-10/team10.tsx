@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team10.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 interface TTeam {
@@ -410,6 +410,15 @@ class Team10 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
 
   static getName(): string {
@@ -448,9 +457,9 @@ class Team10 extends Team {
                         const iconExist = icon.icon;
                         return (
                           iconExist && (
-                            <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                            <div key={indexIcons} className={this.decorateCSS("icon-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               <ComposerLink path={icon.url}>
-                                <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Icon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                               </ComposerLink>
                             </div>
                           )
@@ -458,7 +467,7 @@ class Team10 extends Team {
                       })}
                     </div>
                     <Base.H3 className={this.decorateCSS("subtitle")}>{teamMember.getPropValue("subtitle")}</Base.H3>
-                    <Base.H1 className={this.decorateCSS("title")}>{teamMember.getPropValue("title")}</Base.H1>
+                    <Base.H1 className={this.decorateCSS("title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{teamMember.getPropValue("title")}</Base.H1>
                     <div className={this.decorateCSS("meta-info")}>
                       <div className={this.decorateCSS("meta")}>
                         <div className={this.decorateCSS("label")}>
@@ -485,7 +494,7 @@ class Team10 extends Team {
                     <div className={this.decorateCSS("image-container")}>{
                       <img className={this.decorateCSS("image")}
                         src={teamMember.getPropValue("image")} />}
-                      <div className={this.decorateCSS("image-overlay")}></div>
+                      <div className={this.decorateCSS("image-overlay")} data-animation={this.getPropValue("hoverAnimation").join(" ")}></div>
                     </div>
                   }
                 </Base.VerticalContent>

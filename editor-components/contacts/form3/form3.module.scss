@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -306,6 +306,9 @@
             gap: var(--composer-gap-sm);
             justify-content: center;
             align-items: center;
+            .submit-button{
+              content: "";
+            }
           }
         }
       }
@@ -313,7 +316,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .box {
@@ -470,13 +473,9 @@
                 padding: 0;
 
                 .icon-container {
-                  .icon-element {
-                    display: block;
-
-                    .icon {
-                      width: var(--composer-gap-md);
-                      height: var(--composer-gap-md);
-                    }
+                  .icon {
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
                   }
                 }
               }

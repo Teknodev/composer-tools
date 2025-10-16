@@ -1,6 +1,7 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .pcNavbarContainer {
+  z-index: 101;
   .maxContent {
     display: flex;
     justify-content: space-between;
@@ -37,18 +38,41 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
+          margin: 0;
           font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          position: relative;
+          &::after{
+            content: "";
+            position: absolute;
+            bottom: calc((-1) * var(--composer-gap-xs));
+            left: 0px;
+            width: 0;
+            background-color: var(--composer-primary-color);
+            height: 1px;
+            transition: all 0.3s ease;
+          }
         }
 
         .dropdownIcon {
-          font-size: 1rem;
+          font-size: calc(1 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
-
+        &.animation3{
+          &:hover{
+            .menuItemTitle{
+              color: var(--composer-primary-color);
+              &::after{
+                width: 100%;
+              }  
+            }
+            .dropdownIcon {
+            color: var(--composer-primary-color);
+          }
+        }
+      }
         &:hover {
           .dropdownIcon {
             transform: rotate(180deg);
@@ -60,6 +84,7 @@
             transform: translateY(0);
           }
         }
+      
 
         .dropdown {
           position: absolute;
@@ -92,7 +117,7 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
@@ -123,7 +148,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -149,7 +174,12 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
-
+                .dropdownItemTitle {
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                  transition: color 0.3s ease;
+                }
                 &::after {
                   content: "";
                   position: absolute;
@@ -178,7 +208,7 @@
 
       h3 {
         margin: 0;
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--composer-font-size-md));
       }
     }
     .languageAccordionItem {
@@ -205,24 +235,44 @@
   align-items: center;
   justify-content: flex-end;
   gap: var(--composer-gap-sm);
-
   .icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
   }
 
-  .localization, .localizationItem, .localizationContent {
+  .localization {
     content: "";
+  }
+  .localizationContent{  
+    transition: all 0.3s ease;  
+    .localizationItem{
+      font-weight: normal;      
+      transition: all 0.3s ease;
+    }
+    &.animation1{
+      &:hover{
+        .localizationItem{
+          font-weight: bold;
+        }
+      }
+    }
+
   }
 
   .localizationLabel {
     color: var(--composer-font-color-primary);
     gap: var(--composer-gap-xs);
     margin-left: var(--composer-gap-sm);
-    font-weight: bold;
+    font-weight: normal;
+    transition: all 0.3s ease;
+    &.animation1{
+      &:hover{
+        font-weight: bold;
+      }
+    }
   }
 }
 
@@ -259,7 +309,7 @@
 
 .smallDeviceNavbar {
   display: none;
-  z-index: 100;
+  z-index: 101;
 
   .maxContent {
     display: flex;
@@ -278,13 +328,15 @@
         justify-content: flex-start;
       }
     }
-
+    .mobileRight{
+        display: none;
+    }
     .mobileMenuButton,
     .mobileCloseButton {
       cursor: pointer;
       color: var(--composer-font-color-primary);
       padding: 0;
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--composer-font-size-md));
     }
 
     .mobileMenu {
@@ -294,17 +346,16 @@
       height: 0;
       width: 100%;
       overflow: hidden;
-      background: var(--composer-overlay-color);
       transition: height 0.3s ease;
-      z-index: 100;
-
       &.open {
         height: 100vh;
         transition: height 0.3s ease;
       }
+      &.overflowShow{
+        overflow-y: auto;
+      }
 
       .mobileMenuContent {
-        overflow: scroll;
         background-color: var(--composer-html-background);
         padding: 0 var(--composer-gap-md);
 
@@ -317,6 +368,16 @@
         flex-direction: column;
 
         .hamburgerMenuItem {
+          &.animation3 {
+            &.active {
+              .hamburgerMenuItemTitle {
+                color: var(--composer-primary-color);
+              }
+              .dropdownIcon {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
           .hamburgerMenuItemHeader {
             display: flex;
             align-items: center;
@@ -327,12 +388,13 @@
 
             .hamburgerMenuItemTitle {
               color: var(--composer-font-color-primary);
-              font-size: 1rem;
+              margin: 0;
               font-weight: bold;
+              transition: all 0.5s ease;
             }
 
             .dropdownIcon {
-              font-size: 1.5rem;
+              font-size: calc(1.5 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transform: rotate(0deg);
               transition: transform 0.3s ease;
@@ -353,7 +415,20 @@
               max-height: 1000px;
             }
 
+
             .hamburgerSubmenuItem {
+              &.animation3{
+                &.active{
+                  .hamburgerSubmenuItemHeader{
+                    .hamburgerMenuItemTitle {
+                      color: var(--composer-primary-color);
+                    }
+                    .dropdownIcon {
+                      color: var(--composer-primary-color);
+                    }
+                  }
+                }
+              }
               .hamburgerSubmenuItemHeader {
                 display: flex;
                 align-items: center;
@@ -363,12 +438,12 @@
 
                 .hamburgerMenuItemTitle {
                   color: var(--composer-font-color-primary);
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                 }
 
                 .dropdownIcon {
-                  font-size: 1.5rem;
+                  font-size: calc(1.5 * var(--composer-font-size-md));
                   transition: transform 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -392,7 +467,7 @@
 
                   .hamburgerSubSubmenuItemTitle {
                     color: var(--composer-font-color-primary);
-                    font-size: 1rem;
+                    margin: 0;
                     font-weight: 400;
                   }
                 }
@@ -404,9 +479,12 @@
     }
   }
 }
+.overlay{
+  content: "";
+}
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .pcNavbarContainer {
     display: none;
   }
@@ -439,12 +517,18 @@
             justify-content: center;
             gap: var(--composer-gap-sm);
             padding: var(--composer-gap-md) 0;
-
-            .icon {
-              color: var(--composer-font-color-primary);
+            .icons{
+              .icon {
+                color: var(--composer-font-color-primary);
+              }
             }
           }
         }
+      }
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+        align-items: center;
       }
 
       .logo {

@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
     .max-content {
         .wrapper {
@@ -27,12 +27,12 @@
                         flex: 1;
                         .card-title {
                             color: var(--composer-font-color-primary);
-                            font-size: 2rem;
+
                         }
 
                         .card-description {
                             color: var(--composer-tertiary-color);
-                            font-size: 1.5rem;
+
                         }
                     }
                 }
@@ -53,11 +53,11 @@
                         }
                         .card-content {
                             .card-title {
-                                font-size: 1.5rem;
+
                             }
     
                             .card-description {
-                                font-size: 1rem;
+
                             }
                         }
                     }

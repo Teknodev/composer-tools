@@ -1,7 +1,7 @@
 import React from "react";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -9,9 +9,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
-  title: JSX.Element;
-  description: JSX.Element;
-  num: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  num: React.JSX.Element;
 };
 
 
@@ -272,7 +272,7 @@ class Feature9 extends BaseFeature {
                           <div className={this.decorateCSS("card-header")}>
                             {card.icon &&
                               <div className={this.decorateCSS("icon-container")}>
-                                <ComposerIcon
+                                <Base.Icon
                                   name={card.icon}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),
@@ -283,23 +283,23 @@ class Feature9 extends BaseFeature {
                             }
                             <div className={this.decorateCSS("card-title-container")}>
                               {numExist &&
-                                <div className={this.decorateCSS("card-number")}>
+                                <Base.H2 className={this.decorateCSS("card-number")}>
                                   {card.num}
-                                </div>
+                                </Base.H2>
                               }
                               {titleExist &&
-                                <div className={this.decorateCSS("card-title")}>
+                                <Base.H3 className={this.decorateCSS("card-title")}>
                                   {card.title}
-                                </div>
+                                </Base.H3>
                               }
                             </div>
                           </div>
                         }
                         {descExist &&
                           <div className={this.decorateCSS("description-container")}>
-                            <div className={this.decorateCSS("description")}>
+                            <Base.P className={this.decorateCSS("description")}>
                               {card.description}
-                            </div>
+                            </Base.P>
                           </div>
                         }
                       </div>

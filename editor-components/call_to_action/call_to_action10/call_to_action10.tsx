@@ -2,13 +2,13 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface CardItem {
   cardIcon: string,
-  cardTitle: JSX.Element,
-  cardDescription: JSX.Element
+  cardTitle: React.JSX.Element,
+  cardDescription: React.JSX.Element
 }
 
 class CallToAction10Page extends BaseCallToAction {
@@ -17,15 +17,28 @@ class CallToAction10Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Features",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Ready to give your brain a boost?",
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "BsHandIndexThumb"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsHandIndexThumb",
+      },
     });
     this.addProp({
       type: "string",
@@ -53,10 +66,16 @@ class CallToAction10Page extends BaseCallToAction {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "cardIcon",
               displayer: "Card Icon",
-              value: "HiOutlineDocumentText"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "HiOutlineDocumentText",
+              },
             },
             {
               type: "string",
@@ -78,10 +97,16 @@ class CallToAction10Page extends BaseCallToAction {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "cardIcon",
               displayer: "Card Icon",
-              value: "BsUpload"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BsUpload",
+              },
             },
             {
               type: "string",
@@ -103,10 +128,16 @@ class CallToAction10Page extends BaseCallToAction {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "cardIcon",
               displayer: "Card Icon",
-              value: "CiMail"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "CiMail",
+              },
             },
             {
               type: "string",
@@ -138,24 +169,33 @@ class CallToAction10Page extends BaseCallToAction {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("call-to-action10-page")}>
-            {this.castToString(this.getPropValue("title") || this.getPropValue("icon")) && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-                {this.getPropValue("icon") && (
-                  <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                )}
-              </Base.SectionTitle>
-            )}
-            {this.castToString(this.getPropValue("description")) && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
+          <Base.VerticalContent className={this.decorateCSS("content")}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {this.castToString(this.getPropValue("subtitle")) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(this.getPropValue("title") || this.getPropValue("icon")) && (
+                <div className={this.decorateCSS("title-container")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                  {this.getPropValue("icon") && (
+                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                  )}
+                </div>
+              )}
+              {this.castToString(this.getPropValue("description")) && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
             {this.castToString(button.text) && (
               <ComposerLink path={button.url}>
                 <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                  {button.text}
+                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                 </Base.Button>
               </ComposerLink>
             )}
@@ -165,7 +205,7 @@ class CallToAction10Page extends BaseCallToAction {
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     {item.cardIcon && (
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <ComposerIcon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
                       </div>
                     )}
                     {this.castToString(item.cardTitle) && (

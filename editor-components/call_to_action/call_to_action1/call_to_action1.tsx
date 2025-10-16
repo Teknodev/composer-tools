@@ -3,17 +3,23 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class CallToAction1Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "IoLogoFirefox",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoLogoFirefox",
+      },
     });
     this.addProp({
       type: "string",
@@ -42,7 +48,7 @@ class CallToAction1Page extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+            <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")}></Base.Media>
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
             )}
@@ -53,7 +59,7 @@ class CallToAction1Page extends BaseCallToAction {
               <div className={this.decorateCSS("button-container")}>
                 <ComposerLink path={button.url}>
                   <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                    {button.text}
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                   </Base.Button>
                 </ComposerLink>
               </div>

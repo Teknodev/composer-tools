@@ -1,17 +1,15 @@
 import * as React from "react";
 import { Team } from "../../EditorComponent";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styles from "./team8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   image: string;
-  imagesubtitle: JSX.Element;
-  imagetitle: JSX.Element;
+  imagesubtitle: React.JSX.Element;
+  imagetitle: React.JSX.Element;
 };
 
 class Team8 extends Team {
@@ -234,6 +232,15 @@ class Team8 extends Team {
       value: 5,
       max: 10,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -308,21 +315,21 @@ class Team8 extends Team {
 
                     return (
                       hasSlider && (
-                        <div className={this.decorateCSS("slider-inner-div")} key={index}>
+                        <div className={`${this.decorateCSS("slider-inner-div")} ${!imageExist && this.decorateCSS("no-image") }`} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                           <Base.VerticalContent className={this.decorateCSS("content-div")}>
-                            {item.image && (
-                              <div className={this.decorateCSS("img-div")}>
-                                <div className={this.decorateCSS("image-box")}>
-                                  <img alt="" src={item.image} className={this.decorateCSS("img")} />
-                                </div>
-                              </div>
-                            )}
-                            {(titleExist || subtitleExist) && (
-                              <Base.VerticalContent className={this.decorateCSS("header-page")}>
-                                {titleExist && <Base.P className={`${this.decorateCSS("item-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagetitle}</Base.P>}
-                                {subtitleExist && <Base.H2 className={`${this.decorateCSS("first-header")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagesubtitle}</Base.H2>}
-                              </Base.VerticalContent>
-                            )}
+                          {item.image && (
+                            <div className={this.decorateCSS("img-div")}>
+                            <div className={this.decorateCSS("image-box")}>
+                              <img alt="" src={item.image} className={this.decorateCSS("img")} />
+                            </div>
+                            </div>
+                          )}
+                          {(titleExist || subtitleExist) && (
+                            <Base.VerticalContent className={this.decorateCSS("header-page")}>
+                            {titleExist && <Base.P className={`${this.decorateCSS("item-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagetitle}</Base.P>}
+                            {subtitleExist && <Base.H2 className={`${this.decorateCSS("first-header")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagesubtitle}</Base.H2>}
+                            </Base.VerticalContent>
+                          )}
                           </Base.VerticalContent>
                         </div>
                       )
