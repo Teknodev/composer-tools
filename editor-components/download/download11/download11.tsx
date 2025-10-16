@@ -50,9 +50,9 @@ class Download11 extends BaseDownload {
           displayer: "Description",
           value: "Unlock the power of data with our advanced analytics tools. Gain actionable insignhts into customer behavior, market trends.",
         },
+        INPUTS.BUTTON("buttonLeft", "Button", "More", "", "", "", "Primary"),
       ],
     });
-    this.addProp(INPUTS.BUTTON("buttonLeft", "Left Button", "More", "", "", "", "Primary"))
     this.addProp({
       type: "object",
       displayer: "Right Card Upper",
@@ -94,10 +94,9 @@ class Download11 extends BaseDownload {
           },
           displayer: "Image",
         },
-
+        INPUTS.BUTTON("buttonRight", "Button", "More", "", "", "", "Primary"),
       ],
     });
-    this.addProp(INPUTS.BUTTON("buttonRight", "Right Button", "More", "", "", "", "Primary"));
 
       this.addProp({
         type: "object",
@@ -116,10 +115,10 @@ class Download11 extends BaseDownload {
             displayer: "Title",
             value: "Best new app and updates*",
           },
+          INPUTS.BUTTON("buttonRightBottom", "Button", "More", "", "", "", "Primary"),
 
         ],
       });
-    this.addProp(INPUTS.BUTTON("buttonRightBottom", "Right Bottom Button", "More", "", "", "", "Primary"))
   }
 
   static getName(): string {
@@ -130,17 +129,30 @@ class Download11 extends BaseDownload {
     const leftItems = this.castToObject<any>("left");
     const rightItems = this.castToObject<any>("right");
     const rightBottomItems = this.castToObject<any>("rightBottom");
-    const buttonLeft: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonLeft");
-    const buttonRight: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonRight");
-    const buttonRightBottom: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonRightBottom");
+    
+    const buttonLeft = {
+      text: this.getPropValue("text", { parent_object: leftItems.buttonLeft }),
+      type: this.getPropValue("type", { parent_object: leftItems.buttonLeft }),
+      url: this.getPropValue("url", { parent_object: leftItems.buttonLeft })
+    };
+    
+    const buttonRight = {
+      text: this.getPropValue("text", { parent_object: rightItems.buttonRight}),
+      type: this.getPropValue("type", { parent_object: rightItems.buttonRight }),
+      url: this.getPropValue("url", { parent_object: rightItems.buttonRight })
+    };
+    
+    const buttonRightBottom = {
+      text: this.getPropValue("text", { parent_object: rightBottomItems.buttonRightBottom }),
+      type: this.getPropValue("type", { parent_object: rightBottomItems.buttonRightBottom }),
+      url: this.getPropValue("url", { parent_object: rightBottomItems.buttonRightBottom })
+    };
 
     const subtitleExist = this.castToString(leftItems.subtitle);
     const titleExist = this.castToString(leftItems.title);
     const descriptionExist = this.castToString(leftItems.description);
     const buttonTextExist = this.castToString(buttonLeft.text);
-    const buttonIconExist = buttonLeft.icon && buttonLeft.icon.name;
-    const buttonImageExist = buttonLeft.image && buttonLeft.image.url;
-    const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
+    const buttonExist = buttonTextExist;
 
     const leftCardExist = subtitleExist || titleExist || descriptionExist || buttonTextExist;
     const hasValidCard = (leftCardExist || leftItems.image) && leftItems.visibility;
@@ -149,18 +161,14 @@ class Download11 extends BaseDownload {
     const rightTitleExist = this.castToString(rightItems.title);
     const rightDescriptionExist = this.castToString(rightItems.description);
     const rightbuttonTextExist = this.castToString(buttonRight.text);
-    const rightButtonIconExist = buttonRight.icon && buttonRight.icon.name;
-    const rightButtonImageExist = buttonRight.image && buttonRight.image.url;
-    const rightButtonExist = rightbuttonTextExist || rightButtonIconExist || rightButtonImageExist;
+    const rightButtonExist = rightbuttonTextExist;
 
     const hasValidRightCardTexts = rightSubtitleExist || rightTitleExist || rightDescriptionExist || rightbuttonTextExist;
     const hasValidRightCard = (hasValidRightCardTexts || rightItems.image) && rightItems.visibility;
 
     const rightBottomTitleExist = this.castToString(rightBottomItems.title);
     const rightBottomButtonTextExist = this.castToString(buttonRightBottom.text);
-    const rightBottomButtonIconExist = buttonRightBottom.icon && buttonRightBottom.icon.name;
-    const rightBottomButtonImageExist = buttonRightBottom.image && buttonRightBottom.image.url;
-    const rightBottomButtonExist = rightBottomButtonTextExist || rightBottomButtonIconExist || rightBottomButtonImageExist;
+    const rightBottomButtonExist = rightBottomButtonTextExist;
     const hasValidBottomRightCard = (rightBottomTitleExist || rightBottomButtonExist) && rightBottomItems.visibility;
 
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
@@ -182,19 +190,9 @@ class Download11 extends BaseDownload {
                     {buttonExist && (
                       <div className={this.decorateCSS("button-wrapper")}>
                         <ComposerLink path={buttonLeft.url}>
-                          {buttonLeft.image && buttonLeft.image.url ? (
-                            <Base.Media value={buttonLeft.image} className={this.decorateCSS("button-image")} />
-                          ) : (
-                            <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
-                              {buttonLeft.icon && buttonLeft.icon.name && (
-                                <Base.Media
-                                  value={buttonLeft.icon}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              )}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonLeft.text}</Base.P>}
-                            </Base.Button>
-                          )}
+                          <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
+                            {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonLeft.text}</Base.P>}
+                          </Base.Button>
                         </ComposerLink>
                       </div>
                     )}
@@ -215,19 +213,9 @@ class Download11 extends BaseDownload {
                           {rightButtonExist && (
                              <div className={this.decorateCSS("button-wrapper")}>
                                <ComposerLink path={buttonRight.url}>
-                                 {buttonRight.image && buttonRight.image.url ? (
-                                   <Base.Media value={buttonRight.image} className={this.decorateCSS("button-image")} />
-                                 ) : (
-                                   <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("button")}>
-                                     {buttonRight.icon && buttonRight.icon.name && (
-                                       <Base.Media
-                                         value={buttonRight.icon}
-                                         className={this.decorateCSS("button-icon")}
-                                       />
-                                     )}
-                                     {rightbuttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRight.text}</Base.P>}
-                                   </Base.Button>
-                                 )}
+                                 <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("button")}>
+                                   {rightbuttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRight.text}</Base.P>}
+                                 </Base.Button>
                                </ComposerLink>
                              </div>
                            )}
@@ -244,19 +232,9 @@ class Download11 extends BaseDownload {
                       {rightBottomButtonExist && (
                         <div className={this.decorateCSS("button-wrapper")}>
                           <ComposerLink path={buttonRightBottom.url}>
-                            {buttonRightBottom.image && buttonRightBottom.image.url ? (
-                              <Base.Media value={buttonRightBottom.image} className={this.decorateCSS("button-image")} />
-                            ) : (
-                              <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
-                                {buttonRightBottom.icon && buttonRightBottom.icon.name && (
-                                  <Base.Media
-                                    value={buttonRightBottom.icon}
-                                    className={this.decorateCSS("button-icon")}
-                                  />
-                                )}
-                                {rightBottomButtonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</Base.P>}
-                              </Base.Button>
-                            )}
+                            <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
+                              {rightBottomButtonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</Base.P>}
+                            </Base.Button>
                           </ComposerLink>
                         </div>
                       )}
