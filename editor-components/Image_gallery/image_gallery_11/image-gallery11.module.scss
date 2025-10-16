@@ -33,11 +33,6 @@
     pointer-events: none;
   }
 
-  .title {
-    font-size: 5rem;
-    margin-left: 0%;
-  }
-
   .description {
     font-size: 1.5rem;
     margin-left: 0%;
@@ -54,12 +49,6 @@
   }
 
   &[data-has-bg="false"] {
-
-    .title,
-    .description {
-      color: var(--composer-font-color-primary);
-    }
-
     background-color: var(--composer-html-background);
   }
 
@@ -106,13 +95,16 @@
     overflow: hidden;
   }
 
+  .row:nth-child(even) .track {
+    animation-direction: reverse;
+  }
+
   .row::-webkit-scrollbar {
     display: none;
   }
 
   .track {
     display: flex;
-    gap: 24px;
     width: max-content;
     animation-name: marqueePx;
     animation-duration: var(--speed, 100s) !important;
@@ -120,12 +112,6 @@
     animation-iteration-count: infinite;
     will-change: transform;
     cursor: grab;
-
-    &.reverse {
-      animation-direction: reverse;
-      animation-delay: calc(var(--speed) / -2);
-
-    }
 
     &.paused {
       animation-play-state: paused !important;
@@ -278,8 +264,6 @@
       cursor: zoom-out;
       transition: transform 0.3s ease;
 
-      .close-btn,
-      .zoom-btn,
       .counter-badge,
       .title-badge {
         transition: transform 0.3s ease;
@@ -289,16 +273,6 @@
       .title-badge {
         pointer-events: auto;
       }
-    }
-
-    .close-btn,
-    .zoom-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      margin: 0;
-      padding: 0;
-      z-index: 106;
     }
 
     .zoom-btn {
@@ -338,29 +312,32 @@
     }
   }
 
-  .close-btn {
-    position: absolute;
-    z-index: 106;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    width: 30px;
-    height: 30px;
+  .close-btn,
+  .zoom-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background 160ms ease, transform 120ms ease;
-    transform: scale(1.5);
-
+    transition: background 160ms ease;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    margin: 0;
+    padding: 0;
+    z-index: 106;
+    transform: scale(1.8);
     background: transparent !important;
+    transition: transform 0.3s ease;
 
     &:hover {
       background: transparent !important;
     }
 
     &:active {
-      transform: scale(0.96);
+      transform: scale(1.5);
     }
 
     &:focus,
@@ -370,43 +347,13 @@
     }
   }
 
-  .zoom-btn {
-    position: absolute;
-    z-index: 106;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 160ms ease;
-    margin-right: 60px;
-    transform: scale(1.5);
-
-    background: transparent !important;
-
-    &:hover {
-      background: transparent !important;
-    }
-  }
-
   .zoom-icon,
   .close-icon {
-    font-size: 22px;
     line-height: 1;
-    font-weight: 700;
     color: #fff;
     transform: none;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7), 0 0 2px #000;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 0 2px #000;
     filter: drop-shadow(0 0 2px #000);
-  }
-
-  .close-icon {
-    font-size: 24px;
-    font-weight: 800;
   }
 
   .lightbox-img {
@@ -643,25 +590,6 @@
         bottom: var(--gap-md);
       }
 
-      .lightbox-img-wrap {
-
-        .zoom-btn {
-          width: 30px;
-          height: 30px;
-          top: 8px;
-          right: 55px;
-          transform: scale(1.4);
-        }
-
-        .close-btn {
-          width: 30px;
-          height: 30px;
-          top: 8px;
-          right: 10px;
-          transform: scale(1.4);
-        }
-      }
-
       .counter {
         bottom: var(--gap-md);
         right: var(--gap-md);
@@ -670,116 +598,113 @@
     }
 
     .lightbox.is-zoomed .lightbox-canvas {
-      width: 80%;
+      width: 100%;
     }
   }
+}
 
-  @container (max-width: #{$composer-phone-width}) {
-    .container {
-      .lightbox.is-zoomed .lightbox-img-wrap {
-        width: 90% !important;
-      }
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .lightbox.is-zoomed .lightbox-img-wrap {
+      width: 90% !important;
+    }
 
-      .lightbox {
-        --lb-side: var(--padding-md);
-        --lb-top: var(--padding-md);
-        --lb-bottom: var(--padding-md);
+    .lightbox {
+      --lb-side: var(--padding-md);
+      --lb-top: var(--padding-md);
+      --lb-bottom: var(--padding-md);
 
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr auto;
-
-        .lightbox.is-zoomed .lightbox-canvas {
-          cursor: zoom-out;
-          width: 100%;
-          max-height: 90%;
-          overflow: visible;
-        }
-
-        .lightbox-canvas {
-          grid-column: 1;
-          grid-row: 2;
-          max-width: 100% !important;
-          max-height: 34% !important;
-        }
-
-        .lightbox-img-wrap {
-          width: 65%;
-
-          .zoom-btn {
-            width: 30px;
-            height: 30px;
-            top: 5px;
-            right: 42px;
-            transform: scale(1.15);
-          }
-
-          .close-btn {
-            width: 30px;
-            height: 30px;
-            top: 5px;
-            right: 6px;
-            transform: scale(1.15);
-          }
-
-          .nav {
-            font-size: 24px;
-            position: absolute !important;
-            top: 50% !important;
-            transform: translateY(-50%) !important;
-            padding: var(--padding-xs);
-
-            &.prev {
-              left: 2% !important;
-              right: auto !important;
-            }
-
-            &.next {
-              right: 2% !important;
-              left: auto !important;
-            }
-          }
-        }
-
-        .counter {
-          bottom: var(--gap-sm);
-          right: var(--gap-sm);
-          font-size: small;
-        }
-
-        .lightbox-img-wrap {
-
-          .counter-badge,
-          .title-badge {
-            bottom: 4px;
-            font-size: 10px;
-          }
-
-          .counter-badge {
-            left: 4px;
-          }
-
-          .title-badge {
-            right: 4px;
-            max-width: 70vw;
-          }
-        }
-
-        .caption {
-          font-size: 0.85rem;
-          max-width: 95vw;
-          bottom: var(--gap-sm);
-          padding: var(--padding-xs) var(--padding-sm);
-        }
-
-        .side-hit {
-          width: 20vw;
-          max-width: 100px;
-        }
-      }
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
 
       .lightbox.is-zoomed .lightbox-canvas {
+        cursor: zoom-out;
         width: 100%;
+        max-height: 90%;
+        overflow: visible;
       }
+
+      .lightbox-canvas {
+        grid-column: 1;
+        grid-row: 2;
+        max-width: 100% !important;
+        max-height: 34% !important;
+      }
+
+      .close-btn,
+      .zoom-btn {
+        transform: scale(1.4);
+
+        &:active {
+          transform: scale(1);
+        }
+      }
+
+      .zoom-btn {
+        right: 50px;
+      }
+
+      .lightbox-img-wrap {
+        width: 65%;
+
+        .nav {
+          font-size: 24px;
+          position: absolute !important;
+          top: 50% !important;
+          transform: translateY(-50%) !important;
+          padding: var(--padding-xs);
+
+          &.prev {
+            left: 2% !important;
+            right: auto !important;
+          }
+
+          &.next {
+            right: 2% !important;
+            left: auto !important;
+          }
+        }
+      }
+
+      .counter {
+        bottom: var(--gap-sm);
+        right: var(--gap-sm);
+        font-size: small;
+      }
+
+      .lightbox-img-wrap {
+
+        .counter-badge,
+        .title-badge {
+          bottom: 4px;
+          font-size: 10px;
+        }
+
+        .counter-badge {
+          left: 4px;
+        }
+
+        .title-badge {
+          right: 4px;
+          max-width: 70vw;
+        }
+      }
+
+      .caption {
+        font-size: 0.85rem;
+        max-width: 95vw;
+        bottom: var(--gap-sm);
+        padding: var(--padding-xs) var(--padding-sm);
+      }
+
+      .side-hit {
+        width: 20vw;
+        max-width: 100px;
+      }
+    }
+
+    .lightbox.is-zoomed .lightbox-canvas {
+      width: 100%;
     }
   }
 }
