@@ -62,6 +62,14 @@
                 position: relative;
                 display: flex;
                 justify-content: flex-end;
+                
+                &.center-single-image {
+                    justify-content: center;
+                    
+                    .image-text {
+                        left: 20%;
+                    }
+                }
 
                 &[data-animation~="animate1"] {
                     .back-image, .front-image {
@@ -112,13 +120,18 @@
                     top: 90px;
                     transform: translateX(-60%);
                     max-width: 200px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-xs);
 
                     .upper-text {
+                        text-align: center;
                         text-transform: uppercase;
                         color: var(--composer-font-color-primary);
                     }
 
                     .lower-text {
+                        text-align: center;
                         color: var(--composer-font-color-primary);
                     }
                 }
@@ -186,6 +199,9 @@
             .right-page{
                 .image-container{
                     width: 100%;
+                    &.center-single-image{
+                        justify-content: center;
+                    }
                 }
             }
         }

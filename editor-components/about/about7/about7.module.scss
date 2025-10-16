@@ -1,4 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+// Global center alignment override
+.center-alignment.row-reverse .subtitle,
+.center-alignment.row-reverse .description,
+.center-alignment.row-reverse .title {
+    text-align: center !important;
+}
+
 .container{
     background-size: cover;
     background-position: center;
@@ -150,8 +158,9 @@
                 }
                 .subtitle{
                     &.with-image{
+                        transform: translateX(0);
                         &::before{
-                            background-color: black;
+                            display: none;
                         }
                     }
                 }
@@ -163,6 +172,20 @@
                     .subtitle,.description,.title{
                         text-align: end;
                     }
+                }
+                &.center-alignment.row-reverse{
+                    align-items: center !important;
+                    .subtitle{
+                        transform: none !important;
+                    }
+                    .subtitle,.description,.title{
+                        text-align: center !important;
+                    }
+                }
+                &.center-alignment.row-reverse .subtitle,
+                &.center-alignment.row-reverse .description,
+                &.center-alignment.row-reverse .title{
+                    text-align: center !important;
                 }
             }
         }

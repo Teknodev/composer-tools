@@ -207,6 +207,12 @@ class About7 extends BaseAbout {
     const items = this.castToObject<ItemType[]>("items");
     const backgroundImage = this.castToObject<any>("background-image");
     const isBackgroundImageExist = backgroundImage?.image;
+
+    const alignment = Base.getContentAlignment();
+
+    console.log("alignment", alignment)
+
+
     return (
       <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${backgroundImage?.image?.url})`}}>
         {backgroundImage?.overlay && backgroundImage.image && (
@@ -215,7 +221,7 @@ class About7 extends BaseAbout {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {items.map((item, index: number)=> {
             return(
-                <div className={`${this.decorateCSS("items-wrapper")} ${item.rowReverse && this.decorateCSS("row-reverse")}`} key={index}>
+                <div className={`${this.decorateCSS("items-wrapper")} ${item.rowReverse && this.decorateCSS("row-reverse")} ${alignment === "center" && this.decorateCSS("center-alignment")}`} key={index}>
                     {item.image && (
                     <div className={this.decorateCSS("left-container")}>
                         <div className={this.decorateCSS("image-wrapper")}>

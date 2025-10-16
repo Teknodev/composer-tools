@@ -88,7 +88,7 @@ class About3 extends BaseAbout {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
       ],
     });
@@ -114,7 +114,7 @@ class About3 extends BaseAbout {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
       ],
     });
@@ -224,7 +224,7 @@ class About3 extends BaseAbout {
           {showDiv && (
             <div className={`${this.decorateCSS("right-page")} ${!showLeftDiv ? this.decorateCSS("no-content") : ""}`}>
               <div 
-                className={this.decorateCSS("image-container")}
+                className={`${this.decorateCSS("image-container")} ${(!isImage1Exist || !isImage2Exist) && this.decorateCSS("center-single-image")}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 <div className={this.decorateCSS("image-text")}>
@@ -234,9 +234,9 @@ class About3 extends BaseAbout {
                     </Base.P>
                   )}
                   {isRightBoldTextExist && (
-                    <Base.P className={this.decorateCSS("lower-text")}>
+                    <Base.H2 className={this.decorateCSS("lower-text")}>
                       {this.getPropValue("rightBoldText")}
-                    </Base.P>
+                    </Base.H2>
                   )}
                 </div>
                 {isImage1Exist && (
