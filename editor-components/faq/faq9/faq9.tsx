@@ -17,6 +17,13 @@ class Faq9 extends BaseFAQ {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "FAQ",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "General Questions",
@@ -29,10 +36,16 @@ class Faq9 extends BaseFAQ {
         "For More Information About Our Product & Services. Please Feel Free To Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not Hesitate!",
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "SlArrowDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "SlArrowDown",
+      },
     });
 
     this.addProp({
@@ -270,6 +283,11 @@ class Faq9 extends BaseFAQ {
               {(this.castToString(this.getPropValue("title")) ||
                 this.castToString(this.getPropValue("description"))) && (
                 <Base.VerticalContent className={this.decorateCSS("up-page")}>
+                  {this.castToString(this.getPropValue("subtitle")) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {this.getPropValue("subtitle")}
+                    </Base.SectionSubTitle>
+                  )}
                   {this.castToString(this.getPropValue("title")) && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
                       {this.getPropValue("title")}
@@ -311,7 +329,7 @@ class Faq9 extends BaseFAQ {
                                   "card-title-wrapper"
                                 )}
                               >
-                                <div
+                                <Base.H4
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${
@@ -321,7 +339,7 @@ class Faq9 extends BaseFAQ {
                                   }`}
                                 >
                                   {questn.qq}
-                                </div>
+                                </Base.H4>
                               </div>
                             )}
                             {this.getPropValue("icon") && (
@@ -334,11 +352,9 @@ class Faq9 extends BaseFAQ {
                                     : ""
                                 }`}
                               >
-                                <Base.Icon
-                                  name={this.getPropValue("icon")}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
+                                <Base.Media
+                                  value={this.getPropValue("icon")}
+                                  className={this.decorateCSS("icon")}
                                 />
                               </div>
                             )}
@@ -353,16 +369,16 @@ class Faq9 extends BaseFAQ {
                                 : ""
                             }`}
                           >
-                            <div className={this.decorateCSS("inner-text")}>
+                              <Base.P className={this.decorateCSS("inner-text")}>
                               {questn.answer}
-                            </div>
+                            </Base.P>
                           </div>
                         )}
                       </div>
                     );
                   })}
                 </div>
-                {!isMobile && (
+                {!isMobile && rightQuestions.length > 0 && (
                   <div className={this.decorateCSS("questions-column")}>
                     {rightQuestions.map((questn, i) => {
                       const idx = i + midPoint;
@@ -388,7 +404,7 @@ class Faq9 extends BaseFAQ {
                                     "card-title-wrapper"
                                   )}
                                 >
-                                  <div
+                                  <Base.H4
                                     className={`${this.decorateCSS(
                                       "card-title"
                                     )} ${
@@ -398,7 +414,7 @@ class Faq9 extends BaseFAQ {
                                     }`}
                                   >
                                     {questn.qq}
-                                  </div>
+                                  </Base.H4>
                                 </div>
                               )}
                               {this.getPropValue("icon") && (
@@ -411,11 +427,9 @@ class Faq9 extends BaseFAQ {
                                       : ""
                                   }`}
                                 >
-                                  <Base.Icon
-                                    name={this.getPropValue("icon")}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon"),
-                                    }}
+                                  <Base.Media
+                                    value={this.getPropValue("icon")}
+                                    className={this.decorateCSS("icon")}
                                   />
                                 </div>
                               )}
@@ -430,9 +444,9 @@ class Faq9 extends BaseFAQ {
                                   : ""
                               }`}
                             >
-                              <div className={this.decorateCSS("inner-text")}>
+                              <Base.P className={this.decorateCSS("inner-text")}>
                                 {questn.answer}
-                              </div>
+                              </Base.P>
                             </div>
                           )}
                         </div>

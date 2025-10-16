@@ -7,15 +7,9 @@ class About6 extends BaseAbout {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "image",
-            key: "bgImage",
-            displayer: "Background Image",
-            value: "https://res.cloudinary.com/db4ayioxs/image/upload/v1747148312/uploads/1747148311367-Ads%C3%84%C2%B1z_tasar%C3%84%C2%B1m_%2818%29.png.png"
-        })
-        this.addProp({
             type: "string",
-            key: "subTitle",
-            displayer: "Sub Title",
+            key: "subtitle",
+            displayer: "Subtitle",
             value: "CHOCO LOVE"
         })
         this.addProp({
@@ -55,8 +49,7 @@ class About6 extends BaseAbout {
   }
 
     render() {
-        const bgImage = this.getPropValue("bgImage");
-        const subTitle = this.getPropValue("subTitle");
+        const subTitle = this.getPropValue("subtitle");
         const title = this.getPropValue("title");
         const text1 = this.getPropValue("text1");
         const text2 = this.getPropValue("text2");
@@ -71,31 +64,28 @@ class About6 extends BaseAbout {
         const subTitleType = Base.getSectionSubTitleType();
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} `}
-                style={{
-                    backgroundImage: `url(${bgImage})`,
-                }}>
+            <Base.Container className={`${this.decorateCSS("container")} `}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContentContainer && (
                         <div className={this.decorateCSS("content")}>
                             {showTopContainer && (
                                 <div
                                     className={this.decorateCSS(
-                                        bgImage ? "top-container-with-bg" : "top-container"
+                                        "top-container"
                                     )}>
                                     {this.castToString(subTitle) && (
                                         <Base.SectionSubTitle
                                             className={`${subTitleType === "badge"
                                                 ? this.decorateCSS("sub-title-badge")
                                                 : this.decorateCSS("sub-title")
-                                                } ${bgImage ? this.decorateCSS("sub-title-with-bg") : ""}`}>
+                                                } `}>
                                             {subTitle}
                                         </Base.SectionSubTitle>
                                     )}
                                     {this.castToString(title) && (
                                         <Base.SectionTitle
                                             className={`${this.decorateCSS("title")} 
-                                            ${bgImage ? this.decorateCSS("title-with-bg") : ""}`}>
+                                            `}>
                                             {title}
                                         </Base.SectionTitle>
                                     )}
@@ -105,7 +95,7 @@ class About6 extends BaseAbout {
                             {showTextContainer && (
                                 <div
                                     className={this.decorateCSS(
-                                        bgImage ? "text-container-with-bg" : "text-container"
+                                        "text-container"
                                     )}>
                                     {this.castToString(text1) && (
                                         <div className={this.decorateCSS("text-1")}>
@@ -121,7 +111,7 @@ class About6 extends BaseAbout {
                             )}
                             {showBottomContainer && (
                                 <div className={this.decorateCSS(
-                                    bgImage ? "bottom-container-with-bg" : "bottom-container"
+                                    "bottom-container"
                                 )}>
                                     {signature && (
                                         <div className={this.decorateCSS("signature")}>

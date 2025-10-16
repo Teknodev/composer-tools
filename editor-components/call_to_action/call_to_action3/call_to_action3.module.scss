@@ -25,21 +25,25 @@
 
     .content-container {
       align-items: center;
-      gap: var(--composer-gap-md);
 
-      .title {
-        font-size: 3.5rem;
-        text-align: center;
+      .title,
+      .subtitle {
+        text-align: center !important;
 
         &.with-image {
           color: white;
         }
       }
 
+      .subtitle {
+        transform: translateX(0);
+        &::before {
+          display: none;
+        }
+      }
+
       .description {
-        color: var(--composer-font-color-primary);
-        font-size: 2rem;
-        text-align: center;
+        text-align: center !important;
 
         &.with-image {
           color: white;
@@ -55,6 +59,9 @@
 
         .button {
           content: "";
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -65,21 +72,6 @@
 
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-
-    .max-content {
-      .content-container {
-
-        .title,
-        .title-no-image {
-          font-size: 3rem;
-        }
-
-        .description,
-        .description-no-image {
-          font-size: 1.5rem;
-        }
-      }
-    }
   }
 }
 
@@ -87,20 +79,5 @@
 
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
-
-    .max-content {
-      .content-container {
-
-        .title,
-        .title-no-image {
-          font-size: 2rem;
-        }
-
-        .description,
-        .description-no-image {
-          font-size: 1rem;
-        }
-      }
-    }
   }
 }

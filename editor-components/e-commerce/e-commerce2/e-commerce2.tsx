@@ -2438,7 +2438,6 @@ class ECommerce2 extends BaseECommerce {
             "imageCount",
             this.getPropValue("imageCountInitial")
         );
-        document.addEventListener("keydown", this.handleKeyDown);
     }
 
     static getName(): string {
@@ -2456,6 +2455,7 @@ class ECommerce2 extends BaseECommerce {
             firstSectionTitle = this.castToString(imageGallery[0].sectionTitle);
         }
         this.setComponentState("selectedSection", firstSectionTitle);
+        document.addEventListener("keydown", this.handleKeyDown);
     }
     onComponentWillUnmount(): void {
         document.removeEventListener("keydown", this.handleKeyDown);
