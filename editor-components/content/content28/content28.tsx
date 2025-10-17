@@ -93,21 +93,7 @@ class Content28 extends BaseContent {
       value: false
     });
 
-    // Highlight specific feature (for future use)
-    this.addProp({
-      type: "number",
-      key: "activeIndex",
-      displayer: "Active Feature Index",
-      value: 0
-    });
-
-    // Number of feature items per row
-    this.addProp({
-      type: "number",
-      key: "itemsPerRow",
-      displayer: "Items Per Row",
-      value: 2
-    });
+    // Removed Active Feature Index and Items Per Row controls per requirement
   }
 
   static getName(): string {
@@ -115,9 +101,9 @@ class Content28 extends BaseContent {
   }
 
   // Helpers
-  private getFirstTextFromArray(propKey: string): string | undefined {
+  private getAllTextsFromArray(propKey: string): string[] {
     const arr = this.castToObject<{ text?: string }[]>(propKey) || [];
-    return arr[0]?.text;
+    return arr.map((i) => i?.text).filter((t): t is string => !!t);
   }
 
   private getFeatures(): FeatureItem[] {
@@ -128,47 +114,46 @@ class Content28 extends BaseContent {
   render() {
     // Extract and prepare data from props
     const imageSrc = this.getPropValue("image");
-    const heading = this.getFirstTextFromArray("headings");
-    const intro = this.getFirstTextFromArray("intros");
+    const headingTexts = this.getAllTextsFromArray("headings");
+    const introTexts = this.getAllTextsFromArray("intros");
     const features = this.getFeatures();
     const showLine = !!this.getPropValue("showLine");
     const activeIndex = Number(this.getPropValue("activeIndex") ?? 0);
-    const itemsPerRow = Number(this.getPropValue("itemsPerRow") ?? 2);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {/* Main grid: image + optional divider + content */}
-          <div className={`${this.decorateCSS("grid")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
+          <Base.ContainerGrid className={`${this.decorateCSS("grid")} ${showLine ? this.decorateCSS("has-line") : ""}`}> 
             {/* Left column: Image */}
             {this.castToString(imageSrc) && (
-              <div className={this.decorateCSS("col-image")}>
-                <img
-                  src={imageSrc}
-                  alt={heading || "portrait"}
+            <Base.GridCell className={this.decorateCSS("col-image")} padding="none">
+                <Base.Media
                   className={this.decorateCSS("image")}
+                  value={{ type: "image", url: this.castToString(imageSrc) as string }}
                 />
-              </div>
+              </Base.GridCell>
             )}
 
             {/* Optional vertical divider */}
-            {showLine && <div className={this.decorateCSS("center-line")} />}
+            {showLine && <hr className={this.decorateCSS("center-line")} />}
 
             {/* Right column: Content */}
-            <Base.VerticalContent className={this.decorateCSS("col-content")}>
+            <Base.GridCell className={this.decorateCSS("col-content")} padding="none">
+              <Base.VerticalContent>
               {/* Header section with heading and intro */}
-              {(heading || intro) && (
+              {(headingTexts.length > 0 || introTexts.length > 0) && (
                 <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {heading && (
-                    <Base.SectionTitle className={this.decorateCSS("heading")}>
-                      {heading}
+                  {headingTexts.map((h, idx) => (
+                    <Base.SectionTitle className={this.decorateCSS("heading")} key={`h-${idx}`}>
+                      {h}
                     </Base.SectionTitle>
-                  )}
-                  {intro && (
-                    <Base.SectionDescription className={this.decorateCSS("intro")}>
-                      {intro}
+                  ))}
+                  {introTexts.map((it, idx) => (
+                    <Base.SectionDescription className={this.decorateCSS("intro")} key={`i-${idx}`}>
+                      {it}
                     </Base.SectionDescription>
-                  )}
+                  ))}
                 </Base.VerticalContent>
               )}
 
@@ -177,7 +162,6 @@ class Content28 extends BaseContent {
                 <div className={this.decorateCSS("features-block")}>
                   <div
                     className={this.decorateCSS("features")}
-                    style={{ "--items-per-row": itemsPerRow } as React.CSSProperties}
                   >
                     {features.map((feature, index) => (
                       <Base.VerticalContent
@@ -199,8 +183,9 @@ class Content28 extends BaseContent {
                   </div>
                 </div>
               )}
-            </Base.VerticalContent>
-          </div>
+              </Base.VerticalContent>
+            </Base.GridCell>
+          </Base.ContainerGrid>
         </Base.MaxContent>
       </Base.Container>
     );
