@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Feature = {
   title: React.JSX.Element;
-  iconFeature: string;
+  iconFeature: { type: "icon"; name: string };
 };
 
 class Feature7 extends BaseFeature {
@@ -16,24 +16,26 @@ class Feature7 extends BaseFeature {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a25bdb2f8a5b002ce67862?alt=media",
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a25bdb2f8a5b002ce67862?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "FEATURES",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "FEATURES",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "mainTitle",
-      displayer: "Main Title",
       value: "Everything starts with a Marketing plan.",
     });
 
@@ -58,14 +60,17 @@ class Feature7 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Feature 1",
+              displayer: "Text",
               value: "Amazing communication.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "iconFeature",
               displayer: "Icon",
-              value: "FaCheck",
+              value: {
+                type: "icon",
+                name: "FaCheck",
+              },
             },
           ],
         },
@@ -77,14 +82,17 @@ class Feature7 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Feature 2",
+              displayer: "Text",
               value: "Best trending designing experience.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "iconFeature",
               displayer: "Icon",
-              value: "FaCheck",
+              value: {
+                type: "icon",
+                name: "FaCheck",
+              },
             },
           ],
         },
@@ -96,14 +104,17 @@ class Feature7 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Feature 3",
+              displayer: "Text",
               value: "Email & Live chat.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "iconFeature",
               displayer: "Icon",
-              value: "FaCheck",
+              value: {
+                type: "icon",
+                name: "FaCheck",
+              },
             },
           ],
         },
@@ -113,7 +124,7 @@ class Feature7 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "links",
-      displayer: "Links",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Want to learn more? Click here", "", "FaArrowRight", null, "Link")
       ],
@@ -125,8 +136,8 @@ class Feature7 extends BaseFeature {
   }
 
   render() {
-    const subtitleExist = this.castToString(this.getPropValue("title"));
-    const titleExist = this.castToString(this.getPropValue("mainTitle"))
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"))
     const descriptionExist = this.castToString(this.getPropValue("description"))
     const image = this.getPropValue("image");
 
@@ -140,32 +151,33 @@ class Feature7 extends BaseFeature {
       (this.getPropValue("links").length > 0) ||
       (this.getPropValue("features").length > 0);
 
+      const alignment = Base.getContentAlignment();
+      
     return (
       <Base.Container className={this.decorateCSS("container")} isFull={true}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
-            {!!image && (
+            {!!image?.url && (
               <Base.GridCell className={this.decorateCSS("image-container")}>
-                <img
-                  src={image}
+                <Base.Media
+                  value={image}
                   className={hasTextContent ? this.decorateCSS("image") : this.decorateCSS("image-no-border-radius")}
                 />
               </Base.GridCell>
             )}
             {hasTextContent && (
               <Base.GridCell
-                className={`${this.decorateCSS("text-container")} ${!image && this.decorateCSS("padding")}`}
-              >
+                className={this.decorateCSS("text-container")}>
                 {(subtitleExist || titleExist || descriptionExist) && (
-                  <Base.VerticalContent className={`${this.decorateCSS("title-wrapper")} ${image && this.decorateCSS("left")}`}>
+                  <Base.VerticalContent className={`${this.decorateCSS("title-wrapper")}`}>
                     {subtitleExist && (
-                      <Base.SectionSubTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
                       </Base.SectionSubTitle>
                     )}
                     {titleExist && (
-                      <Base.SectionTitle className={this.decorateCSS("mainTitle")}>
-                        {this.getPropValue("mainTitle")}
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
                     {descriptionExist && (
@@ -181,14 +193,12 @@ class Feature7 extends BaseFeature {
                           if (!titleExist && !item.iconFeature) return null;
 
                           return (
-                            <div key={index} className={this.decorateCSS("feature")}>
+                            <div key={index} className={`${this.decorateCSS("feature")} ${alignment === "center" ? this.decorateCSS("feature-center") : ""}`}>
                               {item.iconFeature && (
                                 <div className={this.decorateCSS("icon-wrapper")}>
-                                  <Base.Icon
-                                    name={item.iconFeature}
-                                    propsIcon={{
-                                      className: this.decorateCSS("iconFeature"),
-                                    }}
+                                  <Base.Media
+                                    value={item.iconFeature}
+                                    className={this.decorateCSS("iconFeature")}
                                   />
                                 </div>
                               )}
@@ -211,10 +221,10 @@ class Feature7 extends BaseFeature {
                             <div key={index} className={this.decorateCSS("linkContainer")}>
                               <ComposerLink path={item.url}>
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
-                                  {item.text}
+                                  <Base.P className={this.decorateCSS("linkText")}>{item.text}</Base.P>
                                   <Base.Icon
-                                    name={item.icon}
-                                    propsIcon={{ className: this.decorateCSS("iconLink") }}
+                                    value={item.icon}
+                                    className={this.decorateCSS("iconLink")}
                                   />
                                 </Base.Button>
                               </ComposerLink>

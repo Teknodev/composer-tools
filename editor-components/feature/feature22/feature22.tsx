@@ -6,7 +6,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface Item {
-  image: string;
+  image: { type: "image"; url: string };
   sectionHeading: string;
   description: string;
   button: INPUTS.CastedButton;
@@ -26,13 +26,13 @@ class Feature22 extends BaseFeature {
     this.addProp({
       type: "boolean",
       key: "showLine",
-      displayer: "Show Line Under Title",
+      displayer: "Line",
       value: true,  
     });
     this.addProp({
       type: "boolean",
       key: "showDividers",
-      displayer: "Show Dividers Between Items",
+      displayer: "Dividers",
       value: true,  
     });
     
@@ -54,16 +54,18 @@ class Feature22 extends BaseFeature {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image URL",
-              value:
-                "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo3.jpg",
+              displayer: "Image",
+              value: {
+                type: "image",
+                url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo3.jpg",
+              },
             },
             {
               type: "string",
               key: "sectionHeading",
-              displayer: "Section Heading",
+              displayer: "Title",
               value: "Strategy",
             },
             {
@@ -90,16 +92,18 @@ class Feature22 extends BaseFeature {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image URL",
-              value:
-                "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo2.jpg",
+              displayer: "Image",
+              value: {
+                type: "image",
+                url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo2.jpg",
+              },
             },
             {
               type: "string",
               key: "sectionHeading",
-              displayer: "Section Heading",
+              displayer: "Title",
               value: "Planning",
             },
             {
@@ -126,16 +130,18 @@ class Feature22 extends BaseFeature {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image URL",
-              value:
-                "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photobox.jpg",
+              displayer: "Image",
+              value: {
+                type: "image",
+                url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photobox.jpg",
+              },
             },
             {
               type: "string",
               key: "sectionHeading",
-              displayer: "Section Heading",
+              displayer: "Title",
               value: "Development",
             },
             {
@@ -158,6 +164,13 @@ class Feature22 extends BaseFeature {
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -170,7 +183,7 @@ class Feature22 extends BaseFeature {
     const items = this.castToObject<Item[]>("items") || [];
     const showLine = this.getPropValue("showLine") as boolean;
     const showDividers = this.getPropValue("showDividers") as boolean;
-
+    const overlay = this.getPropValue("overlay") as boolean;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -190,24 +203,24 @@ class Feature22 extends BaseFeature {
                 >
                   <div className={this.decorateCSS("image-container")}>
                     {item.image && (
-                      <img
-                        src={item.image}
-                        alt={item.sectionHeading}
+                      <Base.Media
+                        value={item.image}
                         className={this.decorateCSS("image")}
                       />
                     )}
+                    {overlay && item.image && <div className={this.decorateCSS("overlay")} />}
                   </div>
-                  <div className={this.decorateCSS("text")}>
-                    <h3 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</h3>
-                    <Base.SectionDescription className={this.decorateCSS("desc")}>{item.description}</Base.SectionDescription>
+                  <Base.VerticalContent className={this.decorateCSS("text")}>
+                    <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>
+                    <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>
                     {item.button && (
                       <ComposerLink path={item.button.url || '#'}>
                         <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                          {item.button.text}
+                          {item.button.text && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}
                         </Base.Button>
                       </ComposerLink>
                     )}
-                  </div>
+                  </Base.VerticalContent>
                 </div>
                 {showDividers && i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
               </React.Fragment>

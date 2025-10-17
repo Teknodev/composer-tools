@@ -7,7 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: React.JSX.Element;
-  image: string;
+  image: { type: "image"; url: string };
   overlay: boolean;
   link: string;
 };
@@ -48,11 +48,13 @@ class Feature6 extends BaseFeature {
           displayer: "card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668561f10181a1002c33af0e?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668561f10181a1002c33af0e?alt=media",
+              },
             },
             {
               type: "string",
@@ -63,7 +65,7 @@ class Feature6 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -74,11 +76,13 @@ class Feature6 extends BaseFeature {
           displayer: "card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562190181a1002c33af16?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562190181a1002c33af16?alt=media",
+              },
             },
             {
               type: "string",
@@ -89,7 +93,7 @@ class Feature6 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -100,11 +104,13 @@ class Feature6 extends BaseFeature {
           displayer: "card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562330181a1002c33af23?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562330181a1002c33af23?alt=media",
+              },
             },
             {
               type: "string",
@@ -115,7 +121,7 @@ class Feature6 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -125,7 +131,7 @@ class Feature6 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
       max: 4,
     });
@@ -179,7 +185,7 @@ class Feature6 extends BaseFeature {
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
-                  const imageExist = !!card.image;
+                  const imageExist = !!card.image?.url;
 
                   const shouldRender = (titleExist || imageExist);
 
@@ -192,10 +198,9 @@ class Feature6 extends BaseFeature {
                     >
                       <div className={this.decorateCSS("listed")}>
                         {!!card.image && (
-                          <img
+                          <Base.Media
+                            value={card.image}
                             className={this.decorateCSS("image")}
-                            src={card.image}
-                            alt={"item" + index}
                           />
                         )}
                         <div

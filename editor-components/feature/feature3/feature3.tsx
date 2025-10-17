@@ -6,13 +6,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Logo = {
-  image: string;
+  image: { type: "image"; url: string };
   url: string;
 };
 
 type Card = {
   title: React.JSX.Element;
-  icon: string;
+  icon: { type: "icon"; name: string };
 };
 
 class Feature3 extends BaseFeature {
@@ -57,10 +57,13 @@ class Feature3 extends BaseFeature {
               value: "Search Engine Optimization",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FcSearch",
+              value: {
+                type: "icon",
+                name: "FcSearch",
+              },
             },
           ]
         },
@@ -76,10 +79,13 @@ class Feature3 extends BaseFeature {
               value: "Marketing & Advertisement",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FcStatistics",
+              value: {
+                type: "icon",
+                name: "FcStatistics",
+              },
             },
           ]
         },
@@ -95,10 +101,13 @@ class Feature3 extends BaseFeature {
               value: "Reporting & Analysis",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "FcComboChart",
+              value: {
+                type: "icon",
+                name: "FcComboChart",
+              },
             },
           ]
         },
@@ -130,10 +139,13 @@ class Feature3 extends BaseFeature {
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Logo Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dd?alt=media&timestamp=1719344851686",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dd?alt=media&timestamp=1719344851686",
+              },
             },
           ]
         },
@@ -149,10 +161,13 @@ class Feature3 extends BaseFeature {
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Logo Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6da?alt=media&timestamp=1719344851686",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6da?alt=media&timestamp=1719344851686",
+              },
             },
           ]
         },
@@ -168,10 +183,13 @@ class Feature3 extends BaseFeature {
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Logo Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6d9?alt=media&timestamp=1719344851686",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6d9?alt=media&timestamp=1719344851686",
+              },
             },
           ]
         },
@@ -187,10 +205,13 @@ class Feature3 extends BaseFeature {
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Logo Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dc?alt=media&timestamp=1719344851686",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dc?alt=media&timestamp=1719344851686",
+              },
             },
           ]
         },
@@ -206,10 +227,13 @@ class Feature3 extends BaseFeature {
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Logo Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6db?alt=media&timestamp=1719344851686",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6db?alt=media&timestamp=1719344851686",
+              },
             },
           ]
         },
@@ -311,25 +335,25 @@ class Feature3 extends BaseFeature {
                   >
                     {cards.map((card: Card, index: number) => {
                       const titleExist = !!this.castToString(card.title);
-                      const iconExist = !!card.icon;
+                      const iconExist = !!card.icon?.name;
 
                       if (!titleExist && !iconExist) return null;
 
                       return (
                         <div key={index} className={this.decorateCSS("card")}>
-                          <div className={this.decorateCSS("card-content")}>
+                          <Base.VerticalContent className={this.decorateCSS("card-content")}>
                             {iconExist && (
-                              <Base.Icon
-                                name={card.icon}
-                                propsIcon={{ className: this.decorateCSS("card-icon") }}
+                              <Base.Media
+                                value={card.icon}
+                                className={this.decorateCSS("card-icon")}
                               />
                             )}
                             {titleExist && (
-                              <Base.H3 className={this.decorateCSS("card-title")}>
+                              <Base.H4 className={this.decorateCSS("card-title")}>
                                 {card.title}
-                              </Base.H3>
+                              </Base.H4>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         </div>
                       );
                     })}
@@ -348,12 +372,12 @@ class Feature3 extends BaseFeature {
                 `}
               >
                 {logos.map((logo: Logo, index: number) => {
-                  if (!logo.image) return null;
+                  if (!logo.image?.url) return null;
 
                   return (
                     <div key={index} className={this.decorateCSS("logo-container")}>
                       <ComposerLink path={logo.url}>
-                        <img className={this.decorateCSS("logo-image")} src={logo.image} alt={`logo ${index + 1}`} />
+                        <Base.Media value={logo.image} className={this.decorateCSS("logo-image")} />
                       </ComposerLink>
                     </div>
                   );

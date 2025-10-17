@@ -16,7 +16,7 @@ type Progress = {
 };
 
 type SliderImage = {
-  imageSource: string;
+  imageSource: { type: "image"; url: string };
   imageIndex: number;
 };
 
@@ -65,11 +65,13 @@ class Feature13 extends BaseFeature {
               value: 0,
             },
             {
-              type: "image",
+              type: "media",
               key: "imageSource",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media",
+              },
             },
           ],
         },
@@ -85,11 +87,13 @@ class Feature13 extends BaseFeature {
               value: 1,
             },
             {
-              type: "image",
+              type: "media",
               key: "imageSource",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media",
+              },
             },
           ],
         },
@@ -105,11 +109,13 @@ class Feature13 extends BaseFeature {
               value: 2,
             },
             {
-              type: "image",
+              type: "media",
               key: "imageSource",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media",
+              },
             },
           ],
         },
@@ -138,13 +144,13 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Tab Title",
+              displayer: "Title",
               value: "History",
             },
             {
               type: "string",
               key: "content",
-              displayer: "Tab Content",
+              displayer: "Content",
               value:
                 "Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill. SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower (now known as Willis Tower) in Chicago, which was the world's tallest building from 1973 to 1998. The company has also designed the John Hancock Center, One World Trade Center, and Burj Khalifa, which is currently the tallest building in the world. Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability.",
             },
@@ -158,13 +164,13 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Tab Title",
+              displayer: "Title",
               value: "Mission",
             },
             {
               type: "string",
               key: "content",
-              displayer: "Tab Content",
+              displayer: "Content",
               value:
                 "We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible. Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical.",
             },
@@ -178,13 +184,13 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Tab Title",
+              displayer: "Title",
               value: "Vision",
             },
             {
               type: "string",
               key: "content",
-              displayer: "Tab Content",
+              displayer: "Content",
               value:
                 "Ratings and reviews, A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the architecture firm's website or on third-party review sites such as Yelp or Google Reviews. It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service.",
             },
@@ -372,7 +378,7 @@ class Feature13 extends BaseFeature {
           <div className={this.decorateCSS("wrapper")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("header-title")}>
+                <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
@@ -390,18 +396,17 @@ class Feature13 extends BaseFeature {
                 <Base.GridCell className={this.decorateCSS("comp-slider")}>
                   {this.getComponentState("slider-images").map(
                     (image: SliderImage, index: number) => {
-                      if (!image.imageSource) return null;
+                      if (!image.imageSource?.url) return null;
                       return (
-                        <img
+                        <Base.Media
                           key={index}
+                          value={image.imageSource}
                           style={{
                             marginLeft: `calc(${image.imageIndex} * var(--composer-gap-md))`,
                             marginTop: `calc(${image.imageIndex} * var(--composer-gap-md))`,
                             zIndex: image.imageIndex + 1,
                           }}
                           className={this.decorateCSS("slider-item")}
-                          src={image.imageSource}
-                          alt={"Image"}
                         />
                       );
                     }

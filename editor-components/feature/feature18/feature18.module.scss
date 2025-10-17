@@ -37,11 +37,14 @@
                     padding-right: var(--composer-gap-lg);
                     padding-top: var(--composer-gap-sm);
                     padding-bottom: var(--composer-gap-sm);
-                    font-size: 1.2rem;
                     position: relative;
                     display: flex;
                     gap: var(--composer-gap-md);
                     transition: all 0.3s ease;
+
+                    .tab-icon {
+                        font-size: 1.5rem;
+                    }
 
                     .tab-text {
                         content: "";
@@ -119,16 +122,20 @@
                         display: flex;
                         flex-wrap: wrap;
                         .icon {
-                            width: 40px;
-                            height: 40px;
+                            font-size: 3rem;
                             color: var(--composer-primary-color);
                         }
     
                     }
 
-                    .title, .description, .button {
+                    .title, .description {
                         content: "";
                      }
+                     .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
                 }
             }
         }

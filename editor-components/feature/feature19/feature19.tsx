@@ -9,7 +9,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface ListItem {
   title: string;
   text: string;
-  icon: string;
+  icon: { type: "icon"; name: string };
 }
 class Feature19 extends BaseFeature {
   constructor(props?: any) {
@@ -40,6 +40,13 @@ class Feature19 extends BaseFeature {
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
     });
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
     this.addProp({
       type: "array",
       key: "items",
@@ -53,21 +60,24 @@ class Feature19 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "List Item Title",
+              displayer: "Title",
               value: "Smart & Creative",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Text",
+              displayer: "Description",
               value:
                 "Each member of our team has at least 5 years of experience in the industry.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaTwitter",
+              value: {
+                type: "icon",
+                name: "FaTwitter"
+              },
             },
           ],
         },
@@ -79,21 +89,24 @@ class Feature19 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "List Item Title",
+              displayer: "Title",
               value: "Distributed",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Text",
+              displayer: "Description",
               value:
                 "More than 2 500 private and corporate facilities were cleaned this year.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaFacebook",
+              value: {
+                type: "icon",
+                name: "FaFacebook"
+              },
             },
           ],
         },
@@ -109,6 +122,7 @@ class Feature19 extends BaseFeature {
         selectItems: ["animate1", "animate2"]
       }
     });
+
   }
   static getName(): string {
     return "Feature 19";
@@ -116,6 +130,7 @@ class Feature19 extends BaseFeature {
 
   render() {
     const subTitle = this.getPropValue("subtitle");
+    const overlay = this.getPropValue("overlay") as boolean;
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
@@ -163,12 +178,10 @@ class Feature19 extends BaseFeature {
                   {list.map((listItem: any, index: number) => (
                     <Base.VerticalContent className={this.decorateCSS("list-item-content")}>
                       <Base.Row className={this.decorateCSS("item-content-top")}>
-                        {listItem.icon && (
-                          <Base.Icon
-                            name={listItem.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
+                        {listItem.icon?.name && (
+                          <Base.Media
+                            value={listItem.icon}
+                            className={this.decorateCSS("icon")}
                           />
                         )}
                         {this.castToString(listItem.title) && (
@@ -203,12 +216,14 @@ class Feature19 extends BaseFeature {
             <div 
               className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              style={{ position: "relative" }}
             >
               <img
                 src={this.getPropValue("image")}
                 alt="blockPhoto"
                 className={this.decorateCSS("img")}
               />
+              {overlay && <div className={this.decorateCSS("overlay")} />}
             </div>
           )}
         </Base.MaxContent>

@@ -8,8 +8,8 @@ class Feature16 extends BaseFeature {
         super(props, styles);
         this.addProp({
             type: "string",
-            key: "heading",
-            displayer: "Heading",
+            key: "subtitle",
+            displayer: "Subtitle",
             value: "Our Features"
         });
         this.addProp({
@@ -31,10 +31,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "topLeftSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/crypto-icon.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/crypto-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -62,10 +65,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "bottomLeftSideImage",
                     displayer: "Left Side Bottom Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/mobile-2.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/mobile-2.png"
+                    }
                 },
                 {
                     type: "string",
@@ -93,10 +99,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "topRightSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/wallet-icon.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/wallet-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -124,10 +133,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "topRightSide2Image",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/protect-icon.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/protect-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -155,10 +167,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "middleRightSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/support-icon.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/support-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -186,10 +201,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "middleRightSide2Image",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/chart-icon.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/chart-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -217,10 +235,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "bottomRightSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/buy-icon.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/buy-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -248,10 +269,13 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "bottomRightSide2Image",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/real-time-icon.png"
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/real-time-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -286,25 +310,25 @@ class Feature16 extends BaseFeature {
         const className = `${this.decorateCSS("card")} ${isAlone ? this.decorateCSS("single-card") : ""}`;
 
         return (
-            <div className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                {cardData[`${prefix}Image`] && (
+            <Base.VerticalContent className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                {cardData[`${prefix}Image`]?.url && (
                     <div className={this.decorateCSS("card-image")}>
-                        <img src={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} alt="Content" />
+                        <Base.Media value={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} />
                     </div>
                 )}
                 <div className={this.decorateCSS("card-text-container")}>
                     {cardData[`${prefix}Title`] && (
-                        <div className={this.decorateCSS("card-title")}>
+                        <Base.H4 className={this.decorateCSS("card-title")}>
                             {cardData[`${prefix}Title`]}
-                        </div>
+                        </Base.H4>
                     )}
                     {cardData[`${prefix}Description`] && (
-                        <div className={this.decorateCSS("card-description")}>
+                        <Base.P className={this.decorateCSS("card-description")}>
                             {cardData[`${prefix}Description`]}
-                        </div>
+                        </Base.P>
                     )}
                 </div>
-            </div>
+            </Base.VerticalContent>
         );
     }
 
@@ -338,18 +362,13 @@ class Feature16 extends BaseFeature {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("header-container")}>
-                        <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                            {this.castToString(this.getPropValue("heading")) && (
-                                <div className={this.decorateCSS("heading")}>
-                                    {this.getPropValue("heading")}
-                                </div>
-                            )}
-                        </Base.SectionSubTitle>
+                        {this.castToString(this.getPropValue("subtitle")) &&
+                            <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                                {this.getPropValue("subtitle")}
+                            </Base.SectionSubTitle>}
                         {this.castToString(this.getPropValue("title")) && (
-                            <Base.SectionTitle className={this.decorateCSS("title-container")}>
-                                <div className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </div>
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {this.getPropValue("title")}
                             </Base.SectionTitle>
                         )}
                     </Base.VerticalContent>
@@ -366,19 +385,19 @@ class Feature16 extends BaseFeature {
                                         <div className={this.decorateCSS("bottom-left-side-card")}>
                                             <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
                                                 {bottomLeftSide.bottomLeftSideTitle && (
-                                                    <div className={this.decorateCSS("bottom-left-side-card-title")}>
+                                                    <Base.H4 className={this.decorateCSS("bottom-left-side-card-title")}>
                                                         {bottomLeftSide.bottomLeftSideTitle}
-                                                    </div>
+                                                    </Base.H4>
                                                 )}
                                                 {bottomLeftSide.bottomLeftSideDescription && (
-                                                    <div className={this.decorateCSS("bottom-left-side-card-description")}>
+                                                    <Base.P className={this.decorateCSS("bottom-left-side-card-description")}>
                                                         {bottomLeftSide.bottomLeftSideDescription}
-                                                    </div>
+                                                    </Base.P>
                                                 )}
                                             </div>
-                                            {bottomLeftSide.bottomLeftSideImage && (
+                                            {bottomLeftSide.bottomLeftSideImage?.url && (
                                                 <div className={this.decorateCSS("bottom-left-side-card-image-container")}>
-                                                    <img src={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} alt="Content" />
+                                                    <Base.Media value={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} />
                                                 </div>
                                             )}
                                         </div>

@@ -64,8 +64,6 @@
           
           .tabText {
             color: var(--composer-font-color-primary);
-            font-weight: 600;
-            font-size: 1rem;
             text-align: center;
           }
           
@@ -177,10 +175,6 @@
           .tab-button {
             padding: var(--composer-gap-xs) var(--composer-gap-sm);
             min-width: 80px;
-            
-            .tabText {
-              font-size: 1rem;
-            }
           }
         }
         

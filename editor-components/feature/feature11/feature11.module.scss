@@ -6,10 +6,14 @@
             gap: var(--composer-gap-xl);
             .left {
                 flex: 1;
-                .section-subtitle {content :"" }
-                .section-title {content :"" }
-                .section-description {content :"" }
-                .button {  content: "" }
+                .section-subtitle, .section-title, .section-description {
+                    content :"" 
+                }
+                .button { 
+                    .button-text {
+                        content: "";
+                    }
+                }
             }
 
             .right {
@@ -25,14 +29,19 @@
 
                     .card-content {
                         flex: 1;
+                        align-items: baseline;
                         .card-title {
                             color: var(--composer-font-color-primary);
-
+                            width: fit-content;
+                            margin: 0;
+                            text-align: left;
                         }
 
                         .card-description {
                             color: var(--composer-tertiary-color);
-
+                            width: fit-content;
+                            margin: 0;
+                            text-align: left;
                         }
                     }
                 }
@@ -50,15 +59,6 @@
                     .card-container {
                         .card-icon {
                             font-size: 3rem;
-                        }
-                        .card-content {
-                            .card-title {
-
-                            }
-    
-                            .card-description {
-
-                            }
                         }
                     }
                 }

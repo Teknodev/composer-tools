@@ -9,12 +9,12 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Card = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  icon: string;
+  icon: { type: "icon"; name: string };
 };
 
 type FirstItem = {
   title: React.JSX.Element;
-  backgroundImage: string;
+  backgroundImage: { type: "image"; url: string };
   overlay: boolean;
 };
 
@@ -23,8 +23,8 @@ class Feature12 extends BaseFeature {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "upperTitle",
-      displayer: "Upper Title",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Best Features",
     });
     this.addProp({
@@ -45,16 +45,18 @@ class Feature12 extends BaseFeature {
           value: "Best Of Our Features",
         },
         {
-          type: "image",
+          type: "media",
           key: "backgroundImage",
           displayer: "Background Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a356692f8a5b002ce695ac?alt=media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a356692f8a5b002ce695ac?alt=media",
+          },
         },
         {
           type: "boolean",
           key: "overlay",
-          displayer: "Blur Overlay",
+          displayer: "Overlay",
           value: true,
         },
       ],
@@ -71,6 +73,15 @@ class Feature12 extends BaseFeature {
           displayer: "Card",
           value: [
             {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "FiBook",
+              },
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -82,12 +93,6 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Consectetur adipiscing elit",
             },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FiBook",
-            },
           ],
         },
         {
@@ -95,6 +100,15 @@ class Feature12 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "IoPhonePortrait",
+              },
+            },
             {
               type: "string",
               key: "title",
@@ -107,12 +121,6 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Sed do eiusmod tempor incididunt.",
             },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "IoPhonePortrait",
-            },
           ],
         },
         {
@@ -120,6 +128,15 @@ class Feature12 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "HiPresentationChartLine",
+              },
+            },
             {
               type: "string",
               key: "title",
@@ -132,12 +149,6 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Uttt labore et dolore magna aliqua.",
             },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "HiPresentationChartLine",
-            },
           ],
         },
       ],
@@ -146,7 +157,7 @@ class Feature12 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 4,
       max: 4,
     });
@@ -157,12 +168,12 @@ class Feature12 extends BaseFeature {
   }
 
   render() {
-    const upperTitleExist = this.getPropValue("upperTitle", {
+    const subtitleExist = this.getPropValue("subtitle", {
       as_string: true,
     });
     const titleExist = this.getPropValue("title", { as_string: true });
 
-    const upperTitle = this.getPropValue("upperTitle");
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
 
     const itemCount = this.getPropValue("itemCount");
@@ -172,7 +183,7 @@ class Feature12 extends BaseFeature {
 
     const firstCardTitleExist = this.castToString(firstItem.title);
 
-    const firstItemBackgroundImage = firstItem.backgroundImage;
+    const firstItemBackgroundImage = firstItem.backgroundImage?.url;
     const firstItemOverlay = firstItem.overlay;
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
@@ -181,19 +192,19 @@ class Feature12 extends BaseFeature {
 
     const renderFirstItem =
       firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
-    const renderHeader = upperTitleExist || titleExist;
+    const renderHeader = subtitleExist || titleExist;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {renderHeader && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {upperTitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("upper-title")}>
-                  {upperTitle}
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
                 </Base.SectionSubTitle>
               )}
               {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("header-title")}>{title}</Base.SectionTitle>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
               )}
             </Base.VerticalContent>
           )}
@@ -210,14 +221,14 @@ class Feature12 extends BaseFeature {
                 }}
               >
                 {firstCardTitleExist && (
-                  <Base.H3 className={this.decorateCSS("title")}>
+                  <Base.H3 className={this.decorateCSS("first-card-title")}>
                     {firstItem.title}
                   </Base.H3>
                 )}
                 {buttonTextExist && (
                   <ComposerLink path={button.url}>
                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      {button.text}
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -251,19 +262,19 @@ class Feature12 extends BaseFeature {
                         <div className={this.decorateCSS("message")}>
                           {card.icon && (
                             <div className={this.decorateCSS("icon-container")}>
-                              <Base.Icon
-                                name={card.icon}
-                                propsIcon={{ className: this.decorateCSS("icon") }}
+                              <Base.Media
+                                value={card.icon}
+                                className={this.decorateCSS("icon")}
                               />
                             </div>
                           )}
                           {titleExist && (
-                            <Base.H3 className={this.decorateCSS("title")}>
+                            <Base.H3 className={this.decorateCSS("card-title")}>
                               {card.title}
                             </Base.H3>
                           )}
                           {descExist && (
-                            <Base.P className={this.decorateCSS("long-text")}>
+                            <Base.P className={this.decorateCSS("card-description")}>
                               {card.description}
                             </Base.P>
                           )}

@@ -196,9 +196,9 @@ class Feature24 extends BaseFeature{
                                                     onClick={() => this.setActiveTab(index)}
                                                 >
                                                     {isTabTextVisible && (
-                                                        <div className={this.decorateCSS("tabText")}>
+                                                        <Base.P className={this.decorateCSS("tabText")}>
                                                             {tab.tabText}
-                                                        </div>
+                                                        </Base.P>
                                                     )}
                                                 </div>
                                             )

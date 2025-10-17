@@ -10,16 +10,12 @@
   }
 }
 .container {
-  background-color: var(--composer-html-background);
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-md);
     .header {
-      .upper-title {
-        content: "";
-      }
-      .header-title {
+      .subtitle, .title {
         content: "";
       }
     }
@@ -41,15 +37,16 @@
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         gap: var(--composer-gap-md);
 
-        .title {
-
+        .first-card-title {
           color: var(--composer-font-color-primary);
           text-align: center;
           margin: 0px;
         }
 
         .button {
-          content: "";
+          .button-text {
+            content: "";
+          }
         }
       }
       .card-item-count {
@@ -74,22 +71,13 @@
           .icon-container{
             .icon {
               color: var(--composer-primary-color);
-              width: var(--composer-gap-xl);
-              height: var(--composer-gap-xl);
+              font-size: 3rem;
             }
           }
-          .title,
-          .long-text {
+          .card-title,
+          .card-description {
             color: var(--composer-font-color-primary);
             text-align: center;
-          }
-      
-          .title {
-
-          }
-      
-          .long-text {
-
           }
         }
       }

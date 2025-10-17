@@ -10,18 +10,8 @@
       display: flex;
       flex-direction: column;
       margin-bottom: 1rem;
-      .sub-title {
-        margin-top: 0;
-      }
-      .heading {
-        font-size: 1rem;
-      }
-      .title-container {
-        margin-bottom: 3rem;
-        margin-top: 0;
-        .title {
-          font-size: 3rem;
-        }
+      .subtitle, .title {
+        content: "";
       }
     }
 
@@ -30,10 +20,7 @@
       gap: var(--composer-gap-md);
 
       .card {
-        display: flex;
         justify-content: space-between;
-        width: 100%;
-        flex-direction: column;
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
@@ -65,11 +52,9 @@
           color: var(--composer-font-color-primary);
           .card-title {
             color: var(--composer-font-color-primary);
-            font-size: 2rem;
           }
           .card-description {
             color: var(--composer-tertiary-color);
-            font-size: 1rem;
           }
         }
       }
@@ -121,12 +106,10 @@
               flex-direction: column;
               gap: var(--composer-gap-md);
               .bottom-left-side-card-title {
-                font-size: 2rem;
                 color: var(--composer-font-color-secondary);
               }
               .bottom-left-side-card-description {
                 color: var(--composer-font-color-secondary);
-                font-size: 1rem;
               }
             }
           }

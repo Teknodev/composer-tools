@@ -6,13 +6,13 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
-  image: string;
+  image: { type: "image"; url: string };
   mini: boolean;
   date: React.JSX.Element;
   readTime: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
-  profileImage: string;
+  profileImage: { type: "image"; url: string };
   fullname: React.JSX.Element;
   profileDescription: React.JSX.Element;
   url: string;
@@ -25,7 +25,7 @@ class Feature1 extends BaseFeature {
     this.addProp({
       type: "string",
       key: "leftSideText",
-      displayer: "Left Side Text",
+      displayer: "Title",
       value: "Featured Posts",
     });
 
@@ -39,29 +39,38 @@ class Feature1 extends BaseFeature {
     this.addProp({
       type: "page",
       key: "url",
-      displayer: "Right Side Text Url",
+      displayer: "Navigate To",
       value: "",
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightSideIcon",
-      displayer: "Right Side Icon",
-      value: "MdArrowOutward",
+      displayer: "Icon",
+      value: {
+        type: "icon",
+        name: "MdArrowOutward",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "dateIcon",
       displayer: "Date Icon",
-      value: "CiCalendarDate",
+      value: {
+        type: "icon",
+        name: "CiCalendarDate",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "timeIcon",
       displayer: "Time Icon",
-      value: "CiClock2",
+      value: {
+        type: "icon",
+        name: "CiClock2",
+      },
     });
 
     this.addProp({
@@ -81,11 +90,13 @@ class Feature1 extends BaseFeature {
               value: false,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b1?alt=media&timestamp=1719327900554",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b1?alt=media&timestamp=1719327900554",
+              },
             },
             {
               type: "string",
@@ -112,11 +123,13 @@ class Feature1 extends BaseFeature {
               value: "Without even reducing the 40-hour work week. Time is money, right?",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
               displayer: "Profile Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b2?alt=media&timestamp=1719327900554",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b2?alt=media&timestamp=1719327900554",
+              },
             },
             {
               type: "string",
@@ -150,11 +163,13 @@ class Feature1 extends BaseFeature {
               value: true,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b0?alt=media&timestamp=1719327900554",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b0?alt=media&timestamp=1719327900554",
+              },
             },
             {
               type: "string",
@@ -182,11 +197,13 @@ class Feature1 extends BaseFeature {
                 "While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel — the tech billionaire and rumored vampire — says Silicon Valley big brains have lost enthusiasm for AGI.",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
               displayer: "Profile Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b3?alt=media&timestamp=1719327900554",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b3?alt=media&timestamp=1719327900554",
+              },
             },
             {
               type: "string",
@@ -220,10 +237,13 @@ class Feature1 extends BaseFeature {
               value: true,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
+              },
             },
             {
               type: "string",
@@ -251,10 +271,13 @@ class Feature1 extends BaseFeature {
                 "Working in cybersecurity means you’re constantly playing a game of catch-up. Every day you learn something new, but your work is also never finished.",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
               displayer: "Profile Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
+              },
             },
             {
               type: "string",
@@ -288,10 +311,13 @@ class Feature1 extends BaseFeature {
               value: false,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
+              },
             },
             {
               type: "string",
@@ -319,10 +345,13 @@ class Feature1 extends BaseFeature {
                 "Here is a fun fact to stick in the back of your mind for trivia night or to use as an interesting ice breaker: the Amazon River has no bridges. None. Zero. Zilch. That is in spite of the fact that the Amazon is 4,345 miles long.",
             },
             {
-              type: "image",
+              type: "media",
               key: "profileImage",
               displayer: "Profile Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
+              },
             },
             {
               type: "string",
@@ -431,10 +460,9 @@ class Feature1 extends BaseFeature {
         >
           {data.image &&
             <div className={this.decorateCSS("image-container")}>
-              <img
+              <Base.Media
+                value={data.image}
                 className={this.decorateCSS("image")}
-                src={data.image}
-                alt={title}
               />
             </div>
           }
@@ -444,11 +472,9 @@ class Feature1 extends BaseFeature {
                 {(dateExist) && (
                   <div className={this.decorateCSS("date")}>
                     {dateIcon &&
-                      <Base.Icon
-                        name={dateIcon}
-                        propsIcon={{
-                          className: this.decorateCSS("date-icon"),
-                        }}
+                      <Base.Media
+                        value={dateIcon}
+                        className={this.decorateCSS("date-icon")}
                       />
                     }
                     {dateExist &&
@@ -459,11 +485,9 @@ class Feature1 extends BaseFeature {
                 {(readTimeExist) && (
                   <div className={this.decorateCSS("time")}>
                     {timeIcon &&
-                      <Base.Icon
-                        name={timeIcon}
-                        propsIcon={{
-                          className: this.decorateCSS("time-icon"),
-                        }}
+                      <Base.Media
+                        value={timeIcon}
+                        className={this.decorateCSS("time-icon")}
                       />
                     }
                     {readTimeExist &&
@@ -494,10 +518,9 @@ class Feature1 extends BaseFeature {
             {(data.profileImage || description || fullNameExist) && (
               <div className={this.decorateCSS("user-info")}>
                 {data.profileImage && (
-                  <img
+                  <Base.Media
+                    value={data.profileImage}
                     className={this.decorateCSS("profile-image")}
-                    src={data.profileImage}
-                    alt={this.castToString(data.fullname)}
                   />
                 )}
 
@@ -534,7 +557,7 @@ class Feature1 extends BaseFeature {
           this.castToString(cards[i].readTime) ||
           this.castToString(cards[i].fullname) ||
           this.castToString(cards[i].profileDescription) ||
-          cards[i].image
+          cards[i].image?.url
         )) {
           continue;
         }
@@ -597,9 +620,9 @@ class Feature1 extends BaseFeature {
                           this.getPropValue("rightSideText")
                         )}
                         {!!rightSideIcon && (
-                          <Base.Icon
-                            name={rightSideIcon}
-                            propsIcon={{ className: this.decorateCSS("right-side-icon") }}
+                          <Base.Media
+                            value={rightSideIcon}
+                            className={this.decorateCSS("right-side-icon")}
                           />
                         )}
                       </Base.H4>

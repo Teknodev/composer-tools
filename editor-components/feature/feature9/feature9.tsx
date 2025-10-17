@@ -8,7 +8,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  icon: string;
+  icon: { type: "icon"; name: string };
   title: React.JSX.Element;
   description: React.JSX.Element;
   num: React.JSX.Element;
@@ -46,10 +46,13 @@ class Feature9 extends BaseFeature {
               value: "1"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaRegLightbulb"
+              value: {
+                type: "icon",
+                name: "FaRegLightbulb"
+              }
             },
             {
               type: "string",
@@ -77,10 +80,13 @@ class Feature9 extends BaseFeature {
               value: "2"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaRegMessage"
+              value: {
+                type: "icon",
+                name: "FaRegMessage"
+              }
             },
             {
               type: "string",
@@ -108,10 +114,13 @@ class Feature9 extends BaseFeature {
               value: "3"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiLayers"
+              value: {
+                type: "icon",
+                name: "FiLayers"
+              }
             },
             {
               type: "string",
@@ -139,10 +148,13 @@ class Feature9 extends BaseFeature {
               value: "4"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaRegLightbulb"
+              value: {
+                type: "icon",
+                name: "FaRegLightbulb"
+              }
             },
             {
               type: "string",
@@ -170,10 +182,13 @@ class Feature9 extends BaseFeature {
               value: "5"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "BsCodeSquare"
+              value: {
+                type: "icon",
+                name: "BsCodeSquare"
+              }
             },
             {
               type: "string",
@@ -272,12 +287,9 @@ class Feature9 extends BaseFeature {
                           <div className={this.decorateCSS("card-header")}>
                             {card.icon &&
                               <div className={this.decorateCSS("icon-container")}>
-                                <Base.Icon
-                                  name={card.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                    size: "40px"
-                                  }}
+                                <Base.Media
+                                  value={card.icon}
+                                  className={this.decorateCSS("icon")}
                                 />
                               </div>
                             }

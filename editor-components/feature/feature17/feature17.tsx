@@ -10,7 +10,7 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
-  image: string;
+  image: { type: "image"; url: string };
 };
 
 class Feature17 extends BaseFeature {
@@ -19,15 +19,15 @@ class Feature17 extends BaseFeature {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Use Case",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "title",
+      displayer: "Title",
       value: "Use Case",
     });
 
@@ -47,20 +47,22 @@ class Feature17 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Image of Card",
+              displayer: "Tab Title",
               value: "AI Sales Enablement",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
+              displayer: "Image",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
+              },
             },
             {
               type: "string",
@@ -83,20 +85,22 @@ class Feature17 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Image of Card",
+              displayer: "Tab Title",
               value: "AI Sales Enablement",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
+              displayer: "Image",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
+              },
             },
             {
               type: "string",
@@ -127,6 +131,13 @@ class Feature17 extends BaseFeature {
         selectItems: ["animate1", "animate2"]
       }
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
     
     this.setActiveTab(0);
   }
@@ -143,6 +154,7 @@ class Feature17 extends BaseFeature {
   }
   render() {
     const subTitle = this.getPropValue("subtitle");
+    const overlay = this.getPropValue("overlay");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
@@ -182,7 +194,7 @@ class Feature17 extends BaseFeature {
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: ITabs, index: number) => (
-                  <div
+                  <Base.P
                     className={
                       `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
                         ? this.decorateCSS("active")
@@ -192,7 +204,7 @@ class Feature17 extends BaseFeature {
                     onClick={() => this.setActiveTab(index)}
                   >
                     {tab.tabText}
-                  </div>
+                  </Base.P>
                 )
               )}
             </div>
@@ -226,7 +238,9 @@ class Feature17 extends BaseFeature {
                         {this.castToString(tab.button.text) && (
                           <ComposerLink path={tab.button.url}>
                             <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
-                              {tab.button.text}
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {tab.button.text}
+                              </Base.P>
                             </Base.Button>
                           </ComposerLink>
                         )}
@@ -234,13 +248,14 @@ class Feature17 extends BaseFeature {
                       </Base.VerticalContent>
                     )}
 
-                  {tab.image && (
-                    <div className={this.decorateCSS("image-container")}>
-                      <img
+                  {tab.image?.url && (
+                    <div className={this.decorateCSS("image-container")} style={{ position: "relative" }}>
+                      <Base.Media
+                        value={tab.image}
                         className={this.decorateCSS("image")}
-                        src={tab.image}
                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
                       />
+                      {overlay && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
                 </Base.ContainerGrid>

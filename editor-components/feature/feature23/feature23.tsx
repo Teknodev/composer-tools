@@ -303,14 +303,14 @@ class Feature23 extends BaseFeature{
                                         <div className={this.decorateCSS("text-content")}>
                                             {<div className={this.decorateCSS("left-side")}>
                                                 {cardTitleExist && (
-                                                    <h3 className={this.decorateCSS("card-title")}>
+                                                    <Base.H4 className={this.decorateCSS("card-title")}>
                                                         {cardTitle}
-                                                    </h3>
+                                                    </Base.H4>
                                                 )}
                                                 {cardDescriptionExist && (
-                                                    <p className={this.decorateCSS("card-description")}>
+                                                    <Base.P className={this.decorateCSS("card-description")}>
                                                         {cardDescription}
-                                                    </p>
+                                                    </Base.P>
                                                 )}
                                             </div>}
                                             {buttonExist && <div className={this.decorateCSS("right-side")}>
@@ -320,9 +320,10 @@ class Feature23 extends BaseFeature{
                                                             buttonType={button.type || "Tertiary"}
                                                             className={this.decorateCSS("card-button")}
                                                         >
-                                                           {buttonTextExist && <span className={this.decorateCSS("button-text")}>
+                                                           {buttonTextExist && 
+                                                            <Base.P className={this.decorateCSS("button-text")}>
                                                                 {button.text}
-                                                            </span>}
+                                                            </Base.P>}
                                                             {button.icon && (
                                                                 <Base.Icon
                                                                     name={button.icon}

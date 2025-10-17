@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  icon: React.JSX.Element,
+  icon: { type: "icon"; name: string },
   title: string,
   description: string,
 };
@@ -46,10 +46,13 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "IoPricetagsOutline",
+              value: {
+                type: "icon",
+                name: "IoPricetagsOutline"
+              },
             },
             {
               type: "string",
@@ -71,10 +74,13 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "MdSupportAgent",
+              value: {
+                type: "icon",
+                name: "MdSupportAgent"
+              },
             },
             {
               type: "string",
@@ -96,10 +102,13 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "CiStar",
+              value: {
+                type: "icon",
+                name: "CiStar"
+              },
             },
             {
               type: "string",
@@ -121,10 +130,13 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "GrUserManager",
+              value: {
+                type: "icon",
+                name: "GrUserManager"
+              },
             },
             {
               type: "string",
@@ -145,7 +157,7 @@ class Feature14 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 4,
     });
   }
@@ -178,8 +190,8 @@ class Feature14 extends BaseFeature {
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {button.text}
-                          <Base.Icon name={button.icon} />
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          <Base.Media value={button.icon} />
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -201,8 +213,8 @@ class Feature14 extends BaseFeature {
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {button.text}
-                          <Base.Icon name={button.icon} />
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          <Base.Media value={button.icon} />
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -216,10 +228,10 @@ class Feature14 extends BaseFeature {
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount") }}>
               {cardItems.map((item: any, index: number) => {
                 return (
-                  <div className={this.decorateCSS("card")}>
+                  <Base.VerticalContent className={this.decorateCSS("card")}>
                     {item.icon && (
                       <div className={this.decorateCSS("icon-box")}>
-                        <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                       </div>
                     )}
 
@@ -231,7 +243,7 @@ class Feature14 extends BaseFeature {
                         <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
                       )}
                     </div>
-                  </div>
+                  </Base.VerticalContent>
                 );
               })}
             </Base.ListGrid>

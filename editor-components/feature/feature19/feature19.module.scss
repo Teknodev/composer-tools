@@ -1,5 +1,15 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--composer-overlay-color);
+  pointer-events: none;
+}
+
 .container {
     .max-content {
         display: flex;
@@ -31,7 +41,6 @@
                     transition: transform 1s;
                 }
 
-                &::before,
                 &::after {
                     content: '';
                     position: absolute;
@@ -39,31 +48,18 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    transition: opacity 0.9s;
-                }
-
-                &::before {
-                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-                    z-index: 1;
-                    opacity: 1;
-                }
-
-                &::after {
                     background: linear-gradient(
                         rgba(var(--composer-primary-color-rgb), 0.7),
                         rgba(0, 0, 0, 0.7)
                     );
                     z-index: 2;
                     opacity: 0;
+                    transition: opacity 0.9s;
                 }
 
                 &:hover {
                     .img {
                         transform: scale(1.2);
-                    }
-
-                    &::before {
-                        opacity: 0;
                     }
 
                     &::after {

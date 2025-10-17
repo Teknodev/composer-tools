@@ -4,7 +4,7 @@ import styles from "./feature15.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 interface Card {
-    icon: string;
+    icon: { type: "icon"; name: string };
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
     description: React.JSX.Element;
@@ -23,23 +23,36 @@ class Feature15 extends BaseFeature {
 
         this.addProp({
             type: "image",
-            displayer: "Cover image of video",
+            displayer: "Cover Image",
             key: "cover_image",
             value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9b7bd2970002c6286c7?alt=media&timestamp=1719561551671",
         });
 
         this.addProp({
-            type: "icon",
-            displayer: "Icon of play button",
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: true,
+        });
+
+        this.addProp({
+            type: "media",
+            displayer: "Play Icon",
             key: "play_icon",
-            value: "FaPlay",
+            value: {
+                type: "icon",
+                name: "FaPlay"
+            },
         });
         this.addProp({
-            type: "icon",
+            type: "media",
             key: "closeIcon",
-            displayer: "Close Button Icon",
-            value: "RxCross2",
+            displayer: "Close Icon",
+            value: {
+                type: "icon",
+                name: "RxCross2"
+            },
         });
         this.addProp({
             type: "array",
@@ -52,10 +65,13 @@ class Feature15 extends BaseFeature {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "Bs1CircleFill",
+                            value: {
+                                type: "icon",
+                                name: "Bs1CircleFill"
+                            },
                         },
                         {
                             type: "string",
@@ -84,10 +100,13 @@ class Feature15 extends BaseFeature {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "Bs2CircleFill",
+                            value: {
+                                type: "icon",
+                                name: "Bs2CircleFill"
+                            },
                         },
                         {
                             type: "string",
@@ -116,10 +135,13 @@ class Feature15 extends BaseFeature {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "Bs3CircleFill",
+                            value: {
+                                type: "icon",
+                                name: "Bs3CircleFill"
+                            },
                         },
                         {
                             type: "string",
@@ -148,10 +170,13 @@ class Feature15 extends BaseFeature {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "Bs4CircleFill",
+                            value: {
+                                type: "icon",
+                                name: "Bs4CircleFill"
+                            },
                         },
                         {
                             type: "string",
@@ -186,6 +211,7 @@ class Feature15 extends BaseFeature {
 
     render() {
         const closeIcon: string = this.getPropValue("closeIcon");
+        const overlay = this.getPropValue("overlay");
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -198,9 +224,9 @@ class Feature15 extends BaseFeature {
                                 <div key={index} className={this.decorateCSS("card")}>
                                     {card.icon && (
                                         <div className={this.decorateCSS("icon-box")}>
-                                            <Base.Icon
-                                                name={card.icon}
-                                                propsIcon={{ className: this.decorateCSS("icon") }}
+                                            <Base.Media
+                                                value={card.icon}
+                                                className={this.decorateCSS("icon")}
                                             />
                                         </div>
                                     )}
@@ -232,6 +258,7 @@ class Feature15 extends BaseFeature {
                                 src={this.getPropValue("cover_image")}
                                 alt="Cover image"
                             />
+                            {overlay && <div className={this.decorateCSS("overlay")} />}
 
                             {this.getPropValue("video") && this.getPropValue("play_icon") && (
                                 <div
@@ -240,9 +267,9 @@ class Feature15 extends BaseFeature {
                                         this.setComponentState("is_video_visible", true);
                                     }}
                                 >
-                                    <Base.Icon
-                                        name={this.getPropValue("play_icon")}
-                                        propsIcon={{ className: this.decorateCSS("play-icon") }}
+                                    <Base.Media
+                                        value={this.getPropValue("play_icon")}
+                                        className={this.decorateCSS("play-icon")}
                                     />
                                 </div>
                             )}
@@ -274,11 +301,9 @@ class Feature15 extends BaseFeature {
                                     className={this.decorateCSS("close-icon-box")}
                                     onClick={() => this.setComponentState("is_video_visible", false)}
                                 >
-                                    <Base.Icon
-                                        propsIcon={{
-                                            className: this.decorateCSS("close-icon"),
-                                        }}
-                                        name={closeIcon}
+                                    <Base.Media
+                                        value={closeIcon}
+                                        className={this.decorateCSS("close-icon")}
                                     />
                                 </div>
                             )}

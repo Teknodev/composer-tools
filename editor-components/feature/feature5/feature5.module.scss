@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background: var(--composer-html-background);
-
   .max-content {
     .section-title {
       margin-top: 0;
@@ -42,6 +40,7 @@
         color: var(--composer-font-color-primary);
         min-height: 300px;
         align-items: center;
+        text-align: left;
 
         &.row1-title-only {
           width: 100%;
@@ -289,10 +288,11 @@
           display: flex;
           flex: 1;
           min-height: 300px;
+          padding: var(--composer-gap-sm);
         }
 
         .second .text {
-
+          padding: 0 var(--composer-gap-sm);
         }
 
         .first {
@@ -412,7 +412,7 @@
 
         .first {
           min-height: auto;
-          margin: var(--composer-gap-lg) 0;
+          margin: var(--composer-gap-md) 0;
 
           .first-items-wrapper {
             gap: var(--composer-gap-sm);

@@ -13,7 +13,7 @@ type LeftContent = {
 };
 
 type Card = {
-  icon: string;
+  icon: { type: "icon"; name: string };
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -60,10 +60,13 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "GrDrag"
+              value: {
+                type: "icon",
+                name: "GrDrag"
+              }
             },
             {
               type: "string",
@@ -85,10 +88,13 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "CgDisplayFlex"
+              value: {
+                type: "icon",
+                name: "CgDisplayFlex"
+              }
             },
             {
               type: "string",
@@ -110,10 +116,13 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoColorFilterSharp"
+              value: {
+                type: "icon",
+                name: "IoColorFilterSharp"
+              }
             },
             {
               type: "string",
@@ -135,10 +144,13 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaBox"
+              value: {
+                type: "icon",
+                name: "FaBox"
+              }
             },
             {
               type: "string",
@@ -160,10 +172,13 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaFileArchive"
+              value: {
+                type: "icon",
+                name: "FaFileArchive"
+              }
             },
             {
               type: "string",
@@ -185,10 +200,13 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "LuReplaceAll"
+              value: {
+                type: "icon",
+                name: "LuReplaceAll"
+              }
             },
             {
               type: "string",
@@ -252,7 +270,7 @@ class Feature11 extends BaseFeature {
                   {this.castToString(button.text) && (
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   )}
@@ -275,7 +293,7 @@ class Feature11 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
-                      {card.icon && <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("card-icon") }} />}
+                      {card.icon && <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {titleExist && (
                           <Base.H3 className={this.decorateCSS("card-title")}>
