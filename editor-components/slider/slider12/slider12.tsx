@@ -520,7 +520,6 @@ class Slider12 extends BaseSlider {
 
     const SafeWrap = this.SafeWrap;
 
-    // ESKİDEKİ: if (itemCount === 0) return null;  ← SİL
     return (
       <div ref={this.containerRef}>
         <Base.Container
@@ -664,9 +663,6 @@ class Slider12 extends BaseSlider {
                 </div>
               </>
             )}
-
-            {/* İstersen tüm slaytlar silinince küçük bir boş durum gösterebilirsin:
-          {!showSlider && <div className={this.decorateCSS("empty")}>No slides yet</div>} */}
           </Base.MaxContent>
         </Base.Container>
       </div>
