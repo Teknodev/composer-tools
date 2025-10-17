@@ -14,6 +14,8 @@ type Images = {
 type ShareSection = {
   title: React.JSX.Element;
   shareIcon: { type: "icon"; name: string };
+  socials: Socials[];
+  shareCopyLink: ShareCopyLink;
 };
 
 type SizeSections = {
@@ -38,9 +40,11 @@ type DeliveryType = {
   isRadioButtonActive: boolean;
 };
 type Socials = {
-  icon: { type: "icon"; name: string };
-  text: React.JSX.Element;
-  link: string;
+  value: {
+    icon: { type: "icon"; name: string };
+    text: React.JSX.Element;
+    link: string;
+  };
 };
 
 type ShareCopyLink = {
@@ -229,18 +233,18 @@ class ECommerce7 extends BaseECommerce {
     this.addProp({
       type: "object",
       key: "share",
-      displayer: "Share",
+      displayer: "Share Menu",
       value: [
         {
           type: "string",
           key: "title",
-          displayer: "Title",
+          displayer: "Menu Title",
           value: "Share",
         },
         {
           type: "media",
           key: "shareIcon",
-          displayer: "Share Icon",
+          displayer: "Menu Icon",
           additionalParams: {
             availableTypes: ["icon"],
           },
@@ -249,18 +253,29 @@ class ECommerce7 extends BaseECommerce {
             name: "CiShare2",
           },
         },
-      ],
-    });
-    this.addProp({
-      type: "array",
-      key: "socials",
-      displayer: "Socials",
-      value: [
         {
           type: "object",
-          key: "social",
-          displayer: "Social",
+          key: "shareCopyLink",
+          displayer: "Copy Section",
           value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Copy Link",
+            },
+            {
+              type: "string",
+              key: "copiedText",
+              displayer: "Copied Text",
+              value: "Copied!",
+            },
+            {
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active",
+              value: true,
+            },
             {
               type: "media",
               key: "icon",
@@ -270,121 +285,110 @@ class ECommerce7 extends BaseECommerce {
               },
               value: {
                 type: "icon",
-                name: "MdOutlineFacebook",
+                name: "MdContentCopy",
               },
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Facebook",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
             },
           ],
         },
         {
-          type: "object",
-          key: "socailIcon",
-          displayer: "Socail Icon",
+          type: "array",
+          key: "socials",
+          displayer: "Options",
           value: [
             {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
+              type: "object",
+              key: "social",
+              displayer: "Option",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  displayer: "Option Icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "MdOutlineFacebook",
+                  },
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Option Label",
+                  value: "Facebook",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "social",
+              displayer: "Option",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  displayer: "Option Icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
               value: {
                 type: "icon",
                 name: "FaXTwitter",
               },
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Option Label",
+                  value: "Twitter",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Twitter",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "socailIcon",
-          displayer: "Socail Icon",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
+              type: "object",
+              key: "social",
+              displayer: "Option",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  displayer: "Option Icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
               value: {
                 type: "icon",
                 name: "FaPinterest",
               },
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Pinterest",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Option Label",
+                  value: "Pinterest",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
             },
           ],
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "shareCopyLink",
-      displayer: "Share Copy Link",
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "Copy Link",
-        },
-        {
-          type: "string",
-          key: "copiedText",
-          displayer: "Copied Text",
-          value: "Copied!",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "AiOutlinePaperClip",
-          },
-        },
-        {
-          type: "boolean",
-          key: "isActive",
-          displayer: "Is Active",
-          value: true,
         },
       ],
     });
@@ -605,12 +609,12 @@ class ECommerce7 extends BaseECommerce {
     this.addProp({
       type: "array",
       key: "itemDetails",
-      displayer: "Item Details",
+      displayer: "Accordion",
       value: [
         {
           type: "object",
           key: "itemDetail",
-          displayer: "Item Detail",
+          displayer: "Section",
           value: [
             {
               type: "string",
@@ -630,7 +634,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "itemDetail",
-          displayer: "Item Detail",
+          displayer: "Section",
           value: [
             {
               type: "string",
@@ -650,7 +654,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "itemDetail",
-          displayer: "Item Detail",
+          displayer: "Section",
           value: [
             {
               type: "string",
@@ -823,7 +827,8 @@ class ECommerce7 extends BaseECommerce {
     const itemDetails = this.castToObject<ItemDetails[]>("itemDetails");
     const images = this.castToObject<Images[]>("images");
     const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
-    const socials = this.castToObject<Socials[]>("socials");
+    const socials = shareSection?.socials;
+    const shareCopyLink = shareSection?.shareCopyLink;
     const sliderRef = this.getComponentState("slider-ref");
     const currencySymbol = getCurrencyInfo(
       sizeSections[this.getComponentState("selectedSizeSection")]?.cost
@@ -832,7 +837,6 @@ class ECommerce7 extends BaseECommerce {
     const currencyValue =
       sizeSections[this.getComponentState("selectedSizeSection")]?.cost
         ?.value || "";
-    const shareCopyLink = this.castToObject<ShareCopyLink>("shareCopyLink");
     const isTitle = this.castToString(this.getPropValue("title"));
     const isShareIcon = shareSection.shareIcon;
     const isSahreTitle = this.castToString(shareSection.title);
@@ -1100,30 +1104,32 @@ class ECommerce7 extends BaseECommerce {
                                 <div className={this.decorateCSS("socials")}>
                                   {socials.map(
                                     (item: Socials, index: number) => {
+                                      const icon = this.getPropValue("icon", { parent_object: item.value });
+                                      const text = this.getPropValue("text", { parent_object: item.value });
+                                      const link = this.getPropValue("link", { parent_object: item.value });
                                       return (
                                         <>
-                                          {(item.icon ||
-                                            this.castToString(item.text)) && (
+                                          {(icon || this.castToString(text)) && (
                                             <div
                                               className={this.decorateCSS(
                                                 "social"
                                               )}
                                               key={index}
                                             >
-                                              {item.icon && (
+                                              {icon && (
                                                 <Base.Media
-                                                  value={item.icon}
+                                                  value={icon}
                                                   className={this.decorateCSS("social-icon")}
                                                 />
                                               )}
-                                              {item.text && (
-                                                <ComposerLink path={item.link}>
+                                              {this.castToString(text) && (
+                                                <ComposerLink path={link}>
                                                   <Base.P
                                                     className={this.decorateCSS(
                                                       "social-text"
                                                     )}
                                                   >
-                                                    {item.text}
+                                                    {text}
                                                   </Base.P>
                                                 </ComposerLink>
                                               )}

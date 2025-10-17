@@ -42,12 +42,12 @@ class ECommerce6 extends BaseECommerce {
       return {
         type: "object",
         key: "tab",
-        displayer: "Tab 1",
+        displayer: "Category",
         value: [
           {
             type: "string",
             key: "tabText",
-            displayer: "Tab 1 Text",
+            displayer: "Category Text",
             value: tabTitle,
           },
           {
@@ -71,7 +71,7 @@ class ECommerce6 extends BaseECommerce {
           {
             type: "media",
             key: "icon",
-            displayer: "Tab 1 Icon",
+            displayer: "Icon",
             additionalParams: {
                 availableTypes: ["icon"],
             },
@@ -83,7 +83,7 @@ class ECommerce6 extends BaseECommerce {
           {
             type: "object",
             key: "image_container",
-            displayer: "Image Container",
+            displayer: "Content",
             value: [
               {
                 type: "media",
@@ -100,13 +100,13 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "string",
                 key: "box1_text",
-                displayer: "Box1 Text",
+                displayer: "Primary Text",
                 value: boxText,
               },
               {
                 type: "string",
                 key: "box1_lowerText",
-                displayer: "Box1 Lower Text",
+                displayer: "Secondary Text",
                 value: box1_lowerText,
               },
               {
@@ -150,7 +150,7 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "object",
                 key: "icon_container",
-                displayer: "Icon 1 Container",
+                displayer: "Icon Content",
                 value: [
                   {
                     type: "media",
@@ -175,7 +175,7 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "object",
                 key: "icon_container",
-                displayer: "Icon 2 Container",
+                displayer: "Icon Content",
                 value: [
                   {
                     type: "media",
@@ -200,7 +200,7 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "object",
                 key: "icon_container",
-                displayer: "Icon 3 Container",
+                displayer: "Icon Content",
                 value: [
                   {
                     type: "media",

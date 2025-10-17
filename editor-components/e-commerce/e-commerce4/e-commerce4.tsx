@@ -69,7 +69,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Loose Fit Tee",
                         },
                         {
@@ -81,19 +81,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -613,7 +613,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Regular Fit Pima Cotton Polo Shirt",
                         },
                         {
@@ -625,19 +625,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -882,7 +882,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Long Regular Fit Tee",
                         },
                         {
@@ -894,19 +894,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -1276,7 +1276,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Regular Fit Pima Cotton Polo Shirt",
                         },
                         {
@@ -1288,19 +1288,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -1670,7 +1670,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Midi Knit Dress",
                         },
                         {
@@ -1682,19 +1682,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",

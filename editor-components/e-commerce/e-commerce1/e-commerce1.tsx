@@ -10,9 +10,7 @@ import { getCurrencyInfo } from "composer-tools/utils/currency";
 type Image = {
   image: { type: string; url: string },
 }
-type Tag = {
-  tag: string,
-}
+
 type  WishlistItem={
   wishlistIcon: { type: string; name: string },
   wishlistText: React.JSX.Element,
@@ -26,13 +24,27 @@ type  ReviewItem={
   point: number
 }
 
-type  productCodeItem={
-  text: React.JSX.Element,
-  code: React.JSX.Element,
+
+type CategoryOrTag = {
+  title: React.JSX.Element;
+  items: { category?: React.JSX.Element; tag?: React.JSX.Element }[];
 }
 
-type Category = {
-  category: React.JSX.Element,
+type Icons = {
+  leftArrowImage: { type: "icon"; name: string };
+  rightArrowImage: { type: "icon"; name: string };
+  closeIcon: { type: "icon"; name: string };
+  closeIconPopup: { type: "icon"; name: string };
+  leftArrowPopup: { type: "icon"; name: string };
+  rightArrowPopup: { type: "icon"; name: string };
+}
+
+type QuantitySection = {
+  quantityText: React.JSX.Element;
+  leftArrow: { type: "icon"; name: string };
+  rightArrow: { type: "icon"; name: string };
+  button: INPUTS.CastedButton;
+  wishlist: WishlistItem;
 }
 class ECommerce1 extends BaseECommerce {
   constructor(props?: any) {
@@ -123,77 +135,92 @@ class ECommerce1 extends BaseECommerce {
         },
       ],
     });
+
     this.addProp({
-      type: "media",
-      key: "leftArrowImage",
-      displayer: "Left Arrow Image",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "SlArrowLeft",
-      },
-    });
+      type: "string",
+      key: "newText",
+      displayer: "Badge Text",
+      value:"NEW"
+    })
+    
     this.addProp({
-      type: "media",
-      key: "rightArrowImage",
-      displayer: "Right Arrow Image",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "SlArrowRight",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdClose",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "closeIconPopup",
-      displayer: "Close Icon Popup",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdClose",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "leftArrowPopup",
-      displayer: "Left Arrow Popup",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdArrowDropleft",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "rightArrowPopup",
-      displayer: "Right Arrow Popup",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdArrowDropright",
-      },
+      type: "object",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "leftArrowImage",
+          displayer: "Left Arrow Image",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "SlArrowLeft",
+          },
+        },
+        {
+          type: "media",
+          key: "rightArrowImage",
+          displayer: "Right Arrow Image",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "SlArrowRight",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdClose",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIconPopup",
+          displayer: "Close Icon Popup",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdClose",
+          },
+        },
+        {
+          type: "media",
+          key: "leftArrowPopup",
+          displayer: "Left Arrow Popup",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropleft",
+          },
+        },
+        {
+          type: "media",
+          key: "rightArrowPopup",
+          displayer: "Right Arrow Popup",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropright",
+          },
+        },
+      ],
     });
     this.addProp({
       type: "string",
@@ -213,18 +240,18 @@ class ECommerce1 extends BaseECommerce {
     this.addProp({
       type: "object",
       key: "reviewItem",
-      displayer: "Review Item",
+      displayer: "Review Section",
       value:[
       {
         type: "string",
         key: "reviewText",
-        displayer: "Review Text",
+        displayer: "Text",
         value: "CUSTOM REVIEW",
       },
       {
         type: "number",
         key: "reviewCount",
-        displayer: "Review Count",
+        displayer: "Count",
         value: 1,
       },
       {
@@ -237,7 +264,7 @@ class ECommerce1 extends BaseECommerce {
       {
         type: "media",
         key: "starIcon",
-        displayer: "Star Icon",
+        displayer: "Rated Icon",
         additionalParams: {
           availableTypes: ["icon"],
         },
@@ -249,7 +276,7 @@ class ECommerce1 extends BaseECommerce {
       {
         type: "media",
         key: "starIconBorder",
-        displayer: "Star Icon Border",
+        displayer: "Unrated Icon",
         additionalParams: {
           availableTypes: ["icon"],
         },
@@ -267,167 +294,203 @@ class ECommerce1 extends BaseECommerce {
       value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.",
     });
     this.addProp({
-      type:"string",
-      key: "quantityText",
-      displayer:"Quantity Text",
-      value:"Quantity"
-    })
-    this.addProp({
-      type: "media",
-      key: "leftArrow",
-      displayer: "Left Arrow",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdArrowDropleft",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "rightArrow",
-      displayer: "Right Arrow",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdArrowDropright",
-      },
-    });
-    this.addProp(INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Black"));
-    this.addProp({
-      type: "object", 
-      key: "wishlist",
-      displayer: "Wishlist",
-      value: [
-      {
-        type: "media",
-        key: "wishlistIcon",
-        displayer: "Wishlist Icon",
-        additionalParams: {
-          availableTypes: ["icon"],
-        },
-        value: {
-          type: "icon",
-          name: "FaHeart",
-        },
-      },
-      {
-        type: "string",
-        key: "wishlistText",
-        displayer: "Wishlist Text",
-        value:"ADD TO WISHLIST",
-      },
-      {
-        type: "page",
-        key: "wishlistUrl",
-        displayer: "Wishlist Url",
-        value:"",
-      },
-    ]
-    })
-    this.addProp({
       type: "object",
-      key: "productCode",
-      displayer: "Product Code",
-      value:[
-      {
-        type: "string",
-        key: "text",
-        displayer: "Text",
-        value: "SKU: ",
-      },
-      {
-        type: "string",
-        key: "code",
-        displayer: "Code",
-        value: "008",
-      }
-    ]
-    })
-    this.addProp({
-      type: "string",
-      key: "newText",
-      displayer: "New Text",
-      value:"NEW"
-    })
-    this.addProp({
-      type: "string",
-      key: "categoriesText",
-      displayer:"Categories Text",
-      value:"Categories: "
-    })
-    this.addProp({
-      type: "array",
-      key: "items",
-      displayer: "Categories",
+      key: "quantitySection",
+      displayer: "Quantity Section",
       value: [
         {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "category",
-              displayer: "Category Name",
-              value: "Decoration",
-            }
-          ]
+          type: "string",
+          key: "quantityText",
+          displayer: "Placeholder Text",
+          value: "Quantity"
         },
         {
+          type: "media",
+          key: "leftArrow",
+          displayer: "Left Arrow",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropleft",
+          },
+        },
+        {
+          type: "media",
+          key: "rightArrow",
+          displayer: "Right Arrow",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropright",
+          },
+        },
+        INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Black"),
+        {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "wishlist",
+          displayer: "Wishlist",
           value: [
             {
+              type: "media",
+              key: "wishlistIcon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaHeart",
+              },
+            },
+            {
               type: "string",
-              key: "category",
-              displayer: "Category Name",
-              value: "Home Decor",
-            }
-          ]
+              key: "wishlistText",
+              displayer: "Text",
+              value: "ADD TO WISHLIST",
+            },
+            {
+              type: "page",
+              key: "wishlistUrl",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
         },
       ],
-    })
-    this.addProp({
-      type:"string",
-      key: "tagsText",
-      displayer:"Tags Text",
-      value:"Tags: "
-    })
+    });
     this.addProp({
       type: "array",
-      key: "tags",
-      displayer: "Tags",
+      key: "categoriesAndTags",
+      displayer: "Information",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "section",
+          displayer: "section",
           value: [
             {
               type: "string",
-              key: "tag",
-              displayer: "Tag Name",
-              value: "Black",
-            }
-          ]
+              key: "title",
+              displayer: "Label",
+              value: "SKU: ",
+            },
+            {
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "category",
+                      displayer: "Text",
+                      value: "008",
+                    }
+                  ]
+                }
+              ],
+            },
+          ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "section",
+          displayer: "section",
           value: [
             {
               type: "string",
-              key: "tag",
-              displayer: "Tag Name",
-              value: "Modern",
-            }
-          ]
+              key: "title",
+              displayer: "Label",
+              value: "Categories: ",
+            },
+            {
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "category",
+                      displayer: "Text",
+                      value: "Decoration",
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "category",
+                      displayer: "Text",
+                      value: "Home Decor",
+                    }
+                  ]
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "section",
+          displayer: "section",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Label",
+              value: "Tags: ",
+            },
+            {
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "Text",
+                      value: "Black",
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "Text",
+                      value: "Modern",
+                    }
+                  ]
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -535,27 +598,25 @@ class ECommerce1 extends BaseECommerce {
 
     const sliderRef = this.getComponentState("sliderRef");
     const images = this.castToObject<Image[]>("images");
-    const categoryItem = this.castToObject<Category[]>("items");
-    const tags = this.castToObject<Tag[]>("tags");
+    const categoriesAndTags = this.castToObject<CategoryOrTag[]>("categoriesAndTags");
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
     const price = this.getPropValue("price");
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
-    const productItem = this.castToObject<productCodeItem>("productCode")
-    const count = this.getComponentState("count");
     const activeImage = this.getComponentState("activeImage");
     const isActive = this.getComponentState("isActive");
-    const leftIconImage = this.getPropValue("leftArrowImage");
-    const rightIconImage = this.getPropValue("rightArrowImage");
-    const leftIcon = this.getPropValue("leftArrow");
-    const rightIcon = this.getPropValue("rightArrow");
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const wishlist = this.castToObject<WishlistItem>("wishlist");
+    const icons = this.castToObject<Icons>("icons");
+    const quantitySection = this.castToObject<QuantitySection>("quantitySection");
     const reviewItem = this.castToObject<ReviewItem>("reviewItem");
+    
+    const buttonText = this.getPropValue("text", { parent_object: quantitySection.button });
+    const buttonType = this.getPropValue("type", { parent_object: quantitySection.button });
+    const buttonUrl = this.getPropValue("url", { parent_object: quantitySection.button });
+    
     const isRightExist = titleExist || price.value || reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder ||
-    descriptionExist || this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || this.castToString(button.text) || this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon || 
-    this.castToString(productItem.text) || this.castToString(productItem.code) || this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0) || this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)
+    descriptionExist || this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText) || this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon || 
+    (categoriesAndTags.length > 0)
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -579,8 +640,8 @@ class ECommerce1 extends BaseECommerce {
                 </div>
                 <div className={`${this.decorateCSS("right-image")} ${!isRightExist && this.decorateCSS("without-right")}`}>
                   {this.castToString(this.getPropValue("newText")) && (<Base.P className={this.decorateCSS("new")}>{this.getPropValue("newText")}</Base.P>)}
-                  <Base.Media value={this.getPropValue("leftArrowImage")} className={this.decorateCSS("left-arrow")} onClick={moveLeftSlider} />
-                  <Base.Media value={this.getPropValue("rightArrowImage")} className={this.decorateCSS("right-arrow")} onClick={moveRightSlider} />
+                  <Base.Media value={icons.leftArrowImage} className={this.decorateCSS("left-arrow")} onClick={moveLeftSlider} />
+                  <Base.Media value={icons.rightArrowImage} className={this.decorateCSS("right-arrow")} onClick={moveRightSlider} />
                   {images.length > 0 && (
                     <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
                       {images.map((item: Image, index: number) => {
@@ -633,12 +694,12 @@ class ECommerce1 extends BaseECommerce {
                   {descriptionExist && (<Base.P className={this.decorateCSS("description")}>{description}</Base.P>)}
                   </div>
                 )}
-                  {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || this.castToString(button.text)) && (
+                  {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText)) && (
                     <div className={this.decorateCSS("inputs")}>
-                      {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon) && (
-                        <div className={`${this.decorateCSS("count-input")} ${this.castToString(button.text) && this.decorateCSS("with-button")}`}>
-                          {this.castToString(this.getPropValue("quantityText")) && (<Base.P className={this.decorateCSS("label")}>{this.getPropValue("quantityText")}</Base.P>)}
-                          {leftIcon && (<Base.Media value={this.getPropValue("leftArrow")} className={this.decorateCSS("left-icon")} onClick={handleLeftClick}/>)}
+                      {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow) && (
+                        <div className={`${this.decorateCSS("count-input")} ${this.castToString(buttonText) && this.decorateCSS("with-button")}`}>
+                          {this.castToString(quantitySection.quantityText) && (<Base.P className={this.decorateCSS("label")}>{quantitySection.quantityText}</Base.P>)}
+                          {quantitySection.leftArrow && (<Base.Media value={quantitySection.leftArrow} className={this.decorateCSS("left-icon")} onClick={handleLeftClick}/>)}
                           <input
                               type="number"
                               min={1}
@@ -662,60 +723,40 @@ class ECommerce1 extends BaseECommerce {
                               }}
                             />
 
-                          {rightIcon && (<Base.Media value={this.getPropValue("rightArrow")} className={this.decorateCSS("right-icon")} onClick={handleRightClick}/>)}
+                          {quantitySection.rightArrow && (<Base.Media value={quantitySection.rightArrow} className={this.decorateCSS("right-icon")} onClick={handleRightClick}/>)}
                         </div>
                       )}
-                      {this.castToString(button.text) && (
-                        <ComposerLink path={button.url}>
-                          <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>{button.text}</Base.Button>
+                      {this.castToString(buttonText) && (
+                        <ComposerLink path={buttonUrl}>
+                          <Base.Button className={this.decorateCSS("button")} buttonType={buttonType}>{buttonText}</Base.Button>
                         </ComposerLink>
                       )}
                     </div>                  
                   )}
-                  {(this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon) &&(
-                    <ComposerLink path={wishlist.wishlistUrl}>
+                  {(this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon) &&(
+                    <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
                       <div className={this.decorateCSS("wishlist")}>
-                        <Base.Media value={wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
-                        {this.castToString(wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{wishlist.wishlistText}</span>)}
+                        <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
+                        {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
                       </div>
                     </ComposerLink>
                   )}
-                  {(this.castToString(productItem.text) || this.castToString(productItem.code) || this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0) || this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)) && (
-                    <div className={this.decorateCSS("bottom")}>
-                      {(this.castToString(productItem.text) || this.castToString(productItem.code)) && (
-                        <div className={this.decorateCSS("code-area")}>
-                          {this.castToString(productItem.text) && (<Base.P className={this.decorateCSS("code-tag")}>{productItem.text}</Base.P>)}
-                          {this.castToString(productItem.code) && (<Base.P className={this.decorateCSS("code")}>{productItem.code}</Base.P>)}
-                        </div>
-                      )}
-                      {(this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0)) && (
-                        <div className={this.decorateCSS("categories")}>
-                          {this.castToString(this.getPropValue("categoriesText")) && (<Base.P className={this.decorateCSS("categoryLabel")}>{this.getPropValue("categoriesText")}</Base.P>)}
-                          {(categoryItem.length > 0) && (
+                  {(categoriesAndTags.length > 0) && (
+                    <div className={this.decorateCSS("categories")}>
+                      {categoriesAndTags.map((item, index) => (
+                        <div key={index} className={this.decorateCSS("categoryLabel")}>
+                          {this.castToString(item.title) && (<Base.P className={this.decorateCSS("label")}>{item.title}</Base.P>)}
+                          {(item.items.length > 0) && (
                             <div className={this.decorateCSS("categoryText")}>
-                              {categoryItem.map((item) => {
-                              return (
-                                <Base.P className={this.decorateCSS("category")}>{item.category}</Base.P>
-                              )
-                              })}
+                              {item.items.map((subItem, subIndex) => (
+                                <Base.P key={subIndex} className={this.decorateCSS("category")}>
+                                  {subItem.category || subItem.tag}
+                                </Base.P>
+                              ))}
                             </div>
                           )}
                         </div>
-                      )}
-                      {(this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)) && (
-                        <div className={this.decorateCSS("tags")}>
-                          {this.castToString(this.getPropValue("tagsText")) && (<Base.P className={this.decorateCSS("tagLabel")}>{this.getPropValue("tagsText")}</Base.P>)}
-                          {(tags.length > 0) && (
-                            <div className={this.decorateCSS("tagText")}>
-                              {tags.map((item: Tag) => {
-                                return (
-                                  <Base.P className={this.decorateCSS("tag")}>{item.tag}</Base.P>
-                                )
-                              })}
-                            </div>
-                          )}
-                        </div> 
-                      )}
+                      ))}
                     </div>
                   )}
                 </div>
@@ -746,13 +787,13 @@ class ECommerce1 extends BaseECommerce {
                 </div>
                 <div className={this.decorateCSS("items")}>
                   <div className={this.decorateCSS("icon-group")}>
-                    <Base.Media value={this.getPropValue("leftArrowPopup")} className={this.decorateCSS("left-arrow")} onClick={moveLeft} />
-                    <Base.Media value={this.getPropValue("rightArrowPopup")} className={this.decorateCSS("right-arrow")} onClick={moveRight} />
+                    <Base.Media value={icons.leftArrowPopup} className={this.decorateCSS("left-arrow")} onClick={moveLeft} />
+                    <Base.Media value={icons.rightArrowPopup} className={this.decorateCSS("right-arrow")} onClick={moveRight} />
                   </div>
                   <Base.P className={this.decorateCSS("pages")}>
                     {activeImage+1}/{images.length}
                   </Base.P>
-                  <Base.Media value={this.getPropValue("closeIconPopup")} className={this.decorateCSS("close")} onClick={handleClose} />
+                  <Base.Media value={icons.closeIconPopup} className={this.decorateCSS("close")} onClick={handleClose} />
                 </div>
               </div>
             </Base.Overlay>

@@ -239,45 +239,36 @@
                             color: var(--composer-font-color-primary);
                         }
                     }
-                    .bottom {
+                    .categories {
                         display: flex;
                         flex-direction: column;
                         gap: var(--composer-gap-sm);
-
-                        .code-area {
+                        width: 100%;
+                        
+                        .categoryLabel {
+                            color: var(--composer-font-color-primary);
+                            width: 100%;
                             display: flex;
                             align-items: center;
                             gap: var(--composer-gap-xs);
-                            width: fit-content;
-                            .code-tag, .code {
-                                color: var(--composer-font-color-primary);
+                            
+                            .label {
                                 width: fit-content;
                             }
                         }
-                        .categories, .tags {
+                        .categoryText {
+                            width: 100%;
                             display: flex;
-                            align-items: center;
-                            gap: var(--composer-gap-xs);      
+                            flex-wrap: wrap;
+                            gap: var(--composer-gap-xs);
+                        }
+                        .category {
+                            color: var(--composer-tertiary-color);
                             width: fit-content;
-    
-                            .categoryLabel, .tagLabel {
-                                color: var(--composer-font-color-primary);
-                                width: fit-content;
-                            }
-                            .categoryText, .tagText{
-                                max-width: 100%;
-                                display: flex;
-                                flex-wrap: wrap;
-                                gap: var(--composer-gap-xs);
-                            }
-                            .category, .tag {
-                                color: var(--composer-tertiary-color);
-                                width: fit-content;
-                                cursor: pointer;
-                                transition: opacity 0.3s ease;
-                                &:hover {
-                                    opacity: 0.5;
-                                }
+                            cursor: pointer;
+                            transition: opacity 0.3s ease;
+                            &:hover {
+                                opacity: 0.5;
                             }
                         }
                     }
