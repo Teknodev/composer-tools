@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseECommerce } from "../../EditorComponent";
-import styles from "./e_commerce6.module.scss";
+import styles from "./e-commerce7.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
@@ -8,12 +8,14 @@ import ComposerSlider from "composer-tools/composer-base-components/slider/slide
 import { CurrencyCode, getCurrencyInfo } from "composer-tools/utils/currency";
 
 type Images = {
-  item: string;
+  item: { type: "image"; url: string };
 };
 
 type ShareSection = {
   title: React.JSX.Element;
-  shareIcon: string;
+  shareIcon: { type: "icon"; name: string };
+  socials: Socials[];
+  shareCopyLink: ShareCopyLink;
 };
 
 type SizeSections = {
@@ -24,8 +26,8 @@ type SizeSections = {
 
 type CountSections = {
   count: number;
-  minusIcon: string;
-  addIcon: string;
+  minusIcon: { type: "icon"; name: string };
+  addIcon: { type: "icon"; name: string };
 };
 
 type ItemDetails = {
@@ -38,19 +40,21 @@ type DeliveryType = {
   isRadioButtonActive: boolean;
 };
 type Socials = {
-  icon: string;
-  text: React.JSX.Element;
-  link: string;
+  value: {
+    icon: { type: "icon"; name: string };
+    text: React.JSX.Element;
+    link: string;
+  };
 };
 
 type ShareCopyLink = {
   text: React.JSX.Element;
   copiedText: React.JSX.Element;
   isActive: boolean;
-  icon: string;
+  icon: { type: "icon"; name: string };
 };
 
-class ECommerce6 extends BaseECommerce {
+class ECommerce7 extends BaseECommerce {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -64,11 +68,16 @@ class ECommerce6 extends BaseECommerce {
           displayer: "Image",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "item",
               displayer: "Item",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed385afb049c002cc52e87?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed385afb049c002cc52e87?alt=media",
+              },
             },
           ],
         },
@@ -78,11 +87,16 @@ class ECommerce6 extends BaseECommerce {
           displayer: "Image",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "item",
               displayer: "Item",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed3888fb049c002cc52e92?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed3888fb049c002cc52e92?alt=media",
+              },
             },
           ],
         },
@@ -92,11 +106,16 @@ class ECommerce6 extends BaseECommerce {
           displayer: "Image",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "item",
               displayer: "Item",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed38c0fb049c002cc52e9e?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed38c0fb049c002cc52e9e?alt=media",
+              },
             },
           ],
         },
@@ -106,39 +125,68 @@ class ECommerce6 extends BaseECommerce {
           displayer: "Image",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "item",
               displayer: "Item",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f628bffb049c002cc648d6?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f628bffb049c002cc648d6?alt=media",
+              },
             },
           ],
         },
       ],
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Icon",
-      value: "IoMdClose",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdClose",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "sliderDotIcon",
       displayer: "Slider Dot Icon",
-      value: "GoDotFill",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GoDotFill",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "imageDownArrow",
       displayer: "Image Down Arrow",
-      value: "MdKeyboardArrowDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowDown",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "imageUpArrow",
       displayer: "Image Up Arrow",
-      value: "MdKeyboardArrowUp",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowUp",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -147,16 +195,28 @@ class ECommerce6 extends BaseECommerce {
       value: true,
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "leftArrow",
       displayer: "Left Arrow",
-      value: "MdKeyboardArrowLeft",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightArrow",
       displayer: "Right Arrow",
-      value: "MdKeyboardArrowRight",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowRight",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -173,132 +233,162 @@ class ECommerce6 extends BaseECommerce {
     this.addProp({
       type: "object",
       key: "share",
-      displayer: "Share",
+      displayer: "Share Menu",
       value: [
         {
           type: "string",
           key: "title",
-          displayer: "Title",
+          displayer: "Menu Title",
           value: "Share",
         },
         {
-          type: "icon",
+          type: "media",
           key: "shareIcon",
-          displayer: "Share Icon",
-          value: "CiShare2",
+          displayer: "Menu Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "CiShare2",
+          },
         },
-      ],
-    });
-    this.addProp({
-      type: "array",
-      key: "socials",
-      displayer: "Socials",
-      value: [
         {
           type: "object",
-          key: "social",
-          displayer: "Social",
+          key: "shareCopyLink",
+          displayer: "Copy Section",
           value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdOutlineFacebook",
-            },
             {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "Facebook",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "socailIcon",
-          displayer: "Socail Icon",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaXTwitter",
+              value: "Copy Link",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Twitter",
+              key: "copiedText",
+              displayer: "Copied Text",
+              value: "Copied!",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active",
+              value: true,
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "socailIcon",
-          displayer: "Socail Icon",
-          value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaPinterest",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Pinterest",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdContentCopy",
+              },
             },
           ],
         },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "shareCopyLink",
-      displayer: "Share Copy Link",
-      value: [
         {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "Copy Link",
-        },
-        {
-          type: "string",
-          key: "copiedText",
-          displayer: "Copied Text",
-          value: "Copied!",
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "AiOutlinePaperClip",
-        },
-        {
-          type: "boolean",
-          key: "isActive",
-          displayer: "Is Active",
-          value: true,
+          type: "array",
+          key: "socials",
+          displayer: "Options",
+          value: [
+            {
+              type: "object",
+              key: "social",
+              displayer: "Option",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  displayer: "Option Icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "MdOutlineFacebook",
+                  },
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Option Label",
+                  value: "Facebook",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "social",
+              displayer: "Option",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  displayer: "Option Icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+              value: {
+                type: "icon",
+                name: "FaXTwitter",
+              },
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Option Label",
+                  value: "Twitter",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "social",
+              displayer: "Option",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  displayer: "Option Icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+              value: {
+                type: "icon",
+                name: "FaPinterest",
+              },
+                },
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Option Label",
+                  value: "Pinterest",
+                },
+                {
+                  type: "page",
+                  key: "link",
+                  displayer: "Link",
+                  value: "",
+                },
+              ],
+            },
+          ],
         },
       ],
     });
@@ -402,16 +492,28 @@ class ECommerce6 extends BaseECommerce {
           value: 1,
         },
         {
-          type: "icon",
+          type: "media",
           key: "minusIcon",
           displayer: "Minus Icon",
-          value: "FiMinus",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "FiMinus",
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "addIcon",
           displayer: "Add Icon",
-          value: "IoAddOutline",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoAddOutline",
+          },
         },
       ],
     });
@@ -507,12 +609,12 @@ class ECommerce6 extends BaseECommerce {
     this.addProp({
       type: "array",
       key: "itemDetails",
-      displayer: "Item Details",
+      displayer: "Accordion",
       value: [
         {
           type: "object",
           key: "itemDetail",
-          displayer: "Item Detail",
+          displayer: "Section",
           value: [
             {
               type: "string",
@@ -532,7 +634,7 @@ class ECommerce6 extends BaseECommerce {
         {
           type: "object",
           key: "itemDetail",
-          displayer: "Item Detail",
+          displayer: "Section",
           value: [
             {
               type: "string",
@@ -552,7 +654,7 @@ class ECommerce6 extends BaseECommerce {
         {
           type: "object",
           key: "itemDetail",
-          displayer: "Item Detail",
+          displayer: "Section",
           value: [
             {
               type: "string",
@@ -572,16 +674,28 @@ class ECommerce6 extends BaseECommerce {
       ],
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "downArrowIcon",
       displayer: "Down Arrow Icon",
-      value: "MdKeyboardArrowDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowDown",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "upArrowIcon",
       displayer: "Up Arrow Icon",
-      value: "MdKeyboardArrowUp",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowUp",
+      },
     });
 
     this.addProp(
@@ -612,7 +726,7 @@ class ECommerce6 extends BaseECommerce {
   }
 
   static getName(): string {
-    return "E-Commerce 6";
+    return "E-Commerce 7";
   }
   toggleDescription = (index: number) => {
     if (this.getComponentState("openIndex") === index) {
@@ -713,7 +827,8 @@ class ECommerce6 extends BaseECommerce {
     const itemDetails = this.castToObject<ItemDetails[]>("itemDetails");
     const images = this.castToObject<Images[]>("images");
     const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
-    const socials = this.castToObject<Socials[]>("socials");
+    const socials = shareSection?.socials;
+    const shareCopyLink = shareSection?.shareCopyLink;
     const sliderRef = this.getComponentState("slider-ref");
     const currencySymbol = getCurrencyInfo(
       sizeSections[this.getComponentState("selectedSizeSection")]?.cost
@@ -722,7 +837,6 @@ class ECommerce6 extends BaseECommerce {
     const currencyValue =
       sizeSections[this.getComponentState("selectedSizeSection")]?.cost
         ?.value || "";
-    const shareCopyLink = this.castToObject<ShareCopyLink>("shareCopyLink");
     const isTitle = this.castToString(this.getPropValue("title"));
     const isShareIcon = shareSection.shareIcon;
     const isSahreTitle = this.castToString(shareSection.title);
@@ -819,15 +933,15 @@ class ECommerce6 extends BaseECommerce {
                   {images.map((item: Images, index: number) => {
                     return (
                       <div
-                        className={`${this.decorateCSS("small-image")}`}
+                        className={`${this.decorateCSS("small-image")} ${this.getComponentState("selectedImage") === index ? this.decorateCSS("active") : ""}`}
                         key={index}
                       >
-                        <img
-                          src={item.item}
-                          alt={`Image ${index}`}
-                          className={this.decorateCSS("image")}
-                          onClick={() => this.handleDotClick(index)}
-                        ></img>
+                        <div onClick={() => this.handleDotClick(index)}>
+                          <Base.Media
+                            value={item.item}
+                            className={this.decorateCSS("image")}
+                          />
+                        </div>
                         {this.getPropValue("smallImageOverlay") && (
                           <div
                             className={`${this.decorateCSS("overlay")} ${
@@ -849,14 +963,14 @@ class ECommerce6 extends BaseECommerce {
                   {images.map((item: Images, index: number) => {
                     return (
                       <div
-                        className={this.decorateCSS("small-image")}
+                        className={`${this.decorateCSS("small-image")} ${this.getComponentState("selectedImage") === index ? this.decorateCSS("active") : ""}`}
                         key={index}
                       >
-                        <img
-                          src={item.item}
+                        <Base.Media
+                          value={item.item}
                           className={this.decorateCSS("image")}
                           onClick={() => this.handleDotClick(index)}
-                        ></img>
+                        />
                         {this.getPropValue("smallImageOverlay") && (
                           <div
                             className={`${this.decorateCSS("overlay")} ${
@@ -875,26 +989,22 @@ class ECommerce6 extends BaseECommerce {
                   <div className={this.decorateCSS("arrow-buttons")}>
                     {this.getPropValue("imageDownArrow") && (
                       <div className={this.decorateCSS("image-down-arrow")}>
-                        <Base.Icon
-                          name={this.getPropValue("imageDownArrow")}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                            onClick: () => {
-                              this.handleClickLeft();
-                            },
+                        <Base.Media
+                          value={this.getPropValue("imageDownArrow")}
+                          className={this.decorateCSS("icon")}
+                          onClick={() => {
+                            this.handleClickLeft();
                           }}
                         />
                       </div>
                     )}
                     {this.getPropValue("imageUpArrow") && (
                       <div className={this.decorateCSS("image-up-arrow")}>
-                        <Base.Icon
-                          name={this.getPropValue("imageUpArrow")}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                            onClick: () => {
-                              this.handleClickRight();
-                            },
+                        <Base.Media
+                          value={this.getPropValue("imageUpArrow")}
+                          className={this.decorateCSS("icon")}
+                          onClick={() => {
+                            this.handleClickRight();
                           }}
                         />
                       </div>
@@ -904,13 +1014,11 @@ class ECommerce6 extends BaseECommerce {
               </div>
               <div className={this.decorateCSS("slider-parent")}>
                 <div className={this.decorateCSS("image-icon-left")}>
-                  <Base.Icon
-                    name={this.getPropValue("leftArrow")}
-                    propsIcon={{
-                      className: this.decorateCSS("icon"),
-                      onClick: () => {
-                        sliderRef.current.slickPrev();
-                      },
+                  <Base.Media
+                    value={this.getPropValue("leftArrow")}
+                    className={this.decorateCSS("icon")}
+                    onClick={() => {
+                      sliderRef.current.slickPrev();
                     }}
                   />
                 </div>
@@ -925,24 +1033,22 @@ class ECommerce6 extends BaseECommerce {
                         <div
                           className={this.decorateCSS("big-image-container")}
                         >
-                          <img
-                            src={item.item}
+                          <Base.Media
+                            value={item.item}
                             onClick={() => this.toggleZoomImage()}
                             className={this.decorateCSS("big-image")}
-                          ></img>
+                          />
                         </div>
                       </div>
                     );
                   })}
                 </ComposerSlider>
                 <div className={this.decorateCSS("image-icon-right")}>
-                  <Base.Icon
-                    name={this.getPropValue("rightArrow")}
-                    propsIcon={{
-                      className: this.decorateCSS("icon"),
-                      onClick: () => {
-                        sliderRef.current.slickNext();
-                      },
+                  <Base.Media
+                    value={this.getPropValue("rightArrow")}
+                    className={this.decorateCSS("icon")}
+                    onClick={() => {
+                      sliderRef.current.slickNext();
                     }}
                   />
                 </div>
@@ -984,52 +1090,47 @@ class ECommerce6 extends BaseECommerce {
                           >
                             <div className={this.decorateCSS("share-wrapper")}>
                               {isShareIcon && (
-                                <Base.Icon
-                                  name={shareSection.shareIcon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("share-icon"),
-                                  }}
+                                <Base.Media
+                                  value={shareSection.shareIcon}
+                                  className={this.decorateCSS("share-icon")}
                                 />
                               )}
                               {isSahreTitle && (
-                                <div className={this.decorateCSS("title")}>
+                                <Base.H4 className={this.decorateCSS("title")}>
                                   {shareSection.title}
-                                </div>
+                                </Base.H4>
                               )}
                               {socials.length > 0 && (
                                 <div className={this.decorateCSS("socials")}>
                                   {socials.map(
                                     (item: Socials, index: number) => {
+                                      const icon = this.getPropValue("icon", { parent_object: item.value });
+                                      const text = this.getPropValue("text", { parent_object: item.value });
+                                      const link = this.getPropValue("link", { parent_object: item.value });
                                       return (
                                         <>
-                                          {(item.icon ||
-                                            this.castToString(item.text)) && (
+                                          {(icon || this.castToString(text)) && (
                                             <div
                                               className={this.decorateCSS(
                                                 "social"
                                               )}
                                               key={index}
                                             >
-                                              {item.icon && (
-                                                <Base.Icon
-                                                  name={item.icon}
-                                                  propsIcon={{
-                                                    className:
-                                                      this.decorateCSS(
-                                                        "social-icon"
-                                                      ),
-                                                  }}
+                                              {icon && (
+                                                <Base.Media
+                                                  value={icon}
+                                                  className={this.decorateCSS("social-icon")}
                                                 />
                                               )}
-                                              {item.text && (
-                                                <ComposerLink path={item.link}>
-                                                  <div
+                                              {this.castToString(text) && (
+                                                <ComposerLink path={link}>
+                                                  <Base.P
                                                     className={this.decorateCSS(
                                                       "social-text"
                                                     )}
                                                   >
-                                                    {item.text}
-                                                  </div>
+                                                    {text}
+                                                  </Base.P>
                                                 </ComposerLink>
                                               )}
                                             </div>
@@ -1043,14 +1144,11 @@ class ECommerce6 extends BaseECommerce {
                                       className={this.decorateCSS("social")}
                                       onClick={() => this.handleCopy()}
                                     >
-                                      <Base.Icon
-                                        name={shareCopyLink.icon}
-                                        propsIcon={{
-                                          className:
-                                            this.decorateCSS("social-icon"),
-                                        }}
+                                      <Base.Media
+                                        value={shareCopyLink.icon}
+                                        className={this.decorateCSS("social-icon")}
                                       />
-                                      <div
+                                      <Base.P
                                         className={this.decorateCSS(
                                           "social-text"
                                         )}
@@ -1058,7 +1156,7 @@ class ECommerce6 extends BaseECommerce {
                                         {this.getComponentState("copied")
                                           ? shareCopyLink.copiedText
                                           : shareCopyLink.text}
-                                      </div>
+                                      </Base.P>
                                     </div>
                                   )}
                                 </div>
@@ -1070,12 +1168,12 @@ class ECommerce6 extends BaseECommerce {
                     )}
                     {currencyValue && (
                       <div className={this.decorateCSS("cost")}>
-                        <div className={this.decorateCSS("value")}>
+                        <Base.H3 className={this.decorateCSS("value")}>
                           {currencyValue}
-                        </div>
-                        <div className={this.decorateCSS("currency-code")}>
+                        </Base.H3>
+                        <Base.H3 className={this.decorateCSS("currency-code")}>
                           {currencySymbol}
-                        </div>
+                        </Base.H3>
                       </div>
                     )}
                   </Base.VerticalContent>
@@ -1088,9 +1186,9 @@ class ECommerce6 extends BaseECommerce {
                 <>
                   <div className={this.decorateCSS("size-container")}>
                     {isSizeLabel && (
-                      <div className={this.decorateCSS("label")}>
+                      <Base.P className={this.decorateCSS("label")}>
                         {this.getPropValue("sizeLabel")}
-                      </div>
+                      </Base.P>
                     )}
                     {sizeSections.length > 0 && (
                       <div className={this.decorateCSS("size-selects")}>
@@ -1109,14 +1207,14 @@ class ECommerce6 extends BaseECommerce {
                                 key={index}
                               >
                                 {item.size && (
-                                  <div className={this.decorateCSS("size")}>
+                                  <Base.P className={this.decorateCSS("size")}>
                                     {item.size}
-                                  </div>
+                                  </Base.P>
                                 )}
                                 {this.castToString(item.type) && (
-                                  <div className={this.decorateCSS("type")}>
+                                  <Base.P className={this.decorateCSS("type")}>
                                     {item.type}
-                                  </div>
+                                  </Base.P>
                                 )}
                               </div>
                             );
@@ -1144,9 +1242,9 @@ class ECommerce6 extends BaseECommerce {
                           className={this.decorateCSS("minus-icon")}
                           onClick={() => this.handleMinus()}
                         >
-                          <Base.Icon
-                            name={countSection.minusIcon}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          <Base.Media
+                            value={countSection.minusIcon}
+                            className={this.decorateCSS("icon")}
                           />
                         </div>
                       )}
@@ -1178,9 +1276,9 @@ class ECommerce6 extends BaseECommerce {
                           className={this.decorateCSS("add-icon")}
                           onClick={() => this.handleAdd()}
                         >
-                          <Base.Icon
-                            name={countSection.addIcon}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          <Base.Media
+                            value={countSection.addIcon}
+                            className={this.decorateCSS("icon")}
                           />
                         </div>
                       )}
@@ -1193,7 +1291,7 @@ class ECommerce6 extends BaseECommerce {
                           buttonType={button.type}
                           className={this.decorateCSS("button")}
                         >
-                          {button.text}
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -1209,9 +1307,9 @@ class ECommerce6 extends BaseECommerce {
                         key={index}
                       >
                         {this.castToString(item.description) && (
-                          <div className={this.decorateCSS("delivery")}>
+                          <Base.P className={this.decorateCSS("delivery")}>
                             {item.description}
-                          </div>
+                          </Base.P>
                         )}
                       </div>
                     );
@@ -1221,9 +1319,9 @@ class ECommerce6 extends BaseECommerce {
               {(isItemDetailTitle || itemDetails.length > 0) && (
                 <div className={this.decorateCSS("item-detail-wrapper")}>
                   {isItemDetailTitle && (
-                    <div className={this.decorateCSS("item-detail-title")}>
+                    <Base.P className={this.decorateCSS("item-detail-title")}>
                       {this.getPropValue("itemDetailTitle")}
-                    </div>
+                    </Base.P>
                   )}
                   {itemDetails.length > 0 && (
                     <div className={this.decorateCSS("item-detail-container")}>
@@ -1251,20 +1349,20 @@ class ECommerce6 extends BaseECommerce {
                                         }
                                       >
                                         {this.castToString(item.title) && (
-                                          <div
+                                          <Base.P
                                             className={this.decorateCSS(
                                               "title"
                                             )}
                                           >
                                             {item.title}
-                                          </div>
+                                          </Base.P>
                                         )}
                                         {(this.getPropValue("upArrowIcon") ||
                                           this.getPropValue(
                                             "downArrowIcon"
                                           )) && (
-                                          <Base.Icon
-                                            name={
+                                          <Base.Media
+                                            value={
                                               this.getComponentState(
                                                 "openIndex"
                                               ) === index
@@ -1275,10 +1373,7 @@ class ECommerce6 extends BaseECommerce {
                                                     "downArrowIcon"
                                                   )
                                             }
-                                            propsIcon={{
-                                              className:
-                                                this.decorateCSS("icon"),
-                                            }}
+                                            className={this.decorateCSS("icon")}
                                           />
                                         )}
                                       </div>
@@ -1294,11 +1389,11 @@ class ECommerce6 extends BaseECommerce {
                                           this.decorateCSS("active")
                                         }`}
                                       >
-                                        <div
+                                        <Base.P
                                           className={this.decorateCSS("text")}
                                         >
                                           {item.description}
-                                        </div>
+                                        </Base.P>
                                       </div>
                                     )}
                                   </div>
@@ -1315,17 +1410,17 @@ class ECommerce6 extends BaseECommerce {
           )}
         </Base.MaxContent>
         <Base.Overlay
-          className={this.decorateCSS("zoom-image")}
           isVisible={this.getComponentState("zoomImage")}
+          className={this.decorateCSS("zoom-image")}
         >
           {this.getPropValue("closeIcon") && (
             <div
               className={this.decorateCSS("close-icon")}
               onClick={() => this.handleClickClose()}
             >
-              <Base.Icon
-                name={this.getPropValue("closeIcon")}
-                propsIcon={{ className: this.decorateCSS("icon") }}
+              <Base.Media
+                value={this.getPropValue("closeIcon")}
+                className={this.decorateCSS("icon")}
               />
             </div>
           )}
@@ -1334,9 +1429,9 @@ class ECommerce6 extends BaseECommerce {
               className={this.decorateCSS("left-icon")}
               onClick={() => this.handleClickPrevOverlay()}
             >
-              <Base.Icon
-                name={this.getPropValue("leftArrow")}
-                propsIcon={{ className: this.decorateCSS("icon") }}
+              <Base.Media
+                value={this.getPropValue("leftArrow")}
+                className={this.decorateCSS("icon")}
               />
             </div>
           )}
@@ -1345,21 +1440,21 @@ class ECommerce6 extends BaseECommerce {
               className={this.decorateCSS("right-icon")}
               onClick={() => this.handleClickNextOverlay()}
             >
-              <Base.Icon
-                name={this.getPropValue("rightArrow")}
-                propsIcon={{ className: this.decorateCSS("icon") }}
+              <Base.Media
+                value={this.getPropValue("rightArrow")}
+                className={this.decorateCSS("icon")}
               />
             </div>
           )}
           {images[this.getComponentState("selectedImage")]?.item && (
-            <img
-              src={images[this.getComponentState("selectedImage")].item}
+            <Base.Media
+              value={images[this.getComponentState("selectedImage")].item}
               onClick={() => this.toggleZoomOverlayImage()}
               className={`${this.decorateCSS("image")} ${
                 this.getComponentState("overlayZoomImage") &&
                 this.decorateCSS("zoom")
               }`}
-            ></img>
+            />
           )}
           {images.length > 0 && this.getPropValue("sliderDotIcon") && (
             <div className={this.decorateCSS("dots")}>
@@ -1370,14 +1465,12 @@ class ECommerce6 extends BaseECommerce {
                     onClick={() => this.handleDotClick(index)}
                     key={index}
                   >
-                    <Base.Icon
-                      name={this.getPropValue("sliderDotIcon")}
-                      propsIcon={{
-                        className: `${this.decorateCSS("icon")} ${
-                          this.getComponentState("selectedImage") === index &&
-                          this.decorateCSS("active")
-                        }`,
-                      }}
+                    <Base.Media
+                      value={this.getPropValue("sliderDotIcon")}
+                      className={`${this.decorateCSS("icon")} ${
+                        this.getComponentState("selectedImage") === index &&
+                        this.decorateCSS("active")
+                      }`}
                     />
                   </div>
                 );
@@ -1390,4 +1483,4 @@ class ECommerce6 extends BaseECommerce {
   }
 }
 
-export default ECommerce6;
+export default ECommerce7;
