@@ -93,9 +93,9 @@
 
 textarea.input {
   height: 110px;
-  max-height: 240px; 
+  max-height: 240px;
   line-height: 1.4;
-  resize: vertical; 
+  resize: vertical;
 }
 
 .form-container {
@@ -212,6 +212,13 @@ textarea.input {
 
 /* -------- Responsive / Container Queries -------- */
 @container (max-width: #{$composer-tablet-width}) {
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
   .max-content {
     flex-direction: column;
     gap: var(--composer-gap-xl);
@@ -234,6 +241,10 @@ textarea.input {
 @container (max-width: #{$composer-phone-width}) {
   .form .input-container .inputs {
     gap: var(--composer-gap-sm);
+  }
+
+  .feature-check {
+    padding: 6px;
   }
 
   .title {
