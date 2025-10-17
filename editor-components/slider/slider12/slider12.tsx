@@ -583,17 +583,35 @@ class Slider12 extends BaseSlider {
                       const url = media?.url ?? item.image ?? "";
                       const hasMedia = Boolean(mediaType && url);
                       const rawPath = (item.link ?? "").trim();
-                      const hasHeaderText = Boolean(item.header);
-                      const hasCardDesc = Boolean(item.description);
+
+                      const hasCardDesc = Boolean(
+                        this.castToString(item.description)
+                      );
+                      const hasHeaderText = Boolean(
+                        this.castToString(item.header)
+                      );
+
+                      // ← kart/text varyant sınıfları
+                      const cardClassName =
+                        this.decorateCSS("card") +
+                        (!hasMedia
+                          ? " " + this.decorateCSS("card--textOnly")
+                          : "");
+
+                      const textClassName =
+                        this.decorateCSS("text") +
+                        (!hasMedia
+                          ? " " + this.decorateCSS("text--centered")
+                          : "");
 
                       const CardInner = (
                         <div
-                          className={this.decorateCSS("card")}
+                          className={cardClassName}
                           onMouseDown={(e) => e.preventDefault()}
                         >
-                          <div className={this.decorateCSS("media")}>
-                            {hasMedia ? (
-                              mediaType === "video" ? (
+                          {hasMedia && (
+                            <div className={this.decorateCSS("media")}>
+                              {mediaType === "video" ? (
                                 <VideoPlayer
                                   src={url}
                                   className={this.decorateCSS("video")}
@@ -606,30 +624,12 @@ class Slider12 extends BaseSlider {
                                   draggable={false}
                                   onDragStart={(e) => e.preventDefault()}
                                 />
-                              )
-                            ) : (
-                              <div
-                                className={this.decorateCSS("placeholder")}
-                                aria-label="Media placeholder"
-                              >
-                                <div
-                                  className={this.decorateCSS(
-                                    "placeholderMark"
-                                  )}
-                                />
-                                <span
-                                  className={this.decorateCSS(
-                                    "placeholderText"
-                                  )}
-                                >
-                                  Media unavailable
-                                </span>
-                              </div>
-                            )}
-                          </div>
+                              )}
+                            </div>
+                          )}
 
                           {(hasHeaderText || hasCardDesc) && (
-                            <div className={this.decorateCSS("text")}>
+                            <div className={textClassName}>
                               {hasHeaderText && (
                                 <div className={this.decorateCSS("header")}>
                                   {item.header}

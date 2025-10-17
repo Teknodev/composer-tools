@@ -329,3 +329,44 @@
     height: var(--media-h);
   }
 }
+
+/* -------- Text-only varyantı: medya yoksa kartın içeriğini merkezle -------- */
+.card--textOnly {
+  /* Kart yüksekliği medya varkenki hissi korusun */
+  min-height: calc(var(--media-h) + 140px);
+  display: grid;
+  place-items: center;
+  /* kart içinde padding’i biraz artır */
+  padding: var(--composer-gap-lg) var(--composer-gap-md);
+  background: color-mix(in srgb, var(--composer-html-background), black 3%);
+}
+
+/* Text alanını hem yatay hem dikey anlamda ortalayalım */
+.text--centered {
+  display: grid;
+  justify-items: center;
+  text-align: center !important;
+
+  .header {
+    text-align: center !important;
+    /* text ağırlığı merkezde daha dengeli dursun */
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    margin-bottom: var(--composer-gap-xs);
+  }
+
+  .desc {
+    text-align: center !important;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    max-width: 60ch; /* okunabilirlik */
+  }
+}
+
+/* Küçük ekranlarda text-only kart yüksekliğini biraz kıs */
+@container (max-width: #{$composer-phone-width}) {
+  .card--textOnly {
+    min-height: calc(var(--media-h) * 0.7 + 120px);
+    padding: var(--composer-gap-md) var(--composer-gap-md);
+  }
+}
