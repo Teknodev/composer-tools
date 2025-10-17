@@ -6,12 +6,6 @@ import styles from "./form9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type FeatureItems = {
-  featureTitle: React.JSX.Element;
-  featureDescription: React.JSX.Element;
-  featureIcon: any; // string
-};
-
 class Form9 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
@@ -169,7 +163,7 @@ class Form9 extends BaseContacts {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type",
+                      value: "Invalid email",
                     },
                   ],
                 },
@@ -280,7 +274,7 @@ class Form9 extends BaseContacts {
           ],
         },
 
-        /* Phone Number: +90 (text) + Phone */
+        /* Phone Number: +90 (Text) + Phone (Number) */
         {
           type: "object",
           key: "input_item",
@@ -324,7 +318,7 @@ class Form9 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "Text", // '+' işareti için Text seçildi
+                      value: "Text",
                       additionalParams: {
                         selectItems: ["Text", "E-mail", "Number", "Text Area"],
                       },
@@ -364,7 +358,7 @@ class Form9 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "Text",
+                      value: "Number",
                       additionalParams: {
                         selectItems: ["Text", "E-mail", "Number", "Text Area"],
                       },
@@ -373,7 +367,7 @@ class Form9 extends BaseContacts {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type",
+                      value: "Invalid number",
                     },
                   ],
                 },
@@ -446,7 +440,7 @@ class Form9 extends BaseContacts {
       ],
     });
 
-    /* ------------------------------- Consent --------------------------------- */
+    /* ------------------------------- Consent ------------------------------- */
     this.addProp({
       type: "object",
       key: "consent",
@@ -474,7 +468,7 @@ class Form9 extends BaseContacts {
       ],
     });
 
-    /* --------------------------------- Button -------------------------------- */
+    /* --------------------------------- Button  -------------------------------- */
     this.addProp(
       INPUTS.BUTTON("button", "Button", "Let's Go", null, null, null, "Primary")
     );
@@ -485,24 +479,396 @@ class Form9 extends BaseContacts {
   }
 
   /* ---------------------------------- Render ---------------------------------- */
-
   render() {
+    /* ---- left props ---- */
     const title = this.getPropValue("title");
     const features = this.getPropValue(
       "features"
     ) as TypeUsableComponentProps[];
 
+    /* ---- right props ---- */
+    const inputItems = (this.getPropValue("input_items") || []) as any[];
+
+    let consent: any | undefined;
+    try {
+      consent = this.castToObject<any>("consent");
+    } catch {
+      consent = undefined;
+    }
+
+    let button: INPUTS.CastedButton | undefined;
+    try {
+      button = this.castToObject<INPUTS.CastedButton>("button");
+    } catch {
+      button = undefined;
+    }
+
+    const hasButton = !!(button && button.text);
+
+    /* ---------------- helpers ---------------- */
+    const stripHtml = (s?: string) =>
+      (s ?? "")
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const toObjectKey = (str: string) => {
+      if (/^\d/.test(str)) str = "_" + str;
+      return str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
+    };
+
+    const getInputType = (type: string): string => {
+      switch (type) {
+        case "Text Area":
+          return "textarea";
+        case "E-mail":
+          return "email";
+        case "Tel":
+          return "tel";
+        case "Number":
+          return "number";
+        default:
+          return "text";
+      }
+    };
+
+    const mapToRenderedType = (t: string) => {
+      const base = getInputType(t);
+      if (base === "number") {
+        return {
+          htmlType: "text" as const,
+          extra: { inputMode: "numeric", pattern: "[0-9]*" },
+        };
+      }
+      return {
+        htmlType: base as "text" | "email" | "tel" | "textarea",
+        extra: {} as Record<string, any>,
+      };
+    };
+
+    const getInputName = (
+      groupIndex: number,
+      groupLabelRaw: string,
+      inputIndex: number
+    ): string => {
+      const groupLabel = stripHtml(groupLabelRaw || "");
+      return toObjectKey(`${groupIndex} ${groupLabel} ${inputIndex}`);
+    };
+
+    const getInitialValue = () => {
+      const value: Record<string, any> = {};
+      inputItems.forEach((inputItem: any, groupIndex: number) => {
+        const labelStr = stripHtml(
+          (inputItem.getPropValue("label", { as_string: true }) as string) || ""
+        );
+        inputItem
+          .getPropValue("inputs")
+          ?.forEach((_in: TypeUsableComponentProps, inputIndex: number) => {
+            const key = getInputName(groupIndex, labelStr, inputIndex);
+            value[key] = "";
+          });
+      });
+      if (consent) value["consent"] = false;
+      return value;
+    };
+
+    const getSchema = () => {
+      let schema = Yup.object().shape({});
+
+      inputItems.forEach((inputItem: any, groupIndex: number) => {
+        const labelStr = stripHtml(
+          (inputItem.getPropValue("label", { as_string: true }) as string) || ""
+        );
+
+        inputItem
+          .getPropValue("inputs")
+          ?.forEach((input: any, inputIndex: number) => {
+            const key = getInputName(groupIndex, labelStr, inputIndex);
+
+            const isRequired = !!input.getPropValue("is_required");
+            const typeStr =
+              (input.getPropValue("type", { as_string: true }) as string) ||
+              "Text";
+            const isEmail = getInputType(typeStr) === "email";
+
+            const reqMsg = stripHtml(
+              (input.getPropValue("required_error_message", {
+                as_string: true,
+              }) as string) || "Required"
+            );
+            const typeMsg = stripHtml(
+              (input.getPropValue("type_error_message", {
+                as_string: true,
+              }) as string) || "Invalid"
+            );
+
+            let fieldSchema: any = Yup.string();
+            if (isRequired) {
+              fieldSchema = fieldSchema.required(reqMsg);
+            } else {
+              fieldSchema = fieldSchema.nullable();
+            }
+            if (isEmail) {
+              fieldSchema = fieldSchema.email(typeMsg);
+            }
+
+            schema = schema.shape({ [key]: fieldSchema });
+          });
+      });
+
+      if (consent && !!consent.required) {
+        schema = schema.shape({
+          consent: Yup.boolean().oneOf([true], "Required"),
+        });
+      }
+
+      return schema;
+    };
+
+    const getFormDataWithConvertedKeys = (obj: any) => {
+      const newObj: any = {};
+      const nameParts: string[] = [];
+
+      for (const key in obj) {
+        if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+
+        const adjustedKey = key.startsWith("_") ? key.slice(1) : key;
+        const parts = adjustedKey.split("_");
+
+        let newKey = "";
+        for (let i = 1; i < parts.length - 1; i++) {
+          newKey += (i > 1 ? "_" : "") + parts[i];
+        }
+
+        if (newKey === "name") {
+          nameParts.push(obj[key]);
+        } else if (key !== "consent") {
+          newObj[newKey] = obj[key];
+        }
+      }
+
+      if (nameParts.length > 0) newObj["name"] = nameParts.join(" ");
+      return newObj;
+    };
+
+    function isRequiredInput(inputItem: any): boolean {
+      return !!inputItem
+        .getPropValue("inputs")
+        ?.some((input: any) => input.getPropValue("is_required"));
+    }
+
+    const formContainerExist =
+      (Array.isArray(inputItems) && inputItems.length > 0) || hasButton;
+
+    /* ------------------------------- render ------------------------------- */
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("layout")}>
-            {/* Left: Title + Features */}
+          {/* ---------------- LEFT CONTENT -------------- */}
+          <div className={this.decorateCSS("left-container")}>
+            <Base.VerticalContent>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
 
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {title}
-            </Base.SectionTitle>
+              <div className={this.decorateCSS("features")}>
+                {features?.map((item: any, i: number) => {
+                  const icon = item.getPropValue("icon", {
+                    as_string: true,
+                  }) as string;
+                  const ft = this.castToString(item.getPropValue("title"));
+                  const fd = this.castToString(
+                    item.getPropValue("description")
+                  );
+                  if (!(icon || ft || fd)) return null;
 
-            <div className={this.decorateCSS("features")}></div>
+                  return (
+                    <div key={i} className={this.decorateCSS("feature")}>
+                      {icon && (
+                        <div className={this.decorateCSS("feature-check")}>
+                          <Base.Icon
+                            name={icon}
+                            propsIcon={{
+                              className: this.decorateCSS("feature-icon"),
+                            }}
+                          />
+                        </div>
+                      )}
+                      <div className={this.decorateCSS("feature-content")}>
+                        {ft && (
+                          <Base.P className={this.decorateCSS("feature-title")}>
+                            {item.getPropValue("title")}
+                          </Base.P>
+                        )}
+                        {fd && (
+                          <Base.P
+                            className={this.decorateCSS("feature-description")}
+                          >
+                            {item.getPropValue("description")}
+                          </Base.P>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Base.VerticalContent>
+          </div>
+
+          {/* ---------------- RIGHT CONTENT (Formik) ---------------- */}
+          <div className={this.decorateCSS("right-container")}>
+            <Base.VerticalContent>
+              {formContainerExist && (
+                <div className={this.decorateCSS("form-container")}>
+                  <Formik
+                    initialValues={getInitialValue()}
+                    validationSchema={getSchema()}
+                    onSubmit={(data, { resetForm }) => {
+                      const formData = getFormDataWithConvertedKeys(data);
+                      const formTitle =
+                        (this.getPropValue("title", {
+                          as_string: true,
+                        }) as string) || "Contact";
+                      this.insertForm(formTitle, formData);
+                      resetForm();
+                    }}
+                  >
+                    {({ handleChange, values }) => (
+                      <Form className={this.decorateCSS("form")}>
+                        {inputItems.map(
+                          (inputItem: any, inputItemIndex: number) => (
+                            <div
+                              key={inputItemIndex}
+                              className={this.decorateCSS("input-container")}
+                            >
+                              <span className={this.decorateCSS("label")}>
+                                {inputItem.getPropValue("label", {
+                                  suffix: {
+                                    label: isRequiredInput(inputItem)
+                                      ? "*"
+                                      : "",
+                                    className: this.decorateCSS("require-star"),
+                                  },
+                                })}
+                              </span>
+
+                              <div className={this.decorateCSS("inputs")}>
+                                {inputItem
+                                  .getPropValue("inputs")
+                                  ?.map((inputObj: any, inputIndex: number) => {
+                                    const name = getInputName(
+                                      inputItemIndex,
+                                      (inputItem.getPropValue("label", {
+                                        as_string: true,
+                                      }) as string) || "",
+                                      inputIndex
+                                    );
+
+                                    const typeStr =
+                                      (inputObj.getPropValue("type", {
+                                        as_string: true,
+                                      }) as string) || "Text";
+                                    const { htmlType, extra } =
+                                      mapToRenderedType(typeStr);
+
+                                    const placeholderRaw =
+                                      (inputObj.getPropValue("placeholder", {
+                                        as_string: true,
+                                      }) as string) || "";
+                                    const placeholderStr =
+                                      stripHtml(placeholderRaw);
+
+                                    return (
+                                      <div
+                                        key={inputIndex}
+                                        className={this.decorateCSS(
+                                          "input-box"
+                                        )}
+                                      >
+                                        {htmlType === "textarea" ? (
+                                          <textarea
+                                            rows={12}
+                                            className={this.decorateCSS(
+                                              "input"
+                                            )}
+                                            name={name}
+                                            value={(values as any)[name]}
+                                            placeholder={placeholderStr}
+                                            onChange={handleChange}
+                                          />
+                                        ) : (
+                                          <input
+                                            className={this.decorateCSS(
+                                              "input"
+                                            )}
+                                            name={name}
+                                            value={(values as any)[name]}
+                                            placeholder={placeholderStr}
+                                            onChange={handleChange}
+                                            type={htmlType}
+                                            {...extra}
+                                          />
+                                        )}
+                                        <ErrorMessage
+                                          className={this.decorateCSS(
+                                            "error-message"
+                                          )}
+                                          name={name}
+                                          component={"span"}
+                                        />
+                                      </div>
+                                    );
+                                  })}
+                              </div>
+                            </div>
+                          )
+                        )}
+
+                        {consent && (
+                          <div className={this.decorateCSS("consent")}>
+                            <label
+                              className={this.decorateCSS("consent-label")}
+                            >
+                              <input
+                                type="checkbox"
+                                name="consent"
+                                checked={(values as any).consent || false}
+                                onChange={handleChange}
+                              />
+                              <span>
+                                {consent?.label_prefix}{" "}
+                                <a
+                                  href={consent?.link_url || "#"}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {consent?.link_text}
+                                </a>
+                              </span>
+                            </label>
+                            <ErrorMessage
+                              className={this.decorateCSS("error-message")}
+                              name="consent"
+                              component={"span"}
+                            />
+                          </div>
+                        )}
+
+                        {hasButton && (
+                          <Base.Button
+                            buttonType={button!.type}
+                            className={this.decorateCSS("submit-button")}
+                            type="submit"
+                          >
+                            {button!.text}
+                          </Base.Button>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                </div>
+              )}
+            </Base.VerticalContent>
           </div>
         </Base.MaxContent>
       </Base.Container>
