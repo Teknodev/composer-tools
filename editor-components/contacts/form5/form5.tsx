@@ -75,11 +75,18 @@ class Form5 extends BaseContacts {
               displayer: "Options",
               value: [
                 {
-                  type: "string",
+                  type: "object",
                   key: "option",
                   displayer: "Option",
-                  value: "Lorem ipsum",
-                },
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "Lorem ipsum", 
+                    },
+                  ],
+                }
               ],
             },
           ],
@@ -128,10 +135,17 @@ class Form5 extends BaseContacts {
               displayer: "Options",
               value: [
                 {
-                  type: "string",
+                  type: "object",
                   key: "option",
                   displayer: "Option",
-                  value: "Lorem ipsum",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "Lorem ipsum", 
+                    },
+                  ],
                 },
               ],
             },
@@ -181,22 +195,43 @@ class Form5 extends BaseContacts {
               displayer: "Options",
               value: [
                 {
-                  type: "string",
+                  type: "object",
                   key: "option",
                   displayer: "Option",
-                  value: "Under $1000",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "Under $1000", 
+                    },
+                  ],
                 },
                 {
-                  type: "string",
+                  type: "object",
                   key: "option",
                   displayer: "Option",
-                  value: "$1000 - $5000",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "$1000 - $5000", 
+                    },
+                  ],
                 },
                 {
-                  type: "string",
+                  type: "object",
                   key: "option",
                   displayer: "Option",
-                  value: "Above $5000",
+                  value: [
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "Above $5000", 
+                    },
+                  ],
                 },
               ],
             },
@@ -495,11 +530,16 @@ class Form5 extends BaseContacts {
                                   <option value="" disabled hidden>
                                     {input.getPropValue("placeholder")}
                                   </option>
-                                  {input.getPropValue("options").map((option: any, idx: number) => (
-                                    <option key={idx} value={option.value}>
-                                      {option.value}
-                                    </option>
-                                  ))}
+                                  {input.getPropValue("options").map((option: any, idx: number) => {
+                                    const optVal = option?.getPropValue
+                                      ? (option.getPropValue("value") || option.getPropValue("option"))
+                                      : option?.value;
+                                    return (
+                                      <option key={idx} value={optVal}>
+                                        {optVal}
+                                      </option>
+                                    );
+                                  })}
                                 </select>
                               ) : (
                                 <input placeholder=" " type={getInputType(input.getPropValue("type"))} onChange={handleChange} value={values[getInputName(index)]} name={getInputName(index)} className={this.decorateCSS("input")} />
@@ -528,11 +568,16 @@ class Form5 extends BaseContacts {
                                   <option value="" disabled hidden>
                                     {input.getPropValue("placeholder")}
                                   </option>
-                                  {input.getPropValue("options").map((option: any, idx: number) => (
-                                    <option key={idx} value={option.value}>
-                                      {option.value}
-                                    </option>
-                                  ))}
+                                  {input.getPropValue("options").map((option: any, idx: number) => {
+                                    const optVal = option?.getPropValue
+                                      ? (option.getPropValue("value") || option.getPropValue("option"))
+                                      : option?.value;
+                                    return (
+                                      <option key={idx} value={optVal}>
+                                        {optVal}
+                                      </option>
+                                    );
+                                  })}
                                 </select>
                               ) : (
                                 <input
