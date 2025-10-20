@@ -6,6 +6,24 @@
   container-type: inline-size;
 }
 
+/* İstersen bileşen özelinde ayarlanabilir bir değişken tanımla */
+:root {
+  --form9-title-measure: 34ch; /* satır başına ~34 karakter hedefi */
+}
+
+.left-container {
+  .title {
+    /* mevcutlarınızın yanına ekleyin */
+    max-inline-size: var(
+      --form9-title-measure
+    ); /* satır uzunluğunu sınırlıyor */
+    white-space: normal; /* olası nowrap/pre etkilerini sıfırla */
+    overflow-wrap: anywhere; /* boşluksuz uzun kelimeleri de kır */
+    word-break: break-word; /* eski motorlar için yedek */
+    hyphens: auto; /* tarayıcı destekliyse heceleme */
+  }
+}
+
 .max-content {
   display: flex;
   align-items: stretch;
@@ -21,6 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 
   .title {
     margin: 0 0 var(--composer-gap-lg) 0;
@@ -186,7 +205,6 @@ textarea.input {
   border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.12);
   background-color: var(--composer-html-background);
   width: 100%;
-  font-family: inherit;
   color: var(--composer-font-color-primary);
   border-radius: var(--composer-border-radius-sm);
 
@@ -204,10 +222,27 @@ textarea.input {
   }
 }
 
+/* Hata alanı için sabit yer tutucu */
+.error-slot {
+  /* error-message font-size: 0.9rem; margin'ı .error-message'dan kaldırıyoruz,
+     o yüzden slot kendi yüksekliğini sağlar: */
+  min-height: 1.2rem; /* 1 satır hata metni kadar yer */
+  margin-top: var(--composer-gap-xxs);
+  display: block;
+}
+
+/* Hata metni render olunca slot içinde görünsün; boşken slot alanı korunur */
 .error-message {
   color: #e53935;
   font-size: 0.9rem;
-  margin-top: var(--composer-gap-xxs);
+  margin: 0; /* Yükseklik slot'tan geliyor */
+  line-height: 1.2; /* Slot yüksekliğine uyumlu */
+  display: block;
+
+  /* İstersen tek satırda sabitleyip kaydırma engeli: */
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
 }
 
 /* -------- Responsive / Container Queries -------- */
@@ -249,5 +284,18 @@ textarea.input {
 
   .title {
     font-size: clamp(24px, 6vw, 34px);
+  }
+}
+
+/* mevcut dosyanın sonlarına yakın bir yere ekleyebilirsin */
+.only-form {
+  justify-content: center;
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .left-container .title {
+    margin-inline: auto; /* merkezde kalsın */
+    max-inline-size: 36ch; /* mobilde biraz daha geniş bırakmak istersen */
+    text-wrap: balance; /* destek varsa daha dengeli kırar (opsiyonel) */
   }
 }

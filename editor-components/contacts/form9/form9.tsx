@@ -486,6 +486,21 @@ class Form9 extends BaseContacts {
       "features"
     ) as TypeUsableComponentProps[];
 
+    const titleStr = this.castToString(title)?.trim() || "";
+    const hasAnyFeature =
+      Array.isArray(features) &&
+      features.some((item: any) => {
+        const icon = item.getPropValue("icon", { as_string: true }) as string;
+        const ft = this.castToString(item.getPropValue("title"));
+        const fd = this.castToString(item.getPropValue("description"));
+        return !!(
+          icon ||
+          (ft && String(ft).trim()) ||
+          (fd && String(fd).trim())
+        );
+      });
+    const showLeft = !!(titleStr || hasAnyFeature);
+
     /* ---- right props ---- */
     const inputItems = (this.getPropValue("input_items") || []) as any[];
 
@@ -503,7 +518,15 @@ class Form9 extends BaseContacts {
       button = undefined;
     }
 
-    const hasButton = !!(button && button.text);
+    /* ----- Form2 benzeri existence kontrolleri ----- */
+    const buttonTextExist = this.castToString(button?.text)?.trim() || "";
+    const hasButton = !!buttonTextExist;
+
+    const consentLabelPrefix =
+      this.castToString(consent?.label_prefix)?.trim() || "";
+    const consentLinkText = this.castToString(consent?.link_text)?.trim() || "";
+    const consentLinkUrl = this.castToString(consent?.link_url)?.trim() || "#";
+    const showConsent = !!(consent && (consentLabelPrefix || consentLinkText));
 
     /* ---------------- helpers ---------------- */
     const stripHtml = (s?: string) =>
@@ -568,7 +591,7 @@ class Form9 extends BaseContacts {
             value[key] = "";
           });
       });
-      if (consent) value["consent"] = false;
+      if (showConsent) value["consent"] = false;
       return value;
     };
 
@@ -579,7 +602,6 @@ class Form9 extends BaseContacts {
         const labelStr = stripHtml(
           (inputItem.getPropValue("label", { as_string: true }) as string) || ""
         );
-
         inputItem
           .getPropValue("inputs")
           ?.forEach((input: any, inputIndex: number) => {
@@ -603,20 +625,16 @@ class Form9 extends BaseContacts {
             );
 
             let fieldSchema: any = Yup.string();
-            if (isRequired) {
-              fieldSchema = fieldSchema.required(reqMsg);
-            } else {
-              fieldSchema = fieldSchema.nullable();
-            }
-            if (isEmail) {
-              fieldSchema = fieldSchema.email(typeMsg);
-            }
+            if (isRequired) fieldSchema = fieldSchema.required(reqMsg);
+            else fieldSchema = fieldSchema.nullable();
+
+            if (isEmail) fieldSchema = fieldSchema.email(typeMsg);
 
             schema = schema.shape({ [key]: fieldSchema });
           });
       });
 
-      if (consent && !!consent.required) {
+      if (showConsent && !!consent?.required) {
         schema = schema.shape({
           consent: Yup.boolean().oneOf([true], "Required"),
         });
@@ -662,58 +680,79 @@ class Form9 extends BaseContacts {
 
     /* ------------------------------- render ------------------------------- */
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("max-content")} ${
+          !showLeft ? this.decorateCSS("only-form") : ""
+        }`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {/* ---------------- LEFT CONTENT -------------- */}
-          <div className={this.decorateCSS("left-container")}>
-            <Base.VerticalContent>
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
+          {showLeft && (
+            <div className={this.decorateCSS("left-container")}>
+              <Base.VerticalContent>
+                {titleStr && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
 
-              <div className={this.decorateCSS("features")}>
-                {features?.map((item: any, i: number) => {
-                  const icon = item.getPropValue("icon", {
-                    as_string: true,
-                  }) as string;
-                  const ft = this.castToString(item.getPropValue("title"));
-                  const fd = this.castToString(
-                    item.getPropValue("description")
-                  );
-                  if (!(icon || ft || fd)) return null;
+                {hasAnyFeature && (
+                  <div className={this.decorateCSS("features")}>
+                    {features?.map((item: any, i: number) => {
+                      const icon = item.getPropValue("icon", {
+                        as_string: true,
+                      }) as string;
+                      const ft = this.castToString(item.getPropValue("title"));
+                      const fd = this.castToString(
+                        item.getPropValue("description")
+                      );
+                      if (
+                        !(
+                          icon ||
+                          (ft && String(ft).trim()) ||
+                          (fd && String(fd).trim())
+                        )
+                      )
+                        return null;
 
-                  return (
-                    <div key={i} className={this.decorateCSS("feature")}>
-                      {icon && (
-                        <div className={this.decorateCSS("feature-check")}>
-                          <Base.Icon
-                            name={icon}
-                            propsIcon={{
-                              className: this.decorateCSS("feature-icon"),
-                            }}
-                          />
+                      return (
+                        <div key={i} className={this.decorateCSS("feature")}>
+                          {icon && (
+                            <div className={this.decorateCSS("feature-check")}>
+                              <Base.Icon
+                                name={icon}
+                                propsIcon={{
+                                  className: this.decorateCSS("feature-icon"),
+                                }}
+                              />
+                            </div>
+                          )}
+                          <div className={this.decorateCSS("feature-content")}>
+                            {ft && (
+                              <Base.P
+                                className={this.decorateCSS("feature-title")}
+                              >
+                                {item.getPropValue("title")}
+                              </Base.P>
+                            )}
+                            {fd && (
+                              <Base.P
+                                className={this.decorateCSS(
+                                  "feature-description"
+                                )}
+                              >
+                                {item.getPropValue("description")}
+                              </Base.P>
+                            )}
+                          </div>
                         </div>
-                      )}
-                      <div className={this.decorateCSS("feature-content")}>
-                        {ft && (
-                          <Base.P className={this.decorateCSS("feature-title")}>
-                            {item.getPropValue("title")}
-                          </Base.P>
-                        )}
-                        {fd && (
-                          <Base.P
-                            className={this.decorateCSS("feature-description")}
-                          >
-                            {item.getPropValue("description")}
-                          </Base.P>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </Base.VerticalContent>
-          </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            </div>
+          )}
 
           {/* ---------------- RIGHT CONTENT (Formik) ---------------- */}
           <div className={this.decorateCSS("right-container")}>
@@ -809,13 +848,21 @@ class Form9 extends BaseContacts {
                                             {...extra}
                                           />
                                         )}
-                                        <ErrorMessage
+                                        <div
                                           className={this.decorateCSS(
-                                            "error-message"
+                                            "error-slot"
                                           )}
-                                          name={name}
-                                          component={"span"}
-                                        />
+                                          aria-live="polite"
+                                          aria-atomic="true"
+                                        >
+                                          <ErrorMessage
+                                            className={this.decorateCSS(
+                                              "error-message"
+                                            )}
+                                            name={name}
+                                            component={"span"}
+                                          />
+                                        </div>
                                       </div>
                                     );
                                   })}
@@ -824,7 +871,7 @@ class Form9 extends BaseContacts {
                           )
                         )}
 
-                        {consent && (
+                        {showConsent && (
                           <div className={this.decorateCSS("consent")}>
                             <label
                               className={this.decorateCSS("consent-label")}
@@ -836,21 +883,29 @@ class Form9 extends BaseContacts {
                                 onChange={handleChange}
                               />
                               <span>
-                                {consent?.label_prefix}{" "}
-                                <a
-                                  href={consent?.link_url || "#"}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  {consent?.link_text}
-                                </a>
+                                {consentLabelPrefix}{" "}
+                                {(consentLinkText || consentLinkUrl) && (
+                                  <a
+                                    href={consentLinkUrl || "#"}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    {consentLinkText || consentLinkUrl}
+                                  </a>
+                                )}
                               </span>
                             </label>
-                            <ErrorMessage
-                              className={this.decorateCSS("error-message")}
-                              name="consent"
-                              component={"span"}
-                            />
+                            <div
+                              className={this.decorateCSS("error-slot")}
+                              aria-live="polite"
+                              aria-atomic="true"
+                            >
+                              <ErrorMessage
+                                className={this.decorateCSS("error-message")}
+                                name="consent"
+                                component={"span"}
+                              />
+                            </div>
                           </div>
                         )}
 
@@ -860,7 +915,7 @@ class Form9 extends BaseContacts {
                             className={this.decorateCSS("submit-button")}
                             type="submit"
                           >
-                            {button!.text}
+                            {buttonTextExist}
                           </Base.Button>
                         )}
                       </Form>
