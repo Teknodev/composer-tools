@@ -35,7 +35,7 @@ class Content28 extends BaseContent {
           key: "headingItem",
           displayer: "Heading Item",
           value: [
-            { type: "string", key: "text", displayer: "Heading", value: "I'm Alexander Green, an independent digital designer" }
+            { type: "string", key: "text", displayer: "Heading", value: "I'm Alexander Green, an\nindependent digital designer" }
           ]
         }
       ]
