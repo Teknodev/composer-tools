@@ -15,9 +15,8 @@
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  gap: var(--composer-gap-xxl, 64px);
+  gap: var(--composer-gap-xxl);
   width: 80%;
-  padding-block: var(--composer-gap-xl);
 }
 
 /* -------- LEFT -------- */
