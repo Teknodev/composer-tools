@@ -465,6 +465,13 @@ class ImageGallery11 extends BaseImageGallery {
 
     keyActions[e.key]?.();
   };
+  private stripHtml(html: string): string {
+    if (typeof DOMParser === 'undefined') {
+      return html.replace(/<[^>]*>?/gm, '');
+    }
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || "";
+  }
   // Tıklama bastırılmalı mı kontrolü
   private shouldSuppressClick(): boolean {
     return this.isPanning || this.dragMoved || performance.now() < this.clickSuppressUntil;
@@ -536,6 +543,7 @@ class ImageGallery11 extends BaseImageGallery {
   private renderModal(allImages: TImage[], active: TImage) {
     const total = allImages.length;
     const imgStyle = this.getImageStyle(active);
+    const strippedTitle = active?.title ? this.stripHtml(active.title).trim() : "";
 
     return (
       <Base.Overlay isVisible={true} className={this.decorateCSS("modal-overlay")}>
@@ -574,7 +582,7 @@ class ImageGallery11 extends BaseImageGallery {
               <div className={this.decorateCSS("counter-badge")}>
                 {this.modalIndex + 1}/{total}
               </div>
-              {active?.title && <div className={this.decorateCSS("title-badge")}>{active.title}</div>}
+              {strippedTitle && <div className={this.decorateCSS("title-badge")}>{strippedTitle}</div>}
 
               {this.renderModalButton("close-btn", "Close", this.closeModal, this.getPropValue("close-icon"))}
               {this.renderModalButton("zoom-btn", this.zoom > 1 ? "Zoom out" : "Zoom in", this.toggleZoom,
