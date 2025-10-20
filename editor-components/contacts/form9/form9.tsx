@@ -10,13 +10,16 @@ class Form9 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
-    /* ------------------------------ Left Content ------------------------------ */
+    //  ------------------ TITLE --------------------
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Get Started with Apcopay",
     });
+
+    //  ------------------ LEFT CONTENT --------------------
 
     this.addProp({
       type: "array",
@@ -104,13 +107,13 @@ class Form9 extends BaseContacts {
       ],
     });
 
-    /* --------------------------------- Inputs -------------------------------- */
+    //  ------------------ RIGHT CONTENT --------------------
+
     this.addProp({
       type: "array",
       key: "input_items",
       displayer: "Input Items",
       value: [
-        /* Email */
         {
           type: "object",
           key: "input_item",
@@ -172,7 +175,6 @@ class Form9 extends BaseContacts {
           ],
         },
 
-        /* Full Name: Name + Surname */
         {
           type: "object",
           key: "input_item",
@@ -274,7 +276,6 @@ class Form9 extends BaseContacts {
           ],
         },
 
-        /* Phone Number: +90 (Text) + Phone (Number) */
         {
           type: "object",
           key: "input_item",
@@ -376,7 +377,6 @@ class Form9 extends BaseContacts {
           ],
         },
 
-        /* Message */
         {
           type: "object",
           key: "input_item",
@@ -440,7 +440,8 @@ class Form9 extends BaseContacts {
       ],
     });
 
-    /* ------------------------------- Consent ------------------------------- */
+    //  ------------------ CONSENT --------------------
+
     this.addProp({
       type: "object",
       key: "consent",
@@ -464,11 +465,17 @@ class Form9 extends BaseContacts {
           displayer: "Link Text",
           value: "Terms and Conditions",
         },
-        { type: "string", key: "link_url", displayer: "Link URL", value: "#" },
+        {
+          type: "string",
+          key: "link_url",
+          displayer: "Navigate To",
+          value: "",
+        },
       ],
     });
 
-    /* --------------------------------- Button  -------------------------------- */
+    //  ------------------ BUTTON --------------------
+
     this.addProp(
       INPUTS.BUTTON("button", "Button", "Let's Go", null, null, null, "Primary")
     );
@@ -478,13 +485,13 @@ class Form9 extends BaseContacts {
     return "Form 9";
   }
 
-  /* ---------------------------------- Render ---------------------------------- */
   render() {
-    /* ---- left props ---- */
+    // GET PROP
     const title = this.getPropValue("title");
     const features = this.getPropValue(
       "features"
     ) as TypeUsableComponentProps[];
+    const inputItems = (this.getPropValue("input_items") || []) as any[];
 
     const titleStr = this.castToString(title)?.trim() || "";
     const hasAnyFeature =
@@ -499,10 +506,8 @@ class Form9 extends BaseContacts {
           (fd && String(fd).trim())
         );
       });
-    const showLeft = !!(titleStr || hasAnyFeature);
 
-    /* ---- right props ---- */
-    const inputItems = (this.getPropValue("input_items") || []) as any[];
+    const showLeft = !!(titleStr || hasAnyFeature);
 
     let consent: any | undefined;
     try {
@@ -518,7 +523,6 @@ class Form9 extends BaseContacts {
       button = undefined;
     }
 
-    /* ----- Form2 benzeri existence kontrolleri ----- */
     const buttonTextExist = this.castToString(button?.text)?.trim() || "";
     const hasButton = !!buttonTextExist;
 
@@ -528,7 +532,6 @@ class Form9 extends BaseContacts {
     const consentLinkUrl = this.castToString(consent?.link_url)?.trim() || "#";
     const showConsent = !!(consent && (consentLabelPrefix || consentLinkText));
 
-    /* ---------------- helpers ---------------- */
     const stripHtml = (s?: string) =>
       (s ?? "")
         .replace(/<[^>]*>/g, " ")
@@ -597,7 +600,6 @@ class Form9 extends BaseContacts {
 
     const getSchema = () => {
       let schema = Yup.object().shape({});
-
       inputItems.forEach((inputItem: any, groupIndex: number) => {
         const labelStr = stripHtml(
           (inputItem.getPropValue("label", { as_string: true }) as string) || ""
@@ -606,13 +608,11 @@ class Form9 extends BaseContacts {
           .getPropValue("inputs")
           ?.forEach((input: any, inputIndex: number) => {
             const key = getInputName(groupIndex, labelStr, inputIndex);
-
             const isRequired = !!input.getPropValue("is_required");
             const typeStr =
               (input.getPropValue("type", { as_string: true }) as string) ||
               "Text";
             const isEmail = getInputType(typeStr) === "email";
-
             const reqMsg = stripHtml(
               (input.getPropValue("required_error_message", {
                 as_string: true,
@@ -625,9 +625,9 @@ class Form9 extends BaseContacts {
             );
 
             let fieldSchema: any = Yup.string();
-            if (isRequired) fieldSchema = fieldSchema.required(reqMsg);
-            else fieldSchema = fieldSchema.nullable();
-
+            fieldSchema = isRequired
+              ? fieldSchema.required(reqMsg)
+              : fieldSchema.nullable();
             if (isEmail) fieldSchema = fieldSchema.email(typeMsg);
 
             schema = schema.shape({ [key]: fieldSchema });
@@ -639,7 +639,6 @@ class Form9 extends BaseContacts {
           consent: Yup.boolean().oneOf([true], "Required"),
         });
       }
-
       return schema;
     };
 
@@ -675,26 +674,29 @@ class Form9 extends BaseContacts {
         ?.some((input: any) => input.getPropValue("is_required"));
     }
 
-    const formContainerExist =
+    const formContainerExists =
       (Array.isArray(inputItems) && inputItems.length > 0) || hasButton;
 
-    /* ------------------------------- render ------------------------------- */
     return (
       <Base.Container
-        className={`${this.decorateCSS("max-content")} ${
+        className={`${this.decorateCSS("container")} ${
           !showLeft ? this.decorateCSS("only-form") : ""
         }`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {/* ---------------- LEFT CONTENT -------------- */}
+          {/* ---------- LEFT CONTENT --------- */}
+
           {showLeft && (
             <div className={this.decorateCSS("left-container")}>
               <Base.VerticalContent>
+                {/* ---------- LEFT TITLE --------- */}
+
                 {titleStr && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
+                {/* ---------- FEATURES --------- */}
 
                 {hasAnyFeature && (
                   <div className={this.decorateCSS("features")}>
@@ -754,10 +756,11 @@ class Form9 extends BaseContacts {
             </div>
           )}
 
-          {/* ---------------- RIGHT CONTENT (Formik) ---------------- */}
+          {/* ---------- RIGHT CONTENT --------- */}
+
           <div className={this.decorateCSS("right-container")}>
             <Base.VerticalContent>
-              {formContainerExist && (
+              {formContainerExists && (
                 <div className={this.decorateCSS("form-container")}>
                   <Formik
                     initialValues={getInitialValue()}
@@ -856,11 +859,17 @@ class Form9 extends BaseContacts {
                                           aria-atomic="true"
                                         >
                                           <ErrorMessage
-                                            className={this.decorateCSS(
-                                              "error-message"
-                                            )}
                                             name={name}
-                                            component={"span"}
+                                            render={(msg) => (
+                                              <span
+                                                key={msg || "empty"}
+                                                className={this.decorateCSS(
+                                                  "error-message"
+                                                )}
+                                              >
+                                                {msg}
+                                              </span>
+                                            )}
                                           />
                                         </div>
                                       </div>
@@ -901,9 +910,17 @@ class Form9 extends BaseContacts {
                               aria-atomic="true"
                             >
                               <ErrorMessage
-                                className={this.decorateCSS("error-message")}
                                 name="consent"
-                                component={"span"}
+                                render={(msg) => (
+                                  <span
+                                    key={msg || "empty"}
+                                    className={this.decorateCSS(
+                                      "error-message"
+                                    )}
+                                  >
+                                    {msg}
+                                  </span>
+                                )}
                               />
                             </div>
                           </div>
@@ -915,7 +932,9 @@ class Form9 extends BaseContacts {
                             className={this.decorateCSS("submit-button")}
                             type="submit"
                           >
-                            {buttonTextExist}
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {buttonTextExist}
+                            </Base.P>
                           </Base.Button>
                         )}
                       </Form>

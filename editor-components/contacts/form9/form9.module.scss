@@ -1,35 +1,22 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
-/* Ana yerleşim */
+/* Root container */
 .container {
   container-type: inline-size;
 }
 
-/* İstersen bileşen özelinde ayarlanabilir bir değişken tanımla */
-:root {
-  --form9-title-measure: 34ch; /* satır başına ~34 karakter hedefi */
+.container {
+  content: "";
 }
 
-.left-container {
-  .title {
-    /* mevcutlarınızın yanına ekleyin */
-    max-inline-size: var(
-      --form9-title-measure
-    ); /* satır uzunluğunu sınırlıyor */
-    white-space: normal; /* olası nowrap/pre etkilerini sıfırla */
-    overflow-wrap: anywhere; /* boşluksuz uzun kelimeleri de kır */
-    word-break: break-word; /* eski motorlar için yedek */
-    hyphens: auto; /* tarayıcı destekliyse heceleme */
-  }
-}
-
+/* Layout */
 .max-content {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   gap: var(--composer-gap-xxl, 64px);
-  width: 100%;
+  width: 80%;
   padding-block: var(--composer-gap-xl);
 }
 
@@ -42,11 +29,10 @@
   min-width: 0;
 
   .title {
-    margin: 0 0 var(--composer-gap-lg) 0;
-    color: var(--composer-font-color-primary);
-    font-weight: 800;
-    line-height: 1.1;
-    font-size: clamp(28px, 4vw, 44px);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
   }
 
   .features {
@@ -85,19 +71,12 @@
     }
 
     .feature-title {
-      margin: 0;
-      font-weight: 700;
       color: var(--composer-font-color-primary);
-      font-size: clamp(16px, 2.2vw, 20px);
-      line-height: 1.3;
     }
 
     .feature-description {
-      margin: 0;
-      color: rgb(var(--composer-font-color-primary-rgb), 0.65);
-      font-size: clamp(13px, 1.8vw, 16px);
-      line-height: 1.6;
       max-width: 60ch;
+      color: var(--composer-font-color-primary);
     }
   }
 }
@@ -108,13 +87,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-}
-
-textarea.input {
-  height: 110px;
-  max-height: 240px;
-  line-height: 1.4;
-  resize: vertical;
 }
 
 .form-container {
@@ -128,11 +100,11 @@ textarea.input {
   padding: 4rem;
 }
 
-/* Form alanları */
+/* Fields */
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--composer-gap-sm);
+  gap: var(--composer-gap-xs);
 
   .input-container {
     width: 100%;
@@ -142,10 +114,10 @@ textarea.input {
 
     .label {
       color: var(--composer-font-color-primary);
-      margin-bottom: var(--composer-gap-xs);
+      margin-bottom: var(--composer-gap-sm);
       display: inline-flex;
       align-items: center;
-      gap: var(--composer-gap-xxs);
+      font-size: 14px;
 
       .require-star {
         color: var(--composer-tertiary-color);
@@ -156,7 +128,7 @@ textarea.input {
 
     .inputs {
       display: flex;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-xs);
       flex-wrap: wrap;
 
       .input-box {
@@ -196,20 +168,24 @@ textarea.input {
   .submit-button {
     margin-top: var(--composer-gap-md);
     justify-content: center;
+    .button-text {
+      text-align: center;
+    }
   }
 }
 
+/* Inputs */
 .input {
   resize: vertical;
   padding: var(--composer-gap-sm) var(--composer-gap-sm);
-  border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.12);
+  border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.12);
   background-color: var(--composer-html-background);
   width: 100%;
   color: var(--composer-font-color-primary);
   border-radius: var(--composer-border-radius-sm);
 
   &::placeholder {
-    color: rgb(var(--composer-font-color-primary-rgb), 0.45);
+    color: rgba(var(--composer-font-color-primary-rgb), 0.45);
   }
 
   &:focus {
@@ -222,38 +198,48 @@ textarea.input {
   }
 }
 
-/* Hata alanı için sabit yer tutucu */
+/* Textarea size */
+textarea.input {
+  height: 110px;
+  max-height: 240px;
+  line-height: 1.4;
+  resize: vertical;
+}
+
 .error-slot {
-  /* error-message font-size: 0.9rem; margin'ı .error-message'dan kaldırıyoruz,
-     o yüzden slot kendi yüksekliğini sağlar: */
-  min-height: 1.2rem; /* 1 satır hata metni kadar yer */
+  min-height: 1.2rem;
   margin-top: var(--composer-gap-xxs);
   display: block;
 }
 
-/* Hata metni render olunca slot içinde görünsün; boşken slot alanı korunur */
+/* Error message (with subtle entrance animation) */
+@keyframes error-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .error-message {
   color: #e53935;
   font-size: 0.9rem;
-  margin: 0; /* Yükseklik slot'tan geliyor */
-  line-height: 1.2; /* Slot yüksekliğine uyumlu */
+  margin: 0;
+  line-height: 1.2;
   display: block;
-
-  /* İstersen tek satırda sabitleyip kaydırma engeli: */
-  /* white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; */
+  animation: error-in 160ms ease-out;
 }
 
-/* -------- Responsive / Container Queries -------- */
-@container (max-width: #{$composer-tablet-width}) {
-  .left-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+/* Center form when left content is hidden */
+.only-form {
+  justify-content: center;
+}
 
+/* -------- Container Queries -------- */
+@container (max-width: #{$composer-tablet-width}) {
   .max-content {
     flex-direction: column;
     gap: var(--composer-gap-xl);
@@ -264,11 +250,23 @@ textarea.input {
     flex: 1 1 100%;
   }
 
+  .left-container {
+    align-items: center;
+    text-align: center;
+
+    .title {
+      margin-inline: auto;
+      max-inline-size: 36ch;
+      text-wrap: balance;
+    }
+  }
+
   .form-container {
     width: 100%;
   }
 
   .features .feature-description {
+    color: var(--composer-font-color-primary);
     max-width: unset;
   }
 }
@@ -278,24 +276,23 @@ textarea.input {
     gap: var(--composer-gap-sm);
   }
 
-  .feature-check {
+  .features .feature-check {
     padding: 6px;
   }
 
-  .title {
+  .left-container .title {
     font-size: clamp(24px, 6vw, 34px);
   }
 }
 
-/* mevcut dosyanın sonlarına yakın bir yere ekleyebilirsin */
-.only-form {
-  justify-content: center;
+.form > .input-container {
+  margin-bottom: 0;
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .left-container .title {
-    margin-inline: auto; /* merkezde kalsın */
-    max-inline-size: 36ch; /* mobilde biraz daha geniş bırakmak istersen */
-    text-wrap: balance; /* destek varsa daha dengeli kırar (opsiyonel) */
-  }
+.form > .input-container:last-of-type .error-slot {
+  min-height: 0.6rem;
+}
+
+.form > .consent {
+  margin-top: 0;
 }
