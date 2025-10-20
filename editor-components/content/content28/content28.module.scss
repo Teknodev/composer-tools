@@ -89,6 +89,7 @@
         line-height: 1.1;
         letter-spacing: -0.02em;
         font-weight: 500; // strong headline as in reference
+        white-space: pre-line; // allow line breaks in text
         // Color is controlled by Base's theme (.colorful / .monochrome)
       }
       // When editor View Type is 'colorful', force SectionTitle to primary color even if this
