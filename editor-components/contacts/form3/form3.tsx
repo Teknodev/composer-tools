@@ -550,15 +550,8 @@ class Form3 extends BaseContacts {
         },
       ],
     });
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      additionalParams: {
-        maxElementCount: 2,
-      },
-      value: [INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary")],
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"));
+    
   }
 
   static getName(): string {
@@ -566,7 +559,7 @@ class Form3 extends BaseContacts {
   }
 
   render() {
-    const buttons = this.getPropValue("buttons");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const title = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const leftTitle = this.castToString(this.getPropValue("leftTitle"));
@@ -644,7 +637,7 @@ class Form3 extends BaseContacts {
     const overlay = this.getPropValue("overlay");
 
     const leftItemsExist = icons.length > 0 || backgroundImage || leftSubtitle || leftTitle || contactInfo.length > 0 || contactIcon;
-    const rightItemsExist = rightTitle || buttons.length > 0 || inputItems.length > 0;
+    const rightItemsExist = rightTitle || this.castToString(button.text) || inputItems.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -712,7 +705,7 @@ class Form3 extends BaseContacts {
             {rightItemsExist && (
               <div className={`${this.decorateCSS("right-container")} ${!leftItemsExist && this.decorateCSS("right-container-no-image")}`}>
                 {rightTitle && <Base.H2 className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </Base.H2>}
-                {(buttons || inputItems).length > 0 && (
+                {(this.castToString(button.text) || inputItems.length > 0) && (
                   <div className={this.decorateCSS("form-container")}>
                     <Formik
                       initialValues={getInitialValue()}
@@ -764,19 +757,11 @@ class Form3 extends BaseContacts {
                                 </div>
                               ))}
                               <div className={this.decorateCSS("form-button")}>
-                                {buttons.length > 0 &&
-                                  buttons.map((buttonText: any, index: number) => {
-                                    const buttonExist = this.castToString(buttonText.getPropValue("text"));
-                                    return (
-                                      buttonExist && (
-                                        <div className={this.decorateCSS("buttonSide")} key={index}>
-                                          <Base.Button buttonType={buttonText.getPropValue("type")} className={this.decorateCSS("submit-button")} type="submit">
-                                            <Base.P className={this.decorateCSS("button-text")}>{buttonText.getPropValue("text")}</Base.P>
-                                          </Base.Button>
-                                        </div>
-                                      )
-                                    );
-                                  })}
+                                {this.castToString(button.text) && (
+                                  <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                  </Base.Button>
+                                )}
                               </div>
                             </div>
                           )}

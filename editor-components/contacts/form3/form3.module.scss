@@ -308,16 +308,9 @@
           align-items: center;
           justify-content: center;
 
-          .buttonSide {
-            align-self: center;
-            display: flex;
-            gap: var(--composer-gap-sm);
-            justify-content: center;
-            align-items: center;
-            .submit-button{
-              .button-text {
-                content: "";
-              }
+          .submit-button{
+            .button-text {
+              content: "";
             }
           }
         }
