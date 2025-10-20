@@ -26,28 +26,48 @@ class Form3 extends BaseContacts {
 
     this.addProp({
       type: "string",
-      key: "topTitle",
-      displayer: "Top Title",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Get in touch",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
       value: "Contact Us",
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb57653292c6002b23ff58?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb57653292c6002b23ff58?alt=media"
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
 
     this.addProp({
       type: "string",
-      key: "leftTitle",
-      displayer: "Left Title",
+      key: "leftSubtitle",
+      displayer: "Left Subtitle",
       value: "Hey There,",
     });
     this.addProp({
       type: "string",
-      key: "leftSubtitle",
-      displayer: "Left Subtitle",
+      key: "leftTitle",
+      displayer: "Left Title",
       value: "Let's Get In Touch",
     });
     this.addProp({
@@ -64,13 +84,19 @@ class Form3 extends BaseContacts {
               type: "string",
               key: "contactName",
               value: "Moldova, str. Gagarin 10",
-              displayer: "Location Detail",
+              displayer: "Text",
             },
             {
-              type: "icon",
+              type: "media",
               key: "contactIcon",
-              value: "FaLocationDot",
-              displayer: "locationIcon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLocationDot"
+              },
+              displayer: "Icon",
             },
           ],
         },
@@ -83,13 +109,19 @@ class Form3 extends BaseContacts {
               type: "string",
               key: "contactName",
               value: "+373 68 324 028",
-              displayer: "Number",
+              displayer: "Text",
             },
             {
-              type: "icon",
+              type: "media",
               key: "contactIcon",
-              value: "FaPhoneAlt",
-              displayer: "phoneIcon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaPhoneAlt"
+              },
+              displayer: "Icon",
             },
           ],
         },
@@ -102,13 +134,19 @@ class Form3 extends BaseContacts {
               type: "string",
               key: "contactName",
               value: "test@test.com",
-              displayer: "E-mail",
+              displayer: "Text",
             },
             {
-              type: "icon",
+              type: "media",
               key: "contactIcon",
-              value: "IoIosMail",
-              displayer: "mailIcon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoIosMail"
+              },
+              displayer: "Icon",
             },
           ],
         },
@@ -126,15 +164,21 @@ class Form3 extends BaseContacts {
           displayer: "Social",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "BiLogoFacebook",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BiLogoFacebook"
+              },
               displayer: "Icon",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -145,15 +189,21 @@ class Form3 extends BaseContacts {
           displayer: "Social",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "SiGmail",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "SiGmail"
+              },
               displayer: "Icon",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -164,15 +214,21 @@ class Form3 extends BaseContacts {
           displayer: "Social",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaLinkedinIn",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedinIn"
+              },
               displayer: "Icon",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -183,15 +239,21 @@ class Form3 extends BaseContacts {
           displayer: "Social",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaInstagram",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram"
+              },
               displayer: "Icon",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -505,7 +567,8 @@ class Form3 extends BaseContacts {
 
   render() {
     const buttons = this.getPropValue("buttons");
-    const topTitle = this.castToString(this.getPropValue("topTitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
     const leftTitle = this.castToString(this.getPropValue("leftTitle"));
     const leftSubtitle = this.castToString(this.getPropValue("leftSubtitle"));
     const rightTitle = this.castToString(this.getPropValue("rightTitle"));
@@ -577,37 +640,48 @@ class Form3 extends BaseContacts {
 
     const icons = this.castToObject<Social[]>("socials");
     const background = this.getPropValue("background");
+    const backgroundImage = background?.url;
+    const overlay = this.getPropValue("overlay");
 
-    const leftItemsExist = icons.length > 0 || background || leftSubtitle || leftTitle || contactInfo.length > 0 || contactIcon;
+    const leftItemsExist = icons.length > 0 || backgroundImage || leftSubtitle || leftTitle || contactInfo.length > 0 || contactIcon;
     const rightItemsExist = rightTitle || buttons.length > 0 || inputItems.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {topTitle && (
-            <Base.VerticalContent>
-              <Base.SectionTitle className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </Base.SectionTitle>
+          {(title || subtitle )&& (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
+              <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("box")}>
             {leftItemsExist && (
               <div className={this.decorateCSS("left-container")}>
-                {background && <img className={`${this.decorateCSS("background")} ${!rightItemsExist && this.decorateCSS("background-full")}`} src={this.getPropValue("background")} alt="" />}
+                {backgroundImage && (
+                  <div className={`${this.decorateCSS("background-wrapper")} ${!rightItemsExist && this.decorateCSS("background-full")}`}>
+                    <Base.Media 
+                      value={background} 
+                      className={`${this.decorateCSS("background")} ${!rightItemsExist && this.decorateCSS("background-full")}`} 
+                    />
+                    {overlay && <div className={this.decorateCSS("overlay")} />}
+                  </div>
+                )}
                 <div className={this.decorateCSS("left")}>
-                  <div className={`${this.decorateCSS("textSide")} ${!rightItemsExist && this.decorateCSS("textSide-full")}`}>
+                  <div className={`${this.decorateCSS("content")} ${!rightItemsExist && this.decorateCSS("content-full")}`}>
                     <div className={this.decorateCSS("left-top")}>
                       {(leftTitle || leftSubtitle) && (
-                        <div className={this.decorateCSS("title1")}>
-                          {leftTitle && <Base.P className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </Base.P>}
+                        <Base.VerticalContent className={this.decorateCSS("left-top-content")}>
                           {leftSubtitle && <Base.P className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")} </Base.P>}
-                        </div>
+                          {leftTitle && <Base.H3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </Base.H3>}
+                        </Base.VerticalContent>
                       )}
                       {(contactInfo || contactIcon) && (
                         <div className={this.decorateCSS("contacts")}>
                           {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
                             <div className={this.decorateCSS("contact")}>
-                              <Base.Icon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                              {this.castToString(contact.contactName) && <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>}
+                              <Base.Media value={contact.contactIcon} className={this.decorateCSS("icon")} />
+                              {this.castToString(contact.contactName) && <Base.P className={this.decorateCSS("contactName")}> {contact.contactName} </Base.P>}
                             </div>
                           ))}
                         </div>
@@ -619,13 +693,11 @@ class Form3 extends BaseContacts {
                           if (!social.icon) return null;
 
                           return (
-                            <div className={`${this.decorateCSS("icon-container")} ${!background && this.decorateCSS("icon-container-no-image")}`}>
+                            <div className={`${this.decorateCSS("icon-container")} ${!backgroundImage && this.decorateCSS("icon-container-no-image")}`}>
                               <ComposerLink key={index} path={social.url}>
-                                <Base.Icon
-                                  name={social.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
+                                <Base.Media
+                                  value={social.icon}
+                                  className={this.decorateCSS("icon")}
                                 />
                               </ComposerLink>
                             </div>
@@ -639,7 +711,7 @@ class Form3 extends BaseContacts {
             )}
             {rightItemsExist && (
               <div className={`${this.decorateCSS("right-container")} ${!leftItemsExist && this.decorateCSS("right-container-no-image")}`}>
-                {rightTitle && <div className={this.decorateCSS("title2")}>{rightTitle && <Base.P className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </Base.P>}</div>}
+                {rightTitle && <Base.H2 className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </Base.H2>}
                 {(buttons || inputItems).length > 0 && (
                   <div className={this.decorateCSS("form-container")}>
                     <Formik
@@ -699,7 +771,7 @@ class Form3 extends BaseContacts {
                                       buttonExist && (
                                         <div className={this.decorateCSS("buttonSide")} key={index}>
                                           <Base.Button buttonType={buttonText.getPropValue("type")} className={this.decorateCSS("submit-button")} type="submit">
-                                            {buttonText.getPropValue("text")}
+                                            <Base.P className={this.decorateCSS("button-text")}>{buttonText.getPropValue("text")}</Base.P>
                                           </Base.Button>
                                         </div>
                                       )

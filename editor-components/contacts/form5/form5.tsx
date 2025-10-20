@@ -12,15 +12,16 @@ class Form5 extends BaseContacts {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "CONTACT",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "SAY HELLO",
-    });
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "CONTACT",
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Submit", null, null, null, "Primary"));
@@ -28,7 +29,7 @@ class Form5 extends BaseContacts {
     this.addProp({
       type: "array",
       key: "first_inputs",
-      displayer: "First Inputs",
+      displayer: "Left Inputs",
       value: [
         {
           type: "object",
@@ -50,7 +51,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "Required",
             },
             {
@@ -65,7 +66,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "type_error_message",
-              displayer: "Type error message",
+              displayer: "Type Error Message",
               value: "Invalid type",
             },
             {
@@ -103,7 +104,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "Required",
             },
             {
@@ -118,7 +119,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "type_error_message",
-              displayer: "Type error message",
+              displayer: "Type Error Message",
               value: "Invalid type",
             },
             {
@@ -156,7 +157,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "Required",
             },
             {
@@ -171,7 +172,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "type_error_message",
-              displayer: "Type error message",
+              displayer: "Type Error Message",
               value: "Invalid type",
             },
             {
@@ -181,20 +182,20 @@ class Form5 extends BaseContacts {
               value: [
                 {
                   type: "string",
-                  key: "option1",
-                  displayer: "Option1",
+                  key: "option",
+                  displayer: "Option",
                   value: "Under $1000",
                 },
                 {
                   type: "string",
-                  key: "option2",
-                  displayer: "Option2",
+                  key: "option",
+                  displayer: "Option",
                   value: "$1000 - $5000",
                 },
                 {
                   type: "string",
-                  key: "option3",
-                  displayer: "Option3",
+                  key: "option",
+                  displayer: "Option",
                   value: "Above $5000",
                 },
               ],
@@ -206,7 +207,7 @@ class Form5 extends BaseContacts {
     this.addProp({
       type: "array",
       key: "second_inputs",
-      displayer: "Second Inputs",
+      displayer: "Right Inputs",
       value: [
         {
           type: "object",
@@ -228,7 +229,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "Required",
             },
             {
@@ -243,7 +244,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "type_error_message",
-              displayer: "Type error message",
+              displayer: "Type Error Message",
               value: "Invalid type",
             },
             {
@@ -281,7 +282,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "Required",
             },
             {
@@ -296,7 +297,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "type_error_message",
-              displayer: "Type error message",
+              displayer: "Type Error Message",
               value: "Invalid type",
             },
             {
@@ -334,7 +335,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "Required",
             },
             {
@@ -349,7 +350,7 @@ class Form5 extends BaseContacts {
             {
               type: "string",
               key: "type_error_message",
-              displayer: "Type error message",
+              displayer: "Type Error Message",
               value: "Invalid type",
             },
             {
@@ -376,7 +377,7 @@ class Form5 extends BaseContacts {
   }
 
   render() {
-    const badge = this.castToString(this.getPropValue("badge"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
@@ -464,9 +465,9 @@ class Form5 extends BaseContacts {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {(badge || title) && (
-              <Base.VerticalContent className={this.decorateCSS("texts")}>
-                {badge && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+            {(subtitle || title) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               </Base.VerticalContent>
             )}
@@ -484,7 +485,7 @@ class Form5 extends BaseContacts {
                   <Form className={this.decorateCSS("form")}>
                     <div className={this.decorateCSS("inputs")}>
                       {firstInputs.length > 0 && (
-                        <div className={this.decorateCSS("first-inputs")}>
+                        <div className={this.decorateCSS("left-inputs")}>
                           {firstInputs.map((input: any, index: number) => (
                             <div key={index} className={this.decorateCSS("input-container")}>
                               {getInputType(input.getPropValue("type")) === "textarea" ? (
@@ -503,14 +504,14 @@ class Form5 extends BaseContacts {
                               ) : (
                                 <input placeholder=" " type={getInputType(input.getPropValue("type"))} onChange={handleChange} value={values[getInputName(index)]} name={getInputName(index)} className={this.decorateCSS("input")} />
                               )}
-                              {getInputType(input.getPropValue("type")) === "select" ? "" : <span className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</span>}
+                              {getInputType(input.getPropValue("type")) === "select" ? "" : <Base.P className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</Base.P>}
                               <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
                             </div>
                           ))}
                         </div>
                       )}
                       {secondInputs.length > 0 && (
-                        <div className={this.decorateCSS("second-inputs")}>
+                        <div className={this.decorateCSS("right-inputs")}>
                           {secondInputs.map((input: any, index: number) => (
                             <div key={index} className={this.decorateCSS("input-container")}>
                               {getInputType(input.getPropValue("type")) === "textarea" ? (
@@ -543,7 +544,7 @@ class Form5 extends BaseContacts {
                                   className={this.decorateCSS("input")}
                                 />
                               )}
-                              {getInputType(input.getPropValue("type")) === "select" ? "" : <span className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</span>}
+                              {getInputType(input.getPropValue("type")) === "select" ? "" : <Base.P className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</Base.P>}
                               <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index + firstInputs.length)} component={"span"} />
                             </div>
                           ))}
@@ -552,7 +553,7 @@ class Form5 extends BaseContacts {
                     </div>
                     {buttonText && (
                       <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     )}
                   </Form>

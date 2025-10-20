@@ -14,47 +14,21 @@
   justify-content: space-between;
   width: 100%;
 
-  .contact {
+  .left-container {
     width: 66%;
 
-    .title {
-      margin: 0;
-      color: var(--composer-primary-color);
-      word-wrap: break-word;
-      width: 100%;
-      text-transform: uppercase;
-      font-size: 2.5rem;
-    }
-
-    .description {
-      margin: 0;
-      margin-top: var(--composer-gap-md);
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
+    .subtitle, .title, .description {
+      content: "";
     }
   }
 
-  .address {
-    display: flex;
+  .right-container {
     align-items: flex-end;
-    flex-direction: column;
     width: 33%;
     text-align: right;
 
-    .title-2 {
-      margin: 0;
-      color: var(--composer-tertiary-color);
-      word-wrap: break-word;
-      width: 100%;
-      text-transform: uppercase;
-      font-size: 2.5rem;
-    }
-
-    .description-2 {
-      margin: 0;
-      margin-top: var(--composer-gap-md);
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
+    .right-title, .right-description {
+     color: var(--composer-font-color-primary);
     }
   }
 }
@@ -84,7 +58,19 @@
       object-fit: cover;
       width: 100%;
       height: 100%;
-      border-radius: var(--composer-gap-sm);
+      border-radius: var(--composer-border-radius-sm);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--composer-overlay-color);
+      pointer-events: none;
+      z-index: 1;
+      border-radius: var(--composer-border-radius-sm);
     }
   }
 }
@@ -112,6 +98,8 @@
       display: flex;
       align-items: center;
       gap: var(--composer-gap-xs);
+      text-align: left;
+      justify-content: flex-start;
 
       .require-star {
         color: var(--composer-tertiary-color);
@@ -129,7 +117,9 @@
   }
 
   .submit-button {
-    justify-content: center;
+    .button-text {
+      text-align: center;
+    }
   }
 }
 
@@ -140,10 +130,9 @@
 .input {
   resize: vertical;
   padding: var(--composer-gap-md) var(--composer-gap-sm);
-  border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+  border: 1px solid var(--composer-tertiary-color);
   background-color: var(--composer-html-background);
   width: 100%;
-  font-family: inherit;
   color: var(--composer-font-color-primary);
   border-radius: var(--composer-border-radius-sm);
 }
@@ -154,7 +143,7 @@
 
 .input:focus {
   outline: none;
-  border: 1px solid var(--composer-font-color-primary);
+  border: 1px solid var(--composer-tertiary-color);
 }
 
 .error-message {
@@ -168,18 +157,13 @@
     flex-direction: column;
     gap: var(--composer-gap-md);
 
-    .contact,
-    .address {
+    .left-container,
+    .right-container {
       width: 100%;
     }
 
-    .address {
-      .title-2 {
-        text-align: left;
-      }
-
-      .description-2 {
-        width: 100%;
+    .right-container {
+      .right-title, .right-description {
         text-align: left;
       }
     }

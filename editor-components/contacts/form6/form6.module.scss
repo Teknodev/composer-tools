@@ -28,6 +28,17 @@
           height: 100%;
           object-fit: cover;
         }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+          pointer-events: none;
+          z-index: 1;
+        }
       }
 
       .form-container {
@@ -46,6 +57,12 @@
           flex-wrap: wrap;
           gap: var(--composer-gap-md);
           justify-content: space-between;
+
+          .button-container{
+            .button-text {
+              content: "";
+            }
+          }
 
           .form-item {
             width: calc(50% - (var(--composer-gap-md) / 2));
@@ -128,7 +145,7 @@
 
         .image-container {
           width: 100%;
-          position: unset;
+          position: relative;
         }
 
         .form-container {

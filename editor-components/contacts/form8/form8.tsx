@@ -14,6 +14,14 @@ type ContactItem = {
 class Form8 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Contact Us",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -47,7 +55,7 @@ class Form8 extends BaseContacts {
               type: "string",
               key: "title",
               value: "Email:",
-              displayer: "Text",
+              displayer: "Title",
             },
             {
               type: "string",
@@ -66,7 +74,7 @@ class Form8 extends BaseContacts {
               type: "string",
               key: "title",
               value: "Phone:",
-              displayer: "Text",
+              displayer: "Title",
             },
             {
               type: "string",
@@ -85,7 +93,7 @@ class Form8 extends BaseContacts {
               type: "string",
               key: "title",
               value: "Skype:",
-              displayer: "Text",
+              displayer: "Title",
             },
             {
               type: "string",
@@ -133,13 +141,13 @@ class Form8 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "isRequired",
+                      displayer: "Is Required",
                       value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -193,7 +201,7 @@ class Form8 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "isRequired",
+                      displayer: "Is Required",
                       value: true,
                     },
                     {
@@ -253,7 +261,7 @@ class Form8 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "isRequired",
+                      displayer: "Is Required",
                       value: true,
                     },
                     {
@@ -294,6 +302,7 @@ class Form8 extends BaseContacts {
   }
 
   render() {
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const firstTextExist = this.castToString(this.getPropValue("first-text"));
     const secondTextExist = this.castToString(this.getPropValue("second-text"));
@@ -401,7 +410,14 @@ class Form8 extends BaseContacts {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent>{titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>}</Base.VerticalContent>
+          {(subtitleExist || titleExist) && <Base.VerticalContent className={this.decorateCSS("header")}>
+            {subtitleExist && 
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+            }
+            {titleExist && 
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+            }
+          </Base.VerticalContent>}
           <div className={this.decorateCSS("page-content")}>
             {(firstTextExist || secondTextExist || contactTexts?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("text-content")}>
@@ -467,9 +483,10 @@ class Form8 extends BaseContacts {
                         </div>
                       ))
                     )}
-                    <Base.Button buttonType={button.type} type="submit" className={this.decorateCSS("form-button")}>
-                      {button.text}
-                    </Base.Button>
+                   {this.castToString(button.text) && 
+                   <Base.Button buttonType={button.type} type="submit" className={this.decorateCSS("form-button")}>
+                     <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    </Base.Button>}
                   </Form>
                 )}
               </Formik>

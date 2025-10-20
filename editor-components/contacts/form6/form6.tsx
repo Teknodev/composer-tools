@@ -11,11 +11,32 @@ class Form6 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797"
+      },
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    })
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Contact Us",
+    });
+    
     this.addProp({
       type: "string",
       key: "title",
@@ -46,15 +67,21 @@ class Form6 extends BaseContacts {
               value: "First Name",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaUser",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaUser"
+              },
             },
             {
               type: "select",
               key: "type",
-              displayer: "Input Type",
+              displayer: "Type",
               value: "Text",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -104,15 +131,21 @@ class Form6 extends BaseContacts {
               value: "Last Name",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaUser",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaUser"
+              },
             },
             {
               type: "select",
               key: "type",
-              displayer: "Input Type",
+              displayer: "Type",
               value: "Text",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -162,15 +195,21 @@ class Form6 extends BaseContacts {
               value: "Email Address",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaEnvelope",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaEnvelope"
+              },
             },
             {
               type: "select",
               key: "type",
-              displayer: "Input Type",
+              displayer: "Type",
               value: "Email",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -220,15 +259,21 @@ class Form6 extends BaseContacts {
               value: "Phone Number",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaPhoneAlt",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaPhoneAlt"
+              },
             },
             {
               type: "select",
               key: "type",
-              displayer: "Input Type",
+              displayer: "Type",
               value: "Phone",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -278,15 +323,21 @@ class Form6 extends BaseContacts {
               value: "Message",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaMail",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaMail"
+              },
             },
             {
               type: "select",
               key: "type",
-              displayer: "Input Type",
+              displayer: "Type",
               value: "Text Area",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -350,11 +401,15 @@ class Form6 extends BaseContacts {
 
   render() {
     const inputs = this.getPropValue("inputs");
-    const imageExist = !!this.getPropValue("image");
+    const image = this.getPropValue("image");
+    const imageExist = !!image?.url;
+    const overlay = this.getPropValue("overlay");
 
+    const subtitle = this.getPropValue("subtitle")
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
+    const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
@@ -433,7 +488,8 @@ class Form6 extends BaseContacts {
                 className={`${this.decorateCSS("image-container")} 
               ${!rightItemsExist && this.decorateCSS("image-full-width")}`}
               >
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="contact" />
+                <Base.Media value={image} className={this.decorateCSS("image")} />
+                {overlay && <div className={this.decorateCSS("overlay")} />}
               </div>
             )}
             {rightItemsExist && (
@@ -443,8 +499,9 @@ class Form6 extends BaseContacts {
                 ${!imageExist && this.decorateCSS("without-image")}
               `}
               >
-                {(titleExist || descriptionExist) && (
+                {(titleExist || subtitleExist || descriptionExist) && (
                   <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   </Base.VerticalContent>
@@ -484,7 +541,7 @@ class Form6 extends BaseContacts {
                                   />
                                 ) : (
                                   <>
-                                    <Base.Icon name={input.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("input-icon") }} />
+                                    <Base.Media value={input.getPropValue("icon")} className={this.decorateCSS("input-icon")} />
 
                                     <input
                                       id={getInputName(index)}
@@ -503,9 +560,9 @@ class Form6 extends BaseContacts {
                           );
                         })}
                         {buttonTextExist && (
-                          <div className={this.decorateCSS("button-div")}>
+                          <div className={this.decorateCSS("button-container")}>
                             <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                              {buttonText}
+                              <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
                             </Base.Button>
                           </div>
                         )}

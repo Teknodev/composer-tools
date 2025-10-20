@@ -2,6 +2,12 @@
 
 .container {
   .max-content {
+
+    .header{
+      .subtitle, .title {
+        content: "";
+      }
+    }
     .box {
       display: flex;
       flex-direction: row;
@@ -11,7 +17,7 @@
       height: fit-content;
       align-items: stretch;
       min-height: 500px;
-      border-radius: var(--composer-gap-md);
+      border-radius: var(--composer-border-radius-md);
 
       .left-container {
         width: 100%;
@@ -23,9 +29,24 @@
         height: auto;
         flex-grow: 1;
         padding: var(--composer-gap-md) 0;
-        border-top-left-radius: var(--composer-gap-sm);
-        border-bottom-left-radius: var(--composer-gap-sm);
+        border-top-left-radius: var(--composer-border-radius-md);
+        border-bottom-left-radius: var(--composer-border-radius-md);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+        .background-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          border-top-left-radius: var(--composer-border-radius-md);
+          border-bottom-left-radius: var(--composer-border-radius-md);
+          overflow: hidden;
+
+          &.background-full {
+            border-radius: var(--composer-border-radius-md);
+          }
+        }
 
         .background {
           width: 100%;
@@ -33,12 +54,23 @@
           object-fit: cover;
           background-position: center center;
           position: absolute;
-          border-top-left-radius: var(--composer-gap-sm);
-          border-bottom-left-radius: var(--composer-gap-sm);
+          border-top-left-radius: var(--composer-border-radius-md);
+          border-bottom-left-radius: var(--composer-border-radius-md);
 
           &.background-full {
-            border-radius: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-md);
           }
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+          pointer-events: none;
+          z-index: 1;
         }
 
         .left {
@@ -49,7 +81,7 @@
           align-items: center;
           position: relative;
 
-          .textSide {
+          .content {
             justify-content: space-between;
             height: 100%;
             gap: var(--composer-gap-md);
@@ -57,7 +89,7 @@
             flex-direction: column;
             padding: 0 var(--composer-gap-xl);
 
-            &.textSide-full {
+            &.content-full {
               width: 100%;
             }
 
@@ -71,26 +103,15 @@
               gap: var(--composer-gap-lg);
               margin-top: var(--composer-gap-xl);
 
-              .title1 {
+              .left-top-content {
                 position: relative;
                 z-index: 1;
                 color: var(--composer-font-color-secondary);
                 word-wrap: break-word;
 
-                .leftTitle {
-                  position: relative;
+                .leftTitle, .leftSubtitle {
                   color: var(--composer-font-color-primary);
-                  font-size: 1.5rem;
-                  margin: unset;
-                  word-break: break-word;
-                }
-
-                .leftSubtitle {
-                  position: relative;
-                  color: var(--composer-font-color-primary);
-                  font-size: 3rem;
-                  margin: unset;
-                  word-break: break-word;
+                  text-align: left; 
                 }
               }
 
@@ -110,15 +131,12 @@
                   .icon {
                     color: var(--composer-font-color-primary);
                     font-size: 2rem;
-                    position: relative;
                     flex-shrink: 0;
                   }
 
                   .contactName {
                     color: var(--composer-font-color-primary);
-                    font-size: 1.5rem;
-                    position: relative;
-                    word-wrap: break-word;
+                    text-align: left;
                   }
                 }
               }
@@ -138,17 +156,17 @@
               }
 
               .icon-container {
-                align-content: center;
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 color: var(--composer-font-color-primary);
                 border-radius: 100%;
-                position: relative;
+                z-index: 1;
 
                 &.icon-container-no-image {
                   background-color: var(--composer-html-background);
                 }
 
                 .icon {
+                  font-size: 1.5rem;
                   height: var(--composer-gap-md);
                   width: var(--composer-gap-md);
                   margin: var(--composer-gap-sm);
@@ -172,30 +190,17 @@
         gap: var(--composer-gap-md);
         justify-content: space-between;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        border-top-right-radius: var(--composer-gap-sm);
-        border-bottom-right-radius: var(--composer-gap-sm);
+        border-top-right-radius: var(--composer-border-radius-md);
+        border-bottom-right-radius: var(--composer-border-radius-md);
 
         &.right-container-no-image {
-          border-radius: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-md);
         }
-
-        .title2 {
-          width: 100%;
-          height: auto;
-          display: grid;
-
-          .rightTitle {
-            grid-area: 1 / 1;
-          }
-
-          .rightTitle {
-            color: var(--composer-font-color-primary);
-            font-size: 2.5rem;
-            margin-top: var(--composer-gap-md);
-            word-wrap: break-word;
-            word-break: break-word;
-            z-index: 1;
-          }
+        .rightTitle {
+          color: var(--composer-font-color-primary);
+          margin-top: var(--composer-gap-md);
+          z-index: 1;
+          text-align: left; 
         }
 
         .form-container {
@@ -232,11 +237,13 @@
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-xs);
+                width: fit-content;
               }
 
               .require-star {
                 color: var(--composer-font-color-primary);
                 margin: 0;
+                width: fit-content;
               }
 
               .inputs {
@@ -253,8 +260,9 @@
               .input {
                 color: var(--composer-font-color-primary);
                 padding: var(--composer-gap-xs) 0;
+                border-radius: var(--composer-border-radius-sm);
                 border: none;
-                border-bottom: 1px solid var(--composer-font-color-primary);
+                border-bottom: 1px solid var(--composer-tertiary-color);
                 width: 100%;
                 outline: none;
                 resize: none;
@@ -307,7 +315,9 @@
             justify-content: center;
             align-items: center;
             .submit-button{
-              content: "";
+              .button-text {
+                content: "";
+              }
             }
           }
         }
@@ -320,16 +330,6 @@
   .container {
     .max-content {
       .box {
-        .top {
-          .topSubtitle {
-            font-size: 1.5rem;
-            top: -8px;
-          }
-
-          .topTitle {
-            width: 100%;
-          }
-        }
 
         .left-container {
           height: auto;
@@ -338,16 +338,10 @@
           .left {
             height: 95%;
 
-            .textSide {
+            .content {
               padding: var(--composer-gap-md);
 
               .left-top {
-                .title1 {
-                  .leftSubtitle {
-                    font-size: 2rem;
-                  }
-                }
-
                 .contacts {
                   .contact {
                     gap: var(--composer-gap-md);
@@ -356,10 +350,6 @@
                       width: var(--composer-gap-md);
                       height: var(--composer-gap-md);
                       flex-shrink: 0;
-                    }
-
-                    .contactName {
-                      font-size: 1rem;
                     }
                   }
                 }
@@ -374,12 +364,9 @@
 
         .right-container {
           padding: var(--composer-gap-lg) var(--composer-gap-md);
-
-          .title2 {
-            .rightTitle {
-              font-size: 2rem;
-              margin: 0;
-            }
+            
+          .rightTitle {
+            margin: 0;
           }
 
           .form-container {
@@ -410,16 +397,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .top {
-        .topSubtitle {
-          font-size: 1rem;
-        }
-
-        .topTitle {
-          font-size: 2rem;
-        }
-      }
-
       .box {
         flex-direction: column;
 
@@ -428,8 +405,8 @@
           width: auto;
 
           .background {
-            border-top-left-radius: var(--composer-gap-sm);
-            border-top-right-radius: var(--composer-gap-sm);
+            border-top-left-radius: var(--composer-border-radius-md);
+            border-top-right-radius: var(--composer-border-radius-md);
             border-bottom-left-radius: unset;
             border-bottom-right-radius: unset;
           }
@@ -437,19 +414,12 @@
           .left {
             height: 75%;
 
-            .textSide {
+            .content {
               padding: 0;
               width: 100%;
 
               .left-top {
                 gap: var(--composer-gap-md);
-
-                .title1 {
-                  .leftSubtitle {
-                    font-size: 2rem;
-                  }
-                }
-
                 .contacts {
                   .contact {
                     gap: var(--composer-gap-sm);
@@ -457,10 +427,6 @@
                     .icon {
                       width: var(--composer-gap-md);
                       height: var(--composer-gap-md);
-                    }
-
-                    .contactName {
-                      font-size: 1rem;
                     }
                   }
                 }
@@ -486,7 +452,7 @@
         .right-container {
           width: 100%;
           padding: var(--composer-gap-md);
-          border-radius: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-md);
 
           .form-container {
             margin: 0;
@@ -498,12 +464,6 @@
                   gap: var(--composer-gap-md);
                 }
               }
-            }
-          }
-
-          .title2 {
-            .rightTitle {
-              font-size: 1.5rem;
             }
           }
 

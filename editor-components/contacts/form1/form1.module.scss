@@ -1,20 +1,27 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  color: var(--composer-font-color-primary);
-
   .max-content {
-    .section-description {
-      margin-bottom: var(--composer-gap-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+
+    .header {
+      .section-title, .section-subtitle, .section-description {
+        content: "";
+      }
     }
 
     .cards-container {
       .card {
-        align-items: center;
         padding: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-sm);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border: none;
+
+        .title {
+          color: var(--composer-font-color-primary);
+        }
         .icon-container {
           width: var(--composer-gap-xl);
           height: var(--composer-gap-xl);
@@ -35,14 +42,17 @@
 
           .icon {
             color: var(--composer-primary-color);
-            width: var(--composer-gap-md);
+            font-size: 1.5rem;
+            width: fit-content;
             height: var(--composer-gap-md);
           }
         }
 
         .rows {
-          text-align: center;
-          align-items: center;
+          width: 100%;
+          .row-item {
+            color: var(--composer-font-color-secondary);
+          }
         }
       }
     }
