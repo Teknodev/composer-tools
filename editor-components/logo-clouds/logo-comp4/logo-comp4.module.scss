@@ -3,6 +3,19 @@
         background-size: cover;
         padding-top: calc(var(--composer-gap-xl) * 3);
         padding-bottom: calc(var(--composer-gap-xl) * 3);
+        .max-content {
+            .heading {
+                .subtitle, .title{
+                    color: white;
+                }
+                .subtitle{
+                    background: transparent;
+                    &::before{
+                        background-color: white;
+                    }
+                }
+            }
+        }
     }
     &.overlay-active{
         position: relative;
@@ -22,9 +35,9 @@
         gap: var(--composer-gap-xl);
         .heading {
             position: relative;
-            .title {content: ""}
-            .description {content: ""}
-            .subtitle {content: ""}
+            .subtitle, .title, .description {
+                content: ""
+            }
         }
 
         .images-container {

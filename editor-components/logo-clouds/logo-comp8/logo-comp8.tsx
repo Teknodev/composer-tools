@@ -234,25 +234,19 @@ class LogoComp8Page extends LogoClouds {
                                             {platform.page? (
                                                 <ComposerLink path={platform.page}>
                                                     <div className={this.decorateCSS("platform-content")}>
-                                                        {(platform.image as any)?.url && (
-                                                            <img
-                                                                src={(platform.image as any).url}
-                                                                alt={`Platform ${index + 1}`}
-                                                                className={this.decorateCSS("platform-logo")}
-                                                            />
-                                                        )}
+                                                    <Base.Media
+                                                        value={platform.image as any}
+                                                        className={this.decorateCSS("platform-logo")}
+                                                    />
                                                     </div>    
                                                 </ComposerLink>
                                             ) : (
                                                 <div
                                                     className={this.decorateCSS("platform-content")}>
-                                                        {(platform.image as any)?.url && (
-                                                            <img
-                                                                src={(platform.image as any).url}
-                                                                alt={`Platform ${index + 1}`}
-                                                                className={this.decorateCSS("platform-logo")}
-                                                            />
-                                                        )}
+                                                        <Base.Media
+                                                            value={platform.image as any}
+                                                            className={this.decorateCSS("platform-logo")}
+                                                        />
                                                 </div> 
                                             )}
                                         </div>

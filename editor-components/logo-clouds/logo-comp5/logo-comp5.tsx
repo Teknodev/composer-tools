@@ -1,12 +1,12 @@
 import * as React from "react";
-import { LogoClouds } from "../../EditorComponent";
+import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
-  image: string;
+  image: TypeMediaInputValue;
   imageLink: string;
 };
 
@@ -29,7 +29,7 @@ class LogoComp5Page extends LogoClouds {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value:
         "Sponsors can range from small local businesses to multinational corporations and can sponsor everything from sports teams to music festivals to non-profit organizations.",
     });
@@ -37,7 +37,7 @@ class LogoComp5Page extends LogoClouds {
     this.addProp({
       type: "number",
       key: "imageCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
       max: 4
     });
@@ -65,9 +65,7 @@ class LogoComp5Page extends LogoClouds {
   render() {
     const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("title"));
-    const isDescriptionExists = this.castToString(
-      this.getPropValue("description")
-    );
+    const isDescriptionExists = this.castToString(this.getPropValue("description"));
     const images = this.castToObject<TImage[]>("image-items");
 
     return (
@@ -100,13 +98,12 @@ class LogoComp5Page extends LogoClouds {
               (image: TImage, index: number) => (
                 <ComposerLink path={image.imageLink}>
                   <div key={index} className={this.decorateCSS("image-item")}>
-                    <img className={this.decorateCSS("image")} src={image.image} alt={image.imageLink} />
+                    <Base.Media value={image.image} className={this.decorateCSS("image")} />
                   </div>
                 </ComposerLink>
               )
             )}
           </Base.ListGrid>}
-
         </Base.MaxContent>
       </Base.Container>
     );

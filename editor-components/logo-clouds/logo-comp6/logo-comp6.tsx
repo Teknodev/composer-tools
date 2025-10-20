@@ -63,7 +63,7 @@ class LogoComp6Page extends LogoClouds {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -90,7 +90,7 @@ class LogoComp6Page extends LogoClouds {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -117,7 +117,7 @@ class LogoComp6Page extends LogoClouds {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -144,7 +144,7 @@ class LogoComp6Page extends LogoClouds {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -166,9 +166,7 @@ class LogoComp6Page extends LogoClouds {
 
     const isSubTitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("subtitle"));
-    const isDescriptionExists = this.castToString(
-      this.getPropValue("subtitle")
-    );
+    const isDescriptionExists = this.castToString(this.getPropValue("subtitle"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -208,12 +206,11 @@ class LogoComp6Page extends LogoClouds {
                       src={listItem.image}
                       alt={listItem.imageLink}
                     />}
-                    {
-                      this.castToString(listItem.itemText) && <Base.P className={this.decorateCSS("text")}>
+                    {this.castToString(listItem.itemText) && 
+                      <Base.P className={this.decorateCSS("text")}>
                         {listItem.itemText}
                       </Base.P>
                     }
-
                   </div>
                 </ComposerLink>
               )

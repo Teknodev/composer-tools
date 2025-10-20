@@ -2,16 +2,13 @@
 .container {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-lg);
     .heading{
-        align-self: center;
         max-width: var(--composer-content-width);
-        margin-bottom: var(--composer-gap-xl);
-        margin-right: var(--composer-gap-xl);
-        margin-left: var(--composer-gap-xl);
         width: calc(100% - (2 * var(--composer-gap-xl)));
-        .subtitle {content: ""}
-        .title {content: ""}
-        .description {content: ""}
+        .subtitle, .title, .description { 
+            content: "";
+        }
     }
 
     .gallery{

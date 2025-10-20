@@ -1,12 +1,12 @@
 import * as React from "react";
-import { LogoClouds } from "../../EditorComponent";
+import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
-  image: string;
+  image: TypeMediaInputValue;
   imageLink: string;
 };
 
@@ -31,7 +31,7 @@ class LogoComp2Page extends LogoClouds {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     });
@@ -110,12 +110,7 @@ class LogoComp2Page extends LogoClouds {
               {images.map((imageItem: TImage, index: number) => (
                 <ComposerLink path={imageItem.imageLink}>
                   <div className={this.decorateCSS("image-child")}>
-                    <img
-                      key={index}
-                      className={this.decorateCSS("image")}
-                      src={imageItem.image}
-                      alt={imageItem.imageLink || ""}
-                    />
+                    <Base.Media value={imageItem.image} className={this.decorateCSS("image")} />
                   </div>
                 </ComposerLink>
               ))}
@@ -127,12 +122,7 @@ class LogoComp2Page extends LogoClouds {
               {images.map((imageItem: TImage, index: number) => (
                 <ComposerLink path={imageItem.imageLink}>
                   <div className={this.decorateCSS("image-child")}>
-                    <img
-                      key={index}
-                      className={this.decorateCSS("image")}
-                      src={imageItem.image}
-                      alt={imageItem.imageLink || ""}
-                    />
+                    <Base.Media value={imageItem.image} className={this.decorateCSS("image")} />
                   </div>
                 </ComposerLink>
               ))}

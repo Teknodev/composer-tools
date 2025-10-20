@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LogoClouds } from "../../EditorComponent";
+import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -7,27 +7,29 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
   imageLink: string,
-  image: string
+  image: TypeMediaInputValue
 }
 class LogoComp3Page extends LogoClouds {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Associated Brand",
-    });
-    this.addProp({
-      type: "string",
       key: "subtitle",
       displayer: "Subtitle",
       value: "Brands Available",
     });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Associated Brand",
+    });
+
     this.addProp({
       type: "boolean",
       key: "toggleDividerLine",
-      displayer: "Toggle Title Divider Line",
+      displayer: "Header Line",
       value: true,
     });
     this.addProp({
@@ -40,7 +42,7 @@ class LogoComp3Page extends LogoClouds {
     this.addProp({
       type: "boolean",
       key: "toggleLines",
-      displayer: "Toggle Lines",
+      displayer: "Logo Lines",
       value: true,
     });
 
@@ -79,19 +81,19 @@ class LogoComp3Page extends LogoClouds {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist) && (
-            <Base.VerticalContent className={this.decorateCSS("titles")}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && (
-                <Base.H1 className={this.decorateCSS("title")}>
+                <Base.H3 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
-                </Base.H1>
+                </Base.H3>
               )}
               {titleExist && subtitleExist && this.getPropValue("toggleDividerLine") && (
-                <div className={this.decorateCSS("title-line")}></div>
+                <div className={this.decorateCSS("line")}></div>
               )}
               {subtitleExist && (
-                <div className={this.decorateCSS("subtitle")}>
+                <Base.H3 className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
-                </div>
+                </Base.H3>
               )}
             </Base.VerticalContent>
           )}
@@ -108,11 +110,7 @@ class LogoComp3Page extends LogoClouds {
                 return (
                   <ComposerLink path={item.imageLink}>
                     <div className={this.decorateCSS("image-item")} key={index}>
-                      <img
-                        className={this.decorateCSS("image")}
-                        src={item.image}
-                        alt="logo"
-                      />
+                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
                     </div>
                   </ComposerLink>
                 );
