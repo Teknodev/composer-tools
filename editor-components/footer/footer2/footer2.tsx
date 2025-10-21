@@ -19,6 +19,16 @@ class Footer2Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
       type: "media",
       key: "image",
       displayer: "Background Image",
@@ -306,8 +316,10 @@ class Footer2Page extends BaseFooter {
     const footer = this.castToObject<any[]>("footer");
     const footerDescExist = this.castToString(this.getPropValue("footerDescription"));
 
+    const position = this.getPropValue("position");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")} style={{ backgroundImage: `url(${image?.url || ""})` }}>
             {(footer.length > 0 || image?.url) && (

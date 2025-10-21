@@ -2,6 +2,15 @@
 
 .container {
   padding: var(--composer-gap-md) var(--composer-gap-xl);
+
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+
+  }
   .max-content {
     display: flex;
     flex-direction: column;
@@ -20,23 +29,23 @@
       }
 
       .content {
-        display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        .title {
+        .title, .subtitle, .description {
           text-align: center;
-          margin: 0;
         }
 
-        .description {
-          font-size: 1.5rem;
-          color: var(--composer-tertiary-color);
-          text-align: center;
+        .subtitle{
+          transform: translateX(0);
+          &::before {
+            display: none;
+          }
         }
 
         .button{
-          content: "";
+          .bottom-text {
+            content: "";
+          }
         }
       }
     }

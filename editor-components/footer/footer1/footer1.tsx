@@ -18,6 +18,16 @@ class Footer1Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -326,8 +336,10 @@ class Footer1Page extends BaseFooter {
     const footerBottomExist = pages.length > 0 || social.length > 0 || copyrightExist;
 
 
+    const position = this.getPropValue("position");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>

@@ -3,6 +3,14 @@
 .container {
   width: 100%;
 
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
+
   .first-container {
     padding: var(--composer-gap-md) var(--composer-gap-xl);
     .first-max-content {

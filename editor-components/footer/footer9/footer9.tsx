@@ -28,6 +28,16 @@ class Footer9Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
       type: "media",
       key: "logo",
       displayer: "Logo",
@@ -45,6 +55,14 @@ class Footer9Page extends BaseFooter {
       displayer: "Navigate To",
       value:""
     });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Subscribe to our newsletter",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -393,6 +411,7 @@ class Footer9Page extends BaseFooter {
 
     const logo = this.getPropValue("logo");
     const logoUrl = this.getPropValue("logoUrl");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttonTextExist = this.castToString(button.text);
@@ -403,8 +422,10 @@ class Footer9Page extends BaseFooter {
     const pages = this.castToObject<page[]>("pages");
 
 
+    const position = this.getPropValue("position");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
             {logo?.url && 
@@ -412,15 +433,18 @@ class Footer9Page extends BaseFooter {
               <Base.Media value={logo} className={this.decorateCSS("logo")} />
             </ComposerLink>
             }
-            <div className={this.decorateCSS("content")}>
+            <Base.VerticalContent className={this.decorateCSS("content")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               {buttonTextExist && (
                 <ComposerLink path={button.url}>
-                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>{button.text}</Base.Button>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
                 </ComposerLink>
               )}
-            </div>
+            </Base.VerticalContent>
           </div>
 
           {links.length > 0 && (

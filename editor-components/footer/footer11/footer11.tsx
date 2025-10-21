@@ -14,6 +14,16 @@ class Footer11Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
       type: "string",
       key: "footerText",
       displayer: "Footer Text",
@@ -152,8 +162,10 @@ class Footer11Page extends BaseFooter {
     const footerText = this.getPropValue("footerText");
 
     const footerTextExist = this.castToString(footerText);
+    const position = this.getPropValue("position");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {socials.length > 0 && (
             <div className={this.decorateCSS("socials-container")}>

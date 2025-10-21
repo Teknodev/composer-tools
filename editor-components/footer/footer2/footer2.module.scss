@@ -2,6 +2,14 @@
 
 .container {
   padding: 0 !important;
+
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
   .max-content {
     .footer-page {
       width: 100%;

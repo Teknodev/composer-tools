@@ -21,6 +21,16 @@ class Footer3Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
       type: "media",
       key: "logo",
       displayer: "Logo",
@@ -724,8 +734,10 @@ class Footer3Page extends BaseFooter {
 
     const alignment = Base.getContentAlignment();
 
+    const position = this.getPropValue("position");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <Base.Container className={this.decorateCSS("first-container")}>

@@ -18,6 +18,16 @@ class Footer12Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
       type: "media",
       key: "logo",
       displayer: "Logo",
@@ -466,8 +476,10 @@ class Footer12Page extends BaseFooter {
 
     const upperExist = headerExist || footer.length > 0;
 
+    const position = this.getPropValue("position");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         {upperExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
