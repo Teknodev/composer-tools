@@ -222,50 +222,46 @@ class LogoComp8Page extends LogoClouds {
                             </div>
                         </div>
                     )}
-                    <div className={this.decorateCSS("platforms-wrapper")}>
-                        {platforms.length > 0 && (
-                            <ComposerSlider
-                                ref={sliderRef}
-                                {...settings}
-                                className={this.decorateCSS("platforms-carousel")}
-                            >
-                                {platforms.map((platform: Items, index: number) => (
-                                    <div className={`${this.decorateCSS("platform-slide")} ${
-                                        this.getComponentState("prevSlide") == index
-                                            ? this.decorateCSS("prevSlide") 
+                    {platforms.length > 0 && (
+                        <ComposerSlider
+                            ref={sliderRef}
+                            {...settings}
+                            className={this.decorateCSS("platforms-carousel")}
+                        >
+                            {platforms.map((platform: Items, index: number) => (
+                                <div className={`${this.decorateCSS("platform-slide")} ${
+                                    this.getComponentState("prevSlide") == index
+                                        ? this.decorateCSS("prevSlide") 
+                                        : ""
+                                    } ${
+                                        this.getComponentState("nextSlide") == index
+                                            ? this.decorateCSS("nextSlide")
                                             : ""
-                                        } ${
-                                            this.getComponentState("nextSlide") == index
-                                                ? this.decorateCSS("nextSlide")
-                                                : ""
-                                        }`}
-                                        key={index}
-                                    >
-                                        <div className={this.decorateCSS("platform-item")}>
-                                            {platform.page? (
-                                                <ComposerLink path={platform.page}>
-                                                    <div className={this.decorateCSS("platform-content")}>
-                                                    <Base.Media
-                                                        value={platform.image as any}
-                                                        className={this.decorateCSS("platform-logo")}
-                                                    />
-                                                    </div>    
-                                                </ComposerLink>
-                                            ) : (
-                                                <div
-                                                    className={this.decorateCSS("platform-content")}>
-                                                        <Base.Media
-                                                            value={platform.image as any}
-                                                            className={this.decorateCSS("platform-logo")}
-                                                        />
-                                                </div> 
-                                            )}
-                                        </div>
-                                    </div>
-                                ))}
-                            </ComposerSlider>    
-                        )}
-                    </div>
+                                    }`}
+                                    key={index}
+                                >
+                                    {platform.page? (
+                                        <ComposerLink path={platform.page}>
+                                            <div className={this.decorateCSS("platform-content")}>
+                                            <Base.Media
+                                                value={platform.image as any}
+                                                className={this.decorateCSS("platform-logo")}
+                                            />
+                                            </div>    
+                                        </ComposerLink>
+                                    ) : (
+                                        <div
+                                            className={this.decorateCSS("platform-content")}>
+                                                <Base.Media
+                                                    value={platform.image as any}
+                                                    className={this.decorateCSS("platform-logo")}
+                                                />
+                                        </div> 
+                                    )}
+                                </div>
+                            ))}
+                        </ComposerSlider>    
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         )
