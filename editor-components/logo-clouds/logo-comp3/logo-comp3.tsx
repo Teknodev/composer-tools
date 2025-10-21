@@ -71,8 +71,6 @@ class LogoComp3Page extends LogoClouds {
     const items = this.castToObject<TImage[]>("items");
 
 
-    const emptyGridCount = !!(items.length % this.getPropValue("itemCount")) ? (this.getPropValue("itemCount") - (items.length % this.getPropValue("itemCount"))) : 0;
-    const emptyGrids = new Array(emptyGridCount).fill(true);
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -107,18 +105,12 @@ class LogoComp3Page extends LogoClouds {
               className={`${this.decorateCSS("images-container")} ${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} `}
             >
               {items.map((item: TImage, index: number) => {
-                return (
+                return item.image && (
                   <ComposerLink path={item.imageLink}>
                     <div className={this.decorateCSS("image-item")} key={index}>
                       <Base.Media value={item.image} className={this.decorateCSS("image")} />
                     </div>
                   </ComposerLink>
-                );
-              })}
-              {emptyGrids.map((item: TImage, index: number) => {
-                return (
-                  <div className={this.decorateCSS("image-item")} key={index}>
-                  </div>
                 );
               })}
             </Base.ListGrid>

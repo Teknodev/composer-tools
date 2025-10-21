@@ -37,8 +37,11 @@
 
     .images-container {
       gap: 0;
+      border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
       &.lines-active{
-        background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
+        .image-item {
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+        }
       }
       .image-item{
         background-color: var(--composer-html-background);

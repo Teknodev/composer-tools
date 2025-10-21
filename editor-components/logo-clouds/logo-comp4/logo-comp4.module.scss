@@ -49,7 +49,7 @@
                 align-items: center;
                 justify-content: center;
                 .image {
-                    object-fit: cover;
+                    object-fit: contain;
                     height: 90px;
                     width: 100%;
                 }
