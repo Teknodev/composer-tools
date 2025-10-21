@@ -16,7 +16,7 @@
   align-items: stretch;
   justify-content: space-between;
   gap: var(--composer-gap-xxl);
-  width: 80%;
+  width: 95%;
 }
 
 /* -------- LEFT -------- */
@@ -76,7 +76,7 @@
 
     .feature-description {
       max-width: 60ch;
-      color: var(--composer-font-color-primary);
+      color: var(--composer-tertiary-color);
     }
   }
 }
@@ -266,12 +266,20 @@ textarea.input {
   }
 
   .features .feature-description {
-    color: var(--composer-font-color-primary);
+    color: var(--composer-tertiary-color);
     max-width: unset;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
+  .left-container {
+    padding: 0px 20px !important;
+  }
+
+  .container {
+    padding: 50px 0px !important;
+  }
+
   .form .input-container .inputs {
     gap: var(--composer-gap-sm);
   }
