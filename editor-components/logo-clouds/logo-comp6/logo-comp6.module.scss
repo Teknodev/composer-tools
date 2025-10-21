@@ -1,3 +1,5 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
     .max-content {
         display: flex;
@@ -24,6 +26,14 @@
                     color: var(--composer-font-color-primary);
                 }
             }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
         }
     }
 }

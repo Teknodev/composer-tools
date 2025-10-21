@@ -1,13 +1,16 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
-    .heading{
-        max-width: var(--composer-content-width);
-        width: calc(100% - (2 * var(--composer-gap-xl)));
-        .subtitle, .title, .description { 
-            content: "";
+    gap: var(--composer-gap-xl);
+    .max-content{
+        max-width: var(--composer-content-width) !important;
+        .heading{
+            padding: 0 var(--composer-gap-xl);
+            .subtitle, .title, .description { 
+                content: "";
+            }
         }
     }
 
@@ -46,6 +49,29 @@
         }
     }
     
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        gap: var(--composer-gap-md);
+        .max-content {
+            .heading{
+                padding: 0 var(--composer-gap-lg);
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        gap: var(--composer-gap-md);
+        .max-content {
+            .heading{
+                padding: 0 var(--composer-gap-md);
+            }
+        }
+
+    }
 }
 
 @keyframes scrollText {

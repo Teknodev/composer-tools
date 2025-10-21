@@ -1,3 +1,5 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
     &.image-active{
         background-size: cover;
@@ -47,11 +49,19 @@
                 align-items: center;
                 justify-content: center;
                 .image {
-                    object-fit: contain;
+                    object-fit: cover;
                     height: 90px;
                     width: 100%;
                 }
             }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
         }
     }
 }

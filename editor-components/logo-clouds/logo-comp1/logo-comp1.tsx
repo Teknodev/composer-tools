@@ -37,7 +37,7 @@ class LogoComp1Page extends LogoClouds {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 6,
       max: 12,
     });

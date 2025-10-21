@@ -3,7 +3,7 @@
 .container {
     .max-content {
         display: flex;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-xl);
         align-items: center;
         .left {
             flex: 1;
@@ -30,6 +30,7 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container{
         .max-content{
+            gap: var(--composer-gap-md);
             flex-direction: column;
         }
     }

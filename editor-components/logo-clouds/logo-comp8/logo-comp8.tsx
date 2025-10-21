@@ -4,7 +4,6 @@ import styles from "./logo-comp8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Items = {
     image: TypeMediaInputValue;
@@ -23,7 +22,7 @@ class LogoComp8Page extends LogoClouds {
         this.addProp({
             type: "number",
             key: "slide-count",
-            displayer: "Item count in a row",
+            displayer: "Item Count in a Row",
             value: 5,
         });
         this.addProp({
@@ -40,6 +39,9 @@ class LogoComp8Page extends LogoClouds {
                             type:"media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value:{
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689ef4c136675f002dbc777b?alt=media",
@@ -48,7 +50,7 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type: "page",
                             key: "page",
-                            displayer: "Page",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],
@@ -62,6 +64,9 @@ class LogoComp8Page extends LogoClouds {
                             type:"media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value:{
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dfcd236675f002dbc47ca?alt=media",
@@ -70,7 +75,7 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type: "page",
                             key: "page",
-                            displayer: "Page",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],
@@ -92,7 +97,7 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type: "page",
                             key: "page",
-                            displayer: "Page",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],
@@ -106,6 +111,9 @@ class LogoComp8Page extends LogoClouds {
                             type:"media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value:{
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dfd3936675f002dbc481c?alt=media",
@@ -114,7 +122,7 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type: "page",
                             key: "page",
-                            displayer: "Page",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],
@@ -128,6 +136,9 @@ class LogoComp8Page extends LogoClouds {
                             type:"media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value:{
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dfd6436675f002dbc487b?alt=media",
@@ -136,7 +147,7 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type: "page",
                             key: "page",
-                            displayer: "Page",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],

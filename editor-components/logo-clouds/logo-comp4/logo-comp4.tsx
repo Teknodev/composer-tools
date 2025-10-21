@@ -81,14 +81,12 @@ class LogoComp4Page extends LogoClouds {
 
     const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("title"));
-    const isDescriptionExists = this.castToString(
-      this.getPropValue("description")
-    );
+    const isDescriptionExists = this.castToString(this.getPropValue("description"));
 
     const images = this.castToObject<TImage[]>("image-items");
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${((background)?.url) ? this.decorateCSS("image-active") : ""} ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""} `} style={styling}>
+      <Base.Container className={`${this.decorateCSS("container")} ${((background)?.url) ? this.decorateCSS("image-active") : ""} ${((background)?.url && this.getPropValue("overlay")) ? this.decorateCSS("overlay-active") : ""} `} style={styling}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(isTitleExists || isSubtitleExists || isDescriptionExists) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
@@ -117,7 +115,7 @@ class LogoComp4Page extends LogoClouds {
             gridCount={{
               pc: this.getPropValue("itemCount"),
               tablet: 4,
-              phone: 1,
+              phone: 2,
             }}
             className={this.decorateCSS("images-container")}
           >

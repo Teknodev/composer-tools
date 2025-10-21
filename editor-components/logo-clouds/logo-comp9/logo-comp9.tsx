@@ -4,7 +4,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 
 type TTextImageItem = {
-  text: string;
+  text: React.JSX.Element;
   image: TypeMediaInputValue;
   link: string;
 };
@@ -12,6 +12,13 @@ type TTextImageItem = {
 class LogoComp9Page extends LogoClouds {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "rotate",
+      displayer: "Rotate Animation",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -44,7 +51,7 @@ class LogoComp9Page extends LogoClouds {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -75,7 +82,7 @@ class LogoComp9Page extends LogoClouds {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -106,7 +113,7 @@ class LogoComp9Page extends LogoClouds {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -137,7 +144,7 @@ class LogoComp9Page extends LogoClouds {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -172,12 +179,16 @@ class LogoComp9Page extends LogoClouds {
               {items.map((item: TTextImageItem, index: number) => (
                 <ComposerLink path={item.link}>
                   <div className={this.decorateCSS("item-child")}>
-                   {item.text && <span className={this.decorateCSS("text")}>
-                      {item.text}
-                    </span>}
-                    {item.image && <div className={this.decorateCSS("image")}>
-                      <Base.Media value={item.image} className={this.decorateCSS("image-element")} />
-                    </div>}
+                   {this.castToString(item.text) && 
+                      <Base.H1 className={this.decorateCSS("text")}>
+                        {item.text}
+                      </Base.H1>
+                    }
+                    {item.image && 
+                      <div className={`${this.decorateCSS("image")} ${this.getPropValue("rotate") ? this.decorateCSS("rotate") : ""}`}>
+                        <Base.Media value={item.image} className={this.decorateCSS("image-element")} />
+                      </div>
+                    }
                   </div>
                 </ComposerLink>
               ))}

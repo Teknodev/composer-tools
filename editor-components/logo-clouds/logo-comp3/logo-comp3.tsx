@@ -102,7 +102,7 @@ class LogoComp3Page extends LogoClouds {
               gridCount={{
                 pc: this.getPropValue("itemCount"),
                 tablet: this.getPropValue("itemCount"),
-                phone: 1,
+                phone: 2,
               }}
               className={`${this.decorateCSS("images-container")} ${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} `}
             >

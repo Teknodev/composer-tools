@@ -68,9 +68,7 @@ class LogoComp2Page extends LogoClouds {
 
     const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("title"));
-    const isDescriptionExists = this.castToString(
-      this.getPropValue("description")
-    );
+    const isDescriptionExists = this.castToString(this.getPropValue("description"));
 
     return (
       <Base.Container
@@ -78,27 +76,29 @@ class LogoComp2Page extends LogoClouds {
         className={this.decorateCSS("container")}
       >
         {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
-          <Base.VerticalContent className={this.decorateCSS("heading")}>
-            {isSubtitleExists && (
-              <Base.SectionSubTitle
-                className={this.decorateCSS("subtitle")}
-              >
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {isTitleExists && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {isDescriptionExists && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
-          </Base.VerticalContent>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {isSubtitleExists && (
+                <Base.SectionSubTitle
+                  className={this.decorateCSS("subtitle")}
+                >
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {isTitleExists && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {isDescriptionExists && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          </Base.MaxContent>
         )}
 
         {images.length > 0 && (
