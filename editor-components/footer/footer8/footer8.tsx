@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -21,16 +21,22 @@ class Footer8Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
+      type: "media",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      },
     });
 
     this.addProp({
       type: "page",
       key: "logoUrl",
-      displayer: "Logo Url",
+      displayer: "Navigate To",
       value:""
     });
 
@@ -75,7 +81,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -97,7 +103,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -117,7 +123,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -137,7 +143,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -175,7 +181,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -197,7 +203,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -217,7 +223,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -237,7 +243,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -275,7 +281,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -295,7 +301,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -314,7 +320,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -352,7 +358,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -372,7 +378,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -391,7 +397,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -429,7 +435,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -448,7 +454,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -467,10 +473,16 @@ class Footer8Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaFacebookF",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebookF",
+              },
             },
             {
               type: "string",
@@ -481,7 +493,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -492,10 +504,16 @@ class Footer8Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaInstagram",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
             {
               type: "string",
@@ -506,7 +524,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -517,10 +535,16 @@ class Footer8Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaXTwitter",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaXTwitter",
+              },
             },
             {
               type: "string",
@@ -531,7 +555,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -570,10 +594,10 @@ class Footer8Page extends BaseFooter {
           <div className={this.decorateCSS("footer-page")}>
             {
               <div className={this.decorateCSS("items")}>
-                {logo && (
+                {logo?.url && (
                   <ComposerLink path={logoUrl}>
                     <div className={this.decorateCSS("header")}>
-                      <img src={logo} className={this.decorateCSS("image")} alt="" />
+                      <Base.Media value={logo} className={this.decorateCSS("image")} />
                     </div>
                   </ComposerLink>
                 )}
@@ -648,7 +672,7 @@ class Footer8Page extends BaseFooter {
                               className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
                               data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
-                              <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                              <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                               <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
                             </div>
                           </ComposerLink>

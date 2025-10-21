@@ -51,7 +51,7 @@ class Footer5Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -70,7 +70,7 @@ class Footer5Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],

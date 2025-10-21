@@ -1,12 +1,12 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer11.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 
 type Icons = {
-  icon: string;
+  icon: TypeMediaInputValue;
   page: string;
 };
 
@@ -31,16 +31,22 @@ class Footer11Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaPinterest",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaPinterest",
+              },
             },
 
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -51,16 +57,22 @@ class Footer11Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaFacebookF",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebookF",
+              },
             },
 
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -72,16 +84,22 @@ class Footer11Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaXTwitter",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaXTwitter",
+              },
             },
 
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -92,16 +110,22 @@ class Footer11Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaInstagram",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
 
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -141,7 +165,7 @@ class Footer11Page extends BaseFooter {
                         className={this.decorateCSS("socials-element")}
                         data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                       >
-                        <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                       </div>
                     </ComposerLink>
                   )

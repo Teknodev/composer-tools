@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -15,7 +15,7 @@ type link = {
 type icon = {
   title: string;
   page: string;
-  icon: string;
+  icon: TypeMediaInputValue;
 };
 
 type page = {
@@ -28,15 +28,21 @@ class Footer9Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      },
     });
     this.addProp({
       type: "page",
       key: "logoUrl",
-      displayer: "Logo Url",
+      displayer: "Navigate To",
       value:""
     });
     this.addProp({
@@ -73,7 +79,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -92,7 +98,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -111,7 +117,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -130,7 +136,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -149,7 +155,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -168,7 +174,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -187,7 +193,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -206,7 +212,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -233,14 +239,20 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaTwitter",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTwitter",
+              },
             },
           ],
         },
@@ -258,14 +270,20 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaInstagram",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
           ],
         },
@@ -283,14 +301,20 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaLinkedin",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedin",
+              },
             },
           ],
         },
@@ -323,7 +347,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -342,7 +366,7 @@ class Footer9Page extends BaseFooter {
             {
               type: "page",
               key: "page",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -383,9 +407,9 @@ class Footer9Page extends BaseFooter {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            {logo && 
+            {logo?.url && 
             <ComposerLink path={logoUrl}>
-              <img src={logo} alt="" className={this.decorateCSS("logo")} />
+              <Base.Media value={logo} className={this.decorateCSS("logo")} />
             </ComposerLink>
             }
             <div className={this.decorateCSS("content")}>
@@ -425,7 +449,7 @@ class Footer9Page extends BaseFooter {
                       className={this.decorateCSS("icon-element")}
                       data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                     >
-                      <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                      <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                       <Base.P className={this.decorateCSS("icon-text")}>{item.title}</Base.P>
                     </div>
                   </ComposerLink>

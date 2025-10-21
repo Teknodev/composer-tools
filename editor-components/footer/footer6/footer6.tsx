@@ -66,7 +66,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -85,7 +85,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -104,7 +104,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -143,7 +143,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -162,7 +162,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -181,7 +181,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -220,7 +220,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -239,7 +239,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -258,7 +258,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },

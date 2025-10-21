@@ -3,28 +3,24 @@
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
+  padding: 80px 50px;
 
   .max-content {
     .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      padding: 0 !important;
 
       .first-max-content {
         .footer-upper {
           display: flex;
           justify-content: space-between;
-          align-items: end;
+          align-items: center;
           gap: var(--composer-gap-lg);
 
           .header {
             flex: 1;
 
-            .title {
-              font-size: 2rem;
-            }
-
-            .description {
-              font-size: 1rem;
-              color: var(--composer-tertiary-color);
+            .subtitle, .title, .description {
+              content: "";
             }
           }
 
@@ -70,7 +66,9 @@
               }
 
               .button {
-                content: "";
+                .button-text {
+                  content: "";
+                }
               }
             }
           }
@@ -79,7 +77,6 @@
         .line {
           width: 100%;
           border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
-          margin-top: var(--composer-gap-md);
         }
       }
     }
@@ -87,14 +84,13 @@
       height: 1px;
       width: 100%;
       background-color: rgb(var(--composer-font-color-primary-rgb), 0.2);
-      margin-top: var(--composer-gap-xl);
       .without-padding{
         margin-top: 0px
       }
     }
 
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      padding: 0 !important;
 
       .second-max-content {
         .footer-bottom {
@@ -117,7 +113,6 @@
             .text {
               width: 100%;
               text-align: start;
-              font-size: 1rem;
               color: var(--composer-tertiary-color);
             }
           }
@@ -218,7 +213,6 @@
             column-gap: var(--composer-gap-lg);
 
             .text {
-              font-size: 1rem;
               color: var(--composer-tertiary-color);
               transition: all 0.3s ease;
               position: relative;
@@ -342,30 +336,15 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: 80px 40px;
     .max-content {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
 
-      .first-container {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
-      }
-
-      .second-container {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
-      }
-
       .footer-upper {
         .header {
           flex: 1;
-
-          .title {
-            font-size: 1.5rem;
-          }
-
-          .description {
-            font-size: 1rem;
-          }
         }
       }
 
@@ -380,26 +359,15 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: 50px 20px;
     .max-content {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
 
-      .first-container {
-        padding: var(--composer-gap-md);
-      }
-      .line{
-        margin-top: 0px;
-      }
-
-      .second-container {
-        padding: var(--composer-gap-md);
-      }
-
       .footer-upper {
         flex-direction: column;
         align-items: center;
-
         gap: var(--composer-gap-md);
 
         .subscribe {
@@ -410,14 +378,6 @@
           flex: 1;
           width: 100%;
           align-items: center;
-
-          .title {
-            font-size: 1.5rem;
-          }
-
-          .description {
-            font-size: 1rem;
-          }
         }
       }
 

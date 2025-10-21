@@ -5,7 +5,7 @@
 
   .max-content {
     .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
 
       .first-max-content {
         .footer-page {
@@ -36,7 +36,6 @@
 
               .text {
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
               }
 
               .images {
@@ -61,13 +60,11 @@
 
               .title {
                 margin: 0;
-                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
               }
 
               .text {
                 margin: 0;
-                font-size: 1rem;
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
                 
@@ -120,7 +117,6 @@
                     background: transparent;
                     color: var(--composer-font-color-primary);
                     padding: var(--composer-gap-sm);
-                    font-size: 1rem;
                   }
 
                   .input:focus {
@@ -149,13 +145,11 @@
 
               .title {
                 margin: 0;
-                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
               }
 
               .description {
                 margin: 0;
-                font-size: 1rem;
                 color: var(--composer-font-color-primary);
               }
             }
@@ -238,7 +232,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
 
       .second-max-content {
         .bottom {
@@ -318,7 +312,7 @@
   .container {
     .max-content {
       .first-container {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
+        padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
 
         .first-max-content {
           .footer-page {
@@ -375,7 +369,7 @@
       }
 
       .second-container {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
+        padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
 
         .second-max-content {
           .bottom {
@@ -411,7 +405,7 @@
   .container {
     .max-content {
       .first-container {
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-md) !important;
 
         .first-max-content {
           .footer-page {
@@ -445,7 +439,7 @@
       }
 
       .second-container {
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-md) !important;
 
         .second-max-content {
           .bottom {

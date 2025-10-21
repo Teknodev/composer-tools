@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -19,10 +19,16 @@ class Footer2Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676295790655f8002ca84357?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676295790655f8002ca84357?alt=media",
+      },
     });
 
     this.addProp({
@@ -66,7 +72,7 @@ class Footer2Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -85,7 +91,7 @@ class Footer2Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -105,7 +111,7 @@ class Footer2Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -143,7 +149,7 @@ class Footer2Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -163,7 +169,7 @@ class Footer2Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -182,7 +188,7 @@ class Footer2Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -220,7 +226,7 @@ class Footer2Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -240,7 +246,7 @@ class Footer2Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -259,7 +265,7 @@ class Footer2Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -303,27 +309,27 @@ class Footer2Page extends BaseFooter {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")} style={{ backgroundImage: `url(${image})` }}>
-            {(footer.length > 0 || image) && (
+          <div className={this.decorateCSS("footer-page")} style={{ backgroundImage: `url(${image?.url || ""})` }}>
+            {(footer.length > 0 || image?.url) && (
               <Base.MaxContent
-                className={`${this.decorateCSS("items")} ${!image && this.decorateCSS("no-image")}`}>
+                className={`${this.decorateCSS("items")} ${!image?.url && this.decorateCSS("no-image")}`}>
                 {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => {
                   const titleExist = this.castToString(item.footerTitle);
                   return (
                     <div key={indexFooter} className={this.decorateCSS("list")}>
-                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.footerTitle}</Base.SectionTitle>}
+                      {titleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
                       {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                         const textExist = this.castToString(v.footerText);
                         return (
                           textExist && (
                             <ComposerLink key={indexFooterText} path={v.path}>
-                              <Base.SectionDescription 
+                              <Base.P 
                                 className={this.decorateCSS("text")}
                                 data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                 data-has-link={Boolean(v.path)}
                               >
                                 {v.footerText}
-                              </Base.SectionDescription>
+                              </Base.P>
                             </ComposerLink>
                           )
                         );
@@ -333,12 +339,12 @@ class Footer2Page extends BaseFooter {
                 })}
               </Base.MaxContent>
             )}
-            {overlay && image && <div className={this.decorateCSS("overlay")}></div>}
+            {overlay && image?.url && <div className={this.decorateCSS("overlay")}></div>}
           </div>
           <Base.MaxContent>
             {footerDescExist && (
               <div className={this.decorateCSS("footer-bottom")}>
-                <Base.P className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</Base.P>
+                <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>
               </div>
             )}
           </Base.MaxContent>

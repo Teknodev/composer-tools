@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -40,10 +40,16 @@ class Footer4Page extends BaseFooter {
           displayer: "Item Elements",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+              },
             },
           ],
         },
@@ -53,15 +59,21 @@ class Footer4Page extends BaseFooter {
           displayer: "Item Elements",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
+              },
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -103,7 +115,7 @@ class Footer4Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -123,7 +135,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -142,7 +154,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -161,7 +173,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -180,7 +192,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -218,7 +230,7 @@ class Footer4Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -238,7 +250,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -257,7 +269,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -276,7 +288,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -295,7 +307,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -314,7 +326,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -333,7 +345,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -352,7 +364,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -367,7 +379,7 @@ class Footer4Page extends BaseFooter {
     this.addProp({
       type: "string",
       key: "subscriptionPlaceholder",
-      displayer: "Subscription Placeholder",
+      displayer: "Placeholder",
       value: "Type your e-mail",
     });
 
@@ -427,7 +439,7 @@ class Footer4Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -446,7 +458,7 @@ class Footer4Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -465,7 +477,7 @@ class Footer4Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -542,7 +554,7 @@ class Footer4Page extends BaseFooter {
                                 item.image && (
                                   <div className={this.decorateCSS("image-element")}>
                                     <ComposerLink key={index} path={item.url}>
-                                      <img className={this.decorateCSS("image")} src={item.image} />
+                                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
                                     </ComposerLink>
                                   </div>
                                 )
@@ -561,7 +573,7 @@ class Footer4Page extends BaseFooter {
                       return (
                         footerExist && (
                           <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                            {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                            {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
                             {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(item.footerText);
                               return (
@@ -613,14 +625,14 @@ class Footer4Page extends BaseFooter {
                                   value={values.email}
                                   onChange={handleChange}
                                 />
-                                {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
+                                {errors.email && touched.email && <Base.P className={this.decorateCSS("error")}>{errors.email}</Base.P>}
                               </div>
                             )}
 
                             {buttonTextExist && (
                               <Base.Button buttonType={button.type}
                                 className={this.decorateCSS("button")}>
-                                {button.text}
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                               </Base.Button>
                             )}
                           </Form>
