@@ -1,31 +1,39 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
-/* Root container */
+/* -------------------- Config -------------------- */
+:root {
+  /* Sağdaki form kartını sınırlamak istersen değeri değiştir (none => sütunu tamamen doldurur) */
+  --form-max: none; /* örn: clamp(560px, 48vw, 960px) */
+}
+
+/* -------------------- Root container -------------------- */
 .container {
   container-type: inline-size;
 }
 
-.container {
-  content: "";
-}
-
-/* Layout */
+/* -------------------- Layout: FLEX + space-between (Left 2/5, Right 3/5) -------------------- */
 .max-content {
   display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  gap: var(--composer-gap-xxl);
-  width: 95%;
+  justify-content: space-between; /* soldaki en sola, sağdaki en sağa */
+  width: 100%;
+  /* Not: 2/5 + 3/5 = %100, o yüzden ortada ekstra boşluk kalmaz; space-between hizalama tercihi korunur. */
 }
 
-/* -------- LEFT -------- */
+/* ONLY-FORM: Sol içerik yoksa formu ortala */
+.only-form .max-content {
+  justify-content: center;
+}
+
+/* -------- LEFT (2/5) -------- */
 .left-container {
-  flex: 1 1 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 0;
+
+  /* Oransal genişlik: 2/5 */
+  flex: 0 0 40%;
+  min-width: 0; /* taşmaları engelle */
 
   .title {
     white-space: normal;
@@ -81,16 +89,27 @@
   }
 }
 
-/* -------- RIGHT (Form Card) -------- */
+/* -------- RIGHT (3/5) -------- */
 .right-container {
-  flex: 1 1 52%;
+  /* Oransal genişlik: 3/5 */
+  flex: 0 0 50%;
+  min-width: 0;
+
+  /* İçerik (Base.VerticalContent gibi) tam genişlesin */
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: stretch;
 }
 
+/* Bazı wrapper'lar max-width koyabiliyor; emin olmak için esnet */
+.right-container > * {
+  width: 100%;
+  max-width: none;
+}
+
+/* Form kartı sütunu doldursun (varsa --form-max ile sınırla) */
 .form-container {
-  width: min(560px, 100%);
+  width: 100%;
+  max-width: var(--form-max); /* none -> sütunun tamamı */
   background-color: color-mix(
     in srgb,
     var(--composer-html-background),
@@ -100,7 +119,7 @@
   padding: 4rem;
 }
 
-/* Fields */
+/* -------------------- Fields -------------------- */
 .form {
   display: flex;
   flex-direction: column;
@@ -168,13 +187,14 @@
   .submit-button {
     margin-top: var(--composer-gap-md);
     justify-content: center;
+
     .button-text {
       text-align: center;
     }
   }
 }
 
-/* Inputs */
+/* -------------------- Inputs -------------------- */
 .input {
   resize: vertical;
   padding: var(--composer-gap-sm) var(--composer-gap-sm);
@@ -206,6 +226,7 @@ textarea.input {
   resize: vertical;
 }
 
+/* Hata alanı yüksekliği stabil kalsın */
 .error-slot {
   min-height: 1.2rem;
   margin-top: var(--composer-gap-xxs);
@@ -233,25 +254,30 @@ textarea.input {
   animation: error-in 160ms ease-out;
 }
 
-/* Center form when left content is hidden */
-.only-form {
-  justify-content: center;
+/* -------------------- Form spacing fixes -------------------- */
+.form > .input-container {
+  margin-bottom: 0;
+}
+.form > .input-container:last-of-type .error-slot {
+  min-height: 0.6rem;
+}
+.form > .consent {
+  margin-top: 0;
 }
 
-/* -------- Container Queries -------- */
+/* -------------------- Responsive (Container Queries) -------------------- */
 @container (max-width: #{$composer-tablet-width}) {
   .max-content {
-    flex-direction: column;
-    gap: var(--composer-gap-xl);
+    flex-direction: column; /* tek kolona düş */
+    align-items: stretch;
   }
 
   .left-container,
   .right-container {
-    flex: 1 1 100%;
+    flex: 1 1 auto; /* oranları bırak, tam genişlik */
   }
 
   .left-container {
-    align-items: center;
     text-align: center;
 
     .title {
@@ -262,7 +288,8 @@ textarea.input {
   }
 
   .form-container {
-    width: 100%;
+    margin-top: 2rem;
+    padding: 2rem;
   }
 
   .features .feature-description {
@@ -272,20 +299,13 @@ textarea.input {
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .left-container {
-    padding: 0px 20px !important;
-  }
-
-  .container {
-    padding: 50px 0px !important;
-  }
-
   .form .input-container .inputs {
     gap: var(--composer-gap-sm);
   }
 
   .form-container {
-    padding: 2rem;
+    margin-top: 40px;
+    padding: 1rem;
   }
 
   .features .feature-check {
@@ -295,16 +315,4 @@ textarea.input {
   .left-container .title {
     font-size: clamp(24px, 6vw, 34px);
   }
-}
-
-.form > .input-container {
-  margin-bottom: 0;
-}
-
-.form > .input-container:last-of-type .error-slot {
-  min-height: 0.6rem;
-}
-
-.form > .consent {
-  margin-top: 0;
 }
