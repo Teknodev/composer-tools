@@ -567,9 +567,11 @@ class Form4 extends BaseContacts {
                           </div>
                         </div>
                       ))}
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>  
-                      </Base.Button>
+                      {this.castToString(button.text) && 
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>  
+                        </Base.Button>
+                      }
                     </Form>
                   )}
                 </Formik>

@@ -71,9 +71,7 @@
         }
 
         .subtitle {
-          width: fit-content;
           transform: translateX(0);
-          margin: 0 auto;
           &::before {
             display: none;
           }

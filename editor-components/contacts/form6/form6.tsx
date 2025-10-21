@@ -418,7 +418,7 @@ class Form6 extends BaseContacts {
     const buttonText = button.text;
     const buttonTextExist = this.castToString(buttonText);
 
-    const rightItemsExist = titleExist || descriptionExist || buttonTextExist || inputs.length > 0;
+    const rightItemsExist = titleExist || descriptionExist || subtitleExist || buttonTextExist || inputs.length > 0;
 
     function getInputType(type: string): string {
       switch (type) {

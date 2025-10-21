@@ -353,7 +353,7 @@ class Form2 extends BaseContacts {
       <Base.Container style={{ backgroundImage: `url(${backgroundImage?.url})` }} className={this.decorateCSS("container")}>
         {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(inputs.length > 0 || (titleExist || subtitleExist && buttonTextExist)) && (
+          {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
                 {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("subtitle-with-image")}`}>{subtitle}</Base.SectionSubTitle>}
