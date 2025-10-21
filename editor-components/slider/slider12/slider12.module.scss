@@ -18,6 +18,10 @@
   --arrow-icon-size: 4rem;
   --arrow-hit-pad: 6px;
 
+  .max-content {
+    width: 80% !important;
+  }
+
   .max-content .header .header-content {
     max-width: clamp(720px, 70vw, 1100px);
     margin-inline: auto;
@@ -149,6 +153,10 @@
 
 .container {
   @container (max-width: #{$composer-phone-width}) {
+    .max-content {
+      width: 100% !important;
+    }
+
     .max-content .header .header-content .description {
       margin-bottom: 0 !important;
       font-size: var(--composer-font-size-md) !important;
@@ -175,6 +183,9 @@
 
 .container {
   @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      width: 100% !important;
+    }
     .slider-wrap {
       margin-bottom: 1rem;
     }
@@ -330,18 +341,14 @@
   }
 }
 
-/* -------- Text-only varyantı: medya yoksa kartın içeriğini merkezle -------- */
 .card--textOnly {
-  /* Kart yüksekliği medya varkenki hissi korusun */
   min-height: calc(var(--media-h) + 140px);
   display: grid;
   place-items: center;
-  /* kart içinde padding’i biraz artır */
   padding: var(--composer-gap-lg) var(--composer-gap-md);
   background: color-mix(in srgb, var(--composer-html-background), black 3%);
 }
 
-/* Text alanını hem yatay hem dikey anlamda ortalayalım */
 .text--centered {
   display: grid;
   justify-items: center;
@@ -349,7 +356,6 @@
 
   .header {
     text-align: center !important;
-    /* text ağırlığı merkezde daha dengeli dursun */
     -webkit-line-clamp: unset;
     line-clamp: unset;
     margin-bottom: var(--composer-gap-xs);
@@ -359,11 +365,10 @@
     text-align: center !important;
     -webkit-line-clamp: unset;
     line-clamp: unset;
-    max-width: 60ch; /* okunabilirlik */
+    max-width: 60ch;
   }
 }
 
-/* Küçük ekranlarda text-only kart yüksekliğini biraz kıs */
 @container (max-width: #{$composer-phone-width}) {
   .card--textOnly {
     min-height: calc(var(--media-h) * 0.7 + 120px);
