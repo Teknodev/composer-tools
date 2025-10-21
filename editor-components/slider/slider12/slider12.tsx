@@ -631,13 +631,15 @@ class Slider12 extends BaseSlider {
                           {(hasHeaderText || hasCardDesc) && (
                             <div className={textClassName}>
                               {hasHeaderText && (
-                                <div className={this.decorateCSS("header")}>
+                                <Base.SectionTitle
+                                  className={this.decorateCSS("header")}
+                                >
                                   {item.header}
-                                </div>
+                                </Base.SectionTitle>
                               )}
                               {hasCardDesc && (
                                 <div className={this.decorateCSS("desc")}>
-                                  {item.description}
+                                  <Base.P>{item.description}</Base.P>
                                 </div>
                               )}
                             </div>
