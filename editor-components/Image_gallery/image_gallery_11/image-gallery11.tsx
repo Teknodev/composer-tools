@@ -2,8 +2,10 @@ import * as React from "react";
 import { BaseImageGallery, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./image-gallery11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { Image } from "fabric";
 
-type TImage = { image: string; title?: string; imageLink: string };
+type ImageType = { image: string; title?: React.JSX.Element; imageLink: string };
+type RowType = { images: ImageType[] };
 
 class ImageGallery11 extends BaseImageGallery {
   constructor(props?: any) {
@@ -15,18 +17,10 @@ class ImageGallery11 extends BaseImageGallery {
     return "Image Gallery 11";
   }
 
-  // State
   private modalVisible = false;
   private modalIndex = 0;
   private zoom = 1;
-  private panX = 0;
-  private panY = 0;
-  private isPanning = false;
-  private panStartX = 0;
-  private panStartY = 0;
-  private baseScale = 1;
 
-  // Drag state
   private isDragging = false;
   private dragMoved = false;
   private dragThreshold = 5;
@@ -36,25 +30,23 @@ class ImageGallery11 extends BaseImageGallery {
   private startDragOffset = 0;
   private activeWrap: HTMLDivElement | null = null;
 
-  // Refs
   private canvasRef = React.createRef<HTMLDivElement>();
   private closeBtnRef = React.createRef<HTMLButtonElement>();
   private trackRefs: React.RefObject<HTMLDivElement>[] = [];
   private wrapRefs: React.RefObject<HTMLDivElement>[] = [];
   private innerARefs: React.RefObject<HTMLDivElement>[] = [];
 
-  // Props tanımlama fonksiyonu
   private initializeProps() {
     this.addProp({
       type: "image",
-      key: "bg-image",
+      key: "bgImage",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689af25436675f002db98b79?alt=media",
     });
 
     this.addProp({
       type: "boolean",
-      key: "bg-overlay-enabled",
+      key: "bgOverlayEnabled",
       displayer: "Background Overlay",
       value: true,
     });
@@ -73,15 +65,15 @@ class ImageGallery11 extends BaseImageGallery {
       value: "As the studiocontinues to grow, our artists grow alongside it. We may be small, but everyone here is a jack-of-all-trades.",
     });
 
-    this.addProp({ type: "icon", key: "close-icon", displayer: "Close Icon", value: "GrClose" });
-    this.addProp({ type: "icon", key: "nav-prev-icon", displayer: "Nav Prev Icon", value: "IoIosArrowBack" });
-    this.addProp({ type: "icon", key: "nav-next-icon", displayer: "Nav Next Icon", value: "IoIosArrowForward" });
-    this.addProp({ type: "icon", key: "zoom-out-icon", displayer: "Zoom Out Icon", value: "TfiZoomOut" });
-    this.addProp({ type: "icon", key: "zoom-in-icon", displayer: "Zoom in Icon", value: "TfiZoomIn" });
+    this.addProp({ type: "icon", key: "closeIcon", displayer: "Close Icon", value: "GrClose" });
+    this.addProp({ type: "icon", key: "navPrevIcon", displayer: "Nav Prev Icon", value: "IoIosArrowBack" });
+    this.addProp({ type: "icon", key: "navNextIcon", displayer: "Nav Next Icon", value: "IoIosArrowForward" });
+    this.addProp({ type: "icon", key: "zoomOutIcon", displayer: "Zoom Out Icon", value: "TfiZoomOut" });
+    this.addProp({ type: "icon", key: "zoomInIcon", displayer: "Zoom in Icon", value: "TfiZoomIn" });
 
     this.addProp({
       type: "array",
-      key: "gallery-rows",
+      key: "galleryRows",
       displayer: "Gallery Rows",
       value: this.getDefaultGalleryRows() as TypeUsableComponentProps[],
     });
@@ -95,7 +87,7 @@ class ImageGallery11 extends BaseImageGallery {
       displayer: "Image",
       value: [
         { type: "image", key: "image", displayer: "Image", value: url },
-        { type: "string", key: "image-title", displayer: "Image Title", value: title },
+        { type: "string", key: "imageTitle", displayer: "Image Title", value: title },
       ],
     });
 
@@ -123,19 +115,16 @@ class ImageGallery11 extends BaseImageGallery {
     ] as TypeUsableComponentProps[];
   }
 
-  // Bileşen yükleme
   componentDidMount(): void {
     this.setLoopWidths();
     window.addEventListener("resize", this.handleResize);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
-  // Bileşen güncelleme
   componentDidUpdate(): void {
     this.setLoopWidths();
   }
 
-  // Bileşen kaldırma
   componentWillUnmount(): void {
     window.removeEventListener("resize", this.handleResize);
     document.removeEventListener("keydown", this.onKeyDown);
@@ -146,8 +135,6 @@ class ImageGallery11 extends BaseImageGallery {
   private handleResize = () => {
     this.setLoopWidths();
     if (this.modalVisible) {
-      this.baseScale = this.computeCoverScale();
-      this.clampPan();
       this.forceUpdate();
     }
   };
@@ -167,8 +154,8 @@ class ImageGallery11 extends BaseImageGallery {
   private preventScroll = (e: Event) => e.preventDefault();
 
   // Satır verilerini alma
-  private getRows(): { images: TImage[] }[] {
-    const rowsData = this.castToObject<any[]>("gallery-rows") || [];
+  private getRows(): { images: ImageType[] }[] {
+    const rowsData = this.castToObject<any[]>("galleryRows") || [];
     return rowsData.map((rowData: any) => {
       const imagesProp = Array.isArray(rowData.value)
         ? rowData.value.find((p: any) => p.key === "images")
@@ -177,16 +164,16 @@ class ImageGallery11 extends BaseImageGallery {
         .map((it: any) => {
           const arr = Array.isArray(it?.value) ? it.value : [];
           const image = arr.find((x: any) => x.key === "image")?.value || "";
-          const title = arr.find((x: any) => x.key === "image-title")?.value || "";
-          return image ? ({ image, title, imageLink: "" } as TImage) : null;
+          const title = arr.find((x: any) => x.key === "imageTitle")?.value || "";
+          return image ? ({ image, title, imageLink: "" } as ImageType) : null;
         })
-        .filter(Boolean) as TImage[];
+        .filter(Boolean) as ImageType[];
       return { images };
     });
   }
 
   // Tüm görselleri alma
-  private getAllImages(): TImage[] {
+  private getAllImages(): ImageType[] {
     return this.getRows().flatMap(row => row.images);
   }
 
@@ -215,14 +202,13 @@ class ImageGallery11 extends BaseImageGallery {
     wrap.style.setProperty("--drag", `${Math.round(cur)}px`);
   };
 
-  // İmleç pozisyonu alma
+  /* Mouse Event */
   private getClientPosition(e: React.MouseEvent | React.TouchEvent): { x: number; y: number } {
     return 'touches' in e
       ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
       : { x: (e as React.MouseEvent).clientX, y: (e as React.MouseEvent).clientY };
   }
 
-  // Sürükleme başlatma
   private onDragStart = (
     e: React.MouseEvent | React.TouchEvent,
     wrapRef: React.RefObject<HTMLDivElement | null>,
@@ -247,7 +233,6 @@ class ImageGallery11 extends BaseImageGallery {
     wrap.classList.add(this.decorateCSS('dragging'));
   };
 
-  // Sürükleme hareketi
   private onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!this.isDragging || !this.activeWrap || !this.activeTrack) return;
 
@@ -262,7 +247,6 @@ class ImageGallery11 extends BaseImageGallery {
     (e as any).preventDefault?.();
   };
 
-  // Sürükleme bitirme
   private onDragEnd = () => {
     if (!this.isDragging) return;
     this.isDragging = false;
@@ -289,6 +273,8 @@ class ImageGallery11 extends BaseImageGallery {
     this.activeTrack = null;
   };
 
+  /* Mouse Event End */
+
   // İzleme parçasını durdurma/devam ettirme
   private toggleTrackPause(trackElement: HTMLElement | null, pause: boolean) {
     trackElement?.classList.toggle("paused", pause);
@@ -298,10 +284,7 @@ class ImageGallery11 extends BaseImageGallery {
   private openAt = (absIndex: number) => {
     this.modalIndex = absIndex;
     this.modalVisible = true;
-    this.baseScale = this.computeCoverScale();
     this.zoom = 1;
-    this.panX = 0;
-    this.panY = 0;
 
     document.body.style.overflow = "hidden";
     window.addEventListener("wheel", this.preventScroll, { passive: false });
@@ -309,7 +292,6 @@ class ImageGallery11 extends BaseImageGallery {
 
     this.forceUpdate();
     requestAnimationFrame(() => {
-      this.clampPan();
       this.forceUpdate();
       this.closeBtnRef.current?.focus();
     });
@@ -329,7 +311,6 @@ class ImageGallery11 extends BaseImageGallery {
     window.removeEventListener("touchmove", this.preventScroll);
   }
 
-  // Sonraki görsel
   private next = () => {
     const total = this.getAllImages().length;
     if (!total) return;
@@ -337,7 +318,6 @@ class ImageGallery11 extends BaseImageGallery {
     this.resetZoomAndPan();
   };
 
-  // Önceki görsel
   private prev = () => {
     const total = this.getAllImages().length;
     if (!total) return;
@@ -345,109 +325,20 @@ class ImageGallery11 extends BaseImageGallery {
     this.resetZoomAndPan();
   };
 
-  // Zoom ve kaydırmayı sıfırlama
   private resetZoomAndPan() {
     this.zoom = 1;
-    this.panX = 0;
-    this.panY = 0;
     this.forceUpdate();
   }
 
-  // ===== Zoom & Pan =====
   // Yakınlaştırma durumunu değiştirme
   private toggleZoom = () => {
     this.zoom = this.zoom > 1 ? 1 : 2;
-    this.panX = 0;
-    this.panY = 0;
     this.forceUpdate();
-  };
-
-  // Kapsayıcı ölçeği hesaplama
-  private computeCoverScale = (): number => {
-    const canvas = this.canvasRef.current;
-    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-    if (!canvas || !imgEl || !imgEl.naturalWidth || !imgEl.naturalHeight) return 2;
-
-    const { width: cW, height: cH } = canvas.getBoundingClientRect();
-    const nW = imgEl.naturalWidth, nH = imgEl.naturalHeight;
-
-    const rW = cW / nW;
-    const rH = cH / nH;
-    return Math.max(rW, rH) / Math.min(rW, rH);
-  };
-
-  // Kaydırma sınırlarını ayarlama
-  private clampPan(nextZoom?: number) {
-    const canvas = this.canvasRef.current;
-    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-    if (!canvas || !imgEl || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
-
-    const { width: cW, height: cH } = canvas.getBoundingClientRect();
-    const nW = imgEl.naturalWidth, nH = imgEl.naturalHeight;
-    const contain = Math.min(cW / nW, cH / nH);
-    const zUser = nextZoom ?? this.zoom;
-    const zTotal = Math.max(1, zUser) * this.baseScale;
-    const scaledW = nW * contain * zTotal;
-    const scaledH = nH * contain * zTotal;
-
-    const maxX = scaledW <= cW ? 0 : (scaledW - cW) / 2;
-    const maxY = scaledH <= cH ? 0 : (scaledH - cH) / 2;
-
-    this.panX = Math.round(Math.max(-maxX, Math.min(maxX, this.panX)));
-    this.panY = Math.round(Math.max(-maxY, Math.min(maxY, this.panY)));
-  }
-
-  // Kaydırma başlatma
-  private onPanStart = (e: React.MouseEvent | React.TouchEvent) => {
-    if (this.zoom <= 1) return;
-    const { x, y } = this.getClientPosition(e);
-    this.isPanning = true;
-    this.panStartX = x - this.panX;
-    this.panStartY = y - this.panY;
-    (e as any).preventDefault?.();
-    this.forceUpdate();
-  };
-
-  // Kaydırma hareketi
-  private onPanMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!this.isPanning) return;
-    const { x, y } = this.getClientPosition(e);
-
-    const canvas = this.canvasRef.current;
-    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-
-    if (canvas && imgEl && imgEl.naturalWidth && imgEl.naturalHeight) {
-      const { width: cW, height: cH } = canvas.getBoundingClientRect();
-      const contain = Math.min(cW / imgEl.naturalWidth, cH / imgEl.naturalHeight);
-      const z = Math.max(1, this.zoom);
-      const scaledW = imgEl.naturalWidth * contain * z;
-      const scaledH = imgEl.naturalHeight * contain * z;
-      const maxX = scaledW <= cW ? 0 : (scaledW - cW) / 2;
-      const maxY = scaledH <= cH ? 0 : (scaledH - cH) / 2;
-
-      this.panX = Math.max(-maxX, Math.min(maxX, x - this.panStartX));
-      this.panY = Math.max(-maxY, Math.min(maxY, y - this.panStartY));
-    }
-
-    (e as any).preventDefault?.();
-    this.forceUpdate();
-  };
-
-  // Kaydırma bitirme
-  private onPanEnd = () => {
-    this.isPanning = false;
-    const canvas = this.canvasRef.current;
-    canvas?.classList.add(this.decorateCSS("snapping"));
-    this.clampPan();
-    this.forceUpdate();
-    setTimeout(() => canvas?.classList.remove(this.decorateCSS("snapping")), 160);
   };
 
   // Görsel yükleme tamamlandı
   private onImgLoad = () => {
     if (!this.modalVisible) return;
-    this.baseScale = this.computeCoverScale();
-    this.clampPan();
     this.forceUpdate();
   };
 
@@ -465,7 +356,25 @@ class ImageGallery11 extends BaseImageGallery {
 
     keyActions[e.key]?.();
   };
-  private stripHtml(html: string): string {
+  private stripHtml(html: string | React.JSX.Element): string {
+    if (typeof html !== 'string') {
+      // Assuming React.JSX.Element has props.children
+      const toHTML = (element: React.JSX.Element): string => {
+        if (typeof element.props.children === 'string') {
+          return element.props.children;
+        }
+        if (Array.isArray(element.props.children)) {
+          return element.props.children.map((child: React.JSX.Element) => {
+            if (typeof child === 'string') {
+              return child;
+            }
+            return toHTML(child);
+          }).join('');
+        }
+        return '';
+      }
+      html = toHTML(html);
+    }
     if (typeof DOMParser === 'undefined') {
       return html.replace(/<[^>]*>?/gm, '');
     }
@@ -474,11 +383,11 @@ class ImageGallery11 extends BaseImageGallery {
   }
   // Tıklama bastırılmalı mı kontrolü
   private shouldSuppressClick(): boolean {
-    return this.isPanning || this.dragMoved || performance.now() < this.clickSuppressUntil;
+    return this.dragMoved || performance.now() < this.clickSuppressUntil;
   }
 
   // Görsel izleme parçası oluşturma
-  private renderImageTrack(images: TImage[], rowIndex: number, imageOffset: number) {
+  private renderImageTrack(images: ImageType[], rowIndex: number, imageOffset: number) {
     // Sabit animasyon süresi
     const duration = 400; // Sabit, çok yavaş animasyon süresi
 
@@ -509,7 +418,7 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   // İç parça oluşturma
-  private renderTrackInner(images: TImage[], rowIndex: number, imageOffset: number, suffix: string) {
+  private renderTrackInner(images: ImageType[], rowIndex: number, imageOffset: number, suffix: string) {
     if (!images || images.length === 0) {
       return null;
     }
@@ -540,7 +449,7 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   // Modal penceresi oluşturma
-  private renderModal(allImages: TImage[], active: TImage) {
+  private renderModal(allImages: ImageType[], active: ImageType) {
     const total = allImages.length;
     const imgStyle = this.getImageStyle(active);
     const strippedTitle = active?.title ? this.stripHtml(active.title).trim() : "";
@@ -555,26 +464,19 @@ class ImageGallery11 extends BaseImageGallery {
           aria-label="Image viewer"
         >
           <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`} onClick={this.prev}>
-            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-prev-icon") }} name={this.getPropValue("nav-prev-icon")} />
+            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-prev-icon") }} name={this.getPropValue("navPrevIcon")} />
           </div>
 
           <div
             ref={this.canvasRef}
             className={this.decorateCSS("lightbox-canvas")}
-            onMouseDown={this.zoom > 1 ? undefined : this.onPanStart}
-            onMouseMove={this.zoom > 1 ? undefined : this.onPanMove}
-            onMouseUp={this.zoom > 1 ? undefined : this.onPanEnd}
-            onMouseLeave={this.zoom > 1 ? undefined : this.onPanEnd}
-            onTouchStart={this.zoom > 1 ? undefined : this.onPanStart}
-            onTouchMove={this.zoom > 1 ? undefined : this.onPanMove}
-            onTouchEnd={this.zoom > 1 ? undefined : this.onPanEnd}
             onDoubleClick={this.toggleZoom}
           >
             <div className={this.decorateCSS("lightbox-img-wrap")}>
               <img
                 className={this.decorateCSS("lightbox-img")}
                 src={active.image}
-                alt={active.title || ""}
+                alt={strippedTitle}
                 draggable={false}
                 onLoad={this.onImgLoad}
                 style={imgStyle}
@@ -584,9 +486,9 @@ class ImageGallery11 extends BaseImageGallery {
               </div>
               {strippedTitle && <div className={this.decorateCSS("title-badge")}>{strippedTitle}</div>}
 
-              {this.renderModalButton("close-btn", "Close", this.closeModal, this.getPropValue("close-icon"))}
+              {this.renderModalButton("close-btn", "Close", this.closeModal, this.getPropValue("closeIcon"))}
               {this.renderModalButton("zoom-btn", this.zoom > 1 ? "Zoom out" : "Zoom in", this.toggleZoom,
-                this.zoom > 1 ? this.getPropValue("zoom-out-icon") : this.getPropValue("zoom-in-icon")
+                this.zoom > 1 ? this.getPropValue("zoomOutIcon") : this.getPropValue("zoomInIcon")
               )}
             </div>
           </div>
@@ -605,7 +507,7 @@ class ImageGallery11 extends BaseImageGallery {
           />
 
           <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`} onClick={this.next}>
-            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-next-icon") }} name={this.getPropValue("nav-next-icon")} />
+            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-next-icon") }} name={this.getPropValue("navNextIcon")} />
           </div>
         </div>
       </Base.Overlay>
@@ -639,7 +541,7 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   // Görsel stil ayarlarını hesaplama
-  private getImageStyle(active: TImage): React.CSSProperties {
+  private getImageStyle(active: ImageType): React.CSSProperties {
     const baseStyle: React.CSSProperties = {
       maxWidth: "100%",
       maxHeight: "100%",
@@ -667,7 +569,7 @@ class ImageGallery11 extends BaseImageGallery {
 
   // Ana render fonksiyonu
   render() {
-    const rows = this.getRows();
+    const rows = this.castToObject<RowType[]>("galleryRows");
     this.trackRefs = rows.map((_, i) => this.trackRefs[i] || React.createRef());
     this.wrapRefs = rows.map((_, i) => this.wrapRefs[i] || React.createRef());
     this.innerARefs = rows.map((_, i) => this.innerARefs[i] || React.createRef());
@@ -675,10 +577,12 @@ class ImageGallery11 extends BaseImageGallery {
     const allImages = this.getAllImages();
     const active = allImages[this.modalIndex];
 
-    const backgroundImage = this.castToString(this.getPropValue("bg-image"));
+    const backgroundImage = this.castToString(this.getPropValue("bgImage"));
     const hasBackgroundImage = !!backgroundImage;
-    const overlayEnabled = this.asBool(this.getPropValue("bg-overlay-enabled"));
-    const title = this.castToString(this.getPropValue("title"));
+    const overlayEnabled = this.asBool(this.getPropValue("bgOverlayEnabled"));
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const hasRows = rows.length > 0;
     const description = this.castToString(this.getPropValue("description"));
 
     const containerStyle: React.CSSProperties = hasBackgroundImage ? {
@@ -707,14 +611,14 @@ class ImageGallery11 extends BaseImageGallery {
 
           {this.modalVisible && allImages.length > 0 && this.renderModal(allImages, active)}
 
-          {(title || description) && (
+          {(isTitleExist || isDescriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
 
-          {rows.length > 0 && (
+          {hasRows && (
             <div className={this.decorateCSS("gallery")}>
               {rows.map((row, rowIndex) => {
                 if (row.images.length === 0) return null;
