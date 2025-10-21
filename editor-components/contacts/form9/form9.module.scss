@@ -32,6 +32,7 @@
     overflow-wrap: anywhere;
     word-break: break-word;
     hyphens: auto;
+    margin-bottom: 40px;
   }
 
   .features {
@@ -95,7 +96,7 @@
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%
   );
-  border-radius: var(--composer-border-radius-xl, 28px);
+  border-radius: var(--composer-border-radius-sm, 28px);
   padding: 4rem;
 }
 
