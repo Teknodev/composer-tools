@@ -2,21 +2,21 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content28.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-// Feature item structure
+// Feature item interface for type safety
 interface FeatureItem {
-  title: string;
-  text: string;
+  title?: string;
+  text?: string;
 }
 
 /**
  * Content28: Two-column layout with image and feature showcase
- * Features: Optional vertical divider, hover effects, responsive grid
+ * Features: Responsive grid, hover effects, customizable feature count
  */
 class Content28 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
 
-    // Main portrait/profile image
+    // Main profile/portrait image
     this.addProp({
       type: "image",
       key: "image",
@@ -26,39 +26,21 @@ class Content28 extends BaseContent {
 
     // Main heading text
     this.addProp({
-      type: "array",
-      key: "headings",
-      displayer: "Headings",
-      value: [
-        {
-          type: "object",
-          key: "headingItem",
-          displayer: "Heading Item",
-          value: [
-            { type: "string", key: "text", displayer: "Heading", value: "I'm Alexander Green, an\nindependent digital designer" }
-          ]
-        }
-      ]
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "I'm Alexander Green, an\nindependent digital designer"
     });
 
-    // Introduction paragraph
+    // Introduction/description text
     this.addProp({
-      type: "array",
-      key: "intros",
-      displayer: "Intro Texts",
-      value: [
-        {
-          type: "object",
-          key: "introItem",
-          displayer: "Intro Item",
-          value: [
-            { type: "string", key: "text", displayer: "Text", value: "I usually work in vanilla javascript without frameworks for small projects, allowing me a complete freedom on the architecture, a Headless CMS like Prismic for content management." }
-          ]
-        }
-      ]
+      type: "string",
+      key: "intro",
+      displayer: "Intro",
+      value: "I usually work in vanilla javascript without frameworks for small projects, allowing me a complete freedom on the architecture, a Headless CMS like Prismic for content management."
     });
 
-    // Feature items with title and description
+    // Feature items array with title and description
     this.addProp({
       type: "array",
       key: "features",
@@ -85,47 +67,51 @@ class Content28 extends BaseContent {
       ]
     });
 
-    // Toggle vertical divider line between columns
+    // Number of feature items per row (desktop layout)
     this.addProp({
-      type: "boolean",
-      key: "showLine",
-      displayer: "Line (enabled/disabled)",
-      value: false
+      type: "number",
+      key: "itemsPerRow",
+      displayer: "Item Count in a Row",
+      value: 2,
+      max: 6
     });
-
-    // Removed Active Feature Index and Items Per Row controls per requirement
   }
 
   static getName(): string {
     return "Content 28";
   }
 
-  // Helpers
-  private getAllTextsFromArray(propKey: string): string[] {
-    const arr = this.castToObject<{ text?: string }[]>(propKey) || [];
-    return arr.map((i) => i?.text).filter((t): t is string => !!t);
+  // Extract and format feature items from props
+  private getFeatures(): FeatureItem[] {
+    const raw = (this.castToObject<any[]>("features") || []).filter((f) => !!f);
+    return raw.map((item) => {
+      const value = (item as any)?.value || item;
+      const title = this.getPropValue("title", { parent_object: value }) as string;
+      const text = this.getPropValue("text", { parent_object: value }) as string;
+      return { title, text } as FeatureItem;
+    });
   }
 
-  private getFeatures(): FeatureItem[] {
-    const raw = this.castToObject<FeatureItem[]>("features") || [];
-    return raw.filter((f) => f && typeof f === "object");
+  // Get number of items per row for grid layout
+  private getItemCount(): number {
+    return this.getPropValue("itemsPerRow");
   }
 
   render() {
-    // Extract and prepare data from props
+    // Get all component data from props
     const imageSrc = this.getPropValue("image");
-    const headingTexts = this.getAllTextsFromArray("headings");
-    const introTexts = this.getAllTextsFromArray("intros");
+    const titleText = this.getPropValue("title");
+    const introText = this.getPropValue("intro");
     const features = this.getFeatures();
-    const showLine = !!this.getPropValue("showLine");
     const activeIndex = Number(this.getPropValue("activeIndex") ?? 0);
+    const itemCount = this.getItemCount();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {/* Main grid: image + optional divider + content */}
-          <Base.ContainerGrid className={`${this.decorateCSS("grid")} ${showLine ? this.decorateCSS("has-line") : ""}`}> 
-            {/* Left column: Image */}
+          {/* Two-column layout: image and content */}
+          <Base.ContainerGrid className={this.decorateCSS("grid")}> 
+            {/* Left column: Profile image */}
             {this.castToString(imageSrc) && (
             <Base.GridCell className={this.decorateCSS("col-image")} padding="none">
                 <Base.Media
@@ -135,51 +121,58 @@ class Content28 extends BaseContent {
               </Base.GridCell>
             )}
 
-            {/* Optional vertical divider */}
-            {showLine && <hr className={this.decorateCSS("center-line")} />}
-
-            {/* Right column: Content */}
+            {/* Right column: Text content and features */}
             <Base.GridCell className={this.decorateCSS("col-content")} padding="none">
               <Base.VerticalContent>
-              {/* Header section with heading and intro */}
-              {(headingTexts.length > 0 || introTexts.length > 0) && (
+              {/* Header section with title and introduction */}
+              {(titleText || introText) && (
                 <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {headingTexts.map((h, idx) => (
-                    <Base.SectionTitle className={this.decorateCSS("heading")} key={`h-${idx}`}>
-                      {h}
+                  {titleText ? (
+                    <Base.SectionTitle className={this.decorateCSS("heading")}>
+                      <span className={this.decorateCSS("heading-text")}>
+                        {titleText}
+                      </span>
                     </Base.SectionTitle>
-                  ))}
-                  {introTexts.map((it, idx) => (
-                    <Base.SectionDescription className={this.decorateCSS("intro")} key={`i-${idx}`}>
-                      {it}
+                  ) : null}
+                  {introText ? (
+                    <Base.SectionDescription className={this.decorateCSS("intro")}>
+                      {introText}
                     </Base.SectionDescription>
-                  ))}
+                  ) : null}
                 </Base.VerticalContent>
               )}
 
-              {/* Features grid */}
+              {/* Features grid section */}
               {features.length > 0 && (
                 <div className={this.decorateCSS("features-block")}>
-                  <div
+                  <div 
                     className={this.decorateCSS("features")}
-                  >
-                    {features.map((feature, index) => (
-                      <Base.VerticalContent
-                        className={`${this.decorateCSS("feature")} ${index === activeIndex ? this.decorateCSS("active") : ""}`}
-                        key={index}
-                      >
-                        {feature?.title && (
-                          <Base.SectionSubTitle className={this.decorateCSS("feature-title")}>
-                            {feature.title}
-                          </Base.SectionSubTitle>
-                        )}
-                        {feature?.text && (
-                          <Base.P className={this.decorateCSS("feature-text")}>
-                            {feature.text}
-                          </Base.P>
-                        )}
-                      </Base.VerticalContent>
-                    ))}
+                    style={{ gridTemplateColumns: `repeat(${itemCount}, 1fr)` }}
+                  > 
+                    {features.map((_, index) => {
+                      const featuresArray = this.getPropValue("features") as any[];
+                      const featureObj = featuresArray?.[index];
+                      const titleProp = featureObj?.value?.find((v: any) => v.key === "title");
+                      const textProp = featureObj?.value?.find((v: any) => v.key === "text");
+
+                      return (
+                        <Base.VerticalContent
+                          className={`${this.decorateCSS("feature")} ${index === activeIndex ? this.decorateCSS("active") : ""}`}
+                          key={index}
+                        >
+                          {titleProp && (
+                            <Base.SectionSubTitle className={this.decorateCSS("feature-title")}>
+                              {this.getPropValue("title", { parent_object: featureObj.value })}
+                            </Base.SectionSubTitle>
+                          )}
+                          {textProp && (
+                            <Base.P className={this.decorateCSS("feature-text")}>
+                              {this.getPropValue("text", { parent_object: featureObj.value })}
+                            </Base.P>
+                          )}
+                        </Base.VerticalContent>
+                      );
+                    })}
                   </div>
                 </div>
               )}
