@@ -87,7 +87,7 @@
             position: relative;
 
             .error-message {
-              text-align: end;
+              text-align: left;
               margin-top: var(--composer-gap-xs);
               color: var(--composer-danger-color);
             }

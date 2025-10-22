@@ -442,6 +442,7 @@ class Form8 extends BaseContacts {
               </Base.VerticalContent>
             )}
 
+           {(inputItems.length > 0 || this.castToString(button.text)) && 
             <Base.VerticalContent className={this.decorateCSS("form-content")}>
               <Formik
                 initialValues={getInitialValue()}
@@ -490,7 +491,7 @@ class Form8 extends BaseContacts {
                   </Form>
                 )}
               </Formik>
-            </Base.VerticalContent>
+            </Base.VerticalContent>}
           </div>
         </Base.MaxContent>
       </Base.Container>

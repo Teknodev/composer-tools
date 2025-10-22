@@ -273,7 +273,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required Rrror Message",
+                      displayer: "Required Error Message",
                       value: "",
                     },
                     {
@@ -288,7 +288,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type Rrror Message",
+                      displayer: "Type Error Message",
                       value: "",
                     },
                   ],
@@ -333,7 +333,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required Rrror Message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
