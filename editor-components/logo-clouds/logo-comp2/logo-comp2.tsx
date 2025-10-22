@@ -61,8 +61,11 @@ class LogoComp2Page extends LogoClouds {
   render() {
     const originalImageArray = this.castToObject<TImage[]>("image-items");
     let lineOfLogos: any[] = [];
-    for (let x = 0; x < Math.round(14 / originalImageArray.length); x++) {
-      lineOfLogos.push(...originalImageArray);
+    
+    if (originalImageArray.length > 0) {
+      for (let x = 0; x < Math.round(14 / originalImageArray.length); x++) {
+        lineOfLogos.push(...originalImageArray);
+      }
     }
     const images = [...lineOfLogos, ...lineOfLogos];
 

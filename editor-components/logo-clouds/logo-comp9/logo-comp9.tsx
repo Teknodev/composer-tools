@@ -160,8 +160,11 @@ class LogoComp9Page extends LogoClouds {
   render() {
     const originalItemsArray = this.castToObject<TTextImageItem[]>("text-image-items");
     let lineOfItems = [];
-    for (let x = 0; x < Math.round(14 / originalItemsArray.length); x++) {
-      lineOfItems.push(...originalItemsArray);
+    
+    if (originalItemsArray.length > 0) {
+      for (let x = 0; x < Math.round(14 / originalItemsArray.length); x++) {
+        lineOfItems.push(...originalItemsArray);
+      }
     }
     const items = [...lineOfItems, ...lineOfItems];
 

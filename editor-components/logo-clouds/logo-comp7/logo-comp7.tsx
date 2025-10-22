@@ -43,10 +43,13 @@ class LogoComp7Page extends LogoClouds {
   render() {
     const title = this.castToString(this.getPropValue("title"));
     const originals = this.castToObject<TImage[]>("image-items") || [];
-    const repeatCount = Math.round(14 / originals.length);
     let lineOfLogos: TImage[] = [];
-    for (let i = 0; i < repeatCount; i++) {
-      lineOfLogos.push(...originals);
+    
+    if (originals.length > 0) {
+      const repeatCount = Math.round(14 / originals.length);
+      for (let i = 0; i < repeatCount; i++) {
+        lineOfLogos.push(...originals);
+      }
     }
 
     const scrollItems = [...lineOfLogos, ...lineOfLogos];
