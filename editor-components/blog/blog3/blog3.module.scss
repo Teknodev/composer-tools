@@ -168,13 +168,6 @@
                 .date-text {
                   margin: 0;
                   text-align: left;
-                  >blinkpage p {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1;
-                    line-clamp: 1;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                  }
                 }
               }
 
@@ -192,13 +185,6 @@
                 .time-text {
                   margin: 0;
                   text-align: left;
-                  >blinkpage p {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1;
-                    line-clamp: 1;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                  }
                 }
               }
             }
@@ -209,12 +195,6 @@
               margin: 0;
               text-align: start;
 
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              -webkit-line-clamp: 2;
-              line-clamp: 2;
 
               &.underline-animation::after {
                 @include itemTitleAfter(hidden, 0);
@@ -230,12 +210,6 @@
               width: 100%;
               margin: 0;
               text-align: start;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              -webkit-line-clamp: 3;
-              line-clamp: 3;
             }
 
             .user-info {

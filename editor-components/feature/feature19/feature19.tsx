@@ -1,7 +1,6 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature19.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -9,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface ListItem {
   title: string;
   text: string;
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
 }
 class Feature19 extends BaseFeature {
   constructor(props?: any) {
@@ -34,11 +33,16 @@ class Feature19 extends BaseFeature {
       value: "A better way to get your home, rental, or office clean.",
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
+      },
     });
     
     this.addProp({
@@ -74,6 +78,9 @@ class Feature19 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaTwitter"
@@ -103,6 +110,9 @@ class Feature19 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaFacebook"
@@ -113,6 +123,7 @@ class Feature19 extends BaseFeature {
       ],
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -152,9 +163,7 @@ class Feature19 extends BaseFeature {
                 this.castToString(description)) && (
                   <Base.VerticalContent className={this.decorateCSS("header")}>
                     {this.castToString(subTitle) && (
-                      <Base.SectionSubTitle
-                        className={this.decorateCSS("subtitle")}
-                      >
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                         {subTitle}
                       </Base.SectionSubTitle>
                     )}
@@ -164,9 +173,7 @@ class Feature19 extends BaseFeature {
                       </Base.SectionTitle>
                     )}
                     {this.castToString(description) && (
-                      <Base.SectionDescription
-                        className={this.decorateCSS("description")}
-                      >
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
                         {description}
                       </Base.SectionDescription>
                     )}
@@ -185,9 +192,7 @@ class Feature19 extends BaseFeature {
                           />
                         )}
                         {this.castToString(listItem.title) && (
-                          <Base.H2
-                            className={this.decorateCSS("list-item-title")}
-                          >
+                          <Base.H2 className={this.decorateCSS("list-item-title")}>
                             {listItem.title}
                           </Base.H2>
                         )}
@@ -206,7 +211,7 @@ class Feature19 extends BaseFeature {
               {this.castToString(button.text) && (
                 <ComposerLink path={button.url}>
                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {button.text}
+                    {<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
                   </Base.Button>
                 </ComposerLink>
               )}
@@ -218,9 +223,8 @@ class Feature19 extends BaseFeature {
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
               style={{ position: "relative" }}
             >
-              <img
-                src={this.getPropValue("image")}
-                alt="blockPhoto"
+              <Base.Media
+                value={this.getPropValue("image")}
                 className={this.decorateCSS("img")}
               />
               {overlay && <div className={this.decorateCSS("overlay")} />}

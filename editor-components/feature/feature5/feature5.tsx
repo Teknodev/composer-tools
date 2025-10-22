@@ -4,6 +4,7 @@ import styles from "./feature5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 class Feature5 extends BaseFeature {
   constructor(props?: any) {
@@ -25,6 +26,9 @@ class Feature5 extends BaseFeature {
           type: "media",
           key: "left_image",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2642f8a5b002ce6c032?alt=media",
@@ -93,6 +97,9 @@ class Feature5 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2a22f8a5b002ce6c03e?alt=media",
@@ -123,6 +130,9 @@ class Feature5 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2cc2f8a5b002ce6c04a?alt=media",
@@ -151,6 +161,9 @@ class Feature5 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2ea2f8a5b002ce6c056?alt=media",
@@ -179,6 +192,9 @@ class Feature5 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c3032f8a5b002ce6c062?alt=media",

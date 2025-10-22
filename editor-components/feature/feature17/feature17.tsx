@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature17.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -10,7 +10,7 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
-  image: { type: "image"; url: string };
+  image: TypeMediaInputValue;
 };
 
 class Feature17 extends BaseFeature {
@@ -59,6 +59,9 @@ class Feature17 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
@@ -97,6 +100,9 @@ class Feature17 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
@@ -161,9 +167,7 @@ class Feature17 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subTitle) ||
-            this.castToString(title) ||
-            this.castToString(description)) && (
+          {(this.castToString(subTitle) || this.castToString(title) || this.castToString(description)) && (
               <Base.VerticalContent className={this.decorateCSS("heading")}>
                 {this.castToString(subTitle) && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -178,19 +182,14 @@ class Feature17 extends BaseFeature {
                 )}
 
                 {this.castToString(description) && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
-                  >
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {description}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
             )}
 
-          <div 
-            className={this.decorateCSS("tabs")}
-            data-animation={this.getPropValue("hoverAnimation").join(" ")}
-          >
+          <div  className={this.decorateCSS("tabs")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: ITabs, index: number) => (
@@ -248,7 +247,7 @@ class Feature17 extends BaseFeature {
                       </Base.VerticalContent>
                     )}
 
-                  {tab.image?.url && (
+                  {tab.image && (
                     <div className={this.decorateCSS("image-container")} style={{ position: "relative" }}>
                       <Base.Media
                         value={tab.image}

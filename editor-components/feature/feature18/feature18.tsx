@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature18.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -11,7 +11,7 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
 };
 
 class Feature18 extends BaseFeature {
@@ -38,6 +38,9 @@ class Feature18 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaBox"
@@ -74,6 +77,9 @@ class Feature18 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "HiBeaker"
@@ -110,6 +116,9 @@ class Feature18 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "GrAnalytics"
@@ -146,6 +155,9 @@ class Feature18 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "HiGlobeAlt"
@@ -182,6 +194,9 @@ class Feature18 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "SiAltiumdesigner"
@@ -218,6 +233,9 @@ class Feature18 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "SlBulb"
@@ -254,6 +272,9 @@ class Feature18 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FiAperture"
@@ -344,7 +365,7 @@ class Feature18 extends BaseFeature {
                   }
                 >
                   <Base.VerticalContent className={this.decorateCSS("content")}>
-                    {tab.icon?.name && (
+                    {tab.icon && (
                       <Base.Row className={this.decorateCSS("icon-wrapper")}>
                         <Base.Media
                           value={tab.icon}

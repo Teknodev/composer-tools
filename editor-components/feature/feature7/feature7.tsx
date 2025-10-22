@@ -5,10 +5,11 @@ import styles from "./feature7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 type Feature = {
   title: React.JSX.Element;
-  iconFeature: { type: "icon"; name: string };
+  iconFeature: TypeMediaInputValue;
 };
 
 class Feature7 extends BaseFeature {
@@ -19,6 +20,9 @@ class Feature7 extends BaseFeature {
       type: "media",
       key: "image",
       displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a25bdb2f8a5b002ce67862?alt=media",
@@ -67,6 +71,9 @@ class Feature7 extends BaseFeature {
               type: "media",
               key: "iconFeature",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaCheck",
@@ -89,6 +96,9 @@ class Feature7 extends BaseFeature {
               type: "media",
               key: "iconFeature",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaCheck",
@@ -111,6 +121,9 @@ class Feature7 extends BaseFeature {
               type: "media",
               key: "iconFeature",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaCheck",
@@ -222,7 +235,7 @@ class Feature7 extends BaseFeature {
                               <ComposerLink path={item.url}>
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
                                   <Base.P className={this.decorateCSS("linkText")}>{item.text}</Base.P>
-                                  <Base.Icon
+                                  <Base.Media
                                     value={item.icon}
                                     className={this.decorateCSS("iconLink")}
                                   />

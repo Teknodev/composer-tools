@@ -71,11 +71,13 @@
                 .card-title {
                   width: fit-content;
                   text-align: left;
+                  margin: 0;
                   color: var(--composer-font-color-primary);
                 }
                 .card-number {
                   text-align: left;
                   width: fit-content;
+                  margin: 0;
                   color: var(--composer-font-color-primary);
                 }
               }

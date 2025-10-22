@@ -8,8 +8,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Card{
     image: TypeMediaInputValue;
     video: TypeMediaInputValue;
-    title: string;
-    description: string;
+    title: React.JSX.Element;
+    description: React.JSX.Element;
     button: INPUTS.CastedButton;
 }
 
@@ -31,6 +31,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value: {
                                 type: "image",
                                 url: "https://irp.cdn-website.com/a8ff2f1c/dms3rep/multi/1-5b099458.png",
@@ -40,6 +43,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "video",
                             displayer: "Video",
+                            additionalParams: {
+                                availableTypes: ["video"],
+                            },
                             value: {
                                 type: "video",
                                 url: "https://vid.cdn-website.com/a8ff2f1c/videos/BvvOk7HTyMD2pdYOfkpg_Menu+HP+4-v.mp4",
@@ -57,15 +63,7 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Go from plan to published in a third of the time—days, not weeks—with time saving tools specifically built for busy professionals like yourself.",
                         },
-                        INPUTS.BUTTON(
-                            "button",
-                            "Button",
-                            "Learn More",
-                            "",
-                            null,
-                            null,
-                            "Tertiary",
-                        )
+                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
                     ]
                 },
                 {
@@ -77,6 +75,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value: {
                                 type: "image",
                                 url: "https://irp.cdn-website.com/a8ff2f1c/dms3rep/multi/3-235ee343.png",
@@ -86,6 +87,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "video",
                             displayer: "Video",
+                            additionalParams: {
+                                availableTypes: ["video"],
+                            },
                             value: {
                                 type: "video",
                                 url: "https://vid.cdn-website.com/a8ff2f1c/videos/GuiE89lkQ8WL3gB5WLFi_AI+Assistant+v14-v.mp4",
@@ -103,15 +107,7 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Eliminate busy work and eradicate ongoing website maintenance to scale your client base without scaling your team, costs, or workload.",
                         },
-                        INPUTS.BUTTON(
-                            "button",
-                            "Button",
-                            "Learn More",
-                            "",
-                            null,
-                            null,
-                            "Tertiary",
-                        )
+                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
                     ]
                 },
                 {
@@ -123,6 +119,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value: {
                                 type: "image",
                                 url: "https://irp.cdn-website.com/a8ff2f1c/dms3rep/multi/2-10548e83.png",
@@ -132,6 +131,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "video",
                             displayer: "Video",
+                            additionalParams: {
+                                availableTypes: ["video"],
+                            },
                             value: {
                                 type: "video",
                                 url: "https://vid.cdn-website.com/a8ff2f1c/videos/zDaRGClBRLKKg07DvBMv_next-gen+clitn+sites+%28jewllery+website%29-v3-v.mp4",
@@ -149,15 +151,7 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Rank higher and load faster with performance metrics 51% higher than the industry average and built traffic-boosting SEO and AEO tools built right in.",
                         },
-                        INPUTS.BUTTON(
-                            "button",
-                            "Button",
-                            "Learn More",
-                            "",
-                            null,
-                            null,
-                            "Tertiary",
-                        )
+                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
                     ]
                 },
                 {
@@ -169,6 +163,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "image",
                             displayer: "Image",
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                             value: {
                                 type: "image",
                                 url: "https://irp.cdn-website.com/a8ff2f1c/dms3rep/multi/Frame+1171275408-8d5e4fe1.png",
@@ -178,6 +175,9 @@ class Feature21 extends BaseFeature{
                             type: "media",
                             key: "video",
                             displayer: "Video",
+                            additionalParams: {
+                                availableTypes: ["video"],
+                            },
                             value: {
                                 type: "video",
                                 url: "",
@@ -195,15 +195,7 @@ class Feature21 extends BaseFeature{
                             displayer: "Description",
                             value: "Seamlessly integrate Duda into your workflows with powerful APIs and automation tools. Deliver and monetize websites, stores, and over 70 apps—all under your brand.",
                         },
-                        INPUTS.BUTTON(
-                            "button",
-                            "Button",
-                            "Learn More",
-                            "",
-                            null,
-                            null,
-                            "Tertiary",
-                        )
+                        INPUTS.BUTTON("button","Button","Learn More","",null,null,"Tertiary"),
                     ]
                 },
             ]
@@ -264,8 +256,8 @@ class Feature21 extends BaseFeature{
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("grid-container")} >
                         {cards.map((card: Card, index: number) => {
-                            const cardImage = card?.image?.url;
-                            const cardVideo = card?.video?.url || "";
+                            const cardImage = card?.image;
+                            const cardVideo = card?.video;
                             const cardTitle = card?.title;
                             const cardTitleExist = this.castToString(cardTitle);
                             const cardDescription = card?.description;
@@ -274,7 +266,7 @@ class Feature21 extends BaseFeature{
                             const buttonTextExist = this.castToString(button.text)
                             const buttonExist = buttonTextExist ||  button.icon
                             const flexClass = this.getCardFlexClass(index);
-                            const cardImageExist = cardImage || cardVideo
+                            const cardImageExist = (cardImage && cardImage.url) || (cardVideo && cardVideo.url)
                             const cardExist = cardImageExist || cardTitleExist || cardDescriptionExist || buttonExist
 
                             return cardExist && (
@@ -287,12 +279,12 @@ class Feature21 extends BaseFeature{
                                 >
                                     <div className={this.decorateCSS("card-content")}>
                                         {cardImageExist && <div className={this.decorateCSS("media-container")}>
-                                            {hoveredIndex === index && cardVideo ? (
+                                            {hoveredIndex === index && cardVideo && cardVideo.url ? (
                                                 <Base.Media
                                                     value={card.video}
                                                     className={this.decorateCSS("card-video")}
                                                 />
-                                            ) : cardImage && (
+                                            ) : cardImage && cardImage.url && (
                                                 <Base.Media
                                                     value={card.image}
                                                     className={this.decorateCSS("card-image")}
@@ -325,11 +317,9 @@ class Feature21 extends BaseFeature{
                                                                 {button.text}
                                                             </Base.P>}
                                                             {button.icon && (
-                                                                <Base.Icon
-                                                                    name={button.icon}
-                                                                    propsIcon={{ 
-                                                                        className: this.decorateCSS("button-icon") 
-                                                                    }}
+                                                                <Base.Media
+                                                                    value={button.icon}
+                                                                    className={this.decorateCSS("button-icon")}
                                                                 />
                                                             )}
                                                         </Base.Button>

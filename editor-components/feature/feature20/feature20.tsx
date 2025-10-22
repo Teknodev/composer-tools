@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature20.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface Item {
-  image: { type: "image"; url: string };
+  image: TypeMediaInputValue;
   sectionHeading: string;
   description: string;
   button: INPUTS.CastedButton;
@@ -57,6 +57,9 @@ class Feature20 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo3.jpg",
@@ -75,15 +78,7 @@ class Feature20 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
-            INPUTS.BUTTON(
-                "button", 
-                "Button", 
-                "READ MORE", 
-                "", 
-                null, 
-                null, 
-                "Tertiary"
-            )
+            INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
           ],
         },
         {
@@ -95,6 +90,9 @@ class Feature20 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo2.jpg",
@@ -113,15 +111,7 @@ class Feature20 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
-            INPUTS.BUTTON(
-                "button", 
-                "Button", 
-                "READ MORE", 
-                "", 
-                null, 
-                null, 
-                "Tertiary"
-            )
+            INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
           ],
         },
         {
@@ -133,6 +123,9 @@ class Feature20 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photobox.jpg",
@@ -151,15 +144,7 @@ class Feature20 extends BaseFeature {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
             },
-            INPUTS.BUTTON(
-                "button", 
-                "Button", 
-                "READ MORE", 
-                "", 
-                null, 
-                null, 
-                "Tertiary"
-            )
+            INPUTS.BUTTON("button","Button","READ MORE","",null,null,"Tertiary"),
           ],
         },
       ],

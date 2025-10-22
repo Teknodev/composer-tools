@@ -40,17 +40,20 @@ class Feature6 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668561f10181a1002c33af0e?alt=media",
@@ -73,12 +76,15 @@ class Feature6 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562190181a1002c33af16?alt=media",
@@ -101,12 +107,15 @@ class Feature6 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562330181a1002c33af23?alt=media",

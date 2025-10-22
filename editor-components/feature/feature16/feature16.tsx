@@ -34,6 +34,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "topLeftSideImage",
                     displayer: "Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/crypto-icon.png"
@@ -68,6 +71,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "bottomLeftSideImage",
                     displayer: "Left Side Bottom Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/mobile-2.png"
@@ -102,6 +108,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "topRightSideImage",
                     displayer: "Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/wallet-icon.png"
@@ -136,6 +145,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "topRightSide2Image",
                     displayer: "Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/protect-icon.png"
@@ -170,6 +182,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "middleRightSideImage",
                     displayer: "Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/support-icon.png"
@@ -204,6 +219,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "middleRightSide2Image",
                     displayer: "Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/chart-icon.png"
@@ -238,6 +256,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "bottomRightSideImage",
                     displayer: "Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/buy-icon.png"
@@ -272,6 +293,9 @@ class Feature16 extends BaseFeature {
                     type: "media",
                     key: "bottomRightSide2Image",
                     displayer: "Image",
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
                     value: {
                         type: "image",
                         url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/real-time-icon.png"

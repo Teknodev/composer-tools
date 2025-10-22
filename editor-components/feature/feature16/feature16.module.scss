@@ -215,10 +215,16 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .side-container {
-    .card {
-      .card-text-container {
-        gap: var(--composer-gap-sm) !important;
+  .container {
+    .max-content {
+      .side-container {
+        flex-direction: column;
+        
+        .card {
+          .card-text-container {
+            gap: var(--composer-gap-sm) !important;
+          }
+        }
       }
     }
   }

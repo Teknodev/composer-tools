@@ -414,35 +414,6 @@ class Blog3 extends BaseBlog {
       value: true
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "enableEllipsisTitle",
-      displayer: "Ellipsis For Title",
-      value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "enableEllipsisDesc",
-      displayer: "Ellipsis For Description",
-      value: true,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "maxTitleLength",
-      displayer: "Title Max Length",
-      value: 60,
-      max: 90
-    });
-
-    this.addProp({
-      type: "number",
-      key: "maxDescriptionLength",
-      displayer: "Description Max Length",
-      value: 90,
-      max: 200
-    });
   }
 
   static getName(): string {

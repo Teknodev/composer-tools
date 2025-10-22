@@ -49,6 +49,7 @@
                 .iconFeature {
                   width: 20px;
                   height: 20px;
+                  font-size: 1rem;
                   color: var(--composer-font-color-primary);
                 }
               }
@@ -96,11 +97,48 @@
   }
 }
 
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .text-container {
+          .title-wrapper {
+            .subtitle,  .title, .description {
+              text-align: left;
+            }
+            .featuresList {
+              align-items: baseline;
+              .feature {
+                .featureTitle {
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .wrapper {
         flex-direction: column;
+
+        .text-container {
+          .title-wrapper {
+            .featuresList {
+              .feature {
+                .featureTitle {
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

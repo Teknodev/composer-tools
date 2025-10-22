@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import styles from "./feature13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -16,7 +16,7 @@ type Progress = {
 };
 
 type SliderImage = {
-  imageSource: { type: "image"; url: string };
+  imageSource: TypeMediaInputValue;
   imageIndex: number;
 };
 
@@ -68,6 +68,9 @@ class Feature13 extends BaseFeature {
               type: "media",
               key: "imageSource",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media",
@@ -90,6 +93,9 @@ class Feature13 extends BaseFeature {
               type: "media",
               key: "imageSource",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media",
@@ -112,6 +118,9 @@ class Feature13 extends BaseFeature {
               type: "media",
               key: "imageSource",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media",
@@ -287,17 +296,29 @@ class Feature13 extends BaseFeature {
     }, 3000);
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "sliderGoLeft",
       displayer: "Slider Left Button Icon",
-      value: "FaArrowLeft",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowLeft",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "sliderGoRight",
       displayer: "Slider Right Button Icon",
-      value: "FaArrowRight",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowRight",
+      },
     });
     
     this.setComponentState("activeTab", 0);
@@ -396,7 +417,7 @@ class Feature13 extends BaseFeature {
                 <Base.GridCell className={this.decorateCSS("comp-slider")}>
                   {this.getComponentState("slider-images").map(
                     (image: SliderImage, index: number) => {
-                      if (!image.imageSource?.url) return null;
+                      if (!image.imageSource) return null;
                       return (
                         <Base.Media
                           key={index}
@@ -417,9 +438,9 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderPrev}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <Base.Icon
-                          propsIcon={{ className: this.decorateCSS("Icon") }}
-                          name={this.getPropValue("sliderGoLeft")}
+                        <Base.Media
+                          value={this.getPropValue("sliderGoLeft")}
+                          className={this.decorateCSS("Icon")}
                         />
                       </button>
                     )}
@@ -428,9 +449,9 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderNext}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <Base.Icon
-                          propsIcon={{ className: this.decorateCSS("Icon") }}
-                          name={this.getPropValue("sliderGoRight")}
+                        <Base.Media
+                          value={this.getPropValue("sliderGoRight")}
+                          className={this.decorateCSS("Icon")}
                         />
                       </button>
                     )}

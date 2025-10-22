@@ -5,6 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 type LeftContent = {
   subtitle: React.JSX.Element;
@@ -13,7 +14,7 @@ type LeftContent = {
 };
 
 type Card = {
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -63,6 +64,9 @@ class Feature11 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "GrDrag"
@@ -91,6 +95,9 @@ class Feature11 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "CgDisplayFlex"
@@ -119,6 +126,9 @@ class Feature11 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "IoColorFilterSharp"
@@ -147,6 +157,9 @@ class Feature11 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaBox"
@@ -175,6 +188,9 @@ class Feature11 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaFileArchive"
@@ -203,6 +219,9 @@ class Feature11 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "LuReplaceAll"

@@ -109,10 +109,7 @@
             gap: var(--composer-gap-xl);
             flex: 1;
             .header {
-                .subtitle{
-                    content: "";
-                }
-                .title {
+                .subtitle, .title{
                     content: "";
                 }
                 .description {
@@ -148,7 +145,11 @@
                     }
                 
             }
-            .button {content: "";}
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
         }
     }
 }

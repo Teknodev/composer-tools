@@ -2,12 +2,13 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 
 type Box = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
 };
 
 class Feature2 extends BaseFeature {
@@ -39,6 +40,9 @@ class Feature2 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaGlobe",
@@ -67,6 +71,9 @@ class Feature2 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "SiAltiumdesigner",
@@ -95,6 +102,9 @@ class Feature2 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "CgIfDesign",
@@ -123,6 +133,9 @@ class Feature2 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaRegNewspaper",

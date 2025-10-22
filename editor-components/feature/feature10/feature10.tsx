@@ -6,9 +6,10 @@ import { Base } from "../../../composer-base-components/base/base";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 type Card = {
-  image: { type: "image"; url: string };
+  image: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
   url: string;
@@ -35,6 +36,9 @@ class Feature10 extends BaseFeature {
       type: "media",
       key: "rightArrow",
       displayer: "Right Arrow",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
       value: {
         type: "icon",
         name: "GoArrowRight"
@@ -44,6 +48,9 @@ class Feature10 extends BaseFeature {
       type: "media",
       key: "leftArrow",
       displayer: "Right Arrow",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
       value: {
         type: "icon",
         name: "GoArrowLeft"
@@ -64,6 +71,9 @@ class Feature10 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
@@ -98,6 +108,9 @@ class Feature10 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6737443e506a40002c2ac5ae?alt=media"
@@ -132,6 +145,9 @@ class Feature10 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
@@ -166,6 +182,9 @@ class Feature10 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
@@ -200,6 +219,9 @@ class Feature10 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
@@ -234,6 +256,9 @@ class Feature10 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"

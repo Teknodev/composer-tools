@@ -14,19 +14,29 @@ class Feature15 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
-            type: "video",
+            type: "media",
             displayer: "Video",
             key: "video",
-            value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
+            additionalParams: {
+                availableTypes: ["video"],
+            },
+            value: {
+                type: "video",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188",
+            },
         });
 
         this.addProp({
-            type: "image",
+            type: "media",
             displayer: "Cover Image",
             key: "cover_image",
-            value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9b7bd2970002c6286c7?alt=media&timestamp=1719561551671",
+            additionalParams: {
+                availableTypes: ["image"],
+            },
+            value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9b7bd2970002c6286c7?alt=media&timestamp=1719561551671",
+            },
         });
 
         this.addProp({
@@ -40,6 +50,9 @@ class Feature15 extends BaseFeature {
             type: "media",
             displayer: "Play Icon",
             key: "play_icon",
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
             value: {
                 type: "icon",
                 name: "FaPlay"
@@ -49,6 +62,9 @@ class Feature15 extends BaseFeature {
             type: "media",
             key: "closeIcon",
             displayer: "Close Icon",
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
             value: {
                 type: "icon",
                 name: "RxCross2"
@@ -68,6 +84,9 @@ class Feature15 extends BaseFeature {
                             type: "media",
                             key: "icon",
                             displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                             value: {
                                 type: "icon",
                                 name: "Bs1CircleFill"
@@ -103,6 +122,9 @@ class Feature15 extends BaseFeature {
                             type: "media",
                             key: "icon",
                             displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                             value: {
                                 type: "icon",
                                 name: "Bs2CircleFill"
@@ -138,6 +160,9 @@ class Feature15 extends BaseFeature {
                             type: "media",
                             key: "icon",
                             displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                             value: {
                                 type: "icon",
                                 name: "Bs3CircleFill"
@@ -173,6 +198,9 @@ class Feature15 extends BaseFeature {
                             type: "media",
                             key: "icon",
                             displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                             value: {
                                 type: "icon",
                                 name: "Bs4CircleFill"
@@ -253,10 +281,9 @@ class Feature15 extends BaseFeature {
                     </Base.ListGrid>
                     {this.getPropValue("cover_image") && (
                         <div className={this.decorateCSS("video-container")}>
-                            <img
+                            <Base.Media
+                                value={this.getPropValue("cover_image")}
                                 className={this.decorateCSS("image")}
-                                src={this.getPropValue("cover_image")}
-                                alt="Cover image"
                             />
                             {overlay && <div className={this.decorateCSS("overlay")} />}
 
@@ -287,12 +314,11 @@ class Feature15 extends BaseFeature {
                                     className={this.decorateCSS("video")}
                                     onClick={() => this.setComponentState("is_video_visible", false)}
                                 >
-                                    <video
+                                    <Base.Media
+                                        value={this.getPropValue("video")}
                                         onClick={(event) => event.stopPropagation()}
-                                        controls
                                         className={this.decorateCSS("player")}
-                                        src={this.getPropValue("video")}
-                                    ></video>
+                                    />
 
                                 </div>
                             </div>

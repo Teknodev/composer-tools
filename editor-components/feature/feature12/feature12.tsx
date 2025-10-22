@@ -5,16 +5,17 @@ import styles from "./feature12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 type Card = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
 };
 
 type FirstItem = {
   title: React.JSX.Element;
-  backgroundImage: { type: "image"; url: string };
+  backgroundImage: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -48,6 +49,9 @@ class Feature12 extends BaseFeature {
           type: "media",
           key: "backgroundImage",
           displayer: "Background Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a356692f8a5b002ce695ac?alt=media",
@@ -76,6 +80,9 @@ class Feature12 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FiBook",
@@ -104,6 +111,9 @@ class Feature12 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "IoPhonePortrait",
@@ -132,6 +142,9 @@ class Feature12 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "HiPresentationChartLine",

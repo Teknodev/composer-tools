@@ -1,18 +1,18 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature3.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Logo = {
-  image: { type: "image"; url: string };
+  image: TypeMediaInputValue;
   url: string;
 };
 
 type Card = {
   title: React.JSX.Element;
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
 };
 
 class Feature3 extends BaseFeature {
@@ -60,6 +60,9 @@ class Feature3 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FcSearch",
@@ -82,6 +85,9 @@ class Feature3 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FcStatistics",
@@ -104,6 +110,9 @@ class Feature3 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Card Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FcComboChart",
@@ -135,13 +144,16 @@ class Feature3 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Logo Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
               key: "image",
               displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dd?alt=media&timestamp=1719344851686",
@@ -157,13 +169,16 @@ class Feature3 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Logo Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
               key: "image",
               displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6da?alt=media&timestamp=1719344851686",
@@ -179,13 +194,16 @@ class Feature3 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Logo Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
               key: "image",
               displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6d9?alt=media&timestamp=1719344851686",
@@ -201,13 +219,16 @@ class Feature3 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Logo Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
               key: "image",
               displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6dc?alt=media&timestamp=1719344851686",
@@ -223,13 +244,16 @@ class Feature3 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Logo Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "media",
               key: "image",
               displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667b1ec34fe95d002b35e6db?alt=media&timestamp=1719344851686",

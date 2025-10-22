@@ -49,6 +49,9 @@ class Feature14 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Card Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "IoPricetagsOutline"
@@ -77,6 +80,9 @@ class Feature14 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Card Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "MdSupportAgent"
@@ -105,6 +111,9 @@ class Feature14 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Card Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "CiStar"
@@ -133,6 +142,9 @@ class Feature14 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Card Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "GrUserManager"

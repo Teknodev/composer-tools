@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./feature4.module.scss";
@@ -9,9 +9,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Card = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
   description: React.JSX.Element;
-  image: { type: "image"; url: string };
+  image: TypeMediaInputValue;
   buttons: Button[];
 };
 
@@ -33,6 +33,9 @@ class Feature4 extends BaseFeature {
       type: "media",
       key: "backgroundImage",
       displayer: "Background Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6724ecef7acba6002c5dc76a?alt=media",
@@ -77,6 +80,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaClipboardUser",
@@ -99,6 +105,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a7acba6bbe002b63bb00?alt=media",
@@ -126,7 +135,7 @@ class Feature4 extends BaseFeature {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "URL",
+                      displayer: "Navigate To",
                       value: ""
                     }
                   ]
@@ -150,6 +159,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "MdAssistant",
@@ -172,6 +184,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a820ba6bbe002b63bb80?alt=media",
@@ -199,7 +214,7 @@ class Feature4 extends BaseFeature {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "URL",
+                      displayer: "Navigate To",
                       value: ""
                     }
                   ]
@@ -223,6 +238,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "RiQuestionAnswerFill",
@@ -245,6 +263,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a84aba6bbe002b63bb93?alt=media",
@@ -272,7 +293,7 @@ class Feature4 extends BaseFeature {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "URL",
+                      displayer: "Navigate To",
                       value: ""
                     }
                   ]
@@ -296,6 +317,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "GrDocumentPerformance",
@@ -318,6 +342,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a86aba6bbe002b63bbb3?alt=media",
@@ -345,7 +372,7 @@ class Feature4 extends BaseFeature {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "URL",
+                      displayer: "Navigate To",
                       value: ""
                     }
                   ]
@@ -369,6 +396,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
               value: {
                 type: "icon",
                 name: "FaNetworkWired",
@@ -391,6 +421,9 @@ class Feature4 extends BaseFeature {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a887ba6bbe002b63bbcc?alt=media",
@@ -418,7 +451,7 @@ class Feature4 extends BaseFeature {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "URL",
+                      displayer: "Navigate To",
                       value: ""
                     }
                   ]

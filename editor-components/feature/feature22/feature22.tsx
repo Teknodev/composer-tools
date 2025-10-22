@@ -41,6 +41,9 @@ class Feature22 extends BaseFeature{
                                 type: "media",
                                 key: "lottie",
                                 displayer: "Lottie",
+                                additionalParams: {
+                                    availableTypes: ["lottie"],
+                                },
                                 value: {
                                     type: "lottie",
                                     url: lottieUrl,

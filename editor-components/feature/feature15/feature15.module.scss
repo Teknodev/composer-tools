@@ -34,13 +34,14 @@
 
     .max-content {
         display: flex;
+        gap: var(--composer-gap-lg);
         .cards {
             &:before{
                 content: "";
                 position: absolute;
                 right: 0px;
                 top: 0px;
-                width: 2000px;
+                width: 1500px;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);;
                 height: 100%;
                 z-index: 0;
@@ -50,7 +51,7 @@
             width: 100%;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             height: fit-content;
-            padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) + 20px) var(--composer-gap-xl) 0px;
+            padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) 0px;
             margin-bottom: var(--composer-gap-lg);
 
             .card {
@@ -97,7 +98,6 @@
         .video-container {
             width: 80%;
             position: relative;
-            margin-left: calc(-1 * var(--composer-gap-lg));
             margin-top: var(--composer-gap-lg);
 
             .image {
@@ -176,12 +176,11 @@
                     padding: var(--composer-gap-md);
                 }
                 &::before{
-                    left: -50%;
+                    left: -30%;
                     right: unset;
                 }
             }
             .video-container{
-                padding: 0px var(--composer-gap-md);
                 height: 370px;
                 min-width: 100%;
                 margin: var(--composer-gap-md) 0px 0px;
