@@ -31,23 +31,29 @@ class Footer3Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "logo",
       displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Navigate To",
-      value:""
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
     this.addProp({
@@ -723,8 +729,9 @@ class Footer3Page extends BaseFooter {
     const links = this.castToObject<any[]>("links");
     const footer = this.castToObject<any[]>("footer");
 
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
     const line = this.getPropValue("line");
 
     const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
@@ -827,7 +834,7 @@ class Footer3Page extends BaseFooter {
 
             {line && <div className={this.decorateCSS("line")}></div>}
 
-            <Base.Container className={this.decorateCSS("second-container")}>
+            {(links.length > 0 || bottomTextExist)  && <Base.Container className={this.decorateCSS("second-container")}>
               <Base.MaxContent className={this.decorateCSS("second-max-content")}>
                 {(bottomTextExist || links.length > 0) && (
                   <div className={`${this.decorateCSS("footer-bottom")} 
@@ -854,7 +861,7 @@ class Footer3Page extends BaseFooter {
                   </div>
                 )}
               </Base.MaxContent>
-            </Base.Container>
+            </Base.Container>}
           </div>
         </div>
       </div>

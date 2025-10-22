@@ -147,15 +147,15 @@ class Footer5Page extends BaseFooter {
                 {textsExist && (
                   <Base.VerticalContent
                     className={`${this.decorateCSS("left")} ${!this.castToString(button.text) && this.decorateCSS("left-full")}`}>
-                    {subtitleExist && <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>}
+                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   </Base.VerticalContent>
                 )}
                 {this.castToString(button.text) && (
                   <div className={this.decorateCSS("right")}>
                     <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type}
-                        className={this.decorateCSS("button")}>{button.text}
+                      <Base.Button buttonType={button.type}className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   </div>

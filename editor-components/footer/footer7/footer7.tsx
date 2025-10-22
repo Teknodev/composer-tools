@@ -19,23 +19,29 @@ class Footer7Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "logo",
       displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Navigate To",
-      value:""
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
     this.addProp({
@@ -126,8 +132,9 @@ class Footer7Page extends BaseFooter {
   }
 
   render() {
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
     const links = this.castToObject<any[]>("links");
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));

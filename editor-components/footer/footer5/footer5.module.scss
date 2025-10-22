@@ -16,22 +16,18 @@
   }
 
   .first-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .first-max-content {
       .header {
         display: flex;
         justify-content: space-between;
-        align-items: start;
+        align-items: center;
         width: 100%;
         gap: var(--composer-gap-md);
 
         .left {
-          .title{
+          .title,.subtitle{
             content: "";
-          }
-          .subtitle{
-            color: var(--composer-font-color-primary);
-            font-size: 1.5rem;
           }
           &.left-full {
             width: 100%;
@@ -44,7 +40,9 @@
           justify-content: end;
 
           .button{
-            content: "";
+            .button-text{
+              content: "";
+            }
           }
         }
 
@@ -54,8 +52,7 @@
 
           .right {
             justify-content: center;
-            >div {
-              content: "";
+            .button{
               display: flex;
               justify-content: center;
             }
@@ -70,7 +67,7 @@
   }
 
   .second-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .second-max-content {
       .bottom {
         display: flex;
@@ -124,15 +121,9 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .first-container {
-      padding: var(--composer-gap-sm) var(--composer-gap-lg);
+      padding: var(--composer-gap-sm) var(--composer-gap-lg) !important;
       .first-max-content {
         .header {
-          .left {
-            .title {
-              font-size: 2.5rem;
-            }
-          }
-
           &.center {
             display: flex;
             flex-direction: column;
@@ -147,7 +138,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-sm) var(--composer-gap-lg);
+      padding: var(--composer-gap-sm) var(--composer-gap-lg) !important;
       .second-max-content {
         .bottom {
           display: flex;
@@ -168,7 +159,6 @@
             .link-element {
               .link-text {
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
                 transition: color 0.3s ease;
               }
 
@@ -192,7 +182,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .first-container {
-      padding: var(--composer-gap-md);
+      padding: var(--composer-gap-md) !important;
       .first-max-content {
         .header {
           flex-direction: column;
@@ -201,12 +191,7 @@
           .left {
             width: 100%;
             align-items: center;
-            .subtitle{
-              text-align: center;
-            }
-
-            .title {
-              font-size: 2rem;
+            .subtitle, .title{
               text-align: center;
             }
           }
@@ -215,7 +200,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md);
+      padding: var(--composer-gap-md) !important;
       .second-max-content {
         .bottom {
           align-items: center;

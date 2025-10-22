@@ -38,22 +38,29 @@ class Footer9Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "logo",
       displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
-      },
-    });
-    this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Navigate To",
-      value:""
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
     this.addProp({
@@ -409,8 +416,9 @@ class Footer9Page extends BaseFooter {
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -452,10 +460,7 @@ class Footer9Page extends BaseFooter {
               {links.map((item: link) => {
                 return (
                   <ComposerLink path={item.page}>
-                    <Base.P 
-                      className={this.decorateCSS("text")}
-                      data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                    >
+                    <Base.P className={this.decorateCSS("text")} data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}>
                       {item.title}
                     </Base.P>
                   </ComposerLink>

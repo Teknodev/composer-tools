@@ -35,7 +35,7 @@ class Footer4Page extends BaseFooter {
     this.addProp({
       type: "string",
       key: "text",
-      displayer: "Text",
+      displayer: "Title",
       value: "We accept:",
     });
 
@@ -557,7 +557,7 @@ class Footer4Page extends BaseFooter {
                 <div className={this.decorateCSS("items")}>
                   {leftExist && (
                     <div className={this.decorateCSS("left")}>
-                      {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
+                      {textExist && <Base.P className={this.decorateCSS("left-title")}>{this.getPropValue("text")}</Base.P>}
                       <div className={this.decorateCSS("images")}>
                         {images.length > 0 && (
                           <Base.Row className={this.decorateCSS("image-container")}>

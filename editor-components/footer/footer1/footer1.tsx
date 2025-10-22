@@ -399,7 +399,7 @@ class Footer1Page extends BaseFooter {
               )}
             </Base.MaxContent>
           </Base.Container>
-          {line && <div className={`${this.decorateCSS("line")} ${!upperExist && this.decorateCSS("without-padding") }`} />}
+          {line && <div className={this.decorateCSS("line")} />}
 
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")} >
@@ -407,7 +407,7 @@ class Footer1Page extends BaseFooter {
                 <div className={this.decorateCSS("footer-bottom")}>
                   {copyrightExist && (
                     <div className={this.decorateCSS("copyright-container")}>
-                      <Base.P className={this.decorateCSS("text")}>{this.getPropValue("copyright")}</Base.P>
+                      <Base.P className={this.decorateCSS("copyright-text")}>{this.getPropValue("copyright")}</Base.P>
                     </div>
                   )}
                   {social.length > 0 && (

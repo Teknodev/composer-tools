@@ -323,7 +323,7 @@ class Footer6Page extends BaseFooter {
           <Base.VerticalContent className={this.decorateCSS("footer-page")}>
             {(subtitleExist || titleExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                {subtitleExist && <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>}
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               </Base.VerticalContent>
             )}
@@ -336,7 +336,7 @@ class Footer6Page extends BaseFooter {
                   return (
                     footerExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H2 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H2>}
+                        {footerTitleExist && <Base.H3 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H3>}
                         {item.footerText.length > 0 &&
                           item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                             const footerTextExist = this.castToString(item.footerText);
@@ -360,9 +360,7 @@ class Footer6Page extends BaseFooter {
             </div>
 
             {footerDescriptionExist && (
-              <div className={this.decorateCSS("bottom-container")}>
-                <Base.P className={this.decorateCSS("bottom-text")}>{footerDescription}</Base.P>
-              </div>
+              <Base.P className={this.decorateCSS("bottom-text")}>{footerDescription}</Base.P>
             )}
           </Base.VerticalContent>
         </Base.MaxContent>

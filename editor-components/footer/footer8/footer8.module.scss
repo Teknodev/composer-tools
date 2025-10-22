@@ -2,7 +2,7 @@
 
 .container {
   width: 100%;
-  padding: var(--composer-gap-md) var(--composer-gap-xl);
+  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
 
   &.absolute {
     position: absolute;
@@ -51,13 +51,10 @@
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
 
           .title {
-            font-size: 1rem;
             color: var(--composer-tertiary-color);
-            margin: 0;
-            width: 100%;
           }
 
           .text-container {
@@ -72,8 +69,6 @@
               .text {
                 position: relative;
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
-                margin: 0;
                 transition: all 0.3s ease;
               }
 
@@ -148,7 +143,6 @@
         .bottom-text {
           display: flex;
           justify-content: center;
-          font-size: 1rem;
           color: var(--composer-tertiary-color);
         }
 
@@ -159,7 +153,6 @@
           .link-element {
             .link-text {
               position: relative;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -232,7 +225,6 @@
 
             .icon, .socials-text {
               transition: all 0.3s ease;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
             }
 
@@ -296,7 +288,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     width: 100%;
-    padding: var(--composer-gap-md) var(--composer-gap-lg);
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
 
     .max-content {
       .footer-page {
@@ -344,7 +336,6 @@
             .link-element {
               .link-text {
                 text-align: center;
-                font-size: 1rem;
                 color: var(--composer-font-color-primary);
                 transition: color 0.3s ease;
               }
@@ -359,7 +350,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-md) !important;
 
     .max-content {
       .footer-page {

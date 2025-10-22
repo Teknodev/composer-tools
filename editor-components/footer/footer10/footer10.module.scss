@@ -12,7 +12,7 @@
   }
 
   .first-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .first-max-content {
       .upper {
         display: flex;
@@ -34,7 +34,6 @@
           .link-element {
             .link-text {
               position: relative;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -129,7 +128,7 @@
   }
 
   .second-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .second-max-content {
       .bottom {
         display: flex;
@@ -142,7 +141,6 @@
           max-width: 50%;
     
           .text {
-            font-size: 1rem;
             color: var(--composer-font-color-primary);
           }
         }
@@ -171,7 +169,7 @@
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              font-size: 1rem;
+              font-size: 1.5rem;
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
               color: var(--composer-font-color-primary);
@@ -281,7 +279,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg);
+      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
       .first-max-content {
         .upper {
           display: flex;
@@ -299,7 +297,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg);
+      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
       .second-max-content {
         .bottom {
           .icons {
@@ -314,7 +312,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .first-container {
-      padding: var(--composer-gap-md);
+      padding: var(--composer-gap-md) !important;
       .first-max-content {
         .upper {
           display: flex;
@@ -349,7 +347,7 @@
     }
 
    .second-container {
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-md) !important;
     .second-max-content{
       .bottom {
         display: flex;

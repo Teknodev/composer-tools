@@ -31,23 +31,29 @@ class Footer8Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "logo",
       displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Navigate To",
-      value:""
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
     this.addProp({
@@ -593,8 +599,9 @@ class Footer8Page extends BaseFooter {
     const footer = this.castToObject<any[]>("footer");
     const socials = this.castToObject<any[]>("socials");
 
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
 
     const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
 
@@ -622,7 +629,7 @@ class Footer8Page extends BaseFooter {
                     return (
                       listExist && (
                         <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                          {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                          {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
                           {item.footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
                               {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {

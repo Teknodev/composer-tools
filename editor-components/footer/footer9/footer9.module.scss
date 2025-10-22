@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) var(--composer-gap-xl);
+  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
 
   &.absolute {
     position: absolute;
@@ -43,7 +43,7 @@
         }
 
         .button{
-          .bottom-text {
+          .button-text {
             content: "";
           }
         }
@@ -58,7 +58,6 @@
       gap: var(--composer-gap-md);
       .text {
         position: relative;
-        font-size: 1rem;
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
         
@@ -147,8 +146,11 @@
         .icon-text,
         .icon {
           transition: all 0.3s ease;
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
+        }
+
+        .icon{
+          font-size: 1rem;
         }
         
         &[data-animation~="animate1"] {
@@ -223,9 +225,10 @@
       justify-content: space-between;
       .bottom-text {
         max-width: 50%;
-        font-size: 1rem;
         color: var(--composer-tertiary-color);
         margin-left: 0;
+        width: fit-content;
+        text-align: left;
       }
 
       .list {
@@ -235,7 +238,6 @@
         gap: var(--composer-gap-md);
         .item {
           position: relative;
-          font-size: 1rem;
           color: var(--composer-tertiary-color);
           transition: all 0.3s ease;
           
@@ -313,13 +315,13 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg);
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-md) !important;
     .max-content {
       display: flex;
       flex-direction: column;
@@ -338,13 +340,8 @@
         }
 
         .content {
-          .title {
-            font-size: 1.5rem;
-            margin: 0;
-          }
-
-          .description {
-            font-size: 1rem;
+          .title, .subtitle {
+            text-align: center;
           }
         }
       }
@@ -370,7 +367,6 @@
         align-items: center;
         .bottom-text {
           max-width: 100%;
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
         }
 
