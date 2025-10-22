@@ -1,9 +1,9 @@
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type ItemType ={
-    image: { type: string; url: string };
+    image: TypeMediaInputValue;
     overlay: boolean;
     year: React.JSX.Element;
     subtitle: React.JSX.Element;

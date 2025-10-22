@@ -84,7 +84,7 @@ class About2 extends BaseAbout {
         }}
         data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
-        {this.getPropValue("overlay") && (
+        {this.getPropValue("overlay") && this.getPropValue("cover-image")?.url && (
           <div className={this.decorateCSS("overlay")} />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
