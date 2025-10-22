@@ -80,12 +80,12 @@
               position: relative;
 
               .input-icon {
-                height: 1rem;
-                width: 1rem;
+                height: 16px;
+                width: 16px;
                 color: var(--composer-font-color-primary);
                 position: absolute;
                 left: var(--composer-gap-sm);
-                top: 50%;
+                top: var(--composer-gap-md);
                 transform: translateY(-50%);
               }
 

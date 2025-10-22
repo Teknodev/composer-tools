@@ -400,7 +400,7 @@ class Form6 extends BaseContacts {
   }
 
   render() {
-    const inputs = this.getPropValue("inputs");
+    const inputItems = this.getPropValue("inputs");
     const image = this.getPropValue("image");
     const imageExist = !!image?.url;
     const overlay = this.getPropValue("overlay");
@@ -418,7 +418,7 @@ class Form6 extends BaseContacts {
     const buttonText = button.text;
     const buttonTextExist = this.castToString(buttonText);
 
-    const rightItemsExist = titleExist || descriptionExist || subtitleExist || buttonTextExist || inputs.length > 0;
+    const rightItemsExist = titleExist || descriptionExist || subtitleExist || buttonTextExist || inputItems.length > 0;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -426,7 +426,7 @@ class Form6 extends BaseContacts {
           return "textarea";
         case "E-mail":
           return "email";
-        case "Tel":
+        case "Phone":
           return "tel";
         case "Number":
           return "number";
@@ -442,7 +442,7 @@ class Form6 extends BaseContacts {
 
     function getInitialValue() {
       let value: any = {};
-      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+      inputItems.map((input: TypeUsableComponentProps, indexOfInput: number) => {
         value[getInputName(indexOfInput)] = "";
       });
 
@@ -452,12 +452,10 @@ class Form6 extends BaseContacts {
     const getSchema = () => {
       let schema = Yup.object().shape({});
 
-      const inputs = this.getPropValue("inputs");
-
-      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+      inputItems.forEach((input: TypeUsableComponentProps, indexOfInput: number) => {
         if (!input["getPropValue"]) return;
         const isRequired = input.getPropValue("is_required");
-        const isEmail = getInputType(input.getPropValue("type")) == "email";
+        const isEmail = getInputType(input.getPropValue("type")) === "email";
 
         let fieldSchema: Yup.StringSchema<string | null | undefined> = Yup.string();
 
@@ -506,10 +504,10 @@ class Form6 extends BaseContacts {
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   </Base.VerticalContent>
                 )}
-                {(inputs.length > 0 || buttonTextExist) && (
+                {(inputItems.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={getInitialValue()}
-                    validationSchema={getSchema()}
+                    validationSchema={getSchema}
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
                       this.insertForm("Contact Me", formData);
@@ -518,7 +516,7 @@ class Form6 extends BaseContacts {
                   >
                     {({ handleChange, values }) => (
                       <Form className={this.decorateCSS("form")}>
-                        {this.castToObject<any>("inputs").map((input: any, index: number) => {
+                        {inputItems.map((input: any, index: number) => {
                           return (
                             <div
                               key={index}

@@ -445,7 +445,7 @@ class Form8 extends BaseContacts {
             <Base.VerticalContent className={this.decorateCSS("form-content")}>
               <Formik
                 initialValues={getInitialValue()}
-                validationSchema={getSchema()}
+                validationSchema={getSchema}
                 onSubmit={(data, { resetForm }) => {
                   const formData = getFormDataWithConvertedKeys(data);
                   this.insertForm("Contact Me", formData);

@@ -361,7 +361,7 @@ class Form2 extends BaseContacts {
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
-                    validationSchema={getSchema()}
+                    validationSchema={getSchema}
                     onSubmit={(data, { resetForm }) => {
                       const formData = getFormDataWithConvertedKeys(data);
                       this.insertForm("Contact Us", formData);

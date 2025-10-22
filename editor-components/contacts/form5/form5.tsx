@@ -509,7 +509,7 @@ class Form5 extends BaseContacts {
             <div className={this.decorateCSS("input-items")}>
               <Formik
                 initialValues={initialValues}
-                validationSchema={getSchema(allInputs)}
+                validationSchema={() => getSchema(allInputs)}
                 onSubmit={(data, { resetForm }) => {
                   const formData = getFormDataWithConvertedKeys(data);
                   this.insertForm("Contact Me", formData);

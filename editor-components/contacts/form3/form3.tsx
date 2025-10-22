@@ -709,7 +709,7 @@ class Form3 extends BaseContacts {
                   <div className={this.decorateCSS("form-container")}>
                     <Formik
                       initialValues={getInitialValue()}
-                      validationSchema={getSchema()}
+                      validationSchema={getSchema}
                       onSubmit={(data, { resetForm }) => {
                         this.insertForm("Contact Us", data);
                         resetForm();
