@@ -677,11 +677,14 @@ class Form9 extends BaseContacts {
     const formContainerExists =
       (Array.isArray(inputItems) && inputItems.length > 0) || hasButton;
 
+    const showRight = !!formContainerExists;
+
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${
-          !showLeft ? this.decorateCSS("only-form") : ""
-        }`}
+        className={`${this.decorateCSS("container")}
+          ${!showLeft && showRight ? this.decorateCSS("only-form") : ""}
+          ${showLeft && !showRight ? this.decorateCSS("only-left") : ""}
+        `}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {/* ---------- LEFT CONTENT --------- */}
@@ -758,192 +761,202 @@ class Form9 extends BaseContacts {
 
           {/* ---------- RIGHT CONTENT --------- */}
 
-          <div className={this.decorateCSS("right-container")}>
-            <Base.VerticalContent>
-              {formContainerExists && (
-                <div className={this.decorateCSS("form-container")}>
-                  <Formik
-                    initialValues={getInitialValue()}
-                    validationSchema={getSchema()}
-                    onSubmit={(data, { resetForm }) => {
-                      const formData = getFormDataWithConvertedKeys(data);
-                      const formTitle =
-                        (this.getPropValue("title", {
-                          as_string: true,
-                        }) as string) || "Contact";
-                      this.insertForm(formTitle, formData);
-                      resetForm();
-                    }}
-                  >
-                    {({ handleChange, values }) => (
-                      <Form className={this.decorateCSS("form")}>
-                        {inputItems.map(
-                          (inputItem: any, inputItemIndex: number) => (
-                            <div
-                              key={inputItemIndex}
-                              className={this.decorateCSS("input-container")}
-                            >
-                              <span className={this.decorateCSS("label")}>
-                                {inputItem.getPropValue("label", {
-                                  suffix: {
-                                    label: isRequiredInput(inputItem)
-                                      ? "*"
-                                      : "",
-                                    className: this.decorateCSS("require-star"),
-                                  },
-                                })}
-                              </span>
-
-                              <div className={this.decorateCSS("inputs")}>
-                                {inputItem
-                                  .getPropValue("inputs")
-                                  ?.map((inputObj: any, inputIndex: number) => {
-                                    const name = getInputName(
-                                      inputItemIndex,
-                                      (inputItem.getPropValue("label", {
-                                        as_string: true,
-                                      }) as string) || "",
-                                      inputIndex
-                                    );
-
-                                    const typeStr =
-                                      (inputObj.getPropValue("type", {
-                                        as_string: true,
-                                      }) as string) || "Text";
-                                    const { htmlType, extra } =
-                                      mapToRenderedType(typeStr);
-
-                                    const placeholderRaw =
-                                      (inputObj.getPropValue("placeholder", {
-                                        as_string: true,
-                                      }) as string) || "";
-                                    const placeholderStr =
-                                      stripHtml(placeholderRaw);
-
-                                    return (
-                                      <div
-                                        key={inputIndex}
-                                        className={this.decorateCSS(
-                                          "input-box"
-                                        )}
-                                      >
-                                        {htmlType === "textarea" ? (
-                                          <textarea
-                                            rows={12}
-                                            className={this.decorateCSS(
-                                              "input"
-                                            )}
-                                            name={name}
-                                            value={(values as any)[name]}
-                                            placeholder={placeholderStr}
-                                            onChange={handleChange}
-                                          />
-                                        ) : (
-                                          <input
-                                            className={this.decorateCSS(
-                                              "input"
-                                            )}
-                                            name={name}
-                                            value={(values as any)[name]}
-                                            placeholder={placeholderStr}
-                                            onChange={handleChange}
-                                            type={htmlType}
-                                            {...extra}
-                                          />
-                                        )}
-                                        <div
-                                          className={this.decorateCSS(
-                                            "error-slot"
-                                          )}
-                                          aria-live="polite"
-                                          aria-atomic="true"
-                                        >
-                                          <ErrorMessage
-                                            name={name}
-                                            render={(msg) => (
-                                              <span
-                                                key={msg || "empty"}
-                                                className={this.decorateCSS(
-                                                  "error-message"
-                                                )}
-                                              >
-                                                {msg}
-                                              </span>
-                                            )}
-                                          />
-                                        </div>
-                                      </div>
-                                    );
+          {showRight && (
+            <div className={this.decorateCSS("right-container")}>
+              <Base.VerticalContent>
+                {formContainerExists && (
+                  <div className={this.decorateCSS("form-container")}>
+                    <Formik
+                      initialValues={getInitialValue()}
+                      validationSchema={getSchema()}
+                      onSubmit={(data, { resetForm }) => {
+                        const formData = getFormDataWithConvertedKeys(data);
+                        const formTitle =
+                          (this.getPropValue("title", {
+                            as_string: true,
+                          }) as string) || "Contact";
+                        this.insertForm(formTitle, formData);
+                        resetForm();
+                      }}
+                    >
+                      {({ handleChange, values }) => (
+                        <Form className={this.decorateCSS("form")}>
+                          {inputItems.map(
+                            (inputItem: any, inputItemIndex: number) => (
+                              <div
+                                key={inputItemIndex}
+                                className={this.decorateCSS("input-container")}
+                              >
+                                <span className={this.decorateCSS("label")}>
+                                  {inputItem.getPropValue("label", {
+                                    suffix: {
+                                      label: isRequiredInput(inputItem)
+                                        ? "*"
+                                        : "",
+                                      className:
+                                        this.decorateCSS("require-star"),
+                                    },
                                   })}
+                                </span>
+
+                                <div className={this.decorateCSS("inputs")}>
+                                  {inputItem
+                                    .getPropValue("inputs")
+                                    ?.map(
+                                      (inputObj: any, inputIndex: number) => {
+                                        const name = getInputName(
+                                          inputItemIndex,
+                                          (inputItem.getPropValue("label", {
+                                            as_string: true,
+                                          }) as string) || "",
+                                          inputIndex
+                                        );
+
+                                        const typeStr =
+                                          (inputObj.getPropValue("type", {
+                                            as_string: true,
+                                          }) as string) || "Text";
+                                        const { htmlType, extra } =
+                                          mapToRenderedType(typeStr);
+
+                                        const placeholderRaw =
+                                          (inputObj.getPropValue(
+                                            "placeholder",
+                                            {
+                                              as_string: true,
+                                            }
+                                          ) as string) || "";
+                                        const placeholderStr =
+                                          stripHtml(placeholderRaw);
+
+                                        return (
+                                          <div
+                                            key={inputIndex}
+                                            className={this.decorateCSS(
+                                              "input-box"
+                                            )}
+                                          >
+                                            {htmlType === "textarea" ? (
+                                              <textarea
+                                                rows={12}
+                                                className={this.decorateCSS(
+                                                  "input"
+                                                )}
+                                                name={name}
+                                                value={(values as any)[name]}
+                                                placeholder={placeholderStr}
+                                                onChange={handleChange}
+                                              />
+                                            ) : (
+                                              <input
+                                                className={this.decorateCSS(
+                                                  "input"
+                                                )}
+                                                name={name}
+                                                value={(values as any)[name]}
+                                                placeholder={placeholderStr}
+                                                onChange={handleChange}
+                                                type={htmlType}
+                                                {...extra}
+                                              />
+                                            )}
+                                            <div
+                                              className={this.decorateCSS(
+                                                "error-slot"
+                                              )}
+                                              aria-live="polite"
+                                              aria-atomic="true"
+                                            >
+                                              <ErrorMessage
+                                                name={name}
+                                                render={(msg) => (
+                                                  <span
+                                                    key={msg || "empty"}
+                                                    className={this.decorateCSS(
+                                                      "error-message"
+                                                    )}
+                                                  >
+                                                    {msg}
+                                                  </span>
+                                                )}
+                                              />
+                                            </div>
+                                          </div>
+                                        );
+                                      }
+                                    )}
+                                </div>
+                              </div>
+                            )
+                          )}
+
+                          {showConsent && (
+                            <div className={this.decorateCSS("consent")}>
+                              <label
+                                className={this.decorateCSS("consent-label")}
+                              >
+                                <input
+                                  type="checkbox"
+                                  name="consent"
+                                  checked={(values as any).consent || false}
+                                  onChange={handleChange}
+                                />
+                                <span>
+                                  {consentLabelPrefix}{" "}
+                                  {(consentLinkText || consentLinkUrl) && (
+                                    <a
+                                      href={consentLinkUrl || "#"}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                    >
+                                      {consentLinkText || consentLinkUrl}
+                                    </a>
+                                  )}
+                                </span>
+                              </label>
+                              <div
+                                className={this.decorateCSS("error-slot")}
+                                aria-live="polite"
+                                aria-atomic="true"
+                              >
+                                <ErrorMessage
+                                  name="consent"
+                                  render={(msg) => (
+                                    <span
+                                      key={msg || "empty"}
+                                      className={this.decorateCSS(
+                                        "error-message"
+                                      )}
+                                    >
+                                      {msg}
+                                    </span>
+                                  )}
+                                />
                               </div>
                             </div>
-                          )
-                        )}
+                          )}
 
-                        {showConsent && (
-                          <div className={this.decorateCSS("consent")}>
-                            <label
-                              className={this.decorateCSS("consent-label")}
+                          {hasButton && (
+                            <Base.Button
+                              buttonType={button!.type}
+                              className={this.decorateCSS("submit-button")}
+                              type="submit"
                             >
-                              <input
-                                type="checkbox"
-                                name="consent"
-                                checked={(values as any).consent || false}
-                                onChange={handleChange}
-                              />
-                              <span>
-                                {consentLabelPrefix}{" "}
-                                {(consentLinkText || consentLinkUrl) && (
-                                  <a
-                                    href={consentLinkUrl || "#"}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
-                                    {consentLinkText || consentLinkUrl}
-                                  </a>
-                                )}
-                              </span>
-                            </label>
-                            <div
-                              className={this.decorateCSS("error-slot")}
-                              aria-live="polite"
-                              aria-atomic="true"
-                            >
-                              <ErrorMessage
-                                name="consent"
-                                render={(msg) => (
-                                  <span
-                                    key={msg || "empty"}
-                                    className={this.decorateCSS(
-                                      "error-message"
-                                    )}
-                                  >
-                                    {msg}
-                                  </span>
-                                )}
-                              />
-                            </div>
-                          </div>
-                        )}
-
-                        {hasButton && (
-                          <Base.Button
-                            buttonType={button!.type}
-                            className={this.decorateCSS("submit-button")}
-                            type="submit"
-                          >
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {buttonTextExist}
-                            </Base.P>
-                          </Base.Button>
-                        )}
-                      </Form>
-                    )}
-                  </Formik>
-                </div>
-              )}
-            </Base.VerticalContent>
-          </div>
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {buttonTextExist}
+                              </Base.P>
+                            </Base.Button>
+                          )}
+                        </Form>
+                      )}
+                    </Formik>
+                  </div>
+                )}
+              </Base.VerticalContent>
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

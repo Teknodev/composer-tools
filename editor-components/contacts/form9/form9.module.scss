@@ -316,3 +316,21 @@ textarea.input {
     font-size: clamp(24px, 6vw, 34px);
   }
 }
+
+/* Yalnız sol varsa (sağ yoksa) - solu tam genişlet ve ortala */
+.only-left .max-content {
+  justify-content: center;
+}
+.only-left .left-container {
+  align-items: center !important;
+
+  .title {
+    text-align: center;
+  }
+}
+
+.only-left .left-container .title {
+  margin-inline: auto;
+  max-inline-size: 36ch;
+  text-wrap: balance;
+}
