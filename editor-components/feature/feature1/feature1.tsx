@@ -1,649 +1,148 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature1.module.scss";
-
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { BaseFeature } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
-type CardData = {
-  image: { type: "image"; url: string };
-  mini: boolean;
-  date: React.JSX.Element;
-  readTime: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-  profileImage: { type: "image"; url: string };
-  fullname: React.JSX.Element;
-  profileDescription: React.JSX.Element;
-  url: string;
-};
+interface Section {
+    sectionTitle: React.JSX.Element;
+    text1: string;
+    text2: string;
+}
 
 class Feature1 extends BaseFeature {
-  constructor(props?: any) {
-    super(props, styles);
+    constructor(props?: any) {
+        super(props, styles);
+        this.addProp({
+            type: "array",
+            key: "sections",
+            displayer: "Sections",
+            additionalParams: {
+                maxElementCount: 4,
+            },
+            value: [
+                {
+                    type: "object",
+                    key: "section",
+                    displayer: "Section",
+                    value: [
+                        {
+                            type: "string",
+                            key: "sectionTitle",
+                            displayer: "Section Title",
+                            value: "What We Do"
+                        },
+                        {
+                            type: "string",
+                            key: "text1",
+                            displayer: "Text 1",
+                            value: "Graphic design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Vel utroque dissentias ut, nam ad soleat alterum maluisset, cu est copiosae intellegat inciderint. Nam ei eirmod consequuntur, quod nostrum consectetuer usu ut. Vim veniam singulis senserit an, sumo consul mentitum duo ea. Copiosae antiopam ius ea, meis explicari reformidans vix cu. Ut possit patrioque prodesset est, vivendum concludaturque conclusion emque eam."
+                        },
+                        {
+                            type: "string",
+                            key: "text2",
+                            displayer: "Text 2",
+                            value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "section",
+                    displayer: "Section",
+                    value: [
+                        {
+                            type: "string",
+                            key: "sectionTitle",
+                            displayer: "Section Title",
+                            value: "Our Services"
+                        },
+                        {
+                            type: "string",
+                            key: "text1",
+                            displayer: "Text 1",
+                            value: "Our comprehensive services include branding, web design, print materials, and digital marketing. We pride ourselves on delivering exceptional designs that communicate your brand's message effectively. Our team of experts work closely with you to understand your vision and bring it to life."
+                        },
+                        {
+                            type: "string",
+                            key: "text2",
+                            displayer: "Text 2",
+                            value: "From concept to completion, we manage every aspect of your design project. Our process is collaborative and transparent, ensuring you are involved and informed at every stage. We believe in creating designs that not only look great but also achieve your business objectives and resonate with your target audience."
+                        }
+                    ]
+                }
+            ]
+        });
 
-    this.addProp({
-      type: "string",
-      key: "leftSideText",
-      displayer: "Title",
-      value: "Featured Posts",
-    });
+        this.addProp(INPUTS.BUTTON("button", "Button", "VIEW SERVICES", "", null, null, "Primary"));
+        this.setComponentState("activeSection", 0);
+    }
 
-    this.addProp({
-      type: "string",
-      key: "rightSideText",
-      displayer: "Right Side Text",
-      value: "Featured Posts",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "url",
-      displayer: "Navigate To",
-      value: "",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "rightSideIcon",
-      displayer: "Icon",
-      value: {
-        type: "icon",
-        name: "MdArrowOutward",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "dateIcon",
-      displayer: "Date Icon",
-      value: {
-        type: "icon",
-        name: "CiCalendarDate",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "timeIcon",
-      displayer: "Time Icon",
-      value: {
-        type: "icon",
-        name: "CiClock2",
-      },
-    });
-
-    this.addProp({
-      type: "array",
-      key: "cards",
-      displayer: "Cards",
-      value: [
-        {
-          type: "object",
-          key: "cardInfo",
-          displayer: "Card",
-          value: [
-            {
-              type: "boolean",
-              key: "mini",
-              displayer: "Mini",
-              value: false,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b1?alt=media&timestamp=1719327900554",
-              },
-            },
-            {
-              type: "string",
-              key: "date",
-              displayer: "Date",
-              value: "Jun 28, 2022",
-            },
-            {
-              type: "string",
-              key: "readTime",
-              displayer: "Time",
-              value: "2 min read",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "The nine-to-five Is Dead. Here's What to Replace It With",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Without even reducing the 40-hour work week. Time is money, right?",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Profile Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b2?alt=media&timestamp=1719327900554",
-              },
-            },
-            {
-              type: "string",
-              key: "fullname",
-              displayer: "Full Name",
-              value: "Alexander Hipp",
-            },
-            {
-              type: "string",
-              key: "profileDescription",
-              displayer: "Profile Description",
-              value: "written by",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "cardInfo",
-          displayer: "Card",
-          value: [
-            {
-              type: "boolean",
-              key: "mini",
-              displayer: "Mini",
-              value: true,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b0?alt=media&timestamp=1719327900554",
-              },
-            },
-            {
-              type: "string",
-              key: "date",
-              displayer: "Date",
-              value: "Jun 21, 2022",
-            },
-            {
-              type: "string",
-              key: "readTime",
-              displayer: "Time",
-              value: "2 min read",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "The Power of Visualization in the 21st century",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel — the tech billionaire and rumored vampire — says Silicon Valley big brains have lost enthusiasm for AGI.",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Profile Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b3?alt=media&timestamp=1719327900554",
-              },
-            },
-            {
-              type: "string",
-              key: "fullname",
-              displayer: "Full Name",
-              value: "Anil Vugels",
-            },
-            {
-              type: "string",
-              key: "profileDescription",
-              displayer: "Profile Description",
-              value: "written by",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "cardInfo",
-          displayer: "Card",
-          value: [
-            {
-              type: "boolean",
-              key: "mini",
-              displayer: "Mini",
-              value: true,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "date",
-              displayer: "Date",
-              value: "Jun 28, 2022",
-            },
-            {
-              type: "string",
-              key: "readTime",
-              displayer: "Time",
-              value: "2 min read",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Why the security engineers loves working in fosec",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Working in cybersecurity means you’re constantly playing a game of catch-up. Every day you learn something new, but your work is also never finished.",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Profile Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "fullname",
-              displayer: "Full Name",
-              value: "Alexander Hipp",
-            },
-            {
-              type: "string",
-              key: "profileDescription",
-              displayer: "Profile Description",
-              value: "written by",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "cardInfo",
-          displayer: "Card",
-          value: [
-            {
-              type: "boolean",
-              key: "mini",
-              displayer: "Mini",
-              value: false,
-            },
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "date",
-              displayer: "Date",
-              value: "Apr 9, 2022",
-            },
-            {
-              type: "string",
-              key: "readTime",
-              displayer: "Time",
-              value: "2 min read",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "There Are Zero Bridges Across The Amazon. Here Is Why",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Here is a fun fact to stick in the back of your mind for trivia night or to use as an interesting ice breaker: the Amazon River has no bridges. None. Zero. Zilch. That is in spite of the fact that the Amazon is 4,345 miles long.",
-            },
-            {
-              type: "media",
-              key: "profileImage",
-              displayer: "Profile Image",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "fullname",
-              displayer: "Full Name",
-              value: "Anil Vugels",
-            },
-            {
-              type: "string",
-              key: "profileDescription",
-              displayer: "Profile Description",
-              value: "written by",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCountInARow",
-      displayer: "Item Count In A Row",
-      value: 3,
-      max: 4
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "underlineAnimation",
-      displayer: "Card Title Underline Animation",
-      value: true
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "enableEllipsisTitle",
-      displayer: "Ellipsis For Title",
-      value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "enableEllipsisDesc",
-      displayer: "Ellipsis For Description",
-      value: true,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "maxTitleLength",
-      displayer: "Title Max Length",
-      value: 60,
-      max: 90
-    });
-
-    this.addProp({
-      type: "number",
-      key: "maxDescriptionLength",
-      displayer: "Description Max Length",
-      value: 90,
-      max: 200
-    });
-  }
-
-  static getName(): string {
-    return "Feature 1";
-  }
+    static getName(): string {
+        return "Feature 1";
+    }
 
 
-  render() {
-    const itemCountInARow = this.getPropValue("itemCountInARow");
+    render() {
+        const sections = this.castToObject<Section[]>("sections");
+        const activeSection = this.getComponentState("activeSection");
+        const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const underlineAnimation = !!this.getPropValue("underlineAnimation");
-
-    const leftSideTextExist = this.castToString(this.getPropValue("leftSideText"));
-
-    const rightSideTextExist = this.castToString(this.getPropValue("rightSideText"));
-    const rightSideIcon = this.getPropValue("rightSideIcon");
-    const rightSideUrl = this.getPropValue("url");
-
-    const timeIcon = this.getPropValue("timeIcon");
-    const dateIcon = this.getPropValue("dateIcon");
-
-    const Card = ({ data, style }: { data: CardData, style?: object; }) => {
-      const title = this.castToString(data.title);
-      const description = this.castToString(data.description);
-
-      const profileDescriptionExist = !!this.castToString(data.profileDescription);
-      const fullNameExist = !!this.castToString(data.fullname);
-      const readTimeExist = !!this.castToString(data.readTime);
-      const dateExist = !!this.castToString(data.date);
-
-      return (
-        <div
-          className={`
-              ${this.decorateCSS("card")}
-              ${this.decorateCSS(data.mini ? "mini" : "")}
-            `}
-          style={style}
-        >
-          {data.image &&
-            <div className={this.decorateCSS("image-container")}>
-              <Base.Media
-                value={data.image}
-                className={this.decorateCSS("image")}
-              />
-            </div>
-          }
-          <div className={this.decorateCSS("card-content")}>
-            {(dateExist || readTimeExist) && (
-              <div className={this.decorateCSS("date-time")}>
-                {(dateExist) && (
-                  <div className={this.decorateCSS("date")}>
-                    {dateIcon &&
-                      <Base.Media
-                        value={dateIcon}
-                        className={this.decorateCSS("date-icon")}
-                      />
-                    }
-                    {dateExist &&
-                      <Base.P className={this.decorateCSS("date-text")}>{data.date}</Base.P>
-                    }
-                  </div>
-                )}
-                {(readTimeExist) && (
-                  <div className={this.decorateCSS("time")}>
-                    {timeIcon &&
-                      <Base.Media
-                        value={timeIcon}
-                        className={this.decorateCSS("time-icon")}
-                      />
-                    }
-                    {readTimeExist &&
-                      <Base.P className={this.decorateCSS("time-text")}>{data.readTime}</Base.P>
-                    }
-                  </div>
-                )}
-              </div>
-            )}
-            {title && (
-              <ComposerLink path={data.url}>
-                <Base.H2
-                  className={`
-                    ${this.decorateCSS("title")}
-                    ${underlineAnimation ? this.decorateCSS("underline-animation") : ""}
-                  `}
-                >
-                  {data.title}
-                </Base.H2>
-              </ComposerLink>
-            )}
-            {description && (
-              <Base.P className={this.decorateCSS("description")}>
-                {data.description}
-              </Base.P>
-            )}
-
-            {(data.profileImage || description || fullNameExist) && (
-              <div className={this.decorateCSS("user-info")}>
-                {data.profileImage && (
-                  <Base.Media
-                    value={data.profileImage}
-                    className={this.decorateCSS("profile-image")}
-                  />
-                )}
-
-                {(profileDescriptionExist || fullNameExist) && (
-                  <div className={this.decorateCSS("user")}>
-                    {profileDescriptionExist &&
-                      <Base.P className={this.decorateCSS("profile-description")}>
-                        {data.profileDescription}
-                      </Base.P>
-                    }
-                    {fullNameExist &&
-                      <Base.P className={this.decorateCSS("fullname")}>
-                        {data.fullname}
-                      </Base.P>
-                    }
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      );
-    };
-
-    const Blocks = ({ cards }: { cards: CardData[]; }) => {
-      const blocks: React.JSX.Element[] = [];
-      const data: any = [];
-
-      for (let i = 0; i < cards.length; i++) {
-        if (!(
-          this.castToString(cards[i].title) ||
-          this.castToString(cards[i].description) ||
-          this.castToString(cards[i].date) ||
-          this.castToString(cards[i].readTime) ||
-          this.castToString(cards[i].fullname) ||
-          this.castToString(cards[i].profileDescription) ||
-          cards[i].image?.url
-        )) {
-          continue;
+        if (!sections || sections.length === 0) {
+            return null;
         }
 
-        if (i === cards.length - 1) {
-          blocks.push(
-            <Block>
-              <Card data={cards[i]} />
-            </Block>
-          );
-          data.push(null);
-          return <>{blocks}</>;
-        }
 
-        if (cards[i].mini && cards[i + 1].mini) {
-          blocks.push(
-            <Block><>
-              <Card data={cards[i]} />
-              <Card data={cards[i + 1]} />
-            </></Block>
-          );
-          data.push({
-            card1: this.castToString(cards[i].title),
-            card2: this.castToString(cards[i + 1].title),
-          });
-
-          ++i;
-        } else {
-          blocks.push(
-            <Block>
-              <Card data={cards[i]} />
-            </Block>
-          );
-          data.push(this.castToString(cards[i].title));
-        }
-      }
-
-      return <>{blocks.map((block, index) => <React.Fragment key={index}>{block}</React.Fragment>)}</>;
-    };
-
-    const Block = ({ children }: { children: React.JSX.Element; }) => {
-      return (
-        <div className={this.decorateCSS("block")}>
-          {children}
-        </div>
-      );
-    };
-
-    return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(leftSideTextExist || !!rightSideIcon || rightSideTextExist) && (
-            <header className={this.decorateCSS("header")}>
-              {(rightSideTextExist || !!rightSideIcon) && (
-                <div className={this.decorateCSS("right-side")}>
-                  <ComposerLink path={rightSideUrl}>
-                    <div className={this.decorateCSS("link-container")}>
-                      <Base.H4 className={this.decorateCSS("link-text")}>
-                        {rightSideTextExist && (
-                          this.getPropValue("rightSideText")
-                        )}
-                        {!!rightSideIcon && (
-                          <Base.Media
-                            value={rightSideIcon}
-                            className={this.decorateCSS("right-side-icon")}
-                          />
-                        )}
-                      </Base.H4>
+        return (
+            <Base.Container className={this.decorateCSS("container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    <div className={this.decorateCSS("section-container")}>
+                        {sections.map((section: Section, index: number) => (
+                            this.castToString(section.sectionTitle) ? (
+                                <Base.SectionTitle
+                                    key={`section-title-${index}`}
+                                    className={`${this.decorateCSS("section-title")} ${activeSection === index ? this.decorateCSS("active") : ""}`}
+                                    onClick={() => this.setComponentState("activeSection", index)}
+                                >
+                                    {section.sectionTitle}
+                                </Base.SectionTitle>
+                            ) : null
+                        ))}
                     </div>
-                  </ComposerLink>
-                </div>
-              )}
-              {leftSideTextExist && (
-                <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {this.getPropValue("leftSideText")}
-                </Base.SectionTitle>
-              )}
-            </header>
-          )}
-          <Base.ListGrid gridCount={{ pc: itemCountInARow }} className={this.decorateCSS("cards-row")}>
-            <Blocks cards={this.castToObject<CardData[]>("cards")} />
-          </Base.ListGrid>
-        </Base.MaxContent>
-      </Base.Container>
-    );
-  }
+
+                    <div className={this.decorateCSS("active-section-content")}>
+                        {sections.map((section: Section, index: number) => (
+                            index === activeSection && (
+                                <div key={`section-content-${index}`} className={this.decorateCSS("section-content-wrapper")}>
+                                    {this.castToString(section.text1) && (
+                                        <div className={this.decorateCSS("text-1")}>
+                                            {section.text1}
+                                        </div>
+                                    )}
+                                    {this.castToString(section.text2) && (
+                                        <div className={this.decorateCSS("text-2")}>
+                                            {section.text2}
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        ))}
+                    </div>
+
+                    {this.castToString(buttonType.text) && (
+                        <div className={this.decorateCSS("button-container")}>
+                            <ComposerLink path={buttonType.url}>
+                                <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                                    {buttonType.text}
+                                </Base.Button>
+                            </ComposerLink>
+                        </div>
+                    )}
+                </Base.MaxContent>
+            </Base.Container>
+        );
+    }
 }
 
 export default Feature1;
