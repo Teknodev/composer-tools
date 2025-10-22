@@ -317,17 +317,13 @@ textarea.input {
 }
 
 .only-left .left-container {
-  align-items: flex-start;
+  align-items: center;
   flex: 0 1 100%;
 
   .title {
     text-align: left;
   }
 }
-
-.only-left .left-container {
-}
-
 .only-left .left-container .title {
   margin-inline: auto;
   text-wrap: balance;
