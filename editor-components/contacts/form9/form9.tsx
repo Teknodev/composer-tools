@@ -704,7 +704,14 @@ class Form9 extends BaseContacts {
                 {/* ---------- LEFT TITLE --------- */}
 
                 {titleStr && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                  <Base.SectionTitle
+                    className={this.decorateCSS("title")}
+                    style={{
+                      alignItems: "flex-start",
+                      justifyContent: "flex-start",
+                      textAlign: "left",
+                    }}
+                  >
                     {title}
                   </Base.SectionTitle>
                 )}
