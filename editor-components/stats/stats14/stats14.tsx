@@ -4,11 +4,12 @@ import styles from "./stats14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 type featuresItem = {
   topText: React.JSX.Element;
   bottomText: React.JSX.Element;
-  title: React.JSX.Element; 
+  title: React.JSX.Element;
 }
 
 type button = {
@@ -98,25 +99,32 @@ this.addProp({
       ],
     });
 
-
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Button ",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download Free Trial", "", "", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download Free Trial","", "FaRegCheckCircle", "", "Primary"),
         INPUTS.BUTTON("button", "Button", "Learn More", "", "", "", "White")
       ],
     });
 
 
-this.addProp({
-  type: "image",
-  key: "image",
-  displayer: "Image",
-  value: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg",
-});
+
+      this.addProp({
+        type: "media",
+        key: "image",
+        displayer: "Image",
+        additionalParams: { availableTypes: ["image"] },
+        value: { type: "image", url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg" },
+      });
 
 }
 
@@ -134,13 +142,15 @@ this.addProp({
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
+    const overlay = this.getPropValue("overlay");
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         
-          <div className={this.decorateCSS("stats14-page")}>
-            {(isTitleExist ) && (
+          <div className={this.decorateCSS("content")}>
+            {(isTitleExist || FeaturesItem.length > 0 || buttons.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
 
@@ -171,15 +181,15 @@ this.addProp({
             <Base.Row className={this.decorateCSS("button-container")}>
               {buttons.map((item, index) => {
               const buttonText = this.castToString(item.text || "");
-              const buttonUrl = item.url || "#"; // url boşsa fallback
+              const buttonUrl = item.url || "#"; 
 
               if (!buttonText) return null;
 
               return (
                 <ComposerLink key={`dw-1-btn-${index}`} path={buttonUrl}>
-                  <Base.Button buttonType={item.type}>
+                  <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                     {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                    {item.text}
+                    <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
                   </Base.Button>
                 </ComposerLink>
               );
@@ -192,17 +202,15 @@ this.addProp({
               </Base.VerticalContent>
       )}
 
-            <div className={this.decorateCSS("right-container")}>
-            <Base.SectionTitle className={`${this.decorateCSS("right-container")} ${!image ? this.decorateCSS("right-container-without-image") : ""}`}>
               {image && (
-                <img
-                  src={this.getPropValue("image")}
-                  alt=""
-                  className={this.decorateCSS("image-circle")}
-                />
+                <div className={`${this.decorateCSS("right-container")} `}>
+                  <Base.Media
+                    value={this.getPropValue("image")}
+                    className={this.decorateCSS("image-circle")}
+                  />
+                  {overlay && image?.url && <div className={this.decorateCSS("overlay")}></div>}
+                </div>
               )}
-            </Base.SectionTitle>
-          </div>
 
 
 
@@ -214,3 +222,4 @@ this.addProp({
 }
 
 export default Stats14;
+

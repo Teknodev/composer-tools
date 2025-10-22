@@ -1,9 +1,8 @@
-
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
-    .stats14-page {
+    .content {
     width: 100%;
     display: flex;
     align-items: center;
@@ -20,6 +19,7 @@
         .subtitle,  .description, .title {
           content: "";
         }
+
         
         .button-text-wrapper {
             display: flex;
@@ -32,13 +32,16 @@
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-md);
           width: 100%;
+          .button{
+            .button-text{
+              content: "";
+            }
+          }
 
-          .button {content: ""}
         }
 
-      // --- Features/Stats List ---
         .features-list {
           display: flex;
           flex-wrap: wrap;        
@@ -51,11 +54,13 @@
           }
 
           .features-list-items-topText {
+          font-weight: bold;
+            display: flex;
             color: var(--composer-font-color-primary);
             display: block;         
           }
 
-          .features-list-items-bottomText {
+          .features-list-items-bottomText {      display: flex;
             color: rgba(var(--composer-font-color-primary-rgb));
             display: block;
           }
@@ -66,6 +71,18 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        border-radius: 50%;
+        
+            .overlay {
+              position: absolute;
+              inset: 0;
+              border-radius: inherit;
+              pointer-events: none;
+              transition: opacity 0.3s ease; 
+              background-color: var(--composer-overlay-color);
+            }
+
         
         .image-circle {
             width: 100%;
@@ -79,28 +96,14 @@
 }
 
 
+
 @container (max-width:#{$composer-tablet-width}){
     .container{
         .max-content{
-                .stats14-page{
-                    flex-direction: column;
-                    gap: calc(1 * var(--composer-gap-xl));
-                    .features-list{
-                      display: flex;
-                      flex-direction: column;
-                      align-items: flex-start;
-                    }
-                    .right-container{
-                        .image-circle{
-                          width: 100%;
-                          aspect-ratio: 1 / 1;
-                          border-radius: 50%;
-                          object-fit: cover;
+                .content{
 
-                        }
-                    }
 
-                }
+                }  
             
         }
     }
@@ -114,13 +117,14 @@
                 .content{
                     flex-direction: column;
                 }
-                .stats14-page{
+                .content{
                     flex-direction: column;
                     gap: calc(1 * var(--composer-gap-xl));
                     .features-list{
                         flex-direction: column;
                     }
                     .right-container{
+                      width:100%;
                         .image-circle{
                         width: 100%;
                         aspect-ratio: 1 / 1;
@@ -135,3 +139,4 @@
         }
     }
 }
+
