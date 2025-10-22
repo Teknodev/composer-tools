@@ -675,7 +675,9 @@ class Form9 extends BaseContacts {
     }
 
     const formContainerExists =
-      (Array.isArray(inputItems) && inputItems.length > 0) || hasButton;
+      (Array.isArray(inputItems) && inputItems.length > 0) ||
+      hasButton ||
+      showConsent;
 
     const showRight = !!formContainerExists;
 
@@ -691,7 +693,14 @@ class Form9 extends BaseContacts {
 
           {showLeft && (
             <div className={this.decorateCSS("left-container")}>
-              <Base.VerticalContent>
+              <Base.VerticalContent
+                className={this.decorateCSS("left-vc")}
+                style={{
+                  alignItems: "flex-start",
+                  justifyContent: "flex-start",
+                  textAlign: "left",
+                }}
+              >
                 {/* ---------- LEFT TITLE --------- */}
 
                 {titleStr && (
