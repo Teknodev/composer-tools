@@ -1,0 +1,137 @@
+
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .stats14-page {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: calc(2 * var(--composer-gap-xl));
+      
+
+      .left-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-lg);
+        
+        .subtitle,  .description, .title {
+          content: "";
+        }
+        
+        .button-text-wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+      }
+      
+
+        .button-container {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          width: 100%;
+
+          .button {content: ""}
+        }
+
+      // --- Features/Stats List ---
+        .features-list {
+          display: flex;
+          flex-wrap: wrap;        
+          gap: var(--composer-gap-xl); 
+          width: 100%;
+
+          .features-list-item {
+            display: flex;
+            flex-direction: column;  
+          }
+
+          .features-list-items-topText {
+            color: var(--composer-font-color-primary);
+            display: block;         
+          }
+
+          .features-list-items-bottomText {
+            color: rgba(var(--composer-font-color-primary-rgb));
+            display: block;
+          }
+        }
+
+      .right-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .image-circle {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+
+@container (max-width:#{$composer-tablet-width}){
+    .container{
+        .max-content{
+                .stats14-page{
+                    flex-direction: column;
+                    gap: calc(1 * var(--composer-gap-xl));
+                    .features-list{
+                      display: flex;
+                      flex-direction: column;
+                      align-items: flex-start;
+                    }
+                    .right-container{
+                        .image-circle{
+                          width: 100%;
+                          aspect-ratio: 1 / 1;
+                          border-radius: 50%;
+                          object-fit: cover;
+
+                        }
+                    }
+
+                }
+            
+        }
+    }
+
+}
+@container (max-width:#{$composer-phone-width}){
+    .container{
+        .max-content{
+
+            
+                .content{
+                    flex-direction: column;
+                }
+                .stats14-page{
+                    flex-direction: column;
+                    gap: calc(1 * var(--composer-gap-xl));
+                    .features-list{
+                        flex-direction: column;
+                    }
+                    .right-container{
+                        .image-circle{
+                        width: 100%;
+                        aspect-ratio: 1 / 1;
+                        border-radius: 50%;
+                        object-fit: cover;
+
+                        }
+                    }
+
+                }
+            
+        }
+    }
+}
