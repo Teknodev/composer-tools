@@ -272,8 +272,17 @@
       }
     }
   }
-
   @container (max-width: #{$composer-tablet-width}) {
+    &:not(.only-form) {
+      .max-content {
+        .right-container {
+          .form-container {
+            margin-top: 40px;
+          }
+        }
+      }
+    }
+
     .max-content {
       flex-direction: column;
       align-items: stretch;
@@ -301,7 +310,6 @@
 
       .right-container {
         .form-container {
-          margin-top: 40px;
           padding: 2rem;
         }
       }
@@ -309,10 +317,19 @@
   }
 
   @container (max-width: #{$composer-phone-width}) {
+    &:not(.only-form) {
+      .max-content {
+        .right-container {
+          .form-container {
+            margin-top: 40px;
+          }
+        }
+      }
+    }
+
     .max-content {
       .right-container {
         .form-container {
-          margin-top: 40px;
           padding: 1rem;
 
           .form {
