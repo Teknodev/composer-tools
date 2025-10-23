@@ -48,7 +48,8 @@
         }
       }
 
-      .card:hover .category {
+      .card:hover .category,
+      .card.active .category {
         opacity: 1;
       }
     }

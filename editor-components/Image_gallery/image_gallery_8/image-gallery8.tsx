@@ -8,6 +8,7 @@ interface Card {
     image: TypeMediaInputValue;
     title: React.JSX.Element;
     url: string;
+    active: boolean;
 }
 class ImageGallery8 extends BaseImageGallery {
     constructor(props?: any) {
@@ -47,6 +48,12 @@ class ImageGallery8 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -77,6 +84,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -109,6 +122,12 @@ class ImageGallery8 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -139,6 +158,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -171,6 +196,12 @@ class ImageGallery8 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -201,6 +232,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -233,6 +270,12 @@ class ImageGallery8 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -263,6 +306,12 @@ class ImageGallery8 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -295,6 +344,12 @@ class ImageGallery8 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -326,6 +381,12 @@ class ImageGallery8 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
             ],
@@ -354,7 +415,7 @@ class ImageGallery8 extends BaseImageGallery {
                         {this.castToObject<Card[]>("cards").map(
                             (item: Card, indexCards: number) => {
                                 return (
-                                    <div key={indexCards} className={this.decorateCSS("card")}>
+                                    <div key={indexCards} className={`${this.decorateCSS("card")} ${item.active ? this.decorateCSS("active") : ""}`}>
                                         <ComposerLink path={item.url} isFullWidth={true}>
                                             {item.image && (
                                                 <Base.Media value={item.image} className={this.decorateCSS("image")} />

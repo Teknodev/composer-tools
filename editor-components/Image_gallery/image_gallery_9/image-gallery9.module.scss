@@ -97,19 +97,22 @@
                     }
                 }
 
-                &:hover .category {
+                &:hover .category,
+                &.active .category {
                     opacity: 1;
                 }
 
                 &[data-animation~="slideUp"] {
 
                     &:hover .title,
-                    &:hover .subtitle {
+                    &:hover .subtitle,
+                    &.active .title,
+                    &.active .subtitle {
                         animation: upAnimate 0.4s ease forwards;
                     }
 
-                    &:not(:hover) .title,
-                    &:not(:hover) .subtitle {
+                    &:not(:hover):not(.active) .title,
+                    &:not(:hover):not(.active) .subtitle {
                         animation: downDisappear 0.3s ease forwards;
                     }
                 }
@@ -134,12 +137,13 @@
                         will-change: transform;
                     }
 
-                    &:hover::after {
+                    &:hover::after,
+                    &.active::after {
                         transform: scaleX(1);
                         transform-origin: left;
                     }
 
-                    &:not(:hover)::after {
+                    &:not(:hover):not(.active)::after {
                         transform-origin: right;
                     }
                 }

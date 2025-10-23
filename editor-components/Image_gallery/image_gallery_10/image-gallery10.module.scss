@@ -107,7 +107,8 @@
               transition: opacity 0.2s ease, transform 0.3s ease;
             }
 
-            &:hover {
+            &:hover,
+            &.active {
               background-color: var(--composer-font-color-primary);
               .card-title,
               .card-text {

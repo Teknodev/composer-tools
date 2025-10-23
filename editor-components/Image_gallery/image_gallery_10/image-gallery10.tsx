@@ -134,6 +134,12 @@ class ImageGallery10 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -176,6 +182,12 @@ class ImageGallery10 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -220,6 +232,12 @@ class ImageGallery10 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -262,6 +280,12 @@ class ImageGallery10 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -306,6 +330,12 @@ class ImageGallery10 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -348,6 +378,12 @@ class ImageGallery10 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -392,6 +428,12 @@ class ImageGallery10 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -435,6 +477,12 @@ class ImageGallery10 extends BaseImageGallery {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
+                        },
                     ],
                 },
                 {
@@ -477,6 +525,12 @@ class ImageGallery10 extends BaseImageGallery {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -593,7 +647,7 @@ class ImageGallery10 extends BaseImageGallery {
                                         <div className={this.decorateCSS("item-box")} key={index}>
                                             <div className={this.decorateCSS("item-container")}
                                                 style={{ backgroundImage: `url(${cardItem.image.url})` }}>
-                                                <div className={this.decorateCSS("overlay-content")}>
+                                                <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
                                                     {this.castToString(cardItem.title) && (
                                                         <Base.H4
                                                             className={this.decorateCSS("card-title")}>

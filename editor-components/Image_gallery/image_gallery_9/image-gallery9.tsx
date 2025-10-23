@@ -9,6 +9,7 @@ interface Card {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   url: string;
+  active: boolean;
 }
 class ImageGallery9 extends BaseImageGallery {
   constructor(props?: any) {
@@ -35,6 +36,12 @@ class ImageGallery9 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
             },
             {
               type: "string",
@@ -74,6 +81,12 @@ class ImageGallery9 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -109,6 +122,12 @@ class ImageGallery9 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
             },
             {
               type: "string",
@@ -148,6 +167,12 @@ class ImageGallery9 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -183,6 +208,12 @@ class ImageGallery9 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
             },
             {
               type: "string",
@@ -222,6 +253,12 @@ class ImageGallery9 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -257,6 +294,12 @@ class ImageGallery9 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
             },
             {
               type: "string",
@@ -296,6 +339,12 @@ class ImageGallery9 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -331,6 +380,12 @@ class ImageGallery9 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
             },
             {
               type: "string",
@@ -370,6 +425,12 @@ class ImageGallery9 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -407,6 +468,12 @@ class ImageGallery9 extends BaseImageGallery {
               },
             },
             {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -442,6 +509,12 @@ class ImageGallery9 extends BaseImageGallery {
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
+            },
+            {
+              type: "boolean",
+              key: "active",
+              displayer: "Active",
+              value: false,
             },
             {
               type: "string",
@@ -503,7 +576,7 @@ class ImageGallery9 extends BaseImageGallery {
                     key={indexCards}
                     className={`${this.decorateCSS("card")} ${
                       isLarge ? this.decorateCSS("large") : ""
-                    }`}
+                    } ${item.active ? this.decorateCSS("active") : ""}`}
                     data-animation={this.getPropValue("hoverAnimation").join(
                       " "
                     )}
