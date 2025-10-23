@@ -160,7 +160,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid email",
                     },
                   ],
@@ -221,7 +221,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid type",
                     },
                   ],
@@ -261,7 +261,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid type",
                     },
                   ],
@@ -322,7 +322,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid type",
                     },
                   ],
@@ -362,7 +362,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid number",
                     },
                   ],
@@ -423,7 +423,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "",
                     },
                   ],
