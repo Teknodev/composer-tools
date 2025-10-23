@@ -69,7 +69,7 @@ class LogoComp3Page extends LogoClouds {
 
   render() {
     const items = this.castToObject<TImage[]>("items");
-    const itemCount = this.getPropValue("itemCount");
+    const itemCount = this.getPropValue("itemCount") ?? 4;
     const totalItems = items?.length || 0;
     const toggleLines = this.getPropValue("toggleLines");
 
@@ -118,7 +118,7 @@ class LogoComp3Page extends LogoClouds {
           {items?.length > 0 && (
             <Base.ListGrid
               gridCount={{
-                pc: this.getPropValue("itemCount"),
+                pc: itemCount,
                 tablet: this.getPropValue("itemCount"),
                 phone: 1,
               }}
