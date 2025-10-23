@@ -23,10 +23,7 @@
         margin: 0;
         color: var(--composer-primary-color);
         letter-spacing: 6px;
-      }
-
-      .subtitle {
-        font-style: italic;
+        width: fit-content;
       }
 
       .line {
@@ -102,7 +99,9 @@
     margin-top: var(--composer-gap-lg);
     
     .button {
-      content: "";
+      .button-text{
+        content: "";
+      }
     }
   }
 }

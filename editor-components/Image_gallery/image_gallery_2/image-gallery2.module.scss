@@ -105,7 +105,9 @@
           display: flex;
           align-items: center;
           .button{
-            content: "";
+            .button-text{
+              content: "";
+            }
           }
         }
       }

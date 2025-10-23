@@ -1,13 +1,12 @@
 
 import * as React from "react";
-import { BaseImageGallery } from "../../EditorComponent";
+import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface GalleryItem {
-  image: string;
+  image: TypeMediaInputValue;
   caption: React.JSX.Element;
 }
 
@@ -29,11 +28,16 @@ class ImageGallery5 extends BaseImageGallery {
           displayer: "Image Gallery",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -49,11 +53,16 @@ class ImageGallery5 extends BaseImageGallery {
           displayer: "Image Gallery",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -69,11 +78,16 @@ class ImageGallery5 extends BaseImageGallery {
           displayer: "Image Gallery",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -89,11 +103,16 @@ class ImageGallery5 extends BaseImageGallery {
           displayer: "Image Gallery",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cbc2f8a5b002ce6584c?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cbc2f8a5b002ce6584c?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -109,11 +128,16 @@ class ImageGallery5 extends BaseImageGallery {
           displayer: "Image Gallery",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -129,11 +153,16 @@ class ImageGallery5 extends BaseImageGallery {
           displayer: "Image Gallery",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -154,24 +183,42 @@ class ImageGallery5 extends BaseImageGallery {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Button Icon",
-      value: "RxCross1",
+      value: {
+        type: "icon",
+        name: "RxCross1",
+      },
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextIcon",
       displayer: "Next Button Icon",
-      value: "GrCaretNext",
+      value: {
+        type: "icon",
+        name: "GrCaretNext",
+      },
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prevIcon",
       displayer: "Previous Button Icon",
-      value: "GrCaretPrevious",
+      value: {
+        type: "icon",
+        name: "GrCaretPrevious",
+      },
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
     });
     this.addProp({
       type: "boolean",
@@ -273,9 +320,8 @@ class ImageGallery5 extends BaseImageGallery {
               return (
                 <div className={this.decorateCSS("image-container")}>
                   {galleryItem.image && (
-                    <img
-                      src={galleryItem.image}
-                      alt={galleryItem.image}
+                    <Base.Media
+                      value={galleryItem.image}
                       className={this.decorateCSS("image")}
                       onClick={() => this.handleImageClick(index)}
                     />
@@ -287,7 +333,7 @@ class ImageGallery5 extends BaseImageGallery {
           {(galleries.length > this.getComponentState("imageCount")) && (
             <div className={this.decorateCSS("button-wrapper")}>
               <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                {button.text}
+                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
               </Base.Button>
             </div>
           )}
@@ -300,7 +346,7 @@ class ImageGallery5 extends BaseImageGallery {
                 <div className={this.decorateCSS("middle-content")}>
                   {closeIcon && (
                     <button className={this.decorateCSS("image-close-button")}>
-                      <Base.Icon name={closeIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      <Base.Media value={closeIcon} className={this.decorateCSS("icon")} />
                     </button>
                   )}
                   {galleries[clickedImageIndex].image && (
@@ -313,12 +359,11 @@ class ImageGallery5 extends BaseImageGallery {
                             this.handlePrevImage();
                           }}
                         >
-                          <Base.Icon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Media value={prevIcon} className={this.decorateCSS("icon")} />
                         </button>
                       )}
-                      <img
-                        src={galleries[clickedImageIndex].image}
-                        alt={galleries[clickedImageIndex].image}
+                      <Base.Media
+                        value={galleries[clickedImageIndex].image}
                         className={this.decorateCSS("large-image")}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -333,7 +378,7 @@ class ImageGallery5 extends BaseImageGallery {
                             this.handleNextImage();
                           }}
                         >
-                          <Base.Icon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Media value={nextIcon} className={this.decorateCSS("icon")} />
                         </button>
                       )}
                     </div>

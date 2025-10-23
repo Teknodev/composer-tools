@@ -12,11 +12,13 @@
             flex-wrap: wrap;
 
             .section-text {
+                width: fit-content;
                 margin: 0px;
                 padding: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
 
                 &.active {
+                    width: fit-content;
                     color: var(--composer-font-color-secondary);
                     background-color: var(--composer-primary-color);
                     border-radius: var(--composer-border-radius-xs);
@@ -217,7 +219,9 @@
             justify-content: center;
 
             .button {
-                content: "";
+                .button-text {
+                    content: "";
+                }
             }
         }
     }

@@ -85,7 +85,9 @@
       align-items: center;
       justify-content: center;
       .button{
-        content: "";
+        .button-text{
+          content: "";
+        }
       }
     }
   }

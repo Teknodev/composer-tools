@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseImageGallery } from "../../EditorComponent";
+import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { TiHeadphones } from "react-icons/ti";
@@ -11,7 +11,7 @@ interface ImageGallery {
 }
 interface Image {
   title: React.JSX.Element;
-  cardImage: string;
+  cardImage: TypeMediaInputValue;
   section: React.JSX.Element
 }
 
@@ -75,10 +75,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+                      }
 
                     },
                     {
@@ -101,10 +107,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+                      }
 
                     },
                     {
@@ -127,10 +139,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                      }
 
                     },
                     {
@@ -175,10 +193,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-207.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-207.jpg"
+                      }
                     },
                     {
                       type: "string",
@@ -200,10 +224,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+                      }
                     },
                     {
                       type: "string",
@@ -225,10 +255,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                      }
                     },
                     {
                       type: "string",
@@ -272,10 +308,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-98.jpg"
+                      }
 
                     },
                     {
@@ -298,10 +340,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-240.jpg"
+                      }
 
                     },
                     {
@@ -324,10 +372,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Cropo Identity",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-33.jpg"
+                      }
 
                     },
                     {
@@ -350,10 +404,16 @@ class ImageGallery1 extends BaseImageGallery {
                   displayer: "Image",
                   value: [
                     {
-                      type: "image",
+                      type: "media",
                       key: "cardImage",
                       displayer: "Card Image",
-                      value: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://craftohtml.themezaa.com/images/portfolio-177.jpg"
+                      }
 
                     },
                     {
@@ -467,9 +527,8 @@ class ImageGallery1 extends BaseImageGallery {
                 <div key={imgIndex} className={this.decorateCSS("card-container")}>
                   <div className={this.decorateCSS("image-container")}>
                     {image.cardImage && (
-                      <img
-                        alt={image.cardImage}
-                        src={image.cardImage}
+                      <Base.Media
+                        value={image.cardImage}
                         className={this.decorateCSS("image")}
                       />
                     )}
@@ -491,7 +550,7 @@ class ImageGallery1 extends BaseImageGallery {
           {(this.getComponentState("imageCount") < selectedImageGallery.length) && (
             <div className={this.decorateCSS("button-wrapper")}>
               <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                {button.text}
+                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
               </Base.Button>
             </div>
           )}

@@ -1,11 +1,11 @@
 import * as React from "react";
 import styles from "./image-gallery3.module.scss";
-import { BaseImageGallery } from "../../EditorComponent";
+import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ImageItem {
-    image: string;
+    image: TypeMediaInputValue;
 }
 
 class ImageGallery3 extends BaseImageGallery {
@@ -59,10 +59,16 @@ class ImageGallery3 extends BaseImageGallery {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d96?alt=media&timestamp=1719564433797"
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d96?alt=media&timestamp=1719564433797"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
                         }
                     ]
                 },
@@ -72,10 +78,16 @@ class ImageGallery3 extends BaseImageGallery {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d95?alt=media&timestamp=1719564433797"
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d95?alt=media&timestamp=1719564433797"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
                         }
                     ]
                 },
@@ -86,10 +98,16 @@ class ImageGallery3 extends BaseImageGallery {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245"
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
                         }
                     ]
                 },
@@ -99,10 +117,16 @@ class ImageGallery3 extends BaseImageGallery {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1731587983245"
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1731587983245"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
                         }
                     ]
                 },
@@ -112,10 +136,16 @@ class ImageGallery3 extends BaseImageGallery {
                     displayer: "Image",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575"
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e65e00181a1002c334d64?alt=media&timestamp=1719559667575"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
                         }
                     ]
                 },
@@ -180,10 +210,10 @@ class ImageGallery3 extends BaseImageGallery {
                         {type === "Header Two Image" && images[0] && images[1] && (
                             <>
                                 <div className={this.decorateCSS("image-box")}>
-                                    <img className={this.decorateCSS("image")} src={images[0].image} />
+                                    <Base.Media className={this.decorateCSS("image")} value={images[0].image} />
                                 </div>
                                 <div className={this.decorateCSS("image-box")}>
-                                    <img className={this.decorateCSS("image")} src={images[1].image} />
+                                    <Base.Media className={this.decorateCSS("image")} value={images[1].image} />
                                 </div>
                             </>
                         )}
@@ -193,7 +223,7 @@ class ImageGallery3 extends BaseImageGallery {
                 {remainingImages.length > 0 && !this.getComponentState("showPattern") && (
                     <div className={this.decorateCSS("button-wrapper")}>
                         <Base.Button buttonType={patternButtonType.type} className={this.decorateCSS("button")} onClick={this.handlePatternButtonClick}>
-                            {patternButtonType.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{patternButtonType.text}</Base.P>
                         </Base.Button>
                     </div>
                 )}
@@ -222,7 +252,7 @@ class ImageGallery3 extends BaseImageGallery {
                                                 >
                                                     {rowImages.map((item, index) => item.image && (
                                                         <div key={`${patternIndex}-${rowIndex}-${index}`} className={this.decorateCSS("image-box")}>
-                                                            <img className={this.decorateCSS("image")} src={item.image} />
+                                                            <Base.Media className={this.decorateCSS("image")} value={item.image} />
                                                         </div>
                                                     ))}
                                                 </div>
@@ -242,7 +272,7 @@ class ImageGallery3 extends BaseImageGallery {
                 {this.getComponentState("showPattern") && maxImages < remainingImages.length && (
                     <div className={this.decorateCSS("button-wrapper")}>
                         <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick}>
-                            {buttonType.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
                         </Base.Button>
                     </div>
                 )}

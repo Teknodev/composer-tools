@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BaseImageGallery } from "../../EditorComponent";
+import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery2.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ImageType = {
-    image: string;
+    image: TypeMediaInputValue;
     imageTitle: React.JSX.Element;
 };
 
@@ -75,11 +75,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db15cc343034002c4597b8?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db15cc343034002c4597b8?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -95,11 +100,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db161b343034002c4597d7?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66db161b343034002c4597d7?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -115,11 +125,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060a8343034002c466d8f?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060a8343034002c466d8f?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -135,11 +150,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060e1343034002c466db5?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e060e1343034002c466db5?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -155,11 +175,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e065c4343034002c46704f?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e065c4343034002c46704f?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -175,11 +200,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668fcded9e8fb8002c915338?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -215,11 +245,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dec9e1343034002c45cd6b?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dec9e1343034002c45cd6b?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -235,11 +270,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca37343034002c45cd7a?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66deca37343034002c45cd7a?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -255,11 +295,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e064db343034002c466fad?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e064db343034002c466fad?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -275,11 +320,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06518343034002c466fc5?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06518343034002c466fc5?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -295,11 +345,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decb45343034002c45ce26?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decb45343034002c45ce26?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -315,11 +370,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06576343034002c466fff?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06576343034002c466fff?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -355,11 +415,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decbec343034002c45ced2?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decbec343034002c45ced2?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -375,11 +440,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05f8e343034002c466d17?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05f8e343034002c466d17?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -395,11 +465,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc48343034002c45cf57?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc48343034002c45cf57?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -415,11 +490,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc61343034002c45cf65?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc61343034002c45cf65?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -435,11 +515,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc7c343034002c45cf7c?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66decc7c343034002c45cf7c?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -455,11 +540,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05fc0343034002c466d32?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e05fc0343034002c466d32?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -495,11 +585,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0624e343034002c466e5a?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0624e343034002c466e5a?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -515,11 +610,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06274343034002c466e66?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06274343034002c466e66?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -535,11 +635,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062b5343034002c466e83?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062b5343034002c466e83?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -555,11 +660,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062cf343034002c466ea6?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e062cf343034002c466ea6?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -575,11 +685,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06383343034002c466f1f?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e06383343034002c466f1f?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -595,11 +710,16 @@ class ImageGallery2 extends BaseImageGallery {
                                     displayer: "Section",
                                     value: [
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "image",
                                             displayer: "Image",
-                                            value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0639b343034002c466f35?alt=media",
+                                            value: {
+                                                type: "image",
+                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66e0639b343034002c466f35?alt=media",
+                                            },
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
                                         },
                                         {
                                             type: "string",
@@ -781,9 +901,8 @@ class ImageGallery2 extends BaseImageGallery {
                                         onClick={() => this.openModal(imageIndex)}
                                     >
                                         <div className={this.decorateCSS("image-container")}>
-                                            <img
-                                                src={section.image}
-                                                alt={this.castToString(section.imageTitle)}
+                                            <Base.Media
+                                                value={section.image}
                                                 className={this.decorateCSS("gallery-image")}
                                             />
                                             <div className={this.decorateCSS("overlay")} />
@@ -803,7 +922,7 @@ class ImageGallery2 extends BaseImageGallery {
                         {(currentGallery.length > this.getComponentState("imageCount")) && (
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleLoadMoreButton}>
-                                    {button.text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                 </Base.Button>
                             </div>
                         )}
@@ -821,15 +940,15 @@ class ImageGallery2 extends BaseImageGallery {
                                         className={this.decorateCSS("close")}
                                         onClick={this.closeModal}
                                     >
-                                        <Base.Icon
-                                            propsIcon={{ className: this.decorateCSS("icon") }}
-                                            name={closeModalIcon}
+                                        <Base.Media
+                                            value={closeModalIcon}
+                                            className={this.decorateCSS("icon")}
                                         />
                                     </div>
 
                                     <div className={this.decorateCSS("image-container")}>
-                                        <img
-                                            src={currentImage.image as string}
+                                        <Base.Media
+                                            value={currentImage.image}
                                             className={this.decorateCSS("modal-image")}
                                         />
                                     </div>
@@ -850,18 +969,18 @@ class ImageGallery2 extends BaseImageGallery {
                                 className={this.decorateCSS("prev")}
                                 onClick={this.prevImage}
                             >
-                                <Base.Icon
-                                    propsIcon={{ className: this.decorateCSS("icon") }}
-                                    name={previousImageIcon}
+                                <Base.Media
+                                    value={previousImageIcon}
+                                    className={this.decorateCSS("icon")}
                                 />
                             </div>
                             <div
                                 className={this.decorateCSS("next")}
                                 onClick={this.nextImage}
                             >
-                                <Base.Icon
-                                    propsIcon={{ className: this.decorateCSS("icon") }}
-                                    name={nextImageIcon}
+                                <Base.Media
+                                    value={nextImageIcon}
+                                    className={this.decorateCSS("icon")}
                                 />
                             </div>
                         </Base.Overlay>
