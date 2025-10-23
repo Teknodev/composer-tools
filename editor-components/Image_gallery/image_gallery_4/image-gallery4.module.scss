@@ -20,20 +20,13 @@
 
           .list-item {
             .button {
-              background-color: transparent;
               width: fit-content;
-              border: none;
               padding: var(--composer-gap-sm) var(--composer-gap-md);
               color: var(--composer-font-color-primary);
               border-bottom: 2px solid transparent;
-              font-size: 1rem;
               display: flex;
               text-align: start;
               
-              .button-text {
-                content: "";
-              }
-
               &:hover {
                 cursor: pointer;
                 border-bottom-color: var(--composer-font-color-primary);
@@ -42,7 +35,6 @@
 
             .button.active {
               border-bottom: 2px solid var(--composer-font-color-primary);
-              font-weight: bold;
             }
           }
         }
@@ -78,7 +70,6 @@
             .gallery-image-overlay {
               visibility: hidden;
               z-index: 1;
-              content: "";
               position: absolute;
               top: 0px;
               left: 0px;
@@ -126,7 +117,9 @@
         justify-content: center;
 
         .button {
-          content: "";
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -155,8 +148,7 @@
         right: 60px;
 
         .icon {
-          width: 30px;
-          height: 30px;
+          font-size: 1.5rem;
         }
       }
 
@@ -164,8 +156,7 @@
         left: 50px;
 
         .icon {
-          width: 30px;
-          height: 30px;
+          font-size: 1.5rem;
         }
       }
 
@@ -200,8 +191,7 @@
             z-index: 10;
 
             .close-icon {
-              width: 30px;
-              height: 30px;
+              font-size: 1.5rem;
               color: white;
             }
           }

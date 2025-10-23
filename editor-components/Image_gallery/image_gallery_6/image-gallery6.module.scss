@@ -16,12 +16,13 @@
                 margin: 0px;
                 padding: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
+                cursor: pointer;
 
                 &.active {
                     width: fit-content;
                     color: var(--composer-font-color-secondary);
                     background-color: var(--composer-primary-color);
-                    border-radius: var(--composer-border-radius-xs);
+                    border-radius: var(--composer-border-radius-sm);
                 }
 
             }
@@ -51,7 +52,7 @@
 
                 .images {
                     position: relative;
-                    border-radius: var(--composer-border-radius-xs);
+                    border-radius: var(--composer-border-radius-sm);
                     overflow: hidden;
                     width: 100%;
 
@@ -92,6 +93,7 @@
                                     height: 100%;
                                     text-align: center;
                                     overflow: hidden;
+                                    margin: var(--composer-gap-xs);
                                 }
                             }
 
@@ -119,7 +121,6 @@
                                     transition: opacity 2s ease;
 
                                     .title {
-                                        font-size: 2rem;
                                         opacity: 0;
                                         transition: opacity 2s ease;
                                     }
@@ -133,7 +134,6 @@
                                         .description {
                                             display: flex;
                                             align-items: center;
-                                            font-size: 1.5rem;
                                         }
 
                                         .button {
@@ -144,9 +144,7 @@
                                             height: fit-content;
 
                                             .icon {
-                                                margin: 0px;
-                                                width: 20px;
-                                                height: 20px;
+                                                font-size: 1.5rem;
                                                 color: var(--composer-font-color-primary);
                                             }
                                         }
@@ -207,7 +205,7 @@
 
                     .button {
                         cursor: pointer;
-                        border-radius: var(--composer-border-radius-xs);
+                        border-radius: var(--composer-border-radius-sm);
                     }
                 }
             }

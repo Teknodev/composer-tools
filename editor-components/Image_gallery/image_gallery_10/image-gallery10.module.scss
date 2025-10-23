@@ -3,7 +3,7 @@
 @keyframes fadeInUpAndDisappear {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(var(--composer-gap-md));
   }
   50% {
     opacity: 1;
@@ -11,7 +11,7 @@
   }
   100% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(calc(var(--composer-gap-md) * -1));
   }
 }
 
@@ -34,10 +34,17 @@
     justify-content: center;
 
     .header-wrapper {
-      width: 100%;
+      .subtitle {
+        text-align: center;
+        transform: translateX(0);
+        margin: 0 auto;
+        &::before {
+          display: none;
+        }
+      }
     }
 
-    .header-title {
+    .title-content {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -45,16 +52,15 @@
       text-align: center;
       width: 100%;
       position: relative;
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-md);
 
-      .title-content {
+      .title {
         display: flex;
       }
     }
 
     .animated-text {
       animation: fadeInUpAndDisappear 4s ease infinite;
-      margin-top: 0.5rem;
     }
 
     .grid {
@@ -94,17 +100,17 @@
             .home-link {
               content: "";
             }
-            .card-item-value-h1,
-            .card-item-value-p {
+            .card-title,
+            .card-text {
               opacity: 0;
-              transform: translateY(20px);
+              transform: translateY(var(--composer-gap-sm));
               transition: opacity 0.2s ease, transform 0.3s ease;
             }
 
             &:hover {
               background-color: var(--composer-font-color-primary);
-              .card-item-value-h1,
-              .card-item-value-p {
+              .card-title,
+              .card-text {
                 opacity: 1;
                 color: var(--composer-html-background);
                 transform: translateY(0);
@@ -113,14 +119,11 @@
           }
         }
 
-        .card-item-value-h1 {
+        .card-title {
           text-align: center;
-          font-size: 1rem;
         }
 
-        .card-item-value-p {
-          font-size: 1.5rem;
-          font-weight: bold;
+        .card-text {
           position: relative;
           display: inline-block;
 
@@ -154,7 +157,7 @@
     .max-content {
       display: block;
       flex-direction: column;
-      .header-title {
+      .title-content {
         display: block;
       }
     }

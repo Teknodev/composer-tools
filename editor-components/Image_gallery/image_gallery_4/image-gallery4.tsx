@@ -632,14 +632,14 @@ class ImageGallery4 extends BaseImageGallery {
                           className={this.decorateCSS("list-item")}
                         >
                           {this.castToString(item.title) && (
-                            <button
+                            <Base.H5
                               className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
                               onClick={() => {
                                 this.handleSectionClick(index);
                               }}
                             >
                               {item.title}
-                            </button>
+                            </Base.H5>
                           )}
                         </div>
                       );
@@ -659,14 +659,14 @@ class ImageGallery4 extends BaseImageGallery {
                             className={this.decorateCSS("list-item")}
                           >
                             {this.castToString(item.title) && (
-                              <button
+                              <Base.H5
                                 className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
                                 onClick={() => {
                                   this.handleSubSectionClick(index);
                                 }}
                               >
                                 {item.title}
-                              </button>
+                              </Base.H5>
                             )}
                           </div>
                         );
@@ -714,7 +714,7 @@ class ImageGallery4 extends BaseImageGallery {
                 })}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") < galleryItems.length) && (
+            {(this.getComponentState("imageCount") < galleryItems.length) && this.castToString(button.text) && (
               <div className={this.decorateCSS("button-wrapper")}>
                 <Base.Button className={this.decorateCSS("button")}
                   buttonType={button.type}

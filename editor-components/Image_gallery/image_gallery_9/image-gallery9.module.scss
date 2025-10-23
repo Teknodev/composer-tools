@@ -61,7 +61,7 @@
                     position: absolute;
                     top: 0;
                     left: 0;
-                    padding: 0 10px;
+                    padding: 0 var(--composer-gap-sm);
                     box-sizing: border-box;
                     width: 100%;
                     height: 100%;
@@ -71,18 +71,17 @@
                     flex-direction: column;
                     align-items: center;
                     text-align: center;
-                    gap: 5px;
+                    gap: var(--composer-gap-xs);
                     transition: all 0.3s ease;
                     z-index: 2;
                     background-color: var(--composer-html-background);
 
                     .title {
-                        font-size: 1rem;
+                        content: "";
                     }
 
                     .subtitle {
                         position: relative;
-                        font-size: 1.5rem;
                     }
 
                     .title,
@@ -119,7 +118,6 @@
             .card[data-animation~="underline"] {
                 .subtitle {
                     position: relative;
-                    font-size: 1.5rem;
                     color: var(--composer-font-color-primary);
 
                     &::after {
@@ -173,16 +171,6 @@
                         &.noImage {
                             min-height: 300px;
                             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                        }
-                    }
-
-                    .category {
-                        .title {
-                            font-size: 0.75rem !important;
-                        }
-
-                        .subtitle {
-                            font-size: 1rem !important;
                         }
                     }
                 }

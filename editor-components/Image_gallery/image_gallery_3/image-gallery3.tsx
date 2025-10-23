@@ -220,7 +220,7 @@ class ImageGallery3 extends BaseImageGallery {
                     </Base.MaxContent>
                 </div>
 
-                {remainingImages.length > 0 && !this.getComponentState("showPattern") && (
+                {remainingImages.length > 0 && !this.getComponentState("showPattern") && this.castToString(patternButtonType.text) && (
                     <div className={this.decorateCSS("button-wrapper")}>
                         <Base.Button buttonType={patternButtonType.type} className={this.decorateCSS("button")} onClick={this.handlePatternButtonClick}>
                             <Base.P className={this.decorateCSS("button-text")}>{patternButtonType.text}</Base.P>
@@ -269,7 +269,7 @@ class ImageGallery3 extends BaseImageGallery {
                     </div>
                 )}
 
-                {this.getComponentState("showPattern") && maxImages < remainingImages.length && (
+                {this.getComponentState("showPattern") && maxImages < remainingImages.length && this.castToString(buttonType.text) && (
                     <div className={this.decorateCSS("button-wrapper")}>
                         <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick}>
                             <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>

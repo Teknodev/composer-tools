@@ -10,16 +10,16 @@
             .image-container {
                 overflow: hidden;
                 cursor: pointer;
+                border-radius: var(--composer-border-radius-sm);
 
                 .image {
-                    border-radius: var(--composer-border-radius-xs);
                     height: 700px;
                     width: 100%;
                     object-fit: cover;
                     transition: transform 0.3s ease-in-out;
 
                     &:hover {
-                        transform: scale(1.04);
+                        transform: scale(1.05);
                         filter: brightness(0.9);
                     }
                 }
@@ -53,9 +53,7 @@
             z-index: 10;
 
             .overlay-content {
-                display: flex;
                 height: 100%;
-                width: 100%;
 
                 .middle-content {
                     display: flex;
@@ -78,8 +76,7 @@
                         cursor: pointer;
 
                         .icon {
-                            width: 20px;
-                            height: 20px;
+                            font-size: 1.5rem;
                         }
                     }
 
@@ -91,7 +88,7 @@
                             height: 100%;
                             cursor: pointer;
                             width: 100%;
-                            border-radius: var(--composer-border-radius-xs);
+                            border-radius: var(--composer-border-radius-sm);
                             object-fit: cover;
                         }
 
@@ -105,8 +102,7 @@
                             transform: translateY(-50%);
 
                             .icon {
-                                width: 25px;
-                                height: 25px;
+                                font-size: 1.5rem;
                             }
                         }
 
@@ -123,7 +119,6 @@
 
                     .caption-container {
                         display: flex;
-                        font-size: 1rem;
                         color: white;
                         width: 100%;
 

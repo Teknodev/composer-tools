@@ -12,9 +12,6 @@
       .section-title{
         text-align: start;
         width: fit-content;
-        font-size: 1rem;
-        background-color: transparent;
-        border: none;
         cursor: pointer;
         opacity: 0.7;
         transition: opacity 0.3s ease, border-bottom 0.1s ease;
@@ -22,7 +19,6 @@
         &.active-section-title{
           border-bottom: 2px solid var(--composer-font-color-primary);
           opacity: 1;
-          font-weight: bold;
         }
       }
     }
@@ -55,6 +51,7 @@
         .title{
           color :var(--composer-font-color-primary);
           max-width: 40%;
+          width: fit-content;
 
         }
         .line{
@@ -67,6 +64,7 @@
         .section{
           color :var(--composer-tertiary-color);
           max-width: 40%;
+          width: fit-content;
         }
       }
       &:hover {

@@ -524,15 +524,15 @@ class ImageGallery9 extends BaseImageGallery {
                             this.castToString(item.subtitle)) && (
                             <div className={this.decorateCSS("category")}>
                               {this.castToString(item.title) && (
-                                <div className={this.decorateCSS("title")}>
+                                <Base.P className={this.decorateCSS("title")}>
                                   {item.title}
-                                </div>
+                                </Base.P>
                               )}
                               <ComposerLink path={item.url}>
                                 {this.castToString(item.subtitle) && (
-                                  <div className={this.decorateCSS("subtitle")}>
+                                  <Base.H4 className={this.decorateCSS("subtitle")}>
                                     {item.subtitle}
-                                  </div>
+                                  </Base.H4>
                                 )}
                               </ComposerLink>
                             </div>

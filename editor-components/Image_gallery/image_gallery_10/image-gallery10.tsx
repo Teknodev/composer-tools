@@ -22,10 +22,18 @@ class ImageGallery10 extends BaseImageGallery {
 
     constructor(props?: any) {
         super(props, styles);
+
         this.addProp({
             type: "string",
-            key: "header",
-            displayer: "Header",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "Our Projects",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
             value: "We are creative agency that specializes in making customers",
         });
         this.addProp({
@@ -548,28 +556,32 @@ class ImageGallery10 extends BaseImageGallery {
 
     render() {
         const cardList = this.castToObject<CardType[]>("card-items");
-        const header = this.castToString(this.getPropValue("header"));
-        const currentText = this.getComponentState("currentText") as string;
+        const title = this.castToString(this.getPropValue("title"));
+        const currentText = this.getComponentState("currentText");
         const showAnimateText = this.getPropValue("showAnimateText");
 
         return (
             <Base.Container
                 className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {header && (
-                        <div className={this.decorateCSS("header-wrapper")}>
-                            <Base.SectionTitle
-                                className={this.decorateCSS("header-title")}>
-                                <div className={this.decorateCSS("title-content")}>
-                                    {this.getPropValue("header")}
+                    {(title || this.castToString(this.getPropValue("subtitle"))) && (
+                        <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
+                            {this.castToString(this.getPropValue("subtitle")) && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {title && <Base.SectionTitle className={this.decorateCSS("title-content")}>
+                                <div className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
                                 </div>
                                 {showAnimateText && currentText && (
                                     <div className={this.decorateCSS("animated-text")}>
                                         {this.castToString(currentText)}
                                     </div>
                                 )}
-                            </Base.SectionTitle>
-                        </div>
+                            </Base.SectionTitle>}
+                        </Base.VerticalContent>
                     )}
                     {
                         cardList.length > 0 && (
@@ -583,18 +595,18 @@ class ImageGallery10 extends BaseImageGallery {
                                                 style={{ backgroundImage: `url(${cardItem.image.url})` }}>
                                                 <div className={this.decorateCSS("overlay-content")}>
                                                     {this.castToString(cardItem.title) && (
-                                                        <div
-                                                            className={this.decorateCSS("card-item-value-h1")}>
+                                                        <Base.H4
+                                                            className={this.decorateCSS("card-title")}>
                                                             {cardItem.title}
-                                                        </div>
+                                                        </Base.H4>
                                                     )}
                                                     {this.castToString(cardItem.text) && (
                                                         <ComposerLink
                                                             path={cardItem.link}>
-                                                            <div
-                                                                className={this.decorateCSS("card-item-value-p")}>
+                                                            <Base.H3
+                                                                className={this.decorateCSS("card-text")}>
                                                                 {cardItem.text}
-                                                            </div>
+                                                            </Base.H3>
                                                         </ComposerLink>
                                                     )}
                                                 </div>

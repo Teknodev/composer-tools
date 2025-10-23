@@ -2,7 +2,6 @@
 import * as React from "react";
 import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery6.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -612,23 +611,23 @@ class ImageGallery6 extends BaseImageGallery {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("section-container")}>
                         {this.getPropValue("showAll") && (
-                            <Base.H4
+                            <Base.H5
                                 className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getPropValue("allText")) || !selectedSection) ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClickAll()}
                             >
                                 {this.getPropValue("allText")}
-                            </Base.H4>
+                            </Base.H5>
                         )}
 
                         {galleries.map((element: any) => (
-                            <Base.H4
+                            <Base.H5
                                 className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.getComponentState("selectedSection") ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(element)}
                             >
                                 {element.getPropValue("sectionTitle")}
-                            </Base.H4>
+                            </Base.H5>
                         ))}
                     </Base.VerticalContent>
                     <div className={this.decorateCSS("content")}>
@@ -658,25 +657,25 @@ class ImageGallery6 extends BaseImageGallery {
                                                     )}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>
-                                                            <div className={this.decorateCSS("badge-text")}>
+                                                            <Base.P className={this.decorateCSS("badge-text")}>
                                                                 {item.badge}
-                                                            </div>
+                                                            </Base.P>
                                                         </div>
                                                     )}
                                                     {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <div className={this.decorateCSS("title")}>
+                                                                    <Base.H3 className={this.decorateCSS("title")}>
                                                                         {item.title}
-                                                                    </div>
+                                                                    </Base.H3>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <div className={this.decorateCSS("description")}>
+                                                                            <Base.H4 className={this.decorateCSS("description")}>
                                                                                 {item.description}
-                                                                            </div>
+                                                                            </Base.H4>
                                                                         )}
                                                                         {item.nextArrow && (
                                                                             <div className={this.decorateCSS("button")}>
@@ -720,25 +719,25 @@ class ImageGallery6 extends BaseImageGallery {
                                                     )}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>
-                                                            <div className={this.decorateCSS("badge-text")}>
+                                                            <Base.P className={this.decorateCSS("badge-text")}>
                                                                 {item.badge}
-                                                            </div>
+                                                            </Base.P>
                                                         </div>
                                                     )}
                                                     {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <div className={this.decorateCSS("title")}>
+                                                                    <Base.H3 className={this.decorateCSS("title")}>
                                                                         {item.title}
-                                                                    </div>
+                                                                    </Base.H3>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <div className={this.decorateCSS("description")}>
+                                                                            <Base.H4 className={this.decorateCSS("description")}>
                                                                                 {item.description}
-                                                                            </div>
+                                                                            </Base.H4>
                                                                         )}
                                                                         {item.nextArrow && (
 
@@ -761,7 +760,7 @@ class ImageGallery6 extends BaseImageGallery {
                             })}
                         </div>
                     </div>
-                    {(this.getComponentState("imageCount") < currentGallery.length) && (
+                    {(this.getComponentState("imageCount") < currentGallery.length) && this.castToString(button.text) && (
                         <div className={this.decorateCSS("button-wrapper")}>
                             <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
                                 <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>

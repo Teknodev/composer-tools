@@ -67,7 +67,7 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery 2",
+                            displayer: "Image Gallery",
                             value: [
                                 {
                                     type: "object",
@@ -237,7 +237,7 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery 2",
+                            displayer: "Image Gallery",
                             value: [
                                 {
                                     type: "object",
@@ -407,7 +407,7 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery 2",
+                            displayer: "Image Gallery",
                             value: [
                                 {
                                     type: "object",
@@ -577,7 +577,7 @@ class ImageGallery2 extends BaseImageGallery {
                         {
                             type: "array",
                             key: "imageGallery",
-                            displayer: "Image Gallery 2",
+                            displayer: "Image Gallery",
                             value: [
                                 {
                                     type: "object",
@@ -739,7 +739,7 @@ class ImageGallery2 extends BaseImageGallery {
         this.addProp({
             type: "media",
             key: "icon",
-            displayer: "Magnifier Icon",
+            displayer: "Hover Icon",
             value: {
                 type: "icon",
                 name: "IoSearchOutline",
@@ -778,7 +778,7 @@ class ImageGallery2 extends BaseImageGallery {
         this.addProp({
             type: "media",
             key: "closeModalIcon",
-            displayer: "Close Modal Icon",
+            displayer: "Close Icon",
             value: {
                 type: "icon",
                 name: "IoCloseOutline",
@@ -897,22 +897,22 @@ class ImageGallery2 extends BaseImageGallery {
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("section-selector-text")}>
                             {showAll && (
-                                <div
+                                <Base.H5
                                     className={`${this.decorateCSS("section-text")} ${currentIndex === -1 ? this.decorateCSS("active") : ""
                                         }`}
                                     onClick={() => this.handleSectionClick(-1)}
                                 >
                                     {this.getPropValue("allText")}
-                                </div>
+                                </Base.H5>
                             )}
                             {galleryCollection.map((element: any, index: number) => (
-                                <div
+                                <Base.H5
                                     className={`${this.decorateCSS("section-text")} ${index === currentIndex ? this.decorateCSS("active") : ""
                                         }`}
                                     onClick={() => this.handleSectionClick(index)}
                                 >
                                     {element.getPropValue("title")}
-                                </div>
+                                </Base.H5>
                             ))}
                         </div>
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-grid")}>
@@ -941,7 +941,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 );
                             })}
                         </Base.ListGrid>
-                        {(currentGallery.length > this.getComponentState("imageCount")) && (
+                        {(currentGallery.length > this.getComponentState("imageCount")) && this.castToString(button.text) && (
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleLoadMoreButton}>
                                     <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>

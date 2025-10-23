@@ -21,7 +21,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.addProp({
       type: "boolean",
       key: "lineActive",
-      displayer: "Line Active",
+      displayer: "Line",
       value: true
     })
     this.addProp({
@@ -490,22 +490,22 @@ class ImageGallery1 extends BaseImageGallery {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section-title-container")}>
             {
-              <button
+              <Base.H5
                 className={`${this.decorateCSS("section-title")} ${selectedSection === this.castToString(this.getPropValue("allText")) ? this.decorateCSS("active-section-title") : ""}`}
                 onClick={() => this.handleSectionClickAll()}
               >
                 {this.getPropValue("allText")}
-              </button>
+              </Base.H5>
             }
             {
               imageGallery.map((item: ImageGallery, index: number) => (
-                <button
+                <Base.H5
                   key={index}
                   className={`${this.decorateCSS("section-title")} ${this.castToString(item.sectionTitle) === selectedSection ? this.decorateCSS("active-section-title") : ""}`}
                   onClick={() => this.handleSectionClick(item.sectionTitle, index)}
                 >
                   {item.sectionTitle}
-                </button>
+                </Base.H5>
               ))
             }
           </div>
@@ -535,19 +535,19 @@ class ImageGallery1 extends BaseImageGallery {
                   </div>
                   <div className={this.decorateCSS("text-container")}>
                     {this.castToString(image.title) && (
-                      <div className={this.decorateCSS("title")}>{image.title}</div>
+                      <Base.P className={this.decorateCSS("title")}>{image.title}</Base.P>
                     )}
                     {this.getPropValue("lineActive") && (
                       <div className={this.decorateCSS("line")}></div>
                     )}
                     {this.castToString(image.section) && (
-                      <div className={this.decorateCSS("section")}>{image.section}</div>
+                      <Base.P className={this.decorateCSS("section")}>{image.section}</Base.P>
                     )}
                   </div>
                 </div>
               ))}
           </Base.ListGrid>
-          {(this.getComponentState("imageCount") < selectedImageGallery.length) && (
+          {(this.getComponentState("imageCount") < selectedImageGallery.length) && this.castToString(button.text) && (
             <div className={this.decorateCSS("button-wrapper")}>
               <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
                 <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>

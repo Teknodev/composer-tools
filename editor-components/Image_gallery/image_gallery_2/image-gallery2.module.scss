@@ -18,18 +18,15 @@
           flex-wrap: wrap;
           .section-text {
             display: flex;
-            background: transparent;
             color: var(--composer-font-color-primary);
             cursor: pointer;
             transition: color 0.3s ease;
-            margin: 0px;
-            font-size: 1.5rem;
+            width: fit-content;
             &:hover,
             &.active {
               text-decoration: underline;
               text-underline-offset: var(--composer-gap-xs);
               opacity: 1;
-              font-weight: bold;
             }
           }
         }
@@ -80,6 +77,7 @@
                 .magnifier-icon {
                   width: 15px;
                   height: 15px;
+                  font-size: 1rem;
                   color: var(--composer-html-background);
                 }
               }
@@ -129,11 +127,11 @@
               cursor: pointer;
               z-index: 10;
               .icon{
-                width: 40px;
-                height: 40px;
+                font-size: 1.5rem;
               }
             }
             .close {
+              font-size: 1rem;
               top: 10px;
               right: 10px;
             }
@@ -150,6 +148,7 @@
           .icon{
             width: 40px;
             height: 40px;
+            font-size: 1rem;
           }
         }
         .prev {
@@ -179,12 +178,10 @@
         }
       }
       .image-info {
-        font-weight: bold;
         position: absolute;
         display: flex;
         justify-content: space-between;
         color: white;
-        font-size: 1rem;
         width: 100%;
         padding: var(--composer-gap-xs) 0px;
   

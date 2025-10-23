@@ -330,7 +330,7 @@ class ImageGallery5 extends BaseImageGallery {
               );
             })}
           </Base.ListGrid>
-          {(galleries.length > this.getComponentState("imageCount")) && (
+          {(galleries.length > this.getComponentState("imageCount")) && this.castToString(button.text) && (
             <div className={this.decorateCSS("button-wrapper")}>
               <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
                 <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
@@ -386,13 +386,13 @@ class ImageGallery5 extends BaseImageGallery {
                   )}
                   <div className={this.decorateCSS("caption-container")}>
                     {imageIndex && (
-                      <div className={this.decorateCSS("image-caption")}>
+                      <Base.P className={this.decorateCSS("image-caption")}>
                         {clickedImageIndex + 1} of {galleries.length}
-                      </div>
+                      </Base.P>
                     )}
-                    <div className={this.decorateCSS("gallery-image")}>
+                    <Base.P className={this.decorateCSS("gallery-image")}>
                       {galleries[clickedImageIndex].caption}
-                    </div>
+                    </Base.P>
                   </div>
                 </div>
 
