@@ -2,13 +2,13 @@ import React from "react";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  icon: string;
+  icon: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
   num: React.JSX.Element;
@@ -46,10 +46,16 @@ class Feature9 extends BaseFeature {
               value: "1"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaRegLightbulb"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaRegLightbulb"
+              }
             },
             {
               type: "string",
@@ -77,10 +83,16 @@ class Feature9 extends BaseFeature {
               value: "2"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaRegMessage"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaRegMessage"
+              }
             },
             {
               type: "string",
@@ -108,10 +120,16 @@ class Feature9 extends BaseFeature {
               value: "3"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiLayers"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiLayers"
+              }
             },
             {
               type: "string",
@@ -139,10 +157,16 @@ class Feature9 extends BaseFeature {
               value: "4"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaRegLightbulb"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaRegLightbulb"
+              }
             },
             {
               type: "string",
@@ -170,10 +194,16 @@ class Feature9 extends BaseFeature {
               value: "5"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "BsCodeSquare"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BsCodeSquare"
+              }
             },
             {
               type: "string",
@@ -272,12 +302,9 @@ class Feature9 extends BaseFeature {
                           <div className={this.decorateCSS("card-header")}>
                             {card.icon &&
                               <div className={this.decorateCSS("icon-container")}>
-                                <Base.Icon
-                                  name={card.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                    size: "40px"
-                                  }}
+                                <Base.Media
+                                  value={card.icon}
+                                  className={this.decorateCSS("icon")}
                                 />
                               </div>
                             }
@@ -288,18 +315,18 @@ class Feature9 extends BaseFeature {
                                 </Base.H2>
                               }
                               {titleExist &&
-                                <Base.H3 className={this.decorateCSS("card-title")}>
+                                <Base.H2 className={this.decorateCSS("card-title")}>
                                   {card.title}
-                                </Base.H3>
+                                </Base.H2>
                               }
                             </div>
                           </div>
                         }
                         {descExist &&
                           <div className={this.decorateCSS("description-container")}>
-                            <Base.P className={this.decorateCSS("description")}>
+                            <Base.H4 className={this.decorateCSS("description")}>
                               {card.description}
-                            </Base.P>
+                            </Base.H4>
                           </div>
                         }
                       </div>

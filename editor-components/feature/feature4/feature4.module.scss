@@ -132,6 +132,7 @@
           .icon-container-no-bg {
             width: 60px;
             height: 60px;
+            font-size: 2rem;
             border-radius: var(--composer-border-radius-full);
             display: flex;
             justify-content: center;
@@ -194,7 +195,7 @@
             justify-content: center;
             align-items: center;
 
-            .subtitle {
+            .title, .subtitle {
               text-align: center;
             }
           }

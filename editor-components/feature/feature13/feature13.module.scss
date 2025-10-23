@@ -1,14 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-html-background);
   .max-content {
     .wrapper {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
       .header {
-        .header-title {
+        .title {
           content: "";
         }
         .divider {
@@ -55,6 +54,9 @@
         }
 
         .comp-body-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
           width: 100%;
           .tabs {
             .tabs-list {
@@ -86,6 +88,7 @@
           }
           .comp-body-content {
             color: var(--composer-font-color-primary);
+            text-align: left;
           }
           .comp-progresses{
             .progress-item {
@@ -97,9 +100,13 @@
                 align-items: center;
                 margin-bottom: var(--composer-gap-xs);
                 color: var(--composer-font-color-primary);
+
+                .progress-title {
+                  text-align: left;
+                }
             
                 .progress-percent {
-
+                  content: "";
                 }
               }
             
@@ -123,6 +130,18 @@
           .comp-slider {
             flex-basis: auto;
           }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .comp-wrapper {
+          flex-direction: column;
         }
       }
     }

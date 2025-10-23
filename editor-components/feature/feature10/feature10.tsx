@@ -6,9 +6,10 @@ import { Base } from "../../../composer-base-components/base/base";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 type Card = {
-  image: string;
+  image: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
   url: string;
@@ -32,16 +33,28 @@ class Feature10 extends BaseFeature {
       value: "We've helped plenty of SaaS startups and scaleups develop reliable, secure infrastructure."
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightArrow",
       displayer: "Right Arrow",
-      value: "GoArrowRight"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GoArrowRight"
+      }
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "leftArrow",
       displayer: "Right Arrow",
-      value: "GoArrowLeft"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GoArrowLeft"
+      }
     });
 
     this.addProp({
@@ -55,10 +68,16 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
+              }
             },
             {
               type: "string",
@@ -75,7 +94,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "NavigateTo",
               value: ""
             }
           ]
@@ -86,10 +105,16 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6737443e506a40002c2ac5ae?alt=media"
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6737443e506a40002c2ac5ae?alt=media"
+              }
             },
             {
               type: "string",
@@ -106,7 +131,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "NavigateTo",
               value: ""
             }
           ]
@@ -117,10 +142,16 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              }
             },
             {
               type: "string",
@@ -137,7 +168,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "NavigateTo",
               value: ""
             }
           ]
@@ -148,10 +179,16 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              }
             },
             {
               type: "string",
@@ -168,7 +205,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "NavigateTo",
               value: ""
             }
           ]
@@ -179,10 +216,16 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              }
             },
             {
               type: "string",
@@ -199,7 +242,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "NavigateTo",
               value: ""
             }
           ]
@@ -210,10 +253,16 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+              }
             },
             {
               type: "string",
@@ -230,7 +279,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "NavigateTo",
               value: ""
             }
           ]
@@ -315,7 +364,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickPrev();
                     }}
                     className={this.decorateCSS("arrow-left")}>
-                    <Base.Icon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></Base.Icon>
+                    <Base.Media value={this.getPropValue("leftArrow")} className={this.decorateCSS("icon")} />
                   </button>
                 )}
                 {this.getPropValue("rightArrow") && (
@@ -324,7 +373,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickNext();
                     }}
                     className={this.decorateCSS("arrow-right")}>
-                    <Base.Icon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
+                    <Base.Media value={this.getPropValue("rightArrow")} className={this.decorateCSS("icon")} />
                   </button>
                 )}
               </div>
@@ -342,7 +391,7 @@ class Feature10 extends BaseFeature {
                     const titleExist = !!this.castToString(item.title);
                     const descExist = !!this.castToString(item.description);
 
-                    if (!item.image && !titleExist && !descExist) return null;
+                    if (!item.image?.url && !titleExist && !descExist) return null;
 
                     return (
                       <ComposerLink path={item.url}>
@@ -351,7 +400,7 @@ class Feature10 extends BaseFeature {
                           className={`${this.decorateCSS("card-container")} ${!(titleExist || descExist) && this.decorateCSS("fit-content")}`}
                         >
                           {item.image && (
-                            <img className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} src={item.image} alt={this.castToString(item.title)} />
+                            <Base.Media value={item.image} className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} />
                           )}
                           {(titleExist || descExist) && (
                             <div className={this.decorateCSS("bottom")}>
@@ -378,7 +427,7 @@ class Feature10 extends BaseFeature {
               {!!this.castToString(button.text) && (
                 <ComposerLink path={button.url}>
                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {button.text}
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                   </Base.Button>
                 </ComposerLink>
               )}

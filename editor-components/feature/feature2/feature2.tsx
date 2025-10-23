@@ -2,12 +2,13 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 
 type Box = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  icon: string;
+  icon: TypeMediaInputValue;
 };
 
 class Feature2 extends BaseFeature {
@@ -36,10 +37,16 @@ class Feature2 extends BaseFeature {
               value: "The architecture company meets with the client to discuss their needs, budget, and timeline. They may also visit the site to get a better understanding of the project."
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaGlobe",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaGlobe",
+              },
             },
           ],
         },
@@ -61,10 +68,16 @@ class Feature2 extends BaseFeature {
               value: "Based on the client's requirements, the architecture company creates a concept design that outlines the overall vision for the project. This may include sketches, 3D models, or computer-generated renderings."
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "SiAltiumdesigner",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "SiAltiumdesigner",
+              },
             },
           ],
         },
@@ -86,10 +99,16 @@ class Feature2 extends BaseFeature {
               value: "Once the client approves the concept design, the architecture company begins to develop detailed drawings and plans. This may involve collaborating with engineers, contractors, and other specialists to ensure that the design is feasible."
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "CgIfDesign",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "CgIfDesign",
+              },
             },
           ],
         },
@@ -111,10 +130,16 @@ class Feature2 extends BaseFeature {
               value: "Before construction can begin, the architecture company must obtain the necessary permits and approvals from local authorities. This may involve submitting plans and documents for review and responding to any questions or co"
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaRegNewspaper",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaRegNewspaper",
+              },
             },
           ],
         }
@@ -170,7 +195,7 @@ class Feature2 extends BaseFeature {
             {items.map((item: Box, index: number) => {
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
-              const iconExist = !!item.icon;
+              const iconExist = !!item.icon?.name;
               const shouldRender = titleExist || descExist || iconExist;
 
               if (!shouldRender) return null;
@@ -183,7 +208,7 @@ class Feature2 extends BaseFeature {
                       ${!showLine ?
                       this.decorateCSS("remove-line")
                       : (((index + 1) % itemCount === 0) ||
-                        (items[index + 1] && !items[index + 1]?.icon))
+                        (items[index + 1] && !items[index + 1]?.icon?.name))
                         ? this.decorateCSS("remove-line")
                         : ""}
                     `}
@@ -193,9 +218,9 @@ class Feature2 extends BaseFeature {
                       {showBadge && (
                         <Base.P className={this.decorateCSS("item-index")}>{index + 1}</Base.P>
                       )}
-                      <Base.Icon
-                        name={item.icon}
-                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      <Base.Media
+                        value={item.icon}
+                        className={this.decorateCSS("icon")}
                       />
                     </>
                   )}

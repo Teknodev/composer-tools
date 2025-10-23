@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 
 type Card = {
-  icon: string;
+  icon: { type: "icon"; name: string };
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -40,10 +40,16 @@ class Feature8 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaHandPointer",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaHandPointer",
+              },
             },
             {
               type: "string",
@@ -65,10 +71,16 @@ class Feature8 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaArrowsAltV",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaArrowsAltV",
+              },
             },
             {
               type: "string",
@@ -90,10 +102,16 @@ class Feature8 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "RiFoldersFill",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "RiFoldersFill",
+              },
             },
             {
               type: "string",
@@ -115,10 +133,16 @@ class Feature8 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaHandPointer",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaHandPointer",
+              },
             },
             {
               type: "string",
@@ -140,10 +164,16 @@ class Feature8 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaHandPointer",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaHandPointer",
+              },
             },
             {
               type: "string",
@@ -262,9 +292,9 @@ class Feature8 extends BaseFeature {
                 return (
                   <div className={this.decorateCSS("card")}>
                     {card.icon && (
-                      <Base.Icon
-                        name={card.icon}
-                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      <Base.Media
+                        value={card.icon}
+                        className={this.decorateCSS("icon")}
                       />
                     )}
                     {titleExist && (
