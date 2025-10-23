@@ -1,8 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-// removed unused local variables; rely on global CSS vars
-
-/* Root container spacing; aligns with section paddings */
 .container {
   width: 100%;
   background-color: var(--composer-html-background, #fff);
@@ -10,39 +7,41 @@
   container-type: inline-size;
 }
 
-/* Reset default inner element margins/paddings; spacing is controlled via gap */
-.container :where(h1, h2, h3, h4, h5, h6, p) { margin: 0; }
-.container :where(ul, ol) { margin: 0; padding: 0; }
+.container :where(h1, h2, h3, h4, h5, h6, p) {
+  margin: 0;
+}
 
-/* Desktop Styles (Default) */
+.container :where(ul, ol) {
+  margin: 0;
+  padding: 0;
+}
+
 .max-content {
   margin: 0 auto;
   width: 100%;
   max-width: var(--composer-content-width);
 }
 
-/* 3-column grid: left | divider | right */
 .grid {
-  display: grid !important; /* Override Base.ContainerGrid flex */
-  grid-template-columns: 1fr auto 2fr; /* 1:2 ratio with auto divider */
-  gap: 0 !important;
+  display: flex !important;
+  flex-direction: row;
   align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
   width: 100%;
   margin-top: 0;
-  flex-wrap: nowrap !important; /* Override Base.ContainerGrid */
-  
-  &.noDivider {
-    grid-template-columns: 1fr 2fr; /* 2-column when divider is hidden */
-    gap: var(--composer-gap-lg) !important; /* Add gap when no divider */
-  }
+  gap: 0 !important;
 }
 
 .dividerColumn {
   display: flex;
   align-items: stretch;
   justify-content: center;
-  width: 100%;
-  padding: 0 1.5rem 0 0.75rem; /* right:left = 2:1 ratio */
+  width: auto;
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding: 0 calc(var(--composer-gap-xl) * 2) 0 var(--composer-gap-xl);
+  min-width: 0;
 }
 
 .dividerWrapper {
@@ -56,51 +55,90 @@
   display: block;
   width: 0.125rem;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.12);
+  background-color: var(--composer-font-color-primary, #000000);
+  opacity: 0.12;
+  transition: opacity 0.3s ease;
 }
 
-.leftContent {
+.grid.noDivider {
+  .dividerLine {
+    opacity: 0;
+  }
+}
+
+/* Ensure divider is always visible when showDivider is true */
+.grid:not(.noDivider) {
+  .dividerLine {
+    opacity: 0.12;
+  }
+}
+
+.leftContent,
+.left-column {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--left-spacing, 8.75rem) * 0.6);
-  align-items: flex-start; /* left align */
+  gap: var(--composer-gap-xl);
+  align-items: flex-start;
   text-align: left;
-  width: 100%;
-  max-width: none; /* Allow full width of grid cell */
-  min-height: 100%; /* Expand to full grid cell height */
+  flex: 0 0 auto;
+  width: 35%;
+  max-width: 450px;
+  min-width: 280px;
+  min-height: 100%;
   height: auto;
-  margin-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  justify-content: flex-start; /* allow vertical positioning */
+  margin: 0;
+  padding: 0;
+  justify-content: flex-start;
+}
+
+/* Header section for subtitle and title spacing */
+.leftContent .header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-md);
+  margin-bottom: var(--composer-gap-lg);
+}
+
+
+.leftContent .leftTitle {
+  margin: 0;
+  padding: 0;
+}
+
+.main-title {
+  content: "";
 }
 
 /* Editor Design Panel Alignment Controls */
 .container {
-  /* Text alignment controls - CSS class support */
-  &.text-align-left,
+
+  /* Text alignment controls - Content9 style */
   &[style*="text-align: left"] {
     .leftContent {
       align-items: flex-start;
       text-align: left;
-      margin-left: 0;
-      margin-right: 0;
-    }
-    .listWrapper { justify-content: flex-start; }
-    .list { align-items: flex-start; }
-    .ctaWrapper { justify-content: flex-start; }
-    .rightColumn {
-      align-items: flex-start;
-      text-align: left;
-    }
-    .detailsSection {
-      align-items: flex-start;
-      text-align: left;
     }
     .leftTitle {
       text-align: left;
     }
-    .subtitle {
+    .listWrapper {
+      justify-content: flex-start;
+    }
+    .list {
+      align-items: flex-start;
+    }
+    .listItem {
+      justify-content: flex-start;
+      text-align: left;
+    }
+    .ctaWrapper {
+      justify-content: flex-start;
+    }
+    .ctaButton {
+      text-align: left;
+    }
+    .rightColumn {
+      align-items: flex-start;
       text-align: left;
     }
     .infoLine {
@@ -108,29 +146,32 @@
     }
   }
 
-  &.text-align-center,
   &[style*="text-align: center"] {
     .leftContent {
       align-items: center;
       text-align: center;
-      margin-left: 0;
-      margin-right: 0;
-    }
-    .listWrapper { justify-content: center; }
-    .list { align-items: center; }
-    .ctaWrapper { justify-content: center; }
-    .rightColumn {
-      align-items: center;
-      text-align: center;
-    }
-    .detailsSection {
-      align-items: center;
-      text-align: center;
     }
     .leftTitle {
       text-align: center;
     }
-    .subtitle {
+    .listWrapper {
+      justify-content: center;
+    }
+    .list {
+      align-items: center;
+    }
+    .listItem {
+      justify-content: center;
+      text-align: center;
+    }
+    .ctaWrapper {
+      justify-content: center;
+    }
+    .ctaButton {
+      text-align: center;
+    }
+    .rightColumn {
+      align-items: center;
       text-align: center;
     }
     .infoLine {
@@ -138,29 +179,32 @@
     }
   }
 
-  &.text-align-right,
   &[style*="text-align: right"] {
     .leftContent {
       align-items: flex-end;
       text-align: right;
-      margin-left: 0;
-      margin-right: 0;
-    }
-    .listWrapper { justify-content: flex-end; }
-    .list { align-items: flex-end; }
-    .ctaWrapper { justify-content: flex-end; }
-    .rightColumn {
-      align-items: flex-end;
-      text-align: right;
-    }
-    .detailsSection {
-      align-items: flex-end;
-      text-align: right;
     }
     .leftTitle {
       text-align: right;
     }
-    .subtitle {
+    .listWrapper {
+      justify-content: flex-end;
+    }
+    .list {
+      align-items: flex-end;
+    }
+    .listItem {
+      justify-content: flex-end;
+      text-align: right;
+    }
+    .ctaWrapper {
+      justify-content: flex-end;
+    }
+    .ctaButton {
+      text-align: right;
+    }
+    .rightColumn {
+      align-items: flex-end;
       text-align: right;
     }
     .infoLine {
@@ -168,29 +212,32 @@
     }
   }
 
-  &.text-align-justify,
   &[style*="text-align: justify"] {
     .leftContent {
-      align-items: flex-start;
-      text-align: justify;
-      margin-left: auto;
-      margin-right: 0;
-    }
-    .listWrapper { justify-content: flex-start; }
-    .list { align-items: flex-start; }
-    .ctaWrapper { justify-content: flex-start; }
-    .rightColumn {
-      align-items: flex-start;
-      text-align: justify;
-    }
-    .detailsSection {
       align-items: flex-start;
       text-align: justify;
     }
     .leftTitle {
       text-align: justify;
     }
-    .subtitle {
+    .listWrapper {
+      justify-content: flex-start;
+    }
+    .list {
+      align-items: flex-start;
+    }
+    .listItem {
+      justify-content: flex-start;
+      text-align: justify;
+    }
+    .ctaWrapper {
+      justify-content: flex-start;
+    }
+    .ctaButton {
+      text-align: justify;
+    }
+    .rightColumn {
+      align-items: flex-start;
       text-align: justify;
     }
     .infoLine {
@@ -207,22 +254,37 @@
       margin-left: auto;
       margin-right: 0;
     }
-    .listWrapper { justify-content: flex-start; }
-    .list { align-items: flex-start; }
-    .ctaWrapper { justify-content: flex-start; }
+
+    .listWrapper {
+      justify-content: flex-start;
+    }
+
+    .list {
+      align-items: flex-start;
+    }
+
+    .ctaWrapper {
+      justify-content: flex-start;
+    }
   }
 
   /* Vertical positioning of text block inside left column (top/center/bottom) */
   &[style*="align-content: flex-start"] {
-    .leftContent { justify-content: flex-start; }
+    .leftContent {
+      justify-content: flex-start;
+    }
   }
 
   &[style*="align-content: center"] {
-    .leftContent { justify-content: center; }
+    .leftContent {
+      justify-content: center;
+    }
   }
 
   &[style*="align-content: flex-end"] {
-    .leftContent { justify-content: flex-end; }
+    .leftContent {
+      justify-content: flex-end;
+    }
   }
 
   &[style*="justify-content: center"] {
@@ -233,9 +295,18 @@
       margin-left: 0;
       margin-right: 0;
     }
-    .listWrapper { justify-content: center; }
-    .list { align-items: center; }
-    .ctaWrapper { justify-content: center; }
+
+    .listWrapper {
+      justify-content: center;
+    }
+
+    .list {
+      align-items: center;
+    }
+
+    .ctaWrapper {
+      justify-content: center;
+    }
   }
 
   &[style*="justify-content: flex-end"] {
@@ -246,9 +317,18 @@
       margin-left: 0;
       margin-right: auto;
     }
-    .listWrapper { justify-content: flex-end; }
-    .list { align-items: flex-end; }
-    .ctaWrapper { justify-content: flex-end; }
+
+    .listWrapper {
+      justify-content: flex-end;
+    }
+
+    .list {
+      align-items: flex-end;
+    }
+
+    .ctaWrapper {
+      justify-content: flex-end;
+    }
   }
 
   /* Align-items controls */
@@ -257,11 +337,16 @@
       align-items: flex-start;
       text-align: left;
     }
-    .list { align-items: flex-start; }
+
+    .list {
+      align-items: flex-start;
+    }
+
     .rightColumn {
       align-items: flex-start;
       text-align: left;
     }
+
     .detailsSection {
       align-items: flex-start;
       text-align: left;
@@ -273,11 +358,16 @@
       align-items: center;
       text-align: center;
     }
-    .list { align-items: center; }
+
+    .list {
+      align-items: center;
+    }
+
     .rightColumn {
       align-items: center;
       text-align: center;
     }
+
     .detailsSection {
       align-items: center;
       text-align: center;
@@ -289,11 +379,16 @@
       align-items: flex-end;
       text-align: right;
     }
-    .list { align-items: flex-end; }
+
+    .list {
+      align-items: flex-end;
+    }
+
     .rightColumn {
       align-items: flex-end;
       text-align: right;
     }
+
     .detailsSection {
       align-items: flex-end;
       text-align: right;
@@ -306,42 +401,86 @@
 .leftContent[style*="text-align: left"] {
   align-items: flex-start;
   text-align: left;
-  .listWrapper { justify-content: flex-start; }
-  .list { align-items: flex-start; }
-  .ctaWrapper { justify-content: flex-start; }
+
+  .listWrapper {
+    justify-content: flex-start;
+  }
+
+  .list {
+    align-items: flex-start;
+  }
+
+  .ctaWrapper {
+    justify-content: flex-start;
+  }
 }
 
 .leftContent.text-align-center,
 .leftContent[style*="text-align: center"] {
   align-items: center;
   text-align: center;
-  .listWrapper { justify-content: center; }
-  .list { align-items: center; }
-  .ctaWrapper { justify-content: center; }
+
+  .listWrapper {
+    justify-content: center;
+  }
+
+  .list {
+    align-items: center;
+  }
+
+  .ctaWrapper {
+    justify-content: center;
+  }
 }
 
 .leftContent.text-align-right,
 .leftContent[style*="text-align: right"] {
   align-items: flex-end;
   text-align: right;
-  .listWrapper { justify-content: flex-end; }
-  .list { align-items: flex-end; }
-  .ctaWrapper { justify-content: flex-end; }
+
+  .listWrapper {
+    justify-content: flex-end;
+  }
+
+  .list {
+    align-items: flex-end;
+  }
+
+  .ctaWrapper {
+    justify-content: flex-end;
+  }
 }
 
 .leftContent.text-align-justify,
 .leftContent[style*="text-align: justify"] {
   align-items: flex-start;
   text-align: justify;
-  .listWrapper { justify-content: flex-start; }
-  .list { align-items: flex-start; }
-  .ctaWrapper { justify-content: flex-start; }
+
+  .listWrapper {
+    justify-content: flex-start;
+  }
+
+  .list {
+    align-items: flex-start;
+  }
+
+  .ctaWrapper {
+    justify-content: flex-start;
+  }
 }
 
 /* Allow direct vertical positioning when styles are applied on leftContent */
-.leftContent[style*="align-content: flex-start"] { justify-content: flex-start; }
-.leftContent[style*="align-content: center"] { justify-content: center; }
-.leftContent[style*="align-content: flex-end"] { justify-content: flex-end; }
+.leftContent[style*="align-content: flex-start"] {
+  justify-content: flex-start;
+}
+
+.leftContent[style*="align-content: center"] {
+  justify-content: center;
+}
+
+.leftContent[style*="align-content: flex-end"] {
+  justify-content: flex-end;
+}
 
 /* Respect global alignment setting (Base.Container adds .center/.left) */
 .container:global(.center) {
@@ -351,79 +490,144 @@
     margin-left: 0;
     margin-right: 0;
   }
-  .listWrapper { justify-content: center; }
-  .list { align-items: center; }
-  .ctaWrapper { justify-content: center; }
+
+  .listWrapper {
+    justify-content: center;
+  }
+
+  .list {
+    align-items: center;
+  }
+
+  .ctaWrapper {
+    justify-content: center;
+  }
 }
 
 /* Global design alignment hooks (all breakpoints) */
 .container.text-align-center,
 .container[style*="text-align: center"],
 .container[style*="justify-content: center"] {
-  .leftContent { justify-content: center; }
-  .leftContent { align-items: center; text-align: center; }
-  .listWrapper { justify-content: center; }
-  .list { align-items: center; }
-  .listItem { justify-content: center; text-align: center; }
+  .leftContent {
+    justify-content: center;
+  }
+
+  .leftContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .listWrapper {
+    justify-content: center;
+  }
+
+  .list {
+    align-items: center;
+  }
+
+  .listItem {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 .container.text-align-right,
 .container[style*="text-align: right"],
 .container[style*="justify-content: flex-end"] {
-  .leftContent { justify-content: flex-end; }
-  .leftContent { align-items: flex-end; text-align: right; }
-  .listWrapper { justify-content: flex-end; }
-  .list { align-items: flex-end; }
-  .listItem { justify-content: flex-end; text-align: right; }
+  .leftContent {
+    justify-content: flex-end;
+  }
+
+  .leftContent {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .listWrapper {
+    justify-content: flex-end;
+  }
+
+  .list {
+    align-items: flex-end;
+  }
+
+  .listItem {
+    justify-content: flex-end;
+    text-align: right;
+  }
 }
 
 .container.text-align-left,
 .container[style*="text-align: left"],
 .container[style*="justify-content: flex-start"] {
-  .leftContent { justify-content: flex-start; }
-  .leftContent { align-items: flex-start; text-align: left; }
-  .listWrapper { justify-content: flex-start; }
-  .list { align-items: flex-start; }
-  .listItem { justify-content: flex-start; text-align: left; }
+  .leftContent {
+    justify-content: flex-start;
+  }
+
+  .leftContent {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .listWrapper {
+    justify-content: flex-start;
+  }
+
+  .list {
+    align-items: flex-start;
+  }
+
+  .listItem {
+    justify-content: flex-start;
+    text-align: left;
+  }
 }
 
 
 
 .leftTitle {
-  font-size: clamp(2.25rem, 3vw + 0.75rem, 3rem);
-  line-height: 1.12; /* a bit tighter to match reference */
-  letter-spacing: -0.01em; /* slight tracking tighten */
-  word-spacing: 0; /* avoid extra gaps between words */
-  font-weight: 700; /* lighter weight similar to sample */
-  color: var(--composer-font-color-primary, #000000);
-  margin: 0; /* remove extra spacing under the title */
-  max-width: 20ch; /* narrower measure for multi-line wrap */
-  white-space: normal; /* allow natural wrapping */
-  hyphens: auto; /* enable better word breaking */
-}
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: none;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-weight: 800;
 
-// removed custom colorful variant; color is handled by Base.SectionTitle with theme
+  /* Desktop için daha büyük font */
+  @container (min-width: #{$composer-tablet-width + 1px}) {
+    font-size: calc(2.5 * var(--composer-font-size-md));
+  }
+
+  /* Tablet için orta boy font */
+  @container (max-width: #{$composer-tablet-width}) {
+    font-size: calc(2.25 * var(--composer-font-size-md));
+  }
+
+  /* Mobil için küçük font */
+  @container (max-width: #{$composer-phone-width}) {
+    font-size: calc(1.75 * var(--composer-font-size-md));
+  }
+}
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: var(--composer-gap-md);
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 6.25rem;
-  /* Ensure layout doesn't collapse when empty */
-  font-size: 1.5rem; /* larger left items */
-  align-items: flex-start; /* left align list items */
+  align-items: flex-start;
 }
 
 .listItem {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 3rem;
-  padding: 0.75rem 0 0.75rem 0.75rem;
+  min-height: 2.5rem;
+  padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-sm);
   background: transparent;
   border: none;
   outline: none;
@@ -440,33 +644,28 @@
   justify-content: flex-start;
 }
 
-/* Accent bar left to the active list item */
 .listItem::before {
   content: "";
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 0.1875rem;
-  height: 0; /* collapsed by default */
-  border-radius: 999px;
+  width: 0.25rem;
+  height: 0;
+  border-radius: 2px;
   background-color: transparent;
   opacity: 0;
-  transition: height 0.25s ease, opacity 0.25s ease, background-color 0.25s ease;
+  transition: height 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
-
 
 .listItem.isActive {
   color: var(--composer-primary-color, #f97316);
   font-weight: var(--composer-font-weight-bold);
-  transform: none; /* keep same starting x for all items */
-  /* keep original cursor/accent animation via ::before only */
+  transform: translateX(0.5rem);
 }
 
-/* Typography wrapper for list label (aligns with content9) */
 .listItemText {
   margin: 0;
-  font-size: 1.5rem;
   color: inherit;
   font-weight: inherit;
   line-height: 1.3;
@@ -474,86 +673,99 @@
 
 .listItem.isActive::before {
   background-color: currentColor;
-  height: 1.2em; /* vertical accent height */
+  height: 100%;
   opacity: 1;
 }
 
+/* Liste stilleri */
+.list {
+  gap: var(--composer-gap-sm);
+}
 
+.listItem {
+  padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-sm);
+  min-height: 2rem;
+
+  &::before {
+    width: 0.3rem;
+    height: 0;
+    border-radius: 2px;
+  }
+
+  &.isActive {
+    transform: translateX(0.5rem);
+
+    &::before {
+      height: 100%;
+      opacity: 1;
+      background-color: currentColor;
+    }
+  }
+}
 
 .rightColumn {
-  justify-content: flex-start !important; /* Override Base.VerticalContent */
-  width: 100%;
+  justify-content: flex-start !important;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 400px;
   margin: 0;
   padding: 0;
-  gap: 1.25rem !important; /* Override Base.VerticalContent default gap */
+  gap: var(--composer-gap-lg) !important;
   opacity: 0;
   transform: translateY(1.5rem);
   transition: opacity 0.4s ease, transform 0.4s ease;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+
   &.isActive {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* rightContentContainer removed - content moved to rightColumn */
-
-.rightColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 100%;
-  height: 100%;
-}
-
-/* mediaSection removed - imageBox moved directly to rightContent */
-
 .imageBox {
-  /* Prefer container background; fallback to app background */
   background: var(--composer-html-background, var(--background));
   border: 1px solid rgba(229, 231, 235, 0.75);
-  border-radius: var(--imagebox-border-radius, 1rem);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-  --imagebox-padding: 25px;
-  padding: var(--imagebox-padding); /* frame thickness */
+  border-radius: var(--composer-border-radius-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: calc(var(--composer-gap-lg) * 0.8);
   width: 100%;
+  max-width: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* align to right like content9 */
+  justify-content: center;
   margin: 0;
+  margin-left: auto;
   position: relative;
-  overflow: hidden; /* clip scaled image */
+  overflow: hidden;
 }
 
 .image {
   width: 100%;
   height: auto;
-  /* Inner image corner radius (frame radius minus inner gap) */
-  --image-inner-radius: calc(var(--imagebox-border-radius, 1rem) - 0.25rem);
-  border-radius: var(--image-inner-radius);
+  border-radius: var(--composer-border-radius-lg);
   object-fit: cover;
   position: relative;
   display: block;
 }
 
-/* Hover effects removed */
-
-/* detailsSection removed - infoLine moved directly to rightContent */
-
 .infoLine {
   line-height: 1.6;
   color: var(--composer-font-color-primary, #000000);
   font-weight: 400;
-  margin: 0;
-  font-size: 1.125rem; /* align with other content text scale */
+  margin: 0 0 var(--composer-gap-md) 0;
   width: 100%;
+  text-align: left;
+  align-self: flex-start;
 }
 
 .infoLine strong {
   font-weight: 700;
   color: var(--composer-font-color-primary, #000000);
-  margin-right: 0.5rem;
+  margin-right: var(--composer-gap-xs);
 }
 
 .infoLine span {
@@ -570,7 +782,6 @@
 
 /* ctaLeftPlaceholder, ctaDividerPlaceholder, ctaColumn removed - button moved to rightContent */
 
-/* Animation and Transition Classes */
 .fadeIn {
   animation: fadeInAnimation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -579,7 +790,6 @@
   opacity: 1;
 }
 
-/* Legacy helper dot (kept for compatibility) */
 .activeBar {
   position: absolute;
   left: -1rem;
@@ -616,351 +826,393 @@
   }
 }
 
-/* CTA Button Styles - Use Base.Button like other components */
 .ctaWrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* align with text */
+  justify-content: flex-start;
   width: 100%;
+  margin: 0;
+  align-self: flex-start;
 }
 
 .ctaButton {
   border-radius: var(--composer-border-radius-sm);
 }
 
-/* Tablet Styles */
+/* Tablet Responsive Design */
 @container (max-width: #{$composer-tablet-width}) {
+  .max-content {
+    padding: 0;
+  }
 
-  /* Edge-to-edge on tablet as well */
-  /* inherit Base spacing on tablet */
-  .max-content { padding: unset; }
-
+  /* Flexbox yapısı - tablet'te biraz daha dar */
   .grid {
-    grid-template-columns: 1fr auto 2fr; /* keep 1:2 ratio on tablet */
-    gap: 0 !important;
-    align-items: center;
-    
-    &.noDivider {
-      grid-template-columns: 1fr 2fr;
-      gap: var(--composer-gap-md) !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  /* Header spacing for tablet */
+  .leftContent .header {
+    gap: var(--composer-gap-sm);
+    margin-bottom: var(--composer-gap-xs);
+  }
+
+  /* Divider spacing */
+  .dividerColumn {
+    padding: 0 var(--composer-gap-md) 0 var(--composer-gap-sm);
+  }
+
+  .dividerLine {
+    opacity: 0.12;
+    transition: opacity 0.3s ease;
+  }
+
+  .grid.noDivider {
+    .dividerLine {
+      opacity: 0;
     }
   }
 
-  .dividerColumn {
-    padding: 0 1.25rem 0 0.625rem; /* right:left = 2:1 ratio (smaller on tablet) */
+  /* Sol içerik alanı */
+  .leftContent {
+    flex: 0 0 auto;
+    width: 30%;
+    min-width: 180px;
+    max-width: 280px;
+    gap: var(--composer-gap-lg);
+    padding: 0;
+    overflow: hidden;
   }
 
-  /* Allow design panel alignment on the whole block for tablet */
+  .leftTitle {
+    line-height: 1.15;
+    font-size: calc(1.5 * var(--composer-font-size-md));
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+
+  /* Liste stilleri */
+  .list {
+    gap: var(--composer-gap-sm);
+  }
+
+  .listItem {
+    padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-sm);
+    min-height: 2rem;
+    transition: all 0.3s ease;
+
+    &::before {
+      width: 0.3rem;
+      height: 0;
+      border-radius: 2px;
+    }
+
+    &.isActive {
+      transform: translateX(0.5rem);
+      color: var(--composer-primary-color, #f97316);
+      font-weight: var(--composer-font-weight-bold);
+
+      &::before {
+        height: 100%;
+        opacity: 1;
+        background-color: currentColor;
+      }
+    }
+  }
+
+  .listItemText {
+    font-size: calc(1.1 * var(--composer-font-size-md));
+    line-height: 1.3;
+  }
+
+  /* Sağ içerik alanı */
+  .rightColumn {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 300px;
+    gap: var(--composer-gap-md);
+    padding: 0;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+
+    &.isActive {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .imageBox {
+    padding: var(--composer-gap-sm);
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+  }
+
+  .image {
+    width: 100%;
+    height: auto;
+  }
+
+  .infoLine {
+    margin: 0 0 var(--composer-gap-sm) 0;
+    font-size: calc(0.95 * var(--composer-font-size-md));
+    line-height: 1.5;
+  }
+
+  .ctaWrapper {
+    margin-top: var(--composer-gap-md);
+  }
+
+  /* Alignment kontrolleri */
   .container.text-align-center,
   .container[style*="text-align: center"],
-  .container[style*="justify-content: center"],
   .container:global(.center) {
-    .leftContent { align-items: center; text-align: center; }
-    .listWrapper { justify-content: center; }
-    .list { align-items: center; }
-    .listItem { justify-content: center; text-align: center; }
+    .leftContent {
+      align-items: center;
+      text-align: center;
+    }
+
+    .list {
+      align-items: center;
+    }
+
+    .listItem {
+      justify-content: center;
+      text-align: center;
+    }
   }
 
   .container.text-align-right,
   .container[style*="text-align: right"],
-  .container[style*="justify-content: flex-end"],
   .container:global(.right) {
-    .leftContent { align-items: flex-end; text-align: right; }
-    .listWrapper { justify-content: flex-end; }
-    .list { align-items: flex-end; }
-    .listItem { justify-content: flex-end; text-align: right; }
+    .leftContent {
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .list {
+      align-items: flex-end;
+    }
+
+    .listItem {
+      justify-content: flex-end;
+      text-align: right;
+    }
   }
 
   .container.text-align-left,
   .container[style*="text-align: left"],
-  .container[style*="justify-content: flex-start"],
   .container:global(.left) {
-    .leftContent { align-items: flex-start; text-align: left; }
-    .listWrapper { justify-content: flex-start; }
-    .list { align-items: flex-start; }
-    .listItem { justify-content: flex-start; text-align: left; }
+    .leftContent {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .list {
+      align-items: flex-start;
+    }
+
+    .listItem {
+      justify-content: flex-start;
+      text-align: left;
+    }
   }
-
-  .leftContent {
-    gap: 1.5rem;
-  }
-
-  .leftTitle {
-    font-size: clamp(2rem, 2.2vw + 1rem, 2.6rem);
-    line-height: 1.25;
-    max-width: 30ch;
-  }
-
-  .list {
-    gap: 0.875rem;
-    align-items: flex-start; /* left align like desktop */
-  }
-
-  .listItem {
-    font-size: 1.125rem;
-    padding: 0.625rem 0 0.625rem 0.75rem; /* space for accent bar */
-  }
-
-  /* Make the active caret/accent more visible on tablet */
-  .listItem::before {
-    width: 0.22rem;
-  }
-
-  .listItem.isActive::before {
-    background-color: currentColor;
-    height: 1.5em;
-    opacity: 1;
-  }
-
-  .rightColumn {
-    gap: 1.75rem;
-  }
-
-  .imageBox {
-    background: var(--composer-html-background, var(--background));
-    border: 1px solid rgba(229, 231, 235, 0.75);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-    --imagebox-padding: 14px;
-    padding: var(--imagebox-padding);
-    border-radius: var(--imagebox-border-radius, 1rem);
-    width: 100%;
-    margin: 0;
-    justify-content: center; /* align image vertically with text */
-  }
-
-  /* Ensure right column content vertically aligns with left on tablet */
-  .rightColumn {
-    align-items: center;
-  }
-
-  .image {
-    height: 100%;
-  }
-
-  .info {
-    gap: 1.125rem;
-  }
-
-  .infoLine {
-    font-size: 1rem;
-  }
-
-  .ctaWrapper {
-    margin-top: 16px;
-    justify-content: flex-start;
-  }
-
-/* Expose button text field to design tree (consistency with other contents) */
-.button { display: inline-flex; }
-
-  /* Button styles removed - use Base.Button */
 }
 
-/* Desktop button styles removed - use Base.Button */
 
-
-/* Mobile Styles */
+/* Mobile Responsive Design - Content9 Style */
 @container (max-width: #{$composer-phone-width}) {
-
-  /* Edge-to-edge on mobile */
-  /* inherit Base spacing on mobile */
-  .max-content { padding: unset; }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem !important;
-    align-items: center;
-  }
-
-  /* align content under image; keep both centered and full width constraints */
-  .rightColumn {
-    align-items: center !important;
-    text-align: center;
-  }
-
-  .divider {
-    display: none;
-  }
-
-  /* Allow design panel alignment on the whole block for mobile */
-  .container.text-align-center,
-  .container[style*="text-align: center"],
-  .container[style*="justify-content: center"],
-  .container:global(.center) {
-    .leftContent { align-items: center; text-align: center; }
-    .listWrapper { justify-content: center; }
-    .list { align-items: center; }
-    .listItem { justify-content: center; text-align: center; }
-  }
-
-  .container.text-align-right,
-  .container[style*="text-align: right"],
-  .container[style*="justify-content: flex-end"],
-  .container:global(.right) {
-    .leftContent { align-items: flex-end; text-align: right; }
-    .listWrapper { justify-content: flex-end; }
-    .list { align-items: flex-end; }
-    .listItem { justify-content: flex-end; text-align: right; }
-  }
-
-  .leftContent {
-    gap: 1rem;
-  }
-
-  /* Default mobile alignment: center */
-  .leftContent {
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
-    text-align: center;
-    min-height: 100%;
-  }
-
-  .listWrapper {
-    width: 100%;
+  .container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+
+    .max-content {
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* Divider gizle */
+    .dividerColumn {
+      display: none;
+    }
+
+    /* Sol içerik */
+    .leftContent {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* Header */
+    .leftContent .header {
+      gap: var(--composer-gap-sm);
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* Başlık */
+    .leftTitle {
+      font-size: calc(1.5 * var(--composer-font-size-md));
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    /* Liste wrapper */
+    .listWrapper {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    /* Liste */
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      width: 100%;
+      align-items: flex-start;
+    }
+
+    /* Liste öğeleri */
+    .listItem {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: left;
+      width: auto;
+      max-width: 100%;
+      padding: var(--composer-gap-xs) var(--composer-gap-sm) var(--composer-gap-xs) 0;
+      min-height: 2.5rem;
+      margin: 0;
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0.3rem;
+        height: 100%;
+        max-height: calc(100% - (var(--composer-gap-xs) * 2));
+        border-radius: 2px;
+        opacity: 0;
+        transition: all 0.3s ease;
+        background-color: transparent;
+      }
+
+      &.isActive {
+        color: var(--composer-primary-color, #f97316);
+        font-weight: var(--composer-font-weight-bold);
+        transform: none;
+
+        &::before {
+          opacity: 1;
+          background-color: currentColor;
+        }
+      }
+    }
+
+    .listItemText {
+      margin: 0;
+      padding: 0 0 0 calc(0.3rem + var(--composer-gap-sm));
+      line-height: 1.4;
+      font-size: var(--composer-font-size-md);
+      text-align: left;
+    }
+
+    /* Sağ içerik */
+    .rightColumn {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      width: 100%;
+      align-items: flex-start;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(1rem);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+
+      &.isActive {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Image box */
+    .imageBox {
+      width: 100%;
+      padding: var(--composer-gap-sm);
+      background: var(--composer-html-background, #fff);
+      border: 1px solid rgba(229, 231, 235, 0.75);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      border-radius: var(--composer-border-radius-md);
+    }
+
+    /* Image */
+    .image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: var(--composer-border-radius-sm);
+    }
+
+    /* Info lines */
+    .infoLine {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-xs);
+      margin-bottom: var(--composer-gap-sm);
+      align-items: flex-start;
+      text-align: left;
+
+      strong {
+        font-weight: 700;
+        text-align: left;
+      }
+    }
+
+    /* CTA */
+    .ctaWrapper {
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    /* Button */
+    .ctaButton {
+      width: auto;
+      margin: 0;
+      text-align: left;
+    }
   }
-
-  .leftTitle {
-    font-size: clamp(1.75rem, 4.5vw + 0.5rem, 2.25rem);
-    line-height: 1.25;
-    text-align: center;
-    max-width: 30ch;
-  }
-
-  .list {
-    gap: 0.625rem;
-    align-items: center;
-  }
-
-  .listItem {
-    font-size: 1rem;
-    padding: 0.625rem 0; /* remove left padding on mobile */
-    text-align: center;
-    justify-content: center;
-    display: inline-flex; /* allow inline bar next to text */
-    align-items: center;
-    gap: 0.5rem;
-    transform: none;
-    outline: none;
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    margin: 0; /* align all from same x */
-  }
-
-  .listItem.isActive {
-    transform: none;
-    color: var(--composer-primary-color, #f97316);
-    font-weight: var(--composer-font-weight-bold);
-  }
-
-  /* place accent bar right before text on mobile without moving first letter */
-  .listItem {
-    position: relative;
-    padding-left: 0.5rem; /* reserve space for accent bar */
-  }
-
-  .listItem::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0.1875rem;
-    height: 0; /* collapsed by default */
-    background-color: transparent;
-    border-radius: 999px;
-    transition: height 0.25s ease, background-color 0.25s ease;
-  }
-
-  .listItem.isActive::before {
-    height: 1.1em;
-    background-color: currentColor;
-  }
-
-/* Remove default focus ring/outline on mobile and desktop */
-.listItem:focus,
-.listItem:focus-visible {
-  outline: none;
-  box-shadow: none;
-}
-
-  /* base ::before preserved at desktop; only height changes here */
-
-  .rightColumn {
-    gap: 1.5rem;
-  }
-
-  .imageBox {
-    --imagebox-padding: 12px; /* thicker on mobile */
-    padding: var(--imagebox-padding);
-    width: 100%;
-    background: var(--composer-html-background, var(--background));
-    border: 1px solid rgba(229, 231, 235, 0.75);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-    border-radius: var(--imagebox-border-radius, 1rem);
-    justify-content: center; /* center on mobile */
-    margin: 0;
-  }
-
-  .image {
-    height: 100%;
-  }
-
-  .infoLine {
-    font-size: 0.9375rem;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  /* Force vertical alignment when editor sets align-content on container or leftContent */
-  .container[style*="align-content: flex-start"],
-  .leftContent[style*="align-content: flex-start"] {
-    .leftContent { justify-content: flex-start !important; }
-  }
-
-  .container[style*="align-content: center"],
-  .leftContent[style*="align-content: center"] {
-    .leftContent { justify-content: center !important; }
-  }
-
-  .container[style*="align-content: flex-end"],
-  .leftContent[style*="align-content: flex-end"] {
-    .leftContent { justify-content: flex-end !important; }
-  }
-
-  .ctaWrapper {
-    margin-top: 0;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-  }
-
-  .ctaSection {
-    grid-template-columns: 1fr;
-  }
-
-  .ctaLeftPlaceholder,
-  .ctaDividerPlaceholder {
-    display: none;
-  }
-
-  .ctaColumn {
-    grid-column: auto;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    display: flex;
-  }
-
-  /* Mobile button styles removed - use Base.Button */
 }
 
 /* Empty State Styles - Shown when no items are present */

@@ -14,24 +14,13 @@ class Content27 extends BaseContent {
   }
 
   private initializeProps() {
-    // Typography controls (kept for editor design panel)
-    this.addProp({ type: "number", key: "title-font-size", displayer: "Title Font Size", value: 45 });
-    this.addProp({ type: "number", key: "list-font-size", displayer: "List Font Size", value: 22 });
+    // Main content props (like Content9 - outside items)
     this.addProp({
-      type: "select",
-      key: "title-font-weight",
-      displayer: "Title Font Weight",
-      value: "bold",
-      additionalParams: { selectItems: ["normal", "bold", "lighter", "100", "200", "300", "400", "500", "600", "700", "800", "900"] }
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Thousands of Agencies Have Chosen Duda as Their White Label Web Design Platform",
     });
-    this.addProp({ type: "number", key: "title-line-height", displayer: "Title Line Height", value: 1.1 });
-    this.addProp({ type: "number", key: "title-max-width", displayer: "Title Max Width (ch)", value: 22 });
-    this.addProp({ type: "number", key: "description-line-height", displayer: "Description Line Height", value: 1.6 });
-    this.addProp({ type: "number", key: "info-line-font-size", displayer: "Info Text Font Size", value: 20 });
-
-    // Generic content props
-    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
-    // Title color follows global theme via Base.SectionTitle
 
     // Button is a top-level prop (separate from items) like content9
     this.addProp(INPUTS.BUTTON("button", "Button", "Start a Free Trial", "#", null, null, "Primary"));
@@ -44,29 +33,18 @@ class Content27 extends BaseContent {
       value: true,
     });
 
-    // Images for each content item (root level for easy removal)
+    // Text alignment control
     this.addProp({
-      type: "image",
-      key: "contentImage1",
-      displayer: "Content 1 Image",
-      value: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-1@2x.png?v=1",
+      type: "select",
+      key: "textAlign",
+      displayer: "Text Alignment",
+      value: "left",
+      additionalParams: {
+        selectItems: ["left", "center", "right", "justify"]
+      }
     });
 
-    this.addProp({
-      type: "image",
-      key: "contentImage2",
-      displayer: "Content 2 Image",
-      value: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-2@2x.png?v=1",
-    });
-
-    this.addProp({
-      type: "image",
-      key: "contentImage3",
-      displayer: "Content 3 Image",
-      value: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-3@2x.png?v=2",
-    });
-
-    // Main items (header + 3 content + cta)
+    // Main items (each item now has its own image)
     this.addProp({ type: "array", key: "items", displayer: "Items", value: Content27.createDefaultItemsPreset() });
   }
 
@@ -92,12 +70,10 @@ class Content27 extends BaseContent {
       imageUrl?: string
     ): TypeUsableComponentProps => ({
       type: "object",
-      key: "item", // match content9 pattern for add/remove template
+      key: "item",
       displayer: "Item",
       value: [
-        { type: "string", key: "componentType", displayer: "Component Type", value: "content" },
-        { type: "string", key: "title", displayer: "Title", value: title },
-        { type: "string", key: "text", displayer: "Text", value: "" },
+        { type: "string", key: "title", displayer: "Tab Title", value: title },
         { type: "image", key: "image", displayer: "Image", value: imageUrl || "" },
         {
           type: "array",
@@ -108,24 +84,10 @@ class Content27 extends BaseContent {
       ],
     });
 
-    const headerItem: TypeUsableComponentProps = {
-      type: "object",
-      key: "item-header",
-      displayer: "Header",
-      value: [
-        { type: "string", key: "componentType", displayer: "Component Type", value: "header" },
-        {
-          type: "string",
-          key: "text",
-          displayer: "Header Text",
-          value: "Thousands of Agencies Have Chosen Duda as Their White Label Web Design Platform",
-        },
-      ],
-    };
-
     const contentItems = [
       {
         title: "Digital Solutions Provider",
+        image: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-1@2x.png?v=1",
         infos: [
           {
             label: "The Impact:",
@@ -140,10 +102,10 @@ class Content27 extends BaseContent {
             text: "Drag and drop editor for easy, client-managed design changes.",
           },
         ],
-        image: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-1@2x.png?v=1",
       },
       {
         title: "Award-Winning Marketing Firm",
+        image: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-2@2x.png?v=1",
         infos: [
           {
             label: "The Impact:",
@@ -158,10 +120,10 @@ class Content27 extends BaseContent {
             text: "Personalization engine for serving targeted content by audience.",
           },
         ],
-        image: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-2@2x.png?v=1",
       },
       {
         title: "Digital Marketing Leader",
+        image: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-3@2x.png?v=2",
         infos: [
           {
             label: "The Impact:",
@@ -176,12 +138,10 @@ class Content27 extends BaseContent {
             text: "Connected Data to prepopulate site templates with structured customer data.",
           },
         ],
-        image: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-3@2x.png?v=2",
       },
-    ].map((item, index) => createContentItem(item.title, item.infos, index + 1, (item as any).image));
+    ].map((item, index) => createContentItem(item.title, item.infos, index + 1, item.image));
 
-    // Return header and content items; button stays as top-level prop (like content9)
-    return [headerItem, ...contentItems];
+    return contentItems;
   }
 
   private setActiveTab(i: number) {
@@ -192,50 +152,11 @@ class Content27 extends BaseContent {
   }
 
   private parseItems(items: TypeUsableComponentProps[]) {
-    let headerAssigned = false;
-    return items.reduce(
-      (acc, item) => {
-        const value = this.getItemValue(item);
-        const type = this.getPropValue("componentType", { parent_object: value, as_string: true });
-
-        if (type === "header") {
-          if (!headerAssigned) {
-            acc.header = value;
-            headerAssigned = true;
-          } else {
-            // Treat any subsequent 'header' items as regular content so they don't disappear
-            acc.content.push(value);
-          }
-        } else if (type === "cta") {
-          acc.cta = value;
-        } else {
-          acc.content.push(value); // default to content when missing/unknown
-        }
-
-        return acc;
-      },
-      { header: null as any, cta: null as any, content: [] as any[] }
-    );
+    // Items artık sadece content items - header yok
+    return items.map((item: any) => this.getItemValue(item));
   }
 
   private getItemValue = (item: any) => item?.value || item || [];
-
-  private getComponentType = (item: any): string => {
-    const value = this.getItemValue(item);
-    return this.getPropValue("componentType", { parent_object: value, as_string: true });
-  };
-
-  // removed extractItemsByComponentType; content detection handled inline
-
-  private getContentItems(items: any[]) {
-    // Treat missing/unknown componentType as content by default
-    return items
-      .filter((item: any) => {
-        const t = this.getComponentType(item);
-        return t !== "header" && t !== "cta";
-      })
-      .map((item: any) => this.getItemValue(item));
-  }
 
   // getImages helpers are deprecated in favor of per-item images. Root-level
   // image props are still supported as a backward-compatible fallback.
@@ -290,9 +211,6 @@ class Content27 extends BaseContent {
     return { titleString, displayNode, hasText: !!this.castToString(displayNode) } as const;
   }
 
-  private computeShowDividerLine(showDivider: boolean, hasHeader: boolean, hasList: boolean, hasCTA: boolean) {
-    return showDivider && (hasHeader || hasList || hasCTA);
-  }
 
   private resolveActiveImage(activeItemData: any, activeIndex: number, hasContentItems: boolean) {
     const itemDefinesImage = hasContentItems ? this.itemHasField(activeItemData, "image") : false;
@@ -385,7 +303,7 @@ class Content27 extends BaseContent {
 
   private handleKeyDown = (event: React.KeyboardEvent) => {
     const items = this.castToObject("items") as TypeUsableComponentProps[] || [];
-    const contentItems = this.getContentItems(items);
+    const contentItems = this.parseItems(items);
 
     if (contentItems.length === 0) return;
 
@@ -415,7 +333,7 @@ class Content27 extends BaseContent {
 
   render() {
     const items = this.castToObject<TypeUsableComponentProps[]>("items") || [];
-    const { header: headerData, content: contentItems } = this.parseItems(items);
+    const contentItems = this.parseItems(items);
 
     const hasContentItems = contentItems.length > 0;
     const activeIndex = this.clampActiveIndex(contentItems);
@@ -424,62 +342,54 @@ class Content27 extends BaseContent {
     const rawInfos = this.getItemInfosFlexible(activeItemData);
     const activeItem = hasContentItems
       ? {
-          title: activeTitle,
-          titleString: activeTitle,
-          infos: rawInfos,
-        }
+        title: activeTitle,
+        titleString: activeTitle,
+        infos: rawInfos,
+      }
       : { title: "", titleString: "", infos: [] as TypeUsableComponentProps[] };
-    
+
     // If the item defines an image field, use it (even if empty) — no fallback.
     // Only fallback to legacy root-level image props when the item does NOT have an image field at all.
     const activeImageUrl = this.resolveActiveImage(activeItemData, activeIndex, hasContentItems);
-    
-    // background-image is no longer applied inline; keep for future use if needed
-    // Header text only from header item (no main-text fallback)
-    const headerText = headerData
-      ? this.getPropValue("text", { parent_object: headerData })
-      : "";
-    const subtitleText = this.getPropValue("subtitle");
+
+    // Get title from top-level prop (like Content9)
+    const titleText = this.getPropValue("title");
     const button = this.castToObject<INPUTS.CastedButton>("button");
     // Divider line control via prop
     const showDivider = this.getPropValue("showDivider") as boolean;
-    const hasHeader = this.hasContent(headerText);
-    const hasList = hasContentItems;
+    // Text alignment control
+    const textAlign = this.getPropValue("textAlign") as string;
     const hasCTA = this.hasContent(button.text);
-    const showDividerLine = this.computeShowDividerLine(showDivider, hasHeader, hasList, hasCTA);
+    const showDividerLine = showDivider;
     const hasImage = !!(activeImageUrl && activeImageUrl.trim().length > 0);
 
     return (
       <Base.Container
         className={this.decorateCSS("container")}
         onKeyDown={this.handleKeyDown}
+        style={{ textAlign: textAlign as any }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid
+          <div
             className={`${this.decorateCSS("grid")} ${showDividerLine ? "" : this.decorateCSS("noDivider")}`}
-            style={undefined}
           >
             <div className={this.decorateCSS("leftContent")}>
-              {this.castToString(subtitleText) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitleText}
-                </Base.SectionSubTitle>
-              )}
-              {this.castToString(headerText) && (
-                <Base.SectionTitle className={this.decorateCSS("leftTitle")}>
-                  {headerText}
-                </Base.SectionTitle>
+              {this.castToString(titleText) && (
+                <div className={this.decorateCSS("header")}>
+                  <Base.H2 className={this.decorateCSS("leftTitle")}>
+                    {titleText}
+                  </Base.H2>
+                </div>
               )}
               <div className={this.decorateCSS("listWrapper")}>
-              {hasContentItems && (
+                {hasContentItems && (
                   <ul
                     className={this.decorateCSS("list")}
                     role="tablist"
                     aria-label="Success Stories"
                     aria-orientation="vertical"
-                    style={undefined}
                   >
-                  {contentItems.map((item: any, i: number) => {
+                    {contentItems.map((item: any, i: number) => {
                       const isActive = i === activeIndex;
                       const { titleString, displayNode, hasText } = this.getItemDisplayNode(item);
                       const placeholder = Content27.NBSP_PLACEHOLDER;
@@ -495,7 +405,7 @@ class Content27 extends BaseContent {
                           aria-controls={`tabpanel-${i}`}
                         >
                           {titleString && titleString.trim().length > 0 ? (
-                            <Base.H2 className={this.decorateCSS("listItemText")}>{hasText ? displayNode : placeholder}</Base.H2>
+                            <Base.H4 className={this.decorateCSS("listItemText")}>{hasText ? displayNode : placeholder}</Base.H4>
                           ) : (
                             <Base.P className={this.decorateCSS("listItemText")}>{hasText ? displayNode : placeholder}</Base.P>
                           )}
@@ -506,14 +416,14 @@ class Content27 extends BaseContent {
                 )}
               </div>
             </div>
-            {showDividerLine && (
-              <div className={this.decorateCSS("dividerColumn")}>
-                <div className={this.decorateCSS("dividerWrapper")}>
-                  <span className={this.decorateCSS("dividerLine")} aria-hidden="true" />
-                </div>
+
+            <div className={this.decorateCSS("dividerColumn")}>
+              <div className={this.decorateCSS("dividerWrapper")}>
+                <span className={this.decorateCSS("dividerLine")} aria-hidden="true" />
               </div>
-            )}
-            <Base.VerticalContent 
+            </div>
+
+            <Base.VerticalContent
               className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}
               key={activeIndex}
               role="tabpanel"
@@ -532,20 +442,28 @@ class Content27 extends BaseContent {
               )}
               {hasContentItems && activeItem.infos && activeItem.infos.length > 0 && activeItem.infos.map((info: TypeUsableComponentProps, idx: number) => {
                 const infoData = info.value || info;
-                const label = this.getNestedPropValue(infoData, "label");
-                const text = this.getNestedPropValue(infoData, "text");
-                const labelString = this.castToString(label);
+
+                // Her info prop'una getPropValue metodu ekle (inline editing için gerekli)
+                if (info && !info.getPropValue) {
+                  info.getPropValue = (propName: string, properties?: any) => {
+                    return this.getPropValue(propName, { parent_object: infoData, ...properties });
+                  };
+                }
+
+                const labelNode = this.getNestedPropValue(infoData, "label");
+                const textNode = this.getNestedPropValue(infoData, "text");
+                const labelString = this.castToString(labelNode);
 
                 if (!labelString) return null;
 
                 return (
-                  <div
+                  <Base.P
                     key={idx}
                     className={this.decorateCSS("infoLine")}
                   >
-                    <strong>{label}</strong>
-                    <span>{text}</span>
-                  </div>
+                    <strong>{labelNode}</strong>
+                    <span>{textNode}</span>
+                  </Base.P>
                 );
               })}
               {hasCTA && (
@@ -561,11 +479,11 @@ class Content27 extends BaseContent {
                 </div>
               )}
             </Base.VerticalContent>
-          </Base.ContainerGrid>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
   }
 }
 
-export default Content27;
+export default Content27; 
