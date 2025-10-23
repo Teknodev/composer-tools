@@ -1,13 +1,13 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  icon: { type: "icon"; name: string },
+  icon: TypeMediaInputValue,
   title: string,
   description: string,
 };
@@ -203,7 +203,7 @@ class Feature14 extends BaseFeature {
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                           <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          <Base.Media value={button.icon} />
+                          <Base.Media value={{type: "icon", name: button.icon}} className={this.decorateCSS("button-icon")} />
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -226,7 +226,7 @@ class Feature14 extends BaseFeature {
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                           <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          <Base.Media value={button.icon} />
+                          <Base.Media value={{type: "icon", name: button.icon}} className={this.decorateCSS("button-icon")} />
                         </Base.Button>
                       </ComposerLink>
                     </div>

@@ -260,14 +260,14 @@ class Feature15 extends BaseFeature {
                                     )}
                                     <Base.VerticalContent className={this.decorateCSS("labels")}>
                                         {this.castToString(card.subtitle) && (
-                                            <Base.H3 className={this.decorateCSS("subtitle")}>
+                                            <Base.H4 className={this.decorateCSS("subtitle")}>
                                                 {card.subtitle}
-                                            </Base.H3>
+                                            </Base.H4>
                                         )}
                                         {this.castToString(card.title) && (
-                                            <Base.H2 className={this.decorateCSS("title")}>
+                                            <Base.H3 className={this.decorateCSS("title")}>
                                                 {card.title}
-                                            </Base.H2>
+                                            </Base.H3>
                                         )}
                                         {this.castToString(card.description) && (
                                             <Base.P className={this.decorateCSS("description")}>

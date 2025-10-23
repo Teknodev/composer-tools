@@ -41,7 +41,7 @@ class About8 extends BaseAbout {
             type: "boolean",
             key: "overlay",
             displayer: "Overlay",
-            value: true,
+            value: false,
         });
         
         this.addProp({
