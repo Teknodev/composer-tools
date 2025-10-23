@@ -176,27 +176,25 @@ this.addProp({
                   </Base.Row>
                 )}
 
-
           {buttons.length > 0 && (
             <Base.Row className={this.decorateCSS("button-container")}>
               {buttons.map((item, index) => {
               const buttonText = this.castToString(item.text || "");
-              const buttonUrl = item.url || "#"; 
+              const buttonUrl = item.url || "#"; // url boşsa fallback
 
-              if (!buttonText) return null;
+              if (!buttonText && !item.icon)  return null;
 
               return (
                 <ComposerLink key={`dw-1-btn-${index}`} path={buttonUrl}>
-                  <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                  <Base.Button buttonType={item.type}>
                     {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                    <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                    <div className={this.decorateCSS("button-text")}>{item.text}</div>
                   </Base.Button>
                 </ComposerLink>
               );
             })}
             </Base.Row>
           )}
-
 
                 
               </Base.VerticalContent>
@@ -222,4 +220,5 @@ this.addProp({
 }
 
 export default Stats14;
+
 

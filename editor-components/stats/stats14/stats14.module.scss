@@ -35,7 +35,7 @@
           gap: var(--composer-gap-md);
           width: 100%;
           .button{
-            .button-text{
+           .button-text{
               content: "";
             }
           }
@@ -66,32 +66,37 @@
           }
         }
 
-      .right-container {
-        flex: 1;
+      .right-container { 
+        max-width: 50%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
         border-radius: 50%;
-        
-            .overlay {
-              position: absolute;
-              inset: 0;
-              border-radius: inherit;
-              pointer-events: none;
-              transition: opacity 0.3s ease; 
-              background-color: var(--composer-overlay-color);
-            }
+        margin: 0 auto; 
 
-        
-        .image-circle {
+
+          .image-circle {
             width: 100%;
-            aspect-ratio: 1 / 1;
-            border-radius: 50%;
+            height: 100%;
+            border-radius: inherit;
             object-fit: cover;
+          }
+
+          .overlay {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background-color: var(--composer-overlay-color);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+          }
         }
-      }
+
     }
+    
   }
 }
 
@@ -139,4 +144,5 @@
         }
     }
 }
+
 
