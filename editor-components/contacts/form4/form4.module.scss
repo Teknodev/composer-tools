@@ -147,7 +147,7 @@
 }
 
 .error-message {
-  color: red;
+  color: var(--composer-danger-color);
   font-size: 1rem;
   margin-top: var(--composer-gap-xs);
 }

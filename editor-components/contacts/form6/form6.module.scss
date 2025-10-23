@@ -119,7 +119,7 @@
           }
 
           .error-message {
-            color: red;
+            color: var(--composer-danger-color);
             margin-top: 3px;
           }
         }

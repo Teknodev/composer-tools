@@ -157,8 +157,9 @@
         .input-item {
           max-width: 700px;
           max-height: 700px;
+          gap: 0;
           .form {
-            padding: var(--composer-gap-lg);
+            padding: var(--composer-gap-md) var(--composer-gap-lg);
           }
         }
       }
@@ -174,6 +175,10 @@
           max-width: 320px;
           padding: var(--composer-gap-md);
           gap: 0;
+
+          .header {
+            padding: 0 var(--composer-gap-md);
+          }
 
           .form {
             padding: var(--composer-gap-md);
