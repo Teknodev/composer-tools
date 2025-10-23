@@ -186,7 +186,7 @@ this.addProp({
 
               return (
                 <ComposerLink key={`dw-1-btn-${index}`} path={buttonUrl}>
-                  <Base.Button buttonType={item.type}>
+                  <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                     {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
                     <div className={this.decorateCSS("button-text")}>{item.text}</div>
                   </Base.Button>
@@ -220,5 +220,6 @@ this.addProp({
 }
 
 export default Stats14;
+
 
 
