@@ -69,11 +69,31 @@ class LogoComp3Page extends LogoClouds {
 
   render() {
     const items = this.castToObject<TImage[]>("items");
-
-
+    const itemCount = this.getPropValue("itemCount");
+    const totalItems = items?.length || 0;
+    const toggleLines = this.getPropValue("toggleLines");
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+
+    const getItemClassName = (index: number) => {
+      let className = this.decorateCSS("image-item");
+      
+      if (toggleLines) {
+        const isLastInRow = (index + 1) % itemCount === 0;
+        if (isLastInRow) {
+          className += ` ${this.decorateCSS("no-right-border")}`;
+        }
+        
+        const totalRows = Math.ceil(totalItems / itemCount);
+        const currentRow = Math.floor(index / itemCount) + 1;
+        if (currentRow === totalRows) {
+          className += ` ${this.decorateCSS("no-bottom-border")}`;
+        }
+      }
+      
+      return className;
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -81,9 +101,9 @@ class LogoComp3Page extends LogoClouds {
           {(titleExist || subtitleExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && (
-                <Base.H3 className={this.decorateCSS("title")}>
+                <Base.H4 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
-                </Base.H3>
+                </Base.H4>
               )}
               {titleExist && subtitleExist && this.getPropValue("toggleDividerLine") && (
                 <div className={this.decorateCSS("line")}></div>
@@ -100,14 +120,14 @@ class LogoComp3Page extends LogoClouds {
               gridCount={{
                 pc: this.getPropValue("itemCount"),
                 tablet: this.getPropValue("itemCount"),
-                phone: 2,
+                phone: 1,
               }}
-              className={`${this.decorateCSS("images-container")} ${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} `}
+              className={`${this.decorateCSS("images-container")} ${toggleLines ? this.decorateCSS("lines-active") : ""} `}
             >
               {items.map((item: TImage, index: number) => {
                 return item.image && (
                   <ComposerLink path={item.imageLink}>
-                    <div className={this.decorateCSS("image-item")} key={index}>
+                    <div className={getItemClassName(index)} key={index}>
                       <Base.Media value={item.image} className={this.decorateCSS("image")} />
                     </div>
                   </ComposerLink>
