@@ -15,12 +15,10 @@
   background-color: var(--composer-html-background);
   container-type: inline-size;
   --arrow-icon-size: 4rem;
-  --arrow-hit-pad: 6px;
 
   .max-content {
     .header {
       .header-content {
-        max-width: clamp(720px, 70vw, 1100px);
         margin-inline: auto;
 
         .title {
@@ -88,21 +86,6 @@
           outline: none;
         }
       }
-
-      @media (max-width: #{$composer-tablet-width}) {
-        .arrows {
-          right: var(--composer-gap-md);
-        }
-        :root & {
-          --arrow-icon-size: 32px;
-        }
-      }
-
-      @media (max-width: #{$composer-phone-width}) {
-        .arrows {
-          right: var(--composer-gap-xs);
-        }
-      }
     }
 
     .slider-parent {
@@ -131,12 +114,6 @@
 
       :global(.slick-slide > div) {
         height: 100%;
-      }
-
-      @media (max-width: #{$composer-phone-width}) {
-        :global(.slick-track) {
-          gap: var(--composer-gap-xs) !important;
-        }
       }
     }
 
@@ -181,13 +158,6 @@
     .text {
       padding: var(--composer-gap-md);
 
-      @media (max-width: #{$composer-tablet-width}) {
-        padding: var(--composer-gap-sm) var(--composer-gap-md);
-      }
-      @media (max-width: #{$composer-phone-width}) {
-        padding: var(--composer-gap-xs) var(--composer-gap-md);
-      }
-
       .header {
         margin: 0 0 var(--composer-gap-xs) 0;
         color: var(--composer-font-color-primary);
@@ -197,10 +167,6 @@
         -webkit-box-orient: vertical;
         line-clamp: 2;
         overflow: hidden;
-
-        @media (max-width: #{$composer-tablet-width}) {
-          font-size: clamp(18px, 2.4vw, 22px);
-        }
       }
 
       .desc {
@@ -242,7 +208,6 @@
 
   @container (max-width: #{$composer-tablet-width}) {
     --arrow-icon-size: 3rem;
-    --arrow-hit-pad: 6px;
 
     .max-content {
       width: 100% !important;
@@ -270,20 +235,41 @@
         }
       }
 
+      .text {
+        padding: var(--composer-gap-sm) var(--composer-gap-md);
+      }
+
       .slider-wrap {
         margin-bottom: 1rem;
       }
     }
   }
 
+  @container (min-width: #{ $composer-tablet-width }) {
+    .max-content {
+      .slide {
+        &.wide {
+          width: calc(var(--card-width) * 1.5) !important;
+
+          .media {
+            width: calc(var(--media-w) * 1.5);
+            height: var(--media-h);
+          }
+        }
+      }
+    }
+  }
+
   @container (max-width: #{$composer-phone-width}) {
     --arrow-icon-size: 3rem;
-    --arrow-hit-pad: 10px;
     --slider-gutter: var(--composer-gap-xs);
 
     .max-content {
       width: 100% !important;
 
+      .text {
+        padding: var(--composer-gap-xs) var(--composer-gap-md);
+      }
       .header {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
