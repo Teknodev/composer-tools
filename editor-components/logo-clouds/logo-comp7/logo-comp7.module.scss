@@ -4,12 +4,11 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--composer-gap-lg);
+  gap: var(--composer-gap-xl);
 
   .heading {
     align-self: center !important;
     align-items: center !important;
-
     max-width: var(--composer-content-width);
     margin-bottom: 0;
     margin-right: var(--composer-gap-xl);
@@ -17,10 +16,8 @@
     width: calc(100% - (2 * var(--composer-gap-xl)));
 
     .title {
-      font-size: 1rem;
-      margin-bottom: 0;
-      text-align: center !important;
-      content: "";
+      text-align: center;
+      color: var(--composer-primary-color);
     }
   }
 
@@ -45,9 +42,9 @@
         margin: 0;
 
         .image {
-          width: auto;
+          width: 150px;
           height: 36px;
-          object-fit: contain;
+          object-fit: cover;
 
           opacity: 0.7;
           transition: opacity 0.3s ease;
@@ -72,16 +69,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .max-content {
-      .images-track {
-        gap: var(--composer-gap-lg);
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container {
+    gap: var(--composer-gap-md);
     .max-content {
       .images-track {
         gap: var(--composer-gap-lg);

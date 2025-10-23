@@ -46,8 +46,11 @@
                 .image{
                     display: flex;
                     align-items: center;
-                    animation: rotateImage 6s infinite linear;
                     flex-shrink: 0;
+                    
+                    &.rotate{
+                        animation: rotateImage 6s infinite linear;
+                    }
                     
                     .image-element{
                         width: 120px;
@@ -58,14 +61,13 @@
                 }
                 
                 .text{
-                    font-size: 5rem;
-                    font-weight: 600;
                     color: var(--composer-font-color-primary);
                     white-space: nowrap;
                     transition: color 0.3s ease;
                     text-transform: uppercase;
                     flex-shrink: 0;
                     overflow: visible;
+                    width: fit-content;
                 }
             }
         }
@@ -83,10 +85,6 @@
                             width: 100px;
                             height: 100px;
                         }
-                    }
-                    
-                    .text {
-                        font-size: 4rem;
                     }
                 }
             }
@@ -106,10 +104,6 @@
                             width: 80px;
                             height: 80px;
                         }
-                    }
-                    
-                    .text {
-                        font-size: 3rem;
                     }
                 }
             }

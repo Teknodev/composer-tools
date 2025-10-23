@@ -1,12 +1,14 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
     .max-content {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xl);
         .heading{
-            .subtitle{content: "";}
-            .title {content: "";}
-            .description{content: "";}
+           .subtitle, .title, .description {
+            content: ""
+            }
         }
         .images-container{
             .image-item {
@@ -19,6 +21,15 @@
                     height: 90px;
                 }
             }
+        }
+    }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
         }
     }
 }
