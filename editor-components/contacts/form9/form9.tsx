@@ -5,6 +5,7 @@ import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Form9 extends BaseContacts {
   constructor(props?: any) {
@@ -144,7 +145,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -205,7 +206,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -245,7 +246,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -306,7 +307,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -346,7 +347,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -407,7 +408,7 @@ class Form9 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "",
                     },
                     {
@@ -448,7 +449,7 @@ class Form9 extends BaseContacts {
         {
           type: "string",
           key: "label_prefix",
-          displayer: "Label Prefix",
+          displayer: "Label",
           value: "I agree to the",
         },
         {
@@ -457,12 +458,7 @@ class Form9 extends BaseContacts {
           displayer: "Link Text",
           value: "Terms and Conditions",
         },
-        {
-          type: "string",
-          key: "link_url",
-          displayer: "Navigate To",
-          value: "",
-        },
+        { type: "page", key: "link_url", displayer: "Navigate To", value: "" },
       ],
     });
 
@@ -517,8 +513,9 @@ class Form9 extends BaseContacts {
 
     const consentLabelPrefix =
       this.castToString(consent?.label_prefix)?.trim() || "";
+
     const consentLinkText = this.castToString(consent?.link_text)?.trim() || "";
-    const consentLinkUrl = this.castToString(consent?.link_url)?.trim() || "#";
+    const consentLinkUrl = this.castToString(consent?.link_url)?.trim() || "";
     const showConsent = !!(consent && (consentLabelPrefix || consentLinkText));
 
     const stripHtml = (s?: string) =>
@@ -906,19 +903,38 @@ class Form9 extends BaseContacts {
                                   checked={(values as any).consent || false}
                                   onChange={handleChange}
                                 />
-                                <span>
-                                  {consentLabelPrefix}{" "}
-                                  {(consentLinkText || consentLinkUrl) && (
-                                    <a
-                                      href={consentLinkUrl || "#"}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                    >
-                                      {consentLinkText || consentLinkUrl}
-                                    </a>
+
+                                {/* ⬇️ prefix + link'i tek satırda tutmak için inline-flex */}
+                                <span
+                                  className={this.decorateCSS("consent-text")}
+                                >
+                                  {consentLabelPrefix}
+                                  {"\u00A0"}
+                                  {(consentLinkText || consentLinkUrl) &&
+                                  consentLinkUrl ? (
+                                    <ComposerLink path={consentLinkUrl}>
+                                      <span
+                                        className={this.decorateCSS(
+                                          "consent-link"
+                                        )}
+                                      >
+                                        {consentLinkText || consentLinkUrl}
+                                      </span>
+                                    </ComposerLink>
+                                  ) : (
+                                    consentLinkText && (
+                                      <span
+                                        className={this.decorateCSS(
+                                          "consent-link"
+                                        )}
+                                      >
+                                        {consentLinkText}
+                                      </span>
+                                    )
                                   )}
                                 </span>
                               </label>
+
                               <div
                                 className={this.decorateCSS("error-slot")}
                                 aria-live="polite"
@@ -928,7 +944,6 @@ class Form9 extends BaseContacts {
                                   name="consent"
                                   render={(msg) => (
                                     <span
-                                      key={msg || "empty"}
                                       className={this.decorateCSS(
                                         "error-message"
                                       )}
