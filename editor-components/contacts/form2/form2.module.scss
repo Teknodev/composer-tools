@@ -157,11 +157,6 @@
         .input-item {
           max-width: 700px;
           max-height: 700px;
-
-          .title, .subtitle {
-            padding: 0 var(--composer-gap-lg);
-          }
-
           .form {
             padding: var(--composer-gap-lg);
           }
@@ -179,10 +174,6 @@
           max-width: 320px;
           padding: var(--composer-gap-md);
           gap: 0;
-
-          .title, .subtitle {
-            padding: 0 var(--composer-gap-md);
-          }
 
           .form {
             padding: var(--composer-gap-md);
