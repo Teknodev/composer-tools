@@ -10,16 +10,12 @@ class Form9 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
-    //  ------------------ TITLE --------------------
-
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Get Started with Apcopay",
     });
-
-    //  ------------------ LEFT CONTENT --------------------
 
     this.addProp({
       type: "array",
@@ -106,8 +102,6 @@ class Form9 extends BaseContacts {
         },
       ],
     });
-
-    //  ------------------ RIGHT CONTENT --------------------
 
     this.addProp({
       type: "array",
@@ -440,8 +434,6 @@ class Form9 extends BaseContacts {
       ],
     });
 
-    //  ------------------ CONSENT --------------------
-
     this.addProp({
       type: "object",
       key: "consent",
@@ -474,8 +466,6 @@ class Form9 extends BaseContacts {
       ],
     });
 
-    //  ------------------ BUTTON --------------------
-
     this.addProp(
       INPUTS.BUTTON("button", "Button", "Let's Go", null, null, null, "Primary")
     );
@@ -486,7 +476,6 @@ class Form9 extends BaseContacts {
   }
 
   render() {
-    // GET PROP
     const title = this.getPropValue("title");
     const features = this.getPropValue(
       "features"
@@ -803,7 +792,7 @@ class Form9 extends BaseContacts {
                                 key={inputItemIndex}
                                 className={this.decorateCSS("input-container")}
                               >
-                                <span className={this.decorateCSS("label")}>
+                                <Base.P className={this.decorateCSS("label")}>
                                   {inputItem.getPropValue("label", {
                                     suffix: {
                                       label: isRequiredInput(inputItem)
@@ -813,7 +802,7 @@ class Form9 extends BaseContacts {
                                         this.decorateCSS("require-star"),
                                     },
                                   })}
-                                </span>
+                                </Base.P>
 
                                 <div className={this.decorateCSS("inputs")}>
                                   {inputItem
