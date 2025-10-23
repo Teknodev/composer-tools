@@ -204,7 +204,7 @@ class ImageGallery3 extends BaseImageGallery {
                         )}
                         {type === "Header One Image" && images[0] && (
                             <div className={this.decorateCSS("image-box")}>
-                                <img className={this.decorateCSS("image")} src={images[0].image} />
+                                <Base.Media className={this.decorateCSS("image")} value={images[0].image} />
                             </div>
                         )}
                         {type === "Header Two Image" && images[0] && images[1] && (

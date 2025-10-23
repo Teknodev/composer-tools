@@ -737,31 +737,55 @@ class ImageGallery2 extends BaseImageGallery {
         });
 
         this.addProp({
-            type: "icon",
+            type: "media",
             key: "icon",
             displayer: "Magnifier Icon",
-            value: "IoSearchOutline",
+            value: {
+                type: "icon",
+                name: "IoSearchOutline",
+            },
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
         });
 
         this.addProp({
-            type: "icon",
+            type: "media",
             key: "nextImageIcon",
             displayer: "Next Image Icon",
-            value: "FaArrowRight",
+            value: {
+                type: "icon",
+                name: "FaArrowRight",
+            },
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
         });
 
         this.addProp({
-            type: "icon",
+            type: "media",
             key: "previousImageIcon",
             displayer: "Previous Image Icon",
-            value: "FaArrowLeft",
+            value: {
+                type: "icon",
+                name: "FaArrowLeft",
+            },
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
         });
 
         this.addProp({
-            type: "icon",
+            type: "media",
             key: "closeModalIcon",
             displayer: "Close Modal Icon",
-            value: "IoCloseOutline",
+            value: {
+                type: "icon",
+                name: "IoCloseOutline",
+            },
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
         });
 
         this.addProp({
@@ -907,11 +931,9 @@ class ImageGallery2 extends BaseImageGallery {
                                             />
                                             <div className={this.decorateCSS("overlay")} />
                                             <div className={this.decorateCSS("magnifier-icon-wrapper")}>
-                                                <Base.Icon
-                                                    propsIcon={{
-                                                        className: this.decorateCSS("magnifier-icon"),
-                                                    }}
-                                                    name={magnifierIcon}
+                                                <Base.Media
+                                                    value={magnifierIcon}
+                                                    className={this.decorateCSS("magnifier-icon")}
                                                 />
                                             </div>
                                         </div>
