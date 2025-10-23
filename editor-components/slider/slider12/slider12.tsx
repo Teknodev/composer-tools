@@ -591,7 +591,6 @@ class Slider12 extends BaseSlider {
                         this.castToString(item.header)
                       );
 
-                      // ← kart/text varyant sınıfları
                       const cardClassName =
                         this.decorateCSS("card") +
                         (!hasMedia
@@ -631,11 +630,11 @@ class Slider12 extends BaseSlider {
                           {(hasHeaderText || hasCardDesc) && (
                             <div className={textClassName}>
                               {hasHeaderText && (
-                                <Base.SectionTitle
+                                <Base.H3
                                   className={this.decorateCSS("header")}
                                 >
                                   {item.header}
-                                </Base.SectionTitle>
+                                </Base.H3>
                               )}
                               {hasCardDesc && (
                                 <div className={this.decorateCSS("desc")}>
