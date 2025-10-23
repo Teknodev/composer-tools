@@ -93,7 +93,7 @@ class LogoComp5Page extends LogoClouds {
             </Base.VerticalContent>
           )}
 
-          {images.length > 0 && <Base.ListGrid gridCount={{ pc: this.getPropValue("imageCount") }} className={this.decorateCSS("right")}>
+          {images.length > 0 && <Base.ListGrid gridCount={{ pc: this.getPropValue("imageCount"), tablet: 4, phone: 2 }} className={this.decorateCSS("right")}>
             {images.map(
               (image: TImage, index: number) => (
                 <ComposerLink path={image.imageLink}>

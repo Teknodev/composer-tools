@@ -26,6 +26,7 @@
         height: 2rem;
         background-color: var(--composer-font-color-primary);
         margin: 0px;
+        flex-shrink: 0;
       }
       .subtitle {
         text-align: center;
