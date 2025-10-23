@@ -262,7 +262,7 @@ class Form1 extends BaseContacts {
                 const iconExist = !!item.icon;
                 const titleExist = !!this.castToString(item.title);
 
-                if (!iconExist && !titleExist) return null;
+                if (!iconExist && !titleExist && !item.rows.length) return null;
 
                 return (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
