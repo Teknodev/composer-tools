@@ -12,7 +12,6 @@
   }
 
   .first-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .first-max-content {
       display: flex;
       flex-wrap: wrap;
@@ -200,10 +199,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-    }
-
     .second-container {
       padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     }
@@ -215,7 +210,6 @@
     width: 100%;
 
     .first-container {
-      padding: var(--composer-gap-md) !important;
       .first-max-content {
         gap: var(--composer-gap-sm);
         flex-direction: column;

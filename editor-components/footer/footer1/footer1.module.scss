@@ -14,8 +14,6 @@
 
   .max-content {
     .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
-
       .first-max-content {
         .footer-upper {
           display: flex;
@@ -337,16 +335,12 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-    }
     .second-container {
       padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     }
     .max-content {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
 
       .footer-upper {
         .header {
@@ -365,9 +359,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .first-container {
-      padding: var(--composer-gap-md) !important;
-    }
     .second-container {
       padding: var(--composer-gap-md) !important;
     }

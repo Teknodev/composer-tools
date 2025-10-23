@@ -182,7 +182,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .first-container {
-      padding: var(--composer-gap-md) !important;
       .first-max-content {
         .header {
           flex-direction: column;

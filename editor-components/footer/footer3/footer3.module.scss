@@ -18,8 +18,6 @@
       flex-direction: column;
 
       .first-container {
-        padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
-
         .first-max-content {
           .items {
             display: flex;
@@ -244,8 +242,6 @@
         flex-direction: column;
 
         .first-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-
           .first-max-content {
             .items {
               .header,
@@ -302,8 +298,6 @@
     .max-content {
       .footer-page {
         .first-container {
-          padding: var(--composer-gap-md) !important;
-
           .first-max-content {
             .items {
               flex-direction: column;
