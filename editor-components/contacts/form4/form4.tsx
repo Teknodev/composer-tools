@@ -348,7 +348,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "",
                     },
                   ],

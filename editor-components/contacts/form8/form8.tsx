@@ -312,6 +312,9 @@ class Form8 extends BaseContacts {
 
     const inputItems = this.getPropValue("input-items")!;
 
+    const pageContentExist = firstTextExist || secondTextExist || contactTexts?.length > 0 || inputItems.length > 0 || this.castToString(button.text);
+
+
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
         str = "_" + str;
@@ -407,6 +410,7 @@ class Form8 extends BaseContacts {
       return newObj;
     }
 
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -418,7 +422,7 @@ class Form8 extends BaseContacts {
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
             }
           </Base.VerticalContent>}
-          <div className={this.decorateCSS("page-content")}>
+         {pageContentExist && <div className={this.decorateCSS("page-content")}>
             {(firstTextExist || secondTextExist || contactTexts?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("text-content")}>
                 {firstTextExist && <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("first-text")} </Base.P>}
@@ -492,7 +496,7 @@ class Form8 extends BaseContacts {
                 )}
               </Formik>
             </Base.VerticalContent>}
-          </div>
+          </div>}
         </Base.MaxContent>
       </Base.Container>
     );

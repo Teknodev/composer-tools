@@ -312,7 +312,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -327,7 +327,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid type",
                     },
                   ],
@@ -358,7 +358,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -373,7 +373,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid type",
                     },
                   ],
@@ -418,7 +418,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -433,7 +433,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "Invalid type",
                     },
                   ],
@@ -464,7 +464,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "",
                     },
                     {
@@ -479,7 +479,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "",
                     },
                   ],
@@ -524,7 +524,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required error message",
+                      displayer: "Required Error Message",
                       value: "Required",
                     },
                     {
@@ -539,7 +539,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type error message",
+                      displayer: "Type Error Message",
                       value: "",
                     },
                   ],

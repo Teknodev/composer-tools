@@ -114,7 +114,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "*Required",
             },
           ],
@@ -178,7 +178,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "*Required",
             },
           ],
@@ -242,7 +242,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "*Required",
             },
           ],
@@ -306,7 +306,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "*Required",
             },
           ],
@@ -370,7 +370,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required error message",
+              displayer: "Required Error Message",
               value: "*Required",
             },
           ],
