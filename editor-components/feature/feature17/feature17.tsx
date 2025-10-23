@@ -6,9 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface Card {
-  icon: string;            // ikon adı (örn: "BsCloudCheck")
-  iconIsImage?: boolean;   // yeni: ikon yerine image kullanılsın mı?
-  iconImage?: string;      // yeni: image URL
+  media?: {
+    type: "icon" | "image";
+    name?: string;
+    url?: string;
+  };
   title: string;
   description: string;
 }
@@ -42,59 +44,126 @@ class Feature17 extends BaseFeature {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "boolean", key: "iconIsImage", displayer: "Use Image Instead of Icon", value: false },
-            { type: "icon",    key: "icon",        displayer: "Icon",                       value: "BsCloudCheck" },
-            { type: "image",   key: "iconImage",   displayer: "Icon Image (Optional)",      value: "" },
-            { type: "string",  key: "title",       displayer: "Title",                      value: "Worry-free data recovery" },
-            { type: "string",  key: "description", displayer: "Description",                value: "Cloud-computing in multiple locations, automated backups in a separate location, and disaster recovery procedures." },
-          ],
+            {
+              type: "media",
+              key: "media",
+              displayer: "Icon or Image",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "BsCloudCheck" }
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Worry-free data recovery"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Cloud-computing in multiple locations, automated backups in a separate location, and disaster recovery procedures."
+            }
+          ]
         },
         {
           type: "object",
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "boolean", key: "iconIsImage", displayer: "Use Image Instead of Icon", value: false },
-            { type: "icon",    key: "icon",        displayer: "Icon",                       value: "BsShieldLock" },
-            { type: "image",   key: "iconImage",   displayer: "Icon Image (Optional)",      value: "" },
-            { type: "string",  key: "title",       displayer: "Title",                      value: "Advanced cybersecurity" },
-            { type: "string",  key: "description", displayer: "Description",                value: "Automated DDoS mitigation, robust data encryption, and strict access controls with SSO and identity management integration." },
-          ],
+            {
+              type: "media",
+              key: "media",
+              displayer: "Icon or Image",
+               additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "BsShieldCheck" }
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Advanced cybersecurity"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Automated DDoS mitigation, robust data encryption, and strict access controls with SSO and identity management integration."
+            }
+          ]
         },
         {
           type: "object",
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "boolean", key: "iconIsImage", displayer: "Use Image Instead of Icon", value: false },
-            { type: "icon",    key: "icon",        displayer: "Icon",                       value: "BsEye" },
-            { type: "image",   key: "iconImage",   displayer: "Icon Image (Optional)",      value: "" },
-            { type: "string",  key: "title",       displayer: "Title",                      value: "Privacy and consent" },
-            { type: "string",  key: "description", displayer: "Description",                value: "Built-in privacy and consent management to comply with global standards: GDPR, CCPA, and more." },
-          ],
+            {
+              type: "media",
+              key: "media",
+              displayer: "Icon or Image",
+               additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "BsLock" }
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Privacy and consent"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Built-in privacy and consent management to comply with global standards: GDPR, CCPA, and more."
+            }
+          ]
         },
         {
           type: "object",
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "boolean", key: "iconIsImage", displayer: "Use Image Instead of Icon", value: false },
-            { type: "icon",    key: "icon",        displayer: "Icon",                       value: "BsServer" },
-            { type: "image",   key: "iconImage",   displayer: "Icon Image (Optional)",      value: "" },
-            { type: "string",  key: "title",       displayer: "Title",                      value: "99.99% uptime" },
-            { type: "string",  key: "description", displayer: "Description",                value: "Duda websites are hosted on AWS, one of the most trusted and secure cloud solutions – with no limits on bandwidth or storage." },
-          ],
-        },
-      ],
+            {
+              type: "media",
+              key: "media",
+              displayer: "Icon or Image",
+               additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "BsGraphUp" }
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "99.99% uptime"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Duda websites are hosted on AWS, one of the most trusted and secure cloud solutions – with no limits on bandwidth or storage."
+            }
+          ]
+        }
+      ]
     });
 
-    // Design Tree'de butonlar
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Talk to us", "", null, null, "Primary")
+        INPUTS.BUTTON(
+          "button",
+          "Button",
+          "Talk to us",
+          null,
+          null,
+          null,
+          "Primary"
+        )
       ]
     });
 
@@ -103,8 +172,6 @@ class Feature17 extends BaseFeature {
       key: "itemsPerRow",
       displayer: "Items Count in a Row",
       value: 4,
-      min: 1,
-      max: 6
     });
   }
 
@@ -123,17 +190,28 @@ class Feature17 extends BaseFeature {
     const subheadingExist = this.castToString(subheading);
 
     const gridClass = `${this.decorateCSS("features-grid")} ${this.decorateCSS(`features-grid-${itemsPerRow}`)}`;
-    const validFeatures = features.filter(f => f.title || f.description || f.icon || f.iconImage);
+    const validFeatures = features.filter(
+      (f) => f.title || f.description || f.media
+    );
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-
           {(headingExist || subheadingExist) && (
-            <div className={this.decorateCSS("header")}>
-              {headingExist && <Base.SectionTitle className={this.decorateCSS("heading")}>{heading}</Base.SectionTitle>}
-              {subheadingExist && <Base.SectionDescription className={this.decorateCSS("subheading")}>{subheading}</Base.SectionDescription>}
-            </div>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {headingExist && (
+                <Base.SectionTitle className={this.decorateCSS("heading")}>
+                  {heading}
+                </Base.SectionTitle>
+              )}
+              {subheadingExist && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("subheading")}
+                >
+                  {subheading}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
           )}
 
           {validFeatures.length > 0 && (
@@ -141,30 +219,35 @@ class Feature17 extends BaseFeature {
               {validFeatures.map((feature: Card, index: number) => {
                 const titleExist = this.castToString(feature.title);
                 const descriptionExist = this.castToString(feature.description);
-
-                const useImage = !!feature.iconIsImage && !!feature.iconImage;
-
+                const media = feature.media;
+                console.log('media', media);
                 return (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("feature-card")}>
-                    {(feature.icon || feature.iconImage) && (
+                  <Base.VerticalContent
+                    key={index}
+                    className={this.decorateCSS("feature-card")}
+                  >
+                    {media && (
                       <div className={this.decorateCSS("icon-container")}>
-                        {useImage ? (
-                          <img
-                            src={feature.iconImage as string}
-                            alt={this.castToString(feature.title) || "feature media"}
-                            className={this.decorateCSS("icon")}
-                          />
-                        ) : (
-                          <Base.Icon name={feature.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                        )}
+                        <Base.Media
+                          value={media}
+                          className={this.decorateCSS("icon")}
+                        />
                       </div>
                     )}
 
                     {(titleExist || descriptionExist) && (
-                      <div className={this.decorateCSS("content")}>
-                        {titleExist && <Base.H3 className={this.decorateCSS("title")}>{feature.title}</Base.H3>}
-                        {descriptionExist && <Base.P className={this.decorateCSS("description")}>{feature.description}</Base.P>}
-                      </div>
+                      <Base.VerticalContent className={this.decorateCSS("content")}>
+                        {titleExist && (
+                          <Base.H3 className={this.decorateCSS("title")}>
+                            {feature.title}
+                          </Base.H3>
+                        )}
+                        {descriptionExist && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {feature.description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
                     )}
                   </Base.VerticalContent>
                 );
@@ -172,27 +255,41 @@ class Feature17 extends BaseFeature {
             </div>
           )}
 
-          {(headingExist || subheadingExist) && <div className={this.decorateCSS("divider")} aria-label="divider" />}
+          {(headingExist || subheadingExist) && (
+            <div className={this.decorateCSS("divider")} aria-label="divider" />
+          )}
 
           {buttons.length > 0 && (
             <div className={this.decorateCSS("buttons-group")}>
-              {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                const text = this.castToString(button.text);
-                const hasText = !!text;
+              {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                const buttonTitleExist = this.castToString(item.text);
+                const iconExist = item.icon;
+                const buttonExist = buttonTitleExist || iconExist;
 
                 return (
-                  <div key={index} className={this.decorateCSS("button-wrapper")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        {hasText && <div className={this.decorateCSS("button-text")}>{button.text}</div>}
-                      </Base.Button>
-                    </ComposerLink>
-                  </div>
+                  buttonExist && (
+                    <div
+                      key={`ft-17-btn-${index}`}
+                      className={this.decorateCSS("button-wrapper")}
+                    >
+                      <ComposerLink path={item.url}>
+                        <Base.Button
+                          buttonType={item.type}
+                          className={this.decorateCSS("button")}
+                        >
+                          {buttonTitleExist && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text}
+                            </Base.P>
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  )
                 );
               })}
             </div>
           )}
-
         </Base.MaxContent>
       </Base.Container>
     );

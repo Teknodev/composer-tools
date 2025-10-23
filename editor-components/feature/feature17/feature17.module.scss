@@ -4,203 +4,113 @@
   box-sizing: border-box;
 }
 
-// Ana container
 .container {
   position: relative;
   width: 100%;
-}
 
-// İçerik alanı
-.max-content {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-}
-
-// Başlık alanı
-.header {
-  text-align: center;
-  margin-bottom: 3rem;
-
-  &:empty {
-    display: none;
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
   }
-}
 
-.heading {
-  font-size: 3rem;
-  line-height: 1.2;
-  font-weight: 800;
-  margin: 0 0 1.5rem;
-  letter-spacing: -0.5px;
-}
+  .header {}
+  .heading {}
+  .subheading {}
 
-.subheading {
-  font-size: 1.15rem;
-  opacity: 0.95;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  max-width: 650px;
-}
+  .features-grid {
+    display: grid;
+    width: 100%;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
 
-// Base font
-.base-font {
-  font-family: var(--composer-font-family-base) !important;
-}
+    &-1 { grid-template-columns: 1fr !important; }
+    &-2 { grid-template-columns: repeat(2, 1fr) !important; }
+    &-3 { grid-template-columns: repeat(3, 1fr) !important; }
+    &-4 { grid-template-columns: repeat(4, 1fr) !important; }
+    &-5 { grid-template-columns: repeat(5, 1fr) !important; }
+    &-6 { grid-template-columns: repeat(6, 1fr) !important; }
+    &-7 { grid-template-columns: repeat(7, 1fr) !important; }
+    &-8 { grid-template-columns: repeat(8, 1fr) !important; }
 
-// Grid yapı
-.features-grid {
-  display: grid;
-  gap: 20px;
-  width: 100%;
-  grid-template-columns: repeat(4, 1fr);
-}
+    @container (max-width: #{$composer-tablet-width}) {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
 
-// Grid varyasyonları
-.features-grid-1 { grid-template-columns: repeat(1, 1fr) !important; }
-.features-grid-2 { grid-template-columns: repeat(2, 1fr) !important; }
-.features-grid-3 { grid-template-columns: repeat(3, 1fr) !important; }
-.features-grid-4 { grid-template-columns: repeat(4, 1fr) !important; }
-.features-grid-5 { grid-template-columns: repeat(5, 1fr) !important; }
-.features-grid-6 { grid-template-columns: repeat(6, 1fr) !important; }
+    @container (max-width: #{$composer-phone-width}) {
+      grid-template-columns: 1fr !important;
+      gap: 10px;
+    }
 
-// Kart yapısı
-.feature-card {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 1rem;
-  background: var(--composer-background-secondary);
-  border-radius: 8px;
-  border: 1px solid var(--composer-border-color);
-}
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      padding: 16px;
+      background: var(--composer-background-secondary);
+      border-radius: var(--composer-border-radius-md);
+      border: 1px solid var(--composer-border-color);
 
-// Media
-.media-container {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  justify-content: flex-start;
-}
+      .media-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 16px;
+        height: 64px;
 
-.media {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-}
+        .media {
+          width: 64px;
+          height: 64px;
+          object-fit: contain;
+        }
+      }
 
-// İçerik
-.content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
+      .content {
+        flex: 1;
 
-.title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin: 0 0 8px;
-  color: var(--composer-font-color-primary);
-}
+        .title,
+        .description {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
 
-.description {
-  font-size: 1rem;
-  margin: 0;
-  line-height: 1.4;
-  color: var(--composer-font-color-primary);
-}
+  .icon,
+  .media-icon {
+    font-size: 24px;
+    color: var(--composer-primary-color);
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.buttons-group {
-  width: 100%;
-  display: flex;
-  justify-content: center; // 🔥 Butonları yatayda ortalar
-  align-items: center;     // 🔥 Dikeyde hizalar
-  flex-wrap: wrap;
-  gap: var(--composer-gap-sm);
-  min-height: 60px;
-  height: auto;
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--composer-border-color);
+    margin: 2rem 0;
+  }
 
-  .button-wrapper {
+  .buttons-group {
+    width: 100%;
+    min-height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: var(--composer-gap-sm);
+
+     .button-wrapper{
+    .button{
+      .button-text{
+        content: "";
+      }
+    }
   }
-
-  .button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
   }
-
-  .button-text {
-    display: inline-block;
-    text-align: center;
-  }
-}
-
-
-
-// Divider
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: var(--composer-border-color);
-  margin: 2rem 0;
-}
-
-// Iconlar
-.icon-container {
-  height: 24px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  display: block;
-  color: var(--composer-primary-color);
-}
-
-// Tablet
-@container (max-width: #{$composer-tablet-width}) and (min-width: #{$composer-phone-width + 1}) {
-  .features-grid { grid-template-columns: repeat(2, 1fr) !important; }
-
-  .heading { font-size: 2.25rem; margin-bottom: 1.2rem; }
-  .subheading { font-size: 1rem; margin-bottom: 1.2rem; }
-  .media-container { height: 45px; margin-bottom: 12px; }
-  .media { width: 45px; height: 45px; }
-  .feature-card { gap: 10px; padding: 0.9rem; }
-  .title { font-size: 1.15rem; margin-bottom: 6px; }
-  .description { font-size: 0.95rem; }
-  .button { font-size: 0.75rem; padding: 0.3rem 0.65rem; min-width: 75px; }
-}
-
-// Mobil
-@container (max-width: #{$composer-phone-width}) {
-  .features-grid { grid-template-columns: 1fr !important; gap: 10px; }
-
-  .heading { font-size: 1.85rem; margin-bottom: 1rem; }
-  .subheading { font-size: 0.95rem; margin-bottom: 1rem; }
-  .media-container { height: 40px; margin-bottom: 8px; }
-  .media { width: 40px; height: 40px; }
-  .feature-card { gap: 8px; padding: 0.8rem; }
-  .title { font-size: 1.1rem; margin-bottom: 5px; }
-  .description { font-size: 0.9rem; }
-  .button { font-size: 0.7rem; padding: 0.25rem 0.6rem; min-width: 70px; }
-}
-
-// XS Mobil
-@container (max-width: 480px) {
-  .heading { font-size: 1.6rem; margin-bottom: 0.8rem; }
-  .subheading { font-size: 0.9rem; margin-bottom: 0.8rem; }
-  .media-container { height: 35px; margin-bottom: 6px; }
-  .media { width: 35px; height: 35px; }
-  .feature-card { gap: 6px; padding: 0.6rem; }
-  .title { font-size: 1rem; margin-bottom: 4px; }
-  .description { font-size: 0.85rem; }
-  .button { font-size: 0.65rem; padding: 0.2rem 0.55rem; min-width: 65px; }
 }
