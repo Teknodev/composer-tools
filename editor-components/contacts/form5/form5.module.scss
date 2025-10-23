@@ -83,15 +83,16 @@
             outline: none;
             width: 100%;
             background-color: transparent;
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: var(--composer-font-color-primary);
             margin-bottom: var(--composer-gap-sm);
             transform: translateY(var(--composer-gap-xs));
 
             option {
-              background-color: var(--composer-font-color-secondary);
+              background-color: var(--composer-html-background);
               color: var(--composer-font-color-primary);
               padding: var(--composer-gap-sm);
+              font-size: 1rem;
             }
           }
 
