@@ -3,8 +3,15 @@
 .container {
   width: 100%;
 
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
+
   .first-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .first-max-content {
       display: flex;
       flex-wrap: wrap;
@@ -22,6 +29,7 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xs);
+        align-items: baseline;
 
         .logo {
           .image {
@@ -31,19 +39,17 @@
         }
 
         .description {
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
       }
 
       .list-group {
         .title {
-          font-size: 1rem;
           color: var(--composer-tertiary-color);
         }
 
         .text {
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
           position: relative;
           display: inline-block;
@@ -147,7 +153,7 @@
   }
 
   .second-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .second-max-content {
       .footer-bottom {
         display: flex;
@@ -155,8 +161,10 @@
 
         .footer-text {
           max-width: 50%;
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
+          width: fit-content;
+          margin: 0;
+          text-align: left;
 
           &.no-image {
             max-width: 100%;
@@ -191,12 +199,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg);
-    }
-
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg);
+      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     }
   }
 }
@@ -206,7 +210,6 @@
     width: 100%;
 
     .first-container {
-      padding: var(--composer-gap-md);
       .first-max-content {
         gap: var(--composer-gap-sm);
         flex-direction: column;
@@ -238,7 +241,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md);
+      padding: var(--composer-gap-md) !important;
       .second-max-content {
         .footer-bottom {
           flex-direction: column;

@@ -19,10 +19,20 @@ class Footer6Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Let’s work together",
+      value: "Let's work together",
     });
 
     this.addProp({
@@ -66,7 +76,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -85,7 +95,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -104,7 +114,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -143,7 +153,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -162,7 +172,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -181,7 +191,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -220,7 +230,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -239,7 +249,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -258,7 +268,7 @@ class Footer6Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -305,13 +315,15 @@ class Footer6Page extends BaseFooter {
     const footerDescription = this.getPropValue("footerDescription");
     const footerDescriptionExist = this.castToString(footerDescription);
 
+    const position = this.getPropValue("position");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("footer-page")}>
             {(subtitleExist || titleExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                {subtitleExist && <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>}
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               </Base.VerticalContent>
             )}
@@ -324,7 +336,7 @@ class Footer6Page extends BaseFooter {
                   return (
                     footerExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H2 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H2>}
+                        {footerTitleExist && <Base.H3 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H3>}
                         {item.footerText.length > 0 &&
                           item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                             const footerTextExist = this.castToString(item.footerText);
@@ -348,9 +360,7 @@ class Footer6Page extends BaseFooter {
             </div>
 
             {footerDescriptionExist && (
-              <div className={this.decorateCSS("bottom-container")}>
-                <Base.P className={this.decorateCSS("bottom-text")}>{footerDescription}</Base.P>
-              </div>
+              <Base.P className={this.decorateCSS("bottom-text")}>{footerDescription}</Base.P>
             )}
           </Base.VerticalContent>
         </Base.MaxContent>

@@ -1,12 +1,12 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 
 type icon = {
-  icon: string;
+  icon: TypeMediaInputValue;
   page: string;
 };
 
@@ -15,17 +15,39 @@ class Footer10Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
-      type: "image",
-      key: "logo",
-      displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
     });
 
     this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Logo Url",
-      value:""
+      type: "object",
+      key: "logo",
+      displayer: "Logo",
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
 
@@ -48,7 +70,7 @@ class Footer10Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -67,7 +89,7 @@ class Footer10Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -86,7 +108,7 @@ class Footer10Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -105,7 +127,7 @@ class Footer10Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -138,15 +160,21 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "BiLogoFacebookCircle",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BiLogoFacebookCircle",
+              },
             },
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -157,15 +185,21 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "icon",
-              value: "FaTwitter",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTwitter",
+              },
             },
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -176,15 +210,21 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "icon",
-              value: "FaInstagram",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -195,15 +235,21 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "icon",
-              value: "FaLinkedin",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedin",
+              },
             },
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -225,8 +271,9 @@ class Footer10Page extends BaseFooter {
     return "Footer 10";
   }
   render() {
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
     const links = this.castToObject<any[]>("links");
     const line = this.getPropValue("line");
 
@@ -241,22 +288,24 @@ class Footer10Page extends BaseFooter {
 
     const alignment = Base.getContentAlignment();
 
+    const position = this.getPropValue("position");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         {upperExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {upperExist && (
                 <div className={`${this.decorateCSS("upper")} ${alignment === "center" && this.decorateCSS("center")}`}>
-                  {logo && (
+                  {logo?.url && (
                     <ComposerLink path={logoUrl}>
                       <div className={this.decorateCSS("logo")}>
-                        <img src={logo} className={this.decorateCSS("image")} alt="" />
+                        <Base.Media value={logo} className={this.decorateCSS("image")} />
                       </div>
                     </ComposerLink>
                   )}
                   {links.length > 0 && (
-                    <div className={`${this.decorateCSS("links")} ${logo && this.decorateCSS("full-width")}`}>
+                    <div className={`${this.decorateCSS("links")} ${logo?.url && this.decorateCSS("full-width")}`}>
                       {links.map((item: any, index: number) => {
                         const textExist = this.castToString(item.text);
                         return (
@@ -266,7 +315,7 @@ class Footer10Page extends BaseFooter {
                               data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
                               <ComposerLink key={index} path={item.url}>
-                                <Base.H3 className={this.decorateCSS("link-text")}>{item.text}</Base.H3>
+                                <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                               </ComposerLink>
                             </div>
                           )
@@ -302,7 +351,7 @@ class Footer10Page extends BaseFooter {
                               data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
                               <ComposerLink path={item.page}>
-                                <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                               </ComposerLink>
                             </div>
                           )

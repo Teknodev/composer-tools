@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -18,17 +18,39 @@ class Footer12Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
-      key: "logo",
-      displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
     });
 
     this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Logo Url",
-      value:""
+      type: "object",
+      key: "logo",
+      displayer: "Logo",
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
     this.addProp({
@@ -72,7 +94,7 @@ class Footer12Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -92,7 +114,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -111,7 +133,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -130,7 +152,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -168,7 +190,7 @@ class Footer12Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -188,7 +210,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -207,7 +229,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -226,7 +248,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -264,7 +286,7 @@ class Footer12Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "path",
                       value: "",
                     },
@@ -284,7 +306,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -303,7 +325,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -322,7 +344,7 @@ class Footer12Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -359,10 +381,16 @@ class Footer12Page extends BaseFooter {
           displayer: "Item Elements",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+              },
             },
           ],
         },
@@ -372,15 +400,21 @@ class Footer12Page extends BaseFooter {
           displayer: "Item Elements",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
+              },
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -391,15 +425,21 @@ class Footer12Page extends BaseFooter {
           displayer: "Item Elements",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765645a0655f8002caa07db?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765645a0655f8002caa07db?alt=media",
+              },
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -426,34 +466,36 @@ class Footer12Page extends BaseFooter {
     const footer = this.castToObject<any[]>("footer");
     const images = this.castToObject<any[]>("images");
 
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
     const line = this.getPropValue("line");
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
     const footerText = this.getPropValue("footerText");
     const footerTextExist = this.castToString(footerText);
 
-    const image = this.decorateCSS("image");
     const imagesExist = images.length > 0;
 
     const bottomExist = footerTextExist || imagesExist;
 
-    const headerExist = image || descriptionExist;
+    const headerExist = logo?.url || descriptionExist;
 
     const upperExist = headerExist || footer.length > 0;
 
+    const position = this.getPropValue("position");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         {upperExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {headerExist && (
                 <Base.VerticalContent className={this.decorateCSS("left")}>
-                  {image && (
+                  {logo?.url && (
                     <ComposerLink path={logoUrl}>
                       <div className={this.decorateCSS("logo")}>
-                        <img src={logo} className={this.decorateCSS("image")} alt="" />
+                        <Base.Media value={logo} className={this.decorateCSS("image")} />
                       </div>
                     </ComposerLink>
                   )}
@@ -468,7 +510,7 @@ class Footer12Page extends BaseFooter {
                   return (
                     footerExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                        {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
                         {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                           const footerTextExist = this.castToString(item.footerText);
                           return (
@@ -510,7 +552,7 @@ class Footer12Page extends BaseFooter {
                         item.image && (
                           <div className={this.decorateCSS("image-element")}>
                             <ComposerLink key={index} path={item.url}>
-                              <img className={this.decorateCSS("image")} src={item.image} />
+                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
                             </ComposerLink>
                           </div>
                         )
