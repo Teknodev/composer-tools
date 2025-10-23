@@ -349,6 +349,8 @@ class Form2 extends BaseContacts {
       return newObj;
     }
 
+    const subtitleType = Base.getSectionSubTitleType()
+
     return (
       <Base.Container style={{ backgroundImage: `url(${backgroundImage?.url})` }} className={this.decorateCSS("container")}>
         {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
@@ -356,8 +358,10 @@ class Form2 extends BaseContacts {
           {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
-                {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("subtitle-with-image")}`}>{subtitle}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
+                {(subtitleExist || titleExist) &&<Base.VerticalContent className={this.decorateCSS("header")}>
+                  {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("subtitle-with-image")} ${subtitleType === "badge" && this.decorateCSS("subtitle-badge")}`}>{subtitle}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
+                </Base.VerticalContent>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
