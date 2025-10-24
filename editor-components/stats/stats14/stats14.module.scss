@@ -1,0 +1,110 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: calc(2 * var(--composer-gap-xl));
+      
+
+      .left-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-lg);
+        
+        .subtitle,  .description, .title {
+          content: "";
+            display: block;    
+            text-align: left; 
+        }
+
+        
+        .button-text-wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+      }
+      
+
+        .button-container {
+          display: flex;
+          align-items: flex-start;
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+
+          .button{
+           .button-text{
+              content: "";
+            }
+            .button{
+              content: "";
+            }
+          }
+
+        }
+
+        .features-list {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-wrap: wrap;        
+          gap: var(--composer-gap-xl); 
+          max-width: 100%;
+
+          .features-list-item {
+            display: flex;
+            flex-direction: column;  
+            align-items: flex-start;
+          }
+
+          .features-list-items-topText {
+            display: block;    
+            text-align: left;  
+            font-weight: bold;
+            color: var(--composer-font-color-primary);
+           }
+
+          .features-list-items-bottomText {      display: flex;
+            color: rgba(var(--composer-font-color-primary-rgb));
+            display: block;
+          }
+        }
+
+      .right-container { 
+        max-width: 50%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        margin: 0 auto; 
+
+
+          .image-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+          }
+
+          .overlay {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background-color: var(--composer-overlay-color);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+          }
+        }
+
+    }
+    
+  }
+}
+
