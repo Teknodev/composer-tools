@@ -44,10 +44,12 @@
           color: white;
           position: relative;
           word-break: break-word;
+          width: fit-content;
         }
       }
 
-      .card:hover .category {
+      .card:hover .category,
+      .card.active .category {
         opacity: 1;
       }
     }
