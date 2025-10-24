@@ -44,7 +44,7 @@
 
         .feature-icon {
           font-size: 1.3rem;
-          margin-top: 5px;
+          margin-top: var(--composer-gap-xs);
           color: var(--composer-primary-color);
         }
 
@@ -283,11 +283,6 @@
   @container (max-width: #{$composer-phone-width}) {
     &:not(.only-form) {
       .max-content {
-        .left-container {
-          .feature-check {
-            padding: 6px;
-          }
-        }
         .form-container {
           padding: 1rem;
           margin-top: 40px;

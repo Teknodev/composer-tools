@@ -459,8 +459,8 @@ class Form9 extends BaseContacts {
         );
         return !!(
           icon ||
-          (featureTitle && String(featureTitle).trim()) ||
-          (featureDescription && String(featureDescription).trim())
+          (featureTitle && featureTitle) ||
+          (featureDescription && featureDescription)
         );
       });
     const showLeft = !!(titleStr || hasAnyFeature);
@@ -684,7 +684,7 @@ class Form9 extends BaseContacts {
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
                         const formData = getFormDataWithConvertedKeys(data);
-                        this.insertForm("Contact Me", formData);
+                        this.insertForm("Form 9 - ContactUsForm", formData);
                         resetForm();
                       }}
                     >
