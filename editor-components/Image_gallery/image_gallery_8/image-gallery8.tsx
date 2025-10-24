@@ -293,7 +293,7 @@ class ImageGallery8 extends BaseImageGallery {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "CELEBRİTY",
+                            value: "CELEBRITY",
                         },
                         {
                             type: "media",
@@ -424,9 +424,9 @@ class ImageGallery8 extends BaseImageGallery {
                                                 className={`${this.decorateCSS("category")} ${!item.image && this.decorateCSS("text-visible")
                                                     }`}
                                             >
-                                                <Base.H2 className={this.decorateCSS("title")}>
+                                                <Base.H3 className={this.decorateCSS("title")}>
                                                     {item.title}
-                                                </Base.H2>
+                                                </Base.H3>
                                             </div>
                                         </ComposerLink>
                                     </div>

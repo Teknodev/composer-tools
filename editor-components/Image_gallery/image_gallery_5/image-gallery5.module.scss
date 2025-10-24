@@ -39,19 +39,6 @@
         }
 
         .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--composer-overlay-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: auto;
-            cursor: zoom-out;
-            z-index: 10;
-
             .overlay-content {
                 height: 100%;
 
@@ -63,6 +50,7 @@
                     width: 40%;
                     gap: var(--composer-gap-md);
                     height: 100%;
+                    width: 100%;
                     justify-content: center;
 
                     .image-close-button {
@@ -154,8 +142,7 @@
             .overlay {
                 .overlay-content {
                     .middle-content {
-                        width: 60%;
-
+                        width: 100%;
                         .large-image-container {
                             position: relative;
 
@@ -180,8 +167,6 @@
             .overlay {
                 .overlay-content {
                     .middle-content {
-                        width: 90%;
-
                         .large-image-container {
                             height: 50%;
                         }

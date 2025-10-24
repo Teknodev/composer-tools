@@ -558,7 +558,7 @@ class ImageGallery9 extends BaseImageGallery {
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("image-container")}>
+          <div className={this.decorateCSS("gallery-container")}>
             {this.castToObject<Card[]>("cards").map(
               (item: Card, indexCards: number) => {
                 let isLarge = false;
@@ -582,16 +582,16 @@ class ImageGallery9 extends BaseImageGallery {
                     )}
                   >
                     <div
-                      className={`${this.decorateCSS("image")} ${
+                      className={`${this.decorateCSS("card-wrapper")} ${
                         !imageExist && this.decorateCSS("noImage")
                       }`}
                     >
                       {(this.castToString(item.title) ||
                         this.castToString(item.subtitle) ||
                         item.image) && (
-                        <div className={this.decorateCSS("image")}>
+                        <div className={this.decorateCSS("content-wrapper")}>
                           {item.image && (
-                            <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                            <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
                           )}
                           {(this.castToString(item.title) ||
                             this.castToString(item.subtitle)) && (

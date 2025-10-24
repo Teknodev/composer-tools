@@ -486,10 +486,10 @@ class ImageGallery7 extends BaseImageGallery {
                                                 {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
                                                     <div className={this.decorateCSS("textContainer")}>
                                                         {this.castToString(cards.title) && (
-                                                            <div className={this.decorateCSS("title")}>{cards.title}</div>
+                                                            <Base.H4 className={this.decorateCSS("title")}>{cards.title}</Base.H4>
                                                         )}
                                                         {this.castToString(cards.subtitle) && (
-                                                            <div className={this.decorateCSS("subtitle")}>{cards.subtitle}</div>
+                                                            <Base.P className={this.decorateCSS("subtitle")}>{cards.subtitle}</Base.P>
                                                         )}
                                                     </div>
                                                 )}

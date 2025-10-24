@@ -6,10 +6,9 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .gallery-nav {
-
         .nav-list,
         .subnav-list {
           display: flex;
@@ -125,15 +124,6 @@
     }
 
     .gallery-item-fullscreen {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: var(--composer-overlay-color);
-      width: 100vw;
-      height: 100%;
-      z-index: 1;
-      display: block;
       cursor: pointer;
 
       .right-arrow,

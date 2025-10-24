@@ -32,6 +32,7 @@
     flex-direction: column;
     min-height: 600px;
     justify-content: center;
+    gap: var(--composer-gap-lg);
 
     .header-wrapper {
       .subtitle {

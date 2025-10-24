@@ -183,48 +183,53 @@ class ImageGallery5 extends BaseImageGallery {
     });
 
     this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Button Icon",
-      value: {
-        type: "icon",
-        name: "RxCross1",
-      },
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "nextIcon",
-      displayer: "Next Button Icon",
-      value: {
-        type: "icon",
-        name: "GrCaretNext",
-      },
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "prevIcon",
-      displayer: "Previous Button Icon",
-      value: {
-        type: "icon",
-        name: "GrCaretPrevious",
-      },
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "imageIndex",
-      displayer: "Image Index Enabled",
-      value: true,
+      type: "object",
+      key: "modal",
+      displayer: "Modal",
+      value: [
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Button Icon",
+          value: {
+            type: "icon",
+            name: "RxCross1",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Button Icon",
+          value: {
+            type: "icon",
+            name: "GrCaretNext",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+        },
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Previous Button Icon",
+          value: {
+            type: "icon",
+            name: "GrCaretPrevious",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+        },
+        {
+          type: "boolean",
+          key: "imageIndex",
+          displayer: "Image Index",
+          value: true,
+        },
+      ],
     });
     this.addProp({
       type: "number",
@@ -295,10 +300,11 @@ class ImageGallery5 extends BaseImageGallery {
     const galleries = this.castToObject<GalleryItem[]>("gallery");
     const isImageClicked = this.getComponentState("is_image_clicked");
     const clickedImageIndex = this.getComponentState("clicked_image_index");
-    const nextIcon = this.getPropValue("nextIcon");
-    const prevIcon = this.getPropValue("prevIcon");
-    const imageIndex = this.getPropValue("imageIndex");
-    const closeIcon = this.getPropValue("closeIcon");
+    const modal = this.castToObject<any>("modal");
+    const nextIcon = modal.nextIcon;
+    const prevIcon = modal.prevIcon;
+    const imageIndex = modal.imageIndex;
+    const closeIcon = modal.closeIcon;
     if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
@@ -338,10 +344,7 @@ class ImageGallery5 extends BaseImageGallery {
             </div>
           )}
           {isImageClicked && (
-            <div
-              className={this.decorateCSS("overlay")}
-              onClick={() => this.handleCloseClick()}
-            >
+            <Base.Overlay isVisible={true} className={this.decorateCSS("overlay")}>
               <div className={this.decorateCSS("overlay-content")}>
                 <div className={this.decorateCSS("middle-content")}>
                   {closeIcon && (
@@ -397,7 +400,7 @@ class ImageGallery5 extends BaseImageGallery {
                 </div>
 
               </div>
-            </div>
+            </Base.Overlay>
           )}
         </Base.MaxContent>
       </Base.Container>

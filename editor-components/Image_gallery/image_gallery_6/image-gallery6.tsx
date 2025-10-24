@@ -107,6 +107,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
+                                        },
+                                        {
                                             type: "media",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
@@ -162,6 +168,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
+                                        },
+                                        {
                                             type: "media",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
@@ -215,6 +227,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             key: "description",
                                             displayer: "Description",
                                             value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
                                         },
                                         {
                                             type: "media",
@@ -294,6 +312,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
+                                        },
+                                        {
                                             type: "media",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
@@ -347,6 +371,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             key: "description",
                                             displayer: "Description",
                                             value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
                                         },
                                         {
                                             type: "media",
@@ -404,6 +434,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
+                                        },
+                                        {
                                             type: "media",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
@@ -457,6 +493,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             key: "description",
                                             displayer: "Description",
                                             value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
                                         },
                                         {
                                             type: "media",
@@ -532,6 +574,12 @@ class ImageGallery6 extends BaseImageGallery {
                                             key: "description",
                                             displayer: "Description",
                                             value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "active",
+                                            displayer: "Active",
+                                            value: false,
                                         },
                                         {
                                             type: "media",
@@ -649,7 +697,7 @@ class ImageGallery6 extends BaseImageGallery {
 
                                     return (
                                         <ComposerLink path={item.url}>
-                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass} ${item.active ? this.decorateCSS("active") : ""}`}>
 
                                                 <div className={this.decorateCSS("image-wrapper")}>
                                                     {item.image && (
@@ -712,7 +760,7 @@ class ImageGallery6 extends BaseImageGallery {
                                     }
                                     return (
                                         <ComposerLink path={item.url}>
-                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass} ${item.active ? this.decorateCSS("active") : ""}`}>
                                                 <div className={this.decorateCSS("image-wrapper")}>
                                                     {item.image && (
                                                         <Base.Media value={item.image} className={this.decorateCSS("image")} />

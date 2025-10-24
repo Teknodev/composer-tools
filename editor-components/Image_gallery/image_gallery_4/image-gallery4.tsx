@@ -451,52 +451,59 @@ class ImageGallery4 extends BaseImageGallery {
     this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
     this.addProp({
-      type: "media",
-      key: "close-icon",
-      displayer: "Close Icon",
-      value: {
-        type: "icon",
-        name: "RxCross1",
-      },
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "imageIcon",
-      displayer: "Image Icon",
-      value: {
-        type: "icon",
-        name: "IoSearchOutline",
-      },
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "nextIcon",
-      displayer: "Next Icon",
-      value: {
-        type: "icon",
-        name: "HiArrowRight",
-      },
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "prevIcon",
-      displayer: "Prev Icon",
-      value: {
-        type: "icon",
-        name: "HiArrowLeft",
-      },
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
+      type: "object",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          value: {
+            type: "icon",
+            name: "RxCross1",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+        },
+        {
+          type: "media",
+          key: "imageIcon",
+          displayer: "Image Icon",
+          value: {
+            type: "icon",
+            name: "IoSearchOutline",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+        },
+        {
+          type: "media",
+          key: "nextIcon",
+          displayer: "Next Icon",
+          value: {
+            type: "icon",
+            name: "HiArrowRight",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+        },
+        {
+          type: "media",
+          key: "prevIcon",
+          displayer: "Prev Icon",
+          value: {
+            type: "icon",
+            name: "HiArrowLeft",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+        },
+      ],
     });
 
 
@@ -613,6 +620,7 @@ class ImageGallery4 extends BaseImageGallery {
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const icons = this.castToObject<any>("icons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -699,12 +707,12 @@ class ImageGallery4 extends BaseImageGallery {
                         </div>
 
                       )}
-                      {this.getPropValue("imageIcon") && (
+                      {icons.imageIcon && (
                         <div className={this.decorateCSS("icon-overlay")} onClick={() => {
                           this.focusImage(index)
                         }}>
                           <Base.Media
-                            value={this.getPropValue("imageIcon")}
+                            value={icons.imageIcon}
                             className={this.decorateCSS("icon")}
                           />
                         </div>
@@ -727,25 +735,20 @@ class ImageGallery4 extends BaseImageGallery {
           </div>
 
           {galleryItems[this.getComponentState("focusedImage")]?.image && (
-            <div
-              className={this.getComponentState("isFocused") ? this.decorateCSS("gallery-item-fullscreen") : ""}
-              onClick={() => {
-                this.closeFocus();
-              }}
-            >
-              {this.getPropValue("nextIcon") && (
+            <Base.Overlay isVisible={true} className={this.getComponentState("isFocused") ? this.decorateCSS("gallery-item-fullscreen") : ""}>
+              {icons.nextIcon && (
                 <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>
                   <Base.Media
-                    value={this.getPropValue("nextIcon")}
+                    value={icons.nextIcon}
                     className={this.decorateCSS("icon")}
 
                   />
                 </div>
               )}
-              {this.getPropValue("prevIcon") && (
+              {icons.prevIcon && (
                 <div className={this.decorateCSS("left-arrow")} onClick={this.prevImage}>
                   <Base.Media
-                    value={this.getPropValue("prevIcon")}
+                    value={icons.prevIcon}
                     className={this.decorateCSS("icon")}
                   />
                 </div>
@@ -758,7 +761,7 @@ class ImageGallery4 extends BaseImageGallery {
                       value={galleryItems[this.getComponentState("focusedImage")].image}
                     />
                   )}
-                  {this.getPropValue("close-icon") && (
+                  {icons.closeIcon && (
                     <button
                       onClick={() => {
                         this.closeFocus();
@@ -766,14 +769,14 @@ class ImageGallery4 extends BaseImageGallery {
                       className={this.decorateCSS("close-button")}
                     >
                       <Base.Media
-                        value={this.getPropValue("close-icon")}
+                        value={icons.closeIcon}
                         className={this.decorateCSS("close-icon")}
                       />
                     </button>
                   )}
                 </div>
               </div>
-            </div>
+            </Base.Overlay>
           )}
         </Base.MaxContent>
       </Base.Container>

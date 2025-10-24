@@ -737,63 +737,67 @@ class ImageGallery2 extends BaseImageGallery {
         });
 
         this.addProp({
-            type: "media",
-            key: "icon",
-            displayer: "Hover Icon",
-            value: {
-                type: "icon",
-                name: "IoSearchOutline",
-            },
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
+            type: "object",
+            key: "modal",
+            displayer: "Modal",
+            value: [
+                {
+                    type: "media",
+                    key: "hoverIcon",
+                    displayer: "Hover Icon",
+                    value: {
+                        type: "icon",
+                        name: "IoSearchOutline",
+                    },
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                },
+                {
+                    type: "media",
+                    key: "nextIcon",
+                    displayer: "Next Image Icon",
+                    value: {
+                        type: "icon",
+                        name: "FaArrowRight",
+                    },
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                },
+                {
+                    type: "media",
+                    key: "previousIcon",
+                    displayer: "Previous Image Icon",
+                    value: {
+                        type: "icon",
+                        name: "FaArrowLeft",
+                    },
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                },
+                {
+                    type: "media",
+                    key: "closeIcon",
+                    displayer: "Close Icon",
+                    value: {
+                        type: "icon",
+                        name: "IoCloseOutline",
+                    },
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "showImageCounter",
+                    displayer: "Show Image Page Number",
+                    value: true,
+                },
+            ],
         });
 
-        this.addProp({
-            type: "media",
-            key: "nextImageIcon",
-            displayer: "Next Image Icon",
-            value: {
-                type: "icon",
-                name: "FaArrowRight",
-            },
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
-        });
-
-        this.addProp({
-            type: "media",
-            key: "previousImageIcon",
-            displayer: "Previous Image Icon",
-            value: {
-                type: "icon",
-                name: "FaArrowLeft",
-            },
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
-        });
-
-        this.addProp({
-            type: "media",
-            key: "closeModalIcon",
-            displayer: "Close Icon",
-            value: {
-                type: "icon",
-                name: "IoCloseOutline",
-            },
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "imgCounter",
-            displayer: "Image Page Number",
-            value: true,
-        });
 
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
@@ -882,11 +886,12 @@ class ImageGallery2 extends BaseImageGallery {
         const currentImageIndex = this.getComponentState("currentImageIndex");
         const currentGallery = this.getCurrentGallery();
         const currentImage = currentGallery[currentImageIndex];
-        const nextImageIcon = this.getPropValue("nextImageIcon");
-        const previousImageIcon = this.getPropValue("previousImageIcon");
-        const closeModalIcon = this.getPropValue("closeModalIcon");
-        const imgCounter = this.getPropValue("imgCounter");
-        const magnifierIcon = this.getPropValue("icon");
+        const modal = this.castToObject<any>("modal");
+        const nextImageIcon = modal.nextIcon;
+        const previousImageIcon = modal.previousIcon;
+        const closeModalIcon = modal.closeIcon;
+        const magnifierIcon = modal.hoverIcon;
+        const imgCounter = modal.showImageCounter;
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getPropValue("showAll");
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
@@ -894,62 +899,59 @@ class ImageGallery2 extends BaseImageGallery {
         return (
             <Base.Container className={`${this.decorateCSS("container")}${modalOpen && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content")}>
-                        <div className={this.decorateCSS("section-selector-text")}>
-                            {showAll && (
-                                <Base.H5
-                                    className={`${this.decorateCSS("section-text")} ${currentIndex === -1 ? this.decorateCSS("active") : ""
-                                        }`}
-                                    onClick={() => this.handleSectionClick(-1)}
+                    <div className={this.decorateCSS("tab-container")}>
+                        {showAll && (
+                            <Base.H5
+                                className={`${this.decorateCSS("tab")} ${currentIndex === -1 ? this.decorateCSS("active-tab") : ""
+                                    }`}
+                                onClick={() => this.handleSectionClick(-1)}
+                            >
+                                {this.getPropValue("allText")}
+                            </Base.H5>
+                        )}
+                        {galleryCollection.map((element: any, index: number) => (
+                            <Base.H5
+                                className={`${this.decorateCSS("tab")} ${index === currentIndex ? this.decorateCSS("active-tab") : ""
+                                    }`}
+                                onClick={() => this.handleSectionClick(index)}
+                            >
+                                {element.getPropValue("title")}
+                            </Base.H5>
+                        ))}
+                    </div>
+                    <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-container")}>
+                        {currentGallery.slice(0, this.getComponentState("imageCount")).map((section: ImageType, imageIndex: number) => {
+                            if (!section.image) return null;
+                            return (
+                                <div
+                                    className={this.decorateCSS("gallery-item")}
+                                    key={imageIndex}
+                                    onClick={() => this.openModal(imageIndex)}
                                 >
-                                    {this.getPropValue("allText")}
-                                </Base.H5>
-                            )}
-                            {galleryCollection.map((element: any, index: number) => (
-                                <Base.H5
-                                    className={`${this.decorateCSS("section-text")} ${index === currentIndex ? this.decorateCSS("active") : ""
-                                        }`}
-                                    onClick={() => this.handleSectionClick(index)}
-                                >
-                                    {element.getPropValue("title")}
-                                </Base.H5>
-                            ))}
-                        </div>
-                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-grid")}>
-                            {currentGallery.slice(0, this.getComponentState("imageCount")).map((section: ImageType, imageIndex: number) => {
-                                if (!section.image) return null;
-                                return (
-                                    <div
-                                        className={this.decorateCSS("gallery-item")}
-                                        key={imageIndex}
-                                        onClick={() => this.openModal(imageIndex)}
-                                    >
-                                        <div className={this.decorateCSS("image-container")}>
+                                    <div className={this.decorateCSS("image-container")}>
+                                        <Base.Media
+                                            value={section.image}
+                                            className={this.decorateCSS("image")}
+                                        />
+                                        <div className={this.decorateCSS("overlay")} />
+                                        <div className={this.decorateCSS("icon-wrapper")}>
                                             <Base.Media
-                                                value={section.image}
-                                                className={this.decorateCSS("gallery-image")}
+                                                value={magnifierIcon}
+                                                className={this.decorateCSS("icon")}
                                             />
-                                            <div className={this.decorateCSS("overlay")} />
-                                            <div className={this.decorateCSS("magnifier-icon-wrapper")}>
-                                                <Base.Media
-                                                    value={magnifierIcon}
-                                                    className={this.decorateCSS("magnifier-icon")}
-                                                />
-                                            </div>
                                         </div>
                                     </div>
-                                );
-                            })}
-                        </Base.ListGrid>
-                        {(currentGallery.length > this.getComponentState("imageCount")) && this.castToString(button.text) && (
-                            <div className={this.decorateCSS("button-wrapper")}>
-                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleLoadMoreButton}>
-                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
-                            </div>
-                        )}
-
-                    </div>
+                                </div>
+                            );
+                        })}
+                    </Base.ListGrid>
+                    {(currentGallery.length > this.getComponentState("imageCount")) && this.castToString(button.text) && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleLoadMoreButton}>
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                        </div>
+                    )}
                     {modalOpen && (
                         <Base.Overlay isVisible={true} className={this.decorateCSS("modal")}>
                             <div className={this.decorateCSS("modal-wrapper")}

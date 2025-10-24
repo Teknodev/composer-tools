@@ -5,32 +5,30 @@
   }
     .max-content {
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      .content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-xl);
-        align-items: center;
-        width: 100%;
-        .section-selector-text {
+      gap: var(--composer-gap-lg);
+      align-items: center;
+      width: 100%;
+        .tab-container {
           display: flex;
           gap: var(--composer-gap-xl);
           flex-wrap: wrap;
-          .section-text {
+          .tab {
             display: flex;
             color: var(--composer-font-color-primary);
             cursor: pointer;
             transition: color 0.3s ease;
             width: fit-content;
             &:hover,
-            &.active {
+            &.active-tab {
               text-decoration: underline;
               text-underline-offset: var(--composer-gap-xs);
               opacity: 1;
             }
           }
         }
-        .gallery-grid {
+        .gallery-container {
           transition: transform 1s ease;
           .gallery-item {
             cursor: pointer;
@@ -43,7 +41,7 @@
               position: relative;
               display: flex;
               align-items: center;
-              .gallery-image {
+              .image {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
@@ -60,7 +58,7 @@
                 transition: opacity 0.5s ease;
                 pointer-events: none;
               }
-              .magnifier-icon-wrapper{
+              .icon-wrapper{
                 background-color: var(--composer-font-color-primary);
                 border-radius: 50%;
                 padding: var(--composer-gap-sm);
@@ -74,7 +72,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                .magnifier-icon {
+                .icon {
                   width: 15px;
                   height: 15px;
                   font-size: 1rem;
@@ -84,11 +82,11 @@
             }
   
             &:hover {
-              .gallery-image {
+              .image {
                 transform: scale(1.1);
                 transition: transform 1s ease-in-out;
               }
-              .magnifier-icon-wrapper{
+              .icon-wrapper{
                 opacity: 1;
                 top: 50%;
               }
@@ -108,145 +106,142 @@
             }
           }
         }
-      }
-      .modal {
-        .modal-wrapper{
-          width: 90%;
-          height: 90%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-            .close {
-              position: absolute;
-              color: white;
-              user-select: none;
-              cursor: pointer;
-              z-index: 10;
-              .icon{
-                font-size: 1.5rem;
+        .modal {
+          .modal-wrapper{
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .modal-content {
+              max-width: 90%;
+              max-height: 90%;
+              position: relative;
+              .close {
+                position: absolute;
+                color: white;
+                user-select: none;
+                cursor: pointer;
+                z-index: 10;
+                .icon{
+                  font-size: 1.5rem;
+                }
+              }
+              .close {
+                font-size: 1rem;
+                top: 10px;
+                right: 10px;
               }
             }
-            .close {
+          }
+        
+          .prev,
+          .next {
+            position: absolute;
+            color: white;
+            user-select: none;
+            cursor: pointer;
+            z-index: 20;
+            .icon{
+              width: 40px;
+              height: 40px;
               font-size: 1rem;
-              top: 10px;
-              right: 10px;
             }
           }
+          .prev {
+            left:50px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          .next {
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+
         }
-      
-        .prev,
-        .next {
-          position: absolute;
-          color: white;
-          user-select: none;
-          cursor: pointer;
-          z-index: 20;
-          .icon{
-            width: 40px;
-            height: 40px;
-            font-size: 1rem;
+        .image-container {
+          width: 100%;
+          height: 100%;
+          aspect-ratio: 4 / 3;
+          overflow: hidden;
+          border-radius: var(--composer-border-radius-xs);
+          .modal-image {
+            object-fit: cover;
+            width: 600px;
+            height: 450px;
+            max-width: 600px;
+            max-height: 450px;
           }
         }
-        .prev {
-          left:50px;
-          top: 50%;
-          transform: translateY(-50%);
+        .image-info {
+          position: absolute;
+          display: flex;
+          justify-content: space-between;
+          color: white;
+          width: 100%;
+          padding: var(--composer-gap-xs) 0px;
+    
+          .image-title {
+            text-align: left;
+            width: 50%;
+            overflow-wrap: break-word;
+          }
+    
+          .image-count {
+            text-align: end;
+            width: 50%;
+          }
         }
-        .next {
-          right: 50px;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-
-      }
-      .image-container {
-        width: 100%;
-        height: 100%;
-        aspect-ratio: 4 / 3;
-        overflow: hidden;
-        border-radius: var(--composer-border-radius-xs);
-        .modal-image {
-          object-fit: cover;
-          width: 600px;
-          height: 450px;
-          max-width: 600px;
-          max-height: 450px;
-        }
-      }
-      .image-info {
-        position: absolute;
-        display: flex;
-        justify-content: space-between;
-        color: white;
-        width: 100%;
-        padding: var(--composer-gap-xs) 0px;
-  
-        .image-title {
-          text-align: left;
-          width: 50%;
-          overflow-wrap: break-word;
-        }
-  
-        .image-count {
-          text-align: end;
-          width: 50%;
-        }
-      }
     }
   }
   
   @container (max-width: #{$composer-tablet-width}) {
     .container {
       .max-content {
-        .content{
-          .gallery-grid{
-            .gallery-item{
-              .image-container {
-                .magnifier-icon-wrapper {
-                  .magnifier-icon{
-                    width: 15px;
-                    height: 15px;
-                  }
+        .gallery-container{
+          .gallery-item{
+            .image-container {
+              .icon-wrapper {
+                .icon{
+                  width: 15px;
+                  height: 15px;
                 }
-                .modal-image {
-                  min-width: 500px;
-                  min-height: 500px;
-                  max-width: 500px;
-                  max-height: 500px;
+              }
+              .modal-image {
+                min-width: 500px;
+                min-height: 500px;
+                max-width: 500px;
+                max-height: 500px;
+              }
+            }
+          }
+        }
+        .modal{
+          .modal-wrapper{
+            width: 100%;
+            height: 100%;
+            .modal-content {
+              .close {
+                .icon{
+                  width: 30px;
+                  height: 30px;
                 }
               }
             }
           }
-          .modal{
-            .modal-wrapper{
-              width: 100%;
-              height: 100%;
-              .modal-content {
-                .close {
-                  .icon{
-                    width: 30px;
-                    height: 30px;
-                  }
-                }
-              }
+          .prev,
+          .next{
+            .icon{
+              width: 30px;
+              height: 30px;
             }
-            .prev,
-            .next{
-              .icon{
-                width: 30px;
-                height: 30px;
-              }
-            }
-            .prev {
-              left:40px;
-            }
-            .next {
-              right:40px;
-            }
+          }
+          .prev {
+            left:40px;
+          }
+          .next {
+            right:40px;
           }
         }
       }
@@ -256,19 +251,19 @@
   @container (max-width: #{$composer-phone-width}) {
     .container {
       .max-content {
-        .content{
-          .section-selector-text {
-            flex-direction: column;
-            align-items: center ;
-            .section-text{
-              text-align: center;
-            }
+        gap: var(--composer-gap-md);
+        .tab-container {
+          flex-direction: column;
+          align-items: center ;
+          gap: var(--composer-gap-sm);
+          .tab{
+            text-align: center;
           }
-          .gallery-grid {
-            .gallery-item{
-              .image-container{
-                min-width: 325px;
-              }
+        }
+        .gallery-container {
+          .gallery-item{
+            .image-container{
+              min-width: 325px;
             }
           }
         }
