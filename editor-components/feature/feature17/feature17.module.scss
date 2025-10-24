@@ -15,9 +15,15 @@
     width: 100%;
   }
 
-  .header {}
-  .heading {}
-  .subheading {}
+  .header {
+    content: "";
+  }
+  .heading {
+    content: "";
+  }
+  .subheading {
+    content: "";
+  }
 
   .features-grid {
     display: grid;
