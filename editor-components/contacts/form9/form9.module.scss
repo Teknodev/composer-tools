@@ -291,8 +291,21 @@
         .form-container {
           padding: 1rem;
           margin-top: 40px;
-          .inputs {
-            gap: var(--composer-gap-sm);
+
+          .form {
+            .input-container {
+              .inputs {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: var(--composer-gap-sm);
+                .input-box {
+                  min-width: 0;
+                }
+                &.inputs-two {
+                  grid-template-columns: 1fr 1fr;
+                }
+              }
+            }
           }
         }
       }

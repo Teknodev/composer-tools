@@ -730,27 +730,42 @@ class Form9 extends BaseContacts {
                       {({ handleChange, values }) => (
                         <Form className={this.decorateCSS("form")}>
                           {inputItems.map(
-                            (inputItem: any, inputItemIndex: number) => (
-                              <div
-                                key={inputItemIndex}
-                                className={this.decorateCSS("input-container")}
-                              >
-                                <Base.P className={this.decorateCSS("label")}>
-                                  {inputItem.getPropValue("label", {
-                                    suffix: {
-                                      label: isRequiredInput(inputItem)
-                                        ? "*"
-                                        : "",
-                                      className:
-                                        this.decorateCSS("require-star"),
-                                    },
-                                  })}
-                                </Base.P>
+                            (inputItem: any, inputItemIndex: number) => {
+                              const inputs =
+                                (inputItem.getPropValue(
+                                  "inputs"
+                                ) as TypeUsableComponentProps[]) || [];
+                              const isTwoInputs =
+                                Array.isArray(inputs) && inputs.length === 2;
 
-                                <div className={this.decorateCSS("inputs")}>
-                                  {inputItem
-                                    .getPropValue("inputs")
-                                    ?.map(
+                              return (
+                                <div
+                                  key={inputItemIndex}
+                                  className={this.decorateCSS(
+                                    "input-container"
+                                  )}
+                                >
+                                  <Base.P className={this.decorateCSS("label")}>
+                                    {inputItem.getPropValue("label", {
+                                      suffix: {
+                                        label: isRequiredInput(inputItem)
+                                          ? "*"
+                                          : "",
+                                        className:
+                                          this.decorateCSS("require-star"),
+                                      },
+                                    })}
+                                  </Base.P>
+
+                                  {/* ⬇️ SADECE BURAYI DEĞİŞTİRDİK */}
+                                  <div
+                                    className={`${this.decorateCSS("inputs")} ${
+                                      isTwoInputs
+                                        ? this.decorateCSS("inputs-two")
+                                        : ""
+                                    }`}
+                                  >
+                                    {inputs?.map(
                                       (inputObj: any, inputIndex: number) => (
                                         <div
                                           key={inputIndex}
@@ -785,7 +800,9 @@ class Form9 extends BaseContacts {
                                               placeholder={
                                                 (inputObj.getPropValue(
                                                   "placeholder",
-                                                  { as_string: true }
+                                                  {
+                                                    as_string: true,
+                                                  }
                                                 ) as string) || ""
                                               }
                                               onChange={handleChange}
@@ -814,7 +831,9 @@ class Form9 extends BaseContacts {
                                               placeholder={
                                                 (inputObj.getPropValue(
                                                   "placeholder",
-                                                  { as_string: true }
+                                                  {
+                                                    as_string: true,
+                                                  }
                                                 ) as string) || ""
                                               }
                                               onChange={handleChange}
@@ -839,9 +858,10 @@ class Form9 extends BaseContacts {
                                         </div>
                                       )
                                     )}
+                                  </div>
                                 </div>
-                              </div>
-                            )
+                              );
+                            }
                           )}
 
                           {showConsent && (
