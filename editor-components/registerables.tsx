@@ -33,6 +33,7 @@ import SliderComponent8 from "./slider/slider8/slider8";
 import SliderComponent9 from "./slider/slider9/slider9";
 import SliderComponent10 from "./slider/slider10/slider10";
 import SliderComponent11 from "./slider/slider11/slider11";
+import SliderComponent12 from "./slider/slider12/slider12";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -245,7 +246,7 @@ import ECommerce2 from "./e-commerce/e-commerce2/e-commerce2";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ECommerce5 from "./e-commerce/e-commerce5";
-import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
+import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6"; 
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "./social/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
@@ -272,7 +273,7 @@ import About7 from "./about/about7/about7";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
-import Comparison1 from "./comparison/comparison1/comparison1"; 
+import Comparison1 from "./comparison/comparison1/comparison1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -322,6 +323,7 @@ function Registerables(composer: ComponentsRegistery) {
     SliderComponent9,
     SliderComponent10,
     SliderComponent11,
+    SliderComponent12,
     PricingComponent1,
     PricingComponent2,
     PricingComponent3,
