@@ -30,7 +30,7 @@
         .description {
           width: 100%;
           color: var(--composer-tertiary-color);
-          margin-top: 0.25rem;
+          margin-top: var(--composer-gap-xs);
         }
       }
     }
@@ -51,7 +51,7 @@
         right: var(--composer-gap-xs);
         top: 0;
         display: flex;
-        gap: 12px;
+        gap: var(--composer-gap-sm);
         z-index: 1000;
       }
 
@@ -139,7 +139,11 @@
       height: var(--media-h);
       overflow: hidden;
       border-radius: var(--composer-border-radius-sm);
-      background: color-mix(in srgb, var(--composer-html-background), black 8%);
+      background: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        black 10%
+      );
       display: grid;
       place-items: center;
     }

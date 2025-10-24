@@ -511,8 +511,8 @@ class Slider12 extends BaseSlider {
     const hasPrev = Boolean(prevName);
     const hasNext = Boolean(nextName);
 
-    const showSlider = itemCount > 0; // ← yeni
-    const showArrows = showSlider && itemCount > 1 && (hasPrev || hasNext); // ← güncel
+    const showSlider = itemCount > 0;
+    const showArrows = showSlider && itemCount > 1 && (hasPrev || hasNext);
 
     const bg = this.getPropValue("background-image");
     const bgUrl = typeof bg === "string" ? bg : bg?.url ?? "";
