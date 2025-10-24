@@ -1,10 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
-:root {
-  --form-max: none;
-}
-
 .container {
   container-type: inline-size;
 
@@ -21,11 +17,17 @@
       min-width: 0;
       align-items: flex-start;
 
+      .left-vertical-content {
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
       .title {
-        overflow-wrap: anywhere;
-        word-break: break-word;
-        hyphens: auto;
-        margin-bottom: 40px;
+        gap: var(--composer-gap-md);
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
       }
 
       .features {
@@ -37,24 +39,12 @@
         .feature {
           display: flex;
           align-items: flex-start;
-          gap: var(--composer-gap-md);
-        }
-
-        .feature-check {
-          width: 28px;
-          height: 28px;
-          border-radius: 999px;
-          display: grid;
-          place-items: center;
-          background: color-mix(
-            in oklab,
-            var(--composer-primary-color) 12%,
-            transparent
-          );
+          gap: var(--composer-gap-sm);
         }
 
         .feature-icon {
-          font-size: 16px;
+          font-size: 1.3rem;
+          margin-top: 5px;
           color: var(--composer-primary-color);
         }
 
@@ -81,20 +71,20 @@
       display: flex;
       align-items: stretch;
 
-      > * {
+      .right-vertical-content {
         width: 100%;
         max-width: none;
       }
 
       .form-container {
         width: 100%;
-        max-width: var(--form-max);
+        max-width: none;
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
-        border-radius: var(--composer-border-radius-sm, 28px);
+        border-radius: var(--composer-border-radius-sm);
         padding: 4rem;
 
         .form {
@@ -133,7 +123,12 @@
           }
 
           .consent {
-            margin-top: var(--composer-gap-sm);
+            .consent-container {
+              align-items: flex-start;
+              justify-content: flex-start;
+              text-align: left;
+            }
+
             .consent-label {
               display: flex;
               align-items: left;
@@ -143,8 +138,7 @@
               .consent-text {
                 display: inline-flex;
                 align-items: baseline;
-                gap: 0.25rem;
-                white-space: nowrap;
+                gap: var(--composer-gap-xs);
               }
 
               input[type="checkbox"] {
@@ -174,31 +168,19 @@
               text-align: center;
             }
           }
-
-          > .input-container {
-            margin-bottom: 0;
-          }
-
-          > .input-container:last-of-type .error-slot {
-            min-height: 0.6rem;
-          }
-
-          > .consent {
-            margin-top: 0;
-          }
         }
 
         .input {
           resize: vertical;
-          padding: var(--composer-gap-sm) var(--composer-gap-sm);
-          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.12);
+          padding: var(--composer-gap-sm);
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
           background-color: var(--composer-html-background);
           width: 100%;
           color: var(--composer-font-color-primary);
           border-radius: var(--composer-border-radius-sm);
 
           &::placeholder {
-            color: rgba(var(--composer-font-color-primary-rgb), 0.45);
+            color: rgba(var(--composer-font-color-primary-rgb), 0.5);
           }
 
           &:focus {
@@ -214,12 +196,10 @@
         textarea.input {
           height: 110px;
           max-height: 240px;
-          resize: vertical;
         }
 
         .error-slot {
-          min-height: 1.2rem;
-          margin-top: var(--composer-gap-xxs);
+          margin-top: var(--composer-gap-xs);
           display: block;
         }
 
@@ -235,10 +215,9 @@
         }
 
         .error-message {
-          color: #e53935;
-          font-size: 0.9rem;
+          color: var(--danger-color);
+          font-size: 1rem;
           margin: 0;
-          line-height: 1.2;
           display: block;
           animation: error-in 160ms ease-out;
         }
@@ -267,18 +246,15 @@
 
       .title {
         text-align: left;
-        margin-inline: auto;
-        text-wrap: balance;
       }
     }
   }
+
   @container (max-width: #{$composer-tablet-width}) {
     &:not(.only-form) {
       .max-content {
-        .right-container {
-          .form-container {
-            margin-top: 40px;
-          }
+        .form-container {
+          margin-top: 40px;
         }
       }
     }
@@ -294,18 +270,6 @@
 
       .left-container {
         text-align: center;
-
-        .title {
-          margin-inline: auto;
-          max-inline-size: 36ch;
-          text-wrap: balance;
-        }
-
-        .features {
-          .feature-description {
-            color: var(--composer-tertiary-color);
-          }
-        }
       }
 
       .right-container {
@@ -319,33 +283,16 @@
   @container (max-width: #{$composer-phone-width}) {
     &:not(.only-form) {
       .max-content {
-        .right-container {
-          .form-container {
-            margin-top: 40px;
-          }
-        }
-      }
-    }
-
-    .max-content {
-      .right-container {
-        .form-container {
-          padding: 1rem;
-
-          .form {
-            .input-container {
-              .inputs {
-                gap: var(--composer-gap-sm);
-              }
-            }
-          }
-        }
-      }
-
-      .left-container {
-        .features {
+        .left-container {
           .feature-check {
             padding: 6px;
+          }
+        }
+        .form-container {
+          padding: 1rem;
+          margin-top: 40px;
+          .inputs {
+            gap: var(--composer-gap-sm);
           }
         }
       }
