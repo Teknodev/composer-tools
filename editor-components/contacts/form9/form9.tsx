@@ -297,47 +297,7 @@ class Form9 extends BaseContacts {
                       type: "string",
                       key: "placeholder",
                       displayer: "Placeholder",
-                      value: "+90",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "input",
-                  displayer: "Input",
-                  value: [
-                    {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "Phone",
+                      value: "+44 (000)000-000",
                     },
                     {
                       type: "boolean",
@@ -372,6 +332,7 @@ class Form9 extends BaseContacts {
             },
           ],
         },
+
         {
           type: "object",
           key: "input_item",
