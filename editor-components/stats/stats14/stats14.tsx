@@ -144,6 +144,8 @@ this.addProp({
 
     const overlay = this.getPropValue("overlay");
 
+    const alignment = Base.getContentAlignment();
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -152,15 +154,22 @@ this.addProp({
           <div className={this.decorateCSS("content")}>
             {(isTitleExist || FeaturesItem.length > 0 || buttons.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {isTitleExist && <Base.SectionTitle
+                    className={`${this.decorateCSS("title")} ${
+                      alignment === "center" ? this.decorateCSS("title-center") : ""
+                    }`}
+                  >
+                    {title}
+                  </Base.SectionTitle>}
 
-                {(FeaturesItem.length > 0) && (
-                  <Base.Row className={this.decorateCSS("features-list")}>
+                {FeaturesItem.length > 0 && (
+                    <Base.Row
+                      className={`${this.decorateCSS("features-list")} ${
+                        alignment === "center" ? this.decorateCSS("alignment-center") : ""
+                      }`}
+                    >
                     {FeaturesItem.map((item: any, index: number) => (
-                      <div
-                        key={index}
-                        className={this.decorateCSS("features-list-item")} 
-                      >
+                      <div key={index} className={this.decorateCSS("features-list-item")}>
                         {this.castToString(item.topText) && (
                           <Base.P className={this.decorateCSS("features-list-items-topText")}>
                             {item.topText}
@@ -176,25 +185,34 @@ this.addProp({
                   </Base.Row>
                 )}
 
-          {buttons.length > 0 && (
-            <Base.Row className={this.decorateCSS("button-container")}>
-              {buttons.map((item, index) => {
-              const buttonText = this.castToString(item.text || "");
-              const buttonUrl = item.url || "#"; // url boşsa fallback
 
-              if (!buttonText && !item.icon)  return null;
 
-              return (
-                <ComposerLink key={`dw-1-btn-${index}`} path={buttonUrl}>
-                  <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                    {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                    <div className={this.decorateCSS("button-text")}>{item.text}</div>
-                  </Base.Button>
-                </ComposerLink>
-              );
-            })}
-            </Base.Row>
-          )}
+            {buttons.length > 0 && (
+              <Base.Row
+                className={`${this.decorateCSS("button-container")} ${
+                  alignment === "center" ? this.decorateCSS("button-center") : ""
+                }`}
+              >
+                {buttons.map((item, index) => {
+                  const buttonText = this.castToString(item.text || "");
+                  const buttonUrl = item.url || "#"; // url boşsa fallback
+
+                  if (!buttonText && !item.icon) return null;
+
+                  return (
+                    <ComposerLink key={`dw-1-btn-${index}`} path={buttonUrl}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        {item.icon && (
+                          <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        )}
+                        <div className={this.decorateCSS("button-text")}>{item.text}</div>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </Base.Row>
+            )}
+
 
                 
               </Base.VerticalContent>
@@ -220,6 +238,7 @@ this.addProp({
 }
 
 export default Stats14;
+
 
 
 
