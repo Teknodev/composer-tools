@@ -15,18 +15,10 @@ class ImageGallery11 extends BaseImageGallery {
     return "Image Gallery 11";
   }
 
-  // State
   private modalVisible = false;
   private modalIndex = 0;
   private zoom = 1;
-  private panX = 0;
-  private panY = 0;
-  private isPanning = false;
-  private panStartX = 0;
-  private panStartY = 0;
-  private baseScale = 1;
 
-  // Drag state
   private isDragging = false;
   private dragMoved = false;
   private dragThreshold = 5;
@@ -36,7 +28,6 @@ class ImageGallery11 extends BaseImageGallery {
   private startDragOffset = 0;
   private activeWrap: HTMLDivElement | null = null;
 
-  // Refs
   private canvasRef = React.createRef<HTMLDivElement>();
   private closeBtnRef = React.createRef<HTMLButtonElement>();
   private trackRefs: React.RefObject<HTMLDivElement>[] = [];
@@ -123,19 +114,16 @@ class ImageGallery11 extends BaseImageGallery {
     ] as TypeUsableComponentProps[];
   }
 
-  // Bileşen yükleme
   componentDidMount(): void {
     this.setLoopWidths();
     window.addEventListener("resize", this.handleResize);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
-  // Bileşen güncelleme
   componentDidUpdate(): void {
     this.setLoopWidths();
   }
 
-  // Bileşen kaldırma
   componentWillUnmount(): void {
     window.removeEventListener("resize", this.handleResize);
     document.removeEventListener("keydown", this.onKeyDown);
@@ -146,8 +134,6 @@ class ImageGallery11 extends BaseImageGallery {
   private handleResize = () => {
     this.setLoopWidths();
     if (this.modalVisible) {
-      this.baseScale = this.computeCoverScale();
-      this.clampPan();
       this.forceUpdate();
     }
   };
@@ -185,7 +171,6 @@ class ImageGallery11 extends BaseImageGallery {
     });
   }
 
-  // Tüm görselleri alma
   private getAllImages(): TImage[] {
     return this.getRows().flatMap(row => row.images);
   }
@@ -222,7 +207,6 @@ class ImageGallery11 extends BaseImageGallery {
       : { x: (e as React.MouseEvent).clientX, y: (e as React.MouseEvent).clientY };
   }
 
-  // Sürükleme başlatma
   private onDragStart = (
     e: React.MouseEvent | React.TouchEvent,
     wrapRef: React.RefObject<HTMLDivElement | null>,
@@ -247,7 +231,6 @@ class ImageGallery11 extends BaseImageGallery {
     wrap.classList.add(this.decorateCSS('dragging'));
   };
 
-  // Sürükleme hareketi
   private onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!this.isDragging || !this.activeWrap || !this.activeTrack) return;
 
@@ -262,7 +245,6 @@ class ImageGallery11 extends BaseImageGallery {
     (e as any).preventDefault?.();
   };
 
-  // Sürükleme bitirme
   private onDragEnd = () => {
     if (!this.isDragging) return;
     this.isDragging = false;
@@ -289,19 +271,14 @@ class ImageGallery11 extends BaseImageGallery {
     this.activeTrack = null;
   };
 
-  // İzleme parçasını durdurma/devam ettirme
   private toggleTrackPause(trackElement: HTMLElement | null, pause: boolean) {
     trackElement?.classList.toggle("paused", pause);
   }
 
-  // Modal açma
   private openAt = (absIndex: number) => {
     this.modalIndex = absIndex;
     this.modalVisible = true;
-    this.baseScale = this.computeCoverScale();
     this.zoom = 1;
-    this.panX = 0;
-    this.panY = 0;
 
     document.body.style.overflow = "hidden";
     window.addEventListener("wheel", this.preventScroll, { passive: false });
@@ -309,27 +286,23 @@ class ImageGallery11 extends BaseImageGallery {
 
     this.forceUpdate();
     requestAnimationFrame(() => {
-      this.clampPan();
       this.forceUpdate();
       this.closeBtnRef.current?.focus();
     });
   };
 
-  // Modal kapatma
   private closeModal = () => {
     this.modalVisible = false;
     this.cleanupModal();
     this.forceUpdate();
   };
 
-  // Modal temizleme
   private cleanupModal() {
     document.body.style.overflow = "";
     window.removeEventListener("wheel", this.preventScroll);
     window.removeEventListener("touchmove", this.preventScroll);
   }
 
-  // Sonraki görsel
   private next = () => {
     const total = this.getAllImages().length;
     if (!total) return;
@@ -337,7 +310,6 @@ class ImageGallery11 extends BaseImageGallery {
     this.resetZoomAndPan();
   };
 
-  // Önceki görsel
   private prev = () => {
     const total = this.getAllImages().length;
     if (!total) return;
@@ -348,106 +320,18 @@ class ImageGallery11 extends BaseImageGallery {
   // Zoom ve kaydırmayı sıfırlama
   private resetZoomAndPan() {
     this.zoom = 1;
-    this.panX = 0;
-    this.panY = 0;
     this.forceUpdate();
   }
 
-  // ===== Zoom & Pan =====
   // Yakınlaştırma durumunu değiştirme
   private toggleZoom = () => {
     this.zoom = this.zoom > 1 ? 1 : 2;
-    this.panX = 0;
-    this.panY = 0;
     this.forceUpdate();
-  };
-
-  // Kapsayıcı ölçeği hesaplama
-  private computeCoverScale = (): number => {
-    const canvas = this.canvasRef.current;
-    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-    if (!canvas || !imgEl || !imgEl.naturalWidth || !imgEl.naturalHeight) return 2;
-
-    const { width: cW, height: cH } = canvas.getBoundingClientRect();
-    const nW = imgEl.naturalWidth, nH = imgEl.naturalHeight;
-
-    const rW = cW / nW;
-    const rH = cH / nH;
-    return Math.max(rW, rH) / Math.min(rW, rH);
-  };
-
-  // Kaydırma sınırlarını ayarlama
-  private clampPan(nextZoom?: number) {
-    const canvas = this.canvasRef.current;
-    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-    if (!canvas || !imgEl || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
-
-    const { width: cW, height: cH } = canvas.getBoundingClientRect();
-    const nW = imgEl.naturalWidth, nH = imgEl.naturalHeight;
-    const contain = Math.min(cW / nW, cH / nH);
-    const zUser = nextZoom ?? this.zoom;
-    const zTotal = Math.max(1, zUser) * this.baseScale;
-    const scaledW = nW * contain * zTotal;
-    const scaledH = nH * contain * zTotal;
-
-    const maxX = scaledW <= cW ? 0 : (scaledW - cW) / 2;
-    const maxY = scaledH <= cH ? 0 : (scaledH - cH) / 2;
-
-    this.panX = Math.round(Math.max(-maxX, Math.min(maxX, this.panX)));
-    this.panY = Math.round(Math.max(-maxY, Math.min(maxY, this.panY)));
-  }
-
-  // Kaydırma başlatma
-  private onPanStart = (e: React.MouseEvent | React.TouchEvent) => {
-    if (this.zoom <= 1) return;
-    const { x, y } = this.getClientPosition(e);
-    this.isPanning = true;
-    this.panStartX = x - this.panX;
-    this.panStartY = y - this.panY;
-    (e as any).preventDefault?.();
-    this.forceUpdate();
-  };
-
-  // Kaydırma hareketi
-  private onPanMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!this.isPanning) return;
-    const { x, y } = this.getClientPosition(e);
-
-    const canvas = this.canvasRef.current;
-    const imgEl = canvas?.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-
-    if (canvas && imgEl && imgEl.naturalWidth && imgEl.naturalHeight) {
-      const { width: cW, height: cH } = canvas.getBoundingClientRect();
-      const contain = Math.min(cW / imgEl.naturalWidth, cH / imgEl.naturalHeight);
-      const z = Math.max(1, this.zoom);
-      const scaledW = imgEl.naturalWidth * contain * z;
-      const scaledH = imgEl.naturalHeight * contain * z;
-      const maxX = scaledW <= cW ? 0 : (scaledW - cW) / 2;
-      const maxY = scaledH <= cH ? 0 : (scaledH - cH) / 2;
-
-      this.panX = Math.max(-maxX, Math.min(maxX, x - this.panStartX));
-      this.panY = Math.max(-maxY, Math.min(maxY, y - this.panStartY));
-    }
-
-    (e as any).preventDefault?.();
-    this.forceUpdate();
-  };
-
-  // Kaydırma bitirme
-  private onPanEnd = () => {
-    this.isPanning = false;
-    const canvas = this.canvasRef.current;
-    canvas?.classList.add(this.decorateCSS("snapping"));
-    this.clampPan();
-    this.forceUpdate();
-    setTimeout(() => canvas?.classList.remove(this.decorateCSS("snapping")), 160);
   };
 
   // Görsel yükleme tamamlandı
   private onImgLoad = () => {
     if (!this.modalVisible) return;
-    this.baseScale = this.computeCoverScale();
-    this.clampPan();
     this.forceUpdate();
   };
 
@@ -465,6 +349,7 @@ class ImageGallery11 extends BaseImageGallery {
 
     keyActions[e.key]?.();
   };
+
   private stripHtml(html: string): string {
     if (typeof DOMParser === 'undefined') {
       return html.replace(/<[^>]*>?/gm, '');
@@ -472,16 +357,14 @@ class ImageGallery11 extends BaseImageGallery {
     const doc = new DOMParser().parseFromString(html, 'text/html');
     return doc.body.textContent || "";
   }
+
   // Tıklama bastırılmalı mı kontrolü
   private shouldSuppressClick(): boolean {
-    return this.isPanning || this.dragMoved || performance.now() < this.clickSuppressUntil;
+    return this.dragMoved || performance.now() < this.clickSuppressUntil;
   }
 
-  // Görsel izleme parçası oluşturma
   private renderImageTrack(images: TImage[], rowIndex: number, imageOffset: number) {
-    // Sabit animasyon süresi
-    const duration = 400; // Sabit, çok yavaş animasyon süresi
-
+    const duration = 400;
     return (
       <div
         key={rowIndex}
@@ -557,17 +440,9 @@ class ImageGallery11 extends BaseImageGallery {
           <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`} onClick={this.prev}>
             <Base.Icon propsIcon={{ className: this.decorateCSS("nav-prev-icon") }} name={this.getPropValue("nav-prev-icon")} />
           </div>
-
           <div
             ref={this.canvasRef}
             className={this.decorateCSS("lightbox-canvas")}
-            onMouseDown={this.zoom > 1 ? undefined : this.onPanStart}
-            onMouseMove={this.zoom > 1 ? undefined : this.onPanMove}
-            onMouseUp={this.zoom > 1 ? undefined : this.onPanEnd}
-            onMouseLeave={this.zoom > 1 ? undefined : this.onPanEnd}
-            onTouchStart={this.zoom > 1 ? undefined : this.onPanStart}
-            onTouchMove={this.zoom > 1 ? undefined : this.onPanMove}
-            onTouchEnd={this.zoom > 1 ? undefined : this.onPanEnd}
             onDoubleClick={this.toggleZoom}
           >
             <div className={this.decorateCSS("lightbox-img-wrap")}>
