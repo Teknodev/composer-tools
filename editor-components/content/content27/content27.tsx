@@ -21,14 +21,6 @@ class Content27 extends BaseContent {
     super(props, styles);
     this.setComponentState("activeTab", 0);
 
-    // Subtitle
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Success Stories",
-    });
-
     // Main heading
     this.addProp({
       type: "string",
