@@ -55,6 +55,13 @@ class Footer1Page extends BaseFooter {
       value: "Type your e-mail",
     });
 
+    this.addProp({
+      type: "string",
+      key: "submitText",
+      displayer: "Submit Text",
+      value: "Form successfully submitted!",
+    });
+
     this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
 
     this.addProp({
@@ -299,6 +306,8 @@ class Footer1Page extends BaseFooter {
     });
 
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
+    console.log("Initial placeholder:", this.getComponentState("placeholderText"));
+
   }
 
   validationSchema = Yup.object().shape({
@@ -321,6 +330,8 @@ class Footer1Page extends BaseFooter {
     const descriptionExist = this.castToString(description);
 
     const placeholderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+
+    const submitText = this.castToString(this.getPropValue("submitText"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -358,7 +369,7 @@ class Footer1Page extends BaseFooter {
                         initialValues={{ email: "" }}
                         validationSchema={this.validationSchema}
                         onSubmit={(data, { resetForm }) => {
-                          this.setComponentState("placeholderText", this.castToString(button.text));
+                          this.setComponentState("placeholderText", submitText);
 
                           setTimeout(() => {
                             const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
@@ -376,7 +387,7 @@ class Footer1Page extends BaseFooter {
                                 <input
                                   className={this.decorateCSS("input")}
                                   type="text"
-                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
+                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder")) || ""}
                                   name="email"
                                   value={values.email}
                                   onChange={handleChange}

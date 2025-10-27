@@ -103,7 +103,18 @@
 
               .form {
                 display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
                 justify-content: flex-end;
+
+                .form-row {
+                  display: flex;
+                }
+
+                .error {
+                  color: var(--composer-danger-color);
+                  width: fit-content;
+                }
 
                 .input-element {
                   position: relative;
@@ -137,12 +148,6 @@
                     opacity: 0.5;
                   }
 
-                  .error {
-                    position: absolute;
-                    bottom: -20px;
-                    left: 0;
-                    color: var(--danger-color);
-                  }
                 }
 
                 .button{

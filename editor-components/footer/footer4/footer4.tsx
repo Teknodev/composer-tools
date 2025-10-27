@@ -627,26 +627,29 @@ class Footer4Page extends BaseFooter {
                       >
                         {({ handleSubmit, handleChange, values, errors, touched }) => (
                           <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                            {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
-                              <div className={this.decorateCSS("input-element")}>
-                                <input
-                                  className={this.decorateCSS("input")}
-                                  type="text"
-                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
-                                  name="email"
-                                  value={values.email}
-                                  onChange={handleChange}
-                                />
-                                {errors.email && touched.email && <Base.P className={this.decorateCSS("error")}>{errors.email}</Base.P>}
-                              </div>
-                            )}
+                            <div className={this.decorateCSS("form-row")}>
+                              {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
+                                <div className={this.decorateCSS("input-element")}>
+                                  <input
+                                    className={this.decorateCSS("input")}
+                                    type="text"
+                                    placeholder={this.getComponentState("placeholderText") || String(this.castToString(this.getPropValue("subscriptionPlaceholder")))}
+                                    name="email"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                  />
+                                </div>
+                              )}
 
-                            {placeHolderExist && buttonTextExist && (
-                              <Base.Button buttonType={button.type}
-                                className={this.decorateCSS("button")}>
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                              </Base.Button>
-                            )}
+                              {placeHolderExist && buttonTextExist && (
+                                <Base.Button buttonType={button.type}
+                                  className={this.decorateCSS("button")}>
+                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              )}
+                            </div>
+                            
+                            {errors.email && touched.email && <Base.P className={this.decorateCSS("error")}>{errors.email}</Base.P>}
                           </Form>
                         )}
                       </Formik>
