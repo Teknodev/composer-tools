@@ -826,8 +826,11 @@ class ImageGallery2 extends BaseImageGallery {
     };
 
     openModal = (index: number) => {
-        this.setComponentState("modalOpen", true);
-        this.setComponentState("currentImageIndex", index);
+        const currentGallery = this.getCurrentGallery();
+        if (currentGallery && currentGallery[index]) {
+            this.setComponentState("modalOpen", true);
+            this.setComponentState("currentImageIndex", index);
+        }
     };
 
     closeModal = () => {
@@ -838,6 +841,9 @@ class ImageGallery2 extends BaseImageGallery {
         const currentImageIndex = this.getComponentState("currentImageIndex");
         const currentGallery = this.getCurrentGallery();
         const galleryLength = currentGallery.length;
+        
+        if (galleryLength === 0) return;
+        
         let newIndex;
         if (direction === "prev") {
             newIndex = (currentImageIndex - 1 + galleryLength) % galleryLength;
@@ -952,7 +958,7 @@ class ImageGallery2 extends BaseImageGallery {
                             </Base.Button>
                         </div>
                     )}
-                    {modalOpen && (
+                    {modalOpen && currentImage && (
                         <Base.Overlay isVisible={true} className={this.decorateCSS("modal")}>
                             <div className={this.decorateCSS("modal-wrapper")}
                                 onClick={this.closeModal}>
@@ -989,24 +995,28 @@ class ImageGallery2 extends BaseImageGallery {
                                 </div>
                             </div>
 
-                            <div
-                                className={this.decorateCSS("prev")}
-                                onClick={this.prevImage}
-                            >
-                                <Base.Media
-                                    value={previousImageIcon}
-                                    className={this.decorateCSS("icon")}
-                                />
-                            </div>
-                            <div
-                                className={this.decorateCSS("next")}
-                                onClick={this.nextImage}
-                            >
-                                <Base.Media
-                                    value={nextImageIcon}
-                                    className={this.decorateCSS("icon")}
-                                />
-                            </div>
+                            {currentImage && (
+                                <>
+                                    <div
+                                        className={this.decorateCSS("prev")}
+                                        onClick={this.prevImage}
+                                    >
+                                        <Base.Media
+                                            value={previousImageIcon}
+                                            className={this.decorateCSS("icon")}
+                                        />
+                                    </div>
+                                    <div
+                                        className={this.decorateCSS("next")}
+                                        onClick={this.nextImage}
+                                    >
+                                        <Base.Media
+                                            value={nextImageIcon}
+                                            className={this.decorateCSS("icon")}
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </Base.Overlay>
                     )}
                 </Base.MaxContent>

@@ -646,7 +646,7 @@ class ImageGallery10 extends BaseImageGallery {
                                     <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>
                                             <div className={this.decorateCSS("item-container")}
-                                                style={{ backgroundImage: `url(${cardItem.image.url})` }}>
+                                                style={{ backgroundImage: cardItem.image?.url ? `url(${cardItem.image.url})` : 'none' }}>
                                                 <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
                                                     {this.castToString(cardItem.title) && (
                                                         <Base.H4

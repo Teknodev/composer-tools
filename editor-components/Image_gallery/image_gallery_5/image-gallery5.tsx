@@ -11,11 +11,10 @@ interface GalleryItem {
 }
 
 class ImageGallery5 extends BaseImageGallery {
-  private imageGalleryRef: React.RefObject<HTMLDivElement>;
+  private imageGalleryRef: React.RefObject<HTMLDivElement | null>;
   constructor(props?: any) {
     super(props, styles);
     this.imageGalleryRef = React.createRef();
-    this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.addProp({
       type: "array",
@@ -254,30 +253,39 @@ class ImageGallery5 extends BaseImageGallery {
     return "Image Gallery 5";
   }
 
-  handleImageClick(index: number) {
-    this.setComponentState("is_image_clicked", true);
-    this.setComponentState("clicked_image_index", index);
+  handleImageClick = (index: number) => {
+    const galleries = this.getPropValue("gallery");
+    if (galleries && galleries[index]) {
+      this.setComponentState("is_image_clicked", true);
+      this.setComponentState("clicked_image_index", index);
+    }
   }
 
-  handleCloseClick() {
+  handleCloseClick = () => {
     this.setComponentState("is_image_clicked", false);
   }
 
-  handleNextImage() {
+  handleNextImage = () => {
     const galleries = this.getPropValue("gallery");
+    if (!galleries || galleries.length === 0) return;
+    
     let currentIndex = this.getComponentState("clicked_image_index");
     currentIndex = (currentIndex + 1) % galleries.length;
     this.setComponentState("clicked_image_index", currentIndex);
   }
 
-  handlePrevImage() {
+  handlePrevImage = () => {
     const galleries = this.getPropValue("gallery");
+    if (!galleries || galleries.length === 0) return;
+    
     let currentIndex = this.getComponentState("clicked_image_index");
     currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
     this.setComponentState("clicked_image_index", currentIndex);
   }
 
-  handleKeyPress(event: KeyboardEvent) {
+  handleKeyPress = (event: React.KeyboardEvent) => {
+    if (!this.getComponentState("is_image_clicked")) return;
+    
     switch (event.key) {
       case "ArrowLeft":
         this.handlePrevImage();
@@ -324,12 +332,11 @@ class ImageGallery5 extends BaseImageGallery {
           >
             {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
               return (
-                <div className={this.decorateCSS("image-container")}>
+                <div className={this.decorateCSS("image-container")} onClick={() => this.handleImageClick(index)}>
                   {galleryItem.image && (
                     <Base.Media
                       value={galleryItem.image}
                       className={this.decorateCSS("image")}
-                      onClick={() => this.handleImageClick(index)}
                     />
                   )}
                 </div>
@@ -343,63 +350,49 @@ class ImageGallery5 extends BaseImageGallery {
               </Base.Button>
             </div>
           )}
-          {isImageClicked && (
-            <Base.Overlay isVisible={true} className={this.decorateCSS("overlay")}>
-              <div className={this.decorateCSS("overlay-content")}>
-                <div className={this.decorateCSS("middle-content")}>
+          {isImageClicked && galleries[clickedImageIndex] && (
+            <Base.Overlay isVisible={true} className={this.decorateCSS("overlay")} onKeyDown={this.handleKeyPress} tabIndex={0}>
+              <div className={this.decorateCSS("modal-wrapper")} onClick={this.handleCloseClick}>
+                <div className={this.decorateCSS("modal-content")} onClick={(e) => e.stopPropagation()}>
                   {closeIcon && (
-                    <button className={this.decorateCSS("image-close-button")}>
+                    <div className={this.decorateCSS("close")} onClick={(e) => { e.stopPropagation(); this.handleCloseClick(); }}>
                       <Base.Media value={closeIcon} className={this.decorateCSS("icon")} />
-                    </button>
+                    </div>
                   )}
+                  
                   {galleries[clickedImageIndex].image && (
-                    <div className={this.decorateCSS("large-image-container")}>
-                      {prevIcon && (
-                        <button
-                          className={this.decorateCSS("prev-button")}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            this.handlePrevImage();
-                          }}
-                        >
-                          <Base.Media value={prevIcon} className={this.decorateCSS("icon")} />
-                        </button>
-                      )}
+                    <div className={this.decorateCSS("image-container")}>
                       <Base.Media
                         value={galleries[clickedImageIndex].image}
-                        className={this.decorateCSS("large-image")}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          this.handleNextImage();
-                        }}
+                        className={this.decorateCSS("modal-image")}
                       />
-                      {nextIcon && (
-                        <button
-                          className={this.decorateCSS("next-button")}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            this.handleNextImage();
-                          }}
-                        >
-                          <Base.Media value={nextIcon} className={this.decorateCSS("icon")} />
-                        </button>
-                      )}
                     </div>
-
                   )}
-                  <div className={this.decorateCSS("caption-container")}>
-                    {imageIndex && (
-                      <Base.P className={this.decorateCSS("image-caption")}>
-                        {clickedImageIndex + 1} of {galleries.length}
-                      </Base.P>
-                    )}
-                    <Base.P className={this.decorateCSS("gallery-image")}>
+                  
+                  <div className={this.decorateCSS("image-info")}>
+                    <div className={this.decorateCSS("image-caption")}>
                       {galleries[clickedImageIndex].caption}
-                    </Base.P>
+                    </div>
+                    {imageIndex && (
+                      <div className={this.decorateCSS("image-count")}>
+                        {clickedImageIndex + 1} of {galleries.length}
+                      </div>
+                    )}
                   </div>
                 </div>
-
               </div>
+
+              {prevIcon && (
+                <div className={this.decorateCSS("prev")} onClick={(e) => { e.stopPropagation(); this.handlePrevImage(); }}>
+                  <Base.Media value={prevIcon} className={this.decorateCSS("icon")} />
+                </div>
+              )}
+              
+              {nextIcon && (
+                <div className={this.decorateCSS("next")} onClick={(e) => { e.stopPropagation(); this.handleNextImage(); }}>
+                  <Base.Media value={nextIcon} className={this.decorateCSS("icon")} />
+                </div>
+              )}
             </Base.Overlay>
           )}
         </Base.MaxContent>
