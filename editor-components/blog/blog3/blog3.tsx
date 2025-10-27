@@ -85,7 +85,7 @@ class Blog3 extends BaseBlog {
             {
               type: "boolean",
               key: "mini",
-              displayer: "Mini",
+              displayer: "Mini Card",
               value: false,
             },
             {
@@ -164,7 +164,7 @@ class Blog3 extends BaseBlog {
             {
               type: "boolean",
               key: "mini",
-              displayer: "Mini",
+              displayer: "Mini Card",
               value: true,
             },
             {
@@ -244,7 +244,7 @@ class Blog3 extends BaseBlog {
             {
               type: "boolean",
               key: "mini",
-              displayer: "Mini",
+              displayer: "Mini Card",
               value: true,
             },
             {
@@ -324,7 +324,7 @@ class Blog3 extends BaseBlog {
             {
               type: "boolean",
               key: "mini",
-              displayer: "Mini",
+              displayer: "Mini Card",
               value: false,
             },
             {

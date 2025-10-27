@@ -5,6 +5,7 @@
 
     .max-content {
         .wrapper {
+            margin-top: var(--composer-gap-md);
             row-gap: var(--composer-gap-xl);
 
             .item {

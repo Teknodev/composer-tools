@@ -181,10 +181,8 @@ class Feature12 extends BaseFeature {
   }
 
   render() {
-    const subtitleExist = this.getPropValue("subtitle", {
-      as_string: true,
-    });
-    const titleExist = this.getPropValue("title", { as_string: true });
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");

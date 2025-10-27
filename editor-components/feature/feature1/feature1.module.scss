@@ -14,7 +14,6 @@
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-xl);
-      margin-bottom: 2rem;
 
       .section-title {
         display: inline-block;
@@ -67,6 +66,9 @@
       width: 100%;
       .button {
         border-radius: var(--composer-border-radius-sm);
+        .button-text {
+          content: "";
+        }
       }
     }
   }
@@ -84,7 +86,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
       .section-container {
         .section-title {
           width: fit-content;
@@ -96,7 +98,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .max-content {
-    gap: var(--composer-gap-sm) !important;
+    gap: var(--composer-gap-md) !important;
   }
 
   .section-container {

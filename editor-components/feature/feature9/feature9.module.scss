@@ -4,6 +4,7 @@
   position: relative;
   .max-content {
     height: 100vh;
+    padding-bottom: var(--composer-gap-md);
     .wrapper {
       background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
@@ -20,7 +21,7 @@
         padding: var(--composer-gap-xl) var(--composer-gap-md);
         width: 100%;
         .title {
-          content: "";
+          text-align: left;
         }
       }
       .cards-container {
@@ -59,7 +60,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 .icon{
-                  font-size: 3rem;
+                  font-size: 2.5rem;
                   color: var(--composer-font-color-primary);
                 }
               }
@@ -128,9 +129,6 @@
       .wrapper{
         .title-container {
           padding: var(--composer-gap-sm);
-          .title {
-
-          }
         }
         .cards-container{
           .card{

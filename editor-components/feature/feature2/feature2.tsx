@@ -1,8 +1,7 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { TypeMediaInputValue } from "../../../types/declarative";
 
 
 type Box = {
@@ -225,9 +224,9 @@ class Feature2 extends BaseFeature {
                     </>
                   )}
                   {titleExist && (
-                    <Base.H2 className={this.decorateCSS("title")}>
+                    <Base.H3 className={this.decorateCSS("title")}>
                       {item.title}
-                    </Base.H2>
+                    </Base.H3>
                   )}
                   {descExist && (
                     <Base.P className={this.decorateCSS("description")}>

@@ -1,17 +1,9 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { TypeMediaInputValue } from "../../../types/declarative";
-
-type LeftContent = {
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-};
 
 type Card = {
   icon: TypeMediaInputValue;
@@ -22,32 +14,29 @@ type Card = {
 class Feature11 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+    
 
     this.addProp({
-      type: "object",
-      key: "leftContent",
-      displayer: "Left Content",
-      value: [
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Everything You Need"
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "The universal UI kit and design system"
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "Powerful tool for creating landing pages, websites and dashboards in Figma. Contains UI Kit (web), Data Visualization, Icon Set."
-        },
-      ]
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Everything You Need"
     });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "The universal UI kit and design system"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Powerful tool for creating landing pages, websites and dashboards in Figma. Contains UI Kit (web), Data Visualization, Icon Set."
+    });
+
     this.addProp(INPUTS.BUTTON("button", "Button", "Start Creating", "", null, null, "Primary"));
 
     this.addProp({
@@ -249,6 +238,9 @@ class Feature11 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 2,
+      additionalParams: {
+        maxElementCount: 5,
+      },
     });
   }
 
@@ -257,32 +249,34 @@ class Feature11 extends BaseFeature {
   }
 
   render() {
-    const leftContent = this.castToObject<LeftContent>("leftContent");
     const cards = this.castToObject<Card[]>("cards");
     const button = this.castToObject<INPUTS.CastedButton>("button");
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(leftContent.subtitle) || this.castToString(leftContent.title) ||
-              this.castToString(leftContent.description) || this.castToString(button.text)) && (
+            {(this.castToString(subtitle) || this.castToString(title) ||
+              this.castToString(description) || this.castToString(button.text)) && (
                 <Base.VerticalContent className={this.decorateCSS("left")}>
-                  {this.castToString(leftContent.subtitle) && (
+                  {this.castToString(subtitle) && (
                     <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
-                      {leftContent.subtitle}
+                      {subtitle}
                     </Base.SectionSubTitle>
                   )}
 
-                  {this.castToString(leftContent.title) && (
+                  {this.castToString(title) && (
                     <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                      {leftContent.title}
+                      {title}
                     </Base.SectionTitle>
                   )}
 
-                  {this.castToString(leftContent.description) && (
+                  {this.castToString(description) && (
                     <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                      {leftContent.description}
+                      {description}
                     </Base.SectionDescription>
                   )}
 

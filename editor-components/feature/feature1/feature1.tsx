@@ -7,8 +7,8 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 interface Section {
     sectionTitle: React.JSX.Element;
-    text1: string;
-    text2: string;
+    text1: React.JSX.Element;
+    text2: React.JSX.Element;
 }
 
 class Feature1 extends BaseFeature {
@@ -116,14 +116,14 @@ class Feature1 extends BaseFeature {
                             index === activeSection && (
                                 <div key={`section-content-${index}`} className={this.decorateCSS("section-content-wrapper")}>
                                     {this.castToString(section.text1) && (
-                                        <div className={this.decorateCSS("text-1")}>
+                                        <Base.P className={this.decorateCSS("text-1")}>
                                             {section.text1}
-                                        </div>
+                                        </Base.P>
                                     )}
                                     {this.castToString(section.text2) && (
-                                        <div className={this.decorateCSS("text-2")}>
+                                        <Base.P className={this.decorateCSS("text-2")}>
                                             {section.text2}
-                                        </div>
+                                        </Base.P>
                                     )}
                                 </div>
                             )
@@ -134,7 +134,7 @@ class Feature1 extends BaseFeature {
                         <div className={this.decorateCSS("button-container")}>
                             <ComposerLink path={buttonType.url}>
                                 <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                                    {buttonType.text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
                                 </Base.Button>
                             </ComposerLink>
                         </div>

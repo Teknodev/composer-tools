@@ -22,10 +22,12 @@
         align-items: center;
         margin: 0 auto;
         gap: var(--composer-gap-md);
-      }
 
-      .button {
-        content: "";
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
       }
     }
   }

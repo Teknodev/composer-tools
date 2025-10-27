@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: React.JSX.Element;
-  image: { type: "image"; url: string };
+  image: TypeMediaInputValue;
   overlay: boolean;
   link: string;
 };
@@ -194,7 +194,7 @@ class Feature6 extends BaseFeature {
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
-                  const imageExist = !!card.image?.url;
+                  const imageExist = !!card.image;
 
                   const shouldRender = (titleExist || imageExist);
 
@@ -215,7 +215,7 @@ class Feature6 extends BaseFeature {
                         <div
                           className={`
                             ${this.decorateCSS("image-shadow")}
-                            ${overlay ? this.decorateCSS("overlay") : ""}
+                            ${overlay && card.image ? this.decorateCSS("overlay") : ""}
                           `}
                         >
                           {titleExist && (
@@ -238,7 +238,7 @@ class Feature6 extends BaseFeature {
                   return (
                     <ComposerLink path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                        {item.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   );

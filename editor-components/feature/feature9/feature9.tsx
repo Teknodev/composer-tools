@@ -271,10 +271,12 @@ class Feature9 extends BaseFeature {
       this.setupObserver();
     }
 
+    const wrapperExist = this.castToString(title) || cards?.length > 0;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
+        {wrapperExist && <div className={this.decorateCSS("wrapper")}>
             {this.castToString(title) &&
               <Base.VerticalContent className={this.decorateCSS("title-container")}>
                 <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -335,7 +337,7 @@ class Feature9 extends BaseFeature {
                 })}
               </div>
             }
-          </div>
+          </div>}
           {(buttons?.length > 0) && (
             <div className={this.decorateCSS("buttons-container")}>
               {buttons.map((button: INPUTS.CastedButton, index: number) => {

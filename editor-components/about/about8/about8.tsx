@@ -103,14 +103,14 @@ class About8 extends BaseAbout {
                             {showBottomContainer && (
                                 <div className={this.decorateCSS("bottom-container")}>
                                     {this.castToString(text1) && (
-                                        <div className={this.decorateCSS("text-1")}>
+                                        <Base.P className={this.decorateCSS("text-1")}>
                                             {text1}
-                                        </div>
+                                        </Base.P>
                                     )}
                                     {this.castToString(text2) && (
-                                        <div className={this.decorateCSS("text-2")}>
+                                        <Base.P className={this.decorateCSS("text-2")}>
                                             {text2}
-                                        </div>
+                                        </Base.P>
                                     )}
                                 </div>
                             )}

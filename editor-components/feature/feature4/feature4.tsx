@@ -3,7 +3,7 @@ import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./feature4.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
@@ -12,13 +12,9 @@ type Card = {
   icon: TypeMediaInputValue;
   description: React.JSX.Element;
   image: TypeMediaInputValue;
-  buttons: Button[];
+  buttons: TypeButton[];
 };
 
-type Button = {
-  text: React.JSX.Element,
-  page: string,
-}
 
 class Feature4 extends BaseFeature {
   constructor(props?: any) {
@@ -121,25 +117,7 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "Navigate To",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link")
               ],
             },
           ],
@@ -200,25 +178,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "Navigate To",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -279,25 +239,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "Navigate To",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -358,25 +300,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "Navigate To",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -437,25 +361,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "Navigate To",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -582,14 +488,14 @@ class Feature4 extends BaseFeature {
                             {card?.buttons?.length > 0 && (
                               <div className={this.decorateCSS("overlay-links-container")}>
                                 {card?.buttons.map(
-                                  (item: Button, index: number) => {
+                                  (item: TypeButton, index: number) => {
                                     if (!this.castToString(item.text)) return null;
                                     {
                                       return (
                                         <Base.Button
-                                          buttonType={"Tertiary"}
+                                          buttonType={item.type}
                                           key={index}
-                                          className={`${this.decorateCSS("overlay-link")} 
+                                          className={`${this.decorateCSS("overlay-button")} 
                                               ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
                                           <ComposerLink path={item.page}>
                                             {item.text}

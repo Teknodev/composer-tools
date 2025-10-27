@@ -47,7 +47,7 @@ class Feature10 extends BaseFeature {
     this.addProp({
       type: "media",
       key: "leftArrow",
-      displayer: "Right Arrow",
+      displayer: "Left Arrow",
       additionalParams: {
         availableTypes: ["icon"],
       },

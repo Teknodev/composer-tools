@@ -113,9 +113,8 @@
             align-items: center;
             gap: var(--composer-gap-sm);
 
-            .overlay-link {
-              color: var(--text-color-white);
-              border: 1px solid var(--text-color-white);
+            .overlay-button {
+              content: "";
             }
           }
         }
