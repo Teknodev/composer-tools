@@ -176,7 +176,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "49 Featherstone Street London, United Kingdom",
+                      value: "49 Featherstone Street London, UK",
                     },
                     {
                       type: "media",
