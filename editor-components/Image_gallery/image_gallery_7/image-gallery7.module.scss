@@ -102,14 +102,50 @@
 
     .maxContent {
       .gridContainer {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        
+        .column {
+          height: auto;
+          overflow: visible;
+        }
+
         .columnEven {
-          grid-column: span 1;
           transform: translateY(0px) !important;
         }
 
         .columnOdd {
-          grid-column: span 1;
           margin-top: 0px;
+          transform: none !important;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    height: 100%;
+
+    .maxContent {
+      .gridContainer {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        
+        .column {
+          height: auto;
+          overflow: visible;
+        }
+
+        .columnEven {
+          transform: translateY(0px) !important;
+        }
+
+        .columnOdd {
+          margin-top: 0px;
+          transform: none !important;
         }
       }
     }

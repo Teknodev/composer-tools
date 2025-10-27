@@ -9,9 +9,11 @@
       display: flex;
       gap: var(--composer-gap-xl);
       flex-wrap: wrap;
+      width: 100%;
       .tab{
         text-align: start;
         width: fit-content;
+        margin: 0;
         cursor: pointer;
         opacity: 0.7;
         transition: opacity 0.3s ease, border-bottom 0.1s ease;
@@ -118,8 +120,10 @@
 @container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
+      gap: var(--composer-gap-md);
       .tab-container{
         flex-direction: column;
+        gap: var(--composer-gap-sm);
       }
     }
   }

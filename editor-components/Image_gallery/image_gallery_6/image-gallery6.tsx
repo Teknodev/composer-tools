@@ -657,7 +657,7 @@ class ImageGallery6 extends BaseImageGallery {
 
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("section-container")}>
+                    <Base.Row className={this.decorateCSS("section-container")}>
                         {this.getPropValue("showAll") && (
                             <Base.H5
                                 className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getPropValue("allText")) || !selectedSection) ? this.decorateCSS("active") : ""
@@ -677,7 +677,7 @@ class ImageGallery6 extends BaseImageGallery {
                                 {element.getPropValue("sectionTitle")}
                             </Base.H5>
                         ))}
-                    </Base.VerticalContent>
+                    </Base.Row>
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("left-container")}>
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {

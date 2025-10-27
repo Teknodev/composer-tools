@@ -542,7 +542,7 @@ class ImageGallery1 extends BaseImageGallery {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(imageGallery.length > 0 || this.castToString(this.getPropValue("allText"))) && (<div className={this.decorateCSS("tab-container")}>
+          {(imageGallery.length > 0 || this.castToString(this.getPropValue("allText"))) && (<Base.Row className={this.decorateCSS("tab-container")}>
             { this.castToString(this.getPropValue("allText")) && (
               <Base.H5
                 className={`${this.decorateCSS("tab")} ${selectedSection === this.castToString(this.getPropValue("allText")) ? this.decorateCSS("active-tab") : ""}`}
@@ -562,7 +562,7 @@ class ImageGallery1 extends BaseImageGallery {
                 </Base.H5>
               ))
             )}
-          </div>)}
+          </Base.Row>)}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
             {imageGallery
               .filter(

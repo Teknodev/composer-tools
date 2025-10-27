@@ -905,7 +905,7 @@ class ImageGallery2 extends BaseImageGallery {
         return (
             <Base.Container className={`${this.decorateCSS("container")}${modalOpen && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("tab-container")}>
+                    <Base.Row className={this.decorateCSS("tab-container")}>
                         {showAll && (
                             <Base.H5
                                 className={`${this.decorateCSS("tab")} ${currentIndex === -1 ? this.decorateCSS("active-tab") : ""
@@ -924,7 +924,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 {element.getPropValue("title")}
                             </Base.H5>
                         ))}
-                    </div>
+                    </Base.Row>
                     <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-container")}>
                         {currentGallery.slice(0, this.getComponentState("imageCount")).map((section: ImageType, imageIndex: number) => {
                             if (!section.image) return null;

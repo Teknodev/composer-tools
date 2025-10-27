@@ -7,13 +7,13 @@
         gap: var(--composer-gap-lg);
 
         .section-container {
-            flex-direction: row;
             gap: var(--composer-gap-xl);
             flex-wrap: wrap;
+            width: 100%;
 
             .section-text {
                 width: fit-content;
-                margin: 0px;
+                margin: 0;
                 padding: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
                 cursor: pointer;
