@@ -68,11 +68,13 @@ class LogoComp5Page extends LogoClouds {
     const isDescriptionExists = this.castToString(this.getPropValue("description"));
     const images = this.castToObject<TImage[]>("image-items");
 
+    const alignment = Base.getContentAlignment()
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
-            <Base.VerticalContent className={this.decorateCSS("left")}>
+            <Base.VerticalContent className={this.decorateCSS("left")} data-alignment={alignment}>
               {isSubtitleExists && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}

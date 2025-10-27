@@ -197,7 +197,7 @@ class LogoComp8Page extends LogoClouds {
                     breakpoint: 500,
                     settings: {
                         arrows: false,
-                        slidesToShow: 2,
+                        slidesToShow: 3,
                         slidesToScroll: 1,
                     },
                 },

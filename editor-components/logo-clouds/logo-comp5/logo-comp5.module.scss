@@ -7,6 +7,19 @@
         align-items: center;
         .left {
             flex: 1;
+            
+            &[data-alignment="center"] {
+                text-align: left;
+                align-items: baseline;
+                .subtitle, .title, .description{
+                    text-align: left;
+                }
+
+                .subtitle{
+                    margin: 0;
+                }
+            }
+            
             .subtitle, .title, .description{
                 content: ""
             }
@@ -32,6 +45,16 @@
         .max-content{
             gap: var(--composer-gap-md);
             flex-direction: column;
+            
+            .left {
+                &[data-alignment="center"] {
+                    text-align: center;
+                    align-items: center;
+                    .subtitle, .title, .description{
+                        text-align: center;
+                    }
+                }
+            }
         }
     }
 }

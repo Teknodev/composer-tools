@@ -85,6 +85,10 @@
 @container (max-width: #{$composer-phone-width}) {
   .container{
     .max-content{
+      gap: var(--composer-gap-md);
+      .header {
+        flex-direction: column;
+      }
       .images-container {
         &.lines-active {
           .image-item {
