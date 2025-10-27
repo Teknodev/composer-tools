@@ -311,6 +311,10 @@
             justify-content: flex-start;
             align-items: flex-start;
 
+            .title {
+              text-align: left;
+            }
+
             .text-container {
               align-items: baseline;
 
@@ -326,6 +330,7 @@
         .footer-bottom {
           justify-content: space-between;
           flex-direction: column;
+          gap: var(--composer-gap-sm);
 
           .bottom-text {
             text-align: center;

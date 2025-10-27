@@ -324,7 +324,7 @@ class Footer1Page extends BaseFooter {
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const upperExist = titleExist || descriptionExist || subtitleExist || this.castToString(button.text) || placeholderExist;
+    const upperExist = titleExist || descriptionExist || subtitleExist || (placeholderExist && this.castToString(button.text));
 
     const line = this.getPropValue("line");
 
@@ -341,7 +341,7 @@ class Footer1Page extends BaseFooter {
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
-          <Base.Container className={this.decorateCSS("first-container")}>
+          {upperExist && <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {upperExist && (
                 <div className={this.decorateCSS("footer-upper")}>
@@ -352,7 +352,7 @@ class Footer1Page extends BaseFooter {
                       {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                     </Base.VerticalContent>
                   )}
-                  {(placeholderExist || this.castToString(button.text)) && (
+                  {placeholderExist && this.castToString(button.text) && (
                     <div className={this.decorateCSS("subscribe")}>
                       <Formik
                         initialValues={{ email: "" }}
@@ -398,7 +398,7 @@ class Footer1Page extends BaseFooter {
                 </div>
               )}
             </Base.MaxContent>
-          </Base.Container>
+          </Base.Container>}
           {line && <div className={this.decorateCSS("line")} />}
 
           <Base.Container className={this.decorateCSS("second-container")}>

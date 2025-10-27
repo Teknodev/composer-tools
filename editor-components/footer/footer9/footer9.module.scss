@@ -365,6 +365,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        gap: var(--composer-gap-sm);
         .bottom-text {
           max-width: 100%;
           color: var(--composer-font-color-primary);

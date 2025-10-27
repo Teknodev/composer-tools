@@ -34,7 +34,7 @@
         }
 
         .right {
-          min-width: 10%;
+          min-width: 20%;
           display: flex;
           justify-content: end;
 
@@ -143,6 +143,7 @@
           flex-direction: column;
           justify-content: space-between;
           width: 100%;
+          gap: var(--composer-gap-sm);
 
           .links,
           .footer-text {
@@ -202,7 +203,6 @@
         .bottom {
           align-items: center;
           .links {
-            justify-content: center;
             .link-element{
               .link-text{
                 text-align: center;

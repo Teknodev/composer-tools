@@ -22,7 +22,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: 80px var(--composer-gap-xl);
         min-height: 300px;
         gap: var(--composer-gap-md);
 
@@ -101,7 +101,7 @@
     .max-content {
       .footer-page {
         .items {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding: 80px var(--composer-gap-lg);
           min-height: 170px;
           gap: var(--composer-gap-md);
           align-items: baseline;
@@ -125,7 +125,7 @@
     .max-content {
       .footer-page {
         .items {
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
           min-height: 300px;
           gap: var(--composer-gap-xl);
           .list{

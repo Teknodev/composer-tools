@@ -657,7 +657,7 @@ class Footer8Page extends BaseFooter {
               </div>
             }
 
-            {(bottomTextExist || links.length > 0) && (
+            {(bottomTextExist || links.length > 0 || socials.length > 0) && (
               <div className={this.decorateCSS("footer-bottom")}>
                 {links.length > 0 && (
                   <div className={this.decorateCSS("links")}>

@@ -146,9 +146,11 @@
                 }
 
                 .button{
-                  content: "";
                   border-top-left-radius: 0;
                   border-bottom-left-radius: 0;
+                  .button-text{
+                    content: "";
+                  }
                 }
               }
 
@@ -437,6 +439,9 @@
                 .form{
                   .button{
                     justify-content: center;
+                    .button-text{
+                      text-align: center;
+                    }
                   }
                 }
               }

@@ -534,7 +534,7 @@ class Footer4Page extends BaseFooter {
     const buttonTextExist = this.castToString(button.text);
     const placeHolderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
 
-    const rightExist = rightTitleExist || rightDescExist || buttonTextExist || placeHolderExist;
+    const rightExist = rightTitleExist || rightDescExist || (placeHolderExist && buttonTextExist);
 
     const line = this.getPropValue("line");
 
@@ -641,7 +641,7 @@ class Footer4Page extends BaseFooter {
                               </div>
                             )}
 
-                            {buttonTextExist && (
+                            {placeHolderExist && buttonTextExist && (
                               <Base.Button buttonType={button.type}
                                 className={this.decorateCSS("button")}>
                                 <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>

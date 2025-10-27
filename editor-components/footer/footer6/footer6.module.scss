@@ -1,7 +1,7 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px var(--composer-gap-xl) 20px var(--composer-gap-xl) !important;
+  padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
 
   &.absolute {
     position: absolute;
@@ -42,6 +42,9 @@
           flex: 1 1 290px;
           max-width: 290px;
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
 
           .list-title {
             color: var(--composer-font-color-primary);
@@ -141,7 +144,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            .text{
+            .text, .list-title{
               text-align: center;
             }
           }

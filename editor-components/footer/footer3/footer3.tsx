@@ -743,11 +743,14 @@ class Footer3Page extends BaseFooter {
 
     const position = this.getPropValue("position");
 
+    const firstContainerExist = headerExist || footer.length > 0;
+    const secondContainerExist = links.length > 0 || bottomTextExist;
+
     return (
       <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            <Base.Container className={this.decorateCSS("first-container")}>
+           {firstContainerExist && <Base.Container className={this.decorateCSS("first-container")}>
               <Base.MaxContent className={this.decorateCSS("first-max-content")}>
                 {
                   <div className={this.decorateCSS("items")}>
@@ -806,7 +809,7 @@ class Footer3Page extends BaseFooter {
                                           className={`${this.decorateCSS("element")} ${v.path && this.decorateCSS("has-path")}`}
                                           data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                         >
-                                          {v.footerIcon && (
+                                          {v.footerIcon?.name && (
                                             <Base.Media 
                                               value={v.footerIcon}
                                               className={this.decorateCSS("element-icon")}
@@ -830,11 +833,11 @@ class Footer3Page extends BaseFooter {
                   </div>
                 }
               </Base.MaxContent>
-            </Base.Container>
+            </Base.Container>}
 
             {line && <div className={this.decorateCSS("line")}></div>}
 
-            {(links.length > 0 || bottomTextExist)  && <Base.Container className={this.decorateCSS("second-container")}>
+            {secondContainerExist && <Base.Container className={this.decorateCSS("second-container")}>
               <Base.MaxContent className={this.decorateCSS("second-max-content")}>
                 {(bottomTextExist || links.length > 0) && (
                   <div className={`${this.decorateCSS("footer-bottom")} 

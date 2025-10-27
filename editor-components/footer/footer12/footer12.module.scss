@@ -246,6 +246,7 @@
         .footer-bottom {
           flex-direction: column;
           align-items: center;
+          gap: var(--composer-gap-sm);
 
           .footer-text {
             max-width: 100%;
