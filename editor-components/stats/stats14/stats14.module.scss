@@ -58,6 +58,16 @@
         flex-wrap: wrap;
         gap: var(--composer-gap-md);
         justify-content: flex-start;
+
+        .button {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+        }
+
+        .button-text {
+          white-space: nowrap;
+        }
       }
 
       .right-container {
