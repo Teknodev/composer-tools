@@ -337,11 +337,10 @@
               .left-top {
                 .contacts {
                   .contact {
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-sm);
 
                     .icon {
-                      width: var(--composer-gap-md);
-                      height: var(--composer-gap-md);
+                      font-size: 1.5rem;
                       flex-shrink: 0;
                     }
                   }
