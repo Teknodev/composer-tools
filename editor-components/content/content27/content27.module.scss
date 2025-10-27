@@ -105,7 +105,7 @@
 /* Base Container Alignment Integration */
 .container {
   /* Use base container alignment system */
-  
+
   &.left {
     .leftContent {
       align-items: flex-start;
@@ -123,7 +123,7 @@
     .listItem {
       justify-content: flex-start;
       text-align: left;
-      
+
       &.isActive {
         transform: translateX(0.5rem);
         justify-content: flex-start;
@@ -182,7 +182,7 @@
     .listItem {
       justify-content: center;
       text-align: center;
-      
+
       &.isActive {
         transform: translateX(0.5rem);
         justify-content: center;
@@ -402,6 +402,7 @@
 }
 
 .infoLine {
+  font-size: calc(1.25 * var(--composer-font-size-md));
   line-height: 1.6;
   color: var(--composer-font-color-primary, #000000);
   font-weight: 400;
@@ -787,6 +788,7 @@
     .listItem.isActive {
       color: var(--composer-primary-color, #f97316);
       font-weight: var(--composer-font-weight-bold);
+      transform: translateX(0.5rem);
     }
 
     .listItem.isActive::before {
@@ -865,6 +867,7 @@
     }
   }
 }
+
 .emptyState {
   list-style: none;
   padding: 1.25rem;
