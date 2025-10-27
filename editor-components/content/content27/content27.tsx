@@ -6,7 +6,6 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
   title: string;
-  text: string;
   image?: string;
   impactTitle?: string;
   impactText?: string;
@@ -36,21 +35,15 @@ class Content27 extends BaseContent {
       displayer: "Items",
       value: [
         {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
+      type: "object",
+      key: "item",
+      displayer: "Item",
+      value: [
             {
               type: "string",
               key: "title",
               displayer: "List Item Title",
               value: "Digital Solutions Provider",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "",
             },
             {
               type: "image",
@@ -61,42 +54,42 @@ class Content27 extends BaseContent {
             {
               type: "string",
               key: "impactTitle",
-              displayer: "Impact Title",
+              displayer: "Title 1",
               value: "The Impact:",
             },
             {
               type: "string",
               key: "impactText",
-              displayer: "Impact Text",
+              displayer: "Text 1",
               value: "Grew their customer base by 82%; shrank site build times by 40%; increased revenue with a restructured business model.",
             },
             {
               type: "string",
               key: "howTitle",
-              displayer: "How They Did it Title",
+              displayer: "Title 2",
               value: "How They Did it:",
             },
             {
               type: "string",
               key: "howText",
-              displayer: "How They Did it Text",
+              displayer: "Text 2",
               value: "Duda's dedicated account management team helped set tags & codes inside the platform, facilitate product flows, and offer guidance on the most efficient ways to use the platform",
             },
             {
               type: "string",
               key: "favoriteTitle",
-              displayer: "Favorite Tool Title",
+              displayer: "Title 3",
               value: "Favorite Duda Tool:",
             },
             {
               type: "string",
               key: "favoriteText",
-              displayer: "Favorite Tool Text",
+              displayer: "Text 3",
               value: "Drag and drop editor for easy, client-managed design changes.",
-            },
-          ],
-        },
-        {
+          },
+        ],
+      },
+      {
           type: "object",
           key: "item",
           displayer: "Item",
@@ -108,12 +101,6 @@ class Content27 extends BaseContent {
               value: "Award-Winning Marketing Firm",
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "",
-            },
-            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -122,41 +109,41 @@ class Content27 extends BaseContent {
             {
               type: "string",
               key: "impactTitle",
-              displayer: "Impact Title",
+              displayer: "Title 1",
               value: "The Impact:",
             },
             {
               type: "string",
               key: "impactText",
-              displayer: "Impact Text",
+              displayer: "Text 1",
               value: "Reduced average site build times by 75%; increased revenue with expanded services; improved lifetime customer value.",
             },
             {
               type: "string",
               key: "howTitle",
-              displayer: "How They Did it Title",
+              displayer: "Title 2",
               value: "How They Did it:",
             },
             {
               type: "string",
               key: "howText",
-              displayer: "How They Did it Text",
+              displayer: "Text 2",
               value: "Successful team onboarding in 2–3 days, compared to 2–3 weeks on WordPress; design tools that reduced development work from 15 days to 5 hours!",
             },
             {
               type: "string",
               key: "favoriteTitle",
-              displayer: "Favorite Tool Title",
+              displayer: "Title 3",
               value: "Favorite Duda Tool:",
             },
             {
               type: "string",
               key: "favoriteText",
-              displayer: "Favorite Tool Text",
+              displayer: "Text 3",
               value: "Personalization engine for serving targeted content by audience.",
-            },
-          ],
-        },
+          },
+        ],
+      },
         {
           type: "object",
           key: "item",
@@ -169,12 +156,6 @@ class Content27 extends BaseContent {
               value: "Digital Marketing Leader",
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "",
-            },
-            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -183,37 +164,37 @@ class Content27 extends BaseContent {
             {
               type: "string",
               key: "impactTitle",
-              displayer: "Impact Title",
+              displayer: "Title 1",
               value: "The Impact:",
             },
             {
               type: "string",
               key: "impactText",
-              displayer: "Impact Text",
+              displayer: "Text 1",
               value: "Achieved their goals of offering a quality, industry-leading product and faster site creation & management at scale.",
             },
             {
               type: "string",
               key: "howTitle",
-              displayer: "How They Did it Title",
+              displayer: "Title 2",
               value: "How They Did it:",
             },
             {
               type: "string",
               key: "howText",
-              displayer: "How They Did it Text",
+              displayer: "Text 2",
               value: "Seamless migration of thousands of legacy websites in just a few months, using APIs to add metadata and create URL redirects.",
             },
             {
               type: "string",
               key: "favoriteTitle",
-              displayer: "Favorite Tool Title",
+              displayer: "Title 3",
               value: "Favorite Duda Tool:",
             },
             {
               type: "string",
               key: "favoriteText",
-              displayer: "Favorite Tool Text",
+              displayer: "Text 3",
               value: "Connected Data to prepopulate site templates with structured customer data.",
             },
           ],
@@ -274,26 +255,27 @@ class Content27 extends BaseContent {
                 </Base.H2>
               )}
 
-              {list.length > 0 && (
+              {list && list.length > 0 && (
                 <ul className={this.decorateCSS("list")}>
                   {list.map((listItem: any, index: number) => {
+                    // Check if title exists
+                    const hasTitle = this.castToString(listItem?.title);
                     const isActive = index === activeTab;
-                    return (
+                    
+                    return hasTitle ? (
                       <li
-                        key={index}
-                        className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""}`}
+                        key={`item-${index}`}
+                          className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""}`}
                         onClick={() => this.setActiveTab(index)}
                       >
-                        {listItem.title && (
-                          <span className={this.decorateCSS("listItemText")}>
-                            {listItem.title}
-                          </span>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
+                        <span className={this.decorateCSS("listItemText")}>
+                          {listItem.title}
+                        </span>
+                        </li>
+                    ) : null;
+                    })}
+                  </ul>
+                )}
             </div>
 
             <div className={this.decorateCSS("dividerColumn")}>
@@ -301,14 +283,14 @@ class Content27 extends BaseContent {
             </div>
 
             <div className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}>
-              {activeItem && activeItem.image && (
+              {activeItem?.image && (
                 <div
                   className={this.decorateCSS("imageBox")}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
                   <img
                     src={activeItem.image}
-                    alt={`${activeItem.title} - Success Story`}
+                    alt={`${activeItem.title || ""} - Success Story`}
                     className={this.decorateCSS("image")}
                   />
                 </div>
@@ -340,9 +322,9 @@ class Content27 extends BaseContent {
               )}
 
               {this.castToString(button.text) && (
-                <div className={this.decorateCSS("ctaWrapper")}>
+                <div className={this.decorateCSS("button-container")}>
                   <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("ctaButton")}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                       {button.text}
                     </Base.Button>
                   </ComposerLink>
@@ -356,4 +338,4 @@ class Content27 extends BaseContent {
   }
 }
 
-export default Content27;
+export default Content27; 
