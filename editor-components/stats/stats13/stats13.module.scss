@@ -1,0 +1,110 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    height: 100%;
+}
+
+.max-content {
+    display: flex;
+    height: 100%;
+}
+
+.page {
+    display: flex;
+    width: 100%;
+}
+
+.left-page {
+    height: auto;
+    width: 100%;
+    flex: 1;
+    gap: var(--composer-gap-sm);
+    padding-top: var(--composer-gap-xl);
+}
+
+.left-page-without-image {
+    padding-top: 0;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.button {
+    padding: var(--padding-xl) calc(var(--padding-xxl) * 1.5) !important;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: var(--composer-gap-md);
+    margin-top: var(--composer-gap-lg);
+}
+
+.right-container {
+    flex: 1.5;
+    height: fit-content;
+    align-items: flex-end;
+    min-height: 200px;
+    width: 100%;
+}
+
+.right-container-without-image {
+    height: 100%;
+}
+
+.image {
+    border-radius: var(--composer-border-radius-xl);
+    width: 85%;
+    object-fit: cover;
+    display: flex;
+    max-height: 700px;
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .page {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .left-page {
+        flex: auto;
+        padding-top: 0;
+    }
+
+    .button-container {
+        flex-direction: row !important;
+    }
+
+    .right-container {
+        flex: auto;
+        gap: var(--composer-gap-sm);
+    }
+
+    .right-container-without-image {
+        min-height: fit-content;
+    }
+
+    .image {
+        width: 100%;
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .left-page {
+        height: fit-content;
+    }
+
+    .button-container {
+        flex-direction: column !important;
+    }
+
+    .right-container {
+        gap: var(--composer-gap-md);
+    }
+
+    .image {
+        margin: 0px;
+    }
+}
