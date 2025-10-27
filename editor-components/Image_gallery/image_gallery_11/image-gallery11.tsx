@@ -3,7 +3,14 @@ import { BaseImageGallery, TypeUsableComponentProps } from "../../EditorComponen
 import styles from "./image-gallery11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-type TImage = { image: string; title?: string; imageLink: string };
+type ImageType = {
+  image: string;
+  imageTitle: React.JSX.Element;
+};
+
+type GalleryRowType = {
+  images: ImageType[];
+};
 
 class ImageGallery11 extends BaseImageGallery {
   constructor(props?: any) {
@@ -38,15 +45,15 @@ class ImageGallery11 extends BaseImageGallery {
   private initializeProps() {
     this.addProp({
       type: "image",
-      key: "bg-image",
+      key: "bgImage",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689af25436675f002db98b79?alt=media",
     });
 
     this.addProp({
       type: "boolean",
-      key: "bg-overlay-enabled",
-      displayer: "Background Overlay",
+      key: "bgOverlayEnabled",
+      displayer: "Overlay",
       value: true,
     });
 
@@ -60,19 +67,19 @@ class ImageGallery11 extends BaseImageGallery {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value: "As the studiocontinues to grow, our artists grow alongside it. We may be small, but everyone here is a jack-of-all-trades.",
     });
 
-    this.addProp({ type: "icon", key: "close-icon", displayer: "Close Icon", value: "GrClose" });
-    this.addProp({ type: "icon", key: "nav-prev-icon", displayer: "Nav Prev Icon", value: "IoIosArrowBack" });
-    this.addProp({ type: "icon", key: "nav-next-icon", displayer: "Nav Next Icon", value: "IoIosArrowForward" });
-    this.addProp({ type: "icon", key: "zoom-out-icon", displayer: "Zoom Out Icon", value: "TfiZoomOut" });
-    this.addProp({ type: "icon", key: "zoom-in-icon", displayer: "Zoom in Icon", value: "TfiZoomIn" });
+    this.addProp({ type: "icon", key: "closeIcon", displayer: "Close Icon", value: "GrClose" });
+    this.addProp({ type: "icon", key: "navPrevIcon", displayer: "Nav Prev Icon", value: "IoIosArrowBack" });
+    this.addProp({ type: "icon", key: "navNextIcon", displayer: "Nav Next Icon", value: "IoIosArrowForward" });
+    this.addProp({ type: "icon", key: "zoomOutIcon", displayer: "Zoom Out Icon", value: "TfiZoomOut" });
+    this.addProp({ type: "icon", key: "zoomInIcon", displayer: "Zoom In Icon", value: "TfiZoomIn" });
 
     this.addProp({
       type: "array",
-      key: "gallery-rows",
+      key: "galleryRows",
       displayer: "Gallery Rows",
       value: this.getDefaultGalleryRows() as TypeUsableComponentProps[],
     });
@@ -86,32 +93,38 @@ class ImageGallery11 extends BaseImageGallery {
       displayer: "Image",
       value: [
         { type: "image", key: "image", displayer: "Image", value: url },
-        { type: "string", key: "image-title", displayer: "Image Title", value: title },
+        { type: "string", key: "imageTitle", displayer: "Image Title", value: title },
       ],
     });
 
-    const row1Images = [
-      "689b16de36675f002db9baf2", "689b177536675f002db9bbfe", "689b17fb36675f002db9bcd0",
-      "689b186b36675f002db9bdb5", "689b188936675f002db9bde7", "689b18be36675f002db9be9c",
-      "689b18f336675f002db9bf2a", "689b191b36675f002db9bffd"
-    ].map((id, i) => createImage(
-      `https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/${id}?alt=media`,
-      `blog_${i + 1}`
-    ));
+    const defaultImageRows = [
+      [
+        "689b16de36675f002db9baf2", "689b177536675f002db9bbfe", "689b17fb36675f002db9bcd0",
+        "689b186b36675f002db9bdb5", "689b188936675f002db9bde7", "689b18be36675f002db9be9c",
+        "689b18f336675f002db9bf2a", "689b191b36675f002db9bffd"
+      ],
+      [
+        "689b1a6036675f002db9c11e", "689b1a9836675f002db9c143", "689b1aba36675f002db9c164",
+        "689b1ad836675f002db9c1cf", "689b1aff36675f002db9c2f3", "689b1c1e36675f002db9c57f",
+        "689b1c4636675f002db9c592", "689b188936675f002db9bde7"
+      ]
+    ];
 
-    const row2Images = [
-      "689b1a6036675f002db9c11e", "689b1a9836675f002db9c143", "689b1aba36675f002db9c164",
-      "689b1ad836675f002db9c1cf", "689b1aff36675f002db9c2f3", "689b1c1e36675f002db9c57f",
-      "689b1c4636675f002db9c592", "689b188936675f002db9bde7"
-    ].map((id, i) => createImage(
-      `https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/${id}?alt=media`,
-      `photo-${i + 1}`
-    ));
-
-    return [
-      { type: "object", key: "row", displayer: "Row 1", value: [{ type: "array", key: "images", displayer: "Images", value: row1Images }] as any },
-      { type: "object", key: "row", displayer: "Row 2", value: [{ type: "array", key: "images", displayer: "Images", value: row2Images }] as any },
-    ] as TypeUsableComponentProps[];
+    return defaultImageRows.map((row, rowIndex) => {
+      const images = row.map((id, i) => {
+        const titleText = `Image ${rowIndex + 1}-${i + 1}`;
+        return createImage(
+          `https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/${id}?alt=media`,
+          titleText.charAt(0).toUpperCase() + titleText.slice(1)
+        );
+      });
+      return {
+        type: "object",
+        key: "row",
+        displayer: `Row ${rowIndex + 1}`,
+        value: [{ type: "array", key: "images", displayer: "Images", value: images }] as any,
+      };
+    }) as TypeUsableComponentProps[];
   }
 
   componentDidMount(): void {
@@ -149,12 +162,11 @@ class ImageGallery11 extends BaseImageGallery {
     return false;
   }
 
-  // Sayfa kaydırmasını engelleme
   private preventScroll = (e: Event) => e.preventDefault();
 
   // Satır verilerini alma
-  private getRows(): { images: TImage[] }[] {
-    const rowsData = this.castToObject<any[]>("gallery-rows") || [];
+  private getRows(): GalleryRowType[] {
+    const rowsData = this.castToObject<any[]>("galleryRows") || [];
     return rowsData.map((rowData: any) => {
       const imagesProp = Array.isArray(rowData.value)
         ? rowData.value.find((p: any) => p.key === "images")
@@ -163,15 +175,15 @@ class ImageGallery11 extends BaseImageGallery {
         .map((it: any) => {
           const arr = Array.isArray(it?.value) ? it.value : [];
           const image = arr.find((x: any) => x.key === "image")?.value || "";
-          const title = arr.find((x: any) => x.key === "image-title")?.value || "";
-          return image ? ({ image, title, imageLink: "" } as TImage) : null;
+          const imageTitle = arr.find((x: any) => x.key === "imageTitle")?.value || "";
+          return image ? ({ image, imageTitle } as ImageType) : null;
         })
-        .filter(Boolean) as TImage[];
+        .filter(Boolean) as ImageType[];
       return { images };
     });
   }
 
-  private getAllImages(): TImage[] {
+  private getAllImages(): ImageType[] {
     return this.getRows().flatMap(row => row.images);
   }
 
@@ -216,30 +228,23 @@ class ImageGallery11 extends BaseImageGallery {
     const wrap = wrapRef.current;
     const track = trackRef.current;
     if (!wrap || !track) return;
-
     this.isDragging = true;
     this.dragMoved = false;
     this.activeWrap = wrap;
     this.activeTrack = track;
-
     const { x } = this.getClientPosition(e);
     this.startX = x;
-
     const current = getComputedStyle(wrap).getPropertyValue('--drag').trim();
     this.startDragOffset = parseFloat(current || '0') || 0;
-
     wrap.classList.add(this.decorateCSS('dragging'));
   };
 
   private onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!this.isDragging || !this.activeWrap || !this.activeTrack) return;
-
     const { x } = this.getClientPosition(e);
     const delta = x - this.startX;
     const next = this.startDragOffset + delta;
-
     if (Math.abs(delta) >= this.dragThreshold) this.dragMoved = true;
-
     this.activeWrap.style.setProperty('--drag', `${next}px`);
     this.normalizeDrag(this.activeWrap, this.activeTrack);
     (e as any).preventDefault?.();
@@ -254,10 +259,8 @@ class ImageGallery11 extends BaseImageGallery {
 
       if (this.activeTrack) {
         this.normalizeDrag(this.activeWrap, this.activeTrack);
-
-        // Boşlukları önlemek için animasyonu sıfırla
         this.activeTrack.classList.remove(this.decorateCSS("track"));
-        void this.activeTrack.offsetWidth; // Yeniden akışı zorla
+        void this.activeTrack.offsetWidth;
         this.activeTrack.classList.add(this.decorateCSS("track"));
       }
     }
@@ -272,7 +275,7 @@ class ImageGallery11 extends BaseImageGallery {
   };
 
   private toggleTrackPause(trackElement: HTMLElement | null, pause: boolean) {
-    trackElement?.classList.toggle("paused", pause);
+    trackElement?.classList.toggle(this.decorateCSS("paused"), pause);
   }
 
   private openAt = (absIndex: number) => {
@@ -317,25 +320,21 @@ class ImageGallery11 extends BaseImageGallery {
     this.resetZoomAndPan();
   };
 
-  // Zoom ve kaydırmayı sıfırlama
   private resetZoomAndPan() {
     this.zoom = 1;
     this.forceUpdate();
   }
 
-  // Yakınlaştırma durumunu değiştirme
   private toggleZoom = () => {
     this.zoom = this.zoom > 1 ? 1 : 2;
     this.forceUpdate();
   };
 
-  // Görsel yükleme tamamlandı
   private onImgLoad = () => {
     if (!this.modalVisible) return;
     this.forceUpdate();
   };
 
-  // Klavye tuş olayları
   private onKeyDown = (e: KeyboardEvent) => {
     if (!this.modalVisible) return;
 
@@ -363,7 +362,7 @@ class ImageGallery11 extends BaseImageGallery {
     return this.dragMoved || performance.now() < this.clickSuppressUntil;
   }
 
-  private renderImageTrack(images: TImage[], rowIndex: number, imageOffset: number) {
+  private renderImageTrack(images: ImageType[], rowIndex: number, imageOffset: number) {
     const duration = 400;
     return (
       <div
@@ -392,7 +391,7 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   // İç parça oluşturma
-  private renderTrackInner(images: TImage[], rowIndex: number, imageOffset: number, suffix: string) {
+  private renderTrackInner(images: ImageType[], rowIndex: number, imageOffset: number, suffix: string) {
     if (!images || images.length === 0) {
       return null;
     }
@@ -423,10 +422,11 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   // Modal penceresi oluşturma
-  private renderModal(allImages: TImage[], active: TImage) {
+  private renderModal(allImages: ImageType[], active: ImageType) {
     const total = allImages.length;
     const imgStyle = this.getImageStyle(active);
-    const strippedTitle = active?.title ? this.stripHtml(active.title).trim() : "";
+    const titleString = active?.imageTitle ? this.castToString(active.imageTitle) : "";
+    const strippedTitle = titleString && typeof titleString === 'string' ? this.stripHtml(titleString).trim() : "";
 
     return (
       <Base.Overlay isVisible={true} className={this.decorateCSS("modal-overlay")}>
@@ -438,7 +438,7 @@ class ImageGallery11 extends BaseImageGallery {
           aria-label="Image viewer"
         >
           <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`} onClick={this.prev}>
-            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-prev-icon") }} name={this.getPropValue("nav-prev-icon")} />
+            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-prev-icon") }} name={this.getPropValue("navPrevIcon")} />
           </div>
           <div
             ref={this.canvasRef}
@@ -449,7 +449,7 @@ class ImageGallery11 extends BaseImageGallery {
               <img
                 className={this.decorateCSS("lightbox-img")}
                 src={active.image}
-                alt={active.title || ""}
+                alt={strippedTitle || ""}
                 draggable={false}
                 onLoad={this.onImgLoad}
                 style={imgStyle}
@@ -459,28 +459,14 @@ class ImageGallery11 extends BaseImageGallery {
               </div>
               {strippedTitle && <div className={this.decorateCSS("title-badge")}>{strippedTitle}</div>}
 
-              {this.renderModalButton("close-btn", "Close", this.closeModal, this.getPropValue("close-icon"))}
+              {this.renderModalButton("close-btn", "Close", this.closeModal, this.getPropValue("closeIcon"))}
               {this.renderModalButton("zoom-btn", this.zoom > 1 ? "Zoom out" : "Zoom in", this.toggleZoom,
-                this.zoom > 1 ? this.getPropValue("zoom-out-icon") : this.getPropValue("zoom-in-icon")
+                this.zoom > 1 ? this.getPropValue("zoomOutIcon") : this.getPropValue("zoomInIcon")
               )}
             </div>
           </div>
-
-          <button
-            className={`${this.decorateCSS("side-hit")} ${this.decorateCSS("left")}`}
-            onClick={() => !this.shouldSuppressClick() && this.prev()}
-            aria-label="Previous image"
-            disabled={this.zoom > 1}
-          />
-          <button
-            className={`${this.decorateCSS("side-hit")} ${this.decorateCSS("right")}`}
-            onClick={() => !this.shouldSuppressClick() && this.next()}
-            aria-label="Next image"
-            disabled={this.zoom > 1}
-          />
-
           <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`} onClick={this.next}>
-            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-next-icon") }} name={this.getPropValue("nav-next-icon")} />
+            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-next-icon") }} name={this.getPropValue("navNextIcon")} />
           </div>
         </div>
       </Base.Overlay>
@@ -494,6 +480,7 @@ class ImageGallery11 extends BaseImageGallery {
       e.preventDefault();
     };
 
+    /* Button:aksiyon butonu */
     return (
       <button
         ref={className === "close-btn" ? this.closeBtnRef : undefined}
@@ -514,7 +501,7 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   // Görsel stil ayarlarını hesaplama
-  private getImageStyle(active: TImage): React.CSSProperties {
+  private getImageStyle(active: ImageType): React.CSSProperties {
     const baseStyle: React.CSSProperties = {
       maxWidth: "100%",
       maxHeight: "100%",
@@ -550,11 +537,15 @@ class ImageGallery11 extends BaseImageGallery {
     const allImages = this.getAllImages();
     const active = allImages[this.modalIndex];
 
-    const backgroundImage = this.castToString(this.getPropValue("bg-image"));
+    const backgroundImage = this.castToString(this.getPropValue("bgImage"));
     const hasBackgroundImage = !!backgroundImage;
-    const overlayEnabled = this.asBool(this.getPropValue("bg-overlay-enabled"));
-    const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"));
+    const overlayEnabled = this.asBool(this.getPropValue("bgOverlayEnabled"));
+
+    const title = this.getPropValue("title");
+    const isTitleExist = this.castToString(title);
+
+    const description = this.getPropValue("description");
+    const isDescriptionExist = this.castToString(description);
 
     const containerStyle: React.CSSProperties = hasBackgroundImage ? {
       backgroundImage: `url(${backgroundImage})`,
@@ -582,10 +573,10 @@ class ImageGallery11 extends BaseImageGallery {
 
           {this.modalVisible && allImages.length > 0 && this.renderModal(allImages, active)}
 
-          {(title || description) && (
+          {(isTitleExist || isDescriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
 
