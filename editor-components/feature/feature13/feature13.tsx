@@ -475,7 +475,7 @@ class Feature13 extends BaseFeature {
                                 key={index}
                                 className={this.decorateCSS("tabs-list-item")}
                               >
-                                <button
+                                <Base.H3
                                   onClick={() => {
                                     this.switchTab(index);
                                   }}
@@ -485,7 +485,7 @@ class Feature13 extends BaseFeature {
                                     }`}
                                 >
                                   {item.title}
-                                </button>
+                                </Base.H3>
                               </div>
                             );
                           })}
@@ -511,14 +511,14 @@ class Feature13 extends BaseFeature {
                         return (
                           <div key={index} className={this.decorateCSS("progress-item")}>
                             <div className={this.decorateCSS("progress-header")}>
-                              <Base.H3 className={this.decorateCSS("progress-title")}>
+                              <Base.H4 className={this.decorateCSS("progress-title")}>
                                 {item.title}
-                              </Base.H3>
-                              {utility && (<span
+                              </Base.H4>
+                              {utility && (<Base.P
                                 className={this.decorateCSS(
                                   "progress-percent"
                                 )}
-                              >{utility}</span>)}
+                              >{utility}</Base.P>)}
                             </div>
                             {percentage && (
                               <div

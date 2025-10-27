@@ -167,7 +167,7 @@ class Feature7 extends BaseFeature {
       const alignment = Base.getContentAlignment();
       
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
             {!!image?.url && (
@@ -181,7 +181,7 @@ class Feature7 extends BaseFeature {
             {hasTextContent && (
               <Base.GridCell
                 className={this.decorateCSS("text-container")}>
-                {(subtitleExist || titleExist || descriptionExist) && (
+                {(subtitleExist || titleExist || descriptionExist || features.length > 0 || links.length > 0) && (
                   <Base.VerticalContent className={`${this.decorateCSS("title-wrapper")}`}>
                     {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>

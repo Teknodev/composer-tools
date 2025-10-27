@@ -10,6 +10,19 @@
   pointer-events: none;
 }
 
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
     position: relative;
     padding-top: 0px;
@@ -65,7 +78,7 @@
 
                 .icon-box {
                     .icon {
-                        font-size: 3rem;
+                        font-size: 2rem;
                     }
                 }
 
@@ -128,10 +141,11 @@
             }
         }
 
-        .overlay {
+        .video-overlay {
             .video-container {
               height: fit-content;
               width: 70%;
+              max-width: 800px;
               .video {
                 height: 100%;
                 display: flex;
@@ -153,8 +167,7 @@
               color: var(--composer-font-color-secondary);
               background-color: transparent;   
               .close-icon {
-                width: 1.5em;
-                height: 1.5em;
+                font-size: 1.5rem;
               }
             }
           }

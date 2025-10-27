@@ -127,8 +127,7 @@
                             gap: var(--composer-gap-md);
                             align-items: center;
                             .icon{
-                                min-width: 3rem;
-                                font-size: 3rem;
+                                font-size: 2.5rem;
                                 color: var(--composer-primary-color);
                             }
                             .list-item-title{
@@ -157,6 +156,44 @@
     .container{
         .max-content{
             flex-direction: column;
+            
+            .right-image {
+                width: 100%;
+                
+                .img {
+                    height: 700px;
+                }
+            }
+            
+            .content {
+                .item-block {
+                    .list-item-content {
+                        .item-content-top {
+                            .icon {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container{
+        .max-content{
+            .right-image {
+                .img {
+                    height: 300px;
+                }
+            }
+            .content {
+                gap: var(--composer-gap-md);
+                .item-block {
+                    gap: var(--composer-gap-md);
+                }
+            }
         }
     }
 }

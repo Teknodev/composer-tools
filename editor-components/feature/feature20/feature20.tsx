@@ -198,7 +198,7 @@ class Feature20 extends BaseFeature {
                   <Base.VerticalContent className={this.decorateCSS("text")}>
                     <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>
                     <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>
-                    {item.button && (
+                    {this.castToString(item.button.text) && (
                       <ComposerLink path={item.button.url || '#'}>
                         <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
                           {item.button.text && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}

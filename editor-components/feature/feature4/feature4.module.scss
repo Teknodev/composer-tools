@@ -27,6 +27,12 @@
           }
         }
 
+        .badge-with-bg {
+          background-color: transparent;
+          transform: translateX(0);
+          padding: 0;
+        }
+
         .section-title {
           margin-top: 0;
           margin-bottom: 0;

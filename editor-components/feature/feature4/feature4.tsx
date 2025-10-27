@@ -387,6 +387,7 @@ class Feature4 extends BaseFeature {
     const imageOverlay = !!this.getPropValue("imageOverlay");
 
     const subtitleType = Base.getSectionSubTitleType();
+    
 
     return (
       <Base.Container
@@ -400,6 +401,7 @@ class Feature4 extends BaseFeature {
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
                     ${this.getPropValue("backgroundImage")?.url && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage")?.url && (subtitleType === "badge") ? this.decorateCSS("badge-with-bg") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>

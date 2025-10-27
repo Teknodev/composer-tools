@@ -180,7 +180,7 @@ class Feature22 extends BaseFeature{
                             </Base.SectionDescription>
                         )}
                         
-                        <Base.VerticalContent className={this.decorateCSS("box")}>
+                       {tabs.length > 0 && <Base.VerticalContent className={this.decorateCSS("box")}>
                             <div className={this.decorateCSS("tab-buttons")}>
                                 {tabs.map(
                                     (tab: Tabs, index: number) => {
@@ -255,7 +255,7 @@ class Feature22 extends BaseFeature{
                                     )}
                                 </div>
                             </div>
-                        </Base.VerticalContent>
+                        </Base.VerticalContent>}
                     </div>
                 </Base.MaxContent>
             </Base.Container>

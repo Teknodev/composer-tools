@@ -1,11 +1,10 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-
 type Card = {
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -289,7 +288,9 @@ class Feature8 extends BaseFeature {
                 const titleExist = this.castToString(card.title);
                 const descExist = this.castToString(card.description);
 
-                return (
+                const cardExist = titleExist || descExist || card.icon;
+
+                return cardExist && (
                   <div className={this.decorateCSS("card")}>
                     {card.icon && (
                       <Base.Media
