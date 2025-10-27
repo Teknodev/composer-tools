@@ -2,9 +2,46 @@
   as *;
 
 .container {
-  .max-content {
-    .title {
-      content: "";
-    }
-  }
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  padding: 4rem 0;
+}
+
+.layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.tab-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tab-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.3s;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.image-wrapper img {
+  width: 400px;
+  border-radius: 10px;
+}
+
+.text-section {
+  max-width: 500px;
 }
