@@ -162,7 +162,9 @@ class Stats14 extends BaseStats {
                             {item.icon && (
                               <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                             )}
-                            <div className={this.decorateCSS("button-text")}>{item.text}</div>
+                            {buttonText && (
+                              <div className={this.decorateCSS("button-text")}>{buttonText}</div>
+                            )}
                           </Base.Button>
                         </ComposerLink>
                       );
