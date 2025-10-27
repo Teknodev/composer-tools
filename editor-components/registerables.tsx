@@ -150,6 +150,7 @@ import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
 import LogoComponent7 from "./logo-clouds/logo-comp7/logo-comp7";
 import LogoComponent8 from "./logo-clouds/logo-comp8/logo-comp8";
 import LogoComponent9 from "./logo-clouds/logo-comp9/logo-comp9";
+import LogoComponent10 from "./logo-clouds/logo-comp10/logo-comp10";
 import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
 import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
 import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
@@ -177,6 +178,7 @@ import StatsComponent9 from "./stats/stats9/stats9";
 import StatsComponent10 from "./stats/stats10/stats10";
 import StatsComponent11 from "./stats/stats11/stats11";
 import StatsComponent12 from "./stats/stats12/stats12";
+import StatsComponent14 from "./stats/stats14/stats14";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -185,7 +187,6 @@ import Form5 from "./contacts/form5/form5";
 import Form6 from "./contacts/form6/form6";
 import Form7 from "./contacts/form7/form7";
 import Form8 from "./contacts/form8/form8";
-import Form9 from "./contacts/form9/form9";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -273,7 +274,7 @@ import About7 from "./about/about7/about7";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
-import Comparison1 from "./comparison/comparison1/comparison1";
+import Comparison1 from "./comparison/comparison1/comparison1"; 
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -460,6 +461,7 @@ function Registerables(composer: ComponentsRegistery) {
     LogoComponent7,
     LogoComponent8,
     LogoComponent9,
+    LogoComponent10,
     TestimonialsComponent1,
     TestimonialsComponent2,
     TestimonialsComponent3,
@@ -487,6 +489,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent10,
     StatsComponent11,
     StatsComponent12,
+    StatsComponent14,
     Form1,
     Form2,
     Form3,
@@ -495,7 +498,6 @@ function Registerables(composer: ComponentsRegistery) {
     Form6,
     Form7,
     Form8,
-    Form9,
     FooterComponent1,
     FooterComponent2,
     FooterComponent3,
@@ -556,3 +558,5 @@ function Registerables(composer: ComponentsRegistery) {
 }
 
 export default Registerables;
+
+

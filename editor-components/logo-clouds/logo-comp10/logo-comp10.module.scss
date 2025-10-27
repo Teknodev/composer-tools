@@ -1,0 +1,102 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .slider-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .heading {
+      gap: var(--composer-gap-md);
+
+      .title {
+         color: var(--composer-tertiary-color);
+        margin-bottom: 0;
+        text-align: center;
+        content: "";
+      }
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+
+      .slider {
+        width: 100%;
+      }
+
+      .gallery {
+        width: 100%;
+        max-width: 100%;
+        gap: var(--composer-gap-lg);
+        padding: var(--composer-gap-lg) 0;
+        justify-content: center;
+        justify-items: center;
+
+        .image-child {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 0;
+          padding: var(--composer-gap-sm);
+
+          .image {
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+          }
+
+          &:hover .image {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .slider-wrapper {
+        width: 100%;
+      }
+      .slider-container {
+        .gallery {
+          gap: var(--composer-gap-lg);
+          padding: var(--composer-gap-md) 0;
+          .image-child {
+            padding: var(--composer-gap-xs);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .slider-container {
+        .gallery {
+          grid-template-columns: repeat(var(--composer-grid-count-phone), minmax(0, max-content)) !important;
+        }
+      }
+    }
+  }
+}
+
+
