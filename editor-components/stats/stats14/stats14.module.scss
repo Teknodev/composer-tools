@@ -1,110 +1,164 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  container-type: inline-size;
+
   .max-content {
     .content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: calc(2 * var(--composer-gap-xl));
-      
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: calc(2 * var(--composer-gap-xl));
 
       .left-container {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: var(--composer-gap-lg);
-        
-        .subtitle,  .description, .title {
-          content: "";
-            display: block;    
-            text-align: left; 
-        }
+      }
 
-        
-        .button-text-wrapper {
-            display: flex;
-            align-items: flex-start;
+      .title {
+        text-align: left;
+
+        &.title-center {
+          @container (max-width: #{$composer-phone-width}) {
+            text-align: center !important;
+          }
         }
       }
-      
 
-        .button-container {
+      .features-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: var(--composer-gap-xl);
+
+        .features-list-item {
           display: flex;
+          flex-direction: column;
           align-items: flex-start;
-          flex-direction: row;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-md);
-
-          .button{
-           .button-text{
-              content: "";
-            }
-            .button{
-              content: "";
-            }
-          }
-
+          justify-self: flex-start;
         }
 
-        .features-list {
-          display: flex;
-          align-items: flex-start;
-          justify-content: flex-start;
-          flex-wrap: wrap;        
-          gap: var(--composer-gap-xl); 
-          max-width: 100%;
-
-          .features-list-item {
-            display: flex;
-            flex-direction: column;  
-            align-items: flex-start;
-          }
-
-          .features-list-items-topText {
-            display: block;    
-            text-align: left;  
-            font-weight: bold;
-            color: var(--composer-font-color-primary);
-           }
-
-          .features-list-items-bottomText {      display: flex;
-            color: rgba(var(--composer-font-color-primary-rgb));
-            display: block;
-          }
+        .features-list-items-topText {
+          font-weight: bold;
+          color: var(--composer-font-color-primary);
+          text-align: left;
         }
 
-      .right-container { 
+        .features-list-items-bottomText {
+          color: rgba(var(--composer-font-color-primary-rgb));
+          text-align: left;
+        }
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-md);
+        justify-content: flex-start;
+      }
+
+      .right-container {
         max-width: 50%;
         aspect-ratio: 1 / 1;
-        overflow: hidden;
         position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        margin: 0 auto; 
+        overflow: hidden;
+        margin: 0 auto;
 
+        .image-circle {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: inherit;
+        }
+
+        .overlay {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background-color: var(--composer-overlay-color);
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+/* 🔹 Mobil düzen */
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        flex-direction: column !important;
+        gap: calc(1 * var(--composer-gap-xl));
+
+        &.alignment-center {
+          align-items: center !important;
+          text-align: center !important;
+
+          .left-container {
+            align-items: center !important;
+            text-align: center !important;
+          }
+
+          .features-list {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: center !important;
+            text-align: center !important;
+          }
+
+          .button-container {
+            justify-content: center !important;
+          }
+        }
+
+        &.alignment-left {
+          align-items: flex-start !important;
+          text-align: left !important;
+
+          .left-container {
+            align-items: flex-start !important;
+            text-align: left !important;
+          }
+
+          .features-list {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr);
+            justify-items: start !important;
+            justify-self: flex-start;
+          }
+
+          .button-container {
+            justify-content: flex-start !important;
+          }
+        }
+
+        .right-container {
+          order: 3;
+          width: 100%;
+          max-width: 100%;
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           .image-circle {
             width: 100%;
             height: 100%;
-            border-radius: inherit;
+            aspect-ratio: 1 / 1;
             object-fit: cover;
-          }
-
-          .overlay {
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background-color: var(--composer-overlay-color);
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
+            border-radius: 50%;
           }
         }
-
+      }
     }
-    
   }
 }
 
