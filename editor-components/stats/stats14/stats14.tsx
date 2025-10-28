@@ -81,7 +81,7 @@ class Stats14 extends BaseStats {
       additionalParams: { availableTypes: ["image"] },
       value: {
         type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661944f2edd0a002a2ed5ac?alt=media",
+        url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg",
       },
     });
   }
