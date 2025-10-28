@@ -17,13 +17,7 @@
       flex-direction: column;
       gap: var(--composer-gap-md);
       .up-container {
-        .subtitle {
-          content: "";
-        }
-        .title {
-          content: "";
-        }
-        .description {
+        .subtitle, .title, .description {
           content: "";
         }
       }
@@ -130,7 +124,9 @@
         display: flex;
         justify-content: center;
         .button {
-          content: "";
+          .button-text{
+            content: "";
+          }
         }
       }
     }

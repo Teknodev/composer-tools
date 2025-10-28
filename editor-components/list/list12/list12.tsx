@@ -25,17 +25,28 @@ class List12 extends BaseList {
       displayer: "Box 1",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "item",
           displayer: "Item 1",
-          value:
-            "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          value: {
+            type: "image",
+            url: "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          },
+          additionalParams: {
+            availableTypes: ["image"],
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon 1",
-          value: "",
+          value: {
+            type: "icon",
+            name: "",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
         },
         {
           type: "string",
@@ -65,17 +76,28 @@ class List12 extends BaseList {
           value: "Fast and Secure",
         },
         {
-          type: "image",
+          type: "media",
           key: "item",
           displayer: "Item 2",
-          value:
-            "https://plus.unsplash.com/premium_photo-1682511145669-a0b9d9c1dc21?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          value: {
+            type: "image",
+            url: "https://plus.unsplash.com/premium_photo-1682511145669-a0b9d9c1dc21?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          },
+          additionalParams: {
+            availableTypes: ["image"],
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon 2",
-          value: "",
+          value: {
+            type: "icon",
+            name: "",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
         },
         {
           type: "string",
@@ -93,17 +115,28 @@ class List12 extends BaseList {
       displayer: "Box 3",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "item",
           displayer: "Item 3",
-          value:
-            "https://images.unsplash.com/photo-1616077167599-cad3639f9cbd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          value: {
+            type: "image",
+            url: "https://images.unsplash.com/photo-1616077167599-cad3639f9cbd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          },
+          additionalParams: {
+            availableTypes: ["image"],
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon 3",
-          value: "",
+          value: {
+            type: "icon",
+            name: "",
+          },
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
         },
         {
           type: "string",
@@ -144,14 +177,13 @@ class List12 extends BaseList {
               {(box1.item || box1.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box1.item ? (
-                    <img
+                    <Base.Media
                       className={this.decorateCSS("img")}
-                      src={box1.item}
-                      alt="item"
+                      value={box1.item}
                     />
                   ) : (
-                    <Base.Icon
-                      name={box1.icon}
+                    <Base.Media
+                      value={box1.icon}
                       propsIcon={{
                         className: this.decorateCSS("icon"),
                       }}
@@ -185,14 +217,13 @@ class List12 extends BaseList {
               {(box2.item || box2.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box2.item ? (
-                    <img
+                    <Base.Media
                       className={this.decorateCSS("img")}
-                      src={box2.item}
-                      alt="item"
+                      value={box2.item}
                     />
                   ) : (
-                    <Base.Icon
-                      name={box2.icon}
+                    <Base.Media
+                      value={box2.icon}
                       propsIcon={{
                         className: this.decorateCSS("icon"),
                       }}
@@ -211,14 +242,13 @@ class List12 extends BaseList {
               {(box3.item || box3.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box3.item ? (
-                    <img
+                    <Base.Media
                       className={this.decorateCSS("img")}
-                      src={box3.item}
-                      alt="item"
+                      value={box3.item}
                     />
                   ) : (
-                    <Base.Icon
-                      name={box3.icon}
+                    <Base.Media
+                      value={box3.icon}
                       propsIcon={{
                         className: this.decorateCSS("icon"),
                       }}

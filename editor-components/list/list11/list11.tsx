@@ -63,10 +63,16 @@ class List11 extends BaseList {
                             value: "This powerful tool eliminates the need to leave Salesforce to get things done as I can create a custom proposal with dynamic pricing tables. You can also customize your own dynamic versions."
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "itemImage",
                             displayer: "Image",
-                            value: "https://lexend-nextjs.vercel.app/assets/images/template/feature-01.svg"
+                            value: {
+                                type: "image",
+                                url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-01.svg"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                         {
                             type: "page",
@@ -81,10 +87,16 @@ class List11 extends BaseList {
                             value: "See all integrations"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "FaArrowRight"
+                            value: {
+                                type: "icon",
+                                name: "FaArrowRight"
+                            },
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                         },
                     ]
                 },
@@ -106,10 +118,16 @@ class List11 extends BaseList {
                             value: "Keep data consistent, with native CRM integrations that streamline your entire Tool workflow."
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "itemImage",
                             displayer: "Image",
-                            value: "https://lexend-nextjs.vercel.app/assets/images/template/feature-02.svg"
+                            value: {
+                                type: "image",
+                                url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-02.svg"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                         {
                             type: "page",
@@ -124,10 +142,16 @@ class List11 extends BaseList {
                             value: "See all integrations"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "FaArrowRight"
+                            value: {
+                                type: "icon",
+                                name: "FaArrowRight"
+                            },
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                         },
                     ]
                 },
@@ -149,10 +173,16 @@ class List11 extends BaseList {
                             value: "Improve security and trust with built-in legally binding e-Signatures. Create pre-approved templates, content blocks and lock all legal information to prevent costly mistakes."
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "itemImage",
                             displayer: "Image",
-                            value: "https://lexend-nextjs.vercel.app/assets/images/template/feature-03.svg"
+                            value: {
+                                type: "image",
+                                url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-03.svg"
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                         {
                             type: "page",
@@ -167,10 +197,16 @@ class List11 extends BaseList {
                             value: "See all integrations"
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "FaArrowRight"
+                            value: {
+                                type: "icon",
+                                name: "FaArrowRight"
+                            },
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                         },
                     ]
                 },
@@ -229,7 +265,7 @@ class List11 extends BaseList {
                                     <div className={this.decorateCSS("card-items")}>
                                         {item.itemImage && (
                                             <div className={this.decorateCSS("card-image-container")}>
-                                                <img className={this.decorateCSS("card-image")} src={item.itemImage} alt={item.itemImage} />
+                                                <Base.Media className={this.decorateCSS("card-image")} value={item.itemImage} />
                                             </div>
                                         )}
                                         <div className={this.decorateCSS("card-content")}>
@@ -252,8 +288,8 @@ class List11 extends BaseList {
                                                             </Base.P>
                                                         )}
                                                         {item.icon && (
-                                                            <Base.Icon
-                                                                name={item.icon}
+                                                            <Base.Media
+                                                                value={item.icon}
                                                                 propsIcon={{
                                                                     className: this.decorateCSS("navigate-icon"),
                                                                 }}

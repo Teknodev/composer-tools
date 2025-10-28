@@ -39,11 +39,16 @@ class List10 extends BaseList {
                     displayer: "",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f2703b007002cc7f55e?alt=media",
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f2703b007002cc7f55e?alt=media",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                         {
                             type: "string",
@@ -77,11 +82,16 @@ class List10 extends BaseList {
                     displayer: "",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f6f03b007002cc7f56e?alt=media",
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f6f03b007002cc7f56e?alt=media",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                         {
                             type: "string",
@@ -115,11 +125,16 @@ class List10 extends BaseList {
                     displayer: "",
                     value: [
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b351ed03b007002cc7f6d9?alt=media",
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b351ed03b007002cc7f6d9?alt=media",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                         {
                             type: "string",
@@ -209,10 +224,9 @@ class List10 extends BaseList {
                                         </Base.P>
                                         <div className={this.decorateCSS("image-div")}>
                                             {card.image && (
-                                                <img
+                                                <Base.Media
                                                     className={this.decorateCSS("image")}
-                                                    src={card.image}
-                                                    alt={card.image}
+                                                    value={card.image}
                                                 />
                                             )}
                                         </div>

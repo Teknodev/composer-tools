@@ -38,10 +38,16 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: {
+                                type: "icon",
+                                name: "LiaBicycleSolid",
+                            },
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                         },
                         {
                             type: "string",
@@ -57,11 +63,16 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                     ],
                 },
@@ -71,10 +82,16 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "FaDog",
+                            value: {
+                                type: "icon",
+                                name: "FaDog",
+                            },
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                         },
                         {
                             type: "string",
@@ -90,11 +107,16 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                     ],
                 },
@@ -104,10 +126,16 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "FaHtml5",
+                            value: {
+                                type: "icon",
+                                name: "FaHtml5",
+                            },
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                         },
                         {
                             type: "string",
@@ -123,11 +151,16 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                     ],
                 },
@@ -137,10 +170,16 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            value: "RiPaintBrushFill",
+                            value: {
+                                type: "icon",
+                                name: "RiPaintBrushFill",
+                            },
+                            additionalParams: {
+                                availableTypes: ["icon"],
+                            },
                         },
                         {
                             type: "string",
@@ -156,11 +195,16 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
                             displayer: "Image",
-                            value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",
+                            value: {
+                                type: "image",
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image"],
+                            },
                         },
                     ],
                 },
@@ -225,10 +269,9 @@ class List9 extends BaseList {
                             >
                                 <div className={this.decorateCSS("image-container")}>
                                     {card.image && (
-                                        <img
+                                        <Base.Media
                                             className={this.decorateCSS("image")}
-                                            src={card.image}
-                                            alt={card.image}
+                                            value={card.image}
                                         />
                                     )}
 
@@ -237,8 +280,8 @@ class List9 extends BaseList {
                                     className={this.decorateCSS("little-container")}
                                 >
                                     {card.icon && (
-                                        <Base.Icon
-                                            name={card.icon}
+                                        <Base.Media
+                                            value={card.icon}
                                             propsIcon={{ className: this.decorateCSS("icon") }}
                                         />
                                     )}

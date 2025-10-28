@@ -52,10 +52,16 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaTooth",
+              value: {
+                type: "icon",
+                name: "FaTooth",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
           ],
         },
@@ -78,10 +84,16 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaPencilAlt",
+              value: {
+                type: "icon",
+                name: "FaPencilAlt",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
           ],
         },
@@ -104,10 +116,16 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaSuitcaseRolling",
+              value: {
+                type: "icon",
+                name: "FaSuitcaseRolling",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
           ],
         },
@@ -184,11 +202,9 @@ class list4 extends BaseList {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {card.icon && (
-                        <Base.Icon
-                          name={card.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon")
-                          }}
+                        <Base.Media
+                          value={card.icon}
+                          className={this.decorateCSS("icon")}
                         />
                       )}
 

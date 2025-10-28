@@ -3,18 +3,18 @@ import { BaseList } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  image: string;
+  image: { type: string; url: string };
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   text: React.JSX.Element;
   url: string;
-  icon: string;
+  icon: { type: string; name: string };
   button: INPUTS.CastedButton;
+  overlay: boolean;
 };
 
 class List1 extends BaseList {
@@ -43,11 +43,22 @@ class List1 extends BaseList {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d23a03b007002cc7aa52?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d23a03b007002cc7aa52?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Image Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -61,13 +72,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY GINO D'ACAMPO",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
           ],
         },
         {
@@ -76,11 +81,22 @@ class List1 extends BaseList {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d26803b007002cc7aa71?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d26803b007002cc7aa71?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Image Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -94,13 +110,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY ADDISON",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
           ],
         },
         {
@@ -109,11 +119,22 @@ class List1 extends BaseList {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d2b303b007002cc7aa9f?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d2b303b007002cc7aa9f?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Image Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -127,13 +148,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY GINO D'ACAMPO",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
           ],
         },
         {
@@ -142,11 +157,22 @@ class List1 extends BaseList {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d1ef03b007002cc7aa41?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d1ef03b007002cc7aa41?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+            },
+              {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Image Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -160,13 +186,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY CHARLES",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
           ],
         },
         {
@@ -175,11 +195,22 @@ class List1 extends BaseList {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d30603b007002cc7aacf?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d30603b007002cc7aacf?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Image Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -193,13 +224,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY GINO D'ACAMPO",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
           ],
         },
         {
@@ -208,11 +233,22 @@ class List1 extends BaseList {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d32d03b007002cc7aae7?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d32d03b007002cc7aae7?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+            },
+              {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Image Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -226,13 +262,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY ADDISON",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
           ],
         },
       ],
@@ -299,7 +329,7 @@ class List1 extends BaseList {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(subTitle) || this.castToString(title)) && (
-            <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(subTitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subTitle}
@@ -318,7 +348,9 @@ class List1 extends BaseList {
               className={this.decorateCSS("carousel")}
             >
               {sliderItems.map((item: Card, indexSlider: number) => {
-                return (
+                const cardExist  = this.castToString(item.title) || this.castToString(item.subtitle) || this.castToString(item.button.text) || item.image || item.button.icon;
+                
+                return cardExist && (
                   <Base.VerticalContent
                     key={indexSlider}
                     className={`${this.decorateCSS("card")}
@@ -330,16 +362,18 @@ class List1 extends BaseList {
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
                     {item.image && (
-                      <Base.Row className={this.decorateCSS("img-div")}>
-                        <img
-                          className={this.decorateCSS("img")}
-                          src={item.image}
-                          alt={item.image}
+                      <Base.Row className={this.decorateCSS("image-container")}>
+                        <Base.Media
+                          className={this.decorateCSS("image")}
+                          value={item.image}
                         />
+                        {item.overlay && (
+                          <div className={this.decorateCSS("overlay")} />
+                        )}
                       </Base.Row>
                     )}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                      <Base.VerticalContent className={this.decorateCSS("titles")}>
+                      <Base.VerticalContent className={this.decorateCSS("card-header")}>
                         {this.castToString(item.title) && (
                           <Base.H4 className={this.decorateCSS("card-title")}>
                             {item.title}
@@ -353,25 +387,23 @@ class List1 extends BaseList {
                       </Base.VerticalContent>
                     )}
 
-                    {(this.castToString(item.button.text) || item.icon) && (
-                      <div className={this.decorateCSS("link")}>
-                      <ComposerLink path={item.button.url}>
-                        <Base.Button buttonType={item.button.type} >
-                          <Base.P className={this.decorateCSS("text")}>
-                            {item.button.text}
-                          </Base.P>
-                          {item.icon && (
-                            <Base.Icon
-                              name={item.icon}
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                              }}
-                            />
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                      </div>
-                    )}
+                      {this.castToString(item.button.text) && (
+                        <div className={this.decorateCSS("button")}>
+                          <ComposerLink path={item.button.url}>
+                            <Base.Button buttonType={item.button.type} >
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {item.button.text}
+                              </Base.P>
+                              {item.button.icon && (
+                                <Base.Media
+                                  value={item.button.icon}
+                                  className={this.decorateCSS("icon")}
+                                />
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        </div>
+                      )}
                   </Base.VerticalContent>
                 );
               })}

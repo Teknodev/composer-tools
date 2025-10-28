@@ -76,10 +76,16 @@ class List6 extends BaseList {
               value: "Design",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "LuPenTool",
+              value: {
+                type: "icon",
+                name: "LuPenTool",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -108,10 +114,16 @@ class List6 extends BaseList {
               value: "Development",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "BiCodeBlock",
+              value: {
+                type: "icon",
+                name: "BiCodeBlock",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -140,10 +152,16 @@ class List6 extends BaseList {
               value: "Marketing",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "GoGoal",
+              value: {
+                type: "icon",
+                name: "GoGoal",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -172,10 +190,16 @@ class List6 extends BaseList {
               value: "Content writing",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
               displayer: "Item Icon",
-              value: "BiBookContent",
+              value: {
+                type: "icon",
+                name: "BiBookContent",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -230,8 +254,8 @@ class List6 extends BaseList {
                     this.castToString(listItem.itemTitle)) && (
                       <div className={this.decorateCSS("icon-title-container")}>
                         {listItem.itemIcon && (
-                          <Base.Icon
-                            name={listItem.itemIcon}
+                          <Base.Media
+                            value={listItem.itemIcon}
                             propsIcon={{
                               className: this.decorateCSS("icon")
                             }}
