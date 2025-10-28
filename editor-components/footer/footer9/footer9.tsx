@@ -137,7 +137,7 @@ class Footer9Page extends BaseFooter {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Out Story",
+              value: "Our Story",
             },
             {
               type: "page",

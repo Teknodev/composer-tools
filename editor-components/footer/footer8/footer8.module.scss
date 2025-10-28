@@ -293,7 +293,7 @@
     .max-content {
       .footer-page {
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
 
         .items {
           justify-content: flex-start;
@@ -310,6 +310,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
+            gap: var(--composer-gap-sm);
 
             .title {
               text-align: left;
@@ -360,7 +361,7 @@
     .max-content {
       .footer-page {
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
 
         .items {
           flex-direction: column;
@@ -375,6 +376,7 @@
             align-items: center;
             min-width: unset;
             max-width: unset;
+            gap: var(--composer-gap-sm);
 
             .title {
               width: auto;

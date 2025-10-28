@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -465,24 +465,18 @@ class Footer12Page extends BaseFooter {
   render() {
     const footer = this.castToObject<any[]>("footer");
     const images = this.castToObject<any[]>("images");
-
     const logoObject = this.castToObject<any>("logo");
+
     const logo = logoObject?.logo;
     const logoUrl = logoObject?.logoUrl;
     const line = this.getPropValue("line");
     const descriptionExist = this.castToString(this.getPropValue("description"));
-
     const footerText = this.getPropValue("footerText");
     const footerTextExist = this.castToString(footerText);
-
     const imagesExist = images.length > 0;
-
     const bottomExist = footerTextExist || imagesExist;
-
     const headerExist = logo?.url || descriptionExist;
-
     const upperExist = headerExist || footer.length > 0;
-
     const position = this.getPropValue("position");
 
     return (
@@ -510,7 +504,7 @@ class Footer12Page extends BaseFooter {
                   return (
                     footerExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
+                        {footerTitleExist && <Base.H4 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H4>}
                         {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                           const footerTextExist = this.castToString(item.footerText);
                           return (
@@ -539,7 +533,7 @@ class Footer12Page extends BaseFooter {
         {bottomExist && (
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
-              <div className={this.decorateCSS("footer-bottom")}>
+              <Base.Row className={this.decorateCSS("footer-bottom")}>
                 {footerTextExist &&
                   <Base.P
                     className={`${this.decorateCSS("footer-text")} ${!imagesExist && this.decorateCSS("no-image")}`}>
@@ -560,7 +554,7 @@ class Footer12Page extends BaseFooter {
                     })}
                   </div>
                 )}
-              </div>
+              </Base.Row>
             </Base.MaxContent>
           </Base.Container>
         )}
