@@ -30,7 +30,7 @@ class Stats14 extends BaseStats {
         {
           type: "object",
           key: "features-item",
-          displayer: "Feature 1",
+          displayer: "Feature Item",
           value: [
             { type: "string", key: "topText", displayer: "Top Text", value: "From 20 days" },
             { type: "string", key: "bottomText", displayer: "Bottom Text", value: "minimal period" },
@@ -39,7 +39,7 @@ class Stats14 extends BaseStats {
         {
           type: "object",
           key: "features-item",
-          displayer: "Feature 2",
+          displayer: "Feature Item",
           value: [
             { type: "string", key: "topText", displayer: "Top Text", value: "Up to 7.5%" },
             { type: "string", key: "bottomText", displayer: "Bottom Text", value: "yearly income" },
@@ -48,7 +48,7 @@ class Stats14 extends BaseStats {
         {
           type: "object",
           key: "features-item",
-          displayer: "Feature 3",
+          displayer: "Feature Item",
           value: [
             { type: "string", key: "topText", displayer: "Top Text", value: "From $1,000" },
             { type: "string", key: "bottomText", displayer: "Bottom Text", value: "minimal deposit" },
@@ -69,8 +69,8 @@ class Stats14 extends BaseStats {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download Free Trial", "", "FaRegCheckCircle", "", "Primary"),
-        INPUTS.BUTTON("button", "Button", "Learn More", "", "", "", "White"),
+        INPUTS.BUTTON("button", "Button", "Download Free Trial", null, "FaRegCheckCircle", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Learn More", null, null, null, "White"),
       ],
     });
 
@@ -81,7 +81,7 @@ class Stats14 extends BaseStats {
       additionalParams: { availableTypes: ["image"] },
       value: {
         type: "image",
-        url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661944f2edd0a002a2ed5ac?alt=media",
       },
     });
   }
@@ -130,12 +130,12 @@ class Stats14 extends BaseStats {
                     {FeaturesItem.map((item: any, index: number) => (
                       <div key={index} className={this.decorateCSS("features-list-item")}>
                         {this.castToString(item.topText) && (
-                          <Base.P className={this.decorateCSS("features-list-items-topText")}>
+                          <Base.P className={this.decorateCSS("topText")}>
                             {item.topText}
                           </Base.P>
                         )}
                         {this.castToString(item.bottomText) && (
-                          <Base.P className={this.decorateCSS("features-list-items-bottomText")}>
+                          <Base.P className={this.decorateCSS("bottomText")}>
                             {item.bottomText}
                           </Base.P>
                         )}
@@ -155,7 +155,10 @@ class Stats14 extends BaseStats {
                         <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                           <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                             {item.icon && (
-                              <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              <Base.Media
+                                className={this.decorateCSS("icon")}
+                                value={{ type: "icon", name: item.icon }}
+                              />
                             )}
                             <div className={this.decorateCSS("button-text")}>{item.text}</div>
                           </Base.Button>

@@ -1,14 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  container-type: inline-size;
-
   .max-content {
     .content {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: calc(2 * var(--composer-gap-xl));
+      justify-content: space-between;
+      gap: var(--composer-gap-xl);
 
       .left-container {
         display: flex;
@@ -19,12 +18,6 @@
 
       .title {
         text-align: left;
-
-        &.title-center {
-          @container (max-width: #{$composer-phone-width}) {
-            text-align: center;
-          }
-        }
       }
 
       .features-list {
@@ -40,14 +33,13 @@
           align-items: flex-start;
           justify-self: flex-start;
 
-          .features-list-items-topText {
-            font-weight: bold;
+          .topText {
             color: var(--composer-font-color-primary);
             text-align: left;
           }
 
-          .features-list-items-bottomText {
-            color: rgba(var(--composer-font-color-primary-rgb));
+          .bottomText {
+            color: var(--composer-font-color-primary);
             text-align: left;
           }
         }
@@ -105,7 +97,13 @@
     .max-content {
       .content {
         flex-direction: column;
-        gap: calc(1 * var(--composer-gap-xl));
+        gap: var(--composer-gap-xl);
+
+        .title {
+          &.title-center {
+            text-align: center;
+          }
+        }
 
         &.alignment-center {
           align-items: center;
@@ -118,6 +116,18 @@
 
           .features-list {
             justify-content: center;
+
+            .features-list-item {
+              align-items: center;
+
+              .topText {
+                text-align: center;
+              }
+
+              .bottomText {
+                text-align: center;
+              }
+            }
           }
 
           .button-container {
@@ -132,13 +142,6 @@
           .left-container {
             align-items: flex-start;
             text-align: left;
-          }
-
-          .features-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            justify-items: start;
-            justify-self: flex-start;
           }
 
           .button-container {
@@ -167,6 +170,3 @@
     }
   }
 }
-
-
-
