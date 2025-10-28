@@ -649,7 +649,7 @@ class Footer4Page extends BaseFooter {
                               )}
                             </div>
                             
-                            {errors.email && touched.email && <Base.P className={this.decorateCSS("error")}>{errors.email}</Base.P>}
+                            {errors.email && touched.email && <span className={this.decorateCSS("error")}>{errors.email}</span>}
                           </Form>
                         )}
                       </Formik>
