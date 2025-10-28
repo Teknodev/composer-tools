@@ -17,8 +17,8 @@
       gap: var(--composer-gap-md);
 
       .title {
-         color: var(--composer-tertiary-color);
-        margin-bottom: 0;
+        color: var(--composer-font-color-primary);
+        margin: 0px;
         text-align: center;
         content: "";
       }
@@ -45,7 +45,7 @@
         max-width: 100%;
         gap: var(--composer-gap-xl);
         padding: var(--composer-gap-lg) 0;
-        justify-content: center;
+        justify-content: space-around;
         justify-items: center;
 
         .image-child {
@@ -54,15 +54,15 @@
           justify-content: center;
           min-width: 0;
           padding: var(--composer-gap-sm);
-          max-width: 125px;
-          max-height: 35px;
+          max-width: 150px;
+          max-height: 50px;
           width: 100%;
 
           .image {
             width: auto;
             height: auto;
-            max-width: 100%;
-            max-height: 35px;
+            max-width: 150px;
+            max-height: 50px;
             opacity: 0.7;
             transition: opacity 0.3s ease;
             object-fit: contain;

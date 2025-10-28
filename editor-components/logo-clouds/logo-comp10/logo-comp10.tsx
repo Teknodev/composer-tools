@@ -21,7 +21,7 @@ class LogoComp10Page extends LogoClouds {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Text",
+      displayer: "Title",
       value: "OUR TRUSTED PARTNERS",
     });
 
@@ -231,10 +231,9 @@ class LogoComp10Page extends LogoClouds {
                           {visibleItems.map((img: TImage, i: number) => (
                             <ComposerLink key={i} path={img.imageLink}>
                               <div className={this.decorateCSS("image-child")}>
-                                <img
+                                <Base.Media
                                   className={this.decorateCSS("image")}
-                                  src={img.image}
-                                  alt={img.imageLink || ""}
+                                  value={{ type: "image", url: img.image }}
                                 />
                               </div>
                             </ComposerLink>
@@ -261,10 +260,9 @@ class LogoComp10Page extends LogoClouds {
                           {visibleItems.map((img: TImage, i: number) => (
                             <ComposerLink key={i} path={img.imageLink}>
                               <div className={this.decorateCSS("image-child")}>
-                                <img
+                                <Base.Media
                                   className={this.decorateCSS("image")}
-                                  src={img.image}
-                                  alt={img.imageLink || ""}
+                                  value={{ type: "image", url: img.image }}
                                 />
                               </div>
                             </ComposerLink>
