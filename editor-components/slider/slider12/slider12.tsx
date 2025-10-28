@@ -73,9 +73,7 @@ const VideoPlayer = React.memo(function VideoPlayer({
       el.removeEventListener("loadedmetadata", onLoaded);
       el.removeEventListener("loadeddata", onLoaded);
       el.removeEventListener("error", onError);
-      try {
-        if (!el.paused) el.pause();
-      } catch {}
+      if (!el.paused) el.pause();
     };
   }, [src, onReady]);
 
@@ -119,10 +117,8 @@ type Card = {
 class Slider12 extends BaseSlider {
   private currentIndex = 0;
   private dragging = false;
-
   private responsive!: ResponsiveObject[];
   private settings!: Settings;
-
   private sliderRef = React.createRef<any>();
   private containerRef = React.createRef<HTMLDivElement>();
 
@@ -396,13 +392,10 @@ class Slider12 extends BaseSlider {
       { breakpoint: 1024, settings: { slidesToShow: 2, dots: false } },
       { breakpoint: 640, settings: { slidesToShow: 1, dots: true } },
     ];
-
     this.settings = {
-      dots: false,
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,
-      centerMode: false,
       arrows: false,
       speed: 620,
       cssEase: "cubic-bezier(.22,.61,.36,1)",
@@ -435,17 +428,13 @@ class Slider12 extends BaseSlider {
     this.currentIndex = 0;
     this.playOnlyVideoAt(this.currentIndex);
   }
-
   componentWillUnmount(): void {
     const root = this.containerRef.current ?? document;
     const vids = root.querySelectorAll("video") as NodeListOf<HTMLVideoElement>;
     vids.forEach((v) => {
-      try {
-        if (!v.paused) v.pause();
-      } catch {}
+      if (!v.paused) v.pause();
     });
   }
-
   private playOnlyVideoAt(index: number) {
     const root = this.containerRef.current ?? document;
     const slideSelector = `.${this.decorateCSS("slide")}`;
@@ -453,70 +442,46 @@ class Slider12 extends BaseSlider {
       `${slideSelector} video`
     );
     allVideos.forEach((v, i) => {
-      try {
-        if (i === index) {
-          setTimeout(() => v.play?.().catch(() => {}), 120);
-        } else {
-          if (!v.paused) v.pause();
-          v.currentTime = 0;
-        }
-      } catch {}
+      if (i === index) {
+        setTimeout(() => v.play?.().catch(() => {}), 120);
+      } else {
+        if (!v.paused) v.pause();
+        v.currentTime = 0;
+      }
     });
   }
-
   private SafeWrap: React.FC<React.PropsWithChildren<{ href?: string }>> = ({
     href,
     children,
   }) => {
-    const hasLink = Boolean(href && href.trim());
     const onClick: React.MouseEventHandler = (e) => {
       if (this.dragging) {
         e.preventDefault();
         e.stopPropagation();
       }
     };
-    return hasLink ? (
-      <ComposerLink path={href!} isFullWidth={false} {...({ onClick } as any)}>
+    return href ? (
+      <ComposerLink path={href!} isFullWidth={false} {...{ onClick }}>
         {children}
       </ComposerLink>
     ) : (
       <>{children}</>
     );
   };
+
   render() {
-    const rawItems = this.castToObject<Card[]>("slider");
-    const items = (rawItems || []).filter(Boolean);
-
+    const items = this.castToObject<Card[]>("slider")?.filter(Boolean) ?? [];
     const itemCount = items.length;
-
     const prevMedia = this.getPropValue("previousArrow");
     const nextMedia = this.getPropValue("nextArrow");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-
-    const prevName =
-      (typeof prevMedia === "string" && prevMedia) ||
-      (prevMedia as any)?.name ||
-      (prevMedia as any)?.value?.name;
-
-    const nextName =
-      (typeof nextMedia === "string" && nextMedia) ||
-      (nextMedia as any)?.name ||
-      (nextMedia as any)?.value?.name;
-
-    const hasTitle = Boolean(this.castToString(title));
-    const hasDesc = Boolean(this.castToString(description));
-    const showHeader = hasTitle || hasDesc;
-
-    const hasPrev = Boolean(prevName);
-    const hasNext = Boolean(nextName);
-
+    const hasTitle = this.castToString(title);
+    const hasDesc = this.castToString(description);
     const showSlider = itemCount > 0;
-    const showArrows = showSlider && itemCount > 1 && (hasPrev || hasNext);
-
-    const bg = this.getPropValue("background-image");
-    const bgUrl = typeof bg === "string" ? bg : bg?.url ?? "";
-    const hasBg = Boolean(bgUrl);
+    const bgUrl = this.getPropValue("background-image")?.url || "";
+    const showHeader = hasTitle || hasDesc;
+    const showArrows = itemCount > 1 && (prevMedia || nextMedia);
 
     const SafeWrap = this.SafeWrap;
 
@@ -524,7 +489,7 @@ class Slider12 extends BaseSlider {
       <div ref={this.containerRef}>
         <Base.Container
           className={this.decorateCSS("container")}
-          {...(hasBg ? { style: { backgroundImage: `url(${bgUrl})` } } : {})}
+          {...(bgUrl ? { style: { backgroundImage: `url(${bgUrl})` } } : {})}
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {showHeader && (
@@ -556,14 +521,14 @@ class Slider12 extends BaseSlider {
                   <div className={this.decorateCSS("slider-wrap")}>
                     <div className={this.decorateCSS("arrows")}>
                       <Base.Icon
-                        name={prevName}
+                        name={prevMedia}
                         propsIcon={{
                           className: this.decorateCSS("prevArrow"),
                           onClick: () => this.sliderRef.current?.slickPrev(),
                         }}
                       />
                       <Base.Icon
-                        name={nextName}
+                        name={nextMedia}
                         propsIcon={{
                           className: this.decorateCSS("nextArrow"),
                           onClick: () => this.sliderRef.current?.slickNext(),
@@ -581,26 +546,21 @@ class Slider12 extends BaseSlider {
                       const mediaType =
                         media?.type ?? (item.image ? "image" : undefined);
                       const url = media?.url ?? item.image ?? "";
-                      const hasMedia = Boolean(mediaType && url);
-                      const rawPath = (item.link ?? "").trim();
+                      const hasMedia = mediaType && url;
+                      const rawPath = item.link ?? "";
 
-                      const hasCardDesc = Boolean(
-                        this.castToString(item.description)
-                      );
-                      const hasHeaderText = Boolean(
-                        this.castToString(item.header)
-                      );
-
+                      const hasCardDesc = this.castToString(item.description);
+                      const hasHeaderText = this.castToString(item.header);
                       const cardClassName =
                         this.decorateCSS("card") +
                         (!hasMedia
-                          ? " " + this.decorateCSS("card--textOnly")
+                          ? " " + this.decorateCSS("card-textOnly")
                           : "");
 
                       const textClassName =
                         this.decorateCSS("text") +
                         (!hasMedia
-                          ? " " + this.decorateCSS("text--centered")
+                          ? " " + this.decorateCSS("text-centered")
                           : "");
 
                       const CardInner = (
