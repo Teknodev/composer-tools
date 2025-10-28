@@ -70,15 +70,20 @@ class List2 extends BaseList {
             {
               type: "page",
               key: "page",
-              displayer: "Navigate",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414e?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414e?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
             },
             {
               type: "number",
@@ -108,15 +113,20 @@ class List2 extends BaseList {
             {
               type: "page",
               key: "page",
-              displayer: "Navigate",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414f?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414f?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
             },
             {
               type: "number",
@@ -146,15 +156,20 @@ class List2 extends BaseList {
             {
               type: "page",
               key: "page",
-              displayer: "Navigate",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414d?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414d?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
             },
             {
               type: "number",
@@ -184,15 +199,20 @@ class List2 extends BaseList {
             {
               type: "page",
               key: "page",
-              displayer: "Navigate",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414b?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414b?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
             },
             {
               type: "number",
@@ -222,15 +242,20 @@ class List2 extends BaseList {
             {
               type: "page",
               key: "page",
-              displayer: "Navigate",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617b82bd2970002c62410f?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617b82bd2970002c62410f?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
             },
             {
               type: "number",
@@ -260,15 +285,20 @@ class List2 extends BaseList {
             {
               type: "page",
               key: "page",
-              displayer: "Navigate",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image of Card",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414c?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414c?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: {
+                availableTypes: ["image"],
+              },
             },
             {
               type: "number",
@@ -362,7 +392,7 @@ class List2 extends BaseList {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {item.image && (
-                        <img className={this.decorateCSS("card-image")} src={item.image} alt={item.image} />
+                        <Base.Media className={this.decorateCSS("card-image")} value={item.image} />
                       )}
                       <div className={this.decorateCSS("overlay")}></div>
                       <div className={this.decorateCSS("overlay2")}></div>
@@ -401,7 +431,7 @@ class List2 extends BaseList {
               <ComposerLink path={buttonType.url}>
                 <div className={this.decorateCSS("button-wrapper")}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                    {buttonType.text}
+                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
                   </Base.Button>
                 </div>
               </ComposerLink>

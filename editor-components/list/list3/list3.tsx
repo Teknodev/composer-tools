@@ -28,13 +28,13 @@ class List3 extends BaseList {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "title",
+      displayer: "Title",
       value: "Event Schedule",
     });
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });

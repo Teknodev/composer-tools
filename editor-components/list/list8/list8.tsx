@@ -56,10 +56,16 @@ class List8 extends BaseList {
               value: 1,
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaMapLocationDot",
+              value: {
+                type: "icon",
+                name: "FaMapLocationDot",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -88,10 +94,16 @@ class List8 extends BaseList {
               value: 2,
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "HiChartBar",
+              value: {
+                type: "icon",
+                name: "HiChartBar",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -120,10 +132,16 @@ class List8 extends BaseList {
               value: 3,
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaMoneyBillAlt",
+              value: {
+                type: "icon",
+                name: "FaMoneyBillAlt",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -212,8 +230,8 @@ class List8 extends BaseList {
                     )}
                     {item.icon && (
                       <div className={this.decorateCSS("icon-box")}>
-                        <Base.Icon
-                          name={item.icon}
+                        <Base.Media
+                          value={item.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
                           }}

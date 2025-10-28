@@ -56,10 +56,16 @@ class List5 extends BaseList {
               value: "Customize & Refine",
             },
             {
-              type: "icon",
+              type: "media",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: "VscSettings",
+              value: {
+                type: "icon",
+                name: "VscSettings",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -68,10 +74,16 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "lowericon",
               displayer: "Lower Icon",
-              value: "FaLongArrowAltRight",
+              value: {
+                type: "icon",
+                name: "FaLongArrowAltRight",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "page",
@@ -93,10 +105,16 @@ class List5 extends BaseList {
               value: "Lower Cost",
             },
             {
-              type: "icon",
+              type: "media",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: "RiMoneyDollarCircleLine",
+              value: {
+                type: "icon",
+                name: "RiMoneyDollarCircleLine",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -105,10 +123,16 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "lowericon",
               displayer: "Lower Icon",
-              value: "FaLongArrowAltRight",
+              value: {
+                type: "icon",
+                name: "FaLongArrowAltRight",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "page",
@@ -130,10 +154,16 @@ class List5 extends BaseList {
               value: "Speed & Efficiency",
             },
             {
-              type: "icon",
+              type: "media",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: "RiSpeedUpFill",
+              value: {
+                type: "icon",
+                name: "RiSpeedUpFill",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -167,10 +197,16 @@ class List5 extends BaseList {
               value: "Quality & Realism",
             },
             {
-              type: "icon",
+              type: "media",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: "FaRegImages",
+              value: {
+                type: "icon",
+                name: "FaRegImages",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "string",
@@ -179,10 +215,16 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "lowericon",
               displayer: "Lower Icon",
-              value: "FaLongArrowAltRight",
+              value: {
+                type: "icon",
+                name: "FaLongArrowAltRight",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "page",
@@ -266,8 +308,8 @@ class List5 extends BaseList {
                                   <div className={this.decorateCSS("left")}>
                                     <div className={this.decorateCSS("out-icon")}>
                                       <div className={this.decorateCSS("icon-wrapper")}>
-                                        <Base.Icon
-                                          name={listItem.uppericon}
+                                        <Base.Media
+                                          value={listItem.uppericon}
                                           propsIcon={{
                                             className: this.decorateCSS("icon"),
                                           }}
@@ -299,8 +341,8 @@ class List5 extends BaseList {
                               </Base.P>
                             )}
                             {listItem.lowericon && (
-                              <Base.Icon
-                                name={listItem.lowericon}
+                              <Base.Media
+                                value={listItem.lowericon}
                                 propsIcon={{
                                   className: this.decorateCSS("lower-icon"),
                                 }}
