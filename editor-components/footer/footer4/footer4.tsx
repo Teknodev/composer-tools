@@ -556,7 +556,7 @@ class Footer4Page extends BaseFooter {
               <div className={this.decorateCSS("footer-page")}>
                 <div className={this.decorateCSS("items")}>
                   {leftExist && (
-                    <div className={this.decorateCSS("left")}>
+                    <Base.VerticalContent className={this.decorateCSS("left")}>
                       {textExist && <Base.P className={this.decorateCSS("left-title")}>{this.getPropValue("text")}</Base.P>}
                       <div className={this.decorateCSS("images")}>
                         {images.length > 0 && (
@@ -575,7 +575,7 @@ class Footer4Page extends BaseFooter {
                           </Base.Row>
                         )}
                       </div>
-                    </div>
+                    </Base.VerticalContent>
                   )}
 
                   {this.castToObject<any[]>("footer").length > 0 &&
