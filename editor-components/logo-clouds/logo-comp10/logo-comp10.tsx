@@ -136,9 +136,13 @@ class LogoComp10Page extends LogoClouds {
     if (logos.length > chunkSize) {
       for (let i = 0; i < logos.length; i += chunkSize) {
         const chunk = logos.slice(i, i + chunkSize);
+        
+        let fillIndex = 0;
         while (chunk.length < chunkSize) {
-          chunk.push({ image: "", imageLink: "" });
+          chunk.push(logos[fillIndex % logos.length]);
+          fillIndex++;
         }
+        
         chunks.push(chunk);
       }
     } else {
