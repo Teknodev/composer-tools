@@ -113,7 +113,7 @@
                 z-index: 20;
 
                 .icon {
-                    font-size: 1rem;
+                    font-size: 1.5rem;
                 }
             }
 
@@ -124,7 +124,7 @@
             }
 
             .next {
-                right: 5%;
+                right: 24px;
                 top: 50%;
                 transform: translateY(-50%);
             }
@@ -168,14 +168,6 @@
                     }
                 }
 
-                .prev,
-                .next {
-                    .icon {
-                        width: 30px;
-                        height: 30px;
-                    }
-                }
-
                 .prev {
                     left: var(--composer-gap-md);
                 }
@@ -200,28 +192,23 @@
 
                     .image-container {
                         .modal-image {
-                            min-width: 325px;
-                            min-height: 100%;
-                            max-width: 100%;
-                            max-height: 100%;
+                            max-height: 250px !important;
+                            min-height: 250px !important;
+                            min-width: 320px !important;
+                            max-width: 320px !important;
+                            width: 100% !important;
+                            height: auto !important;
+                            object-fit: cover !important;
                         }
                     }
                 }
 
-                .prev,
-                .next {
-                    .icon {
-                        width: 20px;
-                        height: 20px;
-                    }
-                }
-
                 .prev {
-                    left: 25px;
+                    left: var(--composer-gap-md);
                 }
 
                 .next {
-                    right: 25px;
+                    right: var(--composer-gap-md);
                 }
             }
         }

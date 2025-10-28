@@ -24,29 +24,24 @@ class ImageGallery3 extends BaseImageGallery {
         });
 
         this.addProp({
-            type: "object",
-            key: "header",
-            displayer: "Header",
-            value: [
-                {
-                    type: "string",
-                    key: "title",
-                    displayer: "Title",
-                    value: "PORTRAIT",
-                },
-                {
-                    type: "string",
-                    key: "sub_title",
-                    displayer: "Subtitle",
-                    value: "Portfolio",
-                },
-                {
-                    type: "boolean",
-                    key: "is_line_visible",
-                    displayer: "Line Visibility",
-                    value: true,
-                },
-            ]
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "PORTRAIT",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "sub_title",
+            displayer: "Subtitle",
+            value: "Portfolio",
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "is_line_visible",
+            displayer: "Line Visibility",
+            value: true,
         });
 
         this.addProp({
@@ -203,9 +198,11 @@ class ImageGallery3 extends BaseImageGallery {
 
     render() {
         const type = this.getPropValue("type");
-        const header = this.castToObject("header");
-        const titleIsVisible = this.castToString(header.title);
-        const subtitleIsVisible = this.castToString(header.sub_title);
+        const title = this.getPropValue("title");
+        const subTitle = this.getPropValue("sub_title");
+        const isLineVisible = this.getPropValue("is_line_visible");
+        const titleIsVisible = this.castToString(title);
+        const subtitleIsVisible = this.castToString(subTitle);
         const headerVisible = titleIsVisible || subtitleIsVisible;
 
         const images = this.castToObject<ImageItem[]>("images");
@@ -223,11 +220,11 @@ class ImageGallery3 extends BaseImageGallery {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {headerVisible && (
                         <div className={this.decorateCSS("header")}>
-                            {titleIsVisible && <Base.H2 className={this.decorateCSS("title")}>{header.title}</Base.H2>}
-                            {header.is_line_visible && (
+                            {titleIsVisible && <Base.H2 className={this.decorateCSS("title")}>{title}</Base.H2>}
+                            {isLineVisible && (
                                 <div className={this.decorateCSS("line")}></div>
                             )}
-                            {subtitleIsVisible && <Base.H3 className={this.decorateCSS("subtitle")}>{header.sub_title}</Base.H3>}
+                            {subtitleIsVisible && <Base.H3 className={this.decorateCSS("subtitle")}>{subTitle}</Base.H3>}
                         </div>
                     )}
                     {type === "Header One Image" && images[0] && (

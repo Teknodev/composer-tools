@@ -102,8 +102,6 @@
 
     .maxContent {
       .gridContainer {
-        display: flex;
-        flex-direction: column;
         gap: var(--composer-gap-md);
         
         .column {

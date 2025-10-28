@@ -469,7 +469,7 @@ class ImageGallery7 extends BaseImageGallery {
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
-                    <Base.ListGrid gridCount={{ pc: 4, tablet: 1, phone: 1 }} className={this.decorateCSS("gridContainer")} >
+                    <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("gridContainer")} >
                         {gallery.slice(0, this.getComponentState("imageCount")).map((cards: CardItemType, columnIndex: number) => {
                             const isEven = (columnIndex) % 2 !== 0;
                             const columnClass = isEven ? "columnEven" : "columnOdd";
@@ -500,7 +500,7 @@ class ImageGallery7 extends BaseImageGallery {
                             );
                         })}
                     </Base.ListGrid>
-                    {(this.getComponentState("imageCount") <= gallery.length) && this.castToString(button.text) && (
+                    {(this.getComponentState("imageCount") < gallery.length) && this.castToString(button.text) && (
                         <div className={this.decorateCSS("button-wrapper")}>
                             <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
                                 <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
