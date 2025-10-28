@@ -22,7 +22,7 @@
 
         &.title-center {
           @container (max-width: #{$composer-phone-width}) {
-            text-align: center !important;
+            text-align: center;
           }
         }
       }
@@ -39,17 +39,17 @@
           flex-direction: column;
           align-items: flex-start;
           justify-self: flex-start;
-        }
 
-        .features-list-items-topText {
-          font-weight: bold;
-          color: var(--composer-font-color-primary);
-          text-align: left;
-        }
+          .features-list-items-topText {
+            font-weight: bold;
+            color: var(--composer-font-color-primary);
+            text-align: left;
+          }
 
-        .features-list-items-bottomText {
-          color: rgba(var(--composer-font-color-primary-rgb));
-          text-align: left;
+          .features-list-items-bottomText {
+            color: rgba(var(--composer-font-color-primary-rgb));
+            text-align: left;
+          }
         }
       }
 
@@ -100,53 +100,49 @@
   }
 }
 
-/* 🔹 Mobil düzen */
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .content {
-        flex-direction: column !important;
+        flex-direction: column;
         gap: calc(1 * var(--composer-gap-xl));
 
         &.alignment-center {
-          align-items: center !important;
-          text-align: center !important;
+          align-items: center;
+          text-align: center;
 
           .left-container {
-            align-items: center !important;
-            text-align: center !important;
+            align-items: center;
+            text-align: center;
           }
 
           .features-list {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr);
-            justify-items: center !important;
-            text-align: center !important;
+            justify-content: center;
           }
 
           .button-container {
-            justify-content: center !important;
+            justify-content: center;
           }
         }
 
         &.alignment-left {
-          align-items: flex-start !important;
-          text-align: left !important;
+          align-items: flex-start;
+          text-align: left;
 
           .left-container {
-            align-items: flex-start !important;
-            text-align: left !important;
+            align-items: flex-start;
+            text-align: left;
           }
 
           .features-list {
-            display: grid !important;
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
-            justify-items: start !important;
+            justify-items: start;
             justify-self: flex-start;
           }
 
           .button-container {
-            justify-content: flex-start !important;
+            justify-content: flex-start;
           }
         }
 
@@ -171,5 +167,6 @@
     }
   }
 }
+
 
 

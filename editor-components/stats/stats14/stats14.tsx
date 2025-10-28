@@ -4,7 +4,6 @@ import styles from "./stats14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { FaRegCheckCircle } from "react-icons/fa";
 
 type featuresItem = {
   topText: React.JSX.Element;
@@ -146,11 +145,7 @@ class Stats14 extends BaseStats {
                 )}
 
                 {buttons.length > 0 && (
-                  <Base.Row
-                    className={`${this.decorateCSS("button-container")} ${
-                      alignment === "center" ? this.decorateCSS("button-center") : ""
-                    }`}
-                  >
+                  <Base.Row className={this.decorateCSS("button-container")}>
                     {buttons.map((item, index) => {
                       const buttonText = this.castToString(item.text || "");
                       const buttonUrl = item.url || "#";
@@ -187,4 +182,5 @@ class Stats14 extends BaseStats {
 
 export default Stats14;
  
+
 
