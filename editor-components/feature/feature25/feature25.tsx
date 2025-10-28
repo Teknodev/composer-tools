@@ -169,15 +169,6 @@ class Feature25 extends BaseFeature {
         },
       ],
     });
-
-    this.setActiveTab(0);
-  }
-
-  setActiveTab(activeTabIndex: number) {
-    this.setComponentState("activeTab", activeTabIndex);
-    setTimeout(() => {
-      this.setComponentState("startedIndex", activeTabIndex);
-    }, 5);
   }
 
   static getName(): string {
@@ -185,67 +176,44 @@ class Feature25 extends BaseFeature {
   }
 
   render() {
-    const activeTabIndex = this.getComponentState("activeTab") || 0;
     const tabs = this.castToObject<ITabs[]>("tabs");
-    const activeTab = tabs[activeTabIndex];
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("layout")}>
-            {/* Sol sekme butonları */}
-            <div className={this.decorateCSS("tab-buttons")}>
+          <div className={this.decorateCSS("tabs-wrapper")}>
+            {/* Tabs buttons */}
+            <div className={this.decorateCSS("tab")}>
               {tabs.map((tab: ITabs, index: number) => (
-                <div
-                  key={index}
-                  className={`${this.decorateCSS("tab-button")} ${
-                    activeTabIndex === index ? this.decorateCSS("active") : ""
-                  }`}
-                  onClick={() => this.setActiveTab(index)}
-                >
-                  <Base.VerticalContent
-                    className={this.decorateCSS("tab-text")}
-                  >
-                    <Base.P>{tab.tabText}</Base.P>
-                  </Base.VerticalContent>
-                </div>
+                <Base.VerticalContent key={index}>
+                  <Base.P>{tab.tabText}</Base.P>
+                </Base.VerticalContent>
               ))}
             </div>
 
-            {/* Sağ içerik */}
-            <div className={this.decorateCSS("content")}>
-              <div className={this.decorateCSS("image-wrapper")}>
-                <img
-                  src={activeTab.image}
-                  alt={String(this.castToString(activeTab.title) || "")}
-                  className={this.decorateCSS("image")}
-                />
-              </div>
-              <Base.VerticalContent
-                className={this.decorateCSS("text-section")}
-              >
-                <Base.SectionSubTitle className={this.decorateCSS("text")}>
-                  {activeTab.text}
-                </Base.SectionSubTitle>
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {activeTab.title}
-                </Base.SectionTitle>
-                <Base.SectionDescription
-                  className={this.decorateCSS("description")}
-                >
-                  {activeTab.description}
-                </Base.SectionDescription>
-                {this.castToString(activeTab.button.text) && (
-                  <ComposerLink path={activeTab.button.url}>
-                    <Base.Button
-                      buttonType={activeTab.button.type}
-                      className={this.decorateCSS("button")}
-                    >
-                      {activeTab.button.text}
-                    </Base.Button>
-                  </ComposerLink>
-                )}
-              </Base.VerticalContent>
+            {/* Tabs content */}
+            <div className={this.decorateCSS("tab-contents")}>
+              {tabs.map((tab: ITabs, index: number) => (
+                <div key={index} className={this.decorateCSS("tab-content")}>
+                  <div className={this.decorateCSS("image-wrapper")}>
+                    <img src={tab.image} alt={tab.image} />
+                  </div>
+
+                  <div className={this.decorateCSS("text-content")}>
+                    <Base.P>{tab.text}</Base.P>
+                    <Base.SectionTitle>{tab.title}</Base.SectionTitle>
+                    <Base.SectionDescription>
+                      {tab.description}
+                    </Base.SectionDescription>
+
+                    {tab.button && (
+                      <ComposerLink path={tab.button.url}>
+                        <Base.Button>{tab.button.text}</Base.Button>
+                      </ComposerLink>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </Base.MaxContent>
