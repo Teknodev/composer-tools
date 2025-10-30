@@ -258,11 +258,11 @@ class List3 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
+          <Base.ListGrid className={this.decorateCSS("cards-grid")} gridCount={{ pc: this.getPropValue("itemCount") }}>
             {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text)) && (
-              <Base.VerticalContent className={this.decorateCSS("first")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+              <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-                  <Base.VerticalContent className={this.decorateCSS("first-inner")}>
+                  <Base.VerticalContent className={this.decorateCSS("intro-content")}>
                     {this.castToString(subtitle) && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                         {subtitle}
@@ -306,21 +306,21 @@ class List3 extends BaseList {
                 >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
-                      <Base.H5 className={this.decorateCSS("itemTitle")}>
+                      <Base.H5 className={this.decorateCSS("card-title")}>
                         {listItem.itemTitle}
                       </Base.H5>
                     )}
                     {listItem.texts.map((item: TextItem, index: number) => (
-                      <Base.VerticalContent className={this.decorateCSS("cardItem")}>
-                        <div className={this.decorateCSS("spanItem")}></div>
-                        <Base.P className={this.decorateCSS("itemText")}>
+                      <Base.VerticalContent key={index} className={this.decorateCSS("event-item")}>
+                        <div className={this.decorateCSS("divider")}></div>
+                        <Base.P className={this.decorateCSS("event-text")}>
                           {item.itemText}
                         </Base.P>
                       </Base.VerticalContent>
                     ))}
                   </Base.VerticalContent>
                   {this.getPropValue("showCardNumber") && (
-                    <Base.H1 className={this.decorateCSS("index")}>
+                    <Base.H1 className={this.decorateCSS("card-number")}>
                       {index < 9 ? `0${index + 1}` : index + 1}
                     </Base.H1>
                   )}
