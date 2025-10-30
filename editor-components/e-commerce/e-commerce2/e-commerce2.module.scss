@@ -10,13 +10,13 @@
     flex-direction: column;
     align-items: center;
     gap: var(--composer-gap-xl);
-    .section-title-container {
+    .tab-container {
       width: fit-content;
       display: flex;
       align-items: center;
       gap: var(--composer-gap-md);
       flex-wrap: wrap;
-      .section-title {
+      .tab {
         text-align: left;
         width: fit-content;
         background-color: transparent;
@@ -24,7 +24,7 @@
         cursor: pointer;
         color: var(--composer-font-color-primary);
         opacity: 0.7;
-        &.active-section-title {
+        &.active-tab {
           opacity: 1;
           color: var(--composer-font-color-primary);
           font-weight: bold;
@@ -299,7 +299,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .section-title-container {
+      .tab-container {
         flex-direction: column;
       }
 

@@ -2220,7 +2220,7 @@ class ECommerce4 extends BaseECommerce {
                         (productCards.length > this.getComponentState("imageCount")) && (this.castToString(button.text)) && (
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                    {button.text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                 </Base.Button>
                             </div>
                         )

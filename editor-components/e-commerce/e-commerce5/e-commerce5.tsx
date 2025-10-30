@@ -55,7 +55,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -80,7 +80,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -105,7 +105,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -130,7 +130,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -155,7 +155,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -180,7 +180,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -225,7 +225,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -250,7 +250,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -275,7 +275,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -300,7 +300,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -325,7 +325,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -350,7 +350,7 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Image",
                       additionalParams: {
-                          availableTypes: ["image", "video"],
+                          availableTypes: ["image"],
                       },
                       value: {
                           type: "image",
@@ -455,14 +455,14 @@ class ECommerce5 extends BaseECommerce {
     return (
       <Base.Container isFull className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("title-tab")}>
+          <div className={this.decorateCSS("header")}>
             {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
             )}
 
-            <div className={this.decorateCSS("section-title-container")}>
+            <div className={this.decorateCSS("tab-container")}>
               {slides.map((item: ImageGallery, index: number) => {
                 const sectionTitle = this.castToString(item.sectionTitle);
                 return (
@@ -471,8 +471,8 @@ class ECommerce5 extends BaseECommerce {
                       key={index}
                       className={
                         activeCategoryIndex === index
-                          ? this.decorateCSS("section-active")
-                          : this.decorateCSS("section")
+                          ? this.decorateCSS("active-tab")
+                          : this.decorateCSS("tab")
                       }
                       onClick={() => {
                         const currentIndex = this.getComponentState("activeCategory");
@@ -499,41 +499,39 @@ class ECommerce5 extends BaseECommerce {
                 : this.decorateCSS("fade-slide-in")
             }`}
           >
-            <div className={this.decorateCSS("slider-parent")}>
-              <ComposerSlider
-                {...settings}
-                className={this.decorateCSS("carousel")}
-              >
-                {content.map((item: Contents) => {
-                  const collectionExist = this.castToString(item.collection);
-                  return (
-                    <div
-                      className={this.decorateCSS("slider-inner-div")}
-                      key={item.sectionImage?.url + item.collection}
-                    >
-                      {item.sectionImage?.url && (
-                        <div className={this.decorateCSS("image-box")}>
-                          <div className={this.decorateCSS("image-wrapper")}>
-                            <Base.Media
-                              value={item.sectionImage}
-                              className={this.decorateCSS("image")}
-                            />
-                            {overlay && (
-                              <div className={this.decorateCSS("overlay")}></div>
-                            )}
-                          </div>
+            <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("carousel")}
+            >
+              {content.map((item: Contents) => {
+                const collectionExist = this.castToString(item.collection);
+                return (
+                  <div
+                    className={this.decorateCSS("slider-item")}
+                    key={item.sectionImage?.url + item.collection}
+                  >
+                    {item.sectionImage?.url && (
+                      <div className={this.decorateCSS("image-box")}>
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <Base.Media
+                            value={item.sectionImage}
+                            className={this.decorateCSS("image")}
+                          />
+                          {overlay && (
+                            <div className={this.decorateCSS("overlay")}></div>
+                          )}
                         </div>
-                      )}
-                      {collectionExist && (
-                        <Base.P className={this.decorateCSS("collection")}>
-                          {item.collection}
-                        </Base.P>
-                      )}
-                    </div>
-                  );
-                })}
-              </ComposerSlider>
-            </div>
+                      </div>
+                    )}
+                    {collectionExist && (
+                      <Base.P className={this.decorateCSS("collection")}>
+                        {item.collection}
+                      </Base.P>
+                    )}
+                  </div>
+                );
+              })}
+            </ComposerSlider>
           </div>
         </Base.MaxContent>
       </Base.Container>

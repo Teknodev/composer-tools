@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseECommerce, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./e-commerce6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -10,16 +10,16 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   tabText: React.JSX.Element;
-  icon: { type: "icon"; name: string };
+  icon: TypeMediaInputValue;
   image_container: {
-    image: { type: "image"; url: string };
+    image: TypeMediaInputValue;
     box1_text: React.JSX.Element;
     box1_lowerText: React.JSX.Element;
     box2_text: React.JSX.Element;
-    box2_icon: { type: "icon"; name: string };
+    box2_icon: TypeMediaInputValue;
     link: string;
   };
-  icons_container: Array<{ icon: { type: "icon"; name: string }; text: React.JSX.Element }>;
+  icons_container: Array<{ icon: TypeMediaInputValue; text: React.JSX.Element }>;
 };
 
 class ECommerce6 extends BaseECommerce {

@@ -79,7 +79,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image",],
                                             },
                                             value: {
                                                 type: "image",
@@ -155,7 +155,7 @@ class ECommerce2 extends BaseECommerce {
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             value: {
                                                                 type: "image",
@@ -173,7 +173,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -192,7 +192,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -211,7 +211,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -230,7 +230,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -254,7 +254,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -329,7 +329,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -348,7 +348,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -367,7 +367,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image 2",
                                                             value: {
@@ -386,7 +386,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -405,7 +405,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -429,7 +429,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -504,7 +504,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -523,7 +523,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -542,7 +542,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -561,7 +561,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -580,7 +580,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -604,7 +604,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -679,7 +679,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -698,7 +698,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -717,7 +717,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -736,7 +736,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -755,7 +755,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -779,7 +779,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -854,7 +854,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -873,7 +873,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -892,7 +892,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -911,7 +911,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -930,7 +930,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -954,7 +954,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -1029,7 +1029,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1048,7 +1048,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1067,7 +1067,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1086,7 +1086,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1105,7 +1105,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1129,7 +1129,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -1204,7 +1204,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1223,7 +1223,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1242,7 +1242,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1261,7 +1261,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1280,7 +1280,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1304,7 +1304,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -1379,7 +1379,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1398,7 +1398,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1417,7 +1417,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1436,7 +1436,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1455,7 +1455,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1499,7 +1499,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -1574,7 +1574,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1593,7 +1593,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1612,7 +1612,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1631,7 +1631,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1650,7 +1650,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1694,7 +1694,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -1770,7 +1770,7 @@ class ECommerce2 extends BaseECommerce {
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             value: {
                                                                 type: "image",
@@ -1788,7 +1788,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1807,7 +1807,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1826,7 +1826,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1845,7 +1845,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -1869,7 +1869,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -1944,7 +1944,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1963,7 +1963,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -1982,7 +1982,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2001,7 +2001,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2020,7 +2020,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2064,7 +2064,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -2139,7 +2139,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2158,7 +2158,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2177,7 +2177,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2196,7 +2196,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2215,7 +2215,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2239,7 +2239,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -2314,7 +2314,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2333,7 +2333,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2352,7 +2352,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2371,7 +2371,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2390,7 +2390,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2434,7 +2434,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -2509,7 +2509,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2528,7 +2528,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2547,7 +2547,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image 2",
                                                             value: {
@@ -2566,7 +2566,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2585,7 +2585,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2609,7 +2609,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -2684,7 +2684,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2703,7 +2703,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2722,7 +2722,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2741,7 +2741,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2760,7 +2760,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2784,7 +2784,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "cardImage",
                                             displayer: "Card Image",
                                             additionalParams: {
-                                                availableTypes: ["image", "video"],
+                                                availableTypes: ["image"],
                                             },
                                             value: {
                                                 type: "image",
@@ -2859,7 +2859,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2878,7 +2878,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image ",
                                                             value: {
@@ -2897,7 +2897,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2916,7 +2916,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -2935,7 +2935,7 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "media",
                                                             key: "popupImg",
                                                             additionalParams: {
-                                                                availableTypes: ["image", "video"],
+                                                                availableTypes: ["image"],
                                                             },
                                                             displayer: "Popup Image",
                                                             value: {
@@ -3173,11 +3173,11 @@ class ECommerce2 extends BaseECommerce {
             <Base.Container
                 className={`${this.decorateCSS("container")} ${this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.Row className={this.decorateCSS("section-title-container")}>
+                    <Base.Row className={this.decorateCSS("tab-container")}>
                         {showAll && allText && (
                             <Base.P
-                                className={`${this.decorateCSS("section-title")} 
-                                ${selectedIndex === -1 ? this.decorateCSS("active-section-title") : ""}`}
+                                className={`${this.decorateCSS("tab")} 
+                                ${selectedIndex === -1 ? this.decorateCSS("active-tab") : ""}`}
                                 onClick={() => this.handleSectionClickAll()}>
                                 {this.getPropValue("allText")}
                             </Base.P>
@@ -3189,8 +3189,8 @@ class ECommerce2 extends BaseECommerce {
                                     {this.castToString(item.sectionTitle) && (
                                         <button
                                             key={index}
-                                            className={`${this.decorateCSS("section-title")} 
-                                            ${index === selectedIndex ? this.decorateCSS("active-section-title") : ""}`}
+                                            className={`${this.decorateCSS("tab")} 
+                                            ${index === selectedIndex ? this.decorateCSS("active-tab") : ""}`}
                                             onClick={() => this.handleSectionClick(item.sectionTitle, index)}>
                                             {item.sectionTitle}
                                         </button>

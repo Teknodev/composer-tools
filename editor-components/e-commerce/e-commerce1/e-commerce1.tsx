@@ -67,7 +67,7 @@ class ECommerce1 extends BaseECommerce {
               key: "image",
               displayer: "Product Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -86,7 +86,7 @@ class ECommerce1 extends BaseECommerce {
               key: "image",
               displayer: "Product Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -105,7 +105,7 @@ class ECommerce1 extends BaseECommerce {
               key: "image",
               displayer: "Product Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -124,7 +124,7 @@ class ECommerce1 extends BaseECommerce {
               key: "image",
               displayer: "Product Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -620,149 +620,149 @@ class ECommerce1 extends BaseECommerce {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("section")}>
-            {(images.length > 0) && (
-              <div className={this.decorateCSS("left")}>
-                <div className={`${this.decorateCSS("left-images")} ${!isRightExist && this.decorateCSS("without-right")}`}>
-                  {images.map((item: Image, index: number) => {
+          {(images.length > 0) && (
+            <div className={this.decorateCSS("left")}>
+              <div className={`${this.decorateCSS("left-images")} ${!isRightExist && this.decorateCSS("without-right")}`}>
+                {images.map((item: Image, index: number) => {
+                    return (
+                      <div className={this.decorateCSS("img-container")}>
+                        {item.image?.url && (
+                          <Base.Media 
+                          key={index} value={item.image} 
+                          className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
+                          onClick={() => handleImageClick(index)}
+                        />
+                        )}
+                      </div>
+                    )
+                  })}
+              </div>
+              <div className={`${this.decorateCSS("right-image")} ${!isRightExist && this.decorateCSS("without-right")}`}>
+                {this.castToString(this.getPropValue("newText")) && (<Base.P className={this.decorateCSS("new")}>{this.getPropValue("newText")}</Base.P>)}
+                <Base.Media value={icons.leftArrowImage} className={this.decorateCSS("left-arrow")} onClick={moveLeftSlider} />
+                <Base.Media value={icons.rightArrowImage} className={this.decorateCSS("right-arrow")} onClick={moveRightSlider} />
+                {images.length > 0 && (
+                  <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
+                    {images.map((item: Image, index: number) => {
                       return (
-                        <div className={this.decorateCSS("img-container")}>
-                          {item.image?.url && (
-                            <Base.Media 
-                            key={index} value={item.image} 
-                            className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
-                            onClick={() => handleImageClick(index)}
-                          />
-                          )}
+                        <div className={this.decorateCSS("card")}>
+                          <Base.Media value={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
                         </div>
                       )
                     })}
-                </div>
-                <div className={`${this.decorateCSS("right-image")} ${!isRightExist && this.decorateCSS("without-right")}`}>
-                  {this.castToString(this.getPropValue("newText")) && (<Base.P className={this.decorateCSS("new")}>{this.getPropValue("newText")}</Base.P>)}
-                  <Base.Media value={icons.leftArrowImage} className={this.decorateCSS("left-arrow")} onClick={moveLeftSlider} />
-                  <Base.Media value={icons.rightArrowImage} className={this.decorateCSS("right-arrow")} onClick={moveRightSlider} />
-                  {images.length > 0 && (
-                    <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
-                      {images.map((item: Image, index: number) => {
-                        return (
-                          <div className={this.decorateCSS("card")}>
-                            <Base.Media value={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
-                          </div>
-                        )
-                      })}
-                    </ComposerSlider>
-                  )}
-                </div>
+                  </ComposerSlider>
+                )}
               </div>
-            )}
-            {isRightExist && (
-              <div className={this.decorateCSS("right")}>
-                <div className={this.decorateCSS("vertical")}>
-                {(titleExist || price.value) && (
-                  <div className={this.decorateCSS("title-and-price")}>
-                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
-                    {price.value && (<Base.H3 className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</Base.H3>)}
-                  </div>
-                )}
-                {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder || descriptionExist) &&(
-                  <div className={this.decorateCSS("review-and-description")}>
-                  {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder) && (
-                    <div className={this.decorateCSS("review-area")}>  
-                      {(reviewItem.starIcon || reviewItem.starIconBorder || reviewItem.point) && (
-                        <div className={this.decorateCSS("stars")}>
-                          {[...Array(5)].map((_, index) => {
-                            return (
-                              <Base.Media
-                                value={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
-                                className={this.decorateCSS("star")}
-                              />
-                            );
-                          })}
-                        </div> 
-                      )}               
-                      {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
-                        <div className={this.decorateCSS("review")}>
-                          <span className={this.decorateCSS("brackets")}>(</span>
-                          {reviewItem.reviewCount && (<Base.P className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</Base.P>)}
-                          {this.castToString(reviewItem.reviewText) && (<Base.P className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</Base.P>)}
-                          <span className={this.decorateCSS("brackets")}>)</span> 
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {descriptionExist && (<Base.P className={this.decorateCSS("description")}>{description}</Base.P>)}
-                  </div>
-                )}
-                  {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText)) && (
-                    <div className={this.decorateCSS("inputs")}>
-                      {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow) && (
-                        <div className={`${this.decorateCSS("count-input")} ${this.castToString(buttonText) && this.decorateCSS("with-button")}`}>
-                          {this.castToString(quantitySection.quantityText) && (<Base.P className={this.decorateCSS("label")}>{quantitySection.quantityText}</Base.P>)}
-                          {quantitySection.leftArrow && (<Base.Media value={quantitySection.leftArrow} className={this.decorateCSS("left-icon")} onClick={handleLeftClick}/>)}
-                          <input
-                              type="number"
-                              min={1}
-                              className={this.decorateCSS("input")}
-                              value={
-                                this.getComponentState("count") !== undefined
-                                  ? String(this.getComponentState("count"))
-                                  : ""
-                              }
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                if (value === "") {
-                                  this.setComponentState("count", "");
-                                  return;
-                                }
-
-                                const parsed = parseInt(value, 10);
-                                if (!isNaN(parsed) && parsed >= 1) {
-                                  this.setComponentState("count", parsed);
-                                }
-                              }}
+            </div>
+          )}
+          {isRightExist && (
+            <div className={this.decorateCSS("right")}>
+              <Base.VerticalContent className={this.decorateCSS("content")}>
+              {(titleExist || price.value) && (
+                <div className={this.decorateCSS("header")}>
+                  {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
+                  {price.value && (<Base.H3 className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</Base.H3>)}
+                </div>
+              )}
+              {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder || descriptionExist) &&(
+                <div className={this.decorateCSS("review-and-description")}>
+                {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder) && (
+                  <div className={this.decorateCSS("review-area")}>  
+                    {(reviewItem.starIcon || reviewItem.starIconBorder || reviewItem.point) && (
+                      <div className={this.decorateCSS("stars")}>
+                        {[...Array(5)].map((_, index) => {
+                          return (
+                            <Base.Media
+                              value={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
+                              className={this.decorateCSS("star")}
                             />
-
-                          {quantitySection.rightArrow && (<Base.Media value={quantitySection.rightArrow} className={this.decorateCSS("right-icon")} onClick={handleRightClick}/>)}
-                        </div>
-                      )}
-                      {this.castToString(buttonText) && (
-                        <ComposerLink path={buttonUrl}>
-                          <Base.Button className={this.decorateCSS("button")} buttonType={buttonType}>{buttonText}</Base.Button>
-                        </ComposerLink>
-                      )}
-                    </div>                  
-                  )}
-                  {(this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon) &&(
-                    <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
-                      <div className={this.decorateCSS("wishlist")}>
-                        <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
-                        {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
+                          );
+                        })}
+                      </div> 
+                    )}               
+                    {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
+                      <div className={this.decorateCSS("review")}>
+                        <span className={this.decorateCSS("brackets")}>(</span>
+                        {reviewItem.reviewCount && (<Base.P className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</Base.P>)}
+                        {this.castToString(reviewItem.reviewText) && (<Base.P className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</Base.P>)}
+                        <span className={this.decorateCSS("brackets")}>)</span> 
                       </div>
-                    </ComposerLink>
-                  )}
-                  {(categoriesAndTags.length > 0) && (
-                    <div className={this.decorateCSS("categories")}>
-                      {categoriesAndTags.map((item, index) => (
-                        <div key={index} className={this.decorateCSS("categoryLabel")}>
-                          {this.castToString(item.title) && (<Base.P className={this.decorateCSS("label")}>{item.title}</Base.P>)}
-                          {(item.items.length > 0) && (
-                            <div className={this.decorateCSS("categoryText")}>
-                              {item.items.map((subItem, subIndex) => (
-                                <Base.P key={subIndex} className={this.decorateCSS("category")}>
-                                  {subItem.category || subItem.tag}
-                                </Base.P>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                    )}
+                  </div>
+                )}
+                {descriptionExist && (<Base.P className={this.decorateCSS("description")}>{description}</Base.P>)}
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+                {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText)) && (
+                  <div className={this.decorateCSS("inputs")}>
+                    {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow) && (
+                      <div className={`${this.decorateCSS("count-input")} ${this.castToString(buttonText) && this.decorateCSS("with-button")}`}>
+                        {this.castToString(quantitySection.quantityText) && (<Base.P className={this.decorateCSS("label")}>{quantitySection.quantityText}</Base.P>)}
+                        {quantitySection.leftArrow && (<Base.Media value={quantitySection.leftArrow} className={this.decorateCSS("left-icon")} onClick={handleLeftClick}/>)}
+                        <input
+                            type="number"
+                            min={1}
+                            className={this.decorateCSS("input")}
+                            value={
+                              this.getComponentState("count") !== undefined
+                                ? String(this.getComponentState("count"))
+                                : ""
+                            }
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              if (value === "") {
+                                this.setComponentState("count", "");
+                                return;
+                              }
+
+                              const parsed = parseInt(value, 10);
+                              if (!isNaN(parsed) && parsed >= 1) {
+                                this.setComponentState("count", parsed);
+                              }
+                            }}
+                          />
+
+                        {quantitySection.rightArrow && (<Base.Media value={quantitySection.rightArrow} className={this.decorateCSS("right-icon")} onClick={handleRightClick}/>)}
+                      </div>
+                    )}
+                    {this.castToString(buttonText) && (
+                      <ComposerLink path={buttonUrl}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={buttonType}>
+                          <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )}
+                  </div>                  
+                )}
+                {(this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon) &&(
+                  <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
+                    <div className={this.decorateCSS("wishlist")}>
+                      <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
+                      {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
+                    </div>
+                  </ComposerLink>
+                )}
+                {(categoriesAndTags.length > 0) && (
+                  <div className={this.decorateCSS("categories")}>
+                    {categoriesAndTags.map((item, index) => (
+                      <div key={index} className={this.decorateCSS("category")}>
+                        {this.castToString(item.title) && (<Base.P className={this.decorateCSS("categoryLabel")}>{item.title}</Base.P>)}
+                        {(item.items.length > 0) && (
+                          <div className={this.decorateCSS("categoryText")}>
+                            {item.items.map((subItem, subIndex) => (
+                              <Base.P key={subIndex} className={this.decorateCSS("text")}>
+                                {subItem.category || subItem.tag}
+                              </Base.P>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            </div>
+          )}
           {isActive && (
             <Base.Overlay isVisible={true} className={this.decorateCSS("image-popup")}>
               <div className={this.decorateCSS("popup-content")}>
