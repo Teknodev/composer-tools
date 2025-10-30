@@ -4,14 +4,17 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
     
-    .card-titles {
+    .header-section {
       .subtitle {
+        content: "";
+      }
+      .header-title {
         content: "";
       }
     }
     
-    .card {
-      .all-card {
+    .items-wrapper {
+      .list-item {
         height: 100%;
         .item-content {
           height: 100%;
@@ -23,6 +26,12 @@
           gap: var(--composer-gap-md);
           transition: all var(--composer-transition-duration-normal) ease;
           position: relative;
+          user-select: text;
+
+          &::before,
+          &::after {
+            pointer-events: none;
+          }
 
           &[data-animation="animate1"]:hover {
             border-color: transparent;
@@ -88,14 +97,17 @@
           }
 
           .index {
+            content: "";
             color: var(--composer-primary-color);
             margin: 0;
           }
-          .title {
+          .item-title {
+            content: "";
             color: var(--composer-font-color-primary);
             margin: 0;
           }
           .description {
+            content: "";
             color: var(--composer-font-color-primary);
             margin: 0;
           }
