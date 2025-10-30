@@ -214,6 +214,10 @@ class Feature17 extends BaseFeature {
             </Base.VerticalContent>
           )}
 
+          {headingExist && subheadingExist && (
+            <div className={this.decorateCSS("divider")} aria-hidden="true" />
+          )}
+
           {validFeatures.length > 0 && (
             <div className={gridClass}>
               {validFeatures.map((feature: Card, index: number) => {
