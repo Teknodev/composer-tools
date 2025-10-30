@@ -469,18 +469,18 @@ class ECommerce7 extends BaseECommerce {
     this.addProp({
       type: "object",
       key: "countSection",
-      displayer: "Count Section",
+      displayer: "Quantity Area",
       value: [
         {
           type: "number",
           key: "count",
-          displayer: "Count",
+          displayer: "Quantity",
           value: 1,
         },
         {
           type: "media",
           key: "minusIcon",
-          displayer: "Minus Icon",
+          displayer: "Decrease Icon",
           additionalParams: {
             availableTypes: ["icon"],
           },
@@ -492,7 +492,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "media",
           key: "addIcon",
-          displayer: "Add Icon",
+          displayer: "Increase Icon",
           additionalParams: {
             availableTypes: ["icon"],
           },
@@ -506,12 +506,12 @@ class ECommerce7 extends BaseECommerce {
     this.addProp({
       type: "array",
       key: "deliveryTypes",
-      displayer: "Delivery Types",
+      displayer: "Product Details",
       value: [
         {
           type: "object",
           key: "deliveryType",
-          displayer: "Delivery Type",
+          displayer: "Info Text",
           value: [
             {
               type: "string",
@@ -530,7 +530,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "deliveryType",
-          displayer: "Delivery Type",
+          displayer: "Info Text",
           value: [
             {
               type: "string",
@@ -542,14 +542,14 @@ class ECommerce7 extends BaseECommerce {
               type: "boolean",
               key: "isRadioButtonActive",
               displayer: "Radio Button Active",
-              value: false,
+              value: true,
             },
           ],
         },
         {
           type: "object",
           key: "deliveryType",
-          displayer: "Delivery Type",
+          displayer: "Info Text",
           value: [
             {
               type: "string",
@@ -568,7 +568,7 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "deliveryType",
-          displayer: "Delivery Type",
+          displayer: "Info Text",
           value: [
             {
               type: "string",
@@ -790,6 +790,10 @@ class ECommerce7 extends BaseECommerce {
     const itemDetails = this.castToObject<ItemDetails[]>("itemDetails");
     const images = this.castToObject<Images[]>("images");
     const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
+    if (this.getComponentState("selectedRadioButton") === null) {
+      const firstEnabledIndex = deliveryType.findIndex((d) => d.isRadioButtonActive);
+      this.setComponentState("selectedRadioButton", firstEnabledIndex >= 0 ? firstEnabledIndex : 0);
+    }
     const socials = shareSection?.socials;
     const shareCopyLink = shareSection?.shareCopyLink;
     const sliderRef = this.getComponentState("slider-ref");
@@ -1257,6 +1261,14 @@ class ECommerce7 extends BaseECommerce {
                         className={this.decorateCSS("delivery-type")}
                         key={index}
                       >
+                        <input
+                          type="radio"
+                          name="delivery-type"
+                          className={this.decorateCSS("radio")}
+                          checked={this.getComponentState("selectedRadioButton") === index}
+                          onChange={() => this.handleRadioButton(index)}
+                          disabled={!item.isRadioButtonActive}
+                        />
                         {this.castToString(item.description) && (
                           <Base.P className={this.decorateCSS("delivery")}>
                             {item.description}

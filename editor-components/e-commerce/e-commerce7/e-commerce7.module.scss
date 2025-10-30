@@ -389,6 +389,15 @@
                     display: flex;
                     align-items: center;
                     gap: var(--composer-gap-sm);
+                    .radio{
+                        display: block;
+                        appearance: auto;
+                        -webkit-appearance: auto;
+                        width: 16px;
+                        height: 16px;
+                        cursor: pointer;
+                        accent-color: var(--composer-primary-color) !important;
+                    }
                     .delivery{
                         color: var(--composer-font-color-primary);
                         text-align: left;
