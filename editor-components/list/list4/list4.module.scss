@@ -11,7 +11,7 @@
       }
     }
 
-    .card-title {
+    .item-index {
       position: relative;
       margin: var(--composer-gap-xs) 0 0 var(--composer-gap-md);
       color: var(--composer-primary-color);
@@ -24,17 +24,17 @@
       }
     }
 
-    .card-child {
+    .services-grid {
       margin-bottom: var(--composer-gap-md);
       gap: var(--composer-gap-lg);
 
-      .card-item-count {
+      .service-item {
         position: relative;
         padding: var(--composer-gap-lg);
 
         &[data-animation~="animate1"] {
-          .line-box{
-            .line-2 {
+          .border-frame{
+            .border-top {
               &::before {
                 content: "";
                 position: absolute;
@@ -49,8 +49,8 @@
             }
           }
           &:hover{
-            .line-box{
-              .line-2{
+            .border-frame{
+              .border-top{
                 &::before{
                   width: calc(100% - 90px);
                 }
@@ -59,7 +59,7 @@
           }
         }
         &[data-animation~="animate4"]:hover {
-          .card-title{
+          .item-index{
             &.index {
               animation: bounce 1s ease-in-out;
             }
@@ -67,12 +67,12 @@
 
         }
 
-        .line-box {
+        .border-frame {
           position: absolute;
           width: calc(100% - 80px);
           height: calc(100% - 80px);
 
-          .line-1 {
+          .border-left {
             position: absolute;
             top: calc(-1 * var(--composer-gap-sm));
             left: 0;
@@ -81,7 +81,7 @@
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
 
-          .line-2 {
+          .border-top {
             position: absolute;
             top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
             left: calc(-1 * var(--composer-gap-xl));
@@ -99,7 +99,7 @@
             }
           }
 
-          .line-3 {
+          .border-right {
             position: absolute;
             top: 0;
             right: 0;
@@ -108,7 +108,7 @@
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
 
-          .line-4 {
+          .border-bottom {
             position: absolute;
             bottom: 0;
             left: calc(-1 * var(--composer-gap-xl));
@@ -117,11 +117,11 @@
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
         }
-        .card {
+        .card-content {
           position: relative;
           padding: var(--composer-gap-md);
 
-          .color-box {
+          .card-body {
             padding: var(--composer-gap-md);
             background-color: color-mix(
               in srgb,
@@ -138,12 +138,12 @@
                   color: var(--composer-html-background);
                 }
 
-                .card-title-wrapper {
-                  .card-subtitle {
+                .text-wrapper {
+                  .item-title {
                     color: var(--composer-font-color-primary);
                   }
 
-                  .card-description {
+                  .item-description {
                     color: var(--composer-font-color-primary);
                   }
                 }
@@ -167,11 +167,11 @@
               position: absolute;
               color: var(--composer-font-color-primary);
             }
-            .card-title-wrapper {
+            .text-wrapper {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
-              .card-subtitle {
+              .item-title {
                 color: var(--composer-font-color-primary);
                 overflow: hidden;
                 margin: 0;
@@ -179,7 +179,7 @@
                 display: inline-block;
               }
 
-              .card-description {
+              .item-description {
                 margin: 0;
                 color: var(--composer-tertiary-color);
               }
@@ -197,7 +197,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .card-child {
+      .services-grid {
         gap: var(--composer-gap-xs);
       }
     }
@@ -207,17 +207,17 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .card-child {
-        .card-item-count {
+      .services-grid {
+        .service-item {
           padding: 0;
-          .line-box {
+          .border-frame {
             width: 100%;
             height: 100%;
-            .line-1 {
+            .border-left {
               top: var(--composer-gap-sm);
               height: calc(100% + var(--composer-gap-md));
             }
-            .line-3 {
+            .border-right {
               top: var(--composer-gap-sm);
             }
           }
