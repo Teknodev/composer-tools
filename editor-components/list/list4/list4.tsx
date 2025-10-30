@@ -135,7 +135,7 @@ class list4 extends BaseList {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
     });
     this.addProp({
@@ -172,21 +172,21 @@ class list4 extends BaseList {
               {this.getPropValue("title")}
             </Base.SectionTitle>
           </Base.VerticalContent>
-          <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
+          <Base.ListGrid className={this.decorateCSS("services-grid")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
             {this.castToObject<Card[]>("content-card").map(
               (card: any, index: number) => (
                 <div
                   key={index}
-                  className={this.decorateCSS("card-item-count")}
+                  className={this.decorateCSS("service-item")}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
-                  <div className={this.decorateCSS("line-box")}>
-                    <div className={this.decorateCSS("line-1")}></div>
-                    <div className={this.decorateCSS("line-2")}></div>
-                    <div className={this.decorateCSS("line-3")}></div>
-                    <div className={this.decorateCSS("line-4")}></div>
+                  <div className={this.decorateCSS("border-frame")}>
+                    <div className={this.decorateCSS("border-left")}></div>
+                    <div className={this.decorateCSS("border-top")}></div>
+                    <div className={this.decorateCSS("border-right")}></div>
+                    <div className={this.decorateCSS("border-bottom")}></div>
                   </div>
-                  <div className={`${this.decorateCSS("card-title")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}
+                  <div className={`${this.decorateCSS("item-index")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {(index + 1).toLocaleString("en-US", {
                       minimumIntegerDigits: 2,
@@ -195,10 +195,10 @@ class list4 extends BaseList {
                   </div>
                   <div
                     key={`cnt-4-card-${index}`}
-                    className={this.decorateCSS("card")}
+                    className={this.decorateCSS("card-content")}
                   >
                     <Base.VerticalContent
-                      className={this.decorateCSS("color-box")}
+                      className={this.decorateCSS("card-body")}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {card.icon && (
@@ -208,16 +208,16 @@ class list4 extends BaseList {
                         />
                       )}
 
-                      <Base.VerticalContent className={this.decorateCSS("card-title-wrapper")}>
+                      <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
                         {this.castToString(card.title) && (
                           <Base.H3
-                            className={this.decorateCSS("card-subtitle")}
+                            className={this.decorateCSS("item-title")}
                           >
                             {card.title}
                           </Base.H3>
                         )}
                         {this.castToString(card.description) && (
-                          <Base.P className={this.decorateCSS("card-description")}>
+                          <Base.P className={this.decorateCSS("item-description")}>
                             {card.description}
                           </Base.P>
                         )}
