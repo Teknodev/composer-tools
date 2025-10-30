@@ -130,24 +130,24 @@ class List7 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+          <Base.VerticalContent className={this.decorateCSS("header-section")}>
             {this.castToString(subtitle) && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {subtitle}
               </Base.SectionSubTitle>
             )}
             {this.castToString(title) && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
+              <Base.SectionTitle className={this.decorateCSS("header-title")}>
                 {title}
               </Base.SectionTitle>
             )}
           </Base.VerticalContent>
           {(ListItems.length > 0) && (
-            <Base.ListGrid className={this.decorateCSS("card")} gridCount={{ pc: this.getPropValue("itemCount") }} >
+            <Base.ListGrid className={this.decorateCSS("items-wrapper")} gridCount={{ pc: this.getPropValue("itemCount") }} >
               {ListItems.map((item: any, index: number) => (
                 <div
                   key={index}
-                  className={this.decorateCSS("all-card")}
+                  className={this.decorateCSS("list-item")}
                 >
                   {(this.getPropValue("showIndex") || this.castToString(item.title) || this.castToString(item.text)) && (
                     <Base.VerticalContent
@@ -158,7 +158,7 @@ class List7 extends BaseList {
                         <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
                       )}
                       {this.castToString(item.title) && (
-                        <Base.H3 className={this.decorateCSS("title")}>{item.title}</Base.H3>
+                        <Base.H3 className={this.decorateCSS("item-title")}>{item.title}</Base.H3>
                       )}
                       {this.castToString(item.text) && (
                         <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
