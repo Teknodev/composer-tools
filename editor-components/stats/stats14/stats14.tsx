@@ -98,6 +98,7 @@ class Stats14 extends BaseStats {
     const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
+    const isLeftContainerExist = isTitleExist || FeaturesItem.length > 0 || buttons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -109,7 +110,7 @@ class Stats14 extends BaseStats {
                 : this.decorateCSS("alignment-center")
             }`}
           >
-            {(isTitleExist || FeaturesItem.length > 0 || buttons.length > 0) && (
+            {isLeftContainerExist && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
                 {isTitleExist && (
                   <Base.SectionTitle
@@ -171,7 +172,11 @@ class Stats14 extends BaseStats {
             )}
 
             {image && (
-              <div className={this.decorateCSS("right-container")}>
+              <div 
+                className={`${this.decorateCSS("right-container")} ${
+                  !isLeftContainerExist ? this.decorateCSS("right-container-alone") : ""
+                }`}
+              >
                 <Base.Media value={image} className={this.decorateCSS("image-circle")} />
                 {overlay && image?.url && <div className={this.decorateCSS("overlay")}></div>}
               </div>

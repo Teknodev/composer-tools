@@ -6,7 +6,7 @@
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
+       justify-content: space-between;;
       gap: var(--composer-gap-xl);
 
       .left-container {
@@ -72,6 +72,11 @@
         align-items: center;
         border-radius: 50%;
         overflow: hidden;
+
+        &.right-container-alone {
+          margin-left: auto;
+          margin-right: auto;
+        }
 
         .image-circle {
           width: 100%;
@@ -153,10 +158,13 @@
           order: 3;
           width: 100%;
           max-width: 100%;
-          margin: 0 auto;
           display: flex;
           justify-content: center;
           align-items: center;
+
+          &.right-container-alone {
+            margin: 0 auto;
+          }
 
           .image-circle {
             width: 100%;
