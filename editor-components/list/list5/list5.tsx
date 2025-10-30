@@ -88,7 +88,7 @@ class List5 extends BaseList {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -289,37 +289,35 @@ class List5 extends BaseList {
             )}
             {(ListItems.length > 0) && (
               <Base.ListGrid
-                className={this.decorateCSS("grid")}
+                className={this.decorateCSS("cards-grid")}
                 gridCount={{ pc: this.getPropValue("itemCount") }}
               >
                 {ListItems.map(
                   (listItem: any, index: number) => {
                     return (
-                      <div className={this.decorateCSS("item-box")}>
+                      <div className={this.decorateCSS("card-wrapper")}>
                         <ComposerLink path={listItem.url}>
                           <div
                             key={index}
-                            className={this.decorateCSS("item-container")}
+                            className={this.decorateCSS("card")}
                             data-animation={this.getPropValue("hoverAnimation").join(" ")}
                           >
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
-                              <div className={this.decorateCSS("header-line")}>
+                              <div className={this.decorateCSS("card-header")}>
                                 {listItem.uppericon && (
-                                  <div className={this.decorateCSS("left")}>
-                                    <div className={this.decorateCSS("out-icon")}>
+                                  <div className={this.decorateCSS("icon-section")}>
+                                    <div className={this.decorateCSS("icon-badge")}>
                                       <div className={this.decorateCSS("icon-wrapper")}>
                                         <Base.Media
                                           value={listItem.uppericon}
-                                          propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                          }}
+                                          className={this.decorateCSS("icon")}
                                         />
                                       </div>
                                     </div>
                                   </div>
                                 )}
                                 {this.getPropValue("showIndex") && (
-                                  <div className={this.decorateCSS("right")}>
+                                  <div className={this.decorateCSS("index-section")}>
                                     <Base.H1 className={this.decorateCSS("item-index")}>
                                       {(index + 1).toLocaleString("en-US", {
                                         minimumIntegerDigits: 2,
@@ -331,21 +329,19 @@ class List5 extends BaseList {
                               </div>
                             )}
                             {this.castToString(listItem.title) && (
-                              <Base.H3 className={this.decorateCSS("list-item-title")}>
+                              <Base.H3 className={this.decorateCSS("card-title")}>
                                 {listItem.title}
                               </Base.H3>
                             )}
                             {this.castToString(listItem.text) && (
-                              <Base.P className={this.decorateCSS("list-item-text")}>
+                              <Base.P className={this.decorateCSS("card-description")}>
                                 {listItem.text}
                               </Base.P>
                             )}
                             {listItem.lowericon && (
                               <Base.Media
                                 value={listItem.lowericon}
-                                propsIcon={{
-                                  className: this.decorateCSS("lower-icon"),
-                                }}
+                                className={this.decorateCSS("arrow-icon")}
                               />
                             )}
                           </div>
