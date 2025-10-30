@@ -120,6 +120,8 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .first-container {
+      padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
+
       .first-max-content {
         .header {
           &.center {
@@ -154,6 +156,7 @@
 
           .links {
             gap: var(--composer-gap-md);
+            width: 100%;
 
             .link-element {
               .link-text {
@@ -188,10 +191,6 @@
           align-items: center;
           .left {
             width: 100%;
-            align-items: center;
-            .subtitle, .title{
-              text-align: center;
-            }
           }
         }
       }
