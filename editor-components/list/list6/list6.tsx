@@ -238,10 +238,10 @@ class List6 extends BaseList {
               )}
             </Base.VerticalContent>
           )}
-          <div className={this.decorateCSS("list-item")}>
+          <div className={this.decorateCSS("items-wrapper")}>
             {listItems.map((listItem: listItem, index: number) => (
               <div
-                className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
+                className={`${this.decorateCSS("list-item")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 {this.castToString(listItem.itemIndex) && (
@@ -249,17 +249,19 @@ class List6 extends BaseList {
                     {listItem.itemIndex}
                   </Base.H3>
                 )}
-                <div className={this.decorateCSS("cards")}>
+                <div className={this.decorateCSS("item-content")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (
-                      <div className={this.decorateCSS("icon-title-container")}>
+                      <div className={this.decorateCSS("item-header")}>
                         {listItem.itemIcon && (
+                        <div className={this.decorateCSS("icon")}>
                           <Base.Media
                             value={listItem.itemIcon}
                             propsIcon={{
                               className: this.decorateCSS("icon")
                             }}
                           />
+                          </div>
                         )}
                         {this.castToString(listItem.itemTitle) && (
                           <Base.H4 className={this.decorateCSS("title")}>

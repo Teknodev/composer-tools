@@ -16,11 +16,11 @@
         animation: fadeInUp 400ms ease-out;
       }
     }
-    .list-item {
+    .items-wrapper {
       display: flex;
       flex-wrap: wrap;
       max-width: 100%;
-      .item-container.line[data-animation~="animate1"]:hover {
+      .list-item.line[data-animation~="animate1"]:hover {
         transform: scale(1.02);
         &:last-child::after{
           transform: scaleX(1.05);
@@ -29,17 +29,21 @@
           transform: scaleX(1.05);
         }
       
-        + .item-container.line::before {
+        + .list-item.line::before {
           transform: scaleX(1.05);
         }
       }
-      .item-container {
+      .list-item {
         width: 100%;
         display: flex;
         align-items: center;
         padding: var(--composer-gap-lg) 0;
         position: relative;
         transition: all var(--composer-transition-duration-normal) ease;
+
+        .icon {
+          content: "";
+        }
 
         &[data-animation~="animate2"] {
           .index {
@@ -50,7 +54,7 @@
             padding-left: var(--composer-gap-lg);
             border-radius: var(--composer-border-radius-sm);
 
-            .cards {
+            .item-content {
               .description {
                 padding-left: var(--composer-gap-sm);
               }
@@ -59,16 +63,16 @@
         }
 
         &[data-animation~="animate3"] {
-          .cards {
-            .icon-title-container {
+          .item-content {
+            .item-header {
               .icon {
                 transition: all var(--composer-transition-duration-slow) var(--composer-transition-easing);
               }
             }
           }
           &:hover {
-            .cards {
-              .icon-title-container {
+            .item-content {
+              .item-header {
                 .icon {
                   transform: rotate(360deg);
                   transition: transform var(--composer-transition-duration-normal);
@@ -92,7 +96,7 @@
           color: var(--composer-font-color-primary);
         }
 
-        .cards {
+        .item-content {
           flex: 5;
           display: flex;
           align-items: center;
@@ -100,15 +104,14 @@
           color: var(--composer-font-color-primary);
           gap: var(--composer-gap-md);
 
-          .icon-title-container {
+          .item-header {
             width: 100%;
             display: flex;
             gap: var(--composer-gap-md);
             align-items: center;
             .icon {
-              min-width: var(--composer-gap-lg);
-              width: var(--composer-gap-lg);
-              height: var(--composer-gap-lg);
+              content: "";
+              font-size: 2.5rem;
               color: var(--composer-primary-color);
             }
 
@@ -169,10 +172,10 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .list-item {
-        .item-container {
-          .cards {
-            .icon-title-container {
+      .items-wrapper {
+        .list-item {
+          .item-content {
+            .item-header {
               .icon {
                 min-width: var(--composer-gap-xl);
                 width: var(--composer-gap-xl);
@@ -188,12 +191,12 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .list-item {
-        .item-container {
+      .items-wrapper {
+        .list-item {
           flex-direction: column;
           gap: var(--composer-gap-md);
           align-items: flex-start;
-          .cards {
+          .item-content {
             flex-direction: column;
             gap: var(--composer-gap-md);
           }
