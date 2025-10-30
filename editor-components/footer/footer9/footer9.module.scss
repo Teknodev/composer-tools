@@ -347,7 +347,7 @@
       }
 
       .list-group {
-        row-gap: 0;
+        row-gap: var(--composer-gap-sm);
         column-gap: var(--composer-gap-sm);
       }
 
@@ -369,6 +369,8 @@
         .bottom-text {
           max-width: 100%;
           color: var(--composer-font-color-primary);
+          text-align: center;
+          width: 100%;
         }
 
         .list {
