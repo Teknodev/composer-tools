@@ -735,12 +735,14 @@ class ECommerce1 extends BaseECommerce {
                   </div>                  
                 )}
                 {(this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon) &&(
-                  <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
-                    <div className={this.decorateCSS("wishlist")}>
-                      <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
-                      {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
-                    </div>
-                  </ComposerLink>
+                  <div className={this.decorateCSS("wishlist-container")}>
+                    <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
+                      <div className={this.decorateCSS("wishlist")}>
+                        <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
+                        {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
+                      </div>
+                    </ComposerLink>
+                  </div>
                 )}
                 {(categoriesAndTags.length > 0) && (
                   <div className={this.decorateCSS("categories")}>

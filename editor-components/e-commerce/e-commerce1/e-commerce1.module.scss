@@ -134,6 +134,7 @@
                     display: flex;
                     flex-direction: column;
                     gap: var(--composer-gap-sm);
+                    width: 100%;
                     .title {
                         text-align: left;
                     }
@@ -177,6 +178,7 @@
 
                 .inputs {
                     display: flex;
+                    width: 100%;
                     .count-input {
                         display: flex;
                         justify-content: center;
@@ -219,26 +221,30 @@
                         border-bottom-left-radius: 0;
                         height: 100%;
                         .button-text{
-                            content: "";
+                            text-align: center;
                         }
                     }
                 }
-                .wishlist {
-                    display: flex;
-                    align-items: center;
-                    gap: var(--composer-gap-xs);
-                    cursor: pointer;
-                    transition: opacity 0.3s ease;
-                    &:hover {
-                        opacity: 0.5;
-                    }
-                    .heart-icon {
-                        color: var(--composer-font-color-primary);
-                        min-width: 14px;
-                        min-height: 14px;
-                    }
-                    .cart-title {
-                        color: var(--composer-font-color-primary);
+
+                .wishlist-container {
+                    width: 100%;
+                    .wishlist {
+                        display: flex;
+                        align-items: center;
+                        gap: var(--composer-gap-xs);
+                        cursor: pointer;
+                        transition: opacity 0.3s ease;
+                        &:hover {
+                            opacity: 0.5;
+                        }
+                        .heart-icon {
+                            color: var(--composer-font-color-primary);
+                            min-width: 14px;
+                            min-height: 14px;
+                        }
+                        .cart-title {
+                            color: var(--composer-font-color-primary);
+                        }
                     }
                 }
                 .categories {
@@ -257,6 +263,7 @@
                         .categoryLabel {
                             width: fit-content;
                             color: var(--composer-font-color-primary);
+                            text-align: left;
                         }
                     }
                     .categoryText {
@@ -270,6 +277,8 @@
                         width: fit-content;
                         cursor: pointer;
                         transition: opacity 0.3s ease;
+                        margin: 0;
+                        text-align: left;
                         &:hover {
                             opacity: 0.5;
                         }
@@ -369,6 +378,9 @@
                 }
             }
             .right {
+                .content {
+                    gap: var(--composer-gap-sm);
+                }
                 .title {
                     margin: 0 !important;
                 }

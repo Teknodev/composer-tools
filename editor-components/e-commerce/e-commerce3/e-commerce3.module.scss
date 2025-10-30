@@ -41,6 +41,7 @@
             .tab-content {
                             align-items: start;
                             gap: var(--composer-gap-md);
+                            width: 100%;
                         .title {
                             color: var(--composer-font-color-primary);
                             text-align: left;
@@ -51,12 +52,14 @@
                         .content {
                             display: flex;
                             gap: var(--composer-gap-md);
+                            width: 100%;
                             .left {
                                 display: flex;
                                 flex-direction: column;
                                 gap: var(--composer-gap-sm);
                                 .detail-title, .property-title {
                                     color: var(--composer-font-color-primary);
+                                    text-align: left;
                                 }
                             }
                             .right {
@@ -66,6 +69,7 @@
     
                                 .detail-value {
                                     color: var(--composer-font-color-primary);
+                                    text-align: left;
                                 }
 
                                 .box {
@@ -74,6 +78,7 @@
                                     .property-value {
                                         color: var(--composer-font-color-primary);
                                         padding-right: var(--composer-gap-sm);
+                                        text-align: left;
                                     }
                                 }
                             }

@@ -349,8 +349,11 @@
             .tab{
                 .content{
                     flex-direction: column;
+                    gap: var(--composer-gap-lg);
+                    height: max-content;
                     .image-container{
                         aspect-ratio: 1;
+                        flex-grow: unset;
                         .box-container{
                             .box2{
                                 .box2-icon{
@@ -362,7 +365,9 @@
                     }
                     .content-container{
                         width: 100%;
-                        padding: var(--composer-gap-xl) var(--composer-gap-lg) 0px;
+                        padding: 0;
+                        flex-basis: auto;
+                        flex-grow: unset;
                     }
                 }
             }
