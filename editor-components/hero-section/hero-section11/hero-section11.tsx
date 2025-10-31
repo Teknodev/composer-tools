@@ -68,7 +68,7 @@ class HeroSection11 extends BaseHeroSection {
       },
       value: {
         type: "video",
-        url: "",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151",
       },
     });
     this.setComponentState("isVideoModalOpen", false);
@@ -148,12 +148,12 @@ class HeroSection11 extends BaseHeroSection {
         )}
 
         {this.getComponentState("isVideoModalOpen") && (
-          <div className={this.decorateCSS("video-modal")}>
-            <Base.Overlay
-              className={this.decorateCSS("video-overlay")}
-              onClick={this.handleCloseVideoModal}
-            />
-            <div className={this.decorateCSS("video-content")}>
+          <Base.Overlay
+            isVisible={true}
+            onClick={this.handleCloseVideoModal}
+            className={this.decorateCSS("video-modal")}
+          >
+            <div>
               <button
                 className={this.decorateCSS("close-button-wrapper")}
                 onClick={this.handleCloseVideoModal}
@@ -168,7 +168,7 @@ class HeroSection11 extends BaseHeroSection {
                 />
               )}
             </div>
-          </div>
+          </Base.Overlay>
         )}
       </Base.Container>
     );
