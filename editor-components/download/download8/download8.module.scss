@@ -3,7 +3,7 @@
 .container {
   padding: 0;
   .page {
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     position: relative;
@@ -52,16 +52,14 @@
         height: auto;
         position: relative;
 
-        .title {
+        .title, .description {
+          content: "";
+          text-align: center;
           &.image{
             color: white;
           }
         }
-        .description {
-          &.image{
-            color: white;
-          } 
-        }
+        
       }
       &.image {
         min-height: 350px;
@@ -117,7 +115,7 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-xs);
-            padding: 0 var(--composer-gap-md);
+            padding: var(--composer-gap-md);
 
             .list-element {
               display: flex;
@@ -127,8 +125,8 @@
 
               .icon {
                 color: var(--composer-font-color-primary);
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
+                width: 12px;
+                height: 12px;
                 flex-shrink: 0;
               }
               .text {
@@ -193,6 +191,7 @@
       .right-content {
         transform: translateX(0);
         opacity: 1;
+        z-index: 4;
       }
     }
   }
@@ -217,19 +216,21 @@
         }
       }
       .right-content {
+        width: 20vw;
+        min-width: 20vw;
         .card {
-          width: 50vw;
+          width: 20vw;
           height: 100%;
 
           .card-up {
             .list-group {
               .list-element {
                 .icon {
-                  width: var(--composer-gap-md);
-                  height: var(--composer-gap-md);
+                  width: var(--composer-gap-sm);
+                  height: var(--composer-gap-sm);
                 }
                 .text {
-                  font-size: 1rem;
+                  content: "";
                 }
               }
             }
