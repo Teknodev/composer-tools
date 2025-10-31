@@ -146,7 +146,7 @@
     container-type: inline-size;
 
     &.full {
-        padding: 80px 0px;
+        padding: 80px 0px !important;
         .maxContent{
             max-width: 100%;
         }
@@ -181,6 +181,7 @@
         }
         .sectionSubTitle{
             text-align: left;
+            width: fit-content;
             &.line{
                 transform: translateX(3rem);
                 &:before{
