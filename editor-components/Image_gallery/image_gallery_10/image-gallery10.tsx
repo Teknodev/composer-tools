@@ -641,7 +641,7 @@ class ImageGallery10 extends BaseImageGallery {
                         cardList.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("grid")}
-                                gridCount={{ pc: this.getPropValue("itemCount") }}>
+                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
                                 {cardList.map((cardItem: any, index: number) => (
                                     <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>

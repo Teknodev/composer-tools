@@ -563,7 +563,7 @@ class ImageGallery1 extends BaseImageGallery {
               ))
             )}
           </Base.Row>)}
-          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
             {imageGallery
               .filter(
                 (item: ImageGallery) =>

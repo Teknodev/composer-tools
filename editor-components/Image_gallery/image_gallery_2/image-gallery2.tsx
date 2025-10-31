@@ -925,7 +925,7 @@ class ImageGallery2 extends BaseImageGallery {
                             </Base.H5>
                         ))}
                     </Base.Row>
-                    <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-container")}>
+                    <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("gallery-container")}>
                         {currentGallery.slice(0, this.getComponentState("imageCount")).map((section: ImageType, imageIndex: number) => {
                             if (!section.image) return null;
                             return (

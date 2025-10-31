@@ -116,7 +116,7 @@
                                     flex-direction: column;
                                     justify-content: center;
                                     gap: var(--composer-gap-md);
-                                    padding: var(--composer-gap-lg) calc(var(--composer-gap-xl) * 3);
+                                    padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) * 3); 
                                     opacity: 0;
                                     transition: opacity 2s ease;
 

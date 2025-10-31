@@ -3,6 +3,7 @@
 .container {
   overflow-y: scroll;
   height: 100vh;
+  padding: 0px var(--composer-gap-xl) !important;
 
   .maxContent {
     display: flex;
@@ -85,6 +86,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-bottom: var(--composer-gap-xl);
 
       .button {
         .button-text {
@@ -96,35 +98,21 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    height: 100%;
-
+    padding: 0px var(--composer-gap-lg) !important;
     .maxContent {
-      .gridContainer {
-        gap: var(--composer-gap-md);
-        
-        .column {
-          height: auto;
-          overflow: visible;
-        }
-
-        .columnEven {
-          transform: translateY(0px) !important;
-        }
-
-        .columnOdd {
-          margin-top: 0px;
-          transform: none !important;
-        }
+      .button-wrapper {
+        padding-bottom: var(--composer-gap-lg);
       }
     }
-  }
+  } 
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: 100%;
+    padding: 0px var(--composer-gap-md) !important;
 
     .maxContent {
       .gridContainer {
@@ -145,6 +133,9 @@
           margin-top: 0px;
           transform: none !important;
         }
+      }
+      .button-wrapper {
+        padding-bottom: var(--composer-gap-md);
       }
     }
   }

@@ -409,7 +409,7 @@ class ImageGallery8 extends BaseImageGallery {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ListGrid
-                        gridCount={{ pc: this.getPropValue("itemCount") }}
+                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}
                         className={this.decorateCSS("image-container")}
                     >
                         {this.castToObject<Card[]>("cards").map(

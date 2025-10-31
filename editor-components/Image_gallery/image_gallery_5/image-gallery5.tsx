@@ -328,7 +328,7 @@ class ImageGallery5 extends BaseImageGallery {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             className={this.decorateCSS("images")}
-            gridCount={{ pc: this.getPropValue("itemCount") }}
+            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
           >
             {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
               return (
