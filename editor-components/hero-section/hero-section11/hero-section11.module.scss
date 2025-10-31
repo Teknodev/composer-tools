@@ -16,18 +16,23 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 20px 0px 20px 50px; 
+        align-items: baseline;
+        padding: var(--composer-gap-md) 0px var(--composer-gap-md) var(--composer-gap-lg); 
         &.no-image{
-          padding:0px 20px 50px 20px;
+          padding:0px var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md);
         }       
         .title {
           font-size: 5rem;
+          text-align: left;
         }
         .description {
           font-size: 1.5rem;
+          text-align: left;
         }
         .button{
-          content: "";
+          .button-text{
+            content: "";
+          }
         }
       }
 

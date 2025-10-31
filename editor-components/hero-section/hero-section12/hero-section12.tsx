@@ -365,7 +365,7 @@ class HeroSection12 extends BaseHeroSection {
 
     const leftSliderSettings = {
       ...settings,
-      beforeChange: (oldIndex: number, newIndex: number) => {
+      beforeChange: () => {
         if (rightSliderItems.length > 0) {
           this.rightSliderRef.slickPrev();
         }
@@ -386,7 +386,7 @@ class HeroSection12 extends BaseHeroSection {
 
     const rightSliderSettings = {
       ...settings,
-      beforeChange: (oldIndex: number, newIndex: number) => {
+      beforeChange: () => {
         if (leftSliderItems.length > 0) {
           this.leftSliderRef.slickPrev();
         }

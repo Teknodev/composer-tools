@@ -1,4 +1,3 @@
-import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section11.module.scss";
@@ -59,7 +58,19 @@ class HeroSection11 extends BaseHeroSection {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media",
       },
-    })
+    });
+    this.addProp({
+      type: "media",
+      key: "video",
+      displayer: "Video",
+      additionalParams: {
+        availableTypes: ["video"],
+      },
+      value: {
+        type: "video",
+        url: "",
+      },
+    });
     this.setComponentState("isVideoModalOpen", false);
     this.setComponentState("videoUrl", null);
   }
@@ -69,11 +80,11 @@ class HeroSection11 extends BaseHeroSection {
   }
 
   handlePlayVideo = () => {
-    const selectedVideo = this.getPropValue("linkpage");
+    const video = this.getPropValue("video");
 
-    if (selectedVideo) {
+    if (video?.url) {
       this.setComponentState("isVideoModalOpen", true);
-      this.setComponentState("videoUrl", selectedVideo);
+      this.setComponentState("videoUrl", video);
     }
   };
 
@@ -86,7 +97,7 @@ class HeroSection11 extends BaseHeroSection {
 
 
   render() {
-    const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.castToString(this.getPropValue("linktext"));
+    const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"));
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
@@ -127,8 +138,8 @@ class HeroSection11 extends BaseHeroSection {
             {this.getPropValue("icon") && (
               <div className={this.decorateCSS("icon-box")}>
                 <div className={this.decorateCSS("icon-wrapper")}>
-                  <div className={this.decorateCSS("icon")}>
-                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("button")} onClick={() => this.handlePlayVideo()} />
+                  <div className={this.decorateCSS("icon")} onClick={() => this.handlePlayVideo()}>
+                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("button")} />
                   </div>
                 </div>
               </div>
@@ -138,19 +149,24 @@ class HeroSection11 extends BaseHeroSection {
 
         {this.getComponentState("isVideoModalOpen") && (
           <div className={this.decorateCSS("video-modal")}>
-            <div
+            <Base.Overlay
               className={this.decorateCSS("video-overlay")}
               onClick={this.handleCloseVideoModal}
-            ></div>
+            />
             <div className={this.decorateCSS("video-content")}>
               <button
                 className={this.decorateCSS("close-button-wrapper")}
                 onClick={this.handleCloseVideoModal}
               >
-                <Base.Media value={this.getPropValue("exitButton")} className={this.decorateCSS("close-button")} onClick={this.handleCloseVideoModal} />
+                <Base.Media value={this.getPropValue("exitButton")} className={this.decorateCSS("close-button")} />
               </button>
 
-              <Base.Media value={this.getComponentState("videoUrl")} className={this.decorateCSS("video-player")} />
+              {this.getComponentState("videoUrl") && (
+                <Base.Media
+                  value={this.getComponentState("videoUrl")}
+                  className={this.decorateCSS("video-player")}
+                />
+              )}
             </div>
           </div>
         )}
