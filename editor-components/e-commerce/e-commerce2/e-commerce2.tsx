@@ -3187,13 +3187,13 @@ class ECommerce2 extends BaseECommerce {
                             return (
                                 <>
                                     {this.castToString(item.sectionTitle) && (
-                                        <button
+                                        <Base.P
                                             key={index}
                                             className={`${this.decorateCSS("tab")} 
                                             ${index === selectedIndex ? this.decorateCSS("active-tab") : ""}`}
                                             onClick={() => this.handleSectionClick(item.sectionTitle, index)}>
                                             {item.sectionTitle}
-                                        </button>
+                                        </Base.P>
                                     )}
                                 </>
                             );
