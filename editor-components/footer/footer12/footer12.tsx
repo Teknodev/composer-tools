@@ -479,8 +479,10 @@ class Footer12Page extends BaseFooter {
     const upperExist = headerExist || footer.length > 0;
     const position = this.getPropValue("position");
 
+    const alignment = Base.getContentAlignment();
+
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         {upperExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>

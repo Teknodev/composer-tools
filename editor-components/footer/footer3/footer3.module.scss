@@ -9,6 +9,18 @@
     left: 0;
     right: 0;
     background: transparent;
+
+    .max-content {
+      .footer-page {
+        .first-container {
+          background: transparent;
+        }
+
+        .second-container {
+          background: transparent;
+        }
+      }
+    }
   }
 
   .max-content {

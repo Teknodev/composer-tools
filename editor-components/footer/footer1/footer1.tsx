@@ -1,4 +1,3 @@
-import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer1.module.scss";

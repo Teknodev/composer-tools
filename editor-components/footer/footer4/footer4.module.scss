@@ -9,6 +9,16 @@
     left: 0;
     right: 0;
     background: transparent;
+
+    .max-content {
+      .first-container {
+        background: transparent;
+      }
+
+      .second-container {
+        background: transparent;
+      }
+    }
   }
 
   .max-content {
@@ -425,20 +435,6 @@
               .right {
                 max-width: 100%;
               }
-              .list-group{
-                .title, .text{
-                }
-              }
-              .right{
-                .title, .description{
-                }
-                .form{
-                  .button{
-                    .button-text{
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -451,10 +447,6 @@
           .bottom {
             .links {
               justify-content: flex-start;
-              .link-element{
-                .link-text{
-                }
-              }
 
               &.center {
                 justify-content: center;

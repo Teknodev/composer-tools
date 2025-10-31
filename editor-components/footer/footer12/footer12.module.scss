@@ -9,6 +9,14 @@
     left: 0;
     right: 0;
     background: transparent;
+
+    .first-container {
+      background: transparent;
+    }
+
+    .second-container {
+      background: transparent;
+    }
   }
 
   .first-container {
@@ -29,6 +37,7 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xs);
+        align-items: baseline;
 
         .logo {
           .image {
@@ -38,6 +47,7 @@
         }
 
         .description {
+          text-align: left;
           color: var(--composer-font-color-primary);
         }
       }
@@ -206,6 +216,19 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
+
+    &.center-alignment {
+      .first-container {
+        .first-max-content {
+          .left {
+            align-items: center !important;
+            .description {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
 
     .first-container {
       .first-max-content {
