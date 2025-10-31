@@ -53,26 +53,38 @@ export namespace INPUTS {
       button.value.push({
         type: "page",
         key: "url",
-        displayer: "URL",
+        displayer: "Navigate To",
         value: url,
       });
     }
 
     if (icon !== null) {
       button.value.push({
-        type: "icon",
+        type: "media",
         key: "icon",
         displayer: "Icon",
-        value: icon,
+        additionalParams: {
+          availableTypes: ["icon"],
+        },
+        value: {
+          type: "icon",
+          name: icon,
+        },
       });
     }
 
     if (image !== null) {
       button.value.push({
-        type: "image",
+        type: "media",
         key: "image",
         displayer: "Image",
-        value: image,
+        additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+          type: "image",
+          url: image,
+        },
       });
     }
 
