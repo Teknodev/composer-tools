@@ -4,6 +4,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import React from "react";
+import { TableView } from "@mui/icons-material";
 
 type ITabs = {
   tabText: React.JSX.Element;
@@ -15,8 +16,15 @@ type ITabs = {
 };
 
 class Feature25 extends BaseFeature {
+  private tabContentsRef: React.RefObject<HTMLDivElement | null>;
+  private tabContentRefs: React.RefObject<HTMLDivElement | null>[];
+  private activeTabIndex: number = 0;
+
   constructor(props?: any) {
     super(props, styles);
+
+    this.tabContentsRef = React.createRef<HTMLDivElement | null>();
+    this.tabContentRefs = [];
 
     this.addProp({
       type: "array",
@@ -26,12 +34,12 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button Text",
+          displayer: "Tab Text",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Text",
               value: "Effortless Setup",
             },
             {
@@ -39,7 +47,7 @@ class Feature25 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69046abb2d05c1002bf1d255?alt=media",
             },
             {
               type: "string",
@@ -87,7 +95,7 @@ class Feature25 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904685f2d05c1002bf1c98a?alt=media",
             },
             {
               type: "string",
@@ -135,7 +143,7 @@ class Feature25 extends BaseFeature {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904687f2d05c1002bf1ca45?alt=media",
             },
             {
               type: "string",
@@ -175,46 +183,171 @@ class Feature25 extends BaseFeature {
     return "Feature 25";
   }
 
+  componentDidMount() {
+    if (this.tabContentsRef.current) {
+      this.tabContentsRef.current.addEventListener("scroll", this.handleScroll);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.tabContentsRef.current) {
+      this.tabContentsRef.current.removeEventListener(
+        "scroll",
+        this.handleScroll
+      );
+    }
+  }
+
+  handleScroll = () => {
+    if (!this.tabContentsRef.current) return;
+
+    const container = this.tabContentsRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const containerCenter = containerRect.top + containerRect.height / 2;
+
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    this.tabContentRefs.forEach((ref, index) => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const elementCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(elementCenter - containerCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      }
+    });
+
+    if (this.activeTabIndex !== closestIndex) {
+      this.activeTabIndex = closestIndex;
+      this.forceUpdate();
+    }
+  };
+
+  handleTabClick = (index: number) => {
+    if (this.tabContentRefs[index]?.current) {
+      this.tabContentRefs[index].current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   render() {
     const tabs = this.castToObject<ITabs[]>("tabs");
+
+    this.tabContentRefs = tabs.map(() =>
+      React.createRef<HTMLDivElement | null>()
+    );
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("tabs-wrapper")}>
-            {/* Tabs buttons */}
-            <div className={this.decorateCSS("tab")}>
-              {tabs.map((tab: ITabs, index: number) => (
-                <Base.VerticalContent key={index}>
-                  <Base.P>{tab.tabText}</Base.P>
-                </Base.VerticalContent>
-              ))}
+            <div className={this.decorateCSS("tabs")}>
+              {tabs.map((tab: ITabs, index: number) => {
+                const hasText = !!this.castToString(tab.text);
+                const hasTitle = !!this.castToString(tab.title);
+                const hasDesc = !!this.castToString(tab.description);
+                const hasButton = !!this.castToString(tab.button?.text);
+                const hasImage = !!tab.image;
+                if (
+                  !hasText &&
+                  !hasTitle &&
+                  !hasDesc &&
+                  !hasButton &&
+                  !hasImage
+                )
+                  return null;
+
+                return (
+                  <div
+                    key={index}
+                    className={`${this.decorateCSS("tab")} ${
+                      this.activeTabIndex === index
+                        ? this.decorateCSS("active")
+                        : ""
+                    }`}
+                    onClick={() => this.handleTabClick(index)}
+                  >
+                    <Base.P className={this.decorateCSS("tab-text")}>
+                      {tab.tabText}
+                    </Base.P>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Tabs content */}
-            <div className={this.decorateCSS("tab-contents")}>
-              {tabs.map((tab: ITabs, index: number) => (
-                <div key={index} className={this.decorateCSS("tab-content")}>
-                  <div className={this.decorateCSS("image-wrapper")}>
-                    <img src={tab.image} alt={tab.image} />
-                  </div>
+            {tabs?.length > 0 && (
+              <div
+                className={this.decorateCSS("tab-contents")}
+                ref={this.tabContentsRef}
+              >
+                {tabs.map((tab: ITabs, index: number) => {
+                  const hasText = !!this.castToString(tab.text);
+                  const hasTitle = !!this.castToString(tab.title);
+                  const hasDesc = !!this.castToString(tab.description);
+                  const hasButton = !!this.castToString(tab.button?.text);
+                  const hasImage = !!tab.image;
 
-                  <div className={this.decorateCSS("text-content")}>
-                    <Base.P>{tab.text}</Base.P>
-                    <Base.SectionTitle>{tab.title}</Base.SectionTitle>
-                    <Base.SectionDescription>
-                      {tab.description}
-                    </Base.SectionDescription>
+                  if (
+                    !hasText &&
+                    !hasTitle &&
+                    !hasDesc &&
+                    !hasButton &&
+                    !hasImage
+                  )
+                    return null;
 
-                    {tab.button && (
-                      <ComposerLink path={tab.button.url}>
-                        <Base.Button>{tab.button.text}</Base.Button>
-                      </ComposerLink>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+                  return (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("tab-content")}
+                      ref={this.tabContentRefs[index]}
+                    >
+                      {tab.image && (
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <img src={tab.image} alt={tab.image} />
+                        </div>
+                      )}
+
+                      <div className={this.decorateCSS("text-content")}>
+                        {hasText && (
+                          <Base.P className={this.decorateCSS("text")}>
+                            {tab.text}
+                          </Base.P>
+                        )}
+
+                        {hasTitle && (
+                          <Base.SectionTitle
+                            className={this.decorateCSS("title")}
+                          >
+                            {tab.title}
+                          </Base.SectionTitle>
+                        )}
+
+                        {hasDesc && (
+                          <Base.SectionDescription
+                            className={this.decorateCSS("description")}
+                          >
+                            {tab.description}
+                          </Base.SectionDescription>
+                        )}
+
+                        {hasButton && (
+                          <ComposerLink path={tab.button.url}>
+                            <Base.Button>{tab.button.text}</Base.Button>
+                          </ComposerLink>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
