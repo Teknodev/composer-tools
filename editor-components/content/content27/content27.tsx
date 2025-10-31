@@ -274,9 +274,8 @@ class Content27 extends BaseContent {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${
-          alignment === "center" ? this.decorateCSS("center") : this.decorateCSS("left")
-        }`}
+        className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center") : this.decorateCSS("left")
+          }`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("grid")} ${!showDivider ? this.decorateCSS("noDivider") : ""}`}>
