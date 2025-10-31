@@ -339,7 +339,12 @@ class Feature25 extends BaseFeature {
 
                         {hasButton && (
                           <ComposerLink path={tab.button.url}>
-                            <Base.Button>{tab.button.text}</Base.Button>
+                            <Base.Button
+                              className={this.decorateCSS("button")}
+                              buttonType={tab.button.type}
+                            >
+                              {tab.button.text}
+                            </Base.Button>
                           </ComposerLink>
                         )}
                       </div>
