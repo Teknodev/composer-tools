@@ -52,6 +52,19 @@
           width: 100%;
         }
 
+        .header {
+          align-items: baseline;
+
+          .subtitle, .title, .description {
+            content: "";
+            text-align: left;
+          }
+
+          .subtitle {
+            margin: var(--composer-gap-sm) 0;
+          }
+        }
+
         .form {
           display: flex;
           flex-wrap: wrap;

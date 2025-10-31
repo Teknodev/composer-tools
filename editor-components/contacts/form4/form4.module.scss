@@ -16,9 +16,14 @@
 
   .left-container {
     width: 66%;
+    align-items: baseline !important;
 
     .subtitle, .title, .description {
-      content: "";
+      text-align: left;
+    }
+
+    .subtitle {
+      margin: var(--composer-gap-sm) 0;
     }
   }
 

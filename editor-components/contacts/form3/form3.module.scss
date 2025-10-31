@@ -176,6 +176,33 @@
             }
           }
         }
+
+        // Image varsa white, yoksa primary color
+        &.with-background {
+          .left {
+            .content {
+              .left-top {
+                .left-top-content {
+                  .leftTitle, .leftSubtitle {
+                    color: white;
+                  }
+                }
+
+                .contacts {
+                  .contact {
+                    .icon {
+                      color: white;
+                    }
+
+                    .contactName {
+                      color: white;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
       .right-container {

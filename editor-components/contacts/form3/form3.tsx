@@ -650,7 +650,7 @@ class Form3 extends BaseContacts {
           )}
           <div className={this.decorateCSS("box")}>
             {leftItemsExist && (
-              <div className={this.decorateCSS("left-container")}>
+              <div className={`${this.decorateCSS("left-container")} ${backgroundImage && this.decorateCSS("with-background")}`}>
                 {backgroundImage && (
                   <div className={`${this.decorateCSS("background-wrapper")} ${!rightItemsExist && this.decorateCSS("background-full")}`}>
                     <Base.Media 
