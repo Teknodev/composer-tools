@@ -214,7 +214,7 @@ class LogoComp6Page extends LogoClouds {
           )}
 
           <Base.ListGrid
-            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
+            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
             className={this.decorateCSS("items")}
           >
             {this.castToObject<TImage[]>("list-items").map(
