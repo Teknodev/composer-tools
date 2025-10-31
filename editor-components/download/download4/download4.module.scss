@@ -12,11 +12,15 @@
       .header {
         align-items: center;
 
-        .title {
-          text-align: center;
+        .subtitle {
+          content: "";
+          transform: translateX(0);
+          &::before{
+            display: none;
+          }
         }
 
-        .description {
+        .title, .description {
           text-align: center;
         }
       }
@@ -27,10 +31,10 @@
         align-items: center;
         gap: var(--composer-gap-sm);
 
-        .image-container {
+        .image-wrapper {
           width: 170px;
           height: 50px;
-          .image {
+          .button-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -44,9 +48,9 @@
           }
         }
 
-        .image-container {
-          height: 60px;
-          .image {
+        .image-wrapper {
+          height: 50px;
+          .button-image {
             object-fit: cover;
           }
         }
@@ -77,10 +81,10 @@
           align-items: center;
           gap: var(--composer-gap-sm);
 
-          .image-container {
+          .image-wrapper {
             width: 100%;
-            height: 80px;
-            .image {
+            height: 50px;
+            .button-image {
               width: 200px;
               height: 100%;
             }
