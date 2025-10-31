@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type ISliderData = {
   title: string;
-  image: string;
+  image: TypeMediaInputValue;
   description: string;
   topWriting: string;
 };
@@ -76,10 +76,16 @@ class HeroSection8 extends BaseHeroSection {
               value: "Vin TRIES TO REFLECT D  DIESEL'S VISION AND COMBINES",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -107,10 +113,16 @@ class HeroSection8 extends BaseHeroSection {
               value: "SYMBOLS THROUGH WHICH EXPRESS THEMSELVES",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -138,10 +150,16 @@ class HeroSection8 extends BaseHeroSection {
               value: "HUGGL IS AN INDUCTION CHARGING",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://eremia-react.vercel.app/img/project/project3/1.jpg",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://eremia-react.vercel.app/img/project/project3/1.jpg",
+              },
             },
           ],
         },
@@ -169,26 +187,44 @@ class HeroSection8 extends BaseHeroSection {
               value: "WE ARE THRILLED TO SHARE OUR NEW REEL WITH YOU ALL",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://eremia-react.vercel.app/img/project/project4/1.jpg",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://eremia-react.vercel.app/img/project/project4/1.jpg",
+              },
             },
           ],
         },
       ],
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
-      value: "GoArrowLeft"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GoArrowLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextArrow",
       displayer: "Next Arrow Icon",
-      value: "GoArrowRight"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GoArrowRight",
+      },
     });
 
     this.setComponentState("prevIndex", 1);
@@ -248,9 +284,6 @@ class HeroSection8 extends BaseHeroSection {
       },
     };
     const sliderRef = this.getComponentState("slider-ref");
-    const nextArrow = this.getPropValue("nextArrow");
-    const previousArrow = this.getPropValue("previousArrow");
-    const arrowsExist = (this.getPropValue("slider").length > 1 && (previousArrow || nextArrow))
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -264,7 +297,7 @@ class HeroSection8 extends BaseHeroSection {
             `}>
               <div className={`${this.decorateCSS("image-wrapper")} ${this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
                 {item.image && (
-                  <img src={item.image} alt={item.title} className={this.decorateCSS("image")} />
+                  <Base.Media value={item.image} className={this.decorateCSS("image")} />
                 )}
               </div>
             </div>
@@ -338,9 +371,9 @@ class HeroSection8 extends BaseHeroSection {
                   sliderRef.current.slickPrev();
                 }}>
                   <div className={this.decorateCSS("arrow-prev")}>
-                    <Base.Icon
-                      name={this.getPropValue("previousArrow")}
-                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    <Base.Media
+                      value={this.getPropValue("previousArrow")}
+                      className={this.decorateCSS("icon")}
                     />
                   </div>
                 </div>
@@ -348,9 +381,9 @@ class HeroSection8 extends BaseHeroSection {
                   sliderRef.current.slickNext();
                 }}>
                   <div className={this.decorateCSS("arrow-next")}>
-                    <Base.Icon
-                      name={this.getPropValue("nextArrow")}
-                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    <Base.Media
+                      value={this.getPropValue("nextArrow")}
+                      className={this.decorateCSS("icon")}
                     />
                   </div>
                 </div>

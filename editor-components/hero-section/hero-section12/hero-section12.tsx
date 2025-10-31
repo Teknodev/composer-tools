@@ -1,14 +1,12 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "composer-tools/composer-base-components/base/base";
 
-
-
 type SliderItem = {
   text: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
 };
 
 class HeroSection12 extends BaseHeroSection {
@@ -36,11 +34,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -56,11 +59,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -76,11 +84,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -96,11 +109,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -116,11 +134,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -144,11 +167,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -164,11 +192,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -184,11 +217,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -204,11 +242,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -224,11 +267,16 @@ class HeroSection12 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -242,17 +290,29 @@ class HeroSection12 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "leftSliderIcon",
       displayer: "Left Slider Arrow Icon",
-      value: "HiOutlineChevronDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "HiOutlineChevronDown",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightSliderIcon",
       displayer: "Right Slider Arrow Icon",
-      value: "HiOutlineChevronUp",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "HiOutlineChevronUp",
+      },
     });
 
     this.leftSliderRef = React.createRef();
@@ -366,10 +426,9 @@ class HeroSection12 extends BaseHeroSection {
                       <div
                         className={this.decorateCSS("image-overlay-container")}
                       >
-                        <img
+                        <Base.Media
                           className={this.decorateCSS("slider-item-image")}
-                          src={item.image}
-                          alt={this.getPropValue("leftSliderIcon")}
+                          value={item.image}
                         />
                         {showOverlay && (
                           <div className={this.decorateCSS("image-overlay")} />
@@ -404,10 +463,9 @@ class HeroSection12 extends BaseHeroSection {
                       <div
                         className={this.decorateCSS("image-overlay-container")}
                       >
-                        <img
+                        <Base.Media
                           className={this.decorateCSS("slider-item-image")}
-                          src={item.image}
-                          alt={this.getPropValue("rightSliderIcon")}
+                          value={item.image}
                         />
                         {showOverlay && (
                           <div className={this.decorateCSS("image-overlay")} />
@@ -443,7 +501,7 @@ function LeftSliderArrow(props?: any) {
         customFunction();
       }}
     >
-      <Base.Icon propsIcon={props.decorateIcon} name={icon} />
+      <Base.Media value={icon} {...props.decorateIcon} />
     </div>
   );
 }
@@ -459,7 +517,7 @@ function RightSliderArrow(props?: any) {
         customFunction();
       }}
     >
-      <Base.Icon propsIcon={props.decorateIcon} name={icon} />
+      <Base.Media value={icon} {...props.decorateIcon} />
     </div>
   );
 }

@@ -9,18 +9,28 @@ class HeroSection1 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background-layout",
-      displayer: "Background Layout",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d7?alt=media&timestamp=1719483639150",
+      displayer: "Background Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d7?alt=media&timestamp=1719483639150",
+      },
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "sun",
-      displayer: "Sun",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d6?alt=media&timestamp=1719483639150",
+      displayer: "Animated Visual Element",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d6?alt=media&timestamp=1719483639150",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -63,11 +73,16 @@ class HeroSection1 extends BaseHeroSection {
               value: 1,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image-1",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -101,11 +116,16 @@ class HeroSection1 extends BaseHeroSection {
               value: 2,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image-2",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d9?alt=media&timestamp=1719483639150",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d9?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -139,11 +159,16 @@ class HeroSection1 extends BaseHeroSection {
               value: 3,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image-3",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -177,11 +202,16 @@ class HeroSection1 extends BaseHeroSection {
               value: 4,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image-4",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -215,11 +245,16 @@ class HeroSection1 extends BaseHeroSection {
               value: 5,
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image-5",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -291,17 +326,15 @@ class HeroSection1 extends BaseHeroSection {
     const animation = this.getComponentState("animation");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true} style={{ backgroundImage: `url(${this.getPropValue("background-layout")?.url})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <img
+          <Base.Media
             className={this.decorateCSS("image-container-2")}
-            src={this.getPropValue("sun")}
-            alt={this.getPropValue("sun")}
+            value={this.getPropValue("sun")}
           />
-          <img
+          <Base.Media
+            value={this.getPropValue("sun")}
             className={this.decorateCSS("image-container-3")}
-            src={this.getPropValue("sun")}
-            alt={this.getPropValue("sun")}
           />
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider ref={this.sliderRef} {...settings}>
@@ -331,14 +364,9 @@ class HeroSection1 extends BaseHeroSection {
                         >
                           {item.subtitle}
                         </h1>
-                        <img
-                          className={
-                            this.decorateCSS("image") +
-                            " " +
-                            (isActive && this.decorateCSS("active-image"))
-                          }
-                          src={item.image}
-                          alt={item.image}
+                        <Base.Media
+                          value={item.image}
+                          className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active-image")}`}
                         />
                         {item.title && (
                           <h1

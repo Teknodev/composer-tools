@@ -61,11 +61,16 @@ class HeroSection4 extends BaseHeroSection {
     );
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
+      },
     });
 
     this.addProp({
@@ -172,10 +177,9 @@ const getStyle = (direction: "up" | "down") => {
           {image && (
             <div 
             ref={this.imageRef} className={this.decorateCSS("image-container")}>
-              <img
-                alt="Header visual"
+              <Base.Media
                 className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
-                src={image}
+                value={image}
                 style={getStyle("up")}
               />
             </div>
@@ -206,7 +210,7 @@ const getStyle = (direction: "up" | "down") => {
                       <Base.Button 
                         buttonType={button?.type || "Tertiary"} 
                         className={this.decorateCSS("button")}>
-                        {buttonText}
+                        <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   </div>

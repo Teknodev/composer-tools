@@ -32,15 +32,20 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "page",
               key: "pagepath",
-              displayer: "Page Path",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453f?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453f?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -58,15 +63,20 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "page",
               key: "pagepath",
-              displayer: "Page Path",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624542?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624542?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -84,15 +94,20 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "page",
               key: "pagepath",
-              displayer: "Page Path",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453d?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453d?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -110,15 +125,20 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "page",
               key: "pagepath",
-              displayer: "Page Path",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624540?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624540?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -136,15 +156,20 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "page",
               key: "pagepath",
-              displayer: "Page Path",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453e?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c62453e?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -162,15 +187,17 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "page",
               key: "pagepath",
-              displayer: "Page Path",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624541?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624541?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -205,7 +232,10 @@ class HeroSection7 extends BaseHeroSection {
               ))}
             </div>
             {image && (
-              <img src={image} className={this.decorateCSS("image")} alt="header-7" />
+              <Base.Media
+                value={image}
+                className={this.decorateCSS("image")}
+              />
             )}
           </div>
         </Base.MaxContent>

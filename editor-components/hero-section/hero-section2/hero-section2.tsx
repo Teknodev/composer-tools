@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section2.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -8,7 +8,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
-  image: string;
+  image: TypeMediaInputValue;
   category: React.JSX.Element;
   title: React.JSX.Element;
   author: React.JSX.Element;
@@ -33,11 +33,14 @@ class HeroSection2 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+              additionalParams: { availableTypes: ["image"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+              },
             },
             {
               type: "string",
@@ -85,11 +88,14 @@ class HeroSection2 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d06f97fe08002c76cf1c?alt=media",
+              additionalParams: { availableTypes: ["image"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d06f97fe08002c76cf1c?alt=media",
+              },
             },
             {
               type: "string",
@@ -137,11 +143,14 @@ class HeroSection2 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
+              additionalParams: { availableTypes: ["image"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
+              },
             },
             {
               type: "string",
@@ -232,47 +241,47 @@ class HeroSection2 extends BaseHeroSection {
                       <div
                         className={this.decorateCSS("slider-item-inner-container")}
                         style={{
-                          backgroundImage: `url("${item.image}")`,
+                          backgroundImage: `url("${item.image.url}")`,
                         }}
                       >
                         <div className={this.decorateCSS("content-max-width")}>
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
                               {isCategoryExist && (
-                                <h3 className={this.decorateCSS("category")}>{item.category}</h3>
+                                <Base.H5 className={this.decorateCSS("category")}>{item.category}</Base.H5>
                               )}
                               {isTitleExist && (
-                                <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                                <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
                               )}
                               {(isAuthorExist || isDateExist) && (
                                 <div className={this.decorateCSS("date-author")}>
                                   {isAuthorExist && (
-                                    <span className={this.decorateCSS("author")}>
+                                    <Base.P className={this.decorateCSS("author")}>
                                       {item.author}
-                                    </span>
+                                    </Base.P>
                                   )}
                                   {isAuthorExist && isDateExist && item.dot && (
                                     <span className={this.decorateCSS("dot")}>{item.dot}</span>
                                   )}
                                   {isDateExist && (
-                                    <span className={this.decorateCSS("date")}>{item.date}</span>
+                                    <Base.P className={this.decorateCSS("date")}>{item.date}</Base.P>
                                   )}
                                 </div>
                               )}
                               {isDescExist && (
-                                <p className={this.decorateCSS("description")}>
+                                <Base.P className={this.decorateCSS("description")}>
                                   {item.description}
-                                </p>
+                                </Base.P>
                               )}
                               {isLinkTextExist && (
-                                <div className={this.decorateCSS("link-container")}>
+                                <div className={this.decorateCSS("button-container")}>
                                   <ComposerLink path={item.button.url}>
-                                    <Base.Button buttonType={item.button.type} className={this.decorateCSS("link-text")}>
-                                      {item.button.text}
+                                    <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
+                                      <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
                                       {item.button.icon && (
-                                        <Base.Icon
-                                          name={item.button.icon}
-                                          propsIcon={{ className: this.decorateCSS("icon") }}
+                                        <Base.Media
+                                          value={item.button.icon}
+                                          className={this.decorateCSS("icon")}
                                         />
                                       )}
                                     </Base.Button>

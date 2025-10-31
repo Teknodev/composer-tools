@@ -3,7 +3,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class HeroSection11 extends BaseHeroSection {
@@ -25,23 +24,41 @@ class HeroSection11 extends BaseHeroSection {
     })
     this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "IoMdPlay"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdPlay",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "exitButton",
       displayer: "Exit Button",
-      value: "IoMdClose"
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdClose",
+      },
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media"
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media",
+      },
     })
     this.setComponentState("isVideoModalOpen", false);
     this.setComponentState("videoUrl", null);
@@ -91,7 +108,7 @@ class HeroSection11 extends BaseHeroSection {
                 {this.castToString(button.text) && (
                   <ComposerLink path={button.url}>
                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      {button.text}
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -102,16 +119,16 @@ class HeroSection11 extends BaseHeroSection {
         {this.getPropValue("backgroundImage") && (
           <div className={`${this.decorateCSS("right")} ${!hasLeft && this.decorateCSS("no-left")}`}>
             <div className={this.decorateCSS("image-wrapper")}>
-              <img src={this.getPropValue("backgroundImage")} alt={this.getPropValue("backgroundImage")} className={this.decorateCSS("image")} />
+              <Base.Media
+                value={this.getPropValue("backgroundImage")}
+                className={this.decorateCSS("image")}
+              />
             </div>
             {this.getPropValue("icon") && (
               <div className={this.decorateCSS("icon-box")}>
                 <div className={this.decorateCSS("icon-wrapper")}>
                   <div className={this.decorateCSS("icon")}>
-                    <Base.Icon name={this.getPropValue("icon")} propsIcon={{
-                      className: this.decorateCSS("button"),
-                      onClick: () => this.handlePlayVideo(),
-                    }} />
+                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("button")} onClick={() => this.handlePlayVideo()} />
                   </div>
                 </div>
               </div>
@@ -130,19 +147,10 @@ class HeroSection11 extends BaseHeroSection {
                 className={this.decorateCSS("close-button-wrapper")}
                 onClick={this.handleCloseVideoModal}
               >
-                <Base.Icon name={this.getPropValue("exitButton")}
-                  propsIcon={{
-                    className: this.decorateCSS("close-button"),
-                  }}
-                />
+                <Base.Media value={this.getPropValue("exitButton")} className={this.decorateCSS("close-button")} onClick={this.handleCloseVideoModal} />
               </button>
 
-              <video
-                src={this.getComponentState("videoUrl")}
-                controls
-                className={this.decorateCSS("video-player")}
-                autoPlay
-              />
+              <Base.Media value={this.getComponentState("videoUrl")} className={this.decorateCSS("video-player")} />
             </div>
           </div>
         )}

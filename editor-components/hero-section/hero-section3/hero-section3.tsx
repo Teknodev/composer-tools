@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section3.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: string;
-  image: string;
+  image: TypeMediaInputValue;
   description: string;
   type: string;
   button: INPUTS.CastedButton;
@@ -40,11 +40,16 @@ class HeroSection3 extends BaseHeroSection {
               value: "Explore the modern glamour within all of Wize Styles.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "select",
@@ -76,11 +81,16 @@ class HeroSection3 extends BaseHeroSection {
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624502?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624502?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "select",
@@ -113,11 +123,16 @@ class HeroSection3 extends BaseHeroSection {
                 "Enjoy the New Collection with Wize Fashion Store.Best women's fashion tips and style guide.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "select",
@@ -203,33 +218,25 @@ class HeroSection3 extends BaseHeroSection {
                     {showContent && (
                       <Base.VerticalContent className={this.decorateCSS("text-container")}>
                         {title && <Base.H1 className={this.decorateCSS("title")}>{item.title}</Base.H1>}
-                        {(description || buttonText) && (
-                          <Base.VerticalContent
-                            className={`${this.decorateCSS("bottom-section")} ${description && this.decorateCSS("bottom-section-line")
-                              }`}
-                          >
-                            {description && (
-                              <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
-                            )}
-                            {buttonText && (
-                              <Base.Row className={this.decorateCSS("button-container")}>
-                                <ComposerLink path={item.button.url}>
-                                  <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                                    {item.button.text}
-                                  </Base.Button>
-                                </ComposerLink>
-                              </Base.Row>
-                            )}
-                          </Base.VerticalContent>
+                        {description && (
+                          <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
+                        )}
+                        {buttonText && (
+                          <div className={this.decorateCSS("button-container")}>
+                            <ComposerLink path={item.button.url}>
+                              <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          </div>
                         )}
                       </Base.VerticalContent>
                     )}
                     {item.image && (
                       <div className={this.decorateCSS("image-container")}>
-                        <img
+                        <Base.Media
                           className={this.decorateCSS("image")}
-                          src={item.image}
-                          alt={item.title}
+                          value={item.image}
                         />
                       </div>
                     )}
@@ -240,13 +247,13 @@ class HeroSection3 extends BaseHeroSection {
           </ComposerSlider>
           <div className={this.decorateCSS("pagination")}>
             {this.castToObject<ISliderData[]>("slider").map((slider: ISliderData, index) => (
-              <div
+              <Base.P
                 className={`${this.decorateCSS("page-number")} ${activeSlide === index && this.decorateCSS("active")
                   }`}
                 onClick={() => this.handleSlideChange(index)}
               >
                 0{index + 1}
-              </div>
+              </Base.P>
             ))}
           </div>
         </Base.MaxContent>
