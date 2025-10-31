@@ -6,6 +6,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
   title: string;
+  text: string;
   image?: string;
   impactTitle?: string;
   impactText?: string;
@@ -19,6 +20,14 @@ class Content27 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
     this.setComponentState("activeTab", 0);
+
+    // Subtitle
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Success Stories",
+    });
 
     // Main heading
     this.addProp({
@@ -35,15 +44,21 @@ class Content27 extends BaseContent {
       displayer: "Items",
       value: [
         {
-      type: "object",
-      key: "item",
-      displayer: "Item",
-      value: [
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
             {
               type: "string",
               key: "title",
               displayer: "List Item Title",
               value: "Digital Solutions Provider",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "",
             },
             {
               type: "image",
@@ -54,42 +69,42 @@ class Content27 extends BaseContent {
             {
               type: "string",
               key: "impactTitle",
-              displayer: "Title 1",
+              displayer: "Impact Title",
               value: "The Impact:",
             },
             {
               type: "string",
               key: "impactText",
-              displayer: "Text 1",
+              displayer: "Impact Text",
               value: "Grew their customer base by 82%; shrank site build times by 40%; increased revenue with a restructured business model.",
             },
             {
               type: "string",
               key: "howTitle",
-              displayer: "Title 2",
+              displayer: "How They Did it Title",
               value: "How They Did it:",
             },
             {
               type: "string",
               key: "howText",
-              displayer: "Text 2",
+              displayer: "How They Did it Text",
               value: "Duda's dedicated account management team helped set tags & codes inside the platform, facilitate product flows, and offer guidance on the most efficient ways to use the platform",
             },
             {
               type: "string",
               key: "favoriteTitle",
-              displayer: "Title 3",
+              displayer: "Favorite Tool Title",
               value: "Favorite Duda Tool:",
             },
             {
               type: "string",
               key: "favoriteText",
-              displayer: "Text 3",
+              displayer: "Favorite Tool Text",
               value: "Drag and drop editor for easy, client-managed design changes.",
-          },
-        ],
-      },
-      {
+            },
+          ],
+        },
+        {
           type: "object",
           key: "item",
           displayer: "Item",
@@ -101,6 +116,12 @@ class Content27 extends BaseContent {
               value: "Award-Winning Marketing Firm",
             },
             {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -109,41 +130,41 @@ class Content27 extends BaseContent {
             {
               type: "string",
               key: "impactTitle",
-              displayer: "Title 1",
+              displayer: "Impact Title",
               value: "The Impact:",
             },
             {
               type: "string",
               key: "impactText",
-              displayer: "Text 1",
+              displayer: "Impact Text",
               value: "Reduced average site build times by 75%; increased revenue with expanded services; improved lifetime customer value.",
             },
             {
               type: "string",
               key: "howTitle",
-              displayer: "Title 2",
+              displayer: "How They Did it Title",
               value: "How They Did it:",
             },
             {
               type: "string",
               key: "howText",
-              displayer: "Text 2",
+              displayer: "How They Did it Text",
               value: "Successful team onboarding in 2–3 days, compared to 2–3 weeks on WordPress; design tools that reduced development work from 15 days to 5 hours!",
             },
             {
               type: "string",
               key: "favoriteTitle",
-              displayer: "Title 3",
+              displayer: "Favorite Tool Title",
               value: "Favorite Duda Tool:",
             },
             {
               type: "string",
               key: "favoriteText",
-              displayer: "Text 3",
+              displayer: "Favorite Tool Text",
               value: "Personalization engine for serving targeted content by audience.",
-          },
-        ],
-      },
+            },
+          ],
+        },
         {
           type: "object",
           key: "item",
@@ -156,6 +177,12 @@ class Content27 extends BaseContent {
               value: "Digital Marketing Leader",
             },
             {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "",
+            },
+            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -164,37 +191,37 @@ class Content27 extends BaseContent {
             {
               type: "string",
               key: "impactTitle",
-              displayer: "Title 1",
+              displayer: "Impact Title",
               value: "The Impact:",
             },
             {
               type: "string",
               key: "impactText",
-              displayer: "Text 1",
+              displayer: "Impact Text",
               value: "Achieved their goals of offering a quality, industry-leading product and faster site creation & management at scale.",
             },
             {
               type: "string",
               key: "howTitle",
-              displayer: "Title 2",
+              displayer: "How They Did it Title",
               value: "How They Did it:",
             },
             {
               type: "string",
               key: "howText",
-              displayer: "Text 2",
+              displayer: "How They Did it Text",
               value: "Seamless migration of thousands of legacy websites in just a few months, using APIs to add metadata and create URL redirects.",
             },
             {
               type: "string",
               key: "favoriteTitle",
-              displayer: "Title 3",
+              displayer: "Favorite Tool Title",
               value: "Favorite Duda Tool:",
             },
             {
               type: "string",
               key: "favoriteText",
-              displayer: "Text 3",
+              displayer: "Favorite Tool Text",
               value: "Connected Data to prepopulate site templates with structured customer data.",
             },
           ],
@@ -241,56 +268,60 @@ class Content27 extends BaseContent {
     const showDivider = this.getPropValue("showDivider") as boolean;
     const activeTab = this.getComponentState("activeTab") || 0;
     const activeItem = list[activeTab] || list[0];
+    const alignment = Base.getContentAlignment();
 
 
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${
+          alignment === "center" ? this.decorateCSS("center") : this.decorateCSS("left")
+        }`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("grid")} ${!showDivider ? this.decorateCSS("noDivider") : ""}`}>
-            <div className={this.decorateCSS("leftContent")}>
+            <Base.VerticalContent className={this.decorateCSS("leftContent")}>
               {this.castToString(title) && (
-                <Base.H2 className={this.decorateCSS("leftTitle")}>
+                <Base.SectionTitle className={this.decorateCSS("leftTitle")}>
                   {title}
-                </Base.H2>
+                </Base.SectionTitle>
               )}
 
-              {list && list.length > 0 && (
+              {list.length > 0 && (
                 <ul className={this.decorateCSS("list")}>
                   {list.map((listItem: any, index: number) => {
-                    // Check if title exists
-                    const hasTitle = this.castToString(listItem?.title);
                     const isActive = index === activeTab;
-                    
-                    return hasTitle ? (
+                    return (
                       <li
-                        key={`item-${index}`}
-                          className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""}`}
+                        key={index}
+                        className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""}`}
                         onClick={() => this.setActiveTab(index)}
                       >
-                        <span className={this.decorateCSS("listItemText")}>
-                          {listItem.title}
-                        </span>
-                        </li>
-                    ) : null;
-                    })}
-                  </ul>
-                )}
-            </div>
+                        {listItem.title && (
+                          <span className={this.decorateCSS("listItemText")}>
+                            {listItem.title}
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </Base.VerticalContent>
 
             <div className={this.decorateCSS("dividerColumn")}>
               <div className={this.decorateCSS("dividerLine")} />
             </div>
 
             <div className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}>
-              {activeItem?.image && (
+              {activeItem && activeItem.image && (
                 <div
                   className={this.decorateCSS("imageBox")}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
                   <img
                     src={activeItem.image}
-                    alt={`${activeItem.title || ""} - Success Story`}
+                    alt={`${activeItem.title} - Success Story`}
                     className={this.decorateCSS("image")}
                   />
                 </div>
@@ -325,7 +356,7 @@ class Content27 extends BaseContent {
                 <div className={this.decorateCSS("button-container")}>
                   <ComposerLink path={button.url}>
                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      {button.text}
+                      <span className={this.decorateCSS("buttonText")}>{button.text}</span>
                     </Base.Button>
                   </ComposerLink>
                 </div>
@@ -338,4 +369,4 @@ class Content27 extends BaseContent {
   }
 }
 
-export default Content27; 
+export default Content27;
