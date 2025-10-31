@@ -106,6 +106,10 @@
       }
     }
 
+    .wrapper {
+      flex-direction: row !important;
+    }
+
     .wrapper-center {
       flex-direction: column;
       .right-container{
@@ -147,6 +151,7 @@
     .max-content {
       .wrapper,
       .wrapper-center {
+        flex-direction: column !important;
         .right-container {
           .bottom-section {
             flex-direction: column;
