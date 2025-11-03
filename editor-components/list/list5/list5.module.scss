@@ -1,15 +1,28 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 .container {
+  position: relative;
   background-color: color-mix(
     in srgb,
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%
   );
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-overlay-color);
+    pointer-events: none;
+    z-index: 1;
+  }
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
+    position: relative;
+    z-index: 2;
     .header {
       .subtitle {
         content: "";
