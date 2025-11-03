@@ -7,7 +7,7 @@
   .max-content {
     .tabs-wrapper {
       display: flex;
-      gap: 100px;
+      gap: calc(var(--composer-gap-xl) * 2);
       height: 600px;
       align-items: center;
 
@@ -28,7 +28,7 @@
         }
 
         .tab {
-          padding: 1rem 1.5rem;
+          padding: var(--padding-md) var(--padding-lg);
           height: 100%;
           cursor: pointer;
           border-left: 3px solid var(--composer-tertiary-color);
@@ -58,7 +58,7 @@
           justify-content: center;
           flex-shrink: 0;
           height: 100%;
-          gap: 60px;
+          gap: var(--composer-gap-xl);
           margin-top: 10rem;
           width: 100%;
           scroll-snap-stop: always;
@@ -154,9 +154,10 @@
         .tab-content {
           flex-direction: column-reverse;
           justify-content: flex-end !important;
+          align-items: flex-start !important;
           height: auto !important;
           margin-top: 15rem;
-          gap: 30px !important;
+          gap: var(--composer-gap-sm) !important;
         }
 
         .tab-contents {
@@ -174,7 +175,7 @@
         }
 
         .tab {
-          padding: 1rem !important;
+          padding: var(--composer-gap-sm) !important;
         }
 
         .tabs {
