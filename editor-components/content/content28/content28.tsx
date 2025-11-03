@@ -32,11 +32,11 @@ class Content28 extends BaseContent {
       value: "I'm Alexander Green, an\nindependent digital designer"
     });
 
-    // Introduction/description text
+    // Description text
     this.addProp({
       type: "string",
       key: "intro",
-      displayer: "Intro",
+      displayer: "Description",
       value: "I usually work in vanilla javascript without frameworks for small projects, allowing me a complete freedom on the architecture, a Headless CMS like Prismic for content management."
     });
 
@@ -101,19 +101,23 @@ class Content28 extends BaseContent {
     // Get all component data from props
     const imageSrc = this.getPropValue("image");
     const titleText = this.getPropValue("title");
-    const introText = this.getPropValue("intro");
+    const descriptionText = this.getPropValue("intro");
     const features = this.getFeatures();
     const activeIndex = Number(this.getPropValue("activeIndex") ?? 0);
-    const itemCount = this.getItemCount();
+    const rawItemCount = Number(this.getItemCount()) || 1;
+    const gridColumnCount =
+      features.length > 0
+        ? Math.min(rawItemCount, features.length)
+        : rawItemCount;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {/* Two-column layout: image and content */}
-          <Base.ContainerGrid className={this.decorateCSS("grid")}> 
+          <Base.ContainerGrid className={this.decorateCSS("grid")}>
             {/* Left column: Profile image */}
             {this.castToString(imageSrc) && (
-            <Base.GridCell className={this.decorateCSS("col-image")} padding="none">
+              <Base.GridCell className={this.decorateCSS("col-image")} padding="none">
                 <Base.Media
                   className={this.decorateCSS("image")}
                   value={{ type: "image", url: this.castToString(imageSrc) as string }}
@@ -124,58 +128,51 @@ class Content28 extends BaseContent {
             {/* Right column: Text content and features */}
             <Base.GridCell className={this.decorateCSS("col-content")} padding="none">
               <Base.VerticalContent>
-              {/* Header section with title and introduction */}
-              {(titleText || introText) && (
-                <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {titleText ? (
-                    <Base.SectionTitle className={this.decorateCSS("heading")}>
-                      <span className={this.decorateCSS("heading-text")}>
-                        {titleText}
-                      </span>
-                    </Base.SectionTitle>
-                  ) : null}
-                  {introText ? (
-                    <Base.SectionDescription className={this.decorateCSS("intro")}>
-                      {introText}
-                    </Base.SectionDescription>
-                  ) : null}
-                </Base.VerticalContent>
-              )}
+                {/* Header section with title and description */}
+                {(titleText || descriptionText) && (
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {titleText ? (
+                      <Base.SectionTitle className={this.decorateCSS("heading")}>
+                        <span className={this.decorateCSS("heading-text")}>
+                          {titleText}
+                        </span>
+                      </Base.SectionTitle>
+                    ) : null}
+                    {descriptionText ? (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {descriptionText}
+                      </Base.SectionDescription>
+                    ) : null}
+                  </Base.VerticalContent>
+                )}
 
-              {/* Features grid section */}
-              {features.length > 0 && (
-                <div className={this.decorateCSS("features-block")}>
-                  <div 
-                    className={this.decorateCSS("features")}
-                    style={{ gridTemplateColumns: `repeat(${itemCount}, 1fr)` }}
-                  > 
-                    {features.map((_, index) => {
-                      const featuresArray = this.getPropValue("features") as any[];
-                      const featureObj = featuresArray?.[index];
-                      const titleProp = featureObj?.value?.find((v: any) => v.key === "title");
-                      const textProp = featureObj?.value?.find((v: any) => v.key === "text");
-
-                      return (
+                {/* Features grid section */}
+                {features.length > 0 && (
+                  <div className={this.decorateCSS("features-block")}>
+                    <div
+                      className={this.decorateCSS("features")}
+                      style={{ gridTemplateColumns: `repeat(${gridColumnCount}, minmax(0, 1fr))` }}
+                    >
+                      {features.map((feature, index) => (
                         <Base.VerticalContent
                           className={`${this.decorateCSS("feature")} ${index === activeIndex ? this.decorateCSS("active") : ""}`}
                           key={index}
                         >
-                          {titleProp && (
+                          {feature.title && (
                             <Base.SectionSubTitle className={this.decorateCSS("feature-title")}>
-                              {this.getPropValue("title", { parent_object: featureObj.value })}
+                              {feature.title}
                             </Base.SectionSubTitle>
                           )}
-                          {textProp && (
+                          {feature.text && (
                             <Base.P className={this.decorateCSS("feature-text")}>
-                              {this.getPropValue("text", { parent_object: featureObj.value })}
+                              {feature.text}
                             </Base.P>
                           )}
                         </Base.VerticalContent>
-                      );
-                    })}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
               </Base.VerticalContent>
             </Base.GridCell>
           </Base.ContainerGrid>
