@@ -186,6 +186,7 @@ import Form5 from "./contacts/form5/form5";
 import Form6 from "./contacts/form6/form6";
 import Form7 from "./contacts/form7/form7";
 import Form8 from "./contacts/form8/form8";
+import Form9 from "./contacts/form9/form9";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -496,6 +497,7 @@ function Registerables(composer: ComponentsRegistery) {
     Form6,
     Form7,
     Form8,
+    Form9,
     FooterComponent1,
     FooterComponent2,
     FooterComponent3,

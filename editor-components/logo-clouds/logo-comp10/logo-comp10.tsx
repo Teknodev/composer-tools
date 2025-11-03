@@ -127,6 +127,16 @@ class LogoComp10Page extends LogoClouds {
     }
   };
 
+  isPhone = (): boolean => {
+    const containerWidth = this.containerRef?.clientWidth;
+    if (typeof containerWidth === "number" && containerWidth > 0) {
+      return containerWidth <= 640;
+    }
+    const playground = typeof document !== 'undefined' ? document.getElementById('playground') : null;
+    const width = playground?.clientWidth;
+    return typeof width === "number" && width > 0 ? width <= 640 : false;
+  };
+
   chunkLogos = (logos: TImage[], size: number): TImage[][] => {
     if (logos.length === 0) return [];
 
@@ -159,21 +169,17 @@ class LogoComp10Page extends LogoClouds {
     const sliderRef = this.getComponentState("slider-ref");
     
     const desktopChunkSize = itemCount;
-    const mobileChunkSize = 2;
+    const isPhone = this.isPhone();
+    const effectiveChunkSize = isPhone ? 2 : desktopChunkSize;
+    const shouldAnimate = logoItems.length > effectiveChunkSize;
+    const chunks = this.chunkLogos(logoItems, effectiveChunkSize);
     
-    const shouldAnimateDesktop = logoItems.length > desktopChunkSize;
-    const shouldAnimateMobile = logoItems.length > mobileChunkSize;
-    const desktopChunks = this.chunkLogos(logoItems, desktopChunkSize);
-    const mobileChunks = this.chunkLogos(logoItems, mobileChunkSize);
-    
-    const sliderKey = `slider-${itemCount}-${logoItems.length}-${desktopChunkSize}`;
-    
-    const desktopSliderSettings = {
+    const sliderKey = `slider-${itemCount}-${logoItems.length}-${effectiveChunkSize}`;
+
+    const commonSliderSettings = {
       arrows: false,
       dots: false,
-      infinite: shouldAnimateDesktop,
       speed: 800,
-      autoplay: shouldAnimateDesktop,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -182,19 +188,13 @@ class LogoComp10Page extends LogoClouds {
       pauseOnHover: false,
     };
 
-    const mobileSliderSettings = {
-      arrows: false,
-      dots: false,
-      infinite: shouldAnimateMobile,
-      speed: 800,
-      autoplay: shouldAnimateMobile,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      fade: true,
-      cssEase: 'linear',
-      pauseOnHover: false,
+    const desktopSliderSettings = {
+      ...commonSliderSettings,
+      infinite: shouldAnimate,
+      autoplay: shouldAnimate,
     };
+
+    // Single slider setup; responsive grid handles mobile layout
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -208,53 +208,24 @@ class LogoComp10Page extends LogoClouds {
           )}
 
           {logoItems.length > 0 && (
-            <Base.MaxContent className={this.decorateCSS("slider-wrapper")}
-              ref={shouldAnimateDesktop ? this.setContainerRef : undefined}
+            <div className={this.decorateCSS("slider-wrapper")}
+              ref={shouldAnimate ? this.setContainerRef : undefined}
             >
               <div className={this.decorateCSS("slider-container")}>
                 <ComposerSlider
-                  key={`desktop-${sliderKey}`}
+                  key={`single-${sliderKey}`}
                   ref={sliderRef}
                   {...desktopSliderSettings}
-                  className={`${this.decorateCSS("slider")} ${this.decorateCSS("desktop-slider")}`}
+                  className={this.decorateCSS("slider")}
                 >
-                  {desktopChunks.map((chunk, slideIndex) => {
+                  {chunks.map((chunk, slideIndex) => {
                     const visibleItems = chunk.filter((img: TImage) => img.image);
                     const gridColumns = Math.max(1, Math.min(itemCount, visibleItems.length));
 
                     return (
                       <div key={slideIndex}>
                         <Base.ListGrid 
-                          gridCount={{ pc: gridColumns, tablet: gridColumns, phone: gridColumns }}
-                          className={this.decorateCSS("gallery")}
-                        >
-                          {visibleItems.map((img: TImage, i: number) => (
-                            <ComposerLink key={i} path={img.imageLink}>
-                              <div className={this.decorateCSS("image-child")}>
-                                <Base.Media
-                                  className={this.decorateCSS("image")}
-                                  value={{ type: "image", url: img.image }}
-                                />
-                              </div>
-                            </ComposerLink>
-                          ))}
-                        </Base.ListGrid>
-                      </div>
-                    );
-                  })}
-                </ComposerSlider>
-                <ComposerSlider
-                  key={`mobile-${sliderKey}`}
-                  {...mobileSliderSettings}
-                  className={`${this.decorateCSS("slider")} ${this.decorateCSS("mobile-slider")}`}
-                >
-                  {mobileChunks.map((chunk, slideIndex) => {
-                    const visibleItems = chunk.filter((img: TImage) => img.image);
-
-                    return (
-                      <div key={slideIndex}>
-                        <Base.ListGrid 
-                          gridCount={{ pc: 2, tablet: 2, phone: 2 }}
+                          gridCount={{ pc: gridColumns, tablet: gridColumns, phone: 2 }}
                           className={this.decorateCSS("gallery")}
                         >
                           {visibleItems.map((img: TImage, i: number) => (
@@ -273,7 +244,7 @@ class LogoComp10Page extends LogoClouds {
                   })}
                 </ComposerSlider>
               </div>
-            </Base.MaxContent>
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>

@@ -85,9 +85,6 @@
       }
       .slider-container {
         .gallery {
-          gap: var(--composer-gap-lg);
-          padding: var(--composer-gap-md) 0;
-          grid-template-columns: repeat(var(--composer-grid-count-tablet), minmax(0, max-content));
           .image-child {
             padding: var(--composer-gap-xs);
           }
@@ -110,7 +107,7 @@
         }
 
         .gallery {
-          grid-template-columns: repeat(2, minmax(0, max-content));
+          content: "";
         }
       }
     }
