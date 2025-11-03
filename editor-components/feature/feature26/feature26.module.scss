@@ -1,0 +1,116 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .wrapper {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xl);
+      padding: var(--composer-gap-xl) 0;
+
+      .image-container {
+        flex: 0 0 40%;
+        height: calc(var(--composer-gap-xl) * 6);
+        border-radius: var(--composer-border-radius-xl);
+        overflow: hidden;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          transition: transform var(--composer-transition-duration-normal) ease;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+
+      .content {
+        flex: 0 0 60%;
+
+        .quote-container {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          align-items: flex-start;
+          margin: var(--composer-gap-lg) 0;
+        }
+
+        .buttons-container {
+          display: flex;
+          gap: var(--composer-gap-lg);
+          margin-top: var(--composer-gap-lg);
+
+          .primary-button {
+            background-color: var(--composer-primary);
+            border-radius: var(--composer-border-radius-sm);
+            transition: opacity var(--composer-transition-duration-normal) ease;
+
+            &:hover {
+              opacity: 0.9;
+            }
+          }
+
+          .secondary-button {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-md);
+
+            .icon-wrapper {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: var(--composer-gap-xl);
+              height: var(--composer-gap-xl);
+              border: 2px solid currentColor;
+              border-radius: var(--composer-border-radius-full);
+
+              .icon {
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-lg);
+
+        .image-container {
+          width: 100%;
+          flex: none;
+          height: calc(var(--composer-gap-xl) * 5);
+        }
+
+        .content {
+          max-width: 100%;
+
+          .buttons-container {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .image-container {
+          height: calc(var(--composer-gap-xl) * 4);
+        }
+      }
+    }
+  }
+}
