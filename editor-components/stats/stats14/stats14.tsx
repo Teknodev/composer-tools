@@ -70,7 +70,7 @@ class Stats14 extends BaseStats {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Download Free Trial", null, "FaRegCheckCircle", null, "Primary"),
-        INPUTS.BUTTON("button", "Button", "Learn More", null, null, null, "White"),
+        INPUTS.BUTTON("button", "Button", "Learn More", null, "", null, "White"),
       ],
     });
 
