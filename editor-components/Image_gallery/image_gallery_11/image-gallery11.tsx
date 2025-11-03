@@ -41,7 +41,6 @@ class ImageGallery11 extends BaseImageGallery {
   private wrapRefs: React.RefObject<HTMLDivElement>[] = [];
   private innerARefs: React.RefObject<HTMLDivElement>[] = [];
 
-  // Props tanımlama fonksiyonu
   private initializeProps() {
     this.addProp({
       type: "image",
@@ -81,50 +80,181 @@ class ImageGallery11 extends BaseImageGallery {
       type: "array",
       key: "galleryRows",
       displayer: "Gallery Rows",
-      value: this.getDefaultGalleryRows() as TypeUsableComponentProps[],
-    });
-  }
-
-  // Varsayılan galeri satırları oluşturma
-  private getDefaultGalleryRows(): TypeUsableComponentProps[] {
-    const createImage = (url: string, title: string) => ({
-      type: "object",
-      key: "item",
-      displayer: "Image",
       value: [
-        { type: "image", key: "image", displayer: "Image", value: url },
-        { type: "string", key: "imageTitle", displayer: "Image Title", value: title },
-      ],
+        {
+          type: "object",
+          key: "row",
+          displayer: "Row 1",
+          value: [
+            {
+              type: "array",
+              key: "images",
+              displayer: "Images",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-1",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b16de36675f002db9baf2?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-1" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-2",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b177536675f002db9bbfe?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-2" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-3",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b17fb36675f002db9bcd0?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-3" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-4",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b186b36675f002db9bdb5?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-4" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-5",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b188936675f002db9bde7?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-5" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-6",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b18be36675f002db9be9c?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-6" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-7",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b18f336675f002db9bf2a?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-7" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 1-8",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b191b36675f002db9bffd?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 1-8" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "row",
+          displayer: "Row 2",
+          value: [
+            {
+              type: "array",
+              key: "images",
+              displayer: "Images",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-1",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1a6036675f002db9c11e?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-1" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-2",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1a9836675f002db9c143?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-2" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-3",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1aba36675f002db9c164?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-3" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-4",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1ad836675f002db9c1cf?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-4" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-5",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1aff36675f002db9c2f3?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-5" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-6",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1c1e36675f002db9c57f?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-6" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-7",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1c4636675f002db9c592?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-7" }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Image 2-8",
+                  value: [
+                    { type: "image", key: "image", displayer: "Image", value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b188936675f002db9bde7?alt=media" },
+                    { type: "string", key: "imageTitle", displayer: "Image Title", value: "Image 2-8" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ] as TypeUsableComponentProps[],
     });
-
-    const defaultImageRows = [
-      [
-        "689b16de36675f002db9baf2", "689b177536675f002db9bbfe", "689b17fb36675f002db9bcd0",
-        "689b186b36675f002db9bdb5", "689b188936675f002db9bde7", "689b18be36675f002db9be9c",
-        "689b18f336675f002db9bf2a", "689b191b36675f002db9bffd"
-      ],
-      [
-        "689b1a6036675f002db9c11e", "689b1a9836675f002db9c143", "689b1aba36675f002db9c164",
-        "689b1ad836675f002db9c1cf", "689b1aff36675f002db9c2f3", "689b1c1e36675f002db9c57f",
-        "689b1c4636675f002db9c592", "689b188936675f002db9bde7"
-      ]
-    ];
-
-    return defaultImageRows.map((row, rowIndex) => {
-      const images = row.map((id, i) => {
-        const titleText = `Image ${rowIndex + 1}-${i + 1}`;
-        return createImage(
-          `https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/${id}?alt=media`,
-          titleText.charAt(0).toUpperCase() + titleText.slice(1)
-        );
-      });
-      return {
-        type: "object",
-        key: "row",
-        displayer: `Row ${rowIndex + 1}`,
-        value: [{ type: "array", key: "images", displayer: "Images", value: images }] as any,
-      };
-    }) as TypeUsableComponentProps[];
   }
 
   componentDidMount(): void {
@@ -143,51 +273,41 @@ class ImageGallery11 extends BaseImageGallery {
     this.cleanupModal();
   }
 
-  // Ekran boyutu değişim işleyici
   private handleResize = () => {
     this.setLoopWidths();
     if (this.modalVisible) {
       this.forceUpdate();
     }
   };
-
-  // Boolean değer dönüştürme
-  private asBool(v: any): boolean {
-    if (typeof v === "boolean") return v;
-    if (typeof v === "number") return v !== 0;
-    if (typeof v === "string") {
-      const s = v.trim().toLowerCase();
-      return s === "true" || s === "1" || s === "yes" || s === "on";
-    }
-    return false;
-  }
-
   private preventScroll = (e: Event) => e.preventDefault();
 
-  // Satır verilerini alma
   private getRows(): GalleryRowType[] {
     const rowsData = this.castToObject<any[]>("galleryRows") || [];
-    return rowsData.map((rowData: any) => {
-      const imagesProp = Array.isArray(rowData.value)
-        ? rowData.value.find((p: any) => p.key === "images")
-        : null;
-      const images = (imagesProp?.value || [])
-        .map((it: any) => {
-          const arr = Array.isArray(it?.value) ? it.value : [];
-          const image = arr.find((x: any) => x.key === "image")?.value || "";
-          const imageTitle = arr.find((x: any) => x.key === "imageTitle")?.value || "";
-          return image ? ({ image, imageTitle } as ImageType) : null;
-        })
-        .filter(Boolean) as ImageType[];
-      return { images };
-    });
+    return rowsData.map((row: any) => {
+      const images: ImageType[] = (row.images || []).map((img: any) => {
+        if (img.getPropValue) {
+          return {
+            image: img.getPropValue('image', img.value),
+            imageTitle: img.getPropValue('imageTitle', img.value)
+          };
+        } else if (img.value && Array.isArray(img.value)) {
+          const image = img.value.find((x: any) => x.key === 'image')?.value || '';
+          const imageTitle = img.value.find((x: any) => x.key === 'imageTitle')?.value || '';
+          return { image, imageTitle };
+        } else {
+          return { image: '', imageTitle: '' };
+        }
+      });
+      return {
+        images: images.filter((img) => img.image)
+      } as GalleryRowType;
+    }).filter((row: GalleryRowType) => row.images.length > 0);
   }
 
   private getAllImages(): ImageType[] {
     return this.getRows().flatMap(row => row.images);
   }
 
-  // Döngü genişliklerini ayarlama
   private setLoopWidths = () => {
     this.trackRefs.forEach((trackRef, index) => {
       const innerARef = this.innerARefs[index];
@@ -198,11 +318,9 @@ class ImageGallery11 extends BaseImageGallery {
     });
   };
 
-  // Sürükleme pozisyonunu normalleştirme
   private normalizeDrag = (wrap: HTMLDivElement, track: HTMLDivElement) => {
     const half = track.scrollWidth / 2;
     let cur = parseFloat(getComputedStyle(wrap).getPropertyValue("--drag")) || 0;
-
     if (half > 0) {
       cur = ((cur % half) + half) % half;
       if (cur > 0) cur -= half;
@@ -212,7 +330,6 @@ class ImageGallery11 extends BaseImageGallery {
     wrap.style.setProperty("--drag", `${Math.round(cur)}px`);
   };
 
-  // İmleç pozisyonu alma
   private getClientPosition(e: React.MouseEvent | React.TouchEvent): { x: number; y: number } {
     return 'touches' in e
       ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
@@ -349,185 +466,10 @@ class ImageGallery11 extends BaseImageGallery {
     keyActions[e.key]?.();
   };
 
-  private stripHtml(html: string): string {
-    if (typeof DOMParser === 'undefined') {
-      return html.replace(/<[^>]*>?/gm, '');
-    }
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    return doc.body.textContent || "";
-  }
-
-  // Tıklama bastırılmalı mı kontrolü
   private shouldSuppressClick(): boolean {
     return this.dragMoved || performance.now() < this.clickSuppressUntil;
   }
 
-  private renderImageTrack(images: ImageType[], rowIndex: number, imageOffset: number) {
-    const duration = 400;
-    return (
-      <div
-        key={rowIndex}
-        className={this.decorateCSS("row")}
-        onMouseDown={(e) => this.onDragStart(e, this.wrapRefs[rowIndex], this.trackRefs[rowIndex])}
-        onMouseMove={this.onDragMove}
-        onMouseUp={this.onDragEnd}
-        onMouseLeave={this.onDragEnd}
-        onTouchStart={(e) => this.onDragStart(e, this.wrapRefs[rowIndex], this.trackRefs[rowIndex])}
-        onTouchMove={this.onDragMove}
-        onTouchEnd={this.onDragEnd}
-      >
-        <div ref={this.wrapRefs[rowIndex]} className={this.decorateCSS("drag-wrap")}>
-          <div
-            ref={this.trackRefs[rowIndex]}
-            className={this.decorateCSS("track")}
-            style={{ "--speed": `${duration}s` } as React.CSSProperties}
-          >
-            {this.renderTrackInner(images, rowIndex, imageOffset, "a")}
-            {this.renderTrackInner(images, rowIndex, imageOffset, "b")}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // İç parça oluşturma
-  private renderTrackInner(images: ImageType[], rowIndex: number, imageOffset: number, suffix: string) {
-    if (!images || images.length === 0) {
-      return null;
-    }
-
-    const minImages = 20;
-    const repeatCount = Math.ceil(minImages / images.length);
-    const repeatedImages = Array(repeatCount).fill(images).flat();
-
-    return (
-      <div ref={suffix === "a" ? this.innerARefs[rowIndex] : undefined} className={this.decorateCSS("track__inner")} aria-hidden={suffix === "b"}>
-        {repeatedImages.map((it, i) => {
-          const originalIndex = i % images.length;
-          return (
-            <div
-              key={`row-${rowIndex}-${suffix}-${i}`}
-              className={this.decorateCSS("image-child")}
-              style={{ willChange: 'transform' }}
-              onMouseEnter={(e) => this.toggleTrackPause(e.currentTarget.closest(`.${this.decorateCSS("track")}`) as HTMLElement, true)}
-              onMouseLeave={(e) => this.toggleTrackPause(e.currentTarget.closest(`.${this.decorateCSS("track")}`) as HTMLElement, false)}
-              onClick={() => !this.shouldSuppressClick() && this.openAt(imageOffset + originalIndex)}
-            >
-              <img className={this.decorateCSS("image")} src={it.image} alt="" draggable={false} />
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-
-  // Modal penceresi oluşturma
-  private renderModal(allImages: ImageType[], active: ImageType) {
-    const total = allImages.length;
-    const imgStyle = this.getImageStyle(active);
-    const titleString = active?.imageTitle ? this.castToString(active.imageTitle) : "";
-    const strippedTitle = titleString && typeof titleString === 'string' ? this.stripHtml(titleString).trim() : "";
-
-    return (
-      <Base.Overlay isVisible={true} className={this.decorateCSS("modal-overlay")}>
-        <div
-          className={`${this.decorateCSS("lightbox")} ${this.zoom > 1 ? this.decorateCSS("is-zoomed") : ""}`}
-          onClick={(e) => e.stopPropagation()}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image viewer"
-        >
-          <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`} onClick={this.prev}>
-            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-prev-icon") }} name={this.getPropValue("navPrevIcon")} />
-          </div>
-          <div
-            ref={this.canvasRef}
-            className={this.decorateCSS("lightbox-canvas")}
-            onDoubleClick={this.toggleZoom}
-          >
-            <div className={this.decorateCSS("lightbox-img-wrap")}>
-              <img
-                className={this.decorateCSS("lightbox-img")}
-                src={active.image}
-                alt={strippedTitle || ""}
-                draggable={false}
-                onLoad={this.onImgLoad}
-                style={imgStyle}
-              />
-              <div className={this.decorateCSS("counter-badge")}>
-                {this.modalIndex + 1}/{total}
-              </div>
-              {strippedTitle && <div className={this.decorateCSS("title-badge")}>{strippedTitle}</div>}
-
-              {this.renderModalButton("close-btn", "Close", this.closeModal, this.getPropValue("closeIcon"))}
-              {this.renderModalButton("zoom-btn", this.zoom > 1 ? "Zoom out" : "Zoom in", this.toggleZoom,
-                this.zoom > 1 ? this.getPropValue("zoomOutIcon") : this.getPropValue("zoomInIcon")
-              )}
-            </div>
-          </div>
-          <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`} onClick={this.next}>
-            <Base.Icon propsIcon={{ className: this.decorateCSS("nav-next-icon") }} name={this.getPropValue("navNextIcon")} />
-          </div>
-        </div>
-      </Base.Overlay>
-    );
-  }
-
-  // Modal butonları oluşturma
-  private renderModalButton(className: string, label: string, onClick: () => void, iconName: string) {
-    const stopEvents = (e: React.SyntheticEvent) => {
-      e.stopPropagation();
-      e.preventDefault();
-    };
-
-    /* Button:aksiyon butonu */
-    return (
-      <button
-        ref={className === "close-btn" ? this.closeBtnRef : undefined}
-        type="button"
-        className={this.decorateCSS(className)}
-        aria-label={label}
-        title={label}
-        onMouseDown={stopEvents}
-        onMouseUp={stopEvents}
-        onTouchStart={stopEvents}
-        onTouchEnd={stopEvents}
-        onPointerDown={stopEvents}
-        onClick={(e) => { stopEvents(e); onClick(); }}
-      >
-        <Base.Icon propsIcon={{ className: this.decorateCSS("zoom-icon") }} name={iconName} />
-      </button>
-    );
-  }
-
-  // Görsel stil ayarlarını hesaplama
-  private getImageStyle(active: ImageType): React.CSSProperties {
-    const baseStyle: React.CSSProperties = {
-      maxWidth: "100%",
-      maxHeight: "100%",
-      objectFit: "contain"
-    };
-
-    if (this.zoom <= 1 || !this.canvasRef.current || !active) {
-      return baseStyle;
-    }
-
-    const canvas = this.canvasRef.current;
-    const imgEl = canvas.querySelector(`.${this.decorateCSS("lightbox-img")}`) as HTMLImageElement | null;
-    const naturalW = imgEl?.naturalWidth || 800;
-    const naturalH = imgEl?.naturalHeight || 600;
-    const scale = Math.min(canvas.clientWidth / naturalW, canvas.clientHeight / naturalH);
-
-    return {
-      width: `${naturalW * scale}px`,
-      height: `${naturalH * scale}px`,
-      objectFit: "contain",
-      maxWidth: "100%",
-      maxHeight: "100%"
-    };
-  }
-
-  // Ana render fonksiyonu
   render() {
     const rows = this.getRows();
     this.trackRefs = rows.map((_, i) => this.trackRefs[i] || React.createRef());
@@ -539,7 +481,7 @@ class ImageGallery11 extends BaseImageGallery {
 
     const backgroundImage = this.castToString(this.getPropValue("bgImage"));
     const hasBackgroundImage = !!backgroundImage;
-    const overlayEnabled = this.asBool(this.getPropValue("bgOverlayEnabled"));
+    const overlayEnabled = this.getPropValue("bgOverlayEnabled");
 
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);
@@ -547,12 +489,139 @@ class ImageGallery11 extends BaseImageGallery {
     const description = this.getPropValue("description");
     const isDescriptionExist = this.castToString(description);
 
-    const containerStyle: React.CSSProperties = hasBackgroundImage ? {
-      backgroundImage: `url(${backgroundImage})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center 150%",
-      backgroundRepeat: "no-repeat",
-    } : {};
+    const renderTrackInner = (images: ImageType[], rowIndex: number, imageOffset: number, suffix: string) => {
+      if (!images || images.length === 0) {
+        return null;
+      }
+
+      const minImages = 20;
+      const repeatCount = Math.ceil(minImages / images.length);
+      const repeatedImages = Array(repeatCount).fill(images).flat();
+
+      return (
+        <div ref={suffix === "a" ? this.innerARefs[rowIndex] : undefined} className={this.decorateCSS("track__inner")} aria-hidden={suffix === "b"}>
+          {repeatedImages.map((it, i) => {
+            const originalIndex = i % images.length;
+            return (
+              <div
+                key={`row-${rowIndex}-${suffix}-${i}`}
+                className={this.decorateCSS("image-child")}
+                style={{ willChange: 'transform' }}
+                onMouseEnter={(e) => this.toggleTrackPause(e.currentTarget.closest(`.${this.decorateCSS("track")}`) as HTMLElement, true)}
+                onMouseLeave={(e) => this.toggleTrackPause(e.currentTarget.closest(`.${this.decorateCSS("track")}`) as HTMLElement, false)}
+                onClick={() => !this.shouldSuppressClick() && this.openAt(imageOffset + originalIndex)}
+              >
+                <img className={this.decorateCSS("image")} src={it.image} alt="" draggable={false} />
+              </div>
+            );
+          })}
+        </div>
+      );
+    };
+
+    const renderImageTrack = (images: ImageType[], rowIndex: number, imageOffset: number) => {
+      const duration = 400;
+      return (
+        <div
+          key={rowIndex}
+          className={this.decorateCSS("row")}
+          onMouseDown={(e) => this.onDragStart(e, this.wrapRefs[rowIndex], this.trackRefs[rowIndex])}
+          onMouseMove={this.onDragMove}
+          onMouseUp={this.onDragEnd}
+          onMouseLeave={this.onDragEnd}
+          onTouchStart={(e) => this.onDragStart(e, this.wrapRefs[rowIndex], this.trackRefs[rowIndex])}
+          onTouchMove={this.onDragMove}
+          onTouchEnd={this.onDragEnd}
+        >
+          <div ref={this.wrapRefs[rowIndex]} className={this.decorateCSS("drag-wrap")}>
+            <div
+              ref={this.trackRefs[rowIndex]}
+              className={this.decorateCSS("track")}
+              style={{ "--speed": `${duration}s` } as React.CSSProperties}
+            >
+              {renderTrackInner(images, rowIndex, imageOffset, "a")}
+              {renderTrackInner(images, rowIndex, imageOffset, "b")}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    const renderModalButton = (className: string, label: string, onClick: () => void, iconName: string) => {
+      const stopEvents = (e: React.SyntheticEvent) => {
+        e.stopPropagation();
+        e.preventDefault();
+      };
+
+      return (
+        <button
+          ref={className === "close-btn" ? this.closeBtnRef : undefined}
+          type="button"
+          className={this.decorateCSS(className)}
+          aria-label={label}
+          title={label}
+          onMouseDown={stopEvents}
+          onMouseUp={stopEvents}
+          onTouchStart={stopEvents}
+          onTouchEnd={stopEvents}
+          onPointerDown={stopEvents}
+          onClick={(e) => { stopEvents(e); onClick(); }}
+        >
+          <Base.Icon propsIcon={{ className: this.decorateCSS("zoom-icon") }} name={iconName} />
+        </button>
+      );
+    };
+
+    const renderModal = (allImages: ImageType[], active: ImageType) => {
+      const total = allImages.length;
+      const displayTitle = this.castToString(active?.imageTitle || "");
+
+      return (
+        <Base.Overlay isVisible={true}>
+          <div
+            className={`${this.decorateCSS("lightbox")} ${this.zoom > 1 ? this.decorateCSS("is-zoomed") : ""}`}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Image viewer"
+          >
+            <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`} onClick={this.prev}>
+              <Base.Icon propsIcon={{ className: this.decorateCSS("nav-prev-icon") }} name={this.getPropValue("navPrevIcon")} />
+            </div>
+            <div
+              ref={this.canvasRef}
+              className={this.decorateCSS("lightbox-canvas")}
+              onDoubleClick={this.toggleZoom}
+            >
+              <div className={this.decorateCSS("lightbox-img-wrap")}>
+                <img
+                  className={this.decorateCSS("lightbox-img")}
+                  src={active.image}
+                  draggable={false}
+                  onLoad={this.onImgLoad}
+                />
+                <div className={this.decorateCSS("counter-badge")}>
+                  {this.modalIndex + 1}/{total}
+                </div>
+                {displayTitle ? (
+                  <div className={this.decorateCSS("image-title")}>
+                    {displayTitle}
+                  </div>
+                ) : null}
+
+                {renderModalButton("close-btn", "Close", this.closeModal, this.getPropValue("closeIcon"))}
+                {renderModalButton("zoom-btn", this.zoom > 1 ? "Zoom out" : "Zoom in", this.toggleZoom,
+                  this.zoom > 1 ? this.getPropValue("zoomOutIcon") : this.getPropValue("zoomInIcon")
+                )}
+              </div>
+            </div>
+            <div className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`} onClick={this.next}>
+              <Base.Icon propsIcon={{ className: this.decorateCSS("nav-next-icon") }} name={this.getPropValue("navNextIcon")} />
+            </div>
+          </div>
+        </Base.Overlay>
+      );
+    };
 
     return (
       <div className={this.decorateCSS("container-bg")}>
@@ -562,16 +631,15 @@ class ImageGallery11 extends BaseImageGallery {
           data-has-bg={hasBackgroundImage}
           data-modal-open={this.modalVisible}
           data-overlay-enabled={overlayEnabled && hasBackgroundImage}
-          style={containerStyle}
+          style={{ backgroundImage: `url(${this.getPropValue("bgImage")})` }}
         >
           {hasBackgroundImage && (
             <div className={this.decorateCSS("bg-wrap")}>
-              <div className={this.decorateCSS("bg-image")} style={containerStyle} />
-              {overlayEnabled && <div className={this.decorateCSS("bg-overlay")} />}
+              <div style={{ backgroundImage: `url(${this.getPropValue("bgImage")})` }} className={this.decorateCSS("bg-image")} />
             </div>
           )}
 
-          {this.modalVisible && allImages.length > 0 && this.renderModal(allImages, active)}
+          {this.modalVisible && allImages.length > 0 && renderModal(allImages, active)}
 
           {(isTitleExist || isDescriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
@@ -585,7 +653,7 @@ class ImageGallery11 extends BaseImageGallery {
               {rows.map((row, rowIndex) => {
                 if (row.images.length === 0) return null;
                 const imageOffset = rows.slice(0, rowIndex).reduce((acc, r) => acc + r.images.length, 0);
-                return this.renderImageTrack(row.images, rowIndex, imageOffset);
+                return renderImageTrack(row.images, rowIndex, imageOffset);
               })}
             </div>
           )}
