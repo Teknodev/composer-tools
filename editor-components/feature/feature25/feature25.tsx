@@ -34,12 +34,12 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Text",
+          displayer: "Button text",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Tab Text",
+              displayer: "Button",
               value: "Effortless Setup",
             },
             {
