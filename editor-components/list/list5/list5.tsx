@@ -40,6 +40,12 @@ class List5 extends BaseList {
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
     });
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Image Overlay",
+      value: false,
+    });
+    this.addProp({
       type: "array",
       key: "list-items",
       displayer: "List Items",
@@ -269,6 +275,7 @@ class List5 extends BaseList {
     const subtitle = this.getPropValue("subtitle");
     const header = this.getPropValue("header");
     const image = this.getPropValue("image");
+    const imageOverlay = this.getPropValue("overlay");
 
     return (
       <>
@@ -278,6 +285,9 @@ class List5 extends BaseList {
             backgroundSize: "cover"
           }}
         >
+          {imageOverlay && (
+            <div className={this.decorateCSS("overlay")} />
+          )}
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {(this.castToString(subtitle) || this.castToString(header)) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
