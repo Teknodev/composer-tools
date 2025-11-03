@@ -9,7 +9,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type ListItem = {
   title: React.JSX.Element;
   uppericon: React.JSX.Element;
-  text: string;
+  text: React.JSX.Element;
   lowericon: React.JSX.Element;
   url: string;
 }
@@ -137,7 +137,7 @@ class List5 extends BaseList {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -172,15 +172,21 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "icon",
+              type: "media",
               key: "lowericon",
-              displayer: "LowerIcon",
-              value: "FaLongArrowAltRight",
+              displayer: "Lower Icon",
+              value: {
+                type: "icon",
+                name: "FaLongArrowAltRight",
+              },
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
             },
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -229,7 +235,7 @@ class List5 extends BaseList {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -277,12 +283,12 @@ class List5 extends BaseList {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) && (
                   <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("dark")}`}>
-                    {subtitle}
+                    {subtitle as any}
                   </Base.SectionSubTitle>
                 )}
                 {this.castToString(header) && (
                   <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${image && this.decorateCSS("dark")}`}>
-                    {header}
+                    {header as any}
                   </Base.SectionTitle>
                 )}
               </Base.VerticalContent>
@@ -330,12 +336,12 @@ class List5 extends BaseList {
                             )}
                             {this.castToString(listItem.title) && (
                               <Base.H3 className={this.decorateCSS("card-title")}>
-                                {listItem.title}
+                                {listItem.title as any}
                               </Base.H3>
                             )}
                             {this.castToString(listItem.text) && (
                               <Base.P className={this.decorateCSS("card-description")}>
-                                {listItem.text}
+                                {listItem.text as any}
                               </Base.P>
                             )}
                             {listItem.lowericon && (

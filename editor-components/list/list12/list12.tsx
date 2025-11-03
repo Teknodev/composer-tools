@@ -155,6 +155,18 @@ class List12 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Image Overlay",
+      value: false,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "backgroundOverlay",
+      displayer: "Background Image Overlay",
+      value: false,
+    });
   }
 
   render() {
@@ -162,6 +174,8 @@ class List12 extends BaseList {
     const box2 = this.castToObject<any>("box2");
     const box3 = this.castToObject<any>("box3");
     const hasBackgroundImage = this.getPropValue("image");
+    const imageOverlay = this.getPropValue("overlay");
+    const backgroundOverlay = this.getPropValue("backgroundOverlay");
 
     return (
       <Base.Container
@@ -171,29 +185,35 @@ class List12 extends BaseList {
           backgroundSize: "cover",
         }}
       >
+        {backgroundOverlay && (
+          <div className={this.decorateCSS("background-overlay")} />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("boxes")}>
             <div className={this.decorateCSS("leftBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {(box1.item || box1.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box1.item ? (
-                    <Base.Media
-                      className={this.decorateCSS("img")}
-                      value={box1.item}
-                    />
+                    <>
+                      <Base.Media
+                        className={this.decorateCSS("img")}
+                        value={box1.item}
+                      />
+                      {imageOverlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
+                    </>
                   ) : (
                     <Base.Media
                       value={box1.icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                      }}
+                      className={this.decorateCSS("icon")}
                     />
                   )}
                 </div>
               )}
               {this.castToString(box1.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={`${this.decorateCSS("text1")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box1.text}</div>
+                  <Base.P className={`${this.decorateCSS("text1")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box1.text}</Base.P>
                 </div>
               )}
             </div>
@@ -217,23 +237,26 @@ class List12 extends BaseList {
               {(box2.item || box2.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box2.item ? (
-                    <Base.Media
-                      className={this.decorateCSS("img")}
-                      value={box2.item}
-                    />
+                    <>
+                      <Base.Media
+                        className={this.decorateCSS("img")}
+                        value={box2.item}
+                      />
+                      {imageOverlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
+                    </>
                   ) : (
                     <Base.Media
                       value={box2.icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                      }}
+                      className={this.decorateCSS("icon")}
                     />
                   )}
                 </div>
               )}
               {this.castToString(box2.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={`${this.decorateCSS("text2")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box2.text}</div>
+                  <Base.P className={`${this.decorateCSS("text2")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box2.text}</Base.P>
                 </div>
               )}
             </div>
@@ -242,23 +265,26 @@ class List12 extends BaseList {
               {(box3.item || box3.icon) && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box3.item ? (
-                    <Base.Media
-                      className={this.decorateCSS("img")}
-                      value={box3.item}
-                    />
+                    <>
+                      <Base.Media
+                        className={this.decorateCSS("img")}
+                        value={box3.item}
+                      />
+                      {imageOverlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
+                    </>
                   ) : (
                     <Base.Media
                       value={box3.icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                      }}
+                      className={this.decorateCSS("icon")}
                     />
                   )}
                 </div>
               )}
               {this.castToString(box3.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={`${this.decorateCSS("text3")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box3.text}</div>
+                  <Base.P className={`${this.decorateCSS("text3")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box3.text}</Base.P>
                 </div>
               )}
             </div>

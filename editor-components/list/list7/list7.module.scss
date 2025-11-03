@@ -1,3 +1,6 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
 .container {
   .max-content {
     display: flex;
@@ -8,7 +11,7 @@
       .subtitle {
         content: "";
       }
-      .header-title {
+      .title {
         content: "";
       }
     }
@@ -135,5 +138,33 @@
 @keyframes rotate {
   to {
     --angle: 360deg;
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .items-wrapper {
+        .list-item {
+          .item-content {
+            padding: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .items-wrapper {
+        .list-item {
+          .item-content {
+            padding: var(--composer-gap-sm);
+          }
+        }
+      }
+    }
   }
 }

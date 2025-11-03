@@ -12,25 +12,37 @@
       flex-direction: column;
       gap: var(--composer-gap-xl);
       
-      .card-titles {
+      .header-section {
         .subtitle {
           content: "";
         }
-      }
-      
-      .section-wrapper {
-        .title {
+        .header-title {
           content: "";
         }
-
+        &.align-center {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .description-wrapper { text-align: center; }
+          .subtitle, .header-title { text-align: center; }
+        }
+        &.align-left {
+          text-align: left;
+          .description-wrapper { text-align: left; }
+          .subtitle, .header-title { text-align: left; }
+        }
+      }
+      
+      .description-wrapper {
         .description {
           content: "";
         }
       }
 
-      .boxes {
+      .items-wrapper {
         gap: var(--composer-gap-xl);
-        .boxlower {
+        .list-item {
           background-color: var(--composer-html-background);
           border-radius: var(--composer-border-radius-md);
           position: relative;
@@ -46,7 +58,7 @@
           }
 
           &[data-animation="animate2"]:hover {
-            .circle {
+            .number-badge {
               animation: swing 1s ease-in-out;
               transform-origin: top center;
             }
@@ -58,13 +70,14 @@
           }
 
           &[data-animation="animate4"]:hover {
-            .circle {
+            .number-badge {
               transform: translate(-50%, -50%) rotate(360deg);
               transition: transform var(--composer-transition-duration-normal);
             }
           }
 
-          .circle {
+          .number-badge {
+            content: "";
             position: absolute;
             left: 50%;
             top: 0;
@@ -83,33 +96,52 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
             .index {
+              content: "";
               color: var(--composer-font-color-primary);
+              margin: 0;
+              text-align: center;
             }
           }
-          .icon-box {
+          .icon-wrapper {
+            content: "";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .icon-container {
+              content: "";
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
             .icon {
+              content: "";
               font-size: 4rem;
               color: var(--composer-primary-color);
             }
           }
-          .titles {
+          .item-content {
+            content: "";
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
             text-align: center;
-            .midwriting {
+            .item-title {
+              content: "";
               text-align: center;
               color: var(--composer-font-color-primary);
             }
-            .text {
+            .item-text {
+              content: "";
               text-align: center;
               color: var(--composer-tertiary-color);
             }
           }
         }
       }
-      .button-box {
+      .button-wrapper {
+        content: "";
         width: 100%;
         > div {
           width: 100% !important;
@@ -118,6 +150,9 @@
         }
         .button {
           content: "";
+          .button-text {
+            content: "";
+          }
         }
       }
     }

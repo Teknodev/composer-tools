@@ -1,16 +1,15 @@
-import * as React from "react";
-import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  page: string;
-  image?: TypeMediaInputValue;
-  count: React.JSX.Element;
-  count_text: React.JSX.Element;
-  card_text: React.JSX.Element;
+  url: string;
+  image?: any;
+  count: string;
+  label: string;
+  text: string;
 };
 
 class List2 extends BaseList {
@@ -69,7 +68,7 @@ class List2 extends BaseList {
           value: [
             {
               type: "page",
-              key: "page",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -93,14 +92,14 @@ class List2 extends BaseList {
             },
             {
               type: "string",
-              key: "count_text",
-              displayer: "Count Text",
+              key: "label",
+              displayer: "Label",
               value: "Listings",
             },
             {
               type: "string",
-              key: "card_text",
-              displayer: "Card Text",
+              key: "text",
+              displayer: "Text",
               value: "Nightlife",
             },
           ],
@@ -112,7 +111,7 @@ class List2 extends BaseList {
           value: [
             {
               type: "page",
-              key: "page",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -136,14 +135,14 @@ class List2 extends BaseList {
             },
             {
               type: "string",
-              key: "count_text",
-              displayer: "Count Text",
+              key: "label",
+              displayer: "Label",
               value: "Listings",
             },
             {
               type: "string",
-              key: "card_text",
-              displayer: "Card Text",
+              key: "text",
+              displayer: "Text",
               value: "Shops",
             },
           ],
@@ -155,7 +154,7 @@ class List2 extends BaseList {
           value: [
             {
               type: "page",
-              key: "page",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -179,14 +178,14 @@ class List2 extends BaseList {
             },
             {
               type: "string",
-              key: "count_text",
-              displayer: "Count Text",
+              key: "label",
+              displayer: "Label",
               value: "Listings",
             },
             {
               type: "string",
-              key: "card_text",
-              displayer: "Card Text",
+              key: "text",
+              displayer: "Text",
               value: "Restaurant",
             },
           ],
@@ -198,7 +197,7 @@ class List2 extends BaseList {
           value: [
             {
               type: "page",
-              key: "page",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -222,14 +221,14 @@ class List2 extends BaseList {
             },
             {
               type: "string",
-              key: "count_text",
-              displayer: "Count Text",
+              key: "label",
+              displayer: "Label",
               value: "Listings",
             },
             {
               type: "string",
-              key: "card_text",
-              displayer: "Card Text",
+              key: "text",
+              displayer: "Text",
               value: "Outdoor Activities",
             },
           ],
@@ -241,7 +240,7 @@ class List2 extends BaseList {
           value: [
             {
               type: "page",
-              key: "page",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -265,14 +264,14 @@ class List2 extends BaseList {
             },
             {
               type: "string",
-              key: "count_text",
-              displayer: "Count Text",
+              key: "label",
+              displayer: "Label",
               value: "Listings",
             },
             {
               type: "string",
-              key: "card_text",
-              displayer: "Card Text",
+              key: "text",
+              displayer: "Text",
               value: "Hotels",
             },
           ],
@@ -284,7 +283,7 @@ class List2 extends BaseList {
           value: [
             {
               type: "page",
-              key: "page",
+              key: "url",
               displayer: "Navigate To",
               value: "",
             },
@@ -308,14 +307,14 @@ class List2 extends BaseList {
             },
             {
               type: "string",
-              key: "count_text",
-              displayer: "Count Text",
+              key: "label",
+              displayer: "Label",
               value: "Listings",
             },
             {
               type: "string",
-              key: "card_text",
-              displayer: "Card Text",
+              key: "text",
+              displayer: "Text",
               value: "New York",
             },
           ],
@@ -326,7 +325,7 @@ class List2 extends BaseList {
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Overlay",
+      displayer: "Image Overlay",
       value: true,
     });
     
@@ -356,7 +355,7 @@ class List2 extends BaseList {
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     const cards = this.castToObject<CardItem[]>("cards");
-    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonType = this.castToObject<any>("button");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
@@ -366,25 +365,17 @@ class List2 extends BaseList {
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {this.castToString(description) && (
-                  <Base.SectionDescription className={this.decorateCSS("description")} >
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle as any}
+              </Base.SectionSubTitle>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title as any}
+              </Base.SectionTitle>
+              <Base.SectionDescription className={this.decorateCSS("description")} >
+                {description as any}
+              </Base.SectionDescription>
+            </Base.VerticalContent>
             {(cards.length > 0) && (
               <Base.ListGrid
                 className={this.decorateCSS("cards-box")}
@@ -395,7 +386,7 @@ class List2 extends BaseList {
                 }}
               >
                 {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => (
-                  <ComposerLink key={index} path={item.page}>
+                  <ComposerLink key={index} path={item.url}>
                     <div
                       className={this.decorateCSS("card")}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
@@ -411,40 +402,30 @@ class List2 extends BaseList {
                       <div className={this.decorateCSS("overlay-gradient")}></div>
                       <div className={this.decorateCSS("card-content")}>
                         <div className={this.decorateCSS("stick")}></div>
-                        {(this.castToString(item.card_text) || item.count || this.castToString(item.count_text)) && (
-                          <div className={this.decorateCSS("category")}>
-                            {this.castToString(item.card_text) && (
-                              <Base.H4 className={this.decorateCSS("category-name")}>
-                                {item.card_text}
-                              </Base.H4>
-                            )}
-                            {(this.castToString(item.count) || this.castToString(item.count_text)) && (
-                              <div className={this.decorateCSS("count-badge")}>
-                                {this.castToString(item.count) && (
-                                  <Base.P className={this.decorateCSS("count-value")}>
-                                    {item.count}
-                                  </Base.P>
-                                )}
-                                {this.castToString(item.count_text) && (
-                                  <Base.P className={this.decorateCSS("count-label")}>
-                                    {item.count_text}
-                                  </Base.P>
-                                )}
-                              </div>
-                            )}
+                        <div className={this.decorateCSS("category")}>
+                          <Base.H4 className={this.decorateCSS("category-name")}>
+                            {item.text as any}
+                          </Base.H4>
+                          <div className={this.decorateCSS("count-badge")}>
+                            <Base.P className={this.decorateCSS("count-value")}>
+                              {item.count as any}
+                            </Base.P>
+                            <Base.P className={this.decorateCSS("count-label")}>
+                              {item.label as any}
+                            </Base.P>
                           </div>
-                        )}
+                        </div>
                       </div>
                     </div>
                   </ComposerLink>
                 ))}
               </Base.ListGrid>
             )}
-            {((this.getComponentState("imageCount") < cards.length) && this.castToString(buttonType.text)) && (
+            {(this.getComponentState("imageCount") < cards.length) && (
               <ComposerLink path={buttonType.url}>
                 <div className={this.decorateCSS("button-wrapper")}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
+                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text as any}</Base.P>
                   </Base.Button>
                 </div>
               </ComposerLink>

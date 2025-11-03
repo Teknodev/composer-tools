@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list9.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-    icon: string;
-    image: string;
+    icon: TypeMediaInputValue;
+    image: TypeMediaInputValue;
     title: React.JSX.Element;
     description: React.JSX.Element;
 };
@@ -19,7 +19,7 @@ class List9 extends BaseList {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "Smart solutions",
         });
         this.addProp({
             type: "string",
@@ -214,9 +214,16 @@ class List9 extends BaseList {
         this.addProp({
             type: "number",
             key: "itemCount",
-            displayer: "Item count in a row",
+            displayer: "Item Count in a Row",
             value: 4,
             max: 4,
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Image Overlay",
+            value: false,
         });
 
         this.addProp({
@@ -238,18 +245,19 @@ class List9 extends BaseList {
         const cards = this.castToObject<Card[]>("cards");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
+        const imageOverlay = this.getPropValue("overlay");
         
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                    <Base.VerticalContent className={this.decorateCSS("header")}>
                         {this.castToString(subtitle) && (
                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                 {subtitle}
                             </Base.SectionSubTitle>
                         )}
                         {this.castToString(title) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                            <Base.SectionTitle className={this.decorateCSS("header-title")}>
                                 {title}
                             </Base.SectionTitle>
                         )}
@@ -274,26 +282,28 @@ class List9 extends BaseList {
                                             value={card.image}
                                         />
                                     )}
-
+                                    {imageOverlay && (
+                                        <div className={this.decorateCSS("overlay")} />
+                                    )}
                                 </div>
                                 <Base.VerticalContent
-                                    className={this.decorateCSS("little-container")}
+                                    className={this.decorateCSS("card-content")}
                                 >
                                     {card.icon && (
                                         <Base.Media
                                             value={card.icon}
-                                            propsIcon={{ className: this.decorateCSS("icon") }}
+                                            className={this.decorateCSS("icon")}
                                         />
                                     )}
                                     {this.castToString(card.title) && (
-                                        <Base.H3 className={this.decorateCSS("title")}>
+                                        <Base.H3 className={this.decorateCSS("card-title")}>
                                             {card.title}
                                         </Base.H3>
                                     )}
                                     {this.castToString(card.description) && (
-                                        <Base.P className={this.decorateCSS("description")}>
+                                        <Base.SectionDescription className={this.decorateCSS("card-description")}>
                                             {card.description}
-                                        </Base.P>
+                                        </Base.SectionDescription>
                                     )}
                                 </Base.VerticalContent>
                             </div>

@@ -265,17 +265,17 @@ class List3 extends BaseList {
                   <Base.VerticalContent className={this.decorateCSS("intro-content")}>
                     {this.castToString(subtitle) && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {subtitle}
+                        {subtitle as any}
                       </Base.SectionSubTitle>
                     )}
                     {this.castToString(title) && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
+                        {title as any}
                       </Base.SectionTitle>
                     )}
                     {this.castToString(description) && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {description}
+                        {description as any}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
@@ -284,7 +284,7 @@ class List3 extends BaseList {
                   <ComposerLink path={buttonType.url}>
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
                       <Base.P className={this.decorateCSS("button-text")}>
-                        {buttonType.text}
+                        {buttonType.text as any}
                       </Base.P>
                       <Base.Icon
                         name={"FaArrowRight"}
@@ -307,14 +307,14 @@ class List3 extends BaseList {
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
                       <Base.H5 className={this.decorateCSS("card-title")}>
-                        {listItem.itemTitle}
+                        {listItem.itemTitle as any}
                       </Base.H5>
                     )}
                     {listItem.texts.map((item: TextItem, index: number) => (
                       <Base.VerticalContent key={index} className={this.decorateCSS("event-item")}>
                         <div className={this.decorateCSS("divider")}></div>
                         <Base.P className={this.decorateCSS("event-text")}>
-                          {item.itemText}
+                          {item.itemText as any}
                         </Base.P>
                       </Base.VerticalContent>
                     ))}
