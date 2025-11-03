@@ -16,7 +16,7 @@ class FeatureComponent26 extends BaseFeature {
       type: "media",
       key: "image",
       displayer: "Image",
-      value: { type: "image", url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg" },
+      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media", },
       additionalParams: { availableTypes: ["image"] }
     });
 
@@ -68,10 +68,10 @@ class FeatureComponent26 extends BaseFeature {
                 const hasTitle = !!this.castToString(title);
                 const hasDescription = !!this.castToString(description);
                 const hasButtons = Array.isArray(buttons) && buttons.some((b: any) => {
-                  const t = typeof b?.text === "string" ? b.text.trim() : this.castToString(b?.text);
-                  const ic = typeof b?.icon === "string" ? b.icon.trim() : b?.icon;
-                  const im = typeof b?.image === "string" ? b.image.trim() : b?.image;
-                  return !!t || !!ic || !!im;
+                  const textExist = this.castToString(b?.text);
+                  const iconExist = !!b?.icon;
+                  const imageExist = !!b?.image;
+                  return !!textExist || !!iconExist || !!imageExist;
                 });
                 const hasAnyContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
                 if (!hasAnyContent) return null;
