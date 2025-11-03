@@ -39,6 +39,12 @@ class HeroSection1 extends BaseHeroSection {
       value: true,
     });
     this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+    this.addProp({
       type: "array",
       key: "sliders",
       displayer: "Sliders",
@@ -46,7 +52,7 @@ class HeroSection1 extends BaseHeroSection {
         {
           type: "object",
           key: "slider",
-          displayer: "Slider - 1",
+          displayer: "Slider",
           value: [
             {
               type: "string",
@@ -57,7 +63,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "BRANDING AND IDENTITY",
             },
             {
@@ -89,7 +95,7 @@ class HeroSection1 extends BaseHeroSection {
         {
           type: "object",
           key: "slider",
-          displayer: "Slider - 2",
+          displayer: "Slider",
           value: [
             {
               type: "string",
@@ -100,7 +106,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "WEB AND APPLICATION",
             },
             {
@@ -132,7 +138,7 @@ class HeroSection1 extends BaseHeroSection {
         {
           type: "object",
           key: "slider",
-          displayer: "Slider - 3",
+          displayer: "Slider",
           value: [
             {
               type: "string",
@@ -143,7 +149,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "GRAPHICS AND IDENTITY",
             },
             {
@@ -175,7 +181,7 @@ class HeroSection1 extends BaseHeroSection {
         {
           type: "object",
           key: "slider",
-          displayer: "Slider - 4",
+          displayer: "Slider",
           value: [
             {
               type: "string",
@@ -186,7 +192,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "PACKAGING AND WEB",
             },
             {
@@ -218,7 +224,7 @@ class HeroSection1 extends BaseHeroSection {
         {
           type: "object",
           key: "slider",
-          displayer: "Slider - 5",
+          displayer: "Slider",
           value: [
             {
               type: "string",
@@ -229,7 +235,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "DESIGN AND IDENTITY",
             },
             {
@@ -300,11 +306,12 @@ class HeroSection1 extends BaseHeroSection {
   };
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
     const settings = {
       dots: true,
       infinite: true,
       speed: 1500,
-      autoplay: true,
+      autoplay: autoplay,
       autoplaySpeed: 3500,
       slidesToShow: 1,
       slidesToScroll: 1,

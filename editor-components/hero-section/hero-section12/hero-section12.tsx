@@ -3,10 +3,12 @@ import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "composer-tools/composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type SliderItem = {
   text: React.JSX.Element;
   image: TypeMediaInputValue;
+  page?: string;
 };
 
 class HeroSection12 extends BaseHeroSection {
@@ -21,6 +23,13 @@ class HeroSection12 extends BaseHeroSection {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
       value: true,
     });
     this.addProp({
@@ -51,6 +60,12 @@ class HeroSection12 extends BaseHeroSection {
               displayer: "Text",
               value: "Autumn Stuff",
             },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
+            }
           ],
         },
         {
@@ -75,6 +90,12 @@ class HeroSection12 extends BaseHeroSection {
               key: "text",
               displayer: "Text",
               value: "Breakfast",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -101,6 +122,12 @@ class HeroSection12 extends BaseHeroSection {
               displayer: "Text",
               value: "The Notebook",
             },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -126,6 +153,12 @@ class HeroSection12 extends BaseHeroSection {
               displayer: "Text",
               value: "Little Pumpkin",
             },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -150,6 +183,12 @@ class HeroSection12 extends BaseHeroSection {
               key: "text",
               displayer: "Text",
               value: "Autumn Evening",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -184,6 +223,12 @@ class HeroSection12 extends BaseHeroSection {
               displayer: "Text",
               value: "Pumpkin Pie",
             },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -208,6 +253,12 @@ class HeroSection12 extends BaseHeroSection {
               key: "text",
               displayer: "Text",
               value: "Coffee Time",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -234,6 +285,12 @@ class HeroSection12 extends BaseHeroSection {
               displayer: "Text",
               value: "Autumn Stories",
             },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -259,6 +316,12 @@ class HeroSection12 extends BaseHeroSection {
               displayer: "Text",
               value: "Still Life",
             },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -283,6 +346,12 @@ class HeroSection12 extends BaseHeroSection {
               key: "text",
               displayer: "Text",
               value: "Boooo!",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -325,12 +394,13 @@ class HeroSection12 extends BaseHeroSection {
   }
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
     const settings = {
       arrows: true,
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: autoplay,
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -435,13 +505,15 @@ class HeroSection12 extends BaseHeroSection {
                         )}
                       </div>
                     )}
-                    <div
+                    <Base.P
                       className={`${this.decorateCSS("slider-item-text")} ${
                         !item.image && this.decorateCSS("no-image-text")
                       }`}
                     >
-                      {item.text}
-                    </div>
+                      <ComposerLink path={item.page}>
+                        {item.text}
+                      </ComposerLink>
+                    </Base.P>
                   </div>
                 ))}
               </ComposerSlider>
@@ -472,13 +544,15 @@ class HeroSection12 extends BaseHeroSection {
                         )}
                       </div>
                     )}
-                    <div
+                    <Base.P
                       className={`${this.decorateCSS("slider-item-text")} ${
                         !item.image && this.decorateCSS("no-image-text")
                       }`}
                     >
-                      {item.text}
-                    </div>
+                      <ComposerLink path={item.page}>
+                        {item.text}
+                      </ComposerLink>
+                    </Base.P>
                   </div>
                 ))}
               </ComposerSlider>

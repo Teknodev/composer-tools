@@ -94,7 +94,7 @@ class HeroSection5 extends BaseHeroSection {
             }}
           >
             {overlay && backgroundImage?.url && <div className={this.decorateCSS("overlay")} />}
-            <Base.VerticalContent className={this.decorateCSS("heading-page")}>
+            <Base.VerticalContent className={this.decorateCSS("content")}>
               {logo && (
                 <Base.Media 
                   value={logo} 

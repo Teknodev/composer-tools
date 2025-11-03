@@ -43,6 +43,14 @@ class HeroSection6 extends BaseHeroSection {
       displayer: "Description Animation",
       value: true,
     });
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+    
     this.addProp({
       type: "media",
       key: "image1",
@@ -124,7 +132,7 @@ class HeroSection6 extends BaseHeroSection {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showLeftContent && (
-            <div className={this.decorateCSS("left-content")}>
+            <Base.VerticalContent className={this.decorateCSS("left-content")}>
               {(isTitleExist || isTitle2Exist) && (
                 <div className={this.decorateCSS("title-container")}>
                   {isTitleExist && (
@@ -159,16 +167,21 @@ class HeroSection6 extends BaseHeroSection {
                   }
                 </div>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
 
           {showRightContent && (
             <div className={this.decorateCSS("right-content")}>
               {this.getPropValue("image1") && (
-                <Base.Media
-                  value={this.getPropValue("image1")}
-                  className={this.decorateCSS("image1")}
-                />
+                <div className={this.decorateCSS("image1-wrapper")}>
+                  <Base.Media
+                    value={this.getPropValue("image1")}
+                    className={this.decorateCSS("image1")}
+                  />
+                  {this.getPropValue("overlay") && this.getPropValue("image1") && this.getPropValue("image1").type === "image" && this.getPropValue("image1").url && (
+                    <div className={this.decorateCSS("overlay")} />
+                  )}
+                </div>
               )}
               {image2 && (
                 <Base.Media

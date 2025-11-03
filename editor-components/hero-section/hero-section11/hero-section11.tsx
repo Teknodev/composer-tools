@@ -9,6 +9,19 @@ class HeroSection11 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
@@ -45,6 +58,13 @@ class HeroSection11 extends BaseHeroSection {
         type: "icon",
         name: "IoMdClose",
       },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -99,6 +119,7 @@ class HeroSection11 extends BaseHeroSection {
   render() {
     const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"));
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const logo = this.getPropValue("logo");
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         {(hasLeft) && (
@@ -106,6 +127,12 @@ class HeroSection11 extends BaseHeroSection {
             <Base.MaxContent className={this.decorateCSS("max-content")}>
 
               <Base.VerticalContent className={`${this.decorateCSS("content")} ${!this.getPropValue("backgroundImage") && this.decorateCSS("no-image")}`}>
+                {logo && (
+                  <Base.Media 
+                    value={logo} 
+                    className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                  />
+                )}
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
@@ -134,6 +161,9 @@ class HeroSection11 extends BaseHeroSection {
                 value={this.getPropValue("backgroundImage")}
                 className={this.decorateCSS("image")}
               />
+              {this.getPropValue("overlay") && this.getPropValue("backgroundImage")?.url && (
+                <div className={this.decorateCSS("overlay")} />
+              )}
             </div>
             {this.getPropValue("icon") && (
               <div className={this.decorateCSS("icon-box")}>
@@ -153,7 +183,6 @@ class HeroSection11 extends BaseHeroSection {
             onClick={this.handleCloseVideoModal}
             className={this.decorateCSS("video-modal")}
           >
-            <div>
               <button
                 className={this.decorateCSS("close-button-wrapper")}
                 onClick={this.handleCloseVideoModal}
@@ -167,7 +196,6 @@ class HeroSection11 extends BaseHeroSection {
                   className={this.decorateCSS("video-player")}
                 />
               )}
-            </div>
           </Base.Overlay>
         )}
       </Base.Container>

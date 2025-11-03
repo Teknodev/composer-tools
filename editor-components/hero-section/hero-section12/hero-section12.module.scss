@@ -114,14 +114,7 @@
           font-size: 3rem;
           word-wrap: break-word;
           text-align: start;
-
-          blinkpage > p {
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
-          }
+          cursor: pointer;
         }
 
         .no-image-text {

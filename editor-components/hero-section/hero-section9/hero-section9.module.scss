@@ -46,7 +46,6 @@
 
       .buttons {
         position: absolute;
-        font-size: 1.5rem;
         rotate: -90deg;
         transform-origin: top left;
         top: 50%;
@@ -58,13 +57,13 @@
 
         .text {
           margin-right: var(--composer-gap-md);
-          font-size: 1rem;
         }
 
         .counter-wrapper {
+          display: flex;
+          align-items: center;
           .active-number {
             color: var(--composer-primary-color);
-            font-size: 2.5rem;
           }
 
           .slash {
@@ -73,7 +72,6 @@
 
           .count {
             color: var(--composer-primary-color);
-            font-size: 1rem;
           }
         }
       }
@@ -138,11 +136,26 @@
     }
 
     .right-content {
-
-      .image {
+      .image-wrapper {
+        position: relative;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-color: var(--composer-overlay-color);
+        }
       }
     }
 
@@ -150,7 +163,6 @@
       position: absolute;
       left: 50px;
       bottom: 50px;
-      font-size: 1rem;
       color: var(--composer-font-color-primary);
       display: flex;
       justify-content: flex-start;
@@ -233,9 +245,11 @@
         }
 
         .right-content {
-          .image {
-            height: 40vh;
-            width: 100%;
+          .image-wrapper {
+            .image {
+              height: 40vh;
+              width: 100%;
+            }
           }
         }
 

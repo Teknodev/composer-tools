@@ -37,13 +37,27 @@ class HeroSection8 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "line",
-      displayer: "Line Enabled",
+      displayer: "Line",
       value: true,
     });
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Overlay Enabled",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "pageNumber",
+      displayer: "Page Number",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
       value: true,
     });
 
@@ -205,7 +219,7 @@ class HeroSection8 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "previousArrow",
-      displayer: "Previous Arrow Icon",
+      displayer: "Previous Icon",
       additionalParams: {
         availableTypes: ["icon"],
       },
@@ -217,7 +231,7 @@ class HeroSection8 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "nextArrow",
-      displayer: "Next Arrow Icon",
+      displayer: "Next Icon",
       additionalParams: {
         availableTypes: ["icon"],
       },
@@ -263,16 +277,18 @@ class HeroSection8 extends BaseHeroSection {
   render() {
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
     let sliderEffect = this.getPropValue("slider_animation") ? true : false;
+    const autoplay = this.getPropValue("autoplay");
     const allSlidesWithoutImages = this.castToObject<ISliderData[]>("slider").every(
       (slide) => !slide.image
     );
     const settings = {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 1500,
       fade: sliderEffect,
       swipe: true,
-      autoplay: false,
+      autoplay: autoplay,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -361,11 +377,13 @@ class HeroSection8 extends BaseHeroSection {
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
                 </div>
               }
-              <div className={this.decorateCSS("pagination")}>
-                <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
-                <div className={this.decorateCSS("slash")}> / </div>
-                <div className={this.decorateCSS("total-page")}>{slideCount}</div>
-              </div>
+              {this.getPropValue("pageNumber") && (
+                <div className={this.decorateCSS("pagination")}>
+                  <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
+                  <div className={this.decorateCSS("slash")}> / </div>
+                  <div className={this.decorateCSS("total-page")}>{slideCount}</div>
+                </div>
+              )}
               <div className={this.decorateCSS("arrow-wrapper")}>
                 <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                   sliderRef.current.slickPrev();

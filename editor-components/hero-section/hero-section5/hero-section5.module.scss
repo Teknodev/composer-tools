@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0px var(--composer-gap-xl) 2var(--composer-gap-md) var(--composer-gap-xl) !important;
+  padding: 0px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
   .max-content {
     .background-layer {
       position: relative;
@@ -24,7 +24,7 @@
           color: white;
         }
 
-        .heading-page {
+        .content {
           padding: var(--composer-gap-lg);
           height: calc(100vh - var(--composer-gap-md));
         }
@@ -48,7 +48,7 @@
       background-color: var(--composer-overlay-color);
     }
 
-    .heading-page {
+    .content {
       position: relative;
       z-index: 2;
       width: 100%;
@@ -99,21 +99,26 @@
         flex-direction: row;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
       }
     }
   }
 }
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0px var(--composer-gap-lg) 2var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: 0px var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0px var(--composer-gap-md) 2var(--composer-gap-md) var(--composer-gap-md) !important;
+    padding: 0px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
     .max-content {
-      .heading-page {
+      .content {
         padding: var(--composer-gap-md);
 
         .subtitle,

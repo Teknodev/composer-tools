@@ -203,6 +203,14 @@ class HeroSection7 extends BaseHeroSection {
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
     this.setComponentState("active_image", this.castToObject<ISliderData[]>("pages")[0].image);
   }
   static getName(): string {
@@ -232,10 +240,15 @@ class HeroSection7 extends BaseHeroSection {
               ))}
             </div>
             {image && (
-              <Base.Media
-                value={image}
-                className={this.decorateCSS("image")}
-              />
+              <div className={this.decorateCSS("image-wrapper")}>
+                <Base.Media
+                  value={image}
+                  className={this.decorateCSS("image")}
+                />
+                {this.getPropValue("overlay") && image && image.type === "image" && image.url && (
+                  <div className={this.decorateCSS("overlay")} />
+                )}
+              </div>
             )}
           </div>
         </Base.MaxContent>

@@ -10,7 +10,7 @@
 
 .container {
   background-color: var(--composer-html-background);
-  padding: 0px 50px 20px 50px;
+  padding: 0px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     width: 100%;
     display: flex;
@@ -61,8 +61,6 @@
       }
       .description{
         @include textEllipsis(3);
-        font-weight: 400;
-        font-size: 1.5rem;
         margin: 0;
         color: var(--composer-font-color-primary);
         line-height: 1;
@@ -98,11 +96,28 @@
       align-items: center;
       word-wrap: break-word;
 
-      .image1 {
+      .image1-wrapper {
         position: relative;
-        object-fit: cover;
-        border-radius: var(--composer-border-radius-md);
         max-width: 100%;
+
+        .image1 {
+          position: relative;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-md);
+          max-width: 100%;
+          height: 100%;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-color: var(--composer-overlay-color);
+          border-radius: var(--composer-border-radius-md);
+        }
       }
       .image2{
         position: absolute;
@@ -174,8 +189,6 @@
           }
         }
         .description {
-          font-size: 1.5rem;
-          line-height: 1.5;
           @include textFull;
         }
       }
@@ -185,9 +198,11 @@
         position: static;
         width: 100%;
         min-height: 200px;
-        .image1 {
-          border-radius: 6px;
-          max-width: 100%;
+        .image1-wrapper {
+          .image1 {
+            border-radius: 6px;
+            max-width: 100%;
+          }
         }
         .image2 {
           animation: fade-in 1s ease-in-out 0.5s forwards;
@@ -223,7 +238,6 @@
           line-height: 40px;
         }
         .description {
-          font-size: 1rem;
           width: 85%;
           line-height: 20px;
           z-index: 2;
@@ -240,10 +254,12 @@
       .right-content {
         position: relative;
 
-        .image1 {
-          width: 100%;
-          max-width: 100%;
-          right: -40%;
+        .image1-wrapper {
+          .image1 {
+            width: 100%;
+            max-width: 100%;
+            right: -40%;
+          }
         }
         .image2 {
           animation: fade-in 1s ease-in-out 0.5s forwards;

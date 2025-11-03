@@ -4,50 +4,53 @@ import styles from "./hero-section4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { BaseNavigator } from "../../EditorComponent";
 
 class HeroSection4 extends BaseHeroSection {
-  imageRef: React.RefObject<HTMLDivElement>;
+  imageRef: React.RefObject<HTMLDivElement | null>;
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "card",
-      displayer: "Card",
-      value: [
-        {
-          type: "boolean",
-          key: "subtitle_line",
-          displayer: "Subtitle Line",
-          value: true,
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Build perfect websites",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Unlimited power",
-        },
-        {
-          type: "string",
-          key: "desc",
-          displayer: "Description",
-          value:
-            "Most of our writings have centered on implementing strategies for business units, with their unique <br /><br /> geeza arse it's your round grub sloshed burke, my good sir chancer he legged it he lost his bottle pear shaped bugger all mate",
-        },
-        {
-          type: "string",
-          key: "note",
-          displayer: "Note",
-          value: "NOTE: Some details are very important.",
-        },
-      ],
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Build perfect websites",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Unlimited power",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Most of our writings have centered on implementing strategies for business units, with their unique <br /><br /> geeza arse it's your round grub sloshed burke, my good sir chancer he legged it he lost his bottle pear shaped bugger all mate",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "note",
+      displayer: "Note",
+      value: "NOTE: Some details are very important.",
+    });
+
+    
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
     });
 
     this.addProp(
@@ -59,6 +62,13 @@ class HeroSection4 extends BaseHeroSection {
         null, 
         "Tertiary")
     );
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.addProp({
       type: "media",
@@ -131,17 +141,17 @@ handleScroll = () => {
 
   render() {
     const button = this.castToObject("button") as INPUTS.CastedButton;
-    const card: any = this.castToObject("card");
 
     const imageAnm = this.getPropValue("image-anm");
     const image = this.getPropValue("image");
+    const overlay = this.getPropValue("overlay");
+    const logo = this.getPropValue("logo");
     const buttonText = this.castToString(button.text);
-    const showCard = this.castToString(card.subtitle) || 
-                    this.castToString(card.title) || 
-                    this.castToString(card.desc) || 
-                    buttonText || 
-                    this.castToString(card.note);
-    const scrollY = this.getComponentState("scrollY");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const note = this.castToString(this.getPropValue("note"));
+    const showCard = subtitle || title || description || buttonText || note;
 
 const getStyle = (direction: "up" | "down") => {
   const isAnimating = this.getComponentState("animate");
@@ -177,47 +187,46 @@ const getStyle = (direction: "up" | "down") => {
           {image && (
             <div 
             ref={this.imageRef} className={this.decorateCSS("image-container")}>
-              <Base.Media
+              <div
                 className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
-                value={image}
-                style={getStyle("up")}
-              />
+                style={imageAnm ? getStyle("up") : undefined}
+              >
+                <Base.Media
+                  value={image}
+                />
+                {overlay && image?.url && <div className={this.decorateCSS("overlay")} />}
+              </div>
             </div>
           )}
 
           {showCard && (
-            <div className={this.decorateCSS("card")} style={getStyle("down")}>
-              <div className={this.decorateCSS("box")}>
-                {(this.castToString(card.subtitle) || this.castToString(card.title)) && (
-                  <div className={this.decorateCSS("heading")}>
-                    {this.castToString(card.subtitle) && (
-                      <div className={this.decorateCSS("sub-heading-container")}>
-                        {card.subtitle_line && (
-                          <hr className={this.decorateCSS("sub-heading-line")} />
-                        )}
-                        <span className={this.decorateCSS("sub-heading-title")}>
-                          {card.subtitle}
-                        </span>
-                      </div>
-                    )}
-                    {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
-                  </div>
-                )}
-                {this.castToString(card.desc) && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
-                {buttonText && (
-                  <div className={this.decorateCSS("button-container")}>
-                    <ComposerLink path={button?.url || '#'}>
-                      <Base.Button 
-                        buttonType={button?.type || "Tertiary"} 
-                        className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  </div>
-                )}
-                {this.castToString(card.note) && <p className={this.decorateCSS("note")}>{this.castToString(card.note)}</p>}
-              </div>
-            </div>
+            <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
+              {logo && (
+                <Base.Media 
+                  value={logo} 
+                  className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                />
+              )}
+              {subtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {buttonText && (
+                <div className={this.decorateCSS("button-container")}>
+                  <ComposerLink path={button?.url || '#'}>
+                    <Base.Button 
+                      buttonType={button?.type || "Tertiary"} 
+                      className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                </div>
+              )}
+              {note && <Base.P className={this.decorateCSS("note")}>{this.getPropValue("note")}</Base.P>}
+          </Base.VerticalContent>
           )}
         </Base.MaxContent>
       </Base.Container>

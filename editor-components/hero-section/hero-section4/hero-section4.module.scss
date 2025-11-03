@@ -43,73 +43,67 @@
         scale: none;
         rotate: none;
         object-fit: cover;
+        position: relative;
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+        }
       }
 
       .no-img-anm {
-        top: 50% !important;
-        transform: translateY(-50%) !important;
+        height: 100%;
       }
     }
 
     .card {
+      position: relative;
+      z-index: 2;
+
+      .logo {
+        &.logo-icon {
+          font-size: 3rem;
+          color: var(--composer-font-color-primary);
+        }
+
+        &.logo-image {
+          aspect-ratio: 4/1;
+          object-fit: cover;
+          width: 100%;
+          max-width: 200px;
+        }
+      }
       border-radius: var(--composer-border-radius-xs);
       position: absolute;
       bottom: var(--composer-gap-md);
       background: var(--composer-html-background);
       right: var(--composer-gap-xl);
       width: 30%;
+      padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
-      .box {
-        padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-        display: flex;
-        gap: var(--composer-gap-sm);
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-        .heading {
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
-          .sub-heading-container {
-            font-size: 1rem;
-            color: var(--composer-font-color-primary);
-            display: flex;
-            gap: var(--composer-gap-sm);
-            align-items: center;
-            .sub-heading-line {
-              height: 1px;
-              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-              width: 4rem;
-              margin: 0px;
-            }
-            .sub-heading-title {
-              flex: 1;
-              font-size: 1.5rem;
-              color: var(--composer-font-color-primary);
-              @include textEllipsis(2);
-            }
-          }
-          .title {
-            font-size: 3.5rem;
-            margin: 0;         
-            color: var(--composer-font-color-primary);
-            @include textEllipsis(2);
+      .subtitle ,.title ,.description ,.note {
+        content: "";
+      }
+
+      .subtitle, .title, .note {
+        @include textEllipsis(2);
+      }
+
+      .button-container {
+        .button{
+          .button-text {
+            content: "";
           }
         }
+      }
 
-        .desc {
-          margin: 0;
-          font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
-          max-height: 20rem;
-          overflow: auto;
-        }
-
-        .note {
-          font-size: 1.5rem;
-          color: var(--composer-primary-color);
-          margin: 0;
-          @include textEllipsis(2);
-        }
+      .note {
+        color: var(--composer-primary-color);
       }
     }
   }
@@ -120,27 +114,6 @@
     .max-content{
       .card {
         width: 50%;
-        .box {
-          .heading {
-            .sub-heading-container {
-              .sub-heading-line {
-                width: 3rem;
-              }
-              .sub-heading-title {
-                font-size: 1rem;
-              }
-            }
-            .title {
-              font-size: 2rem;
-              letter-spacing: 2px;
-            }
-          }
-    
-          .desc,
-          .note {
-            font-size: 1rem;
-          }
-        }
       }
     }
   }
@@ -168,20 +141,7 @@
         transform: none ;
         right: 0px ;
         width: auto ;
-    
-        .box {
-          padding: var(--composer-gap-md) ;
-          .heading {
-            .sub-heading-container {
-              .sub-heading-line {
-                display: none;
-              }
-            }
-          }
-          .desc{
-            max-height: unset !important;
-          }
-        }
+        padding: var(--composer-gap-md) ;
       }
     }
   }

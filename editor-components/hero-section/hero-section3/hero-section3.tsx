@@ -19,13 +19,13 @@ class HeroSection3 extends BaseHeroSection {
     super(props, styles);
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider",
       key: "slider",
       value: [
         {
           type: "object",
-          displayer: "Item 1",
-          key: "item1",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -60,13 +60,13 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["1", "2", "3"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", "", "", "Primary")
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
           ],
         },
         {
           type: "object",
-          displayer: "Item 2",
-          key: "item2",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -101,13 +101,13 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["1", "2", "3"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", "", "", "Primary")
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
           ],
         },
         {
           type: "object",
-          displayer: "Item 3",
-          key: "item3",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -149,9 +149,29 @@ class HeroSection3 extends BaseHeroSection {
       ],
     });
     this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Enable Animation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
       value: true,
     });
 
@@ -170,6 +190,8 @@ class HeroSection3 extends BaseHeroSection {
   }
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
+    const logo = this.getPropValue("logo");
     const settings = {
       dots: false,
       fade: true,
@@ -177,6 +199,8 @@ class HeroSection3 extends BaseHeroSection {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
+      autoplay: autoplay,
+      autoplaySpeed: 3000,
       beforeChange: (current: number, next: number) => {
         setTimeout(() => {
           this.setComponentState("activeSlide", next);
@@ -217,9 +241,17 @@ class HeroSection3 extends BaseHeroSection {
                   <div className={this.decorateCSS("content")}>
                     {showContent && (
                       <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                        {title && <Base.H1 className={this.decorateCSS("title")}>{item.title}</Base.H1>}
+                        {logo && (
+                         <div className={this.decorateCSS("logo-container")}> 
+                          <Base.Media 
+                            value={logo} 
+                            className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                          />
+                        </div> 
+                        )}
+                        {title && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                         {description && (
-                          <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
+                          <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
                         )}
                         {buttonText && (
                           <div className={this.decorateCSS("button-container")}>

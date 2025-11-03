@@ -20,6 +20,19 @@
         padding: var(--composer-gap-md) 0px var(--composer-gap-md) var(--composer-gap-lg); 
         &.no-image{
           padding:0px var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md);
+        }
+        .logo {
+          &.logo-icon {
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          &.logo-image {
+            aspect-ratio: 4/1;
+            object-fit: contain;
+            width: 150px;
+            height: 50px;
+          }
         }       
         .title {
           font-size: 5rem;
@@ -51,10 +64,20 @@
     }
     .image-wrapper{
       height: 100%;
+      position: relative;
       .image{
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: var(--composer-overlay-color);
       }
     }
     .icon-box {
@@ -63,6 +86,7 @@
       top: 50%;
       transform: translateY(-50%);
       left: -50px;
+      z-index: 2;
       .icon-wrapper{
         width: 100px;
         height: 100px;

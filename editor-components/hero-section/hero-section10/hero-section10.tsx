@@ -149,6 +149,19 @@ class HeroSection10 extends BaseHeroSection {
       value: true
     })
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -303,11 +316,12 @@ class HeroSection10 extends BaseHeroSection {
   }
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
     const settings = {
       dots: false,
       infinite: true,
       speed: 2500,
-      autoplay: false,
+      autoplay: autoplay,
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -461,10 +475,15 @@ class HeroSection10 extends BaseHeroSection {
                         </h1>
                       )}
                       {image && (
-                        <Base.Media
-                          className={this.decorateCSS("image")}
-                          value={item.image}
-                        />
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <Base.Media
+                            className={this.decorateCSS("image")}
+                            value={item.image}
+                          />
+                          {this.getPropValue("overlay") && item.image && item.image.type === "image" && item.image.url && (
+                            <div className={this.decorateCSS("overlay")} />
+                          )}
+                        </div>
                       )}
                     </div>
                   )}

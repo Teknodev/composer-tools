@@ -64,7 +64,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "boolean",
               key: "dot",
               value: true,
-              displayer: "Dot Enabled",
+              displayer: "Dot",
             },
             {
               type: "string",
@@ -119,7 +119,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "boolean",
               key: "dot",
               value: true,
-              displayer: "Dot Enabled",
+              displayer: "Dot",
             },
             {
               type: "string",
@@ -174,7 +174,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "boolean",
               key: "dot",
               value: true,
-              displayer: "Dot Enabled",
+              displayer: "Dot",
             },
             {
               type: "string",
@@ -194,6 +194,20 @@ class HeroSection2 extends BaseHeroSection {
         },
       ],
     });
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -201,11 +215,12 @@ class HeroSection2 extends BaseHeroSection {
   }
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
     const settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: autoplay,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -239,11 +254,14 @@ class HeroSection2 extends BaseHeroSection {
                   return (
                     <div className={this.decorateCSS("slider-item")} key={idx}>
                       <div
-                        className={this.decorateCSS("slider-item-inner-container")}
+                        className={this.decorateCSS("slider-item-container")}
                         style={{
-                          backgroundImage: `url("${item.image.url}")`,
+                          backgroundImage: item.image && item.image.type === "image" && item.image.url ? `url("${item.image.url}")` : undefined,
                         }}
                       >
+                        {this.getPropValue("overlay") && item.image && item.image.type === "image" && item.image.url && (
+                          <div className={this.decorateCSS("overlay")} />
+                        )}
                         <div className={this.decorateCSS("content-max-width")}>
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
@@ -280,7 +298,7 @@ class HeroSection2 extends BaseHeroSection {
                                       <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
                                       {item.button.icon && (
                                         <Base.Media
-                                          value={item.button.icon}
+                                          value={{ type: "icon", name: item.button.icon } as TypeMediaInputValue}
                                           className={this.decorateCSS("icon")}
                                         />
                                       )}
