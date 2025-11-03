@@ -1,37 +1,23 @@
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature26.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class FeatureComponent26 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Expert Solutions"
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "Expert Solutions" });
+    this.addProp({ type: "string", key: "title", displayer: "Title", value: "Get solutions from real experts" });
+    this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line." });
 
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Get solutions from real experts"
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
-    });
-
-    this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646f4870f72de2002c7a771e?alt=media&timestamp=1684927632568"
+      value: { type: "image", url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg" },
+      additionalParams: { availableTypes: ["image"] }
     });
 
     this.addProp({
@@ -39,132 +25,99 @@ class FeatureComponent26 extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Discover More"
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: ""
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaArrowRight"
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Watch how we work"
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: ""
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaPlay"
-            }
-          ]
-        }
+        INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaPlay", null, "White")
       ]
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation",
+      value: ["animate1"],
+      additionalParams: { selectItems: ["animate1", "animate2", "animate3", "animate4"] }
+    });
+
+    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Image Overlay", value: false });
   }
 
-  static getName(): string {
-    return "Feature 26";
-  }
+  static getName(): string { return "Feature 26"; }
 
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const image = this.getPropValue("image");
-    const buttons = this.castToObject<Array<any>>("buttons");
+    const hasImage = !!(image && (image.url));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hoverAnimation = this.getPropValue("hoverAnimation");
+    const imageOverlay = !!this.getPropValue("imageOverlay");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("image-container")}>
-              <Base.Media 
-                value={{ type: "image", url: image }} 
-                className={this.decorateCSS("image")} 
-              />
-            </div>
-            <div className={this.decorateCSS("content")}>
-              {subtitle && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
-              )}
-              {title && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
-              {description && (
-                <div className={this.decorateCSS("quote-container")}>
-                  <Base.H1 className={this.decorateCSS("quote-mark")}>"</Base.H1>
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("wrapper")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
+              {hasImage && (
+                <div className={this.decorateCSS("image-container")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
+                  <Base.Media value={image} className={this.decorateCSS("image")} />
+                  {imageOverlay && (<div className={`${this.decorateCSS("overlay")} ${this.decorateCSS("apply-overlay")}`}></div>)}
                 </div>
               )}
-              <div className={this.decorateCSS("buttons-container")}>
-                {buttons?.map((button: any, index: number) => {
-                  const buttonData = this.getPropValue("text", button.value);
-                  const buttonUrl = this.getPropValue("url", button.value);
-                  const buttonIcon = this.getPropValue("icon", button.value);
-
+              {(() => {
+                const hasSubtitle = !!this.castToString(subtitle);
+                const hasTitle = !!this.castToString(title);
+                const hasDescription = !!this.castToString(description);
+                const hasButtons = Array.isArray(buttons) && buttons.some((b: any) => {
+                  const t = typeof b?.text === "string" ? b.text.trim() : this.castToString(b?.text);
+                  const ic = typeof b?.icon === "string" ? b.icon.trim() : b?.icon;
+                  const im = typeof b?.image === "string" ? b.image.trim() : b?.image;
+                  return !!t || !!ic || !!im;
+                });
+                const hasAnyContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
+                if (!hasAnyContent) return null;
+                return (
+                  <Base.VerticalContent className={this.decorateCSS("content")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
+                    {this.castToString(subtitle) && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}
+                    {this.castToString(title) && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
+                    {this.castToString(description) && (
+                      <div className={this.decorateCSS("quote-container")}>
+                        <Base.Media value={{ type: "icon", name: "FaQuoteLeft" }} className={this.decorateCSS("icon")} />
+                        <Base.SectionDescription className={this.decorateCSS("quote-text")}>{description}</Base.SectionDescription>
+                      </div>
+                    )}
+                    <div className={this.decorateCSS("buttons-container")}>
+                {buttons?.map((item: INPUTS.CastedButton, index: number) => {
+                  const isTextExist = this.castToString(item.text);
+                  const isImageExist = typeof item.image === "string" ? item.image.trim().length > 0 : !!item.image;
+                  const isIconExist = typeof item.icon === "string" ? item.icon.trim().length > 0 : !!item.icon;
+                  if (!isTextExist && !isIconExist && !isImageExist) return null;
+                  const imageValue = isImageExist
+                    ? (typeof item.image === "string"
+                      ? { type: "image" as const, url: item.image }
+                      : item.image)
+                    : undefined;
+                  const iconValue = isIconExist
+                    ? (typeof item.icon === "string"
+                      ? { type: "icon" as const, name: item.icon }
+                      : item.icon)
+                    : undefined;
                   return (
-                    <Base.Button 
-                      key={index}
-                      path={buttonUrl} 
-                      className={this.decorateCSS(index === 0 ? "primary-button" : "secondary-button")}
-                    >
-                      {index === 1 && (
-                        <div className={this.decorateCSS("icon-wrapper")}>
-                          <Base.Media 
-                            value={{ type: "icon", name: buttonIcon }}
-                            className={this.decorateCSS("icon")}
-                          />
-                        </div>
+                    <ComposerLink key={`feature26-btn-${index}`} path={item.url}>
+                      {isImageExist ? (
+                        <Base.Media value={imageValue} className={this.decorateCSS("button-image")} />
+                      ) : (
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {isIconExist && <Base.Media value={iconValue} className={this.decorateCSS("button-icon")} />}
+                          {isTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                        </Base.Button>
                       )}
-                      {buttonData}
-                      {index === 0 && (
-                        <Base.Media 
-                          value={{ type: "icon", name: buttonIcon }}
-                          className={this.decorateCSS("icon")}
-                        />
-                      )}
-                    </Base.Button>
+                    </ComposerLink>
                   );
                 })}
-              </div>
-            </div>
+                    </div>
+                  </Base.VerticalContent>
+                );
+              })()}
           </div>
         </Base.MaxContent>
       </Base.Container>

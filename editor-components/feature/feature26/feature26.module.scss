@@ -2,102 +2,156 @@
 
 .container {
   .max-content {
-    .wrapper {
+      .wrapper {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: var(--composer-gap-xl);
       padding: var(--composer-gap-xl) 0;
+      width: 100%;
 
       .image-container {
-        flex: 0 0 40%;
-        height: calc(var(--composer-gap-xl) * 6);
-        border-radius: var(--composer-border-radius-xl);
+        flex: none;
+        width: calc(var(--composer-gap-xl) * 9);
+        height: calc(var(--composer-gap-xl) * 9);
+        border-radius: 50% 0 50% 50%;
         overflow: hidden;
+        background-color: var(--composer-background-200);
+        position: relative;
 
         .image {
           width: 100%;
           height: 100%;
+          object-fit: cover;
+          object-position: left center;
           transition: transform var(--composer-transition-duration-normal) ease;
+          position: relative;
+          z-index: 0;
+        }
 
-          &:hover {
-            transform: scale(1.05);
+        .overlay {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background-color: var(--composer-overlay-color);
+          opacity: 0;
+          transition: opacity var(--composer-transition-duration-normal) ease;
+          z-index: 1;
+          pointer-events: none;
+
+          &.apply-overlay {
+            opacity: 1;
           }
         }
+
+        &[data-animation~="animate1"] {
+          .image { transition: transform 0.35s ease; }
+          &:hover .image { transform: scale(1.1); }
+        }
+
+        &[data-animation~="animate2"] {
+          transition: transform var(--composer-transition-duration-normal) ease;
+          &:hover { transform: translateY(calc(var(--composer-gap-sm) * -1)); }
+        }
+
+        &[data-animation~="animate3"] {
+          .overlay { transition: opacity 0.4s ease; }
+          &:hover .overlay { opacity: 0.6; }
+        }
+
+        /* animate4, wrapper seviyesinde tanımlanır */
       }
 
       .content {
-        flex: 0 0 60%;
+        flex: 1 1 0;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* sola hizala */
+        text-align: left !important;
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: left !important;
+          align-self: flex-start;
+          margin-left: 0;
+          margin-right: 0;
+        }
+
+        .subtitle.sectionSubTitle { margin-left: 0 !important; margin-right: 0 !important; }
 
         .quote-container {
           display: flex;
           gap: var(--composer-gap-sm);
           align-items: flex-start;
-          margin: var(--composer-gap-lg) 0;
+          margin: var(--composer-gap-sm) 0;
+          color: var(--composer-tertiary-color);
+
+          .icon { font-size: 1.5rem; }
+          .quote-text { color: var(--composer-tertiary-color); text-align: left !important; align-self: flex-start; margin-left: 0; margin-right: 0; }
         }
 
         .buttons-container {
           display: flex;
-          gap: var(--composer-gap-lg);
-          margin-top: var(--composer-gap-lg);
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+          margin-top: var(--composer-gap-sm);
+          justify-content: flex-start;
 
-          .primary-button {
-            background-color: var(--composer-primary);
-            border-radius: var(--composer-border-radius-sm);
-            transition: opacity var(--composer-transition-duration-normal) ease;
-
-            &:hover {
-              opacity: 0.9;
-            }
+          .button-image {
+            display: block;
+            max-width: 100%;
+            height: auto;
           }
 
-          .secondary-button {
-            display: flex;
+          .button {
+            display: inline-flex;
             align-items: center;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
+          }
 
-            .icon-wrapper {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              width: var(--composer-gap-xl);
-              height: var(--composer-gap-xl);
-              border: 2px solid currentColor;
-              border-radius: var(--composer-border-radius-full);
+          .button-icon {
+            width: 1.1em;
+            height: 1.1em;
+          }
 
-              .icon {
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
-              }
-            }
+          .button-text {
+            line-height: 1;
           }
         }
       }
+
+      > *:only-child {
+        flex: 1 1 100%;
+        width: 100%;
+      }
     }
   }
+}
+
+.wrapper[data-animation~="animate4"]:hover {
+  .buttons-container .button {
+    animation: breathing 2s ease-out infinite normal;
+  }
+}
+
+@keyframes breathing {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.05); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .wrapper {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
-        gap: var(--composer-gap-lg);
-
-        .image-container {
-          width: 100%;
-          flex: none;
-          height: calc(var(--composer-gap-xl) * 5);
-        }
-
-        .content {
-          max-width: 100%;
-
-          .buttons-container {
-            flex-direction: column;
-            align-items: flex-start;
-          }
-        }
+        gap: var(--composer-gap-xl);
+        .image-container { width: calc(var(--composer-gap-xl) * 7); height: calc(var(--composer-gap-xl) * 7); aspect-ratio: auto; }
+        .content { max-width: 100%; }
       }
     }
   }
@@ -107,8 +161,28 @@
   .container {
     .max-content {
       .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--composer-gap-xl);
+        .image-container { order: 1; margin-top: 0; }
+        .content { order: 2; }
         .image-container {
-          height: calc(var(--composer-gap-xl) * 4);
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1 / 1;
+        }
+        .content {
+          .buttons-container {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: var(--composer-gap-sm);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .buttons-container::-webkit-scrollbar { display: none; }
+          .button { flex: none; }
+          .button-text { white-space: nowrap; }
         }
       }
     }
