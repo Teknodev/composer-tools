@@ -77,7 +77,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -114,7 +114,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -151,7 +151,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -210,7 +210,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -247,7 +247,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -284,7 +284,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -341,7 +341,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -379,7 +379,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -417,7 +417,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Cropo Identity",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },
@@ -455,7 +455,7 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "media",
                       key: "cardImage",
-                      displayer: "Card Image",
+                      displayer: "Image",
                       additionalParams: {
                         availableTypes: ["image", "video"],
                       },

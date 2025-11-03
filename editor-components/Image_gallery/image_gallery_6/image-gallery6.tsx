@@ -47,7 +47,7 @@ class ImageGallery6 extends BaseImageGallery {
             type: "string",
             key: "allText",
             displayer: "All Button Text",
-            value: "All",
+            value: "ALL",
         })
 
         this.addProp({
