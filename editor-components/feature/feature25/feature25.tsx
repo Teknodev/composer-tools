@@ -297,8 +297,6 @@ class Feature25 extends BaseFeature {
                   const hasButton = !!this.castToString(tab.button?.text);
                   const hasImage = !!tab.image;
 
-                  if (!hasImage) return null;
-
                   const isTextEmpty =
                     !hasText && !hasTitle && !hasDesc && !hasButton;
 
