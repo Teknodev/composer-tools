@@ -282,10 +282,14 @@ class Feature25 extends BaseFeature {
             </div>
 
             {tabs?.length > 0 && (
-              <div
+              <Base.VerticalContent
                 className={this.decorateCSS("tab-contents")}
                 ref={this.tabContentsRef}
               >
+                <div
+                  className={this.decorateCSS("tab-contents")}
+                  ref={this.tabContentsRef}
+                ></div>
                 {tabs.map((tab: ITabs, index: number) => {
                   const hasText = !!this.castToString(tab.text);
                   const hasTitle = !!this.castToString(tab.title);
@@ -293,19 +297,17 @@ class Feature25 extends BaseFeature {
                   const hasButton = !!this.castToString(tab.button?.text);
                   const hasImage = !!tab.image;
 
-                  if (
-                    !hasText &&
-                    !hasTitle &&
-                    !hasDesc &&
-                    !hasButton &&
-                    !hasImage
-                  )
-                    return null;
+                  if (!hasImage) return null;
+
+                  const isTextEmpty =
+                    !hasText && !hasTitle && !hasDesc && !hasButton;
 
                   return (
                     <div
                       key={index}
-                      className={this.decorateCSS("tab-content")}
+                      className={`${this.decorateCSS("tab-content")} ${
+                        isTextEmpty ? this.decorateCSS("no-text") : ""
+                      }`}
                       ref={this.tabContentRefs[index]}
                     >
                       {tab.image && (
@@ -314,44 +316,45 @@ class Feature25 extends BaseFeature {
                         </div>
                       )}
 
-                      <div className={this.decorateCSS("text-content")}>
-                        {hasText && (
-                          <Base.P className={this.decorateCSS("text")}>
-                            {tab.text}
-                          </Base.P>
-                        )}
-
-                        {hasTitle && (
-                          <Base.SectionTitle
-                            className={this.decorateCSS("title")}
-                          >
-                            {tab.title}
-                          </Base.SectionTitle>
-                        )}
-
-                        {hasDesc && (
-                          <Base.SectionDescription
-                            className={this.decorateCSS("description")}
-                          >
-                            {tab.description}
-                          </Base.SectionDescription>
-                        )}
-
-                        {hasButton && (
-                          <ComposerLink path={tab.button.url}>
-                            <Base.Button
-                              className={this.decorateCSS("button")}
-                              buttonType={tab.button.type}
+                      {!isTextEmpty && (
+                        <div className={this.decorateCSS("text-content")}>
+                          {hasText && (
+                            <Base.SectionSubTitle
+                              className={this.decorateCSS("text")}
                             >
-                              {tab.button.text}
-                            </Base.Button>
-                          </ComposerLink>
-                        )}
-                      </div>
+                              {tab.text}
+                            </Base.SectionSubTitle>
+                          )}
+                          {hasTitle && (
+                            <Base.SectionTitle
+                              className={this.decorateCSS("title")}
+                            >
+                              {tab.title}
+                            </Base.SectionTitle>
+                          )}
+                          {hasDesc && (
+                            <Base.SectionDescription
+                              className={this.decorateCSS("description")}
+                            >
+                              {tab.description}
+                            </Base.SectionDescription>
+                          )}
+                          {hasButton && (
+                            <ComposerLink path={tab.button.url}>
+                              <Base.Button
+                                className={this.decorateCSS("button")}
+                                buttonType={tab.button.type}
+                              >
+                                {tab.button.text}
+                              </Base.Button>
+                            </ComposerLink>
+                          )}
+                        </div>
+                      )}
                     </div>
                   );
                 })}
-              </div>
+              </Base.VerticalContent>
             )}
           </div>
         </Base.MaxContent>

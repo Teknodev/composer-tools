@@ -31,11 +31,11 @@
           padding: var(--padding-md) var(--padding-lg);
           height: 100%;
           cursor: pointer;
-          border-left: 3px solid var(--composer-tertiary-color);
+          border-left: 1px solid var(--composer-tertiary-color);
 
           &.active {
-            border-left-color: var(--composer-primary-color) !important;
-            color: var(--composer-primary-color) !important;
+            border-left: 3px solid var(--composer-primary-color) !important;
+            color: var(--composer-font-color-primary) !important;
           }
         }
       }
@@ -55,20 +55,31 @@
         .tab-content {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           flex-shrink: 0;
           height: 100%;
           gap: var(--composer-gap-xl);
-          margin-top: 10rem;
           width: 100%;
           scroll-snap-stop: always;
           scroll-snap-align: start;
+          padding: var(--padding-md);
+
+          &.no-text {
+            .image-wrapper {
+              width: 100% !important;
+
+              img {
+                height: 600px !important;
+                width: 100% !important;
+              }
+            }
+          }
 
           .image-wrapper {
-            position: relative;
-            flex-shrink: 0;
             width: 35%;
+            flex-shrink: 0;
             border-radius: var(--border-radius-md);
+
             img {
               width: 100%;
               height: auto;
@@ -76,27 +87,35 @@
               display: block;
             }
           }
+
+          .text-content {
+            flex: 1;
+            display: flex;
+            max-height: 400px;
+            overflow-y: auto;
+            flex-direction: column;
+          }
         }
 
         .text-content {
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: var(--gap-lg);
 
           .title {
-            color: var(--composer-primary-color);
             text-align: left !important ;
           }
 
           .description {
-            color: var(--composer-tertiary-color);
             text-align: left !important ;
           }
 
           .text {
-            color: var(--composer-primary-color);
             text-align: left !important ;
+          }
+
+          .button {
+            margin-top: var(--composer-gap-md);
           }
         }
       }
@@ -158,6 +177,7 @@
           height: auto !important;
           margin-top: 15rem;
           gap: var(--composer-gap-sm) !important;
+          padding: 0 !important;
         }
 
         .tab-contents {
