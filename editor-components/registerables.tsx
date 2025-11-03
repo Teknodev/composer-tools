@@ -158,6 +158,7 @@ import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials1
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
 import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
 import TestimonialsComponent15 from "./testimonials/testimonials15/testimonials15";
+import TestimonialsComponent16 from "./testimonials/testimonials16/testimonials16";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -252,7 +253,7 @@ import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 import PrivacyPolicyPage from "./legal/privacy-policy";
 import ComingSoon2 from "./coming-soon/coming-soon2/coming-soon2";
 import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
-import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";  
+import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
 import Blog1 from "./blog/blog1/blog1";
 import Blog2 from "./blog/blog2/blog2";
 import About1 from "./about/about1/about1";
@@ -265,7 +266,7 @@ import About7 from "./about/about7/about7";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
-import Comparison1 from "./comparison/comparison1/comparison1"; 
+import Comparison1 from "./comparison/comparison1/comparison1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -460,6 +461,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent13,
     TestimonialsComponent14,
     TestimonialsComponent15,
+    TestimonialsComponent16,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
@@ -540,4 +542,3 @@ function Registerables(composer: ComponentsRegistery) {
 }
 
 export default Registerables;
-
