@@ -18,6 +18,7 @@
         }
       }
       .header-title {
+        content: "";
         &.dark {
           color: white;
         }
@@ -141,6 +142,7 @@
             }
             .index-section {
               .item-index {
+                content: "";
                 color: color-mix(
                   in srgb,
                   var(--composer-html-background),
@@ -151,9 +153,11 @@
           }
 
           .card-title {
+            content: "";
             color: var(--composer-font-color-primary);
           }
           .card-description {
+            content: "";
             color: var(--composer-font-color-primary);
           }
           .arrow-icon {

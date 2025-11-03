@@ -1,11 +1,11 @@
 import * as React from "react";
-import { BaseContent, BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-    image: string;
+    image: TypeMediaInputValue;
     badge: React.JSX.Element;
     description: React.JSX.Element;
     bottomText: React.JSX.Element;
@@ -36,7 +36,7 @@ class List10 extends BaseList {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
@@ -71,7 +71,7 @@ class List10 extends BaseList {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "Card Url",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],
@@ -79,7 +79,7 @@ class List10 extends BaseList {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
@@ -114,7 +114,7 @@ class List10 extends BaseList {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "Card Url",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],
@@ -122,7 +122,7 @@ class List10 extends BaseList {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
@@ -157,7 +157,7 @@ class List10 extends BaseList {
                         {
                             type: "page",
                             key: "url",
-                            displayer: "Card Url",
+                            displayer: "Navigate To",
                             value: "",
                         },
                     ],
@@ -167,9 +167,15 @@ class List10 extends BaseList {
         this.addProp({
             type: "number",
             key: "itemCount",
-            displayer: "Item count in a row",
+            displayer: "Item Count in a Row",
             value: 3,
             max: 4,
+        });
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Image Overlay",
+            value: false,
         });
         this.addProp({
             type: "multiSelect",
@@ -189,25 +195,26 @@ class List10 extends BaseList {
         const cards = this.castToObject<Card[]>("cards");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
+        const imageOverlay = this.getPropValue("overlay");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                    <Base.VerticalContent className={this.decorateCSS("header")}>
                         {this.castToString(subtitle) && (
                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                 {subtitle}
                             </Base.SectionSubTitle>
                         )}
                         {this.castToString(title) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                            <Base.SectionTitle className={this.decorateCSS("header-title")}>
                                 {title}
                             </Base.SectionTitle>
                         )}
                     </Base.VerticalContent>
                     <Base.ListGrid
                         gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
-                        className={this.decorateCSS("cards-box")}
+                        className={this.decorateCSS("cards-grid")}
                     >
                         {cards.map((card: Card, index: number) => {
                             const descExist = this.castToString(card.description);
@@ -222,15 +229,18 @@ class List10 extends BaseList {
                                         <Base.P className={this.decorateCSS("badge")}>
                                             {card.badge}
                                         </Base.P>
-                                        <div className={this.decorateCSS("image-div")}>
+                                        <div className={this.decorateCSS("image-container")}>
                                             {card.image && (
                                                 <Base.Media
                                                     className={this.decorateCSS("image")}
                                                     value={card.image}
                                                 />
                                             )}
+                                            {imageOverlay && (
+                                                <div className={this.decorateCSS("overlay")} />
+                                            )}
                                         </div>
-                                        <div className={styles["gap"]}></div>
+                                        <div className={this.decorateCSS("image-spacer")}></div>
                                         {descExist && (
                                             <Base.H3 className={this.decorateCSS("description")}>
                                                 {card.description}

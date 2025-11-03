@@ -137,7 +137,7 @@ class List7 extends BaseList {
               </Base.SectionSubTitle>
             )}
             {this.castToString(title) && (
-              <Base.SectionTitle className={this.decorateCSS("header-title")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
             )}

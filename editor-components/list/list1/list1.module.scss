@@ -100,9 +100,11 @@
           gap: var(--composer-gap-md);
           margin: 0;
           .card-title {
+            content: "";
             color: var(--composer-font-color-primary);
           }
           .card-subtitle {
+            content: "";
             color: var(--composer-tertiary-color);
           }
         }

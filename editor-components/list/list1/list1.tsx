@@ -8,11 +8,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: { type: string; url: string };
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  text: React.JSX.Element;
-  url: string;
-  icon: { type: string; name: string };
+  title: string;
+  subtitle: string;
   button: INPUTS.CastedButton;
   overlay: boolean;
 };
@@ -328,16 +325,16 @@ class List1 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subTitle) || this.castToString(title)) && (
+          {(this.castToString(subTitle as any) || this.castToString(title as any)) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.castToString(subTitle) && (
+              {this.castToString(subTitle as any) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subTitle}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(title) && (
+              {this.castToString(title as any) && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
+                  {title as any}
                 </Base.SectionTitle>
               )}
             </Base.VerticalContent>
@@ -348,7 +345,7 @@ class List1 extends BaseList {
               className={this.decorateCSS("carousel")}
             >
               {sliderItems.map((item: Card, indexSlider: number) => {
-                const cardExist  = this.castToString(item.title) || this.castToString(item.subtitle) || this.castToString(item.button.text) || item.image || item.button.icon;
+                const cardExist  = this.castToString(item.title as any) || this.castToString(item.subtitle as any) || this.castToString(item.button.text as any) || item.image || item.button.icon;
                 
                 return cardExist && (
                   <Base.VerticalContent
@@ -372,27 +369,27 @@ class List1 extends BaseList {
                         )}
                       </Base.Row>
                     )}
-                    {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                    {(this.castToString(item.title as any) || this.castToString(item.subtitle as any)) && (
                       <Base.VerticalContent className={this.decorateCSS("card-header")}>
-                        {this.castToString(item.title) && (
+                        {this.castToString(item.title as any) && (
                           <Base.H4 className={this.decorateCSS("card-title")}>
-                            {item.title}
+                            {item.title as any}
                           </Base.H4 >
                         )}
-                        {this.castToString(item.subtitle) && (
+                        {this.castToString(item.subtitle as any) && (
                           <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                            {item.subtitle}
+                            {item.subtitle as any}
                           </Base.H6>
                         )}
                       </Base.VerticalContent>
                     )}
 
-                      {this.castToString(item.button.text) && (
+                      {this.castToString(item.button.text as any) && (
                         <div className={this.decorateCSS("button")}>
                           <ComposerLink path={item.button.url}>
                             <Base.Button buttonType={item.button.type} >
                               <Base.P className={this.decorateCSS("button-text")}>
-                                {item.button.text}
+                                {item.button.text as any}
                               </Base.P>
                               {item.button.icon && (
                                 <Base.Media

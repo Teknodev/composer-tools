@@ -1,16 +1,15 @@
-import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list11.module.scss";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 interface ListItems {
-    itemTitle: React.ReactNode;
+    itemTitle: string;
     itemDescription: string;
-    itemImage: string;
-    navigateTo: string;
+    itemImage: any;
+    url: string;
     navigateToText: string;
-    icon: string;
+    icon: any;
 }
 
 class List11 extends BaseList {
@@ -76,7 +75,7 @@ class List11 extends BaseList {
                         },
                         {
                             type: "page",
-                            key: "navigateTo",
+                            key: "url",
                             displayer: "Navigate To",
                             value: ""
                         },
@@ -131,7 +130,7 @@ class List11 extends BaseList {
                         },
                         {
                             type: "page",
-                            key: "navigateTo",
+                            key: "url",
                             displayer: "Navigate To",
                             value: ""
                         },
@@ -186,7 +185,7 @@ class List11 extends BaseList {
                         },
                         {
                             type: "page",
-                            key: "navigateTo",
+                            key: "url",
                             displayer: "Navigate To",
                             value: ""
                         },
@@ -221,6 +220,12 @@ class List11 extends BaseList {
                 selectItems: ["animate1", "animate2", "animate3", "animate4"]
             }
         });
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Image Overlay",
+            value: false,
+        });
     }
 
     static getName(): string {
@@ -232,6 +237,7 @@ class List11 extends BaseList {
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
         const subTitle = this.getPropValue("subTitle");
+        const imageOverlay = this.getPropValue("overlay");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -251,8 +257,8 @@ class List11 extends BaseList {
                                 )}
                             </Base.VerticalContent>
                             {this.castToString(subTitle) && (
-                                <div className={this.decorateCSS("subTitle-container")}>
-                                    <Base.SectionDescription className={this.decorateCSS("subTitle")}>
+                                <div className={this.decorateCSS("description-container")}>
+                                    <Base.SectionDescription className={this.decorateCSS("section-description")}>
                                         {subTitle}
                                     </Base.SectionDescription>
                                 </div>
@@ -266,33 +272,34 @@ class List11 extends BaseList {
                                         {item.itemImage && (
                                             <div className={this.decorateCSS("card-image-container")}>
                                                 <Base.Media className={this.decorateCSS("card-image")} value={item.itemImage} />
+                                                {imageOverlay && (
+                                                    <div className={this.decorateCSS("overlay")} />
+                                                )}
                                             </div>
                                         )}
                                         <div className={this.decorateCSS("card-content")}>
-                                            {this.castToString(item.itemTitle) && (
+                                            {this.castToString(item.itemTitle as any) && (
                                                 <Base.H3 className={this.decorateCSS("card-title")}>
-                                                    {item.itemTitle}
+                                                    {item.itemTitle as any}
                                                 </Base.H3>
                                             )}
-                                            {this.castToString(item.itemDescription) && (
+                                            {this.castToString(item.itemDescription as any) && (
                                                 <Base.P className={this.decorateCSS("card-description")}>
-                                                    {item.itemDescription}
+                                                    {item.itemDescription as any}
                                                 </Base.P>
                                             )}
-                                            {(this.castToString(item.navigateToText) || (item.icon)) && (
-                                                <ComposerLink path={item.navigateTo}>
+                                            {(this.castToString(item.navigateToText as any) || (item.icon)) && (
+                                                <ComposerLink path={item.url}>
                                                     <div className={this.decorateCSS("navigate-container")}>
-                                                        {this.castToString(item.navigateToText) && (
+                                                        {this.castToString(item.navigateToText as any) && (
                                                             <Base.P className={this.decorateCSS("navigate-to")}>
-                                                                {item.navigateToText}
+                                                                {item.navigateToText as any}
                                                             </Base.P>
                                                         )}
                                                         {item.icon && (
                                                             <Base.Media
                                                                 value={item.icon}
-                                                                propsIcon={{
-                                                                    className: this.decorateCSS("navigate-icon"),
-                                                                }}
+                                                                className={this.decorateCSS("navigate-icon")}
                                                             />
                                                         )}
                                                     </div>

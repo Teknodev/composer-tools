@@ -7,50 +7,16 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
     
-    .card-titles {
+    .header {
       .subtitle {
         content: "";
       }
-    }
-    
-    .up-page {
-      display: flex;
-      align-items: center;
-      gap: var(--composer-gap-lg);
-
-      &.center {
-        flex-direction: column;
-        gap: 0;
-        .title,
-        .subtitle {
-          text-align: center;
-          margin-bottom: var(--composer-gap-md);
-        }
-      }
-
-      &.monochrome {
-        .subtitle,
-        .title {
-          color: var(--composer-font-color-primary);
-        }
-      }
-
-      .title {
-        margin-top: 0px;
-        width: 100%;
-        color: var(--composer-primary-color);
-        text-align: left;
-      }
-
-      .subtitle {
-        margin-top: 0px;
-        width: 100%;
-        color: var(--composer-primary-color);
-        text-align: right;
+      .header-title {
+        content: "";
       }
     }
 
-    .cards-box {
+    .cards-grid {
       width: 100%;
       .card {
         display: flex;
@@ -87,7 +53,7 @@
             .bottom-text {
               color: white;
             }
-            .image-div {
+            .image-container {
               mask-size: 300% 300%;
               mask-position: 50% 50%;
             }
@@ -162,7 +128,7 @@
             transform-style: preserve-3d;
           }
 
-          .image-div {
+          .image-container {
             transform: translateZ(var(--composer-gap-md));
             z-index: 2;
           }
@@ -182,6 +148,7 @@
         }
 
         .badge {
+          content: "";
           color: var(--composer-font-color-primary);
           height: 1em;
           * {
@@ -192,7 +159,7 @@
           }
         }
 
-        .image-div {
+        .image-container {
           position: absolute;
           inset: 0;
           z-index: -2;
@@ -210,11 +177,21 @@
             width: 100%;
             object-fit: cover;
           }
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+          }
         }
-        .gap {
+        .image-spacer {
           padding-top: 280px;
         }
         .description {
+          content: "";
           margin-top: 0px;
           position: relative;
           z-index: 1;
@@ -222,6 +199,7 @@
           color: var(--composer-font-color-primary);
         }
         .bottom-text {
+          content: "";
           transition: all 0.3s ease;
           margin: auto 0px 0px;
           color: var(--composer-font-color-primary);
@@ -234,17 +212,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .up-page {
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: var(--composer-gap-xs);
-        .title,
-        .subtitle {
-          text-align: center;
-        }
-      }
-      .cards-box {
+      .cards-grid {
         margin-top: var(--composer-gap-md);
         .card {
           width: 100% !important;

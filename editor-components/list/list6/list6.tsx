@@ -1,4 +1,4 @@
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./list6.module.scss";
 
@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 type listItem = {
   itemIndex: React.JSX.Element;
   itemTitle: React.JSX.Element;
-  itemIcon: string;
+  itemIcon: TypeMediaInputValue;
   itemText: React.JSX.Element;
 };
 
@@ -218,6 +218,8 @@ class List6 extends BaseList {
     const listItems = this.castToObject<listItem[]>("listItems");
     const description = this.getPropValue("description");
     const subtitle = this.getPropValue("subtitle");
+    const alignment = Base.getContentAlignment();
+    const isLeftAlignment = alignment === "left";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -241,6 +243,7 @@ class List6 extends BaseList {
           <div className={this.decorateCSS("items-wrapper")}>
             {listItems.map((listItem: listItem, index: number) => (
               <div
+                key={index}
                 className={`${this.decorateCSS("list-item")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
@@ -252,15 +255,15 @@ class List6 extends BaseList {
                 <div className={this.decorateCSS("item-content")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (
-                      <div className={this.decorateCSS("item-header")}>
+                      <div className={`${this.decorateCSS("item-header")} ${isLeftAlignment ? this.decorateCSS("align-left") : this.decorateCSS("align-center")}`}>
                         {listItem.itemIcon && (
-                        <div className={this.decorateCSS("icon")}>
-                          <Base.Media
-                            value={listItem.itemIcon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon")
-                            }}
-                          />
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <div className={this.decorateCSS("icon-container")}>
+                              <Base.Media
+                                value={listItem.itemIcon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            </div>
                           </div>
                         )}
                         {this.castToString(listItem.itemTitle) && (

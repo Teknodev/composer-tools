@@ -42,6 +42,7 @@
           transition: all var(--composer-transition-duration-slow) ease;
 
           .button-text {
+            content: "";
             transition: transform var(--composer-transition-duration-slow) ease;
           }
           .button-icon {
@@ -178,6 +179,7 @@
           gap: var(--composer-gap-md);
 
           .card-title {
+            content: "";
             color: var(--composer-font-color-primary);
             margin: 0;
           }
@@ -187,6 +189,7 @@
             gap: var(--composer-gap-md);
             margin: 0;
             .event-text {
+              content: "";
               position: relative;
               color: var(--composer-tertiary-color);
             }
@@ -235,5 +238,45 @@
   }
   100% {
     transform: scaleX(1);
+  }
+}
+
+@container (max-width: 768px) {
+  .container {
+    .max-content {
+      .cards-grid {
+        .intro-card {
+          padding: var(--composer-gap-md);
+          
+          .intro-content {
+            gap: var(--composer-gap-sm);
+          }
+        }
+
+        .card {
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
+          
+          .card-content {
+            gap: var(--composer-gap-sm);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: 480px) {
+  .container {
+    .max-content {
+      .cards-grid {
+        .intro-card {
+          padding: var(--composer-gap-sm);
+        }
+
+        .card {
+          padding: var(--composer-gap-md) var(--composer-gap-sm);
+        }
+      }
+    }
   }
 }

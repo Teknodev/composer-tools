@@ -5,9 +5,9 @@ import { Base } from "../../../composer-base-components/base/base";
 
 
 type Card = {
-  description: string;
+  description: React.JSX.Element;
   icon: React.JSX.Element;
-  title: string;
+  title: React.JSX.Element;
 };
 
 class list4 extends BaseList {
@@ -157,7 +157,7 @@ class list4 extends BaseList {
   }
 
   static getName(): string {
-    return "list 4";
+    return "List 4";
   }
 
   render() {
@@ -166,10 +166,10 @@ class list4 extends BaseList {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("header")}>
             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-              {this.getPropValue("subtitle")}
+              {this.getPropValue("subtitle") as any}
             </Base.SectionSubTitle>
             <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
+              {this.getPropValue("title") as any}
             </Base.SectionTitle>
           </Base.VerticalContent>
           <Base.ListGrid className={this.decorateCSS("services-grid")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
@@ -213,12 +213,12 @@ class list4 extends BaseList {
                           <Base.H3
                             className={this.decorateCSS("item-title")}
                           >
-                            {card.title}
+                            {card.title as any}
                           </Base.H3>
                         )}
                         {this.castToString(card.description) && (
                           <Base.P className={this.decorateCSS("item-description")}>
-                            {card.description}
+                            {card.description as any}
                           </Base.P>
                         )}
                       </Base.VerticalContent>

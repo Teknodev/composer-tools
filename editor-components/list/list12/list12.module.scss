@@ -4,8 +4,22 @@
 .container {
   width: 100%;
   background-position: center;
+  position: relative;
+
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-overlay-color);
+    z-index: 1;
+  }
 
   .max-content {
+    position: relative;
+    z-index: 2;
+    
     .boxes {
       display: flex;
       justify-content: center;
@@ -16,7 +30,7 @@
       .middleBox {
         gap: var(--composer-gap-sm);
       }
-
+ 
       .leftBox,
       .rightBox {
         flex: 1;
@@ -85,8 +99,20 @@
         overflow: hidden;
         margin-bottom: 1rem;
         transition: transform 0.3s ease-in-out;
+        position: relative;
         &.with-bg {
           color: white;
+        }
+      }
+      
+      .circle {
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
         }
       }
 
@@ -102,8 +128,7 @@
         .text1,
         .text2,
         .text3 {
-          font-size: 1rem;
-          font-weight: 300;
+          content: "";
           color: var(--composer-font-color-primary);
           &.with-bg {
             color: white;
@@ -121,8 +146,6 @@
 
       .title,
       .subtitle {
-        font-size: 3rem;
-        font-weight: 400;
         &.with-bg {
           color: white;
         }
@@ -155,14 +178,11 @@
           .text1,
           .text2,
           .text3 {
-            font-size: 1rem;
+            content: "";
           }
         }
 
-        .title,
-        .subtitle {
-          font-size: 2rem;
-        }
+        // keep titles responsive without font overrides
       }
     }
   }
