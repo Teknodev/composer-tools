@@ -300,6 +300,15 @@ class Feature25 extends BaseFeature {
                   const isTextEmpty =
                     !hasText && !hasTitle && !hasDesc && !hasButton;
 
+                  if (
+                    !hasText &&
+                    !hasTitle &&
+                    !hasDesc &&
+                    !hasButton &&
+                    !hasImage
+                  )
+                    return null;
+
                   return (
                     <div
                       key={index}
