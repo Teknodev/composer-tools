@@ -276,7 +276,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -451,7 +451,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -626,7 +626,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -801,7 +801,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -976,7 +976,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -1151,7 +1151,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -1326,7 +1326,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -1521,7 +1521,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -1716,7 +1716,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -1891,7 +1891,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -2086,7 +2086,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -2261,7 +2261,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -2456,7 +2456,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -2631,7 +2631,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {
@@ -2806,7 +2806,7 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "leftText",
-                                            displayer: "Left Tex",
+                                            displayer: "Left Text",
                                             value: "NEW",
                                         },
                                         {

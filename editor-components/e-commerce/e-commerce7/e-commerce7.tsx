@@ -805,8 +805,8 @@ class ECommerce7 extends BaseECommerce {
       sizeSections[this.getComponentState("selectedSizeSection")]?.cost
         ?.value || "";
     const isTitle = this.castToString(this.getPropValue("title"));
-    const isShareIcon = shareSection.shareIcon;
-    const isSahreTitle = this.castToString(shareSection.title);
+    const isShareIcon = shareSection?.shareIcon;
+    const isSahreTitle = this.castToString(shareSection?.title);
     const isSizeLabel = this.castToString(this.getPropValue("sizeLabel"));
     const isItemDetailTitle = this.castToString(
       this.getPropValue("itemDetailTitle")
@@ -816,19 +816,18 @@ class ECommerce7 extends BaseECommerce {
       isTitle ||
       isShareIcon ||
       isSahreTitle ||
-      socials.length > 0 ||
-      sizeSections.length > 0 ||
+      (socials && socials.length > 0) ||
+      (sizeSections && sizeSections.length > 0) ||
       isSizeLabel ||
-      countSection.addIcon ||
-      countSection.minusIcon ||
-      countSection.count ||
-      this.castToString(button.text) ||
-      deliveryType.length > 0 ||
+      countSection?.addIcon ||
+      countSection?.minusIcon ||
+      (countSection?.count != null) ||
+      this.castToString(button?.text) ||
+      (deliveryType && deliveryType.length > 0) ||
       isItemDetailTitle ||
-      itemDetails.length > 0 ||
+      (itemDetails && itemDetails.length > 0) ||
       icons?.upArrowIcon ||
-      icons?.downArrowIcon ||
-      countSection.count;
+      icons?.downArrowIcon;
     const slidesToShow = images.length > 3 ? 4 : images.length;
     const sliderKey = `infinite-${images.length > 3}-slides-${slidesToShow}`;
 
