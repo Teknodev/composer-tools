@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding: 80px var(--composer-gap-xl) !important;
+    padding: 80px 0 !important;
     background-color: color-mix(
         in srgb,
         var(--composer-html-background),
