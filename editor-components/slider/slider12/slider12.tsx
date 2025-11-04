@@ -390,7 +390,7 @@ class Slider12 extends BaseSlider {
     this.responsive = [
       { breakpoint: 1280, settings: { slidesToShow: 3, dots: false } },
       { breakpoint: 1024, settings: { slidesToShow: 2, dots: false } },
-      { breakpoint: 640, settings: { slidesToShow: 1, dots: true } },
+      { breakpoint: 640, settings: { slidesToShow: 1, dots: false } },
     ];
     this.settings = {
       infinite: false,
@@ -486,9 +486,9 @@ class Slider12 extends BaseSlider {
     const SafeWrap = this.SafeWrap;
 
     return (
-      <div ref={this.containerRef}>
+      <div ref={this.containerRef} className={this.decorateCSS("container")}>
         <Base.Container
-          className={this.decorateCSS("container")}
+          className={this.decorateCSS("upper-container")}
           {...(bgUrl ? { style: { backgroundImage: `url(${bgUrl})` } } : {})}
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -510,120 +510,122 @@ class Slider12 extends BaseSlider {
                         {description}
                       </Base.SectionDescription>
                     )}
+
+                    {showArrows && (
+                      <div className={this.decorateCSS("slider-wrap")}>
+                        <div className={this.decorateCSS("arrows")}>
+                          <Base.Icon
+                            name={prevMedia}
+                            propsIcon={{
+                              className: this.decorateCSS("prevArrow"),
+                              onClick: () =>
+                                this.sliderRef.current?.slickPrev(),
+                            }}
+                          />
+                          <Base.Icon
+                            name={nextMedia}
+                            propsIcon={{
+                              className: this.decorateCSS("nextArrow"),
+                              onClick: () =>
+                                this.sliderRef.current?.slickNext(),
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
                   </Base.VerticalContent>
                 </div>
               </Base.VerticalContent>
             )}
-
-            {showSlider && (
-              <>
-                {showArrows && (
-                  <div className={this.decorateCSS("slider-wrap")}>
-                    <div className={this.decorateCSS("arrows")}>
-                      <Base.Icon
-                        name={prevMedia}
-                        propsIcon={{
-                          className: this.decorateCSS("prevArrow"),
-                          onClick: () => this.sliderRef.current?.slickPrev(),
-                        }}
-                      />
-                      <Base.Icon
-                        name={nextMedia}
-                        propsIcon={{
-                          className: this.decorateCSS("nextArrow"),
-                          onClick: () => this.sliderRef.current?.slickNext(),
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                <div className={this.decorateCSS("slider-parent")}>
-                  <ComposerSlider ref={this.sliderRef} {...this.settings}>
-                    {items.map((item, i) => {
-                      const isWideDesktop = i % 3 === 2;
-                      const media = item.media;
-                      const mediaType =
-                        media?.type ?? (item.image ? "image" : undefined);
-                      const url = media?.url ?? item.image ?? "";
-                      const hasMedia = mediaType && url;
-                      const rawPath = item.link ?? "";
-
-                      const hasCardDesc = this.castToString(item.description);
-                      const hasHeaderText = this.castToString(item.header);
-                      const cardClassName =
-                        this.decorateCSS("card") +
-                        (!hasMedia
-                          ? " " + this.decorateCSS("card-textOnly")
-                          : "");
-
-                      const textClassName =
-                        this.decorateCSS("text") +
-                        (!hasMedia
-                          ? " " + this.decorateCSS("text-centered")
-                          : "");
-
-                      const CardInner = (
-                        <div
-                          className={cardClassName}
-                          onMouseDown={(e) => e.preventDefault()}
-                        >
-                          {hasMedia && (
-                            <div className={this.decorateCSS("media")}>
-                              {mediaType === "video" ? (
-                                <VideoPlayer
-                                  src={url}
-                                  className={this.decorateCSS("video")}
-                                />
-                              ) : (
-                                <img
-                                  src={url}
-                                  alt=""
-                                  className={this.decorateCSS("image")}
-                                  draggable={false}
-                                  onDragStart={(e) => e.preventDefault()}
-                                />
-                              )}
-                            </div>
-                          )}
-
-                          {(hasHeaderText || hasCardDesc) && (
-                            <div className={textClassName}>
-                              {hasHeaderText && (
-                                <Base.H4 className={this.decorateCSS("header")}>
-                                  {item.header}
-                                </Base.H4>
-                              )}
-                              {hasCardDesc && (
-                                <div className={this.decorateCSS("desc")}>
-                                  <Base.P>{item.description}</Base.P>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      );
-
-                      return (
-                        <div
-                          key={i}
-                          className={
-                            this.decorateCSS("slide") +
-                            (isWideDesktop
-                              ? " " + this.decorateCSS("wide")
-                              : "")
-                          }
-                        >
-                          <SafeWrap href={rawPath}>{CardInner}</SafeWrap>
-                        </div>
-                      );
-                    })}
-                  </ComposerSlider>
-                </div>
-              </>
-            )}
           </Base.MaxContent>
         </Base.Container>
+
+        <div className={this.decorateCSS("wrap")}>
+          {showSlider && (
+            <>
+              <div className={this.decorateCSS("slider-parent")}>
+                <ComposerSlider ref={this.sliderRef} {...this.settings}>
+                  {items.map((item, i) => {
+                    const isWideDesktop = i % 3 === 2;
+                    const media = item.media;
+                    const mediaType =
+                      media?.type ?? (item.image ? "image" : undefined);
+                    const url = media?.url ?? item.image ?? "";
+                    const hasMedia = mediaType && url;
+                    const rawPath = item.link ?? "";
+
+                    const hasCardDesc = this.castToString(item.description);
+                    const hasHeaderText = this.castToString(item.header);
+                    const cardClassName =
+                      this.decorateCSS("card") +
+                      (!hasMedia
+                        ? " " + this.decorateCSS("card-textOnly")
+                        : "");
+
+                    const textClassName =
+                      this.decorateCSS("text") +
+                      (!hasMedia
+                        ? " " + this.decorateCSS("text-centered")
+                        : "");
+
+                    const CardInner = (
+                      <div
+                        className={cardClassName}
+                        onMouseDown={(e) => e.preventDefault()}
+                      >
+                        {hasMedia && (
+                          <div className={this.decorateCSS("media")}>
+                            {mediaType === "video" ? (
+                              <VideoPlayer
+                                src={url}
+                                className={this.decorateCSS("video")}
+                              />
+                            ) : (
+                              <img
+                                src={url}
+                                alt=""
+                                className={this.decorateCSS("image")}
+                                draggable={false}
+                                onDragStart={(e) => e.preventDefault()}
+                              />
+                            )}
+                          </div>
+                        )}
+
+                        {(hasHeaderText || hasCardDesc) && (
+                          <div className={textClassName}>
+                            {hasHeaderText && (
+                              <Base.H4 className={this.decorateCSS("header")}>
+                                {item.header}
+                              </Base.H4>
+                            )}
+                            {hasCardDesc && (
+                              <div className={this.decorateCSS("desc")}>
+                                <Base.P>{item.description}</Base.P>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+
+                    return (
+                      <div
+                        key={i}
+                        className={
+                          this.decorateCSS("slide") +
+                          (isWideDesktop ? " " + this.decorateCSS("wide") : "")
+                        }
+                      >
+                        <SafeWrap href={rawPath}>{CardInner}</SafeWrap>
+                      </div>
+                    );
+                  })}
+                </ComposerSlider>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     );
   }
