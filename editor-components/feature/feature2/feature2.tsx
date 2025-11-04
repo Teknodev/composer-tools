@@ -194,7 +194,7 @@ class Feature2 extends BaseFeature {
             {items.map((item: Box, index: number) => {
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
-              const iconExist = !!item.icon?.name;
+              const iconExist = !!item.icon;
               const shouldRender = titleExist || descExist || iconExist;
 
               if (!shouldRender) return null;
