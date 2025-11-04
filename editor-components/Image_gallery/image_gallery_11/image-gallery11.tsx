@@ -40,6 +40,10 @@ class ImageGallery11 extends BaseImageGallery {
   private trackRefs: React.RefObject<HTMLDivElement>[] = [];
   private wrapRefs: React.RefObject<HTMLDivElement>[] = [];
   private innerARefs: React.RefObject<HTMLDivElement>[] = [];
+  private prevRowCount: number = 0;
+
+
+  private rafId: number | null = null;
 
   private initializeProps() {
     this.addProp({
@@ -257,28 +261,37 @@ class ImageGallery11 extends BaseImageGallery {
     });
   }
 
+
   componentDidMount(): void {
-    this.setLoopWidths();
+    this.scheduleLoopWidthUpdate();
     window.addEventListener("resize", this.handleResize);
     document.addEventListener("keydown", this.onKeyDown);
   }
 
-  componentDidUpdate(): void {
-    this.setLoopWidths();
+  componentDidUpdate(prevProps: any): void {
+    if (this.getRows().length !== this.prevRowCount) {
+      this.scheduleLoopWidthUpdate();
+    }
+    this.prevRowCount = this.getRows().length;
   }
 
   componentWillUnmount(): void {
+    if (this.rafId) cancelAnimationFrame(this.rafId);
     window.removeEventListener("resize", this.handleResize);
     document.removeEventListener("keydown", this.onKeyDown);
     this.cleanupModal();
   }
 
   private handleResize = () => {
-    this.setLoopWidths();
-    if (this.modalVisible) {
-      this.forceUpdate();
-    }
+    this.scheduleLoopWidthUpdate();
+    if (this.modalVisible) this.forceUpdate();
   };
+
+  private scheduleLoopWidthUpdate() {
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+    this.rafId = requestAnimationFrame(() => this.setLoopWidths());
+  }
+
   private preventScroll = (e: Event) => e.preventDefault();
 
   private getRows(): GalleryRowType[] {
@@ -310,10 +323,13 @@ class ImageGallery11 extends BaseImageGallery {
 
   private setLoopWidths = () => {
     this.trackRefs.forEach((trackRef, index) => {
-      const innerARef = this.innerARefs[index];
-      if (trackRef.current && innerARef.current) {
-        const W = innerARef.current.scrollWidth;
-        trackRef.current.style.setProperty("--loopW", `${W}px`);
+      const track = trackRef?.current;
+      const inner = this.innerARefs[index]?.current;
+      if (!track || !inner) return;
+
+      const width = inner.scrollWidth;
+      if (width > 0) {
+        track.style.setProperty("--loopW", `${width}px`);
       }
     });
   };
@@ -486,6 +502,7 @@ class ImageGallery11 extends BaseImageGallery {
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);
 
+    const hasNoRows = rows.length === 0;
     const description = this.getPropValue("description");
     const isDescriptionExist = this.castToString(description);
 
@@ -642,7 +659,7 @@ class ImageGallery11 extends BaseImageGallery {
           {this.modalVisible && allImages.length > 0 && renderModal(allImages, active)}
 
           {(isTitleExist || isDescriptionExist) && (
-            <Base.VerticalContent className={this.decorateCSS("heading")}>
+            <Base.VerticalContent className={this.decorateCSS("heading")} data-has-no-rows={hasNoRows}>
               {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>

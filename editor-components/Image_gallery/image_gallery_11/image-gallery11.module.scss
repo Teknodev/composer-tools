@@ -64,9 +64,13 @@
     .heading {
       align-self: center;
       max-width: var(--composer-content-width);
-      margin: var(--composer-gap-xl) var(--composer-gap-xl) calc(3 * var(--composer-gap-xl));
+      margin: var(--composer-gap-xl) var(--composer-gap-xl) calc(2 * var(--composer-gap-xl));
       width: calc(100% - (2 * var(--composer-gap-xl)));
       z-index: 1;
+
+      &[data-has-no-rows="true"] {
+        margin: 0;
+      }
     }
 
     .description {
@@ -102,6 +106,7 @@
     .track {
       display: flex;
       width: max-content;
+      gap: var(--gap-lg);
       animation-name: marqueePx;
       animation-duration: var(--speed, 100s) !important;
       animation-timing-function: linear;
@@ -117,10 +122,9 @@
 
     .track__inner {
       display: flex;
-      gap: var(--padding-xl);
+      gap: var(--gap-lg);
 
       &[aria-hidden="true"] {
-        margin-left: var(--composer-gap-md);
         pointer-events: auto;
       }
     }
@@ -349,85 +353,75 @@
   }
 
   to {
-    transform: translateX(calc(-1 * (var(--loopW) + var(--gap-xl, --padding-xl))));
+    transform: translateX(calc(-1 * var(--loopW)));
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container-bg .container {
+  .container {
     .heading {
+      margin: var(--composer-gap-xl) var(--composer-gap-xl) calc(1.5 * var(--composer-gap-xl)) !important;
+
       margin: 0 var(--composer-gap-md) var(--composer-gap-md);
       width: calc(100% - (2 * var(--composer-gap-md)));
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+    }
+  }
 
-      .title {
-        width: 100%;
-        text-align: center;
-      }
+  .track__inner,
+  .track,
+  .gallery {
+    gap: var(--composer-gap-sm) !important;
+  }
 
-      .description {
-        text-align: center;
-      }
+  .image-child {
+    --card-w: var(--editor-side-item-width);
+    --card-h: calc(var(--footer-height) * 4);
+  }
+
+  .lightbox {
+    --lb-side: calc(var(--padding-xl) * 2);
+    --lb-top: calc(var(--padding-xl) * 2);
+    --lb-gap: var(--gap-md);
+    --lb-bottom: var(--top-bar-height);
+
+    grid-template-columns: var(--lb-side) 1fr var(--lb-side);
+    grid-template-rows: var(--lb-top) 1fr var(--lb-bottom);
+
+    .lightbox-canvas {
+      max-width: 50%;
+      max-height: 85%;
     }
 
-    .title,
-    .description {
-      margin-left: auto;
-      margin-right: auto;
-    }
+    .nav {
+      padding: var(--padding-xs) var(--padding-sm);
+      transform: scale(2.5);
 
-    .track__inner {
-      gap: var(--gap-lg);
-    }
-
-    .image-child {
-      --card-w: var(--editor-side-item-width);
-      --card-h: calc(var(--footer-height) * 4);
-    }
-
-    .lightbox {
-      --lb-side: calc(var(--padding-xl) * 2);
-      --lb-top: calc(var(--padding-xl) * 2);
-      --lb-gap: var(--gap-md);
-      --lb-bottom: var(--top-bar-height);
-
-      grid-template-columns: var(--lb-side) 1fr var(--lb-side);
-      grid-template-rows: var(--lb-top) 1fr var(--lb-bottom);
-
-      .lightbox-canvas {
-        max-width: 50%;
-        max-height: 85%;
-      }
-
-      .nav {
-        padding: var(--padding-xs) var(--padding-sm);
-        transform: scale(2.5);
-
-        &:hover {
-          transform: scale(2);
-        }
-      }
-
-      .prev {
-        left: 2%;
-      }
-
-      .next {
-        right: 2%;
+      &:hover {
+        transform: scale(2);
       }
     }
 
-    .lightbox.is-zoomed .lightbox-canvas {
-      width: 100%;
+    .prev {
+      left: 2%;
     }
+
+    .next {
+      right: 2%;
+    }
+  }
+
+  .lightbox.is-zoomed .lightbox-canvas {
+    width: 100%;
   }
 }
 
+
 @container (max-width: #{$composer-phone-width}) {
-  .container {
+  .container-bg .container {
     .lightbox {
       --lb-side: var(--padding-md);
       --lb-top: var(--padding-md);
@@ -435,6 +429,16 @@
 
       grid-template-columns: 1fr;
       grid-template-rows: auto 1fr auto;
+
+      .heading {
+        margin: var(--composer-gap-xl) var(--composer-gap-xl) calc(1.5 * var(--composer-gap-xl)) !important;
+
+        .title,
+        .description {
+          text-align: center !important;
+          width: 100% !important;
+        }
+      }
 
       .lightbox-canvas {
         grid-column: 1;
@@ -446,10 +450,6 @@
       .close-btn,
       .zoom-btn {
         transform: scale(1.4);
-
-        &:active {
-          transform: scale(1);
-        }
       }
 
       .zoom-btn {
@@ -459,17 +459,13 @@
       .nav {
         padding: var(--padding-xs) var(--padding-sm);
         transform: scale(2);
-
-        &:hover {
-          transform: scale(1.5);
-        }
       }
 
       .lightbox-img-wrap {
         width: 65%;
 
         .counter-badge,
-        .image-title {
+        .title-badge {
           bottom: 4px;
           font-size: 10px;
         }
