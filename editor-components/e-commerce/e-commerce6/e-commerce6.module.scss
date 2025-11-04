@@ -1,6 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    padding: 80px var(--composer-gap-xl) !important;
     background-color: color-mix(
         in srgb,
         var(--composer-html-background),
@@ -331,6 +332,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container{
+        padding: 0 !important;
         .max-content{
             flex-direction: column;
             .tab-buttons{

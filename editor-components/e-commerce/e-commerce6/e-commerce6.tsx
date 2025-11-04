@@ -336,7 +336,7 @@ class ECommerce6 extends BaseECommerce {
     const overlay = this.getPropValue("overlay");
     
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("tab-buttons")}>
             {this.castToObject<ITabs[]>("tabs").map(
