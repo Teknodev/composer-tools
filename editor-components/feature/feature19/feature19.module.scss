@@ -106,14 +106,20 @@
         .content {
             display: flex;
             flex-direction: column;
+            align-items: baseline;
             gap: var(--composer-gap-xl);
             flex: 1;
             .header {
+                align-items: baseline;
                 .subtitle, .title{
-                    content: "";
+                    text-align: left;
                 }
                 .description {
-                    margin-bottom: 0px
+                    margin-bottom: 0px;
+                    text-align: left;
+                }
+                .subtitle{
+                    margin-left: 0;
                 }
             }
             .item-block {
@@ -125,7 +131,9 @@
                         .item-content-top{
                             display: flex;
                             gap: var(--composer-gap-md);
-                            align-items: center;
+                            align-items: baseline;
+                            justify-content: flex-start;
+                            width: 100%;
                             .icon{
                                 font-size: 2.5rem;
                                 color: var(--composer-primary-color);
@@ -135,6 +143,8 @@
                                 margin-bottom: var(--composer-gap-sm);
                                 color: var(--composer-font-color-primary);
                                 margin: 0px;
+                                text-align: left;
+                                width: fit-content;
                             }
                         }
                         .texts-inside {

@@ -167,7 +167,7 @@ class Feature7 extends BaseFeature {
       const alignment = Base.getContentAlignment();
       
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
             {!!image?.url && (

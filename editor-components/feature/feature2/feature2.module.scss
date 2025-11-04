@@ -32,7 +32,7 @@
                 }
 
                 .icon {
-                    font-size: 3rem;
+                    font-size: 3.5rem;
                     width: var(--composer-gap-xl);
                     height: var(--composer-gap-xl);
                     margin: 0;
@@ -106,6 +106,10 @@
                         height: 25px;
                         top: -15px;
                         left: calc(50% + 30px);
+                    }
+
+                    .icon {
+                        font-size: 3rem;
                     }
                 }
             }

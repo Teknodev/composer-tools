@@ -175,9 +175,7 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-
-
-          padding: 0 var(--composer-gap-md);
+          padding: var(--composer-gap-md);
           display: flex;
           height: 100%;
         }

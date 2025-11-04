@@ -197,12 +197,6 @@
         .card-item-count {
           .vertical {
             padding: var(--composer-gap-md);
-            justify-content: center;
-            align-items: center;
-
-            .title, .subtitle {
-              text-align: center;
-            }
           }
         }
       }
@@ -211,26 +205,9 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .section-subtitle {
-    transform: translateX(0) !important;
-    &::before {
-      content: none !important;
-    }
-  }
-
-  .section-title {
-    text-align: center !important;
-  }
-
   .featured-card {
-    align-items: center !important;
     .card-link-container {
       margin-bottom: 1rem;
-      .featured-card-link-with-image {
-        display: flex;
-        align-items: center;
-        text-align: center !important;
-      }
     }
   }
 }

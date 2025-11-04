@@ -97,13 +97,16 @@
         margin: 0 2% 0 3%;
         text-align: left !important;
         gap: var(--composer-gap-md);
+        align-items: baseline;
 
         .section-heading {
           color: var(--composer-font-color-primary) !important;
+          text-align: left;
         }
 
         .desc{
           color: var(--composer-tertiary-color)!important;
+          text-align: left;
         }
 
         .button {
