@@ -272,7 +272,7 @@
                 .content-container {
                     flex-grow: 1;
                     flex-basis: 50%;
-                    padding:  var(--composer-gap-lg) 100px;
+                    padding:  80px var(--composer-gap-xl);
                     position: relative;
                     justify-content: center;
                     align-self: center;
@@ -365,7 +365,7 @@
                     }
                     .content-container{
                         width: 100%;
-                        padding: 0;
+                        padding: 80px var(--composer-gap-lg);
                         flex-basis: auto;
                         flex-grow: unset;
                     }
@@ -381,6 +381,7 @@
             .tab{
                 .content{
                     .content-container{
+                        pad: var(--composer-gap-xl) var(--composer-gap-mdx);
                         .icons-container{
                             flex-direction: column;
                             .icon-container{
