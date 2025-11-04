@@ -330,7 +330,7 @@
 
         .footer-bottom {
           justify-content: space-between;
-          flex-direction: column;
+          flex-direction: row;
           gap: var(--composer-gap-sm);
 
           .bottom-text {
@@ -392,6 +392,10 @@
               }
             }
           }
+        }
+
+        .footer-bottom {
+          flex-direction: column;
         }
       }
     }
