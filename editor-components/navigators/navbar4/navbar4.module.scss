@@ -10,8 +10,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    p,
-    h6 {
+    p {
       margin: 0;
     }
 
@@ -37,13 +36,9 @@
         flex-direction: column;
         gap: var(--composer-gap-xs);
         .informationTitle {
-          font-size: calc(1 * var(--composer-font-size-md));
-          font-weight: 600;
           color: var(--composer-font-color-primary);
         }
         .informationDescription {
-          font-size: calc(1 * var(--composer-font-size-md));
-          font-weight: 400;
           max-width: 200px;
           color: var(--composer-font-color-primary);
         }
@@ -146,7 +141,6 @@
 
         .menuItemTitle {
           margin:0;
-          font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           &.animation1{
@@ -218,7 +212,6 @@
 
                 .dropdownItemTitle {
                   margin: 0;
-                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: all 0.3s ease;
                   &.animation1{
@@ -285,7 +278,6 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
-                font-weight: normal;
                 background-color: transparent;
                 &.animation3{
                   &:hover{
@@ -297,7 +289,6 @@
     
                 .dropdownItemTitle {
                   margin: 0;
-                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
                 }
@@ -336,7 +327,6 @@
     position: absolute;
     right: 0;
     .localizationLabel{
-      font-weight: normal;
       transition: all 0.3s ease;
       &.animation1{
         &:hover{
@@ -346,7 +336,6 @@
     }
     .localizationContent{
       .localizationItem{
-        font-weight: normal;
         transition: all 0.3s ease;
       }
       &.animation1{
@@ -359,7 +348,6 @@
     }
   }
   .localizationTitle, .localizationItem{
-    font-weight: normal;
     color: var(--composer-font-color-primary);
     transition: all 0.3s ease;
     &.animation1{
@@ -407,7 +395,6 @@
   
               .hamburgerMenuItemTitle {
                 margin: 0;
-                font-weight: 500;
                 color: var(--composer-font-color-primary);
               }
             }
@@ -442,7 +429,6 @@
                   }
                   .hamburgerMenuItemTitle, .hamburgerDropdownItemTitle {
                     margin: 0;
-                    font-weight: 400;
                     color: var(--composer-font-color-primary);
                   }
                   .rightIcon {
@@ -470,7 +456,6 @@
   
                     .hamburgerSubSubmenuItemTitle {
                       margin: 0;
-                      font-weight: 400;
                       color: var(--composer-font-color-primary);
                     }
                   }

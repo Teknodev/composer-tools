@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseNavigator } from "../../EditorComponent";
+import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -8,13 +8,13 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Logo {
-  image: string;
+  image: TypeMediaInputValue;
   navigateTo: string;
 }
 
 interface Language {
   label: "code" | "name";
-  icon: string;
+  icon: TypeMediaInputValue;
   showLanguage: boolean;
   showDivider: boolean;
 }
@@ -36,10 +36,16 @@ class Navbar5 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "FaFacebook",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebook",
+              },
             },
             {
               type: "page",
@@ -55,10 +61,16 @@ class Navbar5 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "FaTwitter",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTwitter",
+              },
             },
             {
               type: "page",
@@ -74,10 +86,16 @@ class Navbar5 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "RiInstagramFill",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "RiInstagramFill",
+              },
             },
             {
               type: "page",
@@ -93,10 +111,16 @@ class Navbar5 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
               displayer: "Social Icon",
-              value: "FaTiktok",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTiktok",
+              },
             },
             {
               type: "page",
@@ -115,11 +139,16 @@ class Navbar5 extends BaseNavigator {
       displayer: "Default Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -136,11 +165,16 @@ class Navbar5 extends BaseNavigator {
       displayer: "Absolute Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -166,10 +200,16 @@ class Navbar5 extends BaseNavigator {
           },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon",
-          value: "GrLanguage",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "GrLanguage",
+          },
         },
         {
           type: "boolean",
@@ -194,17 +234,29 @@ class Navbar5 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "hamburger-icon",
       displayer: "Hamburger Icon",
-      value: "RxHamburgerMenu",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "RxHamburgerMenu",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "cross-icon",
       displayer: "Cross Icon",
-      value: "MdCancel",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdCancel",
+      },
     });
 
     this.addProp({
@@ -483,11 +535,9 @@ class Navbar5 extends BaseNavigator {
                       item.socialIcon && (
                         <ComposerLink key={indexSocial} path={item.socialLink}>
                           <div onClick={()=> this.closeNav()} className={this.decorateCSS("icon-container")}>
-                            <Base.Icon
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                              }}
-                              name={item.socialIcon}
+                            <Base.Media
+                              value={item.socialIcon}
+                              className={this.decorateCSS("icon")}
                             />
                           </div>
                         </ComposerLink>
@@ -501,8 +551,8 @@ class Navbar5 extends BaseNavigator {
           {currentLogo.image && (
             <div className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
-                <img
-                  src={currentLogo.image}
+                <Base.Media
+                  value={currentLogo.image}
                   className={this.decorateCSS("logoImage")}
                   onClick={()=> this.closeNav()}
                 />
@@ -516,7 +566,7 @@ class Navbar5 extends BaseNavigator {
                 <Base.Language
                   type="dropdown"
                   title={language.label}
-                  icon={language.icon}
+                  icon={language.icon?.name || "GrLanguage"}
                   dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
@@ -526,25 +576,19 @@ class Navbar5 extends BaseNavigator {
                 />
               )}
               {navActive ? (
-                <Base.Icon
-                  name={this.getPropValue("cross-icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `,
-                    onClick: () => {
-                      this.closeNav();
-                    },
-                  }}
-                />
+                <div onClick={() => this.closeNav()}>
+                  <Base.Media
+                    value={this.getPropValue("cross-icon")}
+                    className={`${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `}
+                  />
+                </div>
               ) : (
-                <Base.Icon
-                  name={this.getPropValue("hamburger-icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `,
-                    onClick: () => {
-                      this.openNav();
-                    },
-                  }}
-                />
+                <div onClick={() => this.openNav()}>
+                  <Base.Media
+                    value={this.getPropValue("hamburger-icon")}
+                    className={`${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `}
+                  />
+                </div>
               )}
             </div>
           )}

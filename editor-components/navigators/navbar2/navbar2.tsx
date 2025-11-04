@@ -1,11 +1,10 @@
 import * as React from "react";
-import { BaseNavigator } from "../../EditorComponent";
+import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 type Item = {
   nav_title: React.JSX.Element;
@@ -13,13 +12,13 @@ type Item = {
 };
 
 interface Logo {
-  image: string;
+  image: TypeMediaInputValue;
   navigateTo: string;
 }
 
 interface Language {
   label: "code" | "name";
-  icon: string;
+  icon: TypeMediaInputValue;
   showLanguage: boolean;
   showLocalizationAlways: boolean;
   showDivider: boolean;
@@ -29,7 +28,7 @@ class Navbar2 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Position"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Type"));
     this.addProp({
       type: "array",
       key: "nav",
@@ -49,7 +48,7 @@ class Navbar2 extends BaseNavigator {
             {
               type: "page",
               key: "nav_navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -75,7 +74,7 @@ class Navbar2 extends BaseNavigator {
             {
               type: "page",
               key: "nav_navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -101,7 +100,7 @@ class Navbar2 extends BaseNavigator {
             {
               type: "page",
               key: "nav_navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -127,7 +126,7 @@ class Navbar2 extends BaseNavigator {
             {
               type: "page",
               key: "nav_navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -153,7 +152,7 @@ class Navbar2 extends BaseNavigator {
             {
               type: "page",
               key: "nav_navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -174,11 +173,16 @@ class Navbar2 extends BaseNavigator {
       displayer: "Default Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -195,11 +199,16 @@ class Navbar2 extends BaseNavigator {
       displayer: "Absolute Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -211,30 +220,54 @@ class Navbar2 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "dropdownIcon",
       displayer: "Dropdown Icon",
-      value: "MdArrowDropDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdArrowDropDown",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightIcon",
       displayer: "Right Arrow Icon",
-      value: "MdKeyboardArrowRight",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowRight",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "hamburgerIcon",
       displayer: "Hamburger Icon",
-      value: "FaBars",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaBars",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Icon",
-      value: "IoMdClose",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdClose",
+      },
     });
 
     this.addProp({
@@ -252,17 +285,23 @@ class Navbar2 extends BaseNavigator {
         {
           type: "select",
           key: "label",
-          displayer: "Language Label",
+          displayer: "Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
           },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon",
-          value: "GrLanguage",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "GrLanguage",
+          },
         },
         {
           type: "boolean",
@@ -279,7 +318,7 @@ class Navbar2 extends BaseNavigator {
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Show Divider",
+          displayer: "Divider",
           value: false,
         },
       ],
@@ -372,8 +411,8 @@ class Navbar2 extends BaseNavigator {
           {currentLogo && (
             <ComposerLink path={currentLogo.navigateTo}>
               <div className={this.decorateCSS("logo")}>
-                <img
-                  src={currentLogo.image}
+                <Base.Media
+                  value={currentLogo.image}
                   className={this.decorateCSS("logoImg")}
                   onClick={()=> this.toggleMobileMenu()}
                 />
@@ -395,11 +434,9 @@ class Navbar2 extends BaseNavigator {
                             {item.nav_title}
                           </Base.P>
                           {item.menuType === "Dropdown" && (
-                            <Base.Icon
-                              name={this.getPropValue("dropdownIcon")}
-                              propsIcon={{
-                                className: this.decorateCSS("dropdownIcon"),
-                              }}
+                            <Base.Media
+                              value={this.getPropValue("dropdownIcon")}
+                              className={this.decorateCSS("dropdownIcon")}
                             />
                           )}
                         </div>
@@ -431,12 +468,9 @@ class Navbar2 extends BaseNavigator {
                                       subItem.sub_items.some((item: any) =>
                                         this.castToString(item.nav_title)
                                       ) && (
-                                        <Base.Icon
-                                          name={this.getPropValue("rightIcon")}
-                                          propsIcon={{
-                                            className:
-                                              this.decorateCSS("rightIcon"),
-                                          }}
+                                        <Base.Media
+                                          value={this.getPropValue("rightIcon")}
+                                          className={this.decorateCSS("rightIcon")}
                                         />
                                       )}
                                   </div>
@@ -461,11 +495,11 @@ class Navbar2 extends BaseNavigator {
                                               <ComposerLink
                                                 path={subSubItem.nav_navigate_to}
                                               >
-                                                <span
+                                                <Base.P
                                                   className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}
                                                 >
                                                   {subSubItem.nav_title}
-                                                </span>
+                                                </Base.P>
                                               </ComposerLink>
                                             </div>
                                           )
@@ -485,7 +519,7 @@ class Navbar2 extends BaseNavigator {
                 <Base.Language
                   type="dropdown"
                   title={language.label}
-                  icon={language.icon}
+                  icon={language.icon && typeof language.icon === "object" && language.icon.type === "icon" ? language.icon.name : "GrLanguage"}
                   dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
@@ -497,18 +531,17 @@ class Navbar2 extends BaseNavigator {
             </nav>
           )}
           <div className={this.decorateCSS("mobileRight")}>
-          <Base.Icon
-            name={this.getPropValue("hamburgerIcon")}
-            propsIcon={{
-              className: this.decorateCSS("menuIcon"),
-              onClick: this.toggleMobileMenu,
-            }}
-          />
+          <div onClick={this.toggleMobileMenu}>
+            <Base.Media
+              value={this.getPropValue("hamburgerIcon")}
+              className={this.decorateCSS("menuIcon")}
+            />
+          </div>
            {language.showLanguage && language.showLocalizationAlways &&(
                 <Base.Language
                   type="dropdown"
                   title={language.label}
-                  icon={language.icon}
+                  icon={language.icon && typeof language.icon === "object" && language.icon.type === "icon" ? language.icon.name : "GrLanguage"}
                   dropdownButtonClassName={`${this.decorateCSS(
                     "localizationMobile"
                   )}`}
@@ -527,13 +560,12 @@ class Navbar2 extends BaseNavigator {
 
             <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
             ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
-              <Base.Icon
-                name={this.getPropValue("closeIcon")}
-                propsIcon={{
-                  className: this.decorateCSS("closeIcon"),
-                  onClick: this.toggleMobileMenu,
-                }}
-              />
+              <div onClick={this.toggleMobileMenu}>
+                <Base.Media
+                  value={this.getPropValue("closeIcon")}
+                  className={this.decorateCSS("closeIcon")}
+                />
+              </div>
 
 
               {menuItems.length > 0 && (
@@ -560,19 +592,17 @@ class Navbar2 extends BaseNavigator {
                               </Base.P>
                             </ComposerLink>
                             {item.menuType === "Dropdown" && (
-                              <Base.Icon
-                                name={this.getPropValue("rightIcon")}
-                                propsIcon={{
-                                  className: `${this.decorateCSS(
-                                    "dropdownIcon"
-                                  )} ${
-                                    this.getComponentState(
-                                      "subNavActiveIndex"
-                                    ) === index
-                                      ? this.decorateCSS("active")
-                                      : ""
-                                  }`,
-                                }}
+                              <Base.Media
+                                value={this.getPropValue("rightIcon")}
+                                className={`${this.decorateCSS(
+                                  "dropdownIcon"
+                                )} ${
+                                  this.getComponentState(
+                                    "subNavActiveIndex"
+                                  ) === index
+                                    ? this.decorateCSS("active")
+                                    : ""
+                                }`}
                               />
                             )}
                           </div>
@@ -614,21 +644,19 @@ class Navbar2 extends BaseNavigator {
                                         subItem.sub_items.some((item: any) =>
                                           this.castToString(item.nav_title)
                                         ) && (
-                                          <Base.Icon
-                                            name={this.getPropValue(
+                                          <Base.Media
+                                            value={this.getPropValue(
                                               "rightIcon"
                                             )}
-                                            propsIcon={{
-                                              className: `${this.decorateCSS(
-                                                "dropdownIcon"
-                                              )} ${
-                                                this.getComponentState(
-                                                  "subNavActive"
-                                                ) === `${index}-${subIndex}`
-                                                  ? this.decorateCSS("active")
-                                                  : ""
-                                              }`,
-                                            }}
+                                            className={`${this.decorateCSS(
+                                              "dropdownIcon"
+                                            )} ${
+                                              this.getComponentState(
+                                                "subNavActive"
+                                              ) === `${index}-${subIndex}`
+                                                ? this.decorateCSS("active")
+                                                : ""
+                                            }`}
                                           />
                                         )}
                                     </div>

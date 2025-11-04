@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseNavigator } from "../../EditorComponent";
+import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -10,21 +10,21 @@ interface CategoryItem {
   label: string;
   description: string;
   url: string;
-  icon?: string;
-  image: string;
+  icon?: TypeMediaInputValue;
+  image: TypeMediaInputValue;
 }
 
 interface Category {
   title: string;
   items: CategoryItem[];
   url: string;
-  icon?: string;
-  image: string;
+  icon?: TypeMediaInputValue;
+  image: TypeMediaInputValue;
 }
 
 interface RightSection {
   enabled: boolean;
-  image: string;
+  image: TypeMediaInputValue;
   ctaTitle: string;
   ctaLink: string;
 }
@@ -39,7 +39,7 @@ interface MenuItems {
   rightSection?: RightSection;
 }
 interface Logo {
-  image: string;
+  image: TypeMediaInputValue;
   urlTo: string;
 }
 
@@ -57,11 +57,16 @@ class Navbar10 extends BaseNavigator {
       displayer: "Default Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -77,11 +82,16 @@ class Navbar10 extends BaseNavigator {
       displayer: "Absolute Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -177,20 +187,32 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {type: "string",
                       key: "imageUrl",
@@ -245,10 +267,16 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -276,10 +304,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Manage all of your projects in one place",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -307,10 +341,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Manage all of your projects in one place",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -338,10 +378,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Manage client payments hassle-free",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -369,10 +415,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Unlock efficiency with smart automations",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -426,10 +478,16 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -457,20 +515,32 @@ class Navbar10 extends BaseNavigator {
                               value: "Simple interface for non-technical users",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {
                       type: "page",
@@ -527,10 +597,16 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -558,10 +634,16 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -590,10 +672,16 @@ class Navbar10 extends BaseNavigator {
                             },
 
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -621,20 +709,32 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {
                       type: "page",
@@ -850,10 +950,16 @@ class Navbar10 extends BaseNavigator {
                                 "See why Duda is the top website builder for agency growth",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -882,20 +988,32 @@ class Navbar10 extends BaseNavigator {
                                 "Add a seamless-integrated website builder to your SaaS offering",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                   ],
                 },
@@ -946,20 +1064,32 @@ class Navbar10 extends BaseNavigator {
                                 "Provide high-end website solutions integrated with your services",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {
                       type: "page",
@@ -1101,10 +1231,16 @@ class Navbar10 extends BaseNavigator {
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                   ],
                 },
@@ -1193,10 +1329,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Get started with beautiful templates",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1224,10 +1366,16 @@ class Navbar10 extends BaseNavigator {
                               value: "API, extensions, and developer tools",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1255,10 +1403,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Get expert help for your next project",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1312,10 +1466,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Learn from experts, onlnie or in-person",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1343,10 +1503,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Collaborate with other Duda users",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1400,10 +1566,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Get insights to fuel your business",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1431,10 +1603,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Discover Duda's latest releases",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1462,10 +1640,16 @@ class Navbar10 extends BaseNavigator {
                               value: "Take your skills to the next level",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1493,26 +1677,44 @@ class Navbar10 extends BaseNavigator {
                               value: "Get inspired by real wins",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                   ],
                 },
@@ -1684,10 +1886,16 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
@@ -1742,20 +1950,32 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {
                       type: "page",
@@ -1838,26 +2058,44 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                   ],
                 },
@@ -1908,20 +2146,32 @@ class Navbar10 extends BaseNavigator {
                               value: "",
                             },
                             {
-                              type: "icon",
+                              type: "media",
                               key: "icon",
                               displayer: "Item icon",
-                              value: "",
+                              additionalParams: {
+                                availableTypes: ["icon"],
+                              },
+                              value: {
+                                type: "icon",
+                                name: "",
+                              },
                             },
                           ],
                         },
                       ],
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "image",
                       displayer: "Category Image",
-                      value: "",
+                      additionalParams: {
+                        availableTypes: ["image"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "",
+                      },
                     },
                     {
                       type: "page",
@@ -1966,37 +2216,66 @@ class Navbar10 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "hamburgerIcon",
       displayer: "Hamburger Icon",
-      value: "RxHamburgerMenu",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "RxHamburgerMenu",
+      },
     });
 
     this.addProp({
-        type: "icon",
+        type: "media",
         key: "linkIcon",
         displayer: "Link Icon",
-        value:"FiArrowUpRight",
+        additionalParams: {
+          availableTypes: ["icon"],
+        },
+        value: {
+          type: "icon",
+          name: "FiArrowUpRight",
+        },
     })
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Icon",
-      value: "RxCross2",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "RxCross2",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "dropdownIcon",
       displayer: "Dropdown Icon",
-      value: "BiChevronDown",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BiChevronDown",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightIcon",
       displayer: "Right Arrow Icon",
-      value: "MdKeyboardArrowRight",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdKeyboardArrowRight",
     });
     this.addProp({
       type: "boolean",
@@ -2181,8 +2460,8 @@ class Navbar10 extends BaseNavigator {
                   onClick={() => this.handleCloseMenu()}
                 >
                   <ComposerLink path={currentLogo.urlTo}>
-                    <img
-                      src={currentLogo.image}
+                    <Base.Media
+                      value={currentLogo.image}
                       className={this.decorateCSS("logoImage")}
                     />
                   </ComposerLink>
@@ -2212,13 +2491,11 @@ class Navbar10 extends BaseNavigator {
                         >
                           {item.title}
                         </Base.P>
-                        <Base.Icon
-                          name={this.getPropValue("dropdownIcon")}
-                          propsIcon={{
-                            className: `${this.decorateCSS("dropdownIcon")} ${
-                              activeDropdown === index ? this.decorateCSS("active") : ""
-                            }`,
-                          }}
+                        <Base.Media
+                          value={this.getPropValue("dropdownIcon")}
+                          className={`${this.decorateCSS("dropdownIcon")} ${
+                            activeDropdown === index ? this.decorateCSS("active") : ""
+                          }`}
                         />
                       </div>
                     ) : (
@@ -2275,13 +2552,11 @@ class Navbar10 extends BaseNavigator {
                                         >
                                           {category.title}
                                           {category.icon && (
-                                            <Base.Icon
-                                              name={category.icon}
-                                              propsIcon={{
-                                                className: this.decorateCSS(
-                                                  "DropdownSectionItemIcon"
-                                                ),
-                                              }}
+                                            <Base.Media
+                                              value={category.icon}
+                                              className={this.decorateCSS(
+                                                "DropdownSectionItemIcon"
+                                              )}
                                             />
                                           )}
                                         </Base.H5>
@@ -2308,14 +2583,11 @@ class Navbar10 extends BaseNavigator {
                                               >
                                                 {catItem.label}
                                                 {catItem.icon && (
-                                                  <Base.Icon
-                                                    name={catItem.icon}
-                                                    propsIcon={{
-                                                      className:
-                                                        this.decorateCSS(
-                                                          "DropdownSectionItemIcon"
-                                                        ),
-                                                    }}
+                                                  <Base.Media
+                                                    value={catItem.icon}
+                                                    className={this.decorateCSS(
+                                                      "DropdownSectionItemIcon"
+                                                    )}
                                                   />
                                                 )}
                                               </Base.P>
@@ -2334,9 +2606,8 @@ class Navbar10 extends BaseNavigator {
                                       ))}
                                       {category.image && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
-                                          <img
-                                            src={category.image}
-                                            alt={category.title}
+                                          <Base.Media
+                                            value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
                                         </div>
@@ -2366,13 +2637,11 @@ class Navbar10 extends BaseNavigator {
                                         >
                                           {category.title}
                                           {category.icon && (
-                                            <Base.Icon
-                                              name={category.icon}
-                                              propsIcon={{
-                                                className: this.decorateCSS(
-                                                  "DropdownSectionItemIcon"
-                                                ),
-                                              }}
+                                            <Base.Media
+                                              value={category.icon}
+                                              className={this.decorateCSS(
+                                                "DropdownSectionItemIcon"
+                                              )}
                                             />
                                           )}
                                         </Base.H5>
@@ -2399,14 +2668,11 @@ class Navbar10 extends BaseNavigator {
                                               >
                                                 {catItem.label}
                                                 {catItem.icon && (
-                                                  <Base.Icon
-                                                    name={catItem.icon}
-                                                    propsIcon={{
-                                                      className:
-                                                        this.decorateCSS(
-                                                          "DropdownSectionItemIcon"
-                                                        ),
-                                                    }}
+                                                  <Base.Media
+                                                    value={catItem.icon}
+                                                    className={this.decorateCSS(
+                                                      "DropdownSectionItemIcon"
+                                                    )}
                                                   />
                                                 )}
                                               </Base.P>
@@ -2425,9 +2691,8 @@ class Navbar10 extends BaseNavigator {
                                       ))}
                                       {category.image && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
-                                          <img
-                                            src={category.image}
-                                            alt={category.title}
+                                          <Base.Media
+                                            value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
                                         </div>
@@ -2444,8 +2709,8 @@ class Navbar10 extends BaseNavigator {
                           <div
                             className={this.decorateCSS("dropdownRightSection")}
                           >
-                            <img
-                              src={item.rightSection.image}
+                            <Base.Media
+                              value={item.rightSection.image}
                               className={this.decorateCSS("rightImage")}
                             />
                             <ComposerLink path={item.rightSection.ctaLink}>
@@ -2488,29 +2753,31 @@ class Navbar10 extends BaseNavigator {
 
               {isMobile &&
                 (hamburgerNavActive ? (
-                  <Base.Icon
-                    name={this.getPropValue("closeIcon")}
-                    propsIcon={{
-                      className: this.decorateCSS("closeIcon"),
-                      onClick: (e: any) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        this.handleCloseMenu();
-                      },
+                  <div
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      this.handleCloseMenu();
                     }}
-                  />
+                  >
+                    <Base.Media
+                      value={this.getPropValue("closeIcon")}
+                      className={this.decorateCSS("closeIcon")}
+                    />
+                  </div>
                 ) : (
-                  <Base.Icon
-                    name={this.getPropValue("hamburgerIcon")}
-                    propsIcon={{
-                      className: this.decorateCSS("hamburgerIcon"),
-                      onClick: (e: any) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        this.handleOpenMenu();
-                      },
+                  <div
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      this.handleOpenMenu();
                     }}
-                  />
+                  >
+                    <Base.Media
+                      value={this.getPropValue("hamburgerIcon")}
+                      className={this.decorateCSS("hamburgerIcon")}
+                    />
+                  </div>
                 ))}
             </div>
           </Base.MaxContent>
@@ -2587,13 +2854,11 @@ class Navbar10 extends BaseNavigator {
                                         >
                                           {category.title}
                                           {category.icon && (
-                                            <Base.Icon
-                                              name={category.icon}
-                                              propsIcon={{
-                                                className: this.decorateCSS(
-                                                  "DropdownSectionItemIcon"
-                                                ),
-                                              }}
+                                            <Base.Media
+                                              value={category.icon}
+                                              className={this.decorateCSS(
+                                                "DropdownSectionItemIcon"
+                                              )}
                                             />
                                           )}
                                         </Base.P>
@@ -2637,9 +2902,8 @@ class Navbar10 extends BaseNavigator {
                                       </div>
                                       {category.image && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
-                                          <img
-                                            src={category.image}
-                                            alt={category.title}
+                                          <Base.Media
+                                            value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
                                         </div>
@@ -2663,13 +2927,11 @@ class Navbar10 extends BaseNavigator {
                                         >
                                           {category.title}
                                           {category.icon && (
-                                            <Base.Icon
-                                              name={category.icon}
-                                              propsIcon={{
-                                                className: this.decorateCSS(
-                                                  "DropdownSectionItemIcon"
-                                                ),
-                                              }}
+                                            <Base.Media
+                                              value={category.icon}
+                                              className={this.decorateCSS(
+                                                "DropdownSectionItemIcon"
+                                              )}
                                             />
                                           )}
                                         </Base.P>
@@ -2713,9 +2975,8 @@ class Navbar10 extends BaseNavigator {
                                       </div>
                                       {category.image && (
                                         <div className={this.decorateCSS("dropdownCategoryImage")}>
-                                          <img
-                                            src={category.image}
-                                            alt={category.title}
+                                          <Base.Media
+                                            value={category.image}
                                             className={this.decorateCSS("categoryImage")}
                                           />
                                         </div>

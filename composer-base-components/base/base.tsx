@@ -555,9 +555,9 @@ export namespace Base {
               onClick={() => handleLanguageChange(lang)}
               divider={divider && index < composerToolsLanguages.length - 1}
             >
-              <span className={`${styles.label} ${dropdownItemClassName}`}>
+              <Base.P className={`${styles.label} ${dropdownItemClassName}`}>
                 {lang[title || "code"].toUpperCase()}
-              </span>
+              </Base.P>
             </DropDownItem>
           ))}
         </Dropdown>
