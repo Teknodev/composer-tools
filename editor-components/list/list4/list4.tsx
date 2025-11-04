@@ -164,20 +164,32 @@ class list4 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("header")}>
-            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-              {this.getPropValue("subtitle") as any}
-            </Base.SectionSubTitle>
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title") as any}
-            </Base.SectionTitle>
-          </Base.VerticalContent>
-          <Base.ListGrid className={this.decorateCSS("services-grid")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
+          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {this.castToString(this.getPropValue("subtitle")) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle") as any}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(this.getPropValue("title")) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title") as any}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
+          )}
+          <Base.ListGrid className={this.decorateCSS("services-grid")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
             {this.castToObject<Card[]>("content-card").map(
-              (card: any, index: number) => (
+              (card: any, index: number) => {
+                const hasTitle = this.castToString(card.title);
+                const hasDescription = this.castToString(card.description);
+                const hasIcon = !!card.icon;
+                const showIndex = !!this.getPropValue("showIndex");
+                if (!hasTitle && !hasDescription && !hasIcon) return null;
+                return (
                 <div
                   key={index}
-                  className={this.decorateCSS("service-item")}
+                  className={`${this.decorateCSS("service-item")} ${this.decorateCSS(showIndex ? "with-index" : "no-index")}`}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
                   <div className={this.decorateCSS("border-frame")}>
@@ -186,13 +198,17 @@ class list4 extends BaseList {
                     <div className={this.decorateCSS("border-right")}></div>
                     <div className={this.decorateCSS("border-bottom")}></div>
                   </div>
-                  <div className={`${this.decorateCSS("item-index")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}
-                    data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                    {(index + 1).toLocaleString("en-US", {
-                      minimumIntegerDigits: 2,
-                      useGrouping: false,
-                    })}
-                  </div>
+                  {this.getPropValue("showIndex") && (
+                    <div
+                      className={`${this.decorateCSS("item-index")} ${this.decorateCSS("index")}`}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    >
+                      {(index + 1).toLocaleString("en-US", {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false,
+                      })}
+                    </div>
+                  )}
                   <div
                     key={`cnt-4-card-${index}`}
                     className={this.decorateCSS("card-content")}
@@ -225,7 +241,7 @@ class list4 extends BaseList {
                     </Base.VerticalContent>
                   </div>
                 </div>
-              )
+              )}
             )}
           </Base.ListGrid>
         </Base.MaxContent>

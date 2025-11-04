@@ -22,6 +22,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        align-items: center;
+        text-align: center;
         width: 100%;
         height: 100%;
         transform: translate(0, 0);
@@ -151,8 +153,11 @@
           content: "";
           color: var(--composer-font-color-primary);
           height: 1em;
+          align-self: center;
+          text-align: center;
+          width: 100%;
           * {
-            max-width: 200px;
+            max-width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -197,12 +202,14 @@
           z-index: 1;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          text-align: center;
         }
         .bottom-text {
           content: "";
           transition: all 0.3s ease;
           margin: auto 0px 0px;
           color: var(--composer-font-color-primary);
+          text-align: center;
         }
       }
     }

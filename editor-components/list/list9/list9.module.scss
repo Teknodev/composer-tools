@@ -10,6 +10,7 @@
     gap: var(--composer-gap-lg);
     
     .header {
+      padding-left: var(--composer-gap-lg);
       .subtitle {
         content: "";
       }

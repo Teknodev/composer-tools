@@ -69,6 +69,7 @@
           position: absolute;
           width: calc(100% - 80px);
           height: calc(100% - 80px);
+          z-index: 0;
 
           .border-left {
             position: absolute;
@@ -86,6 +87,7 @@
             height: var(--composer-border-width-xs);
             width: calc(100% + 60px);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+            z-index: 1;
             &:after {
               content: "";
               position: absolute;
@@ -94,6 +96,7 @@
               background-color: var(--composer-font-color-primary);
               height: var(--composer-border-width-xs);
               width: calc(100% - 90px);
+              z-index: 1;
             }
           }
 
@@ -117,6 +120,7 @@
         }
         .card-content {
           position: relative;
+          z-index: 1;
           padding: var(--composer-gap-md);
 
           .card-body {
@@ -185,6 +189,13 @@
               }
             }
           }
+        }
+        /* Show Index durumuna göre kart içeriği ofseti */
+        &.with-index {
+          .item-index.index + .card-content { margin-top: calc(var(--composer-gap-md) + var(--composer-gap-sm)); }
+        }
+        &.no-index {
+          .card-content { margin-top: calc(var(--composer-gap-xl) + var(--composer-gap-sm)); }
         }
         &:nth-child(3n + 2) {
           transform: translateY(var(--composer-gap-lg));

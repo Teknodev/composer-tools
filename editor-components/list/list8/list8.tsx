@@ -201,9 +201,15 @@ class List8 extends BaseList {
             {(listItems.length > 0) && (
               <Base.ListGrid
                 className={this.decorateCSS("items-wrapper")}
-                gridCount={{ pc: this.getPropValue("itemCount") }}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
               >
-                {listItems.map((item: any, index: number) => (
+                {listItems.map((item: any, index: number) => {
+                  const hasTitle = this.castToString(item.title);
+                  const hasText = this.castToString(item.text);
+                  const hasIcon = !!(item.getPropValue && item.getPropValue("icon"));
+                  const hasNumber = this.castToString(item.getPropValue && item.getPropValue("number"));
+                  if (!hasTitle && !hasText && !hasIcon && !hasNumber) return null;
+                  return (
                   <div
                     key={index}
                     className={this.decorateCSS("list-item")}
@@ -241,7 +247,7 @@ class List8 extends BaseList {
                       </div>
                     )}
                   </div>
-                ))}
+                )})}
               </Base.ListGrid>
             )}
             {this.castToString(buttonType.text) && (

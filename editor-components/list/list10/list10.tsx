@@ -217,8 +217,11 @@ class List10 extends BaseList {
                         className={this.decorateCSS("cards-grid")}
                     >
                         {cards.map((card: Card, index: number) => {
+                            const badgeExist = this.castToString(card.badge);
                             const descExist = this.castToString(card.description);
                             const bottomTextExist = this.castToString(card.bottomText);
+                            const imageExist = !!card.image;
+                            if (!badgeExist && !descExist && !bottomTextExist && !imageExist) return null;
 
                             return (
                                 <ComposerLink key={index} path={card.url}>
@@ -226,9 +229,11 @@ class List10 extends BaseList {
                                         className={this.decorateCSS("card")}
                                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                     >
-                                        <Base.P className={this.decorateCSS("badge")}>
-                                            {card.badge}
-                                        </Base.P>
+                                        {badgeExist && (
+                                            <Base.P className={this.decorateCSS("badge")}>
+                                                {card.badge}
+                                            </Base.P>
+                                        )}
                                         <div className={this.decorateCSS("image-container")}>
                                             {card.image && (
                                                 <Base.Media

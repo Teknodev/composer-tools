@@ -311,7 +311,7 @@ class List1 extends BaseList {
         {
           breakpoint: 950,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 3,
           },
         },
         {

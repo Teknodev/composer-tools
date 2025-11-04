@@ -36,7 +36,7 @@ class List11 extends BaseList {
         this.addProp({
             type: "string",
             key: "subTitle",
-            displayer: "Sub Title",
+            displayer: "Description",
             value: "We focus on helping you to make useful content more accessible with an utlimate goal for a good sharing profit as a content creator."
         });
         this.addProp({
