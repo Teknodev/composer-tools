@@ -34,7 +34,7 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab text",
           value: [
             {
               type: "string",
@@ -82,7 +82,7 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button Text",
+          displayer: "Tab Text",
           value: [
             {
               type: "string",
@@ -130,7 +130,7 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button Text",
+          displayer: "Tab Text",
           value: [
             {
               type: "string",
