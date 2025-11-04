@@ -365,23 +365,31 @@ class List2 extends BaseList {
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {subtitle as any}
-              </Base.SectionSubTitle>
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title as any}
-              </Base.SectionTitle>
-              <Base.SectionDescription className={this.decorateCSS("description")} >
-                {description as any}
-              </Base.SectionDescription>
-            </Base.VerticalContent>
+            {(this.castToString(subtitle as any) || this.castToString(title as any) || this.castToString(description as any)) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {this.castToString(subtitle as any) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle as any}
+                  </Base.SectionSubTitle>
+                )}
+                {this.castToString(title as any) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title as any}
+                  </Base.SectionTitle>
+                )}
+                {this.castToString(description as any) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")} >
+                    {description as any}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
             {(cards.length > 0) && (
               <Base.ListGrid
                 className={this.decorateCSS("cards-box")}
                 gridCount={{
                   pc: this.getPropValue("itemCount"),
-                  tablet: 2,
+                  tablet: 3,
                   phone: 1,
                 }}
               >
@@ -403,17 +411,25 @@ class List2 extends BaseList {
                       <div className={this.decorateCSS("card-content")}>
                         <div className={this.decorateCSS("stick")}></div>
                         <div className={this.decorateCSS("category")}>
-                          <Base.H4 className={this.decorateCSS("category-name")}>
-                            {item.text as any}
-                          </Base.H4>
-                          <div className={this.decorateCSS("count-badge")}>
-                            <Base.P className={this.decorateCSS("count-value")}>
-                              {item.count as any}
-                            </Base.P>
-                            <Base.P className={this.decorateCSS("count-label")}>
-                              {item.label as any}
-                            </Base.P>
-                          </div>
+                          {this.castToString(item.text as any) && (
+                            <Base.H4 className={this.decorateCSS("category-name")}>
+                              {item.text as any}
+                            </Base.H4>
+                          )}
+                          {(this.castToString(item.count as any) || this.castToString(item.label as any)) && (
+                            <div className={this.decorateCSS("count-badge")}>
+                              {this.castToString(item.count as any) && (
+                                <Base.P className={this.decorateCSS("count-value")}>
+                                  {item.count as any}
+                                </Base.P>
+                              )}
+                              {this.castToString(item.label as any) && (
+                                <Base.P className={this.decorateCSS("count-label")}>
+                                  {item.label as any}
+                                </Base.P>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -421,7 +437,7 @@ class List2 extends BaseList {
                 ))}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") < cards.length) && (
+            {(this.getComponentState("imageCount") < cards.length) && this.castToString(buttonType.text as any) && (
               <ComposerLink path={buttonType.url}>
                 <div className={this.decorateCSS("button-wrapper")}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >

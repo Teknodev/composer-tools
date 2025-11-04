@@ -67,14 +67,9 @@ class List12 extends BaseList {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: "Simplifying Payments,",
+          value: "Simplifying Payments,Fast and Secure",
         },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Fast and Secure",
-        },
+        
         {
           type: "media",
           key: "item",
@@ -217,21 +212,12 @@ class List12 extends BaseList {
                 </div>
               )}
             </div>
-            <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-              {this.castToString(box2.title || box2.subtitle) && (
-                <Base.SectionTitle
-                  className={this.decorateCSS("section-wrapper")}
-                >
-                  {this.castToString(box2.title) && (
-                    <div className={`${this.decorateCSS("title")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
-                      {box2.title}
-                    </div>
-                  )}
-                  {this.castToString(box2.subtitle) && (
-                    <div className={`${this.decorateCSS("subtitle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
-                      {box2.subtitle}
-                    </div>
-                  )}
+            <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
+              {this.castToString(box2.title) && (
+                <Base.SectionTitle className={this.decorateCSS("section-wrapper")}>
+                  <div className={`${this.decorateCSS("title")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
+                    {box2.title}
+                  </div>
                 </Base.SectionTitle>
               )}
               {(box2.item || box2.icon) && (

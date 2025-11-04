@@ -12,9 +12,7 @@
     gap: var(--composer-gap-md);
 
     .header {
-      .subtitle, .title {
-        content: "";
-      }
+      text-align: center;
     }
 
     .carousel {
@@ -188,21 +186,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .carousel {
-        .card {
-          &.active {
-            &::after {
-              visibility: hidden;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 @keyframes breathing {
   0% {

@@ -29,7 +29,7 @@ class List5 extends BaseList {
     this.addProp({
       type: "string",
       key: "header",
-      displayer: "Header",
+      displayer: "Title",
       value: "Bringing Your Vision to Life - AI Image Generation Service",
     });
     this.addProp({
@@ -306,7 +306,7 @@ class List5 extends BaseList {
             {(ListItems.length > 0) && (
               <Base.ListGrid
                 className={this.decorateCSS("cards-grid")}
-                gridCount={{ pc: this.getPropValue("itemCount") }}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}
               >
                 {ListItems.map(
                   (listItem: any, index: number) => {

@@ -26,9 +26,7 @@
     .header {
       .subtitle {
         content: "";
-        &.dark {
-          color: white;
-        }
+        &.dark { color: white; }
       }
       .header-title {
         content: "";
@@ -128,11 +126,14 @@
                     var(--composer-html-background),
                     var(--composer-font-color-primary) 5%
                   );
-                  padding: var(--composer-gap-sm);
+                  padding: var(--composer-gap-md);
                   .icon {
-                    width: 60px;
-                    height: 60px;
+                    font-size: 2.5rem;
                     color: var(--composer-font-color-primary);
+                    line-height: 1;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
                   }
                 }
                 &::after {

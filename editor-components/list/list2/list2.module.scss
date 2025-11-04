@@ -17,9 +17,7 @@
         flex-direction: column;
         gap: var(--composer-gap-md);
         .header {
-          .subtitle, .title, .description {
-            content: "";
-          }
+          text-align: center;
         }
 
       .cards-box {
@@ -103,7 +101,6 @@
               align-items: start;
 
               .category-name {
-                content: "";
                 text-align: left;
               }
 
@@ -117,7 +114,6 @@
                 transition: all var(--composer-transition-duration-normal) ease;
                 .count-value,
                 .count-label {
-                  content: "";
                   color: var(--composer-font-color-secondary);
                 }
               }
@@ -128,11 +124,6 @@
       .button-wrapper {
         display: flex;
         justify-content: center;
-        .button {
-          .button-text{
-            content: "";
-          }
-        }
       }
     }
   }

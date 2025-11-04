@@ -27,14 +27,14 @@ class List6 extends BaseList {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description",
+      displayer: "Title",
       value:
         "It's so challenging to find a good team to do great things. But we can provide you the best one.",
     });
     this.addProp({
       type: "boolean",
       key: "descriptionAnimation",
-      displayer: "Description Animation",
+      displayer: "Title Animation",
       value: true,
     });
     this.addProp({
@@ -90,7 +90,7 @@ class List6 extends BaseList {
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
@@ -128,7 +128,7 @@ class List6 extends BaseList {
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
@@ -166,7 +166,7 @@ class List6 extends BaseList {
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
@@ -204,7 +204,7 @@ class List6 extends BaseList {
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },

@@ -10,7 +10,8 @@ type Item = {
   texts: TextItem[];
 };
 type TextItem = {
-  itemText: React.JSX.Element;
+  topText: React.JSX.Element;
+  bottomText: React.JSX.Element;
 };
 
 class List3 extends BaseList {
@@ -66,38 +67,26 @@ class List3 extends BaseList {
                   key: "text",
                   displayer: "Text",
                   value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Psychologist - John parker 10:00 AM to 12:30 PM",
-                    },
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "10:00 AM - 12:30 PM" },
                   ]
                 },
                 {
                   type: "object",
-                  key: "Text",
+                  key: "text",
                   displayer: "Text",
                   value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Sociology - Herman miller 02:00 PM to 04:30 PM",
-                    },
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Sociology - Herman Miller" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "02:00 PM - 04:30 PM" },
                   ]
                 },
                 {
                   type: "object",
-                  key: "Text",
+                  key: "text",
                   displayer: "Text",
                   value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Geologist - Jeremy dupont 05:00 PM to 07:30 PM",
-                    },
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Geologist - Jeremy Dupont" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "05:00 PM - 07:30 PM" },
                   ]
                 },
               ]
@@ -120,45 +109,18 @@ class List3 extends BaseList {
               key: "texts",
               displayer: "Texts",
               value: [
-                {
-                  type: "object",
-                  key: "text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Economy - Michal ruheen 10:00 AM to 12:30 PM",
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Engineer - Jessica dover 02:00 PM to 04:30 PM",
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Psychologist - John parker 05:00 PM to 07:30 PM",
-                    },
-                  ]
-                },
+                { type: "object", key: "text", displayer: "Text", value: [
+                  { type: "string", key: "topText", displayer: "Top Text", value: "Economy - Michal Ruheen" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "10:00 AM - 12:30 PM" },
+                ]},
+                { type: "object", key: "text", displayer: "Text", value: [
+                  { type: "string", key: "topText", displayer: "Top Text", value: "Engineer - Jessica Dover" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "02:00 PM - 04:30 PM" },
+                ]},
+                { type: "object", key: "text", displayer: "Text", value: [
+                  { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "05:00 PM - 07:30 PM" },
+                ]},
               ]
             }
           ],
@@ -179,45 +141,18 @@ class List3 extends BaseList {
               key: "texts",
               displayer: "Texts",
               value: [
-                {
-                  type: "object",
-                  key: "text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Biologist- Saleena fountain 10:00 AM to 12:30 PM",
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Secretary- Paulina morris 02:00 PM to 04:30 PM",
-                    },
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Politician - Wendaya royin 05:00 PM to 07:30 PM",
-                    },
-                  ]
-                },
+                { type: "object", key: "text", displayer: "Text", value: [
+                  { type: "string", key: "topText", displayer: "Top Text", value: "Biologist - Saleena Fountain" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "10:00 AM - 12:30 PM" },
+                ]},
+                { type: "object", key: "text", displayer: "Text", value: [
+                  { type: "string", key: "topText", displayer: "Top Text", value: "Secretary - Paulina Morris" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "02:00 PM - 04:30 PM" },
+                ]},
+                { type: "object", key: "text", displayer: "Text", value: [
+                  { type: "string", key: "topText", displayer: "Top Text", value: "Politician - Wendaya Royin" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "05:00 PM - 07:30 PM" },
+                ]},
               ]
             }
           ],
@@ -255,10 +190,11 @@ class List3 extends BaseList {
     const listItems = this.castToObject<Item[]>("listItems");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
+    const alignment = Base.getContentAlignment();
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={this.decorateCSS("cards-grid")} gridCount={{ pc: this.getPropValue("itemCount") }}>
+          <Base.ListGrid className={this.decorateCSS("cards-grid") + " " + (alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center"))} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }}>
             {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text)) && (
               <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
@@ -313,9 +249,12 @@ class List3 extends BaseList {
                     {listItem.texts.map((item: TextItem, index: number) => (
                       <Base.VerticalContent key={index} className={this.decorateCSS("event-item")}>
                         <div className={this.decorateCSS("divider")}></div>
-                        <Base.P className={this.decorateCSS("event-text")}>
-                          {item.itemText as any}
-                        </Base.P>
+                        {this.castToString(item.topText) && (
+                          <Base.P className={this.decorateCSS("event-text-top")}>{item.topText}</Base.P>
+                        )}
+                        {this.castToString(item.bottomText) && (
+                          <Base.P className={this.decorateCSS("event-text-bottom")}>{item.bottomText}</Base.P>
+                        )}
                       </Base.VerticalContent>
                     ))}
                   </Base.VerticalContent>
