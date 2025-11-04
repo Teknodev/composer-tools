@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container{
     position: relative;
-    height: 100vh;
     .max-content{
         display: flex;
         gap: calc(var(--composer-gap-lg) * 2);        
