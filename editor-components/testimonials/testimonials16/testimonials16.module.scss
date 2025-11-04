@@ -1,10 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 :root {
-    --t16-logo-gap: var(--composer-gap-lg);
     --t16-avatar-w: 96px;
     --t16-header-gap: 30px;
-    --t16-nav-gap: calc(var(--composer-gap-md) + 6px);
 }
 
 .root {
@@ -178,7 +176,7 @@
     display: flex;
     align-items: center;
     min-height: 44px;
-    margin-bottom: var(--t16-logo-gap);
+    margin-bottom: var(--composer-gap-lg);
     overflow: hidden;
 }
 
@@ -480,7 +478,7 @@
         display: grid;
         grid-template-columns: var(--t16-avatar-w) 1fr;
         align-items: center;
-        gap: 12px;
+        gap: var(--gap-lg);
         white-space: normal;
     }
 
@@ -489,7 +487,7 @@
     }
 
     .authorLine {
-        gap: 6px;
+        gap: var(--gap-sm);
     }
 
     .logo {
