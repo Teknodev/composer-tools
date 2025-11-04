@@ -360,7 +360,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .heading {
-      margin: var(--composer-gap-xl) var(--composer-gap-xl) calc(1.5 * var(--composer-gap-xl)) !important;
+      margin: var(--composer-gap-xl) var(--composer-gap-xl) calc(1.5 * var(--composer-gap-xl));
 
       margin: 0 var(--composer-gap-md) var(--composer-gap-md);
       width: calc(100% - (2 * var(--composer-gap-md)));
@@ -422,6 +422,33 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container-bg .container {
+    border-radius: calc(var(--border-radius-md) * 2) calc(var(--border-radius-md) * 2) 0 0;
+
+    .title,
+    .description {
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+    &::before {
+      content: "";
+      border-radius: calc(var(--border-radius-md) * 2) calc(var(--border-radius-md) * 2) 0 0;
+
+    }
+
+    .bg-wrap {
+      border-radius: calc(var(--border-radius-md) * 2) calc(var(--border-radius-md) * 2) 0 0;
+    }
+
+    .heading {
+      margin: var(--composer-gap-xs) var(--composer-gap-xs) var(--composer-gap-lg);
+    }
+
+    .image-child {
+      --card-w: 27vw;
+      --card-h: 15vw;
+    }
+
     .lightbox {
       --lb-side: var(--padding-md);
       --lb-top: var(--padding-md);
@@ -432,12 +459,6 @@
 
       .heading {
         margin: var(--composer-gap-xl) var(--composer-gap-xl) calc(1.5 * var(--composer-gap-xl)) !important;
-
-        .title,
-        .description {
-          text-align: center !important;
-          width: 100% !important;
-        }
       }
 
       .lightbox-canvas {
