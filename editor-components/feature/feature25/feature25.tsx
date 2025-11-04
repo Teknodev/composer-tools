@@ -39,7 +39,7 @@ class Feature25 extends BaseFeature {
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab",
               value: "Effortless Setup",
             },
             {
@@ -52,7 +52,7 @@ class Feature25 extends BaseFeature {
             {
               type: "string",
               key: "text",
-              displayer: "Text",
+              displayer: "Subtitle",
               value: "How it works",
             },
             {
@@ -87,7 +87,7 @@ class Feature25 extends BaseFeature {
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab",
               value: "Consolidated Payments",
             },
             {
@@ -100,7 +100,7 @@ class Feature25 extends BaseFeature {
             {
               type: "string",
               key: "text",
-              displayer: "Text",
+              displayer: "Subtitle",
               value: "How it works",
             },
             {
@@ -135,7 +135,7 @@ class Feature25 extends BaseFeature {
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab",
               value: "Global Ready",
             },
             {
@@ -148,7 +148,7 @@ class Feature25 extends BaseFeature {
             {
               type: "string",
               key: "text",
-              displayer: "Text",
+              displayer: "Subtitle",
               value: "How it works",
             },
             {
@@ -283,13 +283,9 @@ class Feature25 extends BaseFeature {
 
             {tabs?.length > 0 && (
               <Base.VerticalContent
-                className={this.decorateCSS("tab-contents")}
+                className={this.decorateCSS("vertical-content")}
                 ref={this.tabContentsRef}
               >
-                <div
-                  className={this.decorateCSS("tab-contents")}
-                  ref={this.tabContentsRef}
-                ></div>
                 {tabs.map((tab: ITabs, index: number) => {
                   const hasText = !!this.castToString(tab.text);
                   const hasTitle = !!this.castToString(tab.title);
@@ -327,7 +323,7 @@ class Feature25 extends BaseFeature {
                         <div className={this.decorateCSS("text-content")}>
                           {hasText && (
                             <Base.SectionSubTitle
-                              className={this.decorateCSS("text")}
+                              className={this.decorateCSS("sub-title")}
                             >
                               {tab.text}
                             </Base.SectionSubTitle>
@@ -346,16 +342,26 @@ class Feature25 extends BaseFeature {
                               {tab.description}
                             </Base.SectionDescription>
                           )}
-                          {hasButton && (
-                            <ComposerLink path={tab.button.url}>
-                              <Base.Button
-                                className={this.decorateCSS("button")}
-                                buttonType={tab.button.type}
-                              >
-                                {tab.button.text}
-                              </Base.Button>
-                            </ComposerLink>
-                          )}
+                          <div className={this.decorateCSS("button-wrapper")}>
+                            {hasButton && (
+                              <>
+                                <ComposerLink path={tab.button.url}>
+                                  <Base.Button
+                                    className={this.decorateCSS("button")}
+                                    buttonType={tab.button.type}
+                                  >
+                                    <div
+                                      className={this.decorateCSS(
+                                        "button-text"
+                                      )}
+                                    >
+                                      {tab.button.text}
+                                    </div>
+                                  </Base.Button>
+                                </ComposerLink>
+                              </>
+                            )}
+                          </div>
                         </div>
                       )}
                     </div>
