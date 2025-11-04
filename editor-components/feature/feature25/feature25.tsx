@@ -323,7 +323,7 @@ class Feature25 extends BaseFeature {
                         <div className={this.decorateCSS("text-content")}>
                           {hasText && (
                             <Base.SectionSubTitle
-                              className={this.decorateCSS("sub-title")}
+                              className={this.decorateCSS("subtitle")}
                             >
                               {tab.text}
                             </Base.SectionSubTitle>
