@@ -18,21 +18,60 @@ const DEFAULT_ARROW_IMG =
   );
 
 const DEFAULT_QUOTE_ICON =
-  "https://w7.pngwing.com/pngs/136/474/png-transparent-black-close-quotation-mark-art-quotation-mark-quotation-monochrome-silhouette-internet-thumbnail.png";
+  "https://w7.png.wing.com/pngs/136/474/png-transparent-black-close-quotation-mark-art-quotation-mark-quotation-monochrome-silhouette-internet-thumbnail.png";
+
+function isComposerNode(node: unknown): node is MaybeComposerNode {
+  return !!node && typeof (node as MaybeComposerNode).getPropValue === "function";
+}
+
+interface IRenderCardProps {
+  idx: number;
+  hasImage: boolean;
+  imgUrl: string;
+  authorStr: string;
+  logoUrl: string;
+  quoteKey: number;
+  animCls: string;
+  quoteIconUrl: string;
+  quoteEl: React.ReactNode;
+  authorEl: React.ReactNode;
+  roleEl: React.ReactNode;
+  companyEl: React.ReactNode;
+}
+
+interface IRenderData {
+  titleEl: React.ReactNode;
+  links: MaybeComposerNode[];
+  list: MaybeComposerNode[];
+  isMobile: boolean;
+  hasCardBackground: boolean;
+  multi: boolean;
+  cardProps: IRenderCardProps;
+}
+
+const BASE_BACKGROUND_STYLES: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  zIndex: 1,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  filter: "blur(1.75rem)",
+  transform: "scale(1.12)",
+  transition: "opacity 300ms ease-in-out",
+  pointerEvents: "none",
+  willChange: "opacity",
+};
 
 class Testimonials16 extends Testimonials {
   private timer: ReturnType<typeof setTimeout> | null = null;
   private dragStartX: number | null = null;
   private dragging = false;
   private prevTotal = 0;
-
   private mql: MediaQueryList | null = null;
-  private onMqlChange = (e: MediaQueryListEvent | MediaQueryList) => {
-    const matches = (e as MediaQueryList).matches;
-    this.setComponentState("isMobile", !!matches);
-  };
+  private inMs: number;
+  private outMs: number;
 
-  private sliderSettings = {
+  private readonly sliderSettings = {
     dots: true,
     arrows: true,
     infinite: true,
@@ -55,7 +94,14 @@ class Testimonials16 extends Testimonials {
 
   constructor(props?: any) {
     super(props, styles);
+    this.initializeState();
+    this.initializeProps();
+    
+    this.inMs = Math.max(120, this.sliderSettings.speed);
+    this.outMs = Math.max(80, Math.round(this.inMs * 0.5));
+  }
 
+  private initializeState() {
     this.setComponentState("idx", 0);
     this.setComponentState("imgErrIdx", -1);
     this.setComponentState("autoplayMs", this.sliderSettings.autoplaySpeed);
@@ -66,7 +112,9 @@ class Testimonials16 extends Testimonials {
     this.setComponentState("bgA", "");
     this.setComponentState("bgB", "");
     this.setComponentState("bgShowA", true);
+  }
 
+  private initializeProps() {
     this.addProp({
       type: "boolean",
       key: "showDivider",
@@ -159,16 +207,21 @@ class Testimonials16 extends Testimonials {
       ],
     });
   }
-
+  
   static getName(): string { return "Testimonials 16"; }
 
-  private fromRow(row: any, key: string, opts?: any) {
-    if (row && typeof (row as MaybeComposerNode).getPropValue === "function")
-      return (row as MaybeComposerNode).getPropValue!(key, opts);
+  private onMqlChange = (e: MediaQueryListEvent | MediaQueryList) => {
+    const matches = (e as MediaQueryList).matches;
+    this.setComponentState("isMobile", !!matches);
+  };
+
+  private fromRow(row: unknown, key: string, opts?: any) {
+    if (isComposerNode(row))
+      return row.getPropValue!(key, opts);
     if (Array.isArray(row)) return this.getPropValue(key, { ...(opts || {}), parent_object: row });
     return this.getPropValue(key, opts);
   }
-  private fromRowStr(row: any, key: string) {
+  private fromRowStr(row: unknown, key: string) {
     const v = this.fromRow(row, key, { as_string: true });
     const s = typeof v === "string" ? v : "";
     return (s || "").trim();
@@ -181,7 +234,7 @@ class Testimonials16 extends Testimonials {
 
   private start = () => {
     if (this.timer) return;
-    const items = (this.getPropValue("testimonials") as any[]) || [];
+    const items = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     if (!this.sliderSettings.autoplay) return;
     if (items.length < 2) return;
     this.timer = setTimeout(() => this.next(true), this.sliderSettings.autoplaySpeed);
@@ -190,7 +243,7 @@ class Testimonials16 extends Testimonials {
   private restart = () => { this.stop(); this.start(); };
 
   componentDidMount(): void {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     this.prevTotal = list.length;
     const idx = this.getComponentState("idx") || 0;
     const row = list[idx];
@@ -218,7 +271,7 @@ class Testimonials16 extends Testimonials {
   }
 
   componentDidUpdate(): void {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     const total = list.length;
 
     let idx = this.getComponentState("idx") || 0;
@@ -266,14 +319,14 @@ class Testimonials16 extends Testimonials {
       }
     } else if (curImg !== visible) {
       if (showA) { this.setComponentState("bgB", curImg); this.setComponentState("bgShowA", false); }
-      else       { this.setComponentState("bgA", curImg); this.setComponentState("bgShowA", true); }
+      else { this.setComponentState("bgA", curImg); this.setComponentState("bgShowA", true); }
     }
 
     this.prevTotal = total;
   }
 
   private crossfadeBgToIndex(nextIdx: number) {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     const rowNext = list[nextIdx];
     const urlNext = this.fromRowStr(rowNext, "image");
     if (!urlNext) {
@@ -289,7 +342,7 @@ class Testimonials16 extends Testimonials {
     if (this.sliderSettings.waitForAnimate && (this.getComponentState("animCls") || "") !== "") return;
 
     const cur = this.getComponentState("idx") || 0;
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     const total = list.length;
 
     if (total <= 1) return;
@@ -300,9 +353,7 @@ class Testimonials16 extends Testimonials {
     }
 
     const outCls = dir === "next" ? "card--slide-out-left" : "card--slide-out-right";
-    const inCls  = dir === "next" ? "card--slide-in-right" : "card--slide-in-left";
-    const IN_MS  = Math.max(120, this.sliderSettings.speed);
-    const OUT_MS = Math.max(80, Math.round(IN_MS * 0.5));
+    const inCls = dir === "next" ? "card--slide-in-right" : "card--slide-in-left";
 
     this.setComponentState("animCls", outCls);
 
@@ -321,8 +372,8 @@ class Testimonials16 extends Testimonials {
       window.setTimeout(() => {
         this.setComponentState("animCls", "");
         this.restart();
-      }, IN_MS);
-    }, OUT_MS);
+      }, this.inMs);
+    }, this.outMs);
   };
 
   private prev = () => this.playTransition("prev");
@@ -330,7 +381,7 @@ class Testimonials16 extends Testimonials {
 
   private go = (i: number) => {
     const cur = this.getComponentState("idx") || 0;
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     const total = list.length;
     if (total <= 1) return;
 
@@ -342,7 +393,7 @@ class Testimonials16 extends Testimonials {
   };
 
   private onDragStart = (e: React.MouseEvent | React.TouchEvent) => {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     if (list.length <= 1) return;
     if (!this.sliderSettings.draggable || !this.sliderSettings.swipe || !this.sliderSettings.touchMove) return;
     this.dragging = true;
@@ -351,7 +402,7 @@ class Testimonials16 extends Testimonials {
     this.stop();
   };
   private onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     if (list.length <= 1) return;
     if (!this.sliderSettings.draggable || !this.sliderSettings.swipe || !this.sliderSettings.touchMove) return;
     if (!this.dragging || this.dragStartX === null) return;
@@ -364,7 +415,7 @@ class Testimonials16 extends Testimonials {
     else if (dx < -THRESH) { this.setComponentState("isDragging", false); this.next(); this.dragging = false; this.dragStartX = null; }
   };
   private onDragEnd = () => {
-    const list = (this.getPropValue("testimonials") as any[]) || [];
+    const list = (this.getPropValue("testimonials") as MaybeComposerNode[]) || [];
     if (list.length <= 1) return;
     if (!this.sliderSettings.draggable || !this.sliderSettings.swipe || !this.sliderSettings.touchMove) return;
     this.dragging = false; this.dragStartX = null; this.setComponentState("isDragging", false); this.restart();
@@ -376,31 +427,28 @@ class Testimonials16 extends Testimonials {
     const bgB = (this.getComponentState("bgB") as string) || "";
     const bgShowA = !!this.getComponentState("bgShowA");
 
-    const base: React.CSSProperties = {
-      position: "absolute", inset: 0, zIndex: 1,
-      backgroundSize: "cover", backgroundPosition: "center",
-      filter: "blur(28px)", transform: "scale(1.12)",
-      transition: "opacity 300ms ease-in-out",
-      pointerEvents: "none",
-      willChange: "opacity",
-    };
-
     return (
       <>
-        {bgA && <div aria-hidden="true" style={{ ...base, backgroundImage: `url(${bgA})`, opacity: (bgShowA ? 1 : 0) }} />}
-        {bgB && <div aria-hidden="true" style={{ ...base, backgroundImage: `url(${bgB})`, opacity: (bgShowA ? 0 : 1) }} />}
+        {bgA && <div aria-hidden="true" style={{ ...BASE_BACKGROUND_STYLES, backgroundImage: `url(${bgA})`, opacity: (bgShowA ? 1 : 0) }} />}
+        {bgB && <div aria-hidden="true" style={{ ...BASE_BACKGROUND_STYLES, backgroundImage: `url(${bgB})`, opacity: (bgShowA ? 0 : 1) }} />}
       </>
     );
   }
 
-  private renderHeader({ titleEl, links, isMobile, hasCardBg }: any) {
+  private renderHeader(props: {
+    titleEl: React.ReactNode;
+    links: MaybeComposerNode[];
+    isMobile: boolean;
+    hasCardBackground: boolean;
+  }) {
+    const { titleEl, links, isMobile, hasCardBackground } = props;
     return (
       <div className={this.decorateCSS("header")}>
-        <Base.SectionTitle className={this.decorateCSS("title")} style={hasCardBg ? { color: "var(--composer-font-color-primary)" } : undefined}>
+        <Base.SectionTitle className={this.decorateCSS("title")} style={hasCardBackground ? { color: "var(--composer-font-color-primary)" } : undefined}>
           {titleEl}
         </Base.SectionTitle>
 
-        <div className={this.decorateCSS("links")} style={isMobile ? { width:"100%", marginLeft:0, justifyContent:"flex-start", marginTop:"var(--composer-gap-xs)", flexWrap:"wrap" } : undefined}>
+        <div className={this.decorateCSS("links")} style={isMobile ? { width: "100%", marginLeft: 0, justifyContent: "flex-start", marginTop: "var(--composer-gap-xs)", flexWrap: "wrap" } : undefined}>
           {links.map((l: MaybeComposerNode, i: number) => {
             const getPV = l?.getPropValue; if (typeof getPV !== "function") return null;
             const textEl = getPV("text");
@@ -409,10 +457,12 @@ class Testimonials16 extends Testimonials {
 
             return (
               <span key={i} className={`${this.decorateCSS("linkItem")} ${styles.linkItem}`}>
-                <ComposerLink path={href} className={styles.linkText} style={{ color:"var(--composer-font-color-primary, var(--color-white))" }}>
-                  {textEl}
+                <ComposerLink path={href}>
+                  <span className={styles.linkText} style={{ color: "var(--composer-font-color-primary, var(--color-white))" }}>
+                    {textEl}
+                  </span>
                 </ComposerLink>
-                {!!arrowImg && <img src={arrowImg} alt="" aria-hidden="true" className={styles.linkArrowImage} />}
+                {!!arrowImg && <img src={arrowImg} alt="" aria-hidden="true" className={styles.linkArrowImage} style={{ height: "1.8em" }} />}
               </span>
             );
           })}
@@ -421,7 +471,8 @@ class Testimonials16 extends Testimonials {
     );
   }
 
-  private renderNavigation({ list, multi }: any) {
+  private renderNavigation(props: { list: MaybeComposerNode[]; multi: boolean; }) {
+    const { list, multi } = props;
     if (!this.sliderSettings.arrows || !multi) return null;
     const idx = this.getComponentState("idx") || 0;
     const total = list.length || 1;
@@ -435,7 +486,7 @@ class Testimonials16 extends Testimonials {
         {this.sliderSettings.dots && multi && (
           <div className={this.decorateCSS("paginationRail")}>
             <div className={this.decorateCSS("dots")} role="tablist" aria-label="Testimonials">
-              {list.map((_: any, i: number) => {
+              {list.map((_: MaybeComposerNode, i: number) => {
                 const active = i === idx;
                 return (
                   <button key={i} onClick={() => this.go(i)} className={`${this.decorateCSS("dot")} ${active ? this.decorateCSS("dotActive") : ""}`} role="tab" aria-selected={active} aria-label={`Go to ${i + 1}`}>
@@ -462,19 +513,28 @@ class Testimonials16 extends Testimonials {
     );
   }
 
-  private renderCard({ row, idx, hasImage, imgUrl, authorStr, logoUrl, quoteKey, animCls, quoteIconUrl, quoteEl, authorEl, roleEl, companyEl }: any) {
+  private renderCard(props: IRenderCardProps) {
+    const { idx, hasImage, imgUrl, authorStr, logoUrl, quoteKey, animCls, quoteIconUrl, quoteEl, authorEl, roleEl, companyEl } = props;
     const showDivider = !!this.getPropValue("showDivider");
+
+    const hasLogo = !!logoUrl;
+    const hasQuote = this.castToString(quoteEl);
+    const hasAuthor = this.castToString(authorEl);
+    const hasRole = this.castToString(roleEl);
+    const hasCompany = this.castToString(companyEl);
+    const hasContent = hasLogo || hasQuote || hasAuthor || hasRole || hasCompany;
+    const imageOnly = hasImage && !hasContent;
 
     return (
       <div
-        className={`${this.decorateCSS("card")} ${animCls ? this.decorateCSS(animCls) : ""} ${this.getComponentState("isDragging") ? this.decorateCSS("card--dragging") : ""} ${!hasImage ? this.decorateCSS("noMedia") : ""}`}
+        className={`${this.decorateCSS("card")} ${animCls ? this.decorateCSS(animCls) : ""} ${this.getComponentState("isDragging") ? this.decorateCSS("card--dragging") : ""} ${!hasImage ? this.decorateCSS("noMedia") : ""} ${imageOnly ? this.decorateCSS("imageOnly") : ""}`}
         onMouseDown={this.onDragStart} onMouseMove={this.onDragMove} onMouseUp={this.onDragEnd}
         onMouseLeave={this.onMouseLeave} onTouchStart={this.onDragStart} onTouchMove={this.onDragMove} onTouchEnd={this.onDragEnd}
         style={{ touchAction: "pan-y" }}
       >
-        <div className={this.decorateCSS("imageBox")} style={!hasImage ? { display: "none" } : undefined}>
+        <div className={this.decorateCSS("imageBox")}>
           {hasImage && (
-            <img src={imgUrl} alt={authorStr || "testimonial"} className={this.decorateCSS("image")} onError={() => this.setComponentState("imgErrIdx", idx)} loading="lazy" decoding="async" draggable={false} />
+            <img src={imgUrl} alt={authorStr || "Müşteri görüşü"} className={this.decorateCSS("image")} onError={() => this.setComponentState("imgErrIdx", idx)} loading="lazy" decoding="async" draggable={false} />
           )}
         </div>
 
@@ -505,12 +565,12 @@ class Testimonials16 extends Testimonials {
 
             <p className={this.decorateCSS("author")} title={authorStr}>
               {hasImage && (
-                <img src={imgUrl!} alt={authorStr || "avatar"} className={this.decorateCSS("avatar")} loading="lazy" decoding="async" draggable={false} />
+                <img src={imgUrl!} alt={authorStr || "Avatar"} className={this.decorateCSS("avatar")} loading="lazy" decoding="async" draggable={false} />
               )}
               <span className={this.decorateCSS("authorLine")}>
                 {authorEl ? <span className={this.decorateCSS("authorPart")}>{authorEl}</span> : null}
-                {roleEl ? <span className={this.decorateCSS("authorPart")}>{roleEl}</span> : null}
-                {companyEl ? <span className={this.decorateCSS("authorPart")}>{companyEl}</span> : null}
+                {roleEl ? <span className={`${this.decorateCSS("authorPart")} ${this.decorateCSS("role")}`}>{roleEl}</span> : null}
+                {companyEl ? <span className={`${this.decorateCSS("authorPart")} ${this.decorateCSS("company")}`}>{companyEl}</span> : null}
               </span>
             </p>
           </div>
@@ -519,52 +579,71 @@ class Testimonials16 extends Testimonials {
     );
   }
 
-  render() {
+  private getRenderData(): IRenderData {
     const titleEl = this.getPropValue("title");
 
-    const rawLinks = (this.getPropValue("links") as any[]) || [];
+    const rawLinks = (this.getPropValue("links") as MaybeComposerNode[]) || [];
     const links = Array.isArray(rawLinks)
-      ? rawLinks.filter((l: any) => {
-          const text = typeof l?.getPropValue === "function" ? (l.getPropValue("text", { as_string: true }) as string) : "";
+      ? rawLinks.filter((l: MaybeComposerNode) => {
+          const text = isComposerNode(l) ? (l.getPropValue("text", { as_string: true }) as string) : "";
           return !!(text && String(text).trim());
         })
       : [];
 
-    const list = ((this.getPropValue("testimonials") as any[]) || []).slice(0, 6);
+    const list = ((this.getPropValue("testimonials") as MaybeComposerNode[]) || []).slice(0, 6);
     const idx = this.getComponentState("idx") || 0;
-    const row: MaybeComposerNode | any[] | undefined = list[idx];
-
-    const quoteEl = this.fromRow(row, "quote");
-    const authorEl = this.fromRow(row, "author");
-    const roleEl = this.fromRow(row, "role");
-    const companyEl = this.fromRow(row, "company");
+    const row: MaybeComposerNode | undefined = list[idx];
 
     const authorStr = this.fromRowStr(row, "author");
     const imgUrl = this.fromRowStr(row, "image");
-    const quoteIconUrl = this.fromRowStr(row, "quoteIcon");
-    const logoUrl = this.fromRowStr(row, "logoImage");
-
     const useImgFallback = this.getComponentState("imgErrIdx") === idx || !imgUrl;
-
-    const animCls = this.getComponentState("animCls") || "";
-    const quoteKey = this.getComponentState("quoteKey") || 0;
-
     const hasImage = !!imgUrl && !useImgFallback;
-    const hasCardBg = hasImage;
-    const isMobile = !!this.getComponentState("isMobile");
-    const multi = list.length > 1;
+
+    const cardProps: IRenderCardProps = {
+      idx,
+      hasImage,
+      imgUrl,
+      authorStr,
+      logoUrl: this.fromRowStr(row, "logoImage"),
+      quoteKey: this.getComponentState("quoteKey") || 0,
+      animCls: this.getComponentState("animCls") || "",
+      quoteIconUrl: this.fromRowStr(row, "quoteIcon"),
+      quoteEl: this.fromRow(row, "quote"),
+      authorEl: this.fromRow(row, "author"),
+      roleEl: this.fromRow(row, "role"),
+      companyEl: this.fromRow(row, "company"),
+    };
+
+    return {
+      titleEl,
+      links,
+      list,
+      cardProps,
+      isMobile: !!this.getComponentState("isMobile"),
+      hasCardBackground: hasImage,
+      multi: list.length > 1,
+    };
+  }
+
+  render() {
+    const {
+      titleEl,
+      links,
+      list,
+      isMobile,
+      hasCardBackground,
+      multi,
+      cardProps
+    } = this.getRenderData();
 
     return (
-      <Base.Container className={`${this.decorateCSS("root")} ${hasCardBg ? this.decorateCSS("hasBg") : ""}`} style={{ position: "relative", overflow: "hidden" }}>
+      <Base.Container className={`${this.decorateCSS("root")} ${hasCardBackground ? this.decorateCSS("hasBackground") : ""}`} style={{ position: "relative", overflow: "hidden" }}>
         {this.renderBackgrounds()}
-        {hasCardBg && <div className="overlay" aria-hidden="true" />}
+        {hasCardBackground && <div className="overlay" aria-hidden="true" />}
 
         <Base.MaxContent className={this.decorateCSS("wrap")} style={{ position: "relative", zIndex: 101 }}>
-          {this.renderHeader({ titleEl, links, isMobile, hasCardBg })}
-          {this.renderCard({
-            row, idx, hasImage, imgUrl, authorStr, logoUrl, quoteKey, animCls,
-            quoteIconUrl, quoteEl, authorEl, roleEl, companyEl
-          })}
+          {this.renderHeader({ titleEl, links, isMobile, hasCardBackground })}
+          {this.renderCard(cardProps)}
           {this.renderNavigation({ list, multi })}
         </Base.MaxContent>
       </Base.Container>

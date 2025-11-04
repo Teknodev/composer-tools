@@ -2,7 +2,7 @@
 
 :root {
     --t16-avatar-w: 96px;
-    --t16-header-gap: 30px;
+    --t16-header-gap: 100px;
 }
 
 .root {
@@ -19,13 +19,13 @@
     pointer-events: none;
 }
 
-.hasBg .title {
+.hasBackground .title {
     color: var(--composer-font-color-primary);
 }
 
 .header {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: var(--composer-gap-sm);
     margin-bottom: var(--t16-header-gap);
     width: 100%;
@@ -35,6 +35,8 @@
     white-space: pre-line;
     line-height: .95;
     letter-spacing: -.01em;
+    font-style: normal;
+    font-weight: normal;
 }
 
 .links {
@@ -44,6 +46,7 @@
     margin-left: auto;
     min-width: max-content;
     white-space: nowrap;
+    align-self: flex-end;
 }
 
 .wrap {
@@ -80,6 +83,25 @@
 
 .noMedia .imageBox {
     display: none !important;
+}
+
+.imageOnly {
+    grid-template-columns: 1fr !important;
+}
+
+.imageOnly .imageBox {
+    width: 100%;
+    grid-column: 1;
+    aspect-ratio: unset;
+    max-height: 500px;
+    height: auto;
+}
+
+.imageOnly .imageBox .image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
 }
 
 @keyframes t16-out-left {
@@ -282,12 +304,17 @@
     color: var(--color-black);
 }
 
+.authorPart.role,
+.authorPart.company {
+    color: var(--composer-tertiary-color);
+}
+
 .navigation {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--composer-gap-sm);
-    margin-top: var(--composer-gap-xl);
+    margin-top: calc(var(--composer-gap-xl) * 2);
 }
 
 .navigationButton {
@@ -409,7 +436,7 @@
     white-space: nowrap;
     text-decoration: none;
     color: var(--composer-font-color-primary) !important;
-    font-size: calc(var(--composer-font-size-md) + 4px);
+    font-size: var(--composer-font-size-lg);
     font-weight: 600;
 }
 
@@ -424,7 +451,7 @@
 .linkArrowImage {
     flex: 0 0 auto;
     display: inline-block;
-    height: 1.2em;
+    height: 1.5em;
     width: auto;
     object-fit: contain;
     transform: rotate(-45deg);
@@ -439,7 +466,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .linkText {
-        font-size: calc(var(--composer-font-size-md) + 2px);
+        font-size: var(--composer-font-size-md);
     }
 }
 
