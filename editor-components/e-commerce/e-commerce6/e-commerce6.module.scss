@@ -32,6 +32,7 @@
                 transition: all 0.5s ease-in-out;
 
                 .tabText {
+                    text-align: left;
                     z-index: 5;
                 }
 
@@ -277,11 +278,18 @@
                     padding:  80px var(--composer-gap-xl);
                     position: relative;
                     justify-content: center;
-                    align-self: center;
+                    align-self: base;
 
-                    .subtitle {content: "";}
-                    .title {content: "";}
-                    .description {content: "";}
+                    .subtitle,
+                    .title,
+                    .description {
+                        text-align: left;
+                    }
+
+                    .subtitle{
+                        width: fit-content;
+                        margin-left: 0;
+                    }
         
                     .icons-container {
                         display: flex;
@@ -346,6 +354,7 @@
                         position: relative;
                         padding: 0px;
                         font-size: 1.5rem;
+                        right: var(--composer-gap-sm);
                     }
                 }
             }
@@ -371,6 +380,19 @@
                         padding: 80px var(--composer-gap-lg);
                         flex-basis: auto;
                         flex-grow: unset;
+                        align-items: baseline;
+                        .subtitle,
+                        .title,
+                        .description {
+                            text-align: center;
+                        }
+                        .subtitle {
+                            margin: 0 auto;
+                            transform: translateX(0rem);
+                            &::before {
+                                display: none;
+                            }
+                        }
                     }
                 }
             }
@@ -384,9 +406,10 @@
             .tab{
                 .content{
                     .content-container{
-                        pad: var(--composer-gap-xl) var(--composer-gap-mdx);
+                        padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
                         .icons-container{
                             flex-direction: column;
+                            padding: var(--composer-gap-sm) 0px;
                             .icon-container{
                                 &:after {
                                     display: none;
