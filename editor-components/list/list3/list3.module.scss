@@ -195,10 +195,10 @@
           .event-item {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
             margin: 0;
-            .event-text-top { color: var(--composer-font-color-primary); }
-            .event-text-bottom { color: var(--composer-tertiary-color); }
+            .event-text-top { color: var(--composer-tertiary-color); }
+            .event-text-bottom { color: var(--composer-font-color-primary); }
 
             .divider {
               display: block;
@@ -222,7 +222,7 @@
           color: var(--composer-primary-color);
           -webkit-text-fill-color: transparent;
           bottom: calc(var(--composer-gap-xl) * (-0.4));
-          
+          transform: scale(1.15);
         }
       }
     }
@@ -278,7 +278,7 @@
     .max-content {
       .cards-grid {
         gap: 0;
-        &.alignment-left { text-align: left; }
+        &.alignment-left { text-align: center; }
         &.alignment-center { text-align: center; }
         .intro-card {
           padding: var(--composer-gap-lg);

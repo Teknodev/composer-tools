@@ -285,7 +285,7 @@ class List5 extends BaseList {
             backgroundSize: "cover"
           }}
         >
-          {imageOverlay && (
+          {imageOverlay && image && (
             <div className={this.decorateCSS("overlay")} />
           )}
           <Base.MaxContent className={this.decorateCSS("max-content")}>

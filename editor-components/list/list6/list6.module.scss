@@ -9,6 +9,16 @@
       .subtitle {
         content: "";
       }
+      &.align-center {
+        text-align: center;
+        align-items: center;
+        .subtitle, .sectionTitle { text-align: center; margin-left: auto; margin-right: auto; }
+      }
+      &.align-left {
+        text-align: left;
+        align-items: flex-start;
+        .subtitle, .sectionTitle { text-align: left; margin-left: 0; margin-right: 0; }
+      }
     }
     .sectionTitle {
       margin: 0;
@@ -95,6 +105,9 @@
         .index {
           flex: 1;
           color: var(--composer-font-color-primary);
+          display: inline-flex;
+          justify-content: flex-start;
+          text-align: left;
         }
 
         .item-content {
@@ -110,6 +123,7 @@
             display: flex;
             gap: var(--composer-gap-md);
             align-items: center;
+            justify-content: flex-start;
             &.align-left {
               justify-content: flex-start;
               text-align: left;
@@ -150,12 +164,16 @@
               align-items: center;
               width: auto;
               color: var(--composer-font-color-primary);
+              text-align: left;
+              margin-left: 0;
+              margin-right: 0;
             }
           }
           .description {
             width: 100%;
             display: flex;
             color: var(--composer-tertiary-color);
+            text-align: left;
           }
         }
         &.line {
