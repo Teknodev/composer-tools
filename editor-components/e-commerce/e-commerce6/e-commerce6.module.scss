@@ -19,7 +19,6 @@
             display: flex;
             flex-direction: column;
             align-self: center;
-            background-color: var(--composer-html-background);
 
             .tab-button {
                 align-items: center;
@@ -343,28 +342,38 @@
     .container{
         padding: 0 !important;
         .max-content{
-            flex-direction: column;
             .tab-buttons{
-                width: 100%;
+                width: 60%;
+                align-self: baseline;
                 .tab-button{
                     .tabText{
                         flex: 1;
                     }
                     .icon{
-                        position: relative;
-                        padding: 0px;
-                        font-size: 1.5rem;
-                        right: var(--composer-gap-sm);
+                        position: absolute;
+                        padding: var(--composer-gap-md);
+                        font-size: 2.5rem;
+                        right: 0;
+                        transform: translateX(50%);
+                    }
+                    &.active {
+                        &:hover {
+                            .icon {
+                                display: block;
+                                opacity: 1;
+                            }
+                        }
                     }
                 }
             }
             .tab{
                 .content{
                     flex-direction: column;
-                    gap: var(--composer-gap-lg);
+                    gap: var(--composer-gap-md);
                     height: max-content;
+                    border-left: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                     .image-container{
-                        aspect-ratio: 1;
+                        aspect-ratio: 3/2;
                         flex-grow: unset;
                         .box-container{
                             .box2{
@@ -377,7 +386,7 @@
                     }
                     .content-container{
                         width: 100%;
-                        padding: 80px var(--composer-gap-lg);
+                        padding: var(--composer-gap-md);
                         flex-basis: auto;
                         flex-grow: unset;
                         align-items: baseline;
@@ -403,10 +412,23 @@
 @container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
+            flex-direction: column;
+            .tab-buttons{
+                width: 100%;
+                .tab-button{
+                    .icon{
+                        position: relative;
+                        padding: 0px;
+                        font-size: 1.5rem;
+                        right: var(--composer-gap-sm);
+                    }
+                }
+            }
+
             .tab{
                 .content{
                     .content-container{
-                        padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
+                        padding: var(--composer-gap-md) !important;
                         .icons-container{
                             flex-direction: column;
                             padding: var(--composer-gap-sm) 0px;
