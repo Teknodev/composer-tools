@@ -1,5 +1,25 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+/* Sağ taraf tamamen boşsa sağ kolonu gizle. Divider görünürlüğü ayrı (noDivider) ile yönetilir */
+.grid.noRight {
+  .rightColumn {
+    display: none;
+  }
+}
+
+/* Sağ taraf boş VE divider kapalı ise sol içerik tüm genişliği kapsasın */
+.grid.noRight.noDivider {
+  .dividerColumn {
+    display: none;
+  }
+
+  .leftContent {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 .container {
   width: 100%;
   background-color: var(--composer-html-background, #fff);
@@ -69,6 +89,33 @@
 .grid:not(.noDivider) {
   .dividerLine {
     opacity: 0.12;
+  }
+}
+
+/* Eğer listede öğe kalmadıysa, sağ sütun tüm alana yayılsın ve ayırıcı gizlensin */
+/* Sol tarafta başlık ve liste tamamen yoksa, sağ kolon tüm alanı kaplasın. Divider sadece noDivider ile kontrol edilir. */
+.grid.noLeft {
+  .leftContent {
+    display: none;
+  }
+
+  .rightColumn {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Sol taraf da boş ve divider kapalıysa: dividerColumn gizlensin, sağ kolon tam genişlikte olsun */
+.grid.noLeft.noDivider {
+  .dividerColumn {
+    display: none;
+  }
+
+  .rightColumn {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
   }
 }
 
@@ -619,6 +666,17 @@
     width: auto;
     flex: 0 0 calc(60% - var(--c27-gap-right) - var(--c27-line));
     min-width: 0;
+  }
+}
+
+/* Desktop & Tablet için: sol taraf yoksa, divider var olsa bile sağ kolon hesaplanmış tam genişliğe yayılsın */
+@container (min-width: #{$composer-phone-width + 1px}) {
+  .grid.noLeft {
+    .rightColumn {
+      flex: 1 1 calc(100% - var(--c27-line) - var(--c27-gap-right));
+      width: calc(100% - var(--c27-line) - var(--c27-gap-right));
+      min-width: 0;
+    }
   }
 }
 

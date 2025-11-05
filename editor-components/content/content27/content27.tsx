@@ -170,7 +170,7 @@ class Content27 extends BaseContent {
     });
 
     // Button
-    this.addProp(INPUTS.BUTTON("button", "Button", "Start a Free Trial", "#", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Start a Free Trial", "", null, null, "Primary"));
 
     // Divider control
     this.addProp({
@@ -218,18 +218,33 @@ class Content27 extends BaseContent {
   render() {
     const title = this.getPropValue("title");
     // Inline-edit compatible: use composer proxies; do not unwrap
-    const list = this.castToObject<ListItem[]>("items") || [];
+    const originalList = this.castToObject<ListItem[]>("items") || [];
+    // Görünüm listesi: başlığı olanları sol menüde göstermek için işaretle, orijinal indeks korunur
+    const viewList = originalList.map((item, index) => ({
+      item,
+      index,
+      displayTitle: this.castToString((item as any).title),
+    }));
+    const displayList = viewList.filter((v) => v.displayTitle);
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const showDivider = this.getPropValue("showDivider") as boolean;
-    const activeTab = this.getComponentState("activeTab") || 0;
-    const activeItem = list.length ? (list[activeTab] || list[0]) : undefined;
+    // Aktif sekme, orijinal liste indeksine göre tutulur ki başlık boş olsa bile sağ panel görünsün
+    const activeTabRaw = this.getComponentState("activeTab") ?? 0;
+    const activeTab = originalList.length > 0 ? Math.min(activeTabRaw, originalList.length - 1) : 0;
+    const activeItem = originalList.length ? (originalList[activeTab] || originalList[0]) : undefined;
+    // Sağ panel içeriği var mı?
+    const hasImage = !!(activeItem && (activeItem as any).image);
+    const hasAnySection = !!(activeItem && Array.isArray((activeItem as any).sections) && (activeItem as any).sections.some((s: any) => this.castToString(s?.title) || this.castToString(s?.text)));
+    const hasButton = this.castToString(button?.text);
+    const hasRightContent = !!(hasImage || hasAnySection || hasButton);
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${this.decorateCSS("left")}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("grid")} ${!showDivider ? this.decorateCSS("noDivider") : ""}`}>
+          {/** Sol kısım tamamen boşsa noLeft; sağ kısım boşsa noRight */}
+          <div className={`${this.decorateCSS("grid")} ${!showDivider ? this.decorateCSS("noDivider") : ""} ${(!this.castToString(title) && displayList.length === 0) ? this.decorateCSS("noLeft") : ""} ${!hasRightContent ? this.decorateCSS("noRight") : ""}`}>
             <Base.VerticalContent className={this.decorateCSS("leftContent")}>
               {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("leftTitle")}>
@@ -237,9 +252,9 @@ class Content27 extends BaseContent {
                 </Base.SectionTitle>
               )}
 
-              {list.length > 0 && (
+              {displayList.length > 0 && (
                 <ul className={this.decorateCSS("list")}>
-                  {list.map((listItem: ListItem, index: number) => {
+                  {displayList.map(({ item: listItem, index }) => {
                     const isActive = index === activeTab;
                     return (
                       <li
@@ -247,15 +262,13 @@ class Content27 extends BaseContent {
                         className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""}`}
                         onClick={() => this.setActiveTab(index)}
                       >
-                        {listItem.title && (
-                          <Base.H4
-                            className={this.decorateCSS("listItemText")}
-                            onMouseDown={isActive ? this.stopEventPropagation : undefined}
-                            onClick={isActive ? ((e: any) => e.stopPropagation()) : undefined}
-                          >
-                            {listItem.title}
-                          </Base.H4>
-                        )}
+                        <Base.H4
+                          className={this.decorateCSS("listItemText")}
+                          onMouseDown={isActive ? this.stopEventPropagation : undefined}
+                          onClick={isActive ? ((e: any) => e.stopPropagation()) : undefined}
+                        >
+                          {listItem.title}
+                        </Base.H4>
                       </li>
                     );
                   })}
@@ -267,60 +280,67 @@ class Content27 extends BaseContent {
               <div className={this.decorateCSS("dividerLine")} />
             </div>
 
-            <div className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}>
-              {activeItem && activeItem.image && (
-                <div
-                  className={this.decorateCSS("imageBox")}
-                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                >
-                  <img
-                    src={activeItem.image}
-                    alt={`${this.toPlainText(activeItem.title)} - Success Story`}
-                    className={this.decorateCSS("image")}
-                  />
-                </div>
-              )}
+            {hasRightContent && (
+              <div className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}>
+                {activeItem && activeItem.image && (
+                  <div
+                    className={this.decorateCSS("imageBox")}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                  >
+                    <img
+                      src={activeItem.image}
+                      alt={`${this.toPlainText(activeItem.title)} - Success Story`}
+                      className={this.decorateCSS("image")}
+                    />
+                  </div>
+                )}
 
-              {/* Render: right column content */}
-              {activeItem && (
-                <>
-                  {/* Render nested sections */}
-                  {activeItem.sections && activeItem.sections.map((section, index: number) => (
-                    <Base.P key={index} className={this.decorateCSS("infoLine")}>
-                      {section.title && (
-                        <strong
-                          className={this.decorateCSS("infoLabel")}
-                          onMouseDown={this.stopEventPropagation}
-                          onClick={(e: any) => e.stopPropagation()}
-                        >
-                          {section.title}
-                        </strong>
-                      )}
-                      {section.text && (
-                        <span
-                          onMouseDown={this.stopEventPropagation}
-                          onClick={(e: any) => e.stopPropagation()}
-                        >
-                          {section.text}
-                        </span>
-                      )}
-                    </Base.P>
-                  ))}
-                </>
-              )}
-              {/* End right column content */}
+                {/* Render: right column content */}
+                {activeItem && (
+                  <>
+                    {/* Render nested sections */}
+                    {activeItem.sections && activeItem.sections.map((section, index: number) => {
+                      const hasTitle = this.castToString((section as any).title);
+                      const hasText = this.castToString((section as any).text);
+                      if (!hasTitle && !hasText) return null;
+                      return (
+                        <Base.P key={index} className={this.decorateCSS("infoLine")}>
+                          {hasTitle && (
+                            <strong
+                              className={this.decorateCSS("infoLabel")}
+                              onMouseDown={this.stopEventPropagation}
+                              onClick={(e: any) => e.stopPropagation()}
+                            >
+                              {section.title}
+                            </strong>
+                          )}
+                          {hasText && (
+                            <span
+                              onMouseDown={this.stopEventPropagation}
+                              onClick={(e: any) => e.stopPropagation()}
+                            >
+                              {section.text}
+                            </span>
+                          )}
+                        </Base.P>
+                      );
+                    })}
+                  </>
+                )}
+                {/* End right column content */}
 
 
-              {this.castToString(button.text) && (
-                <div className={this.decorateCSS("button-container")}>
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <span className={this.decorateCSS("buttonText")}>{button.text}</span>
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              )}
-            </div>
+                {this.castToString(button.text) && (
+                  <div className={this.decorateCSS("button-container")}>
+                    <ComposerLink path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                        <span className={this.decorateCSS("buttonText")}>{button.text}</span>
+                      </Base.Button>
+                    </ComposerLink>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
