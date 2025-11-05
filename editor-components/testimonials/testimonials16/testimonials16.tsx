@@ -18,7 +18,7 @@ const DEFAULT_ARROW_IMG =
   );
 
 const DEFAULT_QUOTE_ICON =
-  "https://w7.png.wing.com/pngs/136/474/png-transparent-black-close-quotation-mark-art-quotation-mark-quotation-monochrome-silhouette-internet-thumbnail.png";
+  "https://w7.pngwing.com/pngs/842/793/png-transparent-computer-icons-quotation-mark-symbol-quotation-image-file-formats-logo-monochrome-thumbnail.png";
 
 function isComposerNode(node: unknown): node is MaybeComposerNode {
   return !!node && typeof (node as MaybeComposerNode).getPropValue === "function";
@@ -96,7 +96,6 @@ class Testimonials16 extends Testimonials {
     super(props, styles);
     this.initializeState();
     this.initializeProps();
-    
     this.inMs = Math.max(120, this.sliderSettings.speed);
     this.outMs = Math.max(80, Math.round(this.inMs * 0.5));
   }
@@ -450,10 +449,10 @@ class Testimonials16 extends Testimonials {
 
         <div className={this.decorateCSS("links")} style={isMobile ? { width: "100%", marginLeft: 0, justifyContent: "flex-start", marginTop: "var(--composer-gap-xs)", flexWrap: "wrap" } : undefined}>
           {links.map((l: MaybeComposerNode, i: number) => {
-            const getPV = l?.getPropValue; if (typeof getPV !== "function") return null;
-            const textEl = getPV("text");
-            const href = (getPV("url", { as_string: true }) as string) || "#";
-            const arrowImg = (getPV("arrowImage", { as_string: true }) as string) || "";
+            if (!isComposerNode(l)) return null;
+            const textEl = l.getPropValue!("text");
+            const href = (l.getPropValue!("url", { as_string: true }) as string) || "#";
+            const arrowImg = (l.getPropValue!("arrowImage", { as_string: true }) as string) || "";
 
             return (
               <span key={i} className={`${this.decorateCSS("linkItem")} ${styles.linkItem}`}>
@@ -518,10 +517,10 @@ class Testimonials16 extends Testimonials {
     const showDivider = !!this.getPropValue("showDivider");
 
     const hasLogo = !!logoUrl;
-    const hasQuote = this.castToString(quoteEl);
-    const hasAuthor = this.castToString(authorEl);
-    const hasRole = this.castToString(roleEl);
-    const hasCompany = this.castToString(companyEl);
+    const hasQuote = !!this.castToString(quoteEl as any);
+    const hasAuthor = !!this.castToString(authorEl as any);
+    const hasRole = !!this.castToString(roleEl as any);
+    const hasCompany = !!this.castToString(companyEl as any);
     const hasContent = hasLogo || hasQuote || hasAuthor || hasRole || hasCompany;
     const imageOnly = hasImage && !hasContent;
 
@@ -585,7 +584,7 @@ class Testimonials16 extends Testimonials {
     const rawLinks = (this.getPropValue("links") as MaybeComposerNode[]) || [];
     const links = Array.isArray(rawLinks)
       ? rawLinks.filter((l: MaybeComposerNode) => {
-          const text = isComposerNode(l) ? (l.getPropValue("text", { as_string: true }) as string) : "";
+          const text = isComposerNode(l) ? (l.getPropValue!("text", { as_string: true }) as string) : "";
           return !!(text && String(text).trim());
         })
       : [];

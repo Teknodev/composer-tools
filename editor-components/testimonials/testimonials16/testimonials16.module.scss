@@ -1,22 +1,24 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 :root {
-    --t16-avatar-w: 96px;
-    --t16-header-gap: 100px;
+    position: relative;
 }
 
 .root {
+    --avatar-w: calc(var(--composer-gap-xl) * 2);
+    --avatar-h: calc(var(--avatar-w) * 1.35);
+    --avatar-radius: var(--composer-border-radius-lg);
     background: var(--composer-html-background);
     position: relative;
     z-index: 0;
-}
 
-.root :global(.overlay) {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background: var(--composer-overlay-color);
-    pointer-events: none;
+    :global(.overlay) {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: var(--composer-overlay-color);
+        pointer-events: none;
+    }
 }
 
 .hasBackground .title {
@@ -27,7 +29,7 @@
     display: flex;
     align-items: flex-end;
     gap: var(--composer-gap-sm);
-    margin-bottom: var(--t16-header-gap);
+    margin-bottom: calc(var(--composer-gap-xl) * 1.5);
     width: 100%;
 }
 
@@ -42,7 +44,7 @@
 .links {
     display: flex;
     align-items: center;
-    gap: calc(var(--composer-gap-md) + 6px);
+    gap: calc(var(--composer-gap-md) + var(--gap-sm));
     margin-left: auto;
     min-width: max-content;
     white-space: nowrap;
@@ -60,14 +62,12 @@
     border-radius: var(--composer-border-radius-xl);
     padding: var(--padding-xl);
     display: grid;
-    grid-template-columns: minmax(200px, 320px) minmax(0, 1fr);
+    grid-template-columns: minmax(calc(var(--gap-xl) * 10), calc(var(--gap-xl) * 16)) minmax(0, 1fr);
     gap: var(--composer-gap-md);
     width: 100%;
     overflow: hidden;
-    min-height: 320px;
-    transition: transform var(--composer-transition-duration-normal) var(--composer-transition-easing),
-        box-shadow var(--composer-transition-duration-normal) ease,
-        opacity var(--composer-transition-duration-normal) ease;
+    min-height: calc(var(--gap-xl) * 16);
+    transition: transform var(--composer-transition-duration-normal) var(--composer-transition-easing), box-shadow var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
     will-change: transform;
     cursor: grab;
 }
@@ -93,18 +93,18 @@
     width: 100%;
     grid-column: 1;
     aspect-ratio: unset;
-    max-height: 500px;
+    max-height: calc(var(--gap-xl) * 25);
     height: auto;
 }
 
 .imageOnly .imageBox .image {
     width: 100%;
     height: auto;
-    max-height: 500px;
+    max-height: calc(var(--gap-xl) * 25);
     object-fit: cover;
 }
 
-@keyframes t16-out-left {
+@keyframes ts-out-left {
     from {
         transform: translateX(0);
         opacity: 1
@@ -116,7 +116,7 @@
     }
 }
 
-@keyframes t16-out-right {
+@keyframes ts-out-right {
     from {
         transform: translateX(0);
         opacity: 1
@@ -128,7 +128,7 @@
     }
 }
 
-@keyframes t16-in-left {
+@keyframes ts-in-left {
     from {
         transform: translateX(-16%);
         opacity: 0
@@ -140,7 +140,7 @@
     }
 }
 
-@keyframes t16-in-right {
+@keyframes ts-in-right {
     from {
         transform: translateX(16%);
         opacity: 0
@@ -153,19 +153,19 @@
 }
 
 .card--slide-out-left {
-    animation: t16-out-left var(--composer-transition-duration-fast) var(--composer-transition-easing) both;
+    animation: ts-out-left var(--composer-transition-duration-fast) var(--composer-transition-easing) both;
 }
 
 .card--slide-out-right {
-    animation: t16-out-right var(--composer-transition-duration-fast) var(--composer-transition-easing) both;
+    animation: ts-out-right var(--composer-transition-duration-fast) var(--composer-transition-easing) both;
 }
 
 .card--slide-in-left {
-    animation: t16-in-left var(--composer-transition-duration-slow) var(--composer-transition-easing) both;
+    animation: ts-in-left var(--composer-transition-duration-slow) var(--composer-transition-easing) both;
 }
 
 .card--slide-in-right {
-    animation: t16-in-right var(--composer-transition-duration-slow) var(--composer-transition-easing) both;
+    animation: ts-in-right var(--composer-transition-duration-slow) var(--composer-transition-easing) both;
 }
 
 .imageBox {
@@ -197,7 +197,7 @@
 .logo {
     display: flex;
     align-items: center;
-    min-height: 44px;
+    min-height: calc(var(--gap-xl) * 2 + var(--gap-xs));
     margin-bottom: var(--composer-gap-lg);
     overflow: hidden;
 }
@@ -205,8 +205,8 @@
 .logoImage {
     height: auto;
     width: auto;
-    max-height: 46px;
-    max-inline-size: min(70%, 260px);
+    max-height: calc(var(--gap-xl) * 2 + var(--gap-sm));
+    max-inline-size: min(70%, calc(var(--gap-xl) * 13));
     object-fit: contain;
     display: block;
 }
@@ -221,7 +221,7 @@
     hyphens: auto;
 }
 
-.quoteRow {
+.quote .quoteRow {
     display: inline-flex;
     align-items: baseline;
     gap: .35em;
@@ -229,9 +229,9 @@
     white-space: normal;
 }
 
-.quoteIconInline {
+.quote .quoteIconInline {
     display: inline-block;
-    height: 0.8em;
+    height: .8em;
     width: auto;
     flex: 0 0 auto;
     opacity: .95;
@@ -239,60 +239,66 @@
     pointer-events: none;
 }
 
-.quoteText {
+.quote .quoteText {
     display: inline;
     white-space: normal;
 }
 
-.quoteText p,
-.quoteText div {
+.quote .quoteText p,
+.quote .quoteText div {
     display: inline;
     margin: 0;
 }
 
-.quoteText br {
+.quote .quoteText br {
     display: none;
-}
-
-.meta {
-    margin-top: auto;
 }
 
 .divider {
     display: block;
     width: 100%;
-    height: 0;
-    border: 0;
-    border-top: 1px solid var(--composer-tertiary-color);
-    margin: var(--composer-gap-md) 0 var(--composer-gap-sm);
+    height: 1px;
+    background: var(--composer-tertiary-color, rgba(255, 255, 255, 0.35));
+    opacity: .9;
+    margin: var(--composer-gap-sm, var(--gap-lg)) 0;
+    cursor: pointer;
+    transition: opacity 160ms ease;
+}
+
+.divider:hover {
+    opacity: 1;
+}
+
+.meta {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xs, calc(var(--gap-xs) * 2));
 }
 
 .author {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--gap-lg);
     font-size: var(--composer-font-size-sm);
     color: var(--text-color-black);
-    margin: 0;
-    margin-top: var(--composer-gap-sm);
+    margin: var(--composer-gap-sm) 0 0;
 }
 
 .avatar {
     display: none;
-    width: var(--t16-avatar-w);
-    aspect-ratio: 4/5;
-    height: auto;
-    border-radius: 14px;
+    width: var(--avatar-w);
+    height: var(--avatar-h);
+    border-radius: var(--avatar-radius);
     object-fit: contain;
-    background: var(--color-white);
-    flex: 0 0 auto;
+    background: var(--composer-html-background);
 }
 
 .authorLine {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 6px;
+    gap: var(--gap-sm);
     min-width: 0;
 }
 
@@ -314,12 +320,12 @@
     align-items: center;
     justify-content: center;
     gap: var(--composer-gap-sm);
-    margin-top: calc(var(--composer-gap-xl) * 2);
+    margin-top: calc(var(--composer-gap-xl) * 1.2);
 }
 
 .navigationButton {
-    width: 46px;
-    height: 46px;
+    width: calc(var(--gap-xl) * 2 + var(--gap-sm));
+    height: calc(var(--gap-xl) * 2 + var(--gap-sm));
     border-radius: var(--composer-border-radius-xl);
     border: 1px solid var(--color-gray-tertiary);
     background: var(--background);
@@ -338,8 +344,8 @@
 }
 
 .navigationButton svg {
-    width: 20px;
-    height: 20px;
+    width: var(--gap-xl);
+    height: var(--gap-xl);
 }
 
 .navigationButton:hover {
@@ -349,8 +355,8 @@
 }
 
 .paginationRail {
-    min-width: 200px;
-    height: 44px;
+    min-width: calc(var(--gap-xl) * 10);
+    height: calc(var(--gap-xl) * 2 + var(--gap-xs));
     padding: 0 var(--composer-gap-sm);
     border-radius: var(--composer-border-radius-xl);
     background: var(--color-gray-secondary);
@@ -369,8 +375,8 @@
 
 .dot {
     position: relative;
-    width: 8px;
-    height: 8px;
+    width: calc(var(--gap-xs) * 2);
+    height: calc(var(--gap-xs) * 2);
     border-radius: var(--composer-border-radius-xl);
     background: rgba(255, 255, 255, .35);
     border: 0;
@@ -380,8 +386,8 @@
 }
 
 .dotActive {
-    width: 74px;
-    height: 10px;
+    width: calc(var(--gap-xl) * 3 + var(--gap-lg) + var(--composer-border-width-sm));
+    height: var(--gap-md);
     border-radius: var(--composer-border-radius-xl);
     background: rgba(255, 255, 255, .14);
     position: relative;
@@ -403,11 +409,11 @@
     background: #fff;
     opacity: .95;
     border-radius: inherit;
-    animation: t16-fill linear forwards;
+    animation: ts-fill linear forwards;
     z-index: 1;
 }
 
-@keyframes t16-fill {
+@keyframes ts-fill {
     from {
         width: 0%
     }
@@ -420,7 +426,7 @@
 .linkItem {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: var(--gap-md);
     max-width: 100%;
     white-space: nowrap;
     vertical-align: middle;
@@ -440,10 +446,7 @@
     font-weight: 600;
 }
 
-.linkText:visited,
-.linkText:hover,
-.linkText:focus,
-.linkText:active {
+.linkText:is(:visited, :hover, :focus, :active) {
     color: var(--composer-font-color-primary) !important;
     text-decoration: none;
 }
@@ -461,7 +464,7 @@
 }
 
 .linkItem:hover .linkArrowImage {
-    transform: rotate(0deg) translateX(2px);
+    transform: rotate(0deg) translateX(var(--composer-border-width-sm));
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -485,10 +488,25 @@
 
     .card {
         grid-template-columns: 1fr !important;
-        min-height: 280px;
+        min-height: calc(var(--gap-xl) * 14);
     }
 
     .imageBox {
+        display: none !important;
+    }
+
+    .imageOnly {
+        min-height: auto;
+    }
+
+    .imageOnly .imageBox {
+        display: block !important;
+        width: 100%;
+        height: auto;
+        aspect-ratio: unset;
+    }
+
+    .imageOnly .content {
         display: none !important;
     }
 
@@ -501,29 +519,33 @@
     }
 
     .author {
-        margin-top: var(--composer-gap-lg);
         display: grid;
-        grid-template-columns: var(--t16-avatar-w) 1fr;
+        grid-template-columns: var(--avatar-w) 1fr;
         align-items: center;
-        gap: var(--gap-lg);
-        white-space: normal;
+        gap: var(--composer-gap-lg);
+        margin-top: var(--composer-gap-lg);
     }
 
     .avatar {
         display: block;
+        width: var(--avatar-w);
+        height: var(--avatar-h);
+        aspect-ratio: 3 / 4;
+        object-fit: contain;
+        object-position: center top;
+        border-radius: var(--avatar-radius);
+        box-shadow: var(--composer-box-shadow-sm);
+        background: color-mix(in srgb, var(--composer-html-background), rgba(0, 0, 0, .04) 10%);
     }
 
     .authorLine {
-        gap: var(--gap-sm);
-    }
-
-    .logo {
-        margin-bottom: calc(var(--t16-logo-gap) + 6px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xs);
     }
 
     .logoImage {
-        max-height: 38px;
-        max-inline-size: min(72%, 220px);
+        max-height: calc(var(--composer-gap-xl) * 1.4);
     }
 
     .quote {
@@ -534,24 +556,4 @@
     .linkText {
         font-size: var(--composer-font-size-sm);
     }
-}
-
-.divider {
-    width: 100%;
-    height: 1px;
-    background: var(--composer-tertiary-color, rgba(255, 255, 255, 0.35));
-    opacity: 0.9;
-    margin: var(--composer-gap-sm, 12px) 0;
-    cursor: pointer;
-    transition: opacity 160ms ease;
-}
-
-.divider:hover {
-    opacity: 1;
-}
-
-.meta {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-xs, 8px);
 }
