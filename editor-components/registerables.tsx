@@ -559,4 +559,5 @@ function Registerables(composer: ComponentsRegistery) {
   ]);
 }
 
+
 export default Registerables;
