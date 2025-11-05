@@ -15,8 +15,8 @@
       .content {
         display: flex;
         flex-direction: column;
-        align-items: flex-start; // container sol tarafa yaslanacak
-        text-align: left; // metinleri sola hizala
+        align-items: flex-start;
+        text-align: left;
 
         .subtitle {
           text-align: left;
@@ -81,5 +81,19 @@
         }
       }
     }
+  }
+}
+
+.container.hasBackground {
+  .subtitle,
+  .title {
+    color: var(--composer-font-color-primary) !important;
+  }
+}
+
+.container.noBackground {
+  .subtitle,
+  .title {
+    color: "";
   }
 }

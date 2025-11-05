@@ -59,7 +59,11 @@ class IntroSection2 extends BaseIntroSection {
 
     return (
       <Base.Container
-        className={this.decorateCSS("container")}
+        className={`${this.decorateCSS("container")} ${
+          coverImage
+            ? this.decorateCSS("hasBackground")
+            : this.decorateCSS("noBackground")
+        }`}
         style={{
           backgroundImage: coverImage
             ? `linear-gradient(90deg, #000, rgba(0,0,0,0)), url(${coverImage})`
