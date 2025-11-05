@@ -40,13 +40,13 @@
         }
         .title {
           text-align: left !important;
-          margin-bottom: 3rem;
+          margin-bottom: var(--composer-gap-lg);
         }
 
         .description-wrapper {
           display: flex;
           align-items: center;
-          gap: 4rem;
+          gap: var(--composer-gap-xl);
 
           .button-wrapper {
             flex-shrink: 0;
@@ -69,9 +69,14 @@
     .max-content {
       .vertical-content {
         .content {
-          gap: 1rem;
+          gap: var(--composer-gap-sm);
           .description-wrapper {
             display: block;
+            .button-wrapper {
+              .button {
+                margin-bottom: var(--composer-gap-md);
+              }
+            }
           }
         }
       }
@@ -86,7 +91,7 @@
         justify-content: flex-start;
         .content {
           .title {
-            margin-bottom: 0;
+            margin-bottom: var(--composer-gap-sm);
           }
           .description-wrapper {
             display: block;
