@@ -2282,16 +2282,59 @@ class Navbar10 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "media",
-      key: "hamburgerIcon",
-      displayer: "Hamburger Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "RxHamburgerMenu",
-      },
+      type: "object",
+      key: "navigationIcons",
+      displayer: "Navigation Icons",
+      value: [
+        {
+          type: "media",
+          key: "dropdownIcon",
+          displayer: "Dropdown Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "BiChevronDown",
+          },
+        },
+        {
+          type: "media",
+          key: "rightIcon",
+          displayer: "Right Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdKeyboardArrowRight",
+          },
+        },
+        {
+          type: "media",
+          key: "hamburgerIcon",
+          displayer: "Hamburger Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "RxHamburgerMenu",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "RxCross2",
+          },
+        },
+      ],
     });
 
     this.addProp({
@@ -2306,44 +2349,6 @@ class Navbar10 extends BaseNavigator {
           name: "FiArrowUpRight",
         },
     })
-
-    this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "RxCross2",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "dropdownIcon",
-      displayer: "Dropdown Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "BiChevronDown",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "rightIcon",
-      displayer: "Right Arrow Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdKeyboardArrowRight",
-      },
-    });
     this.addProp({
       type: "boolean",
       key: "divider",
@@ -2492,6 +2497,12 @@ class Navbar10 extends BaseNavigator {
         : defaultLogo;
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const navigationIcons = this.castToObject<{
+      dropdownIcon?: TypeMediaInputValue;
+      rightIcon?: TypeMediaInputValue;
+      hamburgerIcon?: TypeMediaInputValue;
+      closeIcon?: TypeMediaInputValue;
+    }>("navigationIcons");
 
     const isVisible = hamburgerNavActive && isMobile;
     const isOverlayVisible = hamburgerNavActive || activeDropdown !== null;
@@ -2559,7 +2570,7 @@ class Navbar10 extends BaseNavigator {
                           {item.title}
                         </Base.P>
                         <Base.Media
-                          value={this.getPropValue("dropdownIcon")}
+                          value={navigationIcons?.dropdownIcon}
                           className={`${this.decorateCSS("dropdownIcon")} ${
                             activeDropdown === index ? this.decorateCSS("active") : ""
                           }`}
@@ -2828,7 +2839,7 @@ class Navbar10 extends BaseNavigator {
                     }}
                   >
                     <Base.Media
-                      value={this.getPropValue("closeIcon")}
+                      value={navigationIcons?.closeIcon}
                       className={this.decorateCSS("closeIcon")}
                     />
                   </div>
@@ -2841,7 +2852,7 @@ class Navbar10 extends BaseNavigator {
                     }}
                   >
                     <Base.Media
-                      value={this.getPropValue("hamburgerIcon")}
+                      value={navigationIcons?.hamburgerIcon}
                       className={this.decorateCSS("hamburgerIcon")}
                     />
                   </div>
@@ -2885,7 +2896,7 @@ class Navbar10 extends BaseNavigator {
                               </Base.P>
                               {item.menuType === "Dropdown" && (
                                 <Base.Media
-                                  value={this.getPropValue("dropdownIcon")}
+                                  value={navigationIcons?.dropdownIcon}
                                   className={`${this.decorateCSS(
                                     "dropdownIcon"
                                   )} ${

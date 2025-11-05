@@ -220,54 +220,59 @@ class Navbar2 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "media",
-      key: "dropdownIcon",
-      displayer: "Dropdown Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdArrowDropDown",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "rightIcon",
-      displayer: "Right Arrow Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdKeyboardArrowRight",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "hamburgerIcon",
-      displayer: "Hamburger Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaBars",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdClose",
-      },
+      type: "object",
+      key: "navigationIcons",
+      displayer: "Navigation Icons",
+      value: [
+        {
+          type: "media",
+          key: "hamburgerIcon",
+          displayer: "Hamburger Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "FaBars",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdClose",
+          },
+        },
+        {
+          type: "media",
+          key: "dropdownIcon",
+          displayer: "Dropdown Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdArrowDropDown",
+          },
+        },
+        {
+          type: "media",
+          key: "rightIcon",
+          displayer: "Right Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdKeyboardArrowRight",
+          },
+        },
+      ],
     });
 
     this.addProp({
@@ -389,6 +394,12 @@ class Navbar2 extends BaseNavigator {
     const language = this.castToObject<Language>("language");
     const isBigScreen = this.getComponentState("isBigScreen");
     const isVisible = isMobileMenuOpen && !isBigScreen;
+    const navigationIcons = this.castToObject<{
+      hamburgerIcon: TypeMediaInputValue;
+      closeIcon: TypeMediaInputValue;
+      dropdownIcon: TypeMediaInputValue;
+      rightIcon: TypeMediaInputValue;
+    }>("navigationIcons");
 
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
@@ -435,7 +446,7 @@ class Navbar2 extends BaseNavigator {
                           </Base.P>
                           {item.menuType === "Dropdown" && (
                             <Base.Media
-                              value={this.getPropValue("dropdownIcon")}
+                              value={navigationIcons?.dropdownIcon}
                               className={this.decorateCSS("dropdownIcon")}
                             />
                           )}
@@ -469,7 +480,7 @@ class Navbar2 extends BaseNavigator {
                                         this.castToString(item.nav_title)
                                       ) && (
                                         <Base.Media
-                                          value={this.getPropValue("rightIcon")}
+                                          value={navigationIcons?.rightIcon}
                                           className={this.decorateCSS("rightIcon")}
                                         />
                                       )}
@@ -533,7 +544,7 @@ class Navbar2 extends BaseNavigator {
           <div className={this.decorateCSS("mobileRight")}>
           <div onClick={this.toggleMobileMenu}>
             <Base.Media
-              value={this.getPropValue("hamburgerIcon")}
+              value={navigationIcons?.hamburgerIcon}
               className={this.decorateCSS("menuIcon")}
             />
           </div>
@@ -562,7 +573,7 @@ class Navbar2 extends BaseNavigator {
             ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
               <div onClick={this.toggleMobileMenu}>
                 <Base.Media
-                  value={this.getPropValue("closeIcon")}
+                  value={navigationIcons?.closeIcon}
                   className={this.decorateCSS("closeIcon")}
                 />
               </div>
@@ -593,7 +604,7 @@ class Navbar2 extends BaseNavigator {
                             </ComposerLink>
                             {item.menuType === "Dropdown" && (
                               <Base.Media
-                                value={this.getPropValue("rightIcon")}
+                                value={navigationIcons?.rightIcon}
                                 className={`${this.decorateCSS(
                                   "dropdownIcon"
                                 )} ${
@@ -645,9 +656,7 @@ class Navbar2 extends BaseNavigator {
                                           this.castToString(item.nav_title)
                                         ) && (
                                           <Base.Media
-                                            value={this.getPropValue(
-                                              "rightIcon"
-                                            )}
+                                            value={navigationIcons?.rightIcon}
                                             className={`${this.decorateCSS(
                                               "dropdownIcon"
                                             )} ${

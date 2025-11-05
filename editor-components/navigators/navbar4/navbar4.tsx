@@ -1262,54 +1262,59 @@ class Navbar4 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "media",
-      key: "dropdownIcon",
-      displayer: "Dropdown Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "GoPlus",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "hamburgerIcon",
-      displayer: "Hamburger Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdMenu",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "rightIcon",
-      displayer: "Right Arrow Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdKeyboardArrowRight",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdClose",
-      },
+      type: "object",
+      key: "navigationIcons",
+      displayer: "Navigation Icons",
+      value: [
+        {
+          type: "media",
+          key: "dropdownIcon",
+          displayer: "Dropdown Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "GoPlus",
+          },
+        },
+        {
+          type: "media",
+          key: "rightIcon",
+          displayer: "Right Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdKeyboardArrowRight",
+          },
+        },
+        {
+          type: "media",
+          key: "hamburgerIcon",
+          displayer: "Hamburger Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdMenu",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdClose",
+          },
+        },
+      ],
     });
 
     this.addProp({
@@ -1384,6 +1389,12 @@ class Navbar4 extends BaseNavigator {
     const information = this.castToObject<Information>("information");
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const hamburgerMenuTitle: string = this.getPropValue("hamburgerMenuTitle");
+    const navigationIcons = this.castToObject<{
+      dropdownIcon?: TypeMediaInputValue;
+      rightIcon?: TypeMediaInputValue;
+      hamburgerIcon?: TypeMediaInputValue;
+      closeIcon?: TypeMediaInputValue;
+    }>("navigationIcons");
 
     const informationTitle = this.castToString(information.title);
     const informationDescription = this.castToString(information.description);
@@ -1522,7 +1533,7 @@ class Navbar4 extends BaseNavigator {
                             <div className={this.decorateCSS("menuItem")}>
                               {item.menuType === "Dropdown" && (
                                 <Base.Media
-                                  value={this.getPropValue("dropdownIcon")}
+                                  value={navigationIcons?.dropdownIcon}
                                   className={this.decorateCSS("dropdownIcon")}
                                 />
                               )}
@@ -1560,7 +1571,7 @@ class Navbar4 extends BaseNavigator {
                                           this.castToString(item.title)
                                         ) && (
                                           <Base.Media
-                                            value={this.getPropValue("rightIcon")}
+                                            value={navigationIcons?.rightIcon}
                                             className={this.decorateCSS("rightIcon")}
                                           />
                                         )}
@@ -1630,14 +1641,14 @@ class Navbar4 extends BaseNavigator {
               {isHamburgerActive ? (
                 <div onClick={this.handleCloseMenu}>
                   <Base.Media
-                    value={this.getPropValue("closeIcon")}
+                    value={navigationIcons?.closeIcon}
                     className={this.decorateCSS("closeIcon")}
                   />
                 </div>
               ) : (
                 <div onClick={this.handleOpenMenu}>
                   <Base.Media
-                    value={this.getPropValue("hamburgerIcon")}
+                    value={navigationIcons?.hamburgerIcon}
                     className={this.decorateCSS("hamburgerIcon")}
                   />
                 </div>
@@ -1700,7 +1711,7 @@ class Navbar4 extends BaseNavigator {
                         </ComposerLink>
                         {item.menuType === "Dropdown" && (
                           <Base.Media
-                            value={this.getPropValue("dropdownIcon")}
+                            value={navigationIcons?.dropdownIcon}
                             className={`${this.decorateCSS("dropdownIcon")} ${
                               this.getComponentState("subNavActiveIndex") ===
                               index
@@ -1750,7 +1761,7 @@ class Navbar4 extends BaseNavigator {
                                         this.castToString(item.title)
                                       ) && (
                                         <Base.Media
-                                          value={this.getPropValue("rightIcon")}
+                                          value={navigationIcons?.rightIcon}
                                           className={`${this.decorateCSS(
                                             "rightIcon"
                                           )} ${

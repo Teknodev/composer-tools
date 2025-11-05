@@ -38,6 +38,7 @@
         .menuItem {
           display: flex;
           align-items: center;
+          gap: var(--composer-gap-xs);
         }
 
         .menuItemTitle {
@@ -52,6 +53,8 @@
 
         .dropdownIcon {
           font-size: calc(1.5 * var(--composer-font-size-md));
+          width: 25px;
+          height: 25px;
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }

@@ -1072,54 +1072,59 @@ class Navbar9 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "media",
-      key: "dropdownIcon",
-      displayer: "Dropdown Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdArrowDropDown",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "rightIcon",
-      displayer: "Right Arrow Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdKeyboardArrowRight",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "hamburgerIcon",
-      displayer: "Hamburger Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaBars",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdClose",
-      },
+      type: "object",
+      key: "navigationIcons",
+      displayer: "Navigation Icons",
+      value: [
+        {
+          type: "media",
+          key: "dropdownIcon",
+          displayer: "Dropdown Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdArrowDropDown",
+          },
+        },
+        {
+          type: "media",
+          key: "rightIcon",
+          displayer: "Right Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdKeyboardArrowRight",
+          },
+        },
+        {
+          type: "media",
+          key: "hamburgerIcon",
+          displayer: "Hamburger Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "FaBars",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdClose",
+          },
+        },
+      ],
     });
     this.addProp({
       type:"multiSelect",
@@ -1203,6 +1208,12 @@ class Navbar9 extends BaseNavigator {
     const overlay = this.getPropValue("overlay");
     const language = this.castToObject<Language>("language");
     const icons = this.castToObject<Icons[]>("icons");
+    const navigationIcons = this.castToObject<{
+      dropdownIcon?: TypeMediaInputValue;
+      rightIcon?: TypeMediaInputValue;
+      hamburgerIcon?: TypeMediaInputValue;
+      closeIcon?: TypeMediaInputValue;
+    }>("navigationIcons");
 
     const isVisible= !isBigScreen && hamburgerNavActive;
 
@@ -1224,11 +1235,12 @@ class Navbar9 extends BaseNavigator {
             {currentLogo.image && (
               <ComposerLink path={currentLogo.navigateTo}>
                 <div className={this.decorateCSS("logo")}>
-                  <Base.Media
-                    value={currentLogo.image}
-                    className={this.decorateCSS("logoImage")}
-                    onClick={()=> this.handleCloseMenu()}
-                  />
+                  <div onClick={()=> this.handleCloseMenu()}>
+                    <Base.Media
+                      value={currentLogo.image}
+                      className={this.decorateCSS("logoImage")}
+                    />
+                  </div>
                 </div>
               </ComposerLink>
             )}
@@ -1239,7 +1251,7 @@ class Navbar9 extends BaseNavigator {
                   <Base.Language
                     type="dropdown"
                     title={language.label}
-                    icon={language.icon?.name || "GrLanguage"}
+                    icon={(language.icon?.type === "icon" ? language.icon.name : "GrLanguage") || "GrLanguage"}
                     dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                     dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                     iconClassName={this.decorateCSS("languageIcon")}
@@ -1263,7 +1275,7 @@ class Navbar9 extends BaseNavigator {
                           </Base.P>
                           {item.menuType === "Dropdown" && (
                             <Base.Media
-                              value={this.getPropValue("dropdownIcon")}
+                              value={navigationIcons?.dropdownIcon}
                               className={this.decorateCSS("dropdownIcon")}
                             />
                           )}
@@ -1300,7 +1312,7 @@ class Navbar9 extends BaseNavigator {
                                       this.castToString(item.title)
                                     ) && (
                                       <Base.Media
-                                        value={this.getPropValue("rightIcon")}
+                                        value={navigationIcons?.rightIcon}
                                         className={this.decorateCSS("rightIcon")}
                                       />
                                     )}
@@ -1368,14 +1380,14 @@ class Navbar9 extends BaseNavigator {
             {hamburgerNavActive ? (
               <div onClick={() => this.handleCloseMenu()}>
                 <Base.Media
-                  value={this.getPropValue("closeIcon")}
+                  value={navigationIcons?.closeIcon}
                   className={this.decorateCSS("hamburgerIcon")}
                 />
               </div>
             ) : (
               <div onClick={() => this.handleOpenMenu()}>
                 <Base.Media
-                  value={this.getPropValue("hamburgerIcon")}
+                  value={navigationIcons?.hamburgerIcon}
                   className={`${this.decorateCSS("hamburgerIcon")} ${
                     transparentBackground ? this.decorateCSS("whiteColor") : ""
                   }`}
@@ -1387,7 +1399,7 @@ class Navbar9 extends BaseNavigator {
                   <Base.Language
                     type="dropdown"
                     title={language.label}
-                    icon={language.icon?.name || "GrLanguage"}
+                    icon={(language.icon?.type === "icon" ? language.icon.name : "GrLanguage") || "GrLanguage"}
                     dropdownButtonClassName={`${this.decorateCSS(
                       "localization"
                     )}`}
@@ -1442,7 +1454,7 @@ class Navbar9 extends BaseNavigator {
                           </ComposerLink>
                           {item.menuType === "Dropdown" && (
                             <Base.Media
-                              value={this.getPropValue("dropdownIcon")}
+                              value={navigationIcons?.dropdownIcon}
                               className={`${this.decorateCSS("dropdownIcon")} ${
                                 this.getComponentState("subNavActiveIndex") === index
                                   ? this.decorateCSS("active")
@@ -1493,7 +1505,7 @@ class Navbar9 extends BaseNavigator {
                                         this.castToString(item.title)
                                       ) && (
                                         <Base.Media
-                                          value={this.getPropValue("rightIcon")}
+                                          value={navigationIcons?.rightIcon}
                                           className={`${this.decorateCSS("dropdownIcon")} ${
                                             this.getComponentState("subNavActive") === `${index}-${subIndex}`
                                               ? this.decorateCSS("active")
