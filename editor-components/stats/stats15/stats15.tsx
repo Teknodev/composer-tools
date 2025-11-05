@@ -10,6 +10,8 @@ type StatItem = {
   label: React.JSX.Element;
 };
 
+
+
 class Stats15 extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
