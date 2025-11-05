@@ -91,8 +91,6 @@
 
           .text-content {
             flex: 1;
-            max-height: 400px;
-            overflow-y: auto;
             align-items: flex-start;
 
             .subtitle {
@@ -103,6 +101,14 @@
             .title,
             .description {
               text-align: left;
+            }
+
+            .description {
+              display: -webkit-box;
+              -webkit-line-clamp: 15;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
             }
 
             .button-wrapper {
@@ -136,6 +142,10 @@
         .vertical-content {
           .text-content {
             flex: 1 !important;
+
+            .description {
+              -webkit-line-clamp: 9;
+            }
           }
         }
 
@@ -170,7 +180,7 @@
           justify-content: flex-end !important;
           align-items: flex-start !important;
           height: auto !important;
-          gap: var(--composer-gap-sm) !important;
+          gap: var(--composer-gap-md) !important;
           padding: 0 !important;
 
           .button-wrapper {
@@ -183,8 +193,7 @@
         .vertical-content {
           .text-content {
             .description {
-              max-height: 70px !important;
-              overflow-y: auto !important;
+              -webkit-line-clamp: 3;
             }
           }
         }
