@@ -39,6 +39,13 @@ class IntroSection2 extends BaseIntroSection {
         "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/windows-JW-T2BH5k5E-unsplash.jpg",
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
     this.addProp(
       INPUTS.BUTTON("button", "Button", "START FREE TRIAL", "", null, "Primary")
     );
@@ -63,11 +70,9 @@ class IntroSection2 extends BaseIntroSection {
           coverImage
             ? this.decorateCSS("hasBackground")
             : this.decorateCSS("noBackground")
-        }`}
+        } ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
         style={{
-          backgroundImage: coverImage
-            ? `linear-gradient(90deg, #000, rgba(0,0,0,0)), url(${coverImage})`
-            : undefined,
+          backgroundImage: coverImage ? `url(${coverImage})` : undefined,
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
