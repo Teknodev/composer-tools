@@ -3,9 +3,7 @@ import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 interface Logo {
   image: TypeMediaInputValue;
@@ -35,7 +33,7 @@ class Navbar9 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Type"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Type"));
 
     this.addProp({
       type: "object",
@@ -97,7 +95,7 @@ class Navbar9 extends BaseNavigator {
         {
           type: "select",
           key: "label",
-          displayer: "Language Label",
+          displayer: "Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -130,7 +128,7 @@ class Navbar9 extends BaseNavigator {
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Show Divider",
+          displayer: "Divider",
           value: true,
         },
       ],
@@ -155,7 +153,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -184,7 +182,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -206,7 +204,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -229,7 +227,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -251,7 +249,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -274,7 +272,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -296,7 +294,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -319,7 +317,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -341,7 +339,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -364,7 +362,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -386,7 +384,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -409,7 +407,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -431,7 +429,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -458,7 +456,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -487,7 +485,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -509,7 +507,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -536,7 +534,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -565,7 +563,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -587,7 +585,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -610,7 +608,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -632,7 +630,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -655,7 +653,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -677,7 +675,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -700,7 +698,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -722,7 +720,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -745,7 +743,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -767,7 +765,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -790,7 +788,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -812,7 +810,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -839,7 +837,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -868,7 +866,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -890,7 +888,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -913,7 +911,7 @@ class Navbar9 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -942,7 +940,7 @@ class Navbar9 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -983,7 +981,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -1008,7 +1006,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -1033,7 +1031,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -1058,7 +1056,7 @@ class Navbar9 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],

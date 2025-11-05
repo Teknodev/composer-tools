@@ -56,7 +56,9 @@
         }
 
         .dropdownIcon {
-          font-size: calc(1 * var(--composer-font-size-md));
+          font-size: 1.5rem;
+          width: var(--composer-gap-md);
+          height: var(--composer-gap-md);
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -205,11 +207,6 @@
     .languageAccordion {
       color: var(--composer-font-color-primary);
       margin-top: var(--composer-gap-sm);
-
-      h3 {
-        margin: 0;
-        font-size: calc(1.5 * var(--composer-font-size-md));
-      }
     }
     .languageAccordionItem {
       color: var(--composer-font-color-primary);

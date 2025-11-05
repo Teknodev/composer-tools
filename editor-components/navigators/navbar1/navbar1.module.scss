@@ -201,7 +201,7 @@
     height: 1px;
     width: 100%;
     background-color: var(--composer-primary-color);
-    margin-top: var(--composer-gap-md);
+    margin: var(--composer-gap-md) 0;
   }
   .hamburgerNav {
     display: none;
@@ -525,6 +525,9 @@
         display: none;
       }
       .rightSide {
+        .buttons {
+          display: none;
+        }
         .localization {
           display: none;
           &.active{
@@ -547,6 +550,22 @@
 
     .hamburgerNav {
       display: flex;
+      .hamburgerNavContainer {
+        .hamburgerNavMaxContent {
+          .hamburgerMenu {
+            .hamburgerButtons {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+              margin-top: var(--composer-gap-md);
+              width: 100%;
+              .hamburgerButton {
+                content: "";
+              }
+            }
+          }
+        }
+      }
     }
 
     &.filledBackground {
@@ -563,6 +582,11 @@
       .logo {
         .logoImage {
           max-height: 40px;
+        }
+      }
+      .rightSide {
+        .buttons {
+          display: none;
         }
       }
     }

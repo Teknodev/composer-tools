@@ -48,12 +48,12 @@
     display: flex;
     gap: var(--composer-gap-sm);
     justify-content: end;
-    align-items: flex-end;
     align-items: center;
     height: fit-content;
     z-index: 20;
 
     .localization, .localizationLabel, .localizationItem, .localizationContent {
+      content: "";
     }
     .localization{
       .localizationLabel{
@@ -151,6 +151,7 @@
         font-size: 7rem;
         letter-spacing: var(--composer-gap-xs);
         color: var(--composer-font-color-primary);
+        line-height: normal;
       }
     }
 
@@ -162,7 +163,6 @@
 
       .items {
         .item-title {
-          font-size: 2.5rem;
           color: var(--composer-font-color-primary);
           opacity: 0;
           transform: translateY(-100px);
@@ -195,7 +195,6 @@
     gap: var(--composer-gap-md);
 
     .text {
-      font-size: 1.5rem;
       color: var(--composer-font-color-primary);
       display: flex;
       justify-content: center;
@@ -312,15 +311,9 @@
 
         .items {
           .item-title {
-            font-size: 2.5rem;
             text-align: center;
           }
         }
-      }
-    }
-    .down{
-      .text{
-        font-size: 1rem;
       }
     }
   }
@@ -361,7 +354,6 @@
 
           .item-title {
             margin: 0;
-            font-size: 1.5rem;
           }
         }
       }

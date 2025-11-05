@@ -1598,6 +1598,21 @@ class Navbar1 extends BaseNavigator {
                         />
                       )}
                     </div>
+                    {buttons.length > 0 && (
+                      <div className={this.decorateCSS("hamburgerButtons")}>
+                        {buttons.map((button) => this.castToString(button.text) && (
+                          <ComposerLink key={button.url} path={button.url}>
+                            <Base.Button
+                              className={this.decorateCSS("hamburgerButton")}
+                              buttonType={button.type}
+                              onClick={() => this.handleCloseMenu()}
+                            >
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        ))}
+                      </div>
+                    )}
                   </nav>
                 )}
               </Base.MaxContent>

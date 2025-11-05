@@ -2,9 +2,7 @@ import * as React from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "composer-tools/composer-base-components/base/base";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Logo {
@@ -23,7 +21,7 @@ class Navbar5 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Type"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Type"));
 
     this.addProp({
       type: "array",
@@ -38,7 +36,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
               },
@@ -50,7 +48,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -63,7 +61,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
               },
@@ -75,7 +73,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -88,7 +86,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
               },
@@ -100,7 +98,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -113,7 +111,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
               },
@@ -125,7 +123,7 @@ class Navbar5 extends BaseNavigator {
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -193,7 +191,7 @@ class Navbar5 extends BaseNavigator {
         {
           type: "select",
           key: "label",
-          displayer: "Language Label",
+          displayer: "Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -220,7 +218,7 @@ class Navbar5 extends BaseNavigator {
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Show Divider",
+          displayer: "Divider",
           value: true,
         },
       ],
@@ -279,13 +277,13 @@ class Navbar5 extends BaseNavigator {
             {
               type: "string",
               key: "itemTitle",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "HOME",
             },
             {
               type: "page",
               key: "itemLink",
-              displayer: "Item Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -298,13 +296,13 @@ class Navbar5 extends BaseNavigator {
             {
               type: "string",
               key: "itemTitle",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "ABOUT",
             },
             {
               type: "page",
               key: "itemLink",
-              displayer: "Item Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -317,13 +315,13 @@ class Navbar5 extends BaseNavigator {
             {
               type: "string",
               key: "itemTitle",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "SERVICES",
             },
             {
               type: "page",
               key: "itemLink",
-              displayer: "Item Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -336,13 +334,13 @@ class Navbar5 extends BaseNavigator {
             {
               type: "string",
               key: "itemTitle",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "PROJECTS",
             },
             {
               type: "page",
               key: "itemLink",
-              displayer: "Item Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -355,13 +353,13 @@ class Navbar5 extends BaseNavigator {
             {
               type: "string",
               key: "itemTitle",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "CONTACT",
             },
             {
               type: "page",
               key: "itemLink",
-              displayer: "Item Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -610,11 +608,11 @@ class Navbar5 extends BaseNavigator {
                       return (
                         itemTitleExist && (
                           <ComposerLink key={indexSocial} path={item.itemLink}>                         
-                            <Base.H5 className={`${this.decorateCSS("item-title")} ${animations}`}
+                            <Base.H3 className={`${this.decorateCSS("item-title")} ${animations}`}
                             onClick={()=> this.closeNav()}
                             >
                               {item.itemTitle}
-                            </Base.H5>
+                            </Base.H3>
                           </ComposerLink>
                         )
                       );

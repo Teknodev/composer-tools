@@ -2,12 +2,9 @@ import { ReactNode } from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar6.module.scss";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
-import { BarElement } from "chart.js";
 
 interface Logo {
   image: TypeMediaInputValue;
@@ -38,7 +35,7 @@ class Navbar6 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Position"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Type"));
 
     this.addProp({
       type: "object",
@@ -111,7 +108,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -140,7 +137,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -162,7 +159,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -185,7 +182,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -207,7 +204,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -230,7 +227,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -252,7 +249,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -275,7 +272,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -297,7 +294,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -320,7 +317,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -342,7 +339,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -365,7 +362,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -387,7 +384,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -414,7 +411,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -443,7 +440,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -465,7 +462,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -492,7 +489,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -521,7 +518,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -543,7 +540,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -566,7 +563,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -588,7 +585,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -611,7 +608,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -633,7 +630,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -656,7 +653,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -678,7 +675,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -701,7 +698,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -723,7 +720,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -746,7 +743,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -768,7 +765,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -795,7 +792,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -824,7 +821,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -846,7 +843,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -869,7 +866,7 @@ class Navbar6 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -898,7 +895,7 @@ class Navbar6 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -939,7 +936,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -964,7 +961,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -989,7 +986,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -1014,7 +1011,7 @@ class Navbar6 extends BaseNavigator {
             {
               type: "page",
               key: "page",
-              displayer: "Page",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -1030,7 +1027,7 @@ class Navbar6 extends BaseNavigator {
         {
           type: "select",
           key: "label",
-          displayer: "Language Label",
+          displayer: "Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -1063,7 +1060,7 @@ class Navbar6 extends BaseNavigator {
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Show Divider",
+          displayer: "Divider",
           value: false,
         },
       ],
@@ -1343,11 +1340,12 @@ class Navbar6 extends BaseNavigator {
               {currentLogo.image && (
                 <div className={this.decorateCSS("logo")}>
                   <ComposerLink path={currentLogo.navigateTo}>
-                    <Base.Media
-                      value={currentLogo.image}
-                      className={this.decorateCSS("logoImage")}
-                      onClick={()=> this.handleCloseMenu()}
-                    />
+                    <div onClick={()=> this.handleCloseMenu()}>
+                      <Base.Media
+                        value={currentLogo.image}
+                        className={this.decorateCSS("logoImage")}
+                      />
+                    </div>
                   </ComposerLink>
                 </div>
               )}
@@ -1373,7 +1371,7 @@ class Navbar6 extends BaseNavigator {
                     <Base.Language
                       type="dropdown"
                       title={language.label}
-                      icon={language.icon?.name || "GrLanguage"}
+                      icon={(language.icon?.type === "icon" ? language.icon.name : "GrLanguage") || "GrLanguage"}
                       dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                       dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                       iconClassName={this.decorateCSS("languageIcon")}
@@ -1405,7 +1403,7 @@ class Navbar6 extends BaseNavigator {
                     <Base.Language
                       type="dropdown"
                       title={language.label}
-                      icon={language.icon?.name || "GrLanguage"}
+                      icon={(language.icon?.type === "icon" ? language.icon.name : "GrLanguage") || "GrLanguage"}
                       dropdownButtonClassName={`${this.decorateCSS(
                         "localization"
                       )}`}

@@ -73,6 +73,8 @@
           font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
+          height: 24px;
+          width: 24px;
         }
 
         &:hover {
@@ -434,7 +436,6 @@
       margin: 0;
       font-weight: normal;
       transition: all 0.3s ease;
-      font-size: calc(1 * var(--composer-font-size-md));
       &.animation1{
         &:hover{
           font-weight: bold;

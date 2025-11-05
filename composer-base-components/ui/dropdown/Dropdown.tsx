@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
 import { Base } from "composer-tools/composer-base-components/base/base";
+import { TypeMediaInputValue } from 'composer-tools/editor-components/EditorComponent';
 
 
 export interface DropDownItem {
@@ -13,7 +14,7 @@ export interface DropDownItem {
 
 interface DropdownProps {
   buttonLabel: string;
-  icon?: string;
+  icon?: TypeMediaInputValue;
   dropdownButtonClassName?: string;
   labelClassName?: string;
   iconClassName?: string;
@@ -64,8 +65,8 @@ const Dropdown: React.FC<DropdownProps> = ({
         onClick={toggleDropdown}
         disabled={disabled}
       >
-        <span className={`${styles.label} ${labelClassName || ''}`}>{buttonLabel}</span>
-        {icon && <Base.Icon name={icon} propsIcon={{className: `${styles.icon} ${iconClassName || ''}`}}/>}
+        <Base.P className={`${styles.label} ${labelClassName || ''}`}>{buttonLabel}</Base.P>
+        {icon && <Base.Media value={icon} className={`${styles.icon} ${iconClassName || ''}`}/>}
       </button>
       {isOpen && (
         <div className={`${styles.dropdownContent} ${dropdownContentClassName || ''} ${shouldOpenLeft ? styles.openLeft : ''}`} onClick={closeDropdown}>

@@ -31,7 +31,7 @@ class Navbar8 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Type"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Type"));
 
     this.addProp({
       type: "object",
@@ -107,7 +107,7 @@ class Navbar8 extends BaseNavigator {
         {
           type: "select",
           key: "label",
-          displayer: "Language Label",
+          displayer: "Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -134,7 +134,7 @@ class Navbar8 extends BaseNavigator {
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Show Divider",
+          displayer: "Divider",
           value: true,
         },
       ],
@@ -184,7 +184,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -203,7 +203,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -222,7 +222,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -241,7 +241,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -323,6 +323,31 @@ class Navbar8 extends BaseNavigator {
               value: {
                 type: "icon",
                 name: "AiFillTwitterCircle",
+              },
+            },
+            {
+              type: "page",
+              key: "url",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaPinterestP",
               },
             },
             {
@@ -534,9 +559,9 @@ class Navbar8 extends BaseNavigator {
               {rightSide && (
                 <div className={this.decorateCSS("dropdownRightSide")}>
                   {dropdownTitle && (
-                    <Base.H1 className={this.decorateCSS("dropdownTitle")}>
+                    <Base.H3 className={this.decorateCSS("dropdownTitle")}>
                       {this.getPropValue("dropdownTitle")}
-                    </Base.H1>
+                    </Base.H3>
                   )}
                   <div className={this.decorateCSS("line")}></div>
                   {dropdownDescription && (
@@ -560,11 +585,11 @@ class Navbar8 extends BaseNavigator {
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
-                            <Base.H2 className={`${this.decorateCSS("dropdownItem")} ${animations}`}
+                            <Base.H3 className={`${this.decorateCSS("dropdownItem")} ${animations}`}
                             onClick={()=> this.handleCloseMenu()}
                             >
                               {item.title}
-                            </Base.H2>
+                            </Base.H3>
                         </ComposerLink>
                        </div>
                     )
@@ -575,9 +600,9 @@ class Navbar8 extends BaseNavigator {
                   {socialMediaLinksCondition && (
                     <div className={this.decorateCSS("socialMediaWrapper")}>
                     <div className={this.decorateCSS("socialMediaLinks")}>
-                      <Base.H3 className={this.decorateCSS("socialMediaLinksTitle")}>
+                      <Base.H4 className={this.decorateCSS("socialMediaLinksTitle")}>
                         {this.getPropValue("dropdownSocialMediaTitle")}
-                      </Base.H3>
+                      </Base.H4>
                       <div className={this.decorateCSS("socialMediaLinksList")}>
                         {socialMediaLinks.map((item: any, index: number) => (
                           <div
