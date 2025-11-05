@@ -70,7 +70,11 @@ class IntroSection2 extends BaseIntroSection {
           coverImage
             ? this.decorateCSS("hasBackground")
             : this.decorateCSS("noBackground")
-        } ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        } ${
+          coverImage && this.getPropValue("overlay")
+            ? this.decorateCSS("overlay")
+            : ""
+        }`}
         style={{
           backgroundImage: coverImage ? `url(${coverImage})` : undefined,
         }}
