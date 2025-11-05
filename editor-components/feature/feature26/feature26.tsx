@@ -88,8 +88,8 @@ class FeatureComponent26 extends BaseFeature {
                     <div className={this.decorateCSS("buttons-container")}>
                 {buttons?.map((item: INPUTS.CastedButton, index: number) => {
                   const isTextExist = this.castToString(item.text);
-                  const isImageExist = typeof item.image === "string" ? item.image.trim().length > 0 : !!item.image;
-                  const isIconExist = typeof item.icon === "string" ? item.icon.trim().length > 0 : !!item.icon;
+                  const isImageExist = !!item.image;
+                  const isIconExist = !!item.icon;
                   if (!isTextExist && !isIconExist && !isImageExist) return null;
                   const imageValue = isImageExist
                     ? (typeof item.image === "string"

@@ -11,11 +11,10 @@
 
       .image-container {
         flex: none;
-        width: calc(var(--composer-gap-xl) * 9);
-        height: calc(var(--composer-gap-xl) * 9);
+        width: 28rem;
+        height: 28rem;
         border-radius: 50% 0 50% 50%;
         overflow: hidden;
-        background-color: var(--composer-background-200);
         position: relative;
 
         .image {
@@ -57,8 +56,6 @@
           .overlay { transition: opacity 0.4s ease; }
           &:hover .overlay { opacity: 0.6; }
         }
-
-        /* animate4, wrapper seviyesinde tanımlanır */
       }
 
       .content {
@@ -66,7 +63,7 @@
         min-width: 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* sola hizala */
+        align-items: flex-start;
         text-align: left !important;
 
         .subtitle,
@@ -78,7 +75,7 @@
           margin-right: 0;
         }
 
-        .subtitle.sectionSubTitle { margin-left: 0 !important; margin-right: 0 !important; }
+        
 
         .quote-container {
           display: flex;
@@ -110,10 +107,7 @@
             gap: var(--composer-gap-sm);
           }
 
-          .button-icon {
-            width: 1.1em;
-            height: 1.1em;
-          }
+          .button-icon { font-size: 1.1rem; }
 
           .button-text {
             line-height: 1;
@@ -121,7 +115,6 @@
         }
       }
 
-      /* Yalnızca görsel kaldığında ortala ve boyutu koru */
       &:has(> .image-container:only-child) {
         justify-content: center;
       }
@@ -154,7 +147,7 @@
         flex-direction: row;
         align-items: flex-start;
         gap: var(--composer-gap-xl);
-        .image-container { width: calc(var(--composer-gap-xl) * 7); height: calc(var(--composer-gap-xl) * 7); aspect-ratio: auto; }
+        .image-container { width: 22rem; height: 22rem; aspect-ratio: auto; }
         .content { max-width: 100%; }
       }
     }
@@ -181,10 +174,7 @@
             flex-wrap: nowrap;
             overflow-x: auto;
             gap: var(--composer-gap-sm);
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
           }
-          .buttons-container::-webkit-scrollbar { display: none; }
           .button { flex: none; }
           .button-text { white-space: nowrap; }
         }
