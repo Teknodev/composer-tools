@@ -9,88 +9,14 @@ import type { Settings, ResponsiveObject } from "react-slick";
 type VideoPlayerProps = {
   src: string;
   className?: string;
-  onReady?: () => void;
-  forwardedRef?: React.Ref<HTMLVideoElement>;
 };
 
 const VideoPlayer = React.memo(function VideoPlayer({
   src,
   className,
-  onReady,
-  forwardedRef,
 }: VideoPlayerProps) {
-  const innerRef = React.useRef<HTMLVideoElement>(null);
-  const triedRef = React.useRef(false);
-  const [failed, setFailed] = React.useState(false);
-
-  React.useImperativeHandle(
-    forwardedRef,
-    () => innerRef.current as unknown as HTMLVideoElement
-  );
-
-  React.useEffect(() => {
-    setFailed(false);
-  }, [src]);
-
-  React.useEffect(() => {
-    const el = innerRef.current;
-    if (!el) return;
-
-    el.muted = true;
-    el.loop = true;
-    (el as any).playsInline = true;
-    el.setAttribute("muted", "true");
-    el.setAttribute("playsinline", "true");
-    el.setAttribute("preload", "auto");
-
-    const tryPlay = () => {
-      const p = el.play?.();
-      if (p && typeof p.catch === "function") {
-        p.catch(() => {
-          if (!triedRef.current) {
-            triedRef.current = true;
-            setTimeout(() => el.play?.().catch(() => {}), 150);
-          }
-        });
-      }
-    };
-
-    const onLoaded = () => {
-      onReady?.();
-      tryPlay();
-    };
-
-    const onError = () => {
-      setFailed(true);
-    };
-
-    el.addEventListener("loadedmetadata", onLoaded);
-    el.addEventListener("loadeddata", onLoaded);
-    el.addEventListener("error", onError);
-    tryPlay();
-
-    return () => {
-      el.removeEventListener("loadedmetadata", onLoaded);
-      el.removeEventListener("loadeddata", onLoaded);
-      el.removeEventListener("error", onError);
-      if (!el.paused) el.pause();
-    };
-  }, [src, onReady]);
-
-  if (failed) {
-    return (
-      <div
-        className={className}
-        style={{ display: "grid", placeItems: "center" }}
-      >
-        <span style={{ fontSize: 12, opacity: 0.7 }}>Video yüklenemedi.</span>
-      </div>
-    );
-  }
-
   return (
     <video
-      ref={innerRef}
       autoPlay
       muted
       playsInline
@@ -98,8 +24,6 @@ const VideoPlayer = React.memo(function VideoPlayer({
       preload="auto"
       className={className}
       draggable={false}
-      onDragStart={(e) => e.preventDefault()}
-      crossOrigin="anonymous"
     >
       <source src={src} type="video/mp4" />
     </video>
@@ -115,8 +39,6 @@ type Card = {
 };
 
 class Slider12 extends BaseSlider {
-  private currentIndex = 0;
-  private dragging = false;
   private responsive!: ResponsiveObject[];
   private settings!: Settings;
   private sliderRef = React.createRef<any>();
@@ -241,7 +163,7 @@ class Slider12 extends BaseSlider {
               key: "description",
               displayer: "Description",
               value:
-                "Grant your clients white label access to the editor. Don’t worry, they won’t receive any branded communications from Duda. Your customers are your own.",
+                "Grant your clients white label access to the editor. Don't worry, they won't receive any branded communications from Duda. Your customers are your own.",
             },
             { type: "page", key: "link", displayer: "Card Link", value: "" },
           ],
@@ -392,6 +314,7 @@ class Slider12 extends BaseSlider {
       { breakpoint: 1024, settings: { slidesToShow: 2, dots: false } },
       { breakpoint: 640, settings: { slidesToShow: 1, dots: false } },
     ];
+
     this.settings = {
       infinite: false,
       slidesToShow: 3,
@@ -408,14 +331,6 @@ class Slider12 extends BaseSlider {
       swipe: true,
       autoplay: false,
       variableWidth: true,
-      onSwipe: () => {
-        this.dragging = true;
-        window.setTimeout(() => (this.dragging = false), 180);
-      },
-      afterChange: (index: number) => {
-        this.currentIndex = index;
-        this.playOnlyVideoAt(index);
-      },
       responsive: this.responsive,
     };
   }
@@ -423,51 +338,6 @@ class Slider12 extends BaseSlider {
   static getName(): string {
     return "Slider 12";
   }
-
-  componentDidMount(): void {
-    this.currentIndex = 0;
-    this.playOnlyVideoAt(this.currentIndex);
-  }
-  componentWillUnmount(): void {
-    const root = this.containerRef.current ?? document;
-    const vids = root.querySelectorAll("video") as NodeListOf<HTMLVideoElement>;
-    vids.forEach((v) => {
-      if (!v.paused) v.pause();
-    });
-  }
-  private playOnlyVideoAt(index: number) {
-    const root = this.containerRef.current ?? document;
-    const slideSelector = `.${this.decorateCSS("slide")}`;
-    const allVideos = root.querySelectorAll<HTMLVideoElement>(
-      `${slideSelector} video`
-    );
-    allVideos.forEach((v, i) => {
-      if (i === index) {
-        setTimeout(() => v.play?.().catch(() => {}), 120);
-      } else {
-        if (!v.paused) v.pause();
-        v.currentTime = 0;
-      }
-    });
-  }
-  private SafeWrap: React.FC<React.PropsWithChildren<{ href?: string }>> = ({
-    href,
-    children,
-  }) => {
-    const onClick: React.MouseEventHandler = (e) => {
-      if (this.dragging) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-    return href ? (
-      <ComposerLink path={href!} isFullWidth={false} {...{ onClick }}>
-        {children}
-      </ComposerLink>
-    ) : (
-      <>{children}</>
-    );
-  };
 
   render() {
     const items = this.castToObject<Card[]>("slider")?.filter(Boolean) ?? [];
@@ -483,8 +353,6 @@ class Slider12 extends BaseSlider {
     const showHeader = hasTitle || hasDesc;
     const showArrows = itemCount > 1 && (prevMedia || nextMedia);
 
-    const SafeWrap = this.SafeWrap;
-
     return (
       <div ref={this.containerRef} className={this.decorateCSS("container")}>
         <Base.Container
@@ -493,7 +361,9 @@ class Slider12 extends BaseSlider {
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {showHeader && (
-              <Base.VerticalContent>
+              <Base.VerticalContent
+                className={this.decorateCSS("vertical-content")}
+              >
                 <div className={this.decorateCSS("header")}>
                   <Base.VerticalContent
                     className={this.decorateCSS("header-content")}
@@ -512,7 +382,7 @@ class Slider12 extends BaseSlider {
                     )}
 
                     {showArrows && (
-                      <div className={this.decorateCSS("slider-wrap")}>
+                      <div className={this.decorateCSS("arrows-wrap")}>
                         <div className={this.decorateCSS("arrows")}>
                           <Base.Icon
                             name={prevMedia}
@@ -553,15 +423,8 @@ class Slider12 extends BaseSlider {
                     const url = media?.url ?? item.image ?? "";
                     const hasMedia = mediaType && url;
                     const rawPath = item.link ?? "";
-
                     const hasCardDesc = this.castToString(item.description);
                     const hasHeaderText = this.castToString(item.header);
-                    const cardClassName =
-                      this.decorateCSS("card") +
-                      (!hasMedia
-                        ? " " + this.decorateCSS("card-textOnly")
-                        : "");
-
                     const textClassName =
                       this.decorateCSS("text") +
                       (!hasMedia
@@ -570,7 +433,7 @@ class Slider12 extends BaseSlider {
 
                     const CardInner = (
                       <div
-                        className={cardClassName}
+                        className={this.decorateCSS("card")}
                         onMouseDown={(e) => e.preventDefault()}
                       >
                         {hasMedia && (
@@ -608,7 +471,6 @@ class Slider12 extends BaseSlider {
                         )}
                       </div>
                     );
-
                     return (
                       <div
                         key={i}
@@ -617,7 +479,13 @@ class Slider12 extends BaseSlider {
                           (isWideDesktop ? " " + this.decorateCSS("wide") : "")
                         }
                       >
-                        <SafeWrap href={rawPath}>{CardInner}</SafeWrap>
+                        {rawPath ? (
+                          <ComposerLink path={rawPath} isFullWidth={false}>
+                            {CardInner}
+                          </ComposerLink>
+                        ) : (
+                          CardInner
+                        )}
                       </div>
                     );
                   })}
