@@ -1,16 +1,15 @@
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature25.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import React from "react";
-import { TableView } from "@mui/icons-material";
 
 type ITabs = {
   tabText: React.JSX.Element;
   title: React.JSX.Element;
   text: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
@@ -43,11 +42,16 @@ class Feature25 extends BaseFeature {
               value: "Effortless Setup",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69046abb2d05c1002bf1d255?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69046abb2d05c1002bf1d255?alt=media",
+              },
             },
             {
               type: "string",
@@ -91,11 +95,16 @@ class Feature25 extends BaseFeature {
               value: "Consolidated Payments",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904685f2d05c1002bf1c98a?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904685f2d05c1002bf1c98a?alt=media",
+              },
             },
             {
               type: "string",
@@ -139,11 +148,16 @@ class Feature25 extends BaseFeature {
               value: "Global Ready",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904687f2d05c1002bf1ca45?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6904687f2d05c1002bf1ca45?alt=media",
+              },
             },
             {
               type: "string",
@@ -315,12 +329,17 @@ class Feature25 extends BaseFeature {
                     >
                       {tab.image && (
                         <div className={this.decorateCSS("image-wrapper")}>
-                          <img src={tab.image} alt={tab.image} />
+                          <Base.Media
+                            value={tab.image}
+                            className={this.decorateCSS("image")}
+                          />
                         </div>
                       )}
 
                       {!isTextEmpty && (
-                        <div className={this.decorateCSS("text-content")}>
+                        <Base.VerticalContent
+                          className={this.decorateCSS("text-content")}
+                        >
                           {hasText && (
                             <Base.SectionSubTitle
                               className={this.decorateCSS("subtitle")}
@@ -350,19 +369,19 @@ class Feature25 extends BaseFeature {
                                     className={this.decorateCSS("button")}
                                     buttonType={tab.button.type}
                                   >
-                                    <div
+                                    <Base.P
                                       className={this.decorateCSS(
                                         "button-text"
                                       )}
                                     >
                                       {tab.button.text}
-                                    </div>
+                                    </Base.P>
                                   </Base.Button>
                                 </ComposerLink>
                               </>
                             )}
                           </div>
-                        </div>
+                        </Base.VerticalContent>
                       )}
                     </div>
                   );

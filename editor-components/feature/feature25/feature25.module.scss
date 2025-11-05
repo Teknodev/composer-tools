@@ -7,7 +7,7 @@
   .max-content {
     .tabs-wrapper {
       display: flex;
-      gap: calc(var(--composer-gap-xl) * 2);
+      gap: var(--composer-gap-xl);
       height: 600px;
       align-items: center;
 
@@ -28,7 +28,7 @@
         }
 
         .tab {
-          padding: var(--padding-md) var(--padding-lg);
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
           height: 100%;
           cursor: pointer;
           border-left: 1px solid var(--composer-tertiary-color);
@@ -62,13 +62,13 @@
           width: 100%;
           scroll-snap-stop: always;
           scroll-snap-align: start;
-          padding: var(--padding-md);
+          padding: var(--composer-gap-md);
 
           &.no-text {
             .image-wrapper {
               width: 100% !important;
 
-              img {
+              .image {
                 height: 600px !important;
                 width: 100% !important;
                 object-fit: cover;
@@ -79,22 +79,20 @@
           .image-wrapper {
             width: 35%;
             flex-shrink: 0;
-            border-radius: var(--border-radius-md);
+            border-radius: var(--composer-border-radius-md);
 
-            img {
+            .image {
               width: 100%;
               height: auto;
-              border-radius: var(--border-radius-sm);
+              border-radius: var(--composer-border-radius-sm);
               display: block;
             }
           }
 
           .text-content {
             flex: 1;
-            display: flex;
             max-height: 400px;
             overflow-y: auto;
-            flex-direction: column;
 
             .subtitle {
               text-align: left;
@@ -170,19 +168,27 @@
           justify-content: flex-end !important;
           align-items: flex-start !important;
           height: auto !important;
-          margin-top: 15rem;
           gap: var(--composer-gap-sm) !important;
           padding: 0 !important;
+
+          .button-wrapper {
+            .button {
+              margin-top: 0px !important;
+            }
+          }
         }
 
         .vertical-content {
           .text-content {
-            flex: 0;
+            .description {
+              max-height: 70px !important;
+              overflow-y: auto !important;
+            }
           }
         }
 
         .image-wrapper {
-          width: 90% !important;
+          width: 85% !important;
         }
 
         .tab-text {
