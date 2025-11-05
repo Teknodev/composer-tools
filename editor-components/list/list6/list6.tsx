@@ -219,13 +219,13 @@ class List6 extends BaseList {
     const description = this.getPropValue("description");
     const subtitle = this.getPropValue("subtitle");
     const alignment = Base.getContentAlignment();
-    const isLeftAlignment = alignment === "left";
+    const isCenterAlignment = alignment === "center";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(subtitle) || this.castToString(description)) && (
-            <Base.VerticalContent className={this.decorateCSS("header-section")}>
+            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : this.decorateCSS("align-left")}`}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
@@ -255,7 +255,7 @@ class List6 extends BaseList {
                 <div className={this.decorateCSS("item-content")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (
-                      <div className={`${this.decorateCSS("item-header")} ${isLeftAlignment ? this.decorateCSS("align-left") : this.decorateCSS("align-center")}`}>
+                      <div className={this.decorateCSS("item-header")}>
                         {listItem.itemIcon && (
                           <div className={this.decorateCSS("icon-wrapper")}>
                             <div className={this.decorateCSS("icon-container")}>

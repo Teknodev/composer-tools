@@ -149,28 +149,26 @@ class List7 extends BaseList {
                 const hasTitle = this.castToString(item.title);
                 const hasText = this.castToString(item.text);
                 const showIndex = !!this.getPropValue("showIndex");
-                if (!hasTitle && !hasText) return null;
+                if (!hasTitle && !hasText && !showIndex) return null;
                 return (
                 <div
                   key={index}
                   className={this.decorateCSS("list-item")}
                 >
-                  {(showIndex || hasTitle || hasText) && (
-                    <Base.VerticalContent
-                      className={this.decorateCSS("item-content")}
-                      data-animation={this.getPropValue("hoverAnimation")}
-                    >
-                      {showIndex && (
-                        <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
-                      )}
-                      {hasTitle && (
-                        <Base.H3 className={this.decorateCSS("item-title")}>{item.title}</Base.H3>
-                      )}
-                      {hasText && (
-                        <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
-                      )}
-                    </Base.VerticalContent>
-                  )}
+                  <Base.VerticalContent
+                    className={this.decorateCSS("item-content")}
+                    data-animation={this.getPropValue("hoverAnimation")}
+                  >
+                    {showIndex && (
+                      <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
+                    )}
+                    {hasTitle && (
+                      <Base.H3 className={this.decorateCSS("item-title")}>{item.title}</Base.H3>
+                    )}
+                    {hasText && (
+                      <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
+                    )}
+                  </Base.VerticalContent>
                 </div>
               );
               })}

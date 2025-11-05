@@ -169,14 +169,15 @@
           .card-title {
             content: "";
             color: var(--composer-font-color-primary);
+            text-align: left;
           }
           .card-description {
             content: "";
             color: var(--composer-font-color-primary);
+            text-align: left;
           }
           .arrow-icon {
-            width: var(--composer-gap-md);
-            height: var(--composer-gap-md);
+            font-size: 2.3rem;
             color: var(--composer-font-color-primary);
             transition: all var(--composer-transition-duration-normal) ease;
             margin-left: 0;

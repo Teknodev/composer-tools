@@ -181,6 +181,12 @@ class List3 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
     });
+    this.addProp({
+      type: "boolean",
+      key: "showLines",
+      displayer: "Show Lines",
+      value: true,
+    });
   }
 
   render() {
@@ -246,9 +252,11 @@ class List3 extends BaseList {
                         {listItem.itemTitle as any}
                       </Base.H5>
                     )}
-                    {listItem.texts.map((item: TextItem, index: number) => (
-                      <Base.VerticalContent key={index} className={this.decorateCSS("event-item")}>
-                        <div className={this.decorateCSS("divider")}></div>
+                    {listItem.texts.map((item: TextItem, tIndex: number) => (
+                      <Base.VerticalContent key={tIndex} className={this.decorateCSS("event-item")}>
+                        {this.getPropValue("showLines") && tIndex > 0 && (
+                          <div className={this.decorateCSS("divider")}></div>
+                        )}
                         {this.castToString(item.topText) && (
                           <Base.P className={this.decorateCSS("event-text-top")}>{item.topText}</Base.P>
                         )}
