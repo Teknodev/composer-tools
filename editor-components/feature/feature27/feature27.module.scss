@@ -21,7 +21,6 @@
       }
 
       .description {
-        color: var(--composer-font-color-primary);
         text-align: left;
       }
 
@@ -31,20 +30,7 @@
         gap: var(--composer-gap-md);
         justify-content: flex-start;
 
-        .button {
-          display: inline-flex;
-          align-items: center;
-          gap: var(--composer-gap-xs);
-        }
-
-        .button-icon {
-          display: inline-flex;
-          align-items: center;
-        }
-
-        .button-text {
-          white-space: nowrap;
-        }
+        
       }
 
       .right-container {
@@ -88,11 +74,7 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
 
-        .title {
-          &.title-center {
-            text-align: center;
-          }
-        }
+        
 
         &.alignment-center {
           align-items: center;

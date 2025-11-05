@@ -79,17 +79,15 @@ class Feature27Component extends BaseFeature {
             {isLeftContainerExist && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
                 {isTitleExist && (
-                  <Base.SectionTitle
-                    className={`${this.decorateCSS("title")} ${
-                      alignment === "center" ? this.decorateCSS("title-center") : ""
-                    }`}
-                  >
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
 
                 {this.castToString(description) && (
-                  <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
                 )}
 
                 {buttons.length > 0 && (
