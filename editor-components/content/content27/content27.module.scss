@@ -1,13 +1,14 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-/* Sağ taraf tamamen boşsa sağ kolonu gizle. Divider görünürlüğü ayrı (noDivider) ile yönetilir */
+/* If the right side is completely empty, hide the right column.
+   Divider visibility is controlled separately via noDivider. */
 .grid.noRight {
   .rightColumn {
     display: none;
   }
 }
 
-/* Sağ taraf boş VE divider kapalı ise sol içerik tüm genişliği kapsasın */
+/* If the right side is empty AND divider is off, stretch the left content to full width */
 .grid.noRight.noDivider {
   .dividerColumn {
     display: none;
@@ -92,8 +93,9 @@
   }
 }
 
-/* Eğer listede öğe kalmadıysa, sağ sütun tüm alana yayılsın ve ayırıcı gizlensin */
-/* Sol tarafta başlık ve liste tamamen yoksa, sağ kolon tüm alanı kaplasın. Divider sadece noDivider ile kontrol edilir. */
+/* If no items remain in the list, allow the right column to take all space.
+   When both title and list are empty on the left, let the right column fill the area.
+   Divider visibility is only controlled by noDivider. */
 .grid.noLeft {
   .leftContent {
     display: none;
@@ -106,7 +108,7 @@
   }
 }
 
-/* Sol taraf da boş ve divider kapalıysa: dividerColumn gizlensin, sağ kolon tam genişlikte olsun */
+/* If the left side is empty and divider is off: hide dividerColumn and make right column full width */
 .grid.noLeft.noDivider {
   .dividerColumn {
     display: none;
@@ -524,9 +526,7 @@
   @container (max-width: #{$composer-phone-width}) {
     font-size: var(--composer-font-size-md);
     line-height: 1.5;
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-xs);
+    display: block; // keep inline flow like desktop
   }
 }
 
@@ -667,6 +667,13 @@
     width: auto;
     flex: 0 0 calc(60% - var(--c27-gap-right) - var(--c27-line));
     min-width: 0;
+  }
+}
+
+/* Tablet range: align imageBox inner padding with desktop (more compact) */
+@container (min-width: #{$composer-phone-width + 1px}) and (max-width: #{$composer-tablet-width}) {
+  .imageBox {
+    padding: calc(var(--composer-gap-lg) * 0.6);
   }
 }
 

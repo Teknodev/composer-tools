@@ -219,7 +219,7 @@ class Content27 extends BaseContent {
     const title = this.getPropValue("title");
     // Inline-edit compatible: use composer proxies; do not unwrap
     const originalList = this.castToObject<ListItem[]>("items") || [];
-    // Görünüm listesi: başlığı olanları sol menüde göstermek için işaretle, orijinal indeks korunur
+    // View list: mark items with a title to show on the left menu, keep original index
     const viewList = originalList.map((item, index) => ({
       item,
       index,
@@ -228,11 +228,11 @@ class Content27 extends BaseContent {
     const displayList = viewList.filter((v) => v.displayTitle);
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const showDivider = this.getPropValue("showDivider") as boolean;
-    // Aktif sekme, orijinal liste indeksine göre tutulur ki başlık boş olsa bile sağ panel görünsün
+    // Keep the active tab by original list index so right panel renders even if title is empty
     const activeTabRaw = this.getComponentState("activeTab") ?? 0;
     const activeTab = originalList.length > 0 ? Math.min(activeTabRaw, originalList.length - 1) : 0;
     const activeItem = originalList.length ? (originalList[activeTab] || originalList[0]) : undefined;
-    // Sağ panel içeriği var mı?
+    // Does the right panel have any content?
     const hasImage = !!(activeItem && (activeItem as any).image);
     const hasAnySection = !!(activeItem && Array.isArray((activeItem as any).sections) && (activeItem as any).sections.some((s: any) => this.castToString(s?.title) || this.castToString(s?.text)));
     const hasButton = this.castToString(button?.text);
@@ -243,7 +243,7 @@ class Content27 extends BaseContent {
         className={`${this.decorateCSS("container")} ${this.decorateCSS("left")}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {/** Sol kısım tamamen boşsa noLeft; sağ kısım boşsa noRight */}
+          {/** If the left side is empty add noLeft; if the right side is empty add noRight */}
           <div className={`${this.decorateCSS("grid")} ${!showDivider ? this.decorateCSS("noDivider") : ""} ${(!this.castToString(title) && displayList.length === 0) ? this.decorateCSS("noLeft") : ""} ${!hasRightContent ? this.decorateCSS("noRight") : ""}`}>
             <Base.VerticalContent className={this.decorateCSS("leftContent")}>
               {this.castToString(title) && (
