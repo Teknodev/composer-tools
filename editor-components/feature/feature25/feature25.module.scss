@@ -93,6 +93,7 @@
             flex: 1;
             max-height: 400px;
             overflow-y: auto;
+            align-items: flex-start;
 
             .subtitle {
               text-align: left;
@@ -105,6 +106,7 @@
             }
 
             .button-wrapper {
+              align-self: flex-start;
               .button {
                 margin-top: var(--composer-gap-md);
                 .button-text {
