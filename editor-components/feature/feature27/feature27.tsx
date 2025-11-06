@@ -35,7 +35,7 @@ class Feature27Component extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Get Started", null, "", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Get Started", null, null , null, "Primary"),
         INPUTS.BUTTON("button", "Button", "Learn More", null, "FaArrowRight", null, "White"),
       ],
     });
@@ -90,30 +90,42 @@ class Feature27Component extends BaseFeature {
                   </Base.SectionDescription>
                 )}
 
-                {buttons.length > 0 && (
-                  <Base.Row className={this.decorateCSS("button-container")}>
-                    {buttons.map((item, index) => {
-                      const buttonText = this.castToString(item.text || "");
-                      const buttonUrl = item.url || "#";
-                      const iconName = (item as any)?.icon?.name || (item as any)?.icon;
-                      if (!buttonText && !iconName) return null;
-
-                      return (
-                        <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                            {iconName && (
-                              <Base.Media
-                                className={this.decorateCSS("button-icon")}
-                                value={{ type: "icon", name: iconName }}
-                              />
-                            )}
-                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
-                  </Base.Row>
-                )}
+                {Array.isArray(buttons) && (() => {
+                  const validButtons = buttons.filter((item) => {
+                    const rawText = this.castToString(item.text || "");
+                    const text = typeof rawText === "string" ? rawText.trim() : rawText;
+                    const rawIcon = (item as any)?.icon?.name || (item as any)?.icon;
+                    const iconName = typeof rawIcon === "string" ? rawIcon.trim() : rawIcon;
+                    return !!text || !!iconName;
+                  });
+                  if (validButtons.length === 0) return null;
+                  return (
+                    <Base.Row className={this.decorateCSS("button-container")}>
+                      {validButtons.map((item, index) => {
+                        const rawText = this.castToString(item.text || "");
+                        const buttonText = typeof rawText === "string" ? rawText.trim() : rawText;
+                        const buttonUrl = item.url || "#";
+                        const rawIcon = (item as any)?.icon?.name || (item as any)?.icon;
+                        const iconName = typeof rawIcon === "string" ? rawIcon.trim() : rawIcon;
+                        return (
+                          <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {iconName && (
+                                <Base.Media
+                                  className={this.decorateCSS("button-icon")}
+                                  value={{ type: "icon", name: iconName }}
+                                />
+                              )}
+                              {buttonText && (
+                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </Base.Row>
+                  );
+                })()}
               </Base.VerticalContent>
             )}
 
