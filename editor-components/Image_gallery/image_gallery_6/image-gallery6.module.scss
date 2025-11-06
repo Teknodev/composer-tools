@@ -267,7 +267,7 @@
         .max-content {
             gap: var(--composer-gap-md);
             .content {
-                flex-direction: column;
+                 flex-direction: row;
 
                 .left-container,
                 .right-container {
