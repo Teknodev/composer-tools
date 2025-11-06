@@ -323,7 +323,7 @@ class HeroSection8 extends BaseHeroSection {
           {this.getPropValue("slider").length > 0 && (
             <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
-                <div
+                <Base.H3
                   className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
                     : ""
@@ -338,9 +338,9 @@ class HeroSection8 extends BaseHeroSection {
                   }}
                 >
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
-                </div>
+                </Base.H3>
               }
-              <div
+              <Base.H1
                 className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
                   ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                   : ""
@@ -355,12 +355,12 @@ class HeroSection8 extends BaseHeroSection {
                 }}
               >
                 {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
-              </div>
+              </Base.H1>
 
 
               {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
-                <div
+                <Base.H2
                   className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                     : ""
@@ -375,15 +375,8 @@ class HeroSection8 extends BaseHeroSection {
                   }}
                 >
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
-                </div>
+                </Base.H2>
               }
-              {this.getPropValue("pageNumber") && (
-                <div className={this.decorateCSS("pagination")}>
-                  <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
-                  <div className={this.decorateCSS("slash")}> / </div>
-                  <div className={this.decorateCSS("total-page")}>{slideCount}</div>
-                </div>
-              )}
               <div className={this.decorateCSS("arrow-wrapper")}>
                 <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                   sliderRef.current.slickPrev();
@@ -395,6 +388,13 @@ class HeroSection8 extends BaseHeroSection {
                     />
                   </div>
                 </div>
+                {this.getPropValue("pageNumber") && (
+                  <div className={`${this.decorateCSS("pagination")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
+                    <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
+                    <div className={this.decorateCSS("slash")}> / </div>
+                    <div className={this.decorateCSS("total-page")}>{slideCount}</div>
+                  </div>
+                )}
                 <div className={`${this.decorateCSS("arrow-next-wrapper")} ${this.decorateCSS("next")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                   sliderRef.current.slickNext();
                 }}>

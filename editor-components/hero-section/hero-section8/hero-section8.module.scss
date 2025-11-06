@@ -12,7 +12,7 @@
 .container {
   width: 100%;
   position: relative;
-  padding: 0px;
+  padding: 0px !important;
   min-height: 100px;
   .carousel {
     width: 100%;
@@ -32,8 +32,8 @@
         width: 100%;
     
         &::after {
-          background-color: transparent;
           content: "";
+          background-color: transparent;
           width: 100%;
           height: 100%;
           position: absolute;
@@ -92,7 +92,7 @@
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 20px 50px;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     background-color: transparent;
     .info-box {
       display: flex;
@@ -120,27 +120,26 @@
           transform: scale(1);
         }
       }
-      .tag {
-        font-size: 1.5rem;
+      .tag, .title, .description {
+        content: "";
       }
-      .title {
-        font-size: 4rem;
-      }
+    
       .line {
-        border-bottom: 1px solid hsla(0, 0%, 100%, .07);
+        border-bottom: 1px solid var(--composer-tertiary-color);
       }
-      .description {
-        font-size: 2rem;
-      }
+    }
 
+  }
+  .arrow-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
     .pagination {
-      text-align: center;
-      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      padding-top: var(--composer-gap-md);
 
       .current-page {
         font-size: 1.5rem;
@@ -154,15 +153,15 @@
       .total-page {
         font-size: 2rem;
       }
+      
+      &.no-image {
+        color: var(--composer-font-color-primary);
+      }
     }
-    }
-
-  }
-  .arrow-wrapper{
-    display: flex;
-    justify-content: space-between;
+    
     .arrow-prev-wrapper, .arrow-next-wrapper{
       position: relative;
+      cursor: pointer;
       .arrow-prev, .arrow-next{
         width: 40px;
         height: 40px;
@@ -255,6 +254,17 @@
   .container{
     .carousel{
       .arrow-wrapper{
+        .pagination{
+          .current-page{
+            font-size: 1rem;
+          }
+          .slash{
+            font-size: 2rem;
+          }
+          .total-page{
+            font-size: 1.5rem;
+          }
+        }
         .arrow-prev-wrapper, .arrow-next-wrapper{
           &.next{
             &::after {
@@ -271,28 +281,6 @@
     }
     .max-content{
       padding: 20px;
-      .info-box{
-        .tag{
-          font-size: 1rem;
-        }
-        .title{
-          font-size: 2.5rem;
-        }
-        .description{
-          font-size: 1.5rem;
-        }
-        .pagination{
-          .current-page{
-            font-size: 1rem;
-          }
-          .slash{
-            font-size: 2rem;
-          }
-          .total-page{
-            font-size: 1.5rem;
-          }
-        }
-      }
     }
   }
 }
