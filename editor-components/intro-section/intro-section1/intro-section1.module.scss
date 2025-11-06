@@ -32,26 +32,36 @@
         gap: var(--composer-gap-lg);
         .section-title { content: ""; margin: 0; width: 100%; word-break: break-word; overflow-wrap: anywhere; }
 
-        .features-list { display: flex; flex-direction: column; gap: var(--composer-gap-sm); align-items: flex-start; margin: 0; width: 100%; }
+        .features-list { display: flex; flex-direction: column; gap: var(--composer-gap-md); align-items: flex-start; margin: 0; width: 100%; }
 
-        .feature-item { display: flex; align-items: flex-start; gap: var(--composer-gap-sm); width: 100%; }
-
-        .feature-icon-wrapper { display: flex; align-items: center; justify-content: center; }
-
-        .feature-icon { font-size:1.5rem; display: inline-flex; align-items: center; justify-content: center; color: var(--composer-primary-color); }
-
-        .feature-text { display: flex; gap: var(--composer-gap-xs); }
+        .feature-item { display: flex; align-items: center; gap: var(--composer-gap-sm); width: 100%; }
+        .feature-head-row {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+        }
+        .feature-icon-wrapper { display: flex; align-items: center; justify-content: flex-start; }
+        .feature-icon { font-size: 1.5rem; color: var(--composer-primary-color); display: inline-flex; align-items: center; justify-content: center; }
+        .feature-title { text-align: left; white-space: nowrap; margin: 0; color: var(--composer-primary-color); }
+        .feature-description-wrapper { flex: 1; min-width: 0; }
+        .feature-description { width: 100%; text-align: left; overflow-wrap: anywhere; word-break: break-word; hyphens: auto; }
 
         .feature-title {
           content: "";
-          color: var(--composer-font-color-primary);
-          width: max-content; text-align: left;
+          color: var(--composer-primary-color);
+          width: auto;
+          text-align: left;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          hyphens: auto;
         }
 
-        .feature-description { content: ""; color: var(--composer-tertiary-color); width: max-content; text-align: left; }
+        .feature-description { content: ""; color: var(--composer-tertiary-color); width: 100%; text-align: left; overflow-wrap: anywhere; word-break: break-word; hyphens: auto; }
 
         .action-buttons {
           display: flex;
+          flex-direction: row;
+          align-items: center;
           gap: var(--composer-gap-md);
 
           .button-wrapper {
@@ -197,26 +207,26 @@
             align-items: flex-start; 
             width: 100%;
           }
-          .feature-item { 
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: flex-start;
+          .feature-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto;
+            grid-template-areas:
+              "icon title"
+              "desc desc";
+            column-gap: var(--composer-gap-sm);
+            row-gap: var(--composer-gap-sm);
             width: 100%;
             margin: 0;
+            align-items: start;
           }
-          .feature-icon-wrapper { 
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-shrink: 0;
-          }
-          .feature-icon {
-            margin: 0;
-          }
-          .feature-text { 
-            flex-direction: column; 
-            align-items: flex-start;
-            flex: 1;
+          .feature-head-row { display: contents; }
+          .feature-icon-wrapper { grid-area: icon; display: flex; align-items: flex-start; justify-content: flex-start; }
+          .feature-title { grid-area: title; white-space: normal; margin: 0; }
+          .feature-description-wrapper {
+            grid-area: desc;
             min-width: 0;
+            display: flex;
           }
           .feature-title { 
             text-align: left; 
@@ -224,11 +234,17 @@
             margin: 0;
           }
           .feature-description { 
+            grid-area: desc;
             text-align: left; 
             width: 100%;
             margin: 0;
           }
-          .action-buttons { justify-content: flex-start; }
+          .action-buttons {
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+          }
           .button { justify-content: flex-start; }
           .button-text { text-align: left; }
         }

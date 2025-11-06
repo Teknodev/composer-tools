@@ -147,14 +147,22 @@ class IntroSection1 extends BaseIntroSection {
               {hasAnyDescription && (
                 <div className={this.decorateCSS("features-list")}>
                   {descriptions.map((d: any, i: number) => (
-                    <div key={i} className={this.decorateCSS("feature-item")}> 
-                      <div className={this.decorateCSS("feature-icon-wrapper")}> 
-                        {d.icon && <Base.Media value={d.icon} className={this.decorateCSS("feature-icon")} />}
+                    <div key={i} className={this.decorateCSS("feature-item")}>
+                      <div className={this.decorateCSS("feature-head-row")}>
+                        {d.icon && (
+                          <div className={this.decorateCSS("feature-icon-wrapper")}>
+                            <Base.Media value={d.icon} className={this.decorateCSS("feature-icon")} />
+                          </div>
+                        )}
+                        {this.castToString(d.title) && (
+                          <Base.P className={this.decorateCSS("feature-title")}>{d.title}</Base.P>
+                        )}
                       </div>
-                      <div className={this.decorateCSS("feature-text")}>
-                        {this.castToString(d.title) && <Base.P className={this.decorateCSS("feature-title")}>{d.title}</Base.P>}
-                        {this.castToString(d.text) && <Base.P className={this.decorateCSS("feature-description")}>{d.text}</Base.P>}
-                      </div>
+                      {this.castToString(d.text) && (
+                        <div className={this.decorateCSS("feature-description-wrapper")}>
+                          <Base.P className={this.decorateCSS("feature-description")}>{d.text}</Base.P>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -164,8 +172,11 @@ class IntroSection1 extends BaseIntroSection {
                 <div className={this.decorateCSS("action-buttons")}> 
                   {buttons.map((btn: any, idx: number) => {
                     const btnTextExist = this.castToString(btn.text);
-                    const url = btn.url || "#";
                     const iconName = (btn?.icon && (btn.icon.name || btn.icon)) || null;
+                    if (!btnTextExist && !iconName) {
+                      return null;
+                    }
+                    const url = btn.url || "#";
                     return (
                       <div key={idx} className={this.decorateCSS("button-wrapper")}> 
                         <ComposerLink path={url}>
