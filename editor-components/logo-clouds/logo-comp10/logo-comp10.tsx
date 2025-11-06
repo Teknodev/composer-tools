@@ -57,12 +57,6 @@ class LogoComp10Page extends LogoClouds {
       window.addEventListener("orientationchange", this.handleResize);
     }
 
-    setTimeout(() => {
-      if (this.containerRef) {
-        this.containerRef.addEventListener('wheel', this.handleWheel, { passive: false });
-      }
-    }, 100);
-
     this.handleResize();
   }
   
@@ -129,12 +123,11 @@ class LogoComp10Page extends LogoClouds {
 
   isPhone = (): boolean => {
     const containerWidth = this.containerRef?.clientWidth;
-    if (typeof containerWidth === "number" && containerWidth > 0) {
-      return containerWidth <= 640;
-    }
-    const playground = typeof document !== 'undefined' ? document.getElementById('playground') : null;
-    const width = playground?.clientWidth;
-    return typeof width === "number" && width > 0 ? width <= 640 : false;
+    const playgroundWidth = typeof document !== 'undefined' ? document.getElementById('playground')?.clientWidth : undefined;
+    const width = (typeof containerWidth === 'number' && containerWidth > 0)
+      ? containerWidth
+      : ((typeof playgroundWidth === 'number' && playgroundWidth > 0) ? playgroundWidth : 0);
+    return width > 0 && width <= 640;
   };
 
   chunkLogos = (logos: TImage[], size: number): TImage[][] => {
@@ -176,7 +169,7 @@ class LogoComp10Page extends LogoClouds {
     
     const sliderKey = `slider-${itemCount}-${logoItems.length}-${effectiveChunkSize}`;
 
-    const commonSliderSettings = {
+    const sliderSettings = {
       arrows: false,
       dots: false,
       speed: 800,
@@ -186,15 +179,9 @@ class LogoComp10Page extends LogoClouds {
       fade: true,
       cssEase: 'linear',
       pauseOnHover: false,
-    };
-
-    const desktopSliderSettings = {
-      ...commonSliderSettings,
       infinite: shouldAnimate,
       autoplay: shouldAnimate,
     };
-
-    // Single slider setup; responsive grid handles mobile layout
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -202,7 +189,7 @@ class LogoComp10Page extends LogoClouds {
           {title && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
               <Base.H4 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
+                {title}
               </Base.H4>
             </Base.VerticalContent>
           )}
@@ -215,7 +202,7 @@ class LogoComp10Page extends LogoClouds {
                 <ComposerSlider
                   key={`single-${sliderKey}`}
                   ref={sliderRef}
-                  {...desktopSliderSettings}
+                  {...sliderSettings}
                   className={this.decorateCSS("slider")}
                 >
                   {chunks.map((chunk, slideIndex) => {
