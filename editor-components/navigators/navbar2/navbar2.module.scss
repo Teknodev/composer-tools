@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
+.navbarContainer {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
   z-index: 101;
@@ -11,7 +11,7 @@
     align-items: center;
 
     .logo {
-      .logoImg {
+      .image {
         width: 100%;
         max-height: 60px;
         object-fit: contain;
@@ -440,15 +440,20 @@
   }
 }
 
+.filledBackground {
+  background: var(--composer-html-background);
+  z-index: 101;
+}
+
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
+  .navbarContainer {
     .maxContent {
       .mobileRight{
         display: flex;
         gap: var(--composer-gap-sm);
       }
       .logo {
-        .logoImg {
+        .image {
           width: fit-content;
           max-height: 50px;
         }
@@ -511,7 +516,7 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
+  .navbarContainer {
     .maxContent {
         .mobileMenu {
           padding-left: var(--composer-gap-md);
@@ -519,7 +524,7 @@
         }
     
       .logo {
-        .logoImg {
+        .image {
           max-height: 40px;
         }
       }

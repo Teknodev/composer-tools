@@ -9,6 +9,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Item = {
   nav_title: React.JSX.Element;
   nav_navigate_to: string;
+  menuType: string;
+  sub_items: Item[];
 };
 
 interface Logo {
@@ -55,8 +57,60 @@ class Navbar2 extends BaseNavigator {
               type: "select",
               key: "menuType",
               displayer: "Type",
-              value: "Normal",
+              value: "Dropdown",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "nav_title",
+                      displayer: "Title",
+                      value: "FASHION HOME",
+                    },
+                    {
+                      type: "page",
+                      key: "nav_navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "nav_title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "nav_navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -84,6 +138,58 @@ class Navbar2 extends BaseNavigator {
               value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
             },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "nav_title",
+                      displayer: "Title",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "nav_navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "nav_title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "nav_navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
         {
@@ -109,6 +215,58 @@ class Navbar2 extends BaseNavigator {
               displayer: "Type",
               value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "nav_title",
+                      displayer: "Title",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "nav_navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "nav_title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "nav_navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -136,6 +294,58 @@ class Navbar2 extends BaseNavigator {
               value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
             },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "nav_title",
+                      displayer: "Title",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "nav_navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "nav_title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "nav_navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
         {
@@ -161,6 +371,58 @@ class Navbar2 extends BaseNavigator {
               displayer: "Type",
               value: "Normal",
               additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "nav_title",
+                      displayer: "Title",
+                      value: "",
+                    },
+                    {
+                      type: "page",
+                      key: "nav_navigate_to",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "nav_title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "nav_navigate_to",
+                              displayer: "Navigate To",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -386,6 +648,7 @@ class Navbar2 extends BaseNavigator {
     const transparentBackground =
       (isStickyTransparent && !isScrolled) || isAbsolute;
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
+    const changeBackground = this.getComponentState("changeBackground");
 
     const currentLogo =
       transparentBackground ? absoluteLogo : defaultLogo;
@@ -407,10 +670,10 @@ class Navbar2 extends BaseNavigator {
       <>
        <Base.Navigator.Container
         position={position}
-        positionContainer={this.decorateCSS("container")}
+        positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
         setIsScrolled={(value) => this.setComponentState("isScrolled", value)}
-        className={this.decorateCSS("container")}
+        className={this.decorateCSS("filledBackground")}
       >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
@@ -421,11 +684,10 @@ class Navbar2 extends BaseNavigator {
         >
           {currentLogo && (
             <ComposerLink path={currentLogo.navigateTo}>
-              <div className={this.decorateCSS("logo")}>
+              <div className={this.decorateCSS("logo")} onClick={()=> this.toggleMobileMenu()}>
                 <Base.Media
                   value={currentLogo.image}
-                  className={this.decorateCSS("logoImg")}
-                  onClick={()=> this.toggleMobileMenu()}
+                  className={this.decorateCSS("image")}
                 />
               </div>
             </ComposerLink>

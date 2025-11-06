@@ -214,7 +214,14 @@ class Navbar10 extends BaseNavigator {
                         url: "",
                       },
                     },
-                    {type: "string",
+                    {
+                      type: "page",
+                      key: "imageUrl",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                    {
+                      type: "page",
                       key: "imageUrl",
                       displayer: "Navigate To",
                       value: "",
@@ -1753,16 +1760,10 @@ class Navbar10 extends BaseNavigator {
                       },
                     },
                     {
-                      type: "media",
-                      key: "image",
-                      displayer: "Image",
-                      additionalParams: {
-                        availableTypes: ["image"],
-                      },
-                      value: {
-                        type: "image",
-                        url: "",
-                      },
+                      type: "page",
+                      key: "imageUrl",
+                      displayer: "Navigate To",
+                      value: "",
                     },
                   ],
                 },
@@ -2152,16 +2153,10 @@ class Navbar10 extends BaseNavigator {
                       },
                     },
                     {
-                      type: "media",
-                      key: "image",
-                      displayer: "Image",
-                      additionalParams: {
-                        availableTypes: ["image"],
-                      },
-                      value: {
-                        type: "image",
-                        url: "",
-                      },
+                      type: "page",
+                      key: "imageUrl",
+                      displayer: "Navigate To",
+                      value: "",
                     },
                   ],
                 },
