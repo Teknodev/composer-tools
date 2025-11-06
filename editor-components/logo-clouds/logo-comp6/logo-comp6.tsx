@@ -188,6 +188,7 @@ class LogoComp6Page extends LogoClouds {
     const isTitleExists = this.castToString(this.getPropValue("subtitle"));
     const isDescriptionExists = this.castToString(this.getPropValue("subtitle"));
 
+    const alignment = Base.getContentAlignment()
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -220,7 +221,7 @@ class LogoComp6Page extends LogoClouds {
             {this.castToObject<TImage[]>("list-items").map(
               (listItem: TImage, index: number) => (
                 <ComposerLink path={listItem.imageLink}>
-                  <div key={index} className={this.decorateCSS("card")}>
+                  <div key={index} className={`${this.decorateCSS("card")} ${alignment === "center" && this.decorateCSS("center")}`}>
                     {listItem.image && <Base.Media
                       value={listItem.image}
                       className={this.decorateCSS("image")}

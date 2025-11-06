@@ -178,9 +178,11 @@ class LogoComp8Page extends LogoClouds {
             arrows:false,
             dots: false,
             infinite: true,
-            speed: 725,
+            speed: 500,
             autoplay: true,
             autoplaySpeed: 5000,
+            swipe: true,
+            swipeToSlide: true,
             slidesToShow: Math.min(originalPlatforms.length, this.getPropValue("slide-count")) || 5,
             slidesToScroll: 1,
             responsive: [
@@ -190,15 +192,18 @@ class LogoComp8Page extends LogoClouds {
                         arrows: false,
                         slidesToShow: 4,
                         slidesToScroll: 1,
+                        infinite: true,
+                        speed: 500,
                     },
                 },
-
                 {
-                    breakpoint: 500,
+                    breakpoint: 450,
                     settings: {
                         arrows: false,
                         slidesToShow: 3,
                         slidesToScroll: 1,
+                        infinite: true,
+                        speed: 500,
                     },
                 },
             ],

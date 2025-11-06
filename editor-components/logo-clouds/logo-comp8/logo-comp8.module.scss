@@ -17,7 +17,7 @@
             .text {
                 font-weight: 900;
                 text-align: center;
-                font-size: clamp(120px, 8vw, 160px);
+                font-size: 10rem;
                 white-space: nowrap;
                 color: var(--composer-primary-color);
                 text-transform: uppercase;
@@ -81,7 +81,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .background-text {
     .text {
-      font-size: clamp(37px, 5vw, 93px) !important;
+      font-size: 5.8rem !important;
       -webkit-text-stroke-width: 3px !important;
       stroke-width: 3px !important;
     }
@@ -91,7 +91,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .background-text {
     .text {
-      font-size: clamp(37px, 4vw, 43px) !important;
+      font-size: 2.7rem !important;
       -webkit-text-stroke-width: 2px !important;
       stroke-width: 2px !important;
       letter-spacing: -0.3rem;
