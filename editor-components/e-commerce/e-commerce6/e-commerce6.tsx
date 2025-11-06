@@ -159,7 +159,7 @@ class ECommerce6 extends BaseECommerce {
                     },
                     value: {
                         type: "icon",
-                        name: "GoArrowRight",
+                        name: "CiFries",
                     },
                     key: "icon",
                     displayer: "Icon",
@@ -184,7 +184,7 @@ class ECommerce6 extends BaseECommerce {
                     },
                     value: {
                         type: "icon",
-                        name: "GoArrowRight",
+                        name: "MdLocalLaundryService",
                     },
                     key: "icon",
                     displayer: "Icon",
@@ -209,7 +209,7 @@ class ECommerce6 extends BaseECommerce {
                     },
                     value: {
                         type: "icon",
-                        name: "GoArrowRight",
+                        name: "FaCar",
                     },
                     key: "icon",
                     displayer: "Icon",
