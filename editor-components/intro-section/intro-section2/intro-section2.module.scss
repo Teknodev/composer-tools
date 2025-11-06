@@ -10,12 +10,14 @@
   &.overlay {
     &::before {
       content: "";
+
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0) 100%);
       z-index: 1;
+      background-color: var(--composer-overlay-color);
     }
   }
 
@@ -27,37 +29,39 @@
 
     .vertical-content {
       justify-content: center;
+      width: 100%;
+      text-align: left;
 
-      .content {
+      .subtitle {
+        content: "";
+      }
+
+      .title {
+        margin-bottom: var(--composer-gap-lg);
+      }
+
+      .description-wrapper {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+        justify-content: var(--composer-content-alignment, flex-start);
+        gap: var(--composer-gap-xl);
 
-        .subtitle {
-          text-align: left;
-          margin-left: 0;
-        }
-        .title {
-          text-align: left !important;
-          margin-bottom: var(--composer-gap-lg);
+        &.centered {
+          flex-direction: column-reverse;
+          @container (min-width: #{$composer-tablet-width + 1}) {
+            gap: 0;
+          }
         }
 
-        .description-wrapper {
+        .button-wrapper {
           display: flex;
-          align-items: center;
-          gap: var(--composer-gap-xl);
-
-          .button-wrapper {
-            flex-shrink: 0;
-            .button-text {
-              content: "";
-            }
+          justify-content: var(--composer-content-alignment, flex-start);
+          .button-text {
+            content: "";
           }
+        }
 
-          .description {
-            flex: 1;
-          }
+        .description {
+          flex: 1;
         }
       }
     }
@@ -68,14 +72,14 @@
   .container {
     .max-content {
       .vertical-content {
-        .content {
+        gap: var(--composer-gap-sm);
+        .description-wrapper {
+          display: flex;
+          flex-direction: column-reverse;
           gap: var(--composer-gap-sm);
-          .description-wrapper {
-            display: block;
-            .button-wrapper {
-              .button {
-                margin-bottom: var(--composer-gap-md);
-              }
+          .button-wrapper {
+            .button {
+              margin-bottom: var(--composer-gap-md);
             }
           }
         }
@@ -88,18 +92,13 @@
   .container {
     .max-content {
       .vertical-content {
-        justify-content: flex-start;
-        .content {
-          .title {
-            margin-bottom: var(--composer-gap-sm);
-          }
-          .description-wrapper {
-            display: block;
-
-            .description {
-              text-align: left;
-            }
-          }
+        .title {
+          margin-bottom: var(--composer-gap-sm);
+        }
+        .description-wrapper {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: var(--composer-gap-sm);
         }
       }
     }
@@ -112,11 +111,10 @@
     color: var(--composer-font-color-primary) !important;
     background: transparent !important;
   }
-}
 
-.container.noBackground {
-  .subtitle,
-  .title {
-    color: "";
+  .subtitle {
+    &::before {
+      background-color: white !important;
+    }
   }
 }

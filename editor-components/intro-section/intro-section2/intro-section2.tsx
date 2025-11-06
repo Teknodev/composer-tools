@@ -64,12 +64,13 @@ class IntroSection2 extends BaseIntroSection {
     const button = this.castToObject<any>("button");
     const hasButton = !!(button && this.castToString(button.text));
 
+    const alignemnt = Base.getContentAlignment();
+    console.log("alignemnt", alignemnt);
+
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
-          coverImage
-            ? this.decorateCSS("hasBackground")
-            : this.decorateCSS("noBackground")
+          coverImage && this.decorateCSS("hasBackground")
         } ${
           coverImage && this.getPropValue("overlay")
             ? this.decorateCSS("overlay")
@@ -83,43 +84,45 @@ class IntroSection2 extends BaseIntroSection {
           <Base.VerticalContent
             className={this.decorateCSS("vertical-content")}
           >
-            <div className={this.decorateCSS("content")}>
-              {subtitle && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
+            {subtitle && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
+
+            {title && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
+            )}
+
+            <div
+              className={`${this.decorateCSS("description-wrapper")} ${
+                alignemnt === "center" ? this.decorateCSS("centered") : ""
+              }`}
+            >
+              {hasButton && (
+                <div className={this.decorateCSS("button-wrapper")}>
+                  <ComposerLink path={button.url}>
+                    <Base.Button
+                      buttonType={button.type || "Primary"}
+                      className={this.decorateCSS("button")}
+                    >
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {this.castToString(button.text)}
+                      </Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                </div>
               )}
 
-              {title && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
+              {description && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {description}
+                </Base.SectionDescription>
               )}
-
-              <div className={this.decorateCSS("description-wrapper")}>
-                {hasButton && (
-                  <div className={this.decorateCSS("button-wrapper")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button
-                        buttonType={button.type || "Primary"}
-                        className={this.decorateCSS("button")}
-                      >
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {this.castToString(button.text)}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  </div>
-                )}
-
-                {description && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
-                  >
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </div>
             </div>
           </Base.VerticalContent>
         </Base.MaxContent>
