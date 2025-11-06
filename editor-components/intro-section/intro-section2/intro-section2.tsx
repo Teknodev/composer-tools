@@ -46,9 +46,7 @@ class IntroSection2 extends BaseIntroSection {
       value: true,
     });
 
-    this.addProp(
-      INPUTS.BUTTON("button", "Button", "START FREE TRIAL", "", null, "Primary")
-    );
+    this.addProp(INPUTS.BUTTON("button", "Button", "START FREE TRIAL"));
   }
 
   static getName(): string {
@@ -86,13 +84,13 @@ class IntroSection2 extends BaseIntroSection {
           >
             {subtitle && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {subtitle}
+                {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>
             )}
 
             {title && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
+                {this.getPropValue("title")}
               </Base.SectionTitle>
             )}
 
@@ -120,7 +118,7 @@ class IntroSection2 extends BaseIntroSection {
                 <Base.SectionDescription
                   className={this.decorateCSS("description")}
                 >
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
             </div>
