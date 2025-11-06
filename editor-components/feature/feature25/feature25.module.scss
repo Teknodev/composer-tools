@@ -105,7 +105,7 @@
 
             .description {
               display: -webkit-box;
-              -webkit-line-clamp: 15;
+              -webkit-line-clamp: 10;
               -webkit-box-orient: vertical;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -135,7 +135,7 @@
 
         .tab-content {
           justify-content: flex-start !important;
-          margin-top: 15rem;
+          margin-top: 5rem;
           gap: 30px !important;
         }
 
@@ -193,7 +193,7 @@
         .vertical-content {
           .text-content {
             .description {
-              -webkit-line-clamp: 3;
+              -webkit-line-clamp: 3 !important;
             }
           }
         }
