@@ -91,7 +91,7 @@ class IntroSection1 extends BaseIntroSection {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Primary Button", "Start Free Trial", "", "FaArrowRight", null, "Primary"),
-        INPUTS.BUTTON("button", "Secondary Button", "Get A Demo", "", "FaPlay", null, "Link"),
+        INPUTS.BUTTON("button", "Secondary Button", "Get A Demo", "", "FaPlay", null, "White"),
       ],
     });
 
@@ -137,23 +137,23 @@ class IntroSection1 extends BaseIntroSection {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("wrapper")} ${this.decorateCSS("section")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")} ${hasLeftContainer && !hasRightContainer ? this.decorateCSS("left-container-alone") : ""}`}>
+          <div className={`${this.decorateCSS("intro-wrapper")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")} ${hasLeftContainer && !hasRightContainer ? this.decorateCSS("left-container-alone") : ""}`}>
             {hasLeftContainer && (
-            <div className={`${this.decorateCSS("content")} ${this.decorateCSS("left-container")}`}> 
-              {title && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+            <div className={this.decorateCSS("text-content")}> 
+              {hasTitle && (
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>
               )}
 
               {hasAnyDescription && (
-                <div className={`${this.decorateCSS("descriptions")} ${this.decorateCSS("features-list")}`}>
+                <div className={this.decorateCSS("features-list")}>
                   {descriptions.map((d: any, i: number) => (
-                    <div key={i} className={`${this.decorateCSS("description-item")} ${this.decorateCSS("features-list-item")}`}> 
-                      <div className={`${this.decorateCSS("item-icon")} ${this.decorateCSS("feature-icon")}`}> 
-                        {d.icon && <Base.Media value={d.icon} className={this.decorateCSS("item-icon-media")} />}
+                    <div key={i} className={this.decorateCSS("feature-item")}> 
+                      <div className={this.decorateCSS("feature-icon-wrapper")}> 
+                        {d.icon && <Base.Media value={d.icon} className={this.decorateCSS("feature-icon")} />}
                       </div>
-                      <div className={`${this.decorateCSS("item-text-col")} ${this.decorateCSS("feature-texts")}`}>
-                        {this.castToString(d.title) && <Base.P className={`${this.decorateCSS("item-title")} ${this.decorateCSS("feature-title")}`}>{d.title}</Base.P>}
-                        {this.castToString(d.text) && <Base.P className={`${this.decorateCSS("item-desc")} ${this.decorateCSS("feature-desc")}`}>{d.text}</Base.P>}
+                      <div className={this.decorateCSS("feature-text")}>
+                        {this.castToString(d.title) && <Base.P className={this.decorateCSS("feature-title")}>{d.title}</Base.P>}
+                        {this.castToString(d.text) && <Base.P className={this.decorateCSS("feature-description")}>{d.text}</Base.P>}
                       </div>
                     </div>
                   ))}
@@ -161,17 +161,17 @@ class IntroSection1 extends BaseIntroSection {
               )}
 
               {hasAnyButton && (
-                <div className={`${this.decorateCSS("buttons")} ${this.decorateCSS("button-row")}`}> 
+                <div className={this.decorateCSS("action-buttons")}> 
                   {buttons.map((btn: any, idx: number) => {
                     const btnTextExist = this.castToString(btn.text);
                     const url = btn.url || "#";
                     const iconName = (btn?.icon && (btn.icon.name || btn.icon)) || null;
                     return (
-                      <div key={idx} className={`${this.decorateCSS("button-item")} ${this.decorateCSS("button-col")}`}> 
+                      <div key={idx} className={this.decorateCSS("button-wrapper")}> 
                         <ComposerLink path={url}>
-                          <Base.Button buttonType={btn.type} className={`${this.decorateCSS("button")} ${this.decorateCSS("button-item-inner")}` }>
-                            {iconName && (<Base.Media value={{ type: "icon", name: iconName }} className={`${this.decorateCSS("btn-icon")} ${this.decorateCSS("button-icon")}`} />)}
-                            {btnTextExist && <Base.P className={`${this.decorateCSS("button-text")} ${this.decorateCSS("button-label")}`}>{btn.text}</Base.P>}
+                          <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                            {iconName && (<Base.Media value={{ type: "icon", name: iconName }} className={this.decorateCSS("button-icon")} />)}
+                            {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                           </Base.Button>
                         </ComposerLink>
                       </div>
@@ -183,28 +183,28 @@ class IntroSection1 extends BaseIntroSection {
             )}
 
             {hasRightContainer && (
-              <div className={`${this.decorateCSS("visual")} ${this.decorateCSS("right-container")} ${!hasLeftContainer ? this.decorateCSS("right-container-alone") : ""}`}> 
+              <div className={`${this.decorateCSS("media-container")} ${!hasLeftContainer ? this.decorateCSS("right-container-alone") : ""}`}> 
                 {!isPlaying && isVideo && thumbnail && (
-                  <div className={this.decorateCSS("media-thumb")} onClick={(e) => this.togglePlay(e)}>
-                    {thumbnail && <Base.Media value={thumbnail} className={this.decorateCSS("thumb-image")} />}
-                    {overlay && <div className={this.decorateCSS("thumb-overlay")} />}
-                    <div className={this.decorateCSS("play-icon")}>
-                      {videoIcon && <Base.Media value={videoIcon} className={this.decorateCSS("video-icon")} />}
+                  <div className={this.decorateCSS("video-thumbnail")} onClick={(e) => this.togglePlay(e)}>
+                    {thumbnail && <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />}
+                    {overlay && <div className={this.decorateCSS("thumbnail-overlay")} />}
+                    <div className={this.decorateCSS("play-button")}>
+                      {videoIcon && <Base.Media value={videoIcon} className={this.decorateCSS("play-icon")} />}
                     </div>
                   </div>
                 )}
 
                 {isVideo && (!thumbnail || isPlaying) && (
-                  <div className={this.decorateCSS("media-player")}>
-                    <div className={this.decorateCSS("square-wrapper")}>
-                      <Base.Media value={video} className={this.decorateCSS("player")} />
+                  <div className={this.decorateCSS("video-player")}>
+                    <div className={this.decorateCSS("video-wrapper")}>
+                      <Base.Media value={video} className={this.decorateCSS("video-element")} />
                     </div>
                   </div>
                 )}
 
                 {!isVideo && thumbnail && (
-                  <div className={this.decorateCSS("square-wrapper")}> 
-                    <Base.Media value={thumbnail} className={this.decorateCSS("visual-image")} />
+                  <div className={this.decorateCSS("media-wrapper")}> 
+                    <Base.Media value={thumbnail} className={this.decorateCSS("media-image")} />
                   </div>
                 )}
               </div>
