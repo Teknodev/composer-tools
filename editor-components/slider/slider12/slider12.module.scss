@@ -60,6 +60,9 @@
     background-color: var(--composer-html-background);
 
     .slide {
+      &.first-slide {
+        margin-left: 50px !important;
+      }
       width: var(--card-width) !important;
 
       &.wide {
@@ -164,6 +167,9 @@
       }
 
       .slide {
+        &.first-slide {
+          margin-left: 40px !important;
+        }
         &.wide {
           width: var(--card-width) !important;
 
@@ -204,6 +210,9 @@
   .wrap {
     .slider-parent {
       .slide {
+        &.first-slide {
+          margin-left: 0 !important;
+        }
         &.wide {
           width: var(--card-width) !important;
 

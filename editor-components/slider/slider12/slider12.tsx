@@ -471,21 +471,22 @@ class Slider12 extends BaseSlider {
                         )}
                       </div>
                     );
-                    return (
-                      <div
-                        key={i}
-                        className={
-                          this.decorateCSS("slide") +
-                          (isWideDesktop ? " " + this.decorateCSS("wide") : "")
-                        }
-                      >
-                        {rawPath ? (
-                          <ComposerLink path={rawPath} isFullWidth={false}>
-                            {CardInner}
-                          </ComposerLink>
-                        ) : (
-                          CardInner
-                        )}
+
+                    const slideClasses = [
+                      this.decorateCSS("slide"),
+                      isWideDesktop && this.decorateCSS("wide"),
+                      i === 0 && this.decorateCSS("first-slide"),
+                    ]
+                      .filter(Boolean)
+                      .join(" ");
+
+                    return rawPath ? (
+                      <ComposerLink key={i} path={rawPath} isFullWidth={false}>
+                        <div className={slideClasses}>{CardInner}</div>
+                      </ComposerLink>
+                    ) : (
+                      <div key={i} className={slideClasses}>
+                        {CardInner}
                       </div>
                     );
                   })}
