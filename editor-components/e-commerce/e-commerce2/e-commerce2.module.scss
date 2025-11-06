@@ -150,7 +150,6 @@
           max-height: 100%;
           .title {
             color: var(--composer-font-color-primary);
-            font-weight: bold;
             text-align: center;
           }
           .price {
@@ -264,7 +263,6 @@
         }
       }
       .image-info {
-        font-weight: bold;
         position: absolute;
         display: flex;
         justify-content: space-between;
