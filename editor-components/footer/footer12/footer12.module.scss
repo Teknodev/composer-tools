@@ -41,8 +41,9 @@
 
         .logo {
           .image {
-            width: 150px;
-            height: var(--composer-gap-xl);
+             width: 200px;
+             height: var(--composer-gap-lg);
+             object-fit: cover;
           }
         }
 
@@ -207,6 +208,16 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    .first-container{
+      .first-max-content{
+        .list-group{
+          align-items: baseline;
+          .title, .text{
+            text-align: left;
+          }
+        }
+      }
+    }
     .second-container {
       padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     }
@@ -224,6 +235,14 @@
             align-items: center !important;
             .description {
               text-align: center;
+            }
+          }
+          .list-group {
+            align-items: center !important;
+
+            .title,
+            .text {
+              text-align: center !important;
             }
           }
         }
@@ -256,10 +275,12 @@
       .second-max-content {
         .footer-bottom {
           flex-direction: column;
+          align-items: center;
           gap: var(--composer-gap-sm);
 
           .footer-text {
             max-width: 100%;
+            text-align: center;
           }
 
           .image-container {

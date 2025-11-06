@@ -29,8 +29,9 @@
 
         .logo {
           .image {
-            width: 200px;
-            height: 80px;
+             width: 200px;
+             height: var(--composer-gap-lg);
+             object-fit: cover;
           }
         }
 

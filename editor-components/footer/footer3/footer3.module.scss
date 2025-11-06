@@ -270,10 +270,15 @@
                 justify-content: flex-start;
                 align-items: flex-start;
 
+                .title {
+                  text-align: left;
+                }
+
                 .text-container {
+                  align-items: baseline;
                   .element {
                     display: flex;
-                    align-items: center;
+                    align-items: baseline;
                     gap: var(--composer-gap-sm);
                   }
                 }
@@ -289,6 +294,10 @@
             .footer-bottom {
               flex-direction: column;
               align-items: flex-start;
+
+              .bottom-text {
+                width: fit-content;
+              }
 
               &.center {
                 align-items: center;

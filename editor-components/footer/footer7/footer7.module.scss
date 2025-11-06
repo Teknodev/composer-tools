@@ -21,8 +21,9 @@
         max-width: 20%;
 
         .image {
-          width: 200px;
-          height: 100px;
+           width: 200px;
+           height: var(--composer-gap-lg);
+           object-fit: cover;
         }
       }
 

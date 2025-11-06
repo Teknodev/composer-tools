@@ -24,6 +24,7 @@
   }
 
   .first-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .first-max-content {
       .header {
         display: flex;
@@ -127,15 +128,17 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    gap: var(--composer-gap-sm);
     .first-container {
-      padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
+      padding: var(--composer-gap-xl) var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
 
       .first-max-content {
         .header {
+          align-items: baseline;
           &.center {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: 0;
           }
         }
       }
@@ -155,6 +158,13 @@
           width: 100%;
           gap: var(--composer-gap-sm);
 
+          &.center {
+            .links,
+            .footer-text {
+              justify-content: center !important;
+            }
+          }
+
           .links,
           .footer-text {
             flex: 1;
@@ -165,6 +175,7 @@
           .links {
             gap: var(--composer-gap-md);
             width: 100%;
+            justify-content: center !important;
 
             .link-element {
               .link-text {
@@ -180,8 +191,9 @@
           }
 
           .footer-text {
-            justify-content: flex-start;
             color: var(--composer-font-color-primary);
+            justify-content: center !important;
+
           }
         }
       }
@@ -209,6 +221,18 @@
       .second-max-content {
         .bottom {
           align-items: center;
+          /* When bottom is center-aligned on phone, center any list-groups and their content */
+          &.center {
+            .list-group,
+            .links .list-group {
+              align-items: center;
+
+              .title,
+              .text {
+                text-align: center;
+              }
+            }
+          }
           .links {
             .link-element{
               .link-text{

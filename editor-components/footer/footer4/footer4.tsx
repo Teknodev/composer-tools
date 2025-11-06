@@ -554,7 +554,7 @@ class Footer4Page extends BaseFooter {
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               <div className={this.decorateCSS("footer-page")}>
-                <div className={this.decorateCSS("items")}>
+                <div className={`${this.decorateCSS("items")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
                   {leftExist && (
                     <Base.VerticalContent className={this.decorateCSS("left")}>
                       {textExist && <Base.P className={this.decorateCSS("left-title")}>{this.getPropValue("text")}</Base.P>}

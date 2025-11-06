@@ -24,8 +24,9 @@
       gap: var(--composer-gap-md);
 
       .logo {
-        width: 230px;
-        height: 80px;
+         width: 200px;
+         height: var(--composer-gap-lg);
+              object-fit: cover;
       }
 
       .content {
