@@ -16,8 +16,7 @@ class Stats15 extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({ type: "string", key: "titleLine1", displayer: "Title Line 1", value: "Instant access to trade," });
-    this.addProp({ type: "string", key: "titleLine2", displayer: "Title Line 2", value: "anytime and anywhere" });
+    this.addProp({ type: "string", key: "title", displayer: "Title", value: "Instant access to trade,<br> anytime and anywhere" });
     this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line." });
 
     this.addProp({
@@ -103,8 +102,7 @@ class Stats15 extends BaseStats {
   };
 
   render() {
-    const titleLine1 = this.getPropValue("titleLine1");
-    const titleLine2 = this.getPropValue("titleLine2");
+    const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const stats = this.castToObject<StatItem[]>("stats");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -113,7 +111,7 @@ class Stats15 extends BaseStats {
     const alignment = Base.getContentAlignment();
     const numberAnimationDuration = this.getPropValue("numberAnimationDuration") || 2000;
 
-    const hasHeader = this.castToString(titleLine1) || this.castToString(titleLine2) || this.castToString(description) || (Array.isArray(buttons) && buttons.some(b => this.castToString(b?.text) || b?.icon));
+    const hasHeader = this.castToString(title) || this.castToString(description) || (Array.isArray(buttons) && buttons.some(b => this.castToString(b?.text)));
 
     const containerStyle = { backgroundImage: `url('${background?.url || background || ""}')` } as React.CSSProperties;
 
@@ -124,10 +122,9 @@ class Stats15 extends BaseStats {
 
             {hasHeader && (
               <Base.VerticalContent className={this.decorateCSS("content")}>
-                {(this.castToString(titleLine1) || this.castToString(titleLine2)) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    <span className={this.decorateCSS("title-line1")}>{titleLine1 as any}</span>
-                    <span className={this.decorateCSS("title-line2")}>{titleLine2 as any}</span>
+                {this.castToString(title) && (
+                  <Base.SectionTitle className={`${this.decorateCSS("title")} ${background ? this.decorateCSS("with-bg") : ""}`}>
+                    {title as any}
                   </Base.SectionTitle>
                 )}
                 {this.castToString(description) && (
@@ -139,7 +136,7 @@ class Stats15 extends BaseStats {
                       const buttonText = this.castToString(item.text || "");
                       const buttonUrl = item.url || "#";
                       const iconName = (item as any)?.icon?.name || (item as any)?.icon;
-                      if (!buttonText && !iconName) return null;
+                      if (!buttonText) return null;
                       return (
                         <ComposerLink key={`stats15-btn-${index}`} path={buttonUrl}>
                           <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
