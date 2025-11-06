@@ -38,7 +38,7 @@ class FeatureComponent26 extends BaseFeature {
       additionalParams: { selectItems: ["animate1", "animate2", "animate3", "animate4"] }
     });
 
-    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Image Overlay", value: false });
+    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
   }
 
   static getName(): string { return "Feature 26"; }
