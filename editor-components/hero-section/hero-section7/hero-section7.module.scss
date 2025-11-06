@@ -17,8 +17,16 @@
         .items {
           .text {
             color: var(--composer-font-color-primary);
-            &:hover {
+            
+            &::before {
               background: var(--composer-font-color-primary);
+            }
+            
+            &:hover {
+              color: black;
+            }
+            
+            &.active {
               color: var(--composer-font-color-secondary);
             }
           }
@@ -39,10 +47,36 @@
           font-size: 2.5rem;
           margin: var(--composer-gap-sm) 0;
           cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          transition: color 0.5s ease;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: black;
+            z-index: -1;
+            transition: width 0.5s ease;
+          }
 
           &:hover {
-            background: black;
             color: white;
+            
+            &::before {
+              width: 100%;
+            }
+          }
+          
+          &.active {
+            color: white;
+            
+            &::before {
+              width: 100%;
+            }
           }
         }
       }

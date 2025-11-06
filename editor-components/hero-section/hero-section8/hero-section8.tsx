@@ -311,7 +311,7 @@ class HeroSection8 extends BaseHeroSection {
               ${!item.image ? this.decorateCSS("slide-no-image") : ""}
               ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
             `}>
-              <div className={`${this.decorateCSS("image-wrapper")} ${this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
+              <div className={`${this.decorateCSS("image-wrapper")} ${item.image && this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
                 {item.image && (
                   <Base.Media value={item.image} className={this.decorateCSS("image")} />
                 )}
@@ -360,7 +360,7 @@ class HeroSection8 extends BaseHeroSection {
 
               {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
-                <Base.H2
+                <Base.H3
                   className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                     : ""
@@ -375,7 +375,7 @@ class HeroSection8 extends BaseHeroSection {
                   }}
                 >
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
-                </Base.H2>
+                </Base.H3>
               }
               <div className={this.decorateCSS("arrow-wrapper")}>
                 <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {

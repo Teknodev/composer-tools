@@ -194,6 +194,9 @@ class HeroSection7 extends BaseHeroSection {
               type: "media",
               key: "image",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661801cbd2970002c624541?alt=media&timestamp=1719483639150",
@@ -211,7 +214,8 @@ class HeroSection7 extends BaseHeroSection {
       value: false,
     });
 
-    this.setComponentState("active_image", this.castToObject<ISliderData[]>("pages")[0].image);
+    const firstImageItem = this.castToObject<ISliderData[]>("pages").find(item => item.image);
+    this.setComponentState("active_image", firstImageItem?.image || this.castToObject<ISliderData[]>("pages")[0]?.image);
   }
   static getName(): string {
     return "Hero Section 7";
@@ -232,7 +236,7 @@ class HeroSection7 extends BaseHeroSection {
                 <ComposerLink path={item.pagepath} key={index}>
                   <h2
                     onMouseOver={() => handleMouseOver(item.image)}
-                    className={this.decorateCSS("text")}
+                    className={`${this.decorateCSS("text")} ${image && item.image && image === item.image ? this.decorateCSS("active") : ""}`}
                   >
                     {item.title}
                   </h2>
@@ -245,7 +249,7 @@ class HeroSection7 extends BaseHeroSection {
                   value={image}
                   className={this.decorateCSS("image")}
                 />
-                {this.getPropValue("overlay") && image && image.type === "image" && image.url && (
+                {this.getPropValue("overlay") && image && typeof image === "object" && image?.type === "image" && image?.url && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
               </div>

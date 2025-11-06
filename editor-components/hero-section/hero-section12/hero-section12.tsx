@@ -14,10 +14,14 @@ type SliderItem = {
 class HeroSection12 extends BaseHeroSection {
   leftSliderRef: any;
   rightSliderRef: any;
+  isPhone: boolean = false;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  resizeObserver: ResizeObserver | null = null;
 
 
   constructor(props?: any) {
     super(props, styles);
+    this.containerRef = React.createRef();
 
     this.addProp({
       type: "boolean",
@@ -386,7 +390,33 @@ class HeroSection12 extends BaseHeroSection {
 
     this.leftSliderRef = React.createRef();
     this.rightSliderRef = React.createRef();
+    this.isPhone = false;
 
+  }
+  
+  componentDidMount() {
+    super.componentDidMount?.();
+    
+    if (this.containerRef.current) {
+      this.resizeObserver = new ResizeObserver((entries) => {
+        if (entries[0]) {
+          const width = entries[0].contentRect.width;
+          const isPhone = width <= 640;
+          if (this.isPhone !== isPhone) {
+            this.isPhone = isPhone;
+            this.forceUpdate();
+          }
+        }
+      });
+      this.resizeObserver.observe(this.containerRef.current);
+    }
+  }
+  
+  componentWillUnmount() {
+    super.componentWillUnmount?.();
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   }
 
   static getName(): string {
@@ -395,6 +425,8 @@ class HeroSection12 extends BaseHeroSection {
 
   render() {
     const autoplay = this.getPropValue("autoplay");
+    const isVertical = !this.isPhone;
+    
     const settings = {
       arrows: true,
       dots: false,
@@ -404,24 +436,8 @@ class HeroSection12 extends BaseHeroSection {
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      vertical: true,
-      verticalSwiping: true,
-      responsive: [
-        {
-          breakpoint: 1220,
-          settings: {
-            vertical: false,
-            verticalSwiping: false,
-          },
-        },
-        {
-          breakpoint: 500,
-          settings: {
-            vertical: false,
-            verticalSwiping: false,
-          },
-        },
-      ],
+      vertical: isVertical,
+      verticalSwiping: isVertical,
       swipe: true,
       switeToSlide: true,
     };
@@ -445,7 +461,19 @@ class HeroSection12 extends BaseHeroSection {
           givenClass={this.decorateCSS("left-slider-button")}
           customFunction={() => {
             if (rightSliderItems.length > 0) {
-              this.rightSliderRef.slickNext();
+              this.rightSliderRef.slickPrev();
+            }
+          }}
+          decorateIcon={decorateIcon}
+          icon={this.getPropValue("leftSliderIcon")}
+        />
+      ),
+      nextArrow: (
+        <LeftSliderArrow
+          givenClass={this.decorateCSS("left-slider-button")}
+          customFunction={() => {
+            if (rightSliderItems.length > 0) {
+              this.rightSliderRef.slickPrev();
             }
           }}
           decorateIcon={decorateIcon}
@@ -461,6 +489,18 @@ class HeroSection12 extends BaseHeroSection {
           this.leftSliderRef.slickPrev();
         }
       },
+      prevArrow: (
+        <RightSliderArrow
+          givenClass={this.decorateCSS("right-slider-button")}
+          customFunction={() => {
+            if (leftSliderItems.length > 0) {
+              this.leftSliderRef.slickPrev();
+            }
+          }}
+          decorateIcon={decorateIcon}
+          icon={this.getPropValue("rightSliderIcon")}
+        />
+      ),
       nextArrow: (
         <RightSliderArrow
           givenClass={this.decorateCSS("right-slider-button")}
@@ -476,12 +516,13 @@ class HeroSection12 extends BaseHeroSection {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")} ref={this.containerRef}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-container")}>
 
             {leftSliderItems.length > 0 && (
               <ComposerSlider
+                key={`left-slider-${isVertical ? 'vertical' : 'horizontal'}`}
                 className={`${this.decorateCSS("left-slider")}
               ${
                 rightSliderItems.length < 1 &&
@@ -505,7 +546,7 @@ class HeroSection12 extends BaseHeroSection {
                         )}
                       </div>
                     )}
-                    <Base.P
+                    <Base.H2
                       className={`${this.decorateCSS("slider-item-text")} ${
                         !item.image && this.decorateCSS("no-image-text")
                       }`}
@@ -513,7 +554,7 @@ class HeroSection12 extends BaseHeroSection {
                       <ComposerLink path={item.page}>
                         {item.text}
                       </ComposerLink>
-                    </Base.P>
+                    </Base.H2>
                   </div>
                 ))}
               </ComposerSlider>
@@ -521,6 +562,7 @@ class HeroSection12 extends BaseHeroSection {
 
             {rightSliderItems.length > 0 && (
               <ComposerSlider
+                key={`right-slider-${isVertical ? 'vertical' : 'horizontal'}`}
                 className={`${this.decorateCSS("right-slider")}
               ${
                 leftSliderItems.length < 1 &&
@@ -544,7 +586,7 @@ class HeroSection12 extends BaseHeroSection {
                         )}
                       </div>
                     )}
-                    <Base.P
+                    <Base.H2
                       className={`${this.decorateCSS("slider-item-text")} ${
                         !item.image && this.decorateCSS("no-image-text")
                       }`}
@@ -552,7 +594,7 @@ class HeroSection12 extends BaseHeroSection {
                       <ComposerLink path={item.page}>
                         {item.text}
                       </ComposerLink>
-                    </Base.P>
+                    </Base.H2>
                   </div>
                 ))}
               </ComposerSlider>

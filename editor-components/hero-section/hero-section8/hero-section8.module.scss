@@ -122,6 +122,13 @@
       }
       .tag, .title, .description {
         content: "";
+        color: white;
+      }
+      
+      &.no-image {
+        .tag, .title, .description {
+          color: var(--composer-font-color-primary);
+        }
       }
     
       .line {
