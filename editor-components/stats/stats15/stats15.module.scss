@@ -83,10 +83,12 @@
         .stat-value {
           content: "";
           margin: 0;
+          color: var(--composer-font-color-primary);
         }
         .stat-label {
           content: "";
           margin: 0;
+          color: var(--composer-tertiary-color);
         }
       }
 

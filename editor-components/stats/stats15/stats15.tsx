@@ -44,8 +44,8 @@ class Stats15 extends BaseStats {
       ],
     });
 
-    this.addProp({ type: "media", key: "background", displayer: "Background Image", additionalParams: { availableTypes: ["image"] }, value: { type: "image", url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/oinam-fGkBx7hX9Ms-unsplash.jpg" } });
-    this.addProp({ type: "boolean", key: "overlay", displayer: "Image Overlay", value: true });
+    this.addProp({ type: "media", key: "background", displayer: "Background Image", additionalParams: { availableTypes: ["image"] }, value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cad863596a1002b203b24?alt=media" } });
+    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
     this.addProp({ type: "number", key: "numberAnimationDuration", displayer: "Number Animation Duration (ms)", value: 2000 });
   }
 
