@@ -225,13 +225,6 @@ class Navbar5 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "page",
-      key: "logo_navigate",
-      displayer: "Logo Navigation",
-      value: "",
-    });
-
-    this.addProp({
       type: "media",
       key: "hamburger-icon",
       displayer: "Hamburger Icon",
@@ -512,7 +505,7 @@ class Navbar5 extends BaseNavigator {
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
-        positionContainer={`${this.decorateCSS("container")} ${navActive ? this.decorateCSS("filledBackground") : ""}`}
+        positionContainer={`${this.decorateCSS("navbarContainer")} ${navActive ? this.decorateCSS("filledBackground") : ""}`}
         hamburgerNavActive={navActive}
         setIsBigScreen={(value: boolean) => {
           this.setComponentState("isBigScreen", value);

@@ -1219,7 +1219,7 @@ class Navbar6 extends BaseNavigator {
       <>
         <Base.Navigator.Container
           position={position}
-          positionContainer={`${this.decorateCSS("container")} ${
+          positionContainer={`${this.decorateCSS("navbarContainer")} ${
             changeBackground ? this.decorateCSS("filledBackground") : ""
           }`}
           hamburgerNavActive={hamburgerNavActive}

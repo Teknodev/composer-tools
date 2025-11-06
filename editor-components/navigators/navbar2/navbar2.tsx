@@ -804,31 +804,31 @@ class Navbar2 extends BaseNavigator {
             </nav>
           )}
           <div className={this.decorateCSS("mobileRight")}>
-          <div onClick={this.toggleMobileMenu}>
-            <Base.Media
-              value={navigationIcons?.hamburgerIcon}
-              className={this.decorateCSS("menuIcon")}
-            />
-          </div>
-           {language.showLanguage && language.showLocalizationAlways &&(
-                <Base.Language
-                  type="dropdown"
-                  title={language.label}
-                  icon={language.icon && typeof language.icon === "object" && language.icon.type === "icon" ? language.icon.name : "GrLanguage"}
-                  dropdownButtonClassName={`${this.decorateCSS(
-                    "localizationMobile"
-                  )}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
-                  iconClassName={this.decorateCSS("languageIcon")}
-                  dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS(
-                    "localizationContent"
-                  )}
-                  divider={language.showDivider}
-                />
-              )}
+            {language.showLanguage && language.showLocalizationAlways && (
+              <Base.Language
+                type="dropdown"
+                title={language.label}
+                icon={language.icon && typeof language.icon === "object" && language.icon.type === "icon" ? language.icon.name : "GrLanguage"}
+                dropdownButtonClassName={`${this.decorateCSS(
+                  "localizationMobile"
+                )}`}
+                dropdownLabelClassName={`${this.decorateCSS(
+                  "localizationLabel"
+                )}`}
+                iconClassName={this.decorateCSS("languageIcon")}
+                dropdownItemClassName={this.decorateCSS("localizationItem")}
+                dropdownContentClassName={this.decorateCSS(
+                  "localizationContent"
+                )}
+                divider={language.showDivider}
+              />
+            )}
+            <div onClick={this.toggleMobileMenu}>
+              <Base.Media
+                value={navigationIcons?.hamburgerIcon}
+                className={this.decorateCSS("menuIcon")}
+              />
+            </div>
           </div>
 
             <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}

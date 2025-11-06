@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
+.navbarContainer {
   z-index: 101;
   &.filledBackground {
     background: transparent !important;

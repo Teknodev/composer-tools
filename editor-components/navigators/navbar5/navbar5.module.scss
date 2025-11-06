@@ -1,11 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
+.navbarContainer {
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
   position: relative;
-  z-index: 101;
+  z-index: 101 !important;
 }
 
 .maxContent {
@@ -119,7 +119,7 @@
 }
 
  .overlay {
-  content: "";
+    z-index: 1;
   }
 
 .dropdownMenu {

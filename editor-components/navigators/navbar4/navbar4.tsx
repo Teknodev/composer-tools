@@ -1424,9 +1424,9 @@ class Navbar4 extends BaseNavigator {
     return (
       <>
         {topBar && (
-          <Base.Container className={this.decorateCSS("laneContainer")}>
+          <Base.Container className={this.decorateCSS("upperContainer")}>
             {topBar && (
-              <Base.MaxContent className={this.decorateCSS("laneContent")}>
+              <Base.MaxContent className={this.decorateCSS("content")}>
                 {informationContainer && (
                   <div className={this.decorateCSS("informationContainer")}>
                     {information.image && (
@@ -1470,7 +1470,7 @@ class Navbar4 extends BaseNavigator {
                       {defaultLogo.image && (
                         <Base.Media
                           value={defaultLogo.image}
-                          className={this.decorateCSS("logo-img")}
+                          className={this.decorateCSS("image")}
                         />
                       )}
                     </ComposerLink>

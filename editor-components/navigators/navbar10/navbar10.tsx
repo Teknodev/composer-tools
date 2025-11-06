@@ -2333,24 +2333,6 @@ class Navbar10 extends BaseNavigator {
     });
 
     this.addProp({
-        type: "media",
-        key: "linkIcon",
-        displayer: "Link Icon",
-        additionalParams: {
-          availableTypes: ["icon"],
-        },
-        value: {
-          type: "icon",
-          name: "FiArrowUpRight",
-        },
-    })
-    this.addProp({
-      type: "boolean",
-      key: "divider",
-      displayer: "Divider",
-      value: true,
-    })
-    this.addProp({
       type: "boolean",
       key: "mobileDivider",
       displayer: "Mobile Menu Divider",
@@ -2804,7 +2786,7 @@ class Navbar10 extends BaseNavigator {
             <div className={this.decorateCSS("rightSide")}>
               {buttons.length > 0 && !isMobile && (
                 <div className={this.decorateCSS("buttons")}>
-                  {buttons.map((btn, idx) => (
+                  {buttons.map((btn, idx) => this.castToString(btn.text) && (
                     <ComposerLink key={idx} path={btn.url}>
                       <Base.Button
                         className={`${this.decorateCSS("button")} ${
