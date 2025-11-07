@@ -11,16 +11,10 @@ class Form2 extends BaseContacts {
     super(props, styles);
 
     this.addProp({
-      type: "media",
+      type: "image",
       key: "background-img",
       displayer: "Background Image",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67614bdb0655f8002ca7aef6?alt=media"
-      },
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67614bdb0655f8002ca7aef6?alt=media",
     });
     this.addProp({
       type: "boolean",
@@ -28,14 +22,6 @@ class Form2 extends BaseContacts {
       displayer: "Overlay",
       value: true,
     });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Get in touch",
-    });
-
     this.addProp({
       type: "string",
       key: "title",
@@ -80,7 +66,7 @@ class Form2 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
             {
@@ -126,7 +112,7 @@ class Form2 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
             {
@@ -172,7 +158,7 @@ class Form2 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
             {
@@ -218,7 +204,7 @@ class Form2 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
             {
@@ -245,8 +231,6 @@ class Form2 extends BaseContacts {
   render() {
     const inputs = this.getPropValue("inputs");
     const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
-    const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(this.getPropValue("title"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
@@ -254,8 +238,7 @@ class Form2 extends BaseContacts {
     const buttonText = button.text;
     const buttonTextExist = this.castToString(button.text);
 
-    const backgroundImage = this.getPropValue("background-img");
-    const imageExist = backgroundImage?.url;
+    const imageExist = this.getPropValue("background-img");
     const overlay = this.getPropValue("overlay");
 
     function getInputType(type: string): string {
@@ -349,23 +332,18 @@ class Form2 extends BaseContacts {
       return newObj;
     }
 
-    const subtitleType = Base.getSectionSubTitleType()
-
     return (
-      <Base.Container style={{ backgroundImage: `url(${backgroundImage?.url})` }} className={this.decorateCSS("container")}>
+      <Base.Container style={{ backgroundImage: `url(${this.getPropValue("background-img")})` }} className={this.decorateCSS("container")}>
         {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist)) && (
+          {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
-                {(subtitleExist || titleExist) &&<Base.VerticalContent className={this.decorateCSS("header")}>
-                  {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("subtitle-with-image")} ${subtitleType === "badge" && this.decorateCSS("subtitle-badge")}`}>{subtitle}</Base.SectionSubTitle>}
-                  {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
-                </Base.VerticalContent>}
+                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
-                    validationSchema={getSchema}
+                    validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
                       const formData = getFormDataWithConvertedKeys(data);
                       this.insertForm("Contact Us", formData);
@@ -398,15 +376,17 @@ class Form2 extends BaseContacts {
                                   className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} `}
                                 />
                               )}
-                              {this.castToString(input.getPropValue("placeholder")) && <Base.P className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</Base.P>}
+                              {this.castToString(input.getPropValue("placeholder")) && <span className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</span>}
                               <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.getPropValue("label"))} component={"span"} />
                             </div>
                           </>
                         ))}
                         {buttonTextExist && (
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")} type="submit">
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
-                          </Base.Button>
+                          <div className={this.decorateCSS("button-div")}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                              {buttonText}
+                            </Base.Button>
+                          </div>
                         )}
                       </Form>
                     )}

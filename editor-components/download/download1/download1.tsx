@@ -11,13 +11,6 @@ class Download1 extends BaseDownload {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Let's start now!",
-    });
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Download Now!",
@@ -57,19 +50,16 @@ class Download1 extends BaseDownload {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const subtitle = this.getPropValue("subtitle");
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const subtitleExist = this.castToString(subtitle);
     const line = this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist || descriptionExist) && (
+          {(titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${line && this.decorateCSS("line")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
             </Base.VerticalContent>
@@ -79,33 +69,26 @@ class Download1 extends BaseDownload {
             <div className={this.decorateCSS("box")}>
               {buttons.map((item: INPUTS.CastedButton, index: number) => {
                 const buttonTitleExist = this.castToString(item.text);
-                const iconExist = item.icon && item.icon.name;
-                const imageExist = item.image && item.image.url;
-                const buttonExist = buttonTitleExist || iconExist || imageExist;
-                return buttonExist && (
-                  <div className={this.decorateCSS("button-wrapper")}>
-                    <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
-                      {imageExist ? (
-                        <div className={this.decorateCSS("image-container")}>
-                          <Base.Media value={item.image} className={this.decorateCSS("image")} />
-                        </div>
-                      ) : (
+                const iconExist = item.icon;
+                const buttonExist = buttonTitleExist || iconExist;
+                return (
+                  buttonExist && (
+                    <div className={this.decorateCSS("button-wrapper")}>
+                      <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {buttonTitleExist && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {item.text}
-                            </Base.P>
-                          )}
-                          {iconExist && (
-                            <Base.Media
-                              value={item.icon}
-                              className={this.decorateCSS("icon")}
-                            />
-                          )}
+                          <div className={this.decorateCSS("button-text")}>
+                            {item.text}
+                          </div>
+                          <Base.Icon
+                            name={item.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
                         </Base.Button>
-                      )}
-                    </ComposerLink>
-                  </div>
+                      </ComposerLink>
+                    </div>
+                  )
                 );
               })}
             </div>

@@ -15,13 +15,6 @@ type Button = INPUTS.CastedButton;
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Our Services",
-    })
     this.addProp({
       type: "string",
       key: "title",
@@ -29,16 +22,10 @@ class CallToAction4Page extends BaseCallToAction {
       displayer: "Title",
     });
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "icon",
       displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaCheck",
-      },
+      value: "FaCheck",
     });
     this.addProp({
       type: "number",
@@ -158,16 +145,10 @@ class CallToAction4Page extends BaseCallToAction {
       ],
     });
     this.addProp({
-      type: "media",
+      type: "image",
       key: "image",
       displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
-      },
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
     });
     this.addProp({
       type: "array",
@@ -188,22 +169,19 @@ class CallToAction4Page extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
+            {(this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
               <div className={this.decorateCSS("left-page")}>
-                <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {this.castToString(this.getPropValue("subtitle")) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                  {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                </Base.VerticalContent>
+                {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {listItems.length > 0 && (
                   <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
                     {listItems.map((item: ListItem, index: number) => (
                       <div className={this.decorateCSS("list")}>
                         {this.getPropValue("icon") && (
                           <div className={this.decorateCSS("icon-container")}>
-                            <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                            <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                         )}
-                        {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
+                        {this.castToString(item.description) && <div className={this.decorateCSS("description")}>{item.description}</div>}
                       </div>
                     ))}
                   </Base.ListGrid>
@@ -214,7 +192,7 @@ class CallToAction4Page extends BaseCallToAction {
                       <ComposerLink path={button.url}>
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            {button.text}
                           </Base.Button>
                         )}
                       </ComposerLink>
@@ -226,7 +204,7 @@ class CallToAction4Page extends BaseCallToAction {
             {this.getPropValue("image") && (
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("image-container")}>
-                  <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
+                  <img src={this.getPropValue("image")} alt={this.getPropValue("image")} className={this.decorateCSS("image")} />
                 </div>
               </div>
             )}

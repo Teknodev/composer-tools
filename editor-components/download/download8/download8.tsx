@@ -18,16 +18,10 @@ class Download8 extends BaseDownload {
     super(props, styles);
 
     this.addProp({
-      type: "media",
+      type: "image",
       key: "image",
       displayer: "Background Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794",
-      },
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794",
     });
 
     this.addProp({
@@ -75,16 +69,10 @@ class Download8 extends BaseDownload {
               value: "App Store",
             },
             {
-              type: "media",
+              type: "icon",
               key: "itemIcon",
               displayer: "Item Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaApple",
-              },
+              value: "FaApple",
             },
           ],
         },
@@ -100,16 +88,10 @@ class Download8 extends BaseDownload {
               value: "Google Play",
             },
             {
-              type: "media",
+              type: "icon",
               key: "itemIcon",
               displayer: "Item Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaGooglePlay",
-              },
+              value: "FaGooglePlay",
             },
           ],
         },
@@ -122,7 +104,7 @@ class Download8 extends BaseDownload {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Download", "", "FaAndroid", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732790517206", "Primary"),
-        INPUTS.BUTTON("button", "Button", "Download", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
       ],
       additionalParams: {
         maxElementCount: 4,
@@ -160,7 +142,7 @@ class Download8 extends BaseDownload {
           {imageExist && (
             <div className={this.decorateCSS("image-child")}>
               <div className={overlay && this.decorateCSS("overlay")}></div>
-              <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />
+              <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="" />
             </div>
           )}
           <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>
@@ -184,9 +166,11 @@ class Download8 extends BaseDownload {
                         hasItemExist && (
                           <Base.Row className={this.decorateCSS("list-element")}>
                             {item.itemIcon && (
-                              <Base.Media
-                                value={item.itemIcon}
-                                className={this.decorateCSS("icon")}
+                              <Base.Icon
+                                name={item.itemIcon}
+                                propsIcon={{
+                                  className: this.decorateCSS("icon"),
+                                }}
                               />
                             )}
                             {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
@@ -202,20 +186,19 @@ class Download8 extends BaseDownload {
                   <div className={this.decorateCSS("buttons-container")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
-                      const iconExist = item.icon && item.icon.name;
-                      const imageExist = item.image && item.image.url;
-                      const buttonExist = buttonTextExist || iconExist || imageExist;
-                      return buttonExist && (
+                      return (
                         <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
-                          {imageExist ? (
+                          {item.image ? (
                             <div className={this.decorateCSS("image-container")}>
-                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                              <img src={item.image} className={this.decorateCSS("image")} alt="button" />
                             </div>
                           ) : (
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
-                            </Base.Button>
+                            (item.icon || buttonTextExist) && (
+                              <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                                {buttonTextExist && item.text && <div className={this.decorateCSS("text")}>{item.text}</div>}
+                              </Base.Button>
+                            )
                           )}
                         </ComposerLink>
                       );

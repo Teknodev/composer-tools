@@ -18,16 +18,16 @@ class Faq4 extends BaseFAQ {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "subtitle",
+      key: "badge",
       displayer: "Subtitle",
       value: "FAQ",
     });
 
     this.addProp({
       type: "string",
-      key: "title",
+      key: "subtitle",
       displayer: "Title",
-      value: "Frequently Asked Questions",
+      value: "FAQ",
     });
 
     this.addProp({
@@ -39,16 +39,11 @@ class Faq4 extends BaseFAQ {
     });
 
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "icon",
       displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaAngleDown",
-      },
+      value:
+        "FaAngleDown",
     });
     this.addProp({
       type: "array",
@@ -220,16 +215,16 @@ class Faq4 extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("text"))) && (
+            {(this.castToString(this.getPropValue("badge")) || this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("text"))) && (
               <Base.VerticalContent className={this.decorateCSS("up-page")}>
-                {this.castToString(this.getPropValue("subtitle")) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
+                {this.castToString(this.getPropValue("badge")) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("badge")}>
+                    {this.getPropValue("badge")}
                   </Base.SectionSubTitle>
                 )}
-                {this.castToString(this.getPropValue("title")) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.SectionTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
                   </Base.SectionTitle>
                 )}
                 {this.castToString(this.getPropValue("text")) && (
@@ -243,9 +238,9 @@ class Faq4 extends BaseFAQ {
               <div className={this.decorateCSS("middle-page")}>
                 {card.map((card: Card, index: number) => (
                   <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
-                    <Base.H4 className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
+                    <div className={`${this.decorateCSS("title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
                       {card.sectionTitle}
-                    </Base.H4>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -259,22 +254,24 @@ class Faq4 extends BaseFAQ {
                         <div className={this.decorateCSS("child-container")}>
                           {this.castToString(item.title) && (
                             <div className={this.decorateCSS("card-left")}>
-                              <Base.H4 className={this.decorateCSS("card-title")}>
+                              <div className={this.decorateCSS("card-title")}>
                                 {item.title}
-                              </Base.H4>
+                              </div>
                             </div>
                           )}
                           {this.getPropValue("icon") && (
                             <div className={this.decorateCSS("card-right")}>
                               <div className={this.decorateCSS("icon-wrapper")}>
-                                <Base.Media
-                                  value={this.getPropValue("icon")}
-                                  className={`${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
-                                    ? this.getComponentState("onclick")
-                                      ? this.decorateCSS("active")
+                                <Base.Icon
+                                  propsIcon={{
+                                    className: `${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
+                                      ? this.getComponentState("onclick")
+                                        ? this.decorateCSS("active")
+                                        : ""
                                       : ""
-                                    : ""
-                                    }`}
+                                      }`,
+                                  }}
+                                  name={this.getPropValue("icon")}
                                 />
                               </div>
                             </div>
@@ -282,10 +279,10 @@ class Faq4 extends BaseFAQ {
                         </div>
                       )}
                       {this.castToString(item.description) && (
-                        <div className={`${this.decorateCSS("hide-card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
-                          <Base.P className={this.decorateCSS("text")}>
+                        <div className={`${this.decorateCSS("hide")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
+                          <div className={this.decorateCSS("text")}>
                             {item.description}
-                          </Base.P>
+                          </div>
                         </div>
                       )}
                     </div>

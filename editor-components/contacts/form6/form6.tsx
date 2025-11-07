@@ -11,32 +11,11 @@ class Form6 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "media",
+      type: "image",
       key: "image",
       displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797"
-      },
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797",
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    })
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Contact Us",
-    });
-    
     this.addProp({
       type: "string",
       key: "title",
@@ -67,21 +46,15 @@ class Form6 extends BaseContacts {
               value: "First Name",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaUser"
-              },
+              value: "FaUser",
             },
             {
               type: "select",
               key: "type",
-              displayer: "Type",
+              displayer: "Input Type",
               value: "Text",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -114,7 +87,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
           ],
@@ -131,21 +104,15 @@ class Form6 extends BaseContacts {
               value: "Last Name",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaUser"
-              },
+              value: "FaUser",
             },
             {
               type: "select",
               key: "type",
-              displayer: "Type",
+              displayer: "Input Type",
               value: "Text",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -178,7 +145,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
           ],
@@ -195,21 +162,15 @@ class Form6 extends BaseContacts {
               value: "Email Address",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaEnvelope"
-              },
+              value: "FaEnvelope",
             },
             {
               type: "select",
               key: "type",
-              displayer: "Type",
+              displayer: "Input Type",
               value: "Email",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -242,7 +203,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
           ],
@@ -259,21 +220,15 @@ class Form6 extends BaseContacts {
               value: "Phone Number",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaPhoneAlt"
-              },
+              value: "FaPhoneAlt",
             },
             {
               type: "select",
               key: "type",
-              displayer: "Type",
+              displayer: "Input Type",
               value: "Phone",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -306,7 +261,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
           ],
@@ -323,21 +278,15 @@ class Form6 extends BaseContacts {
               value: "Message",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaMail"
-              },
+              value: "FaMail",
             },
             {
               type: "select",
               key: "type",
-              displayer: "Type",
+              displayer: "Input Type",
               value: "Text Area",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
@@ -370,7 +319,7 @@ class Form6 extends BaseContacts {
             {
               type: "string",
               key: "required_error_message",
-              displayer: "Required Error Message",
+              displayer: "Required error message",
               value: "*Required",
             },
           ],
@@ -400,16 +349,12 @@ class Form6 extends BaseContacts {
   }
 
   render() {
-    const inputItems = this.getPropValue("inputs");
-    const image = this.getPropValue("image");
-    const imageExist = !!image?.url;
-    const overlay = this.getPropValue("overlay");
+    const inputs = this.getPropValue("inputs");
+    const imageExist = !!this.getPropValue("image");
 
-    const subtitle = this.getPropValue("subtitle")
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
-    const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
@@ -418,7 +363,7 @@ class Form6 extends BaseContacts {
     const buttonText = button.text;
     const buttonTextExist = this.castToString(buttonText);
 
-    const rightItemsExist = titleExist || descriptionExist || subtitleExist || buttonTextExist || inputItems.length > 0;
+    const rightItemsExist = titleExist || descriptionExist || buttonTextExist || inputs.length > 0;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -426,7 +371,7 @@ class Form6 extends BaseContacts {
           return "textarea";
         case "E-mail":
           return "email";
-        case "Phone":
+        case "Tel":
           return "tel";
         case "Number":
           return "number";
@@ -442,7 +387,7 @@ class Form6 extends BaseContacts {
 
     function getInitialValue() {
       let value: any = {};
-      inputItems.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
         value[getInputName(indexOfInput)] = "";
       });
 
@@ -452,10 +397,12 @@ class Form6 extends BaseContacts {
     const getSchema = () => {
       let schema = Yup.object().shape({});
 
-      inputItems.forEach((input: TypeUsableComponentProps, indexOfInput: number) => {
+      const inputs = this.getPropValue("inputs");
+
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
         if (!input["getPropValue"]) return;
         const isRequired = input.getPropValue("is_required");
-        const isEmail = getInputType(input.getPropValue("type")) === "email";
+        const isEmail = getInputType(input.getPropValue("type")) == "email";
 
         let fieldSchema: Yup.StringSchema<string | null | undefined> = Yup.string();
 
@@ -486,8 +433,7 @@ class Form6 extends BaseContacts {
                 className={`${this.decorateCSS("image-container")} 
               ${!rightItemsExist && this.decorateCSS("image-full-width")}`}
               >
-                <Base.Media value={image} className={this.decorateCSS("image")} />
-                {overlay && <div className={this.decorateCSS("overlay")} />}
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="contact" />
               </div>
             )}
             {rightItemsExist && (
@@ -497,17 +443,16 @@ class Form6 extends BaseContacts {
                 ${!imageExist && this.decorateCSS("without-image")}
               `}
               >
-                {(titleExist || subtitleExist || descriptionExist) && (
+                {(titleExist || descriptionExist) && (
                   <Base.VerticalContent className={this.decorateCSS("header")}>
-                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   </Base.VerticalContent>
                 )}
-                {(inputItems.length > 0 || buttonTextExist) && (
+                {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={getInitialValue()}
-                    validationSchema={getSchema}
+                    validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
                       this.insertForm("Contact Me", formData);
@@ -516,7 +461,7 @@ class Form6 extends BaseContacts {
                   >
                     {({ handleChange, values }) => (
                       <Form className={this.decorateCSS("form")}>
-                        {inputItems.map((input: any, index: number) => {
+                        {this.castToObject<any>("inputs").map((input: any, index: number) => {
                           return (
                             <div
                               key={index}
@@ -539,7 +484,7 @@ class Form6 extends BaseContacts {
                                   />
                                 ) : (
                                   <>
-                                    <Base.Media value={input.getPropValue("icon")} className={this.decorateCSS("input-icon")} />
+                                    <Base.Icon name={input.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("input-icon") }} />
 
                                     <input
                                       id={getInputName(index)}
@@ -558,9 +503,9 @@ class Form6 extends BaseContacts {
                           );
                         })}
                         {buttonTextExist && (
-                          <div className={this.decorateCSS("button-container")}>
+                          <div className={this.decorateCSS("button-div")}>
                             <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                              <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                              {buttonText}
                             </Base.Button>
                           </div>
                         )}

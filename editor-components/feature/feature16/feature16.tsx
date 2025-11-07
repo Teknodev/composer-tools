@@ -279,7 +279,7 @@ class Feature16 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 16";
+        return "Future16";
     }
 
     renderCard(cardData, prefix, isAlone = false) {

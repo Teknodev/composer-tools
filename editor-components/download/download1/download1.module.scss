@@ -1,6 +1,7 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
     display: flex;
     flex-direction: column;
@@ -8,13 +9,6 @@
 
     .header {
       align-items: center;
-      .subtitle {
-        text-align: center;
-        transform: translateX(0);
-        &::before{
-          display: none;
-        }
-      }
       .title {
         &.line{
           position: relative;
@@ -32,6 +26,7 @@
         }
       }
       .description {
+        color: var(--composer-font-color-primary);
         text-align: center;
       }
     }
@@ -44,19 +39,10 @@
       gap: var(--composer-gap-md);
 
       .button-wrapper {
-        .image-container {
-          .image {
-            content: "";
-            width: 200px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-sm);
-          }
-        }
         .button {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
           .button-text{
-            content: "";
+            font-size: 1.5rem;
           }
           .icon{
             font-size:1.5rem;
@@ -76,7 +62,7 @@
           .button {
             padding: var(--composer-gap-sm) var(--composer-gap-md);
             .button-text {              
-              content: "";
+              font-size: 1rem;
             }
             .icon {
               font-size: 1rem;

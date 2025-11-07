@@ -10,16 +10,10 @@ class CallToAction1Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "icon",
       displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoLogoFirefox",
-      },
+      value: "IoLogoFirefox",
     });
     this.addProp({
       type: "string",
@@ -48,7 +42,7 @@ class CallToAction1Page extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")}></Base.Media>
+            <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
             )}
@@ -59,7 +53,7 @@ class CallToAction1Page extends BaseCallToAction {
               <div className={this.decorateCSS("button-container")}>
                 <ComposerLink path={button.url}>
                   <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    {button.text}
                   </Base.Button>
                 </ComposerLink>
               </div>

@@ -6,7 +6,7 @@
       width: 100%;
       background-size: cover;
       background-position: center;
-      border-radius: var(--composer-border-radius-md);
+      border-radius: var(--composer-border-radius-xl);
       position: relative;
 
       .overlay {
@@ -16,7 +16,7 @@
         width: 100%;
         height: 100%;
         background-color: var(--composer-overlay-color);
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-xl);
         z-index: 1;
       }
 
@@ -27,27 +27,24 @@
         z-index: 2;
         &.image{
           min-height: 600px;
-          padding: var(--composer-gap-md) var(--composer-gap-md);
+          padding: var(--composer-gap-md) var(--composer-gap-xl);
           align-items: center;
           text-align: center;
         }
-        .subtitle {
+        .title {
+          font-size: 1.5rem;
           content: "";
-          transform: translateX(0);
-          &::before{
-            display: none;
-          }
-          &.with-image{
-            color: white;
-          }
-        }
-        .title, .description {
-          content: "";
-          &.with-image{
+          &.image{
             color: white;
           }
         }
 
+        .description {
+          font-size: 2rem;
+          &.image{
+            color: white;
+          }
+        }
 
         .buttons-container {
           display: flex;
@@ -62,7 +59,7 @@
               object-fit: cover;
             }
             .button-element {
-              .button-icon, .button-text {
+              .icon, .button-text {
                 content: "";
               }
             }
@@ -80,6 +77,12 @@
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
+          .title {
+            font-size: 1rem;
+          }
+          .description {
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -101,7 +104,7 @@
             flex-direction: column;
             .button-wrapper{
               .button-image{
-                width: 150px;
+                width: 120px;
                 height: 40px;
               }
             }
