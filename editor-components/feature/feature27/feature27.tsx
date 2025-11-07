@@ -94,7 +94,7 @@ class Feature27Component extends BaseFeature {
                   const validButtons = buttons.filter((item) => {
                     const text = this.castToString(item.text || "");
                     const iconName = (item as any)?.icon?.name || (item as any)?.icon;
-                    return !!(typeof text === "string" ? text.trim() : text) || !!iconName;
+                    return !!text || !!iconName;
                   });
                   if (validButtons.length === 0) return null;
                   return (
