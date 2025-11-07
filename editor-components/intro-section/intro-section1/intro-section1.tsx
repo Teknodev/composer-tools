@@ -64,8 +64,8 @@ class IntroSection1 extends BaseIntroSection {
         {
           type: "media",
           key: "video",
-          displayer: "Video / Lottie",
-          additionalParams: { availableTypes: ["video", "lottie"] },
+          displayer: "Media",
+          additionalParams: { availableTypes: ["video"] },
           value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690a09593596a1002b1d8421?alt=media" }
         },
         {
@@ -98,7 +98,7 @@ class IntroSection1 extends BaseIntroSection {
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Image Overlay",
+      displayer: "Overlay",
       value: false,
     });
 
@@ -123,11 +123,11 @@ class IntroSection1 extends BaseIntroSection {
   const thumbnail = videoSection.thumbnail;
   const videoIcon = videoSection.videoIcon;
   const overlay = this.getPropValue("overlay");
-    const buttons = this.castToObject<Array<any>>("buttons") || [];
-    const isPlaying = this.getComponentState("isPlaying");
-    const alignment = Base.getContentAlignment();
+  const buttons = this.castToObject<Array<any>>("buttons") || [];
+  const isPlaying = this.getComponentState("isPlaying");
+  const alignment = Base.getContentAlignment();
 
-  const isVideo = !!(video && (video.type === "video" || video.type === "lottie") && video.url);
+  const isVideo = !!(video && (video.type === "video") && video.url);
   const hasRightContainer = !!(isVideo || thumbnail);
   const hasAnyDescription = Array.isArray(descriptions) && descriptions.some((d: any) => this.castToString(d?.title) || this.castToString(d?.text) || d?.icon);
   const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
@@ -181,7 +181,11 @@ class IntroSection1 extends BaseIntroSection {
                       <div key={idx} className={this.decorateCSS("button-wrapper")}> 
                         <ComposerLink path={url}>
                           <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
-                            {iconName && (<Base.Media value={{ type: "icon", name: iconName }} className={this.decorateCSS("button-icon")} />)}
+                            {iconName && (
+                              <div className={this.decorateCSS("button-icon-wrapper")}>
+                                <Base.Media value={{ type: "icon", name: iconName }} className={this.decorateCSS("button-icon")} />
+                              </div>
+                            )}
                             {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                           </Base.Button>
                         </ComposerLink>
