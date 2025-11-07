@@ -7,10 +7,6 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
-    .title {
-      color: var(--composer-font-color-primary);
-    }
-
     .main-content {
       display: flex;
       gap: var(--composer-gap-lg);
@@ -44,6 +40,7 @@
           gap: var(--composer-gap-md);
 
           .text {
+            text-align: left;
             word-wrap: break-word;
             overflow-wrap: break-word;
             white-space: normal;
@@ -55,7 +52,9 @@
           justify-content: flex-start;
 
           .button {
-            content: "";
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -113,6 +112,40 @@
           gap: var(--composer-gap-md);
         }
       }
+    }
+  }
+}
+
+.overlay {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--composer-overlay-color);
+  }
+
+  .image {
+    position: relative;
+    z-index: 0;
+  }
+}
+
+.no-content {
+  justify-content: center;
+
+  .images-section {
+    width: 100% !important;
+    justify-content: center;
+
+    .image-box {
+      width: 100% !important;
+      max-width: 800px;
     }
   }
 }

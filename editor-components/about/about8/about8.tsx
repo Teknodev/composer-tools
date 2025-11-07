@@ -80,6 +80,13 @@ class About8 extends BaseAbout {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
     this.addProp(
       INPUTS.BUTTON(
         "button",
@@ -125,11 +132,21 @@ class About8 extends BaseAbout {
             </Base.SectionTitle>
           )}
 
-          <div className={this.decorateCSS("main-content")}>
+          <div
+            className={`${this.decorateCSS("main-content")} ${
+              !hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
+            }`}
+          >
             {hasImages && (
               <div className={this.decorateCSS("images-section")}>
                 {hasImage1 && (
-                  <div className={this.decorateCSS("image-box")}>
+                  <div
+                    className={`${this.decorateCSS("image-box")} ${
+                      this.getPropValue("overlay")
+                        ? this.decorateCSS("overlay")
+                        : ""
+                    }`}
+                  >
                     <Base.Media
                       value={image1}
                       className={this.decorateCSS("image")}
@@ -137,7 +154,13 @@ class About8 extends BaseAbout {
                   </div>
                 )}
                 {hasImage2 && (
-                  <div className={this.decorateCSS("image-box")}>
+                  <div
+                    className={`${this.decorateCSS("image-box")} ${
+                      this.getPropValue("overlay")
+                        ? this.decorateCSS("overlay")
+                        : ""
+                    }`}
+                  >
                     <Base.Media
                       value={image2}
                       className={this.decorateCSS("image")}
@@ -168,7 +191,9 @@ class About8 extends BaseAbout {
                       buttonType={button.type}
                       className={this.decorateCSS("button")}
                     >
-                      {button.text}
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {button.text}
+                      </Base.P>
                     </Base.Button>
                   </div>
                 )}
