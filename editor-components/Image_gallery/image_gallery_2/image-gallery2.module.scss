@@ -20,6 +20,7 @@
             margin: 0;
             &:hover,
             &.active-tab {
+              font-weight: bold;
               text-decoration: underline;
               text-underline-offset: var(--composer-gap-xs);
               opacity: 1;

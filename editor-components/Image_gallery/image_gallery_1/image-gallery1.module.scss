@@ -15,10 +15,10 @@
         width: fit-content;
         margin: 0;
         cursor: pointer;
-        opacity: 0.7;
         transition: opacity 0.3s ease, border-bottom 0.1s ease;
         color:var(--composer-font-color-primary);
         &.active-tab{
+          font-weight: bold;
           border-bottom: 2px solid var(--composer-font-color-primary);
           opacity: 1;
         }

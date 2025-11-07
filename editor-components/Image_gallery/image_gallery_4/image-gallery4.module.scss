@@ -33,6 +33,7 @@
             }
 
             .button.active {
+              font-weight: bold;
               border-bottom: 2px solid var(--composer-font-color-primary);
             }
           }
