@@ -136,7 +136,7 @@ class Stats15 extends BaseStats {
                       const buttonText = this.castToString(item.text || "");
                       const buttonUrl = item.url || "#";
                       const iconName = (item as any)?.icon?.name || (item as any)?.icon;
-                      if (!buttonText) return null;
+                      if (!buttonText && !iconName) return null;
                       return (
                         <ComposerLink key={`stats15-btn-${index}`} path={buttonUrl}>
                           <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
