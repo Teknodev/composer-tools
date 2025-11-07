@@ -4,7 +4,7 @@
 .container {
   position: relative;
   z-index: 1;
-  background: no-repeat center center;
+  background: (--composer-html-background) no-repeat center center;
   background-size: cover;
 
   &.overlay {
@@ -98,7 +98,7 @@
 
   .subtitle {
     &::before {
-      background-color: white !important;
+      background: var(--composer-font-color-primary) !important;
     }
   }
 }
