@@ -4,11 +4,12 @@
 .container {
   position: relative;
   z-index: 1;
-  background: var(--composer-html-background) no-repeat center center;
+  background: no-repeat center center;
   background-size: cover;
 
   &.overlay {
     &::before {
+      content: "";
       position: absolute;
       left: 0;
       top: 0;
@@ -34,10 +35,6 @@
         content: "";
       }
 
-      .title {
-        margin-bottom: var(--composer-gap-lg);
-      }
-
       .description-wrapper {
         display: flex;
         justify-content: var(--composer-content-alignment, flex-start);
@@ -45,9 +42,7 @@
 
         &.centered {
           flex-direction: column-reverse;
-          @container (min-width: #{$composer-tablet-width + 1}) {
-            gap: 0;
-          }
+          gap: 0;
         }
 
         .button-wrapper {
@@ -70,16 +65,10 @@
   .container {
     .max-content {
       .vertical-content {
-        gap: var(--composer-gap-sm);
         .description-wrapper {
           display: flex;
           flex-direction: column-reverse;
-          gap: var(--composer-gap-sm);
-          .button-wrapper {
-            .button {
-              margin-bottom: var(--composer-gap-md);
-            }
-          }
+          gap: 0 !important;
         }
       }
     }
@@ -90,13 +79,10 @@
   .container {
     .max-content {
       .vertical-content {
-        .title {
-          margin-bottom: var(--composer-gap-sm);
-        }
         .description-wrapper {
           display: flex;
           flex-direction: column-reverse;
-          gap: var(--composer-gap-sm);
+          gap: 0 !important;
         }
       }
     }

@@ -32,11 +32,16 @@ class IntroSection2 extends BaseIntroSection {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "cover-image",
-      displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
+      displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
+      },
     });
 
     this.addProp({
@@ -46,7 +51,17 @@ class IntroSection2 extends BaseIntroSection {
       value: true,
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "START FREE TRIAL"));
+    this.addProp(
+      INPUTS.BUTTON(
+        "button",
+        "Button",
+        "START FREE TRIAL",
+        "",
+        null,
+        null,
+        "Primary"
+      )
+    );
   }
 
   static getName(): string {
@@ -61,9 +76,7 @@ class IntroSection2 extends BaseIntroSection {
     const coverImage = this.getPropValue("cover-image");
     const button = this.castToObject<any>("button");
     const hasButton = !!(button && this.castToString(button.text));
-
     const alignemnt = Base.getContentAlignment();
-    console.log("alignemnt", alignemnt);
 
     return (
       <Base.Container
@@ -75,7 +88,7 @@ class IntroSection2 extends BaseIntroSection {
             : ""
         }`}
         style={{
-          backgroundImage: coverImage ? `url(${coverImage})` : undefined,
+          backgroundImage: coverImage ? `url(${coverImage.url})` : undefined,
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
