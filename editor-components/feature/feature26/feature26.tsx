@@ -11,8 +11,8 @@ interface Card {
     name?: string;
     url?: string;
   };
-  title: string;
-  description: string;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 class Feature26 extends BaseFeature {
@@ -189,12 +189,18 @@ class Feature26 extends BaseFeature {
     const headingExist = this.castToString(heading);
     const subheadingExist = this.castToString(subheading);
 
-    const gridClass = `${this.decorateCSS("features-grid")} ${this.decorateCSS(
-      `features-grid-${itemsPerRow}`
-    )}`;
-    const validFeatures = features.filter(
-      (f) => f.title || f.description || f.media
-    );
+    const filteredFeatures = features.filter((feature: Card) => {
+      const hasTitle = this.castToString(feature.title);
+      const hasDescription = this.castToString(feature.description);
+      const hasMedia = feature.media?.name || feature.media?.url;
+      return hasTitle || hasDescription || hasMedia;
+    });
+
+    const gridClass = `${this.decorateCSS("features-grid")} ${
+      filteredFeatures.length > 0
+        ? this.decorateCSS(`features-grid-${itemsPerRow}`)
+        : ""
+    }`;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -216,13 +222,12 @@ class Feature26 extends BaseFeature {
             </Base.VerticalContent>
           )}
 
-          {validFeatures.length > 0 && (
+          {filteredFeatures.length > 0 && (
             <div className={gridClass}>
-              {validFeatures.map((feature: Card, index: number) => {
+              {filteredFeatures.map((feature: Card, index: number) => {
                 const titleExist = this.castToString(feature.title);
                 const descriptionExist = this.castToString(feature.description);
                 const media = feature.media;
-                console.log("media", media);
                 return (
                   <Base.VerticalContent
                     key={index}
@@ -259,37 +264,29 @@ class Feature26 extends BaseFeature {
             </div>
           )}
 
-          {buttons.length > 0 && (
-            <div className={this.decorateCSS("buttons-group")}>
-              {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                const buttonTitleExist = this.castToString(item.text);
-                const iconExist = item.icon;
-                const buttonExist = buttonTitleExist || iconExist;
-
-                return (
-                  buttonExist && ( // conditional rendering hatalı
-                    <div
-                      key={`ft-17-btn-${index}`}
-                      className={this.decorateCSS("button-wrapper")}
+          {buttons.map((item: INPUTS.CastedButton, index: number) => {
+            const buttonTitleExist = this.castToString(item.text);
+            const iconExist = item.icon;
+            const buttonExist = buttonTitleExist || iconExist;
+            return (
+              buttonExist && (
+                <div key={index} className={this.decorateCSS("button-wrapper")}>
+                  <ComposerLink path={item.url}>
+                    <Base.Button
+                      buttonType={item.type}
+                      className={this.decorateCSS("button")}
                     >
-                      <ComposerLink path={item.url}>
-                        <Base.Button
-                          buttonType={item.type}
-                          className={this.decorateCSS("button")}
-                        >
-                          {buttonTitleExist && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {item.text}
-                            </Base.P>
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                    </div>
-                  )
-                );
-              })}
-            </div>
-          )}
+                      {buttonTitleExist && (
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {item.text}
+                        </Base.P>
+                      )}
+                    </Base.Button>
+                  </ComposerLink>
+                </div>
+              )
+            );
+          })}
         </Base.MaxContent>
       </Base.Container>
     );
