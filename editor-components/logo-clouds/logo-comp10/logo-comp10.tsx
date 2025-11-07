@@ -124,9 +124,9 @@ class LogoComp10Page extends LogoClouds {
   isPhone = (): boolean => {
     const containerWidth = this.containerRef?.clientWidth;
     const playgroundWidth = typeof document !== 'undefined' ? document.getElementById('playground')?.clientWidth : undefined;
-    const width = (typeof containerWidth === 'number' && containerWidth > 0)
+    const width = (containerWidth && containerWidth > 0)
       ? containerWidth
-      : ((typeof playgroundWidth === 'number' && playgroundWidth > 0) ? playgroundWidth : 0);
+      : ((playgroundWidth && playgroundWidth > 0) ? playgroundWidth : 0);
     return width > 0 && width <= 640;
   };
 
