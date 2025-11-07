@@ -92,21 +92,17 @@ class Feature27Component extends BaseFeature {
 
                 {Array.isArray(buttons) && (() => {
                   const validButtons = buttons.filter((item) => {
-                    const rawText = this.castToString(item.text || "");
-                    const text = typeof rawText === "string" ? rawText.trim() : rawText;
-                    const rawIcon = (item as any)?.icon?.name || (item as any)?.icon;
-                    const iconName = typeof rawIcon === "string" ? rawIcon.trim() : rawIcon;
-                    return !!text || !!iconName;
+                    const text = this.castToString(item.text || "");
+                    const iconName = (item as any)?.icon?.name || (item as any)?.icon;
+                    return !!(typeof text === "string" ? text.trim() : text) || !!iconName;
                   });
                   if (validButtons.length === 0) return null;
                   return (
                     <Base.Row className={this.decorateCSS("button-container")}>
                       {validButtons.map((item, index) => {
-                        const rawText = this.castToString(item.text || "");
-                        const buttonText = typeof rawText === "string" ? rawText.trim() : rawText;
+                        const buttonText = this.castToString(item.text || "");
                         const buttonUrl = item.url || "#";
-                        const rawIcon = (item as any)?.icon?.name || (item as any)?.icon;
-                        const iconName = typeof rawIcon === "string" ? rawIcon.trim() : rawIcon;
+                        const iconName = (item as any)?.icon?.name || (item as any)?.icon;
                         return (
                           <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
