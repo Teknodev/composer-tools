@@ -178,6 +178,7 @@ import StatsComponent10 from "./stats/stats10/stats10";
 import StatsComponent11 from "./stats/stats11/stats11";
 import StatsComponent12 from "./stats/stats12/stats12";
 import StatsComponent14 from "./stats/stats14/stats14";
+import StatsComponent15 from "./stats/stats15/stats15";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
