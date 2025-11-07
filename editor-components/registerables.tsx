@@ -490,6 +490,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent11,
     StatsComponent12,
     StatsComponent14,
+    StatsComponent15,
     Form1,
     Form2,
     Form3,
