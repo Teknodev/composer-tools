@@ -146,7 +146,6 @@ import FeatureComponent13 from "./feature/feature13/feature13";
 import FeatureComponent14 from "./feature/feature14/feature14";
 import FeatureComponent15 from "./feature/feature15/feature15";
 import FeatureComponent16 from "./feature/feature16/feature16";
-import FeatureComponent18 from "./feature/feature18/feature18";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -448,7 +447,6 @@ export const registerableComponents = {
     FeatureComponent14,
     FeatureComponent15,
     FeatureComponent16,
-    FeatureComponent18,
     CallToAction1,
     CallToAction2,
     CallToAction3,
@@ -728,7 +726,6 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent14,
     FeatureComponent15,
     FeatureComponent16,
-    FeatureComponent18,
     CallToAction1,
     CallToAction2,
     CallToAction3,
