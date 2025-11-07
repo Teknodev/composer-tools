@@ -36,7 +36,7 @@ class IntroSection2 extends BaseIntroSection {
       key: "cover-image",
       displayer: "Background Image",
       value:
-        "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/windows-JW-T2BH5k5E-unsplash.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
     });
 
     this.addProp({
