@@ -1,0 +1,76 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+    align-items: center;
+    justify-content: center;
+      .top-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
+        align-items: center;
+        justify-content: center;
+        .subtitle,
+        .title,
+        .subtitle-badge {
+          text-align: center;
+        }
+        .subtitle {
+          text-align: center;
+          transform: translateX(0);
+          &::before {
+            display: none;
+          }
+        }
+      }
+
+      .text-container {
+        color: var(--composer-font-color-primary);
+        text-align: justify;
+        display: flex;
+        gap: var(--composer-gap-md);
+        .left-text,
+        .right-text {
+          flex: 1;
+        }
+      }
+      
+      .bottom-container {
+        color: var(--composer-font-color-primary);
+        text-align: center;
+        .signature {
+          .signature-image {
+            width: 150px;
+            height: 100px;
+            object-fit: contain;
+          }
+        }
+        .name {
+          text-align: center;
+        }
+      }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .max-content {
+    align-items: center !important;
+    .subtitle,
+    .subtitle-badge {
+      text-align: center !important;
+      transform: translateX(0) !important;
+      &::before {
+        content: none !important;
+      }
+    }
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+    }
+  }
+}

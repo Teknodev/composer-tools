@@ -1,0 +1,78 @@
+.container {
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  padding-top: var(--composer-gap-md);
+  padding-bottom: var(--composer-gap-md);
+
+  .max-content {
+    content: "";
+    
+    .section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+    }
+
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+    }
+
+    .breadcrumb-link {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+      text-decoration: none;
+      cursor: pointer;
+      
+      &:hover {
+        .home-page-title {
+          color: var(--composer-primary-color);
+        }
+        .icon {
+          color: var(--composer-primary-color);
+        }
+      }
+    }
+    .home-page-title {
+      color: var(--composer-font-color-primary);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--composer-primary-color);
+      }
+    }
+
+    .current-page-wrapper {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+    }
+
+    .current-page-container {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xs);
+      content: "";
+    }
+
+    .current-page-title {
+      color: var(--composer-font-color-primary);
+      content: "";
+    }
+
+    .current-page-icon, .icon {
+      content: "";
+      color: var(--composer-font-color-primary);
+      font-size: 1rem;
+      width: 14px;
+      height: 14px;
+    }
+
+  }
+}
