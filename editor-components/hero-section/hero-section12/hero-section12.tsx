@@ -518,6 +518,37 @@ class HeroSection12 extends BaseHeroSection {
     return (
       <div className={this.decorateCSS("container")} ref={this.containerRef}>
         <div className={this.decorateCSS("max-content")}>
+          {this.isPhone && (
+            <div className={this.decorateCSS("mobile-slider-buttons")}>
+              <div
+                className={this.decorateCSS("left-slider-button")}
+                onClick={() => {
+                  if (leftSliderItems.length > 0) {
+                    this.leftSliderRef.slickNext();
+                  }
+                  if (rightSliderItems.length > 0) {
+                    this.rightSliderRef.slickNext();
+                  }
+                }}
+              >
+                <Base.Media value={this.getPropValue("leftSliderIcon")} {...decorateIcon} />
+              </div>
+              <div
+                className={this.decorateCSS("right-slider-button")}
+                onClick={() => {
+                  if (leftSliderItems.length > 0) {
+                    this.leftSliderRef.slickNext();
+                  }
+                  if (rightSliderItems.length > 0) {
+                    this.rightSliderRef.slickPrev();
+                  }
+                }}
+              >
+                <Base.Media value={this.getPropValue("rightSliderIcon")} {...decorateIcon} />
+              </div>
+            </div>
+          )}
+          
           <div className={this.decorateCSS("slider-container")}>
 
             {leftSliderItems.length > 0 && (
