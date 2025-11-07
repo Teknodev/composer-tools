@@ -1,0 +1,143 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: clamp(var(--composer-gap-lg), 6vw, var(--composer-gap-xl));
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-sm);
+    text-align: center;
+  }
+  .heading {
+    content: "";
+  }
+  .subheading {
+    content: "";
+  }
+
+  .features-grid {
+    display: grid;
+    width: 100%;
+    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+
+    &-1 {
+      grid-template-columns: 1fr !important;
+    }
+    &-2 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    &-3 {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+    &-4 {
+      grid-template-columns: repeat(4, 1fr) !important;
+    }
+    &-5 {
+      grid-template-columns: repeat(5, 1fr) !important;
+    }
+    &-6 {
+      grid-template-columns: repeat(6, 1fr) !important;
+    }
+    &-7 {
+      grid-template-columns: repeat(7, 1fr) !important;
+    }
+    &-8 {
+      grid-template-columns: repeat(8, 1fr) !important;
+    }
+
+    @container (max-width: #{$composer-tablet-width}) {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+      grid-template-columns: 1fr !important;
+      gap: 20px;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      padding: 16px;
+      background: var(--composer-background-secondary);
+      border-radius: var(--composer-border-radius-md);
+      border: 1px solid var(--composer-border-color);
+
+      .media-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 16px;
+        height: 64px;
+
+        .media {
+          width: 64px;
+          height: 64px;
+          object-fit: contain;
+        }
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
+
+        .title,
+        .description {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+
+  .icon,
+  .media-icon {
+    font-size: 24px;
+    color: var(--composer-primary-color);
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .buttons-group {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--composer-gap-md);
+
+    .button-wrapper {
+      .button {
+        border-radius: var(--composer-border-radius-sm);
+
+        .button-text {
+          content: "";
+        }
+      }
+    }
+  }
+}
