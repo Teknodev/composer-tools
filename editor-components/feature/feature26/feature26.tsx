@@ -35,7 +35,7 @@ class FeatureComponent26 extends BaseFeature {
       key: "hoverAnimation",
       displayer: "Hover Animation",
       value: ["animate1"],
-      additionalParams: { selectItems: ["animate1", "animate2", "animate3", "animate4"] }
+      additionalParams: { selectItems: ["animate1"] }
     });
 
     this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
@@ -88,26 +88,16 @@ class FeatureComponent26 extends BaseFeature {
                     <div className={this.decorateCSS("buttons-container")}>
                 {buttons?.map((item: INPUTS.CastedButton, index: number) => {
                   const isTextExist = this.castToString(item.text);
-                  const isImageExist = !!item.image;
-                  const isIconExist = !!item.icon;
-                  if (!isTextExist && !isIconExist && !isImageExist) return null;
-                  const imageValue = isImageExist
-                    ? (typeof item.image === "string"
-                      ? { type: "image" as const, url: item.image }
-                      : item.image)
-                    : undefined;
-                  const iconValue = isIconExist
-                    ? (typeof item.icon === "string"
-                      ? { type: "icon" as const, name: item.icon }
-                      : item.icon)
-                    : undefined;
+                  const iconExist = item.icon && (item.icon as any)?.name;
+                  const imageExist = item.image && (item.image as any)?.url;
+                  if (!isTextExist && !iconExist && !imageExist) return null;
                   return (
                     <ComposerLink key={`feature26-btn-${index}`} path={item.url}>
-                      {isImageExist ? (
-                        <Base.Media value={imageValue} className={this.decorateCSS("button-image")} />
+                      {imageExist ? (
+                        <Base.Media value={item.image as any} className={this.decorateCSS("button-image")} />
                       ) : (
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {isIconExist && <Base.Media value={iconValue} className={this.decorateCSS("button-icon")} />}
+                          {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("button-icon")} />}
                           {isTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                         </Base.Button>
                       )}
