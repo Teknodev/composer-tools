@@ -14,6 +14,7 @@ type TImage = {
 class LogoComp10Page extends LogoClouds {
   containerRef: HTMLDivElement | null = null;
   wheelTimeout: NodeJS.Timeout | null = null;
+  resizeObserver: ResizeObserver | null = null;
 
   constructor(props?: any) {
     super(props, styles);
@@ -57,6 +58,13 @@ class LogoComp10Page extends LogoClouds {
       window.addEventListener("orientationchange", this.handleResize);
     }
 
+    if (this.containerRef && typeof ResizeObserver !== "undefined") {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.handleResize();
+      });
+      this.resizeObserver.observe(this.containerRef);
+    }
+
     this.handleResize();
   }
   
@@ -68,6 +76,11 @@ class LogoComp10Page extends LogoClouds {
   componentWillUnmount() {
     if (this.wheelTimeout) {
       clearTimeout(this.wheelTimeout);
+    }
+
+    if (this.resizeObserver && this.containerRef) {
+      this.resizeObserver.unobserve(this.containerRef);
+      this.resizeObserver = null;
     }
 
     if (this.containerRef) {
@@ -114,10 +127,33 @@ class LogoComp10Page extends LogoClouds {
   setContainerRef = (el: HTMLDivElement | null) => {
     if (this.containerRef) {
       this.containerRef.removeEventListener('wheel', this.handleWheel);
+      if (this.resizeObserver) {
+        this.resizeObserver.unobserve(this.containerRef);
+      }
     }
     this.containerRef = el;
     if (el) {
-      el.addEventListener('wheel', this.handleWheel, { passive: false });
+      if (typeof ResizeObserver !== "undefined") {
+        if (!this.resizeObserver) {
+          this.resizeObserver = new ResizeObserver(() => {
+            this.handleResize();
+          });
+        }
+        this.resizeObserver.observe(el);
+      }
+      
+      setTimeout(() => {
+        if (!el) return;
+        const logoItems = this.castToObject<TImage[]>("image-items") || [];
+        const itemCount = this.getPropValue("itemCount") || 4;
+        const isPhone = this.isPhone();
+        const effectiveChunkSize = isPhone ? 2 : itemCount;
+        const shouldAnimate = logoItems.length > effectiveChunkSize;
+        
+        if (shouldAnimate && el === this.containerRef) {
+          el.addEventListener('wheel', this.handleWheel, { passive: false });
+        }
+      }, 0);
     }
   };
 
@@ -196,7 +232,7 @@ class LogoComp10Page extends LogoClouds {
 
           {logoItems.length > 0 && (
             <div className={this.decorateCSS("slider-wrapper")}
-              ref={shouldAnimate ? this.setContainerRef : undefined}
+              ref={this.setContainerRef}
             >
               <div className={this.decorateCSS("slider-container")}>
                 <ComposerSlider
