@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section16.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
@@ -27,10 +27,16 @@ class HeroSection16 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c49?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c49?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -53,10 +59,16 @@ class HeroSection16 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4a?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4a?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -79,10 +91,16 @@ class HeroSection16 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4b?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4b?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -104,16 +122,28 @@ class HeroSection16 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
-      value: "IoIosArrowBack",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowBack",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next-button-icon",
       displayer: "Next Slide Button",
-      value: "IoIosArrowForward",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowForward",
+      },
     });
 
     this.setComponentState("slider-ref", React.createRef());
@@ -145,8 +175,8 @@ class HeroSection16 extends BaseHeroSection {
 
     const slider = this.castToObject<ISliderData[]>("slider");
     const sliderRef = this.getComponentState("slider-ref");
-    const prevIcon: string = this.getPropValue("prev-button-icon");
-    const nextIcon: string = this.getPropValue("next-button-icon");
+    const prevIcon = this.getPropValue("prev-button-icon") as TypeMediaInputValue | undefined;
+    const nextIcon = this.getPropValue("next-button-icon") as TypeMediaInputValue | undefined;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -158,12 +188,7 @@ class HeroSection16 extends BaseHeroSection {
               }}
               className={`${this.decorateCSS("slider-button-left")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
             >
-              <Base.Icon
-                propsIcon={{
-                  className: this.decorateCSS("icon"),
-                }}
-                name={prevIcon}
-              />
+              <Base.Media value={prevIcon} className={this.decorateCSS("icon")} />
             </button>
           )}
 
@@ -180,7 +205,7 @@ class HeroSection16 extends BaseHeroSection {
                 <div className={this.decorateCSS("item")} key={`key${index}`}>
                   {imageExist && (
                     <div className={this.decorateCSS("image-container")}>
-                      <img className={this.decorateCSS("image")} src={item.image} alt="" />
+                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
                     </div>
                   )}
                   {contentExist && (
@@ -224,12 +249,7 @@ class HeroSection16 extends BaseHeroSection {
               }}
               className={`${this.decorateCSS("slider-button-right")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
             >
-              <Base.Icon
-                propsIcon={{
-                  className: this.decorateCSS("icon"),
-                }}
-                name={nextIcon}
-              />
+              <Base.Media value={nextIcon} className={this.decorateCSS("icon")} />
             </button>
           )}
         </div>

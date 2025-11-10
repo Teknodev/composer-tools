@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section17.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -9,7 +9,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
@@ -19,16 +19,28 @@ class HeroSection17 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev_icon",
       displayer: "Prev icon",
-      value: "GrFormPrevious",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GrFormPrevious",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next_icon",
       displayer: "Next icon",
-      value: "GrFormNext",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GrFormNext",
+      },
     });
 
     this.addProp({
@@ -54,10 +66,16 @@ class HeroSection17 extends BaseHeroSection {
               value: "Scandinavian Style House",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              },
             },
 
             INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
@@ -81,10 +99,16 @@ class HeroSection17 extends BaseHeroSection {
               value: "Contemporary Style House",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+              },
             },
 
             INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
@@ -108,10 +132,16 @@ class HeroSection17 extends BaseHeroSection {
               value: "Metal Facade Coatings",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+              },
             },
 
             INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
@@ -153,7 +183,7 @@ class HeroSection17 extends BaseHeroSection {
             return (
               sliderExist && (
                 <div className={this.decorateCSS("slider-content")} key={`key${index}`}>
-                  {image && <img src={item.image} alt="" className={this.decorateCSS("bg-img")} />}
+                  {image && <Base.Media value={item.image} className={this.decorateCSS("bg-img")} />}
                   <Base.Container className={this.decorateCSS("sub-container")}>
                     <Base.MaxContent className={this.decorateCSS("sub-content")}>
                       {cardExist && (
@@ -172,26 +202,24 @@ class HeroSection17 extends BaseHeroSection {
                     </Base.MaxContent>
                   </Base.Container>
                   {slider.length > 1 && (
-                    <Base.Icon
-                      name={this.getPropValue("next_icon")}
-                      propsIcon={{
-                        className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                        onClick: () => {
-                          this.getComponentState("slider-ref").current.slickNext();
-                        },
+                    <div
+                      className={`${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`}
+                      onClick={() => {
+                        this.getComponentState("slider-ref").current.slickNext();
                       }}
-                    />
+                    >
+                      <Base.Media value={this.getPropValue("next_icon") as TypeMediaInputValue} />
+                    </div>
                   )}
                   {slider.length > 1 && (
-                    <Base.Icon
-                      name={this.getPropValue("prev_icon")}
-                      propsIcon={{
-                        className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                        onClick: () => {
-                          this.getComponentState("slider-ref").current.slickPrev();
-                        },
+                    <div
+                      className={`${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`}
+                      onClick={() => {
+                        this.getComponentState("slider-ref").current.slickPrev();
                       }}
-                    />
+                    >
+                      <Base.Media value={this.getPropValue("prev_icon") as TypeMediaInputValue} />
+                    </div>
                   )}
                 </div>
               )

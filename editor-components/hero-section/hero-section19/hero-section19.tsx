@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section19.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -32,10 +32,16 @@ class HeroSection19 extends BaseHeroSection {
           value: "Porta Consectetur Imperdiet Frigilla",
         },
         {
-          type: "image",
+          type: "media",
           displayer: "Image",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f79?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f79?alt=media&timestamp=1719483639150",
+          },
         },
       ],
     });
@@ -66,10 +72,16 @@ class HeroSection19 extends BaseHeroSection {
           value: "Feugiat Scelerisque Imperdiet",
         },
         {
-          type: "image",
+          type: "media",
           displayer: "Image",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f78?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f78?alt=media&timestamp=1719483639150",
+          },
         },
       ],
     });
@@ -101,10 +113,16 @@ class HeroSection19 extends BaseHeroSection {
         },
 
         {
-          type: "image",
+          type: "media",
           displayer: "Image",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150",
+          },
         },
       ],
     });
@@ -136,10 +154,16 @@ class HeroSection19 extends BaseHeroSection {
         },
 
         {
-          type: "image",
+          type: "media",
           displayer: "Image",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7b?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7b?alt=media&timestamp=1719483639150",
+          },
         },
       ],
     });
@@ -198,7 +222,7 @@ class HeroSection19 extends BaseHeroSection {
               <div className={this.decorateCSS("item")}>
                 {itemLeft.image && (
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={itemLeft.image} alt={itemLeft.title} className={this.decorateCSS("image")} />
+                    <Base.Media value={itemLeft.image} className={this.decorateCSS("image")} />
                   </div>
                 )}
                 {isContentVisibleLeft && (
@@ -225,7 +249,7 @@ class HeroSection19 extends BaseHeroSection {
                   <div className={this.decorateCSS("item")}>
                     {itemRightTop.image && (
                       <div className={this.decorateCSS("background-image")}>
-                        <img src={itemRightTop.image} alt={itemRightTop.title} className={this.decorateCSS("image")} />
+                        <Base.Media value={itemRightTop.image} className={this.decorateCSS("image")} />
                       </div>
                     )}
                     {isContentVisibleRightTop && (
@@ -251,7 +275,7 @@ class HeroSection19 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-left")}`}>
                       {itemBottomLeft.image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <img src={itemBottomLeft.image} alt={itemBottomLeft.title} className={this.decorateCSS("image")} />
+                          <Base.Media value={itemBottomLeft.image} className={this.decorateCSS("image")} />
                         </div>
                       )}
                       {isContentVisibleBottomLeft && (
@@ -273,7 +297,7 @@ class HeroSection19 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-right")}`}>
                       {itemBottomRight.image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <img src={itemBottomRight.image} alt={itemBottomRight.title} className={this.decorateCSS("image")} />
+                          <Base.Media value={itemBottomRight.image} className={this.decorateCSS("image")} />
                         </div>
                       )}
                       {isContentVisibleBottomRight && (

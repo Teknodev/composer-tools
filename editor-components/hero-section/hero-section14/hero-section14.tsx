@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section14.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -11,7 +11,7 @@ type Slides = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   buttons: Array<Buttons>;
 };
 
@@ -22,16 +22,28 @@ class HeroSection14 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prevIcon",
       displayer: "Prev icon",
-      value: "GrFormPrevious",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GrFormPrevious",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextIcon",
       displayer: "Next icon",
-      value: "GrFormNext",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "GrFormNext",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -63,10 +75,16 @@ class HeroSection14 extends BaseHeroSection {
               value: "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
+              },
             },
 
             {
@@ -95,10 +113,16 @@ class HeroSection14 extends BaseHeroSection {
               value: "Even if your less into design and more into content strategy you may find some redeeming value with, wait for it, dummy copy.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4e4703b007002cc71de2?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4e4703b007002cc71de2?alt=media",
+              },
             },
             {
               type: "array",
@@ -126,10 +150,16 @@ class HeroSection14 extends BaseHeroSection {
               value: "A client that's unhappy for a reason is a problem, a client that's unhappy though required he or her can't quite put a finger.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://mobiles77.com/wp-content/uploads/2022/09/accessories-slide-3.jpg",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://mobiles77.com/wp-content/uploads/2022/09/accessories-slide-3.jpg",
+              },
             },
             {
               type: "array",
@@ -152,7 +182,8 @@ class HeroSection14 extends BaseHeroSection {
   render() {
     const slides = this.castToObject<Slides[]>("slides");
     const activeSlideIndex = this.getComponentState("activeSlide");
-    const isImagePresent = slides[activeSlideIndex]?.image ? true : false;
+    const activeSlide = slides[activeSlideIndex];
+    const isImagePresent = activeSlide?.image ? true : false;
     const settings = {
       dots: true,
       arrows: false,
@@ -194,7 +225,7 @@ class HeroSection14 extends BaseHeroSection {
 
               return (
                 <div className={this.decorateCSS("slide")} key={`header14-${index}`}>
-                  {image && <img src={item.image} alt={item.image} className={this.decorateCSS("bg-img")} />}
+                  {image && <Base.Media value={item.image} className={this.decorateCSS("bg-img")} />}
                   <div className={`${this.decorateCSS("content-wrapper")} ${isActive && isAnimation && this.decorateCSS("fade-in")}`}>
                     <div className={`${containerClass} ${noBgClass}`}>
                       {title && <Base.SectionTitle className={`${this.decorateCSS("title")} ${image && this.decorateCSS("title-with-image")}`}>{item.title}</Base.SectionTitle>}
@@ -220,24 +251,22 @@ class HeroSection14 extends BaseHeroSection {
                   </div>
                   {slides.length > 1 && (
                     <>
-                      <Base.Icon
-                        name={this.getPropValue("prevIcon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("prev-icon")}`,
-                          onClick: () => {
-                            this.getComponentState("slider-ref").current.slickPrev();
-                          },
+                      <div
+                        className={`${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("prev-icon")}`}
+                        onClick={() => {
+                          this.getComponentState("slider-ref").current.slickPrev();
                         }}
-                      />
-                      <Base.Icon
-                        name={this.getPropValue("nextIcon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("next-icon")}`,
-                          onClick: () => {
-                            this.getComponentState("slider-ref").current.slickNext();
-                          },
+                      >
+                        <Base.Media value={this.getPropValue("prevIcon")} />
+                      </div>
+                      <div
+                        className={`${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("next-icon")}`}
+                        onClick={() => {
+                          this.getComponentState("slider-ref").current.slickNext();
                         }}
-                      />
+                      >
+                        <Base.Media value={this.getPropValue("nextIcon")} />
+                      </div>
                     </>
                   )}
                 </div>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section15.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { Form, Formik } from "formik";
@@ -22,10 +22,16 @@ class HeroSection15 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background-image",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765394d0655f8002ca9e088?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765394d0655f8002ca9e088?alt=media",
+      },
     });
 
     this.addProp({
@@ -89,7 +95,9 @@ class HeroSection15 extends BaseHeroSection {
     const inputs = this.castToObject<InputItem[]>("inputs");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const backgroundImageExist = this.getPropValue("background-image");
+    const backgroundImageValue = this.getPropValue("background-image") as TypeMediaInputValue | undefined;
+    const backgroundImageUrl = backgroundImageValue && typeof backgroundImageValue === "object" && backgroundImageValue.type === "image" && "url" in backgroundImageValue ? backgroundImageValue.url : "";
+    const backgroundImageExist = backgroundImageValue;
 
     function getInitialValue() {
       let value: any = {};
@@ -100,7 +108,7 @@ class HeroSection15 extends BaseHeroSection {
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${this.getPropValue("background-image")})`,
+          backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : undefined,
         }}
       >
         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section21.module.scss";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -52,24 +52,42 @@ class HeroSection21 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "MdOutlinePlayCircleOutline",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "MdOutlinePlayCircleOutline",
+      },
     });
 
     this.addProp({
-      type: "video",
+      type: "media",
       displayer: "Video",
       key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
+      additionalParams: {
+        availableTypes: ["video"],
+      },
+      value: {
+        type: "video",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
+      },
     });
 
     this.setComponentState("is_video_visible", false);
@@ -85,8 +103,11 @@ class HeroSection21 extends BaseHeroSection {
     const subtitleExist = this.castToString(card.subtitle);
     const descExist = this.castToString(card.description);
 
-    const image = this.getPropValue("image");
-    const video = this.getPropValue("video");
+    const imageValue = this.getPropValue("image") as TypeMediaInputValue | undefined;
+    const videoValue = this.getPropValue("video") as TypeMediaInputValue | undefined;
+    const videoUrl = videoValue && typeof videoValue === "object" && videoValue.type === "video" && "url" in videoValue ? videoValue.url : "";
+    const image = imageValue;
+    const video = videoValue;
 
     const cardExist = titleExist || subtitleExist || descExist || buttons?.length > 0;
 
@@ -109,7 +130,7 @@ class HeroSection21 extends BaseHeroSection {
                             <ComposerLink path={button.url}>
                               <Base.Button buttonType={button.type} key={index} className={this.decorateCSS("card-button")}>
                                 {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                                {button.icon && <Base.Icon name={button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                                {button.icon && <Base.Media value={button.icon as TypeMediaInputValue} className={this.decorateCSS("button-icon")} />}
                               </Base.Button>
                             </ComposerLink>
                           )
@@ -128,12 +149,12 @@ class HeroSection21 extends BaseHeroSection {
                     this.setComponentState("is_video_visible", true);
                   }}
                 >
-                  <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("btn-icon") }} />
+                  <Base.Media value={this.getPropValue("icon") as TypeMediaInputValue} className={this.decorateCSS("btn-icon")} />
                 </button>}
-                {image && <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />}
+                {image && <Base.Media value={imageValue} className={this.decorateCSS("image")} />}
                 {this.getComponentState("is_video_visible") && video && image && (
                   <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
-                    <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("player")} src={this.getPropValue("video")}></video>
+                    <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("player")} src={videoUrl}></video>
                   </div>
                 )}
               </div>

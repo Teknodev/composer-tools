@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section18.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -11,7 +11,7 @@ type Slide = {
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
   description_title: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
 };
 
 type Social = {
@@ -24,10 +24,16 @@ class HeroSection18 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "cover",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
+      },
     });
 
     this.addProp({
@@ -72,10 +78,16 @@ class HeroSection18 extends BaseHeroSection {
               value: "Painting is the application of pigments to a support surface that establishes an image, design or decoration.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef2?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef2?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -111,10 +123,16 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed ligula eu ligula congue vestibulum.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7f?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7f?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -149,10 +167,16 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu justo sed libero consectetur consequat.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef1?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef1?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -187,10 +211,16 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida felis sed nisl consequat, nec ultricies velit commodo.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef3?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef3?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -225,10 +255,16 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor justo ac lorem tincidunt, at convallis tortor efficitur.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef4?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef4?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -301,16 +337,28 @@ class HeroSection18 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev_icon",
       displayer: "Prev icon",
-      value: "BsArrowLeft",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next_icon",
       displayer: "Next icon",
-      value: "BsArrowRight",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowRight",
+      },
     });
 
     this.setComponentState("slider-ref", React.createRef());
@@ -345,21 +393,23 @@ class HeroSection18 extends BaseHeroSection {
 
     const socials = this.castToObject<Social[]>("socials");
 
-    const prevIcon = this.getPropValue("prev_icon");
-    const nextIcon = this.getPropValue("next_icon");
+    const prevIcon = this.getPropValue("prev_icon") as TypeMediaInputValue | undefined;
+    const nextIcon = this.getPropValue("next_icon") as TypeMediaInputValue | undefined;
 
     const prevIconExist = !!prevIcon;
     const nextIconExist = !!nextIcon;
 
     const renderBottomPage = socials?.length > 0 || prevIconExist || nextIconExist;
 
-    const cover = this.getPropValue("cover");
+    const coverValue = this.getPropValue("cover") as TypeMediaInputValue | undefined;
+    const coverUrl = coverValue && typeof coverValue === "object" && coverValue.type === "image" && "url" in coverValue ? coverValue.url : "";
+    const cover = coverValue;
 
     const showPagination = !!this.getPropValue("showPagination");
     const sliderRef = this.getComponentState("slider-ref");
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")} style={{ background: `url(${cover})` }}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")} style={{ background: coverUrl ? `url(${coverUrl})` : undefined }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {slides?.length > 0 && (
             <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
@@ -392,7 +442,7 @@ class HeroSection18 extends BaseHeroSection {
                           )}
                         </div>
                       </div>
-                      {!!item.image && <img src={item.image} className={this.decorateCSS("image")} />}
+                      {!!item.image && <Base.Media value={item.image} className={this.decorateCSS("image")} />}
                       {(descTitleExist || descExist) && (
                         <div className={`${this.decorateCSS("description-div")} ${!cover && this.decorateCSS("description-div-no-image")}`}>
                           {descTitleExist && <Base.H3 className={this.decorateCSS("description-title")}>{item.description_title}</Base.H3>}
@@ -417,23 +467,20 @@ class HeroSection18 extends BaseHeroSection {
                 </div>
               )}
               {prevIconExist && slides.length > 1 && (
-                <Base.Icon
-                  name={this.getPropValue("prev_icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`,
-                    onClick: () => sliderRef.current.slickPrev(),
-                  }}
-                />
+                <div
+                  className={`${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`}
+                  onClick={() => sliderRef.current.slickPrev()}
+                >
+                  <Base.Media value={prevIcon} />
+                </div>
               )}
               {nextIconExist && slides.length > 1 && (
-                <Base.Icon
-                  name={this.getPropValue("next_icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("next-icon")} ${!cover && this.decorateCSS("next-icon-no-image")}`,
-
-                    onClick: () => sliderRef.current.slickNext(),
-                  }}
-                />
+                <div
+                  className={`${this.decorateCSS("next-icon")} ${!cover && this.decorateCSS("next-icon-no-image")}`}
+                  onClick={() => sliderRef.current.slickNext()}
+                >
+                  <Base.Media value={nextIcon} />
+                </div>
               )}
             </div>
           )}

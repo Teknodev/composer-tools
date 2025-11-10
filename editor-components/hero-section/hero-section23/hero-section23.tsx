@@ -1,18 +1,18 @@
 import * as React from "react";
 import styles from "./hero-section23.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "composer-tools/composer-base-components/base/base";
 
 
 type SliderItem = {
-  topImage: string;
+  topImage: TypeMediaInputValue;
   upperText: React.JSX.Element;
   bottomText: React.JSX.Element;
-  background1: string;
-  background2: string;
-  background3: string;
-  background4: string;
+  background1: TypeMediaInputValue;
+  background2: TypeMediaInputValue;
+  background3: TypeMediaInputValue;
+  background4: TypeMediaInputValue;
 };
 
 class HeroSection23 extends BaseHeroSection {
@@ -30,10 +30,16 @@ class HeroSection23 extends BaseHeroSection {
           key: "item1",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Top Image",
               key: "topImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -48,28 +54,52 @@ class HeroSection23 extends BaseHeroSection {
               value: "MUFFINS",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 1",
               key: "background1",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cd?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cd?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 2",
               key: "background2",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266ce?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266ce?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 3",
               key: "background3",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d0?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d0?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 4",
               key: "background4",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -79,10 +109,16 @@ class HeroSection23 extends BaseHeroSection {
           key: "item2",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Top Image",
               key: "topImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c7?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c7?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -97,28 +133,52 @@ class HeroSection23 extends BaseHeroSection {
               value: "DONUTS",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 1",
               key: "background1",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 2",
               key: "background2",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 3",
               key: "background3",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 4",
               key: "background4",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "boolean",
@@ -134,10 +194,16 @@ class HeroSection23 extends BaseHeroSection {
           key: "item3",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Top Image",
               key: "topImage",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d3?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d3?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -152,28 +218,52 @@ class HeroSection23 extends BaseHeroSection {
               value: "WAFFLES",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 1",
               key: "background1",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d4?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d4?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 2",
               key: "background2",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d2?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d2?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 3",
               key: "background3",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d1?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d1?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background 4",
               key: "background4",
-              value: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
+              },
             },
           ],
         },
@@ -204,16 +294,28 @@ class HeroSection23 extends BaseHeroSection {
       value: false,
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
-      value: "IoIosArrowBack",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowBack",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextArrow",
       displayer: "Next Arrow Icon",
-      value: "IoIosArrowForward",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowForward",
+      },
     });
 
     this.setComponentState("active", 0);
@@ -283,8 +385,8 @@ class HeroSection23 extends BaseHeroSection {
     const activeSlide = this.getComponentState("active");
     const sliderRef = this.getComponentState("slider-ref");
 
-    const nextArrow = this.getPropValue("nextArrow");
-    const previousArrow = this.getPropValue("previousArrow");
+    const nextArrow = this.getPropValue("nextArrow") as TypeMediaInputValue | undefined;
+    const previousArrow = this.getPropValue("previousArrow") as TypeMediaInputValue | undefined;
 
     const mouseMoveActive = this.getPropValue("mouseMoveActivation");
     const animateActive = this.getPropValue("animateActivation");
@@ -295,26 +397,24 @@ class HeroSection23 extends BaseHeroSection {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {slider.length > 1 && previousArrow && (
-              <Base.Icon
-                name={this.getPropValue("previousArrow")}
-                propsIcon={{
-                  className: `${this.decorateCSS("prevArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`,
-                  onClick: () => {
-                    sliderRef.current.slickPrev();
-                  },
+              <div
+                className={`${this.decorateCSS("prevArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`}
+                onClick={() => {
+                  sliderRef.current.slickPrev();
                 }}
-              />
+              >
+                <Base.Media value={previousArrow} />
+              </div>
             )}
             {slider.length > 1 && nextArrow && (
-              <Base.Icon
-                name={this.getPropValue("nextArrow")}
-                propsIcon={{
-                  className: `${this.decorateCSS("nextArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`,
-                  onClick: () => {
-                    sliderRef.current.slickNext();
-                  },
+              <div
+                className={`${this.decorateCSS("nextArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`}
+                onClick={() => {
+                  sliderRef.current.slickNext();
                 }}
-              />
+              >
+                <Base.Media value={nextArrow} />
+              </div>
             )}
             {slider.length > 1 && (
               <ul className={this.decorateCSS("dots")}>
@@ -335,28 +435,28 @@ class HeroSection23 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("wrapper-slick")} ${bgColorActivation && this.decorateCSS("bg-color-activation")}`}>
                       {item.background1 && (
                         <div className={this.decorateCSS("header23-background1-wrapper")}>
-                          <img className={`${this.decorateCSS("background1")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background1} alt="" />
+                          <Base.Media value={item.background1} className={`${this.decorateCSS("background1")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
                         </div>
                       )}
 
                       {item.background3 && (
                         <div className={this.decorateCSS("header23-background3-wrapper")}>
-                          <img className={`${this.decorateCSS("background3")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background3} alt="" />
+                          <Base.Media value={item.background3} className={`${this.decorateCSS("background3")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
                         </div>
                       )}
                       {item.topImage && (
                         <div className={this.decorateCSS("header23-wrapper-topImg")}>
-                          <img className={`${this.decorateCSS("top-img")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.topImage} alt="" />
+                          <Base.Media value={item.topImage} className={`${this.decorateCSS("top-img")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
                         </div>
                       )}
                       {item.background2 && (
                         <div className={this.decorateCSS("header23-background2-wrapper")}>
-                          <img className={`${this.decorateCSS("background2")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background2} alt="" />
+                          <Base.Media value={item.background2} className={`${this.decorateCSS("background2")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
                         </div>
                       )}
                       {item.background4 && (
                         <div className={this.decorateCSS("header23-img-bg")}>
-                          <img className={`${this.decorateCSS("img-background")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background4} alt="" />
+                          <Base.Media value={item.background4} className={`${this.decorateCSS("img-background")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
                         </div>
                       )}
 
