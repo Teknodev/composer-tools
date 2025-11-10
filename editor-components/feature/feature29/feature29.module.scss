@@ -80,7 +80,6 @@
         transition: all 0.3s ease;
         flex: 1;
 
-        // Eğer sadece görsel varsa padding sıfırla
         &:has(.image-full:not(.card-text-container)) {
           padding: 0;
         }
@@ -144,6 +143,7 @@
     }
 
     .left-bottom-cards {
+      flex-direction: column !important;
       gap: var(--composer-gap-sm);
     }
   }

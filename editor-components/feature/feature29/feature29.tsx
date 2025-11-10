@@ -52,7 +52,15 @@ class Feature29 extends BaseFeature {
           value:
             "Every payment option covered. Designed to support diverse gaming setups, including online casinos, sportsbooks, bookmakers, lotteries, bingo, draws and raffles, and more.",
         },
-        INPUTS.BUTTON("button", "Button", "Link", "", null, null, "Primary"),
+        INPUTS.BUTTON(
+          "topLeftSideButton",
+          "Button",
+          "Link",
+          "",
+          null,
+          null,
+          "Primary"
+        ),
       ],
     });
 
@@ -86,7 +94,15 @@ class Feature29 extends BaseFeature {
           value:
             "Streamlined onboarding that is quick, transparent, and efficient. Get full visibility at every step to help you speed up your market entry.",
         },
-        INPUTS.BUTTON("button", "Button", "Link", "", null, null, "Primary"),
+        INPUTS.BUTTON(
+          "bottomLeftSideButton",
+          "Button",
+          "Link",
+          "",
+          null,
+          null,
+          "Primary"
+        ),
       ],
     });
 
@@ -122,7 +138,7 @@ class Feature29 extends BaseFeature {
             "Streamlined onboarding that is quick, transparent, and efficient.",
         },
         INPUTS.BUTTON(
-          "button",
+          "bottomLeftSide2Button",
           "Button",
           "Select Now",
           "",
@@ -163,7 +179,15 @@ class Feature29 extends BaseFeature {
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON(
+          "middleSideButton",
+          "Button",
+          "",
+          "",
+          null,
+          null,
+          "Primary"
+        ),
       ],
     });
 
@@ -197,7 +221,15 @@ class Feature29 extends BaseFeature {
           value:
             "Providing eWallets, SMS top-ups, and various alternative payment methods to step-up your gaming operations.",
         },
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON(
+          "topRightSideButton",
+          "Button",
+          "",
+          "",
+          null,
+          null,
+          "Primary"
+        ),
       ],
     });
 
@@ -231,7 +263,15 @@ class Feature29 extends BaseFeature {
           value:
             "Timely and consistent player payments guaranteed, so no payout is ever missed. Processed through a single API request.",
         },
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON(
+          "bottomRightSideButton",
+          "Button",
+          "",
+          "",
+          null,
+          null,
+          "Primary"
+        ),
       ],
     });
 
@@ -250,8 +290,14 @@ class Feature29 extends BaseFeature {
 
   renderCard(cardData, prefix) {
     const hasImage = cardData[`${prefix}Image`];
-    const button = cardData[`${prefix}Button`];
-    console.log(button);
+    // const button = cardData[`${prefix}Button`]; // eski
+    const buttonKey = Object.keys(cardData).find((k) =>
+      k.toLowerCase().includes("button")
+    );
+    const button = buttonKey ? cardData[buttonKey] : null;
+
+    if (!button) console.log("Button is undefined for prefix:", prefix);
+
     return (
       <div
         className={this.decorateCSS("card")}
@@ -265,12 +311,13 @@ class Feature29 extends BaseFeature {
           />
         ) : (
           <div className={this.decorateCSS("card-text-container")}>
-            {cardData[`${prefix}Title`] && (
+            {this.castToString(cardData[`${prefix}Title`]) && (
               <Base.H3 className={this.decorateCSS("card-title")}>
                 {cardData[`${prefix}Title`]}
               </Base.H3>
             )}
-            {cardData[`${prefix}Description`] && (
+
+            {this.castToString(cardData[`${prefix}Description`]) && (
               <Base.SectionDescription
                 className={this.decorateCSS("card-description")}
               >
@@ -278,13 +325,9 @@ class Feature29 extends BaseFeature {
               </Base.SectionDescription>
             )}
 
-            {/* BUTTON */}
-            {button?.text && (
-              <ComposerLink path={button.url}>
-                <Base.Button
-                  buttonType={button.type}
-                  className={this.decorateCSS("button")}
-                >
+            {button && (
+              <ComposerLink>
+                <Base.Button className={this.decorateCSS("button")}>
                   <Base.P className={this.decorateCSS("button-text")}>
                     {button.text}
                   </Base.P>
@@ -304,52 +347,74 @@ class Feature29 extends BaseFeature {
     const middleSide = this.castToObject<any>("middleSide");
     const topRightSide = this.castToObject<any>("topRightSide");
     const bottomRightSide = this.castToObject<any>("bottomRightSide");
+    console.log("BOTTOM RİGHT SİDE = " + bottomRightSide);
+    console.log("BOTTOM RİGHT SİDE BUTTON = " + bottomRightSide.button);
+
+    const isLeftVisible =
+      topLeftSide.visibility ||
+      bottomLeftSide.visibility ||
+      bottomLeftSide2.visibility;
+
+    const isMiddleVisible = middleSide.visibility;
+
+    const isRightVisible =
+      topRightSide.visibility || bottomRightSide.visibility;
+
+    const heading = this.getPropValue("heading");
+    const title = this.getPropValue("title");
+    const hasHeading = this.castToString(heading) || this.castToString(title);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent
-            className={this.decorateCSS("header-container")}
-          >
-            {this.getPropValue("heading") && (
-              <Base.SectionSubTitle className={this.decorateCSS("heading")}>
-                {this.getPropValue("heading")}
-              </Base.SectionSubTitle>
-            )}
-            {this.getPropValue("title") && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-          </Base.VerticalContent>
+          {hasHeading && (
+            <Base.VerticalContent
+              className={this.decorateCSS("header-container")}
+            >
+              {this.castToString(heading) && (
+                <Base.SectionSubTitle className={this.decorateCSS("heading")}>
+                  {this.getPropValue("heading")}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
+          )}
 
           <div className={this.decorateCSS("side-container")}>
-            <div className={this.decorateCSS("left-side")}>
-              {topLeftSide.visibility && (
-                <div className={this.decorateCSS("left-top-card")}>
-                  {this.renderCard(topLeftSide, "topLeftSide")}
+            {isLeftVisible && (
+              <div className={this.decorateCSS("left-side")}>
+                {topLeftSide.visibility && (
+                  <div className={this.decorateCSS("left-top-card")}>
+                    {this.renderCard(topLeftSide, "topLeftSide")}
+                  </div>
+                )}
+                <div className={this.decorateCSS("left-bottom-cards")}>
+                  {bottomLeftSide.visibility &&
+                    this.renderCard(bottomLeftSide, "bottomLeftSide")}
+                  {bottomLeftSide2.visibility &&
+                    this.renderCard(bottomLeftSide2, "bottomLeftSide2")}
                 </div>
-              )}
-              <div className={this.decorateCSS("left-bottom-cards")}>
-                {bottomLeftSide.visibility &&
-                  this.renderCard(bottomLeftSide, "bottomLeftSide")}
-                {bottomLeftSide2.visibility &&
-                  this.renderCard(bottomLeftSide2, "bottomLeftSide2")}
               </div>
-            </div>
+            )}
 
-            {middleSide.visibility && (
+            {isMiddleVisible && (
               <div className={this.decorateCSS("middle-side")}>
                 {this.renderCard(middleSide, "middleSide")}
               </div>
             )}
 
-            <div className={this.decorateCSS("right-side")}>
-              {topRightSide.visibility &&
-                this.renderCard(topRightSide, "topRightSide")}
-              {bottomRightSide.visibility &&
-                this.renderCard(bottomRightSide, "bottomRightSide")}
-            </div>
+            {isRightVisible && (
+              <div className={this.decorateCSS("right-side")}>
+                {topRightSide.visibility &&
+                  this.renderCard(topRightSide, "topRightSide")}
+                {bottomRightSide.visibility &&
+                  this.renderCard(bottomRightSide, "bottomRightSide")}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
