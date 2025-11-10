@@ -61,7 +61,7 @@
         .stat {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-xxs);
+          gap: var(--composer-gap-xs);
           align-items: center;
         }
         .stat-value {
@@ -109,7 +109,7 @@
           .stats-row {
             flex-direction: column;
             align-items: stretch;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
           }
         }
       }
@@ -124,7 +124,7 @@
         .content {
           .stats-row {
             justify-content: center;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-md);
           }
         }
       }
