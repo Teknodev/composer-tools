@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0 !important;
   &.image-active {
     background-size: cover;
     background-position: center;
@@ -28,26 +27,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding:var(--composer-gap-xl);
       .content {
-        position: relative;
-        z-index: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0 var(--composer-gap-xl);
         gap: var(--composer-gap-md);
         color: var(--composer-font-color-secondary);
         .title {
-          content: "";
           text-align: center;
+          &.with-bg {
+            color: var(--composer-font-color-secondary);
+          }
         }
-        .title.with-bg {
-          color: var(--composer-font-color-secondary);
-        }
-
         .description {
-          content: "";
           text-align: center;
         }
         .button-container {
@@ -58,9 +50,6 @@
         }
         .button {
           padding: var(--composer-gap-sm) var(--composer-gap-lg);
-        }
-        .button-text {
-          content: "";
         }
         .stats-row {
           display: flex;
@@ -76,12 +65,10 @@
           align-items: center;
         }
         .stat-value {
-          content: "";
           margin: 0;
           color: var(--composer-font-color-primary);
         }
         .stat-label {
-          content: "";
           margin: 0;
           color: var(--composer-tertiary-color);
         }
@@ -119,11 +106,10 @@
     .max-content {
       .wrapper {
         .content {
-          padding: 0 var(--composer-gap-md);
           .stats-row {
             flex-direction: column;
             align-items: stretch;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-sm);
           }
         }
       }
@@ -135,9 +121,7 @@
   .container {
     .max-content {
       .wrapper {
-        padding : var(--composer-gap-xl);
         .content {
-          padding: 0 var(--composer-gap-lg);
           .stats-row {
             justify-content: center;
             gap: var(--composer-gap-lg);
