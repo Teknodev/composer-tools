@@ -33,7 +33,7 @@
           align-items: start;
           justify-content: center;
           width: 100%;
-          flex: 1.5;
+          flex: 1;
           padding-right: var(--composer-gap-md);
           padding-top: 20px;
           padding-bottom: 20px;
@@ -241,6 +241,68 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    .max-content {
+      .carousel {
+        .content {
+          .left {
+            .left-page-content {
+              .title {
+                font-size: 2rem;
+              }
+              .title-wrapper {
+                .title {
+                  font-size: 2rem;
+                }
+                .image-title {
+                  font-size: 2rem;
+                }
+              }
+              .description {
+                font-size: 1rem;
+              }
+              .nav-buttons {
+                gap: var(--composer-gap-sm);
+                .slide_number {
+                  font-size: 2rem;
+                }
+                .iconsSection {
+                  .prev_icon_wrapper, .next_icon_wrapper {
+                    .prev_icon, .next_icon {
+                      font-size: 1.5rem;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          .middle {
+            .imagetitle {
+              font-size: 2rem;
+              .text {
+                font-size: 2rem;
+              }
+            }
+          }
+
+          .right {
+            .right-page-content {
+              .right-title {
+                font-size: 1.5rem;
+              }
+              .right-description {
+                font-size: 0.875rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
     padding: 0px 40px 20px 40px;
     .max-content {
       .carousel {
@@ -309,16 +371,6 @@
             }
           }
         }
-      }
-    }
-  }
-}
-@container (max-width: #{$composer-phone-width}) {
-  .container{
-    padding:0px 20px 20px 20px;
-    .max-content{
-      .carousel{
-        max-height: 100%;
       }
     }
   }

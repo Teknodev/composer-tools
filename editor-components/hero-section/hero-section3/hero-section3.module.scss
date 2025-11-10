@@ -8,16 +8,6 @@
   transition: opacity 0.1s linear;
 }
 
-@mixin textEllipsis($line, $important: "") {
-  * {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: $line#{$important};
-  }
-}
-
 @mixin flexCenter {
   display: flex;
   flex-direction: column;
@@ -125,7 +115,6 @@
             .title {
               top: 0;
               opacity: 1;
-              @include textEllipsis(2);
             }
             .description,
             .button-container {
@@ -205,13 +194,11 @@
             padding: 0 var(--composer-gap-lg);
             color: var(--composer-font-color-primary);
             @include transitionOpacity;
-            @include textEllipsis(2);
           }
 
           .description {
             text-align: left;
             @include transitionOpacity;
-            @include textEllipsis(4);
             color: var(--composer-font-color-primary);
             padding: 0 var(--composer-gap-lg);
           }
@@ -384,6 +371,142 @@
             .image {
               width: calc(100% + 8rem) !important;
               height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .pagination {
+        right: 50%;
+        transform: translate(50%, -50%);
+        bottom: 0;
+        top: unset;
+        display: flex;
+        gap: var(--composer-gap-xs);
+
+        .page-number {
+          cursor: pointer;
+        }
+      }
+
+      .slider {
+        height: 60vh;
+
+        .wrapper {
+          .content-bg {
+            display: none;
+          }
+
+          .content {
+            height: 100%;
+            flex-direction: column !important;
+            position: relative;
+          }
+
+          .image-container {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 0;
+            opacity: 1 !important;
+
+            .image {
+              position: absolute !important;
+              top: 0 !important;
+              left: 0 !important;
+              right: 0 !important;
+              width: 100% !important;
+              height: 100% !important;
+              object-fit: cover;
+              animation: unset !important;
+              box-shadow: none;
+            }
+          }
+
+          .text-container {
+            position: relative;
+            z-index: 1;
+            width: 100% !important;
+            height: 100%;
+            margin: 0 !important;
+            padding: var(--composer-gap-lg);
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0.3),
+              rgba(0, 0, 0, 0.5)
+            );
+
+            .logo-container {
+              padding: 0;
+              justify-content: center;
+
+              .logo {
+                &.logo-icon {
+                  padding: 0;
+                  font-size: 2.5rem;
+                }
+
+                &.logo-image {
+                  width: 120px;
+                  height: 40px;
+                }
+              }
+            }
+
+            .title {
+              position: relative !important;
+              top: 0 !important;
+              opacity: 1 !important;
+              padding: 0;
+              text-align: center;
+              color: #fff;
+            }
+
+            .description {
+              position: relative !important;
+              bottom: 0 !important;
+              opacity: 1 !important;
+              padding: 0;
+              text-align: center;
+              color: #fff;
+            }
+
+            .button-container {
+              position: relative !important;
+              bottom: 0 !important;
+              opacity: 1 !important;
+              padding: 0;
+              display: flex;
+              justify-content: center;
+            }
+          }
+
+          &.type-2,
+          &.type-3 {
+            .content {
+              flex-direction: column !important;
+            }
+          }
+
+          &.type-3 {
+            .content-bg,
+            .content .text-container {
+              width: 100% !important;
+            }
+
+            .image-container {
+              z-index: 0 !important;
             }
           }
         }
