@@ -2,6 +2,7 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature29.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Feature29 extends BaseFeature {
   constructor(props?: any) {
@@ -49,7 +50,7 @@ class Feature29 extends BaseFeature {
           key: "topLeftSideDescription",
           displayer: "Description",
           value:
-            "Every payment option covered. Designed to support diverse gaming setups...",
+            "Every payment option covered. Designed to support diverse gaming setups, including online casinos, sportsbooks, bookmakers, lotteries, bingo, draws and raffles, and more.",
         },
         INPUTS.BUTTON("button", "Button", "Link", "", null, null, "Primary"),
       ],
@@ -83,7 +84,7 @@ class Feature29 extends BaseFeature {
           key: "bottomLeftSideDescription",
           displayer: "Description",
           value:
-            "Streamlined onboarding that is quick, transparent, and efficient.",
+            "Streamlined onboarding that is quick, transparent, and efficient. Get full visibility at every step to help you speed up your market entry.",
         },
         INPUTS.BUTTON("button", "Button", "Link", "", null, null, "Primary"),
       ],
@@ -194,7 +195,7 @@ class Feature29 extends BaseFeature {
           key: "topRightSideDescription",
           displayer: "Description",
           value:
-            "Providing eWallets, SMS top-ups, and various alternative payment methods...",
+            "Providing eWallets, SMS top-ups, and various alternative payment methods to step-up your gaming operations.",
         },
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
@@ -227,7 +228,8 @@ class Feature29 extends BaseFeature {
           type: "string",
           key: "bottomRightSideDescription",
           displayer: "Description",
-          value: "Timely and consistent player payments guaranteed...",
+          value:
+            "Timely and consistent player payments guaranteed, so no payout is ever missed. Processed through a single API request.",
         },
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
@@ -246,36 +248,51 @@ class Feature29 extends BaseFeature {
     return "Feature 29";
   }
 
-  renderCard(cardData, prefix, isAlone = false) {
-    const className = `${this.decorateCSS("card")} ${
-      isAlone ? this.decorateCSS("single-card") : ""
-    }`;
+  renderCard(cardData, prefix) {
+    const hasImage = cardData[`${prefix}Image`];
+    const button = cardData[`${prefix}Button`];
+    console.log(button);
     return (
       <div
-        className={className}
+        className={this.decorateCSS("card")}
         data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
-        {cardData[`${prefix}Image`] && (
-          <div className={this.decorateCSS("card-image")}>
-            <img
-              src={cardData[`${prefix}Image`]}
-              className={this.decorateCSS("image")}
-              alt="Content"
-            />
+        {hasImage ? (
+          <img
+            src={cardData[`${prefix}Image`]}
+            className={this.decorateCSS("image-full")}
+            alt="Content"
+          />
+        ) : (
+          <div className={this.decorateCSS("card-text-container")}>
+            {cardData[`${prefix}Title`] && (
+              <Base.H3 className={this.decorateCSS("card-title")}>
+                {cardData[`${prefix}Title`]}
+              </Base.H3>
+            )}
+            {cardData[`${prefix}Description`] && (
+              <Base.SectionDescription
+                className={this.decorateCSS("card-description")}
+              >
+                {cardData[`${prefix}Description`]}
+              </Base.SectionDescription>
+            )}
+
+            {/* BUTTON */}
+            {button?.text && (
+              <ComposerLink path={button.url}>
+                <Base.Button
+                  buttonType={button.type}
+                  className={this.decorateCSS("button")}
+                >
+                  <Base.P className={this.decorateCSS("button-text")}>
+                    {button.text}
+                  </Base.P>
+                </Base.Button>
+              </ComposerLink>
+            )}
           </div>
         )}
-        <div className={this.decorateCSS("card-text-container")}>
-          {cardData[`${prefix}Title`] && (
-            <div className={this.decorateCSS("card-title")}>
-              {cardData[`${prefix}Title`]}
-            </div>
-          )}
-          {cardData[`${prefix}Description`] && (
-            <div className={this.decorateCSS("card-description")}>
-              {cardData[`${prefix}Description`]}
-            </div>
-          )}
-        </div>
       </div>
     );
   }
@@ -288,16 +305,6 @@ class Feature29 extends BaseFeature {
     const topRightSide = this.castToObject<any>("topRightSide");
     const bottomRightSide = this.castToObject<any>("bottomRightSide");
 
-    const renderLeftSide =
-      topLeftSide.visibility ||
-      bottomLeftSide.visibility ||
-      bottomLeftSide2.visibility;
-
-    const renderRightSide =
-      topRightSide.visibility ||
-      middleSide.visibility ||
-      bottomRightSide.visibility;
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -305,38 +312,44 @@ class Feature29 extends BaseFeature {
             className={this.decorateCSS("header-container")}
           >
             {this.getPropValue("heading") && (
-              <div className={this.decorateCSS("heading")}>
+              <Base.SectionSubTitle className={this.decorateCSS("heading")}>
                 {this.getPropValue("heading")}
-              </div>
+              </Base.SectionSubTitle>
             )}
             {this.getPropValue("title") && (
-              <div className={this.decorateCSS("title")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
-              </div>
+              </Base.SectionTitle>
             )}
           </Base.VerticalContent>
 
           <div className={this.decorateCSS("side-container")}>
-            {renderLeftSide && (
-              <div className={this.decorateCSS("left-side")}>
-                {topLeftSide.visibility &&
-                  this.renderCard(topLeftSide, "topLeftSide")}
+            <div className={this.decorateCSS("left-side")}>
+              {topLeftSide.visibility && (
+                <div className={this.decorateCSS("left-top-card")}>
+                  {this.renderCard(topLeftSide, "topLeftSide")}
+                </div>
+              )}
+              <div className={this.decorateCSS("left-bottom-cards")}>
                 {bottomLeftSide.visibility &&
                   this.renderCard(bottomLeftSide, "bottomLeftSide")}
                 {bottomLeftSide2.visibility &&
                   this.renderCard(bottomLeftSide2, "bottomLeftSide2")}
               </div>
-            )}
-            {renderRightSide && (
-              <div className={this.decorateCSS("right-side")}>
-                {topRightSide.visibility &&
-                  this.renderCard(topRightSide, "topRightSide")}
-                {middleSide.visibility &&
-                  this.renderCard(middleSide, "middleSide")}
-                {bottomRightSide.visibility &&
-                  this.renderCard(bottomRightSide, "bottomRightSide")}
+            </div>
+
+            {middleSide.visibility && (
+              <div className={this.decorateCSS("middle-side")}>
+                {this.renderCard(middleSide, "middleSide")}
               </div>
             )}
+
+            <div className={this.decorateCSS("right-side")}>
+              {topRightSide.visibility &&
+                this.renderCard(topRightSide, "topRightSide")}
+              {bottomRightSide.visibility &&
+                this.renderCard(bottomRightSide, "bottomRightSide")}
+            </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
