@@ -350,6 +350,10 @@
                 text-align: center;
               }
             }
+
+            &.full-width {
+              justify-content: center;
+            }
           }
         }
       }
