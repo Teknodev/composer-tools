@@ -120,7 +120,7 @@ class IntroSection2 extends BaseIntroSection {
                       className={this.decorateCSS("button")}
                     >
                       <Base.P className={this.decorateCSS("button-text")}>
-                        {this.castToString(button.text)}
+                        {button.text}
                       </Base.P>
                     </Base.Button>
                   </ComposerLink>
