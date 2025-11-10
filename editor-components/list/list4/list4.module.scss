@@ -12,13 +12,18 @@
     }
 
     .item-index {
-      position: relative;
-      margin: var(--composer-gap-md);
+      position: absolute;
+      top: calc(var(--composer-gap-xl) + var(--composer-gap-sm) + var(--composer-gap-xs));
+      left: calc(var(--composer-gap-xl) + var(--composer-gap-xs));
       color: var(--composer-primary-color);
-      padding-bottom: var(--composer-gap-xl);
+      padding: 0;
+      margin: 0;
+      font-size: 1.50rem;
+      line-height: 1;
+      z-index: 2;
 
       &.index {
-        padding-bottom: var(--composer-gap-md);
+        padding: 0;
       }
     }
 
@@ -69,7 +74,6 @@
           position: absolute;
           width: calc(100% - 80px);
           height: calc(100% - 80px);
-          z-index: 0;
 
           .border-left {
             position: absolute;
@@ -122,8 +126,13 @@
           position: relative;
           z-index: 1;
           padding: var(--composer-gap-md);
+          margin-top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
 
           .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
             padding: var(--composer-gap-md);
             background-color: color-mix(
               in srgb,
@@ -163,6 +172,7 @@
               font-size: 2.5rem;
               color: var(--composer-primary-color);
               margin: var(--composer-gap-md) 0;
+              align-self: flex-start;
             }
 
             .card-number {
@@ -173,6 +183,8 @@
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
+              align-items: flex-start;
+              text-align: left;
               .item-title {
                 content: "";
                 color: var(--composer-font-color-primary);
@@ -186,12 +198,13 @@
                 content: "";
                 margin: 0;
                 color: var(--composer-tertiary-color);
+                text-align: left;
               }
             }
           }
         }
         &.with-index {
-          .item-index.index + .card-content { margin-top: var(--composer-gap-sm); }
+          .card-content { margin-top: calc(var(--composer-gap-xl) + var(--composer-gap-sm)); }
         }
         &.no-index {
           .card-content { margin-top: calc(var(--composer-gap-xl) + var(--composer-gap-sm)); }
@@ -217,6 +230,12 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .item-index {
+        position: absolute;
+        top: calc(var(--composer-gap-xs) + var(--composer-gap-md) + var(--composer-gap-xs));
+        left: calc(var(--composer-gap-xs) + var(--composer-gap-xs));
+        font-size: 1.25rem;
+      }
       .services-grid {
         .service-item {
           padding: 0;

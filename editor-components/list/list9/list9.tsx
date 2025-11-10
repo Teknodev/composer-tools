@@ -222,7 +222,7 @@ class List9 extends BaseList {
         this.addProp({
             type: "boolean",
             key: "overlay",
-            displayer: "Image Overlay",
+            displayer: "Overlay",
             value: false,
         });
 
@@ -265,9 +265,9 @@ class List9 extends BaseList {
                     
                 </Base.MaxContent>
                 <Base.ListGrid
-                        gridCount={{ pc: this.getPropValue("itemCount") }}
-                        className={this.decorateCSS("grid-container")}
-                    >
+                    gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }}
+                    className={this.decorateCSS("grid-container")}
+                >
                     {cards.map(
                         (card: Card, indexCard: number) => (
                             <div

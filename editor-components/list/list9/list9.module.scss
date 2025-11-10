@@ -216,6 +216,7 @@
 
       .card-content {
         justify-content: flex-end;
+        align-items: flex-start;
         left: 0px;
         width: 100%;
         bottom: -10%;
@@ -224,20 +225,22 @@
         gap: var(--composer-gap-sm);
         max-height: 480px;
         transition: bottom 0.8s ease;
+        text-align: left;
 
         .card-title {
           content: "";
           transition: all 0.3s ease;
           width: 100%;
           color: white;
+          text-align: left;
         }
 
         .icon {
           content: "";
           transition: all 0.3s ease;
           color: white;
-          width: 40px;
-          height: 40px;
+          font-size: 2.5rem;
+          align-self: flex-start;
         }
         .card-description {
           content: "";
@@ -247,6 +250,7 @@
           color: white;
           white-space: normal;
           text-overflow: ellipsis;
+          text-align: left;
         }
       }
     }
@@ -255,7 +259,39 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-left: 0;
+    padding-right: 0;
+
     .grid-container {
+      .card {
+        aspect-ratio: 8/14;
+
+        .card-content {
+          align-items: flex-start;
+          text-align: left;
+
+          .icon {
+            font-size: 2.5rem;
+            color: white;
+            align-self: flex-start;
+          }
+
+          .card-title {
+            color: white;
+            text-align: left;
+          }
+
+          .card-description {
+            color: white;
+            max-height: 300px;
+            opacity: 1;
+            text-align: left;
+          }
+        }
+      }
+
       .card[data-animation~="animate1"] {
         .image-container {
           height: 100%;
@@ -268,7 +304,6 @@
             background: linear-gradient(
               0deg,
               rgba(0, 0, 0, 0.8) 0%,
-              // Yumuşak başlangıç
               transparent 70%,
               transparent 100%
             );
@@ -280,19 +315,19 @@
 
         .card-content {
           .icon {
-            width: 30px;
-            height: 30px;
             color: var(--composer-font-color-secondary);
           }
 
           .card-title {
             color: var(--composer-font-color-secondary);
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
           }
 
           .card-description {
             color: var(--composer-font-color-secondary);
-            max-height: 300px;
-            opacity: 1;
           }
         }
       }

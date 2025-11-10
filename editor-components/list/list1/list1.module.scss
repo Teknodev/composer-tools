@@ -100,6 +100,12 @@
           .card-title {
             content: "";
             color: var(--composer-font-color-primary);
+            transition: color var(--composer-transition-duration-normal) ease;
+            cursor: pointer;
+
+            &:hover {
+              color: var(--composer-primary-color);
+            }
           }
           .card-subtitle {
             content: "";
@@ -143,12 +149,14 @@
             left: calc(0px - 2 * var(--composer-gap-md));
             background-color: var(--composer-primary-color);
             z-index: -1;
-            opacity: 1;
             border-radius: var(--composer-border-radius-md);
           }
         }
 
         &[data-animation~="animate1"]:hover {
+          .card-title {
+            color: var(--composer-primary-color);
+          }
           .image-container .image {
             transform: scale(1.1);
             transition: transform var(--composer-transition-duration-slow) ease-in-out;

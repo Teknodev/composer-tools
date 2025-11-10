@@ -6,8 +6,44 @@
   .max-content {
     .cards-grid {
       gap: 0;
-      &.alignment-center { text-align: center; }
-      &.alignment-left { text-align: center; }
+      &.alignment-center {
+        text-align: center;
+
+        .card {
+          .card-content {
+            align-items: center;
+            text-align: center;
+
+            .card-title { text-align: center; }
+          }
+
+          .card-number {
+            left: 50%;
+            bottom: calc(var(--composer-gap-xl) * (-0.7));
+            transform: translateX(-50%) scale(1.15);
+            transform-origin: center bottom;
+          }
+        }
+      }
+      &.alignment-left {
+        text-align: left;
+
+        .card {
+          .card-content {
+            align-items: flex-start;
+            text-align: left;
+
+            .card-title { text-align: left; }
+          }
+
+          .card-number {
+            left: var(--composer-gap-xl);
+            bottom: calc(var(--composer-gap-xl) * (-0.7));
+            transform: scale(1.15);
+            transform-origin: left bottom;
+          }
+        }
+      }
       .intro-card {
         display: flex;
         flex-direction: column;
@@ -36,8 +72,7 @@
             }
   
             .button-icon {
-              opacity: 1;
-              right: calc(-1 * var(--composer-gap-sm));
+              transform: translateX(5px);
             }
           }
 
@@ -56,11 +91,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: absolute;
-            right: 0;
-            opacity: 0;
-            transform: translateX(calc(-1 * var(--composer-gap-lg)));
-            transition: all var(--composer-transition-duration-slow) ease, right var(--composer-transition-duration-slow) ease, opacity var(--composer-transition-duration-slow) ease;
+            margin-left: var(--composer-gap-sm);
+            transition: all var(--composer-transition-duration-slow) ease;
           }
         }
       }
@@ -144,9 +176,8 @@
 
             .card-number {
               color: var(--composer-font-color-primary);
-              z-index: 2;
               -webkit-text-stroke-color: var(--composer-font-color-secondary);
-              transform: scale(1.1) translateX(var(--composer-gap-lg));
+              transform: scale(1.1);
             }
           }
         }
@@ -186,11 +217,14 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
+          position: relative;
 
           .card-title {
             content: "";
             color: var(--composer-font-color-primary);
             margin: 0;
+            padding: 0;
+            position: relative;
           }
           .event-item {
             display: flex;
@@ -198,7 +232,7 @@
             gap: var(--composer-gap-sm);
             margin: 0;
             .event-text-top { color: var(--composer-tertiary-color); }
-            .event-text-bottom { color: var(--composer-font-color-primary); }
+            .event-text-bottom { color: var(--composer-tertiary-color); }
 
             .divider {
               display: block;
@@ -221,8 +255,12 @@
           -webkit-text-stroke-width: var(--composer-border-width-xs);
           color: var(--composer-primary-color);
           -webkit-text-fill-color: transparent;
-          bottom: calc(var(--composer-gap-xl) * (-0.4));
+          bottom: calc(var(--composer-gap-xl) * (-0.7));
+          left: var(--composer-gap-xl);
+          font-size: 5rem;
+          line-height: 1;
           transform: scale(1.15);
+          transform-origin: left bottom;
         }
       }
     }
@@ -267,6 +305,33 @@
           .card-content {
             gap: var(--composer-gap-lg);
           }
+          .card-number {
+            left: var(--composer-gap-lg);
+            bottom: calc(var(--composer-gap-lg) * (-0.7));
+            transform-origin: left bottom;
+          }
+        }
+
+        &.alignment-center {
+          .card {
+            .card-number {
+              left: 50%;
+              bottom: calc(var(--composer-gap-lg) * (-0.7));
+              transform: translateX(-50%) scale(1.15);
+              transform-origin: center bottom;
+            }
+          }
+        }
+
+        &.alignment-left {
+          .card {
+            .card-number {
+              left: var(--composer-gap-lg);
+              bottom: calc(var(--composer-gap-lg) * (-0.7));
+              transform: scale(1.15);
+              transform-origin: left bottom;
+            }
+          }
         }
       }
     }
@@ -278,7 +343,7 @@
     .max-content {
       .cards-grid {
         gap: 0;
-        &.alignment-left { text-align: center; }
+        &.alignment-left { text-align: left; }
         &.alignment-center { text-align: center; }
         .intro-card {
           padding: var(--composer-gap-lg);
@@ -309,11 +374,37 @@
             .card-title { text-align: center; }
           }
           .card-number {
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: calc(14 * var(--composer-font-size-md));
-            
-            text-align: center;
+            bottom: calc(var(--composer-gap-lg) * (-0.7));
+            left: var(--composer-gap-sm);
+            font-size: 4rem;
+            transform-origin: left bottom;
+          }
+        }
+
+        &.alignment-center {
+          .card {
+            .card-number {
+              left: 50%;
+              bottom: calc(var(--composer-gap-lg) * (-0.5));
+              transform: translateX(-50%) scale(1.15);
+              transform-origin: center bottom;
+            }
+          }
+        }
+
+        &.alignment-left {
+          .card {
+            .card-content {
+              align-items: flex-start;
+              text-align: left;
+              .card-title { text-align: left; }
+            }
+            .card-number {
+              left: var(--composer-gap-sm);
+              bottom: calc(var(--composer-gap-lg) * (-0.5));
+              transform: scale(1.15);
+              transform-origin: left bottom;
+            }
           }
         }
       }

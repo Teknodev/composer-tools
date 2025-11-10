@@ -39,7 +39,7 @@ class List3 extends BaseList {
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", "FaDownload", null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -195,13 +195,15 @@ class List3 extends BaseList {
     const description = this.getPropValue("description");
     const listItems = this.castToObject<Item[]>("listItems");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonIcon = this.getPropValue("button")?.icon;
+    const iconExist = buttonIcon && buttonIcon.name;
 
     const alignment = Base.getContentAlignment();
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("cards-grid") + " " + (alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center"))} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text)) && (
+            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text) || iconExist) && (
               <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
                   <Base.VerticalContent className={this.decorateCSS("intro-content")}>
@@ -222,18 +224,20 @@ class List3 extends BaseList {
                     )}
                   </Base.VerticalContent>
                 )}
-                {this.castToString(buttonType.text) && (
+                {(this.castToString(buttonType.text) || iconExist) && (
                   <ComposerLink path={buttonType.url}>
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {buttonType.text as any}
-                      </Base.P>
-                      <Base.Icon
-                        name={"FaArrowRight"}
-                        propsIcon={{
-                          className: this.decorateCSS("button-icon"),
-                        }}
-                      />
+                      {this.castToString(buttonType.text) && (
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {buttonType.text as any}
+                        </Base.P>
+                      )}
+                      {iconExist && (
+                        <Base.Media
+                          value={buttonIcon}
+                          className={this.decorateCSS("button-icon")}
+                        />
+                      )}
                     </Base.Button>
                   </ComposerLink>
                 )}

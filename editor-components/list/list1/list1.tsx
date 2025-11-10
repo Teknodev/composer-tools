@@ -1,5 +1,4 @@
-import * as React from "react";
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -7,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  image: { type: string; url: string };
+  image: TypeMediaInputValue;
   title: string;
   subtitle: string;
   button: INPUTS.CastedButton;
@@ -54,7 +53,7 @@ class List1 extends BaseList {
             {
               type: "boolean",
               key: "overlay",
-              displayer: "Image Overlay",
+              displayer: "Overlay",
               value: false,
             },
             {
@@ -92,7 +91,7 @@ class List1 extends BaseList {
             {
               type: "boolean",
               key: "overlay",
-              displayer: "Image Overlay",
+              displayer: "Overlay",
               value: false,
             },
             {
@@ -130,7 +129,7 @@ class List1 extends BaseList {
             {
               type: "boolean",
               key: "overlay",
-              displayer: "Image Overlay",
+              displayer: "Overlay",
               value: false,
             },
             {
@@ -168,7 +167,7 @@ class List1 extends BaseList {
               {
               type: "boolean",
               key: "overlay",
-              displayer: "Image Overlay",
+              displayer: "Overlay",
               value: false,
             },
             {
@@ -206,7 +205,7 @@ class List1 extends BaseList {
             {
               type: "boolean",
               key: "overlay",
-              displayer: "Image Overlay",
+              displayer: "Overlay",
               value: false,
             },
             {
@@ -244,7 +243,7 @@ class List1 extends BaseList {
               {
               type: "boolean",
               key: "overlay",
-              displayer: "Image Overlay",
+              displayer: "Overlay",
               value: false,
             },
             {
@@ -304,7 +303,7 @@ class List1 extends BaseList {
       centerMode: true,
       dotsClass: this.decorateCSS("dots"),
       centerPadding: "0px",
-      beforeChange: (previndex: number, currindex: number) => {
+      beforeChange: (_previndex: number, currindex: number) => {
         this.setComponentState("active-index", currindex);
       },
       responsive: [

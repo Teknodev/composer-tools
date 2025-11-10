@@ -325,7 +325,7 @@ class List2 extends BaseList {
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Image Overlay",
+      displayer: "Overlay",
       value: true,
     });
     
@@ -441,7 +441,7 @@ class List2 extends BaseList {
               <ComposerLink path={buttonType.url}>
                 <div className={this.decorateCSS("button-wrapper")}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text as any}</Base.P>
+                      <Base.P className={this.decorateCSS("button-text")}>{buttonType.text as any}</Base.P>
                   </Base.Button>
                 </div>
               </ComposerLink>

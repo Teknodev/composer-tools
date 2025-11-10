@@ -42,7 +42,7 @@ class List5 extends BaseList {
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Image Overlay",
+      displayer: "Overlay",
       value: false,
     });
     this.addProp({
@@ -306,7 +306,7 @@ class List5 extends BaseList {
             {(ListItems.length > 0) && (
               <Base.ListGrid
                 className={this.decorateCSS("cards-grid")}
-                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4 }}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3}}
               >
                 {ListItems.map(
                   (listItem: any, index: number) => {

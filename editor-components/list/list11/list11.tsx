@@ -223,7 +223,7 @@ class List11 extends BaseList {
         this.addProp({
             type: "boolean",
             key: "overlay",
-            displayer: "Image Overlay",
+            displayer: "Overlay",
             value: false,
         });
     }

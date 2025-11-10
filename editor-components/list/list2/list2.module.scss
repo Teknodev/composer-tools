@@ -124,6 +124,14 @@
       .button-wrapper {
         display: flex;
         justify-content: center;
+
+        .button {
+          content: "";
+
+          .button-text {
+            content: "";
+          }
+        }
       }
     }
   }

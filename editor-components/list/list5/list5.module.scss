@@ -37,13 +37,14 @@
     }
     .cards-grid {
       .card-wrapper {
-        &:nth-child(2n) {
-          margin-top: var(--composer-gap-xl);
-        }
+        height: 100%;
+        display: flex;
+        align-items: stretch;
         .card {
           position: relative;
           display: flex;
           flex-direction: column;
+          height: 100%;
           border-radius: var(--composer-border-radius-lg);
           background-color: var(--composer-html-background);
           padding: var(--composer-gap-xl) var(--composer-gap-lg);
@@ -187,6 +188,7 @@
     }
   }
 }
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
