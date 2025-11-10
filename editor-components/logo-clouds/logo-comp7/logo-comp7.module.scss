@@ -43,7 +43,7 @@
 
         .image {
           width: 150px;
-          height: 36px;
+          height: 40px;
           object-fit: cover;
 
           opacity: 0.7;
@@ -73,6 +73,17 @@
     .max-content {
       .images-track {
         gap: var(--composer-gap-lg);
+      }
+    }
+    .gallery {
+      .images-container {
+        .image-child {
+          .image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/1;
+          }
+        }
       }
     }
   }

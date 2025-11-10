@@ -57,10 +57,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        .image{
-          height: 120px;
-          width: 120px;
-          object-fit: contain;
+          .image{
+            height: 100px;
+            width: 300px;
+            object-fit: contain;
         }
       }
     }
@@ -76,6 +76,15 @@
         flex-direction: column;
         .line{
           display: none;
+        }
+      }
+      .images-container {
+        .image-item {
+          .image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/1;
+          }
         }
       }
     }
