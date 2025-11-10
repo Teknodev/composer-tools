@@ -332,6 +332,9 @@ class Feature16 extends BaseFeature {
 
     renderCard(cardData, prefix, isAlone = false) {
         const className = `${this.decorateCSS("card")} ${isAlone ? this.decorateCSS("single-card") : ""}`;
+        const hasTitle = this.castToString(cardData[`${prefix}Title`]);
+        const hasDescription = this.castToString(cardData[`${prefix}Description`]);
+        const hasTextContent = hasTitle || hasDescription;
 
         return (
             <Base.VerticalContent className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
@@ -340,18 +343,20 @@ class Feature16 extends BaseFeature {
                         <Base.Media value={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} />
                     </div>
                 )}
-                <div className={this.decorateCSS("card-text-container")}>
-                    {cardData[`${prefix}Title`] && (
-                        <Base.H4 className={this.decorateCSS("card-title")}>
-                            {cardData[`${prefix}Title`]}
-                        </Base.H4>
-                    )}
-                    {cardData[`${prefix}Description`] && (
-                        <Base.P className={this.decorateCSS("card-description")}>
-                            {cardData[`${prefix}Description`]}
-                        </Base.P>
-                    )}
-                </div>
+                {hasTextContent && (
+                    <div className={this.decorateCSS("card-text-container")}>
+                        {hasTitle && (
+                            <Base.H4 className={this.decorateCSS("card-title")}>
+                                {cardData[`${prefix}Title`]}
+                            </Base.H4>
+                        )}
+                        {hasDescription && (
+                            <Base.P className={this.decorateCSS("card-description")}>
+                                {cardData[`${prefix}Description`]}
+                            </Base.P>
+                        )}
+                    </div>
+                )}
             </Base.VerticalContent>
         );
     }
@@ -366,19 +371,63 @@ class Feature16 extends BaseFeature {
         const middleRightSide = this.castToObject<any>("middleRightSide");
         const middleRightSide2 = this.castToObject<any>("middleRightSide2");
 
-        const renderLeftSide = topLeftSide.visibility || bottomLeftSide.visibility;
+        // Check if card has content (title, description, or image)
+        const hasTopLeftContent = topLeftSide.visibility && (
+            this.castToString(topLeftSide.topLeftSideTitle) || 
+            this.castToString(topLeftSide.topLeftSideDescription) || 
+            topLeftSide.topLeftSideImage?.url
+        );
+        
+        const hasBottomLeftContent = bottomLeftSide.visibility && (
+            this.castToString(bottomLeftSide.bottomLeftSideTitle) || 
+            this.castToString(bottomLeftSide.bottomLeftSideDescription) || 
+            bottomLeftSide.bottomLeftSideImage?.url
+        );
 
-        const renderRightSide =
-            topRightSide.visibility ||
-            topRightSide2.visibility ||
-            bottomRightSide.visibility ||
-            bottomRightSide2.visibility ||
-            middleRightSide.visibility ||
-            middleRightSide2.visibility;
+        const hasTopRightContent = topRightSide.visibility && (
+            this.castToString(topRightSide.topRightSideTitle) || 
+            this.castToString(topRightSide.topRightSideDescription) || 
+            topRightSide.topRightSideImage?.url
+        );
 
-        const topRowVisible = topRightSide.visibility || topRightSide2.visibility;
-        const middleRowVisible = middleRightSide.visibility || middleRightSide2.visibility;
-        const bottomRowVisible = bottomRightSide.visibility || bottomRightSide2.visibility;
+        const hasTopRight2Content = topRightSide2.visibility && (
+            this.castToString(topRightSide2.topRightSide2Title) || 
+            this.castToString(topRightSide2.topRightSide2Description) || 
+            topRightSide2.topRightSide2Image?.url
+        );
+
+        const hasMiddleRightContent = middleRightSide.visibility && (
+            this.castToString(middleRightSide.middleRightSideTitle) || 
+            this.castToString(middleRightSide.middleRightSideDescription) || 
+            middleRightSide.middleRightSideImage?.url
+        );
+
+        const hasMiddleRight2Content = middleRightSide2.visibility && (
+            this.castToString(middleRightSide2.middleRightSide2Title) || 
+            this.castToString(middleRightSide2.middleRightSide2Description) || 
+            middleRightSide2.middleRightSide2Image?.url
+        );
+
+        const hasBottomRightContent = bottomRightSide.visibility && (
+            this.castToString(bottomRightSide.bottomRightSideTitle) || 
+            this.castToString(bottomRightSide.bottomRightSideDescription) || 
+            bottomRightSide.bottomRightSideImage?.url
+        );
+
+        const hasBottomRight2Content = bottomRightSide2.visibility && (
+            this.castToString(bottomRightSide2.bottomRightSide2Title) || 
+            this.castToString(bottomRightSide2.bottomRightSide2Description) || 
+            bottomRightSide2.bottomRightSide2Image?.url
+        );
+
+        const renderLeftSide = hasTopLeftContent || hasBottomLeftContent;
+
+        const renderRightSide = hasTopRightContent || hasTopRight2Content || hasMiddleRightContent || 
+                               hasMiddleRight2Content || hasBottomRightContent || hasBottomRight2Content;
+
+        const topRowVisible = hasTopRightContent || hasTopRight2Content;
+        const middleRowVisible = hasMiddleRightContent || hasMiddleRight2Content;
+        const bottomRowVisible = hasBottomRightContent || hasBottomRight2Content;
 
         const visibleRowCount = [topRowVisible, middleRowVisible, bottomRowVisible].filter(Boolean).length;
 
@@ -399,26 +448,28 @@ class Feature16 extends BaseFeature {
                     <div className={this.decorateCSS("side-container")}>
                         {renderLeftSide && (
                             <div className={this.decorateCSS("left-side")}>
-                                {topLeftSide.visibility && (
+                                {hasTopLeftContent && (
                                     <div className={this.decorateCSS("top-left-side")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                        {topLeftSide.visibility && this.renderCard(topLeftSide, "topLeftSide", !bottomLeftSide.visibility)}
+                                        {this.renderCard(topLeftSide, "topLeftSide", !hasBottomLeftContent)}
                                     </div>
                                 )}
-                                {bottomLeftSide.visibility && (
+                                {hasBottomLeftContent && (
                                     <div className={this.decorateCSS("bottom-left-side")}>
                                         <div className={this.decorateCSS("bottom-left-side-card")}>
-                                            <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
-                                                {bottomLeftSide.bottomLeftSideTitle && (
-                                                    <Base.H4 className={this.decorateCSS("bottom-left-side-card-title")}>
-                                                        {bottomLeftSide.bottomLeftSideTitle}
-                                                    </Base.H4>
-                                                )}
-                                                {bottomLeftSide.bottomLeftSideDescription && (
-                                                    <Base.P className={this.decorateCSS("bottom-left-side-card-description")}>
-                                                        {bottomLeftSide.bottomLeftSideDescription}
-                                                    </Base.P>
-                                                )}
-                                            </div>
+                                            {(this.castToString(bottomLeftSide.bottomLeftSideTitle) || this.castToString(bottomLeftSide.bottomLeftSideDescription)) && (
+                                                <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
+                                                    {this.castToString(bottomLeftSide.bottomLeftSideTitle) && (
+                                                        <Base.H4 className={this.decorateCSS("bottom-left-side-card-title")}>
+                                                            {bottomLeftSide.bottomLeftSideTitle}
+                                                        </Base.H4>
+                                                    )}
+                                                    {this.castToString(bottomLeftSide.bottomLeftSideDescription) && (
+                                                        <Base.P className={this.decorateCSS("bottom-left-side-card-description")}>
+                                                            {bottomLeftSide.bottomLeftSideDescription}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            )}
                                             {bottomLeftSide.bottomLeftSideImage?.url && (
                                                 <div className={this.decorateCSS("bottom-left-side-card-image-container")}>
                                                     <Base.Media value={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} />
@@ -433,20 +484,20 @@ class Feature16 extends BaseFeature {
                             <div className={`${this.decorateCSS("right-side")} ${this.decorateCSS("rows-" + visibleRowCount)}`}>
                                 {topRowVisible && (
                                     <div className={this.decorateCSS("top-right-side-container")}>
-                                        {topRightSide.visibility && this.renderCard(topRightSide, "topRightSide", !topRightSide2.visibility)}
-                                        {topRightSide2.visibility && this.renderCard(topRightSide2, "topRightSide2", !topRightSide.visibility)}
+                                        {hasTopRightContent && this.renderCard(topRightSide, "topRightSide", !hasTopRight2Content)}
+                                        {hasTopRight2Content && this.renderCard(topRightSide2, "topRightSide2", !hasTopRightContent)}
                                     </div>
                                 )}
                                 {middleRowVisible && (
                                     <div className={this.decorateCSS("bottom-right-side-container")}>
-                                        {middleRightSide.visibility && this.renderCard(middleRightSide, "middleRightSide", !middleRightSide2.visibility)}
-                                        {middleRightSide2.visibility && this.renderCard(middleRightSide2, "middleRightSide2", !middleRightSide.visibility)}
+                                        {hasMiddleRightContent && this.renderCard(middleRightSide, "middleRightSide", !hasMiddleRight2Content)}
+                                        {hasMiddleRight2Content && this.renderCard(middleRightSide2, "middleRightSide2", !hasMiddleRightContent)}
                                     </div>
                                 )}
                                 {bottomRowVisible && (
                                     <div className={this.decorateCSS("bottom-right-side-container-2")}>
-                                        {bottomRightSide.visibility && this.renderCard(bottomRightSide, "bottomRightSide", !bottomRightSide2.visibility)}
-                                        {bottomRightSide2.visibility && this.renderCard(bottomRightSide2, "bottomRightSide2", !bottomRightSide.visibility)}
+                                        {hasBottomRightContent && this.renderCard(bottomRightSide, "bottomRightSide", !hasBottomRight2Content)}
+                                        {hasBottomRight2Content && this.renderCard(bottomRightSide2, "bottomRightSide2", !hasBottomRightContent)}
                                     </div>
                                 )}
                             </div>

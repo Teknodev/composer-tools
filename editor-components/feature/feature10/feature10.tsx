@@ -1,12 +1,10 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { TypeMediaInputValue } from "../../../types/declarative";
 
 type Card = {
   image: TypeMediaInputValue;
@@ -286,7 +284,7 @@ class Feature10 extends BaseFeature {
         }
       ]
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", "GoArrowRight", null, "Primary"));
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
@@ -427,6 +425,12 @@ class Feature10 extends BaseFeature {
               {!!this.castToString(button.text) && (
                 <ComposerLink path={button.url}>
                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    {button.icon && (
+                      <Base.Media
+                        value={{ type: "icon", name: button.icon }}
+                        className={this.decorateCSS("button-icon")}
+                      />
+                    )}
                     <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                   </Base.Button>
                 </ComposerLink>

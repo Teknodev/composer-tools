@@ -235,10 +235,12 @@ class Feature7 extends BaseFeature {
                               <ComposerLink path={item.url}>
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
                                   <Base.P className={this.decorateCSS("linkText")}>{item.text}</Base.P>
-                                  <Base.Media
-                                    value={item.icon}
-                                    className={this.decorateCSS("iconLink")}
-                                  />
+                                  {item.icon && (
+                                    <Base.Media
+                                      value={{ type: "icon", name: item.icon }}
+                                      className={this.decorateCSS("iconLink")}
+                                    />
+                                  )}
                                 </Base.Button>
                               </ComposerLink>
                             </div>

@@ -7,8 +7,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 
 interface Item {
   image: TypeMediaInputValue;
-  sectionHeading: string;
-  description: string;
+  sectionHeading: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
 }
 
@@ -163,8 +163,8 @@ class Feature20 extends BaseFeature {
   }
 
   render() {
-    const title = this.getPropValue("title") as string;
-    const description = this.getPropValue("description") as string;
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
     const items = this.castToObject<Item[]>("items") || [];
     const showLine = this.getPropValue("showLine") as boolean;
     const showDividers = this.getPropValue("showDividers") as boolean;
@@ -173,31 +173,33 @@ class Feature20 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("header")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+           {(this.castToString(title) || this.castToString(description)) && <div className={this.decorateCSS("header")}>
+              {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {showLine && <div className={this.decorateCSS("line")} />}
-              <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
-            </div>
+              {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+            </div>}
 
-            {items.map((item, i) => (
+            {items.map((item, i) => {
+              const hasTextContent = this.castToString(item.sectionHeading) || this.castToString(item.description) || this.castToString(item.button.text);
+              return (hasTextContent || item.image) && (
               <React.Fragment key={i}>
                 <div
                   className={`${this.decorateCSS("content")} ${
                     i % 2 === 1 ? this.decorateCSS("reverse") : ""
                   }`}
                 >
-                  <div className={this.decorateCSS("image-container")}>
+                  <div className={`${this.decorateCSS("image-container")} ${!hasTextContent ? this.decorateCSS("full-width-container") : ""}`}>
                     {item.image && (
                       <Base.Media
                         value={item.image}
-                        className={this.decorateCSS("image")}
+                        className={`${this.decorateCSS("image")} ${!hasTextContent ? this.decorateCSS("full-width-image") : ""}`}
                       />
                     )}
                     {overlay && item.image && <div className={this.decorateCSS("overlay")} />}
                   </div>
-                  <Base.VerticalContent className={this.decorateCSS("text")}>
-                    <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>
-                    <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>
+                  {(this.castToString(item.sectionHeading) || this.castToString(item.description) || this.castToString(item.button.text)) && <Base.VerticalContent className={this.decorateCSS("text")}>
+                    {this.castToString(item.sectionHeading) && <Base.H4 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</Base.H4>}
+                    {this.castToString(item.description) && <Base.P className={this.decorateCSS("desc")}>{item.description}</Base.P>}
                     {this.castToString(item.button.text) && (
                       <ComposerLink path={item.button.url || '#'}>
                         <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
@@ -205,11 +207,11 @@ class Feature20 extends BaseFeature {
                         </Base.Button>
                       </ComposerLink>
                     )}
-                  </Base.VerticalContent>
+                  </Base.VerticalContent>}
                 </div>
                 {showDividers && i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
               </React.Fragment>
-            ))}
+            )})}
           </div>
         </Base.MaxContent>
       </Base.Container>

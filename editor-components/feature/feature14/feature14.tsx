@@ -189,7 +189,7 @@ class Feature14 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("linkTitle"))
+          {(this.castToString(this.getPropValue("title")) || this.castToString(button.text)
             || this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && (
               <div className={`${this.decorateCSS("title-wrapper")} ${alignment == "center" && this.decorateCSS("center")}`}>
                 <Base.VerticalContent className={this.decorateCSS("title-left")}>

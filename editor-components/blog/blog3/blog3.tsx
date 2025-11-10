@@ -43,33 +43,47 @@ class Blog3 extends BaseBlog {
     });
 
     this.addProp({
-      type: "media",
-      key: "rightSideIcon",
-      displayer: "Icon",
-      value: {
-        type: "icon",
-        name: "MdArrowOutward",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "dateIcon",
-      displayer: "Date Icon",
-      value: {
-        type: "icon",
-        name: "CiCalendarDate",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "timeIcon",
-      displayer: "Time Icon",
-      value: {
-        type: "icon",
-        name: "CiClock2",
-      },
+      type: "object",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "rightSideIcon",
+          displayer: "Right Side Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdArrowOutward",
+          },
+        },
+        {
+          type: "media",
+          key: "dateIcon",
+          displayer: "Date Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "CiCalendarDate",
+          },
+        },
+        {
+          type: "media",
+          key: "timeIcon",
+          displayer: "Time Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "CiClock2",
+          },
+        },
+      ],
     });
 
     this.addProp({
@@ -151,7 +165,7 @@ class Blog3 extends BaseBlog {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -231,7 +245,7 @@ class Blog3 extends BaseBlog {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -311,7 +325,7 @@ class Blog3 extends BaseBlog {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -391,7 +405,7 @@ class Blog3 extends BaseBlog {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -402,7 +416,7 @@ class Blog3 extends BaseBlog {
     this.addProp({
       type: "number",
       key: "itemCountInARow",
-      displayer: "Item Count In A Row",
+      displayer: "Item Count In a Row",
       value: 3,
       max: 4
     });
@@ -410,7 +424,7 @@ class Blog3 extends BaseBlog {
     this.addProp({
       type: "boolean",
       key: "underlineAnimation",
-      displayer: "Card Title Underline Animation",
+      displayer: "Animation",
       value: true
     });
 
@@ -429,11 +443,13 @@ class Blog3 extends BaseBlog {
     const leftSideTextExist = this.castToString(this.getPropValue("leftSideText"));
 
     const rightSideTextExist = this.castToString(this.getPropValue("rightSideText"));
-    const rightSideIcon = this.getPropValue("rightSideIcon");
     const rightSideUrl = this.getPropValue("url");
 
-    const timeIcon = this.getPropValue("timeIcon");
-    const dateIcon = this.getPropValue("dateIcon");
+    const icons = this.castToObject<{
+      rightSideIcon: { type: "icon"; name: string };
+      dateIcon: { type: "icon"; name: string };
+      timeIcon: { type: "icon"; name: string };
+    }>("icons");
 
     const Card = ({ data, style }: { data: CardData, style?: object; }) => {
       const title = this.castToString(data.title);
@@ -465,9 +481,9 @@ class Blog3 extends BaseBlog {
               <div className={this.decorateCSS("date-time")}>
                 {(dateExist) && (
                   <div className={this.decorateCSS("date")}>
-                    {dateIcon &&
+                    {icons.dateIcon &&
                       <Base.Media
-                        value={dateIcon}
+                        value={icons.dateIcon}
                         className={this.decorateCSS("date-icon")}
                       />
                     }
@@ -478,9 +494,9 @@ class Blog3 extends BaseBlog {
                 )}
                 {(readTimeExist) && (
                   <div className={this.decorateCSS("time")}>
-                    {timeIcon &&
+                    {icons.timeIcon &&
                       <Base.Media
-                        value={timeIcon}
+                        value={icons.timeIcon}
                         className={this.decorateCSS("time-icon")}
                       />
                     }
@@ -603,9 +619,14 @@ class Blog3 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(leftSideTextExist || !!rightSideIcon || rightSideTextExist) && (
+          {(leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
-              {(rightSideTextExist || !!rightSideIcon) && (
+              {leftSideTextExist && (
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  {this.getPropValue("leftSideText")}
+                </Base.SectionTitle>
+              )}
+              {(rightSideTextExist || !!icons.rightSideIcon) && (
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
@@ -613,9 +634,9 @@ class Blog3 extends BaseBlog {
                         {rightSideTextExist && (
                           this.getPropValue("rightSideText")
                         )}
-                        {!!rightSideIcon && (
+                        {!!icons.rightSideIcon && (
                           <Base.Media
-                            value={rightSideIcon}
+                            value={icons.rightSideIcon}
                             className={this.decorateCSS("right-side-icon")}
                           />
                         )}
@@ -624,16 +645,30 @@ class Blog3 extends BaseBlog {
                   </ComposerLink>
                 </div>
               )}
-              {leftSideTextExist && (
-                <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {this.getPropValue("leftSideText")}
-                </Base.SectionTitle>
-              )}
             </header>
           )}
-          <Base.ListGrid gridCount={{ pc: itemCountInARow }} className={this.decorateCSS("cards-row")}>
+          <Base.ListGrid gridCount={{ pc: itemCountInARow , tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
+          {(rightSideTextExist || !!icons.rightSideIcon) && (
+            <div className={this.decorateCSS("mobile-right-side")}>
+              <ComposerLink path={rightSideUrl}>
+                <div className={this.decorateCSS("link-container")}>
+                  <Base.H4 className={this.decorateCSS("link-text")}>
+                    {rightSideTextExist && (
+                      this.getPropValue("rightSideText")
+                    )}
+                    {!!icons.rightSideIcon && (
+                      <Base.Media
+                        value={icons.rightSideIcon}
+                        className={this.decorateCSS("right-side-icon")}
+                      />
+                    )}
+                  </Base.H4>
+                </div>
+              </ComposerLink>
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

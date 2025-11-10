@@ -13,7 +13,7 @@
         .divider {
           width: 100%;
           height: 1px;
-          background: var(--composer-font-color-primary);
+          background: var(--composer-tertiary-color);
         }
 
         .header-description {
@@ -23,7 +23,7 @@
       .comp-wrapper {
         .comp-slider {
           position: relative;
-          height: calc(450px + var(--composer-gap-md));
+          height: 500px;
           .slider-item {
             width: calc(100% - 2 * var(--composer-gap-md));
             height: 400px;
@@ -44,6 +44,7 @@
               border: none;
               color: var(--composer-font-color-primary);
               background-color: transparent;
+              font-size: 2rem;
         
               &:hover {
                 background-color: transparent;
@@ -56,7 +57,7 @@
         .comp-body-wrapper {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-md);
           width: 100%;
           .tabs {
             .tabs-list {

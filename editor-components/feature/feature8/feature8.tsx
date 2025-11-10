@@ -351,7 +351,7 @@ class Feature8 extends BaseFeature {
             </Base.SectionTitle>
           )}
           {cards?.length > 0 && (
-            <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 }} className={this.decorateCSS("cards-container")}>
+            <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 , tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card) => {
                 const titleExist = this.castToString(card.title);
                 const descExist = this.castToString(card.description);

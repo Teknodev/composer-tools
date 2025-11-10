@@ -60,6 +60,9 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                     padding-top: calc(var(--composer-gap-xl) + var(--composer-gap-md));
                     padding-bottom: $circlepaddingbottom;
                     max-height: 100%;
+                    overflow: hidden;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
 
                     &.absolute {
                         position: absolute;
@@ -166,7 +169,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 
 @container (max-width: #{$composer-tablet-width}) {
     $space : var(--composer-gap-xl);
-    $cardsmargintop : -220px;
+    $cardsmargintop : -150px;
     $logosmargintop : calc(-1 * $cardsmargintop / 3);
 
     .container {
@@ -183,6 +186,9 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         padding: calc($space + var(--composer-gap-md));
                         aspect-ratio: 1 / 1;
                         padding-bottom: -$cardsmargintop;
+                        overflow: hidden;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
                     }
 
                     .description {
@@ -243,6 +249,9 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                     .circle {
                         padding: calc(2 * var(--composer-gap-xl)) var(--composer-gap-md);
                         width: 100%;
+                        overflow: hidden;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
 
                         .title {
                             text-align: center;
@@ -269,7 +278,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         &.circle-exist {
                             width: 100%;
                             position: static;
-                            color: var(--composer-font-color-secondary);
+                            color: var(--composer-font-color-primary);
                             line-clamp: unset;
                             -webkit-line-clamp: unset;
                         }

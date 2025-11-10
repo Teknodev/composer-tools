@@ -11,16 +11,7 @@
 }
 
 .video-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
 }
 
 .container {
@@ -195,7 +186,7 @@
             }
             .video-container{
                 height: 370px;
-                min-width: 100%;
+                min-width: 70%;
                 margin: var(--composer-gap-md) 0px 0px;
             }
         }
@@ -210,6 +201,10 @@
                 .card{
                     border-radius: 0px;
                 }
+            }
+            .video-container{
+                width: 85%;
+
             }
         }
     }

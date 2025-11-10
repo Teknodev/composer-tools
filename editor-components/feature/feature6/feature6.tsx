@@ -191,7 +191,7 @@ class Feature6 extends BaseFeature {
             )}
 
             {cards?.length > 0 && (
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
                   const imageExist = !!card.image;

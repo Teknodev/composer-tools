@@ -394,7 +394,7 @@ class Feature4 extends BaseFeature {
         className={this.decorateCSS("container")}
         style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")?.url})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("content")}>
+          <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2 }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist || linkTextExist) && (
               <Base.VerticalContent className={this.decorateCSS("featured-card")}>
                 {subtitleExist && (

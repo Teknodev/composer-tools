@@ -223,7 +223,6 @@ class Feature5 extends BaseFeature {
   }
 
   render() {
-    const title = this.getPropValue("title", { as_string: true });
     const row1 = this.castToObject<{
       left_image: { type: "image"; url: string };
       title: React.JSX.Element;
@@ -308,7 +307,7 @@ class Feature5 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {title && (
+          {this.castToString(this.getPropValue("title")) && (
             <Base.SectionTitle className={this.decorateCSS("section-title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
@@ -428,9 +427,9 @@ class Feature5 extends BaseFeature {
                     )}
 
                     {!!this.castToString(row3.image_and_subtitle_1.sub_title) && (
-                      <Base.H4 className={this.decorateCSS("subtitle")}>
+                      <Base.H2 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
-                      </Base.H4>
+                      </Base.H2>
                     )}
                   </div>
                 </ComposerLink>
@@ -452,9 +451,9 @@ class Feature5 extends BaseFeature {
                       />
                     )}
                     {!!this.castToString(row3.image_and_subtitle_2.sub_title) && (
-                      <Base.H4 className={this.decorateCSS("subtitle")}>
+                      <Base.H2 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
-                      </Base.H4>
+                      </Base.H2>
                     )}
                   </div>
                 </ComposerLink>
@@ -476,9 +475,9 @@ class Feature5 extends BaseFeature {
                       />
                     )}
                     {!!this.castToString(row3.image_and_subtitle_3.sub_title) && (
-                      <Base.H4 className={this.decorateCSS("subtitle")}>
+                      <Base.H2 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
-                      </Base.H4>
+                      </Base.H2>
                     )}
                   </div>
                 </ComposerLink>

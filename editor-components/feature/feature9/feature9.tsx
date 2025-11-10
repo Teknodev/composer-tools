@@ -345,7 +345,7 @@ class Feature9 extends BaseFeature {
                   return (
                     <ComposerLink key={index} path={button.url}>
                       <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   );
