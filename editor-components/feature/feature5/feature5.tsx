@@ -83,7 +83,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],

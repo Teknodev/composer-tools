@@ -92,7 +92,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "NavigateTo",
+              displayer: "Navigate To",
               value: ""
             }
           ]
@@ -129,7 +129,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "NavigateTo",
+              displayer: "Navigate To",
               value: ""
             }
           ]
@@ -166,7 +166,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "NavigateTo",
+              displayer: "Navigate To",
               value: ""
             }
           ]
@@ -203,7 +203,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "NavigateTo",
+              displayer: "Navigate To",
               value: ""
             }
           ]
@@ -240,7 +240,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "NavigateTo",
+              displayer: "Navigate To",
               value: ""
             }
           ]
@@ -277,7 +277,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "NavigateTo",
+              displayer: "Navigate To",
               value: ""
             }
           ]

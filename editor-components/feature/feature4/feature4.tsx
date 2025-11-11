@@ -40,7 +40,7 @@ class Feature4 extends BaseFeature {
     this.addProp({
       type: "boolean",
       key: "imageOverlay",
-      displayer: "Image Overlay",
+      displayer: "Overlay",
       value: true,
     });
     this.addProp({

@@ -229,12 +229,13 @@ class Feature7 extends BaseFeature {
                     {(this.getPropValue("links").length > 0) && (
                       <Base.Row className={this.decorateCSS("linkList")}>
                         {links.map((item: INPUTS.CastedButton, index: number) => {
+                          const buttonExist = this.castToString(item.text) || item.icon;
 
-                          return (
+                          return buttonExist && (
                             <div key={index} className={this.decorateCSS("linkContainer")}>
                               <ComposerLink path={item.url}>
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
-                                  <Base.P className={this.decorateCSS("linkText")}>{item.text}</Base.P>
+                                  {this.castToString(item.text) && <Base.P className={this.decorateCSS("linkText")}>{item.text}</Base.P>}
                                   {item.icon && (
                                     <Base.Media
                                       value={{ type: "icon", name: item.icon }}

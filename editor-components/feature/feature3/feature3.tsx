@@ -109,7 +109,7 @@ class Feature3 extends BaseFeature {
             {
               type: "media",
               key: "icon",
-              displayer: "Card Icon",
+              displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon"],
               },
