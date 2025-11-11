@@ -1,4 +1,4 @@
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature29.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -170,7 +170,7 @@ class Feature29 extends BaseFeature {
     this.addProp({
       type: "boolean",
       key: "showDivider",
-      displayer: "Show Divider Line",
+      displayer: "Divider",
       value: true,
     });
 
@@ -237,13 +237,13 @@ class Feature29 extends BaseFeature {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${this.decorateCSS("left")}`}
+        className={`${this.decorateCSS("container")} ${this.decorateCSS("leftLock")}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={`${this.decorateCSS("grid")} ${!showDivider ? this.decorateCSS("noDivider") : ""} ${!this.castToString(title) && displayList.length === 0
-                ? this.decorateCSS("noLeft")
-                : ""
+              ? this.decorateCSS("noLeft")
+              : ""
               } ${!hasRightContent ? this.decorateCSS("noRight") : ""}`}
           >
             <Base.VerticalContent className={this.decorateCSS("leftContent")}>
@@ -282,15 +282,14 @@ class Feature29 extends BaseFeature {
             </div>
 
             {hasRightContent && (
-              <div className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}>
                 {activeItem && (activeItem as any).image && (
                   <div
                     className={this.decorateCSS("imageBox")}
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-                    <img
-                      src={(activeItem as any).image}
-                      alt={`${this.toPlainText((activeItem as any).title)} - Success Story`}
+                    <Base.Media
+                      value={{ type: "image", url: (activeItem as any).image } as TypeMediaInputValue}
                       className={this.decorateCSS("image")}
                     />
                   </div>
@@ -331,12 +330,12 @@ class Feature29 extends BaseFeature {
                   <div className={this.decorateCSS("button-container")}>
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        <span className={this.decorateCSS("buttonText")}>{button.text}</span>
+                        <Base.P className={this.decorateCSS("buttonText")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
           </div>
         </Base.MaxContent>
