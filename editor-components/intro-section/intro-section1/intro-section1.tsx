@@ -71,7 +71,7 @@ class IntroSection1 extends BaseIntroSection {
         {
           type: "media",
           key: "thumbnail",
-          displayer: "Thumbnail (image)",
+          displayer: "Media Thumbnail",
           additionalParams: { availableTypes: ["image"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690b2d873596a1002b1e6a4d?alt=media" }
         },
@@ -127,7 +127,7 @@ class IntroSection1 extends BaseIntroSection {
   const isPlaying = this.getComponentState("isPlaying");
   const alignment = Base.getContentAlignment();
 
-  const isVideo = !!(video && (video.type === "video") && video.url);
+  const isVideo = !!(video?.url);
   const hasRightContainer = !!(isVideo || thumbnail);
   const hasAnyDescription = Array.isArray(descriptions) && descriptions.some((d: any) => this.castToString(d?.title) || this.castToString(d?.text) || d?.icon);
   const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
