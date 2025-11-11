@@ -130,6 +130,7 @@
           max-width: 100%;
           aspect-ratio: 16 / 9;
           overflow: hidden;
+          height: 100%;
         }
         &.right-container-alone {
           flex: 0 0 100%;
@@ -145,6 +146,7 @@
         .video-thumbnail {
           position: relative;
           cursor: pointer;
+          height: 100%;
 
           .thumbnail-overlay {
             position: absolute;
