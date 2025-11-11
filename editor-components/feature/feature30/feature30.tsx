@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
-import styles from "./feature26.module.scss";
+import styles from "./feature30.module.scss";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -15,7 +15,7 @@ interface Card {
   description: React.JSX.Element;
 }
 
-class Feature26 extends BaseFeature {
+class Feature30 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
 
@@ -47,7 +47,7 @@ class Feature26 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Icon or Image",
+              displayer: "Media",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "BsCloudCheck" },
             },
@@ -74,7 +74,7 @@ class Feature26 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Icon or Image",
+              displayer: "Media",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "BsShieldCheck" },
             },
@@ -101,7 +101,7 @@ class Feature26 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Icon or Image",
+              displayer: "Media",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "BsLock" },
             },
@@ -128,7 +128,7 @@ class Feature26 extends BaseFeature {
             {
               type: "media",
               key: "media",
-              displayer: "Icon or Image",
+              displayer: "Media",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "BsGraphUp" },
             },
@@ -176,7 +176,7 @@ class Feature26 extends BaseFeature {
   }
 
   static getName(): string {
-    return "Feature 26";
+    return "Feature 30";
   }
 
   render() {
@@ -223,16 +223,20 @@ class Feature26 extends BaseFeature {
           )}
 
           {filteredFeatures.length > 0 && (
-            <div className={gridClass}>
+            <Base.ListGrid
+              gridCount={{
+                pc: itemsPerRow,
+                tablet: 2,
+                phone: 1,
+              }}
+              className={gridClass}
+            >
               {filteredFeatures.map((feature: Card, index: number) => {
                 const titleExist = this.castToString(feature.title);
                 const descriptionExist = this.castToString(feature.description);
                 const media = feature.media;
                 return (
-                  <Base.VerticalContent
-                    key={index}
-                    className={this.decorateCSS("feature-card")}
-                  >
+                  <div key={index} className={this.decorateCSS("feature-card")}>
                     {media && (
                       <div className={this.decorateCSS("icon-container")}>
                         <Base.Media
@@ -258,10 +262,10 @@ class Feature26 extends BaseFeature {
                         )}
                       </Base.VerticalContent>
                     )}
-                  </Base.VerticalContent>
+                  </div>
                 );
               })}
-            </div>
+            </Base.ListGrid>
           )}
 
           {buttons.map((item: INPUTS.CastedButton, index: number) => {
@@ -293,4 +297,4 @@ class Feature26 extends BaseFeature {
   }
 }
 
-export default Feature26;
+export default Feature30;
