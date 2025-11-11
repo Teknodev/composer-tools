@@ -192,7 +192,7 @@ class LogoComp10Page extends LogoClouds {
   };
 
   render() {
-    const title = this.castToString(this.getPropValue("title"));
+    const titleExists = this.castToString(this.getPropValue("title"));
     const logoItems = this.castToObject<TImage[]>("image-items") || [];
     const itemCount = this.getPropValue("itemCount") || 4;
     const sliderRef = this.getComponentState("slider-ref");
@@ -222,10 +222,10 @@ class LogoComp10Page extends LogoClouds {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {title && (
+          {titleExists && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
               <Base.H4 className={this.decorateCSS("title")}>
-                {title}
+                {this.getPropValue("title")}
               </Base.H4>
             </Base.VerticalContent>
           )}
