@@ -93,8 +93,7 @@ class Feature27Component extends BaseFeature {
                 {Array.isArray(buttons) && (() => {
                   const validButtons = buttons.filter((item) => {
                     const text = this.castToString(item.text || "");
-                    const iconObj = (item as any)?.icon;
-                    const iconName = iconObj?.name || (typeof iconObj === "string" ? iconObj : null);
+                    const iconName = (item as any)?.icon?.name;
                     const hasValidIcon = iconName && iconName !== "";
                     return !!text || hasValidIcon;
                   });
@@ -104,8 +103,7 @@ class Feature27Component extends BaseFeature {
                       {validButtons.map((item, index) => {
                         const buttonText = this.castToString(item.text || "");
                         const buttonUrl = item.url || "#";
-                        const iconObj = (item as any)?.icon;
-                        const iconName = iconObj?.name || (typeof iconObj === "string" ? iconObj : null);
+                        const iconName = (item as any)?.icon?.name;
                         const hasValidIcon = iconName && iconName !== "";
                         return (
                           <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
