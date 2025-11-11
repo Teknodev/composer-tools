@@ -33,7 +33,7 @@ class Feature25 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab text",
+          displayer: "Tab Text",
           value: [
             {
               type: "string",
