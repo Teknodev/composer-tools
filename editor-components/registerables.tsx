@@ -103,6 +103,7 @@ import HeroSection32 from "./hero-section/hero-section32/hero-section32";
 import HeroSection33 from "./hero-section/hero-section33/hero-section33";
 import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
+import IntroSection2 from "./intro-section/intro-section2/intro-section2";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -175,6 +176,7 @@ import StatsComponent9 from "./stats/stats9/stats9";
 import StatsComponent10 from "./stats/stats10/stats10";
 import StatsComponent11 from "./stats/stats11/stats11";
 import StatsComponent12 from "./stats/stats12/stats12";
+import StatsComponent14 from "./stats/stats14/stats14";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -183,6 +185,7 @@ import Form5 from "./contacts/form5/form5";
 import Form6 from "./contacts/form6/form6";
 import Form7 from "./contacts/form7/form7";
 import Form8 from "./contacts/form8/form8";
+import Form9 from "./contacts/form9/form9";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -272,7 +275,7 @@ import About8 from "./about/about8/about8";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
-import Comparison1 from "./comparison/comparison1/comparison1"; 
+import Comparison1 from "./comparison/comparison1/comparison1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -393,6 +396,7 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection33,
     HeroSection34,
     HeroSection35,
+    IntroSection2,
     NavbarComponent1,
     NavbarComponent2,
     NavbarComponent3,
@@ -485,6 +489,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent10,
     StatsComponent11,
     StatsComponent12,
+    StatsComponent14,
     Form1,
     Form2,
     Form3,
@@ -493,6 +498,7 @@ function Registerables(composer: ComponentsRegistery) {
     Form6,
     Form7,
     Form8,
+    Form9,
     FooterComponent1,
     FooterComponent2,
     FooterComponent3,
@@ -554,4 +560,3 @@ function Registerables(composer: ComponentsRegistery) {
 }
 
 export default Registerables;
-
