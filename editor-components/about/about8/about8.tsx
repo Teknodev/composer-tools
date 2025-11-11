@@ -27,7 +27,7 @@ class About8 extends BaseAbout {
       },
       value: {
         type: "image",
-        url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/windows-JW-T2BH5k5E-unsplash-1070x713.jpg",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efa23596a1002b23acda?alt=media",
       },
     });
 
@@ -40,7 +40,7 @@ class About8 extends BaseAbout {
       },
       value: {
         type: "image",
-        url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efdd3596a1002b23ad71?alt=media",
       },
     });
 
@@ -52,7 +52,7 @@ class About8 extends BaseAbout {
         {
           type: "object",
           key: "text",
-          displayer: "text",
+          displayer: "Text",
           value: [
             {
               type: "string",
@@ -66,7 +66,7 @@ class About8 extends BaseAbout {
         {
           type: "object",
           key: "text",
-          displayer: "text",
+          displayer: "Text",
           value: [
             {
               type: "string",
