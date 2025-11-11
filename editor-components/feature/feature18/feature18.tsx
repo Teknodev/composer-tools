@@ -328,7 +328,7 @@ class Feature18 extends BaseFeature {
           <div className={this.decorateCSS("tabs")}>
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
-                (tab: ITabs, index: number) => (
+                (tab: ITabs, index: number) => (this.castToString(tab.tabText) || tab.icon) && (
                   <div
                     className={
                       `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index

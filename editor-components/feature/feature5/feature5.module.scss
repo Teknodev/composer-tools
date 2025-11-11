@@ -202,9 +202,7 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-
-
-          padding: 0 var(--composer-gap-lg);
+          padding: var(--composer-gap-xl);
           display: flex;
           height: 100%;
         }
@@ -278,7 +276,6 @@
       }
 
       .row2 {
-
         .first,
         .second,
         .third {
@@ -320,9 +317,8 @@
             height: auto;
             align-items: center;
             justify-content: center;
-            padding: var(--composer-gap-sm);
+            padding: var(--composer-gap-md);
             margin: 0;
-
             width: 100%;
           }
         }
@@ -341,7 +337,6 @@
             justify-content: center;
             padding: var(--composer-gap-sm);
             margin: 0;
-
             width: 100%;
           }
         }

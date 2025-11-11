@@ -251,6 +251,8 @@ class Feature21 extends BaseFeature{
         const cards = this.castToObject<Card[]>("cards") || [];
         const hoveredIndex = this.getComponentState("hoveredIndex");
 
+        const alignment = Base.getContentAlignment();
+
         return(
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -305,7 +307,7 @@ class Feature21 extends BaseFeature{
                                                     </Base.P>
                                                 )}
                                             </div>}
-                                            {buttonExist && <div className={this.decorateCSS("right-side")}>
+                                            {buttonExist && <div className={`${this.decorateCSS("right-side")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                                                 {buttonExist && (
                                                     <ComposerLink path={button.url || "#"}>
                                                         <Base.Button
