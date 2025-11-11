@@ -58,6 +58,10 @@
         flex-direction: column;
         gap: var(--composer-gap-md);
 
+        .topRightSide .card {
+          background-color: var(--composer-primary-color);
+        }
+
         > div {
           flex: 1;
           display: flex;

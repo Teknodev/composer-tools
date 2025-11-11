@@ -290,13 +290,12 @@ class Feature29 extends BaseFeature {
 
   renderCard(cardData, prefix) {
     const hasImage = cardData[`${prefix}Image`];
-    // const button = cardData[`${prefix}Button`]; // eski
-    const buttonKey = Object.keys(cardData).find((k) =>
-      k.toLowerCase().includes("button")
-    );
-    const button = buttonKey ? cardData[buttonKey] : null;
+    const button = cardData[`${prefix}Button`];
 
-    if (!button) console.log("Button is undefined for prefix:", prefix);
+    // const button = this.castToObject<INPUTS.CastedButton>(
+    //   cardData[`${prefix}Button`]
+    // );
+
 
     return (
       <div
@@ -326,8 +325,11 @@ class Feature29 extends BaseFeature {
             )}
 
             {button && (
-              <ComposerLink>
-                <Base.Button className={this.decorateCSS("button")}>
+              <ComposerLink path={button.url}>
+                <Base.Button
+                  buttonType={button.type}
+                  className={this.decorateCSS("button")}
+                >
                   <Base.P className={this.decorateCSS("button-text")}>
                     {button.text}
                   </Base.P>
@@ -347,8 +349,6 @@ class Feature29 extends BaseFeature {
     const middleSide = this.castToObject<any>("middleSide");
     const topRightSide = this.castToObject<any>("topRightSide");
     const bottomRightSide = this.castToObject<any>("bottomRightSide");
-    console.log("BOTTOM RİGHT SİDE = " + bottomRightSide);
-    console.log("BOTTOM RİGHT SİDE BUTTON = " + bottomRightSide.button);
 
     const isLeftVisible =
       topLeftSide.visibility ||
@@ -409,8 +409,11 @@ class Feature29 extends BaseFeature {
 
             {isRightVisible && (
               <div className={this.decorateCSS("right-side")}>
-                {topRightSide.visibility &&
-                  this.renderCard(topRightSide, "topRightSide")}
+                {topRightSide.visibility && (
+                  <div className={this.decorateCSS("topRightSide")}>
+                    {this.renderCard(topRightSide, "topRightSide")}
+                  </div>
+                )}
                 {bottomRightSide.visibility &&
                   this.renderCard(bottomRightSide, "bottomRightSide")}
               </div>
