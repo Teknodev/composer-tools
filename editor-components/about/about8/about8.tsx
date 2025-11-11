@@ -92,7 +92,7 @@ class About8 extends BaseAbout {
         "button",
         "Button",
         "Learn More",
-        null,
+        "",
         null,
         null,
         "Primary"
