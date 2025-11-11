@@ -372,6 +372,21 @@ class HeroSection10 extends BaseHeroSection {
                 >
                   {leftPage && (
                     <div className={this.decorateCSS("left")}>
+                      <div className={this.decorateCSS("left-container")}>
+                          {(title || imageTitle) && (
+                        <div className={this.decorateCSS("title-wrapper")}>
+                          {title && (
+                            <h1 className={this.decorateCSS("title")}>
+                              {item.title}
+                            </h1>
+                          )}
+                          {imageTitle && (
+                            <h1 className={this.decorateCSS("imagetitle")}>
+                              {item.imageTitle}
+                            </h1>
+                          )}
+                        </div>
+                      )}
                       <div
                         className={
                           this.decorateCSS("left-page-content") +
@@ -381,17 +396,6 @@ class HeroSection10 extends BaseHeroSection {
                             : "")
                         }
                       >
-                        {(title && image) && (
-                          <h1 className={this.decorateCSS("title")}>
-                            {item.title}
-                          </h1>
-                        )}
-                        {(!image && (title || imageTitle)) && (
-                          <div className={this.decorateCSS("title-wrapper")}>
-                            {title && (<div className={this.decorateCSS("title")}>{item.title}</div>)}
-                            {imageTitle && (<div className={this.decorateCSS("image-title")}>{item.imageTitle}</div>)}
-                          </div>
-                        )}
                         {description && (
                           <p className={this.decorateCSS("description")}>
                             {item.description}
@@ -466,14 +470,11 @@ class HeroSection10 extends BaseHeroSection {
                         )}
                       </div>
                     </div>
+                        
+                    </div>
                   )}
                   {image && (
                     <div className={this.decorateCSS("middle")}>
-                      {imageTitle && (
-                        <h1 className={this.decorateCSS("imagetitle")}>
-                          {item.imageTitle}
-                        </h1>
-                      )}
                       {image && (
                         <div className={this.decorateCSS("image-wrapper")}>
                           <Base.Media

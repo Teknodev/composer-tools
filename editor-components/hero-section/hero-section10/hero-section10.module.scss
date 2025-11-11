@@ -1,9 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  padding-top: 0;
-  padding-bottom: 0;
+  padding: 0 50px !important;
   min-height: 100px;
   .max-content {
+    max-width: 100%;
     .carousel {
       max-width: 100%;
       max-height: 100vh;
@@ -27,6 +27,8 @@
         width: 100%;
         display: flex !important;
         height: 100%;
+        position: relative;
+        
         .left {
           display: flex;
           flex-direction: column;
@@ -37,27 +39,38 @@
           padding-right: var(--composer-gap-md);
           padding-top: 20px;
           padding-bottom: 20px;
-          .left-page-content {
+
+          .left-container {
+            position: absolute;
+            z-index: 9;
+          }
+          
+          .title-wrapper {
             display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
+            
             .title {
               font-size: 4.5rem;
               color: var(--composer-font-color-primary);
               margin: 0px;
+              max-width: 30%;
+              flex: 1;
             }
-            .title-wrapper{
-              display: flex;
-              gap: var(--composer-gap-sm);
-              flex-wrap: wrap;
-              .title{
-                font-size: 4.5rem;
-              }
-              .image-title{
-                font-size: 4.5rem;
-                color: var(--composer-font-color-primary);
-              }
+            
+            .imagetitle {
+              font-size: 4.5rem;
+              color: var(--composer-font-color-primary);
+              margin: 0px;
+              flex: 1.5;
+              max-width: 40%;
             }
+          }
+          
+          .left-page-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+            max-width: 25%;
             .description {
               width: 100%;
               font-size: 1.5rem;
@@ -199,7 +212,6 @@
               font-size: 1.5rem;
               color: var(--composer-font-color-primary);
               margin: 0;
-              text-align: justify;
             }
 
             .description1 {
@@ -241,22 +253,23 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: 0 var(--composer-gap-lg) !important;
     .max-content {
       .carousel {
         .content {
           .left {
-            .left-page-content {
+            .title-wrapper {
               .title {
                 font-size: 2rem;
+                max-width: 30%;
               }
-              .title-wrapper {
-                .title {
-                  font-size: 2rem;
-                }
-                .image-title {
-                  font-size: 2rem;
-                }
+              .imagetitle {
+                font-size: 2rem;
+                max-width: 35%;
               }
+            }
+            
+            .left-page-content {
               .description {
                 font-size: 1rem;
               }
@@ -303,7 +316,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0px 40px 20px 40px;
+    padding: 0 var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
     .max-content {
       .carousel {
         max-height: 100%;
@@ -314,13 +327,35 @@
           .left {
             order: 1;
             padding: 0px;
-            .left-page-content {
-              gap: var(--composer-gap-sm);
-              height: auto;
+            
+            .left-container {
+              position: relative;
+              z-index: 1;
+            }
+            
+            .title-wrapper {
+              flex-direction: column;
+              width: 100%;
+              gap: 0;
+              
               .title {
                 font-size: 2rem;
-                margin: 0px;
+                width: 100%;
+                max-width: 100%;
               }
+              .imagetitle {
+                font-size: 2rem;
+                width: 100%;
+                max-width: 100%;
+              }
+            }
+            
+            .left-page-content {
+              position: static;
+              gap: var(--composer-gap-sm);
+              height: auto;
+              width: 100%;
+              max-width: 100%;
               .description {
                 width: 100%;
                 font-size: 1rem;
@@ -330,12 +365,12 @@
                 .iconsSection{
                   .prev_icon_wrapper, .next_icon_wrapper{
                     .prev_icon, .next_icon {
-                      font-size: 2rem;
+                      font-size: 1.5rem;
                     }
                   }
                 }
                 .slide_number {
-                  font-size: 4rem;
+                  font-size: 2rem;
                 }
               }
             }
