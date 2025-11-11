@@ -185,17 +185,15 @@ class Feature30 extends BaseFeature {
     const subheading = this.getPropValue("subheading");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-
+    const alignment = Base.getContentAlignment();
     const headingExist = this.castToString(heading);
     const subheadingExist = this.castToString(subheading);
-
     const filteredFeatures = features.filter((feature: Card) => {
       const hasTitle = this.castToString(feature.title);
       const hasDescription = this.castToString(feature.description);
       const hasMedia = feature.media?.name || feature.media?.url;
       return hasTitle || hasDescription || hasMedia;
     });
-
     const gridClass = `${this.decorateCSS("features-grid")} ${
       filteredFeatures.length > 0
         ? this.decorateCSS(`features-grid-${itemsPerRow}`)
@@ -231,12 +229,16 @@ class Feature30 extends BaseFeature {
               }}
               className={gridClass}
             >
-              {filteredFeatures.map((feature: Card, index: number) => {
+              {filteredFeatures.map((feature: Card) => {
                 const titleExist = this.castToString(feature.title);
                 const descriptionExist = this.castToString(feature.description);
                 const media = feature.media;
                 return (
-                  <div key={index} className={this.decorateCSS("feature-card")}>
+                  <div
+                    className={`${this.decorateCSS(
+                      "feature-card"
+                    )} ${this.decorateCSS(alignment)}`}
+                  >
                     {media && (
                       <div className={this.decorateCSS("icon-container")}>
                         <Base.Media

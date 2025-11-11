@@ -29,9 +29,13 @@
     .feature-card {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--composer-gap-md);
       text-align: center;
+
+      &.center {
+        align-items: center;
+      }
 
       .icon-container {
         display: flex;
