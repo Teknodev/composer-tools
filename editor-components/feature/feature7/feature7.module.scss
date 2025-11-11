@@ -1,5 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
+  padding: 80px 0 !important;
   .max-content {
     .wrapper {
       display: flex;
@@ -112,7 +113,7 @@
       .wrapper {
         flex-direction: column;
         .text-container {
-          padding: 80px var(--composer-gap-lg);
+          padding: var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-lg) !important;
           .title-wrapper {
             .subtitle,  .title, .description {
               text-align: left;
@@ -139,7 +140,7 @@
         flex-direction: column;
 
         .text-container {
-          padding: var(--composer-gap-xl) var(--composer-gap-md);
+          padding: var(--composer-gap-md) var(--composer-gap-md) !important;
           .title-wrapper {
             .featuresList {
               .feature {

@@ -15,8 +15,7 @@
                 justify-content: end;
                 gap: var(--composer-gap-md);
                 .arrow-right, .arrow-left{
-                    border: 2px solid var(--composer-font-color-primary);
-                    border-radius: var(--composer-border-radius-full);
+                    border: none;
                     padding: var(--composer-gap-xs);
                     display: flex;
                     align-items: center;
@@ -25,7 +24,7 @@
                     background-color: transparent;
                     .icon{
                         background-color: transparent;
-                        font-size: 1.5rem;
+                        font-size: 3rem;
                         color: var(--composer-font-color-primary);
                         padding: var(--composer-gap-xs);
                     }
@@ -117,6 +116,13 @@
     .container {
         .max-content {
             .wrapper {
+                .arrow-container{
+                    .arrow-right, .arrow-left{
+                        .icon{
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
                     .cards-container {
                         .carousel{
                             >div{

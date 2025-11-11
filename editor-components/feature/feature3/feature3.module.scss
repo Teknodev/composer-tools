@@ -24,7 +24,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                     margin-bottom: var(--composer-gap-md);
 
                     &.circle-exist {
-                        text-align: left;
+                        text-align: center;
                         margin: 0;
                         color: var(--composer-font-color-secondary);
                     }

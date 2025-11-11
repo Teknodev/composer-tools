@@ -243,7 +243,7 @@ class Feature15 extends BaseFeature {
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid
+                    { this.castToObject<Card[]>("cards").length > 0 && <Base.ListGrid
                         gridCount={{ pc: 2 }}
                         className={this.decorateCSS("cards")}
                     >
@@ -278,7 +278,7 @@ class Feature15 extends BaseFeature {
                                 </div>
                             )
                         )}
-                    </Base.ListGrid>
+                    </Base.ListGrid>}
                     {this.getPropValue("cover_image") && (
                         <div className={this.decorateCSS("video-container")}>
                             <Base.Media

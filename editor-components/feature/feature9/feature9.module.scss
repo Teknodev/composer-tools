@@ -88,6 +88,11 @@
               .description {
                 text-align: left;
                 color: var(--composer-font-color-primary);
+                display: -webkit-box;
+                -webkit-line-clamp: 14;
+                -webkit-box-orient: vertical;
+                line-clamp: 14;
+                overflow: hidden;
               }
             }
           
@@ -116,9 +121,21 @@
     .max-content{
       .wrapper {
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: 0;
         .title-container {
           padding: var(--composer-gap-md);
+        }
+        .cards-container {
+          .card {
+            .card-inner {
+              .description-container {
+                .description {
+                  -webkit-line-clamp: 10;
+                  line-clamp: 10;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -135,6 +152,14 @@
         .cards-container{
           .card{
             padding: var(--composer-gap-md);
+            .card-inner {
+              .description-container {
+                .description {
+                  -webkit-line-clamp: 12;
+                  line-clamp: 12;
+                }
+              }
+            }
           }
         }
       }

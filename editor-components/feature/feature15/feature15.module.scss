@@ -132,6 +132,12 @@
             }
         }
 
+        &:not(:has(.cards)) {
+            .video-container {
+                width: 100%;
+            }
+        }
+
         .video-overlay {
             .video-container {
               height: fit-content;

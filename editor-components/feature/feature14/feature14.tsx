@@ -192,7 +192,7 @@ class Feature14 extends BaseFeature {
           {(this.castToString(this.getPropValue("title")) || this.castToString(button.text)
             || this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && (
               <div className={`${this.decorateCSS("title-wrapper")} ${alignment == "center" && this.decorateCSS("center")}`}>
-                <Base.VerticalContent className={this.decorateCSS("title-left")}>
+                {(this.castToString(this.getPropValue("title")) || this.castToString(button.text)) && <Base.VerticalContent className={this.decorateCSS("title-left")}>
                   {this.castToString(this.getPropValue("title")) && (
                     <Base.SectionTitle className={this.decorateCSS("header")}>
                       {this.getPropValue("title")}
@@ -208,8 +208,8 @@ class Feature14 extends BaseFeature {
                       </ComposerLink>
                     </div>
                   )}
-                </Base.VerticalContent>
-                <Base.VerticalContent className={this.decorateCSS("title-right")}>
+                </Base.VerticalContent>}
+                {(this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && <Base.VerticalContent className={this.decorateCSS("title-right")}>
                   {this.castToString(this.getPropValue("firstdescription")) && (
                     <Base.SectionDescription className={this.decorateCSS("description-1")}>
                       {this.getPropValue("firstdescription")}
@@ -231,7 +231,7 @@ class Feature14 extends BaseFeature {
                       </ComposerLink>
                     </div>
                   )}
-                </Base.VerticalContent>
+                </Base.VerticalContent>}
               </div>
             )
           }

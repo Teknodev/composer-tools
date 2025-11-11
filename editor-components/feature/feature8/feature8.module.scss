@@ -69,6 +69,7 @@
             .cards-container {
                 flex-direction: row;
                 gap: var(--composer-gap-md);
+                padding-bottom: 0;
                 .card {
                     &.visible {
                         transform: none;
