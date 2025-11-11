@@ -659,47 +659,50 @@ class Footer8Page extends BaseFooter {
 
             {(bottomTextExist || links.length > 0 || socials.length > 0) && (
               <div className={this.decorateCSS("footer-bottom")}>
-                {links.length > 0 && (
-                  <div className={this.decorateCSS("links")}>
-                    {links.map((item: any, index: number) => {
-                      const textExist = this.castToString(item.text);
-                      return (
-                        textExist && (
-                          <div 
-                            className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
-                            data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                          >
-                            <ComposerLink key={index} path={item.url}>
-                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
-                            </ComposerLink>
-                          </div>
-                        )
-                      );
-                    })}
-                  </div>
-                )}
                 {bottomTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("bottomText")}</Base.P>}
 
-                {socials.length > 0 && (
-                  <div className={this.decorateCSS("socials-container")}>
-                    {socials.map((item: any, index: number) => {
-                      const textExist = this.castToString(item.text);
-                      return (
-                        (item.icon || textExist) && (
-                          <ComposerLink key={index} path={item.url}>
+                <div className={this.decorateCSS("right-wrapper")}>
+                  {links.length > 0 && (
+                    <div className={this.decorateCSS("links")}>
+                      {links.map((item: any, index: number) => {
+                        const textExist = this.castToString(item.text);
+                        return (
+                          textExist && (
                             <div 
-                              className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
+                              className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
                               data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
-                              <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
-                              <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
+                              <ComposerLink key={index} path={item.url}>
+                                <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                              </ComposerLink>
                             </div>
-                          </ComposerLink>
-                        )
-                      );
-                    })}
-                  </div>
-                )}
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {socials.length > 0 && (
+                    <div className={this.decorateCSS("socials-container")}>
+                      {socials.map((item: any, index: number) => {
+                        const textExist = this.castToString(item.text);
+                        return (
+                          (item.icon || textExist) && (
+                            <ComposerLink key={index} path={item.url}>
+                              <div 
+                                className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
+                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
+                              </div>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>

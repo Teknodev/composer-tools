@@ -24,6 +24,7 @@
 
   .max-content {
     .first-container {
+        padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
       .first-max-content {
         .footer-upper {
           display: flex;
@@ -361,6 +362,17 @@
       .footer-bottom {
         gap: var(--composer-gap-sm);
         padding: 0;
+
+        &.center-alignment {
+          flex-direction: column;
+          align-items: center;
+
+          .copyright-container,
+          .social,
+          .pages {
+            justify-content: center;
+          }
+        }
       }
     }
   }
@@ -389,6 +401,14 @@
           flex: 1;
           width: 100%;
           align-items: center;
+
+          &.center-alignment {
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+            }
+          }
         }
       }
 

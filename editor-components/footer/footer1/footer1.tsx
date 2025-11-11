@@ -338,6 +338,8 @@ class Footer1Page extends BaseFooter {
 
     const line = this.getPropValue("line");
 
+    const alignmentValue = Base.getContentAlignment();
+
     const pages = this.castToObject<any[]>("pages");
     const social = this.castToObject<any[]>("social");
     const copyright = this.getPropValue("copyright");
@@ -356,7 +358,7 @@ class Footer1Page extends BaseFooter {
               {upperExist && (
                 <div className={this.decorateCSS("footer-upper")}>
                   {(titleExist || descriptionExist || subtitleExist) && (
-                    <Base.VerticalContent className={this.decorateCSS("header")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                       {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                       {titleExist &&<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                       {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -414,7 +416,7 @@ class Footer1Page extends BaseFooter {
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")} >
               {footerBottomExist && (
-                <div className={this.decorateCSS("footer-bottom")}>
+                <div className={`${this.decorateCSS("footer-bottom")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                   {copyrightExist && (
                     <div className={this.decorateCSS("copyright-container")}>
                       <Base.P className={this.decorateCSS("copyright-text")}>{this.getPropValue("copyright")}</Base.P>
