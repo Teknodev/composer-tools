@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding: 80px 0 !important;
+    padding: 0 !important;
     background-color: color-mix(
         in srgb,
         var(--composer-html-background),
@@ -39,7 +39,7 @@
                     display: none;
                     position: absolute;
                     right: 0;
-                    font-size: 4rem;
+                    font-size: 60px;
                     opacity: 0;
                     transition: opacity 0.3s ease-in-out;
                     transform: translateX(50%);
@@ -352,7 +352,7 @@
                     .icon{
                         position: absolute;
                         padding: var(--composer-gap-md);
-                        font-size: 2.5rem;
+                        font-size: 82px;
                         right: 0;
                         transform: translateX(50%);
                     }
