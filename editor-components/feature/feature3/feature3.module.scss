@@ -1,9 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 $space: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
-$cardsmargintop: -300px;
+$cardsmargintop: max(-15%, -300px);
 $logosmargintop: calc(-1 * $cardsmargintop / 2);
-$circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
+$circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
 .container {
     min-height: auto;
