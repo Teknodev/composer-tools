@@ -35,7 +35,7 @@ class Feature27Component extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Get Started", null, null , null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Get Started", null, "" , null, "Primary"),
         INPUTS.BUTTON("button", "Button", "Learn More", null, "FaArrowRight", null, "White"),
       ],
     });
@@ -93,8 +93,10 @@ class Feature27Component extends BaseFeature {
                 {Array.isArray(buttons) && (() => {
                   const validButtons = buttons.filter((item) => {
                     const text = this.castToString(item.text || "");
-                    const iconName = (item as any)?.icon?.name || (item as any)?.icon;
-                    return !!text || !!iconName;
+                    const iconObj = (item as any)?.icon;
+                    const iconName = iconObj?.name || (typeof iconObj === "string" ? iconObj : null);
+                    const hasValidIcon = iconName && iconName !== "";
+                    return !!text || hasValidIcon;
                   });
                   if (validButtons.length === 0) return null;
                   return (
@@ -102,11 +104,13 @@ class Feature27Component extends BaseFeature {
                       {validButtons.map((item, index) => {
                         const buttonText = this.castToString(item.text || "");
                         const buttonUrl = item.url || "#";
-                        const iconName = (item as any)?.icon?.name || (item as any)?.icon;
+                        const iconObj = (item as any)?.icon;
+                        const iconName = iconObj?.name || (typeof iconObj === "string" ? iconObj : null);
+                        const hasValidIcon = iconName && iconName !== "";
                         return (
                           <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                              {iconName && (
+                              {hasValidIcon && (
                                 <Base.Media
                                   className={this.decorateCSS("button-icon")}
                                   value={{ type: "icon", name: iconName }}
