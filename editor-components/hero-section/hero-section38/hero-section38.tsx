@@ -113,7 +113,7 @@ class HeroSection38 extends BaseHeroSection {
     });
 
     this.sliderRef = React.createRef();
-    this.setComponentState("active-index", 0);
+    this.setComponentState("active-index", 1);
   }
 
   static getName(): string {
@@ -137,19 +137,20 @@ class HeroSection38 extends BaseHeroSection {
     const overlay = !!this.getPropValue("overlay");
     const autoplaySpeed = this.getPropValue("autoplaySpeed") || 3000;
 
+    const visibleItemCount = Math.min(slides.length, 1.2);
+    
     const settings = {
-      dots: true,
+      dots: false,
       infinite: slides.length > 1,
       speed: 1000,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: autoplaySpeed,
-      slidesToShow: 3,
+      slidesToShow: visibleItemCount,
       slidesToScroll: 1,
       centerMode: true,
       centerPadding: "0px",
       arrows: false,
-      initialSlide: 1,
-      dotsClass: this.decorateCSS("dots"),
+      variableWidth: true,
       beforeChange: (_prev: number, next: number) => {
         this.setComponentState("active-index", next);
       },
@@ -157,7 +158,8 @@ class HeroSection38 extends BaseHeroSection {
         {
           breakpoint: 960,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: visibleItemCount,
+            variableWidth: true,
             centerMode: true,
           },
         },
@@ -165,7 +167,9 @@ class HeroSection38 extends BaseHeroSection {
           breakpoint: 640,
           settings: {
             slidesToShow: 1,
+            variableWidth: false,
             centerMode: true,
+            centerPadding: "0px",
           },
         },
       ],
@@ -220,6 +224,16 @@ class HeroSection38 extends BaseHeroSection {
                       }}
                     />
                   </button>
+                  <div className={this.decorateCSS("dots")}>
+                    {slides.map((_, index) => (
+                      <button
+                        key={`dot-${index}`}
+                        className={`${this.decorateCSS("dot")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
+                        onClick={() => this.sliderRef.current?.slickGoTo(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
+                  </div>
                   <button
                     className={this.decorateCSS("arrow-button")}
                     onClick={this.handleNextClick}
