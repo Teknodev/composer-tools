@@ -108,11 +108,6 @@
       &:has(> .image-container:only-child) {
         justify-content: center;
       }
-      > .image-container:only-child {
-        flex: none;
-        margin-left: auto;
-        margin-right: auto;
-      }
     }
   }
 }
@@ -125,7 +120,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: var(--composer-gap-xl);
-        .image-container { width: 352px; height: 352px; aspect-ratio: auto; }
+        .image-container { width: 350px; height: 350px; aspect-ratio: auto; }
         .content { max-width: 100%; }
       }
     }

@@ -25,7 +25,7 @@ class FeatureComponent26 extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Discover More", "", "",null, "Primary"),
         INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaPlay", null, "White")
       ]
     });
@@ -33,7 +33,7 @@ class FeatureComponent26 extends BaseFeature {
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
-      displayer: "Hover Animation",
+      displayer: "Animation",
       value: ["animate1"],
       additionalParams: { selectItems: ["animate1"] }
     });
@@ -69,9 +69,10 @@ class FeatureComponent26 extends BaseFeature {
                 const hasDescription = !!this.castToString(description);
                 const hasButtons = Array.isArray(buttons) && buttons.some((b: any) => {
                   const textExist = this.castToString(b?.text);
-                  const iconExist = !!b?.icon;
+                  const iconName = (b as any)?.icon?.name;
+                  const hasValidIcon = iconName && iconName !== "";
                   const imageExist = !!b?.image;
-                  return !!textExist || !!iconExist || !!imageExist;
+                  return !!textExist || hasValidIcon || imageExist;
                 });
                 const hasAnyContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
                 if (!hasAnyContent) return null;
@@ -88,16 +89,17 @@ class FeatureComponent26 extends BaseFeature {
                     <div className={this.decorateCSS("buttons-container")}>
                 {buttons?.map((item: INPUTS.CastedButton, index: number) => {
                   const isTextExist = this.castToString(item.text);
-                  const iconExist = item.icon && (item.icon as any)?.name;
+                  const iconName = (item as any)?.icon?.name;
+                  const hasValidIcon = iconName && iconName !== "";
                   const imageExist = item.image && (item.image as any)?.url;
-                  if (!isTextExist && !iconExist && !imageExist) return null;
+                  if (!isTextExist && !hasValidIcon && !imageExist) return null;
                   return (
                     <ComposerLink key={`feature26-btn-${index}`} path={item.url}>
                       {imageExist ? (
                         <Base.Media value={item.image as any} className={this.decorateCSS("button-image")} />
                       ) : (
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("button-icon")} />}
+                          {hasValidIcon && <Base.Media value={item.icon as any} className={this.decorateCSS("button-icon")} />}
                           {isTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                         </Base.Button>
                       )}
