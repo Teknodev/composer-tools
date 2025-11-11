@@ -137,6 +137,12 @@
         }
       }
 
+      &:not(:has(.image-container .image)) {
+        .text {
+          margin: 0 !important;
+        }
+      }
+
     }
   }
 
