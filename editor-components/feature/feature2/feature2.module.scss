@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding-top: var(--composer-gap-lg);
-
     .max-content {
         .wrapper {
             margin-top: var(--composer-gap-md);

@@ -1,8 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
     position: relative;
     &:before{
         content: "";
@@ -145,6 +145,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
+
         .max-content {
             .tabs {
                 .tab {
@@ -163,8 +164,8 @@
 
 @container (max-width: #{$composer-phone-width}){
     .container {
-        padding-top: var(--composer-gap-md);
-        padding-bottom: var(--composer-gap-md);
+        padding-top: var(--composer-gap-xl) !important;
+        padding-bottom: var(--composer-gap-xl) !important;
         .max-content {
             .tabs {
                 flex-direction: column;
