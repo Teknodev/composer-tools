@@ -29,7 +29,7 @@
 
     .services-grid {
       margin-bottom: var(--composer-gap-md);
-      gap: var(--composer-gap-lg);
+      gap: var(--composer-gap-md);
 
       .service-item {
         position: relative;
@@ -87,19 +87,19 @@
           .border-top {
             position: absolute;
             top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
-            left: calc(-1 * var(--composer-gap-xl));
+            left: calc(-1 * var(--composer-gap-md));
             height: var(--composer-border-width-xs);
-            width: calc(100% + 60px);
+            width: calc(100% + var(--composer-gap-md) * 2);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             z-index: 1;
             &:after {
               content: "";
               position: absolute;
-              left: 90px;
+              left: var(--composer-gap-lg);
               top: 0;
               background-color: var(--composer-font-color-primary);
               height: var(--composer-border-width-xs);
-              width: calc(100% - 90px);
+              width: calc(100% - var(--composer-gap-lg) - var(--composer-gap-md));
               z-index: 1;
             }
           }
@@ -116,16 +116,16 @@
           .border-bottom {
             position: absolute;
             bottom: 0;
-            left: calc(-1 * var(--composer-gap-xl));
+            left: calc(-1 * var(--composer-gap-md));
             height: var(--composer-border-width-xs);
-            width: calc(100% + 60px);
+            width: calc(100% + var(--composer-gap-md) * 2);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
         }
         .card-content {
           position: relative;
           z-index: 1;
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-sm);
           margin-top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
 
           .card-body {
@@ -192,6 +192,9 @@
                 margin: 0;
                 position: relative;
                 display: inline-block;
+                text-align: left;
+                width: 100%;
+                align-self: flex-start;
               }
 
               .item-description {

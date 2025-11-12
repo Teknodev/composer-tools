@@ -26,6 +26,10 @@
     .header {
       .subtitle {
         content: "";
+        color: var(--composer-primary-color);
+        &::before {
+          background-color: currentColor;
+        }
         &.dark { color: white; }
       }
       .header-title {

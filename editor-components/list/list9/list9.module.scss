@@ -2,15 +2,15 @@
   as *;
 
 .container {
-  padding-right: 0px;
-  padding-left: 0px;
+  padding: 80px 0px !important;
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
+    padding: 0 var(--composer-gap-lg);
     
     .header {
-      padding-left: var(--composer-gap-lg);
+      padding: 0;
       .subtitle {
         content: "";
       }
@@ -31,7 +31,6 @@
       transition: transform var(--composer-transition-duration-slow);
       transform: translateY(0) scale(1);
       overflow: hidden;
-      border-radius: var(--composer-border-radius-md);
 
       &[data-animation~="animate1"] {
         &:hover {

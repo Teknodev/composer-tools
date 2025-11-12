@@ -19,7 +19,7 @@
 
           .card-number {
             left: 50%;
-            bottom: calc(var(--composer-gap-xl) * (-0.7));
+            bottom: calc(var(--composer-gap-xl) * (-0.8));
             transform: translateX(-50%) scale(1.15);
             transform-origin: center bottom;
           }
@@ -38,7 +38,7 @@
 
           .card-number {
             left: var(--composer-gap-xl);
-            bottom: calc(var(--composer-gap-xl) * (-0.7));
+            bottom: calc(var(--composer-gap-xl) * (-0.8));
             transform: scale(1.15);
             transform-origin: left bottom;
           }
@@ -255,9 +255,9 @@
           -webkit-text-stroke-width: var(--composer-border-width-xs);
           color: var(--composer-primary-color);
           -webkit-text-fill-color: transparent;
-          bottom: calc(var(--composer-gap-xl) * (-0.7));
+          bottom: calc(var(--composer-gap-xl) * (-0.8));
           left: var(--composer-gap-xl);
-          font-size: 5rem;
+          font-size: 6.5rem;
           line-height: 1;
           transform: scale(1.15);
           transform-origin: left bottom;
@@ -307,7 +307,7 @@
           }
           .card-number {
             left: var(--composer-gap-lg);
-            bottom: calc(var(--composer-gap-lg) * (-0.7));
+            bottom: calc(var(--composer-gap-lg) * (-0.8));
             transform-origin: left bottom;
           }
         }
@@ -316,7 +316,7 @@
           .card {
             .card-number {
               left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-0.7));
+              bottom: calc(var(--composer-gap-lg) * (-0.8));
               transform: translateX(-50%) scale(1.15);
               transform-origin: center bottom;
             }
@@ -327,7 +327,7 @@
           .card {
             .card-number {
               left: var(--composer-gap-lg);
-              bottom: calc(var(--composer-gap-lg) * (-0.7));
+              bottom: calc(var(--composer-gap-lg) * (-0.8));
               transform: scale(1.15);
               transform-origin: left bottom;
             }
@@ -340,6 +340,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: var(--composer-gap-xl) 0 !important;
     .max-content {
       .cards-grid {
         gap: 0;
@@ -374,7 +375,7 @@
             .card-title { text-align: center; }
           }
           .card-number {
-            bottom: calc(var(--composer-gap-lg) * (-0.7));
+            bottom: calc(var(--composer-gap-lg) * (9));
             left: var(--composer-gap-sm);
             font-size: 4rem;
             transform-origin: left bottom;

@@ -213,7 +213,7 @@ class List10 extends BaseList {
                         )}
                     </Base.VerticalContent>
                     <Base.ListGrid
-                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
+                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: Math.min(3, this.getPropValue("itemCount")) }}
                         className={this.decorateCSS("cards-grid")}
                     >
                         {cards.map((card: Card, index: number) => {

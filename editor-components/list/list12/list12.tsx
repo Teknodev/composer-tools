@@ -53,7 +53,7 @@ class List12 extends BaseList {
           key: "text",
           displayer: "Text 1",
           value:
-            "Experience contactless payments with just a tap of your card or phone.",
+            "Experience contactless payments with <br> just a tap of your card or phone.",
         },
       ],
     });
@@ -67,7 +67,7 @@ class List12 extends BaseList {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: "Simplifying Payments,Fast and Secure",
+          value: "Simplifying Payments,<br>Fast and Secure",
         },
         
         {
@@ -99,7 +99,7 @@ class List12 extends BaseList {
           key: "text",
           displayer: "Text 2",
           value:
-            "Accept payments anywhere with reliable and portable card readers.",
+            "Accept payments anywhere with <br>reliable and portable card readers.",
         },
       ],
     });
@@ -137,7 +137,7 @@ class List12 extends BaseList {
           type: "string",
           key: "text",
           displayer: "Text 3",
-          value: "Send and receive money instantly, no matter where you are.",
+          value: "Send and receive money instantly,<br> no matter where you are.",
         },
       ],
     });
@@ -183,7 +183,7 @@ class List12 extends BaseList {
         {backgroundOverlay && (
           <div className={this.decorateCSS("background-overlay")} />
         )}
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS("alignment-center")}`}>
           <div className={this.decorateCSS("boxes")}>
             <div className={this.decorateCSS("leftBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {(box1.item || box1.icon) && (
