@@ -84,11 +84,10 @@
           var(--composer-font-color-primary) 5%
         );
         border-radius: var(--composer-border-radius-xl);
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-lg);
         border: 1px solid transparent;
         transition: all 0.3s ease;
         flex: 1;
-        min-height: 300px;
 
         &[data-animation~="animate1"]:hover {
           border: 1px solid var(--composer-primary-color);
@@ -126,6 +125,10 @@
       .title {
         text-align: center;
       }
+    }
+
+    .card {
+      min-height: 300px;
     }
 
     .side-container {
