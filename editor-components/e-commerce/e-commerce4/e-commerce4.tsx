@@ -2100,7 +2100,7 @@ class ECommerce4 extends BaseECommerce {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid gridCount={{ pc: Math.min(itemCount, 4), tablet: 3, phone: 2 }} className={this.decorateCSS("grid")}>
+                    <Base.ListGrid gridCount={{ pc: Math.min(itemCount, 4), tablet: 3, phone: 1 }} className={this.decorateCSS("grid")}>
                         {productCards.slice(0, this.getComponentState("imageCount")).map((productCard: ProductCard, cardIndex: number) => {
                             const selectedState = selectedStates[cardIndex] || { selectedColor: "", selectedColorIndex: 0, selectedSize: "", selectedSizeIndex: 0 };
                             const selectedColorOption = productCard.colorOptions?.[selectedState.selectedColorIndex] || productCard.colorOptions?.[0];

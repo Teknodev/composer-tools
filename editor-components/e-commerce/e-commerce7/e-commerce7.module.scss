@@ -78,6 +78,7 @@
                         .icon{
                             font-size: 2rem;
                             color: var(--composer-font-color-primary);
+                            transform: translateY(2px);
                         }
                     }
                 }
@@ -587,6 +588,7 @@
                         .icon{
                             font-size: 1.5rem;
                             transform: rotate(90deg);
+                            transform: translate(1px);
                         }
                     }
                     .image-up-arrow{
