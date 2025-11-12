@@ -2,9 +2,10 @@
 
 .container {
   position: relative;
+  padding-bottom: 100px !important;
   .max-content {
     height: 100vh;
-    padding-bottom: var(--composer-gap-md);
+    padding-bottom: calc(2* var(--composer-gap-xl));
     .wrapper {
       background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
@@ -89,9 +90,9 @@
                 text-align: left;
                 color: var(--composer-font-color-primary);
                 display: -webkit-box;
-                -webkit-line-clamp: 14;
+                -webkit-line-clamp: 12;
                 -webkit-box-orient: vertical;
-                line-clamp: 14;
+                line-clamp: 12;
                 overflow: hidden;
               }
             }
@@ -106,7 +107,7 @@
       position:absolute;
       display: flex;
       justify-content: center;
-      bottom: 30px;
+      bottom: 100px;
       .button {
         .button-text {
           content: "";
@@ -130,8 +131,8 @@
             .card-inner {
               .description-container {
                 .description {
-                  -webkit-line-clamp: 10;
-                  line-clamp: 10;
+                  -webkit-line-clamp: 8;
+                  line-clamp: 8;
                 }
               }
             }
@@ -155,8 +156,8 @@
             .card-inner {
               .description-container {
                 .description {
-                  -webkit-line-clamp: 12;
-                  line-clamp: 12;
+                  -webkit-line-clamp: 10;
+                  line-clamp: 10;
                 }
               }
             }

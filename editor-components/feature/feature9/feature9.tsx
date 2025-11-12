@@ -1,7 +1,5 @@
 import React from "react";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
