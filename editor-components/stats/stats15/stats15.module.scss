@@ -32,7 +32,6 @@
         flex-direction: column;
         align-items: center;
         color: white;
-        gap: var(--composer-gap-md);
         .title , .description {
           text-align: center;
           &.with-bg {
@@ -44,6 +43,7 @@
           flex-wrap: wrap;
           gap: var(--composer-gap-md);
           justify-content: center;
+          margin-bottom: var(--composer-gap-lg);
         }
         .button {
           content: "";
