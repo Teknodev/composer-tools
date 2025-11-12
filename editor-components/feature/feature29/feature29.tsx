@@ -59,7 +59,7 @@ class Feature29 extends BaseFeature {
           "",
           null,
           null,
-          "Primary"
+          "Link"
         ),
       ],
     });
@@ -101,7 +101,7 @@ class Feature29 extends BaseFeature {
           "",
           null,
           null,
-          "Primary"
+          "Link"
         ),
       ],
     });
@@ -128,23 +128,22 @@ class Feature29 extends BaseFeature {
           type: "string",
           key: "bottomLeftSide2Title",
           displayer: "Title",
-          value: "Seamless setup, faster payments",
+          value: "",
         },
         {
           type: "string",
           key: "bottomLeftSide2Description",
           displayer: "Description",
-          value:
-            "Streamlined onboarding that is quick, transparent, and efficient.",
+          value: "",
         },
         INPUTS.BUTTON(
           "bottomLeftSide2Button",
           "Button",
-          "Select Now",
+          "",
           "",
           null,
           null,
-          "Primary"
+          "Link"
         ),
       ],
     });
@@ -179,15 +178,7 @@ class Feature29 extends BaseFeature {
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON(
-          "middleSideButton",
-          "Button",
-          "",
-          "",
-          null,
-          null,
-          "Primary"
-        ),
+        INPUTS.BUTTON("middleSideButton", "Button", "", "", null, null, "Link"),
       ],
     });
 
@@ -224,11 +215,11 @@ class Feature29 extends BaseFeature {
         INPUTS.BUTTON(
           "topRightSideButton",
           "Button",
-          "",
+          "Link",
           "",
           null,
           null,
-          "Primary"
+          "Link"
         ),
       ],
     });
@@ -266,11 +257,11 @@ class Feature29 extends BaseFeature {
         INPUTS.BUTTON(
           "bottomRightSideButton",
           "Button",
-          "",
+          "Link",
           "",
           null,
           null,
-          "Primary"
+          "Link"
         ),
       ],
     });
@@ -290,55 +281,66 @@ class Feature29 extends BaseFeature {
 
   renderCard(cardData, prefix) {
     const hasImage = cardData[`${prefix}Image`];
-    const button = cardData[`${prefix}Button`];
+    const buttonData = cardData[`${prefix}Button`];
+    const alignment = Base.getContentAlignment();
 
-    // const button = this.castToObject<INPUTS.CastedButton>(
-    //   cardData[`${prefix}Button`]
-    // );
-
+    const button = buttonData
+      ? {
+          text: this.getPropValue("text", {
+            parent_object: buttonData,
+          }),
+          type: this.getPropValue("type", {
+            parent_object: buttonData,
+          }),
+          url: this.getPropValue("url", {
+            parent_object: buttonData,
+          }),
+        }
+      : null;
 
     return (
-      <div
+      <Base.VerticalContent
         className={this.decorateCSS("card")}
+        style={
+          hasImage
+            ? { backgroundImage: `url(${cardData[`${prefix}Image`]})` }
+            : {}
+        }
         data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
-        {hasImage ? (
-          <img
-            src={cardData[`${prefix}Image`]}
-            className={this.decorateCSS("image-full")}
-            alt="Content"
-          />
-        ) : (
-          <div className={this.decorateCSS("card-text-container")}>
-            {this.castToString(cardData[`${prefix}Title`]) && (
-              <Base.H3 className={this.decorateCSS("card-title")}>
-                {cardData[`${prefix}Title`]}
-              </Base.H3>
-            )}
+        <div
+          className={`${this.decorateCSS(
+            "card-text-container"
+          )} ${this.decorateCSS(alignment)}`}
+        >
+          {this.castToString(cardData[`${prefix}Title`]) && (
+            <Base.H3 className={this.decorateCSS("card-title")}>
+              {cardData[`${prefix}Title`]}
+            </Base.H3>
+          )}
 
-            {this.castToString(cardData[`${prefix}Description`]) && (
-              <Base.SectionDescription
-                className={this.decorateCSS("card-description")}
+          {this.castToString(cardData[`${prefix}Description`]) && (
+            <Base.SectionDescription
+              className={this.decorateCSS("card-description")}
+            >
+              {cardData[`${prefix}Description`]}
+            </Base.SectionDescription>
+          )}
+
+          {button && button.text && (
+            <ComposerLink path={button.url}>
+              <Base.Button
+                buttonType={button.type}
+                className={this.decorateCSS("button")}
               >
-                {cardData[`${prefix}Description`]}
-              </Base.SectionDescription>
-            )}
-
-            {button && (
-              <ComposerLink path={button.url}>
-                <Base.Button
-                  buttonType={button.type}
-                  className={this.decorateCSS("button")}
-                >
-                  <Base.P className={this.decorateCSS("button-text")}>
-                    {button.text}
-                  </Base.P>
-                </Base.Button>
-              </ComposerLink>
-            )}
-          </div>
-        )}
-      </div>
+                <Base.P className={this.decorateCSS("button-text")}>
+                  {button.text}
+                </Base.P>
+              </Base.Button>
+            </ComposerLink>
+          )}
+        </div>
+      </Base.VerticalContent>
     );
   }
 
@@ -349,6 +351,8 @@ class Feature29 extends BaseFeature {
     const middleSide = this.castToObject<any>("middleSide");
     const topRightSide = this.castToObject<any>("topRightSide");
     const bottomRightSide = this.castToObject<any>("bottomRightSide");
+    const leftBottomCardsVisible =
+      bottomLeftSide.visibility || bottomLeftSide2.visibility;
 
     const isLeftVisible =
       topLeftSide.visibility ||
@@ -372,7 +376,7 @@ class Feature29 extends BaseFeature {
               className={this.decorateCSS("header-container")}
             >
               {this.castToString(heading) && (
-                <Base.SectionSubTitle className={this.decorateCSS("heading")}>
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("heading")}
                 </Base.SectionSubTitle>
               )}
@@ -392,12 +396,14 @@ class Feature29 extends BaseFeature {
                     {this.renderCard(topLeftSide, "topLeftSide")}
                   </div>
                 )}
-                <div className={this.decorateCSS("left-bottom-cards")}>
-                  {bottomLeftSide.visibility &&
-                    this.renderCard(bottomLeftSide, "bottomLeftSide")}
-                  {bottomLeftSide2.visibility &&
-                    this.renderCard(bottomLeftSide2, "bottomLeftSide2")}
-                </div>
+                {leftBottomCardsVisible && (
+                  <div className={this.decorateCSS("left-bottom-cards")}>
+                    {bottomLeftSide.visibility &&
+                      this.renderCard(bottomLeftSide, "bottomLeftSide")}
+                    {bottomLeftSide2.visibility &&
+                      this.renderCard(bottomLeftSide2, "bottomLeftSide2")}
+                  </div>
+                )}
               </div>
             )}
 
