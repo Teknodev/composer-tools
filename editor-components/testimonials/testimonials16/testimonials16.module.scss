@@ -1,2 +1,26 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
+
+.container {
+  .max-content {
+    .header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .title {
+        content: "";
+      }
+
+      .links {
+        display: flex;
+        flex-direction: row;
+        content: "";
+      }
+    }
+
+    .slider {
+      content: "";
+    }
+  }
+}

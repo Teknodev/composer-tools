@@ -6,6 +6,11 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseSlider } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
+interface Icon {
+  icon: { type: string; name: string };
+  link: string;
+}
+
 class Testimonials16 extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
@@ -209,12 +214,29 @@ class Testimonials16 extends Testimonials {
   }
 
   render() {
+    const links = this.castToObject<Icon[]>("links");
     return (
-      <Base.Container>
-        <Base.MaxContent>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            <Base.SectionTitle>title</Base.SectionTitle>
-            <div className={this.decorateCSS("links")}></div>
+            <Base.SectionTitle>{this.getPropValue("title")}</Base.SectionTitle>
+            {links.length > 0 && (
+              <div className={this.decorateCSS("links")}>
+                {links.map((icons: Icon) => {
+                  return (
+                    icons.icon && (
+                      <ComposerLink path={icons.link}>
+                        <Base.P>{icons.link}</Base.P>
+                        <Base.Media
+                          value={icons.icon}
+                          className={this.decorateCSS("icon-item")}
+                        />
+                      </ComposerLink>
+                    )
+                  );
+                })}
+              </div>
+            )}
           </div>
           <div className={this.decorateCSS("slider")}></div>
         </Base.MaxContent>
