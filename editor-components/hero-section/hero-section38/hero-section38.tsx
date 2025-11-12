@@ -3,6 +3,7 @@ import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section38.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
 class HeroSection38 extends BaseHeroSection {
@@ -39,6 +40,12 @@ class HeroSection38 extends BaseHeroSection {
               displayer: "Title",
               value: "Curitiba Brasil",
             },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -63,6 +70,12 @@ class HeroSection38 extends BaseHeroSection {
               key: "name",
               displayer: "Title",
               value: "Ron Mccleny",
+            },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -89,6 +102,12 @@ class HeroSection38 extends BaseHeroSection {
               displayer: "Title",
               value: "National Aquarium Denmark",
             },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -113,6 +132,12 @@ class HeroSection38 extends BaseHeroSection {
               key: "name",
               displayer: "Title",
               value: "Seceda",
+            },
+            {
+              type: "page",
+              key: "navigateTo",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -252,24 +277,35 @@ class HeroSection38 extends BaseHeroSection {
                 {slides.map((item: any, index: number) => {
                   const scaledIndex = this.getComponentState("scaled-index");
                   const isScaled = animation && scaledIndex === index;
+                  const navigateTo = item.navigateTo;
                   
+                  const slideContent = (
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <Base.Media
+                        className={this.decorateCSS("image")}
+                        value={item.image}
+                      />
+                      {overlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
+                      <Base.H2 className={this.decorateCSS("title")}>
+                        {item.name}
+                      </Base.H2>
+                    </div>
+                  );
+
                   return (
-                    <div 
+                    <div
                       key={index}
                       className={`${this.decorateCSS("slide-item")} ${isScaled ? this.decorateCSS("active-slide") : ""}`}
                     >
-                      <div className={this.decorateCSS("image-wrapper")}>
-                        <Base.Media
-                          className={this.decorateCSS("image")}
-                          value={item.image}
-                        />
-                        {overlay && (
-                          <div className={this.decorateCSS("overlay")} />
-                        )}
-                        <Base.H2 className={this.decorateCSS("title")}>
-                          {item.name}
-                        </Base.H2>
-                      </div>
+                      {navigateTo ? (
+                        <ComposerLink path={navigateTo}>
+                          {slideContent}
+                        </ComposerLink>
+                      ) : (
+                        slideContent
+                      )}
                     </div>
                   );
                 })}
