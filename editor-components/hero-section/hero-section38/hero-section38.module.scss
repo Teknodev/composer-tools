@@ -1,12 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 120px 0px !important;
+  padding: 80px 0px !important;
   position: relative;
   width: 100%;
 
   .max-content {
-    width: 100%;
     max-width: unset;
     padding: 0 !important;
     margin: 0;
@@ -14,12 +13,20 @@
     .slider-wrapper {
       position: relative;
       width: 100%;
-      overflow: hidden;
+      overflow: visible;
 
       .slider {
         width: 100%;
         position: relative;
         overflow: visible;
+        display: flex;
+        justify-content: center;
+
+        &.single-slide {
+          .slide-item {
+            transform: scale(1.1) !important;
+          }
+        }
 
         .slide-item {
           padding: 0 var(--composer-gap-md);
@@ -27,17 +34,17 @@
           flex-direction: column;
           align-items: center;
           position: relative;
-          transition: transform var(--composer-transition-duration-normal) ease;
+          transition: transform 0.3s ease;
           transform-origin: center;
-          transform: scale(1);
+          transform: scale(0.8);
           z-index: 1;
           width: 800px;
           height: auto;
 
           .image-wrapper {
             position: relative;
-            width: 100%;
-            height: 500px;
+            width: 700px;
+            height: 450px;
             overflow: hidden;
             border-radius: var(--composer-border-radius-md);
 
@@ -46,7 +53,6 @@
               height: 100%;
               object-fit: cover;
               display: block;
-              transition: transform var(--composer-transition-duration-slow) ease;
             }
 
             .overlay {
@@ -58,8 +64,7 @@
               transition: opacity var(--composer-transition-duration-normal) ease;
             }
 
-            .name {
-              content: "";
+            .title {
               position: absolute;
               top: 50%;
               left: 50%;
@@ -70,13 +75,11 @@
               z-index: 2;
               width: 100%;
               padding: 0 var(--composer-gap-md);
+              pointer-events: auto;
             }
           }
 
           &:hover {
-            transform: scale(1.1);
-            z-index: 10;
-            
             .image-wrapper {
               .overlay {
                 opacity: 0;
@@ -84,9 +87,15 @@
             }
           }
         }
+
+        .active-slide {
+          transform: scale(1.1);
+          z-index: 10;
+          transition: transform 0.3s ease;
+        }
       }
 
-      .dots-wrapper {
+      .navigation-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -124,7 +133,7 @@
           }
         }
 
-        .dots {
+        .pagination {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -132,7 +141,7 @@
           padding: 0;
           margin: 0;
 
-          .dot {
+          .pagination-dot {
             border: none;
             background: transparent;
             padding: 0;
@@ -171,17 +180,18 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 60px 0px !important;
-
     .max-content {
       .slider-wrapper {
         .slider {
           .slide-item {
             width: 500px;
+            padding: 0 var(--composer-gap-md);
 
             .image-wrapper {
-              height: 350px;
-              .name {
+              width: 450px;
+              height: 280px;
+              
+              .title {
                 font-size: 1.5rem;
               }
             }
@@ -194,17 +204,18 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 40px 0px !important;
-
     .max-content {
       .slider-wrapper {
         .slider {
           .slide-item {
-            width: auto;
+            width: 350px;
+            padding: 0 var(--composer-gap-md);
 
             .image-wrapper {
-              height: 300px;
-              .name {
+              width: 320px;
+              height: 200px;
+              
+              .title {
                 font-size: 1.25rem;
               }
             }
