@@ -208,17 +208,21 @@
       .slider-wrapper {
         .slider {
           .slide-item {
-            width: 350px;
+            width: auto;
             padding: 0 var(--composer-gap-md);
 
             .image-wrapper {
-              width: 320px;
-              height: 200px;
+              width: 100%;
+              height: 300px;
               
               .title {
                 font-size: 1.25rem;
               }
             }
+          }
+
+          .active-slide {
+            transform: scale(1);
           }
         }
       }

@@ -159,21 +159,24 @@ class HeroSection38 extends BaseHeroSection {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      const slides = this.getValidSlides();
-      const isSingleSlide = slides.length === 1;
-      const activeIndex = isSingleSlide ? 0 : this.getComponentState("active-index");
-      this.setComponentState("scaled-index", activeIndex);
-    }, 1000);
+    if (window.innerWidth > 640) {
+      setTimeout(() => {
+        const slides = this.getValidSlides();
+        const isSingleSlide = slides.length === 1;
+        const activeIndex = isSingleSlide ? 0 : this.getComponentState("active-index");
+        this.setComponentState("scaled-index", activeIndex);
+      }, 1000);
+    }
   }
 
   startScaleDelay = () => {
-    this.setComponentState("scaled-index", null);
-    const delay = window.innerWidth <= 640 ? 700 : 1000;
-    setTimeout(() => {
-      const activeIndex = this.getComponentState("active-index");
-      this.setComponentState("scaled-index", activeIndex);
-    }, delay);
+    if (window.innerWidth > 640) {
+      this.setComponentState("scaled-index", null);
+      setTimeout(() => {
+        const activeIndex = this.getComponentState("active-index");
+        this.setComponentState("scaled-index", activeIndex);
+      }, 1000);
+    }
   };
 
   handlePrevClick = () => {
@@ -225,7 +228,6 @@ class HeroSection38 extends BaseHeroSection {
             variableWidth: false,
             centerMode: true,
             centerPadding: "0px",
-            speed: 600,
           },
         },
       ],
