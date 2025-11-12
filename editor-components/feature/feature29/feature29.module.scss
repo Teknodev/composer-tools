@@ -113,8 +113,10 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .side-container {
-    flex-direction: column;
+  .container .max-content {
+    .side-container {
+      flex-direction: column;
+    }
   }
 }
 
@@ -131,13 +133,8 @@
       min-height: 300px;
     }
 
-    .side-container {
-      gap: var(--composer-gap-sm);
-    }
-
     .left-bottom-cards {
-      flex-direction: column !important;
-      gap: var(--composer-gap-sm);
+      flex-direction: column-reverse !important;
     }
   }
 }
