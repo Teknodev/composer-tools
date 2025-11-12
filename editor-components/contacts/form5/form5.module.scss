@@ -3,8 +3,10 @@
 .container {
   .max-content {
     .wrapper {
-      .texts {
-        content: "";
+      .header {
+        .subtitle, .title {
+          content: "";
+        }
       }
 
       .input-items {
@@ -28,8 +30,8 @@
             gap: calc(2 * var(--composer-gap-xl));
           }
 
-          .first-inputs,
-          .second-inputs {
+          .left-inputs,
+          .right-inputs {
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-lg);
@@ -41,10 +43,10 @@
               .placeholder {
                 position: absolute;
                 left: var(--composer-gap-xs);
-                font-size: 1.5rem;
                 bottom: var(--composer-gap-md);
                 transition: all 0.2s ease;
                 color: var(--composer-font-color-primary);
+                text-align: left;
               }
 
               .error-message {
@@ -59,7 +61,7 @@
 
           .input {
             border: none;
-            border-bottom: 1px solid var(--composer-font-color-primary);
+            border-bottom: 1px solid var(--composer-tertiary-color);
             height: var(--composer-gap-lg);
             margin-bottom: var(--composer-gap-sm);
             outline: none;
@@ -76,20 +78,21 @@
 
           .select {
             border: none;
-            border-bottom: 1px solid var(--composer-font-color-primary);
+            border-bottom: 1px solid var(--composer-tertiary-color);
             height: var(--composer-gap-lg);
             outline: none;
             width: 100%;
             background-color: transparent;
-            font-size: 1.5rem;
+            font-size: var(--composer-font-size-md);
             color: var(--composer-font-color-primary);
             margin-bottom: var(--composer-gap-sm);
             transform: translateY(var(--composer-gap-xs));
 
             option {
-              background-color: var(--composer-font-color-secondary);
+              background-color: var(--composer-html-background);
               color: var(--composer-font-color-primary);
               padding: var(--composer-gap-sm);
+              font-size: 1rem;
             }
           }
 
@@ -106,6 +109,9 @@
 
       .submit-button {
         align-self: flex-end;
+        .button-text {
+          text-align: center;
+        }
       }
     }
   }

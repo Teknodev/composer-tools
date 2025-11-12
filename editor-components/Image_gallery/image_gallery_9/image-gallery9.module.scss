@@ -28,7 +28,7 @@
     padding: 0 !important;
 
     .max-content {
-        .image-container {
+        .gallery-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 0;
@@ -43,7 +43,7 @@
                     grid-row: span 2;
                 }
 
-                .image {
+                .card-wrapper {
                     width: 100%;
                     height: 100%;
                     display: flex;
@@ -57,11 +57,23 @@
                     }
                 }
 
+                .content-wrapper {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                }
+
+                .card-image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
                 .category {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    padding: 0 10px;
+                    padding: 0 var(--composer-gap-sm);
                     box-sizing: border-box;
                     width: 100%;
                     height: 100%;
@@ -71,18 +83,17 @@
                     flex-direction: column;
                     align-items: center;
                     text-align: center;
-                    gap: 5px;
+                    gap: var(--composer-gap-xs);
                     transition: all 0.3s ease;
                     z-index: 2;
                     background-color: var(--composer-html-background);
 
                     .title {
-                        font-size: 1rem;
+                        content: "";
                     }
 
                     .subtitle {
                         position: relative;
-                        font-size: 1.5rem;
                     }
 
                     .title,
@@ -98,19 +109,22 @@
                     }
                 }
 
-                &:hover .category {
+                &:hover .category,
+                &.active .category {
                     opacity: 1;
                 }
 
                 &[data-animation~="slideUp"] {
 
                     &:hover .title,
-                    &:hover .subtitle {
+                    &:hover .subtitle,
+                    &.active .title,
+                    &.active .subtitle {
                         animation: upAnimate 0.4s ease forwards;
                     }
 
-                    &:not(:hover) .title,
-                    &:not(:hover) .subtitle {
+                    &:not(:hover):not(.active) .title,
+                    &:not(:hover):not(.active) .subtitle {
                         animation: downDisappear 0.3s ease forwards;
                     }
                 }
@@ -119,7 +133,6 @@
             .card[data-animation~="underline"] {
                 .subtitle {
                     position: relative;
-                    font-size: 1.5rem;
                     color: var(--composer-font-color-primary);
 
                     &::after {
@@ -136,12 +149,13 @@
                         will-change: transform;
                     }
 
-                    &:hover::after {
+                    &:hover::after,
+                    &.active::after {
                         transform: scaleX(1);
                         transform-origin: left;
                     }
 
-                    &:not(:hover)::after {
+                    &:not(:hover):not(.active)::after {
                         transform-origin: right;
                     }
                 }
@@ -153,7 +167,7 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            .image-container {
+            .gallery-container {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -164,25 +178,15 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            .image-container {
+            .gallery-container {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(1, 1fr);
 
                 .card {
-                    .image {
+                    .card-wrapper {
                         &.noImage {
                             min-height: 300px;
                             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                        }
-                    }
-
-                    .category {
-                        .title {
-                            font-size: 0.75rem !important;
-                        }
-
-                        .subtitle {
-                            font-size: 1rem !important;
                         }
                     }
                 }
