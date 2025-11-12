@@ -1,10 +1,15 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section38.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type SlideItem = {
+  image: TypeMediaInputValue;
+  name: React.JSX.Element;
+  navigateTo: string;
+};
 
 class HeroSection38 extends BaseHeroSection {
   sliderRef: React.RefObject<any>;
@@ -182,8 +187,8 @@ class HeroSection38 extends BaseHeroSection {
   }
 
   private getValidSlides = () => {
-    const slidesRaw = this.castToObject("slides") as any[];
-    return slidesRaw.filter((item: any) => {
+    const slidesRaw = this.castToObject<SlideItem[]>("slides");
+    return slidesRaw.filter((item: SlideItem) => {
       const imageExist = !!item.image;
       const nameExist = this.castToString(item.name);
       return imageExist || nameExist;
@@ -274,7 +279,7 @@ class HeroSection38 extends BaseHeroSection {
           {slides.length > 0 && (
             <div className={this.decorateCSS("slider-wrapper")}>
               <ComposerSlider ref={this.sliderRef} {...settings} className={`${this.decorateCSS("slider")} ${isSingleSlide ? this.decorateCSS("single-slide") : ""}`}>
-                {slides.map((item: any, index: number) => {
+                {slides.map((item: SlideItem, index: number) => {
                   const scaledIndex = this.getComponentState("scaled-index");
                   const isScaled = animation && scaledIndex === index;
                   const navigateTo = item.navigateTo;
