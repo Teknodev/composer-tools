@@ -127,6 +127,13 @@ class HeroSection38 extends BaseHeroSection {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp({
       type: "icon",
       key: "previousArrow",
       displayer: "Previous Arrow",
@@ -159,7 +166,8 @@ class HeroSection38 extends BaseHeroSection {
   };
 
   componentDidMount() {
-    if (window.innerWidth > 640) {
+    const animation = !!this.getPropValue("animation");
+    if (animation && window.innerWidth > 640) {
       setTimeout(() => {
         const slides = this.getValidSlides();
         const isSingleSlide = slides.length === 1;
@@ -170,7 +178,8 @@ class HeroSection38 extends BaseHeroSection {
   }
 
   startScaleDelay = () => {
-    if (window.innerWidth > 640) {
+    const animation = !!this.getPropValue("animation");
+    if (animation && window.innerWidth > 640) {
       this.setComponentState("scaled-index", null);
       setTimeout(() => {
         const activeIndex = this.getComponentState("active-index");
@@ -194,6 +203,7 @@ class HeroSection38 extends BaseHeroSection {
   render() {
     const slides = this.getValidSlides();
     const overlay = !!this.getPropValue("overlay");
+    const animation = !!this.getPropValue("animation");
     const isSingleSlide = slides.length === 1;
     
     const settings = {
@@ -241,7 +251,7 @@ class HeroSection38 extends BaseHeroSection {
               <ComposerSlider ref={this.sliderRef} {...settings} className={`${this.decorateCSS("slider")} ${isSingleSlide ? this.decorateCSS("single-slide") : ""}`}>
                 {slides.map((item: any, index: number) => {
                   const scaledIndex = this.getComponentState("scaled-index");
-                  const isScaled = scaledIndex === index;
+                  const isScaled = animation && scaledIndex === index;
                   
                   return (
                     <div 
