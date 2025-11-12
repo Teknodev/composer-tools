@@ -27,7 +27,7 @@
           var(--composer-font-color-primary) 5%
         );
         border-radius: var(--composer-border-radius-md);
-        padding: calc(1.5 * var(--composer-gap-md));
+        padding: var(--composer-gap-lg);
         border: 1px solid transparent;
         width: 100%;
         &[data-animation~="animate1"] {
