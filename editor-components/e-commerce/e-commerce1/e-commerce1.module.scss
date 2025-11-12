@@ -202,13 +202,14 @@
                             flex: 1;
                             font-size: 1.5rem !important;
                             min-width: 1.5rem;
+                            height: 22px;
                             color: var(--composer-tertiary-color);
                             cursor: pointer;
                             transition: opacity 0.3s ease;
                             &:hover {
                                 opacity: 0.5;
                             }
-                        }
+                        }  
                         .input {
                             max-width: 2rem;
                             background-color: transparent;
