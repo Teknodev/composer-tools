@@ -1,0 +1,120 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .header {
+      text-align: center;
+      gap: var(--composer-gap-md);
+      align-items: center;
+      margin-bottom: var(--composer-gap-lg);
+
+      .subtitle, .title, .description {
+        margin: 0;
+        text-align: left;
+        margin-left: 0;
+      }
+    }
+
+    .features-grid {
+      display: grid;
+      gap: var(--composer-gap-lg);
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-md);
+
+        .icon-container {
+          flex-shrink: 0;
+          width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+
+          .icon {
+            width: 20px;
+            height: 20px;
+            color: var(--composer-primary-color);
+          }
+        }
+
+        .content {
+          flex: 1;
+          gap: var(--composer-gap-xs);
+
+          .feature-title {
+            font-size: 1.125rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+            text-align: left;
+            margin-left: 0;
+          }
+
+          .feature-description {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--composer-tertiary-color);
+            margin: 0;
+            text-align: left;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-lg);
+
+      .header {
+        .subtitle, .title, .description {
+          text-align: inherit;
+        }
+      }
+
+      .features-grid {
+        gap: var(--composer-gap-md);
+
+        .feature-item {
+          .content {
+            .feature-title, .feature-description {
+              text-align: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .features-grid {
+        gap: var(--composer-gap-sm);
+
+        .feature-item {
+          padding: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-sm);
+          background-color: var(--composer-background-secondary);
+
+          .content {
+            .feature-title, .feature-description {
+              text-align: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
