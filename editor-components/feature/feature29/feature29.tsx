@@ -57,7 +57,7 @@ class Feature29 extends BaseFeature {
           "Button",
           "Link",
           "",
-          null,
+          "",
           null,
           "Link"
         ),
@@ -99,7 +99,7 @@ class Feature29 extends BaseFeature {
           "Button",
           "Link",
           "",
-          null,
+          "",
           null,
           "Link"
         ),
@@ -141,7 +141,7 @@ class Feature29 extends BaseFeature {
           "Button",
           "",
           "",
-          null,
+          "",
           null,
           "Link"
         ),
@@ -178,7 +178,7 @@ class Feature29 extends BaseFeature {
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON("middleSideButton", "Button", "", "", null, null, "Link"),
+        INPUTS.BUTTON("middleSideButton", "Button", "", "", "", null, "Link"),
       ],
     });
 
@@ -212,15 +212,7 @@ class Feature29 extends BaseFeature {
           value:
             "Providing eWallets, SMS top-ups, and various alternative payment methods to step-up your gaming operations.",
         },
-        INPUTS.BUTTON(
-          "topRightSideButton",
-          "Button",
-          "Link",
-          "",
-          null,
-          null,
-          "Link"
-        ),
+        INPUTS.BUTTON("topRightSideButton", "Button", "", "", "", null, "Link"),
       ],
     });
 
@@ -257,9 +249,9 @@ class Feature29 extends BaseFeature {
         INPUTS.BUTTON(
           "bottomRightSideButton",
           "Button",
-          "Link",
           "",
-          null,
+          "",
+          "",
           null,
           "Link"
         ),
@@ -282,7 +274,6 @@ class Feature29 extends BaseFeature {
   renderCard(cardData, prefix) {
     const hasImage = cardData[`${prefix}Image`];
     const buttonData = cardData[`${prefix}Button`];
-    const alignment = Base.getContentAlignment();
 
     const button = buttonData
       ? {
@@ -293,6 +284,9 @@ class Feature29 extends BaseFeature {
             parent_object: buttonData,
           }),
           url: this.getPropValue("url", {
+            parent_object: buttonData,
+          }),
+          icon: this.getPropValue("icon", {
             parent_object: buttonData,
           }),
         }
@@ -308,11 +302,7 @@ class Feature29 extends BaseFeature {
         }
         data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
-        <div
-          className={`${this.decorateCSS(
-            "card-text-container"
-          )} ${this.decorateCSS(alignment)}`}
-        >
+        <div className={`${this.decorateCSS("card-text-container")} `}>
           {this.castToString(cardData[`${prefix}Title`]) && (
             <Base.H3 className={this.decorateCSS("card-title")}>
               {cardData[`${prefix}Title`]}
@@ -336,6 +326,7 @@ class Feature29 extends BaseFeature {
                 <Base.P className={this.decorateCSS("button-text")}>
                   {button.text}
                 </Base.P>
+                <Base.Media value={button.icon} />
               </Base.Button>
             </ComposerLink>
           )}

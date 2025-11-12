@@ -98,11 +98,14 @@
         .card-text-container {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
           flex: 1;
 
-          &.center {
-            align-items: center;
+          .card-title {
+            text-align: left;
+          }
+
+          .card-description {
+            text-align: left;
           }
         }
       }
