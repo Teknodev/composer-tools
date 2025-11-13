@@ -48,9 +48,10 @@
                     padding: var(--composer-gap-md);
                     background-color: var(--composer-primary-color);
                     color: var(--composer-font-color-secondary);
+                    height: 100%;
 
-                    svg {
-                        height: 45px;
+                    >svg{
+                        height: 100%;
                     }
                 }
 
