@@ -242,12 +242,19 @@
       }
       .column-content{
         justify-content: center;
-        flex-direction: column ;
+        flex-direction: row;
         gap: var(--composer-gap-xl);
         .left {
           padding: 0px;
           .left-page-content{
             width: 100%;
+          }
+        }
+        .right {
+          .icon {
+            .ampersand-icon {
+              transform: translateX(0);
+            }
           }
         }
       }
