@@ -167,14 +167,27 @@ class HeroSection38 extends BaseHeroSection {
       type: "icon",
       key: "previousArrow",
       displayer: "Previous Arrow",
-      value: "FaChevronLeft",
+      value: "FiArrowLeft",
     });
 
     this.addProp({
       type: "icon",
       key: "nextArrow",
       displayer: "Next Arrow",
-      value: "FaChevronRight",
+      value: "FiArrowRight",
+    });
+
+    this.addProp({
+      type: "media",
+      key: "dotIcon",
+      displayer: "Dots Icon",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "LuCircleDot",
+      },
     });
 
     this.sliderRef = React.createRef();
@@ -321,7 +334,6 @@ class HeroSection38 extends BaseHeroSection {
                     <Base.Button
                       className={this.decorateCSS("arrow-button")}
                       onClick={this.handlePrevClick}
-                      aria-label="Previous slide"
                     >
                       <Base.Media
                         value={{ type: "icon", name: this.getPropValue("previousArrow") }}
@@ -335,15 +347,20 @@ class HeroSection38 extends BaseHeroSection {
                         key={`pagination-dot-${index}`}
                         className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
                         onClick={() => this.sliderRef.current?.slickGoTo(index)}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
+                      >
+                        {this.getPropValue("dotIcon") && (
+                          <Base.Media
+                            value={this.getPropValue("dotIcon")}
+                            className={this.decorateCSS("dot-icon")}
+                          />
+                        )}
+                      </Base.Button>
                     ))}
                   </div>
                   {this.getPropValue("nextArrow") && (
                     <Base.Button
                       className={this.decorateCSS("arrow-button")}
                       onClick={this.handleNextClick}
-                      aria-label="Next slide"
                     >
                       <Base.Media
                         value={{ type: "icon", name: this.getPropValue("nextArrow") }}
