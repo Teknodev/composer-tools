@@ -150,6 +150,14 @@
         .maxContent{
             max-width: 100%;
         }
+
+        @container (max-width: #{$composer-tablet-width}) {
+            padding: 80px 0px !important;
+        }
+
+        @container (max-width: #{$composer-phone-width}) {
+            padding: 50px 0px !important;
+        }
     }
 
     @container (max-width: #{$composer-tablet-width}) {
