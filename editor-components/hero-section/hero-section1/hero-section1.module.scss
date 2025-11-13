@@ -153,7 +153,7 @@
             align-items: flex-start;
             justify-content: flex-end;
             position: relative;
-            width: 90%;
+            width: 100%;
             &.without-image{
               min-height: 50vh;
               .subtitle {
@@ -385,7 +385,7 @@
 }
 
 @container (max-width : #{$composer-phone-width}) {
-  @include titleSize(4rem);
+  @include titleSize(4rem !important);
 
   .image-container-2 {
     width: 60% !important;
@@ -515,8 +515,4 @@
       }
     }
   }
-}
-
-@container (max-width : #{$composer-phone-width}) {
-  @include titleSize(4rem !important);
 }

@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0px var(--composer-gap-xl) !important;
+  padding: 0 var(--composer-gap-xl) !important;
   .max-content {
     .background-layer {
       position: relative;
@@ -122,15 +122,17 @@
     }
   }
 }
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    padding: 0px var(--composer-gap-lg) !important;
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0px var(--composer-gap-md) !important;
+    padding: 0 var(--composer-gap-lg) !important;
+  }
+}
+
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: 0px !important;
     .max-content {
       .content {
         padding: var(--composer-gap-md);

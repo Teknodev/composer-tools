@@ -176,7 +176,7 @@
       align-items: flex-start;
       position: relative;
       .left-content {
-        align-self: flex-start;
+        align-self: center;
         max-width: 100%;
         gap: var(--composer-gap-md);
         .title-container {

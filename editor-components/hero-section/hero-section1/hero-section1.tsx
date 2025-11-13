@@ -333,7 +333,7 @@ class HeroSection1 extends BaseHeroSection {
     const animation = this.getComponentState("animation");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true} style={{ backgroundImage: `url(${this.getPropValue("background-layout")?.url})` }}>
+      <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("background-layout")?.url})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.Media
             className={this.decorateCSS("image-container-2")}

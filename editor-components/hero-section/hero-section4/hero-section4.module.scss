@@ -126,7 +126,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: fit-content;
-    padding: 20px !important;
     .max-content {
       display: flex;
       flex-direction: column;

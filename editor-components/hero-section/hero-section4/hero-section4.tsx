@@ -86,7 +86,7 @@ class HeroSection4 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "image-anm",
-      displayer: "Image Animation",
+      displayer: "Animation",
       value: true,
     });
 
@@ -181,7 +181,6 @@ const getStyle = (direction: "up" | "down") => {
         className={`${this.decorateCSS("container")} ${
           !imageAnm && this.decorateCSS("no-image-anm")
         }`}
-        isFull={true}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {image && (
@@ -215,14 +214,14 @@ const getStyle = (direction: "up" | "down") => {
               )}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-              {buttonText && (
+              {(buttonText || button.icon) && (
                 <div className={this.decorateCSS("button-container")}>
                   <ComposerLink path={button?.url || '#'}>
                     <Base.Button 
                       buttonType={button?.type || "Tertiary"} 
                       className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                       {button.icon && <Base.Media
+                      {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                       {button.icon.name && <Base.Media
                           value={button.icon}
                           className={this.decorateCSS("button-icon")}
                         />}

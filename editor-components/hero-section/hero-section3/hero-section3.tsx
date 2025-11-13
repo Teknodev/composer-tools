@@ -55,9 +55,9 @@ class HeroSection3 extends BaseHeroSection {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "1",
+              value: "Left Image Layout",
               additionalParams: {
-                selectItems: ["1", "2", "3"],
+                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
             INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
@@ -96,9 +96,9 @@ class HeroSection3 extends BaseHeroSection {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "2",
+              value: "Right Image Layout",
               additionalParams: {
-                selectItems: ["1", "2", "3"],
+                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
             INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
@@ -138,9 +138,9 @@ class HeroSection3 extends BaseHeroSection {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "3",
+              value: "Overlay on Image",
               additionalParams: {
-                selectItems: ["1", "2", "3"],
+                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
             INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
@@ -224,17 +224,24 @@ class HeroSection3 extends BaseHeroSection {
               const description = this.castToString(item.description as any);
               const buttonText = this.castToString(item.button.text);
               const showContent = title || description || buttonText;
+              
+              const typeClassMap: { [key: string]: string } = {
+                "Left Image Layout": "2",
+                "Right Image Layout": "1",
+                "Overlay on Image": "3"
+              };
+              const typeClass = typeClassMap[item.type] || "1";
 
               return (
                 <div
                   className={`${this.decorateCSS("wrapper")} ${this.decorateCSS(
-                    `type-${item.type}`
+                    `type-${typeClass}`
                   )} ${index === activeSlide && this.decorateCSS("active-slide")}
                   ${!item.image && this.decorateCSS("full-text-container")}
                   ${!showContent && this.decorateCSS("full-image")}
                   `}
                 >
-                  {!showContent && item.type === "3" ? null : (
+                  {!showContent && item.type === "Overlay on Image" ? null : (
                     <div className={this.decorateCSS("content-bg")} />
                   )}
 

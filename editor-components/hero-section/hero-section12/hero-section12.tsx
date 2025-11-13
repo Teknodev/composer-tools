@@ -401,7 +401,7 @@ class HeroSection12 extends BaseHeroSection {
       this.resizeObserver = new ResizeObserver((entries) => {
         if (entries[0]) {
           const width = entries[0].contentRect.width;
-          const isPhone = width <= 640;
+          const isPhone = width <= 1024;
           if (this.isPhone !== isPhone) {
             this.isPhone = isPhone;
             this.forceUpdate();

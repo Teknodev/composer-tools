@@ -169,7 +169,7 @@ class HeroSection11 extends BaseHeroSection {
               <div className={this.decorateCSS("icon-box")}>
                 <div className={this.decorateCSS("icon-wrapper")}>
                   <div className={this.decorateCSS("icon")} onClick={() => this.handlePlayVideo()}>
-                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("button")} />
+                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("play-button")} />
                   </div>
                 </div>
               </div>

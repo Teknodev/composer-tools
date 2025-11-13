@@ -101,7 +101,11 @@
           justify-content: center;
           align-items: center;
           color: var(--composer-font-color-secondary);
-          font-size: 2.5rem;
+          .play-button {
+            width: 25px;
+            height: 30px;
+            font-size: 2.5rem;
+          }
         }
       }
     }
