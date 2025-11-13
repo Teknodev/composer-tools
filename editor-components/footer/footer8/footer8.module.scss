@@ -226,11 +226,16 @@
           .socials-element {
             display: flex;
             align-items: center;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
 
             .icon, .socials-text {
               transition: all 0.3s ease;
               color: var(--composer-font-color-primary);
+            }
+
+            .icon{
+              font-size: 1rem;
+              line-height: 0.5px;
             }
 
             &[data-animation~="animate1"] {
