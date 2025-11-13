@@ -192,9 +192,9 @@ class Feature19 extends BaseFeature {
                           />
                         )}
                         {this.castToString(listItem.title) && (
-                          <Base.H2 className={this.decorateCSS("list-item-title")}>
+                          <Base.H3 className={this.decorateCSS("list-item-title")}>
                             {listItem.title}
-                          </Base.H2>
+                          </Base.H3>
                         )}
                       </Base.Row>
 
