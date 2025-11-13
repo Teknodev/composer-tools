@@ -15,7 +15,7 @@ class Stats15 extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({ type: "string", key: "title", displayer: "Title", value: "Instant access to trade,<br> anytime and anywhere" });
+    this.addProp({ type: "string", key: "title", displayer: "Title", value: "Instant access to trade,anytime and anywhere" });
     this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line." });
 
     this.addProp({

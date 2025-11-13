@@ -27,6 +27,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       .content {
         display: flex;
         flex-direction: column;
@@ -67,6 +68,7 @@
         .stat-value {
           margin: 0;
           color: var(--composer-font-color-primary);
+          font-size: 2.5rem;
           &.with-bg {
             color: white;
           }
