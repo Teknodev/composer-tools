@@ -6,10 +6,11 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseSlider } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-interface Icon {
-  icon: { type: string; name: string };
-  link: string;
-}
+type Links = {
+  text: React.JSX.Element;
+  textUrl: string;
+  arrow: { type: string; name: string };
+};
 
 class Testimonials16 extends Testimonials {
   constructor(props?: any) {
@@ -33,19 +34,29 @@ class Testimonials16 extends Testimonials {
           displayer: "Link",
           value: [
             {
+              type: "page",
+              key: "textUrl",
+              displayer: "URL",
+              value: "",
+            },
+            {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "Read reviews",
+              value: "Latest News",
             },
             {
               type: "media",
-              key: "icon",
-              displayer: "Icon or Image",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaCheckCircle" },
+              key: "arrow",
+              displayer: "Arrow",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "LuArrowUpRight",
+              },
             },
-            { type: "page", key: "url", displayer: "URL", value: "" },
           ],
         },
         {
@@ -54,19 +65,29 @@ class Testimonials16 extends Testimonials {
           displayer: "Link",
           value: [
             {
+              type: "page",
+              key: "textUrl",
+              displayer: "URL",
+              value: "",
+            },
+            {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "All success stories",
+              value: "Latest News",
             },
             {
               type: "media",
-              key: "icon",
-              displayer: "Icon or Image",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaCheckCircle" },
+              key: "arrow",
+              displayer: "Arrow",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "LuArrowUpRight",
+              },
             },
-            { type: "page", key: "url", displayer: "URL", value: "" },
           ],
         },
       ],
@@ -83,18 +104,28 @@ class Testimonials16 extends Testimonials {
           displayer: "Testimonial",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "logoImage",
-              displayer: "Logo (Image)",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147e9f3596a1002b257167?alt=media",
+              displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147e9f3596a1002b257167?alt=media",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147a873596a1002b2568ec?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147a873596a1002b2568ec?alt=media",
+              },
             },
             {
               type: "string",
@@ -124,18 +155,28 @@ class Testimonials16 extends Testimonials {
           displayer: "Testimonial",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "logoImage",
-              displayer: "Logo (Image)",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147ef33596a1002b257280?alt=media",
+              displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147ef33596a1002b257280?alt=media",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147ab13596a1002b256929?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147ab13596a1002b256929?alt=media",
+              },
             },
             {
               type: "string",
@@ -170,18 +211,28 @@ class Testimonials16 extends Testimonials {
           displayer: "Testimonial",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "logoImage",
-              displayer: "Logo (Image)",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147f283596a1002b25733b?alt=media",
+              displayer: "Logo Image",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147f283596a1002b25733b?alt=media",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147acd3596a1002b256950?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69147acd3596a1002b256950?alt=media",
+              },
             },
             {
               type: "string",
@@ -207,6 +258,31 @@ class Testimonials16 extends Testimonials {
         },
       ],
     });
+
+    this.addProp({
+      type: "media",
+      key: "prev-button-icon",
+      displayer: "Previous Slide Button",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowLeft",
+      },
+    });
+    this.addProp({
+      type: "media",
+      key: "next-button-icon",
+      displayer: "Next Slide Button",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowRight",
+      },
+    });
   }
 
   static getName(): string {
@@ -214,33 +290,51 @@ class Testimonials16 extends Testimonials {
   }
 
   render() {
-    const links = this.castToObject<Icon[]>("links");
+    const testimonials = this.castToObject<any>("testimonials");
+    const title = this.getPropValue("title");
+    const links = this.castToObject<Links>("links");
+    const prevIcon: string = this.getPropValue("prev-button-icon");
+    const nextIcon: string = this.getPropValue("next-button-icon");
+
+    const settings = {
+      arrows: false,
+      dots: false,
+      infinite: true,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 868,
+          settings: {
+            arrows: false,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+
+        {
+          breakpoint: 500,
+          settings: {
+            arrows: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
+      },
+    };
+
+    console.log(testimonials);
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
-            <Base.SectionTitle>{this.getPropValue("title")}</Base.SectionTitle>
-            {links.length > 0 && (
-              <div className={this.decorateCSS("links")}>
-                {links.map((icons: Icon) => {
-                  return (
-                    icons.icon && (
-                      <ComposerLink path={icons.link}>
-                        <Base.P>{icons.link}</Base.P>
-                        <Base.Media
-                          value={icons.icon}
-                          className={this.decorateCSS("icon-item")}
-                        />
-                      </ComposerLink>
-                    )
-                  );
-                })}
-              </div>
-            )}
-          </div>
-          <div className={this.decorateCSS("slider")}></div>
-        </Base.MaxContent>
-      </Base.Container>
+      <div>
+        <div>null</div>
+      </div>
     );
   }
 }
