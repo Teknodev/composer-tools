@@ -40,6 +40,12 @@ class Feature29 extends BaseFeature {
           value: "",
         },
         {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+        {
           type: "string",
           key: "topLeftSideTitle",
           displayer: "Title",
@@ -80,6 +86,12 @@ class Feature29 extends BaseFeature {
           key: "bottomLeftSideImage",
           displayer: "Image",
           value: "",
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
         },
         {
           type: "string",
@@ -125,6 +137,12 @@ class Feature29 extends BaseFeature {
             "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36303596a1002b214633?alt=media",
         },
         {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+        {
           type: "string",
           key: "bottomLeftSide2Title",
           displayer: "Title",
@@ -167,6 +185,12 @@ class Feature29 extends BaseFeature {
             "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36723596a1002b21464f?alt=media",
         },
         {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+        {
           type: "string",
           key: "middleSideTitle",
           displayer: "Title",
@@ -198,6 +222,12 @@ class Feature29 extends BaseFeature {
           key: "topRightSideImage",
           displayer: "Image",
           value: "",
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
         },
         {
           type: "string",
@@ -232,6 +262,12 @@ class Feature29 extends BaseFeature {
           key: "bottomRightSideImage",
           displayer: "Image",
           value: "",
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
         },
         {
           type: "string",
@@ -294,7 +330,9 @@ class Feature29 extends BaseFeature {
 
     return (
       <Base.VerticalContent
-        className={this.decorateCSS("card")}
+        className={`${this.decorateCSS("card")} ${
+          cardData.overlay ? this.decorateCSS("overlay") : ""
+        }`}
         style={
           hasImage
             ? { backgroundImage: `url(${cardData[`${prefix}Image`]})` }
@@ -302,7 +340,7 @@ class Feature29 extends BaseFeature {
         }
         data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
-        <div className={`${this.decorateCSS("card-text-container")} `}>
+        <div className={this.decorateCSS("card-text-container")}>
           {this.castToString(cardData[`${prefix}Title`]) && (
             <Base.H3 className={this.decorateCSS("card-title")}>
               {cardData[`${prefix}Title`]}
@@ -328,7 +366,12 @@ class Feature29 extends BaseFeature {
                     {button.text}
                   </Base.P>
                 )}
-                {button.icon && <Base.Media value={button.icon} />}
+                {button.icon && (
+                  <Base.Media
+                    className={this.decorateCSS("button-icon")}
+                    value={button.icon}
+                  />
+                )}
               </Base.Button>
             </ComposerLink>
           )}
