@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section3.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: string;
-  image: string;
+  image: TypeMediaInputValue;
   description: string;
   type: string;
   button: INPUTS.CastedButton;
@@ -19,13 +19,13 @@ class HeroSection3 extends BaseHeroSection {
     super(props, styles);
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider",
       key: "slider",
       value: [
         {
           type: "object",
-          displayer: "Item 1",
-          key: "item1",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -40,28 +40,33 @@ class HeroSection3 extends BaseHeroSection {
               value: "Explore the modern glamour within all of Wize Styles.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "1",
+              value: "Left Image Layout",
               additionalParams: {
-                selectItems: ["1", "2", "3"],
+                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", "", "", "Primary")
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
           ],
         },
         {
           type: "object",
-          displayer: "Item 2",
-          key: "item2",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -76,28 +81,33 @@ class HeroSection3 extends BaseHeroSection {
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624502?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624502?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "2",
+              value: "Right Image Layout",
               additionalParams: {
-                selectItems: ["1", "2", "3"],
+                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", "", "", "Primary")
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
           ],
         },
         {
           type: "object",
-          displayer: "Item 3",
-          key: "item3",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -113,19 +123,24 @@ class HeroSection3 extends BaseHeroSection {
                 "Enjoy the New Collection with Wize Fashion Store.Best women's fashion tips and style guide.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "3",
+              value: "Overlay on Image",
               additionalParams: {
-                selectItems: ["1", "2", "3"],
+                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
             INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
@@ -134,9 +149,29 @@ class HeroSection3 extends BaseHeroSection {
       ],
     });
     this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Enable Animation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
       value: true,
     });
 
@@ -155,6 +190,8 @@ class HeroSection3 extends BaseHeroSection {
   }
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
+    const logo = this.getPropValue("logo");
     const settings = {
       dots: false,
       fade: true,
@@ -162,6 +199,8 @@ class HeroSection3 extends BaseHeroSection {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
+      autoplay: autoplay,
+      autoplaySpeed: 3000,
       beforeChange: (current: number, next: number) => {
         setTimeout(() => {
           this.setComponentState("activeSlide", next);
@@ -185,51 +224,58 @@ class HeroSection3 extends BaseHeroSection {
               const description = this.castToString(item.description as any);
               const buttonText = this.castToString(item.button.text);
               const showContent = title || description || buttonText;
+              
+              const typeClassMap: { [key: string]: string } = {
+                "Left Image Layout": "2",
+                "Right Image Layout": "1",
+                "Overlay on Image": "3"
+              };
+              const typeClass = typeClassMap[item.type] || "1";
 
               return (
                 <div
                   className={`${this.decorateCSS("wrapper")} ${this.decorateCSS(
-                    `type-${item.type}`
+                    `type-${typeClass}`
                   )} ${index === activeSlide && this.decorateCSS("active-slide")}
                   ${!item.image && this.decorateCSS("full-text-container")}
                   ${!showContent && this.decorateCSS("full-image")}
                   `}
                 >
-                  {!showContent && item.type === "3" ? null : (
+                  {!showContent && item.type === "Overlay on Image" ? null : (
                     <div className={this.decorateCSS("content-bg")} />
                   )}
 
                   <div className={this.decorateCSS("content")}>
                     {showContent && (
                       <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                        {title && <Base.H1 className={this.decorateCSS("title")}>{item.title}</Base.H1>}
-                        {(description || buttonText) && (
-                          <Base.VerticalContent
-                            className={`${this.decorateCSS("bottom-section")} ${description && this.decorateCSS("bottom-section-line")
-                              }`}
-                          >
-                            {description && (
-                              <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
-                            )}
-                            {buttonText && (
-                              <Base.Row className={this.decorateCSS("button-container")}>
-                                <ComposerLink path={item.button.url}>
-                                  <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                                    {item.button.text}
-                                  </Base.Button>
-                                </ComposerLink>
-                              </Base.Row>
-                            )}
-                          </Base.VerticalContent>
+                        {logo && (
+                         <div className={this.decorateCSS("logo-container")}> 
+                          <Base.Media 
+                            value={logo} 
+                            className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                          />
+                        </div> 
+                        )}
+                        {title && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                        {description && (
+                          <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
+                        )}
+                        {buttonText && (
+                          <div className={this.decorateCSS("button-container")}>
+                            <ComposerLink path={item.button.url}>
+                              <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          </div>
                         )}
                       </Base.VerticalContent>
                     )}
                     {item.image && (
                       <div className={this.decorateCSS("image-container")}>
-                        <img
+                        <Base.Media
                           className={this.decorateCSS("image")}
-                          src={item.image}
-                          alt={item.title}
+                          value={item.image}
                         />
                       </div>
                     )}
@@ -240,13 +286,13 @@ class HeroSection3 extends BaseHeroSection {
           </ComposerSlider>
           <div className={this.decorateCSS("pagination")}>
             {this.castToObject<ISliderData[]>("slider").map((slider: ISliderData, index) => (
-              <div
+              <Base.P
                 className={`${this.decorateCSS("page-number")} ${activeSlide === index && this.decorateCSS("active")
                   }`}
                 onClick={() => this.handleSlideChange(index)}
               >
                 0{index + 1}
-              </div>
+              </Base.P>
             ))}
           </div>
         </Base.MaxContent>
