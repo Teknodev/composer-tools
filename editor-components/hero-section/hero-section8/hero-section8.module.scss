@@ -132,7 +132,7 @@
       }
     
       .line {
-        border-bottom: 1px solid var(--composer-tertiary-color);
+        border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2)
       }
     }
 

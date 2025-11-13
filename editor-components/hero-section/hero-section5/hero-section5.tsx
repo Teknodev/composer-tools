@@ -83,6 +83,7 @@ class HeroSection5 extends BaseHeroSection {
     const isDescriptionExist = this.castToString(description);
     const isSubtitleExist = this.castToString(subtitle);
 
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -119,9 +120,13 @@ class HeroSection5 extends BaseHeroSection {
               {buttons.length > 0 && <div className={this.decorateCSS("button-container")}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                     const buttonTextExist = this.castToString(item.text);
+                    const isTertiaryWithImage = item.type === "Tertiary" && backgroundImage?.url;
                     return buttonTextExist && (
                       <ComposerLink key={index} path={item.url}>
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        <Base.Button 
+                          buttonType={item.type} 
+                          className={`${this.decorateCSS("button")} ${isTertiaryWithImage ? this.decorateCSS("tertiary-with-image") : ""}`}
+                        >
                           <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>

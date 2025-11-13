@@ -58,7 +58,7 @@ class HeroSection4 extends BaseHeroSection {
         "Button", 
         "More Projects", 
         "", 
-        null, 
+        "", 
         null, 
         "Tertiary")
     );
@@ -192,6 +192,7 @@ const getStyle = (direction: "up" | "down") => {
                 style={imageAnm ? getStyle("up") : undefined}
               >
                 <Base.Media
+                  className={this.decorateCSS("image-element")}
                   value={image}
                 />
                 {overlay && image?.url && <div className={this.decorateCSS("overlay")} />}
@@ -221,6 +222,10 @@ const getStyle = (direction: "up" | "down") => {
                       buttonType={button?.type || "Tertiary"} 
                       className={this.decorateCSS("button")}>
                       <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                       {button.icon && <Base.Media
+                          value={button.icon}
+                          className={this.decorateCSS("button-icon")}
+                        />}
                     </Base.Button>
                   </ComposerLink>
                 </div>

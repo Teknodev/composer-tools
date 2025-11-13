@@ -83,7 +83,7 @@
       bottom: var(--composer-gap-md);
       background: var(--composer-html-background);
       right: var(--composer-gap-xl);
-      width: 30%;
+      width: 35%;
       padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
       .subtitle ,.title ,.description ,.note {
@@ -98,6 +98,10 @@
         .button{
           .button-text {
             content: "";
+          }
+          .button-icon{
+            height: 12px;
+            width: 12px;
           }
         }
       }
@@ -133,6 +137,9 @@
             height: 100%;
             width: 100%;
             transform: none !important;
+            .image-element {
+              height: inherit;
+            }
           }
         }
       .card {

@@ -62,16 +62,12 @@
         .counter-wrapper {
           display: flex;
           align-items: center;
-          .active-number {
-            color: var(--composer-primary-color);
+          .active-number, .count {
+            color: var(--composer-font-color-primary);
           }
 
           .slash {
             margin: 0px var(--composer-gap-xs);
-          }
-
-          .count {
-            color: var(--composer-primary-color);
           }
         }
       }

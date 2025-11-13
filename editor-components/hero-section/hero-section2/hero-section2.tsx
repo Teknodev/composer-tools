@@ -296,12 +296,11 @@ class HeroSection2 extends BaseHeroSection {
                                   <ComposerLink path={item.button.url}>
                                     <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
                                       <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
-                                      {item.button.icon && (
-                                        <Base.Media
-                                          value={{ type: "icon", name: item.button.icon } as TypeMediaInputValue}
-                                          className={this.decorateCSS("icon")}
-                                        />
-                                      )}
+                                      {item.button.icon && 
+                                      <Base.Media
+                                        value={item.button.icon}
+                                        className={this.decorateCSS("button-icon")}
+                                      />}
                                     </Base.Button>
                                   </ComposerLink>
                                 </div>
