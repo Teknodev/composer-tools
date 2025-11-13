@@ -57,7 +57,7 @@ class Feature29 extends BaseFeature {
           "Button",
           "Link",
           "",
-          "",
+          "MdArrowForwardIos",
           null,
           "Link"
         ),
@@ -99,7 +99,7 @@ class Feature29 extends BaseFeature {
           "Button",
           "Link",
           "",
-          "",
+          "MdArrowForwardIos",
           null,
           "Link"
         ),
@@ -317,16 +317,18 @@ class Feature29 extends BaseFeature {
             </Base.SectionDescription>
           )}
 
-          {button && button.text && (
+          {button && (this.castToString(button.text) || button.icon) && (
             <ComposerLink path={button.url}>
               <Base.Button
                 buttonType={button.type}
                 className={this.decorateCSS("button")}
               >
-                <Base.P className={this.decorateCSS("button-text")}>
-                  {button.text}
-                </Base.P>
-                <Base.Media value={button.icon} />
+                {this.castToString(button.text) && (
+                  <Base.P className={this.decorateCSS("button-text")}>
+                    {button.text}
+                  </Base.P>
+                )}
+                {button.icon && <Base.Media value={button.icon} />}
               </Base.Button>
             </ComposerLink>
           )}
