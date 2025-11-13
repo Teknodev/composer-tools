@@ -81,8 +81,11 @@
                             padding: var(--composer-gap-lg);
                             display: flex;
                             flex-direction: column;
+                            align-items: baseline;
+                            justify-content: baseline;
                             gap: var(--composer-gap-md);
                             .title, .description {
+                                text-align: left;
                                 color: var(--composer-font-color-primary);
                             }
                         }

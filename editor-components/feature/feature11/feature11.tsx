@@ -254,14 +254,17 @@ class Feature11 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-
+    const alignment = Base.getContentAlignment();
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(this.castToString(subtitle) || this.castToString(title) ||
               this.castToString(description) || this.castToString(button.text)) && (
-                <Base.VerticalContent className={this.decorateCSS("left")}>
+                <Base.VerticalContent 
+                  className={this.decorateCSS("left")}
+                  data-alignment={alignment}
+                >
                   {this.castToString(subtitle) && (
                     <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                       {subtitle}

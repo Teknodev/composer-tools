@@ -36,6 +36,7 @@
         align-content: center;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         gap: var(--composer-gap-md);
+        border-radius: var(--composer-border-radius-md) 0 0 var(--composer-border-radius-md);
 
         .first-card-title {
           color: var(--composer-font-color-primary);
@@ -56,7 +57,11 @@
         animation-duration: 0.5s;
         animation-timing-function: ease;
         animation-fill-mode: forwards;
-        animation-delay: var(--animation-delay); 
+        animation-delay: var(--animation-delay);
+
+        &:last-child {
+          border-radius: 0 var(--composer-border-radius-md) var(--composer-border-radius-md) 0;
+        } 
         .message {
           color: var(--composer-font-color-primary);
           width: 100%;

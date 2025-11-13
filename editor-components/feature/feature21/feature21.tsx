@@ -283,7 +283,15 @@ class Feature21 extends BaseFeature{
                                         {cardImageExist && <div className={this.decorateCSS("media-container")}>
                                             {hoveredIndex === index && cardVideo && cardVideo.url ? (
                                                 <Base.Media
-                                                    value={card.video}
+                                                    value={{
+                                                        type: "video",
+                                                        url: cardVideo.url,
+                                                        settings: {
+                                                            autoplay: true,
+                                                            muted: true,
+                                                            loop: true,
+                                                        }
+                                                    }}
                                                     className={this.decorateCSS("card-video")}
                                                 />
                                             ) : cardImage && cardImage.url && (

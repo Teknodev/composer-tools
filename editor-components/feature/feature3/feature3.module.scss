@@ -24,7 +24,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                     margin-bottom: var(--composer-gap-md);
 
                     &.circle-exist {
-                        text-align: center;
+                        text-align: left;
                         margin: 0;
                         color: var(--composer-font-color-secondary);
                     }
@@ -191,6 +191,12 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                         overflow-wrap: break-word;
                     }
 
+                    .title {
+                        &.circle-exist {
+                            margin-top: var(--composer-gap-lg);
+                        }
+                    }
+
                     .description {
                         &.circle-exist {
                             top: calc($space + var(--composer-gap-md));
@@ -274,6 +280,12 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                         }
                     }
 
+                    .title {
+                        &.circle-exist {
+                            text-align: center;
+                        }
+                    }
+
                     .description {
                         &.circle-exist {
                             width: 100%;
@@ -281,6 +293,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                             color: var(--composer-font-color-primary);
                             line-clamp: unset;
                             -webkit-line-clamp: unset;
+                            text-align: center;
                         }
                     }
 

@@ -6,8 +6,12 @@
             gap: var(--composer-gap-xl);
             .left {
                 flex: 1;
+                align-items: baseline;
                 .section-subtitle, .section-title, .section-description {
-                    content :"" 
+                    text-align: left;
+                }
+                .section-subtitle {
+                    margin-left: 0;
                 }
                 .button { 
                     .button-text {
@@ -55,6 +59,17 @@
         .max-content{
             .wrapper{
                 flex-direction: column;
+                .left {
+                    &[data-alignment="center"] {
+                        align-items: center;
+                        .section-subtitle, .section-title, .section-description {
+                            text-align: center;
+                        }
+                        .section-subtitle {
+                            margin-left: auto;
+                        }
+                    }
+                }
                 .right {
                     .card-container {
                         .card-icon {

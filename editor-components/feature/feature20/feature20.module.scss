@@ -8,6 +8,7 @@
   height: 100%;
   background-color: var(--composer-overlay-color);
   pointer-events: none;
+  border-radius: var(--composer-border-radius-md);
 }
 
 .container {
@@ -128,14 +129,15 @@
             content: "";
           }
         }
-        &:hover {
+      }
+
+      &:hover {
           .button {
             display: inline-block;
             opacity: 1;
             transform: translateY(0);
           }
         }
-      }
 
       &:not(:has(.image-container .image)) {
         .text {

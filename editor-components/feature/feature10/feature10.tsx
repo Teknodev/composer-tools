@@ -56,6 +56,13 @@ class Feature10 extends BaseFeature {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -307,7 +314,7 @@ class Feature10 extends BaseFeature {
       arrows: false,
       dots: false,
       speed: 725,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 2000,
       slidesToShow: cards.length > 2 ? 3 : cards.length,
       slidesToScroll: 1,

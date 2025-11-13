@@ -23,7 +23,7 @@ class Feature7 extends BaseFeature {
       },
       value: {
         type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a25bdb2f8a5b002ce67862?alt=media",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6915c87f3596a1002b26c0b0?alt=media",
       },
     });
 
