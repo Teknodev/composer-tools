@@ -5,7 +5,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 600px;
+    min-height: 800px;
   }
   &.overlay-active {
     position: relative;
@@ -27,12 +27,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 600px;
 
       .content {
         display: flex;
         flex-direction: column;
         align-items: center;
         color: white;
+        justify-content: center;
         .title , .description {
           text-align: center;
           &.with-bg {
@@ -86,6 +88,7 @@
         justify-content: flex-start;
         .content {
           align-items: flex-start;
+          justify-content: center;
           text-align: left;
           .title,
           .description {
