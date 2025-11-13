@@ -30,10 +30,14 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                flex: 1 1 calc((100% / 3) - var(--composer-gap-md));
+                min-width: 150px;
+                max-width: 300px;
                 .image {
                     object-fit: contain;
-                    width: 300px;
-                    height: 100px;
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 3/1;
                 }
             }
         }
@@ -58,11 +62,8 @@
             
             .right {
                 .image-item {
-                    .image {
-                        width: 100%;
-                        height: auto;
-                        aspect-ratio: 3/1;
-                    }
+                    flex: 1 1 calc(50% - var(--composer-gap-md));
+                    min-width: 120px;
                 }
             }
         }

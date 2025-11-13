@@ -15,10 +15,14 @@
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 padding: var(--composer-gap-md);
                 border-radius: var(--composer-border-radius-sm);
+                flex: 1 1 calc((100% / 6) - var(--composer-gap-md));
+                min-width: 150px;
+                max-width: 240px;
                 .image {
                     object-fit: contain;
-                    width: 240px;
-                    height: 80px;
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 3/1;
                 }
             }
         }
@@ -33,11 +37,8 @@
             
             .images-container {
                 .image-item {
-                    .image {
-                        width: 100%;
-                        height: auto;
-                        aspect-ratio: 3/1;
-                    }
+                    flex: 1 1 calc((100% / 3) - var(--composer-gap-md));
+                    min-width: 120px;
                 }
             }
         }

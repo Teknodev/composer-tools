@@ -19,8 +19,8 @@
                 gap: var(--composer-gap-md);
                 .image {
                     object-fit: contain;
-                    width: 160px;
-                    height: 160px;
+                    width: clamp(120px, 12vw, 160px);
+                    height: clamp(120px, 12vw, 160px);
                 }
                 .text {
                     flex: 1;

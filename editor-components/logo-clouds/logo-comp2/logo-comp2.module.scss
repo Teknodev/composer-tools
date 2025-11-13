@@ -42,8 +42,9 @@
                 border-radius: 200px;
                 .image{
                     object-fit: contain;
-                    width: 150px;
-                    height: 50px;
+                    width: clamp(120px, 15vw, 150px);
+                    height: auto;
+                    aspect-ratio: 3/1;
                 }
             }
         }
