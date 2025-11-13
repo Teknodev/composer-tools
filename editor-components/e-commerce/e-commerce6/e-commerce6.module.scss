@@ -48,6 +48,10 @@
                     padding: var(--composer-gap-md);
                     background-color: var(--composer-primary-color);
                     color: var(--composer-font-color-secondary);
+
+                    svg {
+                        height: 45px;
+                    }
                 }
 
                 &::before {
@@ -92,6 +96,13 @@
                         .icon {
                             display: block;
                             animation: show-icon 0.3s 0.5s forwards;
+                        }
+                    }
+
+                    &.active:hover {
+                        .icon {
+                            animation: none;
+                            opacity: 1;
                         }
                     }
                 }
