@@ -10,13 +10,13 @@
      width: 100%;
 
      @container (max-width: #{$composer-tablet-width}) {
-          font-size: calc(3 * var(--composer-font-size-md)) !important;
-          line-height: 3.5rem !important;
+          font-size: calc(2.5 * var(--composer-font-size-md)) !important;
+          line-height: 3rem !important;
      }
 
      @container (max-width: #{$composer-phone-width}) {
-          font-size: calc(2.25 * var(--composer-font-size-md)) !important;
-          line-height: 3rem !important;
+          font-size: calc(2 * var(--composer-font-size-md)) !important;
+          line-height: 2.5rem !important;
      }
 }
 
@@ -30,18 +30,18 @@
     width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(2.25 * var(--composer-font-size-md)) !important;
-        line-height: 2.75rem !important;
+        font-size: calc(2 * var(--composer-font-size-md)) !important;
+        line-height: 2.625rem !important;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(2 * var(--composer-font-size-md)) !important;
-        line-height: 2.5rem !important;
+        font-size: calc(1.625 * var(--composer-font-size-md)) !important;
+        line-height: 2rem !important;
     }
 }
 
 .h3{
-    font-size: calc(1.5 * var(--composer-font-size-md));
+    font-size: calc(2.25 * var(--composer-font-size-md));
     line-height: 2.75rem;
     letter-spacing: 0rem;
     font-weight: 400;
@@ -50,18 +50,18 @@
     width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(2 * var(--composer-font-size-md)) !important;
-        line-height: 2.5rem !important;
+        font-size: calc(1.625 * var(--composer-font-size-md)) !important;
+        line-height: 2.25rem !important;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.75 * var(--composer-font-size-md)) !important;
-        line-height: 2.25rem !important;
+        font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+        line-height: 1.75rem !important;
     }
 }
 
 .h4{
-    font-size: calc(1.3 * var(--composer-font-size-md));
+    font-size: calc(2 * var(--composer-font-size-md));
     line-height: 2.5rem;
     letter-spacing: 0rem;
     font-weight: 400;
@@ -70,18 +70,18 @@
     width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1.75 * var(--composer-font-size-md)) !important;
-        line-height: 2.25rem !important;
+        font-size: calc(1.4375 * var(--composer-font-size-md)) !important;
+        line-height: 2rem !important;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.5 * var(--composer-font-size-md)) !important;
-        line-height: 2rem !important;
+        font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+        line-height: 1.625rem !important;
     }
 }
 
 .h5{
-    font-size: calc(1.2 * var(--composer-font-size-md));
+    font-size: calc(1.75 * var(--composer-font-size-md));
     line-height: 2.25rem;
     letter-spacing: 0rem;
     font-weight: 400;
@@ -90,18 +90,18 @@
     width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1.5 * var(--composer-font-size-md)) !important;
-        line-height: 2rem !important;
+        font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+        line-height: 1.875rem !important;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.25 * var(--composer-font-size-md)) !important;
-        line-height: 1.75rem !important;
+        font-size: calc(1 * var(--composer-font-size-md)) !important;
+        line-height: 1.5rem !important;
     }
 }
 
 .h6{
-    font-size: calc(1.1 * var(--composer-font-size-md));
+    font-size: calc(1.5 * var(--composer-font-size-md));
     line-height: 2rem;
     letter-spacing: 0rem;
     font-weight: 400;
@@ -110,13 +110,13 @@
     width: 100%;
 
     @container (max-width: #{$composer-tablet-width}) {
-        font-size: calc(1.25 * var(--composer-font-size-md)) !important;
-        line-height: 1.75rem !important;
+        font-size: calc(1.0625 * var(--composer-font-size-md)) !important;
+        line-height: 1.625rem !important;
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        font-size: calc(1.125 * var(--composer-font-size-md)) !important;
-        line-height: 1.5rem !important;
+        font-size: calc(0.875 * var(--composer-font-size-md)) !important;
+        line-height: 1.25rem !important;
     }
 }
 
@@ -231,6 +231,7 @@
         }
         .row{
             justify-content: center;
+            align-items: center;
         }
 
         .sectionDescription,
@@ -363,7 +364,6 @@
     display: grid;
     grid-template-columns: repeat(var(--composer-grid-count), 1fr);
     gap: var(--composer-gap-md);
-    container-type: inline-size;
     @container (max-width: #{$composer-tablet-width}) {
         grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr) !important;
     }

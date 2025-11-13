@@ -4,6 +4,15 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+
+    .header{
+      .subtitle, .title{
+        content: "";
+      }
+    }
     .page-content {
       display: flex;
       gap: var(--composer-gap-md);
@@ -12,22 +21,23 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
       border-radius: var(--composer-border-radius-md);
 
       .text-content {
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-sm);
         flex: 1;
 
         .paragraph {
+          text-align: left;
           color: var(--composer-font-color-primary);
-          margin-top: 0;
-          margin-bottom: 0;
         }
 
         .contact-texts {
+          width: 100%;
+          align-items: baseline;
           .contact-element {
             display: flex;
             align-items: center;
             color: var(--composer-font-color-primary);
             gap: var(--composer-gap-sm);
-            .contact-title {
+            .contact-title, .contact-text {
               content: "";
             }
           }
@@ -48,14 +58,14 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
             border: none;
             color: var(--composer-font-color-primary);
             background-color: $content-background-color;
-            border-bottom: 1px solid var(--composer-font-color-primary);
+            border-bottom: 1px solid var(--composer-tertiary-color);
             outline: none;
             padding-bottom: var(--composer-gap-sm);
             font-size: 1.5rem;
 
             &::placeholder {
               font-size: 1.5rem;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
             }
 
             &:focus {
@@ -72,6 +82,9 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
 
           .form-button {
             justify-content: center;
+            .button-text{
+              text-align: center;
+            }
           }
         }
       }
