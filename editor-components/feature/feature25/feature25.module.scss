@@ -1,0 +1,213 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  position: relative;
+
+  .max-content {
+    .tabs-wrapper {
+      display: flex;
+      gap: var(--composer-gap-xl);
+      height: 600px;
+      align-items: center;
+
+      .tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        flex-shrink: 0;
+        justify-content: center;
+        align-items: flex-start;
+
+        .tab-text {
+          content: "";
+        }
+
+        .tab {
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          height: 100%;
+          cursor: pointer;
+          border-left: 1px solid var(--composer-tertiary-color);
+          color: var(--composer-tertiary-color);
+
+          &.active {
+            border-left: 3px solid var(--composer-primary-color) !important;
+            color: var(--composer-font-color-primary) !important;
+          }
+        }
+      }
+
+      .vertical-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow-x: hidden;
+        height: 100%;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        align-items: flex-start;
+        margin: 0;
+
+        .tab-content {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-shrink: 0;
+          height: 100%;
+          gap: var(--composer-gap-xl);
+          width: 100%;
+          scroll-snap-stop: always;
+          scroll-snap-align: start;
+          padding: var(--composer-gap-md);
+
+          &.no-text {
+            .image-wrapper {
+              width: 100% !important;
+
+              .image {
+                height: 600px !important;
+                width: 100% !important;
+                object-fit: cover;
+              }
+            }
+          }
+
+          .image-wrapper {
+            width: 35%;
+            flex-shrink: 0;
+            border-radius: var(--composer-border-radius-md);
+
+            .image {
+              width: 100%;
+              height: auto;
+              border-radius: var(--composer-border-radius-sm);
+              display: block;
+            }
+          }
+
+          .text-content {
+            flex: 1;
+            align-items: flex-start;
+
+            .subtitle {
+              text-align: left;
+              margin-left: 0;
+            }
+
+            .title,
+            .description {
+              text-align: left;
+            }
+
+            .description {
+              display: -webkit-box;
+              -webkit-line-clamp: 10;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .button-wrapper {
+              align-self: flex-start;
+              .button {
+                .button-text {
+                  content: "";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .tabs-wrapper {
+        gap: 0 !important;
+
+        .tab-content {
+          justify-content: flex-start !important;
+          margin-top: 5rem;
+        }
+
+        .vertical-content {
+          .text-content {
+            flex: 1 !important;
+
+            .description {
+              -webkit-line-clamp: 9;
+            }
+          }
+        }
+
+        .image-wrapper {
+          width: 50% !important;
+        }
+
+        .tab-text {
+          display: none !important;
+        }
+
+        .tab {
+          padding: 1rem !important;
+        }
+
+        .tabs {
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .tabs-wrapper {
+        gap: 0 !important;
+
+        .tab-content {
+          flex-direction: column-reverse;
+          justify-content: flex-end !important;
+          align-items: flex-start !important;
+          height: auto !important;
+          padding: 0 !important;
+
+          .button-wrapper {
+            .button {
+              margin-top: 0px !important;
+            }
+          }
+        }
+
+        .vertical-content {
+          .text-content {
+            .description {
+              -webkit-line-clamp: 3 !important;
+            }
+          }
+        }
+
+        .image-wrapper {
+          width: 85% !important;
+        }
+
+        .tab-text {
+          display: none !important;
+        }
+
+        .tab {
+          padding: var(--composer-gap-sm) !important;
+        }
+
+        .tabs {
+          height: 100%;
+        }
+      }
+    }
+  }
+}
