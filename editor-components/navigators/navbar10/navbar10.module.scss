@@ -159,7 +159,8 @@
               justify-content: space-between;
               color: var(--composer-tertiary-color);
               text-transform: capitalize;
-              margin-bottom: var(--composer-gap-md);
+              margin-bottom: var(--composer-gap-sm);
+              margin-top: var(--composer-gap-sm);
               transition: all 0.4s ease;
               padding: 0 var(--composer-gap-xs);
               &.animation1 {
