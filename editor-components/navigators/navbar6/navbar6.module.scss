@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
+.navbarContainer {
   z-index: 101;
   &.filledBackground {
     background: transparent !important;
@@ -73,6 +73,8 @@
           font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
+          height: 24px;
+          width: 24px;
         }
 
         &:hover {
@@ -220,6 +222,8 @@
 }
   .mobileRight{
     display: none;
+    align-items: center;
+    gap: var(--composer-gap-sm);
   }
   .iconsContainer {
     display: flex;
@@ -434,7 +438,6 @@
       margin: 0;
       font-weight: normal;
       transition: all 0.3s ease;
-      font-size: calc(1 * var(--composer-font-size-md));
       &.animation1{
         &:hover{
           font-weight: bold;
