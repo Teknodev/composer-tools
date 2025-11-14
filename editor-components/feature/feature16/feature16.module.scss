@@ -26,7 +26,7 @@
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-sm);
         padding: var(--composer-gap-lg);
         border: 1px solid transparent;
         width: 100%;
@@ -68,7 +68,7 @@
         width: 100%;
         .top-left-side {
           height: 100%;
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           border: 1px solid transparent;
           box-sizing: border-box;
           .card {
@@ -87,7 +87,7 @@
           .bottom-left-side-card {
             display: flex;
             flex-direction: column;
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             padding: var(--composer-gap-lg);
             overflow: hidden;
             height: 100%;

@@ -160,13 +160,13 @@
                     flex: 1;
                     display: flex;
                     overflow: hidden;
-                    border-radius: var(--composer-border-radius-md);
+                    border-radius: var(--composer-border-radius-sm);
 
                     .image {
                         width: 100%;
                         aspect-ratio: 4/3;
                         object-fit: cover;
-                        border-radius: var(--composer-border-radius-md);
+                        border-radius: var(--composer-border-radius-sm);
                         
                         &:hover {
                             transform: none;

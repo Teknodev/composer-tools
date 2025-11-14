@@ -10,7 +10,7 @@
       background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
       gap: var(--composer-gap-xl);
-      border-radius: var(--composer-border-radius-md);
+      border-radius: var(--composer-border-radius-sm);
       height: 100%;
       align-items: flex-start;
       .title-container {

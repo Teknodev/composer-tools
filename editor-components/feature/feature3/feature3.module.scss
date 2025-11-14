@@ -90,7 +90,7 @@ $circlepaddingbottom: calc(300px + var(--composer-gap-xl));
                             padding: var(--composer-gap-lg);
                             gap: var(--composer-gap-md);
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                            border-radius: var(--composer-border-radius-xl);
+                            border-radius: var(--composer-border-radius-sm);
                             z-index: 1;
                             transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
 

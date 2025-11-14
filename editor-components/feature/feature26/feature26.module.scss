@@ -117,10 +117,11 @@
     .max-content {
       .wrapper {
         align-items: flex-start;
+        flex-direction: row;
         gap: var(--composer-gap-xl);
         .image-container { 
-          width: 70%;
-          max-width: 70%;
+          width: 50%;
+          max-width: 50%;
           aspect-ratio: 1 / 1;
         }
         .content { max-width: 100%; }
@@ -138,7 +139,12 @@
         align-items: stretch;
         gap: var(--composer-gap-xl);
         .image-container { order: 1; margin-top: 0; }
-        .content { order: 2; }
+        .content { 
+          order: 2;
+          .buttons-container {
+            gap: var(--composer-gap-sm);
+          }
+        }
         .image-container {
           width: 100%;
           max-width: 100%;

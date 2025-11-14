@@ -40,7 +40,7 @@
 
     .box {
       background: var(--composer-primary-color);
-      border-radius: calc(4*var(--composer-border-radius-md));
+      border-radius: var(--composer-border-radius-lg);
       align-items: center;
       overflow: hidden;
       
@@ -51,13 +51,13 @@
         gap: var(--composer-gap-xs);
         background-color: rgba(var(--composer-html-background-rgb), 0.7);
         padding: var(--composer-gap-xs);
-        border-radius: calc(4*var(--composer-border-radius-md));
+        border-radius: var(--composer-border-radius-md);
         z-index: 2;
         position: relative;
         
         .tab-button {
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-          border-radius: calc(4*var(--composer-border-radius-md));
+          border-radius: var(--composer-border-radius-xs);
           cursor: pointer;
           transition: all 0.3s ease;
           position: relative;

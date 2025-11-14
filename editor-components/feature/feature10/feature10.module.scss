@@ -60,7 +60,7 @@
                         }
     
                     .card-container {
-                        border-radius: var(--composer-border-radius-md);
+                        border-radius: var(--composer-border-radius-sm);
                         background-color: var(--composer-html-background);
                         transform: scale(1);
                         transition: var(--composer-transition-duration-slow);
@@ -71,10 +71,10 @@
                         .image{
                             height: 300px;
                             width: 100%;
-                            border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
+                            border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
                             object-fit: cover;
                             &.border-radius{
-                                border-radius: var(--composer-border-radius-md);
+                                border-radius: var(--composer-border-radius-sm);
                             }
                         }
                         .bottom{

@@ -12,8 +12,8 @@
         .image, .image-no-border-radius {
           width: 100%;
           height: auto;
-          border-top-right-radius: var(--composer-border-radius-xl);
-          border-bottom-right-radius: var(--composer-border-radius-xl);
+          border-top-right-radius: var(--composer-border-radius-sm);
+          border-bottom-right-radius: var(--composer-border-radius-sm);
           object-fit: cover;
           max-height: 100vh;
         }
