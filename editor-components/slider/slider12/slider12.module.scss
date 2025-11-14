@@ -16,14 +16,11 @@
       .header {
         .header-content {
           .title {
-            width: 100%;
-            margin-bottom: var(--composer-gap-md);
+            content: "";
           }
 
           .description {
-            width: 100%;
-            color: var(--composer-tertiary-color);
-            margin-top: var(--composer-gap-xs);
+            content: "";
           }
 
           .arrows-wrap {
@@ -92,8 +89,6 @@
         var(--composer-html-background),
         black 10%
       );
-      display: grid;
-      place-items: center;
     }
 
     .image,
@@ -118,13 +113,8 @@
     }
 
     .text-centered {
-      display: grid;
       justify-items: center;
       text-align: center;
-
-      .header {
-        margin-bottom: var(--composer-gap-xs);
-      }
 
       .desc {
         text-align: center !important;

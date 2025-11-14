@@ -11,12 +11,12 @@ type VideoPlayerProps = {
   className?: string;
 };
 
-const VideoPlayer = React.memo(function VideoPlayer({
+const VideoPlayer = React.memo(function VideoPlayer({ // memo kaldır
   src,
   className,
 }: VideoPlayerProps) {
-  return (
-    <video
+  return ( 
+    <video // use base.media
       autoPlay
       muted
       playsInline
@@ -82,10 +82,10 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video / Image",
+              displayer: "Media",
               value: {
                 type: "video",
-                url: "https://vid.cdn-website.com/a8ff2f1c/videos/E2xnAgaRzmoErKzfdTDC_upload+images+v2-v.mp4",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691724ba3596a1002b27e4e0?alt=media",
               },
               additionalParams: { availableTypes: ["video", "image"] },
             },
@@ -102,10 +102,9 @@ class Slider12 extends BaseSlider {
               value:
                 "Leverage Duda's AI Content Collection form or White Label AI Site Builder to make client onboarding painless (finally).",
             },
-            { type: "page", key: "link", displayer: "Card Link", value: "" },
+            { type: "page", key: "link", displayer: "Navigate To", value: "" },
           ],
         },
-
         {
           type: "object",
           key: "item",
@@ -114,10 +113,10 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video / Image",
+              displayer: "Media",
               value: {
                 type: "image",
-                url: "https://lirp.cdn-website.com/a8ff2f1c/dms3rep/multi/opt/Frame+1171275952-a56ad42b-1920w.png",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691724f13596a1002b27e544?alt=media",
               },
               additionalParams: { availableTypes: ["video", "image"] },
             },
@@ -134,13 +133,13 @@ class Slider12 extends BaseSlider {
               value:
                 "Work alongside clients and teammates with in-line comment threads that support image and file uploads, right where you need them.",
             },
-            { type: "page", key: "link", displayer: "Card Link", value: "" },
+            { type: "page", key: "link", displayer: "Navigate To", value: "" },
           ],
         },
         {
           type: "object",
           key: "item",
-          displayer: "Slider Item",
+          displayer: "Media",
           value: [
             {
               type: "media",
@@ -148,7 +147,7 @@ class Slider12 extends BaseSlider {
               displayer: "Video / Image",
               value: {
                 type: "video",
-                url: "https://vid.cdn-website.com/a8ff2f1c/videos/AWajF0QTiOJfKkVco7PK_Permission-v.mp4",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725323596a1002b27e599?alt=media",
               },
               additionalParams: { availableTypes: ["video", "image"] },
             },
@@ -165,7 +164,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Grant your clients white label access to the editor. Don't worry, they won't receive any branded communications from Duda. Your customers are your own.",
             },
-            { type: "page", key: "link", displayer: "Card Link", value: "" },
+            { type: "page", key: "link", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -176,10 +175,10 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video / Image",
+              displayer: "Media",
               value: {
                 type: "image",
-                url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1440&auto=format&fit=crop",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725693596a1002b27e5e8?alt=media",
               },
               additionalParams: { availableTypes: ["video", "image"] },
             },
@@ -196,10 +195,9 @@ class Slider12 extends BaseSlider {
               value:
                 "Draft content, summarize feedback and speed up routine tasks.",
             },
-            { type: "page", key: "link", displayer: "Card Link", value: "" },
+            { type: "page", key: "link", displayer: "Navigate To", value: "" },
           ],
         },
-
         {
           type: "object",
           key: "item",
@@ -208,10 +206,10 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video / Image",
+              displayer: "Media",
               value: {
                 type: "image",
-                url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1440&auto=format&fit=crop",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725f33596a1002b27e7af?alt=media",
               },
               additionalParams: { availableTypes: ["video", "image"] },
             },
@@ -228,7 +226,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Collect files in one place with version history and previews.",
             },
-            { type: "page", key: "link", displayer: "Card Link", value: "" },
+            { type: "page", key: "link", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -239,10 +237,10 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video / Image",
+              displayer: "Media",
               value: {
                 type: "image",
-                url: "https://images.unsplash.com/photo-1528784351875-d797d86873a1?q=80&w=1440&auto=format&fit=crop",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6917265a3596a1002b27e82c?alt=media",
               },
               additionalParams: { availableTypes: ["video", "image"] },
             },
@@ -259,7 +257,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Keep everything on-brand with logos, colors and typography.",
             },
-            { type: "page", key: "link", displayer: "Card Link", value: "" },
+            { type: "page", key: "link", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -270,10 +268,10 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video / Image",
+              displayer: "Media",
               value: {
                 type: "image",
-                url: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1440&auto=format&fit=crop",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6917269c3596a1002b27e8c4?alt=media",
               },
               additionalParams: { availableTypes: ["video", "image"] },
             },
@@ -290,7 +288,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Build multi-step approvals and notifications with role-based permissions.",
             },
-            { type: "page", key: "link", displayer: "Card Link", value: "" },
+            { type: "page", key: "link", displayer: "Navigate To", value: "" },
           ],
         },
       ],
@@ -444,7 +442,7 @@ class Slider12 extends BaseSlider {
                                 className={this.decorateCSS("video")}
                               />
                             ) : (
-                              <img
+                              <img // base media 
                                 src={url}
                                 alt=""
                                 className={this.decorateCSS("image")}
