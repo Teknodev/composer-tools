@@ -4,6 +4,7 @@ import styles from "./hero-section38.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import Slider from "react-slick";
 
 type SlideItem = {
   image: TypeMediaInputValue;
@@ -12,7 +13,7 @@ type SlideItem = {
 };
 
 class HeroSection38 extends BaseHeroSection {
-  sliderRef: React.RefObject<any>;
+  sliderRef: React.RefObject<Slider | null>;
 
   constructor(props?: any) {
     super(props, styles);
@@ -342,7 +343,7 @@ class HeroSection38 extends BaseHeroSection {
                     </Base.Button>
                   )}
                   <div className={this.decorateCSS("pagination")}>
-                    {slides.map((_: any, index: number) => (
+                    {slides.map((_, index: number) => (
                       <Base.Button
                         key={`pagination-dot-${index}`}
                         className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
