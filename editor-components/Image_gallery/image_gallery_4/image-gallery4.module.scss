@@ -6,10 +6,9 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .gallery-nav {
-
         .nav-list,
         .subnav-list {
           display: flex;
@@ -20,16 +19,13 @@
 
           .list-item {
             .button {
-              background-color: transparent;
               width: fit-content;
-              border: none;
               padding: var(--composer-gap-sm) var(--composer-gap-md);
               color: var(--composer-font-color-primary);
               border-bottom: 2px solid transparent;
-              font-size: 1rem;
               display: flex;
               text-align: start;
-
+              
               &:hover {
                 cursor: pointer;
                 border-bottom-color: var(--composer-font-color-primary);
@@ -37,8 +33,8 @@
             }
 
             .button.active {
-              border-bottom: 2px solid var(--composer-font-color-primary);
               font-weight: bold;
+              border-bottom: 2px solid var(--composer-font-color-primary);
             }
           }
         }
@@ -74,7 +70,6 @@
             .gallery-image-overlay {
               visibility: hidden;
               z-index: 1;
-              content: "";
               position: absolute;
               top: 0px;
               left: 0px;
@@ -99,8 +94,7 @@
             pointer-events: auto;
 
             .icon {
-              width: 30px;
-              height: 30px;
+              font-size: 1.5rem;
               color: var(--composer-html-background);
             }
           }
@@ -123,21 +117,14 @@
         justify-content: center;
 
         .button {
-          content: "";
+          .button-text {
+            content: "";
+          }
         }
       }
     }
 
     .gallery-item-fullscreen {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: var(--composer-overlay-color);
-      width: 100vw;
-      height: 100%;
-      z-index: 1;
-      display: block;
       cursor: pointer;
 
       .right-arrow,
@@ -152,8 +139,7 @@
         right: 60px;
 
         .icon {
-          width: 30px;
-          height: 30px;
+          font-size: 1.5rem;
         }
       }
 
@@ -161,8 +147,7 @@
         left: 50px;
 
         .icon {
-          width: 30px;
-          height: 30px;
+          font-size: 1.5rem;
         }
       }
 
@@ -197,8 +182,7 @@
             z-index: 10;
 
             .close-icon {
-              width: 30px;
-              height: 30px;
+              font-size: 1.5rem;
               color: white;
             }
           }
@@ -260,13 +244,17 @@
 
         .fullscreen-container {
           .focused-image-container {
-            width: 100%;
-            padding: 0px 20px;
+            width: 320px;
+            height: 320px;
 
             .focused-image {
               width: 100%;
               height: 100%;
               object-fit: cover;
+            }
+
+            .close-button {
+              right: 0;
             }
           }
         }

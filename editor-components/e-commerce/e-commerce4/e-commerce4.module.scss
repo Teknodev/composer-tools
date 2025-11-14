@@ -107,7 +107,6 @@
             text-align: center;
             width: 6rem;
             height: 6rem;
-            font-size: 1rem;
             background-color: var(--composer-font-color-primary);
             color: var(--composer-html-background);
             border-radius: 50%;
@@ -126,7 +125,6 @@
             .cardLeftText {
               color: var(--composer-html-background);
               padding: var(--composer-gap-xs) var(--composer-gap-sm);
-              font-size: 1rem;
               background-color: var(--composer-secondary-color);
               border-radius: var(--composer-border-radius-lg);
             }
@@ -192,7 +190,7 @@
                 right: 50%;
                 align-items: center;
                 justify-content: center;
-                width: 9rem;
+                width: 10rem;
                 height: 1.5rem;
                 background-color: var(--composer-font-color-primary);
                 color: var(--composer-html-background);
@@ -201,7 +199,7 @@
                 opacity: 0;
                 transition: opacity 0.4s ease-in-out, right 0.4s ease-in-out;
                 .card-right-text {
-                  font-size: 1rem;
+                  text-align: left;
                 }
               }
               .image-icon-container {
@@ -228,25 +226,21 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-xs);
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
           &.text-sold-out {
             opacity: 0.7;
           }
           .title {
-            font-weight: bold;
             flex: 1;
           }
           .price {
             display: flex;
-            color: var(--composer-secondary-color);
-            font-size: 1.5rem;
+            gap: var(--composer-gap-xs);
             flex: 1;
-            .value {
-              content: "";
-            }
-            .currency-code {
-              content: "";
+            .value, .currency-code {
+              width: fit-content;
+              color: var(--composer-secondary-color);
+              margin: 0;
             }
           }
         }
@@ -280,7 +274,9 @@
       margin-top: 1rem;
 
       .button {
-        content: "";
+        .button-text {
+          content: "";
+        }
       }
     }
   }
