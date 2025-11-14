@@ -178,6 +178,7 @@
           padding: var(--composer-gap-md);
           display: flex;
           height: 100%;
+          text-align: left;
         }
       }
 
@@ -205,6 +206,7 @@
           padding: var(--composer-gap-xl);
           display: flex;
           height: 100%;
+          text-align: left;
         }
       }
 
@@ -229,8 +231,7 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-
-
+          text-align: left;
           padding: 0 var(--composer-gap-lg);
           display: flex;
           height: 100%;
@@ -338,6 +339,7 @@
             padding: var(--composer-gap-sm);
             margin: 0;
             width: 100%;
+            text-align: left;
           }
         }
 
@@ -372,11 +374,10 @@
 
         .image-wrapper {
           width: 100%;
-          min-height: 160px;
+          min-height: 200px;
         }
 
         .title {
-
           width: 100%;
           min-height: auto;
           margin-left: 0;
@@ -390,13 +391,13 @@
 
         .title.row1-title-only {
           width: 100%;
-          min-height: 160px;
+          min-height: 200px;
           padding: 0;
         }
 
         .row1-image-only {
           width: 100%;
-          min-height: 160px;
+          min-height: 200px;
         }
       }
 
@@ -425,27 +426,26 @@
           width: 100%;
           align-items: center;
           justify-content: center;
-
-          min-height: 140px;
+          min-height: 200px;
         }
 
         .second {
           display: flex;
           flex-direction: row;
-          min-height: 140px;
+          min-height: 200px;
           width: 100%;
         }
 
         .third {
           display: flex;
-          min-height: 140px;
+          min-height: 200px;
           width: 100%;
         }
 
         .third .image {
           display: flex;
           flex-direction: row;
-          min-height: 140px;
+          min-height: 200px;
           width: 100%;
         }
       }
@@ -455,14 +455,14 @@
         gap: 0;
 
         .image_and_subtitle_1 {
-          flex-direction: row;
+          flex-direction: column;
           display: flex;
           width: 100%;
           height: 100%;
 
           .image {
-            width: 50%;
-            height: 300px;
+            width: 100%;
+            height: 200px;
 
             &.row3-images-less {
               height: 120px;
@@ -487,13 +487,13 @@
         }
 
         .image_and_subtitle_2 {
-          flex-direction: row;
+          flex-direction: column;
           display: flex;
           width: 100%;
 
           .image {
-            width: 50%;
-            height: 300px;
+            width: 100%;
+            height: 200px;
           }
 
           .subtitle {
@@ -508,13 +508,13 @@
         }
 
         .image_and_subtitle_3 {
-          flex-direction: row;
+          flex-direction: column;
           display: flex;
           width: 100%;
 
           .image {
-            width: 50%;
-            height: 300px;
+            width: 100%;
+            height: 200px;
           }
 
           .subtitle {

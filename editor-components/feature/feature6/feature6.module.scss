@@ -87,6 +87,7 @@
           background: transparent;
 
           .title {
+            text-align: left;
             color: black;
           }
         }
@@ -96,6 +97,7 @@
         background: linear-gradient(to bottom, transparent, black 100%);
 
         .title {
+          text-align: left;
           color: white;
         }
       }
@@ -104,8 +106,7 @@
       >a .title {
         margin: var(--composer-gap-sm);
         margin-top: 0;
-
-
+        text-align: left;
         color: var(--composer-font-color-primary);
       }
     }

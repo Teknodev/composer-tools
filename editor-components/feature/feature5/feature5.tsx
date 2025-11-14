@@ -427,9 +427,9 @@ class Feature5 extends BaseFeature {
                     )}
 
                     {!!this.castToString(row3.image_and_subtitle_1.sub_title) && (
-                      <Base.H2 className={this.decorateCSS("subtitle")}>
+                      <Base.H4 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
-                      </Base.H2>
+                      </Base.H4>
                     )}
                   </div>
                 </ComposerLink>
@@ -451,9 +451,9 @@ class Feature5 extends BaseFeature {
                       />
                     )}
                     {!!this.castToString(row3.image_and_subtitle_2.sub_title) && (
-                      <Base.H2 className={this.decorateCSS("subtitle")}>
+                      <Base.H4 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
-                      </Base.H2>
+                      </Base.H4>
                     )}
                   </div>
                 </ComposerLink>
@@ -475,9 +475,9 @@ class Feature5 extends BaseFeature {
                       />
                     )}
                     {!!this.castToString(row3.image_and_subtitle_3.sub_title) && (
-                      <Base.H2 className={this.decorateCSS("subtitle")}>
+                      <Base.H4 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
-                      </Base.H2>
+                      </Base.H4>
                     )}
                   </div>
                 </ComposerLink>
