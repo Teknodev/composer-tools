@@ -125,6 +125,15 @@
         > *:last-child {
           border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md) !important;
         }
+        
+        > *:not(:first-child):not(:last-child) {
+          border-radius: 0 !important;
+        }
+        
+        .card-item-first:last-child,
+        .card-item-count:last-child {
+          border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md) !important;
+        }
       }
     }
   }

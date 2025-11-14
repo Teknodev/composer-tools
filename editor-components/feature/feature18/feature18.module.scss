@@ -29,6 +29,7 @@
                 gap: var(--composer-gap-sm);
                 padding: var(--composer-gap-lg) 0px var(--composer-gap-lg) var(--composer-gap-lg);
                 background-color: var(--composer-primary-color);
+                border-radius: var(--composer-border-radius-sm);
                 
                 .tab-button {
                     align-items: center;
