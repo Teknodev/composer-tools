@@ -10,9 +10,9 @@
       width: 100%;
 
       .image-container {
-        flex: none;
-        width: 450px;
-        height: 450px;
+        width: 100%;
+        max-width: 40%;
+        aspect-ratio: 1 / 1;
         border-radius: 50% 0 50% 50%;
         overflow: hidden;
         position: relative;
@@ -73,7 +73,6 @@
           display: flex;
           gap: var(--composer-gap-sm);
           align-items: flex-start;
-          margin: var(--composer-gap-sm) 0;
           color: var(--composer-tertiary-color);
 
           .icon { font-size: 1.5rem; }
@@ -117,10 +116,14 @@
   .container {
     .max-content {
       .wrapper {
-        flex-direction: column;
         align-items: flex-start;
+        flex-direction: row;
         gap: var(--composer-gap-xl);
-        .image-container { width: 350px; height: 350px; aspect-ratio: auto; }
+        .image-container { 
+          width: 40%;
+          max-width: 40%;
+          aspect-ratio: 1 / 1;
+        }
         .content { max-width: 100%; }
       }
     }
@@ -136,13 +139,44 @@
         align-items: stretch;
         gap: var(--composer-gap-xl);
         .image-container { order: 1; margin-top: 0; }
-        .content { order: 2; }
+        .content { 
+          order: 2;
+          .buttons-container {
+            gap: var(--composer-gap-sm);
+          }
+        }
         .image-container {
           width: 100%;
-          height: auto;
+          max-width: 100%;
           aspect-ratio: 1 / 1;
         }
         .content {
+          &[data-alignment="center"] {
+            align-items: center;
+            text-align: center !important;
+            .subtitle {
+              text-align: center !important;
+              align-self: center;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            } 
+            .title,
+            .description {
+              text-align: center !important;
+              align-self: center;
+            }
+            .quote-container {
+              justify-content: center;
+              .quote-text {
+                text-align: center !important;
+                align-self: center;
+              }
+            }
+            .buttons-container {
+              justify-content: center;
+              align-items: center;
+            }
+          }
           .buttons-container {
             gap: var(--composer-gap-sm);
             flex-direction: column;

@@ -39,6 +39,19 @@ class FeatureComponent26 extends BaseFeature {
     });
 
     this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
+
+    this.addProp({
+      type: "media",
+      key: "icon",
+      displayer: "Icon",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaQuoteLeft",
+      },
+    });
   }
 
   static getName(): string { return "Feature 26"; }
@@ -52,6 +65,8 @@ class FeatureComponent26 extends BaseFeature {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hoverAnimation = this.getPropValue("hoverAnimation");
     const imageOverlay = !!this.getPropValue("imageOverlay");
+    const alignment = Base.getContentAlignment();
+    const icon = this.getPropValue("icon");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -77,12 +92,16 @@ class FeatureComponent26 extends BaseFeature {
                 const hasAnyContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
                 if (!hasAnyContent) return null;
                 return (
-                  <Base.VerticalContent className={this.decorateCSS("content")} data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}>
+                  <Base.VerticalContent 
+                    className={this.decorateCSS("content")} 
+                    data-alignment={alignment}
+                    data-animation={hoverAnimation?.join ? hoverAnimation.join(" ") : hoverAnimation}
+                  >
                     {this.castToString(subtitle) && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}
                     {this.castToString(title) && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
                     {this.castToString(description) && (
                       <div className={this.decorateCSS("quote-container")}>
-                        <Base.Media value={{ type: "icon", name: "FaQuoteLeft" }} className={this.decorateCSS("icon")} />
+                        {icon && <Base.Media value={icon} className={this.decorateCSS("icon")} />}
                         <Base.SectionDescription className={this.decorateCSS("quote-text")}>{description}</Base.SectionDescription>
                       </div>
                     )}
