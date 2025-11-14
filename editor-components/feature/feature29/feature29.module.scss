@@ -94,6 +94,7 @@
         padding: var(--composer-gap-lg);
         border: 1px solid transparent;
         transition: all 0.3s ease;
+        min-height: 250px;
         flex: 1;
 
         &.overlay::before {
