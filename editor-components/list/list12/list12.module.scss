@@ -21,6 +21,9 @@
     z-index: 2;
     display: flex;
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     
     .boxes {
       display: flex;
@@ -28,12 +31,16 @@
       align-items: center;
       gap: var(--composer-gap-xl);
       width: fit-content;
+      max-width: 100%;
 
       .leftBox,
       .rightBox,
       .middleBox {
         gap: var(--composer-gap-sm);
         flex: 0 0 auto;
+        max-width: calc((100% - (2 * var(--composer-gap-xl))) / 3);
+        min-width: 0;
+        box-sizing: border-box;
       }
  
       .leftBox,
@@ -127,16 +134,28 @@
 
       .titles {
         margin-bottom: 2rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
 
-        .text1,
-        .text2,
-        .text3 {
-          content: "";
-          color: var(--composer-font-color-primary);
-          &.with-bg {
-            color: white;
-          }
+      .text1,
+      .text2,
+      .text3 {
+        content: "";
+        color: var(--composer-font-color-primary);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-align: center;
+        &.with-bg {
+          color: white;
+          text-align: center;
         }
+      }
       }
 
       .section-wrapper {
@@ -145,12 +164,68 @@
         margin: 0 0 2rem;
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       .title,
       .subtitle {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-align: center;
         &.with-bg {
           color: white;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      overflow: visible;
+      
+      .boxes {
+        max-width: 100%;
+        gap: var(--composer-gap-md);
+
+        .leftBox,
+        .rightBox,
+        .middleBox {
+          max-width: calc((100% - (2 * var(--composer-gap-md))) / 3);
+          min-width: 0;
+        }
+
+        .titles {
+          .text1,
+          .text2,
+          .text3 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            max-width: 100%;
+            width: 100%;
+            overflow: visible;
+          }
+        }
+
+        .section-wrapper {
+          .title {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            max-width: 100%;
+            width: 100%;
+            overflow: visible;
+          }
         }
       }
     }
@@ -160,10 +235,23 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      overflow: visible;
+      
       .boxes {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: var(--composer-gap-md);
+        width: 100%;
+        max-width: 100%;
+
+        .leftBox,
+        .rightBox,
+        .middleBox {
+          width: 100%;
+          max-width: 100%;
+          text-align: center !important;
+        }
 
         .leftBox {
           order: 2;
@@ -178,14 +266,47 @@
         }
 
         .titles {
+          width: 100%;
+          max-width: 100%;
+          text-align: center !important;
+          
           .text1,
           .text2,
           .text3 {
             content: "";
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            width: 100%;
+            max-width: 100%;
+            overflow: visible;
+            text-align: center !important;
+            
+            &.with-bg {
+              text-align: center !important;
+            }
           }
         }
 
-        // keep titles responsive without font overrides
+        .section-wrapper {
+          width: 100%;
+          max-width: 100%;
+          text-align: center !important;
+          
+          .title {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            width: 100%;
+            max-width: 100%;
+            overflow: visible;
+            text-align: center !important;
+            
+            &.with-bg {
+              text-align: center !important;
+            }
+          }
+        }
       }
     }
   }

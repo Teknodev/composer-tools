@@ -53,7 +53,7 @@ class List12 extends BaseList {
           key: "text",
           displayer: "Text 1",
           value:
-            "Experience contactless payments with <br> just a tap of your card or phone.",
+            "Experience contactless payments with just a tap of your card or phone.",
         },
       ],
     });
@@ -67,7 +67,7 @@ class List12 extends BaseList {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: "Simplifying Payments,<br>Fast and Secure",
+          value: "Simplifying Payments, Fast and Secure",
         },
         
         {
@@ -99,7 +99,7 @@ class List12 extends BaseList {
           key: "text",
           displayer: "Text 2",
           value:
-            "Accept payments anywhere with <br>reliable and portable card readers.",
+            "Accept payments anywhere with reliable and portable card readers.",
         },
       ],
     });
@@ -137,7 +137,7 @@ class List12 extends BaseList {
           type: "string",
           key: "text",
           displayer: "Text 3",
-          value: "Send and receive money instantly,<br> no matter where you are.",
+          value: "Send and receive money instantly, no matter where you are.",
         },
       ],
     });
@@ -215,9 +215,7 @@ class List12 extends BaseList {
             <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
               {this.castToString(box2.title) && (
                 <Base.SectionTitle className={this.decorateCSS("section-wrapper")}>
-                  <div className={`${this.decorateCSS("title")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
-                    {box2.title}
-                  </div>
+                  <div className={`${this.decorateCSS("title")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box2.title}</div>
                 </Base.SectionTitle>
               )}
               {(box2.item || box2.icon) && (
