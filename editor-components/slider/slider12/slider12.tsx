@@ -11,24 +11,23 @@ type VideoPlayerProps = {
   className?: string;
 };
 
-const VideoPlayer = React.memo(function VideoPlayer({ // memo kaldır
-  src,
-  className,
-}: VideoPlayerProps) {
-  return ( 
-    <video // use base.media
-      autoPlay
-      muted
-      playsInline
-      loop
-      preload="auto"
+function VideoPlayer({ src, className }: VideoPlayerProps) {
+  return (
+    <Base.Media
       className={className}
-      draggable={false}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+      value={{
+        type: "video",
+        url: src,
+        settings: {
+          autoplay: true,
+          muted: true,
+          loop: true,
+          controls: false,
+        },
+      }}
+    />
   );
-});
+}
 
 type Card = {
   image?: string;
@@ -442,12 +441,12 @@ class Slider12 extends BaseSlider {
                                 className={this.decorateCSS("video")}
                               />
                             ) : (
-                              <img // base media 
-                                src={url}
-                                alt=""
+                              <Base.Media
+                                value={{
+                                  type: "image",
+                                  url: url,
+                                }}
                                 className={this.decorateCSS("image")}
-                                draggable={false}
-                                onDragStart={(e) => e.preventDefault()}
                               />
                             )}
                           </div>
