@@ -159,7 +159,7 @@ class Feature30 extends BaseFeature {
           "button",
           "Button",
           "Talk to us",
-          null,
+          "",
           null,
           null,
           "Primary"
