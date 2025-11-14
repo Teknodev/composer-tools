@@ -3,9 +3,12 @@
 .upperContainer {
   padding-top: calc(var(--composer-gap-md) * 1.5) !important;
   padding-bottom: calc(var(--composer-gap-md) * 1.5) !important;
-  border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
   position: relative;
   z-index: 101;
+
+  &.showLine {
+    border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+  }
   .content {
     display: flex;
     align-items: center;

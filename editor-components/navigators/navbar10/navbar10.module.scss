@@ -742,7 +742,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
-    padding: 0 var(--composer-gap-xl) !important;
+    padding: 0 var(--composer-gap-lg) !important;
     .maxContent {
       z-index: 101;
         .leftSection {

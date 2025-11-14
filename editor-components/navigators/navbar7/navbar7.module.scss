@@ -327,6 +327,8 @@
     }
     .mobileRight{
         display: none;
+        align-items: center;
+        gap: var(--composer-gap-sm);
     }
     .mobileMenuButton,
     .mobileCloseButton {

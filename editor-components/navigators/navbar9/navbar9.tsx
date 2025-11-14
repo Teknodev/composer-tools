@@ -1067,7 +1067,7 @@ class Navbar9 extends BaseNavigator {
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Overlay",
+      displayer: "Line",
       value: true,
     });
 
@@ -1377,23 +1377,6 @@ class Navbar9 extends BaseNavigator {
               )}
             </div>
             <div className={this.decorateCSS("mobileRight")}>
-            {hamburgerNavActive ? (
-              <div onClick={() => this.handleCloseMenu()}>
-                <Base.Media
-                  value={navigationIcons?.closeIcon}
-                  className={this.decorateCSS("hamburgerIcon")}
-                />
-              </div>
-            ) : (
-              <div onClick={() => this.handleOpenMenu()}>
-                <Base.Media
-                  value={navigationIcons?.hamburgerIcon}
-                  className={`${this.decorateCSS("hamburgerIcon")} ${
-                    transparentBackground ? this.decorateCSS("whiteColor") : ""
-                  }`}
-                />
-              </div>
-            )}
               {(language.showLanguage && language.showLocalizationAlways) && (
                 <div className={this.decorateCSS("localizationContainer")}>
                   <Base.Language
@@ -1415,6 +1398,23 @@ class Navbar9 extends BaseNavigator {
                   />
                 </div>
               )}
+            {hamburgerNavActive ? (
+              <div onClick={() => this.handleCloseMenu()}>
+                <Base.Media
+                  value={navigationIcons?.closeIcon}
+                  className={this.decorateCSS("hamburgerIcon")}
+                />
+              </div>
+            ) : (
+              <div onClick={() => this.handleOpenMenu()}>
+                <Base.Media
+                  value={navigationIcons?.hamburgerIcon}
+                  className={`${this.decorateCSS("hamburgerIcon")} ${
+                    transparentBackground ? this.decorateCSS("whiteColor") : ""
+                  }`}
+                />
+              </div>
+            )}
             </div>
 
           </Base.MaxContent>

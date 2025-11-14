@@ -2271,7 +2271,7 @@ class Navbar10 extends BaseNavigator {
           "",
           null,
           null,
-          "Tertiary"
+          "Primary"
         ),
       ],
     });

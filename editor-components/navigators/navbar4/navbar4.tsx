@@ -1333,6 +1333,13 @@ class Navbar4 extends BaseNavigator {
       }
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: false,
+    });
+
     this.setComponentState("isScrolled", false);
     this.setComponentState("hamburgerNavActive", false);
     this.setComponentState("navActive", false);
@@ -1424,7 +1431,7 @@ class Navbar4 extends BaseNavigator {
     return (
       <>
         {topBar && (
-          <Base.Container className={this.decorateCSS("upperContainer")}>
+          <Base.Container className={`${this.decorateCSS("upperContainer")} ${this.getPropValue("line") ? this.decorateCSS("showLine") : ""}`}>
             {topBar && (
               <Base.MaxContent className={this.decorateCSS("content")}>
                 {informationContainer && (

@@ -1414,21 +1414,6 @@ class Navbar7 extends BaseNavigator {
               </div>
             )}
             <div className={this.decorateCSS("mobileRight")}>
-            {isMobileMenuOpen ? (
-              <div onClick={() => this.handleCloseMenu()}>
-                <Base.Media
-                  value={navigationIcons?.closeIcon}
-                  className={this.decorateCSS("mobileCloseButton")}
-                />
-              </div>
-            ) : (
-              <div onClick={() => this.handleOpenMenu()}>
-                <Base.Media
-                  value={navigationIcons?.hamburgerIcon}
-                  className={this.decorateCSS("mobileMenuButton")}
-                />
-              </div>
-            )}
             {(language.showLanguage && language.showLocalizationAlways) && (
                   <Base.Language
                     type="dropdown"
@@ -1447,6 +1432,21 @@ class Navbar7 extends BaseNavigator {
                     )}
                     divider={language.showDivider}
                   />
+            )}
+            {isMobileMenuOpen ? (
+              <div onClick={() => this.handleCloseMenu()}>
+                <Base.Media
+                  value={navigationIcons?.closeIcon}
+                  className={this.decorateCSS("mobileCloseButton")}
+                />
+              </div>
+            ) : (
+              <div onClick={() => this.handleOpenMenu()}>
+                <Base.Media
+                  value={navigationIcons?.hamburgerIcon}
+                  className={this.decorateCSS("mobileMenuButton")}
+                />
+              </div>
             )}
             </div>
             <div

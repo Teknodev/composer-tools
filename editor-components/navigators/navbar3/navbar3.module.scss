@@ -5,8 +5,8 @@
     in srgb,
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%);
-    padding-top: var(--composer-gap-sm);
-    padding-bottom: var(--composer-gap-sm);
+    padding-top: var(--composer-gap-sm) !important;
+    padding-bottom: var(--composer-gap-sm) !important;
 
   .lane {
     display: flex;
@@ -114,6 +114,12 @@
           }
         }
 
+    .mobileRight {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+    }
+
   }
 }
 
@@ -172,7 +178,8 @@
       .dropdownIcon {
         font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
-
+        width: 20px;
+        height: 20px;
       }
 
       &:hover {
@@ -397,7 +404,7 @@
   }
 
   .hamburgerNavContainer {
-    padding: var(--composer-gap-md) var(--composer-gap-lg);
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     .hamburgerNavMaxContent {
       .hamburgerMenu {
         .hamburgerMenuItem {
@@ -498,12 +505,17 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .laneContainer{
+  .pcNavbarContainer{
     display: none;
   }
 
-  .pcNavbarContainer{
-    display: none;
+  .laneContainer {
+    .loacalizationContainer {
+      display: none !important;
+    }
+    .laneNews {
+      justify-content: flex-end !important;
+    }
   }
 
   .smallDeviceNavbarContainer{
@@ -531,10 +543,13 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
+  .laneContainer {
+    display: none !important;
+  }
   .hamburgerNav{
     .hamburgerNavContainer{
-      padding-left: var(--composer-gap-md);
-      padding-right: var(--composer-gap-md);
+      padding-left: var(--composer-gap-md) !important;
+      padding-right: var(--composer-gap-md) !important;
     }
   }
 

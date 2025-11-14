@@ -1544,21 +1544,6 @@ class Navbar3 extends BaseNavigator {
               </div>
             )}
             <div className={this.decorateCSS("mobileRight")}>
-            {hamburgerNavActive ? (
-              <div onClick={() => this.handleCloseMenu()}>
-                <Base.Media
-                  value={navigationIcons?.closeIcon}
-                  className={this.decorateCSS("closeIcon")}
-                />
-              </div>
-            ) : (
-              <div onClick={() => this.handleOpenMenu()}>
-                <Base.Media
-                  value={navigationIcons?.hamburgerIcon}
-                  className={this.decorateCSS("hamburgerIcon")}
-                />
-              </div>
-            )}
             {(language.showLocalizationAlways && language.showLanguage) && 
               <div className={this.decorateCSS("loacalizationContainer")}>
                 <Base.Language
@@ -1580,6 +1565,21 @@ class Navbar3 extends BaseNavigator {
                 />
               </div>            
             }            
+            {hamburgerNavActive ? (
+              <div onClick={() => this.handleCloseMenu()}>
+                <Base.Media
+                  value={navigationIcons?.closeIcon}
+                  className={this.decorateCSS("closeIcon")}
+                />
+              </div>
+            ) : (
+              <div onClick={() => this.handleOpenMenu()}>
+                <Base.Media
+                  value={navigationIcons?.hamburgerIcon}
+                  className={this.decorateCSS("hamburgerIcon")}
+                />
+              </div>
+            )}            
             </div>
 
 

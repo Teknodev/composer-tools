@@ -273,6 +273,8 @@
   }
   .mobileRight{
     display: none;
+    align-items: center;
+    gap: var(--composer-gap-sm);
   }
   .hamburgerNav {
     display: none;
