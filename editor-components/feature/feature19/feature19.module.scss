@@ -19,6 +19,7 @@
             flex: 1;
             align-items: center;
             position: relative;
+            border-radius: var(--composer-border-radius-sm);
 
             .img {
                 max-height: 100%;
@@ -55,6 +56,7 @@
                     z-index: 2;
                     opacity: 0;
                     transition: opacity 0.9s;
+                    border-radius: var(--composer-border-radius-sm);
                 }
 
                 &:hover {

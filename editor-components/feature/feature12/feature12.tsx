@@ -219,7 +219,7 @@ class Feature12 extends BaseFeature {
               )}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
+          <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2 }} className={this.decorateCSS("wrapper")}>
             {renderFirstItem && (
               <div
                 className={this.decorateCSS("card-item-first")}

@@ -223,6 +223,7 @@ class Feature8 extends BaseFeature {
       element.dataset.position = "";
       element.style.marginTop = "0px";
       element.style.marginLeft = "0px";
+      element.style.transform = "none";
       return;
     }
 
@@ -232,6 +233,7 @@ class Feature8 extends BaseFeature {
       element.dataset.position = "";
       element.style.marginTop = "0px";
       element.style.marginLeft = "0px";
+      element.style.transform = "none";
       return;
     }
 
@@ -253,6 +255,8 @@ class Feature8 extends BaseFeature {
       element.style.marginLeft = `${calculatedMarginLeft}px`;
     } else {
       element.dataset.position = "";
+      element.style.marginTop = "0px";
+      element.style.marginLeft = "0px";
     }
   };
 

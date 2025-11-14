@@ -344,9 +344,9 @@ class Feature18 extends BaseFeature {
                       className={this.decorateCSS("tab-icon")}
                     />
                     <div className={this.decorateCSS("square")}></div>
-                    <Base.H4 className={this.decorateCSS("tab-text")}>
+                    <Base.H5 className={this.decorateCSS("tab-text")}>
                       {tab.tabText}
-                    </Base.H4>
+                    </Base.H5>
                   </div>
                 )
               )}

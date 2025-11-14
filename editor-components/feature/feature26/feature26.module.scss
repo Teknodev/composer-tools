@@ -11,7 +11,7 @@
 
       .image-container {
         width: 100%;
-        max-width: 50%;
+        max-width: 40%;
         aspect-ratio: 1 / 1;
         border-radius: 50% 0 50% 50%;
         overflow: hidden;
@@ -120,8 +120,8 @@
         flex-direction: row;
         gap: var(--composer-gap-xl);
         .image-container { 
-          width: 50%;
-          max-width: 50%;
+          width: 40%;
+          max-width: 40%;
           aspect-ratio: 1 / 1;
         }
         .content { max-width: 100%; }
@@ -159,7 +159,7 @@
               align-self: center;
               margin-left: auto !important;
               margin-right: auto !important;
-            }
+            } 
             .title,
             .description {
               text-align: center !important;

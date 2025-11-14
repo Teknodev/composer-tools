@@ -11,10 +11,12 @@
         .cards-container {
             gap: var(--composer-gap-xl);
             padding-bottom: var(--composer-gap-xl);
+            align-items: stretch;
+            justify-items: stretch;
             .card {
                 width: 100%;
                 position: relative;
-                transition: 1s;
+                transition: transform 1s ease, margin 1s ease;
                 display: flex;
                 flex-direction: column;
                 gap: var(--composer-gap-md);
@@ -22,7 +24,13 @@
                 align-items: center;
                 border-radius: var(--composer-border-radius-sm);
                 padding:calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-                background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);;
+                background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                box-sizing: border-box;
+                min-width: 0;
+                transform-origin: center center;
+                overflow: hidden;
+                align-self: stretch;
+                justify-self: stretch;
 
                 .icon {
                     font-size: 3rem;
@@ -39,13 +47,15 @@
 
 
             &.visible {
-                transform: none;
-                margin: 0;
+                transform: none !important;
+                margin: 0 !important;
                 transition: transform 1s ease, margin 1s ease;
+                width: 100%;
             }
             
             &.shifted {
                 transition: transform 1s ease, margin 1s ease;
+                width: 100%;
             }
             &.shifted[data-position="right"] {
                 transform: rotate(var(--rotate-angle, 20deg));
