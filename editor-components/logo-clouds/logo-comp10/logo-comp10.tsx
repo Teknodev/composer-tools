@@ -5,34 +5,28 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 type TImage = {
   image: string;
   imageLink: string;
 };
-
 class LogoComp10Page extends LogoClouds {
   containerRef: HTMLDivElement | null = null;
   wheelTimeout: NodeJS.Timeout | null = null;
   resizeObserver: ResizeObserver | null = null;
-
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "OUR TRUSTED PARTNERS",
     });
-
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 4
     });
-
     this.addProp({
       type: "array",
       key: "image-items",
@@ -44,167 +38,106 @@ class LogoComp10Page extends LogoClouds {
         INPUTS.LOGO("Section", ""),
       ],
     });
-
     this.setComponentState("slider-ref", React.createRef());
   }
-
   static getName(): string {
     return "Logo Cloud 10";
   }
-
   componentDidMount() {
     if (typeof window !== "undefined") {
       window.addEventListener("resize", this.handleResize);
       window.addEventListener("orientationchange", this.handleResize);
     }
-
     if (this.containerRef && typeof ResizeObserver !== "undefined") {
-      this.resizeObserver = new ResizeObserver(() => {
-        this.handleResize();
-      });
+      this.resizeObserver = new ResizeObserver(this.handleResize);
       this.resizeObserver.observe(this.containerRef);
     }
-
     this.handleResize();
   }
-  
   handleResize = () => {
     this.forceUpdate();
   };
-
-
   componentWillUnmount() {
     if (this.wheelTimeout) {
       clearTimeout(this.wheelTimeout);
+      this.wheelTimeout = null;
     }
-
     if (this.resizeObserver && this.containerRef) {
       this.resizeObserver.unobserve(this.containerRef);
       this.resizeObserver = null;
     }
-
-    if (this.containerRef) {
-      this.containerRef.removeEventListener('wheel', this.handleWheel);
-    }
-
+    this.containerRef?.removeEventListener('wheel', this.handleWheel);
     if (typeof window !== "undefined") {
       window.removeEventListener("resize", this.handleResize);
       window.removeEventListener("orientationchange", this.handleResize);
     }
   }
-
-  getChunkSize = (): number => {
-    const itemCount = this.getPropValue("itemCount") || 4;
-    return itemCount;
-  };
-
   handleWheel = (e: WheelEvent) => {
     const sliderRef = this.getComponentState("slider-ref");
     const logoItems = this.castToObject<TImage[]>("image-items") || [];
-    const chunkSize = this.getChunkSize();
-    const shouldAnimate = logoItems.length > chunkSize;
-    
-    if (!shouldAnimate || !sliderRef?.current || this.wheelTimeout) return;
-
+    const itemCount = this.getPropValue("itemCount") || 4;
+    if (logoItems.length <= itemCount || !sliderRef?.current || this.wheelTimeout) {
+      return;
+    }
+    const delta = e.deltaY || e.deltaX;
+    if (Math.abs(delta) < 5) return;
     e.preventDefault();
     e.stopPropagation();
-
-    const delta = e.deltaY || e.deltaX;
-
-    if (Math.abs(delta) < 5) return;
-
-    if (delta > 0) {
-      sliderRef.current.slickNext();
-    } else if (delta < 0) {
-      sliderRef.current.slickPrev();
-    }
-
+    delta > 0 ? sliderRef.current.slickNext() : sliderRef.current.slickPrev();
     this.wheelTimeout = setTimeout(() => {
       this.wheelTimeout = null;
     }, 600);
   };
-
   setContainerRef = (el: HTMLDivElement | null) => {
     if (this.containerRef) {
       this.containerRef.removeEventListener('wheel', this.handleWheel);
-      if (this.resizeObserver) {
-        this.resizeObserver.unobserve(this.containerRef);
-      }
+      this.resizeObserver?.unobserve(this.containerRef);
     }
     this.containerRef = el;
-    if (el) {
-      if (typeof ResizeObserver !== "undefined") {
-        if (!this.resizeObserver) {
-          this.resizeObserver = new ResizeObserver(() => {
-            this.handleResize();
-          });
-        }
-        this.resizeObserver.observe(el);
-      }
-      
-      setTimeout(() => {
-        if (!el) return;
-        const logoItems = this.castToObject<TImage[]>("image-items") || [];
-        const itemCount = this.getPropValue("itemCount") || 4;
-        const isPhone = this.isPhone();
-        const effectiveChunkSize = isPhone ? 2 : itemCount;
-        const shouldAnimate = logoItems.length > effectiveChunkSize;
-        
-        if (shouldAnimate && el === this.containerRef) {
-          el.addEventListener('wheel', this.handleWheel, { passive: false });
-        }
-      }, 0);
+    if (!el) return;
+    if (typeof ResizeObserver !== "undefined") {
+      this.resizeObserver ??= new ResizeObserver(this.handleResize);
+      this.resizeObserver.observe(el);
     }
+    setTimeout(() => {
+      if (el !== this.containerRef) return;
+      const logoItems = this.castToObject<TImage[]>("image-items") || [];
+      const itemCount = this.getPropValue("itemCount") || 4;
+      const effectiveChunkSize = this.isPhone() ? 2 : itemCount;
+      if (logoItems.length > effectiveChunkSize) {
+        el.addEventListener('wheel', this.handleWheel, { passive: false });
+      }
+    }, 0);
   };
-
   isPhone = (): boolean => {
-    const containerWidth = this.containerRef?.clientWidth;
-    const playgroundWidth = typeof document !== 'undefined' ? document.getElementById('playground')?.clientWidth : undefined;
-    const width = (containerWidth && containerWidth > 0)
-      ? containerWidth
-      : ((playgroundWidth && playgroundWidth > 0) ? playgroundWidth : 0);
+    const containerWidth = this.containerRef?.clientWidth ?? 0;
+    const playgroundWidth = typeof document !== 'undefined'
+      ? document.getElementById('playground')?.clientWidth ?? 0
+      : 0;
+    const width = containerWidth > 0 ? containerWidth : playgroundWidth;
     return width > 0 && width <= 640;
   };
-
   chunkLogos = (logos: TImage[], size: number): TImage[][] => {
     if (logos.length === 0) return [];
-
     const chunkSize = Math.max(1, size);
-    const chunks: TImage[][] = [];
-    
-    if (logos.length > chunkSize) {
-      for (let i = 0; i < logos.length; i += chunkSize) {
-        const chunk = logos.slice(i, i + chunkSize);
-        
-        let fillIndex = 0;
-        while (chunk.length < chunkSize) {
-          chunk.push(logos[fillIndex % logos.length]);
-          fillIndex++;
-        }
-        
-        chunks.push(chunk);
-      }
-    } else {
-      chunks.push(logos);
+    if (logos.length <= chunkSize) {
+      return [logos];
     }
-    
+    const chunks: TImage[][] = [];
+    for (let i = 0; i < logos.length; i += chunkSize) {
+      chunks.push(logos.slice(i, i + chunkSize));
+    }
     return chunks;
   };
-
   render() {
     const titleExists = this.castToString(this.getPropValue("title"));
     const logoItems = this.castToObject<TImage[]>("image-items") || [];
     const itemCount = this.getPropValue("itemCount") || 4;
     const sliderRef = this.getComponentState("slider-ref");
-    
-    const desktopChunkSize = itemCount;
-    const isPhone = this.isPhone();
-    const effectiveChunkSize = isPhone ? 2 : desktopChunkSize;
+    const effectiveChunkSize = this.isPhone() ? 2 : itemCount;
     const shouldAnimate = logoItems.length > effectiveChunkSize;
     const chunks = this.chunkLogos(logoItems, effectiveChunkSize);
-    
     const sliderKey = `slider-${itemCount}-${logoItems.length}-${effectiveChunkSize}`;
-
     const sliderSettings = {
       arrows: false,
       dots: false,
@@ -218,7 +151,6 @@ class LogoComp10Page extends LogoClouds {
       infinite: shouldAnimate,
       autoplay: shouldAnimate,
     };
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -229,7 +161,6 @@ class LogoComp10Page extends LogoClouds {
               </Base.H4>
             </Base.VerticalContent>
           )}
-
           {logoItems.length > 0 && (
             <div className={this.decorateCSS("slider-wrapper")}
               ref={this.setContainerRef}
@@ -244,10 +175,9 @@ class LogoComp10Page extends LogoClouds {
                   {chunks.map((chunk, slideIndex) => {
                     const visibleItems = chunk.filter((img: TImage) => img.image);
                     const gridColumns = Math.max(1, Math.min(itemCount, visibleItems.length));
-
                     return (
                       <div key={slideIndex}>
-                        <Base.ListGrid 
+                        <Base.ListGrid
                           gridCount={{ pc: gridColumns, tablet: gridColumns, phone: 2 }}
                           className={this.decorateCSS("gallery")}
                         >
@@ -274,8 +204,4 @@ class LogoComp10Page extends LogoClouds {
     );
   }
 }
-
 export default LogoComp10Page;
-
-
-
