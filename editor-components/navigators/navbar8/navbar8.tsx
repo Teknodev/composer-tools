@@ -600,9 +600,9 @@ class Navbar8 extends BaseNavigator {
                   {socialMediaLinksCondition && (
                     <div className={this.decorateCSS("socialMediaWrapper")}>
                     <div className={this.decorateCSS("socialMediaLinks")}>
-                      <Base.H4 className={this.decorateCSS("socialMediaLinksTitle")}>
+                      <Base.H5 className={this.decorateCSS("socialMediaLinksTitle")}>
                         {this.getPropValue("dropdownSocialMediaTitle")}
-                      </Base.H4>
+                      </Base.H5>
                       <div className={this.decorateCSS("socialMediaLinksList")}>
                         {socialMediaLinks.map((item: any, index: number) => (
                           <div

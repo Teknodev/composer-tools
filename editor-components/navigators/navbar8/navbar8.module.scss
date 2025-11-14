@@ -332,9 +332,37 @@
       }
     }
 
-
+    .icons {
+      .localizationIcon,
+      .closeIcon,
+      .menuIcon {
+        font-size: calc(1.5 * var(--composer-font-size-md)) !important;
+      }
+    }
   }
 
+  .dropdownMenuContainer {
+    .dropdownMenuContent {
+      .dropdownItemList {
+        .socialMediaWrapper {
+          .socialMediaLinks {
+            .socialMediaLinksTitle {
+              text-align: center;
+            }
+            .socialMediaLinksList {
+              .socialMediaLink {
+                .socialMediaIconContainer {
+                  .socialMediaIcon {
+                    font-size: calc(1.5 * var(--composer-font-size-md));
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
 }
 
