@@ -1,5 +1,5 @@
 import { BaseFeature } from "../../EditorComponent";
-import styles from "./feature30.module.scss";
+import styles from "./feature31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface RawFeature {
@@ -14,7 +14,7 @@ interface FeatureItem {
     rawText?: unknown;
 }
 
-class Feature30 extends BaseFeature {
+class Feature31 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
 
@@ -95,7 +95,7 @@ class Feature30 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 30";
+        return "Feature 31";
     }
 
     private getItemCount(): number {
@@ -114,7 +114,7 @@ class Feature30 extends BaseFeature {
         const rawDescription = this.getPropValue("description");
         const titleText = normalizeText(rawTitle);
         const descriptionText = normalizeText(rawDescription);
-        
+
         const rawFeatures = (this.castToObject<RawFeature[]>("features") || []).filter(Boolean);
         const features: FeatureItem[] = rawFeatures
             .map((feature) => ({
@@ -124,7 +124,7 @@ class Feature30 extends BaseFeature {
                 rawText: feature?.text
             }))
             .filter((feature) => feature.title || feature.text);
-        
+
         const rawItemCount = Number(this.getItemCount()) || 2;
         const gridColumnCount = features.length > 0
             ? Math.min(rawItemCount, features.length)
@@ -235,5 +235,5 @@ class Feature30 extends BaseFeature {
     }
 }
 
-export default Feature30;
+export default Feature31;
 
