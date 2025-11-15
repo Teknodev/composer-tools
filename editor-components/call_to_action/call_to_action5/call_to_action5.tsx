@@ -89,7 +89,7 @@ class CallToAction5Page extends BaseCallToAction {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.decorateCSS("overlay-active")}`}
+        ${this.getPropValue("overlay") && this.getPropValue("background") && this.decorateCSS("overlay-active")}`}
         style={{ backgroundImage: `url(${this.getPropValue("background")})` }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>

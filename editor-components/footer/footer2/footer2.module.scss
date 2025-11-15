@@ -1,8 +1,15 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0;
+  padding: 0 !important;
 
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
   .max-content {
     .footer-page {
       width: 100%;
@@ -15,7 +22,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: 80px var(--composer-gap-xl);
         min-height: 300px;
         gap: var(--composer-gap-md);
 
@@ -29,12 +36,11 @@
           z-index: 3;
 
           .title {
-            margin: 0;
-            font-size: 2rem;
+            color: var(--composer-font-color-primary);
           }
 
           .text {
-            margin: 0;
+            color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
             width: fit-content;
 
@@ -82,9 +88,9 @@
       text-align: center;
       padding: var(--composer-gap-md) var(--composer-gap-xl);
 
-      .footerDescription {
+      .footer-text {
         color: var(--composer-font-color-primary);
-        margin: 0;
+        text-align: center;
       }
     }
   }
@@ -92,12 +98,10 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0;
-
     .max-content {
       .footer-page {
         .items {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding: 80px var(--composer-gap-lg);
           min-height: 170px;
           gap: var(--composer-gap-md);
           align-items: baseline;
@@ -118,12 +122,10 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0;
-
     .max-content {
       .footer-page {
         .items {
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
           min-height: 300px;
           gap: var(--composer-gap-xl);
           .list{
