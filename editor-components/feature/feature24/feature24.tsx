@@ -10,15 +10,20 @@ class Feature24Component extends BaseFeature {
 
     this.addProp({ type: "string", key: "title", displayer: "Title", value: "The best-rated top-seller" });
     this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely." });
+    
+    // DÜZELTME BURADA:
+    // INPUTS.BUTTON'ın 4. parametresi 'url', 5. 'icon' olmalı.
+    // 'stats3' örneğindeki gibi 'url'ye 'null' yerine '""' (boş string) veriyoruz.
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "About us", null, "", null, "Primary"),
-        INPUTS.BUTTON("button", "Button", "Watch how we work", null, "FaArrowRight", null, "White"),
+        INPUTS.BUTTON("button", "Button", "About us", "", "", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaArrowRight", null, "White"),
       ],
     });
+    
     this.addProp({ type: "media", key: "image", displayer: "Image", additionalParams: { availableTypes: ["image", "video"] }, value: { type: "image", url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/avel-chuklanov-DUmFLtMeAbQ-unsplash.jpg" } });
     this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
   }
@@ -63,10 +68,9 @@ class Feature24Component extends BaseFeature {
 
               {Array.isArray(buttonsList) && buttonsList.length > 0 && (
                 <Base.Row className={this.decorateCSS("button-container")}>
-                  {buttonsList.map((btn, idx) => {
-                    const buttonText = this.castToString(btn.text || "");
-                    const buttonUrl = btn.url || "#";
-                    const iconName = (btn as any)?.icon?.name; 
+                  {buttonsList.map((item, index) => {
+                    const buttonText = this.castToString(item.text || "");
+                    const iconName = (item as any)?.icon?.name;
                     const hasValidIcon = iconName && iconName !== "";
 
                     if (!buttonText && !hasValidIcon) {
@@ -74,9 +78,9 @@ class Feature24Component extends BaseFeature {
                     }
 
                     return (
-                      <ComposerLink key={idx} path={buttonUrl}>
+                      <ComposerLink key={index} path={item.url || "#"}>
                         <Base.Button
-                          buttonType={btn.type}
+                          buttonType={item.type}
                           className={this.decorateCSS("button")}
                         >
                           {hasValidIcon && (
@@ -87,7 +91,7 @@ class Feature24Component extends BaseFeature {
                           )}
                           {buttonText && (
                             <Base.P className={this.decorateCSS("button-text")}>
-                              {btn.text}
+                              {item.text}
                             </Base.P>
                           )}
                         </Base.Button>
