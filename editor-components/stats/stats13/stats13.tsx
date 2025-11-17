@@ -15,20 +15,10 @@ class Stats13 extends BaseStats {
             key: "image",
             displayer: "Image",
             value: {
-                url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/avel-chuklanov-DUmFLtMeAbQ-unsplash-1070x713.jpg",
+                url: "https://res.cloudinary.com/dmydg7kum/image/upload/v1763361329/avel-chuklanov-DUmFLtMeAbQ-unsplash-1070x713_heioka.jpg",
                 type: "image",
             }
         })
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Button",
-            value: [
-                INPUTS.BUTTON("button1", "Button 1", "Start Building", "", null, null, "Primary"),
-                INPUTS.BUTTON("button2", "Button 2", "Test Drive FREE", "", null, null, "Primary")
-            ],
-        });
 
         this.addProp({
             type: "string",
@@ -40,11 +30,20 @@ class Stats13 extends BaseStats {
         this.addProp({
             type: "boolean",
             key: "enableAnimation",
-            displayer: "Title Animation",
+            displayer: "Animation",
             value: true,
         });
 
-        // Rating Stars
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Start Building", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Test Drive FREE", "", null, null, "Secondary")
+            ],
+        });
+
         this.addProp({
             type: "array",
             key: "rating",
@@ -118,7 +117,14 @@ class Stats13 extends BaseStats {
             ],
         });
 
-        // Stats Items
+        this.addProp({
+            type: "string",
+            key: "rating-number",
+            displayer: "Rating Number",
+            value: "4.89",
+        });
+
+
         this.addProp({
             type: "array",
             key: "stats-items",
@@ -183,35 +189,6 @@ class Stats13 extends BaseStats {
         return "Stats 13";
     }
 
-    AnimatedNumber = ({ targetValue, duration = 4000 }: { targetValue: number, duration?: number }) => {
-        const [currentValue, setCurrentValue] = useState(0);
-
-        useEffect(() => {
-            const startTime = Date.now();
-            const startValue = 0;
-
-            const updateNumber = () => {
-                const now = Date.now();
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-
-                const newValue = startValue + (targetValue - startValue) * easeOutQuart;
-                setCurrentValue(newValue);
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateNumber);
-                } else {
-                    setCurrentValue(targetValue);
-                }
-            };
-
-            requestAnimationFrame(updateNumber);
-        }, [targetValue, duration]);
-
-        return <span>{currentValue.toFixed(targetValue % 1 === 0 ? 0 : 1)}</span>;
-    };
-
     TypewriterText = ({ text, enableAnimation }: { text: string, enableAnimation: boolean }) => {
         const [displayedText, setDisplayedText] = useState(enableAnimation ? "" : (text || ""));
         useEffect(() => {
@@ -242,24 +219,54 @@ class Stats13 extends BaseStats {
         );
     };
 
+    AnimatedNumber = ({ targetValue, duration = 4000 }: { targetValue: number, duration?: number }) => {
+        const [currentValue, setCurrentValue] = useState(0);
+
+        useEffect(() => {
+            const startTime = Date.now();
+            const startValue = 0;
+
+            const updateNumber = () => {
+                const now = Date.now();
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+
+                const newValue = startValue + (targetValue - startValue) * easeOutQuart;
+                setCurrentValue(newValue);
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    setCurrentValue(targetValue);
+                }
+            };
+
+            requestAnimationFrame(updateNumber);
+        }, [targetValue, duration]);
+
+        return <span>{currentValue.toFixed(targetValue % 1 === 0 ? 0 : 1)}</span>;
+    };
+
     render() {
         const image = this.getPropValue("image");
-        const title = this.castToString(this.getPropValue("title"));
         const rating = this.getPropValue("rating");
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const ratingNumber = this.castToString(this.getPropValue("rating-number"));
+        const title = this.castToString(this.getPropValue("title"));
         const enableAnimation = this.getPropValue("enableAnimation");
+        const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const statsItems = this.getPropValue("stats-items");
-        const hasContent = rating.length > 0 || !!title || buttons.length > 0 || statsItems.length > 0;
+        const hasContent = rating.length > 0 || !!title || buttonItem.length > 0 || statsItems.length > 0;
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!image?.url ? this.decorateCSS("no-image") : ""}`}>
                 <Base.MaxContent className={`${this.decorateCSS("content")} ${!hasContent && this.decorateCSS("no-content")}`}>
-                    <Base.ContainerGrid className={this.decorateCSS("grid")}>
+                    <div className={`${this.decorateCSS("wrapper")} ${!image?.url ? this.decorateCSS("full-width") : ""}`}>
                         {hasContent && (
-                            <Base.GridCell className={this.decorateCSS("left-content")}>
+                            <Base.VerticalContent className={this.decorateCSS("left-content")}>
 
                                 {rating.length > 0 && (
-                                    <div className={this.decorateCSS("rating-container")}>
+                                    <Base.Row className={this.decorateCSS("rating-container")}>
                                         {this.castToObject<any>("rating").map((item: any, index: number) => {
                                             return (
                                                 <div key={index} className={this.decorateCSS("rating-content")}>
@@ -267,40 +274,40 @@ class Stats13 extends BaseStats {
                                                 </div>
                                             );
                                         })}
-                                        <Base.H3 className={this.decorateCSS("rating-number")}>4.89</Base.H3>
-                                    </div>
+                                        <Base.H3 className={this.decorateCSS("rating-number")}>{ratingNumber}</Base.H3>
+                                    </Base.Row>
                                 )}
-
                                 {title && (
-                                    <div className={this.decorateCSS("title-container")}>
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            <this.TypewriterText
-                                                text={title as string}
-                                                enableAnimation={enableAnimation}
-                                            />
-                                        </Base.SectionTitle>
-                                    </div>
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        <this.TypewriterText
+                                            text={title as string}
+                                            enableAnimation={enableAnimation}
+                                        />
+                                    </Base.SectionTitle>
                                 )}
-
-                                {buttons.length > 0 && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {this.castToObject<any>("buttons").map((item: any, index: number) => {
-                                            const buttonTextExist = this.castToString(item.text);
-                                            return (
-                                                buttonTextExist && (
-                                                    <ComposerLink key={`stats-${index}`} path={item.url}>
-                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                            {item.text}
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                )
-                                            );
-                                        })}
-                                    </div>
+                                {buttonItem.length > 0 && (
+                                    <Base.Row className={this.decorateCSS("button-container")}>
+                                        {buttonItem.map(
+                                            (buttonObj, index: number) => {
+                                                const buttonText = this.castToString(
+                                                    buttonObj.text
+                                                );
+                                                const url = buttonObj.url;
+                                                if (buttonText) {
+                                                    return (
+                                                        <ComposerLink key={index} path={url}>
+                                                            <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
+                                                                {buttonObj.text}
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    );
+                                                }
+                                            }
+                                        )}
+                                    </Base.Row>
                                 )}
-
                                 {statsItems.length > 0 && (
-                                    <div className={this.decorateCSS("stats-container")}>
+                                    <Base.Row className={this.decorateCSS("stats-container")}>
                                         {this.castToObject<any>("stats-items").map((item: any, index: number) => {
                                             const numberValue = this.castToString(item.getPropValue("number"));
                                             const number = parseFloat(numberValue) || 0;
@@ -310,26 +317,29 @@ class Stats13 extends BaseStats {
                                             return (
                                                 <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
                                                     <div className={this.decorateCSS("stat-number")}>
-                                                        <span className={this.decorateCSS("number")}>
-                                                            <this.AnimatedNumber targetValue={number} duration={3000} />
+                                                        <span>
+                                                            {enableAnimation ? (
+                                                                <this.AnimatedNumber targetValue={number} duration={3000} />
+                                                            ) : (
+                                                                number
+                                                            )}
                                                         </span>
-                                                        <span className={this.decorateCSS("symbol")}>{symbol}</span>
+                                                        <span>{symbol}</span>
                                                     </div>
-                                                    <div className={this.decorateCSS("stat-description")}>{description}</div>
+                                                    <Base.SectionDescription>{description}</Base.SectionDescription>
                                                 </div>
                                             );
                                         })}
-                                    </div>
+                                    </Base.Row>
                                 )}
-
-                            </Base.GridCell>
+                            </Base.VerticalContent>
                         )}
-                        <Base.GridCell className={`${this.decorateCSS("right-content")} ${!hasContent && this.decorateCSS("full-width")}`}>
+                        <div className={!!hasContent ? this.decorateCSS("right-content") : this.decorateCSS("has-content")}>
                             {image?.url && (
                                 <img src={image.url} className={this.decorateCSS("image")} />
                             )}
-                        </Base.GridCell>
-                    </Base.ContainerGrid>
+                        </div>
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         );

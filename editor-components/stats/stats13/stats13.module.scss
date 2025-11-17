@@ -1,122 +1,141 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding: 0px !important;
-    width: 100%;
+    min-height: var(--max-width);
+    position: relative;
+    overflow: hidden;
     display: flex;
     justify-content: center;
 
+    &.no-image {
+        min-height: 0;
+    }
+
     .content {
-        display: flex;
-        padding: calc(var(--padding-md) * 8) 0 calc(var(--padding-md) * 8) calc(var(--padding-md) * 4) !important;
-
-        &.no-content {
-            padding: calc(var(--padding-md) * 8) calc(var(--padding-md) * 4) !important;
-        }
-
-        .left-content {
-            flex: 1;
+        .wrapper {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            align-items: flex-start;
+            width: 50%;
 
-            .rating-container {
+            .left-content {
                 display: flex;
-                align-items: center;
-                gap: var(--composer-gap-sm);
-                font-size: 2rem;
-                color: var(--color-primary);
+                flex-direction: column;
+                overflow-wrap: break-word;
+                width: 100%;
+                min-width: 0;
+                gap: var(--gap-xl);
 
-                .stars {
-                    content: "";
+
+
+                .rating-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: var(--composer-gap-sm);
+                    font-size: 2rem;
+                    color: var(--composer-primary-color);
+
+                    .rating-number {
+                        font-size: 1rem;
+                        color: var(--composer-font-color-primary);
+                        margin-left: 0.5rem;
+                        font-weight: 550;
+                    }
                 }
-
-                .rating-number {
-                    font-size: 1rem;
-                    color: #ffffff;
-                    margin-left: 0.5rem;
-                    font-weight: 550;
-                }
-            }
-
-            .title-container {
-                content: "";
 
                 .title {
-                    line-height: 1;
-                    word-wrap: break-word;
-                    word-break: break-word;
-                    width: 70%;
+                    overflow-wrap: anywhere;
+
                 }
-            }
 
-            .button-container {
-                display: flex;
-                gap: 1rem;
-            }
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--gap-md);
+                }
 
-            .stats-container {
-                display: flex;
-                gap: 3rem;
+                .stats-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 3rem;
 
-                .stat-item {
-                    text-align: start;
+                    .stat-item {
+                        text-align: start;
 
-                    .stat-number {
-                        font-size: 2.5rem;
-                        font-weight: bold;
-                        color: var(--color-primary);
-                        margin-bottom: 0.5rem;
-                    }
+                        .stat-number {
+                            font-size: 2rem;
+                            font-weight: bold;
+                            color: var(--composer-primary-color);
+                        }
 
-                    .stat-description {
-                        color: var(--color-white);
                     }
                 }
             }
-        }
 
-        .right-content {
-            flex: 1;
+            .right-content {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: calc(50% - var(--composer-gap-md));
+                flex: 1;
+                height: 100%;
 
-            .image {
-                width: 100%;
-                object-fit: cover;
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    padding: calc(var(--padding-md) * 8) 0;
+                }
+            }
+
+            .has-content {
+                display: block;
+
+                .image {
+                    width: 200%;
+                    object-fit: cover;
+                }
             }
         }
 
         .full-width {
-            flex: 1 1 100%;
-
-            .image {
-                width: 100%;
-                height: 100%;
-            }
+            width: 100%;
         }
     }
-
 }
 
-
 @container (max-width: #{$composer-tablet-width}) {
-
     .container {
         .content {
-            padding: 0 !important;
-
-            .grid {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0;
-                flex-direction: column;
+            .wrapper {
+                width: 100%;
+                padding-bottom: 600px;
 
                 .left-content {
-                    padding: calc(var(--padding-md) * 8) calc(var(--padding-md) * 4);
-                    gap: var(--gap-xl);
+                    .stats-container {
+                        flex-wrap: wrap;
+                        gap: 1rem;
+
+                        .stat-item {
+                            width: 50%;
+                        }
+                    }
                 }
 
                 .right-content {
-                    padding: 0 0 80px 0;
+                    top: unset;
+                    right: unset;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 600px;
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        padding: 0 0 80px 0;
+                    }
                 }
             }
         }
@@ -125,12 +144,14 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        display: block;
+
         .content {
-            .grid {
-                .left-content {
-                    .button-container {
-                        flex-direction: column;
-                    }
+            .wrapper {
+                padding-bottom: 450px;
+
+                .right-content {
+                    height: 450px;
                 }
             }
         }
