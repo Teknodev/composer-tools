@@ -38,13 +38,40 @@ const Dropdown: React.FC<DropdownProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [shouldOpenLeft, setShouldOpenLeft] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const getWrapperContainer = Base.Navigator.getWrapperContainer();
 
   useEffect(() => {
-    if (isOpen && dropdownRef.current) {
-      const rect = dropdownRef.current.getBoundingClientRect();
-      const viewportWidth = getWrapperContainer.innerWidth;
-      setShouldOpenLeft(rect.right > viewportWidth - 100); // 100px buffer
+    if (!isOpen || !dropdownRef.current) return;
+
+    const checkPosition = () => {
+      const wrapperContainer = Base.Navigator.getWrapperContainer();
+      if (!wrapperContainer) return;
+      
+      const buttonRect = dropdownRef.current!.getBoundingClientRect();
+      const dropdownContent = dropdownRef.current!.querySelector(`.${styles.dropdownContent}`) as HTMLElement;
+      if (!dropdownContent) return;
+      
+      const contentRect = dropdownContent.getBoundingClientRect();
+      const viewportWidth = wrapperContainer.innerWidth;
+      
+      const wouldOverflowRight = buttonRect.left + contentRect.width > viewportWidth;
+      const hasSpaceOnLeft = buttonRect.right - contentRect.width >= 0;
+      
+      setShouldOpenLeft(wouldOverflowRight && hasSpaceOnLeft);
+    };
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(checkPosition);
+    });
+
+    const handleResize = () => checkPosition();
+
+    const wrapperContainer = Base.Navigator.getWrapperContainer();
+    if (wrapperContainer?.wrapper) {
+      wrapperContainer.wrapper.addEventListener('resize', handleResize);
+      
+      return () => {
+        wrapperContainer.wrapper.removeEventListener('resize', handleResize);
+      };
     }
   }, [isOpen]);
 
