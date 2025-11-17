@@ -1,263 +1,139 @@
-import * as React from "react";
-import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature28.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Tabs={
-    tabText: React.JSX.Element;
-    lottie_container: {
-        lottie: TypeMediaInputValue;
-    }
+class Feature28Component extends BaseFeature {
+  constructor(props?: any) {
+    super(props, styles);
+
+    this.addProp({ type: "string", key: "title", displayer: "Title", value: "The best-rated top-seller" });
+    this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely." });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "About us", "", "", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaArrowRight", null, "White"),
+      ],
+    });
+
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Image",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/avel-chuklanov-DUmFLtMeAbQ-unsplash.jpg",
+      },
+    });
+
+    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
+  }
+
+  static getName(): string {
+    return "Feature 28";
+  }
+
+  render() {
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    
+    const image = this.getPropValue("image");
+    const overlayEnabled = this.getPropValue("overlay");
+
+    const alignment = Base.getContentAlignment();
+    const hasBackground = !!image?.url;
+
+    const effectiveAlignment = hasBackground ? "center" : alignment;
+
+    const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
+    const validButtons = Array.isArray(buttonsList)
+      ? buttonsList.filter((item) => {
+          const text = this.castToString(item.text || "");
+          const iconName = (item as any)?.icon?.name;
+          return !!text || !!iconName;
+        })
+      : [];
+
+    const isTitleExist = this.castToString(title);
+    const isDescriptionExist = this.castToString(description);
+    
+    const isContentExist =
+      isTitleExist || isDescriptionExist || validButtons.length > 0;
+
+    return (
+      <Base.Container
+        className={`
+          ${this.decorateCSS("container")}
+          ${hasBackground ? this.decorateCSS("hasBackground") : ""}
+          ${hasBackground && overlayEnabled ? this.decorateCSS("overlay") : ""}
+        `}
+        style={hasBackground ? { backgroundImage: `url(${image.url})` } : undefined}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+
+          {isContentExist && (
+            <Base.VerticalContent
+              className={`
+                ${this.decorateCSS("vertical-content")}
+                ${
+                  effectiveAlignment === "center"
+                    ? this.decorateCSS("alignment-center")
+                    : this.decorateCSS("alignment-left")
+                }
+              `}
+            >
+              {isTitleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              
+              {isDescriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+
+              {validButtons.length > 0 && (
+                <Base.Row className={this.decorateCSS("button-container")}>
+                  {validButtons.map((item, index) => {
+                    const text = this.castToString(item.text || ""); 
+                    const iconName = (item as any)?.icon?.name;
+
+                    return (
+                      <ComposerLink key={`btn-${index}`} path={item.url || "#"}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={item.type}>
+                          {iconName && (
+                            <Base.Media
+                              className={this.decorateCSS("button-icon")}
+                              value={{ type: "icon", name: iconName }}
+                            />
+                          )}
+                          
+                          {text && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text} 
+                            </Base.P>
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </Base.Row>
+              )}
+            </Base.VerticalContent>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
-class Feature28 extends BaseFeature{
-    private autoTabInterval: NodeJS.Timeout | null = null;
-    private autoTabDelay: number = 9000; 
-
-    constructor(props?: any){
-        super(props,styles);
-        
-        const dummyData = (
-            tabTitle: string,
-            lottieUrl: string,
-        ) => {
-            return {
-                type: "object",
-                key: "tab",
-                displayer: "Tab",
-                value: [
-                    {
-                        type: "string",
-                        key: "tabText",
-                        displayer: "Tab Title",
-                        value: tabTitle,
-                    },
-                    {
-                        type: "object",
-                        key: "lottie_container",
-                        displayer: "Media",
-                        value: [
-                            {
-                                type: "media",
-                                key: "lottie",
-                                displayer: "Lottie",
-                                value: {
-                                    type: "lottie",
-                                    url: lottieUrl,
-                                    settings: {
-                                        loop: true,
-                                        autoplay: false
-                                    }
-                                } as TypeMediaInputValue,
-                            },
-                        ],
-                    },
-                ],
-            } as TypeUsableComponentProps;
-        };
-
-        this.addProp({
-            type: "string",
-            key:"subtitle",
-            displayer: "Subtitle",
-            value: "All-in-One Commerce"
-        });
-
-        this.addProp({
-            type: "string",
-            key:"title",
-            displayer: "Title",
-            value: "Serve all clients' needs with composable eCommerce at scale"
-        });
-        
-        this.addProp({
-            type: "array",
-            key: "tabs",
-            displayer: "Tabs",
-            value: [
-                dummyData(
-                    "Payments",
-                    "https://irp.cdn-website.com/a8ff2f1c/files/uploaded/Payments_LOTTIE-v5_updated.json",
-                ),
-                dummyData(
-                    "External Catalog",
-                    "https://du-cdn.cdn-website.com/duda_website/images/ecommerce/json/External_LOTTIE.json",
-                ),
-                dummyData(
-                    "Inventory",
-                    "https://du-cdn.cdn-website.com/duda_website/images/ecommerce/json/Inventory_LOTTIE_v3.json",
-                ),
-            ],
-        });
-
-        this.addProp({
-            type: "string",
-            key:"description",
-            displayer: "Description",
-            value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-        });
-        
-        this.setComponentState("activeTab", 0);
-        this.setComponentState("startedIndex", 0);
-        this.setComponentState("isTransitioning", false);
-    }
-
-    componentDidMount() {
-        this.startAutoTabCycle();
-    }
-
-    componentWillUnmount() {
-        this.stopAutoTabCycle();
-    }
-
-    startAutoTabCycle() {
-        this.stopAutoTabCycle();
-        
-        this.autoTabInterval = setInterval(() => {
-            const tabs = this.castToObject<Tabs[]>("tabs");
-            const currentTab = this.getComponentState("activeTab");
-            const nextTab = (currentTab + 1) % tabs.length;
-            this.setActiveTab(nextTab);
-        }, this.autoTabDelay);
-    }
-
-    stopAutoTabCycle() {
-        if (this.autoTabInterval) {
-            clearInterval(this.autoTabInterval);
-            this.autoTabInterval = null;
-        }
-    }
-
-    setActiveTab(activeTabIndex: number) {
-        
-        this.setComponentState("isTransitioning", true);
-        
-        setTimeout(() => {
-            this.setComponentState("activeTab", activeTabIndex);
-            setTimeout(() => {
-                this.setComponentState("startedIndex", activeTabIndex);
-                this.setComponentState("isTransitioning", false);
-            }, 100);
-        }, 200);
-        
-        setTimeout(() => {
-            this.startAutoTabCycle();
-        }, 500);
-    }
-
-    static getName(): string {
-        return "Feature 28";
-    }
-
-    render() {
-        const isTransitioning = this.getComponentState("isTransitioning");
-        const tabs = this.castToObject<Tabs[]>("tabs");
-        const activeTab = this.getComponentState("activeTab");
-        const descriptionExist = this.castToString(this.getPropValue("description"));
-        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-        const titleExist = this.castToString(this.getPropValue("title"));
-        const alignmentValue = Base.getContentAlignment();
-        return(
-            <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(subtitleExist || titleExist) && (
-                        <Base.VerticalContent className={this.decorateCSS("header")}>
-                            {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${alignmentValue === "left" ? this.decorateCSS("subtitle-center") : ""}`}>
-                                {this.getPropValue("subtitle")}
-                            </Base.SectionSubTitle>}
-                            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>
-                                {this.getPropValue("title")}
-                            </Base.SectionTitle>}
-                        </Base.VerticalContent>
-                    )}
-                    <div className={this.decorateCSS("content-wrapper")}>
-                        {descriptionExist && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {this.getPropValue("description")}
-                            </Base.SectionDescription>
-                        )}
-                        
-                        <Base.VerticalContent className={this.decorateCSS("box")}>
-                            <div className={this.decorateCSS("tab-buttons")}>
-                                {tabs.map(
-                                    (tab: Tabs, index: number) => {
-                                        const isTabTextVisible = this.castToString(tab.tabText);
-                                        const isTabVisible = isTabTextVisible;
-                                        return (
-                                            isTabVisible && (
-                                                <div 
-                                                    key={index}
-                                                    className={
-                                                        `${this.decorateCSS("tab-button")} ${activeTab === index
-                                                            ? this.decorateCSS("active")
-                                                            : ""
-                                                        }`
-                                                    }
-                                                    onClick={() => this.setActiveTab(index)}
-                                                >
-                                                    {isTabTextVisible && (
-                                                        <div className={this.decorateCSS("tabText")}>
-                                                            {tab.tabText}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            )
-                                        );
-                                    }
-                                )}
-                            </div>
-                            
-                            <div className={this.decorateCSS("tabs-container")}>
-                                <div 
-                                    className={`${this.decorateCSS("tabs-wrapper")} ${isTransitioning ? this.decorateCSS("transitioning") : ""}`}
-                                    style={{
-                                        transform: `translateX(-${activeTab * (100 / tabs.length)}%)`,
-                                        width: `${tabs.length * 100}%`
-                                    }}
-                                >
-                                    {tabs.map(
-                                        (tab: Tabs, index: number) => {
-                                            const lottieValue: TypeMediaInputValue = {
-                                                type: "lottie",
-                                                url: (tab.lottie_container.lottie?.type === "lottie" && tab.lottie_container.lottie?.url) 
-                                                    ? tab.lottie_container.lottie.url 
-                                                    : '',
-                                                settings: {
-                                                    loop: true,
-                                                    autoplay: activeTab === index
-                                                }
-                                            };
-
-                                            return (
-                                                <div 
-                                                    key={`${index}-${activeTab === index ? 'active' : 'inactive'}`}
-                                                    className={`${this.decorateCSS("tab-slide")}`}
-                                                    style={{
-                                                        width: `${100 / tabs.length}%`
-                                                    }}
-                                                >
-                                                    <div className={this.decorateCSS("content")}>
-                                                        {lottieValue.url && (
-                                                            <div className={this.decorateCSS("media-container")}>
-                                                                <Base.Media 
-                                                                    value={lottieValue}
-                                                                    className={this.decorateCSS("lottie")}
-                                                                />
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            )
-                                        }
-                                    )}
-                                </div>
-                            </div>
-                        </Base.VerticalContent>
-                    </div>
-                </Base.MaxContent>
-            </Base.Container>
-        )
-    }
-}
-
-export default Feature28;
+export default Feature28Component;
