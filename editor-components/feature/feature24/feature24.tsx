@@ -40,8 +40,9 @@ class Feature24Component extends BaseFeature {
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"));
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    
     const image = this.getPropValue("image");
     const overlayEnabled = this.getPropValue("overlay");
 
@@ -60,8 +61,11 @@ class Feature24Component extends BaseFeature {
         })
       : [];
 
+    const isTitleExist = this.castToString(title);
+    const isDescriptionExist = this.castToString(description);
+    
     const isContentExist =
-      !!title || !!description || validButtons.length > 0;
+      isTitleExist || isDescriptionExist || validButtons.length > 0;
 
     return (
       <Base.Container
@@ -85,8 +89,13 @@ class Feature24Component extends BaseFeature {
                 }
               `}
             >
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {description && (
+              {isTitleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              
+              {isDescriptionExist && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
@@ -95,7 +104,7 @@ class Feature24Component extends BaseFeature {
               {validButtons.length > 0 && (
                 <Base.Row className={this.decorateCSS("button-container")}>
                   {validButtons.map((item, index) => {
-                    const text = this.castToString(item.text || "");
+                    const text = this.castToString(item.text || ""); 
                     const iconName = (item as any)?.icon?.name;
 
                     return (
@@ -107,8 +116,12 @@ class Feature24Component extends BaseFeature {
                               value={{ type: "icon", name: iconName }}
                             />
                           )}
-
-                          {text && <Base.P className={this.decorateCSS("button-text")}>{text}</Base.P>}
+                          
+                          {text && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text} 
+                            </Base.P>
+                          )}
                         </Base.Button>
                       </ComposerLink>
                     );
