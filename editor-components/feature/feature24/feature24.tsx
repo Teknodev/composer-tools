@@ -11,9 +11,7 @@ class Feature24Component extends BaseFeature {
     this.addProp({ type: "string", key: "title", displayer: "Title", value: "The best-rated top-seller" });
     this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely." });
     
-    // DÜZELTME BURADA:
-    // INPUTS.BUTTON'ın 4. parametresi 'url', 5. 'icon' olmalı.
-    // 'stats3' örneğindeki gibi 'url'ye 'null' yerine '""' (boş string) veriyoruz.
+   
     this.addProp({
       type: "array",
       key: "buttons",
