@@ -1,0 +1,162 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .heading {
+            margin-bottom: var(--composer-gap-md);
+            .subtitle, .section-title {
+                margin: inherit;
+            }
+            .icon {
+                color: var(--composer-primary-color);
+                font-size: 4rem;
+            }
+        }
+
+        .content {
+            width: 100%;
+            align-items: stretch;
+            .image-box {
+                position: relative;
+                min-height: 200px;
+                overflow: hidden;
+                border-radius: var(--composer-border-radius-md);
+
+                &.no-content {
+                    aspect-ratio: 2;
+                }
+
+                &[data-animation~="animate1"] {
+                    .image {
+                        transition: transform 0.4s ease;
+                    }
+
+                    &:hover {
+                        .image {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                &[data-animation~="animate2"] {
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background: linear-gradient(
+                            to top,
+                            var(--composer-primary-color) 0%,
+                            transparent 100%
+                        );
+                        opacity: 0;
+                        transform: translateY(100%);
+                        transition: all 0.4s ease;
+                        z-index: 1;
+                    }
+
+                    &:hover {
+                        &::before {
+                            opacity: 0.7;
+                            transform: translateY(0);
+                        }
+
+                        .image {
+                            filter: contrast(1.1);
+                        }
+                    }
+
+                    .image {
+                        transition: filter 0.4s ease;
+                    }
+                }
+
+                .image {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: var(--composer-border-radius-md);
+                }
+
+                .overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: var(--composer-overlay-color);
+                    z-index: 0;
+                    pointer-events: none;
+                }
+            }
+
+            .content-right {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: var(--composer-gap-md);
+                .item {
+                    .title {
+                        color: var(--composer-primary-color);
+                        text-align: left;
+                    }
+
+                    .description {
+                        text-align: left;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+        }
+
+        .icons {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--composer-gap-sm);
+            margin-top: var(--composer-gap-md);
+            color: var(--composer-primary-color);
+            .icon-item {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container{
+        .max-content{
+            .content{
+                .image-box{
+                    aspect-ratio: unset;
+                    .image{
+                        position: relative;
+                        aspect-ratio: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container{
+        .max-content{
+            .heading {
+                align-items: baseline;
+                .subtitle, .section-title {
+                    text-align: left;
+                }
+            }
+            .content {
+                flex-direction: column;
+            }
+        }
+    }
+}

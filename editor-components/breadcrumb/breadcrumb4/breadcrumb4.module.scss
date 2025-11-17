@@ -1,0 +1,194 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container-main{
+    width: 100%;
+    position: relative;
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+    .vector1 {
+        position: absolute;
+        left: 550px;
+        top: 100px;
+        z-index: 3;
+
+        &.animated {
+            animation: animation1 1s infinite alternate;
+        }
+    }
+    .vector2 {
+        position: absolute;
+        left: var(--composer-gap-lg);
+        bottom: var(--composer-gap-lg);
+        z-index: 3;
+
+        &.animated {
+            animation: animation1 1.3s infinite alternate;
+        }
+    }
+    .vector3 {
+        position: absolute;
+        right: var(--composer-gap-xl);
+        bottom: var(--composer-gap-md);
+        z-index: 3;
+
+        &.animated {
+            animation: animation2 1s infinite alternate;
+        }
+    }
+
+    @keyframes animation1 {
+        0% {
+            --webkit-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+        100% {
+            --webkit-transform: translateY(17px);
+            transform: translateY(17px);     
+        }
+    }
+    @keyframes animation2 {
+        0% {
+            --webkit-transform: scale(1);
+            transform: scale(1)
+        }
+        50% {
+            --webkit-transform: scale(1.1);
+            transform: scale(1.1)
+        }
+        100% {
+            --webkit-transform: scale(1);
+            transform: scale(1);     
+        }
+    }
+    .section {
+        min-height: 450px;
+        object-fit: contain;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: var(--composer-overlay-color);
+        }
+
+        .container {
+            background-color: transparent !important;
+            position: relative;
+            z-index: 2;
+
+            .max-content {
+                .items {
+                    .title {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 5;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis !important;
+                        width: 100%;
+
+                        &.image {
+                            color: black !important;
+                        }
+                    }
+
+                    .pages {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+
+                        .link {
+                            .breadcrumb-link {
+                                display: flex;
+                                align-items: center;
+                                gap: var(--composer-gap-xs);
+                                text-decoration: none;
+                                cursor: pointer;
+                                
+                                &:hover {
+                                    .text {
+                                        color: var(--composer-primary-color);
+                                    }
+                                    .crumberIcon {
+                                        color: var(--composer-primary-color);
+                                    }
+                                }
+                            }
+                            .text {
+                                &.image {
+                                    color: var(--composer-font-color-primary) !important;
+                                }
+    
+                                &:hover {
+                                    color: var(--composer-primary-color);
+                                }
+                            }
+                        }
+
+                        .crumberIcon {
+                            font-size: 1.25rem !important;
+                            height: 20px;
+                            width: 20px;
+                            flex-shrink: 0;
+                            &.image {
+                                color: var(--composer-font-color-primary) !important;
+                            }
+                        }
+
+                        .current-page-container {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+                            content: "";
+                        }
+                        .current-page-text {
+                            font-weight: bold;
+                            content: "";
+                            &.image {
+                                color: var(--composer-font-color-primary) !important;
+                            }
+                        }
+                        .current-page-icon {
+                            font-size: 1rem;
+                            height: 20px;
+                            width: 20px;
+                            flex-shrink: 0;
+                            content: "";
+                            &.image {
+                                color: var(--composer-font-color-primary) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width : #{$composer-phone-width}) {
+    .vector1, .vector2, .vector3 {
+        display: none !important;
+    }
+
+    .section {
+        min-height: unset !important;
+    }
+}
+
