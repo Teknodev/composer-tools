@@ -33,7 +33,6 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  gap: var(--composer-gap-md);
 
   &.alignment-left {
     align-items: flex-start;
@@ -100,7 +99,7 @@
 
   .title,
   .description {
-    color: var(--composer-font-color-primary) !important;
+    color: var(--color-white) !important;
     background: transparent !important;
   }
 
