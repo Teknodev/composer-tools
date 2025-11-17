@@ -28,21 +28,30 @@
   padding: var(--composer-gap-xl) 0;
 }
 
-.content {
+.vertical-content {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--composer-gap-xl);
-
-}
-
-.left-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
   gap: var(--composer-gap-md);
+
+  &.alignment-left {
+    align-items: flex-start;
+    text-align: left;
+
+    .button-container {
+      justify-content: flex-start;
+    }
+  }
+
+  &.alignment-center {
+    align-items: center;
+    text-align: center;
+
+    .button-container {
+      justify-content: center;
+    }
+  }
 }
 
 .title {
@@ -71,67 +80,11 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .content {
-    &.alignment-center {
-      .left-container {
-        align-items: center;
-        text-align: center;
-
-
-        .button-container {
-          justify-content: center;
-        }
-      }
-    }
-
-    &.alignment-left {
-      .left-container {
-        align-items: flex-start;
-        text-align: left;
-
-
-        .button-container {
-          justify-content: flex-start;
-        }
-      }
-    }
-  }
-}
-
 @container (max-width: #{$composer-phone-width}) {
-  .container .max-content .content {
-    flex-direction: column;
-
-    &.alignment-center {
-      .left-container {
-        align-items: center;
-        text-align: center;
-
-        .button-container {
-          flex-direction: column;
-          flex-wrap: nowrap;
-          justify-content: center;
-        }
-      }
-    }
-
-    &.alignment-left {
-      .left-container {
-        align-items: flex-start;
-        text-align: left;
-
-        .title,
-        .description {
-          text-align: left;
-        }
-
-        .button-container {
-          flex-direction: column;
-          flex-wrap: nowrap;
-          justify-content: flex-start;
-        }
-      }
+  .vertical-content {
+    .button-container {
+      flex-direction: column;
+      flex-wrap: nowrap;
     }
   }
 }
