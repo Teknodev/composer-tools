@@ -221,9 +221,9 @@ class Feature8 extends BaseFeature {
     if (!this.getPropValue("animationEnable")) {
       element.classList.remove(...visibleTokens, ...shiftedTokens);
       element.dataset.position = "";
-      element.style.marginTop = "0px";
-      element.style.marginLeft = "0px";
-      element.style.transform = "none";
+      element.style.marginTop = "";
+      element.style.marginLeft = "";
+      element.style.transform = "";
       return;
     }
 
@@ -231,28 +231,31 @@ class Feature8 extends BaseFeature {
       element.classList.add(...visibleTokens);
       element.classList.remove(...shiftedTokens);
       element.dataset.position = "";
-      element.style.marginTop = "0px";
-      element.style.marginLeft = "0px";
-      element.style.transform = "none";
+      element.style.marginTop = "";
+      element.style.marginLeft = "";
+      element.style.transform = "";
       return;
     }
 
     element.classList.remove(...visibleTokens);
     element.classList.add(...shiftedTokens);
     const distanceFromMiddle = Math.abs(index - middle);
-    const decrementTop = 50;
-    const decrementLeft = 100;
-    const calculatedMarginTop = Math.max(0, distanceFromMiddle * decrementTop);
+    const decrementLeft = 150;
+    const calculatedMarginTop = Math.max(0, distanceFromMiddle * distanceFromMiddle * 50);
     const calculatedMarginLeft = Math.max(0, distanceFromMiddle * decrementLeft);
+    
+    const rotateAngle = distanceFromMiddle === 1 ? 25 : 30;
 
     if (index > middle) {
       element.dataset.position = "right";
       element.style.marginTop = `${calculatedMarginTop}px`;
       element.style.marginLeft = `${-1 * calculatedMarginLeft}px`;
+      element.style.setProperty('--rotate-angle', `${rotateAngle}deg`);
     } else if (index < middle) {
       element.dataset.position = "left";
       element.style.marginTop = `${calculatedMarginTop}px`;
       element.style.marginLeft = `${calculatedMarginLeft}px`;
+      element.style.setProperty('--rotate-angle', `${-rotateAngle}deg`);
     } else {
       element.dataset.position = "";
       element.style.marginTop = "0px";

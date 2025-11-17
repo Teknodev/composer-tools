@@ -173,7 +173,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: 0px;
+        padding: 0px !important;
         .max-content {
             gap: var(--composer-gap-lg);
             .cards{
@@ -189,6 +189,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container{
+        padding: var(--composer-gap-xl) 0 !important;
         .max-content{
             flex-direction: column;
             gap: 0;

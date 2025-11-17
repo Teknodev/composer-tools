@@ -56,12 +56,16 @@
             &.shifted {
                 transition: transform 1s ease, margin 1s ease;
                 width: 100%;
-            }
-            &.shifted[data-position="right"] {
-                transform: rotate(var(--rotate-angle, 20deg));
-            }
-            &.shifted[data-position="left"] {
-                transform: rotate(var(--rotate-angle, -20deg));
+                
+                &[data-position="right"] {
+                    transform: rotate(var(--rotate-angle, 25deg)) !important;
+                }
+                &[data-position="left"] {
+                    transform: rotate(var(--rotate-angle, -25deg)) !important;
+                }
+                &[data-position=""] {
+                    transform: none !important;
+                }
             }
             
             &.slick-slide {

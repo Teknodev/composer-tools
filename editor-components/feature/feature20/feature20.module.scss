@@ -12,12 +12,6 @@
 }
 
 .container {
-  background: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
-
   .max-content {
     .wrapper {
       display: flex;
