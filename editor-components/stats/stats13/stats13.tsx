@@ -17,7 +17,9 @@ class Stats13 extends BaseStats {
             value: {
                 url: "https://res.cloudinary.com/dmydg7kum/image/upload/v1763361329/avel-chuklanov-DUmFLtMeAbQ-unsplash-1070x713_heioka.jpg",
                 type: "image",
-            }
+            },
+
+            additionalParams: { availableTypes: ["image", "video"] }
         })
 
         this.addProp({
@@ -281,7 +283,7 @@ class Stats13 extends BaseStats {
                                                 </div>
                                             );
                                         })}
-                                        <Base.H3 className={this.decorateCSS("rating-number")}>{ratingNumber}</Base.H3>
+                                        <Base.SectionDescription className={this.decorateCSS("rating-number")}>{ratingNumber}</Base.SectionDescription>
                                     </Base.Row>
                                 )}
                                 {titleString && (
@@ -317,14 +319,14 @@ class Stats13 extends BaseStats {
                                 {statsItems.length > 0 && (
                                     <Base.Row className={this.decorateCSS("stats-container")}>
                                         {this.castToObject<any>("stats-items").map((item: any, index: number) => {
-                                            const numberValue = this.castToString(item.getPropValue("number"));
+                                            const numberValue = this.castToString(item.getPropValue("number")) as string;
                                             const number = parseFloat(numberValue) || 0;
                                             const symbol = this.castToString(item.getPropValue("symbol"));
                                             const description = item.getPropValue("description");
 
                                             return (
                                                 <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
-                                                    <div className={this.decorateCSS("stat-number")}>
+                                                    <Base.H3 className={this.decorateCSS("stat-number")}>
                                                         <span>
                                                             {enableAnimation ? (
                                                                 <this.AnimatedNumber targetValue={number} duration={3000} />
@@ -333,7 +335,7 @@ class Stats13 extends BaseStats {
                                                             )}
                                                         </span>
                                                         <span>{symbol}</span>
-                                                    </div>
+                                                    </Base.H3>
                                                     <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
                                                 </div>
                                             );
