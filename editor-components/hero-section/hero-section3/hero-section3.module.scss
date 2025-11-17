@@ -374,8 +374,16 @@
           }
           .image-container {
             .image {
-              width: calc(100% + 8rem) !important;
+              width: calc(100% + 10rem) !important;
               height: 100%;
+            }
+          }
+          
+          &.type-2 {
+            &.active-slide {
+              .text-container {
+                margin-left: 5% !important;
+              }
             }
           }
           
@@ -504,6 +512,14 @@
             }
           }
 
+          &.type-2 {
+            &.active-slide {
+              .text-container {
+                margin-left: 0 !important;
+              }
+            }
+          }
+          
           &.type-2,
           &.type-3 {
             .content {

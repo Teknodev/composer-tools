@@ -257,7 +257,8 @@ class HeroSection2 extends BaseHeroSection {
                         className={this.decorateCSS("slider-item-container")}
                         style={{
                           backgroundImage: item.image && item.image.type === "image" && item.image.url ? `url("${item.image.url}")` : undefined,
-                        }}
+                          "--mobile-bg-image": item.image && item.image.type === "image" && item.image.url ? `url("${item.image.url}")` : "none",
+                        } as React.CSSProperties}
                       >
                         {this.getPropValue("overlay") && item.image && item.image.type === "image" && item.image.url && (
                           <div className={this.decorateCSS("overlay")} />
@@ -266,7 +267,7 @@ class HeroSection2 extends BaseHeroSection {
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
                               {isCategoryExist && (
-                                <Base.H5 className={this.decorateCSS("category")}>{item.category}</Base.H5>
+                                <Base.H6 className={this.decorateCSS("category")}>{item.category}</Base.H6>
                               )}
                               {isTitleExist && (
                                 <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
@@ -298,7 +299,7 @@ class HeroSection2 extends BaseHeroSection {
                                       <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
                                       {item.button.icon && 
                                       <Base.Media
-                                        value={item.button.icon}
+                                        value={typeof item.button.icon === "string" ? { type: "icon", name: item.button.icon } : item.button.icon}
                                         className={this.decorateCSS("button-icon")}
                                       />}
                                     </Base.Button>

@@ -61,9 +61,12 @@
       }
     }
 
+  .card-container {
+    position: relative;
     .card {
       position: relative;
       z-index: 2;
+      align-items: baseline;
 
       .logo {
         &.logo-icon {
@@ -78,7 +81,7 @@
           max-width: 200px;
         }
       }
-      border-radius: var(--composer-border-radius-xs);
+      border-radius: var(--composer-border-radius-sm);
       position: absolute;
       bottom: var(--composer-gap-md);
       background: var(--composer-html-background);
@@ -87,11 +90,12 @@
       padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
       .subtitle ,.title ,.description ,.note {
-        content: "";
+        text-align: left;
       }
 
       .subtitle, .title, .note {
         @include textEllipsis(2);
+        margin-left: 0;
       }
 
       .button-container {
@@ -111,13 +115,16 @@
       }
     }
   }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container{
     .max-content{
-      .card {
-        width: 50%;
+      .card-container {
+        .card {
+          width: 50%;
+        }
       }
     }
   }
@@ -141,13 +148,15 @@
             }
           }
         }
-      .card {
-        bottom: 0 ;
-        position: relative ;
-        transform: none ;
-        right: 0px ;
-        width: auto ;
-        padding: var(--composer-gap-md) ;
+      .card-container {
+        .card {
+          bottom: 0 ;
+          position: relative ;
+          transform: none ;
+          right: 0px ;
+          width: auto ;
+          padding: var(--composer-gap-md) ;
+        }
       }
     }
   }

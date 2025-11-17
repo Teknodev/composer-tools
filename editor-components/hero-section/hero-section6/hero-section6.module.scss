@@ -27,6 +27,7 @@
     .left-content {
       word-wrap: break-word;
       gap: var(--composer-gap-lg);
+      align-items: baseline;
       .title-container {
         .title {
           @include textEllipsis(2);
@@ -37,6 +38,7 @@
           margin: 0px;
           opacity: 0;
           animation: fade-in 1s ease-in-out 0.7s forwards;
+          text-align: left;
           &.noanimation{
             opacity: 1 ;
             animation: none ;
@@ -53,6 +55,7 @@
           -webkit-text-stroke: 1px var(--composer-font-color-primary);
           opacity: 0;
           animation: fade-in 1s ease-in-out 0.7s forwards;
+          text-align: left;
           &.noanimation{
             opacity: 1 ;
             animation: none ;
@@ -66,6 +69,7 @@
         line-height: 1;
         opacity: 0;
         animation: fade-in 1s ease-in-out 1s forwards;
+        text-align: left;
         &.noanimation{
           opacity: 1 ;
           animation: none ;
@@ -103,7 +107,7 @@
         .image1 {
           position: relative;
           object-fit: cover;
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           max-width: 100%;
           height: 100%;
         }
@@ -116,13 +120,13 @@
           height: 100%;
           z-index: 1;
           background-color: var(--composer-overlay-color);
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
         }
       }
       .image2{
         position: absolute;
         object-fit: cover;
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-sm);
         z-index: 1;
         max-width: 100%;
         max-height: 100%;
@@ -183,8 +187,8 @@
           @include textFull;
           .title,
           .title2 {
-            font-size: 4rem;
-            line-height: 1.2;
+            font-size: 4rem !important;
+            line-height: 1.2 !important;
             @include textFull;
           }
         }
@@ -200,7 +204,7 @@
         min-height: 200px;
         .image1-wrapper {
           .image1 {
-            border-radius: 6px;
+            border-radius: var(--composer-border-radius-sm);
             max-width: 100%;
           }
         }
@@ -232,23 +236,19 @@
 
         .title,
         .title2 {
-          font-size: 3rem;
+          font-size: 3rem !important;
         }
         .title {
-          line-height: 40px;
+          line-height: 40px !important;
         }
         .description {
           width: 85%;
-          line-height: 20px;
+          line-height: 20px !important;
           z-index: 2;
         }
         .button-container {
           position: relative;
           z-index: 2;
-          .button {
-            font-size: 1rem;
-            padding: 10px 20px;
-          }
         }
       }
       .right-content {

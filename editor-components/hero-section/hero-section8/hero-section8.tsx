@@ -323,7 +323,7 @@ class HeroSection8 extends BaseHeroSection {
           {this.getPropValue("slider").length > 0 && (
             <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
-                <Base.H3
+                <Base.H5
                   className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
                     : ""
@@ -338,7 +338,7 @@ class HeroSection8 extends BaseHeroSection {
                   }}
                 >
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
-                </Base.H3>
+                </Base.H5>
               }
               <Base.H1
                 className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
@@ -360,7 +360,7 @@ class HeroSection8 extends BaseHeroSection {
 
               {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
-                <Base.H3
+                <Base.H5
                   className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                     : ""
@@ -375,7 +375,7 @@ class HeroSection8 extends BaseHeroSection {
                   }}
                 >
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
-                </Base.H3>
+                </Base.H5>
               }
               <div className={this.decorateCSS("arrow-wrapper")}>
                 <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {

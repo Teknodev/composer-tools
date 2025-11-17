@@ -126,8 +126,11 @@
         }
       }
 
-      .linkText {
-        content: "";
+      .button {
+        margin-top: var(--composer-gap-md);
+        .button-text{
+          content: "";
+        }
       }
     }
 

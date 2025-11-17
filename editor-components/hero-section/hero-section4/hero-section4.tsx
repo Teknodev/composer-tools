@@ -182,7 +182,7 @@ const getStyle = (direction: "up" | "down") => {
           !imageAnm && this.decorateCSS("no-image-anm")
         }`}
       >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")}>
           {image && (
             <div 
             ref={this.imageRef} className={this.decorateCSS("image-container")}>
@@ -199,40 +199,42 @@ const getStyle = (direction: "up" | "down") => {
             </div>
           )}
 
+         <Base.MaxContent className={this.decorateCSS("card-container")}>
           {showCard && (
-            <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
-              {logo && (
-                <Base.Media 
-                  value={logo} 
-                  className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
-                />
-              )}
-              {subtitle && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
-              )}
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-              {(buttonText || button.icon) && (
-                <div className={this.decorateCSS("button-container")}>
-                  <ComposerLink path={button?.url || '#'}>
-                    <Base.Button 
-                      buttonType={button?.type || "Tertiary"} 
-                      className={this.decorateCSS("button")}>
-                      {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                       {button.icon.name && <Base.Media
-                          value={button.icon}
-                          className={this.decorateCSS("button-icon")}
-                        />}
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              )}
-              {note && <Base.P className={this.decorateCSS("note")}>{this.getPropValue("note")}</Base.P>}
-          </Base.VerticalContent>
-          )}
-        </Base.MaxContent>
+              <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
+                {logo && (
+                  <Base.Media 
+                    value={logo} 
+                    className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                  />
+                )}
+                {subtitle && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {(buttonText || button.icon) && (
+                  <div className={this.decorateCSS("button-container")}>
+                    <ComposerLink path={button?.url || '#'}>
+                      <Base.Button 
+                        buttonType={button?.type || "Tertiary"} 
+                        className={this.decorateCSS("button")}>
+                        {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                        {button.icon.name && <Base.Media
+                            value={button.icon}
+                            className={this.decorateCSS("button-icon")}
+                          />}
+                      </Base.Button>
+                    </ComposerLink>
+                  </div>
+                )}
+                {note && <Base.P className={this.decorateCSS("note")}>{this.getPropValue("note")}</Base.P>}
+            </Base.VerticalContent>
+            )}
+          </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }

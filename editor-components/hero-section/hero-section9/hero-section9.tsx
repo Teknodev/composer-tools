@@ -435,8 +435,8 @@ class HeroSection9 extends BaseHeroSection {
                   })}
                 {this.castToString(featured.text) && (
                   <ComposerLink path={featured.url}>
-                    <Base.Button buttonType={featured.type} className={this.decorateCSS("linkText")}>
-                      <Base.P className={this.decorateCSS("text")}>{featured.text}</Base.P>
+                    <Base.Button buttonType={featured.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{featured.text}</Base.P>
                     </Base.Button>
                   </ComposerLink>
                 )}
