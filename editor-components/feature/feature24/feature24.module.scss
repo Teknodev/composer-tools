@@ -2,177 +2,101 @@
 
 .container {
   position: relative;
-  overflow: hidden;
-
-  &.has-bg {
-    min-height: 500px;
-  }
-
-  .max-content {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-
-    .content {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--composer-gap-xl);
-
-      &.alignment-center {
-        align-items: center;
-        text-align: center;
-
-        .left-container {
-          align-items: center;
-          text-align: center;
-
-          .title, .description {
-            text-align: center;
-          }
-
-          .button-container {
-            justify-content: center;
-          }
-        }
-      }
-
-      &.alignment-left {
-        align-items: flex-start;
-        text-align: left;
-
-        .left-container {
-          align-items: flex-start;
-          text-align: left;
-
-          .button-container {
-            justify-content: flex-start;
-          }
-        }
-      }
-
-      .left-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--composer-gap-md);
-
-        .title, .description {
-          content: "";
-          text-align: left;
-        }
-
-        .button-container {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-md);
-          justify-content: flex-start;
-
-          .button {
-            content: "";
-          }
-          .button-text {
-            content: "";
-          }
-          .button-icon {
-            content: "";
-          }
-        }
-      }
-    }
-  }
-}
-
-.background-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
   z-index: 1;
-  background-color: var(--composer-overlay-color);
-}
+  background: var(--composer-html-background) no-repeat center center;
+  background-size: cover;
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .content {
-        flex-direction: column;
-        gap: var(--composer-gap-xl);
-
-        &.alignment-center {
-          align-items: center;
-          text-align: center;
-
-          .left-container {
-            align-items: center;
-            text-align: center;
-
-            .title, .description {
-              text-align: center;
-            }
-
-            .button-container {
-              flex-direction: column;
-              flex-wrap: nowrap;
-              justify-content: center;
-            }
-          }
-        }
-
-        &.alignment-left {
-          align-items: flex-start;
-          text-align: left;
-
-          .left-container {
-            align-items: flex-start;
-            text-align: left;
-
-            .button-container {
-              flex-direction: column;
-              flex-wrap: nowrap;
-              justify-content: flex-start;
-            }
-          }
-        }
-      }
+  &.overlay {
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: var(--composer-overlay-color);
     }
   }
 }
+
+.max-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: var(--composer-gap-xl) 0;
+}
+
+.vertical-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: var(--composer-gap-md);
+
+  &.alignment-left {
+    align-items: flex-start;
+    text-align: left;
+
+
+    .button-container {
+      justify-content: flex-start;
+    }
+  }
+
+  &.alignment-center {
+    align-items: center;
+    text-align: center;
+
+
+    .button-container {
+      justify-content: center;
+    }
+  }
+}
+
+
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--composer-gap-md);
+
+}
+
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .content {
-        &.alignment-center {
-          flex-direction: column;
-          gap: var(--composer-gap-xl);
-          align-items: center;
-          justify-content: center;
-          text-align: center;
+  .container .max-content .vertical-content {
 
-          .left-container {
-            align-items: center;
-            text-align: center;
+    align-items: center;
+    text-align: center;
 
-            .title , .description {
-              text-align: center;
-            }
 
-            .button-container {
-              justify-content: center;
-            }
-          }
-        }
-      }
+
+    .button-container {
+      justify-content: center;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+  }
+}
+
+.container.hasBackground {
+  .max-content {
+    min-height: 70vh;
+    padding: 0;
+  }
+
+  .title,
+  .description {
+    color: var(--composer-font-color-primary) !important;
+    background: transparent !important;
+  }
+
+  .title {
+    &::before {
+      background: var(--composer-font-color-primary) !important;
     }
   }
 }
