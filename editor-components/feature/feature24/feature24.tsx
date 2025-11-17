@@ -28,7 +28,6 @@ class Feature24Component extends BaseFeature {
   render() {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const image = this.getPropValue("image");
     const overlayEnabled = this.getPropValue("overlay");
     
@@ -37,7 +36,11 @@ class Feature24Component extends BaseFeature {
     
     const effectiveAlignment = hasBackground ? 'center' : alignment;
 
-    const isContentExist = !!title || !!description || (buttons?.length > 0);
+    const isTitleVisible = this.castToString(title);
+    const isDescriptionVisible = this.castToString(description);
+    const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
+    const isContentExist = !!isTitleVisible || !!isDescriptionVisible || (Array.isArray(buttonsList) && buttonsList.length > 0);
 
     return (
       <Base.Container 
@@ -55,12 +58,12 @@ class Feature24Component extends BaseFeature {
               ${effectiveAlignment === 'center' ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}
             `}>
               
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              {isTitleVisible && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {isDescriptionVisible && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
 
-              {Array.isArray(buttons) && (
+              {Array.isArray(buttonsList) && buttonsList.length > 0 && (
                 <Base.Row className={this.decorateCSS("button-container")}>
-                  {buttons.map((btn, idx) => {
+                  {buttonsList.map((btn, idx) => {
                     const buttonText = this.castToString(btn.text || "");
                     const buttonUrl = btn.url || "#";
                     const iconName = (btn as any)?.icon?.name; 

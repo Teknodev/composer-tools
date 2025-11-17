@@ -39,6 +39,10 @@
     align-items: flex-start;
     text-align: left;
 
+    .title,
+    .description {
+      text-align: left;
+    }
 
     .button-container {
       justify-content: flex-start;
@@ -48,6 +52,7 @@
   &.alignment-center {
     align-items: center;
     text-align: center;
+
 
 
     .button-container {
@@ -63,7 +68,9 @@
   flex-wrap: wrap;
   gap: var(--composer-gap-md);
 
+
 }
+
 
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -72,7 +79,10 @@
     align-items: center;
     text-align: center;
 
-
+    .title,
+    .description {
+      text-align: center;
+    }
 
     .button-container {
       justify-content: center;
