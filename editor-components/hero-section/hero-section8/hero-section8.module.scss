@@ -99,6 +99,7 @@
       flex-direction: column;
       gap: var(--composer-gap-md);
       color: white;
+      max-width: 100%;
       &.no-image{
         color: var(--composer-font-color-primary);
         .line {

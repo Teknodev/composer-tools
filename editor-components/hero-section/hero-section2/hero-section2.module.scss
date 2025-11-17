@@ -86,11 +86,11 @@
             z-index: -1;
             top: 0;
             left: 0;
-            border-radius: var(--composer-border-radius-sm);
+            border-radius: var(--composer-border-radius-md);
           }
 
           .category {
-            border-radius: var(--composer-border-radius-xs);
+            border-radius: var(--composer-border-radius-md);
             background-color: var(--composer-primary-color);
             color: var(--composer-font-color-secondary);
             position: absolute;

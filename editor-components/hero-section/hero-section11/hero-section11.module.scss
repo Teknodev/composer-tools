@@ -149,7 +149,7 @@
       width: 100% ;    
       .max-content {
         .content {
-          padding: 0px 40px 20px 40px;
+          padding: 0px 40px 80px 40px;
           width: 100%;
           .title {
             font-size: 5rem;
@@ -181,7 +181,7 @@
       width: 100%;
       .max-content {
         .content {
-          padding: 0px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
+          padding: var(--composer-gap-md) var(--composer-gap-xl) 80px var(--composer-gap-xl);
           .title {
             font-size: 3rem;
           }

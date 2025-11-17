@@ -212,7 +212,7 @@ class HeroSection3 extends BaseHeroSection {
     const animation = this.getPropValue("animation");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <ComposerSlider
             ref={this.getComponentState("sliderRef")}

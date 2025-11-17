@@ -121,7 +121,7 @@ class HeroSection11 extends BaseHeroSection {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const logo = this.getPropValue("logo");
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull="true">
+      <Base.Container className={this.decorateCSS("container")}>
         {(hasLeft) && (
           <div className={this.decorateCSS("box")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>

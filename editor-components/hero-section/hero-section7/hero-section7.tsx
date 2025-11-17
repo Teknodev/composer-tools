@@ -228,7 +228,7 @@ class HeroSection7 extends BaseHeroSection {
     const image = this.getComponentState("active_image");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("content")} ${!image && this.decorateCSS("without-image")}`}>
             <div className={this.decorateCSS("items")}>
