@@ -28,7 +28,7 @@ class Feature28Component extends BaseFeature {
       additionalParams: { availableTypes: ["image", "video"] },
       value: {
         type: "image",
-        url: "https://impreza-landing.us-themes.com/wp-content/uploads/2023/10/avel-chuklanov-DUmFLtMeAbQ-unsplash.jpg",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691b29523596a1002b29410a?alt=media",
       },
     });
 
@@ -48,6 +48,10 @@ class Feature28Component extends BaseFeature {
 
     const alignment = Base.getContentAlignment();
     const hasBackground = !!image?.url;
+
+    // DEĞİŞİKLİK 1: Resim mi video mu kontrolü
+    const isVideo = image?.type === "video" && hasBackground;
+    const isImage = image?.type === "image" && hasBackground;
 
     const effectiveAlignment = hasBackground ? "center" : alignment;
 
@@ -74,10 +78,17 @@ class Feature28Component extends BaseFeature {
           ${hasBackground ? this.decorateCSS("hasBackground") : ""}
           ${hasBackground && overlayEnabled ? this.decorateCSS("overlay") : ""}
         `}
-        style={hasBackground ? { backgroundImage: `url(${image.url})` } : undefined}
+        style={isImage ? { backgroundImage: `url(${image.url})` } : undefined}
       >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        {isVideo && (
+          <Base.Media
+            className={this.decorateCSS("background-media")}
+            value={image}
+            videoParams={{ autoPlay: true, muted: true, loop: true, playsInline: true }}
+          />
+        )}
 
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isContentExist && (
             <Base.VerticalContent
               className={`
