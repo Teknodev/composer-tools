@@ -18,6 +18,7 @@
 
             &.full-width {
                 min-width: 100%;
+                padding: 0 calc(var(--padding-md) * 4) 0 0;
             }
 
             .rating-container {
@@ -28,6 +29,12 @@
                 color: var(--composer-primary-color);
                 justify-content: flex-start !important;
                 margin: 0;
+
+                .rating-content {
+                    .icon {
+                        content: "";
+                    }
+                }
 
                 .rating-number {
                     text-align: left;

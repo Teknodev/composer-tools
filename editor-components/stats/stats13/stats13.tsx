@@ -67,10 +67,13 @@ class Stats13 extends BaseStats {
                     displayer: "star1",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "icon",
-                            value: "FaStar",
+                            value: {
+                                type: "icon",
+                                name: "FaStar"
+                            },
                         },
                     ],
                 },
@@ -80,10 +83,13 @@ class Stats13 extends BaseStats {
                     displayer: "star2",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "icon",
-                            value: "FaStar",
+                            value: {
+                                type: "icon",
+                                name: "FaStar"
+                            },
                         },
                     ],
                 },
@@ -93,10 +99,13 @@ class Stats13 extends BaseStats {
                     displayer: "star3",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "icon",
-                            value: "FaStar",
+                            value: {
+                                type: "icon",
+                                name: "FaStar"
+                            },
                         },
                     ],
                 },
@@ -106,23 +115,29 @@ class Stats13 extends BaseStats {
                     displayer: "star4",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "icon",
-                            value: "FaStar",
+                            value: {
+                                type: "icon",
+                                name: "FaStar"
+                            },
                         },
                     ],
                 },
                 {
                     type: "object",
-                    key: "star4",
-                    displayer: "star4",
+                    key: "star5",
+                    displayer: "star5",
                     value: [
                         {
-                            type: "icon",
+                            type: "media",
                             key: "icon",
                             displayer: "icon",
-                            value: "FaStar",
+                            value: {
+                                type: "icon",
+                                name: "FaStar"
+                            },
                         },
                     ],
                 },
@@ -289,7 +304,10 @@ class Stats13 extends BaseStats {
                                 {this.castToObject<any>("rating").map((item: any, index: number) => {
                                     return (
                                         <div key={index} className={this.decorateCSS("rating-content")}>
-                                            <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                            <Base.Media
+                                                value={item.icon}
+                                                className={this.decorateCSS("icon")}
+                                            />
                                         </div>
                                     );
                                 })}
