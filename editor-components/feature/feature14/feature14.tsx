@@ -203,7 +203,7 @@ class Feature14 extends BaseFeature {
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                           <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          <Base.Media value={{type: "icon", name: button.icon}} className={this.decorateCSS("button-icon")} />
+                          {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -226,7 +226,7 @@ class Feature14 extends BaseFeature {
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                           <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          <Base.Media value={{type: "icon", name: button.icon}} className={this.decorateCSS("button-icon")} />
+                          {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
                     </div>
