@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseIntroSection } from "../../EditorComponent";
+import { BaseIntroSection, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./intro-section3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -81,7 +81,8 @@ class IntroSection3 extends BaseIntroSection {
     
     const image = this.getPropValue("image");
 
-    const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttonsProp = this.getProp("buttons");
+    const buttonsList = (buttonsProp?.value || []) as TypeUsableComponentProps[];
     
     const subtitleText = this.castToString(subtitle);
     const titleText = this.castToString(title);
@@ -116,22 +117,30 @@ class IntroSection3 extends BaseIntroSection {
 
             <div className={`${this.decorateCSS("button-group-container")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
               <div className={this.decorateCSS("buttons-wrapper")}>
-                {buttonsList && buttonsList.map((button: any, index: number) => {
-                    const hasButtonText = !!this.castToString(button.text);
-                    if (!hasButtonText) return null;
-                    
-                    return (
-                      <ComposerLink key={index} path={button.url || "#"}>
-                        <Base.Button 
-                          buttonType={button.type || "Primary"} 
-                          className={this.decorateCSS("button")}
-                        >
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {button.text}
-                          </Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    );
+                
+                {buttonsList && buttonsList.map((buttonItem: TypeUsableComponentProps, index: number) => {
+                  if (!buttonItem.getPropValue) return null;
+
+                  const buttonTextElement = buttonItem.getPropValue("text");
+                  
+                  const url = buttonItem.getPropValue("url", { as_string: true });
+                  const buttonType = buttonItem.getPropValue("type", { as_string: true });
+
+                  const hasButtonText = !!this.castToString(buttonTextElement);
+                  if (!hasButtonText) return null;
+                  
+                  return (
+                    <ComposerLink key={index} path={url || "#"}>
+                      <Base.Button 
+                        buttonType={buttonType || "Primary"} 
+                        className={this.decorateCSS("button")}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {buttonTextElement}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
                 })}
               </div>
 
