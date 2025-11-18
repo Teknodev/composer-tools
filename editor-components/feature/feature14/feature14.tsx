@@ -198,11 +198,11 @@ class Feature14 extends BaseFeature {
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
-                  {(alignment == "left" && this.castToString(button.text)) && (
+                  {(alignment == "left" && (this.castToString(button.text) || button.icon)) && (
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
                           {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
@@ -221,11 +221,11 @@ class Feature14 extends BaseFeature {
                       {this.getPropValue("seconddescription")}
                     </Base.SectionDescription>
                   )}
-                  {(alignment == "center" && this.castToString(button.text)) && (
+                  {(alignment == "center" && (this.castToString(button.text) || button.icon)) && (
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
                           {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
