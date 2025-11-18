@@ -184,6 +184,7 @@ import StatsComponent10 from "./stats/stats10/stats10";
 import StatsComponent11 from "./stats/stats11/stats11";
 import StatsComponent12 from "./stats/stats12/stats12";
 import StatsComponent14 from "./stats/stats14/stats14";
+import StatsComponent15 from "./stats/stats15/stats15";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -252,8 +253,9 @@ import ECommerce1 from "./e-commerce/e-commerce1/e-commerce1";
 import ECommerce2 from "./e-commerce/e-commerce2/e-commerce2";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
 import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
-import ECommerce5 from "./e-commerce/e-commerce5";
+import ECommerce5 from "./e-commerce/e-commerce5/e-commerce5";
 import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
+import ECommerce7 from "./e-commerce/e-commerce7/e-commerce7";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "./social/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
@@ -502,6 +504,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent11,
     StatsComponent12,
     StatsComponent14,
+    StatsComponent15,
     Form1,
     Form2,
     Form3,
@@ -544,6 +547,7 @@ function Registerables(composer: ComponentsRegistery) {
     ECommerce4,
     ECommerce5,
     ECommerce6,
+    ECommerce7,
     SocialComponent2,
     SocialComponent3,
     SocialComponent4,
