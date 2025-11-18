@@ -23,10 +23,24 @@ class Stats13 extends BaseStats {
 
         this.addProp({
             type: "string",
+            key: "subTitle",
+            displayer: "Subtitle",
+            value: ""
+        })
+
+        this.addProp({
+            type: "string",
             key: "title",
             displayer: "Title",
             value: "Best-Rated Pormmerce Solution",
         });
+
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: ""
+        })
 
         this.addProp({
             type: "string",
@@ -257,12 +271,14 @@ class Stats13 extends BaseStats {
         const image = this.getPropValue("image");
         const rating = this.getPropValue("rating");
         const ratingNumber = this.getPropValue("rating-number");
+        const subTitle = this.castToString(this.getPropValue("subTitle")) as string;
         const titleProp = this.getPropValue("title");
+        const description = this.castToString(this.getPropValue("description")) as string;
         const titleString = this.castToString(titleProp) as string;
         const enableAnimation = this.getPropValue("enableAnimation");
         const statsItems = this.getPropValue("stats-items");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const hasContent = rating.length > 0 || !!titleString || buttons.length > 0 || statsItems.length > 0;
+        const hasContent = rating.length > 0 || !!titleString || buttons.length > 0 || statsItems.length > 0 || subTitle.length > 0 || description.length > 0;
 
         return (
             <Base.Container isFull className={this.decorateCSS("container")}>
@@ -280,6 +296,11 @@ class Stats13 extends BaseStats {
                                 <Base.SectionDescription className={this.decorateCSS("rating-number")}>{ratingNumber}</Base.SectionDescription>
                             </Base.Row>
                         )}
+                        {subTitle && subTitle.length > 0 && (
+                            <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                                {subTitle}
+                            </Base.SectionSubTitle>
+                        )}
                         {titleString && (
                             <Base.SectionTitle className={this.decorateCSS("title")}>
                                 <this.TypewriterText
@@ -288,6 +309,11 @@ class Stats13 extends BaseStats {
                                     enableAnimation={enableAnimation}
                                 />
                             </Base.SectionTitle>
+                        )}
+                        {description && description.length > 0 && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {description}
+                            </Base.SectionDescription>
                         )}
                         <div className={this.decorateCSS("child-container")}>
                             {buttons.length > 0 && (
