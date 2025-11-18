@@ -33,14 +33,14 @@ class IntroSection3 extends BaseIntroSection {
     this.addProp({
       type: "string",
       key: "subtitle1",
-      displayer: "Button Text 1",
+      displayer: "Text 1",
       value: "First 30 days for free.",
     });
 
     this.addProp({
       type: "string",
       key: "subtitle2",
-      displayer: "Button Text 2",
+      displayer: "Text 2",
       value: "No credit card required.",
     });
 
