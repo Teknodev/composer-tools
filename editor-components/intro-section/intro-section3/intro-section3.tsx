@@ -89,6 +89,8 @@ class IntroSection3 extends BaseIntroSection {
     const subtitle1Text = this.castToString(subtitle1);
     const subtitle2Text = this.castToString(subtitle2);
 
+    const alignment = Base.getContentAlignment();
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -112,7 +114,7 @@ class IntroSection3 extends BaseIntroSection {
               </Base.SectionDescription>
             )}
 
-            <div className={this.decorateCSS("button-group-container")}>
+            <div className={`${this.decorateCSS("button-group-container")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
               <div className={this.decorateCSS("buttons-wrapper")}>
                 {buttonsList && buttonsList.map((button: any, index: number) => {
                     const hasButtonText = !!this.castToString(button.text);
@@ -136,9 +138,9 @@ class IntroSection3 extends BaseIntroSection {
               {(subtitle1Text || subtitle2Text) && (
                 <div className={this.decorateCSS("subtitle-group")}>
                   {subtitle1Text && (
-                    <Base.H6 className={this.decorateCSS("subtitle1")}>
+                    <Base.P className={this.decorateCSS("subtitle1")}>
                       {subtitle1}
-                    </Base.H6>
+                    </Base.P>
                   )}
                   {subtitle2Text && (
                     <Base.P className={this.decorateCSS("subtitle2")}>

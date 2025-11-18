@@ -8,9 +8,7 @@
         margin-bottom: var(--composer-gap-sm);
       }
 
-      .title {
-        max-width: 800px;
-      }
+      .title {}
 
       .description {
         max-width: 600px;
@@ -23,10 +21,24 @@
         justify-content: flex-start;
         gap: var(--composer-gap-md);
         flex-wrap: wrap;
+        width: 100%;
+
+        &.center {
+          justify-content: center;
+
+          .subtitle-group {
+            align-items: center;
+            text-align: center;
+          }
+        }
 
         @container (max-width: #{$composer-phone-width}) {
           justify-content: flex-start;
           gap: var(--composer-gap-md);
+
+          &.center {
+            justify-content: center;
+          }
         }
 
         .buttons-wrapper {
@@ -51,6 +63,8 @@
           @container (max-width: #{$composer-phone-width}) {
             width: 100%;
             margin-top: var(--composer-gap-xs);
+            align-items: center;
+            text-align: center;
           }
 
           .subtitle1,
