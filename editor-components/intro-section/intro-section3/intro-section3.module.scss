@@ -23,7 +23,6 @@
         flex-wrap: wrap;
 
         @container (max-width: #{$composer-phone-width}) {
-          flex-direction: column;
           gap: var(--composer-gap-md);
         }
 
