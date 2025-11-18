@@ -293,19 +293,20 @@ class Stats13 extends BaseStats {
                             {buttons.length > 0 && (
                                 <Base.Row className={this.decorateCSS("button-container")}>
                                     {buttons.map((item, index) => {
+                                        const buttonText = this.castToString(item.text || "");
                                         const buttonUrl = item.url || "#";
-                                        if (!item.text && !item.icon) return null;
+                                        if (!buttonText && !item.icon) return null;
 
                                         return (
                                             <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                 <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                                                     {item.icon && (
                                                         <Base.Media
-                                                            className={this.decorateCSS("icon")}
+                                                            className={this.decorateCSS("button-icon")}
                                                             value={{ type: "icon", name: item.icon }}
                                                         />
                                                     )}
-                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                    {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                                 </Base.Button>
                                             </ComposerLink>
                                         );
