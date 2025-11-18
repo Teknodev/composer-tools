@@ -49,7 +49,7 @@ class LogoComp4Page extends LogoClouds {
       key: "backgroundImage",
       displayer: "Background Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -75,9 +75,6 @@ class LogoComp4Page extends LogoClouds {
 
   render() {
     const background = this.getPropValue("backgroundImage");
-    const styling = {
-      backgroundImage: `url('${(background)?.url || ""}')`,
-    };
 
     const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("title"));
@@ -85,8 +82,24 @@ class LogoComp4Page extends LogoClouds {
 
     const images = this.castToObject<TImage[]>("image-items");
 
+    const backgroundWithSettings = background?.type === "video" ? {
+      ...background,
+      settings: {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false
+      }
+    } : background;
+
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${((background)?.url) ? this.decorateCSS("image-active") : ""} ${((background)?.url && this.getPropValue("overlay")) ? this.decorateCSS("overlay-active") : ""} `} style={styling}>
+      <Base.Container className={`${this.decorateCSS("container")} ${((background)?.url) ? this.decorateCSS("image-active") : ""} ${((background)?.url && this.getPropValue("overlay")) ? this.decorateCSS("overlay-active") : ""} `}>
+        {(background)?.url && (
+          <Base.Media 
+            value={backgroundWithSettings} 
+            className={this.decorateCSS("background-image")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(isTitleExists || isSubtitleExists || isDescriptionExists) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
