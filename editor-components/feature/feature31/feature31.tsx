@@ -21,7 +21,7 @@ class Feature31 extends BaseFeature {
         this.addProp({
             type: "image",
             key: "image",
-            displayer: "Profile Image",
+            displayer: "Image",
             value: "https://res.cloudinary.com/dyjpupuop/image/upload/v1759404710/content28_img.png"
         });
 
@@ -105,9 +105,9 @@ class Feature31 extends BaseFeature {
     render() {
         const image = this.getPropValue("image");
 
-        const normalizeText = (value: any): string => {
-            const text = this.castToString(value);
-            return typeof text === "string" ? text.trim() : "";
+        const normalizeText = (value: unknown): string => {
+            const text = this.castToString(value as any);
+            return typeof text === "string" ? text : "";
         };
 
         const rawTitle = this.getPropValue("title");
@@ -125,81 +125,74 @@ class Feature31 extends BaseFeature {
             }))
             .filter((feature) => feature.title || feature.text);
 
-        const rawItemCount = Number(this.getItemCount()) || 2;
-        const gridColumnCount = features.length > 0
-            ? Math.min(rawItemCount, features.length)
-            : rawItemCount;
 
-        const leftAlign = { textAlign: "left" as const, alignItems: "flex-start" as const };
-        const hasImage = !!this.castToString(image);
+        const hasImage = Boolean(this.castToString(image as any));
+        const rawItemCount = Number(this.getItemCount()) || 1;
+        const featureColumnCount = Math.min(Math.max(rawItemCount, 1), 4);
+        const hasContent = Boolean(titleText || descriptionText || features.length > 0);
 
-        const gridClassName = [
-            this.decorateCSS("grid"),
-            !hasImage ? this.decorateCSS("no-image") : ""
+        const layoutClassName = [
+            this.decorateCSS("layout"),
+            !hasImage ? this.decorateCSS("layout-no-image") : "",
+            hasImage && !hasContent ? this.decorateCSS("layout-image-only") : ""
         ]
             .filter(Boolean)
             .join(" ");
 
-        const gridStyles: React.CSSProperties = {
-            alignItems: "flex-start",
-            justifyContent: "flex-start"
-        };
+        const featuresClassName = [
+            this.decorateCSS("features"),
+            this.decorateCSS(`columns-${featureColumnCount}`)
+        ]
+            .filter(Boolean)
+            .join(" ");
 
-        if (!hasImage) {
-            gridStyles.gridTemplateColumns = "minmax(0, 1fr)";
-        }
+        const imageWrapperClassName = [
+            this.decorateCSS("col-image"),
+            !hasContent ? this.decorateCSS("col-image-only") : ""
+        ]
+            .filter(Boolean)
+            .join(" ");
 
-        const shouldStretch = hasImage && features.length > 0;
-
-        const contentWrapperStyle: React.CSSProperties = {
-            ...leftAlign,
-            height: shouldStretch ? "100%" : "auto",
-            justifyContent: shouldStretch ? "space-between" : "flex-start"
-        };
-
-        const featuresBlockStyle: React.CSSProperties = {
-            marginTop: shouldStretch ? "auto" : "var(--composer-gap-lg)"
-        };
+        const imageClassName = [
+            this.decorateCSS("image"),
+            !hasContent ? this.decorateCSS("image-only") : ""
+        ]
+            .filter(Boolean)
+            .join(" ");
 
         const contentColumn = (
-            <Base.GridCell className={this.decorateCSS("col-content")} padding="none">
-                <Base.VerticalContent className={this.decorateCSS("content-wrapper")} style={contentWrapperStyle}>
+            <div className={this.decorateCSS("col-content")}>
+                <div className={this.decorateCSS("content-wrapper")}>
                     {(titleText || descriptionText) && (
-                        <Base.VerticalContent className={this.decorateCSS("header")} style={leftAlign}>
+                        <div className={this.decorateCSS("header")}>
                             {titleText && (
-                                <Base.SectionTitle className={this.decorateCSS("heading")} style={{ textAlign: "left" }}>
+                                <Base.SectionTitle className={this.decorateCSS("heading")}>
                                     {rawTitle}
                                 </Base.SectionTitle>
                             )}
                             {descriptionText && (
-                                <Base.SectionDescription className={this.decorateCSS("description")} style={{ textAlign: "left" }}>
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
                                     {rawDescription}
                                 </Base.SectionDescription>
                             )}
-                        </Base.VerticalContent>
+                        </div>
                     )}
 
                     {features.length > 0 && (
-                        <div className={this.decorateCSS("features-block")} style={featuresBlockStyle}>
-                            <div
-                                className={this.decorateCSS("features")}
-                                style={{
-                                    gridTemplateColumns: `repeat(${gridColumnCount}, minmax(0, 1fr))`
-                                }}
-                            >
+                        <div className={this.decorateCSS("features-block")}>
+                            <div className={featuresClassName}>
                                 {features.map((feature, index) => (
                                     <Base.VerticalContent
                                         key={index}
                                         className={this.decorateCSS("feature")}
-                                        style={leftAlign}
                                     >
                                         {feature.title && (
-                                            <Base.H4 className={this.decorateCSS("feature-title")} style={{ textAlign: "left" }}>
+                                            <Base.H3 className={this.decorateCSS("feature-title")}>
                                                 {feature.rawTitle}
-                                            </Base.H4>
+                                            </Base.H3>
                                         )}
                                         {feature.text && (
-                                            <Base.P className={this.decorateCSS("feature-text")} style={{ textAlign: "left" }}>
+                                            <Base.P className={this.decorateCSS("feature-text")}>
                                                 {feature.rawText}
                                             </Base.P>
                                         )}
@@ -208,27 +201,24 @@ class Feature31 extends BaseFeature {
                             </div>
                         </div>
                     )}
-                </Base.VerticalContent>
-            </Base.GridCell>
+                </div>
+            </div>
         );
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")} style={{ justifyContent: "flex-start" }}>
-                    <Base.ContainerGrid className={gridClassName} style={gridStyles}>
-                        {/* Image Column */}
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    <div className={layoutClassName}>
                         {hasImage && (
-                            <Base.GridCell className={this.decorateCSS("col-image")} padding="none">
+                            <div className={imageWrapperClassName}>
                                 <Base.Media
-                                    className={this.decorateCSS("image")}
-                                    value={{ type: "image", url: this.castToString(image) as string }}
+                                    className={imageClassName}
+                                    value={{ type: "image", url: this.castToString(image as any) as string }}
                                 />
-                            </Base.GridCell>
+                            </div>
                         )}
-
-                        {/* Content Column */}
-                        {contentColumn}
-                    </Base.ContainerGrid>
+                        {hasContent && contentColumn}
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         );

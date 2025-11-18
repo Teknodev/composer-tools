@@ -1,48 +1,53 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
-.no-image {
-    --feature31-no-image: 1;
-}
 .container {
     .max-content {
-        container-type: inline-size;
-
-        .grid {
-            display: grid;
-            grid-template-columns: 26rem 1fr;
+        .layout {
+            display: flex;
             gap: var(--composer-gap-lg);
-            grid-template-rows: min-content;
-            
-            &.no-image {
-                grid-template-columns: 1fr;
+            align-items: stretch;
+
+            &.layout-no-image {
+                justify-content: center;
             }
 
             .col-image {
-                width: 100%;
-                height: 100%;
+                flex: 0 0 clamp(200px, 28vw, 320px);
+                max-width: clamp(200px, 28vw, 320px);
                 background: var(--composer-html-background);
-                border: 1px solid rgba(0, 0, 0, 0.06);
                 border-radius: var(--composer-border-radius-sm);
                 overflow: hidden;
-                grid-row: 1 / -1;
 
                 .image {
                     width: 100%;
                     height: 100%;
                     display: block;
                     object-fit: cover;
+                    border-radius: var(--composer-border-radius-sm);
                     transition: transform 0.35s ease, filter 0.35s ease;
                 }
 
                 &:hover .image {
-                    transform: scale(1.035);
-                    filter: brightness(1.02);
+                    transform: scale(1.05);
+                    filter: brightness(1.5);
                     cursor: pointer;
+                }
+
+                &.col-image-only {
+                    flex: 0 0 800px;
+                    max-width: 800px;
+                    width: 100%;
+                    margin: 0 auto;
+
+                    .image {
+                        height: auto;
+                        aspect-ratio: 16 / 9;
+                    }
                 }
             }
 
             .col-content {
-                width: 100%;
+                flex: 1;
                 display: flex;
                 flex-direction: column;
                 overflow: hidden;
@@ -55,22 +60,21 @@
                     overflow: hidden;
 
                     .header {
-                        gap: var(--composer-gap-md);
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--composer-gap-lg);
+                        align-items: flex-start;
+                        text-align: left;
+                    }
 
-                        .heading {
-                            font-size: calc(4.1 * var(--composer-font-size-md));
-                            line-height: 1.15;
-                            letter-spacing: -0.02em;
-                            font-weight: 500;
-                            white-space: pre-line;
-                            word-break: break-word;
-                        }
+                    .heading {
+                        text-align: left !important;
+                    }
 
-                        .description {
-                            font-size: calc(1.8 * var(--composer-font-size-md));
-                            line-height: 1.55;
-                            color: var(--composer-tertiary-color);
-                        }
+                    .description {
+                        color: var(--composer-tertiary-color);
+                        text-align: left !important;
+                        //font-size: calc(1.7 * var(--composer-font-size-md)) !important;
                     }
 
                     .features-block {
@@ -81,38 +85,56 @@
                             display: grid;
                             gap: var(--composer-gap-md);
 
+                            &.columns-1 {
+                                grid-template-columns: 1fr;
+                            }
+
+                            &.columns-2 {
+                                grid-template-columns: repeat(2, minmax(0, 1fr));
+                            }
+
+                            &.columns-3 {
+                                grid-template-columns: repeat(3, minmax(0, 1fr));
+                            }
+
+                            &.columns-4 {
+                                grid-template-columns: repeat(4, minmax(0, 1fr));
+                            }
+
                             .feature {
                                 gap: var(--composer-gap-sm);
                                 overflow: hidden;
+                                text-align: left !important;
 
                                 .feature-title {
-                                    font-size: calc(2.1 * var(--composer-font-size-md));
-                                    font-weight: 700;
                                     color: var(--composer-font-color-primary) !important;
                                     background: transparent !important;
                                     box-shadow: none !important;
-                                    text-align: inherit;
-                                    overflow-wrap: anywhere;
-                                    word-break: break-word;
-                                    min-width: 0;
-
-                                    &::before,
-                                    &::after {
-                                        display: none;
-                                        content: none;
-                                    }
+                                    text-align: left !important;
                                 }
 
                                 .feature-text {
-                                    font-size: calc(1.35 * var(--composer-font-size-md));
-                                    line-height: 1.5;
                                     color: var(--composer-tertiary-color);
-                                    overflow-wrap: anywhere;
-                                    word-break: break-word;
-                                    min-width: 0;
+                                    text-align: left !important;
                                 }
                             }
                         }
+                    }
+                }
+            }
+
+            &.layout-image-only {
+                justify-content: stretch;
+
+                .col-image {
+                    flex: 1 1 100%;
+                    max-width: 100%;
+                    border-radius: 0;
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
                     }
                 }
             }
@@ -123,59 +145,21 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            .grid {
-                grid-template-columns: 22rem 1fr;
+            .layout {
                 gap: var(--composer-gap-md);
-                grid-template-rows: min-content;
-                
-                &.no-image {
-                    grid-template-columns: 1fr;
-                }
-                
+
                 .col-image {
-                    width: 100%;
-                    height: 100%;
-                    grid-row: 1 / -1;
-                    
-                    .image {
-                        width: 100%;
-                        height: 100%;
-                    }
+                    flex-basis: 256px;
+                    max-width: 256px;
                 }
 
                 .col-content {
-                    width: 100%;
-                    
                     .content-wrapper {
                         gap: var(--composer-gap-lg);
-                        
-                        .header {
-                            .heading {
-                                font-size: calc(2.8 * var(--composer-font-size-md)) !important;
-                                line-height: 1.2 !important;
-                            }
-
-                            .description {
-                                font-size: calc(1.4 * var(--composer-font-size-md)) !important;
-                                line-height: 1.55 !important;
-                            }
-                        }
 
                         .features-block {
                             .features {
-                                grid-template-columns: repeat(2, 1fr) !important;
-                                gap: var(--composer-gap-sm);
-
-                                .feature {
-                                    .feature-title {
-                                        font-size: calc(1.5 * var(--composer-font-size-md)) !important;
-                                    }
-
-                                    .feature-text {
-                                        font-size: calc(1.05 * var(--composer-font-size-md)) !important;
-                                        line-height: 1.6 !important;
-                                    }
-                                }
+                                grid-template-columns: repeat(2, minmax(0, 1fr));
                             }
                         }
                     }
@@ -188,70 +172,48 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            .grid {
-                display: flex;
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
+
+            .layout {
                 flex-direction: column;
-                grid-template-columns: unset;
-                grid-template-rows: unset;
-                gap: var(--composer-gap-md);
+                width: 100%;
+                gap: var(--composer-gap-lg);
 
                 .col-image {
-                    order: -1;
-                    flex: unset;
+                    flex: 0 0 auto;
                     width: 100%;
-                    height: auto;
-                    grid-row: unset;
-                    border-radius: var(--composer-border-radius-md);
+                    max-width: 100%;
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
 
                     .image {
+                        width: 100%;
                         height: auto;
-                        aspect-ratio: 1;
+                        object-fit: cover;
+                        aspect-ratio: 1 / 1;
+                    }
+
+                    &.col-image-only {
+                        flex: 0 0 auto;
+                        max-width: 100%;
+                        width: 100%;
                     }
                 }
 
                 .col-content {
                     width: 100%;
-                    overflow: visible;
-                    
+                
+
                     .content-wrapper {
-                        overflow: visible;
                         gap: var(--composer-gap-md);
 
-                        .header {
-                            gap: var(--composer-gap-sm);
-
-                            .heading {
-                                font-size: calc(2.2 * var(--composer-font-size-md)) !important;
-                                line-height: 1.25 !important;
-                                white-space: normal !important;
-                            }
-
-                            .description {
-                                font-size: calc(1.25 * var(--composer-font-size-md)) !important;
-                                line-height: 1.5 !important;
-                            }
-                        }
-
                         .features-block {
-                            margin-top: 0;
-
                             .features {
                                 grid-template-columns: 1fr !important;
-                                gap: var(--composer-gap-sm);
-
-                                .feature {
-                                    gap: var(--composer-gap-xs);
-                                    overflow: visible;
-
-                                    .feature-title {
-                                        font-size: calc(1.4 * var(--composer-font-size-md)) !important;
-                                    }
-
-                                    .feature-text {
-                                        font-size: calc(1.2 * var(--composer-font-size-md)) !important;
-                                        line-height: 1.45 !important;
-                                    }
-                                }
+                                width: 100%;
+                                gap: var(--composer-gap-md);
                             }
                         }
                     }
@@ -260,4 +222,3 @@
         }
     }
 }
-
