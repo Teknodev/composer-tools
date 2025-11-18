@@ -20,13 +20,11 @@
       .button-group-container {
         display: flex;
         align-items: center;
-        /* Center kaldırıldı, sola dayalı */
         justify-content: flex-start;
         gap: var(--composer-gap-md);
         flex-wrap: wrap;
 
         @container (max-width: #{$composer-phone-width}) {
-          /* Telefonda hizalama */
           justify-content: flex-start;
           gap: var(--composer-gap-md);
         }
@@ -51,7 +49,6 @@
           text-align: left;
 
           @container (max-width: #{$composer-phone-width}) {
-            /* Sadece burası genişleyerek alta iner */
             width: 100%;
             margin-top: var(--composer-gap-xs);
           }
