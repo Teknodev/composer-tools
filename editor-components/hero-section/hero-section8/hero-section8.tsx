@@ -92,9 +92,9 @@ class HeroSection8 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -129,9 +129,9 @@ class HeroSection8 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -166,9 +166,9 @@ class HeroSection8 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -203,9 +203,9 @@ class HeroSection8 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -304,20 +304,32 @@ class HeroSection8 extends BaseHeroSection {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <ComposerSlider {...settings} ref={sliderRef} className={`${this.decorateCSS("carousel")} ${allSlidesWithoutImages && this.decorateCSS("no-image")}`}>
-          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
-            <div className={`
-              ${this.decorateCSS("slide")}
-              ${!this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
-              ${!item.image ? this.decorateCSS("slide-no-image") : ""}
-              ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
-            `}>
-              <div className={`${this.decorateCSS("image-wrapper")} ${item.image && this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
-                {item.image && (
-                  <Base.Media value={item.image} className={this.decorateCSS("image")} />
-                )}
+          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => {
+            const imageWithSettings = item.image?.type === "video" ? {
+              ...item.image,
+              settings: {
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false
+              }
+            } : item.image;
+            
+            return (
+              <div className={`
+                ${this.decorateCSS("slide")}
+                ${!this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
+                ${!item.image ? this.decorateCSS("slide-no-image") : ""}
+                ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
+              `}>
+                <div className={`${this.decorateCSS("image-wrapper")} ${item.image && this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
+                  {item.image && (
+                    <Base.Media value={imageWithSettings} className={this.decorateCSS("image")} />
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </ComposerSlider>
         <Base.Container className={`${this.decorateCSS("max-content")}`}>
           {this.getPropValue("slider").length > 0 && (

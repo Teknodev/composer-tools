@@ -45,8 +45,22 @@
       .slider-item {
         .slider-item-container {
           position: relative;
-          background-position: center;
-          background-size: cover;
+
+          .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            
+            video {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
 
           .overlay {
             position: absolute;
@@ -55,11 +69,13 @@
             width: 100%;
             height: 100%;
             background-color: var(--composer-overlay-color);
+            z-index: 1;
           }
         }
       }
       .content-max-width {
         position: relative;
+        z-index: 2;
         .card {
           height: auto !important;
           bottom: var(--composer-gap-xl);
@@ -209,20 +225,22 @@
           display: flex !important;
           flex-direction: column !important;
           height: auto !important;
-          background-image: none !important;
           background-color: var(--composer-html-background) !important;
+          position: relative;
           
-          &::before {
-            content: "";
-            display: block;
+          .background-image {
+            position: static !important;
             width: 100%;
             height: 35vw;
-            background-image: var(--mobile-bg-image);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            object-fit: cover;
             flex-shrink: 0;
             order: -1;
+            
+            video {
+              width: 100%;
+              height: 35vw;
+              object-fit: cover;
+            }
           }
 
           .overlay {
@@ -250,9 +268,10 @@
           }
           .category {
             position: static !important;
-            top: unset !important;
+            bottom: var(--composer-gap-sm) !important;
             left: unset !important;
-            margin-bottom: var(--composer-gap-sm);
+            top: unset !important;
+            margin-bottom: var(--composer-gap-sm) !important;
           }
           .title {
             margin-bottom: 0 !important;

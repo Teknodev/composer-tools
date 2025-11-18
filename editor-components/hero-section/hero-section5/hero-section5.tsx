@@ -47,9 +47,9 @@ class HeroSection5 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -83,6 +83,15 @@ class HeroSection5 extends BaseHeroSection {
     const isDescriptionExist = this.castToString(description);
     const isSubtitleExist = this.castToString(subtitle);
 
+    const backgroundWithSettings = backgroundImage?.type === "video" ? {
+      ...backgroundImage,
+      settings: {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false
+      }
+    } : backgroundImage;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -90,11 +99,14 @@ class HeroSection5 extends BaseHeroSection {
           <div
             className={`${this.decorateCSS("background-layer")} ${backgroundImage && this.decorateCSS("with-image")
               }`}
-            style={{
-              backgroundImage: `url(${backgroundImage?.url})`,
-            }}
           >
-            {overlay && backgroundImage?.url && <div className={this.decorateCSS("overlay")} />}
+            {backgroundImage && (backgroundImage.type === "image" || backgroundImage.type === "video") && backgroundImage.url && (
+              <Base.Media 
+                value={backgroundWithSettings} 
+                className={this.decorateCSS("background-image")}
+              />
+            )}
+            {overlay && backgroundImage && (backgroundImage.type === "image" || backgroundImage.type === "video") && backgroundImage.url && <div className={this.decorateCSS("overlay")} />}
             <Base.VerticalContent className={this.decorateCSS("content")}>
               {logo && (
                 <Base.Media 

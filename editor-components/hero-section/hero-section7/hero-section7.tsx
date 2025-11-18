@@ -1,12 +1,12 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type ISliderData = {
   title: string;
-  image: string;
+  image: TypeMediaInputValue;
   pagepath: string;
 };
 
@@ -38,9 +38,9 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -69,9 +69,9 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -100,9 +100,9 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -131,9 +131,9 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -162,9 +162,9 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -193,9 +193,9 @@ class HeroSection7 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -221,11 +221,21 @@ class HeroSection7 extends BaseHeroSection {
     return "Hero Section 7";
   }
   render() {
-    const handleMouseOver = (image: string) => {
+    const handleMouseOver = (image: TypeMediaInputValue) => {
       this.setComponentState("active_image", image);
     };
 
     const image = this.getComponentState("active_image");
+    
+    const imageWithSettings = image?.type === "video" ? {
+      ...image,
+      settings: {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false
+      }
+    } : image;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -234,22 +244,22 @@ class HeroSection7 extends BaseHeroSection {
             <div className={this.decorateCSS("items")}>
               {this.castToObject<ISliderData[]>("pages").map((item: ISliderData, index: number) => (
                 <ComposerLink path={item.pagepath} key={index}>
-                  <h2
+                  <Base.H2
                     onMouseOver={() => handleMouseOver(item.image)}
                     className={`${this.decorateCSS("text")} ${image && item.image && image === item.image ? this.decorateCSS("active") : ""}`}
                   >
                     {item.title}
-                  </h2>
+                  </Base.H2>
                 </ComposerLink>
               ))}
             </div>
             {image && (
               <div className={this.decorateCSS("image-wrapper")}>
                 <Base.Media
-                  value={image}
+                  value={imageWithSettings}
                   className={this.decorateCSS("image")}
                 />
-                {this.getPropValue("overlay") && image && typeof image === "object" && image?.type === "image" && image?.url && (
+                {this.getPropValue("overlay") && image && typeof image === "object" && (image?.type === "image" || image?.type === "video") && image?.url && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
               </div>

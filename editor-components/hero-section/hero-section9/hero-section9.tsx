@@ -107,9 +107,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -138,9 +138,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -169,9 +169,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -200,9 +200,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -231,9 +231,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -262,9 +262,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -293,9 +293,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -324,9 +324,9 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -444,12 +444,26 @@ class HeroSection9 extends BaseHeroSection {
             </Base.GridCell>
             {currentImage && (
               <Base.GridCell className={this.decorateCSS("right-content")}>
-                <div className={this.decorateCSS("image-wrapper")}>
-                  <Base.Media
-                    value={currentImage}
-                    className={this.decorateCSS("image")}
-                  />
-                  {this.getPropValue("overlay") && currentImage && currentImage.type === "image" && currentImage.url && (
+                <div className={this.decorateCSS("media-wrapper")}>
+                  {(() => {
+                    const imageWithSettings = currentImage?.type === "video" ? {
+                      ...currentImage,
+                      settings: {
+                        autoplay: true,
+                        loop: true,
+                        muted: true,
+                        controls: false
+                      }
+                    } : currentImage;
+                    
+                    return (
+                      <Base.Media
+                        value={imageWithSettings}
+                        className={this.decorateCSS("media")}
+                      />
+                    );
+                  })()}
+                  {this.getPropValue("overlay") && currentImage && (currentImage.type === "image" || currentImage.type === "video") && currentImage.url && (
                     <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>

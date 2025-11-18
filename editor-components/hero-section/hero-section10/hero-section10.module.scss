@@ -291,9 +291,14 @@
                   font-size: 2rem;
                 }
                 .iconsSection {
+                  gap: var(--composer-gap-sm);
                   .prev_icon_wrapper, .next_icon_wrapper {
+                    height: 30px;
+                    width: 30px;
                     .prev_icon, .next_icon {
-                      font-size: 2.5rem;
+                      font-size: 1.5rem;
+                      width: 24px;
+                      height: 24px;
                     }
                   }
                 }
@@ -377,7 +382,7 @@
                 .iconsSection{
                   .prev_icon_wrapper, .next_icon_wrapper{
                     .prev_icon, .next_icon {
-                      font-size: 2.5rem;
+                      font-size: 1.5rem;
                     }
                   }
                 }

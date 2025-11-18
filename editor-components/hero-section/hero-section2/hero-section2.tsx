@@ -36,7 +36,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "media",
               key: "image",
               displayer: "Background Image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
@@ -91,7 +91,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "media",
               key: "image",
               displayer: "Background Image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d06f97fe08002c76cf1c?alt=media",
@@ -146,7 +146,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "media",
               key: "image",
               displayer: "Background Image",
-              additionalParams: { availableTypes: ["image"] },
+              additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
@@ -251,16 +251,26 @@ class HeroSection2 extends BaseHeroSection {
                     isTitleExist ||
                     isCategoryExist;
 
+                  const imageWithSettings = item.image?.type === "video" ? {
+                    ...item.image,
+                    settings: {
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false
+                    }
+                  } : item.image;
+
                   return (
                     <div className={this.decorateCSS("slider-item")} key={idx}>
-                      <div
-                        className={this.decorateCSS("slider-item-container")}
-                        style={{
-                          backgroundImage: item.image && item.image.type === "image" && item.image.url ? `url("${item.image.url}")` : undefined,
-                          "--mobile-bg-image": item.image && item.image.type === "image" && item.image.url ? `url("${item.image.url}")` : "none",
-                        } as React.CSSProperties}
-                      >
-                        {this.getPropValue("overlay") && item.image && item.image.type === "image" && item.image.url && (
+                      <div className={this.decorateCSS("slider-item-container")}>
+                        {item.image && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
+                          <Base.Media 
+                            value={imageWithSettings} 
+                            className={this.decorateCSS("background-image")}
+                          />
+                        )}
+                        {this.getPropValue("overlay") && item.image && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
                           <div className={this.decorateCSS("overlay")} />
                         )}
                         <div className={this.decorateCSS("content-max-width")}>
