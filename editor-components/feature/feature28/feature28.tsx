@@ -48,9 +48,7 @@ class Feature28Component extends BaseFeature {
 
     const alignment = Base.getContentAlignment();
     const hasBackground = !!image?.url;
-
     const isVideo = image?.type === "video" && hasBackground;
-    const isImage = image?.type === "image" && hasBackground;
     
     const effectiveAlignment = alignment;
 
@@ -77,17 +75,18 @@ class Feature28Component extends BaseFeature {
           ${hasBackground ? this.decorateCSS("hasBackground") : ""}
           ${hasBackground && overlayEnabled ? this.decorateCSS("overlay") : ""}
         `}
-        style={isImage ? { backgroundImage: `url(${image.url})` } : undefined}
       >
-        {isVideo && (
+        {hasBackground && (
           <Base.Media
             className={this.decorateCSS("background-media")}
             value={{
               ...image,
-              autoPlay: true,
-              muted: true,
-              loop: true,
-              playsInline: true,
+              ...(isVideo && {
+                autoPlay: true,
+                muted: true,
+                loop: true,
+                playsInline: true,
+              }),
             }}
           />
         )}
