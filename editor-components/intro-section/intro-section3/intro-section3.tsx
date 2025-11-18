@@ -112,31 +112,33 @@ class IntroSection3 extends BaseIntroSection {
               </Base.SectionDescription>
             )}
 
-            <div className={this.decorateCSS("button-subtitle-wrapper")}>
-              {buttonsList && buttonsList.map((button: any, index: number) => {
-                  const hasButtonText = !!this.castToString(button.text);
-                  if (!hasButtonText) return null;
-                  
-                  return (
-                    <ComposerLink key={index} path={button.url || "#"}>
-                      <Base.Button 
-                        buttonType={button.type || "Primary"} 
-                        className={this.decorateCSS("button")}
-                      >
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {button.text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-              })}
+            <div className={this.decorateCSS("button-group-container")}>
+              <div className={this.decorateCSS("buttons-wrapper")}>
+                {buttonsList && buttonsList.map((button: any, index: number) => {
+                    const hasButtonText = !!this.castToString(button.text);
+                    if (!hasButtonText) return null;
+                    
+                    return (
+                      <ComposerLink key={index} path={button.url || "#"}>
+                        <Base.Button 
+                          buttonType={button.type || "Primary"} 
+                          className={this.decorateCSS("button")}
+                        >
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                })}
+              </div>
 
               {(subtitle1Text || subtitle2Text) && (
                 <div className={this.decorateCSS("subtitle-group")}>
                   {subtitle1Text && (
-                    <Base.P className={this.decorateCSS("subtitle1")}>
+                    <Base.H6 className={this.decorateCSS("subtitle1")}>
                       {subtitle1}
-                    </Base.P>
+                    </Base.H6>
                   )}
                   {subtitle2Text && (
                     <Base.P className={this.decorateCSS("subtitle2")}>

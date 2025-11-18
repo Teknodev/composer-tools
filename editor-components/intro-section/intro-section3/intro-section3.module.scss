@@ -8,28 +8,40 @@
         margin-bottom: var(--composer-gap-sm);
       }
 
-      .title {}
+      .title {
+        max-width: 800px;
+      }
 
       .description {
         max-width: 600px;
         margin-top: var(--composer-gap-sm);
       }
 
-      .button-subtitle-wrapper {
+      .button-group-container {
         display: flex;
         align-items: center;
-        justify-content: center;
+        /* Center kaldırıldı, sola dayalı */
+        justify-content: flex-start;
         gap: var(--composer-gap-md);
         flex-wrap: wrap;
 
         @container (max-width: #{$composer-phone-width}) {
+          /* Telefonda hizalama */
+          justify-content: flex-start;
           gap: var(--composer-gap-md);
         }
 
-        .button {}
+        .buttons-wrapper {
+          display: flex;
+          gap: var(--composer-gap-md);
+          flex-wrap: wrap;
 
-        .button-text {
-          margin: 0;
+          .button {
+            .button-text {
+              margin: 0;
+              pointer-events: none;
+            }
+          }
         }
 
         .subtitle-group {
@@ -39,21 +51,20 @@
           text-align: left;
 
           @container (max-width: #{$composer-phone-width}) {
-            align-items: center;
-            text-align: center;
+            /* Sadece burası genişleyerek alta iner */
+            width: 100%;
+            margin-top: var(--composer-gap-xs);
           }
 
           .subtitle1,
           .subtitle2 {
             margin: 0;
-            color: var(--composer-font-color-secondary);
-            opacity: 0.8;
+            color: var(--composer-font-color-primary);
+            opacity: 1;
           }
 
           .subtitle1 {
             font-weight: 700;
-            opacity: 1;
-            color: var(--composer-font-color-primary);
           }
         }
       }
