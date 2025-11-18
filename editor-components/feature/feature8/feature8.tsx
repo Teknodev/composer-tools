@@ -13,11 +13,13 @@ class Feature8 extends BaseFeature {
   observer?: IntersectionObserver;
   threshold = 0.2;
   cardsRootRef: React.RefObject<HTMLDivElement | null> = React.createRef<HTMLDivElement>();
+  resizeTimeout?: NodeJS.Timeout;
 
   constructor(props?: any) {
     super(props, styles);
 
     this.setupObserver = this.setupObserver.bind(this);
+    this.handleResize = this.handleResize.bind(this);
 
     this.addProp({
       type: "string",
@@ -214,11 +216,18 @@ class Feature8 extends BaseFeature {
     return Array.from(root.querySelectorAll("." + cardBaseClass)) as HTMLElement[];
   };
 
+  private isMobileOrTablet = (): boolean => {
+    const container = this.cardsRootRef.current?.parentElement?.parentElement;
+    if (!container) return false;
+    const containerWidth = container.offsetWidth;
+    return containerWidth <= 1024; 
+  };
+
   private applyCardState = (element: HTMLElement, index: number, middle: number, isVisible: boolean) => {
     const visibleTokens = this.getTokens("visible");
     const shiftedTokens = this.getTokens("shifted");
 
-    if (!this.getPropValue("animationEnable")) {
+    if (!this.getPropValue("animationEnable") || this.isMobileOrTablet()) {
       element.classList.remove(...visibleTokens, ...shiftedTokens);
       element.dataset.position = "";
       element.style.marginTop = "";
@@ -270,8 +279,34 @@ class Feature8 extends BaseFeature {
     });
   };
 
+  private cleanupCardStates = () => {
+    const cards = this.getCardElements();
+    const visibleTokens = this.getTokens("visible");
+    const shiftedTokens = this.getTokens("shifted");
+    
+    cards.forEach((element) => {
+      element.classList.remove(...visibleTokens, ...shiftedTokens);
+      element.dataset.position = "";
+      element.style.marginTop = "";
+      element.style.marginLeft = "";
+      element.style.transform = "";
+      element.style.zIndex = "";
+    });
+  };
+
+  handleResize = () => {
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+    }
+    
+    this.resizeTimeout = setTimeout(() => {
+      this.cleanupCardStates();
+      this.scheduleInit();
+    }, 150);
+  };
+
   callback: IntersectionObserverCallback = (entries) => {
-    if (this.getPropValue("animationEnable")) {
+    if (this.getPropValue("animationEnable") && !this.isMobileOrTablet()) {
       const cards = this.getCardElements();
       const middle = Math.floor(cards.length / 2);
       entries.forEach((entry) => {
@@ -297,10 +332,15 @@ class Feature8 extends BaseFeature {
   };
 
   setupObserver = () => {
-    if (!this.getPropValue("animationEnable")) return;
     if (this.observer) {
       this.observer.disconnect();
     }
+    
+    if (!this.getPropValue("animationEnable") || this.isMobileOrTablet()) {
+      this.cleanupCardStates();
+      return;
+    }
+    
     const root = this.cardsRootRef.current;
     if (!root) return;
 
@@ -328,6 +368,7 @@ class Feature8 extends BaseFeature {
 
   componentDidMount(): void {
     this.scheduleInit();
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentDidUpdate(): void {
@@ -338,6 +379,10 @@ class Feature8 extends BaseFeature {
     if (this.observer) {
       this.observer.disconnect();
     }
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+    }
+    window.removeEventListener('resize', this.handleResize);
   }
 
   static getName(): string {

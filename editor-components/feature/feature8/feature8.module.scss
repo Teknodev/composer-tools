@@ -85,30 +85,6 @@
                 gap: var(--composer-gap-md);
                 padding-bottom: 0;
                 .card {
-                    &.visible {
-                        transform: none;
-                        margin: 0;
-                        transition: unset;
-                    }
-                    
-                    &.shifted {
-                        margin-left: 0px;
-                        transform: unset;
-                    }
-                    &.shifted[data-position="right"] {
-                        margin-left: 0px !important;
-                        margin-top: 0px !important;
-                        transform: unset;
-                    }
-                    &.shifted[data-position="left"] {
-                        margin-left: 0px !important;
-                        margin-top: 0px !important;
-                        transform: unset;
-                    }
-                    
-                    &.slick-slide {
-                        z-index: auto; 
-                    }
                 }
             }
         }
