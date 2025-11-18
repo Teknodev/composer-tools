@@ -2600,7 +2600,7 @@ class Navbar10 extends BaseNavigator {
                                       )}
                                     >
                                       <ComposerLink path={category.url}>
-                                        <Base.H6
+                                        <Base.P
                                           className={`${this.decorateCSS(
                                             "dropdownItemTitle"
                                           )}`}
@@ -2614,7 +2614,7 @@ class Navbar10 extends BaseNavigator {
                                               )}
                                             />
                                           )}
-                                        </Base.H6>
+                                        </Base.P>
                                       </ComposerLink>
                                       {category.items.map((catItem, iIndex) => (
                                         <ComposerLink
@@ -2685,7 +2685,7 @@ class Navbar10 extends BaseNavigator {
                                       )}
                                     >
                                       <ComposerLink path={category.url}>
-                                        <Base.H5
+                                        <Base.P
                                           className={`${this.decorateCSS(
                                             "dropdownItemTitle"
                                           )}`}
@@ -2699,7 +2699,7 @@ class Navbar10 extends BaseNavigator {
                                               )}
                                             />
                                           )}
-                                        </Base.H5>
+                                        </Base.P>
                                       </ComposerLink>
                                       {category.items.map((catItem, iIndex) => (
                                         <ComposerLink
