@@ -42,18 +42,17 @@ class Feature28Component extends BaseFeature {
   render() {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    
+
     const image = this.getPropValue("image");
     const overlayEnabled = this.getPropValue("overlay");
 
     const alignment = Base.getContentAlignment();
     const hasBackground = !!image?.url;
 
-    // DEĞİŞİKLİK 1: Resim mi video mu kontrolü
     const isVideo = image?.type === "video" && hasBackground;
     const isImage = image?.type === "image" && hasBackground;
-
-    const effectiveAlignment = hasBackground ? "center" : alignment;
+    
+    const effectiveAlignment = alignment;
 
     const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
@@ -67,7 +66,7 @@ class Feature28Component extends BaseFeature {
 
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
-    
+
     const isContentExist =
       isTitleExist || isDescriptionExist || validButtons.length > 0;
 
@@ -83,8 +82,13 @@ class Feature28Component extends BaseFeature {
         {isVideo && (
           <Base.Media
             className={this.decorateCSS("background-media")}
-            value={image}
-            videoParams={{ autoPlay: true, muted: true, loop: true, playsInline: true }}
+            value={{
+              ...image,
+              autoPlay: true,
+              muted: true,
+              loop: true,
+              playsInline: true,
+            }}
           />
         )}
 
@@ -92,7 +96,7 @@ class Feature28Component extends BaseFeature {
           {isContentExist && (
             <Base.VerticalContent
               className={`
-                ${this.decorateCSS("vertical-content")}
+                ${this.decorateCSS("content")}
                 ${
                   effectiveAlignment === "center"
                     ? this.decorateCSS("alignment-center")
@@ -105,7 +109,7 @@ class Feature28Component extends BaseFeature {
                   {title}
                 </Base.SectionTitle>
               )}
-              
+
               {isDescriptionExist && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
@@ -115,7 +119,7 @@ class Feature28Component extends BaseFeature {
               {validButtons.length > 0 && (
                 <Base.Row className={this.decorateCSS("button-container")}>
                   {validButtons.map((item, index) => {
-                    const text = this.castToString(item.text || ""); 
+                    const text = this.castToString(item.text || "");
                     const iconName = (item as any)?.icon?.name;
 
                     return (
@@ -130,7 +134,7 @@ class Feature28Component extends BaseFeature {
                           
                           {text && (
                             <Base.P className={this.decorateCSS("button-text")}>
-                              {item.text} 
+                              {item.text}
                             </Base.P>
                           )}
                         </Base.Button>
