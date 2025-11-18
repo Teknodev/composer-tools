@@ -1,4 +1,4 @@
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -92,6 +92,20 @@ class Feature31 extends BaseFeature {
             value: 2,
             max: 4
         });
+
+        this.addProp({
+            type: "icon",
+            key: "icon",
+            displayer: "Magnifier Icon",
+            value: "IoSearchOutline"
+        });
+
+        this.addProp({
+            type: "icon",
+            key: "closeModalIcon",
+            displayer: "Overlay Close Icon",
+            value: "IoCloseOutline"
+        });
     }
 
     static getName(): string {
@@ -104,6 +118,11 @@ class Feature31 extends BaseFeature {
 
     render() {
         const image = this.getPropValue("image");
+        const rawImageValue = this.castToString(image as any);
+        const imageUrl = typeof rawImageValue === "string" ? rawImageValue : "";
+        const imageValue: TypeMediaInputValue | null = imageUrl
+            ? { type: "image", url: imageUrl }
+            : null;
 
         const normalizeText = (value: unknown): string => {
             const text = this.castToString(value as any);
@@ -126,10 +145,13 @@ class Feature31 extends BaseFeature {
             .filter((feature) => feature.title || feature.text);
 
 
-        const hasImage = Boolean(this.castToString(image as any));
+        const hasImage = Boolean(imageValue);
         const rawItemCount = Number(this.getItemCount()) || 1;
         const featureColumnCount = Math.min(Math.max(rawItemCount, 1), 4);
         const hasContent = Boolean(titleText || descriptionText || features.length > 0);
+        const isImageOverlayOpen = !!this.getComponentState("isImageOverlayOpen");
+        const magnifierIcon = this.getPropValue("icon");
+        const closeModalIcon = this.getPropValue("closeModalIcon");
 
         const layoutClassName = [
             this.decorateCSS("layout"),
@@ -206,21 +228,67 @@ class Feature31 extends BaseFeature {
         );
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={layoutClassName}>
-                        {hasImage && (
-                            <div className={imageWrapperClassName}>
-                                <Base.Media
-                                    className={imageClassName}
-                                    value={{ type: "image", url: this.castToString(image as any) as string }}
-                                />
+            <>
+                {hasImage && imageValue && (
+                    <Base.Overlay
+                        className={this.decorateCSS("modal")}
+                        isVisible={isImageOverlayOpen}
+                    >
+                        <div
+                            className={this.decorateCSS("modal-wrapper")}
+                            onClick={() => this.setComponentState("isImageOverlayOpen", false)}
+                        >
+                            <div
+                                className={this.decorateCSS("modal-content")}
+                                onClick={(event) => event.stopPropagation()}
+                            >
+                                <div
+                                    className={this.decorateCSS("close")}
+                                    onClick={() => this.setComponentState("isImageOverlayOpen", false)}
+                                >
+                                    <Base.Icon
+                                        name={closeModalIcon}
+                                        propsIcon={{ className: this.decorateCSS("icon") }}
+                                    />
+                                </div>
+                                <div className={this.decorateCSS("image-container")}>
+                                    <Base.Media
+                                        value={imageValue}
+                                        className={this.decorateCSS("modal-image")}
+                                    />
+                                </div>
                             </div>
-                        )}
-                        {hasContent && contentColumn}
-                    </div>
-                </Base.MaxContent>
-            </Base.Container>
+                        </div>
+                    </Base.Overlay>
+                )}
+                <Base.Container className={this.decorateCSS("container")}>
+                    <Base.MaxContent className={this.decorateCSS("max-content")}>
+                        <div className={layoutClassName}>
+                            {hasImage && (
+                                <div
+                                    className={imageWrapperClassName}
+                                    onClick={() => imageValue && this.setComponentState("isImageOverlayOpen", true)}
+                                >
+                                    <div className={this.decorateCSS("image-frame")}>
+                                        <Base.Media
+                                            className={imageClassName}
+                                            value={imageValue || undefined}
+                                        />
+                                        <div className={this.decorateCSS("overlay")} />
+                                        <div className={this.decorateCSS("magnifier-icon-wrapper")}>
+                                            <Base.Icon
+                                                name={magnifierIcon}
+                                                propsIcon={{ className: this.decorateCSS("magnifier-icon") }}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                            {hasContent && contentColumn}
+                        </div>
+                    </Base.MaxContent>
+                </Base.Container>
+            </>
         );
     }
 }
