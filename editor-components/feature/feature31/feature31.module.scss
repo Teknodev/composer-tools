@@ -29,8 +29,7 @@
 
                 &:hover .image {
                     transform: scale(1.05);
-                    filter: brightness(1.5);
-                    cursor: pointer;
+                    filter: none;
                 }
 
                 &.col-image-only {
@@ -74,7 +73,6 @@
                     .description {
                         color: var(--composer-tertiary-color);
                         text-align: left !important;
-                        //font-size: calc(1.7 * var(--composer-font-size-md)) !important;
                     }
 
                     .features-block {
@@ -204,7 +202,7 @@
 
                 .col-content {
                     width: 100%;
-                
+
 
                     .content-wrapper {
                         gap: var(--composer-gap-md);
