@@ -284,6 +284,7 @@ class Stats13 extends BaseStats {
 
     render() {
         const image = this.getPropValue("image");
+        const isImageExist = !!image?.url;
         const rating = this.getPropValue("rating");
         const ratingNumber = this.getPropValue("rating-number");
         const subTitle = this.castToString(this.getPropValue("subTitle")) as string;
@@ -297,7 +298,7 @@ class Stats13 extends BaseStats {
 
         return (
             <Base.Container isFull className={this.decorateCSS("container")}>
-                <div className={this.decorateCSS("wrapper")}>
+                <div className={`${this.decorateCSS("wrapper")} ${!isImageExist ? this.decorateCSS("no-image") : ""} ${!hasContent ? this.decorateCSS("full-width-wrapper") : ""}`}>
                     <Base.MaxContent className={` ${this.decorateCSS("left-content")} ${!image?.url ? this.decorateCSS("full-width") : ""}`}>
                         {rating.length > 0 && (
                             <Base.Row className={this.decorateCSS("rating-container")}>
@@ -315,9 +316,11 @@ class Stats13 extends BaseStats {
                             </Base.Row>
                         )}
                         {subTitle && subTitle.length > 0 && (
-                            <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                                {this.getPropValue("subTitle")}
-                            </Base.SectionSubTitle>
+                            <Base.Row className={this.decorateCSS("sub-title-container")}>
+                                <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                                    {this.getPropValue("subTitle")}
+                                </Base.SectionSubTitle>
+                            </Base.Row>
                         )}
                         {titleString && (
                             <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -385,14 +388,14 @@ class Stats13 extends BaseStats {
                             )}
                         </div>
                     </Base.MaxContent>
-                    <div className={`${this.decorateCSS("right-content")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
-                        {image?.url && (
+                    {isImageExist && (
+                        <div className={`${this.decorateCSS("right-content")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
                             <Base.Media
                                 value={image}
                                 className={this.decorateCSS("image")}
                             />
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             </Base.Container>
         );
