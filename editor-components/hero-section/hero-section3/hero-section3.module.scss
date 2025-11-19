@@ -32,6 +32,26 @@
   background: var(--composer-html-background);
   padding: 0px 0px var(--composer-gap-xl) 0px !important;
 
+  &.center-alignment {
+    .max-content {
+      .slider {
+        .wrapper {
+          .content {
+            .text-container {
+              .subtitle {
+                padding: 0 var(--composer-gap-lg);
+                transform: none;
+                &::before {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   .max-content {
     position: relative;
     .pagination {
@@ -80,6 +100,7 @@
             @include transitionAll;
 
             .content-bg,
+            .text-container .subtitle,
             .text-container .title,
             .text-container .description,
             .text-container .button-container,
@@ -113,6 +134,7 @@
           }
 
           .text-container {
+            .subtitle,
             .title {
               top: 0;
               opacity: 1;
@@ -171,12 +193,12 @@
             display: flex;
             justify-content: start;
             align-items: baseline;
+            margin-bottom: var(--composer-gap-sm);
+            padding: 0 var(--composer-gap-lg);
             .logo {
               &.logo-icon {
                 font-size: 3rem;
                 color: var(--composer-font-color-primary);
-                width: 100%;
-                padding: 0 var(--composer-gap-lg);
               }
   
               &.logo-image {
@@ -189,12 +211,19 @@
           }
           
 
-          .title {
+          .title,
+          .subtitle {
             text-align: left;
             top: -20vw;
             padding: 0 var(--composer-gap-lg);
             color: var(--composer-font-color-primary);
             @include transitionOpacity;
+          }
+
+          .subtitle {
+            margin-left: 0;
+            padding: 0;
+            transform: translateX(6rem);
           }
 
           .description {
@@ -403,6 +432,23 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 0px 0px var(--composer-gap-xl) 0px;
+
+    &.center-alignment {
+      .max-content {
+        .slider {
+          .wrapper {
+            .content {
+              .text-container {
+                .subtitle {
+                  margin-left: auto !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     .max-content {
       .pagination {
         right: 50%;
@@ -493,6 +539,20 @@
               padding: 0;
               text-align: center;
               color: #fff;
+            }
+
+            .subtitle {
+              position: relative !important;
+              top: 0 !important;
+              opacity: 1 !important;
+              padding: 0;
+              text-align: center;
+              color: #fff;
+              margin-left: 0 !important;
+              transform: translateX(0) !important;
+              &::before {
+                display: none !important;
+              }
             }
 
             .description {

@@ -12,6 +12,19 @@
   background-color: var(--composer-html-background);
   padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
 
+  &.center-alignment {
+    .max-content {
+      .left-content {
+        .subtitle {
+          transform: translateX(0);
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
   .max-content {
     width: 100%;
     display: flex;
@@ -29,6 +42,31 @@
       word-wrap: break-word;
       gap: var(--composer-gap-lg);
       align-items: baseline;
+      .logo-container {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: baseline;
+        margin-bottom: var(--composer-gap-sm);
+        .logo {
+          &.logo-icon {
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          &.logo-image {
+            aspect-ratio: 4/1;
+            object-fit: contain;
+            width: 150px;
+            height: 50px;
+          }
+        }
+      }
+      .subtitle {
+        text-align: left;
+        margin-left: 0;
+        color: var(--composer-font-color-primary);
+      }
       .title-container {
         .title {
           @include textEllipsis(2);

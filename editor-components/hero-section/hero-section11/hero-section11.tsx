@@ -23,6 +23,13 @@ class HeroSection11 extends BaseHeroSection {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Explore the world",
@@ -120,8 +127,9 @@ class HeroSection11 extends BaseHeroSection {
     const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"));
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const logo = this.getPropValue("logo");
+    const alignment = Base.getContentAlignment();
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         {(hasLeft) && (
           <div className={this.decorateCSS("box")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -132,6 +140,11 @@ class HeroSection11 extends BaseHeroSection {
                     value={logo} 
                     className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
                   />
+                )}
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
                 )}
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>

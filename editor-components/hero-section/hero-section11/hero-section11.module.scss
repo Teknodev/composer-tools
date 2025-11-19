@@ -4,6 +4,19 @@
   height: 100vh;
   display: flex;
   gap: var(--composer-gap-xl);
+
+  &.center-alignment {
+    .box {
+      .max-content {
+        .content {
+          .subtitle {
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+
   .box {
     flex: 1;
     .max-content {
@@ -33,7 +46,17 @@
             width: 150px;
             height: 50px;
           }
-        }       
+        }  
+        .subtitle {
+          text-align: left;
+          margin-left: 0;
+          color: var(--composer-font-color-primary);
+          font-size: 2.5rem;
+          transform: translateX(0);
+          &::before {
+            display: none;
+          }
+        }
         .title {
           font-size: 5rem;
           text-align: left;
@@ -151,6 +174,9 @@
         .content {
           padding: 0px 40px 80px 40px;
           width: 100%;
+          .subtitle {
+            font-size: 2rem;
+          }
           .title {
             font-size: 5rem;
           }
@@ -182,6 +208,9 @@
       .max-content {
         .content {
           padding: var(--composer-gap-md) var(--composer-gap-xl) 80px var(--composer-gap-xl);
+          .subtitle {
+            font-size: 1.5rem;
+          }
           .title {
             font-size: 3rem;
           }

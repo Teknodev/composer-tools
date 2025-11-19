@@ -7,11 +7,13 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
+  subtitle: string;
   title: string;
   image: TypeMediaInputValue;
   description: string;
   type: string;
   button: INPUTS.CastedButton;
+  logo: TypeMediaInputValue;
 };
 
 class HeroSection3 extends BaseHeroSection {
@@ -27,6 +29,24 @@ class HeroSection3 extends BaseHeroSection {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "Subtitle",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -69,6 +89,24 @@ class HeroSection3 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "Subtitle",
+            },
+            {
               type: "string",
               displayer: "Title",
               key: "title",
@@ -110,6 +148,24 @@ class HeroSection3 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "Subtitle",
+            },
+            {
               type: "string",
               displayer: "Title",
               key: "title",
@@ -149,19 +205,6 @@ class HeroSection3 extends BaseHeroSection {
       ],
     });
     this.addProp({
-      type: "media",
-      key: "logo",
-      displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image", "icon"],
-      },
-      value: {
-        type: "icon",
-        name: "",
-      },
-    });
-
-    this.addProp({
       type: "boolean",
       key: "animation",
       displayer: "Animation",
@@ -191,7 +234,6 @@ class HeroSection3 extends BaseHeroSection {
 
   render() {
     const autoplay = this.getPropValue("autoplay");
-    const logo = this.getPropValue("logo");
     const settings = {
       dots: false,
       fade: true,
@@ -211,8 +253,10 @@ class HeroSection3 extends BaseHeroSection {
     const activeSlide = this.getComponentState("activeSlide");
     const animation = this.getPropValue("animation");
 
+    const alignment = Base.getContentAlignment();
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <ComposerSlider
             ref={this.getComponentState("sliderRef")}
@@ -248,14 +292,15 @@ class HeroSection3 extends BaseHeroSection {
                   <div className={this.decorateCSS("content")}>
                     {showContent && (
                       <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                        {logo && (
+                        {item.logo && (
                          <div className={this.decorateCSS("logo-container")}> 
                           <Base.Media 
-                            value={logo} 
-                            className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                            value={item.logo} 
+                            className={`${this.decorateCSS("logo")} ${item.logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
                           />
                         </div> 
                         )}
+                        {item.subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
                         {title && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                         {description && (
                           <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>

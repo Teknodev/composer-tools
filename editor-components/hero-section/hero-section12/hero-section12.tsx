@@ -6,7 +6,9 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type SliderItem = {
-  text: React.JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
   image: TypeMediaInputValue;
   page?: string;
 };
@@ -60,9 +62,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Autumn Stuff",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -91,9 +105,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Breakfast",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -122,9 +148,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "The Notebook",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -153,9 +191,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Little Pumpkin",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -184,9 +234,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Autumn Evening",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -223,9 +285,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Pumpkin Pie",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -254,9 +328,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Coffee Time",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -285,9 +371,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Autumn Stories",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -316,9 +414,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Still Life",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -347,9 +457,21 @@ class HeroSection12 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
               value: "Boooo!",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -577,15 +699,27 @@ class HeroSection12 extends BaseHeroSection {
                         )}
                       </div>
                     )}
-                    <Base.H2
-                      className={`${this.decorateCSS("slider-item-text")} ${
-                        !item.image && this.decorateCSS("no-image-text")
-                      }`}
-                    >
-                      <ComposerLink path={item.page}>
-                        {item.text}
-                      </ComposerLink>
-                    </Base.H2>
+                    <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
+                      !item.image && this.decorateCSS("no-image-text")
+                    }`}>
+                      {this.castToString(item.subtitle) && (
+                        <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
+                          {item.subtitle}
+                        </Base.H5>
+                      )}
+                      {this.castToString(item.title) && (
+                        <Base.H2 className={this.decorateCSS("slider-item-text")}>
+                          <ComposerLink path={item.page}>
+                            {item.title}
+                          </ComposerLink>
+                        </Base.H2>
+                      )}
+                      {this.castToString(item.description) && (
+                        <Base.P className={this.decorateCSS("slider-item-description")}>
+                          {item.description}
+                        </Base.P>
+                      )}
+                    </Base.VerticalContent>
                   </div>
                 ))}
               </ComposerSlider>
@@ -617,15 +751,27 @@ class HeroSection12 extends BaseHeroSection {
                         )}
                       </div>
                     )}
-                    <Base.H2
-                      className={`${this.decorateCSS("slider-item-text")} ${
-                        !item.image && this.decorateCSS("no-image-text")
-                      }`}
-                    >
-                      <ComposerLink path={item.page}>
-                        {item.text}
-                      </ComposerLink>
-                    </Base.H2>
+                    <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
+                      !item.image && this.decorateCSS("no-image-text")
+                    }`}>
+                      {this.castToString(item.subtitle) && (
+                        <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
+                          {item.subtitle}
+                        </Base.H5>
+                      )}
+                      {this.castToString(item.title) && (
+                        <Base.H2 className={this.decorateCSS("slider-item-text")}>
+                          <ComposerLink path={item.page}>
+                            {item.title}
+                          </ComposerLink>
+                        </Base.H2>
+                      )}
+                      {this.castToString(item.description) && (
+                        <Base.P className={this.decorateCSS("slider-item-description")}>
+                          {item.description}
+                        </Base.P>
+                      )}
+                    </Base.VerticalContent>
                   </div>
                 ))}
               </ComposerSlider>

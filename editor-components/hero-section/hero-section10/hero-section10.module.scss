@@ -121,7 +121,9 @@
                 position: relative;
               }
               .button {
-                content: "";
+                .button-text{
+                  content: "";
+                }
               }
             }
           }

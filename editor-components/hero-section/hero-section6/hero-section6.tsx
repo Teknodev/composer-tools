@@ -8,6 +8,24 @@ class HeroSection6 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
@@ -115,24 +133,43 @@ class HeroSection6 extends BaseHeroSection {
     const descriptionAnimation = this.getPropValue("descriptionAnimation");
     const image2 = this.getPropValue("image2");
     const image2Animation = this.getPropValue("image2Animation");
+    const logo = this.getPropValue("logo");
+    const subtitle = this.getPropValue("subtitle");
 
     const isTitleExist = this.castToString(title);
     const isTitle2Exist = this.castToString(title2);
     const isDescriptionExist = this.castToString(description);
+    const isSubtitleExist = this.castToString(subtitle);
 
     const showLeftContent =
+      logo ||
+      isSubtitleExist ||
       isTitleExist ||
       isTitle2Exist ||
       isDescriptionExist ||
       buttons.length > 0
 
     const showRightContent = this.getPropValue("image1") || image2;
+    const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showLeftContent && (
             <Base.VerticalContent className={this.decorateCSS("left-content")}>
+              {logo && (
+                <div className={this.decorateCSS("logo-container")}>
+                  <Base.Media 
+                    value={logo} 
+                    className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                  />
+                </div>
+              )}
+              {isSubtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {(isTitleExist || isTitle2Exist) && (
                 <div className={this.decorateCSS("title-container")}>
                   {isTitleExist && (

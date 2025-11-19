@@ -122,13 +122,14 @@
         }
       }
       .tag, .title, .description {
-        content: "";
         color: white;
+        text-align: left;
       }
       
       &.no-image {
         .tag, .title, .description {
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
       }
     
