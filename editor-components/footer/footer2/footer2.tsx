@@ -31,9 +31,9 @@ class Footer2Page extends BaseFooter {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Background Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -318,10 +318,26 @@ class Footer2Page extends BaseFooter {
 
     const position = this.getPropValue("position");
 
+    const imageWithSettings = image?.type === "video" ? {
+      ...image,
+      settings: {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false
+      }
+    } : image;
+
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")} style={{ backgroundImage: `url(${image?.url || ""})` }}>
+          <div className={this.decorateCSS("footer-page")}>
+            {image && (image.type === "image" || image.type === "video") && image.url && (
+              <Base.Media
+                value={imageWithSettings}
+                className={this.decorateCSS("media")}
+              />
+            )}
             {(footer.length > 0 || image?.url) && (
               <Base.MaxContent
                 className={`${this.decorateCSS("items")} ${!image?.url && this.decorateCSS("no-image")}`}>
@@ -351,7 +367,7 @@ class Footer2Page extends BaseFooter {
                 })}
               </Base.MaxContent>
             )}
-            {overlay && image?.url && <div className={this.decorateCSS("overlay")}></div>}
+            {overlay && image && (image.type === "image" || image.type === "video") && image.url && <div className={this.decorateCSS("overlay")}></div>}
           </div>
           <Base.MaxContent>
             {footerDescExist && (
