@@ -24,13 +24,14 @@
       padding: 0;
     }
 
+    .subtitle,
     .title,
     .description {
       color: var(--color-white) !important;
       background: transparent !important;
     }
 
-    .title {
+    .subtitle {
       &::before {
         background: var(--color-white) !important;
       }
@@ -57,14 +58,13 @@
     max-height: 100%;
     object-fit: cover;
 
-    img,
-    video {
+    .img,
+    .video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
       display: block;
-
     }
   }
 
@@ -93,16 +93,10 @@
     }
   }
 
-  .button {
-    display: flex;
-  }
-
-  .button-text {
-    display: flex;
-  }
-
+  .button,
+  .button-text,
   .button-icon {
-    display: flex;
+    content: "";
   }
 }
 

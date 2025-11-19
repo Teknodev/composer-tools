@@ -1,4 +1,5 @@
-import { BaseFeature } from "../../EditorComponent";
+import * as React from "react";
+import { BaseFeature, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature28.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -8,6 +9,7 @@ class Feature28Component extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.addProp({ type: "string", key: "title", displayer: "Title", value: "The best-rated top-seller" });
     this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely." });
 
@@ -24,7 +26,7 @@ class Feature28Component extends BaseFeature {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: {
         type: "image",
@@ -40,6 +42,7 @@ class Feature28Component extends BaseFeature {
   }
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
@@ -62,11 +65,12 @@ class Feature28Component extends BaseFeature {
         })
       : [];
 
+    const isSubtitleExist = this.castToString(subtitle);
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
 
     const isContentExist =
-      isTitleExist || isDescriptionExist || validButtons.length > 0;
+      isSubtitleExist || isTitleExist || isDescriptionExist || validButtons.length > 0;
 
     return (
       <Base.Container
@@ -103,6 +107,12 @@ class Feature28Component extends BaseFeature {
                 }
               `}
             >
+              {isSubtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+
               {isTitleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {title}
