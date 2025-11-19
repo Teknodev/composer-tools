@@ -17,8 +17,11 @@
         }
 
         .subtitle {
-            &::before {
-                background: var(--color-white) !important;
+            transform: none !important;
+
+            &::before,
+            &::after {
+                display: none !important;
             }
         }
     }
