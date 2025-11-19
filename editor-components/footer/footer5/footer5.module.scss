@@ -55,15 +55,20 @@
         }
 
         &.center {
-          flex-direction: column;
+          flex-direction: row;
           align-items: center;
 
-          .right {
-            justify-content: center;
-            .button{
-              display: flex;
-              justify-content: center;
+          .left {
+            .title, .subtitle {
+              text-align: left;
             }
+            .subtitle{
+              margin-left: 0;
+            }
+          }
+
+          .right {
+            justify-content: flex-end;
           }
         }
       }
@@ -134,11 +139,9 @@
 
       .first-max-content {
         .header {
-          align-items: baseline;
           &.center {
             display: flex;
-            flex-direction: column;
-            gap: 0;
+            flex-direction: row;
           }
         }
       }
@@ -208,8 +211,31 @@
         .header {
           flex-direction: column;
           gap: var(--composer-gap-sm);
+          align-items: baseline;
           .left {
             width: 100%;
+          }
+
+          &.center {
+            align-items: center;
+            flex-direction: column;
+            .left {
+              .title, .subtitle {
+                text-align: center;
+              }
+              .subtitle{
+                margin: auto;
+              }
+            }
+            .right {
+              justify-content: center;
+            }
+          }
+
+          &:not(.center) {
+            .right {
+              justify-content: flex-start;
+            }
           }
         }
       }
@@ -220,7 +246,6 @@
       .second-max-content {
         .bottom {
           align-items: center;
-          /* When bottom is center-aligned on phone, center any list-groups and their content */
           &.center {
             .list-group,
             .links .list-group {

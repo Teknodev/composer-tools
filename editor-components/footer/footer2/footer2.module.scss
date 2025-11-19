@@ -17,12 +17,12 @@
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
 
       .items {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        padding: 80px var(--composer-gap-xl);
         min-height: 300px;
         gap: var(--composer-gap-md);
 
@@ -100,8 +100,8 @@
   .container {
     .max-content {
       .footer-page {
+        padding: 80px var(--composer-gap-lg);
         .items {
-          padding: 80px var(--composer-gap-lg);
           min-height: 170px;
           gap: var(--composer-gap-md);
           align-items: baseline;
@@ -124,8 +124,8 @@
   .container {
     .max-content {
       .footer-page {
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
         .items {
-          padding: var(--composer-gap-xl) var(--composer-gap-md);
           min-height: 300px;
           gap: var(--composer-gap-xl);
           .list{
