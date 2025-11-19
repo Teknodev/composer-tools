@@ -316,7 +316,7 @@ class Stats13 extends BaseStats {
                         )}
                         {subTitle && subTitle.length > 0 && (
                             <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                                {subTitle}
+                                {this.getPropValue("subTitle")}
                             </Base.SectionSubTitle>
                         )}
                         {titleString && (
@@ -330,7 +330,7 @@ class Stats13 extends BaseStats {
                         )}
                         {description && description.length > 0 && (
                             <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {description}
+                                {this.getPropValue("description")}
                             </Base.SectionDescription>
                         )}
                         <div className={this.decorateCSS("child-container")}>
