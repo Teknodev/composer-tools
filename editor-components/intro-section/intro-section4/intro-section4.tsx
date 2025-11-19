@@ -13,14 +13,13 @@ class IntroSection4 extends BaseIntroSection {
             type: "media",
             key: "cover-image",
             displayer: "Image",
-            additionalParams: {
-                availableTypes: ["image"],
-            },
             value: {
-                type: "image",
                 url: "https://res.cloudinary.com/dmydg7kum/image/upload/v1763494879/thought-catalog-Nv-vx3kUR2A-unsplash_hlncis.jpg",
+                type: "image",
             },
-        });
+
+            additionalParams: { availableTypes: ["image", "video"] }
+        })
 
         this.addProp({
             type: "boolean",

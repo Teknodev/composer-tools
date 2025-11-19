@@ -9,14 +9,16 @@
     &.has-bg-image {
 
         .subtitle,
-        .title {
-            color: var(--composer-font-color-primary) !important;
+        .title,
+        .description,
+        .label {
+            color: var(--color-white) !important;
             background: transparent !important;
         }
 
         .subtitle {
             &::before {
-                background: var(--composer-font-color-primary) !important;
+                background: var(--color-white) !important;
             }
         }
     }
@@ -78,22 +80,6 @@
                     }
                 }
             }
-        }
-    }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .content {
-            .vertical-content {}
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container {
-        .content {
-            .vertical-content {}
         }
     }
 }
