@@ -222,10 +222,13 @@ const getStyle = (direction: "up" | "down") => {
                         buttonType={button?.type || "Tertiary"} 
                         className={this.decorateCSS("button")}>
                         {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                        {button.icon.name && <Base.Media
-                            value={button.icon}
+                        {button.icon && (() => {
+                          const iconValue = typeof button.icon === "string" ? { type: "icon" as const, name: button.icon } : button.icon;
+                          return iconValue.name && <Base.Media
+                            value={iconValue}
                             className={this.decorateCSS("button-icon")}
-                          />}
+                          />;
+                        })()}
                       </Base.Button>
                     </ComposerLink>
                   </div>

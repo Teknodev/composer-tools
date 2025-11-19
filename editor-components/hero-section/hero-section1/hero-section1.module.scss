@@ -56,8 +56,20 @@
   min-height: 100px;
 
   .background-layout {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
+    object-fit: cover;
+    
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   .image-container-2 {
     position: absolute;
@@ -216,6 +228,20 @@
               transform: scale(1);
               opacity: 1;
               width: 100%;
+            }
+            &.with-overlay {
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--composer-overlay-color);
+                z-index: 1;
+                pointer-events: none;
+                border-radius: var(--composer-border-radius-sm);
+              }
             }
             .sliderNumber {
               position: absolute;
@@ -425,6 +451,10 @@
             }
             .title{
               @include absoluteCenter;
+              font-size: 3rem !important;
+              width: 100% !important;
+              padding: var(--composer-gap-sm) !important;
+              top: 40% !important;
             }
           }
         }

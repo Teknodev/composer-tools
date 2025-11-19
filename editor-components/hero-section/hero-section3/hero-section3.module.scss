@@ -54,6 +54,7 @@
 
   .max-content {
     position: relative;
+    container-type: inline-size;
     .pagination {
       width: max-content;
       position: absolute;
@@ -304,7 +305,8 @@
         &.type-2 {
           &.active-slide 
             .text-container {
-              margin-left: 7%;
+              margin-left: clamp(7%, 7%, 10%);
+
             }
             .image-container .image {
               right: 2rem !important;
@@ -431,7 +433,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0px 0px var(--composer-gap-xl) 0px;
+    padding: 0px 0px var(--composer-gap-xl) 0px !important;
 
     &.center-alignment {
       .max-content {

@@ -30,6 +30,7 @@
     position: relative;
     height: 100%;
     width: 100%;
+    max-width: 100%;
 
     .image-container {
       height: 100vh;
@@ -125,18 +126,14 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  padding: 80px 40px 0px 40px !important;
   .container{
+    padding: 80px 40px 0px 40px !important;
     .max-content{
       position: relative;
       
       .image-container {
         height: 100vh;
         position: relative;
-        
-        .image {
-          height: 100%;
-        }
       }
       
       .card-container {
@@ -167,30 +164,48 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: fit-content;
+    padding: 0 !important;
     .max-content {
       position: static;
       display: flex;
       flex-direction: column;
-        .image-container {
-          height: 50vh; 
-          .image {
-            scale: 1;
+      height: auto;
+      
+      .image-container {
+        height: 50vh;
+        position: relative;
+        order: 1;
+        
+        .image {
+          scale: 1;
+          height: 100%;
+          width: 100%;
+          transform: none !important;
+          
+          .image-element {
             height: 100%;
             width: 100%;
-            transform: none !important;
-            .image-element {
-              height: inherit;
-            }
+            object-fit: cover;
           }
         }
+      }
+      
       .card-container {
+        position: static;
+        order: 2;
+        width: 100%;
+        height: auto;
+        pointer-events: all;
+        
         .card {
-          bottom: 0 ;
-          position: relative ;
-          transform: none ;
-          right: 0px ;
-          width: auto ;
-          padding: var(--composer-gap-md) ;
+          position: relative;
+          transform: none;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          max-width: 100%;
+          padding: var(--composer-gap-md);
+          margin-top: var(--composer-gap-md);
         }
       }
     }

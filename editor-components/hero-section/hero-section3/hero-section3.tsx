@@ -45,7 +45,7 @@ class HeroSection3 extends BaseHeroSection {
               type: "string",
               displayer: "Subtitle",
               key: "subtitle",
-              value: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -104,7 +104,7 @@ class HeroSection3 extends BaseHeroSection {
               type: "string",
               displayer: "Subtitle",
               key: "subtitle",
-              value: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -163,7 +163,7 @@ class HeroSection3 extends BaseHeroSection {
               type: "string",
               displayer: "Subtitle",
               key: "subtitle",
-              value: "Subtitle",
+              value: "",
             },
             {
               type: "string",

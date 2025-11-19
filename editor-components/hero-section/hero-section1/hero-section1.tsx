@@ -11,9 +11,9 @@ class HeroSection1 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "background-layout",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -89,6 +89,12 @@ class HeroSection1 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -176,6 +182,12 @@ class HeroSection1 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ],
         },
         {
@@ -219,6 +231,12 @@ class HeroSection1 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ],
         },
         {
@@ -261,6 +279,12 @@ class HeroSection1 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -332,8 +356,24 @@ class HeroSection1 extends BaseHeroSection {
     const backgroundLayout = this.getPropValue("background-layout");
     const animation = this.getComponentState("animation");
 
+    const backgroundWithSettings = backgroundLayout?.type === "video" ? {
+      ...backgroundLayout,
+      settings: {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false
+      }
+    } : backgroundLayout;
+
     return (
-      <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("background-layout")?.url})` }}>
+      <Base.Container className={this.decorateCSS("container")}>
+        {backgroundLayout && (backgroundLayout.type === "image" || backgroundLayout.type === "video") && backgroundLayout.url && (
+          <Base.Media
+            value={backgroundWithSettings}
+            className={this.decorateCSS("background-layout")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.Media
             className={this.decorateCSS("image-container-2")}
@@ -364,7 +404,7 @@ class HeroSection1 extends BaseHeroSection {
 
                     <div className={this.decorateCSS("content-container")}>
                       <div
-                        className={`${this.decorateCSS("image-wrapper")} ${!item.image && this.decorateCSS("without-image")}`}
+                        className={`${this.decorateCSS("image-wrapper")} ${!item.image && this.decorateCSS("without-image")} ${item.overlay ? this.decorateCSS("with-overlay") : ""}`}
                       >
                         <h1
                           className={`${this.decorateCSS("subtitle")} ${!backgroundLayout && this.decorateCSS("dark")}`}
