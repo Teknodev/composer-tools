@@ -54,7 +54,7 @@ class IntroSection5 extends BaseIntroSection {
       "",
       "FaArrowDown",
       null,
-      "Link"
+      "Bare"
     );
 
     if (Array.isArray(scrollButtonProp.value)) {
