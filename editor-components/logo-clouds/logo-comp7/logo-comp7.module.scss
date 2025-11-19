@@ -77,11 +77,34 @@
     }
     .gallery {
       .images-container {
+        gap: var(--composer-gap-md);
+        padding-left: var(--composer-gap-md);
         .image-child {
           .image {
-            width: 100%;
+            width: clamp(90px, 10vw, 110px);
             height: auto;
             aspect-ratio: 3/1;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    gap: var(--composer-gap-md);
+    .gallery {
+      .images-container {
+        gap: var(--composer-gap-sm);
+        padding-left: var(--composer-gap-sm);
+        .image-child {
+          .image {
+            width: clamp(70px, 12vw, 85px);
+            height: auto;
+            aspect-ratio: 3/1;
+            object-fit: contain;
           }
         }
       }

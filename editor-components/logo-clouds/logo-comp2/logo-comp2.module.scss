@@ -5,9 +5,7 @@
     flex-direction: column;
     gap: var(--composer-gap-xl);
     .max-content{
-        max-width: var(--composer-content-width) !important;
         .heading{
-            padding: 0 var(--composer-gap-xl);
             .subtitle, .title, .description { 
                 content: "";
             }
@@ -57,21 +55,29 @@
         gap: var(--composer-gap-md);
         .max-content {
             .heading{
-                padding: 0 var(--composer-gap-lg);
             }
         }
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
     .container {
         gap: var(--composer-gap-md);
         .max-content {
             .heading{
-                padding: 0 var(--composer-gap-md);
             }
         }
 
+        .gallery {
+            .images-container {
+                .image-child {
+                    padding: var(--composer-gap-sm) var(--composer-gap-md);
+                    .image {
+                        width: clamp(80px, 12vw, 100px);
+                    }
+                }
+            }
+        }
     }
 }
 

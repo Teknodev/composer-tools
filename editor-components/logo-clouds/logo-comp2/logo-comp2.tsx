@@ -75,7 +75,6 @@ class LogoComp2Page extends LogoClouds {
 
     return (
       <Base.Container
-        isFull={true}
         className={this.decorateCSS("container")}
       >
         {(isSubtitleExists || isTitleExists || isDescriptionExists) && (

@@ -15,9 +15,6 @@
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 padding: var(--composer-gap-md);
                 border-radius: var(--composer-border-radius-sm);
-                flex: 1 1 calc((100% / 6) - var(--composer-gap-md));
-                min-width: 150px;
-                max-width: 240px;
                 .image {
                     object-fit: contain;
                     width: 100%;
@@ -34,13 +31,6 @@
     .container {
         .max-content {
             gap: var(--composer-gap-md);
-            
-            .images-container {
-                .image-item {
-                    flex: 1 1 calc((100% / 3) - var(--composer-gap-md));
-                    min-width: 120px;
-                }
-            }
         }
     }
 }

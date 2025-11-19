@@ -57,7 +57,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        flex: 1 1 calc((100% / 6) - 1px);
         min-width: 150px;
         padding: var(--composer-gap-md);
           .image{
@@ -84,7 +83,6 @@
       }
       .images-container {
         .image-item {
-          flex: 1 1 calc((100% / 3) - 1px);
           min-width: 120px;
         }
       }
