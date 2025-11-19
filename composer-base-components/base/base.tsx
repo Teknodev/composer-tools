@@ -31,7 +31,9 @@ export type TypeButton =
   | "Tertiary"
   | "Link"
   | "White"
-  | "Black";
+  | "Black" 
+  | "Bare";
+
 export namespace Base {
   const rootStyles = (typeof window !== 'undefined') ? getComputedStyle(document.documentElement) : { getPropertyValue: () => "" };
 
