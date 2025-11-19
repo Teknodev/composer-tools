@@ -32,7 +32,7 @@
                 max-width: var(--composer-content-width) !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
-                padding: 0 40px !important;
+                padding: 0 calc(var(--padding-md) * 4) !important;
                 flex-basis: auto !important;
                 min-width: unset !important;
             }
