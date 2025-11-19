@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BaseIntroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./intro-section5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -46,8 +47,8 @@ class IntroSection5 extends BaseIntroSection {
       value: true,
     });
 
-    const ButtonProp = INPUTS.BUTTON(
-      "Button",
+    const scrollButtonProp = INPUTS.BUTTON(
+      "scrollButton",
       "Button",
       "",
       "",
@@ -56,21 +57,21 @@ class IntroSection5 extends BaseIntroSection {
       "Link"
     );
 
-    if (Array.isArray(ButtonProp.value)) {
-      ButtonProp.value.push({
+    if (Array.isArray(scrollButtonProp.value)) {
+      scrollButtonProp.value.push({
         type: "boolean",
         key: "enableAnimation",
-        displayer: "Button Animation",
+        displayer: "Animation",
         value: true
       } as TypeUsableComponentProps);
     }
 
     this.addProp({
       type: "array",
-      key: "Buttons",
+      key: "scrollButtons",
       displayer: "Buttons",
-      max: 10,
-      value: [ButtonProp],
+      max: 1,
+      value: [scrollButtonProp],
     });
   }
 
@@ -90,18 +91,18 @@ class IntroSection5 extends BaseIntroSection {
     const bgImage = this.getPropValue("backgroundImage") as TypeMediaInputValue;
     const hasOverlay = this.getPropValue("overlay");
 
-    const Buttons = this.castToObject<any[]>("Buttons");
-    const Button = Buttons && Buttons.length > 0 ? Buttons[0] : null;
+    const scrollButtons = this.castToObject<any[]>("scrollButtons");
+    const scrollButton = scrollButtons && scrollButtons.length > 0 ? scrollButtons[0] : null;
 
     const bgUrl = (bgImage && bgImage.type === "image") ? bgImage.url : "";
     const hasBgImage = !!bgUrl;
 
-    const enableAnimation = Button?.enableAnimation;
+    const enableAnimation = scrollButton?.enableAnimation;
 
-    const hasIcon = Button && Button.icon && Button.icon.name;
-    const hasText = Button && this.castToString(Button.text);
+    const hasIcon = scrollButton && scrollButton.icon && scrollButton.icon.name;
+    const hasText = scrollButton && this.castToString(scrollButton.text);
 
-    const hasButtonData = !!Button && (hasIcon || hasText);
+    const hasButtonData = !!scrollButton && (hasIcon || hasText);
 
     return (
       <Base.Container
@@ -146,14 +147,14 @@ class IntroSection5 extends BaseIntroSection {
               enableAnimation ? this.decorateCSS("has-animation") : ""
             }`}
           >
-            <ComposerLink path={Button.url}>
+            <ComposerLink path={scrollButton.url}>
               <Base.Button
-                buttonType={Button.type || "Link"}
+                buttonType={scrollButton.type || "Link"}
                 className={this.decorateCSS("btn")}
               >
-                {hasText && Button.text}
+                {hasText && scrollButton.text}
                 {hasIcon && (
-                  <Base.Media value={Button.icon} className={this.decorateCSS("icon")} />
+                  <Base.Media value={scrollButton.icon} className={this.decorateCSS("icon")} />
                 )}
               </Base.Button>
             </ComposerLink>
