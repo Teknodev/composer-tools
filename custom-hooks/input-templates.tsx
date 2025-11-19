@@ -43,6 +43,7 @@ export namespace INPUTS {
               "Link",
               "White",
               "Black",
+              "Bare"
             ],
           },
         },
