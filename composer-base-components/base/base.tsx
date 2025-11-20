@@ -475,7 +475,7 @@ export namespace Base {
   }
 
   interface LanguageCommonProps {
-    icon?: string;
+    icon?: string | TypeMediaInputValue;
     title?: "code" | "name";
   }
 
@@ -553,7 +553,7 @@ export namespace Base {
           buttonLabel={composerToolsCurrentLanguage[title || "code"]}
           labelClassName={`${styles["label"]} ${dropdownLabelClassName}`}
           dropdownButtonClassName={dropdownButtonClassName}
-          icon={icon}
+          icon={typeof icon === "string" ? { type: "icon", name: icon } : icon}
           iconClassName={`${styles.languageIcon} ${iconClassName}`}
           disabled={false}
           dropdownContentClassName={dropdownContentClassName}
@@ -565,9 +565,9 @@ export namespace Base {
               onClick={() => handleLanguageChange(lang)}
               divider={divider && index < composerToolsLanguages.length - 1}
             >
-              <span className={`${styles.label} ${dropdownItemClassName}`}>
+              <Base.P className={`${styles.label} ${dropdownItemClassName}`}>
                 {lang[title || "code"].toUpperCase()}
-              </span>
+              </Base.P>
             </DropDownItem>
           ))}
         </Dropdown>
@@ -586,13 +586,14 @@ export namespace Base {
         accordionIconClassName,
         titleClassName,
       } = props;
+
       return (
         <Accordion
           title={composerToolsCurrentLanguage[title || "code"]}
           headerClassName={headerClassName}
           contentClassName={contentClassName}
           openClassName={openClassName}
-          icon={icon}
+          icon={typeof icon === "string" ? { type: "icon", name: icon } : icon}
           accordionIconClassName={`${styles.languageIcon} ${accordionIconClassName}`}
           titleClassName={titleClassName}
         >
