@@ -53,6 +53,12 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         gap: var(--composer-gap-md);
+
+        .gallery {
+            .images-container {
+                gap: var(--composer-gap-sm);
+            }
+        }
     }
 }
 
@@ -61,6 +67,7 @@
         gap: var(--composer-gap-sm);
 
         .gallery {
+            gap: var(--composer-gap-sm);
             .images-container {
                 .image-child {
                     padding: var(--composer-gap-sm) var(--composer-gap-md);
