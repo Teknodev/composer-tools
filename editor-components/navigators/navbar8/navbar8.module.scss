@@ -96,7 +96,7 @@
     }
 
     .localizationLabel{
-      color: white;
+      color: var(--composer-font-color-primary);
       font-weight: normal;
       transition: all 0.3s ease;
       &.animation1{

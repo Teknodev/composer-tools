@@ -173,7 +173,7 @@
               margin-top: var(--composer-gap-sm);
               text-align: center;
               overflow: hidden;
-              border-radius: var(--composer-border-radius-lg);
+              border-radius: var(--composer-border-radius-sm);
             }
 
             .categoryImage {
@@ -181,7 +181,7 @@
               height: auto;
               object-fit: contain;
               transition: all 0.4s ease;
-              border-radius: var(--composer-border-radius-lg);
+              border-radius: var(--composer-border-radius-sm);
               cursor: pointer;
               &:hover{
                 transform: scale(1.05);
