@@ -161,6 +161,13 @@
               z-index: 1;
               border-radius: 0px;
               height: 100%;
+              
+              img,
+              video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
             }
 
             .overlay {
@@ -247,13 +254,19 @@
         justify-content: center;
         flex-direction: row;
         gap: var(--composer-gap-xl);
+        min-height: 100vh;
+        height: auto;
+        align-items: center;
         .left {
           padding: 0px;
+          width: 100%;
           .left-page-content{
             width: 100%;
           }
         }
         .right {
+          width: 100%;
+          height: 100%;
           .icon {
             .ampersand-icon {
               transform: translateX(0);
@@ -343,6 +356,10 @@
           flex-direction: column;
           gap: var(--composer-gap-md);
           height: auto;
+          
+          &.column-content {
+            min-height: auto;
+          }
           .left {
             order: 1;
             padding: 0px;
@@ -406,6 +423,14 @@
               .image {
                 height: 350px;
                 border-radius: var(--composer-border-radius-sm);
+                
+                img,
+                video {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: var(--composer-border-radius-sm);
+                }
               }
             }
           }

@@ -195,9 +195,9 @@ class HeroSection10 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: " Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -264,9 +264,9 @@ class HeroSection10 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: " Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -346,6 +346,15 @@ class HeroSection10 extends BaseHeroSection {
               const description = this.castToString(item.description);
               const imageTitle = this.castToString(item.imageTitle);
               const image = item.image;
+              const imageWithSettings = image?.type === "video" ? {
+                ...image,
+                settings: {
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false
+                }
+              } : image;
               const subtitle = this.castToString(item.subtitle);
               const description1 = this.castToString(item.description1);
               const leftPage =
@@ -479,9 +488,9 @@ class HeroSection10 extends BaseHeroSection {
                         <div className={this.decorateCSS("image-wrapper")}>
                           <Base.Media
                             className={this.decorateCSS("image")}
-                            value={item.image}
+                            value={imageWithSettings}
                           />
-                          {this.getPropValue("overlay") && item.image && item.image.type === "image" && item.image.url && (
+                          {this.getPropValue("overlay") && image && (image.type === "image" || image.type === "video") && image.url && (
                             <div className={this.decorateCSS("overlay")} />
                           )}
                         </div>

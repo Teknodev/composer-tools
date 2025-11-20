@@ -14,6 +14,7 @@ type ISliderData = {
   type: string;
   button: INPUTS.CastedButton;
   logo: TypeMediaInputValue;
+  overlay: boolean;
 };
 
 class HeroSection3 extends BaseHeroSection {
@@ -61,10 +62,10 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -80,7 +81,13 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            }
           ],
         },
         {
@@ -120,10 +127,10 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -139,7 +146,13 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            }
           ],
         },
         {
@@ -180,10 +193,10 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -199,7 +212,13 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            }
           ],
         },
       ],
@@ -270,6 +289,16 @@ class HeroSection3 extends BaseHeroSection {
               const buttonText = this.castToString(item.button.text);
               const showContent = title || description || buttonText;
               
+              const imageWithSettings = item.image?.type === "video" ? {
+                ...item.image,
+                settings: {
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false
+                }
+              } : item.image;
+              
               const typeClassMap: { [key: string]: string } = {
                 "Left Image Layout": "2",
                 "Right Image Layout": "1",
@@ -319,10 +348,15 @@ class HeroSection3 extends BaseHeroSection {
                     )}
                     {item.image && (
                       <div className={this.decorateCSS("image-container")}>
-                        <Base.Media
-                          className={this.decorateCSS("image")}
-                          value={item.image}
-                        />
+                        <div className={this.decorateCSS("image")}>
+                          <Base.Media
+                            className={this.decorateCSS("image-element")}
+                            value={imageWithSettings}
+                          />
+                          {item.overlay && imageWithSettings && (imageWithSettings.type === "image" || imageWithSettings.type === "video") && imageWithSettings.url && (
+                            <div className={this.decorateCSS("overlay")} />
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
