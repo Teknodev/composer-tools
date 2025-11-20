@@ -200,11 +200,33 @@ class HeroSection38 extends BaseHeroSection {
     return "Hero Section 38";
   }
 
+  private hasImage = (image?: TypeMediaInputValue) => {
+    if (!image) {
+      return false;
+    }
+
+    const candidate =
+      ("url" in image && image.url) ||
+      (typeof image === "object" &&
+        "value" in (image as any) &&
+        (image as any).value?.url);
+
+    return !!candidate;
+  };
+
+  private hasTitle = (title?: React.JSX.Element) => {
+    if (!title) {
+      return false;
+    }
+    const titleText = this.castToString(title);
+    return !!titleText;
+  };
+
   private getValidSlides = () => {
     const slidesRaw = this.castToObject<SlideItem[]>("slides");
     return slidesRaw.filter((item: SlideItem) => {
-      const imageExist = !!item.image;
-      const nameExist = this.castToString(item.name);
+      const imageExist = this.hasImage(item.image);
+      const nameExist = this.hasTitle(item.name);
       return imageExist || nameExist;
     });
   };
@@ -297,15 +319,33 @@ class HeroSection38 extends BaseHeroSection {
                   const scaledIndex = this.getComponentState("scaled-index");
                   const isScaled = animation && scaledIndex === index;
                   const navigateTo = item.navigateTo;
+                  const imageExists = this.hasImage(item.image);
+                  const titleExists = this.hasTitle(item.name);
+
+                  if (!imageExists && !titleExists) {
+                    return null;
+                  }
+
+                  const slideClass = [
+                    this.decorateCSS("slide-item"),
+                    !imageExists && titleExists ? this.decorateCSS("no-image") : "",
+                    isScaled ? this.decorateCSS("active-slide") : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ");
                   
                   const slideContent = (
                     <div className={this.decorateCSS("image-wrapper")}>
-                      <Base.Media
-                        className={this.decorateCSS("image")}
-                        value={item.image}
-                      />
-                      {overlay && (
-                        <div className={this.decorateCSS("overlay")} />
+                      {imageExists && (
+                        <>
+                          <Base.Media
+                            className={this.decorateCSS("image")}
+                            value={item.image}
+                          />
+                          {overlay && (
+                            <div className={this.decorateCSS("overlay")} />
+                          )}
+                        </>
                       )}
                       <Base.H2 className={this.decorateCSS("title")}>
                         {item.name}
@@ -314,10 +354,7 @@ class HeroSection38 extends BaseHeroSection {
                   );
 
                   return (
-                    <div
-                      key={index}
-                      className={`${this.decorateCSS("slide-item")} ${isScaled ? this.decorateCSS("active-slide") : ""}`}
-                    >
+                    <div key={index} className={slideClass}>
                       {navigateTo ? (
                         <ComposerLink path={navigateTo}>
                           {slideContent}
@@ -380,4 +417,3 @@ class HeroSection38 extends BaseHeroSection {
 }
 
 export default HeroSection38;
-
