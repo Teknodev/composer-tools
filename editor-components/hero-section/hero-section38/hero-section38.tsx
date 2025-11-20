@@ -37,7 +37,7 @@ class HeroSection38 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691344f83596a1002b2472ab?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
             },
             {
