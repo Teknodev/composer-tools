@@ -64,7 +64,7 @@
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             overflow: hidden;
 
             .image {
@@ -123,7 +123,7 @@
           }
 
           .image-wrapper {
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
 
             .image {
               border-radius: inherit;
@@ -168,7 +168,7 @@
           margin: 0;
 
           .pagination-dot {
-            border: none !important;
+            border: 1px solid transparent !important;
             background: transparent;
             padding: 0;
             cursor: pointer;
@@ -176,14 +176,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            transition: border-color var(--composer-transition-duration-fast) ease;
+            box-sizing: border-box;
 
             .dot-icon {
               color: var(--composer-font-color-primary);
               opacity: 0.3;
-              font-size: 1.5rem;
+              font-size: 1.2rem;
+              width: 100%;
+              height: 100%;
               display: flex;
               align-items: center;
               justify-content: center;
+            }
+
+            &:hover {
+              border-color: var(--composer-font-color-primary);
             }
 
             &.active .dot-icon {
@@ -212,7 +223,7 @@
             .image-wrapper {
               position: relative;
               height: 100%;
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               overflow: hidden;
 
               .image {
@@ -256,12 +267,12 @@
             }
           }
 
-          .active-slide {
+        .active-slide {
             transform: translateY(calc(var(--composer-gap-sm) * -0.2)) scale(1.18);
             transform-origin: center;
 
-            .image-wrapper {
-              border-radius: var(--composer-border-radius-md);
+          .image-wrapper {
+            border-radius: var(--composer-border-radius-sm);
               height: 270px;
 
               .image {
@@ -288,17 +299,25 @@
             gap: var(--composer-gap-sm);
 
             .pagination-dot {
-              border: none !important;
-              width: 9px;
-              height: 9px;
+              border: 1px solid transparent !important;
+              width: 32px;
+              height: 32px;
+              border-radius: 50%;
+              box-sizing: border-box;
 
               .dot-icon {
                 color: var(--composer-font-color-primary);
                 opacity: 0.3;
                 font-size: 1rem;
+                width: 100%;
+                height: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+              }
+
+              &:hover {
+                border-color: var(--composer-font-color-primary);
               }
 
               &.active .dot-icon {
@@ -327,6 +346,8 @@
 
             .image-wrapper {
               height: 100%;
+              border-radius: var(--composer-border-radius-sm);
+              overflow: hidden;
 
               .image {
                 transform: scale(1.08);
@@ -338,7 +359,7 @@
             transform: scale(1.1);
 
             .image-wrapper {
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               overflow: hidden;
 
               .image {
@@ -365,15 +386,25 @@
             gap: var(--composer-gap-sm);
 
             .pagination-dot {
-              border: none !important;
+              border: 1px solid transparent !important;
+              width: 28px;
+              height: 28px;
+              border-radius: 50%;
+              box-sizing: border-box;
 
               .dot-icon {
                 color: var(--composer-font-color-primary);
                 opacity: 0.3;
-                font-size: 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+                height: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+              }
+
+              &:hover {
+                border-color: var(--composer-font-color-primary);
               }
 
               &.active .dot-icon {
@@ -386,3 +417,4 @@
     }
   }
 }
+

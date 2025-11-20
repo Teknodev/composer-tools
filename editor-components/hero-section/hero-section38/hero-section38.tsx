@@ -187,7 +187,7 @@ class HeroSection38 extends BaseHeroSection {
       },
       value: {
         type: "icon",
-        name: "LuCircleDot",
+        name: "LuDot",
       },
     });
 
@@ -380,3 +380,4 @@ class HeroSection38 extends BaseHeroSection {
 }
 
 export default HeroSection38;
+
