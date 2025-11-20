@@ -121,11 +121,19 @@ class LogoComp10Page extends LogoClouds {
     if (logos.length === 0) return [];
     const chunkSize = Math.max(1, size);
     if (logos.length <= chunkSize) {
-      return [logos];
+      return [logos.length === chunkSize ? logos : [...logos, ...logos.slice(0, chunkSize - logos.length)]];
     }
+
     const chunks: TImage[][] = [];
     for (let i = 0; i < logos.length; i += chunkSize) {
-      chunks.push(logos.slice(i, i + chunkSize));
+      const slice = logos.slice(i, i + chunkSize);
+      if (slice.length < chunkSize) {
+        const itemsNeeded = chunkSize - slice.length;
+        const filler = logos.slice(0, itemsNeeded);
+        chunks.push([...slice, ...filler]);
+      } else {
+        chunks.push(slice);
+      }
     }
     return chunks;
   };
