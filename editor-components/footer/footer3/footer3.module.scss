@@ -32,14 +32,25 @@
       .first-container {
         padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
         .first-max-content {
-          .items {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            width: 100%;
-            gap: var(--composer-gap-lg);
+            .items {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              width: 100%;
+              gap: var(--composer-gap-lg);
 
-            .header,
+              &.center-alignment {
+                justify-content: center;
+                text-align: center;
+
+                .header {
+                  align-items: center;
+
+                  .description {
+                    text-align: center;
+                  }
+                }
+              }            .header,
             .list-group {
               flex: 1;
               min-width: 200px;
@@ -119,6 +130,26 @@
               align-items: flex-start;
               gap: var(--composer-gap-md);
 
+              &.center-alignment {
+                align-items: center;
+
+                .title {
+                  text-align: center;
+                }
+
+                .text-container {
+                  align-items: center;
+
+                  .element {
+                    justify-content: center;
+
+                    .text {
+                      text-align: center;
+                    }
+                  }
+                }
+              }
+
               .title {
                 color: var(--composer-font-color-primary);
               }
@@ -135,7 +166,7 @@
 
                   .text {
                     color: var(--composer-font-color-primary);
-                    text-align: center;
+                    text-align: left;
                   }
 
                   .element-icon {

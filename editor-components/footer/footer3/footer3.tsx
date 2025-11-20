@@ -753,7 +753,7 @@ class Footer3Page extends BaseFooter {
            {firstContainerExist && <Base.Container className={this.decorateCSS("first-container")}>
               <Base.MaxContent className={this.decorateCSS("first-max-content")}>
                 {
-                  <div className={this.decorateCSS("items")}>
+                  <div className={`${this.decorateCSS("items")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`} data-alignment={alignment}>
                     {headerExist && (
                       <Base.VerticalContent className={this.decorateCSS("header")}>
                         {logo?.url && (
@@ -796,7 +796,7 @@ class Footer3Page extends BaseFooter {
                         const listExist = footerTitleExist || footerTextExist;
                         return (
                           listExist && (
-                            <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                            <div key={indexFooter} className={`${this.decorateCSS("list-group")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                               {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
                               {item.footerText.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
