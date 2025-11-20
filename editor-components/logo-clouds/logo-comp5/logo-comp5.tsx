@@ -54,6 +54,7 @@ class LogoComp5Page extends LogoClouds {
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
       ],
     });
   }
