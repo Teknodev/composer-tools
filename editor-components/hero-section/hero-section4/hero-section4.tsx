@@ -7,6 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class HeroSection4 extends BaseHeroSection {
   imageRef: React.RefObject<HTMLDivElement | null>;
+  rafId: number | null = null;
   constructor(props?: any) {
     super(props, styles);
 
@@ -113,28 +114,52 @@ class HeroSection4 extends BaseHeroSection {
     if (wrapper && typeof wrapper.removeEventListener === "function") {
       wrapper.removeEventListener("scroll", this.handleScroll);
     }
+    
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
   }
 
 handleScroll = () => {
-  const scrollY = Base.Navigator.getWrapperContainer()?.scrollY || 0;
-  this.setComponentState("scrollY", scrollY);
-
-  const targetEl = this.imageRef.current;
-  if (!targetEl) return;
-
-  const rect = targetEl.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-  const isVisible = rect.top < windowHeight && rect.bottom > 0;
-  
-  let progress = 0;
-  if (isVisible) {
-    const elementHeight = rect.height;
-    const visibleDistance = windowHeight - rect.top;
-    progress = Math.min(Math.max(visibleDistance / (windowHeight + elementHeight), 0), 1);
+  if (this.rafId !== null) {
+    return;
   }
-  
-  this.setComponentState("animate", isVisible);
-  this.setComponentState("animationProgress", progress);
+
+  this.rafId = requestAnimationFrame(() => {
+    this.rafId = null;
+    
+    const scrollY = Base.Navigator.getWrapperContainer()?.scrollY || 0;
+    const currentScrollY = this.getComponentState("scrollY");
+    if (currentScrollY !== scrollY) {
+      this.setComponentState("scrollY", scrollY);
+    }
+
+    const targetEl = this.imageRef.current;
+    if (!targetEl) return;
+
+    const rect = targetEl.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const isVisible = rect.top < windowHeight && rect.bottom > 0;
+    
+    let progress = 0;
+    if (isVisible) {
+      const elementHeight = rect.height;
+      const visibleDistance = windowHeight - rect.top;
+      progress = Math.min(Math.max(visibleDistance / (windowHeight + elementHeight), 0), 1);
+    }
+    
+    const currentAnimate = this.getComponentState("animate");
+    const currentProgress = this.getComponentState("animationProgress");
+    
+    if (currentAnimate !== isVisible) {
+      this.setComponentState("animate", isVisible);
+    }
+    
+    if (Math.abs((currentProgress || 0) - progress) > 0.01) {
+      this.setComponentState("animationProgress", progress);
+    }
+  });
 };
 
   static getName(): string {

@@ -156,7 +156,7 @@
               position: relative;
               top: -6rem;
               right: 10rem;
-              border-radius: var(--composer-border-radius-xs);
+              border-radius: var(--composer-border-radius-sm);
             }
           }
         }
@@ -168,7 +168,7 @@
           width: calc(100% - 4vw);
           height: 34vw;
           left: -100%;
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           background-color: color-mix(
             in srgb,
             var(--composer-html-background),
