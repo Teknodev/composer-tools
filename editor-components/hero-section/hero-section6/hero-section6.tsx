@@ -142,7 +142,7 @@ class HeroSection6 extends BaseHeroSection {
     const isSubtitleExist = this.castToString(subtitle);
 
     const showLeftContent =
-      logo ||
+      logo?.type === "image" && logo?.url || logo?.type === "icon" && logo?.name ||
       isSubtitleExist ||
       isTitleExist ||
       isTitle2Exist ||

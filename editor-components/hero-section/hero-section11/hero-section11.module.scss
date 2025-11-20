@@ -188,6 +188,15 @@
       .icon-box {
         left: 50%;
         transform: translate(-50%, -50%);
+        .icon-wrapper {
+          width: 70px;
+          height: 70px;
+          .icon {
+            .play-button {
+              height: 35px;
+            }
+          }
+        }
       }
     }
 

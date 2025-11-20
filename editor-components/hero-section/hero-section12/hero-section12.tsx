@@ -53,7 +53,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -96,7 +96,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -139,7 +139,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -182,7 +182,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -225,7 +225,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -276,7 +276,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -319,7 +319,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -362,7 +362,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -405,7 +405,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -448,7 +448,7 @@ class HeroSection12 extends BaseHeroSection {
               key: "image",
               displayer: "Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -684,7 +684,17 @@ class HeroSection12 extends BaseHeroSection {
                 ref={(slider: any) => (this.leftSliderRef = slider)}
                 {...leftSliderSettings}
               >
-                {leftSliderItems.map((item: SliderItem, index: number) => (
+                {leftSliderItems.map((item: SliderItem, index: number) => {
+                  const imageWithSettings = item.image?.type === "video" ? {
+                    ...item.image,
+                    settings: {
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false
+                    }
+                  } : item.image;
+                  return (
                   <div key={index} className={this.decorateCSS("slider-item")}>
                     {item.image && (
                       <div
@@ -692,9 +702,9 @@ class HeroSection12 extends BaseHeroSection {
                       >
                         <Base.Media
                           className={this.decorateCSS("slider-item-image")}
-                          value={item.image}
+                          value={imageWithSettings}
                         />
-                        {showOverlay && (
+                        {showOverlay && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
                           <div className={this.decorateCSS("image-overlay")} />
                         )}
                       </div>
@@ -721,7 +731,8 @@ class HeroSection12 extends BaseHeroSection {
                       )}
                     </Base.VerticalContent>
                   </div>
-                ))}
+                  );
+                })}
               </ComposerSlider>
             )}
 
@@ -736,7 +747,17 @@ class HeroSection12 extends BaseHeroSection {
                 ref={(slider: any) => (this.rightSliderRef = slider)}
                 {...rightSliderSettings}
               >
-                {rightSliderItems.map((item: SliderItem, index: number) => (
+                {rightSliderItems.map((item: SliderItem, index: number) => {
+                  const imageWithSettings = item.image?.type === "video" ? {
+                    ...item.image,
+                    settings: {
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false
+                    }
+                  } : item.image;
+                  return (
                   <div key={index} className={this.decorateCSS("slider-item")}>
                     {item.image && (
                       <div
@@ -744,9 +765,9 @@ class HeroSection12 extends BaseHeroSection {
                       >
                         <Base.Media
                           className={this.decorateCSS("slider-item-image")}
-                          value={item.image}
+                          value={imageWithSettings}
                         />
-                        {showOverlay && (
+                        {showOverlay && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
                           <div className={this.decorateCSS("image-overlay")} />
                         )}
                       </div>
@@ -773,7 +794,8 @@ class HeroSection12 extends BaseHeroSection {
                       )}
                     </Base.VerticalContent>
                   </div>
-                ))}
+                  );
+                })}
               </ComposerSlider>
             )}
           </div>

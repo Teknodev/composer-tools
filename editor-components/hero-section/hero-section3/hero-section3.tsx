@@ -7,10 +7,10 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
-  subtitle: string;
-  title: string;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   image: TypeMediaInputValue;
-  description: string;
+  description: React.JSX.Element;
   type: string;
   button: INPUTS.CastedButton;
   logo: TypeMediaInputValue;
@@ -264,8 +264,9 @@ class HeroSection3 extends BaseHeroSection {
             className={`${this.decorateCSS("slider")} ${animation && this.decorateCSS("with-animation")}`}
           >
             {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => {
-              const title = this.castToString(item.title as any);
-              const description = this.castToString(item.description as any);
+              const title = this.castToString(item.title);
+              const description = this.castToString(item.description);
+              const subtitle = this.castToString(item.subtitle);
               const buttonText = this.castToString(item.button.text);
               const showContent = title || description || buttonText;
               
@@ -300,7 +301,7 @@ class HeroSection3 extends BaseHeroSection {
                           />
                         </div> 
                         )}
-                        {item.subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
+                        {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                         {title && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                         {description && (
                           <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>

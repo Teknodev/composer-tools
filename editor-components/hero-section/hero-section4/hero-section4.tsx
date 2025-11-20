@@ -53,15 +53,17 @@ class HeroSection4 extends BaseHeroSection {
       },
     });
 
-    this.addProp(
-      INPUTS.BUTTON("button", 
-        "Button", 
-        "More Projects", 
-        "", 
-        "", 
-        null, 
-        "Tertiary")
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      additionalParams: {
+        maxElementCount: 2,
+      },
+      value: [
+        INPUTS.BUTTON("button", "Button", "More Projects", "", "", null, "Tertiary")
+      ],
+    });
 
     this.addProp({
       type: "boolean",
@@ -75,7 +77,7 @@ class HeroSection4 extends BaseHeroSection {
       key: "image",
       displayer: "Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -140,18 +142,18 @@ handleScroll = () => {
   }
 
   render() {
-    const button = this.castToObject("button") as INPUTS.CastedButton;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const imageAnm = this.getPropValue("image-anm");
     const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
     const logo = this.getPropValue("logo");
-    const buttonText = this.castToString(button.text);
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const note = this.castToString(this.getPropValue("note"));
-    const showCard = subtitle || title || description || buttonText || note;
+    const hasButtons = buttons && buttons.length > 0 && buttons.some(btn => this.castToString(btn.text) || btn.icon);
+    const showCard = subtitle || title || description || hasButtons || note;
 
 const getStyle = (direction: "up" | "down") => {
   const isAnimating = this.getComponentState("animate");
@@ -182,7 +184,7 @@ const getStyle = (direction: "up" | "down") => {
           !imageAnm && this.decorateCSS("no-image-anm")
         }`}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <div className={`${this.decorateCSS("max-content")} ${!image && this.decorateCSS("no-image-wrapper")}`}>
           {image && (
             <div 
             ref={this.imageRef} className={this.decorateCSS("image-container")}>
@@ -192,14 +194,22 @@ const getStyle = (direction: "up" | "down") => {
               >
                 <Base.Media
                   className={this.decorateCSS("image-element")}
-                  value={image}
+                  value={image?.type === "video" ? {
+                    ...image,
+                    settings: {
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false
+                    }
+                  } : image}
                 />
-                {overlay && image?.url && <div className={this.decorateCSS("overlay")} />}
+                {overlay && image && (image.type === "image" || image.type === "video") && image.url && <div className={this.decorateCSS("overlay")} />}
               </div>
             </div>
           )}
 
-         <Base.MaxContent className={this.decorateCSS("card-container")}>
+         <Base.MaxContent className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("no-image")}`}>
           {showCard && (
               <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
                 {logo && (
@@ -215,22 +225,29 @@ const getStyle = (direction: "up" | "down") => {
                 )}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                {(buttonText || button.icon) && (
+                {hasButtons && (
                   <div className={this.decorateCSS("button-container")}>
-                    <ComposerLink path={button?.url || '#'}>
-                      <Base.Button 
-                        buttonType={button?.type || "Tertiary"} 
-                        className={this.decorateCSS("button")}>
-                        {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                        {button.icon && (() => {
-                          const iconValue = typeof button.icon === "string" ? { type: "icon" as const, name: button.icon } : button.icon;
-                          return iconValue.name && <Base.Media
-                            value={iconValue}
-                            className={this.decorateCSS("button-icon")}
-                          />;
-                        })()}
-                      </Base.Button>
-                    </ComposerLink>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      const buttonText = this.castToString(button.text);
+                      if (!buttonText && !button.icon) return null;
+                      return (
+                        <ComposerLink key={index} path={button?.url || '#'}>
+                          <Base.Button 
+                            buttonType={button?.type || "Tertiary"} 
+                            className={this.decorateCSS("button")}>
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                            {button.icon && (() => {
+                              const iconValue = typeof button.icon === "string" ? { type: "icon" as const, name: button.icon } : button.icon;
+                              return iconValue.name && 
+                              <Base.Media
+                                value={iconValue}
+                                className={this.decorateCSS("button-icon")}
+                              />;
+                            })()}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
                 )}
                 {note && <Base.P className={this.decorateCSS("note")}>{this.getPropValue("note")}</Base.P>}
