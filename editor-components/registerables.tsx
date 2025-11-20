@@ -224,6 +224,7 @@ import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-galler
 import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
 import ImageGalleryCompanent9 from "./Image_gallery/image_gallery_9/image-gallery9";
 import ImageGalleryComponent10 from "./Image_gallery/image_gallery_10/image-gallery10";
+import ImageGalleryComponent11 from "./Image_gallery/image_gallery_11/image-gallery11";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -426,6 +427,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent8,
     ImageGalleryCompanent9,
     ImageGalleryComponent10,
+    ImageGalleryComponent11,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,

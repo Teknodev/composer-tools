@@ -1,0 +1,293 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  padding: 80px 0px !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  isolation: isolate;
+
+  &[data-overlay="true"]::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--composer-overlay-color);
+    z-index: 0;
+  }
+  .max-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+    padding: 0;
+  }
+  .heading {
+    text-align: left;
+    max-width: var(--composer-content-width);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-sm);
+    align-items: flex-start;
+    align-self: flex-start;
+    padding: 0;
+  }
+
+  .text-wrapper {
+    padding: 0 var(--composer-gap-lg);
+  }
+
+  .subtitle,
+  .title,
+  .description {
+    text-align: left;
+    margin: 0;
+    color: #fff;
+
+  }
+
+  .heading.with-bg {
+    text-align: left;
+    .subtitle {
+      &::before {
+        background: #fff !important;
+      }
+    }
+
+    .title,
+    .description,
+    .subtitle {
+      color: #fff;
+    }
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+    padding: 0;
+  }
+  .gallery-row {
+    overflow: hidden;
+  }
+  .gallery-row-reverse {
+    .slider {
+      padding: 0;
+      transform: scaleX(-1);
+      :global(.slick-track) {
+        transform: scaleX(-1);
+      }
+    }
+    .image-card {
+      transform: scaleX(-1);
+    }
+  }
+  .slider {
+    width: 100%;
+    padding: 0;
+    :global(.slick-slider) {
+      width: 100%;
+    }
+    :global(.slick-list) {
+      padding: 0 !important;
+      margin: 0;
+    }
+    :global(.slick-track) {
+      display: flex !important;
+      gap: var(--composer-gap-md);
+      align-items: stretch;
+      animation-name: composer-scroll;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-duration: var(--track-duration, 40000ms);
+    }
+    :global(.slick-slide) {
+      width: auto !important;
+    }
+  }
+
+  .slider-wrapper {
+    width: 100%;
+    :global(.slick-track) {
+      will-change: transform;
+    }
+    &:hover :global(.slick-track), &:active :global(.slick-track) {
+      animation-play-state: paused !important;
+    }
+  }
+
+  @keyframes composer-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .image-card {
+    width: 420px;
+    height: 260px;
+    border-radius: var(--composer-border-radius-sm);
+    overflow: hidden;
+    position: relative;
+    background: transparent;
+    box-shadow: none;
+    .image-button {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: none;
+      background: transparent;
+      display: block;
+      box-shadow: none;
+      &::before,
+      &::after {
+        content: none;
+        display: none;
+      }
+    }
+  }
+  .image-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--composer-overlay-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--composer-gap-lg);
+    z-index: 20;
+  }
+  .popup-frame {
+    position: relative;
+    background: var(--composer-surface-color);
+    border-radius: var(--composer-border-radius-md);
+    padding: var(--composer-gap-lg);
+    width: 960px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+  }
+  .popup-close,
+  .popup-arrow {
+    padding: 0;
+    background: transparent;
+    border: none;
+    min-width: 0;
+    color: inherit;
+    box-shadow: none;
+    outline: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &::after,
+    &::before {
+      display: none;
+      content: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      box-shadow: none;
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  .popup-close {
+    position: absolute;
+    top: var(--composer-gap-sm);
+    right: var(--composer-gap-sm);
+  }
+  .arrow {
+    width: auto;
+    height: auto;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--composer-font-color-primary);
+    text-decoration: none;
+  }
+  .popup-image-wrapper {
+    width: 100%;
+    max-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--composer-border-radius-md);
+  }
+  .popup-media {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .popup-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--composer-gap-md);
+    margin-top: var(--composer-gap-sm);
+  }
+  .popup-counter {
+    color: var(--composer-font-color-primary);
+    font-weight: 600;
+    min-width: 60px;
+    text-align: center;
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: 60px 0;
+    .heading {
+      gap: var(--composer-gap-xs);
+      text-align: left;
+    }
+    .text-wrapper {
+      padding: 0 var(--composer-gap-md);
+    }
+    .image-card {
+      width: 450px;
+      height: 150px;
+    }
+    .slider {
+      padding: 0;
+      :global(.slick-track) {
+        gap: var(--composer-gap-md);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: 60px 0;
+    .heading {
+      text-align: left;
+    }
+    .text-wrapper {
+      padding: 0 var(--composer-gap-sm);
+    }
+    .gallery {
+      gap: var(--composer-gap-md);
+      padding: 0;
+    }
+    .slider {
+      width: 800px;
+    }
+    .image-card {
+      width: 260px;
+      max-width: 100%;
+      height: 180px;
+    }
+  }
+}
+
