@@ -110,7 +110,7 @@ class CallToAction6Page extends BaseCallToAction {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""}`}
+        ${this.getPropValue("overlay") && this.getPropValue("backgroundImage") ? this.decorateCSS("overlay-active") : ""}`}
         style={{
           backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
         }}
