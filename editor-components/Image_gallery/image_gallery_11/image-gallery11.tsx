@@ -396,18 +396,21 @@ class ImageGallery11 extends BaseImageGallery {
           {isPopupOpen && popupValue && (
             <div className={this.decorateCSS("popup-overlay")}>
               <div className={this.decorateCSS("popup-frame")}>
-                <Base.Button className={this.decorateCSS("popup-close")} buttonType="Link" onClick={handleClosePopup}>
+                <button className={this.decorateCSS("popup-close")} onClick={handleClosePopup}>
                   <Base.Media value={this.getPropValue("popupCloseIcon")} className={this.decorateCSS("arrow")} />
-                </Base.Button>
+                </button>
 
                 <div className={this.decorateCSS("popup-image-wrapper")}>
                   <Base.Media value={popupValue} className={this.decorateCSS("popup-media")} />
                 </div>
 
                 <div className={this.decorateCSS("popup-controls")}>
-                  <Base.Button className={this.decorateCSS("popup-arrow")} buttonType="Link" onClick={() => handlePopupNavigate("prev")}>
+                  <button
+                    className={this.decorateCSS("popup-arrow")}
+                    onClick={() => handlePopupNavigate("prev")}
+                  >
                     <Base.Media value={this.getPropValue("popupLeftIcon")} className={this.decorateCSS("arrow")} />
-                  </Base.Button>
+                  </button>
 
                   <span className={this.decorateCSS("popup-counter")}>
                     {(this.getComponentState("imagePopupIndex") ?? 0) + 1}/
@@ -420,9 +423,12 @@ class ImageGallery11 extends BaseImageGallery {
                     })()}
                   </span>
 
-                  <Base.Button className={this.decorateCSS("popup-arrow")} buttonType="Link" onClick={() => handlePopupNavigate("next")}>
+                  <button
+                    className={this.decorateCSS("popup-arrow")}
+                    onClick={() => handlePopupNavigate("next")}
+                  >
                     <Base.Media value={this.getPropValue("popupRightIcon")} className={this.decorateCSS("arrow")} />
-                  </Base.Button>
+                  </button>
                 </div>
               </div>
             </div>
