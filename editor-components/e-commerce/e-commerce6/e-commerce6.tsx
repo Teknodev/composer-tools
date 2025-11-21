@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseECommerce, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./e-commerce6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -10,16 +10,16 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   tabText: React.JSX.Element;
-  icon: string;
+  icon: TypeMediaInputValue;
   image_container: {
-    image: string;
+    image: TypeMediaInputValue;
     box1_text: React.JSX.Element;
     box1_lowerText: React.JSX.Element;
     box2_text: React.JSX.Element;
-    box2_icon: string;
+    box2_icon: TypeMediaInputValue;
     link: string;
   };
-  icons_container: Array<{ icon: string; text: React.JSX.Element }>;
+  icons_container: Array<{ icon: TypeMediaInputValue; text: React.JSX.Element }>;
 };
 
 class ECommerce6 extends BaseECommerce {
@@ -42,12 +42,12 @@ class ECommerce6 extends BaseECommerce {
       return {
         type: "object",
         key: "tab",
-        displayer: "Tab 1",
+        displayer: "Category",
         value: [
           {
             type: "string",
             key: "tabText",
-            displayer: "Tab 1 Text",
+            displayer: "Category Text",
             value: tabTitle,
           },
           {
@@ -69,32 +69,44 @@ class ECommerce6 extends BaseECommerce {
             value: contentDescription,
           },
           {
-            type: "icon",
+            type: "media",
             key: "icon",
-            displayer: "Tab 1 Icon",
-            value: "GoArrowRight",
+            displayer: "Icon",
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
+            value: {
+                type: "icon",
+                name: "GoArrowRight",
+            },
           },
           {
             type: "object",
             key: "image_container",
-            displayer: "Image Container",
+            displayer: "Content",
             value: [
               {
-                type: "image",
+                type: "media",
                 key: "image",
                 displayer: "Image",
-                value: image,
+                additionalParams: {
+                  availableTypes: ["image", "video"],
+                },
+                value: {
+                  type: "image",
+                  url: image,
+                },
               },
               {
                 type: "string",
                 key: "box1_text",
-                displayer: "Box1 Text",
+                displayer: "Primary Text",
                 value: boxText,
               },
               {
                 type: "string",
                 key: "box1_lowerText",
-                displayer: "Box1 Lower Text",
+                displayer: "Secondary Text",
                 value: box1_lowerText,
               },
               {
@@ -104,10 +116,23 @@ class ECommerce6 extends BaseECommerce {
                 value: box2Text,
               },
               {
-                type: "icon",
+                type: "media",
                 key: "box2_icon",
                 displayer: "Button Icon",
-                value: "GoArrowRight",
+                additionalParams: {
+                    availableTypes: ["icon"],
+                },
+                value: {
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "GoArrowRight",
+                    },
+                    name: "GoArrowRight",
+                },
               },
               {
                 type: "page",
@@ -125,13 +150,19 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "object",
                 key: "icon_container",
-                displayer: "Icon 1 Container",
+                displayer: "Icon Content",
                 value: [
                   {
-                    type: "icon",
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "CiFries",
+                    },
                     key: "icon",
                     displayer: "Icon",
-                    value: "FaCarRear",
                   },
                   {
                     type: "string",
@@ -144,13 +175,19 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "object",
                 key: "icon_container",
-                displayer: "Icon 2 Container",
+                displayer: "Icon Content",
                 value: [
                   {
-                    type: "icon",
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "MdLocalLaundryService",
+                    },
                     key: "icon",
                     displayer: "Icon",
-                    value: "FaCarRear",
                   },
                   {
                     type: "string",
@@ -163,13 +200,19 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "object",
                 key: "icon_container",
-                displayer: "Icon 3 Container",
+                displayer: "Icon Content",
                 value: [
                   {
-                    type: "icon",
+                    type: "media",
+                    additionalParams: {
+                        availableTypes: ["icon"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "FaCar",
+                    },
                     key: "icon",
                     displayer: "Icon",
-                    value: "FaCarRear",
                   },
                   {
                     type: "string",
@@ -267,6 +310,14 @@ class ECommerce6 extends BaseECommerce {
         selectItems: ["animate1"]
       }
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
     this.setActiveTab(0);
   }
 
@@ -282,8 +333,10 @@ class ECommerce6 extends BaseECommerce {
   }
 
   render() {
+    const overlay = this.getPropValue("overlay");
+    
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("tab-buttons")}>
             {this.castToObject<ITabs[]>("tabs").map(
@@ -304,16 +357,14 @@ class ECommerce6 extends BaseECommerce {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {isTabTextVisible && (
-                        <div className={this.decorateCSS("tabText")}>
+                        <Base.H4 className={this.decorateCSS("tabText")}>
                           {tab.tabText}
-                        </div>
+                        </Base.H4>
                       )}
                       {isTabIconVisible && (
-                        <Base.Icon
-                          name={tab.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
+                        <Base.Media
+                          value={tab.icon}
+                          className={this.decorateCSS("icon")}
                         />
                       )}
                     </div>
@@ -356,21 +407,24 @@ class ECommerce6 extends BaseECommerce {
                   <div className={this.decorateCSS("content")}>
                     {isImageContainerVisible && (
                       <div className={this.decorateCSS("image-container")}>
-                        <img
+                        <Base.Media
                           className={this.decorateCSS("image")}
-                          src={tab.image_container.image}
+                          value={tab.image_container.image}
                           data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
+                        {overlay && (
+                          <div className={this.decorateCSS("overlay")}></div>
+                        )}
                         {isBoxContainerVisible && (
                           <div className={this.decorateCSS("box-container")}>
                             {isBox1Visible && (
                               <div className={this.decorateCSS("box1")}>
-                                <div className={this.decorateCSS("box1-text")}>
+                                <Base.P className={this.decorateCSS("box1-text")}>
                                   {tab.image_container.box1_text}
-                                </div>
-                                <div className={this.decorateCSS("box1-lower-text")}>
+                                </Base.P>
+                                <Base.H3 className={this.decorateCSS("box1-lower-text")}>
                                   {tab.image_container.box1_lowerText}
-                                </div>
+                                </Base.H3>
                               </div>
                             )}
                             {isBox2Visible && (
@@ -379,16 +433,14 @@ class ECommerce6 extends BaseECommerce {
                                   className={this.decorateCSS("box2")}
                                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                 >
-                                  <div
+                                  <Base.H3
                                     className={this.decorateCSS("box2-text")}
                                   >
                                     {tab.image_container.box2_text}
-                                  </div>
-                                  <Base.Icon
-                                    name={tab.image_container.box2_icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("box2-icon"),
-                                    }}
+                                  </Base.H3>
+                                  <Base.Media
+                                    value={tab.image_container.box2_icon}
+                                    className={this.decorateCSS("box2-icon")}
                                   />
                                 </div>
                               </ComposerLink>
@@ -434,17 +486,15 @@ class ECommerce6 extends BaseECommerce {
                                 isIconContainerVisible && (
                                   <div className={this.decorateCSS("icon-container")}>
                                     {iconContainer.icon && (
-                                      <Base.Icon
-                                        name={iconContainer.icon}
-                                        propsIcon={{
-                                          className: this.decorateCSS("icon"),
-                                        }}
+                                      <Base.Media
+                                        value={iconContainer.icon}
+                                        className={this.decorateCSS("icon")}
                                       />
                                     )}
                                     {isTextVisible && (
-                                      <div className={this.decorateCSS("text")}>
+                                      <Base.P className={this.decorateCSS("text")}>
                                         {iconContainer.text}
-                                      </div>
+                                      </Base.P>
                                     )}
                                   </div>
                                 )
