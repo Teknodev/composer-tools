@@ -45,8 +45,7 @@ class ImageGallery11 extends BaseImageGallery {
       displayer: "Subtitle",
       value: "",
     });
-
-
+    this.setComponentState("imagePopupZoomed", false);
     this.addProp({
       type: "string",
       key: "title",
@@ -271,6 +270,7 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupValue", media);
       this.setComponentState("imagePopupRow", rowIndex);
       this.setComponentState("imagePopupIndex", imageIndex);
+      this.setComponentState("imagePopupZoomed", false);
       const slider = this.sliderRefs[rowIndex];
       if (slider) {
         if (slider?.slickPause) {
@@ -286,6 +286,7 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupValue", null);
       this.setComponentState("imagePopupRow", null);
       this.setComponentState("imagePopupIndex", null);
+      this.setComponentState("imagePopupZoomed", false);
 
       (this.sliderRefs || []).forEach((r) => {
         if (!r) return;
@@ -310,6 +311,7 @@ class ImageGallery11 extends BaseImageGallery {
 
       this.setComponentState("imagePopupIndex", nextIndex);
       this.setComponentState("imagePopupValue", row.images[nextIndex].media);
+      this.setComponentState("imagePopupZoomed", false);
     };
 
     const rows = getProcessedRows();
@@ -318,6 +320,10 @@ class ImageGallery11 extends BaseImageGallery {
     const popupRow = typeof popupRowIndex === "number" ? rows[popupRowIndex] : undefined;
     const popupValue = popupRow?.images?.[popupImageIndex]?.media;
     const isPopupOpen = !!(this.getComponentState("imagePopupOpen") && popupValue);
+    const isPopupZoomed = !!this.getComponentState("imagePopupZoomed");
+    const handleTogglePopupZoom = () => {
+      this.setComponentState("imagePopupZoomed", !isPopupZoomed);
+    };
     
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
@@ -353,7 +359,6 @@ class ImageGallery11 extends BaseImageGallery {
       ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
       : this.decorateCSS("heading");
     const textWrapperClass = this.decorateCSS("text-wrapper");
-    const textAlignmentStyles = { textAlign: "left", marginLeft: 0, marginRight: "auto" } as const;
     const containerStyle: Record<string, string> = {};
     if (backgroundImage) {
       containerStyle.backgroundImage = `url(${backgroundImage})`;
@@ -373,22 +378,22 @@ class ImageGallery11 extends BaseImageGallery {
             <Base.Media value={backgroundMedia} className={this.decorateCSS("background-media-asset")} />
           </div>
         )}
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("content")}>
           {(hasSubtitle || hasTitle || hasDescription) && (
             <div className={textWrapperClass}>
               <div className={headingClasses}>
                 {hasSubtitle && (
-                  <Base.SectionSubTitle className={subtitleClasses} style={textAlignmentStyles}>
+                  <Base.SectionSubTitle className={subtitleClasses}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
                 {hasTitle && (
-                  <Base.SectionTitle className={this.decorateCSS("title")} style={textAlignmentStyles}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
                 {hasDescription && (
-                  <Base.SectionDescription className={this.decorateCSS("description")} style={textAlignmentStyles}>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {description}
                   </Base.SectionDescription>
                 )}
@@ -409,8 +414,8 @@ class ImageGallery11 extends BaseImageGallery {
                   duplicatedImages = [...duplicatedImages, ...row.images];
                 }
 
-                const totalDuration = 60000;
-                const slideDuration = 1200;
+                const totalDuration = 90000;
+                const slideDuration = 2000;
                 const autoplaySpeed = 0;
                 const slidesToShow = row.images.length;
                 const sliderKey = `slider-${rowIndex}-${slidesToShow}-${isRightToLeft ? "rtl" : "ltr"}`;
@@ -465,49 +470,46 @@ class ImageGallery11 extends BaseImageGallery {
           )}
 
           {isPopupOpen && popupValue && (
-            <Base.Overlay isVisible className={this.decorateCSS("popup-overlay")} onClick={handleClosePopup}>
-              <div className={this.decorateCSS("popup-frame")} onClick={(e) => e.stopPropagation()}>
-                <button className={this.decorateCSS("popup-close")} onClick={handleClosePopup}>
-                  <Base.Media value={this.getPropValue("popupCloseIcon")} className={this.decorateCSS("arrow")} />
-                </button>
-
-                <div className={this.decorateCSS("popup-media-section")}>
-                  <button
-                    className={`${this.decorateCSS("popup-arrow")} ${this.decorateCSS("popup-arrow-left")}`}
-                    onClick={() => handlePopupNavigate("prev")}
-                    aria-label="Previous image"
-                  >
-                    <Base.Media value={this.getPropValue("popupLeftIcon")} className={this.decorateCSS("arrow")} />
+            <Base.Overlay isVisible className={this.decorateCSS("overlay")} onClick={handleClosePopup}>
+              <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
+                <div className={this.decorateCSS("modal-content")}>
+                  <button className={this.decorateCSS("close")} onClick={handleClosePopup} aria-label="Close popup">
+                    <Base.Media value={this.getPropValue("popupCloseIcon")} className={this.decorateCSS("icon")} />
                   </button>
 
-                  <div className={this.decorateCSS("popup-image-wrapper")}>
-                    <Base.Media value={popupValue} className={this.decorateCSS("popup-media")} />
+                  <div className={this.decorateCSS("image-container")} onClick={handleTogglePopupZoom}>
+                    <Base.Media
+                      value={popupValue}
+                      className={`${this.decorateCSS("modal-image")} ${isPopupZoomed ? this.decorateCSS("zoom") : ""}`}
+                    />
                   </div>
-
-                  <button
-                    className={`${this.decorateCSS("popup-arrow")} ${this.decorateCSS("popup-arrow-right")}`}
-                    onClick={() => handlePopupNavigate("next")}
-                    aria-label="Next image"
-                  >
-                    <Base.Media value={this.getPropValue("popupRightIcon")} className={this.decorateCSS("arrow")} />
-                  </button>
-                </div>
-
-                <div className={this.decorateCSS("popup-controls")}>
-                  <span className={this.decorateCSS("popup-counter")}>
-                    {(this.getComponentState("imagePopupIndex") ?? 0) + 1}/
-                    {(() => {
-                      if (popupRowIndex === null || popupRowIndex === undefined) {
-                        return 1;
-                      }
-                      return rows[popupRowIndex]?.images.length || 1;
-                    })()}
-                  </span>
                 </div>
               </div>
+
+              <button
+                className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePopupNavigate("prev");
+                }}
+                aria-label="Previous image"
+              >
+                <Base.Media value={this.getPropValue("popupLeftIcon")} className={this.decorateCSS("icon")} />
+              </button>
+
+              <button
+                className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePopupNavigate("next");
+                }}
+                aria-label="Next image"
+              >
+                <Base.Media value={this.getPropValue("popupRightIcon")} className={this.decorateCSS("icon")} />
+              </button>
             </Base.Overlay>
           )}
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }
