@@ -2,6 +2,8 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 
 type listItem = {
@@ -29,6 +31,13 @@ class List7 extends BaseList {
       displayer: "Title",
       value: "Our Services",
     });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -127,6 +136,9 @@ class List7 extends BaseList {
     const ListItems = this.castToObject<listItem[]>("list-items");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
+    const button = this.castToObject<any>("button");
+    const buttonText = this.castToString(button?.text);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -141,6 +153,11 @@ class List7 extends BaseList {
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
+            )}
+            {this.castToString(description) && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
             )}
           </Base.VerticalContent>
           {(ListItems.length > 0) && (
@@ -173,6 +190,15 @@ class List7 extends BaseList {
               );
               })}
             </Base.ListGrid>
+          )}
+          {buttonText && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <ComposerLink path={button?.url}>
+                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                  <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                </Base.Button>
+              </ComposerLink>
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>

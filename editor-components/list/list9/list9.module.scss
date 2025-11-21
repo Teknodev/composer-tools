@@ -238,8 +238,19 @@
           content: "";
           transition: all 0.3s ease;
           color: white;
+          width: 2.5rem;
+          height: 2.5rem;
           font-size: 2.5rem;
           align-self: flex-start;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          :global(img),
+          :global(video) {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
         }
         .card-description {
           content: "";

@@ -3,6 +3,7 @@ import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
     image: TypeMediaInputValue;
@@ -186,6 +187,7 @@ class List10 extends BaseList {
                 selectItems: ["animate1", "animate2", "animate3", "animate4"]
             }
         });
+        this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
     }
     static getName(): string {
         return "List 10";
@@ -196,6 +198,8 @@ class List10 extends BaseList {
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
         const imageOverlay = this.getPropValue("overlay");
+        const button = this.castToObject<any>("button");
+        const buttonText = this.castToString(button?.text);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -247,9 +251,9 @@ class List10 extends BaseList {
                                         </div>
                                         <div className={this.decorateCSS("image-spacer")}></div>
                                         {descExist && (
-                                            <Base.H3 className={this.decorateCSS("description")}>
+                                            <Base.SectionDescription className={this.decorateCSS("description")}>
                                                 {card.description}
-                                            </Base.H3>
+                                            </Base.SectionDescription>
                                         )}
                                         {bottomTextExist && (
                                             <Base.P className={this.decorateCSS("bottom-text")}>
@@ -261,6 +265,15 @@ class List10 extends BaseList {
                             );
                         })}
                     </Base.ListGrid>
+                    {buttonText && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                            <ComposerLink path={button?.url}>
+                                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                                    <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                                </Base.Button>
+                            </ComposerLink>
+                        </div>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         );

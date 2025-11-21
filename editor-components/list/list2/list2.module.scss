@@ -22,7 +22,7 @@
 
       .cards-box {
         .card {
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           overflow: hidden;
           position: relative;
           cursor: pointer;
@@ -38,11 +38,14 @@
             width: 100%;
             height: 100%;
             position: relative;
+            border-radius: var(--composer-border-radius-sm);
+            overflow: hidden;
             .card-image {
               width: 100%;
               height: 100%;
               object-fit: cover;
               transition: all var(--composer-transition-duration-slow) ease;
+              border-radius: inherit;
             }
             .overlay {
               position: absolute;
@@ -51,6 +54,7 @@
               width: 100%;
               height: 100%;
               background-color: var(--composer-overlay-color);
+              border-radius: inherit;
             }
           }
           .overlay-gradient {
@@ -62,6 +66,7 @@
             background:linear-gradient(rgba(var(--composer-primary-color-rgb), 0.4), var(--composer-overlay-color));
             z-index: 2;
             opacity: 0;
+            border-radius: var(--composer-border-radius-sm);
           }
           &[data-animation~="animate1"]:hover {
             .image-container .card-image {

@@ -174,13 +174,14 @@
           mask-position: 50% 20px;
           transition: all 0.3s ease;
           overflow: hidden;
-          border-radius: 8px;
+          border-radius: var(--composer-border-radius-sm);
           background: transparent;
 
           .image {
             height: 100%;
             width: 100%;
             object-fit: cover;
+            border-radius: inherit;
           }
 
           .overlay {
@@ -190,6 +191,7 @@
             width: 100%;
             height: 100%;
             background-color: var(--composer-overlay-color);
+            border-radius: inherit;
           }
         }
         .image-spacer {
@@ -211,6 +213,19 @@
           color: var(--composer-font-color-primary);
           text-align: left;
         }
+      }
+    }
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--composer-gap-lg);
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .button-text {
+        content: "";
       }
     }
   }

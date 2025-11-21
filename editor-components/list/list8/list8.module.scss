@@ -119,7 +119,18 @@
             .icon {
               content: "";
               font-size: 4rem;
+              width: 4rem;
+              height: 4rem;
               color: var(--composer-primary-color);
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              :global(img),
+              :global(video) {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
             }
           }
           .item-content {

@@ -156,8 +156,16 @@
               display: inline-flex;
               align-items: center;
               justify-content: center;
+              width: 2.5rem;
+              height: 2.5rem;
               font-size: 2.5rem;
               color: var(--composer-primary-color);
+              :global(img),
+              :global(video) {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
             }
 
             .title {
@@ -203,6 +211,19 @@
             opacity: 0.2;
           }
         }
+      }
+    }
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--composer-gap-lg);
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .button-text {
+        content: "";
       }
     }
   }

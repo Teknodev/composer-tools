@@ -46,7 +46,7 @@ class List9 extends BaseList {
                                 name: "LiaBicycleSolid",
                             },
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                         },
                         {
@@ -90,7 +90,7 @@ class List9 extends BaseList {
                                 name: "FaDog",
                             },
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                         },
                         {
@@ -134,7 +134,7 @@ class List9 extends BaseList {
                                 name: "FaHtml5",
                             },
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                         },
                         {
@@ -178,7 +178,7 @@ class List9 extends BaseList {
                                 name: "RiPaintBrushFill",
                             },
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                         },
                         {

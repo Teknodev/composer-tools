@@ -3,6 +3,8 @@ import React from "react";
 import styles from "./list6.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type listItem = {
   itemIndex: React.JSX.Element;
@@ -52,6 +54,7 @@ class List6 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -84,7 +87,7 @@ class List6 extends BaseList {
                 name: "LuPenTool",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -122,7 +125,7 @@ class List6 extends BaseList {
                 name: "BiCodeBlock",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -160,7 +163,7 @@ class List6 extends BaseList {
                 name: "GoGoal",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -198,7 +201,7 @@ class List6 extends BaseList {
                 name: "BiBookContent",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -220,6 +223,8 @@ class List6 extends BaseList {
     const subtitle = this.getPropValue("subtitle");
     const alignment = Base.getContentAlignment();
     const isCenterAlignment = alignment === "center";
+    const button = this.castToObject<any>("button");
+    const buttonText = this.castToString(button?.text);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -283,6 +288,15 @@ class List6 extends BaseList {
               </div>
             ))}
           </div>
+          {buttonText && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <ComposerLink path={button?.url}>
+                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                  <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                </Base.Button>
+              </ComposerLink>
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

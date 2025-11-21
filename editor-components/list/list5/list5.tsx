@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./list5.module.scss";
 
@@ -33,11 +33,22 @@ class List5 extends BaseList {
       value: "Bringing Your Vision to Life - AI Image Generation Service",
     });
     this.addProp({
-      type: "image",
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
+      type: "media",
       key: "image",
-      displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
+      displayer: "Background Media",
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
+      },
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
     });
     this.addProp({
       type: "boolean",
@@ -70,7 +81,7 @@ class List5 extends BaseList {
                 name: "VscSettings",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -88,7 +99,7 @@ class List5 extends BaseList {
                 name: "FaLongArrowAltRight",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -119,7 +130,7 @@ class List5 extends BaseList {
                 name: "RiMoneyDollarCircleLine",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -137,7 +148,7 @@ class List5 extends BaseList {
                 name: "FaLongArrowAltRight",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -168,7 +179,7 @@ class List5 extends BaseList {
                 name: "RiSpeedUpFill",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -186,7 +197,7 @@ class List5 extends BaseList {
                 name: "FaLongArrowAltRight",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -217,7 +228,7 @@ class List5 extends BaseList {
                 name: "FaRegImages",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -235,7 +246,7 @@ class List5 extends BaseList {
                 name: "FaLongArrowAltRight",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
             {
@@ -274,32 +285,44 @@ class List5 extends BaseList {
     const ListItems = this.castToObject<ListItem[]>("list-items");
     const subtitle = this.getPropValue("subtitle");
     const header = this.getPropValue("header");
-    const image = this.getPropValue("image");
+    const description = this.getPropValue("description");
+    const backgroundMedia = this.getPropValue("image") as TypeMediaInputValue | null;
+    const hasBackgroundMedia = !!backgroundMedia;
     const imageOverlay = this.getPropValue("overlay");
+    const hasHeaderContent =
+      this.castToString(subtitle) ||
+      this.castToString(header) ||
+      this.castToString(description);
 
     return (
       <>
-        <Base.Container className={this.decorateCSS("container")}
-          style={{
-            backgroundImage: `url(${image})`,
-            backgroundSize: "cover"
-          }}
-        >
-          {imageOverlay && image && (
+        <Base.Container className={this.decorateCSS("container")}>
+          {hasBackgroundMedia && (
+            <Base.Media
+              value={backgroundMedia as TypeMediaInputValue}
+              className={this.decorateCSS("background-media")}
+            />
+          )}
+          {imageOverlay && hasBackgroundMedia && (
             <div className={this.decorateCSS("overlay")} />
           )}
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {(this.castToString(subtitle) || this.castToString(header)) && (
+            {hasHeaderContent && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("dark")}`}>
-                    {subtitle as any}
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                    {subtitle}
                   </Base.SectionSubTitle>
                 )}
                 {this.castToString(header) && (
-                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${image && this.decorateCSS("dark")}`}>
-                    {header as any}
+                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                    {header}
                   </Base.SectionTitle>
+                )}
+                {this.castToString(description) && (
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                    {description}
+                  </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
             )}
@@ -311,10 +334,9 @@ class List5 extends BaseList {
                 {ListItems.map(
                   (listItem: any, index: number) => {
                     return (
-                      <div className={this.decorateCSS("card-wrapper")}>
+                      <div key={index} className={this.decorateCSS("card-wrapper")}>
                         <ComposerLink path={listItem.url}>
                           <div
-                            key={index}
                             className={this.decorateCSS("card")}
                             data-animation={this.getPropValue("hoverAnimation").join(" ")}
                           >
@@ -346,12 +368,12 @@ class List5 extends BaseList {
                             )}
                             {this.castToString(listItem.title) && (
                               <Base.H3 className={this.decorateCSS("card-title")}>
-                                {listItem.title as any}
+                                {listItem.title}
                               </Base.H3>
                             )}
                             {this.castToString(listItem.text) && (
                               <Base.P className={this.decorateCSS("card-description")}>
-                                {listItem.text as any}
+                                {listItem.text}
                               </Base.P>
                             )}
                             {listItem.lowericon && (

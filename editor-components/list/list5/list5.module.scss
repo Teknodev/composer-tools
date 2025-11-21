@@ -7,6 +7,20 @@
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%
   );
+  .background-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: cover;
+    :global(img),
+    :global(video) {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
   .overlay {
     position: absolute;
     top: 0;
@@ -38,18 +52,27 @@
           color: white;
         }
       }
+      .description {
+        color: var(--composer-tertiary-color);
+        &.dark {
+          color: white;
+        }
+      }
     }
     .cards-grid {
       .card-wrapper {
         height: 100%;
         display: flex;
         align-items: stretch;
+        &:nth-child(2n) {
+          margin-top: var(--composer-gap-lg);
+        }
         .card {
           position: relative;
           display: flex;
           flex-direction: column;
           height: 100%;
-          border-radius: var(--composer-border-radius-lg);
+          border-radius: var(--composer-border-radius-sm);
           background-color: var(--composer-html-background);
           padding: var(--composer-gap-xl) var(--composer-gap-lg);
           gap: var(--composer-gap-md);
@@ -133,12 +156,20 @@
                   );
                   padding: var(--composer-gap-md);
                   .icon {
+                    width: 2.5rem;
+                    height: 2.5rem;
                     font-size: 2.5rem;
                     color: var(--composer-font-color-primary);
                     line-height: 1;
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
+                    :global(img),
+                    :global(video) {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain;
+                    }
                   }
                 }
                 &::after {
@@ -183,9 +214,34 @@
           }
           .arrow-icon {
             font-size: 2.3rem;
+            width: 2.3rem;
+            height: 2.3rem;
             color: var(--composer-font-color-primary);
             transition: all var(--composer-transition-duration-normal) ease;
             margin-left: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            :global(img),
+            :global(video) {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .cards-grid {
+        .card-wrapper {
+          &:nth-child(2n) {
+            margin-top: 0;
           }
         }
       }

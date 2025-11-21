@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 
 type Card = {
@@ -10,7 +12,7 @@ type Card = {
   title: React.JSX.Element;
 };
 
-class list4 extends BaseList {
+class List4 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
@@ -27,6 +29,7 @@ class list4 extends BaseList {
       displayer: "Title",
       value: "We are delivering beautiful digital products for you.",
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -60,7 +63,7 @@ class list4 extends BaseList {
                 name: "FaTooth",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
           ],
@@ -92,7 +95,7 @@ class list4 extends BaseList {
                 name: "FaPencilAlt",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
           ],
@@ -124,7 +127,7 @@ class list4 extends BaseList {
                 name: "FaSuitcaseRolling",
               },
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
             },
           ],
@@ -161,6 +164,8 @@ class list4 extends BaseList {
   }
 
   render() {
+    const button = this.castToObject<any>("button");
+    const buttonText = this.castToString(button?.text);
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -168,12 +173,12 @@ class list4 extends BaseList {
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle") as any}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
               {this.castToString(this.getPropValue("title")) && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title") as any}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
             </Base.VerticalContent>
@@ -229,12 +234,12 @@ class list4 extends BaseList {
                           <Base.H3
                             className={this.decorateCSS("item-title")}
                           >
-                            {card.title as any}
+                            {card.title}
                           </Base.H3>
                         )}
                         {this.castToString(card.description) && (
                           <Base.P className={this.decorateCSS("item-description")}>
-                            {card.description as any}
+                            {card.description}
                           </Base.P>
                         )}
                       </Base.VerticalContent>
@@ -244,10 +249,21 @@ class list4 extends BaseList {
               )}
             )}
           </Base.ListGrid>
+          {buttonText && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <ComposerLink path={button?.url}>
+                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                  <Base.P className={this.decorateCSS("button-text")}>
+                    {button?.text}
+                  </Base.P>
+                </Base.Button>
+              </ComposerLink>
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container >
     );
   }
 }
 
-export default list4;
+export default List4;

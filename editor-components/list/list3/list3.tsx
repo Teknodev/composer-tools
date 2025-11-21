@@ -209,17 +209,17 @@ class List3 extends BaseList {
                   <Base.VerticalContent className={this.decorateCSS("intro-content")}>
                     {this.castToString(subtitle) && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {subtitle as any}
+                        {subtitle}
                       </Base.SectionSubTitle>
                     )}
                     {this.castToString(title) && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title as any}
+                        {title}
                       </Base.SectionTitle>
                     )}
                     {this.castToString(description) && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {description as any}
+                        {description}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
@@ -229,7 +229,7 @@ class List3 extends BaseList {
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
                       {this.castToString(buttonType.text) && (
                         <Base.P className={this.decorateCSS("button-text")}>
-                          {buttonType.text as any}
+                          {buttonType.text}
                         </Base.P>
                       )}
                       {iconExist && (
@@ -253,7 +253,7 @@ class List3 extends BaseList {
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
                       <Base.H5 className={this.decorateCSS("card-title")}>
-                        {listItem.itemTitle as any}
+                        {listItem.itemTitle}
                       </Base.H5>
                     )}
                     {listItem.texts.map((item: TextItem, tIndex: number) => (

@@ -169,10 +169,21 @@
             }
 
             .icon {
+              width: 2.5rem;
+              height: 2.5rem;
               font-size: 2.5rem;
               color: var(--composer-primary-color);
               margin: var(--composer-gap-md) 0;
               align-self: flex-start;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              :global(img),
+              :global(video) {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
             }
 
             .card-number {
@@ -215,6 +226,19 @@
         &:nth-child(3n + 2) {
           transform: translateY(var(--composer-gap-lg));
         }
+      }
+    }
+    .button-wrapper {
+      margin-top: var(--composer-gap-lg);
+      display: flex;
+      justify-content: center;
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .button-text {
+        content: "";
       }
     }
   }

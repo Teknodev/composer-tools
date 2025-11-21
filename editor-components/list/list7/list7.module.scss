@@ -117,6 +117,19 @@
         }
       }
     }
+    .button-wrapper {
+      margin-top: var(--composer-gap-lg);
+      display: flex;
+      justify-content: center;
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .button-text {
+        content: "";
+      }
+    }
   }
 }
 
