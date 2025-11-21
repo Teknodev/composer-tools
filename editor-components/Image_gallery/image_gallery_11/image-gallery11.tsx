@@ -452,9 +452,9 @@ class ImageGallery11 extends BaseImageGallery {
             <Base.Overlay isVisible className={this.decorateCSS("overlay")} onClick={handleClosePopup}>
               <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                 <div className={this.decorateCSS("modal-content")}>
-                  <button className={this.decorateCSS("close")} onClick={handleClosePopup}>
+                  <div className={this.decorateCSS("close")} onClick={handleClosePopup}>
                     <Base.Media value={this.getPropValue("popupCloseIcon")} className={this.decorateCSS("icon")} />
-                  </button>
+                  </div>
 
                   <div className={this.decorateCSS("image-container")} onClick={handleTogglePopupZoom}>
                     <Base.Media
@@ -465,7 +465,7 @@ class ImageGallery11 extends BaseImageGallery {
                 </div>
               </div>
 
-              <button
+              <div
                 className={`${this.decorateCSS("nav")} ${this.decorateCSS("prev")}`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -473,9 +473,9 @@ class ImageGallery11 extends BaseImageGallery {
                 }}
               >
                 <Base.Media value={this.getPropValue("popupLeftIcon")} className={this.decorateCSS("icon")} />
-              </button>
+              </div>
 
-              <button
+              <div
                 className={`${this.decorateCSS("nav")} ${this.decorateCSS("next")}`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -483,7 +483,7 @@ class ImageGallery11 extends BaseImageGallery {
                 }}
               >
                 <Base.Media value={this.getPropValue("popupRightIcon")} className={this.decorateCSS("icon")} />
-              </button>
+              </div>
             </Base.Overlay>
           )}
         </div>
