@@ -1,11 +1,7 @@
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-
-interface RawFeature {
-    title?: unknown;
-    text?: unknown;
-}
 
 interface FeatureItem {
     title: string;
@@ -23,6 +19,20 @@ class Feature31 extends BaseFeature {
             key: "image",
             displayer: "Image",
             value: "https://res.cloudinary.com/dyjpupuop/image/upload/v1759404710/content28_img.png"
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: true,
+        });
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: ""
         });
 
         this.addProp({
@@ -92,28 +102,10 @@ class Feature31 extends BaseFeature {
             value: 2,
             max: 4
         });
-
-        this.addProp({
-            type: "icon",
-            key: "icon",
-            displayer: "Magnifier Icon",
-            value: "IoSearchOutline"
-        });
-
-        this.addProp({
-            type: "icon",
-            key: "closeModalIcon",
-            displayer: "Overlay Close Icon",
-            value: "IoCloseOutline"
-        });
     }
 
     static getName(): string {
         return "Feature 31";
-    }
-
-    private getItemCount(): number {
-        return this.getPropValue("itemsPerRow");
     }
 
     render() {
@@ -130,11 +122,13 @@ class Feature31 extends BaseFeature {
         };
 
         const rawTitle = this.getPropValue("title");
+        const rawSubtitle = this.getPropValue("subtitle");
         const rawDescription = this.getPropValue("description");
+        const subtitleText = normalizeText(rawSubtitle);
         const titleText = normalizeText(rawTitle);
         const descriptionText = normalizeText(rawDescription);
 
-        const rawFeatures = (this.castToObject<RawFeature[]>("features") || []).filter(Boolean);
+        const rawFeatures = (this.castToObject<any[]>("features") || []).filter(Boolean);
         const features: FeatureItem[] = rawFeatures
             .map((feature) => ({
                 title: normalizeText(feature?.title),
@@ -144,154 +138,77 @@ class Feature31 extends BaseFeature {
             }))
             .filter((feature) => feature.title || feature.text);
 
+        const itemsPerRow = this.getPropValue("itemsPerRow") || 2;
+        const hasContent = Boolean(subtitleText || titleText || descriptionText || features.length > 0);
 
-        const hasImage = Boolean(imageValue);
-        const rawItemCount = Number(this.getItemCount()) || 1;
-        const featureColumnCount = Math.min(Math.max(rawItemCount, 1), 4);
-        const hasContent = Boolean(titleText || descriptionText || features.length > 0);
-        const isImageOverlayOpen = !!this.getComponentState("isImageOverlayOpen");
-        const magnifierIcon = this.getPropValue("icon");
-        const closeModalIcon = this.getPropValue("closeModalIcon");
-
-        const layoutClassName = [
-            this.decorateCSS("layout"),
-            !hasImage ? this.decorateCSS("layout-no-image") : "",
-            hasImage && !hasContent ? this.decorateCSS("layout-image-only") : ""
-        ]
-            .filter(Boolean)
-            .join(" ");
-
-        const featuresClassName = [
-            this.decorateCSS("features"),
-            this.decorateCSS(`columns-${featureColumnCount}`)
-        ]
-            .filter(Boolean)
-            .join(" ");
-
-        const imageWrapperClassName = [
-            this.decorateCSS("col-image"),
-            !hasContent ? this.decorateCSS("col-image-only") : ""
-        ]
-            .filter(Boolean)
-            .join(" ");
-
-        const imageClassName = [
-            this.decorateCSS("image"),
-            !hasContent ? this.decorateCSS("image-only") : ""
-        ]
-            .filter(Boolean)
-            .join(" ");
-
-        const contentColumn = (
-            <div className={this.decorateCSS("col-content")}>
-                <div className={this.decorateCSS("content-wrapper")}>
-                    {(titleText || descriptionText) && (
-                        <div className={this.decorateCSS("header")}>
-                            {titleText && (
-                                <Base.SectionTitle className={this.decorateCSS("heading")}>
-                                    {rawTitle}
-                                </Base.SectionTitle>
-                            )}
-                            {descriptionText && (
-                                <Base.SectionDescription className={this.decorateCSS("description")}>
-                                    {rawDescription}
-                                </Base.SectionDescription>
-                            )}
-                        </div>
-                    )}
-
-                    {features.length > 0 && (
-                        <div className={this.decorateCSS("features-block")}>
-                            <div className={featuresClassName}>
-                                {features.map((feature, index) => (
-                                    <Base.VerticalContent
-                                        key={index}
-                                        className={this.decorateCSS("feature")}
-                                    >
-                                        {feature.title && (
-                                            <Base.H3 className={this.decorateCSS("feature-title")}>
-                                                {feature.rawTitle}
-                                            </Base.H3>
-                                        )}
-                                        {feature.text && (
-                                            <Base.P className={this.decorateCSS("feature-text")}>
-                                                {feature.rawText}
-                                            </Base.P>
-                                        )}
-                                    </Base.VerticalContent>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </div>
-        );
+        const overlay = this.getPropValue("overlay");
 
         return (
-            <>
-                {hasImage && imageValue && (
-                    <Base.Overlay
-                        className={this.decorateCSS("modal")}
-                        isVisible={isImageOverlayOpen}
-                    >
+            <Base.Container className={this.decorateCSS("container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+
+                    {imageValue && (
                         <div
-                            className={this.decorateCSS("modal-wrapper")}
-                            onClick={() => this.setComponentState("isImageOverlayOpen", false)}
+                            className={this.decorateCSS("image-side")}
+                            data-overlay={overlay}
                         >
-                            <div
-                                className={this.decorateCSS("modal-content")}
-                                onClick={(event) => event.stopPropagation()}
-                            >
-                                <div
-                                    className={this.decorateCSS("close")}
-                                    onClick={() => this.setComponentState("isImageOverlayOpen", false)}
-                                >
-                                    <Base.Icon
-                                        name={closeModalIcon}
-                                        propsIcon={{ className: this.decorateCSS("icon") }}
-                                    />
-                                </div>
-                                <div className={this.decorateCSS("image-container")}>
-                                    <Base.Media
-                                        value={imageValue}
-                                        className={this.decorateCSS("modal-image")}
-                                    />
-                                </div>
-                            </div>
+                            <Base.Media
+                                className={this.decorateCSS("image")}
+                                value={imageValue}
+                            />
                         </div>
-                    </Base.Overlay>
-                )}
-                <Base.Container className={this.decorateCSS("container")}>
-                    <Base.MaxContent className={this.decorateCSS("max-content")}>
-                        <div className={layoutClassName}>
-                            {hasImage && (
-                                <div
-                                    className={imageWrapperClassName}
-                                    onClick={() => imageValue && this.setComponentState("isImageOverlayOpen", true)}
-                                >
-                                    <div className={this.decorateCSS("image-frame")}>
-                                        <Base.Media
-                                            className={imageClassName}
-                                            value={imageValue || undefined}
-                                        />
-                                        <div className={this.decorateCSS("overlay")} />
-                                        <div className={this.decorateCSS("magnifier-icon-wrapper")}>
-                                            <Base.Icon
-                                                name={magnifierIcon}
-                                                propsIcon={{ className: this.decorateCSS("magnifier-icon") }}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
+                    )}
+
+                    {hasContent && (
+                        <Base.VerticalContent className={this.decorateCSS("content-side")}>
+                            {(subtitleText || titleText || descriptionText) && (
+                                <Base.VerticalContent className={this.decorateCSS("header")}>
+                                    {subtitleText && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {rawSubtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {titleText && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {rawTitle}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {descriptionText && (
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {rawDescription}
+                                        </Base.SectionDescription>
+                                    )}
+                                </Base.VerticalContent>
                             )}
-                            {hasContent && contentColumn}
-                        </div>
-                    </Base.MaxContent>
-                </Base.Container>
-            </>
+
+                            {features.length > 0 && (
+                                <Base.ListGrid
+                                    gridCount={{ pc: itemsPerRow, tablet: 2, phone: 1 }}
+                                    className={this.decorateCSS("features-grid")}
+                                >
+                                    {features.map((feature, index) => (
+                                        <div key={index} className={this.decorateCSS("feature-item")}>
+                                            {feature.title && (
+                                                <Base.H3 className={this.decorateCSS("feature-title")}>
+                                                    {feature.rawTitle}
+                                                </Base.H3>
+                                            )}
+                                            {feature.text && (
+                                                <Base.P className={this.decorateCSS("feature-text")}>
+                                                    {feature.rawText}
+                                                </Base.P>
+                                            )}
+                                        </div>
+                                    ))}
+                                </Base.ListGrid>
+                            )}
+                        </Base.VerticalContent>
+                    )}
+
+                </Base.MaxContent>
+            </Base.Container>
         );
     }
 }
 
 export default Feature31;
-
