@@ -12,25 +12,17 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
-      .up-container {
-        .subtitle {
-          content: "";
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .header {
+          text-align: center;
         }
-        .title {
-          content: "";
-        }
-        .description {
-          content: "";
-        }
-      }
 
       .cards-box {
         .card {
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           overflow: hidden;
           position: relative;
           cursor: pointer;
@@ -42,35 +34,42 @@
               box-shadow: var(--composer-box-shadow-lg);
             }
           }
-          .card-image {
+          .image-container {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: all var(--composer-transition-duration-slow) ease;
-            height: 100%;
+            position: relative;
+            border-radius: var(--composer-border-radius-sm);
+            overflow: hidden;
+            .card-image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: all var(--composer-transition-duration-slow) ease;
+              border-radius: inherit;
+            }
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: var(--composer-overlay-color);
+              border-radius: inherit;
+            }
           }
-          .overlay,
-          .overlay2 {
+          .overlay-gradient {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             transition: all var(--composer-transition-duration-slow) ease;
-          }
-          .overlay {
-            background: linear-gradient(var(--composer-overlay-color), var(--composer-overlay-color));
-            z-index: 1;
-            opacity: 1;
-          }
-          .overlay2 {
-            background: linear-gradient(
-              (rgba(var(--composer-primary-color-rgb), 0.7), rgba(var(--composer-overlay-color-rgb), 0.7))
-            );
+            background:linear-gradient(rgba(var(--composer-primary-color-rgb), 0.4), var(--composer-overlay-color));
             z-index: 2;
             opacity: 0;
+            border-radius: var(--composer-border-radius-sm);
           }
           &[data-animation~="animate1"]:hover {
-            .card-image {
+            .image-container .card-image {
               transform: scale(1.1);
             }
           }
@@ -78,13 +77,10 @@
             transform: translateY(calc(var(--composer-gap-sm) * -1));
           }
           &[data-animation~="animate3"]:hover {
-            .overlay {
-              opacity: 0;
-            }
             .overlay2 {
               opacity: 1;
             }
-            .card-content .labels .second {
+            .card-content .category .count-badge {
               opacity: 1;
               background: var(--composer-primary-color);
             }
@@ -104,12 +100,16 @@
               border-radius: var(--composer-border-radius-md);
             }
 
-            .labels {
+            .category {
               display: flex;
               flex-direction: column;
               align-items: start;
 
-              .second {
+              .category-name {
+                text-align: left;
+              }
+
+              .count-badge {
                 display: flex;
                 gap: var(--composer-gap-xs);
                 margin: var(--composer-gap-xs) 0;
@@ -117,8 +117,8 @@
                 padding: var(--composer-gap-xs) var(--composer-gap-xs);
                 border-radius: var(--composer-border-radius-md);
                 transition: all var(--composer-transition-duration-normal) ease;
-                .second-text,
-                .second-count {
+                .count-value,
+                .count-label {
                   color: var(--composer-font-color-secondary);
                 }
               }
@@ -129,8 +129,13 @@
       .button-wrapper {
         display: flex;
         justify-content: center;
+
         .button {
           content: "";
+
+          .button-text {
+            content: "";
+          }
         }
       }
     }

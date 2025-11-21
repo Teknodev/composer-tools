@@ -1,4 +1,4 @@
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list12.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
@@ -12,11 +12,16 @@ class List12 extends BaseList {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683dbb7557d0a6002b5dbba8?alt=media&timestamp=1748876160309",
+      displayer: "Background Media",
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683dbb7557d0a6002b5dbba8?alt=media&timestamp=1748876160309",
+      },
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
     });
 
     this.addProp({
@@ -25,17 +30,28 @@ class List12 extends BaseList {
       displayer: "Box 1",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "item",
           displayer: "Item 1",
-          value:
-            "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          value: {
+            type: "image",
+            url: "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          },
+          additionalParams: {
+            availableTypes: ["image"],
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon 1",
-          value: "",
+          value: {
+            type: "icon",
+            name: "",
+          },
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
         },
         {
           type: "string",
@@ -56,26 +72,32 @@ class List12 extends BaseList {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: "Simplifying Payments,",
+          value: "Simplifying Payments, Fast and Secure",
         },
+        
         {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Fast and Secure",
-        },
-        {
-          type: "image",
+          type: "media",
           key: "item",
           displayer: "Item 2",
-          value:
-            "https://plus.unsplash.com/premium_photo-1682511145669-a0b9d9c1dc21?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          value: {
+            type: "image",
+            url: "https://plus.unsplash.com/premium_photo-1682511145669-a0b9d9c1dc21?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          },
+          additionalParams: {
+            availableTypes: ["image"],
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon 2",
-          value: "",
+          value: {
+            type: "icon",
+            name: "",
+          },
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
         },
         {
           type: "string",
@@ -93,17 +115,28 @@ class List12 extends BaseList {
       displayer: "Box 3",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "item",
           displayer: "Item 3",
-          value:
-            "https://images.unsplash.com/photo-1616077167599-cad3639f9cbd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          value: {
+            type: "image",
+            url: "https://images.unsplash.com/photo-1616077167599-cad3639f9cbd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          },
+          additionalParams: {
+            availableTypes: ["image"],
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon 3",
-          value: "",
+          value: {
+            type: "icon",
+            name: "",
+          },
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
         },
         {
           type: "string",
@@ -122,113 +155,126 @@ class List12 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "backgroundOverlay",
+      displayer: "Background Image Overlay",
+      value: false,
+    });
   }
 
   render() {
     const box1 = this.castToObject<any>("box1");
     const box2 = this.castToObject<any>("box2");
     const box3 = this.castToObject<any>("box3");
-    const hasBackgroundImage = this.getPropValue("image");
+    const backgroundMedia = this.getPropValue("image") as TypeMediaInputValue | null;
+    const hasBackgroundMedia = !!backgroundMedia;
+    const imageOverlay = this.getPropValue("overlay");
+    const backgroundOverlay = this.getPropValue("backgroundOverlay");
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: `url(${this.getPropValue("image")})`,
-          backgroundSize: "cover",
-        }}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        {hasBackgroundMedia && (
+          <Base.Media
+            value={backgroundMedia as TypeMediaInputValue}
+            className={this.decorateCSS("background-media")}
+          />
+        )}
+        {backgroundOverlay && hasBackgroundMedia && (
+          <div className={this.decorateCSS("background-overlay")} />
+        )}
+        <Base.MaxContent isFull className={`${this.decorateCSS("max-content")} ${this.decorateCSS("alignment-center")}`}>
           <div className={this.decorateCSS("boxes")}>
             <div className={this.decorateCSS("leftBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {(box1.item || box1.icon) && (
-                <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+            <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box1.item ? (
-                    <img
-                      className={this.decorateCSS("img")}
-                      src={box1.item}
-                      alt="item"
-                    />
+                    <>
+                      <Base.Media
+                        className={this.decorateCSS("img")}
+                        value={box1.item}
+                      />
+                      {imageOverlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
+                    </>
                   ) : (
-                    <Base.Icon
-                      name={box1.icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                      }}
+                    <Base.Media
+                      value={box1.icon}
+                      className={this.decorateCSS("icon")}
                     />
                   )}
                 </div>
               )}
               {this.castToString(box1.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={`${this.decorateCSS("text1")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box1.text}</div>
+                  <Base.P className={`${this.decorateCSS("text1")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`}>{box1.text}</Base.P>
                 </div>
               )}
             </div>
-            <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-              {this.castToString(box2.title || box2.subtitle) && (
-                <Base.SectionTitle
-                  className={this.decorateCSS("section-wrapper")}
-                >
-                  {this.castToString(box2.title) && (
-                    <div className={`${this.decorateCSS("title")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
-                      {box2.title}
-                    </div>
-                  )}
-                  {this.castToString(box2.subtitle) && (
-                    <div className={`${this.decorateCSS("subtitle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
-                      {box2.subtitle}
-                    </div>
-                  )}
+            <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
+              {this.castToString(box2.title) && (
+                <Base.SectionTitle className={this.decorateCSS("section-wrapper")}>
+                  <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`}>{box2.title}</div>
                 </Base.SectionTitle>
               )}
               {(box2.item || box2.icon) && (
-                <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box2.item ? (
-                    <img
-                      className={this.decorateCSS("img")}
-                      src={box2.item}
-                      alt="item"
-                    />
+                    <>
+                      <Base.Media
+                        className={this.decorateCSS("img")}
+                        value={box2.item}
+                      />
+                      {imageOverlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
+                    </>
                   ) : (
-                    <Base.Icon
-                      name={box2.icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                      }}
+                    <Base.Media
+                      value={box2.icon}
+                      className={this.decorateCSS("icon")}
                     />
                   )}
                 </div>
               )}
               {this.castToString(box2.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={`${this.decorateCSS("text2")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box2.text}</div>
+                  <Base.P className={`${this.decorateCSS("text2")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`}>{box2.text}</Base.P>
                 </div>
               )}
             </div>
 
             <div className={this.decorateCSS("rightBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {(box3.item || box3.icon) && (
-                <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+            <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box3.item ? (
-                    <img
-                      className={this.decorateCSS("img")}
-                      src={box3.item}
-                      alt="item"
-                    />
+                    <>
+                      <Base.Media
+                        className={this.decorateCSS("img")}
+                        value={box3.item}
+                      />
+                      {imageOverlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
+                    </>
                   ) : (
-                    <Base.Icon
-                      name={box3.icon}
-                      propsIcon={{
-                        className: this.decorateCSS("icon"),
-                      }}
+                    <Base.Media
+                      value={box3.icon}
+                      className={this.decorateCSS("icon")}
                     />
                   )}
                 </div>
               )}
               {this.castToString(box3.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={`${this.decorateCSS("text3")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box3.text}</div>
+                  <Base.P className={`${this.decorateCSS("text3")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`}>{box3.text}</Base.P>
                 </div>
               )}
             </div>
