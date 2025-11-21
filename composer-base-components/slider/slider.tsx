@@ -58,9 +58,9 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
   );
 
   useEffect(() => {
-    restartSlider();
-
-    if (!memoizedProps.responsive) return;
+    if (!memoizedProps.responsive) {
+      restartSlider();return;
+    }
 
     const sortedBreakpoints = [...memoizedProps.responsive].sort((a, b) => a.breakpoint - b.breakpoint);
 

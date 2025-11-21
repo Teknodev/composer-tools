@@ -8,8 +8,8 @@ class Feature16 extends BaseFeature {
         super(props, styles);
         this.addProp({
             type: "string",
-            key: "heading",
-            displayer: "Heading",
+            key: "subtitle",
+            displayer: "Subtitle",
             value: "Our Features"
         });
         this.addProp({
@@ -31,10 +31,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "topLeftSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/crypto-icon.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/crypto-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -62,10 +68,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "bottomLeftSideImage",
                     displayer: "Left Side Bottom Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/mobile-2.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/mobile-2.png"
+                    }
                 },
                 {
                     type: "string",
@@ -93,10 +105,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "topRightSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/wallet-icon.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/wallet-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -124,10 +142,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "topRightSide2Image",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/protect-icon.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/protect-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -155,10 +179,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "middleRightSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/support-icon.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/support-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -186,10 +216,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "middleRightSide2Image",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/chart-icon.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/chart-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -217,10 +253,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "bottomRightSideImage",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/buy-icon.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/buy-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -248,10 +290,16 @@ class Feature16 extends BaseFeature {
                     value: true
                 },
                 {
-                    type: "image",
+                    type: "media",
                     key: "bottomRightSide2Image",
                     displayer: "Image",
-                    value: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/real-time-icon.png"
+                    additionalParams: {
+                        availableTypes: ["image"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://templatekit.reavation.com/bitree/wp-content/uploads/sites/11/2024/03/real-time-icon.png"
+                    }
                 },
                 {
                     type: "string",
@@ -284,27 +332,32 @@ class Feature16 extends BaseFeature {
 
     renderCard(cardData, prefix, isAlone = false) {
         const className = `${this.decorateCSS("card")} ${isAlone ? this.decorateCSS("single-card") : ""}`;
+        const hasTitle = this.castToString(cardData[`${prefix}Title`]);
+        const hasDescription = this.castToString(cardData[`${prefix}Description`]);
+        const hasTextContent = hasTitle || hasDescription;
 
         return (
-            <div className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                {cardData[`${prefix}Image`] && (
+            <Base.VerticalContent className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                {cardData[`${prefix}Image`]?.url && (
                     <div className={this.decorateCSS("card-image")}>
-                        <img src={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} alt="Content" />
+                        <Base.Media value={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} />
                     </div>
                 )}
-                <div className={this.decorateCSS("card-text-container")}>
-                    {cardData[`${prefix}Title`] && (
-                        <div className={this.decorateCSS("card-title")}>
-                            {cardData[`${prefix}Title`]}
-                        </div>
-                    )}
-                    {cardData[`${prefix}Description`] && (
-                        <div className={this.decorateCSS("card-description")}>
-                            {cardData[`${prefix}Description`]}
-                        </div>
-                    )}
-                </div>
-            </div>
+                {hasTextContent && (
+                    <div className={this.decorateCSS("card-text-container")}>
+                        {hasTitle && (
+                            <Base.H4 className={this.decorateCSS("card-title")}>
+                                {cardData[`${prefix}Title`]}
+                            </Base.H4>
+                        )}
+                        {hasDescription && (
+                            <Base.P className={this.decorateCSS("card-description")}>
+                                {cardData[`${prefix}Description`]}
+                            </Base.P>
+                        )}
+                    </div>
+                )}
+            </Base.VerticalContent>
         );
     }
 
@@ -318,19 +371,63 @@ class Feature16 extends BaseFeature {
         const middleRightSide = this.castToObject<any>("middleRightSide");
         const middleRightSide2 = this.castToObject<any>("middleRightSide2");
 
-        const renderLeftSide = topLeftSide.visibility || bottomLeftSide.visibility;
+        // Check if card has content (title, description, or image)
+        const hasTopLeftContent = topLeftSide.visibility && (
+            this.castToString(topLeftSide.topLeftSideTitle) || 
+            this.castToString(topLeftSide.topLeftSideDescription) || 
+            topLeftSide.topLeftSideImage?.url
+        );
+        
+        const hasBottomLeftContent = bottomLeftSide.visibility && (
+            this.castToString(bottomLeftSide.bottomLeftSideTitle) || 
+            this.castToString(bottomLeftSide.bottomLeftSideDescription) || 
+            bottomLeftSide.bottomLeftSideImage?.url
+        );
 
-        const renderRightSide =
-            topRightSide.visibility ||
-            topRightSide2.visibility ||
-            bottomRightSide.visibility ||
-            bottomRightSide2.visibility ||
-            middleRightSide.visibility ||
-            middleRightSide2.visibility;
+        const hasTopRightContent = topRightSide.visibility && (
+            this.castToString(topRightSide.topRightSideTitle) || 
+            this.castToString(topRightSide.topRightSideDescription) || 
+            topRightSide.topRightSideImage?.url
+        );
 
-        const topRowVisible = topRightSide.visibility || topRightSide2.visibility;
-        const middleRowVisible = middleRightSide.visibility || middleRightSide2.visibility;
-        const bottomRowVisible = bottomRightSide.visibility || bottomRightSide2.visibility;
+        const hasTopRight2Content = topRightSide2.visibility && (
+            this.castToString(topRightSide2.topRightSide2Title) || 
+            this.castToString(topRightSide2.topRightSide2Description) || 
+            topRightSide2.topRightSide2Image?.url
+        );
+
+        const hasMiddleRightContent = middleRightSide.visibility && (
+            this.castToString(middleRightSide.middleRightSideTitle) || 
+            this.castToString(middleRightSide.middleRightSideDescription) || 
+            middleRightSide.middleRightSideImage?.url
+        );
+
+        const hasMiddleRight2Content = middleRightSide2.visibility && (
+            this.castToString(middleRightSide2.middleRightSide2Title) || 
+            this.castToString(middleRightSide2.middleRightSide2Description) || 
+            middleRightSide2.middleRightSide2Image?.url
+        );
+
+        const hasBottomRightContent = bottomRightSide.visibility && (
+            this.castToString(bottomRightSide.bottomRightSideTitle) || 
+            this.castToString(bottomRightSide.bottomRightSideDescription) || 
+            bottomRightSide.bottomRightSideImage?.url
+        );
+
+        const hasBottomRight2Content = bottomRightSide2.visibility && (
+            this.castToString(bottomRightSide2.bottomRightSide2Title) || 
+            this.castToString(bottomRightSide2.bottomRightSide2Description) || 
+            bottomRightSide2.bottomRightSide2Image?.url
+        );
+
+        const renderLeftSide = hasTopLeftContent || hasBottomLeftContent;
+
+        const renderRightSide = hasTopRightContent || hasTopRight2Content || hasMiddleRightContent || 
+                               hasMiddleRight2Content || hasBottomRightContent || hasBottomRight2Content;
+
+        const topRowVisible = hasTopRightContent || hasTopRight2Content;
+        const middleRowVisible = hasMiddleRightContent || hasMiddleRight2Content;
+        const bottomRowVisible = hasBottomRightContent || hasBottomRight2Content;
 
         const visibleRowCount = [topRowVisible, middleRowVisible, bottomRowVisible].filter(Boolean).length;
 
@@ -338,47 +435,44 @@ class Feature16 extends BaseFeature {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("header-container")}>
-                        <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                            {this.castToString(this.getPropValue("heading")) && (
-                                <div className={this.decorateCSS("heading")}>
-                                    {this.getPropValue("heading")}
-                                </div>
-                            )}
-                        </Base.SectionSubTitle>
+                        {this.castToString(this.getPropValue("subtitle")) &&
+                            <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                                {this.getPropValue("subtitle")}
+                            </Base.SectionSubTitle>}
                         {this.castToString(this.getPropValue("title")) && (
-                            <Base.SectionTitle className={this.decorateCSS("title-container")}>
-                                <div className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </div>
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {this.getPropValue("title")}
                             </Base.SectionTitle>
                         )}
                     </Base.VerticalContent>
                     <div className={this.decorateCSS("side-container")}>
                         {renderLeftSide && (
                             <div className={this.decorateCSS("left-side")}>
-                                {topLeftSide.visibility && (
+                                {hasTopLeftContent && (
                                     <div className={this.decorateCSS("top-left-side")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                        {topLeftSide.visibility && this.renderCard(topLeftSide, "topLeftSide", !bottomLeftSide.visibility)}
+                                        {this.renderCard(topLeftSide, "topLeftSide", !hasBottomLeftContent)}
                                     </div>
                                 )}
-                                {bottomLeftSide.visibility && (
+                                {hasBottomLeftContent && (
                                     <div className={this.decorateCSS("bottom-left-side")}>
                                         <div className={this.decorateCSS("bottom-left-side-card")}>
-                                            <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
-                                                {bottomLeftSide.bottomLeftSideTitle && (
-                                                    <div className={this.decorateCSS("bottom-left-side-card-title")}>
-                                                        {bottomLeftSide.bottomLeftSideTitle}
-                                                    </div>
-                                                )}
-                                                {bottomLeftSide.bottomLeftSideDescription && (
-                                                    <div className={this.decorateCSS("bottom-left-side-card-description")}>
-                                                        {bottomLeftSide.bottomLeftSideDescription}
-                                                    </div>
-                                                )}
-                                            </div>
-                                            {bottomLeftSide.bottomLeftSideImage && (
+                                            {(this.castToString(bottomLeftSide.bottomLeftSideTitle) || this.castToString(bottomLeftSide.bottomLeftSideDescription)) && (
+                                                <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
+                                                    {this.castToString(bottomLeftSide.bottomLeftSideTitle) && (
+                                                        <Base.H4 className={this.decorateCSS("bottom-left-side-card-title")}>
+                                                            {bottomLeftSide.bottomLeftSideTitle}
+                                                        </Base.H4>
+                                                    )}
+                                                    {this.castToString(bottomLeftSide.bottomLeftSideDescription) && (
+                                                        <Base.P className={this.decorateCSS("bottom-left-side-card-description")}>
+                                                            {bottomLeftSide.bottomLeftSideDescription}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            )}
+                                            {bottomLeftSide.bottomLeftSideImage?.url && (
                                                 <div className={this.decorateCSS("bottom-left-side-card-image-container")}>
-                                                    <img src={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} alt="Content" />
+                                                    <Base.Media value={bottomLeftSide.bottomLeftSideImage} className={this.decorateCSS("bottom-left-side-card-image")} />
                                                 </div>
                                             )}
                                         </div>
@@ -390,20 +484,20 @@ class Feature16 extends BaseFeature {
                             <div className={`${this.decorateCSS("right-side")} ${this.decorateCSS("rows-" + visibleRowCount)}`}>
                                 {topRowVisible && (
                                     <div className={this.decorateCSS("top-right-side-container")}>
-                                        {topRightSide.visibility && this.renderCard(topRightSide, "topRightSide", !topRightSide2.visibility)}
-                                        {topRightSide2.visibility && this.renderCard(topRightSide2, "topRightSide2", !topRightSide.visibility)}
+                                        {hasTopRightContent && this.renderCard(topRightSide, "topRightSide", !hasTopRight2Content)}
+                                        {hasTopRight2Content && this.renderCard(topRightSide2, "topRightSide2", !hasTopRightContent)}
                                     </div>
                                 )}
                                 {middleRowVisible && (
                                     <div className={this.decorateCSS("bottom-right-side-container")}>
-                                        {middleRightSide.visibility && this.renderCard(middleRightSide, "middleRightSide", !middleRightSide2.visibility)}
-                                        {middleRightSide2.visibility && this.renderCard(middleRightSide2, "middleRightSide2", !middleRightSide.visibility)}
+                                        {hasMiddleRightContent && this.renderCard(middleRightSide, "middleRightSide", !hasMiddleRight2Content)}
+                                        {hasMiddleRight2Content && this.renderCard(middleRightSide2, "middleRightSide2", !hasMiddleRightContent)}
                                     </div>
                                 )}
                                 {bottomRowVisible && (
                                     <div className={this.decorateCSS("bottom-right-side-container-2")}>
-                                        {bottomRightSide.visibility && this.renderCard(bottomRightSide, "bottomRightSide", !bottomRightSide2.visibility)}
-                                        {bottomRightSide2.visibility && this.renderCard(bottomRightSide2, "bottomRightSide2", !bottomRightSide.visibility)}
+                                        {hasBottomRightContent && this.renderCard(bottomRightSide, "bottomRightSide", !hasBottomRight2Content)}
+                                        {hasBottomRight2Content && this.renderCard(bottomRightSide2, "bottomRightSide2", !hasBottomRightContent)}
                                     </div>
                                 )}
                             </div>

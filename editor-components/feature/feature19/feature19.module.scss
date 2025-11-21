@@ -1,5 +1,15 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--composer-overlay-color);
+  pointer-events: none;
+}
+
 .container {
     .max-content {
         display: flex;
@@ -9,6 +19,7 @@
             flex: 1;
             align-items: center;
             position: relative;
+            border-radius: var(--composer-border-radius-sm);
 
             .img {
                 max-height: 100%;
@@ -31,7 +42,6 @@
                     transition: transform 1s;
                 }
 
-                &::before,
                 &::after {
                     content: '';
                     position: absolute;
@@ -39,31 +49,19 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    transition: opacity 0.9s;
-                }
-
-                &::before {
-                    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-                    z-index: 1;
-                    opacity: 1;
-                }
-
-                &::after {
                     background: linear-gradient(
                         rgba(var(--composer-primary-color-rgb), 0.7),
                         rgba(0, 0, 0, 0.7)
                     );
                     z-index: 2;
                     opacity: 0;
+                    transition: opacity 0.9s;
+                    border-radius: var(--composer-border-radius-sm);
                 }
 
                 &:hover {
                     .img {
                         transform: scale(1.2);
-                    }
-
-                    &::before {
-                        opacity: 0;
                     }
 
                     &::after {
@@ -110,17 +108,20 @@
         .content {
             display: flex;
             flex-direction: column;
+            align-items: baseline;
             gap: var(--composer-gap-xl);
             flex: 1;
             .header {
-                .subtitle{
-                    content: "";
-                }
-                .title {
-                    content: "";
+                align-items: baseline;
+                .subtitle, .title{
+                    text-align: left;
                 }
                 .description {
-                    margin-bottom: 0px
+                    margin-bottom: 0px;
+                    text-align: left;
+                }
+                .subtitle{
+                    margin-left: 0;
                 }
             }
             .item-block {
@@ -132,10 +133,11 @@
                         .item-content-top{
                             display: flex;
                             gap: var(--composer-gap-md);
-                            align-items: center;
+                            align-items: baseline;
+                            justify-content: flex-start;
+                            width: 100%;
                             .icon{
-                                min-width: 3rem;
-                                font-size: 3rem;
+                                font-size: 2.5rem;
                                 color: var(--composer-primary-color);
                             }
                             .list-item-title{
@@ -143,16 +145,23 @@
                                 margin-bottom: var(--composer-gap-sm);
                                 color: var(--composer-font-color-primary);
                                 margin: 0px;
+                                text-align: left;
+                                width: fit-content;
                             }
                         }
                         .texts-inside {
+                            text-align: left;
                             margin-bottom: 0px;
                             color: var(--composer-font-color-primary);
                         }
                     }
                 
             }
-            .button {content: "";}
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
         }
     }
 }
@@ -160,6 +169,44 @@
     .container{
         .max-content{
             flex-direction: column;
+            
+            .right-image {
+                width: 100%;
+                
+                .img {
+                    height: 700px;
+                }
+            }
+            
+            .content {
+                .item-block {
+                    .list-item-content {
+                        .item-content-top {
+                            .icon {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container{
+        .max-content{
+            .right-image {
+                .img {
+                    height: 300px;
+                }
+            }
+            .content {
+                gap: var(--composer-gap-md);
+                .item-block {
+                    gap: var(--composer-gap-md);
+                }
+            }
         }
     }
 }

@@ -1,17 +1,15 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     display: flex;
     flex-direction: column;
-    .heading{
-        align-self: center;
-        max-width: var(--composer-content-width);
-        margin-bottom: var(--composer-gap-xl);
-        margin-right: var(--composer-gap-xl);
-        margin-left: var(--composer-gap-xl);
-        width: calc(100% - (2 * var(--composer-gap-xl)));
-        .subtitle {content: ""}
-        .title {content: ""}
-        .description {content: ""}
+    gap: var(--composer-gap-xl);
+    .max-content{
+        .heading{
+            .subtitle, .title, .description { 
+                content: "";
+            }
+        }
     }
 
     .gallery{
@@ -42,13 +40,44 @@
                 border-radius: 200px;
                 .image{
                     object-fit: contain;
-                    width: 100px;
-                    height: 36px;
+                    width: clamp(120px, 15vw, 150px);
+                    height: auto;
+                    aspect-ratio: 3/1;
                 }
             }
         }
     }
     
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        gap: var(--composer-gap-md);
+
+        .gallery {
+            .images-container {
+                gap: var(--composer-gap-sm);
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        gap: var(--composer-gap-sm);
+
+        .gallery {
+            gap: var(--composer-gap-sm);
+            .images-container {
+                .image-child {
+                    padding: var(--composer-gap-sm) var(--composer-gap-md);
+                    .image {
+                        width: clamp(80px, 12vw, 100px);
+                    }
+                }
+            }
+        }
+    }
 }
 
 @keyframes scrollText {

@@ -1,11 +1,11 @@
 import * as React from "react";
-import { LogoClouds } from "../../EditorComponent";
+import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type TImage = {
-  image: string;
+  image: TypeMediaInputValue;
   imageLink: string;
   itemText: React.JSX.Element;
 };
@@ -53,17 +53,22 @@ class LogoComp6Page extends LogoClouds {
           displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
             },
             {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -80,17 +85,22 @@ class LogoComp6Page extends LogoClouds {
           displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
             },
             {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -107,17 +117,22 @@ class LogoComp6Page extends LogoClouds {
           displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
             },
             {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -134,17 +149,22 @@ class LogoComp6Page extends LogoClouds {
           displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
               displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
             },
             {
               type: "page",
               key: "imageLink",
               value: "",
-              displayer: "Image Link",
+              displayer: "Navigate To",
             },
             {
               type: "string",
@@ -166,10 +186,9 @@ class LogoComp6Page extends LogoClouds {
 
     const isSubTitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("subtitle"));
-    const isDescriptionExists = this.castToString(
-      this.getPropValue("subtitle")
-    );
+    const isDescriptionExists = this.castToString(this.getPropValue("subtitle"));
 
+    const alignment = Base.getContentAlignment()
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -196,24 +215,22 @@ class LogoComp6Page extends LogoClouds {
           )}
 
           <Base.ListGrid
-            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1 }}
+            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
             className={this.decorateCSS("items")}
           >
             {this.castToObject<TImage[]>("list-items").map(
               (listItem: TImage, index: number) => (
                 <ComposerLink path={listItem.imageLink}>
-                  <div key={index} className={this.decorateCSS("card")}>
-                    {listItem.image && <img
+                  <div key={index} className={`${this.decorateCSS("card")} ${alignment === "center" && this.decorateCSS("center")}`}>
+                    {listItem.image && <Base.Media
+                      value={listItem.image}
                       className={this.decorateCSS("image")}
-                      src={listItem.image}
-                      alt={listItem.imageLink}
                     />}
-                    {
-                      this.castToString(listItem.itemText) && <Base.P className={this.decorateCSS("text")}>
+                    {this.castToString(listItem.itemText) && 
+                      <Base.P className={this.decorateCSS("text")}>
                         {listItem.itemText}
                       </Base.P>
                     }
-
                   </div>
                 </ComposerLink>
               )

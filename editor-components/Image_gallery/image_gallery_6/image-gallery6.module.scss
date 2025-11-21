@@ -4,22 +4,25 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-xl);
+        gap: var(--composer-gap-lg);
 
         .section-container {
-            flex-direction: row;
             gap: var(--composer-gap-xl);
             flex-wrap: wrap;
+            width: 100%;
 
             .section-text {
-                margin: 0px;
+                width: fit-content;
+                margin: 0;
                 padding: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
+                cursor: pointer;
 
                 &.active {
+                    width: fit-content;
                     color: var(--composer-font-color-secondary);
                     background-color: var(--composer-primary-color);
-                    border-radius: var(--composer-border-radius-xs);
+                    border-radius: var(--composer-border-radius-sm);
                 }
 
             }
@@ -49,7 +52,7 @@
 
                 .images {
                     position: relative;
-                    border-radius: var(--composer-border-radius-xs);
+                    border-radius: var(--composer-border-radius-sm);
                     overflow: hidden;
                     width: 100%;
 
@@ -90,6 +93,7 @@
                                     height: 100%;
                                     text-align: center;
                                     overflow: hidden;
+                                    margin: var(--composer-gap-xs);
                                 }
                             }
 
@@ -112,14 +116,14 @@
                                     flex-direction: column;
                                     justify-content: center;
                                     gap: var(--composer-gap-md);
-                                    padding: var(--composer-gap-lg) calc(var(--composer-gap-xl) * 3);
+                                    padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) * 3); 
                                     opacity: 0;
                                     transition: opacity 2s ease;
 
                                     .title {
-                                        font-size: 2rem;
                                         opacity: 0;
                                         transition: opacity 2s ease;
+                                        text-align: left;
                                     }
 
                                     .bottom-container {
@@ -130,8 +134,9 @@
 
                                         .description {
                                             display: flex;
+                                            justify-content: flex-start;
                                             align-items: center;
-                                            font-size: 1.5rem;
+                                            width: fit-content;
                                         }
 
                                         .button {
@@ -142,9 +147,7 @@
                                             height: fit-content;
 
                                             .icon {
-                                                margin: 0px;
-                                                width: 20px;
-                                                height: 20px;
+                                                font-size: 1.5rem;
                                                 color: var(--composer-font-color-primary);
                                             }
                                         }
@@ -153,7 +156,8 @@
                                 }
                             }
 
-                            &:hover {
+                            &:hover,
+                            &.active {
                                 .image {
                                     transform: scale(1);
                                 }
@@ -190,6 +194,40 @@
                         }
                     }
 
+                    &.active {
+                        .image {
+                            transform: scale(1) !important;
+                        }
+
+                        .badge {
+                            background-color: var(--composer-html-background) !important;
+                            color: var(--composer-font-color-primary) !important;
+                            z-index: 2;
+                        }
+
+                        .badge-container {
+                            padding: var(--composer-gap-md) 0px !important;
+                            visibility: visible !important;
+                            max-height: 100% !important;
+
+                            .text-container {
+                                opacity: 1 !important;
+
+                                .title {
+                                    opacity: 1 !important;
+                                }
+
+                                .bottom-container {
+                                    opacity: 1 !important;
+
+                                    .button {
+                                        background-color: var(--composer-html-background) !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     &.large-image {
                         height: 60%;
                     }
@@ -205,7 +243,7 @@
 
                     .button {
                         cursor: pointer;
-                        border-radius: var(--composer-border-radius-xs);
+                        border-radius: var(--composer-border-radius-sm);
                     }
                 }
             }
@@ -217,7 +255,9 @@
             justify-content: center;
 
             .button {
-                content: "";
+                .button-text {
+                    content: "";
+                }
             }
         }
     }
@@ -226,8 +266,9 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
+            gap: var(--composer-gap-md);
             .content {
-                flex-direction: column;
+                 flex-direction: row;
 
                 .left-container,
                 .right-container {
@@ -243,7 +284,8 @@
                                 }
                             }
 
-                            &:hover {
+                            &:hover,
+                            &.active {
                                 .badge {
                                     background-color: var(--composer-primary-color);
                                     color: var(--composer-font-color-secondary);
@@ -251,6 +293,17 @@
 
                                 .badge-container {
                                     display: none;
+                                }
+                            }
+
+                            &.active {
+                                .badge {
+                                    background-color: var(--composer-primary-color) !important;
+                                    color: var(--composer-font-color-secondary) !important;
+                                }
+
+                                .badge-container {
+                                    display: none !important;
                                 }
                             }
                         }

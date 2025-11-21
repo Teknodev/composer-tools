@@ -1,6 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    padding: 0 !important;
     background-color: color-mix(
         in srgb,
         var(--composer-html-background),
@@ -10,6 +11,7 @@
         display: flex;
         position: relative;
         align-items: stretch;
+        max-width: 100%;
 
         .tab-buttons {
             width: 35%;
@@ -17,7 +19,6 @@
             display: flex;
             flex-direction: column;
             align-self: center;
-            background-color: var(--composer-html-background);
 
             .tab-button {
                 align-items: center;
@@ -26,12 +27,11 @@
                 position: relative;
                 display: flex;
                 height: 100%;
-                font-family: var(--composer-font-family);
                 padding: var(--composer-gap-lg) var(--composer-gap-md);
                 transition: all 0.5s ease-in-out;
 
                 .tabText {
-                    font-size: 1.5rem;
+                    text-align: left;
                     z-index: 5;
                 }
 
@@ -39,7 +39,7 @@
                     display: none;
                     position: absolute;
                     right: 0;
-                    font-size: 4rem;
+                    font-size: 60px;
                     opacity: 0;
                     transition: opacity 0.3s ease-in-out;
                     transform: translateX(50%);
@@ -48,6 +48,11 @@
                     padding: var(--composer-gap-md);
                     background-color: var(--composer-primary-color);
                     color: var(--composer-font-color-secondary);
+                    height: 100%;
+
+                    >svg{
+                        height: 100%;
+                    }
                 }
 
                 &::before {
@@ -94,6 +99,13 @@
                             animation: show-icon 0.3s 0.5s forwards;
                         }
                     }
+
+                    &.active:hover {
+                        .icon {
+                            animation: none;
+                            opacity: 1;
+                        }
+                    }
                 }
 
                 &:not(:last-child)::after {
@@ -137,6 +149,17 @@
                     flex-basis: 50%;
                     overflow: hidden;
 
+                    .overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: var(--composer-overlay-color);
+                        opacity: 0.3;
+                        pointer-events: none;
+                        transition: opacity 0.3s ease;
+                    }
                     .image {
                         top: 0px;
                         left: 0px;
@@ -174,13 +197,12 @@
                             flex-direction: column;
             
                             .box1-text {
-                                font-size: 1.2rem;
+                                text-align: center;
                                 color: var(--composer-font-color-primary);
                             }
             
                             .box1-lower-text {
-                                font-size: 2rem;
-                                font-weight: 700;
+                                text-align: center;
                                 color: var(--composer-font-color-primary);
                             }
                         }
@@ -242,7 +264,6 @@
                             }
             
                             .box2-text {
-                                font-size: 1.5rem;
                                 text-wrap: wrap;
                             }
             
@@ -265,14 +286,21 @@
                 .content-container {
                     flex-grow: 1;
                     flex-basis: 50%;
-                    padding:  var(--composer-gap-lg) 100px;
+                    padding:  80px var(--composer-gap-xl);
                     position: relative;
                     justify-content: center;
-                    align-self: center;
+                    align-self: base;
 
-                    .subtitle {content: "";}
-                    .title {content: "";}
-                    .description {content: "";}
+                    .subtitle,
+                    .title,
+                    .description {
+                        text-align: left;
+                    }
+
+                    .subtitle{
+                        width: fit-content;
+                        margin-left: 0;
+                    }
         
                     .icons-container {
                         display: flex;
@@ -309,7 +337,7 @@
                             }
             
                             .text {
-                                font-size: 1.1rem;
+                                text-align: center;
                                 padding-top: var(--composer-gap-xs);
                                 color: var(--composer-font-color-primary)
                             }
@@ -324,39 +352,43 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container{
+        padding: 0 !important;
         .max-content{
-            flex-direction: column;
             .tab-buttons{
-                width: 100%;
+                width: 60%;
+                align-self: baseline;
                 .tab-button{
                     .tabText{
                         flex: 1;
                     }
                     .icon{
-                        position: relative;
-                        padding: 0px;
-                        font-size: 1.5rem;
+                        position: absolute;
+                        padding: var(--composer-gap-md);
+                        font-size: 57px;
+                        right: 0;
+                        transform: translateX(50%);
+                    }
+                    &.active {
+                        &:hover {
+                            .icon {
+                                display: block;
+                                opacity: 1;
+                            }
+                        }
                     }
                 }
             }
             .tab{
                 .content{
                     flex-direction: column;
+                    gap: var(--composer-gap-md);
+                    height: max-content;
+                    border-left: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                     .image-container{
-                        aspect-ratio: 1;
+                        aspect-ratio: 3/2;
+                        flex-grow: unset;
                         .box-container{
-                            .box1{
-                                .box1-text{
-                                    font-size: 1.1rem;
-                                }
-                                .box1-lower-text{
-                                    font-size: 1.6rem;
-                                }
-                            }
                             .box2{
-                                .box2-text{
-                                    font-size: 1.2rem;
-                                }
                                 .box2-icon{
                                     font-size: 2.5rem;
                                     padding: var(--composer-gap-sm);
@@ -366,7 +398,22 @@
                     }
                     .content-container{
                         width: 100%;
-                        padding: var(--composer-gap-xl) var(--composer-gap-lg) 0px;
+                        padding: var(--composer-gap-md);
+                        flex-basis: auto;
+                        flex-grow: unset;
+                        align-items: baseline;
+                        .subtitle,
+                        .title,
+                        .description {
+                            text-align: center;
+                        }
+                        .subtitle {
+                            margin: 0 auto;
+                            transform: translateX(0rem);
+                            &::before {
+                                display: none;
+                            }
+                        }
                     }
                 }
             }
@@ -377,11 +424,26 @@
 @container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
+            flex-direction: column;
+            .tab-buttons{
+                width: 100%;
+                .tab-button{
+                    .icon{
+                        position: relative;
+                        padding: 0px;
+                        font-size: 1.5rem;
+                        right: var(--composer-gap-sm);
+                    }
+                }
+            }
+
             .tab{
                 .content{
                     .content-container{
+                        padding: var(--composer-gap-md) !important;
                         .icons-container{
                             flex-direction: column;
+                            padding: var(--composer-gap-sm) 0px;
                             .icon-container{
                                 &:after {
                                     display: none;
