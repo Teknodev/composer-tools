@@ -189,7 +189,7 @@ class List12 extends BaseList {
         {backgroundOverlay && hasBackgroundMedia && (
           <div className={this.decorateCSS("background-overlay")} />
         )}
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS("alignment-center")}`}>
+        <Base.MaxContent isFull className={`${this.decorateCSS("max-content")} ${this.decorateCSS("alignment-center")}`}>
           <div className={this.decorateCSS("boxes")}>
             <div className={this.decorateCSS("leftBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
               {(box1.item || box1.icon) && (
