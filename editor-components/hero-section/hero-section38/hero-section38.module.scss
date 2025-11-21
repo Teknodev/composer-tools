@@ -56,7 +56,7 @@
         .slide-item {
           width: 900px;
           max-width: 1200px;
-          padding: 0 calc(var(--composer-gap-xl) * 1.5);
+          padding: 0 var(--composer-gap-lg);
           display: flex;
           justify-content: center;
           transition: transform var(--composer-transition-duration-normal) ease;
@@ -80,6 +80,7 @@
               display: block;
               transform: scale(1.04);
               transform-origin: center;
+              transition: transform var(--composer-transition-duration-normal) ease;
             }
 
             .overlay {
@@ -138,7 +139,7 @@
         }
 
         .active-slide {
-          transform: scale(1.10);
+          transform: scale(1.18);
           z-index: 10;
           transition: transform var(--composer-transition-duration-normal) ease;
 
@@ -155,7 +156,7 @@
 
             .image {
               border-radius: inherit;
-              transform: scale(1.16);
+              transform: scale(1.22);
               transform-origin: center;
             }
           }
@@ -213,11 +214,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+              width: 32px;
+              height: 32px;
             border-radius: 50%;
-            transition: border var(--composer-transition-duration-fast) ease;
+            transition: transform var(--composer-transition-duration-fast) ease;
             box-sizing: border-box;
+              --pagination-dot-ring-size: 24px;
 
             .dot-icon {
               color: var(--composer-font-color-primary);
@@ -230,8 +232,24 @@
               justify-content: center;
             }
 
-            &:hover {
-              border: 1px solid var(--composer-font-color-primary) !important;
+            &::after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: var(--pagination-dot-ring-size);
+              height: var(--pagination-dot-ring-size);
+              border-radius: 50%;
+              border: 1px solid transparent;
+              transform: translate(-50%, -50%);
+              transition: border-color var(--composer-transition-duration-fast) ease,
+                transform var(--composer-transition-duration-fast) ease;
+              pointer-events: none;
+            }
+
+            &:hover::after,
+            &.active::after {
+              border-color: var(--composer-font-color-primary);
             }
 
             &.active .dot-icon {
@@ -271,13 +289,19 @@
     .max-content {
       .slider-wrapper {
         .slider {
+          .slick-slide,
+          :global(.slick-slide > div) {
+            width: 480px !important;
+          }
+
           .slide-item {
             width: 480px;
             max-width: 480px;
-            padding: 0 var(--composer-gap-md);
+            padding: 0 var(--composer-gap-sm);
             transform: translateY(calc(var(--composer-gap-sm) * 0.2)) scale(0.84);
             transform-origin: center;
             height: 240px;
+            transition: transform var(--composer-transition-duration-normal) ease;
 
             .image-wrapper {
               position: relative;
@@ -291,6 +315,7 @@
                 object-fit: cover;
                 transform: scale(1.01);
                 object-position: center;
+                transition: transform var(--composer-transition-duration-normal) ease;
               }
 
               .overlay {
@@ -349,7 +374,7 @@
           }
 
         .active-slide {
-            transform: translateY(calc(var(--composer-gap-sm) * -0.2)) scale(1.18);
+            transform: translateY(calc(var(--composer-gap-sm) * -0.2)) scale(1.24);
             transform-origin: center;
 
           .image-wrapper {
@@ -358,7 +383,8 @@
 
               .image {
                 border-radius: inherit;
-                transform: scale(1.05);
+                transform: scale(1.12);
+                transition: transform var(--composer-transition-duration-normal) ease;
               }
             }
           }
@@ -390,10 +416,11 @@
 
             .pagination-dot {
               border: none !important;
-              width: 28px;
-              height: 28px;
+              width: 26px;
+              height: 26px;
               border-radius: 50%;
               box-sizing: border-box;
+              --pagination-dot-ring-size: 18px;
 
               .dot-icon {
                 color: var(--composer-font-color-primary);
@@ -404,10 +431,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-              }
-
-              &:hover {
-                border: 1px solid var(--composer-font-color-primary) !important;
               }
 
               &.active .dot-icon {
@@ -424,15 +447,28 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      padding: 0 var(--composer-gap-md) !important;
+      padding: 0 var(--composer-gap-lg) !important;
 
       .slider-wrapper {
         .slider {
+          .slick-track {
+            justify-content: center;
+          }
+
+          .slick-slide,
+          :global(.slick-slide > div) {
+            width: 340px !important;
+          }
+
           .slide-item {
             width: 340px;
-            padding: 0 var(--composer-gap-sm);
+            max-width: 340px;
+            padding: 0 calc(var(--composer-gap-sm) * 0.6);
             transform: scale(0.9);
+            transform-origin: center;
             height: 310px;
+            margin: 0 auto;
+            transition: transform var(--composer-transition-duration-normal) ease;
 
             .image-wrapper {
               height: 100%;
@@ -441,6 +477,7 @@
 
               .image {
                 transform: scale(1.08);
+                transition: transform var(--composer-transition-duration-normal) ease;
               }
             }
 
@@ -468,7 +505,8 @@
           }
 
           .active-slide {
-            transform: scale(1.1);
+            transform: scale(1.14);
+            transform-origin: center;
 
             .image-wrapper {
               border-radius: var(--composer-border-radius-sm);
@@ -476,7 +514,8 @@
 
               .image {
                 border-radius: inherit;
-                transform: scale(1.16);
+                transform: scale(1.2);
+                transition: transform var(--composer-transition-duration-normal) ease;
               }
             }
           }
@@ -499,10 +538,11 @@
 
             .pagination-dot {
               border: none !important;
-              width: 24px;
-              height: 24px;
+              width: 22px;
+              height: 22px;
               border-radius: 50%;
               box-sizing: border-box;
+              --pagination-dot-ring-size: 14px;
 
               .dot-icon {
                 color: var(--composer-font-color-primary);
@@ -513,10 +553,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-              }
-
-              &:hover {
-                border: 1px solid var(--composer-font-color-primary) !important;
               }
 
               &.active .dot-icon {
