@@ -74,16 +74,9 @@ class ImageGallery11 extends BaseImageGallery {
 
     this.addProp({
       type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
+      key: "backgroundOverlay",
+      displayer: "Background Overlay",
       value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "cardOverlay",
-      displayer: "Card Overlay",
-      value: false,
     });
 
     this.addProp({
@@ -227,22 +220,25 @@ class ImageGallery11 extends BaseImageGallery {
     this.addProp({
       type: "media",
       key: "popupLeftIcon",
-      displayer: "Popup Left Icon",
+      displayer: "Left Icon",
       value: { type: "icon", name: "IoMdArrowDropleft" },
+      additionalParams: { availableTypes: ["image", "icon"] },
     });
 
     this.addProp({
       type: "media",
       key: "popupRightIcon",
-      displayer: "Popup Right Icon",
+      displayer: "Right Icon",
       value: { type: "icon", name: "IoMdArrowDropright" },
+      additionalParams: { availableTypes: ["image", "icon"] },
     });
 
     this.addProp({
       type: "media",
       key: "popupCloseIcon",
-      displayer: "Popup Close Icon",
+      displayer: "Close Icon",
       value: { type: "icon", name: "MdClose" },
+      additionalParams: { availableTypes: ["image", "icon"] },
     });
 
 
@@ -331,47 +327,31 @@ class ImageGallery11 extends BaseImageGallery {
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
     const hasSubtitle = this.castToString(subtitle);
-    const rawBackground = this.getPropValue("background") as TypeMediaInputValue | string | undefined;
-    const backgroundMedia: TypeMediaInputValue | undefined =
-      typeof rawBackground === "string"
-        ? { type: "image", url: rawBackground }
-        : rawBackground;
-    const backgroundImage =
-      typeof backgroundMedia === "object" && backgroundMedia?.type === "image"
-        ? backgroundMedia.url
-        : typeof rawBackground === "string"
-        ? rawBackground
-        : "";
+    const backgroundMedia = this.getPropValue("background") as TypeMediaInputValue | undefined;
+    const isBackgroundImage = !!backgroundMedia && backgroundMedia.type === "image";
+    const backgroundImage = isBackgroundImage ? backgroundMedia.url || "" : "";
     const hasBackgroundMedia = !!backgroundMedia;
-    const showOverlay = this.getPropValue("overlay") && hasBackgroundMedia;
+    const showOverlay = this.getPropValue("backgroundOverlay") && hasBackgroundMedia;
     const subtitleType = Base.getSectionSubTitleType();
     const baseSubtitleClass = this.decorateCSS("subtitle");
-    const subtitleWithBgClass = hasBackgroundMedia
-      ? `${baseSubtitleClass} ${this.decorateCSS("subtitle-with-bg")}`
-      : baseSubtitleClass;
-    const subtitleClasses =
-      hasBackgroundMedia && subtitleType === "badge"
-        ? `${subtitleWithBgClass} ${this.decorateCSS("subtitle-transparent")}`
-        : subtitleWithBgClass;
-    const cardOverlayEnabled = !!this.getPropValue("cardOverlay");
-
+    const subtitleClassList = [baseSubtitleClass];
+    if (hasBackgroundMedia) {
+      subtitleClassList.push(this.decorateCSS("subtitle-with-bg"));
+      if (subtitleType === "badge") {
+        subtitleClassList.push(this.decorateCSS("subtitle-transparent"));
+      }
+    }
+    const subtitleClasses = subtitleClassList.join(" ");
     const headingClasses = hasBackgroundMedia
       ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
       : this.decorateCSS("heading");
-    const textWrapperClass = this.decorateCSS("text-wrapper");
-    const containerStyle: Record<string, string> = {};
-    if (backgroundImage) {
-      containerStyle.backgroundImage = `url(${backgroundImage})`;
-    }
-    if (cardOverlayEnabled) {
-      containerStyle["--image-overlay-color"] = "rgba(0, 0, 0, 0.35)";
-    }
     return (
       <Base.Container
         isFull
-        className={this.decorateCSS("container")}
-        {...(Object.keys(containerStyle).length > 0 && { style: containerStyle })}
-        data-overlay={showOverlay}
+        className={`${this.decorateCSS("container")} ${
+          showOverlay ? this.decorateCSS("overlay-active") : ""
+        }`}
+        style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
       >
         {backgroundMedia && backgroundMedia.type === "video" && (
           <div className={this.decorateCSS("background-media")}>
@@ -380,7 +360,7 @@ class ImageGallery11 extends BaseImageGallery {
         )}
         <div className={this.decorateCSS("content")}>
           {(hasSubtitle || hasTitle || hasDescription) && (
-            <div className={textWrapperClass}>
+            <div className={this.decorateCSS("text-wrapper")}>
               <div className={headingClasses}>
                 {hasSubtitle && (
                   <Base.SectionSubTitle className={subtitleClasses}>
@@ -414,8 +394,8 @@ class ImageGallery11 extends BaseImageGallery {
                   duplicatedImages = [...duplicatedImages, ...row.images];
                 }
 
-                const totalDuration = 90000;
-                const slideDuration = 2000;
+                const totalDuration = 420000;
+                const slideDuration = 12000;
                 const autoplaySpeed = 0;
                 const slidesToShow = row.images.length;
                 const sliderKey = `slider-${rowIndex}-${slidesToShow}-${isRightToLeft ? "rtl" : "ltr"}`;
@@ -423,46 +403,45 @@ class ImageGallery11 extends BaseImageGallery {
                   ? `${this.decorateCSS("gallery-row")} ${this.decorateCSS("gallery-row-reverse")}`
                   : this.decorateCSS("gallery-row");
 
+                const rowWrapperClass = `${rowClassName} ${this.decorateCSS("slider-wrapper")}`;
                 return (
-                  <div className={rowClassName} key={`row-${rowIndex}`}>
-                    <div
-                      className={this.decorateCSS("slider-wrapper")}
-                      style={{ ["--track-duration" as any]: `${totalDuration}ms` }}
+                  <div
+                    className={rowWrapperClass}
+                    key={`row-${rowIndex}`}
+                    style={{ ["--track-duration" as any]: `${totalDuration}ms` }}
+                  >
+                    <ComposerSlider
+                      ref={(s: any) => (this.sliderRefs[rowIndex] = s)}
+                      {...baseSettings}
+                      speed={slideDuration}
+                      autoplaySpeed={autoplaySpeed}
+                      slidesToShow={Math.max(1, slidesToShow)}
+                      rtl={false}
+                      className={this.decorateCSS("slider")}
+                      key={sliderKey}
                     >
-                      <ComposerSlider
-                        ref={(s: any) => (this.sliderRefs[rowIndex] = s)}
-                        {...baseSettings}
-                        speed={slideDuration}
-                        autoplaySpeed={autoplaySpeed}
-                        slidesToShow={Math.max(1, slidesToShow)}
-                        rtl={false}
-                        className={this.decorateCSS("slider")}
-                        key={sliderKey}
-                      >
-                        {(isRightToLeft ? [...duplicatedImages].reverse() : duplicatedImages).map((imageItem, imageIndex) => {
-                          const originalIndex = (() => {
-                            const foundIndex = row.images.indexOf(imageItem);
-                            return foundIndex >= 0 ? foundIndex : imageIndex % row.images.length;
-                          })();
-                          const mediaValue = row.images[originalIndex]?.media;
-                          if (!mediaValue) {
-                            return null;
-                          }
-                          return (
-                            <div className={this.decorateCSS("image-card")} key={`row-${rowIndex}-img-${imageIndex}`}>
-                              <Base.Button
-                                buttonType="Link"
-                                className={this.decorateCSS("image-button")}
-                                onClick={() => handleOpenPopup(mediaValue, rowIndex, originalIndex)}
-                              >
-                                <Base.Media value={mediaValue} className={this.decorateCSS("image-media")} />
-                                {cardOverlayEnabled && <span className={this.decorateCSS("card-overlay")} />}
-                              </Base.Button>
-                            </div>
-                          );
-                        })}
-                      </ComposerSlider>
-                    </div>
+                      {(isRightToLeft ? [...duplicatedImages].reverse() : duplicatedImages).map((imageItem, imageIndex) => {
+                        const originalIndex = (() => {
+                          const foundIndex = row.images.indexOf(imageItem);
+                          return foundIndex >= 0 ? foundIndex : imageIndex % row.images.length;
+                        })();
+                        const mediaValue = row.images[originalIndex]?.media;
+                        if (!mediaValue) {
+                          return null;
+                        }
+                        return (
+                          <div className={this.decorateCSS("image-card")} key={`row-${rowIndex}-img-${imageIndex}`}>
+                            <Base.Button
+                              buttonType="Link"
+                              className={this.decorateCSS("image-button")}
+                              onClick={() => handleOpenPopup(mediaValue, rowIndex, originalIndex)}
+                            >
+                              <Base.Media value={mediaValue} className={this.decorateCSS("image-media")} />
+                            </Base.Button>
+                          </div>
+                        );
+                      })}
+                    </ComposerSlider>
                   </div>
                 );
               })}
@@ -473,7 +452,7 @@ class ImageGallery11 extends BaseImageGallery {
             <Base.Overlay isVisible className={this.decorateCSS("overlay")} onClick={handleClosePopup}>
               <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                 <div className={this.decorateCSS("modal-content")}>
-                  <button className={this.decorateCSS("close")} onClick={handleClosePopup} aria-label="Close popup">
+                  <button className={this.decorateCSS("close")} onClick={handleClosePopup}>
                     <Base.Media value={this.getPropValue("popupCloseIcon")} className={this.decorateCSS("icon")} />
                   </button>
 
@@ -492,7 +471,6 @@ class ImageGallery11 extends BaseImageGallery {
                   e.stopPropagation();
                   handlePopupNavigate("prev");
                 }}
-                aria-label="Previous image"
               >
                 <Base.Media value={this.getPropValue("popupLeftIcon")} className={this.decorateCSS("icon")} />
               </button>
@@ -503,7 +481,6 @@ class ImageGallery11 extends BaseImageGallery {
                   e.stopPropagation();
                   handlePopupNavigate("next");
                 }}
-                aria-label="Next image"
               >
                 <Base.Media value={this.getPropValue("popupRightIcon")} className={this.decorateCSS("icon")} />
               </button>
