@@ -4,30 +4,7 @@ import styles from "./slider12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import type { Settings, ResponsiveObject } from "react-slick";
-
-type VideoPlayerProps = {
-  src: string;
-  className?: string;
-};
-
-function VideoPlayer({ src, className }: VideoPlayerProps) {
-  return (
-    <Base.Media
-      className={className}
-      value={{
-        type: "video",
-        url: src,
-        settings: {
-          autoplay: true,
-          muted: true,
-          loop: true,
-          controls: false,
-        },
-      }}
-    />
-  );
-}
+import type { Settings } from "react-slick";
 
 type Card = {
   image?: string;
@@ -38,7 +15,6 @@ type Card = {
 };
 
 class Slider12 extends BaseSlider {
-  private responsive!: ResponsiveObject[];
   private settings!: Settings;
   private sliderRef = React.createRef<any>();
   private containerRef = React.createRef<HTMLDivElement>();
@@ -59,13 +35,6 @@ class Slider12 extends BaseSlider {
       displayer: "Description",
       value:
         "Supercharge your productivity with client management and collaboration tools that let you do it all from a single dashboard.",
-    });
-
-    this.addProp({
-      type: "image",
-      key: "background-image",
-      displayer: "Background Image",
-      value: "",
     });
 
     this.addProp({
@@ -143,7 +112,7 @@ class Slider12 extends BaseSlider {
             {
               type: "media",
               key: "media",
-              displayer: "Video / Image",
+              displayer: "Media",
               value: {
                 type: "video",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725323596a1002b27e599?alt=media",
@@ -294,23 +263,25 @@ class Slider12 extends BaseSlider {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "previousArrow",
-      displayer: "Previous Arrow Icon",
-      value: "BsArrowLeftCircle",
+      displayer: "Previous Arrow",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: {
+        type: "icon",
+        name: "BsArrowLeftCircle",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextArrow",
-      displayer: "Next Arrow Icon",
-      value: "BsArrowRightCircle",
+      displayer: "Next Arrow",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: {
+        type: "icon",
+        name: "BsArrowRightCircle",
+      },
     });
-
-    this.responsive = [
-      { breakpoint: 1280, settings: { slidesToShow: 3, dots: false } },
-      { breakpoint: 1024, settings: { slidesToShow: 2, dots: false } },
-      { breakpoint: 640, settings: { slidesToShow: 1, dots: false } },
-    ];
 
     this.settings = {
       infinite: false,
@@ -318,8 +289,6 @@ class Slider12 extends BaseSlider {
       slidesToScroll: 1,
       arrows: false,
       speed: 620,
-      cssEase: "cubic-bezier(.22,.61,.36,1)",
-      edgeFriction: 0.18,
       swipeToSlide: true,
       touchThreshold: 12,
       waitForAnimate: false,
@@ -328,7 +297,11 @@ class Slider12 extends BaseSlider {
       swipe: true,
       autoplay: false,
       variableWidth: true,
-      responsive: this.responsive,
+      responsive: [
+        { breakpoint: 1280, settings: { slidesToShow: 3, dots: false } },
+        { breakpoint: 1024, settings: { slidesToShow: 2, dots: false } },
+        { breakpoint: 640, settings: { slidesToShow: 1, dots: false } },
+      ],
     };
   }
 
@@ -346,16 +319,12 @@ class Slider12 extends BaseSlider {
     const hasTitle = this.castToString(title);
     const hasDesc = this.castToString(description);
     const showSlider = itemCount > 0;
-    const bgUrl = this.getPropValue("background-image")?.url || "";
     const showHeader = hasTitle || hasDesc;
     const showArrows = itemCount > 1 && (prevMedia || nextMedia);
 
     return (
       <div ref={this.containerRef} className={this.decorateCSS("container")}>
-        <Base.Container
-          className={this.decorateCSS("upper-container")}
-          {...(bgUrl ? { style: { backgroundImage: `url(${bgUrl})` } } : {})}
-        >
+        <Base.Container className={this.decorateCSS("upper-container")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {showHeader && (
               <Base.VerticalContent
@@ -381,22 +350,32 @@ class Slider12 extends BaseSlider {
                     {showArrows && (
                       <div className={this.decorateCSS("arrows-wrap")}>
                         <div className={this.decorateCSS("arrows")}>
-                          <Base.Icon
-                            name={prevMedia}
-                            propsIcon={{
-                              className: this.decorateCSS("prevArrow"),
-                              onClick: () =>
-                                this.sliderRef.current?.slickPrev(),
-                            }}
-                          />
-                          <Base.Icon
-                            name={nextMedia}
-                            propsIcon={{
-                              className: this.decorateCSS("nextArrow"),
-                              onClick: () =>
-                                this.sliderRef.current?.slickNext(),
-                            }}
-                          />
+                          {prevMedia && (
+                            <Base.Button
+                              type="button"
+                              buttonType="Link"
+                              className={this.decorateCSS("prevArrow")}
+                              onClick={() => this.sliderRef.current?.slickPrev()}
+                            >
+                              <Base.Media
+                                value={prevMedia}
+                                className={this.decorateCSS("arrow-media")}
+                              />
+                            </Base.Button>
+                          )}
+                          {nextMedia && (
+                            <Base.Button
+                              type="button"
+                              buttonType="Link"
+                              className={this.decorateCSS("nextArrow")}
+                              onClick={() => this.sliderRef.current?.slickNext()}
+                            >
+                              <Base.Media
+                                value={nextMedia}
+                                className={this.decorateCSS("arrow-media")}
+                              />
+                            </Base.Button>
+                          )}
                         </div>
                       </div>
                     )}
@@ -413,7 +392,6 @@ class Slider12 extends BaseSlider {
               <div className={this.decorateCSS("slider-parent")}>
                 <ComposerSlider ref={this.sliderRef} {...this.settings}>
                   {items.map((item, i) => {
-                    const isWideDesktop = i % 3 === 2;
                     const media = item.media;
                     const mediaType =
                       media?.type ?? (item.image ? "image" : undefined);
@@ -436,9 +414,15 @@ class Slider12 extends BaseSlider {
                         {hasMedia && (
                           <div className={this.decorateCSS("media")}>
                             {mediaType === "video" ? (
-                              <VideoPlayer
-                                src={url}
+                              <video
+                                key={`${url}-${i}`}
+                                autoPlay={true}
+                                muted={false}
+                                playsInline
+                                loop
+                                controls={false}
                                 className={this.decorateCSS("video")}
+                                src={url}
                               />
                             ) : (
                               <Base.Media
@@ -469,22 +453,18 @@ class Slider12 extends BaseSlider {
                       </div>
                     );
 
-                    const slideClasses = [
-                      this.decorateCSS("slide"),
-                      isWideDesktop && this.decorateCSS("wide"),
-                      i === 0 && this.decorateCSS("first-slide"),
-                    ]
-                      .filter(Boolean)
-                      .join(" ");
+                    const slideClasses = [this.decorateCSS("slide")];
+                    if (i % 3 === 2) {
+                      slideClasses.push(this.decorateCSS("wide"));
+                    }
+                    if (i === 0) {
+                      slideClasses.push(this.decorateCSS("first-slide"));
+                    }
 
-                    return rawPath ? (
+                    return (
                       <ComposerLink key={i} path={rawPath} isFullWidth={false}>
-                        <div className={slideClasses}>{CardInner}</div>
+                        <div className={slideClasses.join(" ")}>{CardInner}</div>
                       </ComposerLink>
-                    ) : (
-                      <div key={i} className={slideClasses}>
-                        {CardInner}
-                      </div>
                     );
                   })}
                 </ComposerSlider>
