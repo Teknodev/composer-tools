@@ -127,8 +127,6 @@ import FeatureComponent19 from "./feature/feature19/feature19";
 import FeatureComponent20 from "./feature/feature20/feature20";
 import FeatureComponent21 from "./feature/feature21/feature21";
 import FeatureComponent22 from "./feature/feature22/feature22";
-import FeatureComponent23 from "./feature/feature23/feature23";
-import FeatureComponent24 from "./feature/feature24/feature24";
 import FeatureComponent25 from "./feature/feature25/feature25";
 import FeatureComponent26 from "./feature/feature26/feature26";
 import FeatureComponent27 from "./feature/feature27/feature27";
@@ -273,6 +271,7 @@ import ComingSoon2 from "./coming-soon/coming-soon2/coming-soon2";
 import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
 import Blog1 from "./blog/blog1/blog1";
 import Blog2 from "./blog/blog2/blog2";
+import Blog3 from "./blog/blog3/blog3";
 import About1 from "./about/about1/about1";
 import About2 from "./about/about2/about2";
 import About3 from "./about/about3/about3";
@@ -281,6 +280,7 @@ import About5 from "./about/about5/about5";
 import About6 from "./about/about6/about6";
 import About7 from "./about/about7/about7";
 import About8 from "./about/about8/about8";
+import About9 from "./about/about9/about9";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
@@ -323,6 +323,7 @@ function Registerables(composer: ComponentsRegistery) {
     ListComponent12,
     Blog1,
     Blog2,
+    Blog3,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -448,8 +449,6 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent20,
     FeatureComponent21,
     FeatureComponent22,
-    FeatureComponent23,
-    FeatureComponent24,
     FeatureComponent25,
     FeatureComponent26,
     FeatureComponent27,
@@ -570,6 +569,7 @@ function Registerables(composer: ComponentsRegistery) {
     About6,
     About7,
     About8,
+    About9,
     Portfolio1,
     Portfolio2,
     Portfolio3,
