@@ -19,7 +19,7 @@ class Feature28Component extends BaseFeature {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "About us", "", "", null, "Primary"),
-        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaArrowRight", null, "White"),
+        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaArrowRight", null, "Bare"),
       ],
     });
 
@@ -98,14 +98,8 @@ class Feature28Component extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isContentExist && (
             <Base.VerticalContent
-              className={`
-                ${this.decorateCSS("content")}
-                ${
-                  effectiveAlignment === "center"
-                    ? this.decorateCSS("alignment-center")
-                    : this.decorateCSS("alignment-left")
-                }
-              `}
+              className={this.decorateCSS("content")}
+              data-alignment={effectiveAlignment}
             >
               {isSubtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>

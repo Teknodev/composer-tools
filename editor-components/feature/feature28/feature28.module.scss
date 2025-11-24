@@ -35,6 +35,20 @@
         background: var(--color-white) !important;
       }
     }
+
+    .button {
+      border-color: var(--color-white) !important;
+      color: var(--color-white) !important;
+
+      .button-text {
+        color: var(--color-white) !important;
+      }
+
+      .button-icon {
+        color: var(--color-white) !important;
+        fill: var(--color-white) !important;
+      }
+    }
   }
 
   .max-content {
@@ -73,7 +87,7 @@
     flex-direction: column;
     justify-content: center;
 
-    &.alignment-left {
+    &[data-alignment="left"] {
       align-items: flex-start;
       text-align: left;
 
@@ -82,7 +96,7 @@
       }
     }
 
-    &.alignment-center {
+    &[data-alignment="center"] {
       align-items: center;
       text-align: center;
 
