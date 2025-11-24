@@ -5,8 +5,6 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class IntroSection8 extends BaseIntroSection {
-  videoRef = React.createRef<HTMLVideoElement>();
-
   constructor(props?: any) {
     super(props, styles);
 
@@ -28,7 +26,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.",
     });
 
     this.addProp({
@@ -159,14 +157,17 @@ class IntroSection8 extends BaseIntroSection {
                     )}
                   </div>
                 ) : (
-                  <video
-                    ref={this.videoRef}
-                    src={videoUrl}
+                  <Base.Media
+                    value={{
+                      type: "video",
+                      url: videoUrl,
+                      settings: {
+                        autoplay: true,
+                        controls: true
+                      }
+                    }}
                     className={this.decorateCSS("video")}
-                    controls={true}
-                    autoPlay={true}
-                    onPause={this.handleVideoPause}
-                    onEnded={this.handleVideoPause}
+                    {...{ onPause: this.handleVideoPause, onEnded: this.handleVideoPause } as any}
                   />
                 )}
               </div>
