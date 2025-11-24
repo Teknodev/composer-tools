@@ -26,7 +26,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.",
+      value: "",
     });
 
     this.addProp({
@@ -35,7 +35,7 @@ class IntroSection8 extends BaseIntroSection {
       displayer: "Video Source",
       value: {
         type: "video",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692433043596a1002b2dd906?alt=media",
+        url: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       } as TypeMediaInputValue,
       additionalParams: {
         availableTypes: ["video"],
@@ -167,7 +167,7 @@ class IntroSection8 extends BaseIntroSection {
                       }
                     }}
                     className={this.decorateCSS("video")}
-                    {...{ onPause: this.handleVideoPause, onEnded: this.handleVideoPause } as any}
+                    {...{ onEnded: this.handleVideoPause } as any}
                   />
                 )}
               </div>
