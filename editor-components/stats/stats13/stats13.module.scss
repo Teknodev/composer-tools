@@ -41,20 +41,27 @@
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-sm);
-                font-size: 2rem;
                 color: var(--composer-primary-color);
                 justify-content: flex-start !important;
                 margin: 0;
 
                 .rating-content {
+                    display: flex;
+                    align-items: center;
+
                     .icon {
-                        content: "";
+                        width: calc(var(--gap-lg) * 3);
+                        height: calc(var(--gap-lg) * 3);
+                        font-size: calc(var(--gap-lg) * 3);
+                        line-height: calc(var(--gap-lg) * 3);
+                        object-fit: contain;
+                        display: block;
                     }
                 }
 
                 .rating-number {
-                    text-align: left;
-                    content: "";
+                    text-align: left !important;
+                    font-size: 2rem;
                 }
             }
 
@@ -74,13 +81,13 @@
 
         .title {
             overflow-wrap: anywhere;
-            text-align: left;
+            text-align: left !important;
             width: 100%;
         }
 
         .description {
             overflow-wrap: anywhere;
-            text-align: left;
+            text-align: left !important;
             width: 100%;
         }
 
@@ -135,11 +142,32 @@
         flex-shrink: 0;
         display: flex;
 
-        .image {
+        .image-wrapper {
+            position: relative;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block;
+            overflow: hidden;
+            border-top-left-radius: var(--border-radius-md);
+            border-bottom-left-radius: var(--border-radius-md);
+
+            .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--color-black);
+                opacity: 0.5;
+                z-index: 2;
+                pointer-events: none;
+            }
         }
 
         &.full-width {
@@ -170,6 +198,10 @@
 
             .right-content {
                 width: 100%;
+
+                .image-wrapper {
+                    border-radius: 0;
+                }
             }
         }
     }

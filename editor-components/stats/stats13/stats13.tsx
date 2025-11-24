@@ -22,6 +22,13 @@ class Stats13 extends BaseStats {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "enableOverlay",
+            displayer: "Enable Image Overlay",
+            value: false,
+        });
+
+        this.addProp({
             type: "string",
             key: "subTitle",
             displayer: "Subtitle",
@@ -51,8 +58,15 @@ class Stats13 extends BaseStats {
 
         this.addProp({
             type: "boolean",
-            key: "enableAnimation",
-            displayer: "Animation",
+            key: "enableTextAnimation",
+            displayer: "Text Animation",
+            value: true,
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "enableStatAnimation",
+            displayer: "Stat Animation",
             value: true,
         });
 
@@ -63,13 +77,16 @@ class Stats13 extends BaseStats {
             value: [
                 {
                     type: "object",
-                    key: "star1",
-                    displayer: "star1",
+                    key: "Icon",
+                    displayer: "Icon",
                     value: [
                         {
                             type: "media",
                             key: "icon",
-                            displayer: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"]
+                            },
                             value: {
                                 type: "icon",
                                 name: "FaStar"
@@ -79,13 +96,16 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "star2",
-                    displayer: "star2",
+                    key: "Icon",
+                    displayer: "Icon",
                     value: [
                         {
                             type: "media",
                             key: "icon",
-                            displayer: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"]
+                            },
                             value: {
                                 type: "icon",
                                 name: "FaStar"
@@ -95,13 +115,16 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "star3",
-                    displayer: "star3",
+                    key: "Icon",
+                    displayer: "Icon",
                     value: [
                         {
                             type: "media",
                             key: "icon",
-                            displayer: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"]
+                            },
                             value: {
                                 type: "icon",
                                 name: "FaStar"
@@ -111,13 +134,16 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "star4",
-                    displayer: "star4",
+                    key: "Icon",
+                    displayer: "Icon",
                     value: [
                         {
                             type: "media",
                             key: "icon",
-                            displayer: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"]
+                            },
                             value: {
                                 type: "icon",
                                 name: "FaStar"
@@ -127,13 +153,16 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "star5",
-                    displayer: "star5",
+                    key: "Icon",
+                    displayer: "Icon",
                     value: [
                         {
                             type: "media",
                             key: "icon",
-                            displayer: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"]
+                            },
                             value: {
                                 type: "icon",
                                 name: "FaStar"
@@ -162,7 +191,7 @@ class Stats13 extends BaseStats {
                 {
                     type: "object",
                     key: "stat1",
-                    displayer: "Stat Item 1",
+                    displayer: "Stat Item",
                     value: [
                         {
                             type: "string",
@@ -187,7 +216,7 @@ class Stats13 extends BaseStats {
                 {
                     type: "object",
                     key: "stat2",
-                    displayer: "Stat Item 2",
+                    displayer: "Stat Item",
                     value: [
                         {
                             type: "string",
@@ -291,9 +320,11 @@ class Stats13 extends BaseStats {
         const titleProp = this.getPropValue("title");
         const description = this.castToString(this.getPropValue("description")) as string;
         const titleString = this.castToString(titleProp) as string;
-        const enableAnimation = this.getPropValue("enableAnimation");
+        const enableTextAnimation = this.getPropValue("enableTextAnimation");
+        const enableStatAnimation = this.getPropValue("enableStatAnimation");
         const statsItems = this.getPropValue("stats-items");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const enableOverlay = this.getPropValue("enableOverlay");
         const hasContent = rating.length > 0 || !!titleString || buttons.length > 0 || statsItems.length > 0 || subTitle.length > 0 || description.length > 0;
 
         return (
@@ -315,7 +346,7 @@ class Stats13 extends BaseStats {
                                 <Base.SectionDescription className={this.decorateCSS("rating-number")}>{ratingNumber}</Base.SectionDescription>
                             </Base.Row>
                         )}
-                        {subTitle && subTitle.length > 0 && (
+                        {subTitle && (
                             <Base.Row className={this.decorateCSS("sub-title-container")}>
                                 <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                                     {this.getPropValue("subTitle")}
@@ -327,7 +358,7 @@ class Stats13 extends BaseStats {
                                 <this.TypewriterText
                                     content={titleProp}
                                     text={titleString}
-                                    enableAnimation={enableAnimation}
+                                    enableAnimation={enableTextAnimation}
                                 />
                             </Base.SectionTitle>
                         )}
@@ -371,13 +402,11 @@ class Stats13 extends BaseStats {
                                         return (
                                             <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
                                                 <span className={this.decorateCSS("stat-number")}>
-
-                                                    {enableAnimation ? (
+                                                    {enableStatAnimation ? (
                                                         <this.AnimatedNumber targetValue={number} duration={3000} />
                                                     ) : (
                                                         number
                                                     )}
-
                                                     <span>{symbol}</span>
                                                 </span>
                                                 <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
@@ -390,10 +419,15 @@ class Stats13 extends BaseStats {
                     </Base.MaxContent>
                     {isImageExist && (
                         <div className={`${this.decorateCSS("right-content")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
-                            <Base.Media
-                                value={image}
-                                className={this.decorateCSS("image")}
-                            />
+                            <div className={this.decorateCSS("image-wrapper")}>
+                                <Base.Media
+                                    value={image}
+                                    className={this.decorateCSS("image")}
+                                />
+                                {enableOverlay && (
+                                    <div className={this.decorateCSS("overlay")}></div>
+                                )}
+                            </div>
                         </div>
                     )}
                 </div>
