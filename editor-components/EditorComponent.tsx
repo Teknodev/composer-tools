@@ -312,7 +312,7 @@ type AvailablePropTypes =
   | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
   | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
   | { type: "tag"; value: string[]}
-  | { type: "phone"; value: string, additionalParams?: {  countriesEnabled?: boolean; } }
+  | { type: "phone"; value: string, additionalParams?: {  countriesEnabled?: boolean; phonePattern?: "US" | "US_PARENTHESES" | "DOTTED" | "SPACED" } }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
