@@ -1,0 +1,205 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  position: relative;
+  width: 100%;
+  background-color: transparent;
+  padding: 0;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+
+  .background-shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-primary-color);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 100px), 50% 100%, 0 calc(100% - 100px));
+    z-index: 0;
+
+    @container (max-width: #{$composer-tablet-width}) {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 50% 100%, 0 calc(100% - 60px));
+    }
+  }
+
+  .max-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+    padding: var(--composer-gap-xl) var(--composer-gap-md);
+    display: flex;
+    justify-content: center !important;
+  }
+
+  .vertical-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: var(--composer-gap-md);
+  }
+
+  .text-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: 800px;
+    margin-bottom: var(--composer-gap-xs);
+    text-align: center !important;
+
+    .subtitle {
+      color: var(--color-white) !important;
+      letter-spacing: 2px;
+      opacity: 0.9;
+      display: flex !important;
+      justify-content: center !important;
+      text-align: center !important;
+      width: 100% !important;
+      border: none !important;
+      transform: none !important;
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+
+      &::before,
+      &::after {
+        display: none !important;
+        content: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        border: none !important;
+      }
+    }
+
+    .title {
+      color: var(--color-white) !important;
+      font-size: calc(3 * var(--composer-font-size-md));
+      line-height: 1.2;
+      text-align: center !important;
+      margin: 0;
+      margin-bottom: var(--composer-gap-md);
+      width: 100% !important;
+
+      @container (max-width: #{$composer-tablet-width}) {
+        font-size: calc(2.2 * var(--composer-font-size-md));
+      }
+    }
+
+    .description {
+      color: var(--color-white) !important;
+      line-height: 1.6;
+      text-align: center !important;
+      max-width: 600px;
+      margin: 0;
+      width: 100% !important;
+      white-space: normal !important;
+      overflow-wrap: break-word !important;
+      word-wrap: break-word !important;
+    }
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: var(--composer-border-radius-lg);
+    overflow: hidden;
+    background-color: #000;
+    margin-top: 0;
+
+    .video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .thumbnail-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center !important;
+      align-items: center !important;
+      cursor: pointer;
+
+      .thumbnail-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 2;
+        transition: background 0.3s ease;
+      }
+    }
+
+    .play-button {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: var(--composer-primary-color);
+      border: 5px solid var(--color-white);
+      display: flex;
+      justify-content: center !important;
+      align-items: center !important;
+      cursor: pointer;
+      z-index: 3;
+      transition: transform 0.3s ease;
+      padding: 0;
+
+      .icon {
+        width: 45px;
+        height: 45px;
+        fill: var(--color-white);
+        margin-left: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
+
+        :global(svg) {
+          width: 100%;
+          height: 100%;
+          fill: currentColor;
+        }
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      @container (max-width: #{$composer-tablet-width}) {
+        width: 70px;
+        height: 70px;
+
+        .icon {
+          width: 32px;
+          height: 32px;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
