@@ -32,7 +32,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "video",
-      displayer: "Video Source",
+      displayer: "Video",
       value: {
         type: "video",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692455df3596a1002b2e3021?alt=media",
@@ -45,7 +45,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "thumbnail",
-      displayer: "Video Thumbnail",
+      displayer: "Thumbnail",
       value: {
         type: "image",
         url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -57,7 +57,7 @@ class IntroSection8 extends BaseIntroSection {
 
     const playBtn = INPUTS.BUTTON(
       "playButton",
-      "Play Button",
+      "Button",
       "",
       "",
       "FaPlay",
