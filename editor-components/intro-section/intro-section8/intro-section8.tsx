@@ -35,7 +35,7 @@ class IntroSection8 extends BaseIntroSection {
       displayer: "Video Source",
       value: {
         type: "video",
-        url: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692455df3596a1002b2e3021?alt=media",
       } as TypeMediaInputValue,
       additionalParams: {
         availableTypes: ["video"],
