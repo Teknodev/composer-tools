@@ -82,18 +82,35 @@ class IntroSection4 extends BaseIntroSection {
         const title = this.castToString(this.getPropValue("title")) || "";
         const description = this.castToString(this.getPropValue("description")) || "";
         const label = this.castToString(this.getPropValue("label")) || "";
+        const hasMedia = !!coverImage?.url;
+        const isVideo = coverImage?.type === "video";
 
         return (
             <Base.Container
-                className={`${this.decorateCSS("container")} ${coverImage ? this.decorateCSS("has-bg-image") : ""
-                    } ${coverImage && this.getPropValue("overlay")
-                        ? this.decorateCSS("overlay")
-                        : ""
-                    }`}
-                style={{
-                    backgroundImage: coverImage ? `url(${coverImage.url})` : undefined,
-                }}
+                className={`${this.decorateCSS("container")} 
+                ${hasMedia ? this.decorateCSS("has-bg-image") : this.decorateCSS("no-bg")} 
+                ${hasMedia && this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
             >
+                {hasMedia && (
+                    <div className={this.decorateCSS("bg-media-container")}>
+                        {isVideo ? (
+                            <video
+                                src={coverImage.url}
+                                className={this.decorateCSS("bg-media")}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                            />
+                        ) : (
+                            <img
+                                src={coverImage.url}
+                                alt="background"
+                                className={this.decorateCSS("bg-media")}
+                            />
+                        )}
+                    </div>
+                )}
                 <Base.MaxContent className={this.decorateCSS("content")}>
                     <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                         {subtitle && (
@@ -134,7 +151,6 @@ class IntroSection4 extends BaseIntroSection {
                                 )}
                             </Base.Row>
                         )}
-
                     </Base.VerticalContent>
                 </Base.MaxContent>
             </Base.Container>
