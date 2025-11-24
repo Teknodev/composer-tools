@@ -80,6 +80,13 @@ class ImageGallery11 extends BaseImageGallery {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "imageOverlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "array",
       key: "galleryRows",
       displayer: "Gallery Rows",
@@ -345,12 +352,11 @@ class ImageGallery11 extends BaseImageGallery {
     const headingClasses = hasBackgroundMedia
       ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
       : this.decorateCSS("heading");
+    const showImageOverlay = !!this.getPropValue("imageOverlay");
     return (
       <Base.Container
         isFull
-        className={`${this.decorateCSS("container")} ${
-          showOverlay ? this.decorateCSS("overlay-active") : ""
-        }`}
+        className={this.decorateCSS("container")}
         style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
       >
         {backgroundMedia && backgroundMedia.type === "video" && (
@@ -358,6 +364,7 @@ class ImageGallery11 extends BaseImageGallery {
             <Base.Media value={backgroundMedia} className={this.decorateCSS("background-media-asset")} />
           </div>
         )}
+        {showOverlay && <div className={this.decorateCSS("background-overlay")} />}
         <div className={this.decorateCSS("content")}>
           {(hasSubtitle || hasTitle || hasDescription) && (
             <div className={this.decorateCSS("text-wrapper")}>
@@ -436,7 +443,10 @@ class ImageGallery11 extends BaseImageGallery {
                               className={this.decorateCSS("image-button")}
                               onClick={() => handleOpenPopup(mediaValue, rowIndex, originalIndex)}
                             >
-                              <Base.Media value={mediaValue} className={this.decorateCSS("image-media")} />
+                          <div className={this.decorateCSS("image-media-wrapper")}>
+                            <Base.Media value={mediaValue} className={this.decorateCSS("image-media")} />
+                            {showImageOverlay && <div className={this.decorateCSS("image-overlay")} />}
+                          </div>
                             </Base.Button>
                           </div>
                         );
