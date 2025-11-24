@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseIntroSection, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseIntroSection, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./intro-section3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -49,12 +49,19 @@ class IntroSection3 extends BaseIntroSection {
       key: "image",
       displayer: "Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691c5ca53596a1002b2a1afc?alt=media",
-      },
+      } as TypeMediaInputValue,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Image Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -79,7 +86,9 @@ class IntroSection3 extends BaseIntroSection {
     const subtitle1 = this.getPropValue("subtitle1");
     const subtitle2 = this.getPropValue("subtitle2");
     
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("image") as TypeMediaInputValue;
+    const imageUrl = (image as any)?.url;
+    const overlay = this.getPropValue("overlay");
 
     const buttonsProp = this.getProp("buttons");
     const buttonsList = (buttonsProp?.value || []) as TypeUsableComponentProps[];
@@ -160,11 +169,10 @@ class IntroSection3 extends BaseIntroSection {
               )}
             </div>
 
-            {image?.url && (
-              <Base.Media
-                value={image}
-                className={this.decorateCSS("image")}
-              />
+            {imageUrl && (
+              <div className={`${this.decorateCSS("image")} ${overlay ? this.decorateCSS("overlay") : ""}`}>
+                <Base.Media value={image} />
+              </div>
             )}
 
           </Base.VerticalContent>
