@@ -4,10 +4,10 @@
   position: relative;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--composer-html-background) no-repeat center center;
 
   .background-image {
     position: absolute;
@@ -22,6 +22,8 @@
 
   &.image-active {
     min-height: 100vh;
+    padding: 0;
+    gap: 0;
 
     .subtitle {
       color: var(--color-white) !important;
@@ -39,14 +41,24 @@
       color: var(--color-white) !important;
     }
 
-    .indicator {
+    .buttons {
+      position: absolute;
+      bottom: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0;
+
       a {
         color: var(--color-white) !important;
       }
 
-      .btn {
+      .button {
         color: var(--color-white) !important;
         border-color: var(--color-white) !important;
+      }
+
+      &.has-animation {
+        animation: bounce 2s infinite;
       }
     }
   }
@@ -74,7 +86,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: var(--composer-gap-xl);
+    padding: var(--composer-gap-md);
     margin: 0 auto;
 
     .vertical-content {
@@ -96,17 +108,14 @@
     }
   }
 
-  .indicator {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
+  .buttons {
+    position: relative;
     z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .btn {
+    .button {
       transition: transform 0.3s ease;
       padding: 30px;
       font-size: 2rem;
@@ -139,6 +148,29 @@
   50%,
   80%,
   100% {
+    transform: translateX(0) translateY(0);
+  }
+
+  40% {
+    transform: translateX(0) translateY(-10px);
+  }
+
+  60% {
+    transform: translateX(0) translateY(-5px);
+  }
+}
+
+.container.image-active .buttons.has-animation {
+  animation: bounceAbsolute 2s infinite;
+}
+
+@keyframes bounceAbsolute {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
 
@@ -155,10 +187,10 @@
   .container {
     &.image-active {
       min-height: 80vh;
-    }
 
-    .indicator {
-      bottom: 120px;
+      .buttons {
+        bottom: 120px;
+      }
     }
   }
 }
@@ -167,10 +199,10 @@
   .container {
     &.image-active {
       min-height: 70vh;
-    }
 
-    .indicator {
-      bottom: 100px;
+      .buttons {
+        bottom: 100px;
+      }
     }
   }
 }

@@ -143,14 +143,14 @@ class IntroSection5 extends BaseIntroSection {
 
         {hasButtonData && (
           <div
-            className={`${this.decorateCSS("indicator")} ${
+            className={`${this.decorateCSS("buttons")} ${
               enableAnimation ? this.decorateCSS("has-animation") : ""
             }`}
           >
             <ComposerLink path={button.url}>
               <Base.Button
                 buttonType={button.type || "Link"}
-                className={this.decorateCSS("btn")}
+                className={this.decorateCSS("button")}
               >
                 {hasText && button.text}
                 {hasIcon && (
