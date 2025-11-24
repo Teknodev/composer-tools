@@ -165,17 +165,29 @@ class HeroSection38 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "previousArrow",
       displayer: "Previous Arrow",
-      value: "FiArrowLeft",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FiArrowLeft",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextArrow",
       displayer: "Next Arrow",
-      value: "FiArrowRight",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FiArrowRight",
+      },
     });
 
     this.addProp({
@@ -183,7 +195,7 @@ class HeroSection38 extends BaseHeroSection {
       key: "dotIcon",
       displayer: "Dots Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -374,7 +386,7 @@ class HeroSection38 extends BaseHeroSection {
                       onClick={this.handlePrevClick}
                     >
                       <Base.Media
-                        value={{ type: "icon", name: this.getPropValue("previousArrow") }}
+                        value={this.getPropValue("previousArrow")}
                         className={this.decorateCSS("arrow-icon")}
                       />
                     </Base.Button>
@@ -401,7 +413,7 @@ class HeroSection38 extends BaseHeroSection {
                       onClick={this.handleNextClick}
                     >
                       <Base.Media
-                        value={{ type: "icon", name: this.getPropValue("nextArrow") }}
+                        value={this.getPropValue("nextArrow")}
                         className={this.decorateCSS("arrow-icon")}
                       />
                     </Base.Button>
