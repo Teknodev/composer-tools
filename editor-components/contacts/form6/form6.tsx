@@ -511,7 +511,9 @@ class Form6 extends BaseContacts {
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
                       this.insertForm("Contact Me", formData);
-                      resetForm();
+                      resetForm({
+                        values: getInitialValue() 
+                      });
                     }}
                   >
                     {({ handleChange, values }) => (
