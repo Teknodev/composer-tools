@@ -38,6 +38,9 @@ class IntroSection5 extends BaseIntroSection {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
       } as TypeMediaInputValue,
+      additionalParams: {
+        availableTypes: ["image"],
+      },
     });
 
     this.addProp({
