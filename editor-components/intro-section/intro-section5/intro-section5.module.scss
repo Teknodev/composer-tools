@@ -25,10 +25,7 @@
 
     .subtitle {
       color: var(--color-white) !important;
-      background: transparent !important;
       border: none !important;
-      padding: 0 !important;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 
       &::before,
       &::after {
@@ -40,10 +37,9 @@
     .title,
     .description {
       color: var(--color-white) !important;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
-    .scroll-indicator {
+    .indicator {
       a {
         color: var(--color-white) !important;
       }
@@ -90,30 +86,17 @@
       align-items: center;
       justify-content: center;
 
-      .subtitle {
-        content: "";
-        text-align: center !important;
-        justify-content: center !important;
-        width: 100%;
-      }
-
-      .title {
-        content: "";
-        text-align: center !important;
-        justify-content: center !important;
-        width: 100%;
-      }
-
+      .subtitle,
+      .title,
       .description {
         content: "";
         text-align: center !important;
         justify-content: center !important;
-        width: 100%;
       }
     }
   }
 
-  .scroll-indicator {
+  .indicator {
     position: absolute;
     bottom: 150px;
     left: 50%;
@@ -174,7 +157,7 @@
       min-height: 80vh;
     }
 
-    .scroll-indicator {
+    .indicator {
       bottom: 120px;
     }
   }
@@ -186,7 +169,7 @@
       min-height: 70vh;
     }
 
-    .scroll-indicator {
+    .indicator {
       bottom: 100px;
     }
   }

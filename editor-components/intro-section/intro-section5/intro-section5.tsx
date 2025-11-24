@@ -47,7 +47,6 @@ class IntroSection5 extends BaseIntroSection {
       value: true,
     });
 
-    // Artık scrollButton değil, button
     const buttonProp = INPUTS.BUTTON(
       "button",
       "Button",
@@ -67,7 +66,6 @@ class IntroSection5 extends BaseIntroSection {
       } as TypeUsableComponentProps);
     }
 
-    // Artık scrollButtons değil, buttons
     this.addProp({
       type: "array",
       key: "buttons",
@@ -93,7 +91,6 @@ class IntroSection5 extends BaseIntroSection {
     const bgImage = this.getPropValue("backgroundImage") as TypeMediaInputValue;
     const hasOverlay = this.getPropValue("overlay");
 
-    // scrollButtons -> buttons
     const buttons = this.castToObject<any[]>("buttons");
     const button = buttons && buttons.length > 0 ? buttons[0] : null;
 
@@ -146,7 +143,7 @@ class IntroSection5 extends BaseIntroSection {
 
         {hasButtonData && (
           <div
-            className={`${this.decorateCSS("scroll-indicator")} ${
+            className={`${this.decorateCSS("indicator")} ${
               enableAnimation ? this.decorateCSS("has-animation") : ""
             }`}
           >
