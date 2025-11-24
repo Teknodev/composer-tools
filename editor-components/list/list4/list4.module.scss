@@ -34,6 +34,7 @@
       .service-item {
         position: relative;
         padding: var(--composer-gap-lg);
+        border-radius: var(--composer-border-radius-sm);
 
         &[data-animation~="animate1"] {
           .border-frame{
@@ -122,7 +123,7 @@
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
         }
-        .card-content {
+          .card-content {
           position: relative;
           z-index: 1;
           padding: var(--composer-gap-sm);
@@ -140,6 +141,7 @@
               var(--composer-font-color-primary) 5%
             );
             transition: background-color var(--composer-transition-duration-slow) ease;
+            border-radius: var(--composer-border-width-sm);
 
             &[data-animation~="animate2"] {
               &:hover {

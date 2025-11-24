@@ -28,6 +28,12 @@ class List9 extends BaseList {
             value: "What we offer",
         });
         this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp({
             type: "array",
             key: "cards",
             displayer: "Cards",
@@ -65,13 +71,13 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                     ],
@@ -109,13 +115,13 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                     ],
@@ -153,13 +159,13 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                     ],
@@ -197,13 +203,13 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                     ],
@@ -245,6 +251,7 @@ class List9 extends BaseList {
         const cards = this.castToObject<Card[]>("cards");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
+        const description = this.getPropValue("description");
         const imageOverlay = this.getPropValue("overlay");
         
         return (
@@ -260,6 +267,11 @@ class List9 extends BaseList {
                             <Base.SectionTitle className={this.decorateCSS("header-title")}>
                                 {title}
                             </Base.SectionTitle>
+                        )}
+                        {this.castToString(description) && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {description}
+                            </Base.SectionDescription>
                         )}
                     </Base.VerticalContent>
                     

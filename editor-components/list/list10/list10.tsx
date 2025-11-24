@@ -28,6 +28,12 @@ class List10 extends BaseList {
             displayer: "Title",
             value: "The Latest Updates News & Blog",
         });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
 
         this.addProp({
             type: "array",
@@ -197,6 +203,7 @@ class List10 extends BaseList {
         const cards = this.castToObject<Card[]>("cards");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
+        const description = this.getPropValue("description");
         const imageOverlay = this.getPropValue("overlay");
         const button = this.castToObject<any>("button");
         const buttonText = this.castToString(button?.text);
@@ -214,6 +221,11 @@ class List10 extends BaseList {
                             <Base.SectionTitle className={this.decorateCSS("header-title")}>
                                 {title}
                             </Base.SectionTitle>
+                        )}
+                        {this.castToString(description) && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {description}
+                            </Base.SectionDescription>
                         )}
                     </Base.VerticalContent>
                     <Base.ListGrid
@@ -268,7 +280,7 @@ class List10 extends BaseList {
                     {buttonText && (
                         <div className={this.decorateCSS("button-wrapper")}>
                             <ComposerLink path={button?.url}>
-                                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
                                     <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
                                 </Base.Button>
                             </ComposerLink>

@@ -194,7 +194,7 @@ class List7 extends BaseList {
           {buttonText && (
             <div className={this.decorateCSS("button-wrapper")}>
               <ComposerLink path={button?.url}>
-                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
                   <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
                 </Base.Button>
               </ComposerLink>

@@ -28,10 +28,16 @@ class List6 extends BaseList {
     });
     this.addProp({
       type: "string",
-      key: "description",
+      key: "title",
       displayer: "Title",
       value:
         "It's so challenging to find a good team to do great things. But we can provide you the best one.",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
     this.addProp({
       type: "boolean",
@@ -219,6 +225,7 @@ class List6 extends BaseList {
 
   render() {
     const listItems = this.castToObject<listItem[]>("listItems");
+    const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const subtitle = this.getPropValue("subtitle");
     const alignment = Base.getContentAlignment();
@@ -229,19 +236,24 @@ class List6 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || this.castToString(description)) && (
+          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : this.decorateCSS("align-left")}`}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(description) && (
+              {this.castToString(title) && (
                 <Base.SectionTitle
                   className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
                 >
-                  {description}
+                  {title}
                 </Base.SectionTitle>
+              )}
+              {this.castToString(description) && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
               )}
             </Base.VerticalContent>
           )}
@@ -291,7 +303,7 @@ class List6 extends BaseList {
           {buttonText && (
             <div className={this.decorateCSS("button-wrapper")}>
               <ComposerLink path={button?.url}>
-                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
                   <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
                 </Base.Button>
               </ComposerLink>

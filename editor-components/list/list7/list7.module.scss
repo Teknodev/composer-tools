@@ -22,7 +22,7 @@
         .item-content {
           height: 100%;
           border: var(--composer-border-width-xs) solid var(--composer-primary-color);
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           padding: var(--composer-gap-lg);
           display: flex;
           flex-direction: column;
@@ -44,7 +44,7 @@
               content: "";
               position: absolute;
               inset: calc(-1 * var(--composer-border-width-sm));
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               padding: var(--composer-border-width-sm);
               background: linear-gradient(
                 45deg,
@@ -75,7 +75,7 @@
               content: "";
               position: absolute;
               inset: calc(-1 * var(--composer-border-width-sm));
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               padding: var(--composer-border-width-sm);
               background: conic-gradient(
                 from var(--angle),

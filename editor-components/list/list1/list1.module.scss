@@ -20,6 +20,7 @@
 
     .carousel {
       overflow: hidden;
+      padding: 0 var(--composer-gap-md);
       > div {
         > div {
           display: flex;

@@ -29,6 +29,12 @@ class List4 extends BaseList {
       displayer: "Title",
       value: "We are delivering beautiful digital products for you.",
     });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
     this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
@@ -169,7 +175,7 @@ class List4 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))) && (
+          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -180,6 +186,11 @@ class List4 extends BaseList {
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
+              )}
+              {this.castToString(this.getPropValue("description")) && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
               )}
             </Base.VerticalContent>
           )}
@@ -252,7 +263,7 @@ class List4 extends BaseList {
           {buttonText && (
             <div className={this.decorateCSS("button-wrapper")}>
               <ComposerLink path={button?.url}>
-                <Base.Button buttonType="Primary" className={this.decorateCSS("button")}>
+                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
                   <Base.P className={this.decorateCSS("button-text")}>
                     {button?.text}
                   </Base.P>
