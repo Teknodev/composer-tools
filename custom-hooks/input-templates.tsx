@@ -115,7 +115,7 @@ export namespace INPUTS {
           type: "page",
           key: "imageLink",
           value: "",
-          displayer: "Image Link",
+          displayer: "Navigate To",
         },
       ],
     } as TypeUsableComponentProps;
