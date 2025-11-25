@@ -5,13 +5,14 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import type { Settings } from "react-slick";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image?: string;
   media?: { type: "video" | "image"; url: string };
   header: React.JSX.Element;
   description: React.JSX.Element;
-  link: string;
+  navigateTo: string;
 };
 
 class Slider12 extends BaseSlider {
@@ -21,6 +22,13 @@ class Slider12 extends BaseSlider {
 
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -35,6 +43,13 @@ class Slider12 extends BaseSlider {
       displayer: "Description",
       value:
         "Supercharge your productivity with client management and collaboration tools that let you do it all from a single dashboard.",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -70,7 +85,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Leverage Duda's AI Content Collection form or White Label AI Site Builder to make client onboarding painless (finally).",
             },
-            { type: "page", key: "link", displayer: "Navigate To", value: "" },
+            { type: "page", key: "navigateTo", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -101,7 +116,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Work alongside clients and teammates with in-line comment threads that support image and file uploads, right where you need them.",
             },
-            { type: "page", key: "link", displayer: "Navigate To", value: "" },
+            { type: "page", key: "navigateTo", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -132,7 +147,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Grant your clients white label access to the editor. Don't worry, they won't receive any branded communications from Duda. Your customers are your own.",
             },
-            { type: "page", key: "link", displayer: "Navigate To", value: "" },
+            { type: "page", key: "navigateTo", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -163,7 +178,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Draft content, summarize feedback and speed up routine tasks.",
             },
-            { type: "page", key: "link", displayer: "Navigate To", value: "" },
+            { type: "page", key: "navigateTo", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -194,7 +209,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Collect files in one place with version history and previews.",
             },
-            { type: "page", key: "link", displayer: "Navigate To", value: "" },
+            { type: "page", key: "navigateTo", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -225,7 +240,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Keep everything on-brand with logos, colors and typography.",
             },
-            { type: "page", key: "link", displayer: "Navigate To", value: "" },
+            { type: "page", key: "navigateTo", displayer: "Navigate To", value: "" },
           ],
         },
         {
@@ -256,7 +271,7 @@ class Slider12 extends BaseSlider {
               value:
                 "Build multi-step approvals and notifications with role-based permissions.",
             },
-            { type: "page", key: "link", displayer: "Navigate To", value: "" },
+            { type: "page", key: "navigateTo", displayer: "Navigate To", value: "" },
           ],
         },
       ],
@@ -283,6 +298,10 @@ class Slider12 extends BaseSlider {
         name: "BsArrowRightCircle",
       },
     });
+
+    this.addProp(
+      INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+    );
 
     this.settings = {
       infinite: false,
@@ -315,9 +334,17 @@ class Slider12 extends BaseSlider {
     const prevMedia = this.getPropValue("previousArrow");
     const nextMedia = this.getPropValue("nextArrow");
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
+    const overlayEnabled = this.getPropValue("overlay");
+    const alignment = Base.getContentAlignment();
+    const isCenterAlignment = alignment === "center";
     const titleStr = this.castToString(title);
+    const subtitleStr = this.castToString(subtitle);
     const descStr = this.castToString(description);
+    const button = this.castToObject<any>("button");
+    const buttonContent = button?.text;
+    const buttonText = this.castToString(buttonContent);
 
     return (
       <div ref={this.containerRef} className={this.decorateCSS("container")}>
@@ -331,6 +358,13 @@ class Slider12 extends BaseSlider {
                   <Base.VerticalContent
                     className={this.decorateCSS("header-content")}
                   >
+                    {subtitleStr ? (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {subtitle}
+                      </Base.SectionSubTitle>
+                    ) : (
+                      <div className={this.decorateCSS("subtitle")} />
+                    )}
                     {titleStr && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {title}
@@ -343,7 +377,6 @@ class Slider12 extends BaseSlider {
                         {description}
                       </Base.SectionDescription>
                     )}
-
                     {items.length > 1 && (prevMedia || nextMedia) && (
                       <div className={this.decorateCSS("arrows-wrap")}>
                         <div className={this.decorateCSS("arrows")}>
@@ -395,9 +428,10 @@ class Slider12 extends BaseSlider {
                   const hasMedia = mediaType && url;
                   const hasCardDesc = this.castToString(item.description);
                   const hasHeaderText = this.castToString(item.header);
-                  const textClassName =
-                    this.decorateCSS("text") +
-                    (!hasMedia ? ` ${this.decorateCSS("text-centered")}` : "");
+                  const textClasses = [this.decorateCSS("text")];
+                  if (!hasMedia && isCenterAlignment) {
+                    textClasses.push(this.decorateCSS("text-centered"));
+                  }
 
                   const slideClasses = [this.decorateCSS("slide")];
                   if (i % 3 === 2) {
@@ -410,7 +444,7 @@ class Slider12 extends BaseSlider {
                   return (
                     <ComposerLink
                       key={i}
-                      path={item.link ?? ""}
+                      path={item.navigateTo ?? ""}
                       isFullWidth={false}
                     >
                       <div className={slideClasses.join(" ")}>
@@ -437,11 +471,14 @@ class Slider12 extends BaseSlider {
                                   className={this.decorateCSS("image")}
                                 />
                               )}
+                              {overlayEnabled && (
+                                <div className={this.decorateCSS("media-overlay")} />
+                              )}
                             </div>
                           )}
 
                           {(hasHeaderText || hasCardDesc) && (
-                            <div className={textClassName}>
+                            <div className={textClasses.join(" ")}>
                               {hasHeaderText && (
                                 <Base.H4
                                   className={this.decorateCSS("header")}
@@ -465,6 +502,27 @@ class Slider12 extends BaseSlider {
             </div>
           )}
         </div>
+
+        {buttonText && (
+          <div className={this.decorateCSS("bottom-cta")}>
+            <ComposerLink path={button?.url}>
+              <Base.Button
+                buttonType={button?.type || "Primary"}
+                className={this.decorateCSS("bottom-button")}
+              >
+                <Base.P className={this.decorateCSS("bottom-button-text")}>
+                  {buttonContent}
+                </Base.P>
+                {button?.icon && (
+                  <Base.Media
+                    value={button.icon}
+                    className={this.decorateCSS("bottom-button-icon")}
+                  />
+                )}
+              </Base.Button>
+            </ComposerLink>
+          </div>
+        )}
       </div>
     );
   }

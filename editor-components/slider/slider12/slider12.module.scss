@@ -15,6 +15,10 @@
     .max-content {
       .header {
         .header-content {
+          .subtitle {
+            content: "";
+          }
+
           .arrows-wrap {
             width: 100%;
 
@@ -95,11 +99,7 @@
       height: var(--media-h);
       overflow: hidden;
       border-radius: var(--composer-border-radius-sm);
-      background: color-mix(
-        in srgb,
-        var(--composer-html-background),
-        black 10%
-      );
+      position: relative;
     }
 
     .image,
@@ -134,12 +134,40 @@
   }
 }
 
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--composer-overlay-color);
+  pointer-events: none;
+}
+
 .vertical-content {
   > *:last-child {
     margin-bottom: 0px;
     width: 100%;
   }
 }
+
+.bottom-cta {
+  display: flex;
+  justify-content: center;
+  padding: var(--composer-gap-lg);
+  margin: var(--composer-gap-xs) var(--composer-gap-lg);
+}
+
+
+.bottom-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--composer-gap-sm);
+  padding: var(--composer-gap-sm) var(--composer-gap-xl);
+  border-radius: var(--composer-border-radius-sm);
+}
+
+.bottom-button-text {
+  content: "";
+}
+
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
