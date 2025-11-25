@@ -71,7 +71,7 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Media",
+                            displayer: "Image",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
@@ -115,7 +115,7 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Media",
+                            displayer: "Image",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
@@ -159,7 +159,7 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Media",
+                            displayer: "Image",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
@@ -203,7 +203,7 @@ class List9 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Media",
+                            displayer: "Image",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",

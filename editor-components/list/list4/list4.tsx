@@ -40,12 +40,12 @@ class List4 extends BaseList {
     this.addProp({
       type: "array",
       key: "content-card",
-      displayer: "Content Card",
+      displayer: "List Items",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -77,7 +77,7 @@ class List4 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -109,7 +109,7 @@ class List4 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "string",

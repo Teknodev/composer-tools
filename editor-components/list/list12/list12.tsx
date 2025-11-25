@@ -42,18 +42,6 @@ class List12 extends BaseList {
           },
         },
         {
-          type: "media",
-          key: "icon",
-          displayer: "Icon 1",
-          value: {
-            type: "icon",
-            name: "",
-          },
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          },
-        },
-        {
           type: "string",
           key: "text",
           displayer: "Text 1",
@@ -88,18 +76,6 @@ class List12 extends BaseList {
           },
         },
         {
-          type: "media",
-          key: "icon",
-          displayer: "Icon 2",
-          value: {
-            type: "icon",
-            name: "",
-          },
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          },
-        },
-        {
           type: "string",
           key: "text",
           displayer: "Text 2",
@@ -124,18 +100,6 @@ class List12 extends BaseList {
           },
           additionalParams: {
             availableTypes: ["image"],
-          },
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon 3",
-          value: {
-            type: "icon",
-            name: "",
-          },
-          additionalParams: {
-            availableTypes: ["icon", "image"],
           },
         },
         {
@@ -192,23 +156,14 @@ class List12 extends BaseList {
         <Base.MaxContent isFull className={`${this.decorateCSS("max-content")} ${this.decorateCSS("alignment-center")}`}>
           <div className={this.decorateCSS("boxes")}>
             <div className={this.decorateCSS("leftBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-              {(box1.item || box1.icon) && (
-            <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {box1.item ? (
-                    <>
-                      <Base.Media
-                        className={this.decorateCSS("img")}
-                        value={box1.item}
-                      />
-                      {imageOverlay && (
-                        <div className={this.decorateCSS("overlay")} />
-                      )}
-                    </>
-                  ) : (
-                    <Base.Media
-                      value={box1.icon}
-                      className={this.decorateCSS("icon")}
-                    />
+              {box1.item && (
+                <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                  <Base.Media
+                    className={this.decorateCSS("img")}
+                    value={box1.item}
+                  />
+                  {imageOverlay && (
+                    <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
               )}
@@ -224,23 +179,14 @@ class List12 extends BaseList {
                   <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`}>{box2.title}</div>
                 </Base.SectionTitle>
               )}
-              {(box2.item || box2.icon) && (
+              {box2.item && (
                 <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {box2.item ? (
-                    <>
-                      <Base.Media
-                        className={this.decorateCSS("img")}
-                        value={box2.item}
-                      />
-                      {imageOverlay && (
-                        <div className={this.decorateCSS("overlay")} />
-                      )}
-                    </>
-                  ) : (
-                    <Base.Media
-                      value={box2.icon}
-                      className={this.decorateCSS("icon")}
-                    />
+                  <Base.Media
+                    className={this.decorateCSS("img")}
+                    value={box2.item}
+                  />
+                  {imageOverlay && (
+                    <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
               )}
@@ -252,23 +198,14 @@ class List12 extends BaseList {
             </div>
 
             <div className={this.decorateCSS("rightBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-              {(box3.item || box3.icon) && (
-            <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {box3.item ? (
-                    <>
-                      <Base.Media
-                        className={this.decorateCSS("img")}
-                        value={box3.item}
-                      />
-                      {imageOverlay && (
-                        <div className={this.decorateCSS("overlay")} />
-                      )}
-                    </>
-                  ) : (
-                    <Base.Media
-                      value={box3.icon}
-                      className={this.decorateCSS("icon")}
-                    />
+              {box3.item && (
+                <div className={`${this.decorateCSS("circle")} ${hasBackgroundMedia ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                  <Base.Media
+                    className={this.decorateCSS("img")}
+                    value={box3.item}
+                  />
+                  {imageOverlay && (
+                    <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
               )}

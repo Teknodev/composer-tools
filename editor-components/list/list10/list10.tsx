@@ -60,7 +60,7 @@ class List10 extends BaseList {
                         {
                             type: "string",
                             key: "badge",
-                            displayer: "Badge",
+                            displayer: "Text",
                             value: "All News",
                         },
                         {
@@ -103,7 +103,7 @@ class List10 extends BaseList {
                         {
                             type: "string",
                             key: "badge",
-                            displayer: "Badge",
+                            displayer: "Text",
                             value: "All News",
                         },
                         {
@@ -146,7 +146,7 @@ class List10 extends BaseList {
                         {
                             type: "string",
                             key: "badge",
-                            displayer: "Badge",
+                            displayer: "Text",
                             value: "All News",
                         },
                         {

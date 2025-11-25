@@ -49,7 +49,7 @@ class List3 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -60,7 +60,7 @@ class List3 extends BaseList {
             {
               type: "array",
               key: "texts",
-              displayer: "Texts",
+              displayer: "Text",
               value: [
                 {
                   type: "object",
@@ -68,7 +68,7 @@ class List3 extends BaseList {
                   displayer: "Text",
                   value: [
                     { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
-                    { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "10:00 AM - 12:30 PM" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
                   ]
                 },
                 {
@@ -77,7 +77,7 @@ class List3 extends BaseList {
                   displayer: "Text",
                   value: [
                     { type: "string", key: "topText", displayer: "Top Text", value: "Sociology - Herman Miller" },
-                    { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "02:00 PM - 04:30 PM" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
                   ]
                 },
                 {
@@ -86,7 +86,7 @@ class List3 extends BaseList {
                   displayer: "Text",
                   value: [
                     { type: "string", key: "topText", displayer: "Top Text", value: "Geologist - Jeremy Dupont" },
-                    { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "05:00 PM - 07:30 PM" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
                   ]
                 },
               ]
@@ -96,7 +96,7 @@ class List3 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -111,15 +111,15 @@ class List3 extends BaseList {
               value: [
                 { type: "object", key: "text", displayer: "Text", value: [
                   { type: "string", key: "topText", displayer: "Top Text", value: "Economy - Michal Ruheen" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "10:00 AM - 12:30 PM" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
                 ]},
                 { type: "object", key: "text", displayer: "Text", value: [
                   { type: "string", key: "topText", displayer: "Top Text", value: "Engineer - Jessica Dover" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "02:00 PM - 04:30 PM" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
                 ]},
                 { type: "object", key: "text", displayer: "Text", value: [
                   { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "05:00 PM - 07:30 PM" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
                 ]},
               ]
             }
@@ -128,7 +128,7 @@ class List3 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -143,15 +143,15 @@ class List3 extends BaseList {
               value: [
                 { type: "object", key: "text", displayer: "Text", value: [
                   { type: "string", key: "topText", displayer: "Top Text", value: "Biologist - Saleena Fountain" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "10:00 AM - 12:30 PM" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
                 ]},
                 { type: "object", key: "text", displayer: "Text", value: [
                   { type: "string", key: "topText", displayer: "Top Text", value: "Secretary - Paulina Morris" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "02:00 PM - 04:30 PM" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
                 ]},
                 { type: "object", key: "text", displayer: "Text", value: [
                   { type: "string", key: "topText", displayer: "Top Text", value: "Politician - Wendaya Royin" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text (Time)", value: "05:00 PM - 07:30 PM" },
+                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
                 ]},
               ]
             }

@@ -19,6 +19,7 @@
       text-align: left;
       width: 100%;
       gap: var(--composer-gap-xs);
+      padding: 0 var(--composer-gap-md);
 
       .description {
         color: var(--composer-tertiary-color);
@@ -27,15 +28,20 @@
 
     .carousel {
       width: 100%;
-      overflow: visible;
-      padding: 0;
+      overflow: hidden;
+      padding: 0 var(--composer-gap-md);
       > div {
         > div {
           display: flex;
           align-items: stretch;
           > div {
             padding: 0 var(--composer-gap-sm);
+            margin-bottom: calc(2 * var(--composer-gap-md));
             box-sizing: border-box;
+            height: auto;
+            > div {
+              height: 100%;
+            }
           }
         }
       }

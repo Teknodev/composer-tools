@@ -37,12 +37,12 @@ class List1 extends BaseList {
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "List Items",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "media",
@@ -80,7 +80,7 @@ class List1 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "media",
@@ -118,7 +118,7 @@ class List1 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "media",
@@ -156,7 +156,7 @@ class List1 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "media",
@@ -194,7 +194,7 @@ class List1 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Items",
           value: [
             {
               type: "media",

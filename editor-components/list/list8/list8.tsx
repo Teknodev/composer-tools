@@ -53,7 +53,7 @@ class List8 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -86,7 +86,7 @@ class List8 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -119,7 +119,7 @@ class List8 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
