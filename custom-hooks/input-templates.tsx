@@ -65,7 +65,7 @@ export namespace INPUTS {
         key: "icon",
         displayer: "Icon",
         additionalParams: {
-          availableTypes: ["icon"],
+          availableTypes: ["icon", "image"],
         },
         value: {
           type: "icon",

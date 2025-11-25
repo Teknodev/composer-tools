@@ -2,13 +2,14 @@
   as *;
 
 .container {
-  padding: 80px 0 !important;
+   position: relative;
+  overflow: hidden;
+
   .max-content {
-    max-width: 100%;
     .intro-wrapper {
       display: flex;
       width: 100%;
-      gap: var(--composer-gap-lg);
+      justify-content: end;
 
       &.alignment-center {
         .text-content {
@@ -21,6 +22,14 @@
             }
             .button-wrapper {
               justify-content: flex-start;
+              width: 100%;
+            }
+            .text-wrapper {
+              justify-content: flex-start;
+              width: 100%;
+            }
+            .thumb-row {
+              justify-content: flex-start;
             }
           }
         }
@@ -32,7 +41,7 @@
             .title,
             .subtitle,
             .description,
-            .bottomText {
+            .text-wrapper {
               text-align: left;
             }
             .button-wrapper {
@@ -42,17 +51,57 @@
         }
       }
 
+      .image-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(50% - var(--composer-gap-md));
+        height: 100%;
+
+        &.image-container-alone {
+          width: 100%;
+        }
+
+        .media-wrapper {
+          
+          height: 100%;
+          
+
+          .thumbnail-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            transition: opacity var(--composer-transition-duration-normal) ease;
+            pointer-events: none;
+            z-index: 1;
+          }
+        }
+
+        .media-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
       .text-content {
-        flex: 1 1 50%;
+        width: 50%;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &.text-content-alone {
+          width: 100%;
+        }
 
         .vertical-content {
-          gap: var(--composer-gap-md);
-
           .subtitle,
           .title,
           .description,
-          .bottomText {
+          .text-wrapper {
             content: "";
           }
 
@@ -62,6 +111,8 @@
 
           .button-wrapper {
             display: flex;
+            gap: var(--composer-gap-md);
+            margin-bottom: var(--gap-md);
           }
 
           .thumb-row {
@@ -85,33 +136,29 @@
           }
         }
       }
-
-      .image-container {
-        flex: 1 1 50%;
-
-        .media-image {
-          width: 100%;
-          object-fit: cover;
-        }
-      }
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px 40px !important;
+    padding: 0 !important;
     .max-content {
       .intro-wrapper {
         flex-direction: column;
 
-        .text-content {
-          order: 1;
-          flex: 0 0 100%;
-        }
-
         .image-container {
           order: 2;
+          flex: 0 0 100%;
+          width: 100%;
+          position: relative;
+          padding: 0;
+        }
+
+        .text-content {
+            padding: 80px 40px !important;
+          order: 1;
+          width: 100%;
           flex: 0 0 100%;
         }
       }

@@ -55,7 +55,7 @@ class IntroSection6 extends BaseIntroSection {
           "Get Access",
           "",
           "FaArrowRight",
-          "",
+          null,
           "Primary"
         ),
       ],
@@ -66,6 +66,16 @@ class IntroSection6 extends BaseIntroSection {
       key: "text",
       displayer: "Text",
       value: "No credit card required",
+    });
+
+    this.addProp({
+      type: "media",
+      key: "textIcon",
+      displayer: "Text Icon",
+      value: {
+        type: "icon",
+        name: "FaThumbsUp",
+      },
     });
 
     this.addProp({
@@ -81,12 +91,13 @@ class IntroSection6 extends BaseIntroSection {
   }
 
   render() {
-    const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
-    const title = this.castToString(this.getPropValue("title")) || "";
+    const subtitle = this.getPropValue("subtitle") || "";
+    const title = this.getPropValue("title") || "";
 
-    const description =
-      this.castToString(this.getPropValue("description")) || "";
+    const description = this.getPropValue("description") || "";
     const image = this.getPropValue("image");
+    const bottomText = this.getPropValue("text") || "";
+    const textIcon = this.getPropValue("textIcon");
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const alignment = Base.getContentAlignment();
@@ -97,15 +108,17 @@ class IntroSection6 extends BaseIntroSection {
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
+    const hasBottomText = this.castToString(bottomText);
 
-    const hasButton = buttons.length > 0;
-    const bottomText = this.castToString(this.getPropValue("text")) || "";
+    const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+
     const hasRightContainer = !!(
       hasSubtitle ||
       hasTitle ||
       hasDescription ||
-      hasButton
+      hasAnyButton
     );
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -133,17 +146,12 @@ class IntroSection6 extends BaseIntroSection {
                     value={image}
                     className={this.decorateCSS("media-image")}
                   />
-                  {overlay && image?.url && (
-                    <div className={this.decorateCSS("overlay")}></div>
-                  )}
+                  {overlay && <div className={this.decorateCSS("thumbnail-overlay")} />}
                 </div>
-                {overlay && (
-                  <div className={this.decorateCSS("image-overlay")}></div>
-                )}
               </div>
             )}
             {hasRightContainer && (
-              <div className={this.decorateCSS("text-content")}>
+              <div className={`${this.decorateCSS("text-content")} ${!hasImage ? this.decorateCSS("text-content-alone") : ""}`}>
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
                 >
@@ -168,58 +176,55 @@ class IntroSection6 extends BaseIntroSection {
                     </Base.SectionDescription>
                   )}
 
-                  {hasButton && (
+                  {hasAnyButton && (
                     <Base.Row className={this.decorateCSS("button-wrapper")}>
-                      {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                        const buttonText = this.castToString(item.text);
-                        const buttonUrl = item.url || "#";
-                        const iconExist = item.icon && item.icon.name;
-                        const imageExist = item.image && item.image.url;
-                        return (
-                          <ComposerLink
-                            key={`is6-btn-${index}`}
-                            path={buttonUrl}
-                          >
-                            {imageExist ? (
-                              <div className={this.decorateCSS("image-wrapper")}>
-                                <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                              </div>
-                            ) : (
-                              <Base.Button
-                                buttonType={item.type}
-                                className={this.decorateCSS("button")}
-                              >
-                                {buttonText && (
-                                  <Base.P
-                                    className={this.decorateCSS("button-text")}
-                                  >
-                                    {buttonText}
-                                  </Base.P>
-                                )}
-                                {iconExist && (
-                                  <Base.Media
-                                    value={item.icon}
-                                    className={this.decorateCSS("button-icon")}
-                                  />
-                                )}
-                              </Base.Button>
-                            )}
-                          </ComposerLink>
-                        );
-                      })}
+                      {buttons.map(
+                        (item: INPUTS.CastedButton, index: number) => {
+                          const btnTextExist = this.castToString(item.text);
+                          const buttonIcon = item.icon;
+                          if (!btnTextExist && !buttonIcon) {
+                            return null;
+                          }
+                          const buttonUrl = item.url || "#";
+                          return (
+                            <div key={`is6-btn-${index}`} className={this.decorateCSS("button-wrapp")}>
+                              <ComposerLink path={buttonUrl}>
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                  {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                  {buttonIcon && (
+                                    <div className={this.decorateCSS("button-icon-wrapper")}>
+                                      <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />
+                                    </div>
+                                  )}
+                                  
+                                </Base.Button>
+                              </ComposerLink>
+                            </div>
+                          );
+                        }
+                      )}
                     </Base.Row>
                   )}
 
-                  {bottomText && (
-                    <div className={this.decorateCSS("thumb-row")}>
-                      <Base.Media
-                        className={this.decorateCSS("thumb-icon")}
-                        value={{ type: "icon", name: "FaThumbsUp" }}
-                      />
-                      <Base.P className={this.decorateCSS("bottomText")}>
-                        {bottomText}
-                      </Base.P>
-                    </div>
+                  {(hasBottomText || textIcon) && (
+                    <Base.Row className={this.decorateCSS("text-wrapper")}>
+                      <div className={this.decorateCSS("thumb-row")}>
+
+                        {textIcon && (
+                          <Base.Media
+                            className={this.decorateCSS("thumb-icon")}
+                            value={textIcon}
+                          />
+                        )}
+
+                        {bottomText && (
+                          <Base.P className={this.decorateCSS("bottomText")}>
+                            {bottomText}
+                          </Base.P>
+                        )}
+
+                      </div>
+                    </Base.Row>
                   )}
                 </Base.VerticalContent>
               </div>
