@@ -113,7 +113,7 @@ class IntroSection8 extends BaseIntroSection {
     const isPlaying = this.getComponentState("isPlaying");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
         
         {showBackgroundShape && (
              <div className={this.decorateCSS("background-shape")}></div>

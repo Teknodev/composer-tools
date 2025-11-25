@@ -3,13 +3,14 @@
 .container {
   position: relative;
   width: 100%;
+  padding: var(--composer-gap-xl) 50px;
   overflow: hidden;
   display: flex;
   justify-content: center !important;
   align-items: center !important;
 
   &.has-media {
-    padding: var(--composer-gap-xl) 0;
+    padding: 120px 50px;
   }
 
   .background-shape {
@@ -27,13 +28,11 @@
     position: relative;
     z-index: 1;
     width: 100%;
+    max-width: var(--composer-content-width);
     margin: 0 auto;
     display: flex;
     justify-content: center !important;
-  }
-
-  &.has-media .max-content {
-    padding: var(--composer-gap-xl) var(--composer-gap-md);
+    padding: 0;
   }
 
   .vertical-content {
@@ -43,11 +42,7 @@
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    gap: 0;
-  }
-
-  &.has-media .vertical-content {
-    gap: var(--composer-gap-md);
+    gap: 100px;
   }
 
   .text-wrapper {
@@ -56,7 +51,9 @@
     flex-direction: column;
     align-items: center !important;
     justify-content: center !important;
-    margin-bottom: var(--composer-gap-xs);
+    max-width: 800px;
+    gap: var(--composer-gap-sm);
+    margin-bottom: 0;
     text-align: center !important;
 
     .subtitle {
@@ -64,6 +61,7 @@
       display: flex !important;
       justify-content: center !important;
       text-align: center !important;
+      width: 100% !important;
       border: none !important;
       transform: none !important;
       margin-left: 0 !important;
@@ -100,8 +98,9 @@
   .media-wrapper {
     position: relative;
     width: 100%;
-    max-width: 1500px;
-    aspect-ratio: 16 / 9;
+    height: calc(100vh - var(--composer-gap-md));
+    margin: 0 auto;
+
     display: flex;
     border-radius: var(--composer-border-radius-sm);
     justify-content: center !important;
@@ -167,9 +166,8 @@
 
       &:hover .play-icon-wrapper {
         transform: translate(-50%, -50%) scale(1.1);
-        color: var(--composer-secondary-color);
+        background-color: var(--composer-primary-color);
       }
-
 
       .play-icon-wrapper {
         position: absolute;
@@ -181,13 +179,18 @@
         justify-content: center;
         align-items: center;
         transition: all var(--composer-transition-duration-normal) var(--composer-transition-easing);
-        color: var(--color-white);
         pointer-events: none;
 
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: transparent;
+
         .icon {
-          width: 70px;
-          height: 70px;
-          fill: currentColor;
+          width: 50px;
+          height: 50px;
+          fill: var(--composer-font-color-secondary);
+          color: var(--composer-font-color-secondary);
           display: flex;
           justify-content: center;
           align-items: center;
@@ -206,12 +209,20 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: var(--composer-gap-lg) 40px;
+
+    &.has-media {
+      padding: 80px 40px;
+    }
+
     .background-shape {
       clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
     }
 
     .max-content {
       .vertical-content {
+        gap: 50px;
+
         .text-wrapper {
           .title {
             font-size: calc(2.2 * var(--composer-font-size-md));
@@ -219,14 +230,39 @@
         }
 
         .media-wrapper {
+          height: auto !important;
+          aspect-ratio: 16 / 9;
+
           .thumbnail-container {
             .play-icon-wrapper {
+              width: 80px;
+              height: 80px;
+
               .icon {
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-md) 20px;
+
+    &.has-media {
+      padding: 60px 20px;
+    }
+
+    .max-content {
+      .vertical-content {
+        .media-wrapper {
+          height: auto !important;
+          aspect-ratio: 16 / 9;
         }
       }
     }
