@@ -2,7 +2,6 @@ import * as React from "react";
 import { BaseIntroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./intro-section8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class IntroSection8 extends BaseIntroSection {
   constructor(props?: any) {
@@ -32,7 +31,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "media",
-      displayer: "Image",
+      displayer: "Video",
       value: {
         type: "video",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
@@ -45,13 +44,13 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "thumbnail",
-      displayer: "Video Thumbnail",
+      displayer: "Image",
       value: {
         type: "image",
         url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       } as TypeMediaInputValue,
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
     });
 
@@ -62,22 +61,18 @@ class IntroSection8 extends BaseIntroSection {
       value: false,
     });
 
-    const playBtn = INPUTS.BUTTON(
-      "playButton",
-      "Button",
-      "",
-      "",
-      "FaPlay",
-      null,
-      "Primary"
-    );
+    this.addProp({
+      type: "boolean",
+      key: "showBackgroundShape",
+      displayer: "Show Background Shape",
+      value: true,
+    });
 
     this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      max: 1,
-      value: [playBtn],
+      type: "icon",
+      key: "playIcon",
+      displayer: "Play Icon",
+      value: "FaPlay",
     });
   }
 
@@ -98,6 +93,7 @@ class IntroSection8 extends BaseIntroSection {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const overlay = this.getPropValue("overlay");
+    const showBackgroundShape = this.getPropValue("showBackgroundShape");
     
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
@@ -111,15 +107,17 @@ class IntroSection8 extends BaseIntroSection {
     const thumbnail = this.getPropValue("thumbnail") as TypeMediaInputValue;
     const hasThumbnail = !!(thumbnail as any)?.url;
 
-    const buttons = this.castToObject<any[]>("buttons");
-    const playButton = buttons && buttons.length > 0 ? buttons[0] : null;
-    const hasPlayButton = !!playButton;
+    const playIcon = this.getPropValue("playIcon");
+    const hasPlayIcon = !!playIcon;
 
     const isPlaying = this.getComponentState("isPlaying");
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
-        <div className={this.decorateCSS("background-shape")}></div>
+      <Base.Container className={this.decorateCSS("container")}>
+        
+        {showBackgroundShape && (
+             <div className={this.decorateCSS("background-shape")}></div>
+        )}
         
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
@@ -157,15 +155,13 @@ class IntroSection8 extends BaseIntroSection {
                       )}
                       {overlay && <div className={this.decorateCSS("overlay")} />}
                       
-                      {hasPlayButton && (
-                         <button 
-                           type="button" 
-                           className={this.decorateCSS("button")}
-                         >
-                           {playButton.icon && (
-                               <Base.Media value={playButton.icon} className={this.decorateCSS("icon")} />
-                           )}
-                         </button>
+                      {hasPlayIcon && (
+                          <div className={this.decorateCSS("play-icon-wrapper")}>
+                             <Base.Icon 
+                                name={playIcon} 
+                                propsIcon={{ className: this.decorateCSS("icon") }} 
+                             />
+                          </div>
                       )}
                     </div>
                   ) : (
@@ -186,17 +182,6 @@ class IntroSection8 extends BaseIntroSection {
                   <div className={this.decorateCSS("thumbnail-container")}>
                     <Base.Media value={media} className={this.decorateCSS("image")} />
                     {overlay && <div className={this.decorateCSS("overlay")} />}
-                    
-                    {hasPlayButton && (
-                        <button 
-                          type="button" 
-                          className={this.decorateCSS("button")}
-                        >
-                          {playButton.icon && (
-                              <Base.Media value={playButton.icon} className={this.decorateCSS("icon")} />
-                          )}
-                        </button>
-                    )}
                   </div>
                 )}
               </div>
