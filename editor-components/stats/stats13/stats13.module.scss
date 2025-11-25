@@ -5,6 +5,7 @@
         display: flex;
         width: 100%;
         padding-left: calc(var(--padding-md) * 4) !important;
+        gap: var(--gap-md);
 
         &.no-image {
             padding-left: 0 !important;
@@ -178,7 +179,7 @@
         .wrapper {
             flex-direction: column;
             padding: 0 !important;
-            gap: calc(var(--gap-xl) * 4);
+            gap: calc(var(--gap-xl) * 2);
 
             .left-content {
                 padding: 0 calc(var(--padding-md) * 4);
