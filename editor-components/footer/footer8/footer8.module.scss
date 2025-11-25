@@ -2,7 +2,15 @@
 
 .container {
   width: 100%;
-  padding: var(--composer-gap-md) var(--composer-gap-xl);
+  padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
 
   .max-content {
     .footer-page {
@@ -32,7 +40,7 @@
           gap: var(--composer-gap-md);
 
           .image {
-            width: 150px;
+            width: 200px;
             height: var(--composer-gap-lg);
             object-fit: cover;
           }
@@ -43,13 +51,10 @@
           flex-direction: column;
           justify-content: flex-start;
           align-items: flex-start;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
 
           .title {
-            font-size: 1rem;
             color: var(--composer-tertiary-color);
-            margin: 0;
-            width: 100%;
           }
 
           .text-container {
@@ -64,8 +69,6 @@
               .text {
                 position: relative;
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
-                margin: 0;
                 transition: all 0.3s ease;
               }
 
@@ -139,19 +142,22 @@
 
         .bottom-text {
           display: flex;
-          justify-content: center;
-          font-size: 1rem;
+          justify-content: flex-start;
           color: var(--composer-tertiary-color);
+        }
+
+        .right-wrapper {
+          display: contents;
         }
 
         .links {
           display: flex;
+          justify-content: center;
           gap: var(--composer-gap-md);
 
           .link-element {
             .link-text {
               position: relative;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -220,12 +226,16 @@
           .socials-element {
             display: flex;
             align-items: center;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
 
             .icon, .socials-text {
               transition: all 0.3s ease;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
+            }
+
+            .icon{
+              font-size: 1rem;
+              line-height: 0.5px;
             }
 
             &[data-animation~="animate1"] {
@@ -269,15 +279,15 @@
           }
         }
 
-        &:not(:has(.links)):not(:has(.socials-container)) .socials-text {
+        &:not(:has(.links)):not(:has(.socials-container)) .bottom-text {
           justify-content: center;
         }
 
-        &:not(:has(.links)):has(.socials-container) .socials-text {
+        &:not(:has(.links)):has(.socials-container) .bottom-text {
           justify-content: flex-start;
         }
 
-        &:not(:has(.socials-container)):has(.links) .socials-text {
+        &:not(:has(.socials-container)):has(.links) .bottom-text {
           justify-content: flex-end;
         }
       }
@@ -288,20 +298,20 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     width: 100%;
-    padding: var(--composer-gap-md) var(--composer-gap-lg);
+    padding: 80px var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
 
     .max-content {
       .footer-page {
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
 
         .items {
-
+          justify-content: flex-start;
           .header,
           .list-group {
             flex: 1;
-            min-width: 300px;
-            max-width: 310px;
+            min-width: 285px;
+            max-width: 285px;
             width: 100%;
           }
 
@@ -310,6 +320,11 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
+            gap: var(--composer-gap-sm);
+
+            .title {
+              text-align: left;
+            }
 
             .text-container {
               align-items: baseline;
@@ -324,23 +339,39 @@
         }
 
         .footer-bottom {
+          display: flex;
           justify-content: space-between;
-          flex-direction: column;
+          align-items: flex-start;
+          gap: var(--composer-gap-lg);
 
           .bottom-text {
-            text-align: center;
+            flex: 1;
+            text-align: left;
+            justify-content: flex-start;
+          }
+
+          .right-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: var(--composer-gap-sm);
           }
 
           .links {
+            display: flex;
+            gap: var(--composer-gap-md);
 
             .link-element {
               .link-text {
-                text-align: center;
-                font-size: 1rem;
+                text-align: right;
                 color: var(--composer-font-color-primary);
                 transition: color 0.3s ease;
               }
             }
+          }
+
+          .socials-container {
+            justify-content: flex-end;
           }
         }
       }
@@ -351,12 +382,12 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
-    padding: var(--composer-gap-md);
+    padding: 80px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
 
     .max-content {
       .footer-page {
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
 
         .items {
           flex-direction: column;
@@ -371,6 +402,7 @@
             align-items: center;
             min-width: unset;
             max-width: unset;
+            gap: var(--composer-gap-sm);
 
             .title {
               width: auto;
@@ -385,6 +417,38 @@
                 }
               }
             }
+          }
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .bottom-text {
+            justify-content: center;
+            text-align: center;
+          }
+
+          .right-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+          }
+
+          .links {
+            justify-content: center;
+
+            .link-element {
+              .link-text {
+                text-align: center;
+              }
+            }
+          }
+
+          .socials-container {
+            justify-content: center;
           }
         }
       }
