@@ -1,0 +1,121 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  padding: 80px 0 !important;
+  .max-content {
+    max-width: 100%;
+    .intro-wrapper {
+      display: flex;
+      width: 100%;
+      gap: var(--composer-gap-lg);
+
+      &.alignment-center {
+        .text-content {
+          .vertical-content {
+            .title,
+            .subtitle,
+            .description,
+            .bottomText {
+              text-align: left;
+            }
+            .button-wrapper {
+              justify-content: flex-start;
+            }
+          }
+        }
+      }
+
+      &.alignment-left {
+        .text-content {
+          .vertical-content {
+            .title,
+            .subtitle,
+            .description,
+            .bottomText {
+              text-align: left;
+            }
+            .button-wrapper {
+              justify-content: flex-start;
+            }
+          }
+        }
+      }
+
+      .text-content {
+        flex: 1 1 50%;
+        display: flex;
+
+        .vertical-content {
+          gap: var(--composer-gap-md);
+
+          .subtitle,
+          .title,
+          .description,
+          .bottomText {
+            content: "";
+          }
+
+          .subtitle {
+            margin-left: 0;
+          }
+
+          .button-wrapper {
+            display: flex;
+          }
+
+          .thumb-row {
+            display: flex;
+            gap: var(--composer-gap-sm);
+
+            .thumb-icon {
+              display: flex;
+              align-items: center;
+              color: var(--composer-tertiary-color);
+            }
+
+            .bottomText {
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          .button-icon {
+            content: "";
+            display: flex;
+          }
+        }
+      }
+
+      .image-container {
+        flex: 1 1 50%;
+
+        .media-image {
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: 80px 40px !important;
+    .max-content {
+      .intro-wrapper {
+        flex-direction: column;
+
+        .text-content {
+          order: 1;
+          flex: 0 0 100%;
+        }
+
+        .image-container {
+          order: 2;
+          flex: 0 0 100%;
+        }
+      }
+    }
+  }
+}
+
