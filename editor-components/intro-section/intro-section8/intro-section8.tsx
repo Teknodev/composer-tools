@@ -64,7 +64,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "boolean",
       key: "showBackgroundShape",
-      displayer: "Show Background Shape",
+      displayer: "Show Background",
       value: true,
     });
 
