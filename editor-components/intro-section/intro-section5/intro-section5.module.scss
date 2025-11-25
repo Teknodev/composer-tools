@@ -103,9 +103,7 @@
       justify-content: center !important;
       text-align: center !important;
 
-      // SUBTITLE TEMİZLİK VE ORTALAMA OPERASYONU
       .subtitle {
-        // 1. Pozisyonlama ve Ortalama
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
@@ -115,17 +113,15 @@
         margin-right: auto !important;
         align-self: center !important;
         position: relative !important;
-        transform: none !important; // Kaymaları sıfırla
+        transform: none !important;
         left: auto !important;
         right: auto !important;
 
-        // 2. Dekorasyonları Yok Etme (Badge, Border, Background)
         border: none !important;
         background: transparent !important;
         box-shadow: none !important;
-        padding: 0 !important; // Badge paddingini yok et
+        padding: 0 !important;
 
-        // 3. Çizgileri (Lines) Kesin Olarak Yok Etme (::before ve ::after)
         &::before,
         &::after {
           content: none !important;
