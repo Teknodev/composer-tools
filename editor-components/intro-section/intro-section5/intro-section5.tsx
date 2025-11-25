@@ -92,10 +92,11 @@ class IntroSection5 extends BaseIntroSection {
 
     const bgMedia = this.getPropValue("backgroundMedia") as TypeMediaInputValue;
     const hasOverlay = this.getPropValue("overlay");
+
     const buttons = this.castToObject<any[]>("buttons");
     const hasButtons = buttons && buttons.length > 0;
+
     const hasBgMedia = bgMedia && bgMedia.url;
-    const enableAnimation = buttons?.some((btn: any) => btn.enableAnimation);
 
     return (
       <Base.Container
@@ -135,14 +136,12 @@ class IntroSection5 extends BaseIntroSection {
         </Base.MaxContent>
 
         {hasButtons && (
-          <div
-            className={`${this.decorateCSS("buttons")} ${
-              enableAnimation ? this.decorateCSS("has-animation") : ""
-            }`}
-          >
+          <div className={this.decorateCSS("buttons")}>
             {buttons.map((button: any, index: number) => {
               const hasIcon = button.icon && button.icon.name;
               const hasText = this.castToString(button.text);
+              // Animasyon kontrolü artık her buton için ayrı yapılıyor
+              const isAnimated = button.enableAnimation;
 
               if (!hasIcon && !hasText) return null;
 
@@ -150,7 +149,8 @@ class IntroSection5 extends BaseIntroSection {
                 <ComposerLink key={index} path={button.url}>
                   <Base.Button
                     buttonType={button.type || "Link"}
-                    className={this.decorateCSS("button")}
+                    // has-animation sınıfı sadece bu butonun ayarı açıksa eklenir
+                    className={`${this.decorateCSS("button")} ${isAnimated ? this.decorateCSS("has-animation") : ""}`}
                   >
                     {hasText && button.text}
                     {hasIcon && (
