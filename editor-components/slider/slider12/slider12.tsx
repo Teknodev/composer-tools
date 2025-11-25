@@ -354,25 +354,25 @@ class Slider12 extends BaseSlider {
               <Base.VerticalContent
                 className={this.decorateCSS("vertical-content")}
               >
-                <div className={this.decorateCSS("header")}>
+                <div className={this.decorateCSS("section-header")}>
                   <Base.VerticalContent
-                    className={this.decorateCSS("header-content")}
+                    className={this.decorateCSS("section-header-content")}
                   >
                     {subtitleStr ? (
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                         {subtitle}
                       </Base.SectionSubTitle>
                     ) : (
-                      <div className={this.decorateCSS("subtitle")} />
+                      <div className={this.decorateCSS("section-subtitle")} />
                     )}
                     {titleStr && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                      <Base.SectionTitle className={this.decorateCSS("section-title")}>
                         {title}
                       </Base.SectionTitle>
                     )}
                     {descStr && (
                       <Base.SectionDescription
-                        className={this.decorateCSS("description")}
+                        className={this.decorateCSS("section-description")}
                       >
                         {description}
                       </Base.SectionDescription>
@@ -426,7 +426,7 @@ class Slider12 extends BaseSlider {
                     media?.type ?? (item.image ? "image" : undefined);
                   const url = media?.url ?? item.image ?? "";
                   const hasMedia = mediaType && url;
-                  const hasCardDesc = this.castToString(item.description);
+                  const hasCardDescription = this.castToString(item.description);
                   const hasHeaderText = this.castToString(item.header);
                   const textClasses = [this.decorateCSS("text")];
                   if (!hasMedia && isCenterAlignment) {
@@ -477,17 +477,17 @@ class Slider12 extends BaseSlider {
                             </div>
                           )}
 
-                          {(hasHeaderText || hasCardDesc) && (
+                          {(hasHeaderText || hasCardDescription) && (
                             <div className={textClasses.join(" ")}>
                               {hasHeaderText && (
                                 <Base.H4
-                                  className={this.decorateCSS("header")}
+                                  className={this.decorateCSS("card-header")}
                                 >
                                   {item.header}
                                 </Base.H4>
                               )}
-                              {hasCardDesc && (
-                                <div className={this.decorateCSS("desc")}>
+                              {hasCardDescription && (
+                                <div className={this.decorateCSS("card-description")}>
                                   <Base.P>{item.description}</Base.P>
                                 </div>
                               )}

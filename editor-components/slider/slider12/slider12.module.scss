@@ -13,9 +13,9 @@
   .upper-container {
     padding: 80px 50px 30px;
     .max-content {
-      .header {
-        .header-content {
-          .subtitle {
+      .section-header {
+        .section-header-content {
+          .section-subtitle {
             content: "";
           }
 
@@ -114,11 +114,11 @@
     .text {
       padding: var(--composer-gap-md);
 
-      .header {
+      .card-header {
         color: var(--composer-font-color-primary);
       }
 
-      .desc {
+      .card-description {
         color: var(--composer-tertiary-color);
       }
     }
@@ -127,7 +127,7 @@
       justify-items: center;
       text-align: center;
 
-      .desc {
+        .card-description {
         text-align: center !important;
       }
     }
@@ -182,9 +182,9 @@
 
   .wrap {
     .slider-parent {
-      .header {
-        .header-content {
-          .title {
+      .section-header {
+        .section-header-content {
+          .section-title {
             margin-bottom: var(--composer-gap-sm);
           }
         }
@@ -246,14 +246,14 @@
         padding: 0 !important;
       }
 
-      .header {
+      .section-header {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
 
-        .header-content {
+        .section-header-content {
           gap: 0 !important;
 
-          .description {
+          .section-description {
             margin-bottom: 0 !important;
             font-size: var(--composer-font-size-md) !important;
           }
