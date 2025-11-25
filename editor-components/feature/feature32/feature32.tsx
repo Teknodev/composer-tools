@@ -1,29 +1,34 @@
+import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
-import styles from "./feature29.module.scss";
+import styles from "./feature32.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-interface ListItem {
-  title: string;
-  image?: string;
-  sections: {
-    title?: string;
-    text?: string;
-  }[];
-}
-
-class Feature29 extends BaseFeature {
+class Feature32 extends BaseFeature {
   constructor(props?: Record<string, unknown>) {
     super(props, styles);
     this.setComponentState("activeTab", 0);
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value:
-        "Thousands of Agencies Have Chosen Duda as Their White Label Web Design Platform",
+      value: "Thousands of Agencies Have Chosen Duda as Their White Label Web Design Platform",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
 
     this.addProp({
@@ -186,151 +191,126 @@ class Feature29 extends BaseFeature {
   }
 
   static getName(): string {
-    return "Feature 29";
+    return "Feature 32";
   }
-
-  private setActiveTab = (index: number) => {
-    this.setComponentState("activeTab", index);
-  };
-
-  private toPlainText = (value: unknown): string => {
-    const input = this.castToString(value as any);
-    if (!input || typeof input !== "string") return "";
-    const withoutTags = input.replace(/<[^>]*>/g, "");
-    return withoutTags
-      .replace(/&nbsp;/g, " ")
-      .replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">");
-  };
-
-  private stopEventPropagation = (e: any): void => {
-    if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-  };
 
   render() {
     const title = this.getPropValue("title");
-    const originalList = this.castToObject<ListItem[]>("items") || [];
-    const viewList = originalList.map((item, index) => ({
-      item,
-      index,
-      displayTitle: this.castToString((item as any).title),
-    }));
-    const displayList = viewList.filter((v) => v.displayTitle);
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>(
-      "button"
+    const subtitle = this.getPropValue("subtitle");
+    const overlay = this.getPropValue("overlay");
+
+    const items = this.castToObject<any[]>("items") || [];
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const showDivider = this.getPropValue("showDivider");
+    const hoverAnimation = this.getPropValue("hoverAnimation");
+
+    const displayList = items
+      .map((item, idx) => ({ ...item, idx }))
+      .filter((item) => this.castToString(item.title));
+
+    const activeTabState = this.getComponentState("activeTab") ?? 0;
+    const activeTab = Math.min(activeTabState, items.length - 1);
+    const activeItem = items[activeTab];
+
+    const hasImage = !!activeItem?.image;
+    const hasSections = activeItem?.sections?.some((s: any) =>
+      this.castToString(s.title) || this.castToString(s.text)
     );
-    const showDivider = this.getPropValue("showDivider") as boolean;
-    const activeTabRaw = this.getComponentState("activeTab") ?? 0;
-    const activeTab = originalList.length > 0 ? Math.min(activeTabRaw, originalList.length - 1) : 0;
-    const activeItem = originalList.length ? (originalList[activeTab] || originalList[0]) : undefined;
-    const hasImage = !!(activeItem && (activeItem as any).image);
-    const hasAnySection = !!(
-      activeItem &&
-      Array.isArray((activeItem as any).sections) &&
-      (activeItem as any).sections.some(
-        (s: any) => this.castToString(s?.title) || this.castToString(s?.text)
-      )
-    );
-    const hasButton = this.castToString(button?.text);
-    const hasRightContent = !!(hasImage || hasAnySection || hasButton);
+    const hasButton = !!this.castToString(button?.text);
+
+    const hasRightContent = !!activeItem && (hasImage || hasSections || hasButton);
+    const hasLeftContent = !!this.castToString(title) || !!this.castToString(subtitle) || displayList.length > 0;
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} ${this.decorateCSS("leftLock")}`}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("grid")} ${!showDivider ? this.decorateCSS("noDivider") : ""} ${!this.castToString(title) && displayList.length === 0
-              ? this.decorateCSS("noLeft")
-              : ""
-              } ${!hasRightContent ? this.decorateCSS("noRight") : ""}`}
-          >
-            <Base.VerticalContent className={this.decorateCSS("leftContent")}>
-              {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("leftTitle")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("maxContent")}>
+          <div className={this.decorateCSS("grid")}>
+            {hasLeftContent && (
+              <Base.VerticalContent className={`${this.decorateCSS("leftContent")} ${!hasRightContent ? this.decorateCSS("fullWidth") : ""}`}>
 
-              {displayList.length > 0 && (
-                <ul className={this.decorateCSS("list")}>
-                  {displayList.map(({ item: listItem, index }) => {
-                    const isActive = index === activeTab;
-                    return (
+                {(this.castToString(subtitle) || this.castToString(title)) && (
+                  <Base.VerticalContent className={this.decorateCSS("headerWrapper")}>
+                    {this.castToString(subtitle) && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {subtitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {this.castToString(title) && (
+                      <Base.SectionTitle className={this.decorateCSS("sectionTitle")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                  </Base.VerticalContent>
+                )}
+
+                {displayList.length > 0 && (
+                  <ul className={this.decorateCSS("list")}>
+                    {displayList.map((item) => (
                       <li
-                        key={index}
-                        className={`${this.decorateCSS("listItem")} ${isActive ? this.decorateCSS("isActive") : ""}`}
-                        onClick={() => this.setActiveTab(index)}
+                        key={item.idx}
+                        className={`${this.decorateCSS("listItem")} ${item.idx === activeTab ? this.decorateCSS("isActive") : ""}`}
+                        onClick={() => this.setComponentState("activeTab", item.idx)}
                       >
-                        <Base.H4
-                          className={this.decorateCSS("listItemText")}
-                          onMouseDown={isActive ? this.stopEventPropagation : undefined}
-                          onClick={isActive ? ((e: any) => e.stopPropagation()) : undefined}
-                        >
-                          {listItem.title}
-                        </Base.H4>
+                        <Base.H5 className={this.decorateCSS("listItemText")}>
+                          {item.title}
+                        </Base.H5>
                       </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </Base.VerticalContent>
+                    ))}
+                  </ul>
+                )}
+              </Base.VerticalContent>
+            )}
 
-            <div className={this.decorateCSS("dividerColumn")}>
-              <div className={this.decorateCSS("dividerLine")} />
-            </div>
+            {hasRightContent && (showDivider || hasLeftContent) && (
+              <div className={`${this.decorateCSS("dividerColumn")} ${!showDivider ? this.decorateCSS("hiddenDivider") : ""}`}>
+                <div className={this.decorateCSS("dividerLine")} />
+              </div>
+            )}
 
             {hasRightContent && (
-              <Base.VerticalContent className={`${this.decorateCSS("rightColumn")} ${this.decorateCSS("isActive")}`}>
-                {activeItem && (activeItem as any).image && (
+              <Base.VerticalContent className={`${this.decorateCSS("rightContent")} ${this.decorateCSS("activeContent")}`}>
+                {hasImage && (
                   <div
-                    className={this.decorateCSS("imageBox")}
-                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    className={this.decorateCSS("imageWrapper")}
+                    data-animation={Array.isArray(hoverAnimation) ? hoverAnimation.join(" ") : ""}
                   >
-                    <Base.Media
-                      value={{ type: "image", url: (activeItem as any).image } as TypeMediaInputValue}
-                      className={this.decorateCSS("image")}
-                    />
+                    <div className={this.decorateCSS("imageContainer")}>
+                      <Base.Media
+                        value={{ type: "image", url: activeItem.image } as TypeMediaInputValue}
+                        className={this.decorateCSS("image")}
+                      />
+                      {overlay && <div className={this.decorateCSS("overlay")} />}
+                    </div>
                   </div>
                 )}
 
-                {activeItem && (
-                  <>
-                    {(activeItem as any).sections && (activeItem as any).sections.map((section: any, index: number) => {
-                      const hasTitle = this.castToString((section as any).title);
-                      const hasText = this.castToString((section as any).text);
-                      if (!hasTitle && !hasText) return null;
-                      return (
-                        <Base.P key={index} className={this.decorateCSS("infoLine")}>
-                          {hasTitle && (
-                            <strong
-                              className={this.decorateCSS("infoLabel")}
-                              onMouseDown={this.stopEventPropagation}
-                              onClick={(e: any) => e.stopPropagation()}
-                            >
-                              {(section as any).title}
-                            </strong>
-                          )}
-                          {hasText && (
-                            <span
-                              onMouseDown={this.stopEventPropagation}
-                              onClick={(e: any) => e.stopPropagation()}
-                            >
-                              {(section as any).text}
-                            </span>
-                          )}
-                        </Base.P>
-                      );
-                    })}
-                  </>
-                )}
+                {hasSections && activeItem.sections.map((section: any, idx: number) => {
+                  const titleStr = this.castToString(section?.title);
+                  const textStr = this.castToString(section?.text);
 
-                {this.castToString(button.text) && (
-                  <div className={this.decorateCSS("button-container")}>
+                  if (!titleStr && !textStr) return null;
+
+                  return (
+                    <Base.P key={idx} className={this.decorateCSS("infoLine")}>
+                      {titleStr && (
+                        <strong className={this.decorateCSS("infoLabel")}>
+                          {section.title}
+                        </strong>
+                      )}
+                      {textStr && (
+                        <span className={this.decorateCSS("infoText")}>
+                          {section.text}
+                        </span>
+                      )}
+                    </Base.P>
+                  );
+                })}
+
+                {hasButton && (
+                  <div className={this.decorateCSS("buttonContainer")}>
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("buttonText")}>{button.text}</Base.P>
+                        {button.text}
                       </Base.Button>
                     </ComposerLink>
                   </div>
@@ -344,6 +324,4 @@ class Feature29 extends BaseFeature {
   }
 }
 
-export default Feature29;
-
-
+export default Feature32;
