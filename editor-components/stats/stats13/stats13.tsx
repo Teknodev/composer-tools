@@ -24,7 +24,7 @@ class Stats13 extends BaseStats {
         this.addProp({
             type: "boolean",
             key: "enableOverlay",
-            displayer: "Enable Image Overlay",
+            displayer: "Overlay",
             value: false,
         });
 
