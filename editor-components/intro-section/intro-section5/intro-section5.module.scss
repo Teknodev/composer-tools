@@ -9,7 +9,7 @@
   justify-content: center;
   overflow: hidden;
 
-  .background-image {
+  .background-media {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,22 +18,21 @@
     object-fit: cover;
     z-index: 0;
     pointer-events: none;
+
+    video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  &.image-active {
+  &.media-active {
     min-height: 100vh;
     padding: 0;
     gap: 0;
 
     .subtitle {
       color: var(--color-white) !important;
-      border: none !important;
-
-      &::before,
-      &::after {
-        display: none !important;
-        content: none !important;
-      }
     }
 
     .title,
@@ -47,6 +46,7 @@
       left: 50%;
       transform: translateX(-50%);
       margin-top: 0;
+      z-index: 5;
 
       a {
         color: var(--color-white) !important;
@@ -54,7 +54,11 @@
 
       .button {
         color: var(--color-white) !important;
-        border-color: var(--color-white) !important;
+        background: transparent;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1) !important;
+        }
       }
 
       &.has-animation {
@@ -95,15 +99,51 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
 
-      .subtitle,
+      // SUBTITLE TEMİZLİK VE ORTALAMA OPERASYONU
+      .subtitle {
+        // 1. Pozisyonlama ve Ortalama
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        align-self: center !important;
+        position: relative !important;
+        transform: none !important; // Kaymaları sıfırla
+        left: auto !important;
+        right: auto !important;
+
+        // 2. Dekorasyonları Yok Etme (Badge, Border, Background)
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important; // Badge paddingini yok et
+
+        // 3. Çizgileri (Lines) Kesin Olarak Yok Etme (::before ve ::after)
+        &::before,
+        &::after {
+          content: none !important;
+          display: none !important;
+          width: 0 !important;
+          height: 0 !important;
+          border: none !important;
+          background: transparent !important;
+        }
+      }
+
       .title,
       .description {
-        content: "";
+        width: 100% !important;
         text-align: center !important;
         justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
       }
     }
   }
@@ -160,7 +200,7 @@
   }
 }
 
-.container.image-active .buttons.has-animation {
+.container.media-active .buttons.has-animation {
   animation: bounceAbsolute 2s infinite;
 }
 
@@ -185,7 +225,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    &.image-active {
+    &.media-active {
       min-height: 80vh;
 
       .buttons {
@@ -197,7 +237,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    &.image-active {
+    &.media-active {
       min-height: 70vh;
 
       .buttons {

@@ -13,7 +13,7 @@ class IntroSection5 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "WELCOME",
     });
 
     this.addProp({
@@ -32,14 +32,14 @@ class IntroSection5 extends BaseIntroSection {
 
     this.addProp({
       type: "media",
-      key: "backgroundImage",
-      displayer: "Background Image",
+      key: "backgroundMedia",
+      displayer: "Background Media",
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
       } as TypeMediaInputValue,
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
     });
 
@@ -91,17 +91,14 @@ class IntroSection5 extends BaseIntroSection {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const bgImage = this.getPropValue("backgroundImage") as TypeMediaInputValue;
+    const bgMedia = this.getPropValue("backgroundMedia") as TypeMediaInputValue;
     const hasOverlay = this.getPropValue("overlay");
 
     const buttons = this.castToObject<any[]>("buttons");
     const button = buttons && buttons.length > 0 ? buttons[0] : null;
 
-    const bgUrl = (bgImage && bgImage.type === "image") ? bgImage.url : "";
-    const hasBgImage = !!bgUrl;
-
+    const hasBgMedia = bgMedia && bgMedia.url;
     const enableAnimation = button?.enableAnimation;
-
     const hasIcon = button && button.icon && button.icon.name;
     const hasText = button && this.castToString(button.text);
 
@@ -110,13 +107,13 @@ class IntroSection5 extends BaseIntroSection {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
-          hasBgImage ? this.decorateCSS("image-active") : ""
-        } ${hasOverlay && hasBgImage ? this.decorateCSS("overlay-active") : ""}`}
+          hasBgMedia ? this.decorateCSS("media-active") : ""
+        } ${hasOverlay && hasBgMedia ? this.decorateCSS("overlay-active") : ""}`}
       >
-        {hasBgImage && (
+        {hasBgMedia && (
           <Base.Media 
-            value={bgImage} 
-            className={this.decorateCSS("background-image")} 
+            value={bgMedia} 
+            className={this.decorateCSS("background-media")} 
           />
         )}
 
