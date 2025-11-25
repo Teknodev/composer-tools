@@ -504,7 +504,7 @@ class Slider12 extends BaseSlider {
         </div>
 
         {buttonText && (
-          <div className={this.decorateCSS("cta-row")}>
+          <div className={this.decorateCSS("button-container")}>
             <ComposerLink path={button?.url}>
               <Base.Button
                 buttonType={button?.type || "Primary"}
