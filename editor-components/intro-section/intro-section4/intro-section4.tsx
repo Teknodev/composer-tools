@@ -131,9 +131,9 @@ class IntroSection4 extends BaseIntroSection {
                             </Base.SectionDescription>
                         )}
                         {label && (
-                            <Base.P className={this.decorateCSS("label")}>
+                            <Base.H6 className={this.decorateCSS("label")}>
                                 {this.getPropValue("label")}
-                            </Base.P>
+                            </Base.H6>
                         )}
                         {buttonItem.length > 0 && (
                             <Base.Row className={this.decorateCSS("button-container")}>
