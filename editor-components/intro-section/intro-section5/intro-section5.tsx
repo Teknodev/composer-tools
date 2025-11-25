@@ -73,7 +73,6 @@ class IntroSection5 extends BaseIntroSection {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      max: 1,
       value: [buttonProp],
     });
   }
@@ -93,16 +92,10 @@ class IntroSection5 extends BaseIntroSection {
 
     const bgMedia = this.getPropValue("backgroundMedia") as TypeMediaInputValue;
     const hasOverlay = this.getPropValue("overlay");
-
     const buttons = this.castToObject<any[]>("buttons");
-    const button = buttons && buttons.length > 0 ? buttons[0] : null;
-
+    const hasButtons = buttons && buttons.length > 0;
     const hasBgMedia = bgMedia && bgMedia.url;
-    const enableAnimation = button?.enableAnimation;
-    const hasIcon = button && button.icon && button.icon.name;
-    const hasText = button && this.castToString(button.text);
-
-    const hasButtonData = !!button && (hasIcon || hasText);
+    const enableAnimation = buttons?.some((btn: any) => btn.enableAnimation);
 
     return (
       <Base.Container
@@ -141,23 +134,32 @@ class IntroSection5 extends BaseIntroSection {
           )}
         </Base.MaxContent>
 
-        {hasButtonData && (
+        {hasButtons && (
           <div
             className={`${this.decorateCSS("buttons")} ${
               enableAnimation ? this.decorateCSS("has-animation") : ""
             }`}
           >
-            <ComposerLink path={button.url}>
-              <Base.Button
-                buttonType={button.type || "Link"}
-                className={this.decorateCSS("button")}
-              >
-                {hasText && button.text}
-                {hasIcon && (
-                  <Base.Media value={button.icon} className={this.decorateCSS("icon")} />
-                )}
-              </Base.Button>
-            </ComposerLink>
+            {buttons.map((button: any, index: number) => {
+              const hasIcon = button.icon && button.icon.name;
+              const hasText = this.castToString(button.text);
+
+              if (!hasIcon && !hasText) return null;
+
+              return (
+                <ComposerLink key={index} path={button.url}>
+                  <Base.Button
+                    buttonType={button.type || "Link"}
+                    className={this.decorateCSS("button")}
+                  >
+                    {hasText && button.text}
+                    {hasIcon && (
+                      <Base.Media value={button.icon} className={this.decorateCSS("icon")} />
+                    )}
+                  </Base.Button>
+                </ComposerLink>
+              );
+            })}
           </div>
         )}
       </Base.Container>

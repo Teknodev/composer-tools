@@ -47,14 +47,23 @@
       transform: translateX(-50%);
       margin-top: 0;
       z-index: 5;
+      // Birden fazla butonun yan yana dizilmesi ve aralarındaki boşluk için:
+      display: flex;
+      gap: var(--composer-gap-md);
+      flex-wrap: wrap;
+      justify-content: center;
 
       a {
         color: var(--color-white) !important;
+        text-decoration: none;
       }
 
       .button {
         color: var(--color-white) !important;
         background: transparent;
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-sm);
 
         &:hover {
           background-color: rgba(255, 255, 255, 0.1) !important;
@@ -62,7 +71,7 @@
       }
 
       &.has-animation {
-        animation: bounce 2s infinite;
+        animation: bounceAbsolute 2s infinite;
       }
     }
   }
@@ -150,6 +159,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: var(--composer-gap-md); // Medya aktif değilken de boşluk olsun
 
     .button {
       transition: transform 0.3s ease;
@@ -196,10 +206,7 @@
   }
 }
 
-.container.media-active .buttons.has-animation {
-  animation: bounceAbsolute 2s infinite;
-}
-
+// Container media-active olduğunda bu animasyon çalışacak
 @keyframes bounceAbsolute {
 
   0%,
@@ -238,6 +245,8 @@
 
       .buttons {
         bottom: 100px;
+        // Mobilde butonlar çoksa alt alta geçsinler ama ortalı kalsınlar
+        flex-wrap: wrap;
       }
     }
   }
