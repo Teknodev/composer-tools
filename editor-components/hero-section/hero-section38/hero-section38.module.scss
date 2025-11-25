@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0 0 80px 0 !important;
+  padding: 80px 50px !important;
   position: relative;
   width: 100%;
 
@@ -480,28 +480,28 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      padding: 80px var(--composer-gap-lg) 0 var(--composer-gap-lg) !important;
+      padding: 80px 0 0 0 !important;
 
       .slider-wrapper {
         .slider {
           :global(.slick-track) {
             justify-content: center;
-            gap: var(--composer-gap-md);
+            gap: 0;
           }
 
           .slick-slide,
           :global(.slick-slide > div) {
-            width: 340px !important;
+            width: 100% !important;
           }
 
           .slide-item {
-            width: 340px;
-            max-width: 340px;
-            padding: 0 var(--composer-gap-md);
+            width: 100%;
+            max-width: 100%;
+            padding: 0;
             transform: scale(0.9);
             transform-origin: center;
             height: 310px;
-            margin: 0 auto;
+            margin: 0;
             transition: transform var(--composer-transition-duration-normal) ease;
 
             .image-wrapper {

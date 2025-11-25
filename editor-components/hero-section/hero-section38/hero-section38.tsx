@@ -282,6 +282,7 @@ class HeroSection38 extends BaseHeroSection {
     const slides = this.getValidSlides();
     const overlay = !!this.getPropValue("overlay");
     const animation = !!this.getPropValue("animation");
+    const dotIconValue = this.getPropValue("dotIcon");
     const isSingleSlide = slides.length === 1;
     
     const settings = {
@@ -391,22 +392,19 @@ class HeroSection38 extends BaseHeroSection {
                       />
                     </Base.Button>
                   )}
-                  <div className={this.decorateCSS("pagination")}>
-                    {slides.map((_, index: number) => (
-                      <Base.Button
-                        key={`pagination-dot-${index}`}
-                        className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
-                        onClick={() => this.sliderRef.current?.slickGoTo(index)}
-                      >
-                        {this.getPropValue("dotIcon") && (
-                          <Base.Media
-                            value={this.getPropValue("dotIcon")}
-                            className={this.decorateCSS("dot-icon")}
-                          />
-                        )}
-                      </Base.Button>
-                    ))}
-                  </div>
+                  {dotIconValue && (
+                    <div className={this.decorateCSS("pagination")}>
+                      {slides.map((_, index: number) => (
+                        <Base.Button
+                          key={`pagination-dot-${index}`}
+                          className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
+                          onClick={() => this.sliderRef.current?.slickGoTo(index)}
+                        >
+                          <Base.Media value={dotIconValue} className={this.decorateCSS("dot-icon")} />
+                        </Base.Button>
+                      ))}
+                    </div>
+                  )}
                   {this.getPropValue("nextArrow") && (
                     <Base.Button
                       className={this.decorateCSS("arrow-button")}
