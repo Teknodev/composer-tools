@@ -176,9 +176,7 @@ class IntroSection7 extends BaseIntroSection {
                             <div className={`${this.decorateCSS("right-content")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
                                 <div className={this.decorateCSS("image-wrapper")}>
                                     <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
-                                    {enableOverlay && (
-                                        <div className={this.decorateCSS("overlay")}></div>
-                                    )}
+                                    {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                 </div>
                             </div>
                         )}
