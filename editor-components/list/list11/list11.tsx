@@ -78,7 +78,7 @@ class List11 extends BaseList {
                                 url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-01.svg"
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                         {
@@ -133,7 +133,7 @@ class List11 extends BaseList {
                                 url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-02.svg"
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                         {
@@ -188,7 +188,7 @@ class List11 extends BaseList {
                                 url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-03.svg"
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                         {
