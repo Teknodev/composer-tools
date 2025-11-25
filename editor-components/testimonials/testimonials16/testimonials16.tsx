@@ -26,6 +26,13 @@ class Testimonials16 extends Testimonials {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    })
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Hear from Blinkpage's customers",
@@ -362,6 +369,7 @@ class Testimonials16 extends Testimonials {
       const hasCompany = item.company ? this.castToString(item.company) : ""
       return hasLogo || hasImage || hasQuote || hasAuthor || hasRole || hasCompany
     })
+    const subtitleValue = this.getPropValue("subtitle")
     const titleValue = this.getPropValue("title")
     const links = this.castToObject<LinkItem[]>("links")
     const sliderRef = this.getComponentState("sliderRef")
@@ -371,6 +379,7 @@ class Testimonials16 extends Testimonials {
     const prevIcon = this.getPropValue("prevButtonIcon")
     const nextIcon = this.getPropValue("nextButtonIcon")
     const quoteIconValue = this.getPropValue("quoteIcon")
+    const hasSubtitle = this.castToString(subtitleValue)
     const hasTitle = this.castToString(titleValue)
     const showMediaOverlay = this.getPropValue("mediaOverlay") !== false
     const showBackgroundOverlay = this.getPropValue("backgroundOverlay")
@@ -416,9 +425,14 @@ class Testimonials16 extends Testimonials {
           <div className={this.decorateCSS("background-overlay")} data-visible={showBackgroundOverlay} />
         </div>
         <div className={this.decorateCSS("max-content")}>
-          {(hasTitle || links.length > 0) && (
+          {(hasSubtitle || hasTitle || links.length > 0) && (
             <div className={this.decorateCSS("header")}>
-              {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{titleValue}</Base.SectionTitle>}
+              {(hasSubtitle || hasTitle) && (
+                <div className={this.decorateCSS("header-text")}>
+                  {hasSubtitle && <Base.SectionSubTitle>{subtitleValue}</Base.SectionSubTitle>}
+                  {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{titleValue}</Base.SectionTitle>}
+                </div>
+              )}
               {links.length > 0 && (
                 <div className={this.decorateCSS("links")}>
                   {links.map((link: LinkItem, index: number) => {
