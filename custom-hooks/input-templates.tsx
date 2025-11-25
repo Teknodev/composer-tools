@@ -53,7 +53,7 @@ export namespace INPUTS {
       button.value.push({
         type: "page",
         key: "url",
-        displayer: "URL",
+        displayer: "Navigate To",
         value: url,
       });
     }

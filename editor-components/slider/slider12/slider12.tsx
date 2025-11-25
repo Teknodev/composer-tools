@@ -504,19 +504,19 @@ class Slider12 extends BaseSlider {
         </div>
 
         {buttonText && (
-          <div className={this.decorateCSS("bottom-cta")}>
+          <div className={this.decorateCSS("cta-row")}>
             <ComposerLink path={button?.url}>
               <Base.Button
                 buttonType={button?.type || "Primary"}
-                className={this.decorateCSS("bottom-button")}
+                className={this.decorateCSS("button")}
               >
-                <Base.P className={this.decorateCSS("bottom-button-text")}>
+                <Base.P className={this.decorateCSS("button-text")}>
                   {buttonContent}
                 </Base.P>
                 {button?.icon && (
                   <Base.Media
                     value={button.icon}
-                    className={this.decorateCSS("bottom-button-icon")}
+                    className={this.decorateCSS("button-icon")}
                   />
                 )}
               </Base.Button>
