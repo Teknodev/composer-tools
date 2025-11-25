@@ -31,6 +31,10 @@
     }
 
     .subtitle {
+      background: transparent !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+
       &::before {
         background: var(--color-white) !important;
       }
