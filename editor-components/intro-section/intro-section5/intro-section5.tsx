@@ -13,7 +13,7 @@ class IntroSection5 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "WELCOME",
+      value: "",
     });
 
     this.addProp({
@@ -33,7 +33,7 @@ class IntroSection5 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "backgroundMedia",
-      displayer: "Background Media",
+      displayer: "Background Image",
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
