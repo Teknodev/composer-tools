@@ -40,6 +40,27 @@
           }
 
           .button {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+
+            .button-image {
+              width: 20px;
+              height: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+
+              :global(img),
+              :global(svg) {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                fill: currentColor;
+              }
+            }
+
             .button-text {
               content: "";
             }

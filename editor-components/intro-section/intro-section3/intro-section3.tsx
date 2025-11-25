@@ -60,16 +60,27 @@ class IntroSection3 extends BaseIntroSection {
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Image Overlay",
+      displayer: "Overlay",
       value: false,
     });
+
+    const buttonProp = INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary");
+
+    if (Array.isArray(buttonProp.value)) {
+      buttonProp.value.push({
+        type: "media",
+        key: "buttonImage",
+        displayer: "Button Image",
+        value: { type: "image", url: "" } as TypeMediaInputValue
+      });
+    }
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary"),
+        buttonProp,
       ],
     });
   }
@@ -131,12 +142,14 @@ class IntroSection3 extends BaseIntroSection {
                   if (!buttonItem.getPropValue) return null;
 
                   const buttonTextElement = buttonItem.getPropValue("text");
-                  
                   const url = buttonItem.getPropValue("url", { as_string: true });
                   const buttonType = buttonItem.getPropValue("type", { as_string: true });
+                  const buttonImage = buttonItem.getPropValue("buttonImage") as TypeMediaInputValue;
 
                   const hasButtonText = !!this.castToString(buttonTextElement);
-                  if (!hasButtonText) return null;
+                  const hasButtonImage = buttonImage && (buttonImage as any).url;
+
+                  if (!hasButtonText && !hasButtonImage) return null;
                   
                   return (
                     <ComposerLink key={index} path={url || "#"}>
@@ -144,9 +157,14 @@ class IntroSection3 extends BaseIntroSection {
                         buttonType={buttonType || "Primary"} 
                         className={this.decorateCSS("button")}
                       >
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {buttonTextElement}
-                        </Base.P>
+                        {hasButtonImage && (
+                          <Base.Media value={buttonImage} className={this.decorateCSS("button-image")} />
+                        )}
+                        {hasButtonText && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {buttonTextElement}
+                          </Base.P>
+                        )}
                       </Base.Button>
                     </ComposerLink>
                   );
