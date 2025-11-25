@@ -8,6 +8,9 @@
   position: relative;
   isolation: isolate;
   background-color: unset !important;
+  &.no-background-media {
+    background-color: var(--composer-html-background) !important;
+  }
 
   .background-overlay {
     position: absolute;

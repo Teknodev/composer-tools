@@ -64,7 +64,7 @@ class ImageGallery11 extends BaseImageGallery {
     this.addProp({
       type: "media",
       key: "background",
-      displayer: "Background Media",
+      displayer: "Image",
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689af25436675f002db98b79?alt=media",
@@ -353,10 +353,14 @@ class ImageGallery11 extends BaseImageGallery {
       ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
       : this.decorateCSS("heading");
     const showImageOverlay = !!this.getPropValue("imageOverlay");
+    const containerClasses = [this.decorateCSS("container")];
+    if (!hasBackgroundMedia) {
+      containerClasses.push(this.decorateCSS("no-background-media"));
+    }
     return (
       <Base.Container
         isFull
-        className={this.decorateCSS("container")}
+        className={containerClasses.join(" ")}
         style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
       >
         {backgroundMedia && backgroundMedia.type === "video" && (
