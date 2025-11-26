@@ -113,10 +113,8 @@ class LogoComp10Page extends LogoClouds {
   getVisibleLogoItems = (): TImage[] => this.getAllLogoItems().filter((img) => !!img?.image);
   getChunkSize = (): number => {
     const propValue = this.getPropValue("itemCount");
-    const logoCount = this.getVisibleLogoItems().length;
     const requested = typeof propValue === "number" ? propValue : 4;
-    const maxAllowed = logoCount > 0 ? logoCount : 1;
-    return Math.max(1, Math.min(requested, maxAllowed));
+    return Math.max(1, requested);
   };
   getEffectiveChunkSize = (): number => {
     const desktopChunkSize = this.getChunkSize();
