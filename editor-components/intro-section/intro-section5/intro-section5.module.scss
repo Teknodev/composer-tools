@@ -38,7 +38,7 @@
 
     .buttons {
       .button {
-        content: "";
+        color: var(--composer-font-color-secondary) !important;
 
         &:hover {
           content: "";
