@@ -184,7 +184,7 @@ class IntroSection6 extends BaseIntroSection {
                   {(hasAnyButton || hasBottomText || textIcon) && (
                     <div className={this.decorateCSS("actions-wrapper")}>
                       {hasAnyButton && (
-                        <Base.Row className={this.decorateCSS("button-wrapper")}>
+                        <div className={this.decorateCSS("action-buttons")}>
                           {buttons.map(
                             (item: INPUTS.CastedButton, index: number) => {
                               const btnTextExist = this.castToString(item.text);
@@ -194,23 +194,22 @@ class IntroSection6 extends BaseIntroSection {
                               }
                               const buttonUrl = item.url || "#";
                               return (
-                                <div key={`is6-btn-${index}`} className={this.decorateCSS("button-wrapp")}>
+                                <div key={`is6-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
                                   <ComposerLink path={buttonUrl}>
                                     <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                      {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                       {buttonIcon && (
                                         <div className={this.decorateCSS("button-icon-wrapper")}>
                                           <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />
                                         </div>
                                       )}
-                                      
+                                      {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                     </Base.Button>
                                   </ComposerLink>
                                 </div>
                               );
                             }
                           )}
-                        </Base.Row>
+                        </div>
                       )}
 
                       {(hasBottomText || textIcon) && (

@@ -26,9 +26,8 @@
             .actions-wrapper {
               align-items: flex-start;
             }
-            .button-wrapper {
+            .action-buttons {
               justify-content: flex-start;
-              width: 100%;
             }
             .text-wrapper {
               justify-content: flex-start;
@@ -50,7 +49,7 @@
             .text-wrapper {
               text-align: left;
             }
-            .button-wrapper {
+            .action-buttons {
               justify-content: flex-start;
             }
           }
@@ -125,9 +124,26 @@
             gap: var(--composer-gap-md);
           }
 
-          .button-wrapper {
+          .action-buttons {
             display: flex;
+            flex-direction: row;
+            align-items: center;
             gap: var(--composer-gap-md);
+            .button-wrapper {
+              display: flex;
+            }
+          }
+
+          .button {
+            content: "";
+          }
+
+          .button-text {
+            content: "";
+          }
+
+          .button-icon-wrapper {
+            content: "";
           }
 
           .thumb-row {
