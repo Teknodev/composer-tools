@@ -176,55 +176,59 @@ class IntroSection6 extends BaseIntroSection {
                     </Base.SectionDescription>
                   )}
 
-                  {hasAnyButton && (
-                    <Base.Row className={this.decorateCSS("button-wrapper")}>
-                      {buttons.map(
-                        (item: INPUTS.CastedButton, index: number) => {
-                          const btnTextExist = this.castToString(item.text);
-                          const buttonIcon = item.icon;
-                          if (!btnTextExist && !buttonIcon) {
-                            return null;
-                          }
-                          const buttonUrl = item.url || "#";
-                          return (
-                            <div key={`is6-btn-${index}`} className={this.decorateCSS("button-wrapp")}>
-                              <ComposerLink path={buttonUrl}>
-                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                  {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                                  {buttonIcon && (
-                                    <div className={this.decorateCSS("button-icon-wrapper")}>
-                                      <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />
-                                    </div>
-                                  )}
-                                  
-                                </Base.Button>
-                              </ComposerLink>
-                            </div>
-                          );
-                        }
+                  {(hasAnyButton || hasBottomText || textIcon) && (
+                    <div className={this.decorateCSS("actions-wrapper")}>
+                      {hasAnyButton && (
+                        <Base.Row className={this.decorateCSS("button-wrapper")}>
+                          {buttons.map(
+                            (item: INPUTS.CastedButton, index: number) => {
+                              const btnTextExist = this.castToString(item.text);
+                              const buttonIcon = item.icon;
+                              if (!btnTextExist && !buttonIcon) {
+                                return null;
+                              }
+                              const buttonUrl = item.url || "#";
+                              return (
+                                <div key={`is6-btn-${index}`} className={this.decorateCSS("button-wrapp")}>
+                                  <ComposerLink path={buttonUrl}>
+                                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                      {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                      {buttonIcon && (
+                                        <div className={this.decorateCSS("button-icon-wrapper")}>
+                                          <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />
+                                        </div>
+                                      )}
+                                      
+                                    </Base.Button>
+                                  </ComposerLink>
+                                </div>
+                              );
+                            }
+                          )}
+                        </Base.Row>
                       )}
-                    </Base.Row>
-                  )}
 
-                  {(hasBottomText || textIcon) && (
-                    <Base.Row className={this.decorateCSS("text-wrapper")}>
-                      <div className={this.decorateCSS("thumb-row")}>
+                      {(hasBottomText || textIcon) && (
+                        <Base.Row className={this.decorateCSS("text-wrapper")}>
+                          <div className={this.decorateCSS("thumb-row")}>
 
-                        {textIcon && (
-                          <Base.Media
-                            className={this.decorateCSS("thumb-icon")}
-                            value={textIcon}
-                          />
-                        )}
+                            {textIcon && (
+                              <Base.Media
+                                className={this.decorateCSS("thumb-icon")}
+                                value={textIcon}
+                              />
+                            )}
 
-                        {bottomText && (
-                          <Base.P className={this.decorateCSS("bottomText")}>
-                            {bottomText}
-                          </Base.P>
-                        )}
+                            {bottomText && (
+                              <Base.P className={this.decorateCSS("bottomText")}>
+                                {bottomText}
+                              </Base.P>
+                            )}
 
-                      </div>
-                    </Base.Row>
+                          </div>
+                        </Base.Row>
+                      )}
+                    </div>
                   )}
                 </Base.VerticalContent>
               </div>

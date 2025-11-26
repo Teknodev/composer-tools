@@ -9,7 +9,10 @@
     .intro-wrapper {
       display: flex;
       width: 100%;
+      height: 100%;
       justify-content: end;
+     min-height: 500px;
+     align-items: center;
 
       &.alignment-center {
         .text-content {
@@ -19,6 +22,9 @@
             .description,
             .bottomText {
               text-align: left;
+            }
+            .actions-wrapper {
+              align-items: flex-start;
             }
             .button-wrapper {
               justify-content: flex-start;
@@ -60,11 +66,13 @@
 
         &.image-container-alone {
           width: 100%;
+          height: 100%;
         }
 
         .media-wrapper {
           
           height: 100%;
+          
           
 
           .thumbnail-overlay {
@@ -92,6 +100,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        height: 100%;
 
         &.text-content-alone {
           width: 100%;
@@ -109,10 +118,16 @@
             margin-left: 0;
           }
 
+          .actions-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+          }
+
           .button-wrapper {
             display: flex;
             gap: var(--composer-gap-md);
-            margin-bottom: var(--gap-md);
           }
 
           .thumb-row {
