@@ -4,12 +4,11 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: var(--composer-gap-lg);
+  gap: var(--composer-gap-xl);
 
   .heading {
     align-self: center !important;
     align-items: center !important;
-
     max-width: var(--composer-content-width);
     margin-bottom: 0;
     margin-right: var(--composer-gap-xl);
@@ -17,10 +16,8 @@
     width: calc(100% - (2 * var(--composer-gap-xl)));
 
     .title {
-      font-size: 1rem;
-      margin-bottom: 0;
-      text-align: center !important;
-      content: "";
+      text-align: center;
+      color: var(--composer-primary-color);
     }
   }
 
@@ -45,8 +42,9 @@
         margin: 0;
 
         .image {
-          width: auto;
-          height: 36px;
+          width: 200px;
+          height: auto;
+          aspect-ratio: 3/1;
           object-fit: contain;
 
           opacity: 0.7;
@@ -72,9 +70,24 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    gap: var(--composer-gap-md);
     .max-content {
       .images-track {
         gap: var(--composer-gap-lg);
+      }
+    }
+    .gallery {
+      .images-container {
+        gap: var(--composer-gap-md);
+        padding-left: var(--composer-gap-md);
+        .image-child {
+          .image {
+            width: 150px;
+            height: auto;
+            aspect-ratio: 3/1;
+            object-fit: contain;
+          }
+        }
       }
     }
   }
@@ -82,9 +95,19 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .max-content {
-      .images-track {
-        gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-md);
+    .gallery {
+      .images-container {
+        gap: var(--composer-gap-sm);
+        padding-left: var(--composer-gap-sm);
+        .image-child {
+          .image {
+            width: 120px;
+            height: auto;
+            aspect-ratio: 3/1;
+            object-fit: contain;
+          }
+        }
       }
     }
   }

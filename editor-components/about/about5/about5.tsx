@@ -7,6 +7,14 @@ import { Base } from "../../../composer-base-components/base/base";
 class About5 extends BaseAbout {
     constructor(props?: any) {
         super(props, styles);
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "About Us",
+        })
+
         this.addProp({
             type: "string",
             key: "title",
@@ -15,20 +23,20 @@ class About5 extends BaseAbout {
         })
         this.addProp({
             type: "string",
-            key: "subTitle",
-            displayer: "Subtitle",
+            key: "description",
+            displayer: "Description",
             value: "Working Since 1976"
         })
         this.addProp({
             type: "string",
             key: "text1",
-            displayer: "Text",
+            displayer: "Left Text",
             value: "Mellentesque habitant morbi tristique senectus et netus et malesuada famesac turpis egestas. Ut non enim eleifend felis pretium feugiat."
         })
         this.addProp({
             type: "string",
             key: "text2",
-            displayer: "Text 2",
+            displayer: "Right Text",
             value: "Mellentesque habitant morbi tristique senectus et netus et malesuada famesac turpis egestas. Ut non enim eleifend felis pretium feugiat. Vivamus quis mi."
         })
         this.addProp({
@@ -50,14 +58,15 @@ class About5 extends BaseAbout {
     }
 
     render() {
+        const subtitle = this.getPropValue("subtitle");
         const title = this.getPropValue("title");
-        const subTitle = this.getPropValue("subTitle");
+        const description = this.getPropValue("description");
         const text1 = this.getPropValue("text1");
         const text2 = this.getPropValue("text2");
         const name = this.getPropValue("name");
         const jobTitle = this.getPropValue("jobTitle");
 
-        const showCard1 = this.castToString(title) || this.castToString(subTitle);
+        const showCard1 = this.castToString(title) || this.castToString(subtitle) || this.castToString(description);
         const showCard2 = this.castToString(text1);
         const showCard3 = this.castToString(text2) || this.castToString(name) || this.castToString(jobTitle);
         const showInformation = this.castToString(name) || this.castToString(jobTitle);
@@ -74,18 +83,23 @@ class About5 extends BaseAbout {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS(contentClass)}>
                         {showCard1 && (
-                            <div className={this.decorateCSS("card-1")}>
+                            <Base.VerticalContent className={this.decorateCSS("card-1")}>
+                                {this.castToString(subtitle) && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {subtitle}
+                                    </Base.SectionSubTitle>
+                                )}
                                 {this.castToString(title) && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
                                         {title}
                                     </Base.SectionTitle>
                                 )}
-                                {this.castToString(subTitle) && (
-                                    <div className={this.decorateCSS("sub-title")}>
-                                        {subTitle}
-                                    </div>
+                                {this.castToString(description) && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {description}
+                                    </Base.SectionDescription>
                                 )}
-                            </div>
+                            </Base.VerticalContent>
                         )}
 
                         {areBothTextsEmpty ? (
@@ -107,7 +121,7 @@ class About5 extends BaseAbout {
                             isText2Empty ? (
                                 <div className={this.decorateCSS("content-right-section-empty")}>
                                     {showCard2 && (
-                                        <Base.P className={this.decorateCSS("text-1")}>
+                                        <Base.P className={this.decorateCSS("left-text")}>
                                             {text1}
                                         </Base.P>
                                     )}
@@ -131,7 +145,7 @@ class About5 extends BaseAbout {
                                     {showCard2 && (
                                         <div className={this.decorateCSS("card-2")}>
                                             {this.castToString(text1) && (
-                                                <Base.P className={this.decorateCSS("text-1")}>
+                                                <Base.P className={this.decorateCSS("left-text")}>
                                                     {text1}
                                                 </Base.P>
                                             )}
@@ -140,7 +154,7 @@ class About5 extends BaseAbout {
                                     {showCard3 && (
                                         <div className={this.decorateCSS("card-3")}>
                                             {this.castToString(text2) && (
-                                                <Base.P className={this.decorateCSS("text-2")}>
+                                                <Base.P className={this.decorateCSS("right-text")}>
                                                     {text2}
                                                 </Base.P>
                                             )}

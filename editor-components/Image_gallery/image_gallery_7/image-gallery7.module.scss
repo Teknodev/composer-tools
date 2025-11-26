@@ -3,11 +3,12 @@
 .container {
   overflow-y: scroll;
   height: 100vh;
+  padding: 0px var(--composer-gap-xl) !important;
 
   .maxContent {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-lg);
 
     .gridContainer {
       .column {
@@ -47,8 +48,8 @@
             .textContainer {
               display: flex;
               flex-direction: column;
-              height: 20%;
               width: 100%;
+              height: 20%;
               align-items: center;
               justify-content: center;
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -57,7 +58,6 @@
               .title {
                 color: var(--composer-font-color-primary);
                 text-align: center;
-                font-size: 1.5rem;
 
                 &:hover {
                   color: var(--composer-primary-color);
@@ -66,7 +66,7 @@
 
               .subtitle {
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
+                text-align: center;
               }
             }
           }
@@ -86,31 +86,56 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-bottom: var(--composer-gap-xl);
 
       .button {
-        content: ""
+        .button-text {
+          content: "";
+        }
       }
     }
 
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    overflow-y: unset;
+    padding: 0px var(--composer-gap-lg) !important;
+    .maxContent {
+      .button-wrapper {
+        padding-bottom: var(--composer-gap-lg);
+      }
+    }
+  } 
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
     height: 100%;
+    padding: 0px var(--composer-gap-md) !important;
 
     .maxContent {
       .gridContainer {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        
+        .column {
+          height: auto;
+          overflow: visible;
+        }
+
         .columnEven {
-          grid-column: span 1;
           transform: translateY(0px) !important;
         }
 
         .columnOdd {
-          grid-column: span 1;
           margin-top: 0px;
+          transform: none !important;
         }
+      }
+      .button-wrapper {
+        padding-bottom: var(--composer-gap-md);
       }
     }
   }

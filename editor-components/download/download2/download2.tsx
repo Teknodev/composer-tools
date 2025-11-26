@@ -20,6 +20,13 @@ class Download2 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let's start now!",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Transform your Communication with Instant Connectivity",
@@ -43,10 +50,16 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaDesktop",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaDesktop",
+              },
             },
             {
               type: "string",
@@ -75,10 +88,16 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaApple",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaApple",
+              },
             },
             {
               type: "string",
@@ -98,7 +117,7 @@ class Download2 extends BaseDownload {
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
-            INPUTS.BUTTON("button", "Button", "", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+            INPUTS.BUTTON("button", "Button", "", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
           ],
         },
         {
@@ -107,10 +126,16 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoLogoAndroid",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoLogoAndroid",
+              },
             },
             {
               type: "string",
@@ -139,7 +164,7 @@ class Download2 extends BaseDownload {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
     });
   }
@@ -151,66 +176,65 @@ class Download2 extends BaseDownload {
   render() {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-
+    const subtitle = this.getPropValue("subtitle");
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
+    const subtitleExist = this.castToString(subtitle);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || descriptionExist) && (
+          {(titleExist || subtitleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("cards-container")}>
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("cards")}>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
               {this.castToObject<any[]>("cards").map((card: Card, index: number) => {
                 const deviceExist = this.castToString(card.device);
                 const platformExist = this.castToString(card.platform);
                 const descriptionExist = this.castToString(card.description);
                 const buttonTextExist = this.castToString(card.button.text);
-                return (
+                const buttonIconExist = card.button.icon && card.button.icon.name;
+                const buttonImageExist = card.button.image && card.button.image.url;
+                const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
+                const cardExist = deviceExist || platformExist || descriptionExist || buttonExist;
+                return cardExist && (
                   <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
                       <Base.Row className={this.decorateCSS("icon-container")}>
-                        <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Media value={card.icon} className={this.decorateCSS("icon")} />
                       </Base.Row>
                     )}
 
-                    {deviceExist && <Base.P className={this.decorateCSS("device")}>{card.device}</Base.P>}
+                    {deviceExist && <Base.H4 className={this.decorateCSS("device")}>{card.device}</Base.H4>}
 
-                    {platformExist && <Base.P className={this.decorateCSS("platform")}>{card.platform}</Base.P>}
+                    {platformExist && <Base.H2 className={this.decorateCSS("platform")}>{card.platform}</Base.H2>}
 
-                    {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.description}</Base.P>}
+                    {descriptionExist && <Base.H4 className={this.decorateCSS("card-description")}>{card.description}</Base.H4>}
 
-                    {(card.button.image || card.button.text || card.button.icon) && (
-                      <div className={this.decorateCSS("button-container")}>
-                        <ComposerLink path={card?.button.url}>
-                          {card?.button.image ? (
-                            <div className={this.decorateCSS("button-element")}>
-                              <div className={this.decorateCSS("button")}>
-                                <img src={card?.button.image} alt="" className={this.decorateCSS("image")} />
-                              </div>
+                   {buttonExist && 
+                    <div className={this.decorateCSS("button-container")}>
+                      <ComposerLink path={card?.button.url}>
+                        {card?.button.image && card?.button.image.url ? (
+                          <div className={this.decorateCSS("button-element")}>
+                            <div className={this.decorateCSS("button")}>
+                              <Base.Media value={card?.button.image} className={this.decorateCSS("image")} />
                             </div>
-                          ) : (
-                            (buttonTextExist || card.button.icon) && (
-                              <div className={this.decorateCSS("button-element")}>
-                                {(buttonTextExist || card.button.icon) && (
-                                  <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
-                                    {card.button.icon && (
-                                      <Base.Icon name={card.button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
-                                    )}
-                                    {this.castToString(card.button.text) && <div className={this.decorateCSS("button-text")}>{card.button.text}</div>}
-                                  </Base.Button>
-                                )}
-                              </div>
-                            )
-                          )}
-                        </ComposerLink>
-                      </div>
-                    )}
+                          </div>
+                        ) : (
+                            <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
+                              {card.button.icon && card.button.icon.name && (
+                                <Base.Media value={card.button.icon} className={this.decorateCSS("button-icon")} />
+                              )}
+                              {this.castToString(card.button.text) && <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P>}
+                            </Base.Button>
+                        )}
+                      </ComposerLink>
+                    </div>}
                   </Base.VerticalContent>
                 );
               })}

@@ -3,8 +3,24 @@
 .container {
   width: 100%;
 
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+
+    .first-container {
+      background: transparent;
+    }
+
+    .second-container {
+      background: transparent;
+    }
+  }
+
   .first-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .first-max-content {
       .upper {
         display: flex;
@@ -13,8 +29,9 @@
 
         .logo {
           .image {
-            width: 200px;
-            height: 80px;
+             width: 200px;
+             height: var(--composer-gap-lg);
+             object-fit: cover;
           }
         }
 
@@ -26,7 +43,6 @@
           .link-element {
             .link-text {
               position: relative;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -121,7 +137,7 @@
   }
 
   .second-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
     .second-max-content {
       .bottom {
         display: flex;
@@ -134,7 +150,6 @@
           max-width: 50%;
     
           .text {
-            font-size: 1rem;
             color: var(--composer-font-color-primary);
           }
         }
@@ -163,7 +178,7 @@
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              font-size: 1rem;
+              font-size: 1.5rem;
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
               color: var(--composer-font-color-primary);
@@ -273,7 +288,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .first-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg);
+      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
       .first-max-content {
         .upper {
           display: flex;
@@ -291,7 +306,7 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg);
+      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
       .second-max-content {
         .bottom {
           .icons {
@@ -306,7 +321,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .first-container {
-      padding: var(--composer-gap-md);
+      padding: var(--composer-gap-md) !important;
       .first-max-content {
         .upper {
           display: flex;
@@ -335,13 +350,17 @@
                 text-align: center;
               }
             }
+
+            &.full-width {
+              justify-content: center;
+            }
           }
         }
       }
     }
 
    .second-container {
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-md) !important;
     .second-max-content{
       .bottom {
         display: flex;

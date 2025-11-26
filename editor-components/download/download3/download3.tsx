@@ -18,10 +18,23 @@ class Download3 extends BaseDownload {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
+      },
+    });
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
 
     this.addProp({
@@ -36,7 +49,7 @@ class Download3 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
         INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257", "Primary"),
       ],
     });
@@ -49,6 +62,7 @@ class Download3 extends BaseDownload {
   render() {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const overlay = this.getPropValue("overlay");
 
     const imageExist = this.getPropValue("image");
     const titleExist = this.castToString(title);
@@ -61,7 +75,8 @@ class Download3 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         {imageExist && (
           <div className={this.decorateCSS("image-container")}>
-            <img src={this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
+            <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
+            {overlay && <div className={this.decorateCSS("overlay")} />}
           </div>
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -74,25 +89,24 @@ class Download3 extends BaseDownload {
                   <Base.VerticalContent className={this.decorateCSS("button-group")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
-                      return (
+                      const iconExist = item.icon && item.icon.name;
+                      const imageExist = item.image && item.image.url;
+                      const buttonExist = buttonTextExist || iconExist || imageExist;
+                      return buttonExist && (
                         <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                           <ComposerLink path={item.url}>
-                            {item.image ? (
-                              <img src={item.image} alt={item.image} className={this.decorateCSS("button-logo")} />
+                            {imageExist ? (
+                              <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
                             ) : (
-                              (buttonTextExist || item.icon) && (
-                                <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                                  {item.icon && (
-                                    <Base.Icon
-                                      name={item.icon}
-                                      propsIcon={{
-                                        className: this.decorateCSS("button-icon"),
-                                      }}
-                                    />
-                                  )}
-                                  {buttonTextExist && <div className={this.decorateCSS("button-text")}>{item.text}</div>}
-                                </Base.Button>
-                              )
+                              <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                {iconExist && (
+                                  <Base.Media
+                                    value={item.icon}
+                                    className={this.decorateCSS("button-icon")}
+                                  />
+                                )}
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                              </Base.Button>
                             )}
                           </ComposerLink>
                         </div>
@@ -110,25 +124,23 @@ class Download3 extends BaseDownload {
                 <div className={this.decorateCSS("button-group")}>
                   {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                     const buttonTextExist = this.castToString(item.text);
+                    const iconExist = item.icon && item.icon.name;
+                    const imageExist = item.image && item.image.url;
                     return (
                       <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                         <ComposerLink path={item.url}>
-                          {item.image ? (
-                            <img src={item.image} alt={item.image} className={this.decorateCSS("button-logo")} />
+                          {imageExist ? (
+                            <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
                           ) : (
-                            buttonTextExist && (
-                              <Base.Button className={this.decorateCSS("button-element")}>
-                                {item.icon && (
-                                  <Base.Icon
-                                    name={item.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("button-icon"),
-                                    }}
-                                  />
-                                )}
-                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                              </Base.Button>
-                            )
+                            <Base.Button className={this.decorateCSS("button-element")}>
+                              {iconExist && (
+                                <Base.Media
+                                  value={item.icon}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            </Base.Button>
                           )}
                         </ComposerLink>
                       </div>

@@ -1,6 +1,5 @@
-import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer1.module.scss";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -9,13 +8,30 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IconsValues = {
-  socialIcon: string;
+  socialIcon: TypeMediaInputValue;
   socialLink: string;
 };
 
 class Footer1Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Subscribe to our newsletter",
+    });
 
     this.addProp({
       type: "string",
@@ -34,8 +50,15 @@ class Footer1Page extends BaseFooter {
     this.addProp({
       type: "string",
       key: "subscriptionPlaceholder",
-      displayer: "Subscription Placeholder",
+      displayer: "Placeholder",
       value: "Type your e-mail",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "submitText",
+      displayer: "Submit Text",
+      value: "Form successfully submitted!",
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
@@ -65,15 +88,21 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
-              value: "FaFacebook",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebook",
+              },
             },
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -84,15 +113,21 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
-              value: "FaTwitter",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTwitter",
+              },
             },
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -103,15 +138,21 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
-              value: "RiInstagramFill",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "RiInstagramFill",
+              },
             },
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -122,15 +163,21 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
-              value: "FaTiktok",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTiktok",
+              },
             },
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -141,15 +188,21 @@ class Footer1Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "socialIcon",
-              displayer: "Social Icon",
-              value: "FaVine",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaVine",
+              },
             },
             {
               type: "page",
               key: "socialLink",
-              displayer: "Social Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -170,13 +223,13 @@ class Footer1Page extends BaseFooter {
             {
               type: "string",
               key: "pageTitle",
-              displayer: "Page Title",
+              displayer: "Title",
               value: "About us",
             },
             {
               type: "page",
               key: "pageLink",
-              displayer: "Page Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -189,13 +242,13 @@ class Footer1Page extends BaseFooter {
             {
               type: "string",
               key: "pageTitle",
-              displayer: "Page Title",
+              displayer: "Title",
               value: "Blog",
             },
             {
               type: "page",
               key: "pageLink",
-              displayer: "Page Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -208,13 +261,13 @@ class Footer1Page extends BaseFooter {
             {
               type: "string",
               key: "pageTitle",
-              displayer: "Page Title",
+              displayer: "Title",
               value: "FAQs",
             },
             {
               type: "page",
               key: "pageLink",
-              displayer: "Page Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -227,13 +280,13 @@ class Footer1Page extends BaseFooter {
             {
               type: "string",
               key: "pageTitle",
-              displayer: "Page Title",
+              displayer: "Title",
               value: "Contact",
             },
             {
               type: "page",
               key: "pageLink",
-              displayer: "Page Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -252,6 +305,8 @@ class Footer1Page extends BaseFooter {
     });
 
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
+    console.log("Initial placeholder:", this.getComponentState("placeholderText"));
+
   }
 
   validationSchema = Yup.object().shape({
@@ -265,19 +320,25 @@ class Footer1Page extends BaseFooter {
   }
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
+    const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
     const placeholderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
 
+    const submitText = this.castToString(this.getPropValue("submitText"));
+
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const upperExist = titleExist || descriptionExist || this.castToString(button.text) || placeholderExist;
+    const upperExist = titleExist || descriptionExist || subtitleExist || (placeholderExist && this.castToString(button.text));
 
     const line = this.getPropValue("line");
+
+    const alignmentValue = Base.getContentAlignment();
 
     const pages = this.castToObject<any[]>("pages");
     const social = this.castToObject<any[]>("social");
@@ -287,27 +348,29 @@ class Footer1Page extends BaseFooter {
     const footerBottomExist = pages.length > 0 || social.length > 0 || copyrightExist;
 
 
+    const position = this.getPropValue("position");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <div className={this.decorateCSS("max-content")}>
-          <Base.Container className={this.decorateCSS("first-container")}>
+          {upperExist && <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {upperExist && (
                 <div className={this.decorateCSS("footer-upper")}>
-                  {(titleExist || descriptionExist) && (
-                    <Base.VerticalContent className={this.decorateCSS("header")}>
-                      {titleExist &&
-                        <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                      {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                  {(titleExist || descriptionExist || subtitleExist) && (
+                    <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                      {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                      {titleExist &&<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                      {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                     </Base.VerticalContent>
                   )}
-                  {(placeholderExist || this.castToString(button.text)) && (
+                  {placeholderExist && this.castToString(button.text) && (
                     <div className={this.decorateCSS("subscribe")}>
                       <Formik
                         initialValues={{ email: "" }}
                         validationSchema={this.validationSchema}
                         onSubmit={(data, { resetForm }) => {
-                          this.setComponentState("placeholderText", this.castToString(button.text));
+                          this.setComponentState("placeholderText", submitText);
 
                           setTimeout(() => {
                             const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
@@ -325,7 +388,7 @@ class Footer1Page extends BaseFooter {
                                 <input
                                   className={this.decorateCSS("input")}
                                   type="text"
-                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
+                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder")) || ""}
                                   name="email"
                                   value={values.email}
                                   onChange={handleChange}
@@ -336,7 +399,7 @@ class Footer1Page extends BaseFooter {
                             {this.castToString(button.text) && (
                               <Base.Button buttonType={button.type}
                                 className={this.decorateCSS("button")}>
-                                {button.text}
+                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                               </Base.Button>
                             )}
                           </Form>
@@ -347,16 +410,16 @@ class Footer1Page extends BaseFooter {
                 </div>
               )}
             </Base.MaxContent>
-          </Base.Container>
-          {line && <div className={`${this.decorateCSS("line")} ${!upperExist && this.decorateCSS("without-padding") }`} />}
+          </Base.Container>}
+          {line && <div className={this.decorateCSS("line")} />}
 
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")} >
               {footerBottomExist && (
-                <div className={this.decorateCSS("footer-bottom")}>
+                <div className={`${this.decorateCSS("footer-bottom")} ${alignmentValue === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                   {copyrightExist && (
                     <div className={this.decorateCSS("copyright-container")}>
-                      <Base.P className={this.decorateCSS("text")}>{this.getPropValue("copyright")}</Base.P>
+                      <Base.P className={this.decorateCSS("copyright-text")}>{this.getPropValue("copyright")}</Base.P>
                     </div>
                   )}
                   {social.length > 0 && (
@@ -369,9 +432,9 @@ class Footer1Page extends BaseFooter {
                                 className={this.decorateCSS("icon-wrapper")}
                                 data-animation={item.socialLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
                               >
-                                <Base.Icon 
-                                  propsIcon={{ className: this.decorateCSS("icon") }} 
-                                  name={item.socialIcon} 
+                                <Base.Media 
+                                  value={item.socialIcon}
+                                  className={this.decorateCSS("icon")} 
                                 />
                               </div>
                             </ComposerLink>

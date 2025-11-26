@@ -1,62 +1,268 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
-  .max-content {
-    .side-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-xl);
-      color: var(--composer-font-color-primary);
-      .top-container {
-        display: flex;
-        gap: var(--composer-gap-md);
-        align-items: center;
-        .title {
-          flex: 1;
-          width: 100%;
-          font-size: 2.5rem;
-          margin: 0;
+    .max-content{
+        .grid-container{
+            display: flex;
+            .card {
+                position: relative;
+                cursor: pointer;
+                transition: ease all 0.5s;
+                
+                &:hover {
+                    .text-content {
+                        height: auto;
+                        padding: var(--composer-gap-md) var(--composer-gap-md) 0;
+                    }
+                    
+                    .card-description,
+                    .card-button{
+                        opacity: 1;
+                    }
+                }
+
+                .card-content {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .media-container {
+                    position: relative;
+                    width: 100%;
+                    height: 600px;
+                    overflow: hidden;
+                    border-radius: var(--composer-border-radius-md);
+
+                    .card-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                        transition: ease all 0.5s;
+                    }
+
+                    .card-video {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: center;
+                        transition: ease all 0.5s;
+                    }
+                }
+
+                .text-content {
+                    position: relative;
+                    background-color: var(--composer-html-background);
+                    bottom: 0;
+                    height: 100px;
+                    padding: var(--composer-gap-md) var(--composer-gap-md) 0;
+                    transform: translateY(0);
+                    transition: all 0.4s ease;
+                    display: flex;
+                    flex-direction: row;
+                    gap: var(--composer-gap-md);
+                    overflow: hidden;
+                    
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        width: 72px;
+                        height: 100%;
+                        right: 0;
+                        top: 0;
+                        z-index: 10;
+                        background: linear-gradient(270deg, var(--composer-html-background) 10%, rgba(22, 17, 17, 0) 100%);
+                        transition: opacity 0.4s ease;
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+                }
+
+                .left-side {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: baseline;
+                    gap: calc(1.5*(var(--composer-gap-sm)));
+                }
+
+                .right-side {
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .card-title {
+                    margin-top: var(--composer-gap-md);
+                    margin-bottom: 0;
+                    white-space: nowrap;
+                    color: var(--composer-font-color-primary);
+                    opacity: 1;
+                    transition: all 0.3s ease 0.5s;
+                    text-align: left;
+                }
+
+                .card-description {
+                    color: var(--composer-font-color-primary);
+                    opacity: 0;
+                    transition: all 0.3s ease 0.6s;
+                    margin: 0;
+                    text-align: left;
+                }
+
+                .card-button {
+                    opacity: 0;
+                    transition: all 0.3s ease 0.7s;
+                    flex-shrink: 0;
+                    white-space: nowrap;
+
+                    .button-text {
+                        color: var(--composer-font-color-primary);
+                        white-space: nowrap;
+                    }
+
+                    &:hover {
+                        background: var(--composer-primary-color);
+                        border-color: var(--composer-primary-color);
+                    }
+                }
+            }
         }
-        .image-1,
-        .image-2 {
-          flex: 1;
-          .image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-          }
-        }
-      }
-      .bottom-container {
-        display: flex;
-        gap: var(--composer-gap-md);
-        color: var(--composer-tertiary-color);
-        text-align: justify;
-        .text-1,
-        .text-2 {
-          flex: 1;
-        }
-      }
     }
-  }
+}
+
+.card.cardDefault {
+    flex: 1;
+    min-width: 200px;
+}
+
+.card.cardExpanded {
+    flex: 4;
+    min-width: 300px;
+
+    .text-content {
+        height: 150px !important;
+        padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-md);
+        
+        &::after {
+            opacity: 0 !important;
+        }
+    }
+
+    .card-description, .card-button{
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+}
+
+.card.cardCollapsed {
+    flex: 0.6;
+    min-width: 150px;
+    
+    .text-content {
+        &::after {
+            opacity: 1 !important;
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .grid-container {
+        .card {
+            min-width: 150px;
+            
+            .text-content {
+                height: 0 !important;
+                padding: 0 !important;
+                flex-direction: column !important;
+                gap: var(--composer-gap-sm);
+                transition: height 0.6s ease, padding 0.6s ease !important;
+                
+            }
+            
+            &:hover {
+                .text-content {
+                    height: auto !important;
+                    min-height: auto !important;
+                    padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
+                    transition: height 0.6s ease, padding 0.6s ease !important;
+                }
+            }
+
+            .right-side {
+                align-items: flex-start;
+                width: 100%;
+            }
+        }
+
+        .card.cardExpanded {
+            flex: 2.5;
+        }
+
+        .card.cardCollapsed {
+            flex: 0.4;
+            min-width: 120px;
+        }
+    }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .side-container {
-    .top-container {
-      flex-direction: column;
+
+    .grid-container {
+        flex-direction: column;
+        height: auto !important;
+        gap: var(--composer-gap-lg);
+
+        .card {
+            height: auto;
+            flex: none;
+            width: 100%;
+            min-width: auto;
+
+            .media-container {
+                height: 200px !important;
+            }
+
+            .text-content {
+                height: 100% !important;
+                padding: 0 !important;
+            }
+
+            .card-description {
+                opacity: 1 !important;
+            }
+
+            .card-button {
+                padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                opacity: 1 !important;
+            }
+        }
+
+        .card.cardDefault,
+        .card.cardExpanded,
+        .card.cardCollapsed {
+            flex: none;
+            width: 100%;
+            min-width: auto;
+            height: auto;
+
+            .text-content {
+                height: 100% !important;
+                padding: 0 !important;
+                
+            }
+
+            .card-title {
+                opacity: 1 !important;
+            }
+
+            .card-description,
+            .card-button {
+                opacity: 1 !important;
+            }
+        }
     }
-    .bottom-container {
-      flex-direction: column;
-      .text-1 {
-        margin-bottom: 1rem;
-      }
-    }
-  }
 }

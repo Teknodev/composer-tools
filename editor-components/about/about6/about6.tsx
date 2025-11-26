@@ -20,21 +20,27 @@ class About6 extends BaseAbout {
         })
         this.addProp({
             type: "string",
-            key: "text1",
-            displayer: "Text",
+            key: "leftText",
+            displayer: "Left Text",
             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp or incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a liquip ex ea commodo consequat. Duis aute irure dolor in reprehen derit in voluptate velit esse cillum dolore eu fugiat nulla pariatur ullamco laboris nisi ut a Excepteur."
         })
         this.addProp({
             type: "string",
-            key: "text2",
-            displayer: "Text 2",
+            key: "rightText",
+            displayer: "Right Text",
             value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut a liquip ex ea commodo consequat. Duis aute irure dolor in reprehen derit in voluptate velit esse cillum dolore eu fugiat nulla pariatur ullamco laboris nisi ut."
         })
         this.addProp({
-            type: "image",
+            type: "media",
             key: "signature",
-            displayer: "Signature",
-            value: "https://swissdelight.qodeinteractive.com/wp-content/uploads/2021/01/h1-author-img2.png"
+            displayer: "Media",
+            additionalParams: {
+                availableTypes: ["image"],
+            },
+            value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68ee2800c3c1b5002c3ba970?alt=media&timestamp=1760438283526"
+            }
         })
         this.addProp({
             type: "string",
@@ -51,12 +57,12 @@ class About6 extends BaseAbout {
     render() {
         const subTitle = this.getPropValue("subtitle");
         const title = this.getPropValue("title");
-        const text1 = this.getPropValue("text1");
-        const text2 = this.getPropValue("text2");
+        const leftText = this.getPropValue("leftText");
+        const rightText = this.getPropValue("rightText");
         const signature = this.getPropValue("signature");
         const name = this.getPropValue("name");
 
-        const showTextContainer = this.castToString(text1) || this.castToString(text2);
+        const showTextContainer = this.castToString(leftText) || this.castToString(rightText);
         const showTopContainer = this.castToString(subTitle) || this.castToString(title);
         const showBottomContainer = (signature) || this.castToString(name);
         const showContentContainer = showTopContainer || showTextContainer || showBottomContainer;
@@ -66,9 +72,7 @@ class About6 extends BaseAbout {
         return (
             <Base.Container className={`${this.decorateCSS("container")} `}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {showContentContainer && (
-                        <div className={this.decorateCSS("content")}>
-                            {showTopContainer && (
+                    {showContentContainer && showTopContainer && (
                                 <div
                                     className={this.decorateCSS(
                                         "top-container"
@@ -76,8 +80,8 @@ class About6 extends BaseAbout {
                                     {this.castToString(subTitle) && (
                                         <Base.SectionSubTitle
                                             className={`${subTitleType === "badge"
-                                                ? this.decorateCSS("sub-title-badge")
-                                                : this.decorateCSS("sub-title")
+                                                ? this.decorateCSS("subtitle-badge")
+                                                : this.decorateCSS("subtitle")
                                                 } `}>
                                             {subTitle}
                                         </Base.SectionSubTitle>
@@ -91,42 +95,42 @@ class About6 extends BaseAbout {
                                     )}
                                 </div>
                             )}
-
-                            {showTextContainer && (
+                    {showContentContainer && showTextContainer && (
                                 <div
                                     className={this.decorateCSS(
                                         "text-container"
                                     )}>
-                                    {this.castToString(text1) && (
-                                        <div className={this.decorateCSS("text-1")}>
-                                            {text1}
-                                        </div>
+                                    {this.castToString(leftText) && (
+                                        <Base.SectionDescription className={this.decorateCSS("left-text")}>
+                                            {leftText}
+                                        </Base.SectionDescription>
                                     )}
-                                    {this.castToString(text2) && (
-                                        <div className={this.decorateCSS("text-2")}>
-                                            {text2}
-                                        </div>
+                                    {this.castToString(rightText) && (
+                                        <Base.SectionDescription className={this.decorateCSS("right-text")}>
+                                            {rightText}
+                                        </Base.SectionDescription>
                                     )}
                                 </div>
                             )}
-                            {showBottomContainer && (
+                    {showContentContainer && showBottomContainer && (
                                 <div className={this.decorateCSS(
                                     "bottom-container"
                                 )}>
                                     {signature && (
                                         <div className={this.decorateCSS("signature")}>
-                                            <img src={signature} alt={signature} className={this.decorateCSS("signature-image")} />
+                                            <Base.Media
+                                                value={this.getPropValue("signature")}
+                                                className={this.decorateCSS("signature-image")}
+                                            />
                                         </div>
                                     )}
                                     {this.castToString(name) && (
-                                        <div className={this.decorateCSS("name")}>
+                                        <Base.P className={this.decorateCSS("name")}>
                                             {name}
-                                        </div>
+                                        </Base.P>
                                     )}
                                 </div>
                             )}
-                        </div>
-                    )}
                 </Base.MaxContent>
             </Base.Container>
         )

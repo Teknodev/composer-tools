@@ -3,7 +3,7 @@
 .container {
   padding: 0;
   .page {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,15 +85,20 @@
         transform: translateY(0);
         transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.3s;
 
-        .title { 
-          &.image{
+        .subtitle {
+          content: "";
+          transform: translateX(0);
+          &::before{
+            display: none;
+          }
+          &.with-image{
             color: white;
           }
         }
-
-        .description {
-          font-size: 1.5rem;
-          &.image{
+        .title, .description { 
+          content: "";
+          text-align: center;
+          &.with-image{
             color: white;
           }
         }
@@ -117,13 +122,9 @@
         align-items: center;
         transition: opacity 0.5s ease;
 
-        .card-title {
-          &.image{
-            color: white;
-          }
-        }
-        .card-description {
-          &.image{
+        .card-title, .card-description {
+          content: "";
+          &.with-image{
             color: white;
           }
         }
@@ -138,7 +139,7 @@
             width: 170px;
             height: 50px;
 
-            .image {
+            .card-image {
               width: 100%;
               height: 100%;
               cursor: pointer;
@@ -164,6 +165,7 @@
         .right-container {
           transform: translatex(-50vw);
           opacity: 0;
+          z-index: 3;
         }
 
         .middle-container {
@@ -201,7 +203,7 @@
               width: 152px;
               height: 45px;
 
-              .image {
+              .card-image {
                 width: 100%;
                 height: 100%;
                 cursor: pointer;

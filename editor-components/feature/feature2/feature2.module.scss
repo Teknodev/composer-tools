@@ -1,11 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding-top: var(--composer-gap-lg);
-
     .max-content {
         .wrapper {
-            row-gap: var(--composer-gap-xl);
+            margin-top: var(--composer-gap-md);
+            gap: var(--composer-gap-xl);
 
             .item {
                 display: flex;
@@ -31,6 +30,7 @@
                 }
 
                 .icon {
+                    font-size: 3.5rem;
                     width: var(--composer-gap-xl);
                     height: var(--composer-gap-xl);
                     margin: 0;
@@ -104,6 +104,14 @@
                         height: 25px;
                         top: -15px;
                         left: calc(50% + 30px);
+                    }
+
+                    .title, .description{
+                        text-align: center;
+                    }
+
+                    .icon {
+                        font-size: 3rem;
                     }
                 }
             }
