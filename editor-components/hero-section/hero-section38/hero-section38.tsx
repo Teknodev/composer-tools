@@ -282,16 +282,9 @@ class HeroSection38 extends BaseHeroSection {
     const slides = this.getValidSlides();
     const overlay = !!this.getPropValue("overlay");
     const animation = !!this.getPropValue("animation");
-    const animationDisabled = !animation;
     const dotIconValue = this.getPropValue("dotIcon");
     const isSingleSlide = slides.length === 1;
-    const containerClassName = animationDisabled
-      ? `${this.decorateCSS("container")} ${this.decorateCSS("animation-off")}`
-      : this.decorateCSS("container");
-    const maxContentClassName = animationDisabled
-      ? `${this.decorateCSS("max-content")} ${this.decorateCSS("animation-off")}`
-      : this.decorateCSS("max-content");
-    
+
     const settings = {
       dots: false,
       infinite: slides.length > 1,
@@ -330,8 +323,8 @@ class HeroSection38 extends BaseHeroSection {
     };
 
     return (
-      <Base.Container className={containerClassName}>
-        <Base.MaxContent className={maxContentClassName}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {slides.length > 0 && (
             <div className={this.decorateCSS("slider-wrapper")}>
               <ComposerSlider ref={this.sliderRef} {...settings} className={`${this.decorateCSS("slider")} ${isSingleSlide ? this.decorateCSS("single-slide") : ""}`}>

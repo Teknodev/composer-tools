@@ -8,17 +8,14 @@
   .max-content {
     width: 100%;
     max-width: unset;
-    padding: 80px 50px !important;
-
-
-    &.animation-off {
-      padding: 80px 50px !important;
-    }
+    padding-top: 40px;
 
     .slider-wrapper {
       position: relative;
       width: 100%;
       overflow: visible;
+      padding: 0 50px;
+      box-sizing: border-box;
 
       .slider {
         width: 100%;
@@ -504,11 +501,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      &.animation-off {
-        padding: 80px 50px !important;
-      }
-
       .slider-wrapper {
+        padding: 0;
         .slider {
           :global(.slick-track) {
             justify-content: center;
