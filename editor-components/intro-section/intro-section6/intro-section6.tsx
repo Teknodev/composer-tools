@@ -72,6 +72,9 @@ class IntroSection6 extends BaseIntroSection {
       type: "media",
       key: "textIcon",
       displayer: "Text Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
       value: {
         type: "icon",
         name: "FaThumbsUp",
@@ -116,7 +119,9 @@ class IntroSection6 extends BaseIntroSection {
       hasSubtitle ||
       hasTitle ||
       hasDescription ||
-      hasAnyButton
+      hasAnyButton ||
+      hasBottomText ||
+      textIcon
     );
 
     return (
