@@ -2,7 +2,7 @@
 
 .container {
     background: linear-gradient(to bottom,
-            var(--composer-font-color-primary) 50%,
+            var(--composer-html-background) 50%,
             color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
 
     .max-content {
@@ -56,7 +56,6 @@
                         flex-wrap: wrap;
                         gap: var(--composer-gap-md);
                         justify-content: center;
-                        color: var(--composer-font-color-primary);
 
                         .stat {
                             display: flex;
@@ -70,11 +69,13 @@
                                 margin: 0;
                                 font-size: 2rem;
                                 justify-content: left;
+                                color: var(--composer-primary-color);
                             }
 
                             .stat-label {
                                 margin: 0;
                                 text-align: left;
+                                color: var(--composer-font-color-primary);
                             }
                         }
                     }
