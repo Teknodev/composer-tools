@@ -31,7 +31,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "media",
-      displayer: "Media",
+      displayer: "Video",
       value: {
         type: "video",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
@@ -44,13 +44,13 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "thumbnail",
-      displayer: "Thumbnail",
+      displayer: "Image",
       value: {
         type: "image",
         url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       } as TypeMediaInputValue,
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
     });
 
@@ -112,11 +112,25 @@ class IntroSection8 extends BaseIntroSection {
 
     const isPlaying = this.getComponentState("isPlaying");
 
+    const subtitleType = Base.getSectionSubTitleType();
+    const hasBackground = !!showBackgroundShape;
+
     const containerClasses = [
       this.decorateCSS("container"),
       hasMedia ? this.decorateCSS("has-media") : "",
-      showBackgroundShape ? this.decorateCSS("has-background") : ""
+      hasBackground ? this.decorateCSS("has-background") : ""
     ].filter(Boolean).join(" ");
+
+    const subtitleClassName = [
+      this.decorateCSS("subtitle"),
+      hasBackground
+        ? this.decorateCSS("subtitle-plain")
+        : subtitleType === "badge"
+        ? this.decorateCSS("subtitle-badge")
+        : this.decorateCSS("subtitle-default")
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <Base.Container className={containerClasses}>
@@ -129,7 +143,7 @@ class IntroSection8 extends BaseIntroSection {
             {(subtitleExist || titleExist || descriptionExist) && (
               <div className={this.decorateCSS("text-wrapper")}>
                 {subtitleExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle className={subtitleClassName}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
@@ -162,7 +176,10 @@ class IntroSection8 extends BaseIntroSection {
                       onClick={this.handlePlayVideo}
                     >
                       {hasThumbnail && (
-                        <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />
+                        <Base.Media
+                          value={thumbnail}
+                          className={this.decorateCSS("thumbnail-image")}
+                        />
                       )}
                       {overlay && <div className={this.decorateCSS("overlay")} />}
                       {hasPlayIcon && (
@@ -185,7 +202,7 @@ class IntroSection8 extends BaseIntroSection {
                         }
                       }}
                       className={this.decorateCSS("video")}
-                      {...{ onEnded: this.handleVideoPause } as any}
+                      {...({ onEnded: this.handleVideoPause } as any)}
                     />
                   )
                 ) : (

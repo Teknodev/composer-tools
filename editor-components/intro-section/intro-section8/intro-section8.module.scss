@@ -30,22 +30,6 @@
       .description {
         color: var(--composer-font-color-secondary) !important;
       }
-
-      .subtitle {
-        border: none !important;
-        transform: none !important;
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-
-        &::before,
-        &::after {
-          display: none !important;
-          content: none !important;
-          width: 0 !important;
-          height: 0 !important;
-          border: none !important;
-        }
-      }
     }
   }
 
@@ -64,7 +48,7 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 100% !important;
+    max-width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center !important;
@@ -90,28 +74,49 @@
     gap: var(--composer-gap-sm);
     margin-bottom: 0;
     text-align: center !important;
+  }
 
-    .subtitle {
-      display: flex !important;
-      justify-content: center !important;
-      text-align: center !important;
-      width: 100% !important;
-    }
+  .subtitle {
+    text-align: center !important;
+  }
 
-    .title {
-      text-align: center !important;
-      margin: 0;
-      width: 100% !important;
-    }
+  .subtitle-plain {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transform: none !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
 
-    .description {
-      text-align: center !important;
-      margin: 0;
-      width: 100% !important;
-      white-space: normal !important;
-      overflow-wrap: break-word !important;
-      word-wrap: break-word !important;
+    &::before,
+    &::after {
+      display: none !important;
+      content: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      border: none !important;
     }
+  }
+
+  .subtitle-badge {}
+
+  .subtitle-default {}
+
+  .title {
+    text-align: center !important;
+    margin: 0;
+  }
+
+  .description {
+    text-align: center !important;
+    margin: 0;
+    width: 100%;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
   }
 
   .media-wrapper {
