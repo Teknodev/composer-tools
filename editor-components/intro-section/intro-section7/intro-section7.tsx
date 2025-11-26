@@ -5,6 +5,19 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type ButtonType = {
+    text: React.JSX.Element;
+    url: string;
+    type: any;
+}
+
+type StatType = {
+    prefix: React.JSX.Element;
+    number: React.JSX.Element;
+    suffix: React.JSX.Element;
+    label: React.JSX.Element;
+}
+
 class IntroSection7 extends BaseIntroSection {
     constructor(props?: any) {
         super(props, styles);
@@ -31,7 +44,7 @@ class IntroSection7 extends BaseIntroSection {
 
         this.addProp({
             type: "string",
-            key: "subTitle",
+            key: "subtitle",
             displayer: "Subtitle",
             value: "",
         });
@@ -80,98 +93,85 @@ class IntroSection7 extends BaseIntroSection {
 
     render() {
         const enableOverlay = this.getPropValue("enableOverlay");
-        const title = this.getPropValue("title");
-        const isTitleExist = this.castToString(title);
-        const subtitle = this.getPropValue("subTitle");
-        const isSubtitleExist = this.castToString(subtitle);
-        const description = this.getPropValue("description");
-        const isDescExist = this.castToString(description);
-        const buttons = this.castToObject<any[]>("buttons") || [];
-        const statsProp = this.castToObject<any[]>("stats") || [];
-        const hasContent = isSubtitleExist || isTitleExist || isDescExist || buttons.length > 0 || statsProp.length > 0;
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<ButtonType[]>("buttons") || [];
+        const statsProp = this.castToObject<StatType[]>("stats") || [];
+        const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0 || statsProp.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
-                        <Base.VerticalContent className={this.decorateCSS("left-content")}>
-                            {isSubtitleExist &&
-                                <Base.SectionTitle className={this.decorateCSS("subTitle")}>
-                                    {subtitle}
-                                </Base.SectionTitle>
-                            }
-                            {isTitleExist &&
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {title}
-                                </Base.SectionTitle>
-                            }
-                            {isDescExist &&
-                                <Base.SectionDescription className={this.decorateCSS("description")}>
-                                    {description}
-                                </Base.SectionDescription>
-                            }
-                            {(buttons.length > 0 || statsProp.length > 0) && (
-                                <div className={this.decorateCSS("btn-stats-content")}>
-                                    {buttons.length > 0 && (
-                                        <div className={this.decorateCSS("button-container")}>
-                                            {this.castToObject<any>("buttons").map((item: any, index: number) => {
-                                                const buttonTextExist = this.castToString(item.text);
-                                                return (
-                                                    buttonTextExist && (
-                                                        <ComposerLink key={`stats-${index}`} path={item.url}>
-                                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                                    {item.text}
+                        {hasContent && (
+                            <Base.VerticalContent className={this.decorateCSS("left-content")}>
+                                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
+                                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
+                                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
+                                {(buttons.length > 0 || statsProp.length > 0) && (
+                                    <div className={this.decorateCSS("btn-stats-content")}>
+                                        {buttons.length > 0 && (
+                                            <div className={this.decorateCSS("button-container")}>
+                                                {buttons.map((item: ButtonType, index: number) => {
+                                                    const buttonTextExist = this.castToString(item.text);
+                                                    return (
+                                                        buttonTextExist && (
+                                                            <ComposerLink key={`button-${index}`} path={item.url}>
+                                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                                        {item.text}
+                                                                    </Base.P>
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        )
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
+                                        {statsProp.length > 0 && (
+                                            <Base.Row className={this.decorateCSS("stats-row")}>
+                                                {statsProp.map((item: StatType, index: number) => {
+                                                    const prefixStr = this.castToString(item.prefix);
+                                                    const numberStr = this.castToString(item.number);
+                                                    const suffixStr = this.castToString(item.suffix);
+                                                    const labelStr = this.castToString(item.label);
+
+                                                    if (!prefixStr && !numberStr && !suffixStr && !labelStr) return null;
+
+                                                    return (
+                                                        <div key={`stat15-${index}`} className={this.decorateCSS("stat")}>
+                                                            {labelStr && (
+                                                                <Base.P className={this.decorateCSS("stat-label")}>
+                                                                    {item.label}
                                                                 </Base.P>
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    )
-                                                );
-                                            })}
-                                        </div>
-                                    )}
-                                    {statsProp.length > 0 && (
-                                        <Base.Row className={this.decorateCSS("stats-row")}>
-                                            {statsProp.map((item: any, index: number) => {
-                                                const prefixStr = this.castToString(item.getPropValue("prefix"));
-                                                const numberStr = this.castToString(item.getPropValue("number"));
-                                                const suffixStr = this.castToString(item.getPropValue("suffix"));
-                                                const labelStr = this.castToString(item.getPropValue("label"));
+                                                            )}
+                                                            {(prefixStr || numberStr || suffixStr) && (
+                                                                <Base.H3 className={this.decorateCSS("stat-value")}>
+                                                                    {prefixStr && (
+                                                                        <span className={this.decorateCSS("stat-prefix")}>
+                                                                            {item.prefix}
+                                                                        </span>
+                                                                    )}
 
-                                                if (!prefixStr && !numberStr && !suffixStr && !labelStr) return null;
+                                                                    {item.number}
 
-                                                return (
-                                                    <div key={`stat15-${index}`} className={this.decorateCSS("stat")}>
-                                                        {labelStr && (
-                                                            <Base.P className={this.decorateCSS("stat-label")}>
-                                                                {item.getPropValue("label")}
-                                                            </Base.P>
-                                                        )}
-                                                        {(prefixStr || numberStr || suffixStr) && (
-                                                            <Base.H3 className={this.decorateCSS("stat-value")}>
-                                                                {prefixStr && (
-                                                                    <span className={this.decorateCSS("stat-prefix")}>
-                                                                        {item.getPropValue("prefix")}
-                                                                    </span>
-                                                                )}
-
-                                                                {item.getPropValue("number")}
-
-                                                                {suffixStr && (
-                                                                    <span className={this.decorateCSS("stat-suffix")}>
-                                                                        {item.getPropValue("suffix")}
-                                                                    </span>
-                                                                )}
-                                                            </Base.H3>
-                                                        )}
-                                                    </div>
-                                                );
-                                            })}
-                                        </Base.Row>
-                                    )}
-                                </div>
-                            )}
-                        </Base.VerticalContent>
+                                                                    {suffixStr && (
+                                                                        <span className={this.decorateCSS("stat-suffix")}>
+                                                                            {item.suffix}
+                                                                        </span>
+                                                                    )}
+                                                                </Base.H3>
+                                                            )}
+                                                        </div>
+                                                    );
+                                                })}
+                                            </Base.Row>
+                                        )}
+                                    </div>
+                                )}
+                            </Base.VerticalContent>
+                        )}
                         {this.getPropValue("image") && (
                             <div className={`${this.decorateCSS("right-content")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
                                 <div className={this.decorateCSS("image-wrapper")}>

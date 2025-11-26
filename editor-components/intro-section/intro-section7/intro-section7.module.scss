@@ -1,7 +1,14 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    background: linear-gradient(to bottom, var(--composer-font-color-primary) 50%, var(--composer-tertiary-color) 50%);
+
     .max-content {
+        padding: calc(var(--padding-md) * 5) calc(var(--padding-md) * 5);
+        border-radius: var(--composer-border-radius-md);
+        background-color:
+            color-mix(in srgb, var(--composer-html-background), var(--color-white) 5%);
+
         .content {
             display: flex;
             gap: var(--gap-xl);
@@ -12,7 +19,7 @@
                 align-items: flex-start !important;
                 text-align: left !important;
 
-                .subTitle {
+                .subtitle {
                     text-align: left;
                     margin-left: 0;
                     margin-right: auto;
@@ -61,6 +68,7 @@
                                 margin: 0;
                                 color: var(--composer-font-color-primary);
                                 font-size: 2rem;
+                                justify-content: left;
                             }
 
                             .stat-label {
@@ -113,18 +121,25 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        .content {
-            display: flex;
-            flex-direction: column;
+        .max-content {
+            .content {
+                display: flex;
+                flex-direction: column;
 
-            .left-content {
-                .btn-stats-content {
-                    flex-direction: column;
+                .left-content {
+                    .btn-stats-content {
+                        flex-direction: column;
+
+                        .stats-row {
+                            width: 100%;
+                            justify-content: left;
+                        }
+                    }
                 }
-            }
 
-            .right-content {
-                width: 100% !important;
+                .right-content {
+                    width: 100% !important;
+                }
             }
         }
     }
