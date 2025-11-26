@@ -18,10 +18,14 @@ type Card = {
 class Slider12 extends BaseSlider {
   private settings: Settings;
   private sliderRef = React.createRef<any>();
-  private containerRef = React.createRef<HTMLDivElement>();
+  private sliderParentRef = React.createRef<HTMLDivElement>();
+  private headerRef = React.createRef<HTMLDivElement>();
+  private resizeObserver: ResizeObserver | null = null;
 
   constructor(props?: any) {
     super(props, styles);
+
+    this.setComponentState("slider-offset", 50);
 
     this.addProp({
       type: "string",
@@ -329,6 +333,59 @@ class Slider12 extends BaseSlider {
     return "Slider 12";
   }
 
+  componentDidMount() {
+    this.observeElements();
+    this.updateSliderOffset();
+  }
+
+  componentDidUpdate() {
+    this.observeElements();
+    this.updateSliderOffset();
+  }
+
+  componentWillUnmount() {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = null;
+  }
+
+  observeElements = () => {
+    if (!globalThis.ResizeObserver) {
+      return;
+    }
+
+    if (!this.resizeObserver) {
+      this.resizeObserver = new ResizeObserver(() => {
+        this.updateSliderOffset();
+      });
+    } else {
+      this.resizeObserver.disconnect();
+    }
+
+    const elements = [
+      this.headerRef.current,
+      this.sliderParentRef.current,
+    ].filter((el): el is HTMLDivElement => !!el);
+
+    elements.forEach((el) => this.resizeObserver?.observe(el));
+  };
+
+  updateSliderOffset = () => {
+    const headerEl = this.headerRef.current;
+    const sliderParent = this.sliderParentRef.current;
+    if (!headerEl || !sliderParent) {
+      return;
+    }
+
+    const headerRect = headerEl.getBoundingClientRect();
+    const sliderRect = sliderParent.getBoundingClientRect();
+    const offset = Math.max(0, headerRect.left - sliderRect.left);
+    const currentOffset = this.getComponentState("slider-offset") ?? 0;
+
+    if (Math.abs(offset - currentOffset) > 0.5) {
+      this.setComponentState("slider-offset", offset);
+    }
+  };
+
   render() {
     const items = this.castToObject<Card[]>("slider")?.filter(Boolean) ?? [];
     const prevMedia = this.getPropValue("previousArrow");
@@ -337,8 +394,6 @@ class Slider12 extends BaseSlider {
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
     const overlayEnabled = this.getPropValue("overlay");
-    const alignment = Base.getContentAlignment();
-    const isCenterAlignment = alignment === "center";
     const titleStr = this.castToString(title);
     const subtitleStr = this.castToString(subtitle);
     const descStr = this.castToString(description);
@@ -347,14 +402,17 @@ class Slider12 extends BaseSlider {
     const buttonText = this.castToString(buttonContent);
 
     return (
-      <div ref={this.containerRef} className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")}>
         <Base.Container className={this.decorateCSS("upper-container")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {(titleStr || descStr) && (
               <Base.VerticalContent
                 className={this.decorateCSS("vertical-content")}
               >
-                <div className={this.decorateCSS("section-header")}>
+                <div
+                  className={this.decorateCSS("section-header")}
+                  ref={this.headerRef}
+                >
                   <Base.VerticalContent
                     className={this.decorateCSS("section-header-content")}
                   >
@@ -418,7 +476,15 @@ class Slider12 extends BaseSlider {
 
         <div className={this.decorateCSS("wrap")}>
           {items.length > 0 && (
-            <div className={this.decorateCSS("slider-parent")}>
+            <div
+              className={this.decorateCSS("slider-parent")}
+              ref={this.sliderParentRef}
+              style={
+                {
+                  "--slider-offset": `${this.getComponentState("slider-offset") ?? 50}px`,
+                } as React.CSSProperties
+              }
+            >
               <ComposerSlider ref={this.sliderRef} {...this.settings}>
                 {items.map((item, i) => {
                   const media = item.media;
@@ -429,9 +495,6 @@ class Slider12 extends BaseSlider {
                   const hasCardDescription = this.castToString(item.description);
                   const hasHeaderText = this.castToString(item.header);
                   const textClasses = [this.decorateCSS("text")];
-                  if (!hasMedia && isCenterAlignment) {
-                    textClasses.push(this.decorateCSS("text-centered"));
-                  }
 
                   const slideClasses = [this.decorateCSS("slide")];
                   if (i % 3 === 2) {
@@ -504,7 +567,7 @@ class Slider12 extends BaseSlider {
         </div>
 
         {buttonText && (
-          <div className={this.decorateCSS("cta-row")}>
+          <div className={this.decorateCSS("button-container")}>
             <ComposerLink path={button?.url}>
               <Base.Button
                 buttonType={button?.type || "Primary"}

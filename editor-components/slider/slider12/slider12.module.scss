@@ -1,22 +1,32 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
-:root {
-  --card-width: 390px;
-  --media-w: 390px;
-  --media-h: 340px;
-}
-
 .container {
+  container-type: inline-size;
   background-color: var(--composer-html-background);
 
   .upper-container {
-    padding: 80px 50px 30px;
+    padding: 80px 50px 20px;
     .max-content {
       .section-header {
         .section-header-content {
+          align-items: flex-start;
+          text-align: left;
+
           .section-subtitle {
             content: "";
+            text-align: left;
+            align-self: flex-start;
+          }
+
+          .section-title {
+            text-align: left;
+            align-self: flex-start;
+          }
+
+          .section-description {
+            text-align: left;
+            align-self: flex-start;
           }
 
           .arrows-wrap {
@@ -24,21 +34,54 @@
 
             .arrows {
               display: flex;
-              gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-sm);
               justify-content: flex-end;
 
-              .prevArrow,
-              .nextArrow {
+              .prevArrow {
+                border: none;
+                outline: none;
                 display: grid;
                 place-items: center;
                 cursor: pointer;
-                border: none;
                 background: transparent;
                 padding: 0;
                 width: 4rem;
                 height: 4rem;
                 font-size: 4rem;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
+
+                .arrow-media {
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: inherit;
+                }
+
+                img.arrow-media,
+                video.arrow-media,
+                .arrow-media img,
+                .arrow-media video {
+                  width: 100%;
+                  height: 100%;
+                  display: block;
+                  object-fit: contain;
+                }
+              }
+
+              .nextArrow {
+                border: none;
+                outline: none;
+                display: grid;
+                place-items: center;
+                cursor: pointer;
+                background: transparent;
+                padding: 0;
+                width: 4rem;
+                height: 4rem;
+                font-size: 4rem;
+                color: var(--composer-tertiary-color);
 
                 .arrow-media {
                   width: 100%;
@@ -68,21 +111,26 @@
 }
 
 .wrap {
+  padding-bottom: var(--composer-gap-xl);
   .slider-parent {
     background-color: var(--composer-html-background);
+    --slider-offset: 50px;
+    :global(.slick-track) {
+      gap: var(--composer-gap-md);
+    }
 
     .slide {
       &.first-slide {
-        margin-left: 50px !important;
+        margin-left: 5px !important;
       }
-      width: var(--card-width) !important;
+      width: 390px !important;
 
       &.wide {
-        width: calc(var(--card-width) * 1.5) !important;
+        width: 585px !important;
 
         .media {
-          width: calc(var(--media-w) * 1.5);
-          height: var(--media-h);
+          width: 585px;
+          height: 340px;
         }
       }
     }
@@ -95,8 +143,8 @@
     }
 
     .media {
-      width: var(--media-w);
-      height: var(--media-h);
+      width: 390px;
+      height: 340px;
       overflow: hidden;
       border-radius: var(--composer-border-radius-sm);
       position: relative;
@@ -123,14 +171,6 @@
       }
     }
 
-    .text-centered {
-      justify-items: center;
-      text-align: center;
-
-        .card-description {
-        text-align: center !important;
-      }
-    }
   }
 }
 
@@ -148,7 +188,7 @@
   }
 }
 
-.cta-row {
+.button-container {
   display: flex;
   justify-content: center;
   padding: var(--composer-gap-lg);
@@ -175,16 +215,57 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .upper-container {
-      padding: 80px 40px 20px !important;
+      padding: 80px 40px 1px !important;
       .max-content {
         width: 100% !important;
-
+        .section-header {
+          .section-header-content {
+            .arrows-wrap {
+              margin-bottom: var(--composer-gap-xl);
+              .arrows {
+                .prevArrow {
+                  width: 3.5rem !important;
+                  height: 3.5rem !important;
+                  font-size: 3.5rem !important;
+                }
+                .nextArrow {
+                  width: 3.5rem !important;
+                  height: 3.5rem !important;
+                  font-size: 3.5rem !important;
+                }
+              }
+            }
+            .section-title {
+              margin-bottom: var(--composer-gap-sm);
+            }
+          }
+        }
       }
     }
   }
 
   .wrap {
     .slider-parent {
+      --slider-offset: 40px;
+      .section-header {
+        .section-header-content {
+          .arrows-wrap {
+            margin-bottom: var(--composer-gap-xl);
+          }
+          .arrows {
+            .prevArrow {
+              width: 2rem !important;
+              height: 2rem !important;
+              font-size: 2.2rem !important;
+            }
+            .nextArrow {
+              width: 2rem !important;
+              height: 2rem !important;
+              font-size: 2.2rem !important;
+            }
+          }
+        }
+      }
       .section-header {
         .section-header-content {
           .section-title {
@@ -194,15 +275,12 @@
       }
 
       .slide {
-        &.first-slide {
-          margin-left: 40px !important;
-        }
         &.wide {
-          width: var(--card-width) !important;
+          width: 390px !important;
 
           .media {
-            width: var(--media-w);
-            height: var(--media-h);
+            width: 390px;
+            height: 340px;
           }
         }
       }
@@ -224,23 +302,80 @@
       padding: 50px 20px 15px !important;
       .max-content {
         width: 100% !important;
-
+        .section-header {
+          margin-bottom: 0 !important;
+          padding-bottom: 0 !important;
+          .section-header-content {
+            gap: 0 !important;
+            .section-description {
+              margin-bottom: 0 !important;
+              font-size: var(--composer-font-size-md) !important;
+            }
+            .arrows {
+              gap: var(--composer-gap-xs);
+              .prevArrow {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+                font-size: 2.5rem !important;
+              }
+              .nextArrow {
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+                font-size: 2.5rem !important;
+              }
+            }
+          }
+        }
       }
     }
   }
 
   .wrap {
+    gap: var(--composer-gap-lg);
     .slider-parent {
+      --slider-offset: 0px;
+      :global(.slick-track) {
+        gap: var(--composer-gap-lg);
+      }
+      :global(.slick-slide:first-child) {
+        padding-right: var(--composer-gap-lg);
+      }
       .slide {
+        margin-right: var(--composer-gap-md);
+        width: 350px !important;
+        gap: var(--composer-gap-md);
+
         &.first-slide {
-          margin-left: 0 !important;
+          margin-right: var(--composer-gap-lg);
         }
+
         &.wide {
-          width: var(--card-width) !important;
+          width: 320px !important;
 
           .media {
-            width: var(--media-w);
-            height: var(--media-h);
+            width: 320px;
+            height: 260px;
+          }
+        }
+      }
+      .card {
+        margin-right: var(--composer-gap-md);
+        padding: 1rem;
+      }
+      .section-header {
+        .section-header-content {
+          .arrows {
+            gap: var(--composer-gap-xs);
+            .prevArrow {
+              width: 1.5rem !important;
+              height: 1.5rem !important;
+              font-size: 1.8rem !important;
+            }
+            .nextArrow {
+              width: 1.5rem !important;
+              height: 1.5rem !important;
+              font-size: 1.8rem !important;
+            }
           }
         }
       }
@@ -266,15 +401,11 @@
       .arrows-wrap {
         margin-top: 1rem;
       }
-
-      .card {
-        padding: 1rem;
-      }
     }
   }
 }
 
 :global(.slick-track) {
   display: flex !important;
-  gap: var(--composer-gap-md);
 }
+
