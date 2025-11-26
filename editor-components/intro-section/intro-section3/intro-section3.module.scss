@@ -69,10 +69,15 @@
 
         .subtitle-group {
           content: "";
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left !important;
 
           .subtitle1,
           .subtitle2 {
             color: var(--composer-font-color-primary);
+            text-align: left !important;
           }
 
           .subtitle1 {
@@ -88,7 +93,7 @@
         margin-top: 60px;
         align-self: flex-start;
         object-fit: cover;
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-sm);
         overflow: hidden;
 
         &.overlay {
@@ -133,8 +138,13 @@
           .subtitle-group {
             width: 100%;
             gap: var(--composer-gap-xs);
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left !important;
+
+            .subtitle1,
+            .subtitle2 {
+              text-align: left !important;
+            }
           }
         }
 
