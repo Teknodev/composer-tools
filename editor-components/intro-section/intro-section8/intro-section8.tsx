@@ -120,14 +120,12 @@ class IntroSection8 extends BaseIntroSection {
 
     return (
       <Base.Container className={containerClasses}>
-        
         {showBackgroundShape && (
-             <div className={this.decorateCSS("background-shape")}></div>
+          <div className={this.decorateCSS("background-shape")}></div>
         )}
-        
+
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-            
             {(subtitleExist || titleExist || descriptionExist) && (
               <div className={this.decorateCSS("text-wrapper")}>
                 {subtitleExist && (
@@ -136,7 +134,14 @@ class IntroSection8 extends BaseIntroSection {
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                  <Base.SectionTitle
+                    className={this.decorateCSS("title")}
+                    style={{
+                      fontSize: "clamp(2.5rem, 3vw, 3.2rem)",
+                      lineHeight: 1.1,
+                      letterSpacing: "0.02em"
+                    }}
+                  >
                     {title}
                   </Base.SectionTitle>
                 )}
@@ -152,23 +157,21 @@ class IntroSection8 extends BaseIntroSection {
               <div className={this.decorateCSS("media-wrapper")}>
                 {isVideo ? (
                   !isPlaying ? (
-                    <div 
-                      className={this.decorateCSS("thumbnail-container")} 
+                    <div
+                      className={this.decorateCSS("thumbnail-container")}
                       onClick={this.handlePlayVideo}
                     >
                       {hasThumbnail && (
                         <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />
                       )}
-                      
                       {overlay && <div className={this.decorateCSS("overlay")} />}
-                      
                       {hasPlayIcon && (
-                          <div className={this.decorateCSS("play-icon-wrapper")}>
-                             <Base.Icon 
-                                name={playIcon} 
-                                propsIcon={{ className: this.decorateCSS("icon") }} 
-                             />
-                          </div>
+                        <div className={this.decorateCSS("play-icon-wrapper")}>
+                          <Base.Icon
+                            name={playIcon}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </div>
                       )}
                     </div>
                   ) : (
@@ -193,7 +196,6 @@ class IntroSection8 extends BaseIntroSection {
                 )}
               </div>
             )}
-
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
