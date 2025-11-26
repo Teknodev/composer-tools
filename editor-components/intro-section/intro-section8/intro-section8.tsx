@@ -150,11 +150,6 @@ class IntroSection8 extends BaseIntroSection {
                 {titleExist && (
                   <Base.SectionTitle
                     className={this.decorateCSS("title")}
-                    style={{
-                      fontSize: "clamp(2.5rem, 3vw, 3.2rem)",
-                      lineHeight: 1.1,
-                      letterSpacing: "0.02em"
-                    }}
                   >
                     {title}
                   </Base.SectionTitle>

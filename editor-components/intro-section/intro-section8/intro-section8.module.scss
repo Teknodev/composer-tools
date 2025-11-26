@@ -101,9 +101,13 @@
     }
   }
 
-  .subtitle-badge {}
+  .subtitle-badge {
+    content: "";
+  }
 
-  .subtitle-default {}
+  .subtitle-default {
+    content: "";
+  }
 
   .title {
     text-align: center !important;
