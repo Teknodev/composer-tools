@@ -1,10 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+
 .container {
-    background: linear-gradient(to bottom, var(--composer-html-background) 50%, color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
+    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
     .max-content {
-        padding: calc(var(--padding-xxl) * 2) calc(var(--padding-xxl) * 2);
+        padding: calc(var(--padding-xxl) * 2);
         border-radius: var(--composer-border-radius-md);
         background-color: var(--composer-html-background);
         box-shadow: var(--box-shadow-active);
