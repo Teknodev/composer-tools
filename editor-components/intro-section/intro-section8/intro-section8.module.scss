@@ -56,8 +56,13 @@
     margin-bottom: 0;
     text-align: center !important;
 
+    .subtitle,
+    .title,
+    .description {
+      color: var(--composer-font-color-primary) !important;
+    }
+
     .subtitle {
-      color: var(--composer-font-color-secondary) !important;
       display: flex !important;
       justify-content: center !important;
       text-align: center !important;
@@ -78,20 +83,29 @@
     }
 
     .title {
-      color: var(--composer-font-color-secondary) !important;
       text-align: center !important;
       margin: 0;
       width: 100% !important;
     }
 
     .description {
-      color: var(--composer-font-color-secondary) !important;
       text-align: center !important;
       margin: 0;
       width: 100% !important;
       white-space: normal !important;
       overflow-wrap: break-word !important;
       word-wrap: break-word !important;
+    }
+  }
+
+  &.has-background {
+    .text-wrapper {
+
+      .subtitle,
+      .title,
+      .description {
+        color: var(--composer-font-color-secondary) !important;
+      }
     }
   }
 
@@ -189,8 +203,8 @@
         .icon {
           width: 50px;
           height: 50px;
-          fill: var(--composer-font-color-secondary);
-          color: var(--composer-font-color-secondary);
+          fill: var(--composer-font-color-primary);
+          color: var(--composer-font-color-primary);
           display: flex;
           justify-content: center;
           align-items: center;
