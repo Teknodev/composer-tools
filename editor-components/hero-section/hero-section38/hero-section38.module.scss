@@ -8,8 +8,12 @@
   .max-content {
     width: 100%;
     max-width: unset;
+    padding: 80px 50px !important;
 
 
+    &.animation-off {
+      padding: 80px 50px !important;
+    }
 
     .slider-wrapper {
       position: relative;
@@ -92,6 +96,7 @@
               z-index: 1;
               pointer-events: none;
               transition: opacity var(--composer-transition-duration-normal) ease;
+              opacity: 0.7;
             }
 
             .title {
@@ -156,10 +161,22 @@
           .image-wrapper {
             border-radius: var(--composer-border-radius-sm);
 
+            .overlay {
+              opacity: 0.35;
+            }
+
             .image {
               border-radius: inherit;
               transform: scale(1.22);
               transform-origin: center;
+            }
+          }
+
+          &:hover {
+            .image-wrapper {
+              .overlay {
+                opacity: 0;
+              }
             }
           }
         }
@@ -345,6 +362,8 @@
                 z-index: 1;
                 pointer-events: none;
                 transition: opacity var(--composer-transition-duration-normal) ease;
+                opacity: 0.7;
+                opacity: 0.7;
               }
 
               .title {
@@ -405,6 +424,10 @@
                 border-radius: inherit;
                 transform: scale(1.12);
                 transition: transform var(--composer-transition-duration-normal) ease;
+              }
+
+              .overlay {
+                opacity: 0.35;
               }
             }
           }
@@ -481,7 +504,9 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      padding: 80px 0 0 0 !important;
+      &.animation-off {
+        padding: 80px 50px !important;
+      }
 
       .slider-wrapper {
         .slider {
@@ -513,6 +538,10 @@
               .image {
                 transform: scale(1.08);
                 transition: transform var(--composer-transition-duration-normal) ease;
+              }
+
+              .overlay {
+                opacity: 0.7;
               }
             }
 
@@ -552,6 +581,10 @@
                 transform: scale(1.2);
                 transition: transform var(--composer-transition-duration-normal) ease;
               }
+
+            .overlay {
+              opacity: 0.35;
+            }
             }
           }
         }
