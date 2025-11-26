@@ -37,6 +37,8 @@
     gap: var(--composer-gap-md);
 
     .subtitle {
+      color: var(--composer-primary-color);
+      font-weight: 600;
       margin: 0 !important;
       text-align: left !important;
     }
@@ -138,7 +140,7 @@
 
 .imageWrapper {
   border: 1px solid rgba(229, 231, 235, 0.75);
-  border-radius: var(--composer-border-radius-lg);
+  border-radius: var(--composer-border-radius-sm);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   padding: calc(var(--composer-gap-lg) * 0.6);
   margin-bottom: calc(var(--composer-gap-md) * 1.3) !important;
@@ -150,7 +152,7 @@
     position: relative;
     width: 100%;
     height: auto;
-    border-radius: var(--composer-border-radius-lg);
+    border-radius: var(--composer-border-radius-md);
     overflow: hidden;
 
     .image {
