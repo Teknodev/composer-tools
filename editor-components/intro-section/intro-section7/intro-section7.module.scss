@@ -1,13 +1,15 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: linear-gradient(to bottom, var(--composer-font-color-primary) 50%, var(--composer-tertiary-color) 50%);
+    background: linear-gradient(to bottom,
+            var(--composer-font-color-primary) 50%,
+            color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
 
     .max-content {
         padding: calc(var(--padding-md) * 5) calc(var(--padding-md) * 5);
         border-radius: var(--composer-border-radius-md);
-        background-color:
-            color-mix(in srgb, var(--composer-html-background), var(--color-white) 5%);
+        background-color: var(--composer-html-background);
+        box-shadow: var(--box-shadow-active);
 
         .content {
             display: flex;
@@ -54,7 +56,7 @@
                         flex-wrap: wrap;
                         gap: var(--composer-gap-md);
                         justify-content: center;
-                        color: inherit;
+                        color: var(--composer-font-color-primary);
 
                         .stat {
                             display: flex;
@@ -66,14 +68,12 @@
                                 display: flex;
                                 flex-direction: row;
                                 margin: 0;
-                                color: var(--composer-font-color-primary);
                                 font-size: 2rem;
                                 justify-content: left;
                             }
 
                             .stat-label {
                                 margin: 0;
-                                color: var(--composer-font-color-primary);
                                 text-align: left;
                             }
                         }
@@ -91,12 +91,13 @@
 
                 .image-wrapper {
                     position: relative;
+                    border-radius: var(--border-radius-sm);
 
                     .image {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
-
+                        border-radius: inherit;
                     }
 
                     .overlay {

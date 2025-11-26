@@ -147,7 +147,7 @@ class IntroSection7 extends BaseIntroSection {
                                                                 </Base.P>
                                                             )}
                                                             {(prefixStr || numberStr || suffixStr) && (
-                                                                <Base.H3 className={this.decorateCSS("stat-value")}>
+                                                                <div className={this.decorateCSS("stat-value")}>
                                                                     {prefixStr && (
                                                                         <span className={this.decorateCSS("stat-prefix")}>
                                                                             {item.prefix}
@@ -161,7 +161,7 @@ class IntroSection7 extends BaseIntroSection {
                                                                             {item.suffix}
                                                                         </span>
                                                                     )}
-                                                                </Base.H3>
+                                                                </div>
                                                             )}
                                                         </div>
                                                     );
