@@ -103,7 +103,6 @@ class IntroSection6 extends BaseIntroSection {
     const textIcon = this.getPropValue("textIcon");
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const alignment = Base.getContentAlignment();
     const overlay = this.getPropValue("overlay");
 
     const hasImage = !!(image && image.url);
@@ -113,7 +112,9 @@ class IntroSection6 extends BaseIntroSection {
     const hasDescription = this.castToString(description);
     const hasBottomText = this.castToString(bottomText);
 
-    const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+    const hasAnyButton =
+      Array.isArray(buttons) &&
+      buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
 
     const hasRightContainer = !!(
       hasSubtitle ||
@@ -128,11 +129,7 @@ class IntroSection6 extends BaseIntroSection {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("intro-wrapper")} ${
-              alignment === "left"
-                ? this.decorateCSS("alignment-left")
-                : this.decorateCSS("alignment-center")
-            } ${
+            className={`${this.decorateCSS("intro-wrapper")} ${!hasImage ? this.decorateCSS("no-image") : ""} ${
               hasImage && !hasRightContainer
                 ? this.decorateCSS("image-container-alone")
                 : ""
@@ -151,12 +148,18 @@ class IntroSection6 extends BaseIntroSection {
                     value={image}
                     className={this.decorateCSS("media-image")}
                   />
-                  {overlay && <div className={this.decorateCSS("thumbnail-overlay")} />}
+                  {overlay && (
+                    <div className={this.decorateCSS("thumbnail-overlay")} />
+                  )}
                 </div>
               </div>
             )}
             {hasRightContainer && (
-              <div className={`${this.decorateCSS("text-content")} ${!hasImage ? this.decorateCSS("text-content-alone") : ""}`}>
+              <div
+                className={`${this.decorateCSS("text-content")} ${
+                  !hasImage ? this.decorateCSS("text-content-alone") : ""
+                }`}
+              >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
                 >
@@ -194,15 +197,32 @@ class IntroSection6 extends BaseIntroSection {
                               }
                               const buttonUrl = item.url || "#";
                               return (
-                                <div key={`is6-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
+                                <div
+                                  key={`is6-btn-${index}`}
+                                  className={this.decorateCSS("button-wrapper")}
+                                >
                                   <ComposerLink path={buttonUrl}>
-                                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                    <Base.Button
+                                      buttonType={item.type}
+                                      className={this.decorateCSS("button")}
+                                    >
                                       {buttonIcon && (
-                                        <div className={this.decorateCSS("button-icon-wrapper")}>
-                                          <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />
-                                        </div>
+                                        <Base.Media
+                                          value={buttonIcon}
+                                          className={this.decorateCSS(
+                                            "button-icon"
+                                          )}
+                                        />
                                       )}
-                                      {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                      {btnTextExist && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "button-text"
+                                          )}
+                                        >
+                                          {item.text}
+                                        </Base.P>
+                                      )}
                                     </Base.Button>
                                   </ComposerLink>
                                 </div>
@@ -214,22 +234,18 @@ class IntroSection6 extends BaseIntroSection {
 
                       {(hasBottomText || textIcon) && (
                         <Base.Row className={this.decorateCSS("text-wrapper")}>
-                          <div className={this.decorateCSS("thumb-row")}>
+                          {textIcon && (
+                            <Base.Media
+                              className={this.decorateCSS("thumb-icon")}
+                              value={textIcon}
+                            />
+                          )}
 
-                            {textIcon && (
-                              <Base.Media
-                                className={this.decorateCSS("thumb-icon")}
-                                value={textIcon}
-                              />
-                            )}
-
-                            {bottomText && (
-                              <Base.P className={this.decorateCSS("bottomText")}>
-                                {bottomText}
-                              </Base.P>
-                            )}
-
-                          </div>
+                          {bottomText && (
+                            <Base.P className={this.decorateCSS("bottomText")}>
+                              {bottomText}
+                            </Base.P>
+                          )}
                         </Base.Row>
                       )}
                     </div>
