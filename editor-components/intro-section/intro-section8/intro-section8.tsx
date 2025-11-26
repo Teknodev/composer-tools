@@ -31,7 +31,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "media",
-      displayer: "Video",
+      displayer: "Media",
       value: {
         type: "video",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
@@ -44,7 +44,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "thumbnail",
-      displayer: "Image",
+      displayer: "Thumbnail",
       value: {
         type: "image",
         url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
