@@ -1,13 +1,13 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITab = {
   tabText: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   tabUrl: string;
 };
 
@@ -33,13 +33,13 @@ class HeroSection9 extends BaseHeroSection {
             {
               type: "string",
               key: "socialLinkText",
-              displayer: "Social Link Text",
+              displayer: "Text",
               value: "Behance",
             },
             {
               type: "page",
               key: "socialUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -50,15 +50,15 @@ class HeroSection9 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "page",
+              type: "string",
               key: "socialLinkText",
-              displayer: "Social Link Text",
+              displayer: "Text",
               value: "Instagram",
             },
             {
               type: "page",
               key: "socialUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -69,22 +69,22 @@ class HeroSection9 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "page",
+              type: "string",
               key: "socialLinkText",
-              displayer: "Social Link Text",
+              displayer: "Text",
               value: "Twitter",
             },
             {
               type: "page",
               key: "socialUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
         },
       ],
     });
-    this.addProp(INPUTS.BUTTON("featuredLink", "Featured Button", "see all works", "", null, null, "Link"));
+    this.addProp(INPUTS.BUTTON("featuredLink", "Button", "see all works", "", null, null, "Link"));
     this.addProp({
       type: "array",
       key: "tabs",
@@ -105,16 +105,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "color flow",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247df?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247df?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -131,16 +136,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "pal",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e2?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e2?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -157,16 +167,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "the lofe",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e3?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e3?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -183,16 +198,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "kia",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e0?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e0?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -209,16 +229,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "reykjavik",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e4?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e4?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -235,16 +260,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "chanel",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e1?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247e1?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -261,16 +291,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "cazador",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247de?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247de?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -287,16 +322,21 @@ class HeroSection9 extends BaseHeroSection {
               value: "alabster co.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247dd?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666181aebd2970002c6247dd?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "page",
               key: "tabUrl",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -314,6 +354,13 @@ class HeroSection9 extends BaseHeroSection {
       key: "isCounterActive",
       displayer: "Counter",
       value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.setComponentState("activeTab", 0);
@@ -349,20 +396,20 @@ class HeroSection9 extends BaseHeroSection {
               {(tabs.length > 0 || textExist) && (
                 <div className={this.decorateCSS("buttons")} style={{ paddingLeft: `calc((${socialHeight}px) + var(--composer-gap-xl))` }}>
                   {textExist && (
-                    <span className={this.decorateCSS("text")}>
+                    <Base.H4 className={this.decorateCSS("text")}>
                       {this.getPropValue("text")}
-                    </span>
+                    </Base.H4>
                   )}
 
                   {isCounterActive &&
                     <div className={this.decorateCSS("counter-wrapper")}>
-                      <span className={this.decorateCSS("active-number")}>
+                      <Base.H3 className={this.decorateCSS("active-number")}>
                         {activeTabIndex + 1}
-                      </span>
+                      </Base.H3>
                       <span className={this.decorateCSS("slash")}>/</span>
-                      <span className={this.decorateCSS("count")}>
+                      <Base.H5 className={this.decorateCSS("count")}>
                         {tabs.length}
-                      </span>
+                      </Base.H5>
                     </div>}
                 </div>
               )}
@@ -373,7 +420,7 @@ class HeroSection9 extends BaseHeroSection {
                 {tabs.length > 0 &&
                   tabs.map((tab: ITab, index: number) => {
                     const url = tab.tabUrl;
-                    return url ? (
+                    return (
                       <ComposerLink key={index} path={url}>
                         <div
                           className={`${this.decorateCSS("tabText")}
@@ -384,25 +431,12 @@ class HeroSection9 extends BaseHeroSection {
                           {this.castToString(tab.tabText)}
                         </div>
                       </ComposerLink>
-                    ) : (
-                      <div
-                        key={index}
-                        className={
-                          this.decorateCSS("tabText") +
-                          " " +
-                          (this.getComponentState("activeTab") === index &&
-                            this.decorateCSS("active"))
-                        }
-                        onMouseEnter={() => this.handleMouseEnter(index)}
-                      >
-                        {tab.tabText}
-                      </div>
-                    );
+                    ) 
                   })}
                 {this.castToString(featured.text) && (
                   <ComposerLink path={featured.url}>
-                    <Base.Button buttonType={featured.type} className={this.decorateCSS("linkText")}>
-                      {featured.text}
+                    <Base.Button buttonType={featured.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{featured.text}</Base.P>
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -410,11 +444,29 @@ class HeroSection9 extends BaseHeroSection {
             </Base.GridCell>
             {currentImage && (
               <Base.GridCell className={this.decorateCSS("right-content")}>
-                <img
-                  src={currentImage}
-                  alt="slider-image"
-                  className={this.decorateCSS("image")}
-                />
+                <div className={this.decorateCSS("media-wrapper")}>
+                  {(() => {
+                    const imageWithSettings = currentImage?.type === "video" ? {
+                      ...currentImage,
+                      settings: {
+                        autoplay: true,
+                        loop: true,
+                        muted: true,
+                        controls: false
+                      }
+                    } : currentImage;
+                    
+                    return (
+                      <Base.Media
+                        value={imageWithSettings}
+                        className={this.decorateCSS("media")}
+                      />
+                    );
+                  })()}
+                  {this.getPropValue("overlay") && currentImage && (currentImage.type === "image" || currentImage.type === "video") && currentImage.url && (
+                    <div className={this.decorateCSS("overlay")} />
+                  )}
+                </div>
               </Base.GridCell>
             )}
             {socials.length > 0 && (
@@ -425,9 +477,9 @@ class HeroSection9 extends BaseHeroSection {
                     className={this.decorateCSS("social-item")}
                   >
                     <ComposerLink key={idx} path={tab.socialUrl}>
-                      <div className={this.decorateCSS("social-link")}>
+                      <Base.P className={this.decorateCSS("social-link")}>
                         {tab.socialLinkText}
-                      </div>
+                      </Base.P>
                     </ComposerLink>
                   </div>
                 ))}

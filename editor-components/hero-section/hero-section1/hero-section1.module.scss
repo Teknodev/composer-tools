@@ -56,8 +56,31 @@
   min-height: 100px;
 
   .background-layout {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
+    object-fit: cover;
+    
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--composer-overlay-color);
+    pointer-events: none;
   }
   .image-container-2 {
     position: absolute;
@@ -77,6 +100,8 @@
     animation: moveUpDown 3s ease-in-out infinite;
   }
   .max-content {
+    position: relative;
+    z-index: 2;
     .wrapper {
       height: 100%;
       width: 100%;
@@ -153,7 +178,7 @@
             align-items: flex-start;
             justify-content: flex-end;
             position: relative;
-            width: 90%;
+            width: 100%;
             &.without-image{
               min-height: 50vh;
               .subtitle {
@@ -202,7 +227,7 @@
               }
             }
             .image {
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               margin: 0 auto;
               width: 100%;
               object-fit: cover;
@@ -211,11 +236,33 @@
               opacity: 0;
               max-height: 600px;
               object-fit: cover;
+              
+              img,
+              video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
+              }
             }
             .active-image {
               transform: scale(1);
               opacity: 1;
               width: 100%;
+            }
+            &.with-overlay {
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--composer-overlay-color);
+                z-index: 1;
+                pointer-events: none;
+                border-radius: var(--composer-border-radius-sm);
+              }
             }
             .sliderNumber {
               position: absolute;
@@ -385,7 +432,7 @@
 }
 
 @container (max-width : #{$composer-phone-width}) {
-  @include titleSize(4rem);
+  @include titleSize(4rem !important);
 
   .image-container-2 {
     width: 60% !important;
@@ -425,6 +472,10 @@
             }
             .title{
               @include absoluteCenter;
+              font-size: 3rem !important;
+              width: 100% !important;
+              padding: var(--composer-gap-sm) !important;
+              top: 40% !important;
             }
           }
         }
@@ -515,8 +566,4 @@
       }
     }
   }
-}
-
-@container (max-width : #{$composer-phone-width}) {
-  @include titleSize(4rem !important);
 }
