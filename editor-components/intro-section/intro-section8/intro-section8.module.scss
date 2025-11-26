@@ -18,7 +18,11 @@
     .subtitle,
     .title,
     .description {
-      content: "";
+      width: 100%;
+      max-width: 100%;
+      white-space: normal !important;
+      overflow-wrap: break-word !important;
+      word-wrap: break-word !important;
     }
   }
 
@@ -48,7 +52,6 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center !important;
@@ -87,9 +90,6 @@
     padding: 0 !important;
     margin: 0 !important;
     transform: none !important;
-    width: auto !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
 
     &::before,
     &::after {
@@ -113,10 +113,6 @@
   .description {
     text-align: center !important;
     margin: 0;
-    width: 100%;
-    white-space: normal !important;
-    overflow-wrap: break-word !important;
-    word-wrap: break-word !important;
   }
 
   .media-wrapper {
@@ -242,9 +238,7 @@
         gap: 50px;
 
         .text-wrapper {
-          .title {
-            content: "";
-          }
+          .title {}
         }
 
         .media-wrapper {
@@ -252,9 +246,7 @@
           aspect-ratio: 16 / 9;
 
           .thumbnail-container {
-            .play-icon-wrapper {
-              content: "";
-            }
+            .play-icon-wrapper {}
           }
         }
       }

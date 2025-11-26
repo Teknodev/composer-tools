@@ -11,7 +11,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FIND THE BEST SUITABLE SOLUTION",
+      value: "FIND THE BEST SUITABLE SOLTION",
     });
 
     this.addProp({
@@ -31,7 +31,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "media",
-      displayer: "Media",
+      displayer: "Video",
       value: {
         type: "video",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
@@ -44,13 +44,13 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "thumbnail",
-      displayer: "Thumbnail",
+      displayer: "Image",
       value: {
         type: "image",
         url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       } as TypeMediaInputValue,
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
     });
 
@@ -150,6 +150,11 @@ class IntroSection8 extends BaseIntroSection {
                 {titleExist && (
                   <Base.SectionTitle
                     className={this.decorateCSS("title")}
+                    style={{
+                      fontSize: "clamp(2.5rem, 3vw, 3.2rem)",
+                      lineHeight: 1.1,
+                      letterSpacing: "0.02em"
+                    }}
                   >
                     {title}
                   </Base.SectionTitle>
