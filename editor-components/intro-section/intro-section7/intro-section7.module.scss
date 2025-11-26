@@ -1,12 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: linear-gradient(to bottom,
-            var(--composer-html-background) 50%,
-            color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
+    background: linear-gradient(to bottom, var(--composer-html-background) 50%, color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
 
     .max-content {
-        padding: calc(var(--padding-md) * 5) calc(var(--padding-md) * 5);
+        padding: calc(var(--padding-xxl) * 2) calc(var(--padding-xxl) * 2);
         border-radius: var(--composer-border-radius-md);
         background-color: var(--composer-html-background);
         box-shadow: var(--box-shadow-active);
@@ -55,19 +53,18 @@
                         display: flex;
                         flex-wrap: wrap;
                         gap: var(--composer-gap-md);
-                        justify-content: center;
+                        justify-content: start;
 
                         .stat {
                             display: flex;
                             flex-direction: column;
                             gap: var(--composer-gap-xs);
-                            align-items: center;
 
                             .stat-value {
                                 display: flex;
                                 flex-direction: row;
                                 margin: 0;
-                                font-size: 2rem;
+                                font-size: 1.3rem;
                                 justify-content: left;
                                 color: var(--composer-primary-color);
                             }
