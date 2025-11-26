@@ -11,7 +11,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FIND THE BEST SUITABLE SOLTION",
+      value: "FIND THE BEST SUITABLE SOLUTION",
     });
 
     this.addProp({
