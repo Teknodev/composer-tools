@@ -66,15 +66,6 @@ class IntroSection3 extends BaseIntroSection {
 
     const buttonProp = INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary");
 
-    if (Array.isArray(buttonProp.value)) {
-      buttonProp.value.push({
-        type: "media",
-        key: "buttonImage",
-        displayer: "Button Image",
-        value: { type: "image", url: "" } as TypeMediaInputValue
-      });
-    }
-
     this.addProp({
       type: "array",
       key: "buttons",
