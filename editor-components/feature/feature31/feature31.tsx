@@ -15,10 +15,16 @@ class Feature31 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
-            type: "image",
+            type: "media",
             key: "image",
-            displayer: "Image",
-            value: "https://res.cloudinary.com/dyjpupuop/image/upload/v1759404710/content28_img.png"
+            displayer: "Media",
+            value: {
+                type: "image",
+                url: "https://res.cloudinary.com/dyjpupuop/image/upload/v1759404710/content28_img.png"
+            } as TypeMediaInputValue,
+            additionalParams: {
+                availableTypes: ["image", "video"]
+            }
         });
 
         this.addProp({
@@ -109,12 +115,7 @@ class Feature31 extends BaseFeature {
     }
 
     render() {
-        const image = this.getPropValue("image");
-        const rawImageValue = this.castToString(image as any);
-        const imageUrl = typeof rawImageValue === "string" ? rawImageValue : "";
-        const imageValue: TypeMediaInputValue | null = imageUrl
-            ? { type: "image", url: imageUrl }
-            : null;
+        const image = this.getPropValue("image") as TypeMediaInputValue;
 
         const normalizeText = (value: unknown): string => {
             const text = this.castToString(value as any);
@@ -143,18 +144,20 @@ class Feature31 extends BaseFeature {
 
         const overlay = this.getPropValue("overlay");
 
+        const hasMedia = image && ((image as any).url || (image as any).name);
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
 
-                    {imageValue && (
+                    {hasMedia && (
                         <div
                             className={this.decorateCSS("image-side")}
                             data-overlay={overlay}
                         >
                             <Base.Media
                                 className={this.decorateCSS("image")}
-                                value={imageValue}
+                                value={image}
                             />
                         </div>
                     )}

@@ -47,12 +47,18 @@
             gap: var(--composer-gap-xl);
 
             .header {
+                display: flex !important;
+                flex-direction: column !important;
+
                 gap: var(--composer-gap-md);
                 align-items: flex-start !important;
+                text-align: left !important;
 
                 .subtitle {
-                    margin-bottom: 0;
-                    width: 100% !important;
+                    margin: 0 !important;
+
+                    width: fit-content !important;
+                    align-self: flex-start !important;
                     text-align: left !important;
                     display: block !important;
                 }
