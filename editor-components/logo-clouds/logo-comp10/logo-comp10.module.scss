@@ -2,6 +2,7 @@
   as *;
 
 .container {
+  width: 100%;
   .max-content {
     display: flex;
     flex-direction: column;
@@ -31,6 +32,9 @@
       width: 100%;
       position: relative;
       overflow: hidden;
+      :global(.container) {
+        width: 100%;
+      }
 
       .slider {
         width: 100%;
@@ -43,6 +47,10 @@
         gap: var(--composer-gap-xl);
         justify-content: space-around;
         justify-items: center;
+        > div {
+          width: 100% !important;
+        }
+
         .image-link {
           display: flex;
           width: 100%;
