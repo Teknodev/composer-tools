@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: var(--composer-gap-xl) 50px;
 
   .background-media {
     position: absolute;
@@ -28,49 +29,20 @@
 
   &.media-active {
     min-height: 100vh;
-    padding: 0;
-    gap: 0;
 
-    .subtitle {
-      color: var(--color-white) !important;
-    }
-
+    .subtitle,
     .title,
     .description {
       color: var(--color-white) !important;
     }
 
     .buttons {
-      position: absolute;
-      bottom: 150px;
-      left: 50%;
-      transform: translateX(-50%);
-      margin-top: 0;
-      z-index: 5;
-      display: flex;
-      gap: var(--composer-gap-md);
-      flex-wrap: wrap;
-      justify-content: center;
-
-      a {
-        color: var(--color-white) !important;
-        text-decoration: none;
-      }
-
       .button {
         color: var(--color-white) !important;
-        background: transparent;
-        display: flex;
-        align-items: center;
-        gap: var(--composer-gap-sm);
+        border-color: var(--color-white);
 
         &:hover {
           background-color: rgba(255, 255, 255, 0.1) !important;
-        }
-
-        // Animasyon artık bireysel butona veriliyor
-        &.has-animation {
-          animation: bounce 2s infinite;
         }
       }
     }
@@ -94,51 +66,50 @@
     position: relative;
     z-index: 2;
     width: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: var(--composer-gap-md);
-    margin: 0 auto;
+    padding: 0;
 
     .vertical-content {
       width: 100%;
-      max-width: 800px;
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center !important;
       justify-content: center !important;
       text-align: center !important;
+      gap: var(--composer-gap-lg);
+
+      .text-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+        width: 100%;
+        max-width: 800px;
+      }
 
       .subtitle {
         display: flex !important;
         justify-content: center !important;
-        align-items: center !important;
         text-align: center !important;
         width: 100% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        align-self: center !important;
-        position: relative !important;
-        transform: none !important;
-        left: auto !important;
-        right: auto !important;
-
         border: none !important;
+        transform: none !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
         background: transparent !important;
         box-shadow: none !important;
-        padding: 0 !important;
 
         &::before,
         &::after {
-          content: none !important;
           display: none !important;
+          content: none !important;
           width: 0 !important;
           height: 0 !important;
           border: none !important;
-          background: transparent !important;
         }
       }
 
@@ -147,48 +118,54 @@
         width: 100% !important;
         text-align: center !important;
         justify-content: center !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        margin: 0 !important;
       }
     }
-  }
 
-  .buttons {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--composer-gap-md);
+    .buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-md);
+      margin-top: var(--composer-gap-xl);
+      position: relative;
+      z-index: 2;
 
-    .button {
-      transition: transform 0.3s ease;
-      padding: 30px;
-      font-size: 2rem;
-
-      .icon {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        :global(svg) {
-          width: 100%;
-          height: 100%;
-          fill: currentColor;
-        }
+      a {
+        text-decoration: none;
       }
 
-      // Normal modda da (media-active değilken) animasyon çalışabilsin
-      &.has-animation {
-        animation: bounce 2s infinite;
+      .button {
+        transition: transform 0.3s ease;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+        padding: 20px 40px;
+
+        .icon {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          :global(svg) {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+          }
+        }
+
+        &.has-animation {
+          animation: bounce 2s infinite;
+        }
       }
     }
   }
 }
 
-// Tek ve temiz bir bounce animasyonu
 @keyframes bounce {
 
   0%,
@@ -210,24 +187,29 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: var(--composer-gap-lg) 40px;
+
     &.media-active {
       min-height: 80vh;
-
-      .buttons {
-        bottom: 120px;
-      }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: var(--composer-gap-md) 20px;
+
     &.media-active {
       min-height: 70vh;
+    }
 
-      .buttons {
-        bottom: 100px;
-        flex-wrap: wrap;
+    .buttons {
+      flex-direction: column;
+      width: 100%;
+
+      .button {
+        width: 100%;
+        justify-content: center;
       }
     }
   }

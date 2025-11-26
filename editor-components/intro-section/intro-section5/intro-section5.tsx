@@ -98,12 +98,14 @@ class IntroSection5 extends BaseIntroSection {
 
     const hasBgMedia = bgMedia && bgMedia.url;
 
+    const containerClasses = [
+      this.decorateCSS("container"),
+      hasBgMedia ? this.decorateCSS("media-active") : "",
+      (hasOverlay && hasBgMedia) ? this.decorateCSS("overlay-active") : ""
+    ].filter(Boolean).join(" ");
+
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} ${
-          hasBgMedia ? this.decorateCSS("media-active") : ""
-        } ${hasOverlay && hasBgMedia ? this.decorateCSS("overlay-active") : ""}`}
-      >
+      <Base.Container className={containerClasses}>
         {hasBgMedia && (
           <Base.Media 
             value={bgMedia} 
@@ -112,56 +114,57 @@ class IntroSection5 extends BaseIntroSection {
         )}
 
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist || descriptionExist) && (
-            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
-              )}
+          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+            
+            {(subtitleExist || titleExist || descriptionExist) && (
+              <div className={this.decorateCSS("text-wrapper")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
 
-              {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
 
-              {descriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
-          )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </div>
+            )}
+
+            {hasButtons && (
+              <div className={this.decorateCSS("buttons")}>
+                {buttons.map((button: any, index: number) => {
+                  const hasIcon = button.icon && button.icon.name;
+                  const hasText = this.castToString(button.text);
+                  const isAnimated = button.enableAnimation;
+
+                  if (!hasIcon && !hasText) return null;
+
+                  return (
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button
+                        buttonType={button.type || "Link"}
+                        className={`${this.decorateCSS("button")} ${isAnimated ? this.decorateCSS("has-animation") : ""}`}
+                      >
+                        {hasText && button.text}
+                        {hasIcon && (
+                          <Base.Media value={button.icon} className={this.decorateCSS("icon")} />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
+          </Base.VerticalContent>
         </Base.MaxContent>
-
-        {hasButtons && (
-          <div className={this.decorateCSS("buttons")}>
-            {buttons.map((button: any, index: number) => {
-              const hasIcon = button.icon && button.icon.name;
-              const hasText = this.castToString(button.text);
-              // Animasyon kontrolü artık her buton için ayrı yapılıyor
-              const isAnimated = button.enableAnimation;
-
-              if (!hasIcon && !hasText) return null;
-
-              return (
-                <ComposerLink key={index} path={button.url}>
-                  <Base.Button
-                    buttonType={button.type || "Link"}
-                    // has-animation sınıfı sadece bu butonun ayarı açıksa eklenir
-                    className={`${this.decorateCSS("button")} ${isAnimated ? this.decorateCSS("has-animation") : ""}`}
-                  >
-                    {hasText && button.text}
-                    {hasIcon && (
-                      <Base.Media value={button.icon} className={this.decorateCSS("icon")} />
-                    )}
-                  </Base.Button>
-                </ComposerLink>
-              );
-            })}
-          </div>
-        )}
       </Base.Container>
     );
   }
