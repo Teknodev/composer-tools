@@ -11,7 +11,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FIND THE BEST SUITABLE SOLTION",
+      value: "FIND THE BEST SUITABLE SOLUTION",
     });
 
     this.addProp({
@@ -112,7 +112,6 @@ class IntroSection8 extends BaseIntroSection {
 
     const isPlaying = this.getComponentState("isPlaying");
 
-    const subtitleType = Base.getSectionSubTitleType();
     const hasBackground = !!showBackgroundShape;
 
     const containerClasses = [
@@ -123,11 +122,7 @@ class IntroSection8 extends BaseIntroSection {
 
     const subtitleClassName = [
       this.decorateCSS("subtitle"),
-      hasBackground
-        ? this.decorateCSS("subtitle-plain")
-        : subtitleType === "badge"
-        ? this.decorateCSS("subtitle-badge")
-        : this.decorateCSS("subtitle-default")
+      this.decorateCSS("subtitle-badge")
     ]
       .filter(Boolean)
       .join(" ");

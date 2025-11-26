@@ -80,6 +80,15 @@
 
   .subtitle {
     text-align: center !important;
+
+    &::before,
+    &::after {
+      display: none !important;
+      content: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      border: none !important;
+    }
   }
 
   .subtitle-plain {
