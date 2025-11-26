@@ -42,7 +42,18 @@ class Feature32 extends BaseFeature {
           displayer: "Item",
           value: [
             { type: "string", key: "title", displayer: "List Item Title", value: "Digital Solutions Provider" },
-            { type: "image", key: "image", displayer: "Image", value: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-1@2x.png?v=1" },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-1@2x.png?v=1"
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"]
+              }
+            },
             {
               type: "array",
               key: "sections",
@@ -85,7 +96,18 @@ class Feature32 extends BaseFeature {
           displayer: "Item",
           value: [
             { type: "string", key: "title", displayer: "List Item Title", value: "Award-Winning Marketing Firm" },
-            { type: "image", key: "image", displayer: "Image", value: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-2@2x.png?v=1" },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-2@2x.png?v=1"
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"]
+              }
+            },
             {
               type: "array",
               key: "sections",
@@ -128,7 +150,18 @@ class Feature32 extends BaseFeature {
           displayer: "Item",
           value: [
             { type: "string", key: "title", displayer: "List Item Title", value: "Digital Marketing Leader" },
-            { type: "image", key: "image", displayer: "Image", value: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-3@2x.png?v=2" },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-3@2x.png?v=2"
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"]
+              }
+            },
             {
               type: "array",
               key: "sections",
@@ -212,13 +245,13 @@ class Feature32 extends BaseFeature {
     const activeTab = Math.min(activeTabState, items.length - 1);
     const activeItem = items[activeTab];
 
-    const hasImage = !!activeItem?.image;
+    const hasMedia = !!activeItem?.media;
     const hasSections = activeItem?.sections?.some((s: any) =>
       this.castToString(s.title) || this.castToString(s.text)
     );
     const hasButton = !!this.castToString(button?.text);
 
-    const hasRightContent = !!activeItem && (hasImage || hasSections || hasButton);
+    const hasRightContent = !!activeItem && (hasMedia || hasSections || hasButton);
     const hasLeftContent = !!this.castToString(title) || !!this.castToString(subtitle) || displayList.length > 0;
 
     return (
@@ -269,14 +302,14 @@ class Feature32 extends BaseFeature {
 
             {hasRightContent && (
               <Base.VerticalContent className={`${this.decorateCSS("rightContent")} ${this.decorateCSS("activeContent")}`}>
-                {hasImage && (
+                {hasMedia && (
                   <div
                     className={this.decorateCSS("imageWrapper")}
                     data-animation={Array.isArray(hoverAnimation) ? hoverAnimation.join(" ") : ""}
                   >
                     <div className={this.decorateCSS("imageContainer")}>
                       <Base.Media
-                        value={{ type: "image", url: activeItem.image } as TypeMediaInputValue}
+                        value={activeItem.media}
                         className={this.decorateCSS("image")}
                       />
                       {overlay && <div className={this.decorateCSS("overlay")} />}
