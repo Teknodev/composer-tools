@@ -50,7 +50,7 @@ class IntroSection8 extends BaseIntroSection {
         url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       } as TypeMediaInputValue,
       additionalParams: {
-        availableTypes: ["image", "video"],
+        availableTypes: ["image"],
       },
     });
 
@@ -150,11 +150,6 @@ class IntroSection8 extends BaseIntroSection {
                 {titleExist && (
                   <Base.SectionTitle
                     className={this.decorateCSS("title")}
-                    style={{
-                      fontSize: "clamp(2.5rem, 3vw, 3.2rem)",
-                      lineHeight: 1.1,
-                      letterSpacing: "0.02em"
-                    }}
                   >
                     {title}
                   </Base.SectionTitle>
