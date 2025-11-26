@@ -33,7 +33,7 @@
       overflow: hidden;
 
       &[data-animation~="animate1"] {
-        &:hover {
+        &:where(:hover, :focus-within) {
           .image-container {
             height: 100%;
 
@@ -77,7 +77,7 @@
 
 
       &[data-animation~="animate2"] {
-        &:hover {
+        &:where(:hover, :focus-within) {
         .card-content {
           transform: translateX(0);
           background: rgba(var(--composer-primary-color-rgb), 0.95);
@@ -139,13 +139,13 @@
       }
 
       &[data-animation~="animate3"] {
-        &:hover {
+        &:where(:hover, :focus-within) {
           transform: translateY(calc(-1 * var(--composer-gap-xs))) scale(1.1);
           z-index: 5;
         }
       }
 
-      &[data-animation="animate4"]:hover {
+      &[data-animation="animate4"]:where(:hover, :focus-within) {
         .card-content {
           background: rgba(var(--composer-primary-color-rgb), 0.95);
           bottom: -5%;
@@ -164,7 +164,7 @@
         }
       }
 
-      &[data-animation~="animate5"]:hover {
+      &[data-animation~="animate5"]:where(:hover, :focus-within) {
         .image-container {
           .image {
             transform: scale(1.1);
@@ -304,7 +304,7 @@
       }
 
       .card {
-        &:hover {
+        &:where(:hover, :focus-within) {
           .card-content {
             .card-description {
               opacity: 1;
@@ -314,41 +314,43 @@
       }
 
       .card[data-animation~="animate1"] {
-        .image-container {
-          height: 100%;
+        &:where(:hover, :focus-within) {
+          .image-container {
+            height: 100%;
 
-          .image {
-            transform: scale(1.05);
+            .image {
+              transform: scale(1.05);
+            }
+
+            &:after {
+              background: linear-gradient(
+                0deg,
+                rgba(var(--composer-primary-color-rgb), 0.85) 0%,
+                transparent 70%,
+                transparent 100%
+              );
+              opacity: 0.7;
+              clip-path: none;
+              transition: opacity 0.8s ease-in-out;
+            }
           }
 
-          &:after {
-            background: linear-gradient(
-              0deg,
-              rgba(0, 0, 0, 0.8) 0%,
-              transparent 70%,
-              transparent 100%
-            );
-            opacity: 0.7;
-            clip-path: none;
-            transition: opacity 0.8s ease-in-out;
-          }
-        }
+          .card-content {
+            .icon {
+              color: var(--composer-font-color-secondary);
+            }
 
-        .card-content {
-          .icon {
-            color: var(--composer-font-color-secondary);
-          }
+            .card-title {
+              color: var(--composer-font-color-secondary);
+              margin-top: 0 !important;
+              margin-bottom: 0 !important;
+              padding-top: 0 !important;
+              padding-bottom: 0 !important;
+            }
 
-          .card-title {
-            color: var(--composer-font-color-secondary);
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-          }
-
-          .card-description {
-            color: var(--composer-font-color-secondary);
+            .card-description {
+              color: var(--composer-font-color-secondary);
+            }
           }
         }
       }
@@ -374,6 +376,35 @@
           .card-content {
             .card-description {
               opacity: 1;
+            }
+          }
+        }
+      }
+
+      .card[data-animation~="animate1"] {
+        &:where(:hover, :focus-within) {
+          .image-container {
+            .image {
+              transform: scale(1.05);
+            }
+
+            &:after {
+              background: linear-gradient(
+                0deg,
+                rgba(var(--composer-primary-color-rgb), 0.9) 0%,
+                transparent 70%,
+                transparent 100%
+              );
+              opacity: 0.8;
+              clip-path: none;
+            }
+          }
+
+          .card-content {
+            .card-title,
+            .card-description,
+            .icon {
+              color: var(--composer-font-color-secondary);
             }
           }
         }

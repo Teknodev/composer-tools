@@ -327,8 +327,8 @@
           .card {
             .card-number {
               left: var(--composer-gap-lg);
-              bottom: calc(var(--composer-gap-lg) * (-0.8));
-              transform: scale(1.15);
+              bottom: calc(var(--composer-gap-lg) * (-0.7));
+              transform: scale(1.35);
               transform-origin: left bottom;
             }
           }
@@ -375,19 +375,24 @@
             .card-title { text-align: center; }
           }
           .card-number {
-            bottom: calc(var(--composer-gap-lg) * (9));
+            bottom: calc(var(--composer-gap-lg) * -0.8);
             left: var(--composer-gap-sm);
             font-size: 4rem;
+            transform: scale(1.2);
             transform-origin: left bottom;
           }
+        }
+
+        .card[data-animation~="animate1"]:hover {
+          transform: translateY(calc(-1 * var(--composer-gap-xs)));
         }
 
         &.alignment-center {
           .card {
             .card-number {
               left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-0.5));
-              transform: translateX(-50%) scale(1.15);
+              bottom: calc(var(--composer-gap-lg) * (-0.6));
+              transform: translateX(-50%) scale(1.40);
               transform-origin: center bottom;
             }
           }
@@ -402,8 +407,8 @@
             }
             .card-number {
               left: var(--composer-gap-sm);
-              bottom: calc(var(--composer-gap-lg) * (-0.5));
-              transform: scale(1.15);
+              bottom: calc(var(--composer-gap-lg) * -0.6);
+              transform: scale(1.40);
               transform-origin: left bottom;
             }
           }

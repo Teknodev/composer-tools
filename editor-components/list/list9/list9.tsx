@@ -286,6 +286,7 @@ class List9 extends BaseList {
                                 key={indexCard}
                                 className={this.decorateCSS("card")}
                                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                tabIndex={0}
                             >
                                 <div className={this.decorateCSS("image-container")}>
                                     {card.image && (
