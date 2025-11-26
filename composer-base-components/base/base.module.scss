@@ -412,12 +412,21 @@
   font-size: var(--composer-font-size-md);
   border-radius: var(--composer-border-radius-sm);
   font-family: var(--composer-font-family);
+  padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+    @container (max-width: #{$composer-tablet-width}) {
+        padding: var(--composer-gap-sm) !important;
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+        padding: var(--composer-gap-xs) var(--composer-gap-sm) !important;
+        font-size: var(--composer-font-size-sm) !important;
+    }
 
   &.primary {
     background-color: var(--composer-primary-color);
     border: 1px solid var(--composer-primary-color);
     color: var(--composer-font-color-secondary);
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
 
     &:hover {
       border: 1px solid color-mix(in srgb, var(--composer-primary-color), var(--composer-font-color-secondary) 15%);
@@ -430,7 +439,6 @@
     background-color: var(--composer-tertiary-color);
     border: 1px solid var(--composer-tertiary-color);
     color: var(--composer-font-color-secondary);
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
 
     &:hover {
       border: 1px solid color-mix(in srgb, var(--composer-tertiary-color), var(--composer-font-color-secondary) 15%);
@@ -443,7 +451,6 @@
     background-color: transparent;
     border: 1px solid var(--composer-font-color-primary);
     color: var(--composer-font-color-primary);
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
 
     &:hover {
       border: 1px solid color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 15%);
@@ -470,7 +477,6 @@
     border: 1px solid white;
     background-color: white;
     color: black;
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
 
     &:hover {
       border: 1px solid color-mix(in srgb, white, black 15%);
@@ -483,7 +489,6 @@
     border: 1px solid black;
     background-color: black;
     color: white;
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
 
     &:hover {
       border: 1px solid color-mix(in srgb, black, white 15%);
@@ -496,7 +501,6 @@
     background-color: transparent;
     border: none;
     color: var(--composer-font-color-primary);
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
     transition: all 0.5s ease-in-out;
     transform: scale(1);
 
