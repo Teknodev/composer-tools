@@ -592,3 +592,4 @@ class Slider12 extends BaseSlider {
 }
 
 export default Slider12;
+
