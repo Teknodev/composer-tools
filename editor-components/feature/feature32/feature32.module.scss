@@ -37,8 +37,6 @@
     gap: var(--composer-gap-md);
 
     .subtitle {
-      color: var(--composer-primary-color);
-      font-weight: 600;
       margin: 0 !important;
       text-align: left !important;
     }
@@ -65,8 +63,8 @@
 .listItem {
   position: relative;
   cursor: pointer;
-  padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-sm);
   color: var(--composer-font-color-primary);
+  padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-sm);
   transition: all 0.3s ease;
   width: 100%;
   display: flex;
@@ -182,9 +180,7 @@
   display: block !important;
 
   .infoLabel {
-    font-weight: 700;
     margin-right: var(--composer-gap-xs) !important;
-    color: var(--composer-font-color-primary);
     display: inline;
 
     &::after {
@@ -211,6 +207,10 @@
   justify-content: flex-start;
   width: 100%;
   margin-top: var(--composer-gap-lg) !important;
+
+  .buttonText {
+    margin: 0 !important;
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {

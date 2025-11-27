@@ -343,7 +343,9 @@ class Feature32 extends BaseFeature {
                   <div className={this.decorateCSS("buttonContainer")}>
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("buttonText")}>
+                          {button.text}
+                        </Base.P>
                       </Base.Button>
                     </ComposerLink>
                   </div>
