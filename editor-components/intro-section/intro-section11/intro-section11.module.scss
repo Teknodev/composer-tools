@@ -1,0 +1,76 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  padding-bottom: 0 !important;
+  .max-content {
+    // .vertical-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: var(--gap-xl);
+
+    .content {
+      position: relative;
+      align-items: center;
+
+      .subtitle {
+        text-align: center;
+        transform: translateX(0);
+        &::before {
+          display: none;
+        }
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .description {
+        text-align: center;
+      }
+
+      .action-buttons {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 1px;
+        display: flex;
+        flex-direction: row;
+
+        .button {
+          content: "";
+          .button-text {
+            content: "";
+          }
+        }
+
+        .button {
+          background-color: var(--composer-primary-color);
+          border-radius: var(--border-radius-sm);
+          padding: var(--padding-xxl) !important;
+
+          .button-icon {
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+
+      .spacer {
+        background-color: var(--composer-html-background);
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        width: 100vw;
+        z-index: 1;
+      }
+    }
+  }
+}
