@@ -323,6 +323,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      padding-top:30px;
       .slider-wrapper {
         .slider {
           :global(.slick-track) {
@@ -511,6 +512,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      padding-top:20px;
+
       .slider-wrapper {
         padding: 0;
         .slider {
