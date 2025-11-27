@@ -64,7 +64,9 @@
   position: relative;
   cursor: pointer;
   color: var(--composer-font-color-primary);
-  padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-sm);
+
+  padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-md);
+
   transition: all 0.3s ease;
   width: 100%;
   display: flex;
@@ -111,10 +113,9 @@
   }
 
   .dividerLine {
-    width: 2px;
+    width: 1px;
     height: 100%;
-    background-color: var(--composer-font-color-primary);
-    opacity: 0.12;
+    background-color: var(--composer-tertiary-color);
     transition: opacity 0.3s ease;
   }
 }
@@ -137,9 +138,8 @@
 }
 
 .imageWrapper {
-  border: 1px solid rgba(229, 231, 235, 0.75);
-  border-radius: var(--composer-border-radius-sm);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--composer-tertiary-color);
+  border-radius: var(--composer-border-radius-md);
   padding: calc(var(--composer-gap-lg) * 0.6);
   margin-bottom: calc(var(--composer-gap-md) * 1.3) !important;
   width: 100%;
@@ -150,7 +150,7 @@
     position: relative;
     width: 100%;
     height: auto;
-    border-radius: var(--composer-border-radius-md);
+    border-radius: var(--composer-border-radius-sm);
     overflow: hidden;
 
     .image {
@@ -180,7 +180,9 @@
   display: block !important;
 
   .infoLabel {
+    font-weight: 700;
     margin-right: var(--composer-gap-xs) !important;
+    color: var(--composer-font-color-primary);
     display: inline;
 
     &::after {
