@@ -2,7 +2,9 @@
 
 
 .container {
-    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    background: linear-gradient(to bottom,
+            var(--composer-html-background) 50%,
+            color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
 
     .max-content {
         padding: calc(var(--padding-xxl) * 2);
@@ -50,7 +52,7 @@
                         }
                     }
 
-                    .stats-row {
+                    .stat-container {
                         display: flex;
                         flex-wrap: wrap;
                         gap: var(--composer-gap-md);

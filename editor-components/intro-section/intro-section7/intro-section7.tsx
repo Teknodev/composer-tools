@@ -12,9 +12,7 @@ type ButtonType = {
 }
 
 type StatType = {
-    prefix: React.JSX.Element;
-    number: React.JSX.Element;
-    suffix: React.JSX.Element;
+    value: React.JSX.Element;
     label: React.JSX.Element;
 }
 
@@ -71,18 +69,12 @@ class IntroSection7 extends BaseIntroSection {
         });
 
         this.addProp({
-            type: "array",
+            type: "object",
             key: "stats",
-            displayer: "Stats",
+            displayer: "Stat",
             value: [
-                {
-                    type: "object", key: "stat", displayer: "Stat", value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Number", value: "2.95" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "/mo" },
-                        { type: "string", key: "label", displayer: "Label", value: "Starting at only" },
-                    ]
-                },
+                { type: "string", key: "label", displayer: "Label", value: "Starting at only" },
+                { type: "string", key: "value", displayer: "Value", value: "$2.95/mo" },
             ],
         });
     }
@@ -97,8 +89,11 @@ class IntroSection7 extends BaseIntroSection {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<ButtonType[]>("buttons") || [];
-        const statsProp = this.castToObject<StatType[]>("stats") || [];
-        const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0 || statsProp.length > 0;
+        const statProp = this.castToObject<StatType>("stats");
+        const statValueStr = this.castToString(statProp?.value);
+        const statLabelStr = this.castToString(statProp?.label);
+        const hasStat = statValueStr || statLabelStr;
+        const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0 || hasStat;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -109,7 +104,7 @@ class IntroSection7 extends BaseIntroSection {
                                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
                                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
                                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
-                                {(buttons.length > 0 || statsProp.length > 0) && (
+                                {(buttons.length > 0 || hasStat) && (
                                     <div className={this.decorateCSS("btn-stats-content")}>
                                         {buttons.length > 0 && (
                                             <div className={this.decorateCSS("button-container")}>
@@ -129,44 +124,21 @@ class IntroSection7 extends BaseIntroSection {
                                                 })}
                                             </div>
                                         )}
-                                        {statsProp.length > 0 && (
-                                            <Base.Row className={this.decorateCSS("stats-row")}>
-                                                {statsProp.map((item: StatType, index: number) => {
-                                                    const prefixStr = this.castToString(item.prefix);
-                                                    const numberStr = this.castToString(item.number);
-                                                    const suffixStr = this.castToString(item.suffix);
-                                                    const labelStr = this.castToString(item.label);
-
-                                                    if (!prefixStr && !numberStr && !suffixStr && !labelStr) return null;
-
-                                                    return (
-                                                        <div key={`stat15-${index}`} className={this.decorateCSS("stat")}>
-                                                            {labelStr && (
-                                                                <Base.P className={this.decorateCSS("stat-label")}>
-                                                                    {item.label}
-                                                                </Base.P>
-                                                            )}
-                                                            {(prefixStr || numberStr || suffixStr) && (
-                                                                <div className={this.decorateCSS("stat-value")}>
-                                                                    {prefixStr && (
-                                                                        <span className={this.decorateCSS("stat-prefix")}>
-                                                                            {item.prefix}
-                                                                        </span>
-                                                                    )}
-
-                                                                    {item.number}
-
-                                                                    {suffixStr && (
-                                                                        <span className={this.decorateCSS("stat-suffix")}>
-                                                                            {item.suffix}
-                                                                        </span>
-                                                                    )}
-                                                                </div>
-                                                            )}
+                                        {hasStat && (
+                                            <div className={this.decorateCSS("stat-container")}>
+                                                <div className={this.decorateCSS("stat")}>
+                                                    {statLabelStr && (
+                                                        <Base.P className={this.decorateCSS("stat-label")}>
+                                                            {statProp.label}
+                                                        </Base.P>
+                                                    )}
+                                                    {statValueStr && (
+                                                        <div className={this.decorateCSS("stat-value")}>
+                                                            {statProp.value}
                                                         </div>
-                                                    );
-                                                })}
-                                            </Base.Row>
+                                                    )}
+                                                </div>
+                                            </div>
                                         )}
                                     </div>
                                 )}
