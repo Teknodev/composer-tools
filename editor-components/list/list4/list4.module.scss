@@ -40,7 +40,7 @@
 
     .services-grid {
       margin-bottom: var(--composer-gap-md);
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
 
       .service-item {
         position: relative;
@@ -89,7 +89,7 @@
 
           .border-left {
             position: absolute;
-            top: calc(-1 * var(--composer-gap-sm));
+            top: calc(-0.5 * var(--composer-gap-xs));
             left: 0;
             height: calc(100% + var(--composer-gap-md));
             width: var(--composer-border-width-xs);
@@ -101,7 +101,7 @@
             top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
             left: calc(-1 * var(--composer-gap-lg));
             height: var(--composer-border-width-xs);
-            width: calc(100% + var(--composer-gap-md) * 3);
+            width: calc(100% + var(--composer-gap-md) * 4);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             z-index: 1;
             &:after {
@@ -111,14 +111,14 @@
               top: 0;
               background-color: var(--composer-font-color-primary);
               height: var(--composer-border-width-xs);
-              width: calc(100% - var(--composer-gap-md) * 2);
+              width: calc(100% - var(--composer-gap-md) * 1.2);
               z-index: 1;
             }
           }
 
           .border-right {
             position: absolute;
-            top: 0;
+            top: calc(0.5 * var(--composer-gap-xs));
             right: 0;
             height: calc(100% + var(--composer-gap-md));
             width: var(--composer-border-width-xs);
@@ -130,7 +130,7 @@
             bottom: 0;
             left: calc(-1 * var(--composer-gap-lg));
             height: var(--composer-border-width-xs);
-            width: calc(100% + var(--composer-gap-md) * 3);
+            width: calc(100% + var(--composer-gap-md) * 4);
 
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
@@ -262,7 +262,10 @@
   .container {
     .max-content {
       .services-grid {
-        gap: var(--composer-gap-xs);
+        gap: var(--composer-gap-md);
+      }
+      .service-item:nth-child(3n + 2) {
+        transform: translateY(var(--composer-gap-sm));
       }
     }
   }
@@ -275,33 +278,37 @@
     .max-content {
       .item-index {
         position: absolute;
-        top: calc(var(--composer-gap-xs) + var(--composer-gap-md) + var(--composer-gap-xs));
-        left: calc(var(--composer-gap-xs) + var(--composer-gap-xs));
+        top: calc(var(--composer-gap-md) + var(--composer-gap-sm) + var(--composer-gap-xs) * 3);
+        left: calc(var(--composer-gap-md) + var(--composer-gap-sm) + var(--composer-gap-xs));
         font-size: 1.25rem;
       }
       .services-grid {
+        gap: var(--composer-gap-sm);
         .service-item {
-          padding: 0;
+          padding: var(--composer-gap-md);
           .border-frame {
-            width: 100%;
-            height: 100%;
+            width: calc(100% - 40px);
+            height: calc(100% - 40px);
+            left: var(--composer-gap-md);
+            top: var(--composer-gap-md);
             .border-top {
               top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
-              left: calc(-2 * var(--composer-gap-xs));
+              left: calc(-1 * var(--composer-gap-md));
               height: var(--composer-border-width-xs);
-              width: calc(100% + var(--composer-gap-md));
+              width: calc(100% + var(--composer-gap-md) * 2);
             }
             .border-bottom {
-              left: calc(-2 * var(--composer-gap-xs));
+              left: calc(-1 * var(--composer-gap-md));
               height: var(--composer-border-width-xs);
-              width: calc(100% + var(--composer-gap-md));
+              width: calc(100% + var(--composer-gap-md) * 2);
             }
             .border-left {
-              top: var(--composer-gap-sm);
-              height: calc(100% + var(--composer-gap-md));
+              top: calc(-2 * var(--composer-gap-sm));
+              height: calc(100% + var(--composer-gap-xl) + var(--composer-gap-sm));
             }
             .border-right {
-              top: var(--composer-gap-sm);
+              top: calc(-2 * var(--composer-gap-sm));
+              height: calc(100% + var(--composer-gap-xl) + var(--composer-gap-sm));
             }
           }
           &:nth-child(3n + 2) {
