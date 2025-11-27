@@ -172,7 +172,7 @@
 
 .card {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: var(--composer-border-radius-sm);
+  border-radius: var(--composer-border-radius-md);
   overflow: hidden;
   display: flex;
   min-height: 420px;
@@ -204,7 +204,7 @@
 .image-inner {
   position: relative;
   width: 100%;
-  border-radius: var(--composer-border-radius-lg);
+  border-radius: var(--composer-border-radius-sm);
   overflow: hidden;
   aspect-ratio: 4 / 5;
 }
@@ -387,7 +387,7 @@
 .navigation-button {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;

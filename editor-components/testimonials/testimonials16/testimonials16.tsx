@@ -123,7 +123,7 @@ class Testimonials16 extends Testimonials {
               key: "logoImage",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -179,7 +179,7 @@ class Testimonials16 extends Testimonials {
               key: "logoImage",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
@@ -234,7 +234,7 @@ class Testimonials16 extends Testimonials {
               key: "logoImage",
               displayer: "Logo Image",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
