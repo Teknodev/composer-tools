@@ -86,6 +86,10 @@
               transition: transform var(--composer-transition-duration-normal) ease;
             }
 
+            .video-media {
+              transform: scale(1) !important;
+            }
+
             .overlay {
               position: absolute;
               inset: 0;
@@ -166,6 +170,10 @@
               border-radius: inherit;
               transform: scale(1.22);
               transform-origin: center;
+            }
+
+            .video-media {
+              transform: scale(1) !important;
             }
           }
 

@@ -340,6 +340,7 @@ class HeroSection38 extends BaseHeroSection {
                   const isScaled = animation && scaledIndex === index;
                   const navigateTo = item.navigateTo;
                   const imageExists = this.hasImage(item.image);
+                  const isVideoMedia = item.image?.type === "video";
                   const titleExists = this.hasTitle(item.name);
 
                   if (!imageExists && !titleExists) {
@@ -359,7 +360,7 @@ class HeroSection38 extends BaseHeroSection {
                       {imageExists && (
                         <>
                           <Base.Media
-                            className={this.decorateCSS("image")}
+                            className={`${this.decorateCSS("image")} ${isVideoMedia ? this.decorateCSS("video-media") : ""}`.trim()}
                             value={item.image}
                           />
                           {overlay && (
