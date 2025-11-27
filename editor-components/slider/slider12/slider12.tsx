@@ -416,12 +416,10 @@ class Slider12 extends BaseSlider {
                   <Base.VerticalContent
                     className={this.decorateCSS("section-header-content")}
                   >
-                    {subtitleStr ? (
+                    {subtitleStr && (
                       <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                         {subtitle}
                       </Base.SectionSubTitle>
-                    ) : (
-                      <div className={this.decorateCSS("section-subtitle")} />
                     )}
                     {titleStr && (
                       <Base.SectionTitle className={this.decorateCSS("section-title")}>

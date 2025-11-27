@@ -14,7 +14,6 @@
           text-align: left;
 
           .section-subtitle {
-            content: "";
             text-align: left;
             align-self: flex-start;
           }
@@ -111,12 +110,13 @@
 }
 
 .wrap {
-  padding-bottom: var(--composer-gap-xl);
+  padding-bottom: 80px;
   .slider-parent {
     background-color: var(--composer-html-background);
     --slider-offset: 50px;
     :global(.slick-track) {
       gap: var(--composer-gap-md);
+      margin-top: var(--composer-gap-md);
     }
 
     .slide {
@@ -221,7 +221,7 @@
         .section-header {
           .section-header-content {
             .arrows-wrap {
-              margin-bottom: var(--composer-gap-xl);
+              margin-top: var(--composer-gap-md);
               .arrows {
                 .prevArrow {
                   width: 3.5rem !important;
@@ -245,12 +245,13 @@
   }
 
   .wrap {
+    padding-bottom: 80px;
     .slider-parent {
       --slider-offset: 40px;
       .section-header {
         .section-header-content {
           .arrows-wrap {
-            margin-bottom: var(--composer-gap-xl);
+            margin-top: var(--composer-gap-md);
           }
           .arrows {
             .prevArrow {
@@ -302,17 +303,25 @@
       padding: 50px 20px 15px !important;
       .max-content {
         width: 100% !important;
-        .section-header {
+          .section-header {
           margin-bottom: 0 !important;
           padding-bottom: 0 !important;
           .section-header-content {
             gap: 0 !important;
+              align-items: flex-start;
+
+              .arrows-wrap {
+                margin-top: 40px;
+              }
+
             .section-description {
               margin-bottom: 0 !important;
               font-size: var(--composer-font-size-md) !important;
             }
             .arrows {
-              gap: var(--composer-gap-xs);
+                gap: var(--composer-gap-xs);
+                justify-content: flex-start !important;
+                width: 100%;
               .prevArrow {
                 width: 2.5rem !important;
                 height: 2.5rem !important;
@@ -336,6 +345,7 @@
       --slider-offset: 0px;
       :global(.slick-track) {
         gap: var(--composer-gap-lg);
+        margin-top: 20px;
       }
       :global(.slick-slide:first-child) {
         padding-right: var(--composer-gap-lg);
@@ -364,8 +374,11 @@
       }
       .section-header {
         .section-header-content {
+          align-items: flex-start;
           .arrows {
             gap: var(--composer-gap-xs);
+            justify-content: flex-start;
+            width: 100%;
             .prevArrow {
               width: 1.5rem !important;
               height: 1.5rem !important;
@@ -384,7 +397,7 @@
         padding: 0 !important;
       }
 
-      .section-header {
+          .section-header {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
 
@@ -395,11 +408,15 @@
             margin-bottom: 0 !important;
             font-size: var(--composer-font-size-md) !important;
           }
+
+              .arrows {
+                justify-content: flex-start;
+              }
         }
       }
 
       .arrows-wrap {
-        margin-top: 1rem;
+        margin-top: 40px;
       }
     }
   }
