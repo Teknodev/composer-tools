@@ -371,10 +371,10 @@ class Testimonials16 extends Testimonials {
     const filteredTestimonials = testimonials.filter((item: TestimonialItem) => {
       const hasLogo = !!item.logoImage
       const hasImage = !!item.image
-      const hasQuote = item.quote ? this.castToString(item.quote) : ""
-      const hasAuthor = item.author ? this.castToString(item.author) : ""
-      const hasRole = item.role ? this.castToString(item.role) : ""
-      const hasCompany = item.company ? this.castToString(item.company) : ""
+      const hasQuote = !!item.quote
+      const hasAuthor = !!item.author
+      const hasRole = !!item.role
+      const hasCompany = !!item.company
       return hasLogo || hasImage || hasQuote || hasAuthor || hasRole || hasCompany
     })
     const subtitleValue = this.getPropValue("subtitle")
@@ -388,8 +388,8 @@ class Testimonials16 extends Testimonials {
     const nextIcon = this.getPropValue("nextButtonIcon")
     const quoteIconValue = this.getPropValue("quoteIcon")
     const dividerEnabled = this.getPropValue("divider") !== false
-    const hasSubtitle = this.castToString(subtitleValue)
-    const hasTitle = this.castToString(titleValue)
+    const hasSubtitle = !!subtitleValue
+    const hasTitle = !!titleValue
     const showMediaOverlay = this.getPropValue("mediaOverlay") !== false
     const showBackgroundOverlay = this.getPropValue("backgroundOverlay")
     const autoplayEnabled = this.getPropValue("autoplay") !== false
@@ -431,6 +431,13 @@ class Testimonials16 extends Testimonials {
       .filter(Boolean)
       .join(" ")
 
+    // Don't render anything if there's no content
+    const hasAnyContent = hasSubtitle || hasTitle || links.length > 0 || filteredTestimonials.length > 0
+
+    if (!hasAnyContent) {
+      return null
+    }
+
     return (
       <Base.Container className={containerClassNames}>
         {hasActivePortrait && (
@@ -466,7 +473,7 @@ class Testimonials16 extends Testimonials {
               {links.length > 0 && (
                 <div className={this.decorateCSS("links")}>
                   {links.map((link: LinkItem, index: number) => {
-                    const hasLinkText = link.text ? this.castToString(link.text) : ""
+                    const hasLinkText = !!link.text
                     const linkArrow = link.arrow
                     if (!hasLinkText && !linkArrow) return null
                     return (
@@ -486,12 +493,12 @@ class Testimonials16 extends Testimonials {
             <div className={this.decorateCSS("slider-wrapper")}>
               <ComposerSlider {...baseSettings} ref={sliderRef} className={this.decorateCSS("slider")}>
                 {filteredTestimonials.map((item: TestimonialItem, index: number) => {
-                  const hasQuote = item.quote ? this.castToString(item.quote) : ""
-                  const hasAuthor = item.author ? this.castToString(item.author) : ""
-                  const hasRole = item.role ? this.castToString(item.role) : ""
+                  const hasQuote = !!item.quote
+                  const hasAuthor = !!item.author
+                  const hasRole = !!item.role
                   const logoImage = item.logoImage
                   const portrait = item.image
-                  const hasCompany = item.company ? this.castToString(item.company) : ""
+                  const hasCompany = !!item.company
                   const hasCardBody = logoImage || hasQuote || hasAuthor || hasRole || hasCompany
                   const cardClassName = hasCardBody ? this.decorateCSS("card") : `${this.decorateCSS("card")} ${this.decorateCSS("card-single")}`
 

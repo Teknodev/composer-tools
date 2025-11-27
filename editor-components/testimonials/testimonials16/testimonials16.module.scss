@@ -13,6 +13,17 @@
   background: var(--composer-surface-color);
   color: #000;
 
+  // Global text alignment override for all elements
+  :global(*) {
+    &[class*="section-subtitle"], 
+    &[class*="section-title"],
+    &[class*="base-"] {
+      text-align: left !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+  }
+
   &.no-background {
     background: var(--composer-html-background);
   }
@@ -26,6 +37,26 @@
       :global(*) {
         color: #fff !important;
       }
+    }
+    .subtitle {
+      text-align: left !important;
+      align-self: flex-start !important;
+      width: fit-content !important;
+      display: flex !important;
+      justify-content: flex-start !important;
+      :global(*) {
+        text-align: left !important;
+        display: inherit !important;
+        justify-content: flex-start !important;
+      }
+      :global(.section-subtitle) {
+        text-align: left !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+      }
+    }
+    .header-text {
+      align-items: flex-start !important;
     }
     .navigation-button {
       background: rgba(255, 255, 255, 0.18);
@@ -160,13 +191,47 @@
   flex-direction: column;
   gap: var(--composer-border-width-md);
   color: var(--composer-font-color-primary) !important;
+  align-items: flex-start !important;
+  
   :global(*) {
     color: var(--composer-font-color-primary) !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  
+  :global([class*="section-subtitle"]),
+  :global([class*="section-title"]),
+  :global([class*="base-"]) {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
   }
 }
 
 .subtitle {
-  margin: 0;
+  margin: 0 !important;
+  text-align: left !important;
+  align-self: flex-start !important;
+  width: fit-content !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  
+  :global(*) {
+    text-align: left !important;
+    display: inherit !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  
+  :global([class*="section-subtitle"]),
+  :global([class*="base-"]) {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    margin: 0 !important;
+    display: flex !important;
+  }
 }
 
 .subtitle-badge-hidden {
@@ -186,9 +251,20 @@
 
 .title {
   color: var(--composer-font-color-primary) !important;
-  margin: 0;
+  margin: 0 !important;
+  text-align: left !important;
+  
   :global(*) {
     color: var(--composer-font-color-primary) !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  
+  :global([class*="section-title"]),
+  :global([class*="base-"]) {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
   }
 }
 
@@ -210,6 +286,7 @@
   color: var(--composer-font-color-primary) !important;
   margin: 0;
   white-space: nowrap;
+  text-align: left !important;
   :global(*) {
     color: var(--composer-font-color-primary) !important;
   }
@@ -363,6 +440,7 @@
 
 .company {
   color: var(--composer-tertiary-color);
+  text-align: left !important;
   :global(*) {
     color: var(--composer-tertiary-color);
   }
@@ -407,6 +485,7 @@
 
 .quote {
   color: #000 !important;
+  text-align: left !important;
   :global(*) {
     color: #000 !important;
   }
@@ -450,13 +529,24 @@
 }
 
 .author {
-  display: inline-flex;
-  align-items: baseline;
+  display: inline-flex !important;
+  align-items: baseline !important;
   width: auto !important;
-  margin: 0;
+  margin: 0 !important;
   color: black !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  
   :global(*) {
     color: black !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  
+  :global([class*="base-"]) {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    display: inline-flex !important;
   }
 }
 
@@ -473,11 +563,24 @@
 }
 
 .role {
-  display: inline-flex;
-  align-items: baseline;
-  width: auto;
-  margin: 0;
+  display: inline-flex !important;
+  align-items: baseline !important;
+  width: auto !important;
+  margin: 0 !important;
   line-height: 1.1;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  
+  :global(*) {
+    text-align: left !important;
+    justify-content: flex-start !important;
+  }
+  
+  :global([class*="base-"]) {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    display: inline-flex !important;
+  }
 }
 
 .role-company {
