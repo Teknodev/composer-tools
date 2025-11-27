@@ -68,7 +68,7 @@ class HeroSection38 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6913448f3596a1002b24721e?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image" , "video"],
               },
             },
             {
@@ -99,7 +99,7 @@ class HeroSection38 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691344393596a1002b247169?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image" , "video"],
               },
             },
             {
@@ -130,7 +130,7 @@ class HeroSection38 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691343ec3596a1002b24710d?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image" , "video"],
               },
             },
             {
