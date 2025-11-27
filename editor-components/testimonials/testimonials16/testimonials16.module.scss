@@ -3,7 +3,7 @@
 .container {
   width: 100%;
   min-height: 600px;
-  padding: 80px 50px;
+  padding: 80px 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,6 @@
 
 .max-content {
   width: 100%;
-  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -508,7 +507,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 68px 36px;
+    padding: 80px 40px;
   }
 
   .max-content {
@@ -531,7 +530,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 90px 13px;
+    padding: 50px 20px;
     min-height: 500px;
   }
 
