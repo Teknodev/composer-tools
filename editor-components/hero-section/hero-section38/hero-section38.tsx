@@ -322,8 +322,15 @@ class HeroSection38 extends BaseHeroSection {
       ],
     };
 
+    const containerClassNames = [
+      this.decorateCSS("container"),
+      !animation ? this.decorateCSS("no-animation") : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={containerClassNames}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {slides.length > 0 && (
             <div className={this.decorateCSS("slider-wrapper")}>

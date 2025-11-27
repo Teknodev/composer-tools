@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px 50px;
+  padding: 80px 40px;
   position: relative;
   width: 100%;
 
@@ -238,8 +238,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-              width: 32px;
-              height: 32px;
+              width: 30px;
+              height: 30px;
             border-radius: 50%;
             transition: transform var(--composer-transition-duration-fast) ease;
             box-sizing: border-box;
@@ -289,6 +289,12 @@
         }
       }
     }
+  }
+}
+
+.container.no-animation {
+  .max-content {
+    padding-top: 0;
   }
 }
 
@@ -432,7 +438,7 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-sm);
-          margin-top: 30px;
+          margin-top: 90px;
 
           .arrow-button {
             border: none !important;
@@ -464,8 +470,8 @@
 
             .pagination-dot {
               border: none !important;
-              width: 26px;
-              height: 26px;
+              width: 20px;
+              height: 20px;
               border-radius: 50%;
               box-sizing: border-box;
               --pagination-dot-ring-size: 18px;
@@ -495,6 +501,10 @@
         }
       }
     }
+  }
+
+  .container.no-animation .navigation-wrapper {
+    margin-top: 30px !important;
   }
 }
 
@@ -585,7 +595,7 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-sm);
-          margin-top: 20px;
+          margin-top: 40px;
 
           .arrow-button {
             border: none !important;
@@ -608,11 +618,11 @@
 
             .pagination-dot {
               border: none !important;
-              width: 22px;
-              height: 22px;
+              width: 20px;
+              height: 20px;
               border-radius: 50%;
               box-sizing: border-box;
-              --pagination-dot-ring-size: 14px;
+              --pagination-dot-ring-size: 15px;
 
               .dot-icon {
                 color: var(--composer-font-color-primary);
