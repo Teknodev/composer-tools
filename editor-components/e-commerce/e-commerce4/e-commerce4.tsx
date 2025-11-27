@@ -14,22 +14,22 @@ interface SizeOption {
 
 interface ColorOption {
     sectionColor: string;
-    cardImage: string;
-    hoverImage: string;
+    cardImage: { type: "image"; url: string };
+    hoverImage: { type: "image"; url: string };
     sizeOptions: SizeOption[];
     isSoldOut: boolean;
 }
 
 interface RightTextItems {
-    cardRightText: string;
-    cardRightTextIcon: string;
+    cardRightText: React.JSX.Element;
+    cardRightTextIcon: { type: "icon"; name: string };
     cardRightTextNavigate: string;
 }
 
 interface ProductCard {
-    cardTitle: string;
+    cardTitle: React.JSX.Element;
     cost: { value: React.JSX.Element; currency: CurrencyCode };
-    cardLeftText: string;
+    cardLeftText: React.JSX.Element;
     colorOptions: ColorOption[];
     navigateTo: string;
     rightTextItems: RightTextItems[];
@@ -69,7 +69,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Loose Fit Tee",
                         },
                         {
@@ -81,19 +81,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -107,10 +107,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Cart",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "LuShoppingBag",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "LuShoppingBag",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -132,10 +138,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Wishlist",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "RxHeart",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "RxHeart",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -157,10 +169,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Quick View",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "GrView",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GrView",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -182,10 +200,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Compare",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "MdCompareArrows",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "MdCompareArrows",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -214,16 +238,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "lightgrey",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-19.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-19.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -327,16 +363,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "orange",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -440,16 +488,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "brown",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-5.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-5.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -553,7 +613,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Regular Fit Pima Cotton Polo Shirt",
                         },
                         {
@@ -565,19 +625,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -591,10 +651,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Cart",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "LuShoppingBag",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "LuShoppingBag",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -616,10 +682,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Wishlist",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "RxHeart",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "RxHeart",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -641,10 +713,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Quick View",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "GrView",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GrView",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -666,10 +744,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Compare",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "MdCompareArrows",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "MdCompareArrows",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -698,16 +782,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "lightblue",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-2.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/women-grey-2.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -786,7 +882,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Long Regular Fit Tee",
                         },
                         {
@@ -798,19 +894,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -824,10 +920,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Cart",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "LuShoppingBag",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "LuShoppingBag",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -849,10 +951,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Wishlist",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "RxHeart",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "RxHeart",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -874,10 +982,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Quick View",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "GrView",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GrView",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -899,10 +1013,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Compare",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "MdCompareArrows",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "MdCompareArrows",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -931,16 +1051,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "lightgrey",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-6.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-6.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -1019,16 +1151,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "purple",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-3.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-3.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-4.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -1132,7 +1276,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Regular Fit Pima Cotton Polo Shirt",
                         },
                         {
@@ -1144,19 +1288,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -1170,10 +1314,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Cart",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "LuShoppingBag",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "LuShoppingBag",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1195,10 +1345,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Wishlist",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "RxHeart",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "RxHeart",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1220,10 +1376,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Quick View",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "GrView",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GrView",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1245,10 +1407,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Compare",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "MdCompareArrows",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "MdCompareArrows",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1277,16 +1445,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "pink",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-17.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-17.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -1365,16 +1545,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "maroon",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-8.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-8.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-1.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -1478,7 +1670,7 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardTitle",
-                            displayer: "Card Title",
+                            displayer: "Title",
                             value: "Midi Knit Dress",
                         },
                         {
@@ -1490,19 +1682,19 @@ class ECommerce4 extends BaseECommerce {
                         {
                             type: "string",
                             key: "cardLeftText",
-                            displayer: "Left Text",
+                            displayer: "Badge Text",
                             value: "20% Off",
                         },
                         {
                             type: "page",
                             key: "navigateTo",
-                            displayer: "Card Navigate To",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
                             type: "array",
                             key: "rightTextItems",
-                            displayer: "Right Items",
+                            displayer: "Hover Items",
                             value: [
                                 {
                                     type: "object",
@@ -1516,10 +1708,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Cart",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "LuShoppingBag",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "LuShoppingBag",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1541,10 +1739,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Wishlist",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "RxHeart",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "RxHeart",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1566,10 +1770,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Quick View",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "GrView",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GrView",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1591,10 +1801,16 @@ class ECommerce4 extends BaseECommerce {
                                             value: "Add to Compare",
                                         },
                                         {
-                                            type: "icon",
+                                            type: "media",
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
-                                            value: "MdCompareArrows",
+                                            additionalParams: {
+                                                availableTypes: ["icon"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "MdCompareArrows",
+                                            },
                                         },
                                         {
                                             type: "page",
@@ -1623,16 +1839,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "teal",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-25.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-25.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -1717,16 +1945,28 @@ class ECommerce4 extends BaseECommerce {
                                             value: "coral",
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-22.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-22.jpg",
+                                            },
                                         },
                                         {
-                                            type: "image",
+                                            type: "media",
                                             key: "hoverImage",
                                             displayer: "Hover Image",
-                                            value: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                            additionalParams: {
+                                                availableTypes: ["image", "video"],
+                                            },
+                                            value: {
+                                                type: "image",
+                                                url: "https://vineta-html.vercel.app/images/products/fashion/product-24.jpg",
+                                            },
                                         },
                                         {
                                             type: "boolean",
@@ -1809,7 +2049,7 @@ class ECommerce4 extends BaseECommerce {
         this.setComponentState("moreImages", 0);
 
         this.setComponentState("selectedStates",
-            this.castToObject<ProductCard[]>("productCards").map((card: ProductCard, index: number) => ({
+            this.castToObject<ProductCard[]>("productCards").map((card: ProductCard, _: number) => ({
                 selectedColor: card.colorOptions?.[0]?.sectionColor || "",
                 selectedColorIndex: 0,
                 selectedSize: card.colorOptions?.[0]?.sizeOptions?.[0]?.sizeName || "",
@@ -1860,7 +2100,7 @@ class ECommerce4 extends BaseECommerce {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid gridCount={{ pc: Math.min(itemCount, 4) }} className={this.decorateCSS("grid")}>
+                    <Base.ListGrid gridCount={{ pc: Math.min(itemCount, 4), tablet: 3, phone: 1 }} className={this.decorateCSS("grid")}>
                         {productCards.slice(0, this.getComponentState("imageCount")).map((productCard: ProductCard, cardIndex: number) => {
                             const selectedState = selectedStates[cardIndex] || { selectedColor: "", selectedColorIndex: 0, selectedSize: "", selectedSizeIndex: 0 };
                             const selectedColorOption = productCard.colorOptions?.[selectedState.selectedColorIndex] || productCard.colorOptions?.[0];
@@ -1874,32 +2114,30 @@ class ECommerce4 extends BaseECommerce {
                                         <div className={this.decorateCSS("image-container")}>
                                             <div
                                                 className={`${this.decorateCSS("image-1-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("image-sold-out") : ""}`}>
-                                                {selectedColorOption?.cardImage && (
-                                                    <img
-                                                        alt={selectedColorOption.cardImage}
-                                                        src={selectedColorOption.cardImage}
+                                                {selectedColorOption?.cardImage?.url && (
+                                                    <Base.Media
+                                                        value={selectedColorOption.cardImage}
                                                         className={this.decorateCSS("image")}
                                                     />
                                                 )}
                                             </div>
                                             <div
                                                 className={`${this.decorateCSS("image-2-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("image-sold-out") : ""}`}>
-                                                {selectedColorOption?.hoverImage && (
-                                                    <img
-                                                        alt={selectedColorOption?.isSoldOut ? selectedColorOption?.cardImage : selectedColorOption?.hoverImage}
-                                                        src={selectedColorOption?.isSoldOut ? selectedColorOption?.cardImage : selectedColorOption?.hoverImage}
+                                                {selectedColorOption?.hoverImage?.url && (
+                                                    <Base.Media
+                                                        value={selectedColorOption?.isSoldOut ? selectedColorOption?.cardImage : selectedColorOption?.hoverImage}
                                                         className={this.decorateCSS("image")}
                                                     />
                                                 )}
                                             </div>
                                             {selectedColorOption?.isSoldOut && (
-                                                <div className={this.decorateCSS("sold-out")}>
+                                                <Base.P className={this.decorateCSS("sold-out")}>
                                                     {selectedSizeOption.soldOutText}
-                                                </div>
+                                                </Base.P>
                                             )}
                                             <div className={this.decorateCSS("image-text-left")}>
                                                 {this.castToString(productCard.cardLeftText) && (
-                                                    <div className={this.decorateCSS("cardLeftText")}>{productCard.cardLeftText}</div>
+                                                    <Base.P className={this.decorateCSS("cardLeftText")}>{productCard.cardLeftText}</Base.P>
                                                 )}
                                             </div>
                                             {selectedColorOption?.sizeOptions && selectedColorOption.sizeOptions.length > 0 && (
@@ -1930,14 +2168,14 @@ class ECommerce4 extends BaseECommerce {
                                                         style={{ animationDelay: `${index * 0.08}s` }}>
                                                         <ComposerLink path={item.cardRightTextNavigate}>
                                                             <div className={this.decorateCSS("image-icon-container")}>
-                                                                <Base.Icon name={item.cardRightTextIcon} propsIcon={{ className: this.decorateCSS("image-right-icon") }} />
+                                                                <Base.Media value={item.cardRightTextIcon} className={this.decorateCSS("image-right-icon")} />
                                                             </div>
                                                         </ComposerLink>
-                                                        <div className={this.decorateCSS("card-right-text-container")}>
+                                                        <Base.P className={this.decorateCSS("card-right-text-container")}>
                                                             {this.castToString(item.cardRightText) && (
-                                                                <div className={this.decorateCSS("card-right-text")}>{item.cardRightText}</div>
-                                                            )}
-                                                        </div>
+                                                                <Base.P className={this.decorateCSS("card-right-text")}>{item.cardRightText}</Base.P>
+                                                            )}s
+                                                        </Base.P>
                                                     </div>
                                                 ))}
                                             </div>
@@ -1945,16 +2183,16 @@ class ECommerce4 extends BaseECommerce {
                                     </ComposerLink>
                                     <div className={`${this.decorateCSS("text-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("text-sold-out") : ""}`}>
                                         {this.castToString(productCard.cardTitle) && (
-                                            <div className={this.decorateCSS("title")}>{productCard.cardTitle}</div>
+                                            <Base.H5 className={this.decorateCSS("title")}>{productCard.cardTitle}</Base.H5>
                                         )}
                                         {productCard.cost.value && (
                                             <div className={this.decorateCSS("price")}>
-                                                <div className={this.decorateCSS("value")}>
+                                                <Base.H4 className={this.decorateCSS("value")}>
                                                     {productCard.cost?.value}
-                                                </div>
-                                                <div className={this.decorateCSS("currency-code")}>
+                                                </Base.H4>
+                                                <Base.H4 className={this.decorateCSS("currency-code")}>
                                                     {getCurrencyInfo(productCard.cost.currency)?.symbol}
-                                                </div>
+                                                </Base.H4>
                                             </div>
                                         )}
                                     </div>
@@ -1982,7 +2220,7 @@ class ECommerce4 extends BaseECommerce {
                         (productCards.length > this.getComponentState("imageCount")) && (this.castToString(button.text)) && (
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                    {button.text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                 </Base.Button>
                             </div>
                         )

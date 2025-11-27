@@ -5,39 +5,41 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
         .section-title {
-            margin-top: 0;
-            margin-bottom: var(--composer-gap-md);
+            content: "";
         }
 
         .cards-container {
             gap: var(--composer-gap-xl);
             padding-bottom: var(--composer-gap-xl);
+            align-items: stretch;
+            justify-items: stretch;
             .card {
                 width: 100%;
                 position: relative;
-                transition: 1s;
+                transition: transform 1s ease, margin 1s ease;
                 display: flex;
                 flex-direction: column;
                 gap: var(--composer-gap-md);
                 justify-content: center;
                 align-items: center;
-                border-radius: var(--composer-border-radius-xl);
-                padding:calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
-                background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);;
+                border-radius: var(--composer-border-radius-sm);
+                padding:calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
+                background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                box-sizing: border-box;
+                min-width: 0;
+                transform-origin: center center;
+                overflow: hidden;
+                align-self: stretch;
+                justify-self: stretch;
 
                 .icon {
+                    font-size: 3rem;
                     width: var(--composer-gap-xl);
                     height: var(--composer-gap-xl);
                     color: var(--composer-primary-color);
                 }
 
-                .title {
-                    text-align: center;
-                    color: var(--composer-font-color-primary);
-
-                }
-
-                .description {
+                .title, .description {
                     text-align: center;
                     color: var(--composer-font-color-primary);
 
@@ -45,19 +47,25 @@
 
 
             &.visible {
-                transform: none;
-                margin: 0;
+                transform: none !important;
+                margin: 0 !important;
                 transition: transform 1s ease, margin 1s ease;
+                width: 100%;
             }
             
             &.shifted {
                 transition: transform 1s ease, margin 1s ease;
-            }
-            &.shifted[data-position="right"] {
-                transform: rotate(var(--rotate-angle, 20deg));
-            }
-            &.shifted[data-position="left"] {
-                transform: rotate(var(--rotate-angle, -20deg));
+                width: 100%;
+                
+                &[data-position="right"] {
+                    transform: rotate(var(--rotate-angle, 25deg)) !important;
+                }
+                &[data-position="left"] {
+                    transform: rotate(var(--rotate-angle, -25deg)) !important;
+                }
+                &[data-position=""] {
+                    transform: none !important;
+                }
             }
             
             &.slick-slide {
@@ -75,31 +83,8 @@
             .cards-container {
                 flex-direction: row;
                 gap: var(--composer-gap-md);
+                padding-bottom: 0;
                 .card {
-                    &.visible {
-                        transform: none;
-                        margin: 0;
-                        transition: unset;
-                    }
-                    
-                    &.shifted {
-                        margin-left: 0px;
-                        transform: unset;
-                    }
-                    &.shifted[data-position="right"] {
-                        margin-left: 0px !important;
-                        margin-top: 0px !important;
-                        transform: unset;
-                    }
-                    &.shifted[data-position="left"] {
-                        margin-left: 0px !important;
-                        margin-top: 0px !important;
-                        transform: unset;
-                    }
-                    
-                    &.slick-slide {
-                        z-index: auto; 
-                    }
                 }
             }
         }

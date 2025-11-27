@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer7.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
@@ -9,17 +9,39 @@ class Footer7Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
-      type: "image",
-      key: "logo",
-      displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
     });
 
     this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Logo Url",
-      value:""
+      type: "object",
+      key: "logo",
+      displayer: "Logo",
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
     this.addProp({
@@ -41,7 +63,7 @@ class Footer7Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -60,7 +82,7 @@ class Footer7Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -79,7 +101,7 @@ class Footer7Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -110,28 +132,29 @@ class Footer7Page extends BaseFooter {
   }
 
   render() {
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
     const links = this.castToObject<any[]>("links");
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
-    const alignment = Base.getContentAlignment();
+    const position = this.getPropValue("position");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            {logo && (
+            {logo?.url && (
              <ComposerLink path={logoUrl}>
                <div className={this.decorateCSS("left")}>
-                <img src={logo} className={this.decorateCSS("image")} alt="" />
+                <Base.Media value={logo} className={this.decorateCSS("image")} />
               </div>
              </ComposerLink>
             )}
 
             <div
-              className={`${this.decorateCSS("right")} ${!logo && this.decorateCSS("full-width")}`}>
+              className={`${this.decorateCSS("right")} ${!logo?.url && this.decorateCSS("full-width")}`}>
               {links.length > 0 && (
                 <div className={this.decorateCSS("upper")}>
                   {links.map((item: any, index: number) => {
@@ -152,7 +175,7 @@ class Footer7Page extends BaseFooter {
               )}
               {footerTextExist && (
                 <div className={this.decorateCSS("bottom")}>
-                  <Base.P className={`${this.decorateCSS("text")} ${!logo && this.decorateCSS("left")}`}
+                  <Base.P className={`${this.decorateCSS("text")} ${!logo?.url && this.decorateCSS("left")}`}
                   >{this.getPropValue("footerText")}</Base.P>
                 </div>
               )}

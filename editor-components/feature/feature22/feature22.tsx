@@ -1,222 +1,266 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature22.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-interface Item {
-  image: string;
-  sectionHeading: string;
-  description: string;
-  button: INPUTS.CastedButton;
+type Tabs={
+    tabText: React.JSX.Element;
+    lottie_container: {
+        lottie: TypeMediaInputValue;
+    }
 }
 
-class Feature22 extends BaseFeature {
-  constructor(props?: any) {
-    super(props, styles);
+class Feature22 extends BaseFeature{
+    private autoTabInterval: NodeJS.Timeout | null = null;
+    private autoTabDelay: number = 9000; 
 
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "High Quality Services",
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "showLine",
-      displayer: "Show Line Under Title",
-      value: true,  
-    });
-    this.addProp({
-      type: "boolean",
-      key: "showDividers",
-      displayer: "Show Dividers Between Items",
-      value: true,  
-    });
-    
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Build a positive impact on your business. Check out what we have to offer.",
-    });
-    
-    this.addProp({
-      type: "array",
-      key: "items",
-      displayer: "Items",
-      value: [
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image URL",
-              value:
-                "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo3.jpg",
-            },
-            {
-              type: "string",
-              key: "sectionHeading",
-              displayer: "Section Heading",
-              value: "Strategy",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
-            },
-            INPUTS.BUTTON(
-                "button", 
-                "Button", 
-                "READ MORE", 
-                "", 
-                null, 
-                null, 
-                "Tertiary"
-            )
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image URL",
-              value:
-                "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photo2.jpg",
-            },
-            {
-              type: "string",
-              key: "sectionHeading",
-              displayer: "Section Heading",
-              value: "Planning",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
-            },
-            INPUTS.BUTTON(
-                "button", 
-                "Button", 
-                "READ MORE", 
-                "", 
-                null, 
-                null, 
-                "Tertiary"
-            )
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image URL",
-              value:
-                "https://www.keydesign-themes.com/intact/business/wp-content/uploads/sites/2/2017/02/photobox.jpg",
-            },
-            {
-              type: "string",
-              key: "sectionHeading",
-              displayer: "Section Heading",
-              value: "Development",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco, consectetur adipisicing elit, sed do eiusmod.",
-            },
-            INPUTS.BUTTON(
-                "button", 
-                "Button", 
-                "READ MORE", 
-                "", 
-                null, 
-                null, 
-                "Tertiary"
-            )
-          ],
-        },
-      ],
-    });
-  }
+    constructor(props?: any){
+        super(props,styles);
+        
+        const dummyData = (
+            tabTitle: string,
+            lottieUrl: string,
+        ) => {
+            return {
+                type: "object",
+                key: "tab",
+                displayer: "Tab",
+                value: [
+                    {
+                        type: "string",
+                        key: "tabText",
+                        displayer: "Tab Title",
+                        value: tabTitle,
+                    },
+                    {
+                        type: "object",
+                        key: "lottie_container",
+                        displayer: "Media",
+                        value: [
+                            {
+                                type: "media",
+                                key: "lottie",
+                                displayer: "Lottie",
+                                additionalParams: {
+                                    availableTypes: ["lottie"],
+                                },
+                                value: {
+                                    type: "lottie",
+                                    url: lottieUrl,
+                                    settings: {
+                                        loop: true,
+                                        autoplay: false
+                                    }
+                                } as TypeMediaInputValue,
+                            },
+                        ],
+                    },
+                ],
+            } as TypeUsableComponentProps;
+        };
 
-  static getName(): string {
-    return "Feature 22";
-  }
+        this.addProp({
+            type: "string",
+            key:"subtitle",
+            displayer: "Subtitle",
+            value: "All-in-One Commerce"
+        });
 
-  render() {
-    const title = this.getPropValue("title") as string;
-    const description = this.getPropValue("description") as string;
-    const items = this.castToObject<Item[]>("items") || [];
-    const showLine = this.getPropValue("showLine") as boolean;
-    const showDividers = this.getPropValue("showDividers") as boolean;
+        this.addProp({
+            type: "string",
+            key:"title",
+            displayer: "Title",
+            value: "Serve all clients' needs with composable eCommerce at scale"
+        });
+        
+        this.addProp({
+            type: "array",
+            key: "tabs",
+            displayer: "Tabs",
+            value: [
+                dummyData(
+                    "Payments",
+                    "https://irp.cdn-website.com/a8ff2f1c/files/uploaded/Payments_LOTTIE-v5_updated.json",
+                ),
+                dummyData(
+                    "External Catalog",
+                    "https://du-cdn.cdn-website.com/duda_website/images/ecommerce/json/External_LOTTIE.json",
+                ),
+                dummyData(
+                    "Inventory",
+                    "https://du-cdn.cdn-website.com/duda_website/images/ecommerce/json/Inventory_LOTTIE_v3.json",
+                ),
+            ],
+        });
 
-    return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("header")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
-              {showLine && <div className={this.decorateCSS("line")} />}
-              <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
-            </div>
+        this.addProp({
+            type: "string",
+            key:"description",
+            displayer: "Description",
+            value: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        });
+        
+        this.setComponentState("activeTab", 0);
+        this.setComponentState("startedIndex", 0);
+        this.setComponentState("isTransitioning", false);
+    }
 
-            {items.map((item, i) => (
-              <React.Fragment key={i}>
-                <div
-                  className={`${this.decorateCSS("content")} ${
-                    i % 2 === 1 ? this.decorateCSS("reverse") : ""
-                  }`}
-                >
-                  <div className={this.decorateCSS("image-container")}>
-                    {item.image && (
-                      <img
-                        src={item.image}
-                        alt={item.sectionHeading}
-                        className={this.decorateCSS("image")}
-                      />
+    componentDidMount() {
+        this.startAutoTabCycle();
+    }
+
+    componentWillUnmount() {
+        this.stopAutoTabCycle();
+    }
+
+    startAutoTabCycle() {
+        this.stopAutoTabCycle();
+        
+        this.autoTabInterval = setInterval(() => {
+            const tabs = this.castToObject<Tabs[]>("tabs");
+            const currentTab = this.getComponentState("activeTab");
+            const nextTab = (currentTab + 1) % tabs.length;
+            this.setActiveTab(nextTab);
+        }, this.autoTabDelay);
+    }
+
+    stopAutoTabCycle() {
+        if (this.autoTabInterval) {
+            clearInterval(this.autoTabInterval);
+            this.autoTabInterval = null;
+        }
+    }
+
+    setActiveTab(activeTabIndex: number) {
+        
+        this.setComponentState("isTransitioning", true);
+        
+        setTimeout(() => {
+            this.setComponentState("activeTab", activeTabIndex);
+            setTimeout(() => {
+                this.setComponentState("startedIndex", activeTabIndex);
+                this.setComponentState("isTransitioning", false);
+            }, 100);
+        }, 200);
+        
+        setTimeout(() => {
+            this.startAutoTabCycle();
+        }, 500);
+    }
+
+    static getName(): string {
+        return "Feature 22";
+    }
+
+    render() {
+        const isTransitioning = this.getComponentState("isTransitioning");
+        const tabs = this.castToObject<Tabs[]>("tabs");
+        const activeTab = this.getComponentState("activeTab");
+        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const alignmentValue = Base.getContentAlignment();
+        return(
+            <Base.Container className={this.decorateCSS("container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {(subtitleExist || titleExist) && (
+                        <Base.VerticalContent className={this.decorateCSS("header")}>
+                            {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${alignmentValue === "left" ? this.decorateCSS("subtitle-center") : ""}`}>
+                                {this.getPropValue("subtitle")}
+                            </Base.SectionSubTitle>}
+                            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {this.getPropValue("title")}
+                            </Base.SectionTitle>}
+                        </Base.VerticalContent>
                     )}
-                  </div>
-                  <div className={this.decorateCSS("text")}>
-                    <h3 className={this.decorateCSS("section-heading")}>{item.sectionHeading}</h3>
-                    <Base.SectionDescription className={this.decorateCSS("desc")}>{item.description}</Base.SectionDescription>
-                    {item.button && (
-                      <ComposerLink path={item.button.url || '#'}>
-                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                          {item.button.text}
-                        </Base.Button>
-                      </ComposerLink>
-                    )}
-                  </div>
-                </div>
-                {showDividers && i < items.length - 1 && <div className={this.decorateCSS("divider")} />}
-              </React.Fragment>
-            ))}
-          </div>
-        </Base.MaxContent>
-      </Base.Container>
-    );
-  }
+                    <div className={this.decorateCSS("content-wrapper")}>
+                        {descriptionExist && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {this.getPropValue("description")}
+                            </Base.SectionDescription>
+                        )}
+                        
+                       {tabs.length > 0 && <Base.VerticalContent className={this.decorateCSS("box")}>
+                            <div className={this.decorateCSS("tab-buttons")}>
+                                {tabs.map(
+                                    (tab: Tabs, index: number) => {
+                                        const isTabTextVisible = this.castToString(tab.tabText);
+                                        const isTabVisible = isTabTextVisible;
+                                        return (
+                                            isTabVisible && (
+                                                <div 
+                                                    key={index}
+                                                    className={
+                                                        `${this.decorateCSS("tab-button")} ${activeTab === index
+                                                            ? this.decorateCSS("active")
+                                                            : ""
+                                                        }`
+                                                    }
+                                                    onClick={() => this.setActiveTab(index)}
+                                                >
+                                                    {isTabTextVisible && (
+                                                        <Base.P className={this.decorateCSS("tabText")}>
+                                                            {tab.tabText}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            )
+                                        );
+                                    }
+                                )}
+                            </div>
+                            
+                            <div className={this.decorateCSS("tabs-container")}>
+                                <div 
+                                    className={`${this.decorateCSS("tabs-wrapper")} ${isTransitioning ? this.decorateCSS("transitioning") : ""}`}
+                                    style={{
+                                        transform: `translateX(-${activeTab * (100 / tabs.length)}%)`,
+                                        width: `${tabs.length * 100}%`
+                                    }}
+                                >
+                                    {tabs.map(
+                                        (tab: Tabs, index: number) => {
+                                            const lottieValue: TypeMediaInputValue = {
+                                                type: "lottie",
+                                                url: (tab.lottie_container.lottie?.type === "lottie" && tab.lottie_container.lottie?.url) 
+                                                    ? tab.lottie_container.lottie.url 
+                                                    : '',
+                                                settings: {
+                                                    loop: true,
+                                                    autoplay: activeTab === index
+                                                }
+                                            };
+
+                                            return (
+                                                <div 
+                                                    key={`${index}-${activeTab === index ? 'active' : 'inactive'}`}
+                                                    className={`${this.decorateCSS("tab-slide")}`}
+                                                    style={{
+                                                        width: `${100 / tabs.length}%`
+                                                    }}
+                                                >
+                                                    <div className={this.decorateCSS("content")}>
+                                                        {lottieValue.url && (
+                                                            <div className={this.decorateCSS("media-container")}>
+                                                                <Base.Media 
+                                                                    value={lottieValue}
+                                                                    className={this.decorateCSS("lottie")}
+                                                                />
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                    )}
+                                </div>
+                            </div>
+                        </Base.VerticalContent>}
+                    </div>
+                </Base.MaxContent>
+            </Base.Container>
+        )
+    }
 }
 
 export default Feature22;

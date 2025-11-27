@@ -44,10 +44,13 @@
           color: white;
           position: relative;
           word-break: break-word;
+          width: fit-content;
+          margin: var(--composer-gap-sm);
         }
       }
 
-      .card:hover .category {
+      .card:hover .category,
+      .card.active .category {
         opacity: 1;
       }
     }
@@ -60,6 +63,30 @@
       .image-container{
         .card{
           .category{
+            opacity: 1;
+          }
+          
+          &:hover .category,
+          &.active .category {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container{
+    .max-content{
+      .image-container{
+        .card{
+          .category{
+            opacity: 1;
+          }
+          
+          &:hover .category,
+          &.active .category {
             opacity: 1;
           }
         }
