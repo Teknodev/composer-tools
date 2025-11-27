@@ -1,46 +1,47 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 
 .container {
-    .max-content {
-        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        .content {
-            align-items: center;
+  .max-content {
+    .card {
+      padding: 80px 50px;
+      border-radius: var(--border-radius-md);
+      background: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        var(--composer-font-color-primary) 5%
+      );
+      .content {
+        align-items: center;
 
-            .icon {
-                font-size: 3rem;
-                color: var(--composer-primary-color);
-            }
-
-            .title {
-                text-align: center;
-            }
-
-            .subtitle {
-                text-align: center;
-            }
-
-            .actions-wrapper {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-md);
-                align-items: center;
-            }
-
-            .action-buttons {
-                display: flex;
-                flex-direction: row;
-                gap: var(--composer-gap-md);
-            }
-
-            .button-wrapper {
-                .button{
-                    content: "";
-                    .button-text {
-                        content: "";
-                    }
-                }
-            }
-
+        .title {
+          text-align: center;
         }
+
+        .subtitle {
+          text-align: center;
+        }
+
+        .action-buttons {
+          padding-top: var(--composer-gap-xl);
+          display: flex;
+          flex-direction: row;
+          gap: var(--composer-gap-md);
+        }
+
+        .button-wrapper {
+          .button {
+            content: "";
+            .button-text {
+              content: "";
+            }
+            .button-icon {
+              display: flex;
+              content: "";
+            }
+          }
+        }
+      }
     }
+  }
 }

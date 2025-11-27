@@ -13,7 +13,7 @@ class IntroSection9Page extends BaseIntroSection {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -24,7 +24,8 @@ class IntroSection9Page extends BaseIntroSection {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Mindblown unique digital ideas.",
+      value:
+        '<p dir="ltr"><b><strong class="editor-text-bold" style="white-space: pre-wrap;">Mindblown</strong></b><span style="white-space: pre-wrap;"> unique</span></p><p dir="ltr"><span style="white-space: pre-wrap;"> digital ideas.</span></p>',
     });
     this.addProp({
       type: "string",
@@ -39,15 +40,7 @@ class IntroSection9Page extends BaseIntroSection {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Get Started",
-          "",
-          "",
-          null,
-          "Primary"
-        ),
+        INPUTS.BUTTON("button", "Button", "Get Started", "", "", null, "Black"),
         INPUTS.BUTTON(
           "button",
           "Button",
@@ -55,7 +48,7 @@ class IntroSection9Page extends BaseIntroSection {
           "",
           "FaPlay",
           null,
-          "Secondary"
+          "White"
         ),
       ],
     });
@@ -65,61 +58,73 @@ class IntroSection9Page extends BaseIntroSection {
     return "Intro Section 9";
   }
   render() {
-    
     const subtitle = this.getPropValue("subtitle") || "";
     const title = this.getPropValue("title") || "";
-
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
-    const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+    const hasAnyButton =
+      Array.isArray(buttons) &&
+      buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
-            {hasTitle && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
-            )}
+          <div className={this.decorateCSS("card")}>
+            <Base.VerticalContent className={this.decorateCSS("content")}>
+              {hasTitle && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {hasSubtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
 
-            {(hasSubtitle || hasAnyButton) && (
-              <div className={this.decorateCSS("actions-wrapper")}>
-                {hasSubtitle && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                )}
-
-                {hasAnyButton && (
-                  <div className={this.decorateCSS("action-buttons")}>
-                    {buttons.map(
-                      (item: INPUTS.CastedButton, index: number) => {
-                        const btnTextExist = this.castToString(item.text);
-                        const buttonIcon = item.icon;
-                        if (!btnTextExist && !buttonIcon) {
-                          return null;
-                        }
-                        const buttonUrl = item.url || "#";
-                        return (
-                          <div key={`is9-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
-                            <ComposerLink path={buttonUrl}>
-                              <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                {buttonIcon && (
-                                  <div className={this.decorateCSS("button-icon-wrapper")}>
-                                    <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />
-                                  </div>
-                                )}
-                                {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                              </Base.Button>
-                            </ComposerLink>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-          </Base.VerticalContent>
+              {hasAnyButton && (
+                <div className={this.decorateCSS("action-buttons")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const btnTextExist = this.castToString(item.text);
+                    const buttonIcon = item.icon;
+                    if (!btnTextExist && !buttonIcon) {
+                      return null;
+                    }
+                    const buttonUrl = item.url || "#";
+                    return (
+                      <div
+                        key={`is9-btn-${index}`}
+                        className={this.decorateCSS("button-wrapper")}
+                      >
+                        <ComposerLink path={buttonUrl}>
+                          <Base.Button
+                            buttonType={item.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonIcon && (
+                              <Base.Media
+                                value={buttonIcon}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                            {btnTextExist && (
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {item.text}
+                              </Base.P>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
