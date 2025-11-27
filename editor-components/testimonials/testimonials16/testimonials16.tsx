@@ -311,6 +311,13 @@ class Testimonials16 extends Testimonials {
     })
 
     this.addProp({
+      type: "boolean",
+      key: "divider",
+      displayer: "Divider",
+      value: true,
+    })
+
+    this.addProp({
       type: "media",
       key: "prevButtonIcon",
       displayer: "Previous Slide Button",
@@ -349,6 +356,7 @@ class Testimonials16 extends Testimonials {
       },
     })
 
+
     this.setComponentState("activeSlideIndex", 0)
     this.setComponentState("sliderRef", React.createRef())
     this.setComponentState("prevBackground", null)
@@ -379,6 +387,7 @@ class Testimonials16 extends Testimonials {
     const prevIcon = this.getPropValue("prevButtonIcon")
     const nextIcon = this.getPropValue("nextButtonIcon")
     const quoteIconValue = this.getPropValue("quoteIcon")
+    const dividerEnabled = this.getPropValue("divider") !== false
     const hasSubtitle = this.castToString(subtitleValue)
     const hasTitle = this.castToString(titleValue)
     const showMediaOverlay = this.getPropValue("mediaOverlay") !== false
@@ -386,6 +395,16 @@ class Testimonials16 extends Testimonials {
     const autoplayEnabled = this.getPropValue("autoplay") !== false
     const showNavigation = this.getPropValue("navigation") !== false
     const activePortrait = filteredTestimonials[activeIndex]?.image
+    const subtitleType = Base.getSectionSubTitleType()
+    const hideBadgeBackground = subtitleType === "badge" && !!activePortrait
+    const lightenLineColor = subtitleType === "line" && !!activePortrait
+    const subtitleClasses = [
+      this.decorateCSS("subtitle"),
+      hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : "",
+      lightenLineColor ? this.decorateCSS("subtitle-line-light") : "",
+    ]
+      .filter(Boolean)
+      .join(" ")
 
     const baseSettings = {
       arrows: false,
@@ -403,33 +422,44 @@ class Testimonials16 extends Testimonials {
       },
     }
 
+    const hasActivePortrait = !!activePortrait
+    const containerClassNames = [
+      this.decorateCSS("container"),
+      hasActivePortrait ? this.decorateCSS("with-background") : "",
+      !hasActivePortrait ? this.decorateCSS("no-background") : "",
+    ]
+      .filter(Boolean)
+      .join(" ")
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("background")} data-overlay={showBackgroundOverlay}>
-          <div className={this.decorateCSS("background-media-layer")}>
-            {prevBackground && prevBackground !== activePortrait && (
-              <Base.Media
-                key={`prev-${activeIndex}`}
-                value={prevBackground}
-                className={`${this.decorateCSS("background-media")} ${this.decorateCSS("background-media-prev")}`}
-              />
-            )}
-            {activePortrait && (
+      <Base.Container className={containerClassNames}>
+        {hasActivePortrait && (
+          <div className={this.decorateCSS("background")} data-overlay={showBackgroundOverlay}>
+            <div className={this.decorateCSS("background-media-layer")}>
+              {prevBackground && prevBackground !== activePortrait && (
+                <Base.Media
+                  key={`prev-${activeIndex}`}
+                  value={prevBackground}
+                  className={`${this.decorateCSS("background-media")} ${this.decorateCSS("background-media-prev")}`}
+                />
+              )}
               <Base.Media
                 key={`active-${activeIndex}`}
                 value={activePortrait}
                 className={`${this.decorateCSS("background-media")} ${this.decorateCSS("background-media-active")}`}
               />
-            )}
+            </div>
+            <div className={this.decorateCSS("background-overlay")} data-visible={showBackgroundOverlay} />
           </div>
-          <div className={this.decorateCSS("background-overlay")} data-visible={showBackgroundOverlay} />
-        </div>
-        <div className={this.decorateCSS("max-content")}>
+        )}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(hasSubtitle || hasTitle || links.length > 0) && (
             <div className={this.decorateCSS("header")}>
               {(hasSubtitle || hasTitle) && (
                 <div className={this.decorateCSS("header-text")}>
-                  {hasSubtitle && <Base.SectionSubTitle>{subtitleValue}</Base.SectionSubTitle>}
+                  {hasSubtitle && (
+                    <Base.SectionSubTitle className={subtitleClasses}>{subtitleValue}</Base.SectionSubTitle>
+                  )}
                   {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{titleValue}</Base.SectionTitle>}
                 </div>
               )}
@@ -494,16 +524,25 @@ class Testimonials16 extends Testimonials {
                               )}
                               {(hasAuthor || hasRole || hasCompany) && (
                                 <>
-                                  <div className={this.decorateCSS("author-divider")} />
+                                  <div
+                                    className={`${this.decorateCSS("author-divider")} ${
+                                      !dividerEnabled ? this.decorateCSS("author-divider-hidden") : ""
+                                    }`}
+                                  />
                                   <div className={this.decorateCSS("author-block")}>
-                                    {hasAuthor && <Base.P className={this.decorateCSS("author")}>{item.author}</Base.P>}
-                                    {hasRole && (
-                                      <Base.P className={this.decorateCSS("role")}>
-                                        {item.role}
-                                        {hasCompany && ", "}
-                                      </Base.P>
-                                    )}
-                                    {hasCompany && <Base.P className={this.decorateCSS("company")}>{item.company}</Base.P>}
+                                    <Base.P className={this.decorateCSS("author")}>
+                                      {hasAuthor && <span className={this.decorateCSS("author-text")}>{item.author}</span>}
+                                      {(hasAuthor && (hasRole || hasCompany)) && (
+                                        <span className={this.decorateCSS("author-separator")}> - </span>
+                                      )}
+                                      {(hasRole || hasCompany) && (
+                                        <span className={this.decorateCSS("role-company")}>
+                                          {hasRole && <span>{item.role}</span>}
+                                          {hasRole && hasCompany && <span>, </span>}
+                                          {hasCompany && <span>{item.company}</span>}
+                                        </span>
+                                      )}
+                                    </Base.P>
                                   </div>
                                 </>
                               )}
@@ -529,15 +568,24 @@ class Testimonials16 extends Testimonials {
           )}
           {filteredTestimonials.length > 1 && showNavigation && (
             <div className={this.decorateCSS("nav-wrapper")}>
-              <Base.Button
-                buttonType="Secondary"
-                className={this.decorateCSS("navigation-button")}
-                onClick={() => {
-                  sliderRef?.current?.slickPrev()
-                }}
-              >
-                {prevIcon && <Base.Media value={prevIcon} className={this.decorateCSS("navigation-icon")} />}
-              </Base.Button>
+              {prevIcon && (
+                <div
+                  className={this.decorateCSS("navigation-button")}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => {
+                    sliderRef?.current?.slickPrev()
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault()
+                      sliderRef?.current?.slickPrev()
+                    }
+                  }}
+                >
+                  <Base.Media value={prevIcon} className={this.decorateCSS("navigation-icon")} />
+                </div>
+              )}
               <div className={this.decorateCSS("navigation-dots-panel")}>
                 <div className={this.decorateCSS("navigation-dots")}>
                   {filteredTestimonials.map((_: TestimonialItem, index: number) => (
@@ -551,19 +599,28 @@ class Testimonials16 extends Testimonials {
                   ))}
                 </div>
               </div>
-              <Base.Button
-                buttonType="Secondary"
-                className={this.decorateCSS("navigation-button")}
-                onClick={() => {
-                  sliderRef?.current?.slickNext()
-                }}
-              >
-                {nextIcon && <Base.Media value={nextIcon} className={this.decorateCSS("navigation-icon")} />}
-              </Base.Button>
+              {nextIcon && (
+                <div
+                  className={this.decorateCSS("navigation-button")}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => {
+                    sliderRef?.current?.slickNext()
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault()
+                      sliderRef?.current?.slickNext()
+                    }
+                  }}
+                >
+                  <Base.Media value={nextIcon} className={this.decorateCSS("navigation-icon")} />
+                </div>
+              )}
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     )
   }
 }
