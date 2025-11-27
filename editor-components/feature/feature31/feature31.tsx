@@ -135,7 +135,7 @@ class Feature31 extends BaseFeature {
                 title: normalizeText(feature?.title),
                 text: normalizeText(feature?.text),
                 rawTitle: feature?.title,
-                rawText: feature?.text
+                rawText: feature?.text,
             }))
             .filter((feature) => feature.title || feature.text);
 
@@ -152,7 +152,7 @@ class Feature31 extends BaseFeature {
 
                     {hasMedia && (
                         <div
-                            className={this.decorateCSS("image-side")}
+                            className={`${this.decorateCSS("image-side")} ${!hasContent ? this.decorateCSS("no-content") : ""}`}
                             data-overlay={overlay}
                         >
                             <Base.Media
