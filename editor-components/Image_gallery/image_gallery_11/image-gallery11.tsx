@@ -369,31 +369,33 @@ class ImageGallery11 extends BaseImageGallery {
           </div>
         )}
         {showOverlay && <div className={this.decorateCSS("background-overlay")} />}
-        <div className={this.decorateCSS("content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(hasSubtitle || hasTitle || hasDescription) && (
-            <div className={this.decorateCSS("text-wrapper")}>
-              <div className={headingClasses}>
-                {hasSubtitle && (
-                  <Base.SectionSubTitle className={subtitleClasses}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {hasTitle && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {hasDescription && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
+            <div className={this.decorateCSS("content")}>
+              <div className={this.decorateCSS("text-wrapper")}>
+                <div className={headingClasses}>
+                  {hasSubtitle && (
+                    <Base.SectionSubTitle className={subtitleClasses}>
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {hasTitle && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
+                  )}
+                  {hasDescription && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
+                  )}
+                </div>
               </div>
             </div>
           )}
-
-          {rows.length > 0 && (
-            <div className={this.decorateCSS("gallery")}>
+        </Base.MaxContent>
+        {rows.length > 0 && (
+          <div className={this.decorateCSS("gallery")}>
               {rows.map((row: GalleryRow, rowIndex: number) => {
                 const isRightToLeft = rowIndex % 2 !== 0;
                 let duplicatedImages =
@@ -459,11 +461,11 @@ class ImageGallery11 extends BaseImageGallery {
                   </div>
                 );
               })}
-            </div>
-          )}
+          </div>
+        )}
 
-          {isPopupOpen && popupValue && (
-            <Base.Overlay isVisible className={this.decorateCSS("overlay")} onClick={handleClosePopup}>
+        {isPopupOpen && popupValue && (
+          <Base.Overlay isVisible className={this.decorateCSS("overlay")} onClick={handleClosePopup}>
               <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
                 <div className={this.decorateCSS("modal-content")}>
                   <div className={this.decorateCSS("close")} onClick={handleClosePopup}>
@@ -498,9 +500,8 @@ class ImageGallery11 extends BaseImageGallery {
               >
                 <Base.Media value={this.getPropValue("popupRightIcon")} className={this.decorateCSS("icon")} />
               </div>
-            </Base.Overlay>
-          )}
-        </div>
+          </Base.Overlay>
+        )}
       </Base.Container>
     );
   }

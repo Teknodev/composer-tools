@@ -12,6 +12,17 @@
     background-color: var(--composer-html-background) !important;
   }
 
+  .heading :global(.sectionSubTitle),
+  .heading .subtitle,
+  .heading.with-bg :global(.sectionSubTitle),
+  .heading.with-bg .subtitle {
+    text-align: left !important;
+    width: fit-content !important;
+    align-self: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
   .background-media {
     position: absolute;
     inset: 0;
@@ -33,6 +44,10 @@
     pointer-events: none;
   }
   
+  .max-content {
+    padding: 0px 50px;
+  }
+
   .content {
     position: relative;
     z-index: 2;
@@ -40,6 +55,9 @@
     flex-direction: column;
     gap: var(--composer-gap-xl);
     padding: 0;
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+    width: 100%;
   }
   .heading {
     max-width: var(--composer-content-width);
@@ -50,13 +68,21 @@
     align-items: flex-start;
     align-self: center;
     padding: 0;
+
+    .subtitle,
+    :global(.sectionSubTitle),
+    :global(h3.sectionSubTitle) {
+      text-align: left !important;
+      width: fit-content !important;
+      align-self: flex-start !important;
+      margin-left: 0 !important;
+      margin-right: auto !important;
+      justify-content: flex-start !important;
+    }
   }
 
   .text-wrapper {
-    padding: 0 50px;
     width: 100%;
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
   }
 
   .subtitle,
@@ -64,14 +90,30 @@
   .description {
     margin: 0;
     color: #fff;
+    text-align: left !important;
 
   }
 
   .subtitle-with-bg {
-    color: #fff;
+    color: #fff !important;
+    text-align: left !important;
+    width: fit-content !important;
+    align-self: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    justify-content: flex-start !important;
     &::before {
       background: #fff !important;
     }
+  }
+
+  .subtitle-with-bg:global(.sectionSubTitle),
+  :global(.heading.with-bg .sectionSubTitle) {
+    text-align: left !important;
+    width: fit-content !important;
+    align-self: flex-start !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
   }
 
   .subtitle-transparent {
@@ -79,24 +121,39 @@
   }
 
   .heading.with-bg {
-    .subtitle {
+    align-items: flex-start;
+
+    .subtitle,
+    :global(.sectionSubTitle),
+    :global(h3.sectionSubTitle) {
+      color: #fff !important;
+      text-align: left !important;
+      width: fit-content !important;
+      align-self: flex-start !important;
+      margin-left: 0 !important;
+      margin-right: auto !important;
+      justify-content: flex-start !important;
       &::before {
         background: #fff !important;
       }
     }
 
     .title,
-    .description,
-    .subtitle {
+    .description {
       color: #fff;
+      text-align: left !important;
     }
   }
 
   .gallery {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-md);
     padding: 0;
+    width: 100%;
+    margin-top: var(--composer-gap-xl);
   }
   .gallery-row {
     overflow: hidden;
@@ -278,6 +335,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: var(--composer-border-radius-sm);
     cursor: zoom-in;
     transition: transform 0.4s ease;
     will-change: transform;
@@ -306,8 +364,8 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 60px 0;
-    .text-wrapper {
-      padding: 0 40px;
+    .max-content {
+      padding: 0px 40px;
     }
     .heading {
       gap: var(--composer-gap-xs);
@@ -374,9 +432,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 60px 0;
-    .text-wrapper {
-      padding: 0 20px;
-      margin: 0 auto;
+    .max-content {
+      padding: 0px 20px;
     }
     .gallery {
       gap: var(--composer-gap-md);
