@@ -15,6 +15,23 @@ type Card = {
   navigateTo: string;
 };
 
+const TABLET_BREAKPOINT = 1024;
+const PHONE_BREAKPOINT = 640;
+
+const getViewportMode = () => {
+  if (typeof window === "undefined") {
+    return "desktop";
+  }
+  const width = window.innerWidth;
+  if (width <= PHONE_BREAKPOINT) {
+    return "mobile";
+  }
+  if (width <= TABLET_BREAKPOINT) {
+    return "tablet";
+  }
+  return "desktop";
+};
+
 class Slider12 extends BaseSlider {
   private settings: Settings;
   private sliderRef = React.createRef<any>();
@@ -26,6 +43,7 @@ class Slider12 extends BaseSlider {
     super(props, styles);
 
     this.setComponentState("slider-offset", 50);
+    this.setComponentState("slider-mode", getViewportMode());
 
     this.addProp({
       type: "string",
@@ -322,9 +340,9 @@ class Slider12 extends BaseSlider {
       autoplay: false,
       variableWidth: true,
       responsive: [
-        { breakpoint: 1280, settings: { slidesToShow: 3, dots: false } },
-        { breakpoint: 1024, settings: { slidesToShow: 2, dots: false } },
-        { breakpoint: 640, settings: { slidesToShow: 1, dots: false } },
+        { breakpoint: 1280, settings: { slidesToShow: 3, dots: false, variableWidth: true } },
+        { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1, dots: false, variableWidth: false } },
+        { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1, dots: false, variableWidth: false } },
       ],
     };
   }
@@ -384,6 +402,19 @@ class Slider12 extends BaseSlider {
     if (Math.abs(offset - currentOffset) > 0.5) {
       this.setComponentState("slider-offset", offset);
     }
+
+    const sliderWidth = sliderRect.width;
+    let nextMode: "desktop" | "tablet" | "mobile" = "desktop";
+    if (sliderWidth <= PHONE_BREAKPOINT) {
+      nextMode = "mobile";
+    } else if (sliderWidth <= TABLET_BREAKPOINT) {
+      nextMode = "tablet";
+    }
+    const currentMode = this.getComponentState("slider-mode");
+    if (currentMode !== nextMode) {
+      this.setComponentState("slider-mode", nextMode);
+    }
+
   };
 
   render() {
@@ -400,6 +431,26 @@ class Slider12 extends BaseSlider {
     const button = this.castToObject<any>("button");
     const buttonContent = button?.text;
     const buttonText = this.castToString(buttonContent);
+    const sliderMode = (this.getComponentState("slider-mode") as "desktop" | "tablet" | "mobile") || "desktop";
+    const sliderSettings: Settings = { ...this.settings };
+    if (sliderMode === "tablet") {
+      sliderSettings.slidesToShow = 2;
+      sliderSettings.slidesToScroll = 1;
+      sliderSettings.variableWidth = false;
+      sliderSettings.adaptiveHeight = true;
+    } else if (sliderMode === "mobile") {
+      sliderSettings.slidesToShow = 1;
+      sliderSettings.slidesToScroll = 1;
+      sliderSettings.variableWidth = false;
+      sliderSettings.adaptiveHeight = true;
+    } else {
+      sliderSettings.variableWidth = true;
+      sliderSettings.adaptiveHeight = false;
+      sliderSettings.slidesToShow = 3;
+      sliderSettings.slidesToScroll = 1;
+    }
+
+    const sliderOffset = this.getComponentState("slider-offset") ?? 0;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -472,18 +523,18 @@ class Slider12 extends BaseSlider {
           </Base.MaxContent>
         </Base.Container>
 
-        <div className={this.decorateCSS("wrap")}>
+        <Base.MaxContent className={this.decorateCSS("wrap")}>
           {items.length > 0 && (
             <div
               className={this.decorateCSS("slider-parent")}
               ref={this.sliderParentRef}
               style={
                 {
-                  "--slider-offset": `${this.getComponentState("slider-offset") ?? 50}px`,
+                  "--slider-offset": `${sliderOffset}px`,
                 } as React.CSSProperties
               }
             >
-              <ComposerSlider ref={this.sliderRef} {...this.settings}>
+              <ComposerSlider key={sliderMode} ref={this.sliderRef} {...sliderSettings}>
                 {items.map((item, i) => {
                   const media = item.media;
                   const mediaType =
@@ -562,7 +613,7 @@ class Slider12 extends BaseSlider {
               </ComposerSlider>
             </div>
           )}
-        </div>
+        </Base.MaxContent>
 
         {buttonText && (
           <div className={this.decorateCSS("button-container")}>
@@ -590,4 +641,6 @@ class Slider12 extends BaseSlider {
 }
 
 export default Slider12;
+
+
 

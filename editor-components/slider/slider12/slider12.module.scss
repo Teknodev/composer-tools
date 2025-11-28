@@ -14,8 +14,10 @@
           text-align: left;
 
           .section-subtitle {
-            text-align: left;
+            text-align: left !important;
             align-self: flex-start;
+            margin-left: 0 !important;
+            margin-right: auto !important;
           }
 
           .section-title {
@@ -113,24 +115,35 @@
   padding-bottom: 80px;
   .slider-parent {
     background-color: var(--composer-html-background);
-    --slider-offset: 50px;
+    --slider-offset: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: var(--slider-offset);
+    padding-right: var(--slider-offset);
+    overflow: visible;
+    :global(.slick-list) {
+      overflow: visible;
+    }
     :global(.slick-track) {
       gap: var(--composer-gap-md);
       margin-top: var(--composer-gap-md);
     }
 
     .slide {
+      width: 390px;
+
       &.first-slide {
-        margin-left: 5px !important;
+        margin-left: 0;
       }
-      width: 390px !important;
+
+      &:last-child {
+        margin-right: 0;
+      }
 
       &.wide {
-        width: 585px !important;
-
+        width: 585px;
         .media {
-          width: 585px;
-          height: 340px;
+          width: 100%;
         }
       }
     }
@@ -143,7 +156,7 @@
     }
 
     .media {
-      width: 390px;
+      width: 100%;
       height: 340px;
       overflow: hidden;
       border-radius: var(--composer-border-radius-sm);
@@ -160,7 +173,8 @@
     }
 
     .text {
-      padding: var(--composer-gap-md);
+      padding: var(--composer-gap-xs);
+      margin-top: var(--composer-gap-xs);
 
       .card-header {
         color: var(--composer-font-color-primary);
@@ -245,9 +259,18 @@
   }
 
   .wrap {
-    padding-bottom: 80px;
+    padding: 0 40px 80px;
     .slider-parent {
-      --slider-offset: 40px;
+      --slider-offset: 0px;
+      padding-left: var(--slider-offset);
+      padding-right: var(--slider-offset);
+      :global(.slick-list) {
+        overflow: visible;
+        padding-right: var(--slider-offset);
+      }
+      :global(.slick-track) {
+        margin-left: -20px;
+      }
       .section-header {
         .section-header-content {
           .arrows-wrap {
@@ -276,18 +299,23 @@
       }
 
       .slide {
+        width: 100% !important;
+        .media {
+          width: 100%;
+        }
         &.wide {
-          width: 390px !important;
+          width: 100% !important;
 
           .media {
-            width: 390px;
+            width: 100%;
             height: 340px;
           }
         }
       }
 
+
       .text {
-        margin-top: var(--composer-gap-sm);
+        margin-top: var(--composer-gap-xs);
       }
 
       .arrows-wrap {
@@ -323,14 +351,14 @@
                 justify-content: flex-start !important;
                 width: 100%;
               .prevArrow {
-                width: 2.5rem !important;
-                height: 2.5rem !important;
-                font-size: 2.5rem !important;
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 50px !important;
               }
               .nextArrow {
-                width: 2.5rem !important;
-                height: 2.5rem !important;
-                font-size: 2.5rem !important;
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 50px !important;
               }
             }
           }
@@ -341,36 +369,63 @@
 
   .wrap {
     gap: var(--composer-gap-lg);
+    padding-bottom: 80px;
     .slider-parent {
       --slider-offset: 0px;
+      padding-left: var(--slider-offset);
+      padding-right: var(--slider-offset);
       :global(.slick-track) {
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-sm);
         margin-top: 20px;
+        &::after {
+          content: "";
+          flex: 0 0 var(--composer-gap-sm);
+        }
+        margin-left: -50px;
+      }
+      :global(.slick-list) {
+        overflow: visible;
+        padding-right: calc(330px + var(--composer-gap-sm));
       }
       :global(.slick-slide:first-child) {
-        padding-right: var(--composer-gap-lg);
+        padding-right: var(--composer-gap-sm);
       }
       .slide {
-        margin-right: var(--composer-gap-md);
-        width: 350px !important;
-        gap: var(--composer-gap-md);
+        margin-right: var(--composer-gap-sm);
+        width: 330px !important;
+        max-width: calc(100vw - 40px);
+        flex: 0 0 auto;
+        gap: var(--composer-gap-sm);
+        .media {
+          width: 100%;
+          height: 220px;
+          overflow: hidden;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+        }
 
         &.first-slide {
-          margin-right: var(--composer-gap-lg);
+          margin-right: var(--composer-gap-sm);
         }
 
         &.wide {
-          width: 320px !important;
+          width: 330px !important;
+          max-width: calc(100vw - 40px);
 
           .media {
-            width: 320px;
-            height: 260px;
+            width: 100%;
+            height: 220px;
           }
         }
       }
+
       .card {
-        margin-right: var(--composer-gap-md);
-        padding: 1rem;
+        margin-right: 0;
+        padding: var(--composer-gap-md);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--composer-gap-sm);
       }
       .section-header {
         .section-header-content {
@@ -380,21 +435,25 @@
             justify-content: flex-start;
             width: 100%;
             .prevArrow {
-              width: 1.5rem !important;
-              height: 1.5rem !important;
-              font-size: 1.8rem !important;
+              width: 46px !important;
+              height: 56px !important;
+              font-size: 46px !important;
             }
             .nextArrow {
-              width: 1.5rem !important;
-              height: 1.5rem !important;
-              font-size: 1.8rem !important;
+              width: 46px !important;
+              height: 56px !important;
+              font-size: 46px !important;
             }
           }
         }
       }
       .text {
-        margin-top: var(--composer-gap-sm);
-        padding: 0 !important;
+        margin-top: var(--composer-gap-xs);
+        padding: var(--composer-gap-xs) !important;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xs);
+        width: 100%;
       }
 
           .section-header {
