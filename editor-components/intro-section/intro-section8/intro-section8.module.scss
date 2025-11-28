@@ -8,7 +8,6 @@
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
 
   .background-shape {
     position: absolute;
@@ -47,17 +46,8 @@
       width: 100%;
     }
 
-    .subtitle,
-    .title,
-    .description {
-      max-width: 100%;
-      text-align: center !important;
-      white-space: normal !important;
-      overflow-wrap: break-word !important;
-      word-wrap: break-word !important;
-    }
-
     .subtitle {
+      text-align: center !important;
       transform: translateX(0) !important;
       
       &::before,
@@ -67,14 +57,30 @@
         width: 0 !important;
         height: 0 !important;
       }
-    }
-  }
 
-  &.has-background {
-    .subtitle,
+      &.badge {
+        background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%) !important;
+        padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
+        border-radius: var(--composer-border-radius-xl) !important;
+        width: fit-content !important;
+      }
+
+      &.with-background {
+        color: var(--composer-font-color-secondary) !important;
+        background: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+      }
+    }
+
     .title,
     .description {
-      color: var(--composer-font-color-secondary) !important;
+      text-align: center !important;
+
+      &.with-background {
+        color: var(--composer-font-color-secondary) !important;
+      }
     }
   }
 }
@@ -179,8 +185,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-lg) var(--composer-gap-lg);
-
     .background-shape {
       clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
     }
@@ -198,13 +202,18 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-md);
-
     .max-content {
       .vertical-content {
         .media-wrapper {
           height: auto !important;
           aspect-ratio: 16 / 9;
+
+          .play-icon-wrapper {
+            .icon {
+              width: 20px;
+              height: 20px;
+            }
+          }
         }
       }
     }

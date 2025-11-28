@@ -11,7 +11,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "FIND THE BEST SUITABLE SOLUTION",
+      value: "Find the Best Suitable Solution",
     });
 
     this.addProp({
@@ -106,21 +106,22 @@ class IntroSection8 extends BaseIntroSection {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const showBackgroundShape = this.getPropValue("showBackgroundShape");
 
     return (
       <div className={this.decorateCSS("text-content")}>
         {this.castToString(subtitle) && (
-          <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+          <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${showBackgroundShape ? this.decorateCSS("with-background") : "badge"}`}>
             {subtitle}
           </Base.SectionSubTitle>
         )}
         {this.castToString(title) && (
-          <Base.SectionTitle className={this.decorateCSS("title")}>
+          <Base.SectionTitle className={`${this.decorateCSS("title")} ${showBackgroundShape && this.decorateCSS("with-background")}`}>
             {title}
           </Base.SectionTitle>
         )}
         {this.castToString(description) && (
-          <Base.SectionDescription className={this.decorateCSS("description")}>
+          <Base.SectionDescription className={`${this.decorateCSS("description")} ${showBackgroundShape && this.decorateCSS("with-background")}`}>
             {description}
           </Base.SectionDescription>
         )}
