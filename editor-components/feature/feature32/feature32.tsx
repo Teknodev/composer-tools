@@ -201,9 +201,14 @@ class Feature32 extends BaseFeature {
       ],
     });
 
-    this.addProp(
-      INPUTS.BUTTON("button", "Button", "Start a Free Trial", "", null, null, "Primary")
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Start a Free Trial", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "boolean",
@@ -233,7 +238,8 @@ class Feature32 extends BaseFeature {
     const overlay = this.getPropValue("overlay");
 
     const items = this.castToObject<any[]>("items") || [];
-    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const filteredButtons = buttons.filter((btn: INPUTS.CastedButton) => !!this.castToString(btn.text));
     const showDivider = this.getPropValue("showDivider");
     const hoverAnimation = this.getPropValue("hoverAnimation");
 
@@ -249,7 +255,7 @@ class Feature32 extends BaseFeature {
     const hasSections = activeItem?.sections?.some((s: any) =>
       this.castToString(s.title) || this.castToString(s.text)
     );
-    const hasButton = !!this.castToString(button?.text);
+    const hasButton = filteredButtons.length > 0;
 
     const hasRightContent = !!activeItem && (hasMedia || hasSections || hasButton);
     const hasLeftContent = !!this.castToString(title) || !!this.castToString(subtitle) || displayList.length > 0;
@@ -341,13 +347,35 @@ class Feature32 extends BaseFeature {
 
                 {hasButton && (
                   <div className={this.decorateCSS("buttonContainer")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("buttonText")}>
-                          {button.text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
+                    {filteredButtons.map((item: INPUTS.CastedButton, btnIdx: number) => {
+                      const buttonTitleExist = this.castToString(item.text);
+                      const iconExist = item.icon;
+                      const imageExist = item.image;
+                      const buttonExist = buttonTitleExist || iconExist || imageExist;
+                      return buttonExist && (
+                        <ComposerLink key={btnIdx} path={item.url}>
+                          {imageExist ? (
+                            <div className={this.decorateCSS("imageContainer")}>
+                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                            </div>
+                          ) : (
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {buttonTitleExist && (
+                                <Base.P className={this.decorateCSS("buttonText")}>
+                                  {item.text}
+                                </Base.P>
+                              )}
+                              {iconExist && (
+                                <Base.Media
+                                  value={item.icon}
+                                  className={this.decorateCSS("icon")}
+                                />
+                              )}
+                            </Base.Button>
+                          )}
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
                 )}
               </Base.VerticalContent>
