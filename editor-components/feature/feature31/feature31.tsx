@@ -153,12 +153,14 @@ class Feature31 extends BaseFeature {
                     {hasMedia && (
                         <div
                             className={`${this.decorateCSS("image-side")} ${!hasContent ? this.decorateCSS("no-content") : ""}`}
-                            data-overlay={overlay}
                         >
                             <Base.Media
                                 className={this.decorateCSS("image")}
                                 value={image}
                             />
+                            {overlay && (
+                                <div className={this.decorateCSS("overlay")} />
+                            )}
                         </div>
                     )}
 
@@ -192,9 +194,9 @@ class Feature31 extends BaseFeature {
                                     {features.map((feature, index) => (
                                         <div key={index} className={this.decorateCSS("feature-item")}>
                                             {feature.title && (
-                                                <Base.H3 className={this.decorateCSS("feature-title")}>
+                                                <Base.H5 className={this.decorateCSS("feature-title")}>
                                                     {feature.rawTitle}
-                                                </Base.H3>
+                                                </Base.H5>
                                             )}
                                             {feature.text && (
                                                 <Base.P className={this.decorateCSS("feature-text")}>
