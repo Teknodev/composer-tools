@@ -37,7 +37,7 @@ class IntroSection8 extends BaseIntroSection {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
       } as TypeMediaInputValue,
       additionalParams: {
-        availableTypes: ["video", "image"],
+        availableTypes: ["image", "video"],
       },
     });
 
@@ -58,21 +58,27 @@ class IntroSection8 extends BaseIntroSection {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: false,
+      value: true,
     });
 
     this.addProp({
       type: "boolean",
       key: "showBackgroundShape",
-      displayer: "Show Background",
+      displayer: "Colorful Background",
       value: true,
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "playIcon",
       displayer: "Play Icon",
-      value: "FaPlay",
+      value: {
+        type: "icon",
+        name: "FaPlay"
+      } as any,
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
     });
   }
 
@@ -88,121 +94,119 @@ class IntroSection8 extends BaseIntroSection {
     this.setComponentState("isPlaying", false);
   };
 
-  render() {
+  private hasTextContent(): boolean {
+    return !!(this.castToString(this.getPropValue("subtitle")) || 
+             this.castToString(this.getPropValue("title")) || 
+             this.castToString(this.getPropValue("description")));
+  }
+
+  private renderTextContent() {
+    if (!this.hasTextContent()) return null;
+
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const overlay = this.getPropValue("overlay");
-    const showBackgroundShape = this.getPropValue("showBackgroundShape");
-
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
-
-    const media = this.getPropValue("media") as TypeMediaInputValue;
-    const mediaUrl = (media as any)?.url;
-    const hasMedia = !!mediaUrl;
-    const isVideo = media?.type === "video";
-
-    const thumbnail = this.getPropValue("thumbnail") as TypeMediaInputValue;
-    const hasThumbnail = !!(thumbnail as any)?.url;
-
-    const playIcon = this.getPropValue("playIcon");
-    const hasPlayIcon = !!playIcon;
-
-    const isPlaying = this.getComponentState("isPlaying");
-
-    const hasBackground = !!showBackgroundShape;
-
-    const containerClasses = [
-      this.decorateCSS("container"),
-      hasMedia ? this.decorateCSS("has-media") : "",
-      hasBackground ? this.decorateCSS("has-background") : ""
-    ].filter(Boolean).join(" ");
-
-    const subtitleClassName = [
-      this.decorateCSS("subtitle"),
-      this.decorateCSS("subtitle-badge")
-    ]
-      .filter(Boolean)
-      .join(" ");
 
     return (
-      <Base.Container className={containerClasses}>
-        {showBackgroundShape && (
-          <div className={this.decorateCSS("background-shape")}></div>
+      <div className={this.decorateCSS("text-content")}>
+        {this.castToString(subtitle) && (
+          <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+            {subtitle}
+          </Base.SectionSubTitle>
         )}
+        {this.castToString(title) && (
+          <Base.SectionTitle className={this.decorateCSS("title")}>
+            {title}
+          </Base.SectionTitle>
+        )}
+        {this.castToString(description) && (
+          <Base.SectionDescription className={this.decorateCSS("description")}>
+            {description}
+          </Base.SectionDescription>
+        )}
+      </div>
+    );
+  }
 
+  private renderThumbnailContent(thumbnail: TypeMediaInputValue, overlay: boolean, playIcon: any, hasPlayIcon: boolean) {
+    return (
+      <div className={this.decorateCSS("thumbnail-container")} onClick={this.handlePlayVideo}>
+        {!!(thumbnail as any)?.url && (
+          <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />
+        )}
+        {overlay && <div className={this.decorateCSS("overlay")} />}
+        {hasPlayIcon && (
+          <div className={this.decorateCSS("play-icon-wrapper")}>
+            <Base.Media value={playIcon} className={this.decorateCSS("icon")} />
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  private renderVideoContent(mediaUrl: string) {
+    return (
+      <Base.Media
+        value={{
+          type: "video",
+          url: mediaUrl,
+          settings: { autoplay: true, controls: true }
+        }}
+        className={this.decorateCSS("video")}
+        {...({ onEnded: this.handleVideoPause } as any)}
+      />
+    );
+  }
+
+  private renderImageContent(media: TypeMediaInputValue, overlay: boolean) {
+    return (
+      <div className={this.decorateCSS("thumbnail-container")}>
+        <Base.Media value={media} className={this.decorateCSS("image")} />
+        {overlay && <div className={this.decorateCSS("overlay")} />}
+      </div>
+    );
+  }
+
+  private renderMediaContent() {
+    const media = this.getPropValue("media") as TypeMediaInputValue;
+    const mediaUrl = (media as any)?.url;
+    const overlay = this.getPropValue("overlay");
+    const thumbnail = this.getPropValue("thumbnail") as TypeMediaInputValue;
+    const playIcon = this.getPropValue("playIcon") as any;
+    const hasPlayIcon = !!(playIcon?.name || playIcon?.url);
+    const isPlaying = this.getComponentState("isPlaying");
+    const isVideo = media?.type === "video";
+
+    if (!mediaUrl) return null;
+
+    return (
+      <div className={this.decorateCSS("media-wrapper")}>
+        {isVideo ? (
+          !isPlaying ? 
+            this.renderThumbnailContent(thumbnail, overlay, playIcon, hasPlayIcon) :
+            this.renderVideoContent(mediaUrl)
+        ) : (
+          this.renderImageContent(media, overlay)
+        )}
+      </div>
+    );
+  }
+
+  render() {
+    const showBackgroundShape = this.getPropValue("showBackgroundShape");
+    const containerClass = showBackgroundShape ? 
+      `${this.decorateCSS("container")} ${this.decorateCSS("has-background")}` :
+      this.decorateCSS("container");
+
+    return (
+      <Base.Container className={containerClass}>
+        {showBackgroundShape && (
+          <div className={this.decorateCSS("background-shape")} />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-            {(subtitleExist || titleExist || descriptionExist) && (
-              <div className={this.decorateCSS("text-wrapper")}>
-                {subtitleExist && (
-                  <Base.SectionSubTitle className={subtitleClassName}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {titleExist && (
-                  <Base.SectionTitle
-                    className={this.decorateCSS("title")}
-                  >
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </div>
-            )}
-
-            {hasMedia && (
-              <div className={this.decorateCSS("media-wrapper")}>
-                {isVideo ? (
-                  !isPlaying ? (
-                    <div
-                      className={this.decorateCSS("thumbnail-container")}
-                      onClick={this.handlePlayVideo}
-                    >
-                      {hasThumbnail && (
-                        <Base.Media
-                          value={thumbnail}
-                          className={this.decorateCSS("thumbnail-image")}
-                        />
-                      )}
-                      {overlay && <div className={this.decorateCSS("overlay")} />}
-                      {hasPlayIcon && (
-                        <div className={this.decorateCSS("play-icon-wrapper")}>
-                          <Base.Icon
-                            name={playIcon}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Base.Media
-                      value={{
-                        type: "video",
-                        url: mediaUrl,
-                        settings: {
-                          autoplay: true,
-                          controls: true
-                        }
-                      }}
-                      className={this.decorateCSS("video")}
-                      {...({ onEnded: this.handleVideoPause } as any)}
-                    />
-                  )
-                ) : (
-                  <div className={this.decorateCSS("thumbnail-container")}>
-                    <Base.Media value={media} className={this.decorateCSS("image")} />
-                    {overlay && <div className={this.decorateCSS("overlay")} />}
-                  </div>
-                )}
-              </div>
-            )}
+            {this.renderTextContent()}
+            {this.renderMediaContent()}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
