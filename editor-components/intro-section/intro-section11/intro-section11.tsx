@@ -88,45 +88,40 @@ class IntroSection11 extends BaseIntroSection {
               </Base.SectionDescription>
             )}
 
-
             {hasAnyButton && (
-                <div className={this.decorateCSS("action-buttons")}>
-                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                    const btnTextExist = this.castToString(item.text);
-                    const buttonIcon = item.icon;
-                    if (!btnTextExist && !buttonIcon) {
-                      return null;
-                    }
-                    const buttonUrl = item.url || "#";
-                    return (
-                      
-                        <ComposerLink path={buttonUrl}>
-                          <Base.Button
-                            buttonType={item.type}
-                            className={this.decorateCSS("button")}
-                          >
-                            {buttonIcon && (
-                              <Base.Media
-                                value={buttonIcon}
-                                className={this.decorateCSS("button-icon")}
-                              />
-                            )}
-                            {btnTextExist && (
-                              <Base.P
-                                className={this.decorateCSS("button-text")}
-                              >
-                                {item.text}
-                              </Base.P>
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                       
-                    );
-                  })}
-                </div>
-              )}
+              <div className={this.decorateCSS("action-buttons")}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                  const btnTextExist = this.castToString(item.text);
+                  const buttonIcon = item.icon;
+                  if (!btnTextExist && !buttonIcon) {
+                    return null;
+                  }
+                  const buttonUrl = item.url || "#";
+                  return (
+                    <ComposerLink path={buttonUrl}>
+                      <Base.Button
+                        buttonType={item.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        {buttonIcon && (
+                          <Base.Media
+                            value={buttonIcon}
+                            className={this.decorateCSS("button-icon")}
+                          />
+                        )}
+                        {btnTextExist && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {item.text}
+                          </Base.P>
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
 
-              <div className={this.decorateCSS("spacer")}></div>
+            <div className={this.decorateCSS("spacer")}></div>
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>

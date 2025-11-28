@@ -7,7 +7,7 @@
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%
   );
-  padding-bottom: 0 !important;
+
   .max-content {
     .content {
       display: flex;
@@ -15,7 +15,6 @@
       align-items: center;
       text-align: center;
       justify-content: center;
-      gap: var(--gap-xl);
       position: relative;
 
       .subtitle {
@@ -40,6 +39,7 @@
         margin-bottom: 1px;
         display: flex;
         flex-direction: row;
+        gap: var(--composer-gap-md);
 
         .button {
           content: "";
@@ -56,6 +56,9 @@
           .button-icon {
             width: 25px;
             height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
