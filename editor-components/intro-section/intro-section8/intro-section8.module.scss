@@ -4,9 +4,10 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
   padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
 
   .background-shape {
@@ -22,19 +23,28 @@
     z-index: 1;
     width: 100%;
     padding: 0;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .vertical-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100%;
     gap: var(--composer-gap-md);
 
     .text-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      width: 100%;
     }
 
     .subtitle,
@@ -74,12 +84,13 @@
   width: 100%;
   max-width: 960px;
   height: 540px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   border-radius: var(--composer-border-radius-sm);
   background-color: var(--color-black);
   overflow: hidden;
+  margin: 0 auto !important;
 
   .video,
   .image {
@@ -100,11 +111,12 @@
     position: relative;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     cursor: pointer;
     z-index: 1;
+    text-align: center !important;
 
     .thumbnail-image,
     .image {
@@ -137,11 +149,11 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) !important;
     z-index: 99;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     color: var(--composer-font-color-secondary);
     background: var(--composer-primary-color);
     border-radius: 50%;
@@ -152,9 +164,9 @@
       height: 30px;
       color: currentColor;
       fill: currentColor;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
 
       :global(svg) {
         width: 100%;
@@ -167,7 +179,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-lg) 40px;
+    padding: var(--composer-gap-lg) var(--composer-gap-lg);
 
     .background-shape {
       clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
@@ -186,7 +198,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) 20px;
+    padding: var(--composer-gap-md) var(--composer-gap-md);
 
     .max-content {
       .vertical-content {
