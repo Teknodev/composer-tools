@@ -1,6 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  background: var(--composer-html-background);
+
   .max-content {
     .section-title {
       margin-top: 0;
@@ -40,7 +42,6 @@
         color: var(--composer-font-color-primary);
         min-height: 300px;
         align-items: center;
-        text-align: left;
 
         &.row1-title-only {
           width: 100%;
@@ -175,10 +176,11 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-          padding: var(--composer-gap-md);
+
+
+          padding: 0 var(--composer-gap-md);
           display: flex;
           height: 100%;
-          text-align: left;
         }
       }
 
@@ -203,10 +205,11 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-          padding: var(--composer-gap-xl);
+
+
+          padding: 0 var(--composer-gap-md);
           display: flex;
           height: 100%;
-          text-align: left;
         }
       }
 
@@ -231,8 +234,9 @@
         .subtitle {
           align-items: center;
           justify-content: center;
-          text-align: left;
-          padding: 0 var(--composer-gap-lg);
+
+
+          padding: 0 var(--composer-gap-md);
           display: flex;
           height: 100%;
         }
@@ -277,6 +281,7 @@
       }
 
       .row2 {
+
         .first,
         .second,
         .third {
@@ -284,11 +289,10 @@
           display: flex;
           flex: 1;
           min-height: 300px;
-          padding: var(--composer-gap-sm);
         }
 
         .second .text {
-          padding: 0 var(--composer-gap-sm);
+
         }
 
         .first {
@@ -318,8 +322,9 @@
             height: auto;
             align-items: center;
             justify-content: center;
-            padding: var(--composer-gap-md);
+            padding: var(--composer-gap-sm);
             margin: 0;
+
             width: 100%;
           }
         }
@@ -338,8 +343,8 @@
             justify-content: center;
             padding: var(--composer-gap-sm);
             margin: 0;
+
             width: 100%;
-            text-align: left;
           }
         }
 
@@ -374,10 +379,11 @@
 
         .image-wrapper {
           width: 100%;
-          min-height: 200px;
+          min-height: 160px;
         }
 
         .title {
+
           width: 100%;
           min-height: auto;
           margin-left: 0;
@@ -391,13 +397,13 @@
 
         .title.row1-title-only {
           width: 100%;
-          min-height: 200px;
+          min-height: 160px;
           padding: 0;
         }
 
         .row1-image-only {
           width: 100%;
-          min-height: 200px;
+          min-height: 160px;
         }
       }
 
@@ -406,7 +412,7 @@
 
         .first {
           min-height: auto;
-          margin: var(--composer-gap-md) 0;
+          margin: var(--composer-gap-lg) 0;
 
           .first-items-wrapper {
             gap: var(--composer-gap-sm);
@@ -426,26 +432,27 @@
           width: 100%;
           align-items: center;
           justify-content: center;
-          min-height: 200px;
+
+          min-height: 140px;
         }
 
         .second {
           display: flex;
           flex-direction: row;
-          min-height: 200px;
+          min-height: 140px;
           width: 100%;
         }
 
         .third {
           display: flex;
-          min-height: 200px;
+          min-height: 140px;
           width: 100%;
         }
 
         .third .image {
           display: flex;
           flex-direction: row;
-          min-height: 200px;
+          min-height: 140px;
           width: 100%;
         }
       }
@@ -455,14 +462,14 @@
         gap: 0;
 
         .image_and_subtitle_1 {
-          flex-direction: column;
+          flex-direction: row;
           display: flex;
           width: 100%;
           height: 100%;
 
           .image {
-            width: 100%;
-            height: 200px;
+            width: 50%;
+            height: 150px;
 
             &.row3-images-less {
               height: 120px;
@@ -487,13 +494,13 @@
         }
 
         .image_and_subtitle_2 {
-          flex-direction: column;
+          flex-direction: row;
           display: flex;
           width: 100%;
 
           .image {
-            width: 100%;
-            height: 200px;
+            width: 50%;
+            height: 150px;
           }
 
           .subtitle {
@@ -508,13 +515,13 @@
         }
 
         .image_and_subtitle_3 {
-          flex-direction: column;
+          flex-direction: row;
           display: flex;
           width: 100%;
 
           .image {
-            width: 100%;
-            height: 200px;
+            width: 50%;
+            height: 150px;
           }
 
           .subtitle {

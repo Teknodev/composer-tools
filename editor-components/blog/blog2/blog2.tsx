@@ -9,17 +9,35 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 class Blog2 extends BaseBlog {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Latest News",
+      type: "video",
+      displayer: "Video Link",
+      key: "video",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+    });
+    this.addProp({
+      type: "image",
+      key: "video-image",
+      displayer: "Video Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3a08f2f8a5b002ce6b795?alt=media",
+    });
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Button Icon",
+      value: "RxCross2",
     });
 
     this.addProp({
+      type: "icon",
+      key: "play-icon",
+      displayer: "Play Image",
+      value: "AiOutlinePlayCircle",
+    });
+    this.addProp({
       type: "string",
-      key: "title",
+      key: "title-text",
       displayer: "Title",
       value: "We Think About Reflections On The Wisdom From The Planets",
     });
@@ -30,69 +48,6 @@ class Blog2 extends BaseBlog {
       value:
         "Donec orci enim, vulputate et rutrum id, varius at nibh. Sed sagittis feugiat augue maximus hendrerit. Phasellus volutpat dictum sem, sed dignissim diam sodales eu. Suspendisse ut lorem posuere, tincidunt leo a, ultricies odio. Nulla porta sagittis turpis vel tristique. Curabitur ac maximus est. Proin placerat mauris eu eros varius imperdiet id at ligula.",
     });
-
-    this.addProp({
-      type: "object",
-      key: "video-section",
-      displayer: "Video Section",
-      value: [
-        {
-          type: "media",
-          key: "video",
-          displayer: "Video Link",
-          additionalParams: {
-            availableTypes: ["video"],
-          },
-          value: {
-            type: "video",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
-          },
-        },
-        {
-          type: "media",
-          key: "videoImage",
-          displayer: "Video Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3a08f2f8a5b002ce6b795?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: true,
-        },
-        {
-          type: "media",
-          key: "closeIcon",
-          displayer: "Close Button Icon",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "RxCross2",
-          },
-        },
-        {
-          type: "media",
-          key: "playIcon",
-          displayer: "Play Icon",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "AiOutlinePlayCircle",
-          },
-        },
-      ],
-    });
-
     this.addProp({
       type: "boolean",
       key: "line",
@@ -101,16 +56,10 @@ class Blog2 extends BaseBlog {
     });
 
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "author-icon",
       displayer: "Author Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "BiLogoWhatsapp",
-      },
+      value: "BiLogoWhatsapp",
     });
     this.addProp({
       type: "string",
@@ -156,20 +105,20 @@ class Blog2 extends BaseBlog {
   }
 
   render() {
-    const videoSection = this.castToObject<any>("video-section");
+    const videoImage = this.getPropValue("video-image");
     const authorIcon = this.getPropValue("author-icon");
-    const subtitle = this.getPropValue("subtitle");
+    const playIcon = this.getPropValue("play-icon");
     const description = this.getPropValue("description");
     const line = this.getPropValue("line");
     const authorName = this.getPropValue("author-name");
     const authorDescription = this.getPropValue("author-description");
-    const titleText = this.getPropValue("title");
+    const titleText = this.getPropValue("title-text");
+    const closeIcon: string = this.getPropValue("closeIcon");
 
     const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const displayContent =
       this.castToString(titleText) ||
-      this.castToString(subtitle) ||
       this.castToString(description) ||
       this.castToString(authorDescription) ||
       this.castToString(authorName) ||
@@ -179,19 +128,17 @@ class Blog2 extends BaseBlog {
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid>
-            {videoSection && videoSection.videoImage && videoSection.videoImage.url && (
+          <Base.ContainerGrid className={this.decorateCSS("content")}>
+            {videoImage && (
               <div 
-                className={`${this.decorateCSS("video-part")} ${!displayContent ? this.decorateCSS("video-only") : ""}`}
+                className={this.decorateCSS("video-part")}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
-                <Base.Media
-                  value={videoSection.videoImage}
-                  className={this.decorateCSS("video-image")}
+                <img
+                  alt="video image"
+                  src={videoImage}
+                  className={this.decorateCSS("video-images")}
                 />
-                {videoSection?.overlay && (
-                  <div className={this.decorateCSS("overlay")} />
-                )}
                 <div className={this.decorateCSS("play-part")}>
                   <span
                     className={this.decorateCSS("as-play")}
@@ -199,14 +146,16 @@ class Blog2 extends BaseBlog {
                       this.setComponentState("is_video_visible", true);
                     }}
                   >
-                    {videoSection?.playIcon && (
+                    {playIcon && (
                       <div className={this.decorateCSS("play-container")}>
                         <div className={this.decorateCSS("outer-circle")}></div>
                         <div className={this.decorateCSS("inner-circle")}></div>
-                        <Base.Media
-                          value={videoSection.playIcon}
-                          className={this.decorateCSS("play-image")}
-                        />
+                        <Base.Icon
+                          name={playIcon}
+                          propsIcon={{
+                            className: this.decorateCSS("play-image"),
+                          }}
+                        ></Base.Icon>
                       </div>
                     )}
                   </span>
@@ -215,15 +164,12 @@ class Blog2 extends BaseBlog {
             )}
             {displayContent && (
               <Base.VerticalContent className={this.decorateCSS("text-side")}>
-                {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                )}
                 {this.castToString(titleText) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>{titleText}</Base.SectionTitle>
+                  <Base.SectionTitle className={this.decorateCSS("title-text")}>{titleText}</Base.SectionTitle>
                 )}
                 {(this.castToString(description) || line) && (
                   <div className={this.decorateCSS("description-div")}>
-                    {(line && this.castToString(description)) && (
+                    {line && (
                       <hr className={this.decorateCSS("line")} />
                     )}
                     {this.castToString(description) && (
@@ -234,44 +180,49 @@ class Blog2 extends BaseBlog {
                   </div>
                 )}
 
-                <Base.Row className={this.decorateCSS("author")}>
+                <Base.Row className={this.decorateCSS("description-author")}>
                   {authorIcon && (
                     <div className={this.decorateCSS("author-icon")}>
-                      <Base.Media
-                        value={this.getPropValue("author-icon")}
-                        className={this.decorateCSS("icon")}
+                      <Base.Icon
+                        name={authorIcon}
+                        propsIcon={{
+                          className: this.decorateCSS("author-icon-photo"),
+                        }}
                       />
                     </div>
                   )}
-                  {(this.castToString(authorDescription) || this.castToString(authorName)) && (
-                    <div className={this.decorateCSS("author-info")}>
+                  <div className={this.decorateCSS("author-info")}>
                     {this.castToString(authorDescription) && (
-                      <Base.P
-                        className={this.decorateCSS("author-description")}
+                      <p
+                        className={this.decorateCSS("author-description-text")}
                       >
                         {authorDescription}
-                      </Base.P>
+                      </p>
                     )}
                     {this.castToString(authorName) && (
-                      <Base.H5 className={this.decorateCSS("author-name")}>
+                      <h1 className={this.decorateCSS("author-name-text")}>
                         {authorName}
-                      </Base.H5>
-                    )}  
-                    </div>
-                  )}
+                      </h1>
+                    )}
+                  </div>
                 </Base.Row>
                 {buttonItem.length > 0 && (
                   <Base.Row className={this.decorateCSS("button-container")}>
                     {buttonItem.map(
                       (buttonObj, index: number) => {
-                        const buttonText = this.castToString(buttonObj.text);
-                          return buttonText && (
-                            <ComposerLink key={index} path={buttonObj.url}>
+                        const buttonText = this.castToString(
+                          buttonObj.text
+                        );
+                        const url = buttonObj.url;
+                        if (buttonText) {
+                          return (
+                            <ComposerLink key={index} path={url}>
                               <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
-                                <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
+                                {buttonObj.text}
                               </Base.Button>
                             </ComposerLink>
                           );
+                        }
                       }
                     )}
                   </Base.Row>
@@ -280,33 +231,39 @@ class Blog2 extends BaseBlog {
             )}
           </Base.ContainerGrid>
           {this.getComponentState("is_video_visible") && (
-            <Base.Overlay
-              onClick={() => this.setComponentState("is_video_visible", false)} className={this.decorateCSS("overlay")}
-              isVisible={true}
-            >
-              <div className={this.decorateCSS("video-container")}>
-                <div className={this.decorateCSS("video")}>
-                  <Base.Media
-                    value={videoSection.video}
-                    className={this.decorateCSS("player")}
-                    onClick={(event: React.MouseEvent<HTMLVideoElement>) => event.stopPropagation()}
-                  />
+          <Base.Overlay
+            onClick={() => this.setComponentState("is_video_visible", false)} className={this.decorateCSS("overlay")}
+            isVisible={true}
+          >
+            <div className={this.decorateCSS("video-container")}>
+              <div
+                className={this.decorateCSS("video")}
 
-                </div>
+              >
+                <video
+                  controls
+                  className={this.decorateCSS("player")}
+                  src={this.getPropValue("video")}
+                  onClick={(event) => event.stopPropagation()}
+                ></video>
+
               </div>
-              {videoSection?.closeIcon && (
-                <div
-                  className={this.decorateCSS("close-icon-box")}
-                  onClick={() => this.setComponentState("is_video_visible", false)}
-                >
-                  <Base.Media
-                    value={videoSection.closeIcon}
-                    className={this.decorateCSS("close-icon")}
-                  />
-                </div>
-              )}
-            </Base.Overlay>
-          )}
+            </div>
+            {closeIcon && (
+              <div
+                className={this.decorateCSS("close-icon-box")}
+                onClick={() => this.setComponentState("is_video_visible", false)}
+              >
+                <Base.Icon
+                  propsIcon={{
+                    className: this.decorateCSS("close-icon"),
+                  }}
+                  name={closeIcon}
+                />
+              </div>
+            )}
+          </Base.Overlay>
+        )}
         </Base.MaxContent>
       </Base.Container>
     );

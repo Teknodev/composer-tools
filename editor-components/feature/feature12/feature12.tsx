@@ -5,17 +5,16 @@ import styles from "./feature12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { TypeMediaInputValue } from "../../../types/declarative";
 
 type Card = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  icon: TypeMediaInputValue;
+  icon: string;
 };
 
 type FirstItem = {
   title: React.JSX.Element;
-  backgroundImage: TypeMediaInputValue;
+  backgroundImage: string;
   overlay: boolean;
 };
 
@@ -24,8 +23,8 @@ class Feature12 extends BaseFeature {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "upperTitle",
+      displayer: "Upper Title",
       value: "Best Features",
     });
     this.addProp({
@@ -46,21 +45,16 @@ class Feature12 extends BaseFeature {
           value: "Best Of Our Features",
         },
         {
-          type: "media",
+          type: "image",
           key: "backgroundImage",
           displayer: "Background Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a356692f8a5b002ce695ac?alt=media",
-          },
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a356692f8a5b002ce695ac?alt=media",
         },
         {
           type: "boolean",
           key: "overlay",
-          displayer: "Overlay",
+          displayer: "Blur Overlay",
           value: true,
         },
       ],
@@ -77,18 +71,6 @@ class Feature12 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FiBook",
-              },
-            },
-            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -100,6 +82,12 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Consectetur adipiscing elit",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FiBook",
+            },
           ],
         },
         {
@@ -107,18 +95,6 @@ class Feature12 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "IoPhonePortrait",
-              },
-            },
             {
               type: "string",
               key: "title",
@@ -131,6 +107,12 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Sed do eiusmod tempor incididunt.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "IoPhonePortrait",
+            },
           ],
         },
         {
@@ -138,18 +120,6 @@ class Feature12 extends BaseFeature {
           key: "card",
           displayer: "Card",
           value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "HiPresentationChartLine",
-              },
-            },
             {
               type: "string",
               key: "title",
@@ -162,6 +132,12 @@ class Feature12 extends BaseFeature {
               displayer: "Description",
               value: "Uttt labore et dolore magna aliqua.",
             },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "HiPresentationChartLine",
+            },
           ],
         },
       ],
@@ -170,7 +146,7 @@ class Feature12 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item count in a row",
       value: 4,
       max: 4,
     });
@@ -181,10 +157,12 @@ class Feature12 extends BaseFeature {
   }
 
   render() {
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-    const titleExist = this.castToString(this.getPropValue("title"));
+    const upperTitleExist = this.getPropValue("upperTitle", {
+      as_string: true,
+    });
+    const titleExist = this.getPropValue("title", { as_string: true });
 
-    const subtitle = this.getPropValue("subtitle");
+    const upperTitle = this.getPropValue("upperTitle");
     const title = this.getPropValue("title");
 
     const itemCount = this.getPropValue("itemCount");
@@ -194,7 +172,7 @@ class Feature12 extends BaseFeature {
 
     const firstCardTitleExist = this.castToString(firstItem.title);
 
-    const firstItemBackgroundImage = firstItem.backgroundImage?.url;
+    const firstItemBackgroundImage = firstItem.backgroundImage;
     const firstItemOverlay = firstItem.overlay;
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
@@ -203,23 +181,23 @@ class Feature12 extends BaseFeature {
 
     const renderFirstItem =
       firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
-    const renderHeader = subtitleExist || titleExist;
+    const renderHeader = upperTitleExist || titleExist;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {renderHeader && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
+              {upperTitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("upper-title")}>
+                  {upperTitle}
                 </Base.SectionSubTitle>
               )}
               {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>{title}</Base.SectionTitle>
               )}
             </Base.VerticalContent>
           )}
-          <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2 }} className={this.decorateCSS("wrapper")}>
+          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
             {renderFirstItem && (
               <div
                 className={this.decorateCSS("card-item-first")}
@@ -232,14 +210,14 @@ class Feature12 extends BaseFeature {
                 }}
               >
                 {firstCardTitleExist && (
-                  <Base.H3 className={this.decorateCSS("first-card-title")}>
+                  <Base.H3 className={this.decorateCSS("title")}>
                     {firstItem.title}
                   </Base.H3>
                 )}
                 {buttonTextExist && (
                   <ComposerLink path={button.url}>
                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                      {button.text}
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -273,19 +251,19 @@ class Feature12 extends BaseFeature {
                         <div className={this.decorateCSS("message")}>
                           {card.icon && (
                             <div className={this.decorateCSS("icon-container")}>
-                              <Base.Media
-                                value={card.icon}
-                                className={this.decorateCSS("icon")}
+                              <Base.Icon
+                                name={card.icon}
+                                propsIcon={{ className: this.decorateCSS("icon") }}
                               />
                             </div>
                           )}
                           {titleExist && (
-                            <Base.H3 className={this.decorateCSS("card-title")}>
+                            <Base.H3 className={this.decorateCSS("title")}>
                               {card.title}
                             </Base.H3>
                           )}
                           {descExist && (
-                            <Base.P className={this.decorateCSS("card-description")}>
+                            <Base.P className={this.decorateCSS("long-text")}>
                               {card.description}
                             </Base.P>
                           )}

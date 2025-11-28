@@ -11,7 +11,7 @@ interface ImageGallery {
 
 interface Contents {
   collection: React.JSX.Element;
-  sectionImage: { type: "image"; url: string };
+  sectionImage: string;
 }
 
 class ECommerce5 extends BaseECommerce {
@@ -51,16 +51,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
                     },
                     {
                       type: "string",
@@ -76,16 +71,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
                     },
                     {
                       type: "string",
@@ -101,16 +91,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
                     },
                     {
                       type: "string",
@@ -126,16 +111,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
                     },
                     {
                       type: "string",
@@ -151,16 +131,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
                     },
                     {
                       type: "string",
@@ -176,16 +151,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
                     },
                     {
                       type: "string",
@@ -221,16 +191,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
                     },
                     {
                       type: "string",
@@ -246,16 +211,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
                     },
                     {
                       type: "string",
@@ -271,16 +231,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
                     },
                     {
                       type: "string",
@@ -296,16 +251,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
                     },
                     {
                       type: "string",
@@ -321,16 +271,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
                     },
                     {
                       type: "string",
@@ -346,16 +291,11 @@ class ECommerce5 extends BaseECommerce {
                   displayer: "Category Card",
                   value: [
                     {
-                      type: "media",
+                      type: "image",
                       key: "sectionImage",
                       displayer: "Section Image",
-                      additionalParams: {
-                          availableTypes: ["image"],
-                      },
-                      value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
-                      },
+                      value:
+                        "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
                     },
                     {
                       type: "string",
@@ -370,13 +310,6 @@ class ECommerce5 extends BaseECommerce {
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
     });
 
     this.addProp({
@@ -450,29 +383,28 @@ class ECommerce5 extends BaseECommerce {
     };
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
-    const overlay = this.getPropValue("overlay");
 
     return (
-      <Base.Container isFull className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
+          <div className={this.decorateCSS("title-tab")}>
             {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
             )}
 
-            <div className={this.decorateCSS("tab-container")}>
+            <div className={this.decorateCSS("section-title-container")}>
               {slides.map((item: ImageGallery, index: number) => {
                 const sectionTitle = this.castToString(item.sectionTitle);
                 return (
                   sectionTitle && (
-                    <Base.H4
+                    <div
                       key={index}
                       className={
                         activeCategoryIndex === index
-                          ? this.decorateCSS("active-tab")
-                          : this.decorateCSS("tab")
+                          ? this.decorateCSS("section-active")
+                          : this.decorateCSS("section")
                       }
                       onClick={() => {
                         const currentIndex = this.getComponentState("activeCategory");
@@ -486,7 +418,7 @@ class ECommerce5 extends BaseECommerce {
                       }}
                     >
                       {item.sectionTitle}
-                    </Base.H4>
+                    </div>
                   )
                 );
               })}
@@ -499,42 +431,42 @@ class ECommerce5 extends BaseECommerce {
                 : this.decorateCSS("fade-slide-in")
             }`}
           >
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("carousel")}
-            >
-              {content.map((item: Contents) => {
-                const collectionExist = this.castToString(item.collection);
-                return (
-                  <div
-                    className={this.decorateCSS("slider-item")}
-                    key={item.sectionImage?.url + item.collection}
-                  >
-                    {item.sectionImage?.url && (
-                      <div className={this.decorateCSS("image-box")}>
-                        <div className={this.decorateCSS("image-wrapper")}>
-                          <Base.Media
-                            value={item.sectionImage}
-                            className={this.decorateCSS("image")}
-                          />
-                          {overlay && (
-                            <div className={this.decorateCSS("overlay")}></div>
-                          )}
+            <div className={this.decorateCSS("slider-parent")}>
+              <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+              >
+                {content.map((item: Contents) => {
+                  const collectionExist = this.castToString(item.collection);
+                  return (
+                    <div
+                      className={this.decorateCSS("slider-inner-div")}
+                      key={item.sectionImage + item.collection}
+                    >
+                      {item.sectionImage && (
+                        <div className={this.decorateCSS("image-box")}>
+                          <div className={this.decorateCSS("image-wrapper")}>
+                            <img
+                              alt={this.castToString(item.collection)}
+                              src={item.sectionImage}
+                              className={this.decorateCSS("img")}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {collectionExist && (
-                      <Base.P className={this.decorateCSS("collection")}>
-                        {item.collection}
-                      </Base.P>
-                    )}
-                  </div>
-                );
-              })}
-            </ComposerSlider>
+                      )}
+                      {collectionExist && (
+                        <div className={this.decorateCSS("collection")}>
+                          {item.collection}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </ComposerSlider>
+            </div>
           </div>
         </Base.MaxContent>
-      </Base.Container>
+      </div>
     );
   }
 }

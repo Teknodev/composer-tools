@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
+import { LogoClouds } from "../../EditorComponent";
 import styles from "./logo-comp3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -7,29 +7,27 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
   imageLink: string,
-  image: TypeMediaInputValue
+  image: string
 }
 class LogoComp3Page extends LogoClouds {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Brands Available",
-    });
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Associated Brand",
     });
-
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Brands Available",
+    });
     this.addProp({
       type: "boolean",
       key: "toggleDividerLine",
-      displayer: "Header Line",
+      displayer: "Toggle Title Divider Line",
       value: true,
     });
     this.addProp({
@@ -42,7 +40,7 @@ class LogoComp3Page extends LogoClouds {
     this.addProp({
       type: "boolean",
       key: "toggleLines",
-      displayer: "Logo Lines",
+      displayer: "Toggle Lines",
       value: true,
     });
 
@@ -69,68 +67,60 @@ class LogoComp3Page extends LogoClouds {
 
   render() {
     const items = this.castToObject<TImage[]>("items");
-    const itemCount = this.getPropValue("itemCount") ?? 4;
-    const totalItems = items?.length || 0;
-    const toggleLines = this.getPropValue("toggleLines");
+
+
+    const emptyGridCount = !!(items.length % this.getPropValue("itemCount")) ? (this.getPropValue("itemCount") - (items.length % this.getPropValue("itemCount"))) : 0;
+    const emptyGrids = new Array(emptyGridCount).fill(true);
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-
-    const getItemClassName = (index: number) => {
-      let className = this.decorateCSS("image-item");
-      
-      if (toggleLines) {
-        const isLastInRow = (index + 1) % itemCount === 0;
-        if (isLastInRow) {
-          className += ` ${this.decorateCSS("no-right-border")}`;
-        }
-        
-        const totalRows = Math.ceil(totalItems / itemCount);
-        const currentRow = Math.floor(index / itemCount) + 1;
-        if (currentRow === totalRows) {
-          className += ` ${this.decorateCSS("no-bottom-border")}`;
-        }
-      }
-      
-      return className;
-    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
+            <Base.VerticalContent className={this.decorateCSS("titles")}>
               {titleExist && (
-                <Base.H4 className={this.decorateCSS("title")}>
+                <Base.H1 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
-                </Base.H4>
+                </Base.H1>
               )}
               {titleExist && subtitleExist && this.getPropValue("toggleDividerLine") && (
-                <div className={this.decorateCSS("line")}></div>
+                <div className={this.decorateCSS("title-line")}></div>
               )}
               {subtitleExist && (
-                <Base.H3 className={this.decorateCSS("subtitle")}>
+                <div className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
-                </Base.H3>
+                </div>
               )}
             </Base.VerticalContent>
           )}
           {items?.length > 0 && (
             <Base.ListGrid
               gridCount={{
-                pc: itemCount,
-                tablet: itemCount,
+                pc: this.getPropValue("itemCount"),
+                tablet: this.getPropValue("itemCount"),
                 phone: 1,
               }}
-              className={`${this.decorateCSS("images-container")} ${toggleLines ? this.decorateCSS("lines-active") : ""} `}
+              className={`${this.decorateCSS("images-container")} ${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} `}
             >
               {items.map((item: TImage, index: number) => {
-                return item.image && (
+                return (
                   <ComposerLink path={item.imageLink}>
-                    <div className={getItemClassName(index)} key={index}>
-                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                    <div className={this.decorateCSS("image-item")} key={index}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={item.image}
+                        alt="logo"
+                      />
                     </div>
                   </ComposerLink>
+                );
+              })}
+              {emptyGrids.map((item: TImage, index: number) => {
+                return (
+                  <div className={this.decorateCSS("image-item")} key={index}>
+                  </div>
                 );
               })}
             </Base.ListGrid>

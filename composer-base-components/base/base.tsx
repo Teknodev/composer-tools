@@ -31,9 +31,7 @@ export type TypeButton =
   | "Tertiary"
   | "Link"
   | "White"
-  | "Black" 
-  | "Bare";
-
+  | "Black";
 export namespace Base {
   const rootStyles = (typeof window !== 'undefined') ? getComputedStyle(document.documentElement) : { getPropertyValue: () => "" };
 
@@ -256,7 +254,6 @@ export namespace Base {
 
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);    
-    const [x, setX] = useState(0);
     const [y, setY] = useState(0);
     const [currentOpacity, setCurrentOpacity] = useState(0);
 
@@ -264,39 +261,32 @@ export namespace Base {
       document.documentElement.style.overflow = "hidden";
       let playgroundEl = document.getElementById("playground");
 
-      const updatePosition = () => {
+      let resizeObserver = new ResizeObserver(() => { 
         const boundingClient = playgroundEl.getBoundingClientRect();
         setWidth(boundingClient.width);
         setHeight(boundingClient.height);
-        setX(boundingClient.x);
         setY(boundingClient.y);
-      };
+      }); 
 
-      let resizeObserver = new ResizeObserver(updatePosition); 
-      resizeObserver.observe(playgroundEl);
-      
-      window.addEventListener('resize', updatePosition);
-
+      resizeObserver.observe(playgroundEl); 
       if (isVisible) {
         setCurrentOpacity(1);
       }
 
       if(!isVisible){
         resizeObserver.disconnect();
-        window.removeEventListener('resize', updatePosition);
         setCurrentOpacity(0);
       }
 
       return () => {
         document.documentElement.style.overflow = "";
         resizeObserver.disconnect();
-        window.removeEventListener('resize', updatePosition);
       };
     }, [isVisible ,width]);
     if(isVisible) {
       return (
         <div
-          style={{ width, height, left: x, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
+          style={{ width, height, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
           className={`${styles.overlay} ${className}`}
           {...props}
         >

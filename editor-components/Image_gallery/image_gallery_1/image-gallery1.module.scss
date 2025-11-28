@@ -3,24 +3,26 @@
   .max-content{
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
-    .tab-container{
-      width: fit-content;
+    gap: var(--composer-gap-xl);
+    .section-title-container{
+      width: 100%;
       display: flex;
       gap: var(--composer-gap-xl);
       flex-wrap: wrap;
-      width: 100%;
-      .tab{
+      .section-title{
         text-align: start;
         width: fit-content;
-        margin: 0;
+        font-size: 1rem;
+        background-color: transparent;
+        border: none;
         cursor: pointer;
+        opacity: 0.7;
         transition: opacity 0.3s ease, border-bottom 0.1s ease;
         color:var(--composer-font-color-primary);
-        &.active-tab{
-          font-weight: bold;
+        &.active-section-title{
           border-bottom: 2px solid var(--composer-font-color-primary);
           opacity: 1;
+          font-weight: bold;
         }
       }
     }
@@ -33,8 +35,7 @@
         overflow:hidden;  
         border-radius: var(--composer-border-radius-md); 
         min-height: 450px;    
-        max-height: 450px;
-        position: relative;
+        max-height: 450px;      
         .image{
           border-radius: var(--composer-border-radius-md);
           width: 100%;
@@ -43,15 +44,6 @@
           object-fit: cover;
           overflow: hidden ;
           height: 100%;
-        }
-        .overlay{
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-          border-radius: var(--composer-border-radius-md);
         }
       }
       .text-container{
@@ -63,8 +55,6 @@
         .title{
           color :var(--composer-font-color-primary);
           max-width: 40%;
-          width: fit-content;
-          margin: 0;
 
         }
         .line{
@@ -77,8 +67,6 @@
         .section{
           color :var(--composer-tertiary-color);
           max-width: 40%;
-          width: fit-content;
-          margin: 0;
         }
       }
       &:hover {
@@ -97,9 +85,7 @@
       align-items: center;
       justify-content: center;
       .button{
-        .button-text{
-          content: "";
-        }
+        content: "";
       }
     }
   }
@@ -120,10 +106,8 @@
 @container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
-      gap: var(--composer-gap-md);
-      .tab-container{
+      .section-title-container{
         flex-direction: column;
-        gap: var(--composer-gap-sm);
       }
     }
   }

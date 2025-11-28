@@ -11,30 +11,10 @@ class Form4 extends BaseContacts {
     super(props, styles);
 
     this.addProp({
-      type: "media",
+      type: "image",
       key: "image",
       displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797"
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Get in Touch",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
     });
 
     this.addProp({
@@ -61,14 +41,14 @@ class Form4 extends BaseContacts {
     this.addProp({
       type: "string",
       key: "location",
-      displayer: "Right Title",
+      displayer: "Location Title",
       value: "CURRENTLY",
     });
 
     this.addProp({
       type: "string",
       key: "locationDetails",
-      displayer: "Right Description",
+      displayer: "Location Details",
       value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects",
     });
 
@@ -113,7 +93,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required Error Message",
+                      displayer: "Required error message",
                       value: "Required",
                     },
                     {
@@ -128,7 +108,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type Error Message",
+                      displayer: "Type error message",
                       value: "Invalid type",
                     },
                   ],
@@ -153,7 +133,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required Error Message",
+                      displayer: "Required error message",
                       value: "Required",
                     },
                     {
@@ -168,7 +148,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type Error Message",
+                      displayer: "Type error message",
                       value: "Invalid type",
                     },
                   ],
@@ -213,7 +193,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required Error Message",
+                      displayer: "Required error message",
                       value: "Required",
                     },
                     {
@@ -228,7 +208,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type Error Message",
+                      displayer: "Type error message",
                       value: "Invalid type",
                     },
                   ],
@@ -273,7 +253,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required Error Message",
+                      displayer: "Required error message",
                       value: "",
                     },
                     {
@@ -288,7 +268,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type Error Message",
+                      displayer: "Type error message",
                       value: "",
                     },
                   ],
@@ -333,7 +313,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "required_error_message",
-                      displayer: "Required Error Message",
+                      displayer: "Required error message",
                       value: "Required",
                     },
                     {
@@ -348,7 +328,7 @@ class Form4 extends BaseContacts {
                     {
                       type: "string",
                       key: "type_error_message",
-                      displayer: "Type Error Message",
+                      displayer: "Type error message",
                       value: "",
                     },
                   ],
@@ -368,10 +348,9 @@ class Form4 extends BaseContacts {
   }
 
   render() {
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const isContactVisible = subtitleExist || titleExist || descriptionExist;
+    const isContactVisible = titleExist || descriptionExist;
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -381,8 +360,6 @@ class Form4 extends BaseContacts {
 
     const inputItems = this.getPropValue("input_items")!;
     const image = this.getPropValue("image");
-    const imageUrl = image?.url;
-    const overlay = this.getPropValue("overlay");
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -497,22 +474,21 @@ class Form4 extends BaseContacts {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("top-container")}>
             {isContactVisible && (
-              <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
+              <div className={this.decorateCSS("contact")}>
+                {titleExist && <Base.P className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.P>}
                 {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                  <Base.P className={this.decorateCSS("description")}>
                     {this.getPropValue("description")}
                     {this.getPropValue("mail")}
-                  </Base.SectionDescription>
+                  </Base.P>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
             {isAddressVisible && (
-              <Base.VerticalContent className={this.decorateCSS("right-container")}>
-                {locationExist && <Base.H2 className={this.decorateCSS("right-title")}>{this.getPropValue("location")}</Base.H2>}
-                {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{this.getPropValue("locationDetails")}</Base.P>}
-              </Base.VerticalContent>
+              <div className={this.decorateCSS("address")}>
+                {locationExist && <Base.P className={this.decorateCSS("title-2")}>{this.getPropValue("location")}</Base.P>}
+                {locationDetailsExist && <Base.P className={this.decorateCSS("description-2")}>{this.getPropValue("locationDetails")}</Base.P>}
+              </div>
             )}
           </div>
           <div className={this.decorateCSS("lower-container")}>
@@ -520,7 +496,7 @@ class Form4 extends BaseContacts {
               <div className={this.decorateCSS("form-container")}>
                 <Formik
                   initialValues={getInitialValue()}
-                  validationSchema={getSchema}
+                  validationSchema={getSchema()}
                   onSubmit={(data, { resetForm }) => {
                     const formData = getFormDataWithConvertedKeys(data);
                     this.insertForm("Contact Me", formData);
@@ -531,14 +507,14 @@ class Form4 extends BaseContacts {
                     <Form className={this.decorateCSS("form")}>
                       {inputItems.map((inputItem: any, inputItemIndex: number) => (
                         <div className={this.decorateCSS("input-container")}>
-                          <Base.P className={this.decorateCSS("label")}>
+                          <span className={this.decorateCSS("label")}>
                             {inputItem.getPropValue("label", {
                               suffix: {
                                 label: isRequiredInput(inputItem) && "*",
                                 className: this.decorateCSS("require-star"),
                               },
                             })}
-                          </Base.P>
+                          </span>
                           <div className={this.decorateCSS("inputs")}>
                             {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
                               <div className={this.decorateCSS("input-box")}>
@@ -567,20 +543,17 @@ class Form4 extends BaseContacts {
                           </div>
                         </div>
                       ))}
-                      {this.castToString(button.text) && 
-                        <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>  
-                        </Base.Button>
-                      }
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                        {button.text}
+                      </Base.Button>
                     </Form>
                   )}
                 </Formik>
               </div>
             )}
-            {imageUrl && (
+            {image && (
               <div className={`${this.decorateCSS("image-container")} ${!formContainerExist && this.decorateCSS("image-container-no-form")}`}>
-                <Base.Media value={image} className={this.decorateCSS("image")} />
-                {overlay && <div className={this.decorateCSS("overlay")} />}
+                <img className={this.decorateCSS("image")} src={image} alt="" />
               </div>
             )}
           </div>

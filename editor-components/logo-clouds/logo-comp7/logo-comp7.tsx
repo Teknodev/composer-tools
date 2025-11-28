@@ -1,12 +1,12 @@
 import * as React from "react";
-import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
+import { LogoClouds } from "../../EditorComponent";
 import styles from "./logo-comp7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 
 type TImage = {
-  image: TypeMediaInputValue;
+  image: string;
   imageLink: string;
 };
 
@@ -43,13 +43,10 @@ class LogoComp7Page extends LogoClouds {
   render() {
     const title = this.castToString(this.getPropValue("title"));
     const originals = this.castToObject<TImage[]>("image-items") || [];
+    const repeatCount = Math.round(14 / originals.length);
     let lineOfLogos: TImage[] = [];
-    
-    if (originals.length > 0) {
-      const repeatCount = Math.round(14 / originals.length);
-      for (let i = 0; i < repeatCount; i++) {
-        lineOfLogos.push(...originals);
-      }
+    for (let i = 0; i < repeatCount; i++) {
+      lineOfLogos.push(...originals);
     }
 
     const scrollItems = [...lineOfLogos, ...lineOfLogos];
@@ -58,9 +55,9 @@ class LogoComp7Page extends LogoClouds {
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
         {title && (
           <Base.VerticalContent className={this.decorateCSS("heading")}>
-            <Base.H6 className={this.decorateCSS("title")}>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
-            </Base.H6>
+            </Base.SectionTitle>
           </Base.VerticalContent>
         )}
 
@@ -73,7 +70,12 @@ class LogoComp7Page extends LogoClouds {
               {scrollItems.map((img, i) => (
                 <ComposerLink path={img.imageLink}>
                   <div className={this.decorateCSS("image-child")}>
-                    <Base.Media value={img.image} className={this.decorateCSS("image")} />
+                    <img
+                      key={i}
+                      className={this.decorateCSS("image")}
+                      src={img.image}
+                      alt={img.imageLink || ""}
+                    />
                   </div>
                 </ComposerLink>
               ))}
@@ -85,7 +87,12 @@ class LogoComp7Page extends LogoClouds {
               {scrollItems.map((img, i) => (
                 <ComposerLink path={img.imageLink}>
                   <div className={this.decorateCSS("image-child")}>
-                    <Base.Media value={img.image} className={this.decorateCSS("image")} />
+                    <img
+                      key={i}
+                      className={this.decorateCSS("image")}
+                      src={img.image}
+                      alt={img.imageLink || ""}
+                    />
                   </div>
                 </ComposerLink>
               ))}

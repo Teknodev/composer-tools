@@ -7,38 +7,31 @@
         .title-container {
             flex: 1;
             justify-content: center;
-            .subtitle, .title,  .description {
-                text-align: left;
-                margin-left: 0;
+            .about-title, .maintitle,  .description {
+                content: "";
             }
 
-            .button-container {
+            .button-icon {
                 display: flex;
                 gap: var(--composer-gap-md);
-                align-items: baseline;
-                width: 100%;
+                align-items: center;
 
-                .button {
+                .about-button {
                     content: "";
-                    .button-text {
-                        content: "";
-                    }
                 }
 
-                .phone-section {
+                .phone-icon {
                     display: flex;
                     gap: var(--composer-gap-sm);
                     align-items: center;
                     flex-grow: 1;
                     min-width: 150px;
 
-                    .icon {
+                    .icon,
+                    .phone {
                         font-size: 1.5rem;
                         color: var(--composer-font-color-primary);
-                    }
-                    .text {
-                        color: var(--composer-font-color-primary);
-                        text-align: left;
+                        text-align: center;
                     }
                 }
             }
@@ -53,8 +46,8 @@
                 display: unset;
                 .image-container{
                     max-height: calc(100vh - 100px);
-                    .front-image, .back-image{
-                        height: 400px;
+                    .image2{
+                        max-height: calc(100vh - 300px)
                     }
                 }
             }
@@ -62,17 +55,9 @@
                 position: relative;
                 display: flex;
                 justify-content: flex-end;
-                
-                &.center-single-image {
-                    justify-content: center;
-                    
-                    .image-text {
-                        left: 20%;
-                    }
-                }
 
                 &[data-animation~="animate1"] {
-                    .back-image, .front-image {
+                    .image1, .image2 {
                         transition: transform 0.3s ease;
                     }
 
@@ -81,7 +66,7 @@
                     }
 
                     &:hover {
-                        .back-image, .front-image {
+                        .image1, .image2 {
                             transform: scale(1.05);
                         }
 
@@ -92,7 +77,7 @@
                 }
 
                 &[data-animation~="animate2"] {
-                    .back-image, .front-image {
+                    .image1, .image2 {
                         transition: all 0.5s ease;
                     }
 
@@ -101,7 +86,7 @@
                     }
 
                     &:hover {
-                        .back-image, .front-image {
+                        .image1, .image2 {
                             transform: scale(1.07);
                             filter: brightness(1.1);
                         }
@@ -120,58 +105,36 @@
                     top: 90px;
                     transform: translateX(-60%);
                     max-width: 200px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-xs);
 
-                    .upper-text {
-                        text-align: center;
+                    .weak-text {
+                        margin: 0px;
                         text-transform: uppercase;
                         color: var(--composer-font-color-primary);
                     }
 
-                    .lower-text {
-                        text-align: center;
+                    .bold-text {
+                        margin: 0px;
+                        font-size: 4rem;
                         color: var(--composer-font-color-primary);
                     }
                 }
 
-                .back-image,
-                .front-image {
-                    position: relative;
+                .image1,
+                .image2 {
                     object-fit: cover;
                     border-radius: var(--composer-border-radius-sm);
                     &.no-image{
                         position: relative;
                         width: 75%;
                     }
-
-                    .image {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        border-radius: var(--composer-border-radius-sm);
-                    }
-
-                    .overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: var(--composer-overlay-color);
-                        z-index: 0;
-                        pointer-events: none;
-                        border-radius: var(--composer-border-radius-sm);
-                    }
                 }
 
-                .back-image {
+                .image1 {
                     width: 75%;
                     margin-bottom: var(--composer-gap-xl);
                 }
 
-                .front-image {
+                .image2 {
                     position: absolute;
                     left: 0px;
                     bottom: 0px;
@@ -188,8 +151,9 @@
         .max-content {
             flex-direction: column;
             .title-container{
-                .button-container{
+                .button-icon{
                     width: 100%;
+                    flex-direction: column;
                     .phone{
                         margin-top: 0px;
                         margin-bottom: 0px;
@@ -199,9 +163,6 @@
             .right-page{
                 .image-container{
                     width: 100%;
-                    &.center-single-image{
-                        justify-content: center;
-                    }
                 }
             }
         }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 
 import styles from "./feature13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,6 @@ import { Base } from "../../../composer-base-components/base/base";
 type Tab = {
   title: React.JSX.Element;
   content: React.JSX.Element;
-  progresses: Progress[];
 };
 
 type Progress = {
@@ -17,7 +16,7 @@ type Progress = {
 };
 
 type SliderImage = {
-  imageSource: TypeMediaInputValue;
+  imageSource: string;
   imageIndex: number;
 };
 
@@ -66,16 +65,11 @@ class Feature13 extends BaseFeature {
               value: 0,
             },
             {
-              type: "media",
+              type: "image",
               key: "imageSource",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media",
-              },
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e87dba6bbe002b63ec07?alt=media",
             },
           ],
         },
@@ -91,16 +85,11 @@ class Feature13 extends BaseFeature {
               value: 1,
             },
             {
-              type: "media",
+              type: "image",
               key: "imageSource",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media",
-              },
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8a5ba6bbe002b63ec1b?alt=media",
             },
           ],
         },
@@ -116,16 +105,11 @@ class Feature13 extends BaseFeature {
               value: 2,
             },
             {
-              type: "media",
+              type: "image",
               key: "imageSource",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media",
-              },
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687e8c6ba6bbe002b63ec3c?alt=media",
             },
           ],
         },
@@ -154,97 +138,15 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Tab Title",
               value: "History",
             },
             {
               type: "string",
               key: "content",
-              displayer: "Content",
+              displayer: "Tab Content",
               value:
                 "Archy was founded in 1936 in Chicago, USA. The company was established by Louis Skidmore and Nathaniel Owings, and later joined by John O. Merrill. SOM has been responsible for the design of many notable buildings worldwide, including the Sears Tower (now known as Willis Tower) in Chicago, which was the world's tallest building from 1973 to 1998. The company has also designed the John Hancock Center, One World Trade Center, and Burj Khalifa, which is currently the tallest building in the world. Throughout its history, SOM has been recognized for its innovative designs and commitment to sustainability.",
-            },
-            {
-              type: "array",
-              key: "progresses",
-              displayer: "Progresses",
-              value: [
-                {
-                  type: "object",
-                  key: "progress",
-                  displayer: "Progress Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Renovation",
-                    },
-                    {
-                      type: "string",
-                      key: "utility",
-                      displayer: "Utility",
-                      value: "75%",
-                    },
-                    {
-                      type: "number",
-                      key: "percentage",
-                      displayer: "Percentage",
-                      value: 75,
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "progress",
-                  displayer: "Progress Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Architecture",
-                    },
-                    {
-                      type: "string",
-                      key: "utility",
-                      displayer: "Utility",
-                      value: "95%",
-                    },
-                    {
-                      type: "number",
-                      key: "percentage",
-                      displayer: "Percentage",
-                      value: 95,
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "progress",
-                  displayer: "Progress Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Functional Spaces",
-                    },
-                    {
-                      type: "string",
-                      key: "utility",
-                      displayer: "Utility",
-                      value: "85%",
-                    },
-                    {
-                      type: "number",
-                      key: "percentage",
-                      displayer: "Percentage",
-                      value: 85,
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
@@ -256,72 +158,15 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Tab Title",
               value: "Mission",
             },
             {
               type: "string",
               key: "content",
-              displayer: "Content",
+              displayer: "Tab Content",
               value:
                 "We believe that good design should not only be aesthetically pleasing, but also functional and environmentally responsible. Our approach to architecture is rooted in a deep understanding of our clients' needs and the context in which we are designing. We work closely with our clients throughout the entire design process to ensure that their vision is realized and that their space is both beautiful and practical.",
-            },
-            {
-              type: "array",
-              key: "progresses",
-              displayer: "Progresses",
-              value: [
-                {
-                  type: "object",
-                  key: "progress",
-                  displayer: "Progress Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Design Excellence",
-                    },
-                    {
-                      type: "string",
-                      key: "utility",
-                      displayer: "Utility",
-                      value: "90%",
-                    },
-                    {
-                      type: "number",
-                      key: "percentage",
-                      displayer: "Percentage",
-                      value: 90,
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "progress",
-                  displayer: "Progress Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Sustainability",
-                    },
-                    {
-                      type: "string",
-                      key: "utility",
-                      displayer: "Utility",
-                      value: "88%",
-                    },
-                    {
-                      type: "number",
-                      key: "percentage",
-                      displayer: "Percentage",
-                      value: 88,
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
@@ -333,72 +178,98 @@ class Feature13 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Tab Title",
               value: "Vision",
             },
             {
               type: "string",
               key: "content",
-              displayer: "Content",
+              displayer: "Tab Content",
               value:
                 "Ratings and reviews, A numerical rating system and written reviews from clients can be very persuasive in convincing potential clients to hire an architecture firm. These reviews can be posted directly on the architecture firm's website or on third-party review sites such as Yelp or Google Reviews. It's important to respond to all reviews, whether positive or negative, in a professional and respectful manner. This shows that the architecture firm values feedback and is committed to delivering exceptional service.",
             },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "progresses",
+      displayer: "Progresses",
+      value: [
+        {
+          type: "object",
+          key: "progress",
+          displayer: "Progress Item",
+          value: [
             {
-              type: "array",
-              key: "progresses",
-              displayer: "Progresses",
-              value: [
-                {
-                  type: "object",
-                  key: "progress",
-                  displayer: "Progress Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Client Satisfaction",
-                    },
-                    {
-                      type: "string",
-                      key: "utility",
-                      displayer: "Utility",
-                      value: "92%",
-                    },
-                    {
-                      type: "number",
-                      key: "percentage",
-                      displayer: "Percentage",
-                      value: 92,
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "progress",
-                  displayer: "Progress Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Innovation",
-                    },
-                    {
-                      type: "string",
-                      key: "utility",
-                      displayer: "Utility",
-                      value: "87%",
-                    },
-                    {
-                      type: "number",
-                      key: "percentage",
-                      displayer: "Percentage",
-                      value: 87,
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Renovation",
+            },
+            {
+              type: "string",
+              key: "utility",
+              displayer: "Utility",
+              value: "75%",
+            },
+            {
+              type: "number",
+              key: "percentage",
+              displayer: "Percentage",
+              value: 75,
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "progress",
+          displayer: "Progress Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Architecture",
+            },
+            {
+              type: "string",
+              key: "utility",
+              displayer: "Utility",
+              value: "95%",
+            },
+            {
+              type: "number",
+              key: "percentage",
+              displayer: "Percentage",
+              value: 95,
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "progress",
+          displayer: "Progress Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Functional Spaces",
+            },
+            {
+              type: "string",
+              key: "utility",
+              displayer: "Utility",
+              value: "85%",
+            },
+            {
+              type: "number",
+              key: "percentage",
+              displayer: "Percentage",
+              value: 85,
             },
           ],
         },
@@ -410,29 +281,17 @@ class Feature13 extends BaseFeature {
     }, 3000);
 
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "sliderGoLeft",
       displayer: "Slider Left Button Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaArrowLeft",
-      },
+      value: "FaArrowLeft",
     });
 
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "sliderGoRight",
       displayer: "Slider Right Button Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaArrowRight",
-      },
+      value: "FaArrowRight",
     });
     
     this.setComponentState("activeTab", 0);
@@ -504,9 +363,8 @@ class Feature13 extends BaseFeature {
     const dividerExist = this.getPropValue("divider");
     const descExist = this.getPropValue("description", { as_string: true });
     const tabList = this.castToObject<Tab[]>("tab-items");
+    const progressList = this.castToObject<Progress[]>("progresses");
     const activeTab = this.getComponentState("activeTab");
-    
-    const currentProgresses = tabList[activeTab]?.progresses;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -514,7 +372,7 @@ class Feature13 extends BaseFeature {
           <div className={this.decorateCSS("wrapper")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
@@ -534,15 +392,16 @@ class Feature13 extends BaseFeature {
                     (image: SliderImage, index: number) => {
                       if (!image.imageSource) return null;
                       return (
-                        <Base.Media
+                        <img
                           key={index}
-                          value={image.imageSource}
                           style={{
                             marginLeft: `calc(${image.imageIndex} * var(--composer-gap-md))`,
                             marginTop: `calc(${image.imageIndex} * var(--composer-gap-md))`,
                             zIndex: image.imageIndex + 1,
                           }}
                           className={this.decorateCSS("slider-item")}
+                          src={image.imageSource}
+                          alt={"Image"}
                         />
                       );
                     }
@@ -553,9 +412,9 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderPrev}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <Base.Media
-                          value={this.getPropValue("sliderGoLeft")}
-                          className={this.decorateCSS("Icon")}
+                        <Base.Icon
+                          propsIcon={{ className: this.decorateCSS("Icon") }}
+                          name={this.getPropValue("sliderGoLeft")}
                         />
                       </button>
                     )}
@@ -564,9 +423,9 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderNext}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <Base.Media
-                          value={this.getPropValue("sliderGoRight")}
-                          className={this.decorateCSS("Icon")}
+                        <Base.Icon
+                          propsIcon={{ className: this.decorateCSS("Icon") }}
+                          name={this.getPropValue("sliderGoRight")}
                         />
                       </button>
                     )}
@@ -574,7 +433,7 @@ class Feature13 extends BaseFeature {
                 </Base.GridCell>
               )}
 
-              {(tabList.length > 0 || currentProgresses.length > 0) && (
+              {(tabList.length > 0 || progressList.length > 0) && (
                 <Base.GridCell className={this.decorateCSS("comp-body-wrapper")}>
                   {tabList.length > 0 && (
                     <>
@@ -590,7 +449,7 @@ class Feature13 extends BaseFeature {
                                 key={index}
                                 className={this.decorateCSS("tabs-list-item")}
                               >
-                                <Base.H3
+                                <button
                                   onClick={() => {
                                     this.switchTab(index);
                                   }}
@@ -600,7 +459,7 @@ class Feature13 extends BaseFeature {
                                     }`}
                                 >
                                   {item.title}
-                                </Base.H3>
+                                </button>
                               </div>
                             );
                           })}
@@ -614,9 +473,9 @@ class Feature13 extends BaseFeature {
                         )}
                     </>
                   )}
-                  {currentProgresses && currentProgresses.length > 0 && (
+                  {progressList.length > 0 && (
                     <footer className={this.decorateCSS("comp-progresses")}>
-                      {currentProgresses.map((item: Progress, index: number) => {
+                      {progressList.map((item: Progress, index: number) => {
                         const titleExist = !!this.castToString(item.title);
                         const percentage: number = item.percentage;
                         const utility = item.utility;
@@ -626,14 +485,14 @@ class Feature13 extends BaseFeature {
                         return (
                           <div key={index} className={this.decorateCSS("progress-item")}>
                             <div className={this.decorateCSS("progress-header")}>
-                              <Base.H4 className={this.decorateCSS("progress-title")}>
+                              <Base.H3 className={this.decorateCSS("progress-title")}>
                                 {item.title}
-                              </Base.H4>
-                              {utility && (<Base.P
+                              </Base.H3>
+                              {utility && (<span
                                 className={this.decorateCSS(
                                   "progress-percent"
                                 )}
-                              >{utility}</Base.P>)}
+                              >{utility}</span>)}
                             </div>
                             {percentage && (
                               <div

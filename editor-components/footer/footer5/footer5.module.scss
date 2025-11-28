@@ -7,35 +7,23 @@
   gap: var(--composer-gap-md);
   background-color: var(--composer-html-background);
 
-  &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
-
-    .first-container {
-      background: transparent;
-    }
-
-    .second-container {
-      background: transparent;
-    }
-  }
-
   .first-container {
-    padding: 80px var(--composer-gap-xl) !important;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .first-max-content {
       .header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
         width: 100%;
         gap: var(--composer-gap-md);
 
         .left {
-          .title,.subtitle{
+          .title{
             content: "";
+          }
+          .subtitle{
+            color: var(--composer-font-color-primary);
+            font-size: 1.5rem;
           }
           &.left-full {
             width: 100%;
@@ -43,32 +31,26 @@
         }
 
         .right {
-          min-width: 20%;
+          min-width: 10%;
           display: flex;
           justify-content: end;
 
           .button{
-            .button-text{
-              content: "";
-            }
+            content: "";
           }
         }
 
         &.center {
-          flex-direction: row;
+          flex-direction: column;
           align-items: center;
 
-          .left {
-            .title, .subtitle {
-              text-align: left;
-            }
-            .subtitle{
-              margin-left: 0;
-            }
-          }
-
           .right {
-            justify-content: flex-end;
+            justify-content: center;
+            >div {
+              content: "";
+              display: flex;
+              justify-content: center;
+            }
           }
         }
       }
@@ -80,7 +62,7 @@
   }
 
   .second-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .second-max-content {
       .bottom {
         display: flex;
@@ -133,15 +115,20 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    gap: var(--composer-gap-sm);
     .first-container {
-      padding: var(--composer-gap-xl) var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
-
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
       .first-max-content {
         .header {
+          .left {
+            .title {
+              font-size: 2.5rem;
+            }
+          }
+
           &.center {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
           }
         }
       }
@@ -152,21 +139,13 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-sm) var(--composer-gap-lg) !important;
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
       .second-max-content {
         .bottom {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           width: 100%;
-          gap: var(--composer-gap-sm);
-
-          &.center {
-            .links,
-            .footer-text {
-              justify-content: center !important;
-            }
-          }
 
           .links,
           .footer-text {
@@ -177,12 +156,11 @@
 
           .links {
             gap: var(--composer-gap-md);
-            width: 100%;
-            justify-content: center !important;
 
             .link-element {
               .link-text {
                 color: var(--composer-font-color-primary);
+                font-size: 1rem;
                 transition: color 0.3s ease;
               }
 
@@ -194,9 +172,8 @@
           }
 
           .footer-text {
+            justify-content: flex-start;
             color: var(--composer-font-color-primary);
-            justify-content: center !important;
-
           }
         }
       }
@@ -207,34 +184,22 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .first-container {
+      padding: var(--composer-gap-md);
       .first-max-content {
         .header {
           flex-direction: column;
           gap: var(--composer-gap-sm);
-          align-items: baseline;
+          align-items: center;
           .left {
             width: 100%;
-          }
-
-          &.center {
             align-items: center;
-            flex-direction: column;
-            .left {
-              .title, .subtitle {
-                text-align: center;
-              }
-              .subtitle{
-                margin: auto;
-              }
+            .subtitle{
+              text-align: center;
             }
-            .right {
-              justify-content: center;
-            }
-          }
 
-          &:not(.center) {
-            .right {
-              justify-content: flex-start;
+            .title {
+              font-size: 2rem;
+              text-align: center;
             }
           }
         }
@@ -242,22 +207,12 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md) !important;
+      padding: var(--composer-gap-md);
       .second-max-content {
         .bottom {
           align-items: center;
-          &.center {
-            .list-group,
-            .links .list-group {
-              align-items: center;
-
-              .title,
-              .text {
-                text-align: center;
-              }
-            }
-          }
           .links {
+            justify-content: center;
             .link-element{
               .link-text{
                 text-align: center;

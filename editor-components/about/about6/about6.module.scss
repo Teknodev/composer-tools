@@ -6,35 +6,42 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-md);
-    align-items: center;
-    justify-content: center;
+    .content {
+      gap: var(--composer-gap-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       .top-container {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-sm);
         align-items: center;
         justify-content: center;
-        .subtitle,
+        .sub-title,
         .title,
-        .subtitle-badge {
-          text-align: center;
+        .sub-title-badge {
+          content: "";
         }
-        .subtitle {
+        .sub-title {
           text-align: center;
           transform: translateX(0);
           &::before {
             display: none;
           }
+          content: "";
+          
         }
       }
 
       .text-container {
         color: var(--composer-font-color-primary);
+        font-size: 1rem;
         text-align: justify;
         display: flex;
         gap: var(--composer-gap-md);
-        .left-text,
-        .right-text {
+        .text-1,
+        .text-2 {
           flex: 1;
         }
       }
@@ -50,17 +57,19 @@
           }
         }
         .name {
-          text-align: center;
+          font-size: 1rem;
         }
       }
+      
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
+  .content {
     align-items: center !important;
-    .subtitle,
-    .subtitle-badge {
+    .sub-title,
+    .sub-title-badge {
       text-align: center !important;
       transform: translateX(0) !important;
       &::before {

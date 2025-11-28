@@ -3,6 +3,7 @@
 .container {
     background-color: var(--composer-html-background);
     width: 100%;
+    padding: var(--composer-gap-lg) 0;
     .container-top {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -15,6 +16,8 @@
                     border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                     border-bottom: none !important;
                     .tab-title{
+                        font-size: 1rem;
+                        font-weight: bold;
                         color: var(--composer-font-color-primary);
                     }
         
@@ -37,28 +40,33 @@
         background-color: var(--composer-html-background);
 
         .wrapper {
-            .tab-content {
+            .section {
+                .tabs {
+                    .tab-content {
+                        .vertical{
                             align-items: start;
                             gap: var(--composer-gap-md);
-                            width: 100%;
+                        }
                         .title {
-                            color: var(--composer-font-color-primary);
-                            text-align: left;
+                            font-size: 2rem;
+                            text-align: start;
+                            margin: 0;
                         }
                         .description{
-                            text-align: left;
+                            color: var(--composer-font-color-primary);
+                            text-align: start;
+                            margin: 0;
                         }
                         .content {
                             display: flex;
                             gap: var(--composer-gap-md);
-                            width: 100%;
                             .left {
                                 display: flex;
                                 flex-direction: column;
                                 gap: var(--composer-gap-sm);
                                 .detail-title, .property-title {
                                     color: var(--composer-font-color-primary);
-                                    text-align: left;
+                                    font-size: 1rem;
                                 }
                             }
                             .right {
@@ -68,7 +76,7 @@
     
                                 .detail-value {
                                     color: var(--composer-font-color-primary);
-                                    text-align: left;
+                                    font-size: 1rem;
                                 }
 
                                 .box {
@@ -76,12 +84,14 @@
                                     min-height: 16px;
                                     .property-value {
                                         color: var(--composer-font-color-primary);
+                                        font-size: 1rem;
                                         padding-right: var(--composer-gap-sm);
-                                        text-align: left;
                                     }
                                 }
                             }
                         }
+                    }
+                }
             }
         }
     }

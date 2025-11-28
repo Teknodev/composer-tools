@@ -1,11 +1,11 @@
 import * as React from "react";
-import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItemType = {
-    image: TypeMediaInputValue;
+    image: string;
     title: React.JSX.Element;
     subtitle: React.JSX.Element;
 };
@@ -36,16 +36,10 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media",
                             },
                             {
                                 type: "string",
@@ -67,16 +61,10 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
                             },
                             {
                                 type: "string",
@@ -98,16 +86,10 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e003a2f8a5b002ce6012d?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e003a2f8a5b002ce6012d?alt=media",
                             },
                             {
                                 type: "string",
@@ -129,16 +111,10 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e005b2f8a5b002ce60139?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e005b2f8a5b002ce60139?alt=media",
                             },
                             {
                                 type: "string",
@@ -160,16 +136,10 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media",
                             },
                             {
                                 type: "string",
@@ -191,16 +161,10 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00952f8a5b002ce60151?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00952f8a5b002ce60151?alt=media",
                             },
                             {
                                 type: "string",
@@ -223,16 +187,11 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00ba2f8a5b002ce6015d?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00ba2f8a5b002ce6015d?alt=media"
+                                ,
                             },
                             {
                                 type: "string",
@@ -254,16 +213,12 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00d52f8a5b002ce60169?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00d52f8a5b002ce60169?alt=media"
+
+                                ,
                             },
                             {
                                 type: "string",
@@ -285,16 +240,12 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00f72f8a5b002ce60175?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00f72f8a5b002ce60175?alt=media"
+
+                                ,
                             },
                             {
                                 type: "string",
@@ -318,16 +269,12 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01132f8a5b002ce60181?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01132f8a5b002ce60181?alt=media"
+
+                                ,
                             },
                             {
                                 type: "string",
@@ -350,16 +297,12 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media"
+
+                                ,
                             },
                             {
                                 type: "string",
@@ -382,16 +325,12 @@ class ImageGallery7 extends BaseImageGallery {
                         displayer: "Card",
                         value: [
                             {
-                                type: "media",
+                                type: "image",
                                 key: "image",
                                 displayer: "Image",
-                                value: {
-                                    type: "image",
-                                    url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01732f8a5b002ce6018d?alt=media",
-                                },
-                                additionalParams: {
-                                    availableTypes: ["image", "video"],
-                                },
+                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01732f8a5b002ce6018d?alt=media"
+
+                                ,
                             },
                             {
                                 type: "string",
@@ -469,27 +408,28 @@ class ImageGallery7 extends BaseImageGallery {
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
-                    <Base.ListGrid gridCount={{ pc: 4, tablet: 2, phone: 1 }} className={this.decorateCSS("gridContainer")} >
+                    <Base.ListGrid gridCount={{ pc: 4, tablet: 1, phone: 1 }} className={this.decorateCSS("gridContainer")} >
                         {gallery.slice(0, this.getComponentState("imageCount")).map((cards: CardItemType, columnIndex: number) => {
                             const isEven = (columnIndex) % 2 !== 0;
                             const columnClass = isEven ? "columnEven" : "columnOdd";
                             const style = isEven ? null : { transform: `translateY(-${this.scrollOffset}px)` };
                             return (
                                 <div className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
-                                    style={style as React.CSSProperties}>
+                                    style={style}>
                                     <div className={this.decorateCSS("wrapper")}>
                                         {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
                                             <div className={this.decorateCSS("card")}>
                                                 {cards.image && (
-                                                    <Base.Media value={cards.image} className={this.decorateCSS("image")} />
+                                                    <img src={cards.image} alt={cards.image}
+                                                        className={this.decorateCSS("image")} />
                                                 )}
                                                 {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
                                                     <div className={this.decorateCSS("textContainer")}>
                                                         {this.castToString(cards.title) && (
-                                                            <Base.H4 className={this.decorateCSS("title")}>{cards.title}</Base.H4>
+                                                            <div className={this.decorateCSS("title")}>{cards.title}</div>
                                                         )}
                                                         {this.castToString(cards.subtitle) && (
-                                                            <Base.P className={this.decorateCSS("subtitle")}>{cards.subtitle}</Base.P>
+                                                            <div className={this.decorateCSS("subtitle")}>{cards.subtitle}</div>
                                                         )}
                                                     </div>
                                                 )}
@@ -500,10 +440,10 @@ class ImageGallery7 extends BaseImageGallery {
                             );
                         })}
                     </Base.ListGrid>
-                    {(this.getComponentState("imageCount") < gallery.length) && this.castToString(button.text) && (
+                    {(this.getComponentState("imageCount") <= gallery.length) && (
                         <div className={this.decorateCSS("button-wrapper")}>
                             <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                {button.text}
                             </Base.Button>
                         </div>
                     )}

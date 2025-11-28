@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature17.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -10,7 +10,7 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
-  image: TypeMediaInputValue;
+  image: string;
 };
 
 class Feature17 extends BaseFeature {
@@ -19,15 +19,15 @@ class Feature17 extends BaseFeature {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "title",
+      displayer: "Title",
       value: "Use Case",
     });
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Use Case",
     });
 
@@ -47,25 +47,20 @@ class Feature17 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Button text",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Tab Title",
+              displayer: "Image of Card",
               value: "AI Sales Enablement",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
             },
             {
               type: "string",
@@ -88,25 +83,20 @@ class Feature17 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Tab Item",
+          displayer: "Button text",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Tab Title",
+              displayer: "Image of Card",
               value: "AI Sales Enablement",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
             },
             {
               type: "string",
@@ -137,13 +127,6 @@ class Feature17 extends BaseFeature {
         selectItems: ["animate1", "animate2"]
       }
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
     
     this.setActiveTab(0);
   }
@@ -160,14 +143,15 @@ class Feature17 extends BaseFeature {
   }
   render() {
     const subTitle = this.getPropValue("subtitle");
-    const overlay = this.getPropValue("overlay");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subTitle) || this.castToString(title) || this.castToString(description)) && (
+          {(this.castToString(subTitle) ||
+            this.castToString(title) ||
+            this.castToString(description)) && (
               <Base.VerticalContent className={this.decorateCSS("heading")}>
                 {this.castToString(subTitle) && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -182,18 +166,23 @@ class Feature17 extends BaseFeature {
                 )}
 
                 {this.castToString(description) && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
                     {description}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
             )}
 
-          <div  className={this.decorateCSS("tabs")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+          <div 
+            className={this.decorateCSS("tabs")}
+            data-animation={this.getPropValue("hoverAnimation").join(" ")}
+          >
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: ITabs, index: number) => (
-                  <Base.P
+                  <div
                     className={
                       `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
                         ? this.decorateCSS("active")
@@ -203,7 +192,7 @@ class Feature17 extends BaseFeature {
                     onClick={() => this.setActiveTab(index)}
                   >
                     {tab.tabText}
-                  </Base.P>
+                  </div>
                 )
               )}
             </div>
@@ -237,9 +226,7 @@ class Feature17 extends BaseFeature {
                         {this.castToString(tab.button.text) && (
                           <ComposerLink path={tab.button.url}>
                             <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>
-                                {tab.button.text}
-                              </Base.P>
+                              {tab.button.text}
                             </Base.Button>
                           </ComposerLink>
                         )}
@@ -248,13 +235,12 @@ class Feature17 extends BaseFeature {
                     )}
 
                   {tab.image && (
-                    <div className={this.decorateCSS("image-container")} style={{ position: "relative" }}>
-                      <Base.Media
-                        value={tab.image}
+                    <div className={this.decorateCSS("image-container")}>
+                      <img
                         className={this.decorateCSS("image")}
+                        src={tab.image}
                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
                       />
-                      {overlay && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
                 </Base.ContainerGrid>
