@@ -32,10 +32,11 @@
         }
 
         .action-buttons {
-          padding-top: var(--composer-gap-xl);
           display: flex;
           flex-direction: row;
           gap: var(--composer-gap-md);
+          flex-wrap: wrap;
+          justify-content: center;
 
           .button {
             content: "";
@@ -59,8 +60,10 @@
       .card {
         .content {
           .action-buttons {
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             align-items: center;
+            justify-content: center;
             gap: var(--composer-gap-sm);
           }
         }
