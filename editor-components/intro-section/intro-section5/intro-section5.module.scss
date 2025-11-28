@@ -8,44 +8,10 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: var(--composer-gap-xl) 50px;
-
-  .background-media {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    pointer-events: none;
-
-    video {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  &.media-active {
-    min-height: 100vh;
-
-    .subtitle,
-    .title,
-    .description {
-      color: var(--color-white) !important;
-    }
-
-    .buttons {
-      .button {
-        color: var(--composer-font-color-secondary) !important;
-
-        &:hover {
-          content: "";
-        }
-      }
-    }
-  }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 100vh;
 
   &.overlay-active {
     &::before {
@@ -65,12 +31,15 @@
     position: relative;
     z-index: 2;
     width: 100%;
+    height: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 0;
+    min-height: inherit;
+    gap: var(--composer-gap-xl);
 
     .vertical-content {
       width: 100%;
@@ -79,77 +48,79 @@
       align-items: center !important;
       justify-content: center !important;
       text-align: center !important;
-      gap: var(--composer-gap-lg);
+      flex-grow: 1;
 
       .text-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--composer-gap-sm);
         width: 100%;
         max-width: 800px;
       }
 
       .subtitle {
-        display: flex !important;
-        justify-content: center !important;
         text-align: center !important;
-        width: 100% !important;
-        border: none !important;
         transform: none !important;
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-        background: transparent !important;
-        box-shadow: none !important;
+        margin-bottom: var(--composer-gap-sm) !important;
 
         &::before,
         &::after {
           display: none !important;
           content: none !important;
-          width: 0 !important;
-          height: 0 !important;
-          border: none !important;
+        }
+
+        &.badge {
+          background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%) !important;
+          padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
+          border-radius: var(--composer-border-radius-xl) !important;
+          width: fit-content !important;
+        }
+
+        &.with-image {
+          color: white !important;
+          background: transparent !important;
+          padding: 0 !important;
+          border-radius: 0 !important;
+          width: 100% !important;
         }
       }
 
       .title,
       .description {
-        width: 100% !important;
         text-align: center !important;
-        justify-content: center !important;
-        margin: 0 !important;
+
+        &.with-image {
+          color: white !important;
+        }
       }
     }
+  }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--composer-gap-md);
-      margin-top: var(--composer-gap-xl);
-      position: relative;
-      z-index: 2;
+  .bottom-icon {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--composer-gap-md);
+    position: relative;
+    z-index: 2;
 
-      a {
-        text-decoration: none;
-      }
+    a {
+      text-decoration: none;
+    }
 
       .button {
         transition: transform 0.3s ease;
-        font-size: 1.5rem;
+        font-size: 5rem;
         display: flex;
         align-items: center;
-        gap: var(--composer-gap-sm);
-        padding: 20px 40px;
+       
 
         .icon {
-          width: 30px;
-          height: 30px;
+          font-size: 5rem;
           display: flex;
-          align-items: center;
+          align-items: flex-end;
           justify-content: center;
-          size: 100px;
+          margin-bottom: 0 !important;
 
           :global(svg) {
             width: 100%;
@@ -164,7 +135,6 @@
       }
     }
   }
-}
 
 @keyframes bounce {
 
@@ -187,29 +157,40 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-lg) 40px;
+    min-height: 80vh;
 
-    &.media-active {
-      min-height: 80vh;
+    .max-content {
+      .bottom-icon {
+        .button {
+          font-size: 3rem;
+
+          .icon {
+            font-size: 3rem;
+          }
+        }
+      }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) 20px;
+    min-height: 70vh;
 
-    &.media-active {
-      min-height: 70vh;
-    }
-
-    .buttons {
-      flex-direction: column;
-      width: 100%;
-
-      .button {
+    .max-content {
+      .bottom-icon {
+        flex-direction: column;
         width: 100%;
-        justify-content: center;
+
+        .button {
+          width: 100%;
+          justify-content: center;
+          font-size: 2rem;
+
+          .icon {
+            font-size: 2rem;
+          }
+        }
       }
     }
   }

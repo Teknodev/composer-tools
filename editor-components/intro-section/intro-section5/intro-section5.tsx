@@ -55,7 +55,7 @@ class IntroSection5 extends BaseIntroSection {
       "Button",
       "",
       "",
-      "FaArrowDown",
+      "FaAngleDown",
       null,
       "Bare"
     );
@@ -85,85 +85,65 @@ class IntroSection5 extends BaseIntroSection {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
-
     const bgMedia = this.getPropValue("backgroundMedia") as TypeMediaInputValue;
     const hasOverlay = this.getPropValue("overlay");
-
     const buttons = this.castToObject<any[]>("buttons");
     const hasButtons = buttons && buttons.length > 0;
-
-    const hasBgMedia = bgMedia && bgMedia.url;
-
-    const containerClasses = [
-      this.decorateCSS("container"),
-      hasBgMedia ? this.decorateCSS("media-active") : "",
-      (hasOverlay && hasBgMedia) ? this.decorateCSS("overlay-active") : ""
-    ].filter(Boolean).join(" ");
+    const hasBgMedia = bgMedia && (bgMedia as any)?.url;
 
     return (
-      <Base.Container className={containerClasses}>
-        {hasBgMedia && (
-          <Base.Media 
-            value={bgMedia} 
-            className={this.decorateCSS("background-media")} 
-          />
-        )}
-
+      <Base.Container 
+        className={`${this.decorateCSS("container")} ${hasOverlay && hasBgMedia && this.decorateCSS("overlay-active")}`}
+        style={hasBgMedia ? { backgroundImage: `url(${(bgMedia as any).url})` } : {}}>
+        
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-            
-            {(subtitleExist || titleExist || descriptionExist) && (
-              <div className={this.decorateCSS("text-wrapper")}>
-                {subtitleExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
+            <div className={this.decorateCSS("text-wrapper")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBgMedia ? this.decorateCSS("with-image") : "badge"}`}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
 
-                {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
+              {this.castToString(title) && (
+                <Base.SectionTitle className={`${this.decorateCSS("title")} ${hasBgMedia && this.decorateCSS("with-image")}`}>
+                  {title}
+                </Base.SectionTitle>
+              )}
 
-                {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </div>
-            )}
-
-            {hasButtons && (
-              <div className={this.decorateCSS("buttons")}>
-                {buttons.map((button: any, index: number) => {
-                  const hasIcon = button.icon && button.icon.name;
-                  const hasText = this.castToString(button.text);
-                  const isAnimated = button.enableAnimation;
-
-                  if (!hasIcon && !hasText) return null;
-
-                  return (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button
-                        buttonType={button.type || "Link"}
-                        className={`${this.decorateCSS("button")} ${isAnimated ? this.decorateCSS("has-animation") : ""}`}
-                      >
-                        {hasText && button.text}
-                        {hasIcon && (
-                          <Base.Media value={button.icon} className={this.decorateCSS("icon")} />
-                        )}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
+              {this.castToString(description) && (
+                <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBgMedia && this.decorateCSS("with-image")}`}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+            </div>
           </Base.VerticalContent>
+
+          {hasButtons && (
+            <div className={this.decorateCSS("bottom-icon")}>
+              {buttons.map((button: any, index: number) => {
+                const hasIcon = button.icon && (button.icon.name || button.icon.url);
+                const hasText = this.castToString(button.text);
+                const isAnimated = button.enableAnimation;
+
+                if (!hasIcon && !hasText) return null;
+
+                return (
+                  <ComposerLink key={index} path={button.url}>
+                    <Base.Button
+                      buttonType={button.type || "Link"}
+                      className={`${this.decorateCSS("button")} ${isAnimated ? this.decorateCSS("has-animation") : ""}`}
+                    >
+                      {hasText && button.text}
+                      {hasIcon && (
+                        <Base.Media value={button.icon} className={this.decorateCSS("icon")} />
+                      )}
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
