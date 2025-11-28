@@ -11,10 +11,17 @@ jobs:
       PARENT_ORG: ${{ secrets.PARENT_ORG }}
       PARENT_REPO: ${{ secrets.PARENT_REPO }}
     steps:
+      - name: Echo URL
+        run: |
+          echo "Dispatch URL: https://api.github.com/repos/${PARENT_ORG}/${PARENT_REPO}/dispatches"
+
       - name: Trigger parent repository workflow
         run: |
+          URL="https://api.github.com/repos/${PARENT_ORG}/${PARENT_REPO}/dispatches"
+          echo "Calling: $URL"
+
           curl -X POST \
-            -H "Authorization: token ${{ secrets.PARENT_REPO_TOKEN }}" \
+            -H "Authorization: Bearer ${{ secrets.PARENT_REPO_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${PARENT_ORG}/${PARENT_REPO}/repository_dispatch \
+            "$URL" \
             -d '{"event_type":"submodule_updated"}'

@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-xl);
-    .titles {
+    .header {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -14,41 +14,56 @@
       
       .title {
         text-align: center;
-        font-size: 1.5rem;
         text-transform: uppercase;
         background: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
         background-clip: text;
         color: transparent;
         margin: 0px;
+        width: fit-content;
       }
-      .title-line {
+      .line {
         width: 2px;
         height: 2rem;
         background-color: var(--composer-font-color-primary);
         margin: 0px;
+        flex-shrink: 0;
       }
       .subtitle {
         text-align: center;
-        font-size: 3rem;
+        width: fit-content;
         margin: 0px;
         color: var(--composer-font-color-primary);
       }
     }
 
     .images-container {
-      gap: 1px;
+      gap: 0;
       &.lines-active{
-        background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
+        .image-item {
+          border-right: 1px solid var(--composer-tertiary-color);
+          border-bottom: 1px solid var(--composer-tertiary-color);
+          
+          &.no-right-border {
+            border-right: none;
+          }
+          
+          &.no-bottom-border {
+            border-bottom: none;
+          }
+        }
       }
       .image-item{
         background-color: var(--composer-html-background);
         display: flex;
         justify-content: center;
         align-items: center;
-        .image{
-          height: 120px;
-          width: 120px;
-          object-fit: contain;
+        min-width: 150px;
+        padding: var(--composer-gap-md);
+          .image{
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/1;
+            object-fit: contain;
         }
       }
     }
@@ -59,10 +74,35 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container{
     .max-content{
+      gap: var(--composer-gap-lg);
       .titles{
         flex-direction: column;
-        .title-line{
+        .line{
           display: none;
+        }
+      }
+      .images-container {
+        .image-item {
+          min-width: 120px;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container{
+    .max-content{
+      gap: var(--composer-gap-md);
+      .header {
+        flex-direction: column;
+      }
+      .images-container {
+        &.lines-active {
+          .image-item {
+            border-right: none !important;
+            border-bottom: 1px solid var(--composer-tertiary-color) !important;
+          }
         }
       }
     }

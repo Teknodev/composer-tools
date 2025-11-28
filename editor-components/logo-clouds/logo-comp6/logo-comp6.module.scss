@@ -1,27 +1,56 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
     .max-content {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xl);
         .heading {
-            .subtitle {content: "";}
-            .title {content: "";}
-            .description {content: "";}
+            .subtitle, .title, .description {
+                content: "";
+            }
         }
         .items {
             .card {
+                gap: var(--composer-gap-lg);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: var(--composer-gap-md);
                 .image {
                     object-fit: contain;
-                    width: 160px;
-                    height: 160px;
+                    width: clamp(120px, 12vw, 160px);
+                    height: clamp(120px, 12vw, 160px);
                 }
                 .text {
                     flex: 1;
                     color: var(--composer-font-color-primary);
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+            .items {
+                .card {
+                    flex-direction: column;
+
+                    &.center {
+                        .text {
+                            text-align: center;
+                        }
+                    }
+
+                    .image {
+                        width: 100%;
+                        height: 80px;
+                        object-fit: contain;
+                    }
                 }
             }
         }
