@@ -6,6 +6,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
+
 type CardType = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
