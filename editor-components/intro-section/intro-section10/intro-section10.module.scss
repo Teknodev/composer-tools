@@ -55,6 +55,23 @@
           line-height: 1.1;
           margin: 0;
           text-align: left;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          
+          /* Dönen kelime için stil */
+          .rotating-word {
+            color: var(--composer-primary-color);
+            position: relative;
+            display: inline-block;
+            min-width: 200px;
+            
+            .cursor {
+              animation: blink 1s infinite;
+              margin-left: 2px;
+              color: var(--composer-primary-color);
+            }
+          }
         }
       }
 
@@ -182,6 +199,16 @@
   }
 }
 
+/* İmleç yanıp sönme animasyonu */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 80px 0;
@@ -203,6 +230,10 @@
           .title {
             font-size: clamp(1.8rem, 6vw, 3rem);
             text-align: left;
+            
+            .rotating-word {
+              min-width: 150px;
+            }
           }
         }
 
@@ -237,6 +268,13 @@
           .title {
             font-size: clamp(1.6rem, 8vw, 2.5rem);
             text-align: left;
+            flex-direction: column;
+            align-items: flex-start;
+            
+            .rotating-word {
+              min-width: 120px;
+              margin-top: 0.5rem;
+            }
           }
         }
         .right-content {
