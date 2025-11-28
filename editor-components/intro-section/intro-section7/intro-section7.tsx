@@ -11,7 +11,7 @@ type ButtonType = {
     type: any;
 }
 
-type StatType = {
+type TextType = {
     value: React.JSX.Element;
     label: React.JSX.Element;
 }
@@ -70,8 +70,8 @@ class IntroSection7 extends BaseIntroSection {
 
         this.addProp({
             type: "object",
-            key: "stats",
-            displayer: "Stat",
+            key: "texts",
+            displayer: "Text",
             value: [
                 { type: "string", key: "label", displayer: "Label", value: "Starting at only" },
                 { type: "string", key: "value", displayer: "Value", value: "$2.95/mo" },
@@ -89,11 +89,11 @@ class IntroSection7 extends BaseIntroSection {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<ButtonType[]>("buttons") || [];
-        const statProp = this.castToObject<StatType>("stats");
-        const statValueStr = this.castToString(statProp?.value);
-        const statLabelStr = this.castToString(statProp?.label);
-        const hasStat = statValueStr || statLabelStr;
-        const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0 || hasStat;
+        const textProp = this.castToObject<TextType>("texts");
+        const textValueStr = this.castToString(textProp?.value);
+        const textLabelStr = this.castToString(textProp?.label);
+        const hasText = textValueStr || textLabelStr;
+        const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0 || hasText;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -104,8 +104,8 @@ class IntroSection7 extends BaseIntroSection {
                                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
                                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
                                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
-                                {(buttons.length > 0 || hasStat) && (
-                                    <div className={this.decorateCSS("btn-stats-content")}>
+                                {(buttons.length > 0 || hasText) && (
+                                    <div className={this.decorateCSS("btn-text-content")}>
                                         {buttons.length > 0 && (
                                             <div className={this.decorateCSS("button-container")}>
                                                 {buttons.map((item: ButtonType, index: number) => {
@@ -124,17 +124,17 @@ class IntroSection7 extends BaseIntroSection {
                                                 })}
                                             </div>
                                         )}
-                                        {hasStat && (
-                                            <div className={this.decorateCSS("stat-container")}>
-                                                <div className={this.decorateCSS("stat")}>
-                                                    {statLabelStr && (
-                                                        <Base.P className={this.decorateCSS("stat-label")}>
-                                                            {statProp.label}
+                                        {hasText && (
+                                            <div className={this.decorateCSS("text-container")}>
+                                                <div className={this.decorateCSS("text")}>
+                                                    {textLabelStr && (
+                                                        <Base.P className={this.decorateCSS("text-label")}>
+                                                            {textProp.label}
                                                         </Base.P>
                                                     )}
-                                                    {statValueStr && (
-                                                        <div className={this.decorateCSS("stat-value")}>
-                                                            {statProp.value}
+                                                    {textValueStr && (
+                                                        <div className={this.decorateCSS("text-value")}>
+                                                            {textProp.value}
                                                         </div>
                                                     )}
                                                 </div>
