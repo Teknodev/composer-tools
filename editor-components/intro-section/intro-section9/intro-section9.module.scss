@@ -1,0 +1,73 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    .card {
+      padding: 80px 50px;
+      border-radius: var(--border-radius-md);
+      background: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        var(--composer-font-color-primary) 5%
+      );
+      .content {
+        align-items: center;
+
+        .title {
+          text-align: center;
+        }
+
+        .subtitle {
+          text-align: center;
+
+          transform: translateX(0);
+          &::before {
+            display: none;
+          }
+        }
+
+        .description {
+          text-align: center;
+        }
+
+        .action-buttons {
+          display: flex;
+          flex-direction: row;
+          gap: var(--composer-gap-md);
+          flex-wrap: wrap;
+          justify-content: center;
+
+          .button {
+            content: "";
+            .button-text {
+              content: "";
+            }
+            .button-icon {
+              display: flex;
+              content: "";
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .card {
+        .content {
+          .action-buttons {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: var(--composer-gap-sm);
+          }
+        }
+      }
+    }
+  }
+}
