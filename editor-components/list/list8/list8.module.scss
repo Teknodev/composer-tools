@@ -10,7 +10,6 @@
     .section {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-xl);
       
       .header-section {
         .subtitle {
@@ -38,6 +37,11 @@
         .description {
           content: "";
         }
+      }
+
+      .header-section + .items-wrapper,
+      .description-wrapper + .items-wrapper {
+        margin-top: var(--composer-gap-xl);
       }
 
       .items-wrapper {

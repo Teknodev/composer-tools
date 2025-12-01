@@ -36,12 +36,6 @@ class List11 extends BaseList {
         });
         this.addProp({
             type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "",
-        });
-        this.addProp({
-            type: "string",
             key: "subTitle",
             displayer: "Description",
             value: "We focus on helping you to make useful content more accessible with an utlimate goal for a good sharing profit as a content creator."
@@ -244,10 +238,8 @@ class List11 extends BaseList {
         const listItems = this.castToObject<ListItems[]>("listItems");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
-        const subTitle = this.getPropValue("subTitle");
-        const descriptionProp = this.getPropValue("description");
+        const description = this.getPropValue("subTitle");
         const imageOverlay = this.getPropValue("overlay");
-        const description = this.castToString(descriptionProp) ? descriptionProp : subTitle;
         const button = this.castToObject<any>("button");
         const buttonText = this.castToString(button?.text);
 

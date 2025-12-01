@@ -34,17 +34,22 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
     position: relative;
     z-index: 2;
     .header {
       .subtitle {
         content: "";
-        color: var(--composer-primary-color);
         &::before {
           background-color: currentColor;
         }
-        &.dark { color: white; }
+        &.dark {
+          color: white;
+          padding: 0 !important;
+          background: transparent !important;
+          &::before {
+            background-color: currentColor;
+          }
+        }
       }
       .header-title {
         content: "";
@@ -71,10 +76,9 @@
           position: relative;
           display: flex;
           flex-direction: column;
-          height: 100%;
           border-radius: var(--composer-border-radius-sm);
           background-color: var(--composer-html-background);
-          padding: var(--composer-gap-xl) var(--composer-gap-lg);
+          padding: var(--composer-gap-lg);
           gap: var(--composer-gap-md);
           transition: all var(--composer-transition-duration-normal) ease;
 

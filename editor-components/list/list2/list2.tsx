@@ -395,48 +395,55 @@ class List2 extends BaseList {
                   phone: 1,
                 }}
               >
-                {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => (
-                  <ComposerLink key={index} path={item.url}>
-                    <div
-                      className={this.decorateCSS("card")}
-                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                    >
-                      {item.image && (
-                        <div className={this.decorateCSS("image-container")}>
-                          <Base.Media className={this.decorateCSS("card-image")} value={item.image} />
-                          {imageOverlay && (
-                            <div className={this.decorateCSS("overlay")} />
-                          )}
-                        </div>
-                      )}
-                      <div className={this.decorateCSS("overlay-gradient")}></div>
-                      <div className={this.decorateCSS("card-content")}>
-                        <div className={this.decorateCSS("stick")}></div>
-                        <div className={this.decorateCSS("category")}>
-                          {this.castToString(item.text) && (
-                            <Base.H4 className={this.decorateCSS("category-name")}>
-                              {item.text}
-                            </Base.H4>
-                          )}
-                          {(this.castToString(item.count) || this.castToString(item.label)) && (
-                            <div className={this.decorateCSS("count-badge")}>
-                              {this.castToString(item.count) && (
-                                <Base.P className={this.decorateCSS("count-value")}>
-                                  {item.count}
-                                </Base.P>
-                              )}
-                              {this.castToString(item.label) && (
-                                <Base.P className={this.decorateCSS("count-label")}>
-                                  {item.label}
-                                </Base.P>
-                              )}
-                            </div>
-                          )}
+                {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
+                  const hasImage = !!item.image;
+                  const cardClasses = [this.decorateCSS("card")];
+                  if (!hasImage) {
+                    cardClasses.push(this.decorateCSS("card-no-image"));
+                  }
+                  return (
+                    <ComposerLink key={index} path={item.url}>
+                      <div
+                        className={cardClasses.join(" ")}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
+                        {hasImage && (
+                          <div className={this.decorateCSS("image-container")}>
+                            <Base.Media className={this.decorateCSS("card-image")} value={item.image} />
+                            {imageOverlay && (
+                              <div className={this.decorateCSS("overlay")} />
+                            )}
+                          </div>
+                        )}
+                        <div className={this.decorateCSS("overlay-gradient")}></div>
+                        <div className={this.decorateCSS("card-content")}>
+                          <div className={this.decorateCSS("stick")}></div>
+                          <div className={this.decorateCSS("category")}>
+                            {this.castToString(item.text) && (
+                              <Base.H4 className={this.decorateCSS("category-name")}>
+                                {item.text}
+                              </Base.H4>
+                            )}
+                            {(this.castToString(item.count) || this.castToString(item.label)) && (
+                              <div className={this.decorateCSS("count-badge")}>
+                                {this.castToString(item.count) && (
+                                  <Base.P className={this.decorateCSS("count-value")}>
+                                    {item.count}
+                                  </Base.P>
+                                )}
+                                {this.castToString(item.label) && (
+                                  <Base.P className={this.decorateCSS("count-label")}>
+                                    {item.label}
+                                  </Base.P>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </ComposerLink>
-                ))}
+                    </ComposerLink>
+                  );
+                })}
               </Base.ListGrid>
             )}
             {(this.getComponentState("imageCount") < cards.length) && this.castToString(buttonType.text) && (

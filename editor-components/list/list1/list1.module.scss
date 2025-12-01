@@ -9,7 +9,6 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
     align-items: stretch;
 
     .header {
@@ -18,7 +17,6 @@
       align-items: flex-start;
       text-align: left;
       width: 100%;
-      gap: var(--composer-gap-xs);
       padding: 0 var(--composer-gap-md);
 
       .description {
@@ -165,10 +163,10 @@
           &::after {
             content: "";
             position: absolute;
-            width: calc(100% + var(--composer-gap-md) * 4);
+            width: calc(100% + var(--composer-gap-sm) * 4);
             height: 85%;
             bottom: calc(-2 * var(--composer-gap-md));
-            left: calc(0px - 2 * var(--composer-gap-md));
+            left: calc(20px - 2 * var(--composer-gap-md));
             background-color: var(--composer-primary-color);
             z-index: -1;
             border-radius: var(--composer-border-radius-md);
