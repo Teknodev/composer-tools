@@ -229,8 +229,8 @@
   margin: 0;
   text-align: left !important;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
 }
 
 .subtitle {
