@@ -40,7 +40,7 @@ class About13 extends BaseAbout {
           "button",
           "Button",
           "Learn More",
-          null,
+          "",
           "",
           null,
           "Link"
@@ -82,7 +82,6 @@ class About13 extends BaseAbout {
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
 
-    // Butonların geçerli olup olmadığını kontrol et
     const validButtons = Array.isArray(buttons)
       ? buttons.filter((item) => {
           const text = this.castToString(item.text || "");
@@ -92,7 +91,6 @@ class About13 extends BaseAbout {
         })
       : [];
 
-    // İçeriğin olup olmadığını kontrol et
     const isContentVisible =
       this.castToString(subtitle) ||
       this.castToString(title) ||
@@ -134,23 +132,21 @@ class About13 extends BaseAbout {
                 {validButtons.length > 0 && (
                   <div className={this.decorateCSS("buttons-wrapper")}>
                     {validButtons.map((item, index) => {
-                      const buttonText = this.castToString(item.text || "");
-                      const buttonUrl = item.url || "#";
-                      const iconName = (item as any)?.icon?.name;
-                      const hasValidIcon = iconName && iconName !== "";
+                      const buttonTextExist = this.castToString(item.text || "");
+                      const iconExist = item.icon && item.icon.name;
                       return (
-                        <ComposerLink key={index} path={buttonUrl}>
+                        <ComposerLink key={index} path={item.url}>
                           <Base.Button
                             buttonType={item.type}
                             className={this.decorateCSS("button")}
                           >
-                            {hasValidIcon && (
+                            {iconExist && (
                               <Base.Media
-                                className={this.decorateCSS("button-icon")}
-                                value={{ type: "icon", name: iconName }}
+                                value={item.icon}
+                                className={this.decorateCSS("icon")}
                               />
                             )}
-                            {buttonText && (
+                            {buttonTextExist && (
                               <Base.P className={this.decorateCSS("button-text")}>
                                 {item.text}
                               </Base.P>

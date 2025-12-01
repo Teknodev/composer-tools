@@ -69,14 +69,14 @@
 .button {
   display: flex;
   align-items: center;
-  gap: var(--composer-gap-xs);
+  justify-content: center;
 }
 
 .button-text {
   margin: 0;
 }
 
-.button-icon {
+.icon {
   width: 1.25em;
   height: 1.25em;
   display: flex;
@@ -108,9 +108,7 @@
     .image {
       width: 100%;
       height: 500px;
-      /* Yüksekliği sabitleyerek sadece yana uzamasını sağlar */
       object-fit: cover;
-      /* Görselin bozulmadan alanı kaplamasını sağlar */
     }
   }
 
@@ -119,7 +117,6 @@
 
     &.full-width .image {
       height: auto;
-      /* Mobilde doğal yüksekliğine dönebilir veya ayarlanabilir */
       max-height: 400px;
     }
   }
