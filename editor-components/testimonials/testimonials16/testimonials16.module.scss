@@ -19,6 +19,43 @@
     .card {
       background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     }
+    
+    .quote {
+      color: var(--composer-font-color-primary) !important;
+      text-align: left !important;
+      justify-content: flex-start !important;
+      :global(*) {
+        color: var(--composer-font-color-primary) !important;
+      }
+    }
+    
+    .quote-icon {
+      color: var(--composer-font-color-primary) !important;
+      :global(*) {
+        color: var(--composer-font-color-primary) !important;
+      }
+    }
+    
+    .author {
+      color: var(--composer-font-color-primary) !important;
+      :global(*) {
+        color: var(--composer-font-color-primary) !important;
+      }
+    }
+    
+    .role,
+    .role-company,
+    .role-company span,
+    .author-separator {
+      color: var(--composer-tertiary-color) !important;
+      :global(*) {
+        color: var(--composer-tertiary-color) !important;
+      }
+    }
+    
+    .author-divider {
+      background: var(--composer-tertiary-color) !important;
+    }
   }
 
   &.with-background {
@@ -76,6 +113,16 @@
       margin-left: 0 !important;
       padding-left: 0 !important;
       left: 0 !important;
+    }
+    
+    .role,
+    .role-company,
+    .role-company span,
+    .author-separator {
+      color: rgba(0, 0, 0, 0.7) !important;
+      :global(*) {
+        color: rgba(0, 0, 0, 0.7) !important;
+      }
     }
   }
 }
