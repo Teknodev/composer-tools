@@ -40,7 +40,7 @@ class About12 extends BaseAbout {
       },
       value: {
         type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8d39496aa1002ca48910?alt=media",
       },
     });
 
@@ -48,24 +48,14 @@ class About12 extends BaseAbout {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-       INPUTS.BUTTON(
-          "button",
-          "Button",
-          "",
-          "",
-          "",
-          null,
-          "Primary"
-        ),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
     });
 
     this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: false,
+      value: true,
     });
   }
 
@@ -88,8 +78,7 @@ class About12 extends BaseAbout {
 
     const hasAnyButton =
       Array.isArray(buttons) &&
-      buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
-
+      buttons.some((b: any) => this.castToString(b?.text) || b?.icon?.name);
     const hasRightContainer = !!(
       hasTitle ||
       hasSubtitle ||
@@ -117,15 +106,13 @@ class About12 extends BaseAbout {
                     : ""
                 }`}
               >
-                <div className={this.decorateCSS("media-wrapper")}>
-                  <Base.Media
-                    value={image}
-                    className={this.decorateCSS("media-image")}
-                  />
-                  {overlay && (
-                    <div className={this.decorateCSS("thumbnail-overlay")} />
-                  )}
-                </div>
+                <Base.Media
+                  value={image}
+                  className={this.decorateCSS("media-image")}
+                />
+                {overlay && (
+                  <div className={this.decorateCSS("thumbnail-overlay")} />
+                )}
               </div>
             )}
 
@@ -160,51 +147,44 @@ class About12 extends BaseAbout {
                   )}
 
                   {hasAnyButton && (
-                    <div className={this.decorateCSS("actions-wrapper")}>
-                      {hasAnyButton && (
-                        <div className={this.decorateCSS("action-buttons")}>
-                          {buttons.map(
-                            (item: INPUTS.CastedButton, index: number) => {
-                              const btnTextExist = this.castToString(item.text);
-                              const buttonIcon = item.icon;
-                              if (!btnTextExist && !buttonIcon) {
-                                return null;
-                              }
-                              const buttonUrl = item.url || "#";
-                              return (
-                                <div
-                                  key={`is6-btn-${index}`}
-                                  className={this.decorateCSS("button-wrapper")}
-                                >
-                                  <ComposerLink path={buttonUrl}>
-                                    <Base.Button
-                                      buttonType={item.type}
-                                      className={this.decorateCSS("button")}
-                                    >
-                                      {buttonIcon && (
-                                        <Base.Media
-                                          value={buttonIcon}
-                                          className={this.decorateCSS(
-                                            "button-icon"
-                                          )}
-                                        />
-                                      )}
-                                      {btnTextExist && (
-                                        <Base.P
-                                          className={this.decorateCSS(
-                                            "button-text"
-                                          )}
-                                        >
-                                          {item.text}
-                                        </Base.P>
-                                      )}
-                                    </Base.Button>
-                                  </ComposerLink>
-                                </div>
-                              );
-                            }
-                          )}
-                        </div>
+                    <div className={this.decorateCSS("action-buttons")}>
+                      {buttons.map(
+                        (item: INPUTS.CastedButton, index: number) => {
+                          const btnTextExist = this.castToString(item.text);
+                          const buttonIcon = item.icon;
+
+                          const isIconExist = buttonIcon?.name;
+                          
+                          if (!btnTextExist && !isIconExist) {
+                            return null;
+                          }
+                          const buttonUrl = item.url || "#";
+                          return (
+                            <ComposerLink
+                              path={buttonUrl}
+                              key={`is6-btn-${index}`}
+                            >
+                              <Base.Button
+                                buttonType={item.type}
+                                className={this.decorateCSS("button")}
+                              >
+                                {isIconExist && (
+                                  <Base.Media
+                                    value={buttonIcon}
+                                    className={this.decorateCSS("button-icon")}
+                                  />
+                                )}
+                                {btnTextExist && (
+                                  <Base.P
+                                    className={this.decorateCSS("button-text")}
+                                  >
+                                    {item.text}
+                                  </Base.P>
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        }
                       )}
                     </div>
                   )}
