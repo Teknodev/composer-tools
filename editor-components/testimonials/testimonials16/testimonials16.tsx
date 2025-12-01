@@ -551,8 +551,15 @@ class Testimonials16 extends Testimonials {
                                   {portrait && <Base.Media value={portrait} className={this.decorateCSS("mobile-author-image")} />}
                                   <div className={this.decorateCSS("mobile-author-info")}>
                                     {hasAuthor && <Base.P className={this.decorateCSS("author")}>{item.author}</Base.P>}
-                                    {hasRole && <Base.P className={this.decorateCSS("role")}>{item.role}</Base.P>}
-                                    {hasCompany && <Base.P className={this.decorateCSS("company")}>{item.company}</Base.P>}
+                                    {(hasRole || hasCompany) && (
+                                      <Base.P className={this.decorateCSS("role")}>
+                                        <span className={this.decorateCSS("role-company")}>
+                                          {hasRole && <span>{item.role}</span>}
+                                          {hasRole && hasCompany && <span>, </span>}
+                                          {hasCompany && <span>{item.company}</span>}
+                                        </span>
+                                      </Base.P>
+                                    )}
                                   </div>
                                 </div>
                               )}

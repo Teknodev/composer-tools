@@ -159,14 +159,19 @@
   display: flex;
   flex-direction: column;
   gap: var(--composer-border-width-md);
-  color: var(--composer-font-color-primary) !important;
-  :global(*) {
-    color: var(--composer-font-color-primary) !important;
-  }
 }
 
 .subtitle {
   margin: 0;
+  position: relative;
+  left: 0 !important;
+  text-align: left !important;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  align-self: flex-start !important;
 }
 
 .subtitle-badge-hidden {
@@ -185,11 +190,7 @@
 }
 
 .title {
-  color: var(--composer-font-color-primary) !important;
   margin: 0;
-  :global(*) {
-    color: var(--composer-font-color-primary) !important;
-  }
 }
 
 .links {
@@ -289,7 +290,8 @@
   width: 100%;
   border-radius: var(--composer-border-radius-sm);
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
+  margin-top: 10px;
 }
 
 .portrait {
@@ -378,7 +380,7 @@
 
 .mobile-author-image {
   width: 112px;
-  height: 112px;
+  height: 140px;
   border-radius: var(--composer-border-radius-sm);
   overflow: hidden;
   flex-shrink: 0;
@@ -394,6 +396,7 @@
 .mobile-author-info {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1px;
 }
 
@@ -679,7 +682,7 @@
   }
 
   .card-body {
-    padding: 14px 13px 13px;
+    padding: 14px 14px 14px;
     gap: 13px;
     min-height: 200px;
   }
@@ -698,7 +701,11 @@
   }
 
   .mobile-author-info .company {
-    display: block;
+    display: inline;
+  }
+
+  .mobile-author-info {
+    margin-top: 95px;
   }
 
   .nav-wrapper {
