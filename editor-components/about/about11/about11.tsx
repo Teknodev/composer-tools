@@ -22,6 +22,13 @@ class About11 extends BaseAbout {
     });
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
       type: "media",
       key: "image",
       displayer: "Image",
@@ -144,15 +151,20 @@ class About11 extends BaseAbout {
   }
   render() {
     const image = this.getPropValue("image");
+    const isVideo = image?.type === "video";
 
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
     const iconBackground = this.getPropValue("iconBackground");
 
     const rightItems = this.castToObject<Icon[]>("right-items") || [];
 
     const hasTitle = this.castToString(title);
+    const hasSubtitle = this.castToString(subtitle);
     const hasDescription = this.castToString(description);
+    const hasRightContent =
+      hasTitle || hasSubtitle || hasDescription || rightItems.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -160,67 +172,74 @@ class About11 extends BaseAbout {
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {image && (
               <Base.GridCell className={this.decorateCSS("left")}>
-                <div className={this.decorateCSS("image-wrapper")}>
+                <div className={this.decorateCSS(isVideo ? "video-wrapper" : "image-wrapper")}>
                   <Base.Media
                     value={this.getPropValue("image")}
-                    className={this.decorateCSS("image")}
+                    className={this.decorateCSS(isVideo ? "video" : "image")}
                   />
                   {this.getPropValue("overlay") && (
                     <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
               </Base.GridCell>
-            )}
+            )}            {hasRightContent && (
+              <Base.GridCell className={this.decorateCSS("right")}>
+                <Base.VerticalContent
+                  className={this.decorateCSS("vertical-content")}
+                >
+                  {hasTitle && (
+                    <Base.SectionTitle
+                      className={this.decorateCSS("section-title")}
+                    >
+                      {title}
+                    </Base.SectionTitle>
+                  )}
+                  {hasSubtitle && (
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("section-subtitle")}
+                    >
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
 
-            <Base.GridCell className={this.decorateCSS("right")}>
-              <Base.VerticalContent
-                className={this.decorateCSS("vertical-content")}
-              >
-                {hasTitle && (
-                  <Base.SectionTitle
-                    className={this.decorateCSS("section-title")}
-                  >
-                    {title}
-                  </Base.SectionTitle>
-                )}
+                  {hasDescription && (
+                    <Base.SectionDescription
+                      className={this.decorateCSS("section-description")}
+                    >
+                      {description}
+                    </Base.SectionDescription>
+                  )}
 
-                {hasDescription && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("section-description")}
-                  >
-                    {description}
-                  </Base.SectionDescription>
-                )}
-
-                {rightItems.length > 0 && (
-                  <div className={this.decorateCSS("icons")}>
-                    {rightItems.map((icons: Icon, i: number) => {
-                      return (
-                        icons.icon && (
-                          <ComposerLink
-                            key={`right-icon-${i}`}
-                            path={icons.link}
-                          >
-                            <div
-                              className={this.decorateCSS(
-                                iconBackground
-                                  ? "icon-wrapper"
-                                  : "icon-wrapper-no-bg"
-                              )}
+                  {rightItems.length > 0 && (
+                    <div className={this.decorateCSS("icons")}>
+                      {rightItems.map((icons: Icon, i: number) => {
+                        return (
+                          icons.icon && (
+                            <ComposerLink
+                              key={`right-icon-${i}`}
+                              path={icons.link}
                             >
-                              <Base.Media
-                                value={icons.icon}
-                                className={this.decorateCSS("icon")}
-                              />
-                            </div>
-                          </ComposerLink>
-                        )
-                      );
-                    })}
-                  </div>
-                )}
-              </Base.VerticalContent>
-            </Base.GridCell>
+                              <div
+                                className={this.decorateCSS(
+                                  iconBackground
+                                    ? "icon-wrapper"
+                                    : "icon-wrapper-no-bg"
+                                )}
+                              >
+                                <Base.Media
+                                  value={icons.icon}
+                                  className={this.decorateCSS("icon")}
+                                />
+                              </div>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
+                </Base.VerticalContent>
+              </Base.GridCell>
+            )}
           </Base.ContainerGrid>
         </Base.MaxContent>
       </Base.Container>
