@@ -15,6 +15,14 @@
 
   &.no-background {
     background: var(--composer-html-background);
+    
+    .card {
+      background: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        var(--composer-font-color-primary) 5%
+      );
+    }
   }
 
   &.with-background {
@@ -63,6 +71,11 @@
     .navigation-dot-active {
       background: rgba(255, 255, 255, 0.38);
       border-color: rgba(255, 255, 255, 0.5);
+    }
+    .subtitle {
+      margin-left: 0 !important;
+      padding-left: 0 !important;
+      left: 0 !important;
     }
   }
 }
@@ -191,6 +204,17 @@
 
 .title {
   margin: 0;
+  text-align: left !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.header-text .description {
+  text-align: left !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .links {
@@ -414,6 +438,10 @@
     color: #000 !important;
   }
   margin: 0;
+  text-align: left !important;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .quote-row {
@@ -433,11 +461,14 @@
 
 .author-block {
   display: flex;
+  justify-content: flex-start !important;
   align-items: baseline;
   gap: 4px;
   padding-top: var(--composer-border-width-md);
   margin-top: 0;
+  margin: 0;
   flex-wrap: wrap;
+  text-align: left !important;
 }
 
 .author-divider {
@@ -456,10 +487,18 @@
   display: inline-flex;
   align-items: baseline;
   width: auto !important;
-  margin: 0;
+  margin: 0 !important;
+  // margin-left: 0 !important;
+  // margin-right: 0 !important;
   color: black !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
   :global(*) {
     color: black !important;
+    text-align: left !important;
+  }
+  span {
+    text-align: left !important;
   }
 }
 
@@ -481,6 +520,8 @@
   width: auto;
   margin: 0;
   line-height: 1.1;
+  text-align: left !important;
+  justify-content: flex-start !important;
 }
 
 .role-company {
@@ -489,6 +530,11 @@
   gap: 4px;
   flex-wrap: nowrap;
   white-space: nowrap;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  span {
+    text-align: left !important;
+  }
 }
 
 .navigation-button {
@@ -622,6 +668,7 @@
     opacity: 0;
   }
 }
+
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
