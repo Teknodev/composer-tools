@@ -48,6 +48,13 @@ class IntroSection11 extends BaseIntroSection {
         ),
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "spacer",
+      displayer: "Spacer",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -65,27 +72,33 @@ class IntroSection11 extends BaseIntroSection {
     const hasAnyButton =
       Array.isArray(buttons) &&
       buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+    const showSpacer = this.getPropValue("spacer");
+    const hasVerticalContent = hasTitle || hasSubtitle || hasDescription;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
-            {hasSubtitle && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {subtitle}
-              </Base.SectionSubTitle>
-            )}
-            {hasTitle && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
-            )}
-            {hasDescription && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {description}
-              </Base.SectionDescription>
+          <div className={this.decorateCSS("content")}>
+            {hasVerticalContent && (
+              <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                {hasSubtitle && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {hasTitle && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {hasDescription && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
             )}
 
             {hasAnyButton && (
@@ -121,8 +134,8 @@ class IntroSection11 extends BaseIntroSection {
               </div>
             )}
 
-            <div className={this.decorateCSS("spacer")}></div>
-          </Base.VerticalContent>
+            {showSpacer && <div className={this.decorateCSS("spacer")}></div>}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

@@ -13,9 +13,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
       text-align: center;
       justify-content: center;
-      position: relative;
+
+      &:has(.vertical-content):has(.action-buttons) {
+        gap: var(--composer-gap-lg);
+      }
+
+      .vertical-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      &:has(.spacer):not(:has(.action-buttons)) .vertical-content {
+        padding-bottom: 70px;
+      }
 
       .subtitle {
         text-align: center;
@@ -32,7 +46,6 @@
       .description {
         text-align: center;
       }
-
       .action-buttons {
         position: relative;
         z-index: 2;
@@ -54,23 +67,27 @@
           padding: var(--padding-xxl) !important;
 
           .button-icon {
-            width: 25px;
-            height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
+
+            svg {
+              width: 20px;
+              height: 30px;
+            }
           }
         }
-      }
 
-      .spacer {
-        background-color: var(--composer-html-background);
-        position: absolute;
-        bottom: 0;
-        height: 50px;
-        width: 100vw;
-        z-index: 1;
+        
       }
+      .spacer {
+          background-color: var(--composer-html-background);
+          position: absolute;
+          bottom: 0;
+          height: 50px;
+          width: 100vw;
+          z-index: 1;
+        }
     }
   }
 }
