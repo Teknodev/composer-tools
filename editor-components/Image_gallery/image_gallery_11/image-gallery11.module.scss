@@ -120,6 +120,15 @@
     background: transparent !important;
   }
 
+  .subtitle-with-bg.subtitle-transparent {
+    padding: 0 !important;
+    border-radius: 0 !important;
+    &::before {
+      content: none !important;
+      display: none !important;
+    }
+  }
+
   .heading.with-bg {
     align-items: flex-start;
 
@@ -153,6 +162,9 @@
     gap: var(--composer-gap-md);
     padding: 0;
     width: 100%;
+  }
+
+  .gallery-with-heading {
     margin-top: var(--composer-gap-xl);
   }
   .gallery-row {

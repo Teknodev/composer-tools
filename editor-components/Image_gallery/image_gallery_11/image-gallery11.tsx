@@ -334,6 +334,7 @@ class ImageGallery11 extends BaseImageGallery {
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
     const hasSubtitle = this.castToString(subtitle);
+    const hasTextContent = !!(hasSubtitle || hasTitle || hasDescription);
     const backgroundMedia = this.getPropValue("background") as TypeMediaInputValue | undefined;
     const isBackgroundImage = !!backgroundMedia && backgroundMedia.type === "image";
     const backgroundImage = isBackgroundImage ? backgroundMedia.url || "" : "";
@@ -370,7 +371,7 @@ class ImageGallery11 extends BaseImageGallery {
         )}
         {showOverlay && <div className={this.decorateCSS("background-overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(hasSubtitle || hasTitle || hasDescription) && (
+          {hasTextContent && (
             <div className={this.decorateCSS("content")}>
               <div className={this.decorateCSS("text-wrapper")}>
                 <div className={headingClasses}>
@@ -395,7 +396,13 @@ class ImageGallery11 extends BaseImageGallery {
           )}
         </Base.MaxContent>
         {rows.length > 0 && (
-          <div className={this.decorateCSS("gallery")}>
+          <div
+            className={
+              hasTextContent
+                ? `${this.decorateCSS("gallery")} ${this.decorateCSS("gallery-with-heading")}`
+                : this.decorateCSS("gallery")
+            }
+          >
               {rows.map((row: GalleryRow, rowIndex: number) => {
                 const isRightToLeft = rowIndex % 2 !== 0;
                 let duplicatedImages =
