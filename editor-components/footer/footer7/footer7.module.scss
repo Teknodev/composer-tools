@@ -1,7 +1,15 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) var(--composer-gap-xl);
+  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
   .max-content {
     .footer-page {
       display: flex;
@@ -13,8 +21,9 @@
         max-width: 20%;
 
         .image {
-          width: 200px;
-          height: 100px;
+           width: 200px;
+           height: var(--composer-gap-lg);
+           object-fit: cover;
         }
       }
 
@@ -33,7 +42,6 @@
           .link-element {
             .link-text {
               position: relative;
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -93,7 +101,6 @@
           justify-content: flex-end;
 
           .text {
-            font-size: 1rem;
             text-align: end;
             color: var(--composer-tertiary-color);
 
@@ -105,8 +112,9 @@
 
         &.full-width {
           max-width: 100%;
+          width: 100%;
 
-          .upper {
+          .upper, .bottom {
             justify-content: flex-start;
           }
         }
@@ -125,7 +133,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg);
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     .max-content {
       .footer-page {
         .left {
@@ -142,7 +150,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-md) !important;
     .max-content {
       .footer-page {
         flex-direction: column;

@@ -61,7 +61,7 @@ class CallToAction3Page extends BaseCallToAction {
     const buttons = this.castToObject<Button[]>("buttons");
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.decorateCSS("overlay-active")}`}
+        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.getPropValue("image") && this.decorateCSS("overlay-active")}`}
         style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
