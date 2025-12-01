@@ -1,6 +1,9 @@
 name: Notify Parent Repo
+
 on:
   push:
+    branches:
+      - main
     paths:
       - 'editor-components/**'
 
@@ -10,6 +13,7 @@ jobs:
     env:
       PARENT_ORG: ${{ secrets.PARENT_ORG }}
       PARENT_REPO: ${{ secrets.PARENT_REPO }}
+
     steps:
       - name: Echo URL
         run: |
