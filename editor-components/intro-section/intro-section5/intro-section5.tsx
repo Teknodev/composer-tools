@@ -59,7 +59,7 @@ class IntroSection5 extends BaseIntroSection {
       "Button",
       "",
       "",
-      "FaArrowDown",
+      "FaChevronDown",
       null,
       "Bare"
     );
