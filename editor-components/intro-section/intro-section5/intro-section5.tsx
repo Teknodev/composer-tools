@@ -1,5 +1,9 @@
 import * as React from "react";
-import { BaseIntroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
+import {
+  BaseIntroSection,
+  TypeMediaInputValue,
+  TypeUsableComponentProps
+} from "../../EditorComponent";
 import styles from "./intro-section5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -65,7 +69,7 @@ class IntroSection5 extends BaseIntroSection {
         type: "boolean",
         key: "enableAnimation",
         displayer: "Animation",
-        value: true
+        value: true,
       } as TypeUsableComponentProps);
     }
 
@@ -96,26 +100,31 @@ class IntroSection5 extends BaseIntroSection {
     const buttons = this.castToObject<any[]>("buttons");
     const hasButtons = buttons && buttons.length > 0;
 
-    const hasBgMedia = bgMedia && bgMedia.url;
+    const hasBgMedia = bgMedia && (bgMedia as any).url;
+    const isVideoBg = hasBgMedia && bgMedia.type === "video";
+    const isImageBg = hasBgMedia && bgMedia.type !== "video";
 
     const containerClasses = [
       this.decorateCSS("container"),
       hasBgMedia ? this.decorateCSS("media-active") : "",
-      (hasOverlay && hasBgMedia) ? this.decorateCSS("overlay-active") : ""
-    ].filter(Boolean).join(" ");
+      isImageBg ? this.decorateCSS("image-active") : "",
+      isVideoBg ? this.decorateCSS("video-active") : "",
+      hasOverlay && hasBgMedia ? this.decorateCSS("overlay-active") : ""
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     return (
       <Base.Container className={containerClasses}>
         {hasBgMedia && (
-          <Base.Media 
-            value={bgMedia} 
-            className={this.decorateCSS("background-media")} 
+          <Base.Media
+            value={bgMedia}
+            className={this.decorateCSS("background-media")}
           />
         )}
 
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-            
             {(subtitleExist || titleExist || descriptionExist) && (
               <div className={this.decorateCSS("text-wrapper")}>
                 {subtitleExist && (
@@ -151,11 +160,16 @@ class IntroSection5 extends BaseIntroSection {
                     <ComposerLink key={index} path={button.url}>
                       <Base.Button
                         buttonType={button.type || "Link"}
-                        className={`${this.decorateCSS("button")} ${isAnimated ? this.decorateCSS("has-animation") : ""}`}
+                        className={`${this.decorateCSS("button")} ${
+                          isAnimated ? this.decorateCSS("has-animation") : ""
+                        }`}
                       >
                         {hasText && button.text}
                         {hasIcon && (
-                          <Base.Media value={button.icon} className={this.decorateCSS("icon")} />
+                          <Base.Media
+                            value={button.icon}
+                            className={this.decorateCSS("icon")}
+                          />
                         )}
                       </Base.Button>
                     </ComposerLink>
