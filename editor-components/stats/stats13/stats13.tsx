@@ -6,6 +6,16 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { useState, useEffect } from "react";
 
+type RatingItemType = {
+    icon: any;
+}
+
+type StatItemType = {
+    number: React.JSX.Element;
+    symbol: React.JSX.Element;
+    description: React.JSX.Element;
+}
+
 class Stats13 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
@@ -28,9 +38,10 @@ class Stats13 extends BaseStats {
             value: false,
         });
 
+
         this.addProp({
             type: "string",
-            key: "subTitle",
+            key: "subtitle",
             displayer: "Subtitle",
             value: ""
         })
@@ -51,7 +62,7 @@ class Stats13 extends BaseStats {
 
         this.addProp({
             type: "string",
-            key: "rating-number",
+            key: "ratingNumber",
             displayer: "Rating Number",
             value: "4.89",
         });
@@ -77,7 +88,7 @@ class Stats13 extends BaseStats {
             value: [
                 {
                     type: "object",
-                    key: "Icon",
+                    key: "icon",
                     displayer: "Icon",
                     value: [
                         {
@@ -96,7 +107,7 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "Icon",
+                    key: "icon",
                     displayer: "Icon",
                     value: [
                         {
@@ -115,7 +126,7 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "Icon",
+                    key: "icon",
                     displayer: "Icon",
                     value: [
                         {
@@ -134,7 +145,7 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "Icon",
+                    key: "icon",
                     displayer: "Icon",
                     value: [
                         {
@@ -153,7 +164,7 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "Icon",
+                    key: "icon",
                     displayer: "Icon",
                     value: [
                         {
@@ -185,7 +196,7 @@ class Stats13 extends BaseStats {
 
         this.addProp({
             type: "array",
-            key: "stats-items",
+            key: "statsItems",
             displayer: "Stats Items",
             value: [
                 {
@@ -314,123 +325,110 @@ class Stats13 extends BaseStats {
     render() {
         const image = this.getPropValue("image");
         const isImageExist = !!image?.url;
-        const rating = this.getPropValue("rating");
-        const ratingNumber = this.getPropValue("rating-number");
-        const subTitle = this.castToString(this.getPropValue("subTitle")) as string;
+        const ratingItems = this.castToObject<RatingItemType[]>("rating");
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleProp = this.getPropValue("title");
-        const description = this.castToString(this.getPropValue("description")) as string;
         const titleString = this.castToString(titleProp) as string;
+        const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableTextAnimation = this.getPropValue("enableTextAnimation");
         const enableStatAnimation = this.getPropValue("enableStatAnimation");
-        const statsItems = this.getPropValue("stats-items");
+        const statsItems = this.castToObject<StatItemType[]>("statsItems");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const enableOverlay = this.getPropValue("enableOverlay");
-        const hasContent = rating.length > 0 || !!titleString || buttons.length > 0 || statsItems.length > 0 || subTitle.length > 0 || description.length > 0;
+        const hasContent = ratingItems.length > 0 || !!titleString || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
 
         return (
-            <Base.Container isFull className={this.decorateCSS("container")}>
-                <div className={`${this.decorateCSS("wrapper")} ${!isImageExist ? this.decorateCSS("no-image") : ""} ${!hasContent ? this.decorateCSS("full-width-wrapper") : ""}`}>
-                    <Base.MaxContent className={` ${this.decorateCSS("left-content")} ${!image?.url ? this.decorateCSS("full-width") : ""}`}>
-                        {rating.length > 0 && (
-                            <Base.Row className={this.decorateCSS("rating-container")}>
-                                {this.castToObject<any>("rating").map((item: any, index: number) => {
-                                    return (
-                                        <div key={index} className={this.decorateCSS("rating-content")}>
-                                            <Base.Media
-                                                value={item.icon}
-                                                className={this.decorateCSS("icon")}
-                                            />
-                                        </div>
-                                    );
-                                })}
-                                <Base.SectionDescription className={this.decorateCSS("rating-number")}>{ratingNumber}</Base.SectionDescription>
-                            </Base.Row>
-                        )}
-                        {subTitle && (
-                            <Base.Row className={this.decorateCSS("sub-title-container")}>
-                                <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                                    {this.getPropValue("subTitle")}
-                                </Base.SectionSubTitle>
-                            </Base.Row>
-                        )}
-                        {titleString && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                <this.TypewriterText
-                                    content={titleProp}
-                                    text={titleString}
-                                    enableAnimation={enableTextAnimation}
-                                />
-                            </Base.SectionTitle>
-                        )}
-                        {description && description.length > 0 && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {this.getPropValue("description")}
-                            </Base.SectionDescription>
-                        )}
-                        <div className={this.decorateCSS("child-container")}>
-                            {buttons.length > 0 && (
-                                <Base.Row className={this.decorateCSS("button-container")}>
-                                    {buttons.map((item, index) => {
-                                        const buttonText = this.castToString(item.text || "");
-                                        const buttonUrl = item.url || "#";
-                                        if (!buttonText && !item.icon) return null;
-
-                                        return (
-                                            <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
-                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                    {item.icon && (
+            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist ? this.decorateCSS("no-image-container") : ""} ${!hasContent ? this.decorateCSS("no-left-content-container") : ""}`} isFull={true}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    <div className={this.decorateCSS("wrapper")}>
+                        {hasContent && (
+                            <div className={this.decorateCSS("left-content")}>
+                                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                                    {ratingItems.length > 0 && (
+                                        <Base.Row className={this.decorateCSS("rating-container")}>
+                                            {ratingItems.map((item: RatingItemType, index: number) => {
+                                                return (
+                                                    <div key={index} className={this.decorateCSS("rating-content")}>
                                                         <Base.Media
-                                                            className={this.decorateCSS("button-icon")}
-                                                            value={{ type: "icon", name: item.icon }}
+                                                            value={item.icon}
+                                                            className={this.decorateCSS("icon")}
                                                         />
-                                                    )}
-                                                    {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                                                </Base.Button>
-                                            </ComposerLink>
-                                        );
-                                    })}
-                                </Base.Row>
-                            )}
-                            {statsItems.length > 0 && (
-                                <Base.Row className={this.decorateCSS("stats-container")}>
-                                    {this.castToObject<any>("stats-items").map((item: any, index: number) => {
-                                        const numberValue = this.castToString(item.getPropValue("number")) as string;
-                                        const number = parseFloat(numberValue) || 0;
-                                        const symbol = this.castToString(item.getPropValue("symbol"));
-                                        const description = item.getPropValue("description");
+                                                    </div>
+                                                );
+                                            })}
+                                            <Base.SectionDescription className={this.decorateCSS("rating-number")}>{this.getPropValue("ratingNumber")}</Base.SectionDescription>
+                                        </Base.Row>
+                                    )}
+                                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
+                                    {titleString && (<Base.SectionTitle className={this.decorateCSS("title")}><this.TypewriterText content={titleProp} text={titleString} enableAnimation={enableTextAnimation} /></Base.SectionTitle>)}
+                                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
+                                    <div className={this.decorateCSS("child-container")}>
+                                        {buttons.length > 0 && (
+                                            <Base.Row className={this.decorateCSS("button-container")}>
+                                                {buttons.map((item, index) => {
+                                                    const buttonText = this.castToString(item.text || "");
+                                                    const buttonUrl = item.url || "#";
+                                                    if (!buttonText && !item.icon) return null;
 
-                                        return (
-                                            <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
-                                                <span className={this.decorateCSS("stat-number")}>
-                                                    {enableStatAnimation ? (
-                                                        <this.AnimatedNumber targetValue={number} duration={3000} />
-                                                    ) : (
-                                                        number
-                                                    )}
-                                                    <span>{symbol}</span>
-                                                </span>
-                                                <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
-                                            </div>
-                                        );
-                                    })}
-                                </Base.Row>
-                            )}
-                        </div>
-                    </Base.MaxContent>
-                    {isImageExist && (
-                        <div className={`${this.decorateCSS("right-content")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
-                            <div className={this.decorateCSS("image-wrapper")}>
-                                <Base.Media
-                                    value={image}
-                                    className={this.decorateCSS("image")}
-                                />
-                                {enableOverlay && (
-                                    <div className={this.decorateCSS("overlay")}></div>
-                                )}
+                                                    return (
+                                                        <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
+                                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                                {item.icon && (
+                                                                    <Base.Media
+                                                                        className={this.decorateCSS("button-icon")}
+                                                                        value={{ type: "icon", name: item.icon }}
+                                                                    />
+                                                                )}
+                                                                {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    );
+                                                })}
+                                            </Base.Row>
+                                        )}
+                                        {statsItems.length > 0 && (
+                                            <Base.Row className={this.decorateCSS("stats-container")}>
+                                                {statsItems.map((item: StatItemType, index: number) => {
+                                                    const numberAsString = this.castToString(item.number);
+                                                    const parsedNumber = parseFloat(numberAsString as string) || 0;
+                                                    const symbol = item.symbol;
+                                                    const description = item.description;
+
+                                                    return (
+                                                        <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
+                                                            <span className={this.decorateCSS("stat-number")}>
+                                                                {enableStatAnimation ? (
+                                                                    <this.AnimatedNumber targetValue={parsedNumber} duration={3000} />
+                                                                ) : (
+                                                                    parsedNumber
+                                                                )}
+                                                                <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>
+                                                            </span>
+                                                            <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </Base.Row>
+                                        )}
+                                    </div>
+                                </Base.VerticalContent>
                             </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                        {isImageExist && (
+                            <div className={this.decorateCSS("right-content")}>
+                                <div className={this.decorateCSS("image-wrapper")}>
+                                    <Base.Media
+                                        value={image}
+                                        className={this.decorateCSS("image")}
+                                    />
+                                    {enableOverlay && (
+                                        <div className={this.decorateCSS("overlay")}></div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </Base.MaxContent>
             </Base.Container>
         );
     }
