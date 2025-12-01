@@ -31,7 +31,8 @@ class IntroSection5 extends BaseIntroSection {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Nanotechnology immersion along the information highway will close the loop on focusing solely.",
+      value:
+        "Nanotechnology immersion along the information highway will close the loop on focusing solely.",
     });
 
     this.addProp({
@@ -142,7 +143,9 @@ class IntroSection5 extends BaseIntroSection {
                 )}
 
                 {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
                     {description}
                   </Base.SectionDescription>
                 )}
@@ -159,21 +162,26 @@ class IntroSection5 extends BaseIntroSection {
                   if (!hasIcon && !hasText) return null;
 
                   return (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button
-                        buttonType={button.type || "Link"}
-                        className={`${this.decorateCSS("button")} ${
-                          isAnimated ? this.decorateCSS("has-animation") : ""
-                        }`}
-                      >
-                        {hasText && button.text}
-                        {hasIcon && (
-                          <Base.Media
-                            value={button.icon}
-                            className={this.decorateCSS("icon")}
-                          />
-                        )}
-                      </Base.Button>
+                    <ComposerLink
+                      key={index}
+                      path={button.url}
+                      className={this.decorateCSS("button-link")}
+                    >
+               <Base.Button
+                  buttonType={button.type || "Link"}
+                  className={`${this.decorateCSS("button")} ${
+                    isAnimated ? this.decorateCSS("has-animation") : ""
+                     }`}
+>
+                  {hasText && button.text}
+                   {hasIcon && (
+                    <Base.Media
+                 value={button.icon}
+                  className={this.decorateCSS("icon")}
+                 />
+                 )}
+                </Base.Button>
+
                     </ComposerLink>
                   );
                 })}

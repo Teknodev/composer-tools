@@ -57,10 +57,6 @@
     .buttons {
       .button {
         color: var(--composer-font-color-secondary) !important;
-
-        &:hover {
-          content: "";
-        }
       }
     }
   }
@@ -163,7 +159,7 @@
         position: relative;
         z-index: 2;
 
-        a {
+        .button-link {
           text-decoration: none;
         }
 
@@ -174,8 +170,7 @@
           justify-content: center;
           padding: 24px;
           font-size: 40px;
-          position: relative;
-          height: 120px;
+          gap: var(--composer-gap-sm);
 
           .icon {
             width: 48px;
@@ -183,10 +178,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            left: 50%;
-            bottom: 24px;
-            transform: translateX(-50%);
 
             :global(svg) {
               width: 100%;
@@ -208,7 +199,6 @@
   min-height: 100vh;
 }
 
-/* BURASI DÜZELTİLDİ: textler tekrar ortada */
 .container.media-active .max-content .vertical-content .text-wrapper {
   margin-top: auto;
   margin-bottom: auto;
@@ -219,7 +209,6 @@
   margin-bottom: 0;
 }
 
-/* BUTON AYNI KALDI: en altta */
 .container.media-active .max-content .vertical-content .buttons {
   margin-top: auto;
   margin-bottom: 0;
