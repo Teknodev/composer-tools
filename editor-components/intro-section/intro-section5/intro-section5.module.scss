@@ -35,6 +35,25 @@
       color: var(--color-white) !important;
     }
 
+    .subtitle {
+      background: transparent !important;
+      padding: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      width: auto !important;
+      display: inline-block !important;
+
+      &::before,
+      &::after {
+        display: none !important;
+        content: "";
+        width: 0;
+        height: 0;
+        border: none;
+      }
+    }
+
     .buttons {
       .button {
         color: var(--composer-font-color-secondary) !important;
@@ -89,95 +108,91 @@
     align-items: center;
     justify-content: stretch;
     padding: 0;
-  }
 
-  .max-content .vertical-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    text-align: center !important;
-    flex: 1;
-  }
-
-  .max-content .vertical-content .text-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--composer-gap-sm);
-    width: 100%;
-  }
-
-  .max-content .vertical-content .subtitle {
-    display: flex !important;
-    justify-content: center !important;
-    text-align: center !important;
-    width: 100% !important;
-    border: none !important;
-    transform: none !important;
-    margin-left: 0 !important;
-    padding-left: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-
-    &::before,
-    &::after {
-      display: none !important;
-      content: none !important;
-      width: 0 !important;
-      height: 0 !important;
-      border: none !important;
-    }
-  }
-
-  .max-content .vertical-content .title,
-  .max-content .vertical-content .description {
-    width: 100% !important;
-    text-align: center !important;
-    justify-content: center !important;
-    margin: 0 !important;
-  }
-
-  .max-content .vertical-content .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--composer-gap-md);
-    margin-top: 0;
-    margin-bottom: 0;
-    position: relative;
-    z-index: 2;
-
-    a {
-      text-decoration: none;
-    }
-
-    .button {
-      transition: transform 0.3s ease;
+    .vertical-content {
+      width: 100%;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      font-size: 40px;
+      flex-direction: column;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      text-align: center !important;
+      flex: 1;
 
-      .icon {
-        width: 48px;
-        height: 48px;
+      .text-wrapper {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        gap: var(--composer-gap-sm);
+        width: 100%;
+      }
 
-        :global(svg) {
-          width: 100%;
-          height: 100%;
-          fill: currentColor;
+      .subtitle {
+        content: "";
+        transform: translateX(0);
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin: 0 !important;
+
+        &::before,
+        &::after {
+          display: none !important;
+          content: "";
+          width: 0;
+          height: 0;
+          border: none;
         }
       }
 
-      &.has-animation {
-        animation: bounce 2s infinite;
+      .title,
+      .description {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-md);
+        margin-top: 0;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 2;
+
+        a {
+          text-decoration: none;
+        }
+
+        .button {
+          transition: transform 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          font-size: 40px;
+
+          .icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            :global(svg) {
+              width: 100%;
+              height: 100%;
+              fill: currentColor;
+            }
+          }
+
+          &.has-animation {
+            animation: bounce 2s infinite;
+          }
+        }
       }
     }
   }

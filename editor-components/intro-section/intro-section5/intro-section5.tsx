@@ -17,7 +17,7 @@ class IntroSection5 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "Badge Text",
     });
 
     this.addProp({
@@ -128,7 +128,9 @@ class IntroSection5 extends BaseIntroSection {
             {(subtitleExist || titleExist || descriptionExist) && (
               <div className={this.decorateCSS("text-wrapper")}>
                 {subtitleExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
