@@ -17,7 +17,7 @@ class IntroSection5 extends BaseIntroSection {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Badge Text",
+      value: "",
     });
 
     this.addProp({
