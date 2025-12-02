@@ -99,12 +99,12 @@ class Feature29 extends BaseFeature {
           type: "media",
           key: "topLeftSideImage",
           displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
           value: {
             type: "image",
             url: "",
-          },
-          additionalParams: {
-            availableTypes: ["image", "video"],
           },
         },
         {
@@ -145,12 +145,12 @@ class Feature29 extends BaseFeature {
           type: "media",
           key: "bottomLeftSideImage",
           displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
           value: {
             type: "image",
             url: "",
-          },
-          additionalParams: {
-            availableTypes: ["image", "video"],
           },
         },
         {
@@ -191,19 +191,19 @@ class Feature29 extends BaseFeature {
           type: "media",
           key: "bottomLeftSide2Image",
           displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36303596a1002b214633?alt=media",
-          },
-          additionalParams: {
-            availableTypes: ["image", "video"],
           },
         },
         {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
         {
           type: "string",
@@ -236,19 +236,19 @@ class Feature29 extends BaseFeature {
           type: "media",
           key: "middleSideImage",
           displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36723596a1002b21464f?alt=media",
-          },
-          additionalParams: {
-            availableTypes: ["image", "video"],
           },
         },
         {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
         {
           type: "string",
@@ -281,12 +281,12 @@ class Feature29 extends BaseFeature {
           type: "media",
           key: "topRightSideImage",
           displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
           value: {
             type: "image",
             url: "",
-          },
-          additionalParams: {
-            availableTypes: ["image", "video"],
           },
         },
         {
@@ -327,12 +327,12 @@ class Feature29 extends BaseFeature {
           type: "media",
           key: "bottomRightSideImage",
           displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
           value: {
             type: "image",
             url: "",
-          },
-          additionalParams: {
-            availableTypes: ["image", "video"],
           },
         },
         {
@@ -362,8 +362,8 @@ class Feature29 extends BaseFeature {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
-      additionalParams: { selectItems: ["animate1"] },
+      value: ["animate2"],
+      additionalParams: { selectItems: ["animate1", "animate2"] },
     });
   }
 
