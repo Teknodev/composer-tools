@@ -116,19 +116,22 @@
 
   .content {
     width: 100%;
+  }
+
+  .content.center {
     align-items: center !important;
     text-align: center !important;
   }
 
-  .subtitle,
-  .title,
-  .description {
+  .content.center .subtitle,
+  .content.center .title,
+  .content.center .description {
     text-align: center !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
 
-  .buttons-wrapper {
+  .content.center .buttons-wrapper {
     justify-content: center !important;
   }
 
