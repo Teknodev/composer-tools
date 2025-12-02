@@ -19,16 +19,9 @@ class Feature17 extends BaseFeature {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Use Case",
-    });
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
-      value: "Use Case",
+      value: "Smart features for your business",
     });
 
     this.addProp({
@@ -53,7 +46,7 @@ class Feature17 extends BaseFeature {
               type: "string",
               key: "tabText",
               displayer: "Tab Title",
-              value: "AI Sales Enablement",
+              value: "Audit Trial",
             },
             {
               type: "media",
@@ -64,24 +57,31 @@ class Feature17 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692da708496aa1002ca4c1c1?alt=media",
               },
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Transform mundane text, PowerPoints & PDFs into compelling videos that will captivate your team",
+              value: "Share tools quickly and confidently in minutes",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
+                "This powerfull tool eliminates the need to leave Salesforce to get things done as I can create a custom proposal with dynamic pricing tables. You can also customize your own dynamic versions.",
             },
-            INPUTS.BUTTON("button", "Button", "Explore More", "", null, null, "Primary")
+            INPUTS.BUTTON(
+              "button",
+              "Button",
+              "Let's find out",
+              "",
+              "FaArrowRight",
+              null,
+              "Bare"
+            ),
           ],
         },
 
@@ -94,7 +94,7 @@ class Feature17 extends BaseFeature {
               type: "string",
               key: "tabText",
               displayer: "Tab Title",
-              value: "AI Sales Enablement",
+              value: "Tool Workflow",
             },
             {
               type: "media",
@@ -105,37 +105,130 @@ class Feature17 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692da716496aa1002ca4c1da?alt=media",
               },
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Transform mundane text, PowerPoints & PDFs into compelling videos that will captivate your team",
+              value: "Connect every part of your entire business",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
+                "Keep data consistent, with native CRM integrations that streamline your entire Tool workflow.",
             },
-            INPUTS.BUTTON("button", "Button", "Explore More", "", null, null, "Primary")
+            INPUTS.BUTTON(
+              "button",
+              "Button",
+              "See all integrations",
+              "",
+              "FaArrowRight",
+              null,
+              "Link"
+            ),
+          ],
+        },
+
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Tab Item",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Tab Title",
+              value: "Control your Apps",
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692da722496aa1002ca4c1e8?alt=media",
+              },
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Maintain compliance and control your apps",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Improve security and trust with built-in legally binding e-Signatures. Create pre-approved templates, content blocks and lock all legal information to prevent costly mistakes.",
+            },
+            INPUTS.BUTTON(
+              "button",
+              "Button",
+              "Let's find out",
+              "",
+              "FaArrowRight",
+              null,
+              "Link"
+            ),
+          ],
+        },
+
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Tab Item",
+          value: [
+            {
+              type: "string",
+              key: "tabText",
+              displayer: "Tab Title",
+              value: "Approvals",
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Image",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692da72d496aa1002ca4c1f9?alt=media",
+              },
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Review quickly and confidently",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Get real-time access to approvals, comments and version tracking. Smart features like variables and conditional logic help you eliminate Tool errors.",
+            },
+            INPUTS.BUTTON(
+              "button",
+              "Button",
+              "Let's find out",
+              "",
+              "FaArrowRight",
+              null,
+              "Link"
+            ),
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Hover Animation Style",
-      value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1", "animate2"]
-      }
     });
 
     this.addProp({
@@ -144,122 +237,142 @@ class Feature17 extends BaseFeature {
       displayer: "Overlay",
       value: true,
     });
-    
+
     this.setActiveTab(0);
   }
 
   setActiveTab(activeTabIndex: number) {
     this.setComponentState("activeTab", activeTabIndex);
-    setTimeout(() => {
-      this.setComponentState("startedIndex", activeTabIndex);
-    }, 20);
   }
 
   static getName(): string {
     return "Feature 17";
   }
   render() {
-    const subTitle = this.getPropValue("subtitle");
     const overlay = this.getPropValue("overlay");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const tabs = this.castToObject<ITabs[]>("tabs") || [];
+    const activeTab = this.getComponentState("activeTab");
+
+    const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
+    const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={this.decorateCSS("container")}
+        data-alignment={alignment}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subTitle) || this.castToString(title) || this.castToString(description)) && (
-              <Base.VerticalContent className={this.decorateCSS("heading")}>
-                {this.castToString(subTitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subTitle}
-                  </Base.SectionSubTitle>
-                )}
-
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-
-                {this.castToString(description) && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
-
-          <div  className={this.decorateCSS("tabs")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-            <div className={this.decorateCSS("tab-buttons")}>
-              {this.castToObject<ITabs[]>("tabs").map(
-                (tab: ITabs, index: number) => (
-                  <Base.P
-                    className={
-                      `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
-                        ? this.decorateCSS("active")
-                        : ""
-                      }`
-                    }
-                    onClick={() => this.setActiveTab(index)}
-                  >
-                    {tab.tabText}
-                  </Base.P>
-                )
+          {(hasTitle || hasDescription) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {hasTitle && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
               )}
-            </div>
-            {this.castToObject<ITabs[]>("tabs").map(
-              (tab: ITabs, index: number) => (
-                <Base.ContainerGrid
-                  className={
-                    `${this.decorateCSS("tab")} ${this.getComponentState("activeTab") === index
-                      ? this.decorateCSS("active")
-                      : ""
-                    }`
-                  }
+
+              {hasDescription && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
                 >
-                  {(this.castToString(tab.title) ||
-                    this.castToString(tab.description) ||
-                    this.castToString(tab.button.text)) && (
-                      <Base.VerticalContent
-                        className={this.decorateCSS("content")}
-                      >
-                        {this.castToString(tab.title) && (
-                          <Base.H2 className={this.decorateCSS("content-title")}>
-                            {tab.title}
-                          </Base.H2>
-                        )}
-                        {this.castToString(tab.description) && (
-                          <Base.P className={this.decorateCSS("content-description")}>
-                            {tab.description}
-                          </Base.P>
-                        )}
+                  {description}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
 
-                        {this.castToString(tab.button.text) && (
-                          <ComposerLink path={tab.button.url}>
-                            <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>
-                                {tab.button.text}
-                              </Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        )}
+          <div className={this.decorateCSS("tabs")}>
+            <div className={this.decorateCSS("tab-buttons")}>
+              {tabs.map((tab: ITabs, index: number) => (
+                <Base.P
+                  key={`feature17-tab-button-${index}`}
+                  className={`${this.decorateCSS("tab-button")} ${
+                    activeTab === index ? this.decorateCSS("active") : ""
+                  }`}
+                  onClick={() => this.setActiveTab(index)}
+                >
+                  {tab.tabText}
+                </Base.P>
+              ))}
+            </div>
+            {tabs.map((tab: ITabs, index: number) => {
+              const tabTitleExist = this.castToString(tab.title);
+              const tabDescriptionExist = this.castToString(tab.description);
+              const buttonTextExist = this.castToString(tab.button.text);
+              const iconExist = (tab.button.icon as any)?.name;
+              const contentExist =
+                tabTitleExist ||
+                tabDescriptionExist ||
+                buttonTextExist ||
+                iconExist;
+              const buttonExist = buttonTextExist || iconExist;
 
-                      </Base.VerticalContent>
-                    )}
-
+              return (
+                <Base.ContainerGrid
+                  key={`feature17-tab-${index}`}
+                  className={`${this.decorateCSS("tab")} ${
+                    activeTab === index ? this.decorateCSS("active") : ""
+                  }`}
+                >
                   {tab.image && (
-                    <div className={this.decorateCSS("image-container")} style={{ position: "relative" }}>
+                    <div className={this.decorateCSS("image-container")}>
                       <Base.Media
                         value={tab.image}
                         className={this.decorateCSS("image")}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
                       />
-                      {overlay && <div className={this.decorateCSS("overlay")} />}
+                      {overlay && (
+                        <div className={this.decorateCSS("overlay")} />
+                      )}
                     </div>
                   )}
+
+                  {contentExist && (
+                    <Base.VerticalContent
+                      className={this.decorateCSS("content")}
+                    >
+                      {tabTitleExist && (
+                        <Base.H2 className={this.decorateCSS("content-title")}>
+                          {tab.title}
+                        </Base.H2>
+                      )}
+
+                      {tabDescriptionExist && (
+                        <Base.P
+                          className={this.decorateCSS("content-description")}
+                        >
+                          {tab.description}
+                        </Base.P>
+                      )}
+
+                      {buttonExist && (
+                        <ComposerLink path={tab.button.url}>
+                          <Base.Button
+                            buttonType={tab.button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonTextExist && (
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {tab.button.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                value={tab.button.icon as any}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      )}
+                    </Base.VerticalContent>
+                  )}
                 </Base.ContainerGrid>
-              )
-            )}
+              );
+            })}
           </div>
         </Base.MaxContent>
       </Base.Container>
