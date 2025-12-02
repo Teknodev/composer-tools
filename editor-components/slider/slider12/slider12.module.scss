@@ -111,7 +111,11 @@
   }
 
   .lower-container {
-    padding: 0 50px 80px;
+    padding: 0 50px 0;
+    
+    &.no-button {
+      padding-bottom: 80px;
+    }
   }
 }
 
@@ -230,6 +234,7 @@
   justify-content: center;
   padding: var(--composer-gap-lg);
   padding-top: 0;
+  padding-bottom: 80px;
   margin: var(--composer-gap-xs) var(--composer-gap-lg);
 }
 
@@ -280,7 +285,11 @@
     }
 
     .lower-container {
-      padding: 0 40px 80px !important;
+      padding: 0 40px 0 !important;
+      
+      &.no-button {
+        padding-bottom: 80px !important;
+      }
     }
   }
 
@@ -362,7 +371,11 @@
     }
 
     .lower-container {
-      padding: 0 20px 80px !important;
+      padding: 0 20px 0 !important;
+      
+      &.no-button {
+        padding-bottom: 80px !important;
+      }
     }
   }
 

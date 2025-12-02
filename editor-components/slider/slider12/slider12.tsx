@@ -506,7 +506,9 @@ class Slider12 extends BaseSlider {
           </Base.MaxContent>
         </Base.Container>
 
-        <Base.Container className={this.decorateCSS("lower-container")}>
+        <Base.Container 
+          className={`${this.decorateCSS("lower-container")} ${!buttonText ? this.decorateCSS("no-button") : ""}`}
+        >
           <Base.MaxContent className={this.decorateCSS("wrap")}>
             {items.length > 0 && (
               <div
