@@ -17,7 +17,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    pointer-events: none;
+    pointer-events: auto;
 
     video {
       object-fit: cover;
@@ -235,7 +235,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-
     &.media-active {
       min-height: 50vh;
     }
@@ -244,7 +243,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-
     &.media-active {
       min-height: 70vh;
     }
