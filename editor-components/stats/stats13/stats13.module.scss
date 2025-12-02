@@ -63,10 +63,8 @@
                             align-items: center;
 
                             .icon {
-                                width: calc(var(--gap-lg) * 3);
                                 height: calc(var(--gap-lg) * 3);
                                 font-size: calc(var(--gap-lg) * 3);
-                                line-height: calc(var(--gap-lg) * 3);
                                 object-fit: contain;
                                 display: block;
                             }
@@ -80,7 +78,7 @@
 
                     .subtitle {
                         overflow-wrap: anywhere;
-                        text-align: left;
+                        text-align: left !important;
                         width: fit-content;
                         margin-left: 0 !important;
                     }
@@ -94,10 +92,10 @@
 
                     .child-container {
                         display: grid;
-                        gap: var(--gap-md);
+                        gap: var(--gap-xl);
 
                         .button-container {
-                            justify-content: flex-start;
+                            justify-content: flex-start !important;
                             display: flex;
                             gap: var(--composer-gap-md);
                             flex-wrap: wrap;
@@ -113,7 +111,7 @@
                             display: flex;
                             justify-content: flex-start !important;
                             flex-wrap: wrap;
-                            gap: var(--gap-lg);
+                            gap: var(--gap-xl);
 
                             .stat-item {
                                 text-align: start;
@@ -122,16 +120,16 @@
                                 flex-direction: column;
 
                                 .stat-number {
-                                    color: var(--composer-primary-color);
+                                    color: var(--composer-font-color-primary);
                                     text-align: left !important;
-                                    font-size: calc(var(--composer-font-size-lg) * 1.5);
+                                    font-size: 3rem;
                                     font-weight: 550;
                                     display: flex;
                                 }
 
                                 .stat-description {
                                     flex-wrap: wrap;
-                                    text-align: start;
+                                    text-align: start !important;
                                 }
                             }
                         }
@@ -182,6 +180,42 @@
                 .left-content {
                     width: 100%;
                     padding: 0 calc(var(--padding-md) * 4);
+
+                    .vertical-content {
+                        align-items: var(--composer-content-alignment) !important;
+
+                        .rating-container {
+                            justify-content: var(--composer-content-alignment) !important;
+
+                            .rating-number {
+                                text-align: var(--composer-content-alignment) !important;
+                            }
+                        }
+
+                        .subtitle,
+                        .title,
+                        .description {
+                            text-align: var(--composer-content-alignment) !important;
+                        }
+
+                        .child-container {
+                            .button-container {
+                                justify-content: var(--composer-content-alignment) !important;
+                            }
+
+                            .stats-container {
+                                justify-content: var(--composer-content-alignment) !important;
+
+                                .stat-number {
+                                    text-align: var(--composer-content-alignment) !important;
+                                }
+
+                                .stat-description {
+                                    text-align: var(--composer-content-alignment) !important;
+                                }
+                            }
+                        }
+                    }
                 }
 
                 .right-content {
@@ -211,6 +245,16 @@
                                 flex-direction: column;
                                 align-content: flex-start;
                                 align-items: flex-start;
+                            }
+
+                            .stats-container {
+                                gap: var(--gap-sm) !important;
+
+                                .stat-item {
+                                    .stat-number {
+                                        font-size: 2rem;
+                                    }
+                                }
                             }
                         }
                     }
