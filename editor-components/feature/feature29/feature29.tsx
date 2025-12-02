@@ -1,17 +1,72 @@
-import { BaseFeature } from "../../EditorComponent";
+import * as React from "react";
+import { BaseFeature, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./feature29.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type Feature29TopLeftSide = {
+  visibility?: boolean;
+  overlay?: boolean;
+  topLeftSideImage?: TypeMediaInputValue;
+  topLeftSideTitle: React.JSX.Element;
+  topLeftSideDescription: React.JSX.Element;
+  topLeftSideButton?: TypeUsableComponentProps[];
+};
+
+type Feature29BottomLeftSide = {
+  visibility?: boolean;
+  overlay?: boolean;
+  bottomLeftSideImage?: TypeMediaInputValue;
+  bottomLeftSideTitle: React.JSX.Element;
+  bottomLeftSideDescription: React.JSX.Element;
+  bottomLeftSideButton?: TypeUsableComponentProps[];
+};
+
+type Feature29BottomLeftSide2 = {
+  visibility?: boolean;
+  overlay?: boolean;
+  bottomLeftSide2Image?: TypeMediaInputValue;
+  bottomLeftSide2Title: React.JSX.Element;
+  bottomLeftSide2Description: React.JSX.Element;
+  bottomLeftSide2Button?: TypeUsableComponentProps[];
+};
+
+type Feature29MiddleSide = {
+  visibility?: boolean;
+  overlay?: boolean;
+  middleSideImage?: TypeMediaInputValue;
+  middleSideTitle: React.JSX.Element;
+  middleSideDescription: React.JSX.Element;
+  middleSideButton?: TypeUsableComponentProps[];
+};
+
+type Feature29TopRightSide = {
+  visibility?: boolean;
+  overlay?: boolean;
+  topRightSideImage?: TypeMediaInputValue;
+  topRightSideTitle: React.JSX.Element;
+  topRightSideDescription: React.JSX.Element;
+  topRightSideButton?: TypeUsableComponentProps[];
+};
+
+type Feature29BottomRightSide = {
+  visibility?: boolean;
+  overlay?: boolean;
+  bottomRightSideImage?: TypeMediaInputValue;
+  bottomRightSideTitle: React.JSX.Element;
+  bottomRightSideDescription: React.JSX.Element;
+  bottomRightSideButton?: TypeUsableComponentProps[];
+};
+
 class Feature29 extends BaseFeature {
-  constructor(props?: any) {
+  constructor(props?: unknown) {
     super(props, styles);
 
     this.addProp({
       type: "string",
       key: "heading",
-      displayer: "Heading",
+      displayer: "Subtitle",
       value: "Meeting your needs",
     });
 
@@ -20,6 +75,13 @@ class Feature29 extends BaseFeature {
       key: "title",
       displayer: "Title",
       value: "Reliable payouts engine, total dependability",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -34,10 +96,16 @@ class Feature29 extends BaseFeature {
           value: true,
         },
         {
-          type: "image",
+          type: "media",
           key: "topLeftSideImage",
-          displayer: "Image",
-          value: "",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
         },
         {
           type: "boolean",
@@ -58,15 +126,7 @@ class Feature29 extends BaseFeature {
           value:
             "Every payment option covered. Designed to support diverse gaming setups, including online casinos, sportsbooks, bookmakers, lotteries, bingo, draws and raffles, and more.",
         },
-        INPUTS.BUTTON(
-          "topLeftSideButton",
-          "Button",
-          "Link",
-          "",
-          "MdArrowForwardIos",
-          null,
-          "Link"
-        ),
+        INPUTS.BUTTON("topLeftSideButton", "Button", "Link", "", "MdArrowForwardIos", null, "Link"),
       ],
     });
 
@@ -82,10 +142,16 @@ class Feature29 extends BaseFeature {
           value: true,
         },
         {
-          type: "image",
+          type: "media",
           key: "bottomLeftSideImage",
-          displayer: "Image",
-          value: "",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
         },
         {
           type: "boolean",
@@ -106,15 +172,7 @@ class Feature29 extends BaseFeature {
           value:
             "Streamlined onboarding that is quick, transparent, and efficient. Get full visibility at every step to help you speed up your market entry.",
         },
-        INPUTS.BUTTON(
-          "bottomLeftSideButton",
-          "Button",
-          "Link",
-          "",
-          "MdArrowForwardIos",
-          null,
-          "Link"
-        ),
+        INPUTS.BUTTON("bottomLeftSideButton", "Button", "Link", "", "MdArrowForwardIos", null, "Link"),
       ],
     });
 
@@ -130,11 +188,16 @@ class Feature29 extends BaseFeature {
           value: true,
         },
         {
-          type: "image",
+          type: "media",
           key: "bottomLeftSide2Image",
-          displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36303596a1002b214633?alt=media",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36303596a1002b214633?alt=media",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
         },
         {
           type: "boolean",
@@ -154,15 +217,7 @@ class Feature29 extends BaseFeature {
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON(
-          "bottomLeftSide2Button",
-          "Button",
-          "",
-          "",
-          "",
-          null,
-          "Link"
-        ),
+        INPUTS.BUTTON("bottomLeftSide2Button", "Button", "", "", "", null, "Link"),
       ],
     });
 
@@ -178,11 +233,16 @@ class Feature29 extends BaseFeature {
           value: true,
         },
         {
-          type: "image",
+          type: "media",
           key: "middleSideImage",
-          displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36723596a1002b21464f?alt=media",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36723596a1002b21464f?alt=media",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
         },
         {
           type: "boolean",
@@ -218,10 +278,16 @@ class Feature29 extends BaseFeature {
           value: true,
         },
         {
-          type: "image",
+          type: "media",
           key: "topRightSideImage",
-          displayer: "Image",
-          value: "",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
         },
         {
           type: "boolean",
@@ -258,10 +324,16 @@ class Feature29 extends BaseFeature {
           value: true,
         },
         {
-          type: "image",
+          type: "media",
           key: "bottomRightSideImage",
-          displayer: "Image",
-          value: "",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
         },
         {
           type: "boolean",
@@ -282,15 +354,7 @@ class Feature29 extends BaseFeature {
           value:
             "Timely and consistent player payments guaranteed, so no payout is ever missed. Processed through a single API request.",
         },
-        INPUTS.BUTTON(
-          "bottomRightSideButton",
-          "Button",
-          "",
-          "",
-          "",
-          null,
-          "Link"
-        ),
+        INPUTS.BUTTON("bottomRightSideButton", "Button", "", "", "", null, "Link"),
       ],
     });
 
@@ -307,157 +371,167 @@ class Feature29 extends BaseFeature {
     return "Feature 29";
   }
 
-  renderCard(cardData, prefix) {
-    const hasImage = cardData[`${prefix}Image`];
-    const buttonData = cardData[`${prefix}Button`];
-
-    const button = buttonData
-      ? {
-          text: this.getPropValue("text", {
-            parent_object: buttonData,
-          }),
-          type: this.getPropValue("type", {
-            parent_object: buttonData,
-          }),
-          url: this.getPropValue("url", {
-            parent_object: buttonData,
-          }),
-          icon: this.getPropValue("icon", {
-            parent_object: buttonData,
-          }),
-        }
-      : null;
-
-    return (
-      <Base.VerticalContent
-        className={`${this.decorateCSS("card")} ${
-          cardData.overlay ? this.decorateCSS("overlay") : ""
-        }`}
-        style={
-          hasImage
-            ? { backgroundImage: `url(${cardData[`${prefix}Image`]})` }
-            : {}
-        }
-        data-animation={this.getPropValue("hoverAnimation").join(" ")}
-      >
-        <div className={this.decorateCSS("card-text-container")}>
-          {this.castToString(cardData[`${prefix}Title`]) && (
-            <Base.H3 className={this.decorateCSS("card-title")}>
-              {cardData[`${prefix}Title`]}
-            </Base.H3>
-          )}
-
-          {this.castToString(cardData[`${prefix}Description`]) && (
-            <Base.SectionDescription
-              className={this.decorateCSS("card-description")}
-            >
-              {cardData[`${prefix}Description`]}
-            </Base.SectionDescription>
-          )}
-
-          {button && (this.castToString(button.text) || button.icon) && (
-            <ComposerLink path={button.url}>
-              <Base.Button
-                buttonType={button.type}
-                className={this.decorateCSS("button")}
-              >
-                {this.castToString(button.text) && (
-                  <Base.P className={this.decorateCSS("button-text")}>
-                    {button.text}
-                  </Base.P>
-                )}
-                {button.icon && (
-                  <Base.Media
-                    className={this.decorateCSS("button-icon")}
-                    value={button.icon}
-                  />
-                )}
-              </Base.Button>
-            </ComposerLink>
-          )}
-        </div>
-      </Base.VerticalContent>
-    );
-  }
-
   render() {
-    const topLeftSide = this.castToObject<any>("topLeftSide");
-    const bottomLeftSide = this.castToObject<any>("bottomLeftSide");
-    const bottomLeftSide2 = this.castToObject<any>("bottomLeftSide2");
-    const middleSide = this.castToObject<any>("middleSide");
-    const topRightSide = this.castToObject<any>("topRightSide");
-    const bottomRightSide = this.castToObject<any>("bottomRightSide");
-    const leftBottomCardsVisible =
-      bottomLeftSide.visibility || bottomLeftSide2.visibility;
-
-    const isLeftVisible =
-      topLeftSide.visibility ||
-      bottomLeftSide.visibility ||
-      bottomLeftSide2.visibility;
-
-    const isMiddleVisible = middleSide.visibility;
-
-    const isRightVisible =
-      topRightSide.visibility || bottomRightSide.visibility;
+    const topLeftSide = this.castToObject<Feature29TopLeftSide>("topLeftSide");
+    const bottomLeftSide = this.castToObject<Feature29BottomLeftSide>("bottomLeftSide");
+    const bottomLeftSide2 = this.castToObject<Feature29BottomLeftSide2>("bottomLeftSide2");
+    const middleSide = this.castToObject<Feature29MiddleSide>("middleSide");
+    const topRightSide = this.castToObject<Feature29TopRightSide>("topRightSide");
+    const bottomRightSide = this.castToObject<Feature29BottomRightSide>("bottomRightSide");
 
     const heading = this.getPropValue("heading");
     const title = this.getPropValue("title");
-    const hasHeading = this.castToString(heading) || this.castToString(title);
+    const description = this.getPropValue("description");
+    const hasHeading = this.castToString(heading) || this.castToString(title) || this.castToString(description);
+    const hoverAnimation = this.getPropValue("hoverAnimation")[0];
+
+    const renderButton = (buttonGroup?: TypeUsableComponentProps[]) => {
+      const buttonText = this.getPropValue("text", { parent_object: buttonGroup });
+      const buttonType = this.getPropValue("type", { parent_object: buttonGroup });
+      const buttonUrl = this.getPropValue("url", { parent_object: buttonGroup });
+      const buttonIcon = this.getPropValue("icon", { parent_object: buttonGroup });
+      const buttonImage = this.getPropValue("image", { parent_object: buttonGroup });
+
+      const buttonTextExist = this.castToString(buttonText);
+      const iconExist = buttonIcon?.name || buttonIcon?.url;
+      const imageExist = buttonImage?.url;
+
+      return (
+        <ComposerLink path={buttonUrl || "#"}>
+          {imageExist ? (
+            <Base.Media value={buttonImage} className={this.decorateCSS("button-image")} />
+          ) : (
+            <Base.Button buttonType={buttonType || "Primary"} className={this.decorateCSS("button")}>
+              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>}
+              {iconExist && <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />}
+            </Base.Button>
+          )}
+        </ComposerLink>
+      );
+    };
+
+    const renderCard = (
+      image: TypeMediaInputValue | undefined,
+      overlay: boolean,
+      title: React.JSX.Element,
+      description: React.JSX.Element,
+      button?: TypeUsableComponentProps[],
+      additionalClass?: string
+    ) => {
+      const mediaWithUrl = image as { url?: string } | undefined;
+      const imageUrl = mediaWithUrl?.url;
+      const titleExist = this.castToString(title);
+      const descriptionExist = this.castToString(description);
+
+      return (
+        <Base.VerticalContent
+          className={`${this.decorateCSS("card")} ${additionalClass || ""} ${imageUrl ? this.decorateCSS("with-bg") : ""}`}
+          data-animation={hoverAnimation}
+        >
+          {image && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
+          {overlay && imageUrl && <div className={this.decorateCSS("overlay-layer")} />}
+          <div className={this.decorateCSS("card-text-container")}>
+            {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{title}</Base.H3>}
+            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{description}</Base.SectionDescription>}
+            {button && renderButton(button)}
+          </div>
+        </Base.VerticalContent>
+      );
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasHeading && (
-            <Base.VerticalContent
-              className={this.decorateCSS("header-container")}
-            >
+            <Base.VerticalContent className={this.decorateCSS("header-container")}>
               {this.castToString(heading) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("heading")}
-                </Base.SectionSubTitle>
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{heading}</Base.SectionSubTitle>
               )}
               {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+              )}
+              {this.castToString(description) && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
               )}
             </Base.VerticalContent>
           )}
 
           <div className={this.decorateCSS("side-container")}>
-            {isLeftVisible && (
+            {(topLeftSide.visibility || bottomLeftSide.visibility || bottomLeftSide2.visibility) && (
               <div className={this.decorateCSS("left-side")}>
                 {topLeftSide.visibility && (
                   <div className={this.decorateCSS("left-top-card")}>
-                    {this.renderCard(topLeftSide, "topLeftSide")}
+                    {renderCard(
+                      topLeftSide.topLeftSideImage,
+                      !!topLeftSide.overlay,
+                      topLeftSide.topLeftSideTitle,
+                      topLeftSide.topLeftSideDescription,
+                      topLeftSide.topLeftSideButton
+                    )}
                   </div>
                 )}
-                {leftBottomCardsVisible && (
+
+                {(bottomLeftSide.visibility || bottomLeftSide2.visibility) && (
                   <div className={this.decorateCSS("left-bottom-cards")}>
                     {bottomLeftSide.visibility &&
-                      this.renderCard(bottomLeftSide, "bottomLeftSide")}
+                      renderCard(
+                        bottomLeftSide.bottomLeftSideImage,
+                        !!bottomLeftSide.overlay,
+                        bottomLeftSide.bottomLeftSideTitle,
+                        bottomLeftSide.bottomLeftSideDescription,
+                        bottomLeftSide.bottomLeftSideButton
+                      )}
                     {bottomLeftSide2.visibility &&
-                      this.renderCard(bottomLeftSide2, "bottomLeftSide2")}
+                      renderCard(
+                        bottomLeftSide2.bottomLeftSide2Image,
+                        !!bottomLeftSide2.overlay,
+                        bottomLeftSide2.bottomLeftSide2Title,
+                        bottomLeftSide2.bottomLeftSide2Description,
+                        bottomLeftSide2.bottomLeftSide2Button
+                      )}
                   </div>
                 )}
               </div>
             )}
 
-            {isMiddleVisible && (
+            {middleSide.visibility && (
               <div className={this.decorateCSS("middle-side")}>
-                {this.renderCard(middleSide, "middleSide")}
+                {renderCard(
+                  middleSide.middleSideImage,
+                  !!middleSide.overlay,
+                  middleSide.middleSideTitle,
+                  middleSide.middleSideDescription,
+                  middleSide.middleSideButton
+                )}
               </div>
             )}
 
-            {isRightVisible && (
+            {(topRightSide.visibility || bottomRightSide.visibility) && (
               <div className={this.decorateCSS("right-side")}>
                 {topRightSide.visibility && (
                   <div className={this.decorateCSS("topRightSide")}>
-                    {this.renderCard(topRightSide, "topRightSide")}
+                    {renderCard(
+                      topRightSide.topRightSideImage,
+                      !!topRightSide.overlay,
+                      topRightSide.topRightSideTitle,
+                      topRightSide.topRightSideDescription,
+                      topRightSide.topRightSideButton,
+                      this.decorateCSS("right-card")
+                    )}
                   </div>
                 )}
-                {bottomRightSide.visibility &&
-                  this.renderCard(bottomRightSide, "bottomRightSide")}
+                {bottomRightSide.visibility && (
+                  <div className={this.decorateCSS("bottom-right-card")}>
+                    {renderCard(
+                      bottomRightSide.bottomRightSideImage,
+                      !!bottomRightSide.overlay,
+                      bottomRightSide.bottomRightSideTitle,
+                      bottomRightSide.bottomRightSideDescription,
+                      bottomRightSide.bottomRightSideButton,
+                      this.decorateCSS("right-card")
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>
