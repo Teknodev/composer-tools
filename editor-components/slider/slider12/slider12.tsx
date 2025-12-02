@@ -90,7 +90,7 @@ class Slider12 extends BaseSlider {
                 type: "video",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691724ba3596a1002b27e4e0?alt=media",
               },
-              additionalParams: { availableTypes: ["video", "image"] },
+              additionalParams: { availableTypes: ["image" ,"video" ] },
             },
             {
               type: "string",
@@ -121,7 +121,7 @@ class Slider12 extends BaseSlider {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691724f13596a1002b27e544?alt=media",
               },
-              additionalParams: { availableTypes: ["video", "image"] },
+              additionalParams: { availableTypes: ["image" ,"video" ] },
             },
             {
               type: "string",
@@ -152,7 +152,7 @@ class Slider12 extends BaseSlider {
                 type: "video",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725323596a1002b27e599?alt=media",
               },
-              additionalParams: { availableTypes: ["video", "image"] },
+              additionalParams: { availableTypes: ["image" ,"video" ] },
             },
             {
               type: "string",
@@ -183,7 +183,7 @@ class Slider12 extends BaseSlider {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725693596a1002b27e5e8?alt=media",
               },
-              additionalParams: { availableTypes: ["video", "image"] },
+              additionalParams: { availableTypes: ["image" ,"video" ] },
             },
             {
               type: "string",
@@ -214,7 +214,7 @@ class Slider12 extends BaseSlider {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691725f33596a1002b27e7af?alt=media",
               },
-              additionalParams: { availableTypes: ["video", "image"] },
+              additionalParams: { availableTypes: ["image" ,"video" ] },
             },
             {
               type: "string",
@@ -276,7 +276,7 @@ class Slider12 extends BaseSlider {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6917269c3596a1002b27e8c4?alt=media",
               },
-              additionalParams: { availableTypes: ["video", "image"] },
+                additionalParams: { availableTypes: ["image" ,"video" ] },
             },
             {
               type: "string",
