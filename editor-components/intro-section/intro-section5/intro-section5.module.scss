@@ -155,7 +155,6 @@
         flex-wrap: wrap;
         gap: var(--composer-gap-md);
         margin-top: 0;
-        margin-bottom: 0;
         position: relative;
         z-index: 2;
 
@@ -168,13 +167,11 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 24px;
-          font-size: 40px;
-          gap: var(--composer-gap-sm);
+          font-size: 90px;
 
           .icon {
-            width: 48px;
-            height: 48px;
+            width: 90px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -211,12 +208,12 @@
 
 .container.media-active .max-content .vertical-content .buttons {
   margin-top: auto;
-  margin-bottom: 0;
+  margin-bottom: 80px;
 }
 
 .container:not(.media-active) .max-content .vertical-content .buttons {
   margin-top: var(--composer-gap-xl);
-  margin-bottom: 0;
+  margin-bottom: 80px;
 }
 
 @keyframes bounce {

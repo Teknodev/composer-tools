@@ -2,7 +2,6 @@ import * as React from "react";
 import {
   BaseIntroSection,
   TypeMediaInputValue,
-  TypeUsableComponentProps
 } from "../../EditorComponent";
 import styles from "./intro-section5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -65,20 +64,18 @@ class IntroSection5 extends BaseIntroSection {
       "Bare"
     );
 
-    if (Array.isArray(buttonProp.value)) {
-      buttonProp.value.push({
-        type: "boolean",
-        key: "enableAnimation",
-        displayer: "Animation",
-        value: true,
-      } as TypeUsableComponentProps);
-    }
-
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [buttonProp],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "buttonsAnimation",
+      displayer: "Button Animation",
+      value: true,
     });
   }
 
@@ -100,6 +97,8 @@ class IntroSection5 extends BaseIntroSection {
 
     const buttons = this.castToObject<any[]>("buttons");
     const hasButtons = buttons && buttons.length > 0;
+
+    const buttonsAnimation = this.getPropValue("buttonsAnimation");
 
     const hasBgMedia = bgMedia && (bgMedia as any).url;
     const isVideoBg = hasBgMedia && bgMedia.type === "video";
@@ -157,7 +156,7 @@ class IntroSection5 extends BaseIntroSection {
                 {buttons.map((button: any, index: number) => {
                   const hasIcon = button.icon && button.icon.name;
                   const hasText = this.castToString(button.text);
-                  const isAnimated = button.enableAnimation;
+                  const isAnimated = buttonsAnimation;
 
                   if (!hasIcon && !hasText) return null;
 
@@ -167,21 +166,20 @@ class IntroSection5 extends BaseIntroSection {
                       path={button.url}
                       className={this.decorateCSS("button-link")}
                     >
-               <Base.Button
-                  buttonType={button.type || "Link"}
-                  className={`${this.decorateCSS("button")} ${
-                    isAnimated ? this.decorateCSS("has-animation") : ""
-                     }`}
->
-                  {hasText && button.text}
-                   {hasIcon && (
-                    <Base.Media
-                 value={button.icon}
-                  className={this.decorateCSS("icon")}
-                 />
-                 )}
-                </Base.Button>
-
+                      <Base.Button
+                        buttonType={button.type || "Link"}
+                        className={`${this.decorateCSS("button")} ${
+                          isAnimated ? this.decorateCSS("has-animation") : ""
+                        }`}
+                      >
+                        {hasText && button.text}
+                        {hasIcon && (
+                          <Base.Media
+                            value={button.icon}
+                            className={this.decorateCSS("icon")}
+                          />
+                        )}
+                      </Base.Button>
                     </ComposerLink>
                   );
                 })}
