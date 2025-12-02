@@ -29,12 +29,19 @@
   text-align: left !important;
 }
 
+.subtitle {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  width: fit-content;
+}
+
 .buttons-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: var(--composer-gap-sm);
   margin-top: var(--composer-gap-sm);
   width: 100%;
+  justify-content: flex-start !important;
 }
 
 .button {
@@ -109,12 +116,20 @@
 
   .content {
     width: 100%;
-    align-items: flex-start !important;
-    text-align: left !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .subtitle,
+  .title,
+  .description {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .buttons-wrapper {
-    justify-content: flex-start;
+    justify-content: center !important;
   }
 
   .image-wrapper {

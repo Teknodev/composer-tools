@@ -77,9 +77,10 @@ class About13 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const image = this.getPropValue("image") as TypeMediaInputValue | null;
+    const image = this.getPropValue("image");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const overlay = this.getPropValue("overlay");
+    const alignment = Base.getContentAlignment();
 
     const validButtons = Array.isArray(buttons)
       ? buttons.filter((item) => {
@@ -96,15 +97,16 @@ class About13 extends BaseAbout {
       this.castToString(description) ||
       validButtons.length > 0;
 
-    // media var mı yok mu (image/video silinince false olacak)
-    const hasMedia = !!(image && "url" in image && image.url);
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {isContentVisible && (
-              <div className={this.decorateCSS("content")}>
+              <div
+                className={`${this.decorateCSS("content")} ${
+                  alignment === "center" ? this.decorateCSS("center") : ""
+                }`}
+              >
                 {this.castToString(subtitle) && (
                   <Base.SectionSubTitle
                     className={this.decorateCSS("subtitle")}
@@ -131,16 +133,16 @@ class About13 extends BaseAbout {
                   <div className={this.decorateCSS("buttons-wrapper")}>
                     {validButtons.map((item, index) => {
                       const buttonTextExist = this.castToString(item.text || "");
-                      const iconExist = (item as any).icon && (item as any).icon.name;
+                      const iconExist = item.icon && item.icon.name;
                       return (
-                        <ComposerLink key={index} path={(item as any).url}>
+                        <ComposerLink key={index} path={item.url}>
                           <Base.Button
                             buttonType={item.type}
                             className={this.decorateCSS("button")}
                           >
                             {iconExist && (
                               <Base.Media
-                                value={(item as any).icon}
+                                value={item.icon}
                                 className={this.decorateCSS("icon")}
                               />
                             )}
@@ -160,22 +162,21 @@ class About13 extends BaseAbout {
               </div>
             )}
 
-            {/* MEDIA VARSA GÖSTER, YOKSA HİÇ YER KAPLAMASIN */}
-            {hasMedia && (
-              <div
-                className={`${this.decorateCSS("image-wrapper")} ${
-                  !isContentVisible ? this.decorateCSS("full-width") : ""
-                }`}
-              >
+            <div
+              className={`${this.decorateCSS("image-wrapper")} ${
+                !isContentVisible ? this.decorateCSS("full-width") : ""
+              }`}
+            >
+              {image && (
                 <Base.Media
                   value={image}
                   className={this.decorateCSS("image")}
                 />
-                {overlay && image.url && (
-                  <div className={this.decorateCSS("overlay")}></div>
-                )}
-              </div>
-            )}
+              )}
+              {overlay && image?.url && (
+                <div className={this.decorateCSS("overlay")}></div>
+              )}
+            </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
