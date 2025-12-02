@@ -167,7 +167,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 90px;
+          font-size: 80px;
 
           .icon {
             width: 90px;
@@ -208,12 +208,10 @@
 
 .container.media-active .max-content .vertical-content .buttons {
   margin-top: auto;
-  margin-bottom: 80px;
 }
 
 .container:not(.media-active) .max-content .vertical-content .buttons {
   margin-top: var(--composer-gap-xl);
-  margin-bottom: 80px;
 }
 
 @keyframes bounce {
@@ -237,17 +235,15 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-lg) 40px;
 
     &.media-active {
-      min-height: 80vh;
+      min-height: 50vh;
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) 20px;
 
     &.media-active {
       min-height: 70vh;
