@@ -85,9 +85,10 @@ class About12 extends BaseAbout {
       hasDescription ||
       hasAnyButton
     );
+    const alignmentValue = Base.getContentAlignment();
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={`${this.decorateCSS("intro-wrapper")} ${
@@ -120,6 +121,8 @@ class About12 extends BaseAbout {
               <div
                 className={`${this.decorateCSS("text-content")} ${
                   !hasImage ? this.decorateCSS("text-content-alone") : ""
+                } ${
+                  alignmentValue === "center" ? this.decorateCSS("center") : ""
                 }`}
               >
                 <Base.VerticalContent
