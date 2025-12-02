@@ -1,0 +1,172 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background: var(--composer-html-background);
+
+    &.no-background {
+        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+        .max-content {
+            background: transparent;
+            box-shadow: none;
+            padding: 0;
+            border-radius: 0;
+
+            .wrapper {
+                .vertical-content {
+                    .text-content {
+
+                        .subtitle,
+                        .title,
+                        .description {
+                            color: var(--composer-font-color-primary) !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .max-content {
+        padding: calc(var(--padding-xxl) * 2);
+        background-color: var(--composer-primary-color);
+        border-radius: var(--border-radius-md);
+        box-shadow: var(--box-shadow-active);
+
+        .wrapper {
+            display: flex;
+            gap: calc(var(--gap-xl) * 2);
+
+            .vertical-content {
+                width: 40%;
+                justify-content: center;
+                align-items: flex-start;
+
+                &.no-images {
+                    width: 100%;
+                }
+
+                .text-content {
+                    width: 100%;
+
+                    .subtitle {
+                        overflow-wrap: anywhere;
+                        text-align: left !important;
+                        width: fit-content;
+                        margin-left: 0 !important;
+                        color: var(--composer-font-color-secondary);
+                    }
+
+                    .title,
+                    .description {
+                        text-align: left !important;
+                        color: var(--composer-font-color-secondary);
+                    }
+
+                    .button-container {
+                        justify-content: left !important;
+                        gap: var(--gap-md);
+                        flex-wrap: wrap;
+                        flex-direction: row;
+
+                        .button {
+                            .button-icon {
+                                content: "";
+                            }
+
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+            }
+
+            .images-content {
+                flex: 1;
+                min-width: 0;
+
+                .images-wrapper {
+                    display: flex;
+                    gap: var(--gap-xl);
+
+                    .image-box {
+                        flex: 1;
+                        position: relative;
+                        overflow: hidden;
+                        aspect-ratio: 1 / 1.5;
+                        border-radius: var(--composer-border-radius-sm);
+                        max-height: 600px;
+
+                        .image {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            display: block;
+                        }
+
+                        &.overlay {
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                inset: 0;
+                                border-radius: inherit;
+                                background-color: var(--composer-overlay-color);
+                                pointer-events: none;
+                                z-index: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            padding: calc(var(--padding-xxl) * 1.5);
+
+            .wrapper {
+                flex-direction: column;
+                gap: calc(var(--gap-xl) * 2.5);
+
+                .vertical-content {
+                    width: 100%;
+
+                    .text-content {
+
+                        .subtitle,
+                        .title,
+                        .description {
+                            text-align: var(--composer-content-alignment) !important;
+                        }
+
+                        .button-container {
+                            justify-content: var(--composer-content-alignment) !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+        .container {
+            .max-content {
+                padding: calc(var(--padding-xxl) * 2) calc(var(--padding-md) * 2) calc(var(--padding-xxl) * 2) calc(var(--padding-md) * 2);
+
+                .wrapper {
+
+                    .images-content {
+                        .images-wrapper {
+                            gap: var(--gap-md);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
