@@ -192,13 +192,20 @@
     .text {
       padding: var(--composer-gap-xs);
       margin-top: var(--composer-gap-xs);
+      text-align: left;
 
       .card-header {
         color: var(--composer-font-color-primary);
+        text-align: left;
       }
 
       .card-description {
         color: var(--composer-tertiary-color);
+        text-align: left;
+
+        p {
+          text-align: left;
+        }
       }
     }
   }

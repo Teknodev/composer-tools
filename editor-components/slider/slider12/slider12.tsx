@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -9,7 +9,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image?: string;
-  media?: { type: "video" | "image"; url: string };
+  media?: TypeMediaInputValue;
   header: React.JSX.Element;
   description: React.JSX.Element;
   navigateTo: string;
@@ -515,10 +515,10 @@ class Slider12 extends BaseSlider {
               >
                 <ComposerSlider key={sliderMode} ref={this.sliderRef} {...sliderSettings}>
                   {items.map((item, i) => {
-                    const media = item.media;
-                    const mediaType =
-                      media?.type ?? (item.image ? "image" : undefined);
-                    const url = media?.url ?? item.image ?? "";
+                    const media = item.media as TypeMediaInputValue | undefined;
+                    const mediaType = media?.type ?? (item.image ? "image" : undefined);
+                    const mediaWithUrl = media as { url?: string } | undefined;
+                    const url = mediaWithUrl?.url ?? item.image ?? "";
                     const hasMedia = mediaType && url;
                     const hasCardDescription = this.castToString(item.description);
                     const hasHeaderText = this.castToString(item.header);
@@ -545,14 +545,14 @@ class Slider12 extends BaseSlider {
                           >
                             {hasMedia && (
                               <div className={this.decorateCSS("media")}>
-                                {mediaType === "video" ? (
+                                {mediaType === "video" && media && media.type === "video" ? (
                                   <video
                                     key={`${url}-${i}`}
-                                    autoPlay
-                                    muted
+                                    autoPlay={media.settings?.autoplay !== false}
+                                    muted={media.settings?.muted !== false}
                                     playsInline
-                                    loop
-                                    controls={false}
+                                    loop={!!media.settings?.loop}
+                                    controls={!!media.settings?.controls}
                                     className={this.decorateCSS("video")}
                                     src={url}
                                   />
