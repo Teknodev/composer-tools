@@ -77,7 +77,7 @@ class About13 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("image") as TypeMediaInputValue | null;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
@@ -96,6 +96,8 @@ class About13 extends BaseAbout {
       this.castToString(title) ||
       this.castToString(description) ||
       validButtons.length > 0;
+
+    const hasImage = !!(image && (image as any).url);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -162,21 +164,21 @@ class About13 extends BaseAbout {
               </div>
             )}
 
-            <div
-              className={`${this.decorateCSS("image-wrapper")} ${
-                !isContentVisible ? this.decorateCSS("full-width") : ""
-              }`}
-            >
-              {image && (
+            {hasImage && (
+              <div
+                className={`${this.decorateCSS("image-wrapper")} ${
+                  !isContentVisible ? this.decorateCSS("full-width") : ""
+                }`}
+              >
                 <Base.Media
                   value={image}
                   className={this.decorateCSS("image")}
                 />
-              )}
-              {overlay && image?.url && (
-                <div className={this.decorateCSS("overlay")}></div>
-              )}
-            </div>
+                {overlay && (image as any).url && (
+                  <div className={this.decorateCSS("overlay")}></div>
+                )}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
