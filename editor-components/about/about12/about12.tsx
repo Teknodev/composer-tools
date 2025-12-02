@@ -11,16 +11,16 @@ class About12 extends BaseAbout {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "About Our Team",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
+      key: "title",
+      displayer: "Title",
+      value: "About Our Team",
     });
 
     this.addProp({
@@ -64,16 +64,16 @@ class About12 extends BaseAbout {
   }
 
   render() {
-    const title = this.getPropValue("title") || "";
     const subtitle = this.getPropValue("subtitle") || "";
+    const title = this.getPropValue("title") || "";
     const description = this.getPropValue("description") || "";
     const image = this.getPropValue("image");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const overlay = this.getPropValue("overlay");
 
     const hasImage = !!(image && image.url);
-    const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
     const hasAnyButton =
@@ -125,17 +125,17 @@ class About12 extends BaseAbout {
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
                 >
-                  {hasTitle && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
-                    </Base.SectionTitle>
-                  )}
                   {hasSubtitle && (
                     <Base.SectionSubTitle
                       className={this.decorateCSS("subtitle")}
                     >
                       {subtitle}
                     </Base.SectionSubTitle>
+                  )}
+                  {hasTitle && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
                   )}
 
                   {hasDescription && (
@@ -154,7 +154,7 @@ class About12 extends BaseAbout {
                           const buttonIcon = item.icon;
 
                           const isIconExist = buttonIcon?.name;
-                          
+
                           if (!btnTextExist && !isIconExist) {
                             return null;
                           }
