@@ -102,84 +102,88 @@ class About13 extends BaseAbout {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            {isContentVisible && (
-              <div
-                className={`${this.decorateCSS("content")} ${
-                  alignment === "center" ? this.decorateCSS("center") : ""
-                }`}
-              >
-                {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle
-                    className={this.decorateCSS("subtitle")}
-                  >
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
+          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+            <div className={this.decorateCSS("wrapper")}>
+              {isContentVisible && (
+                <div
+                  className={`${this.decorateCSS("content")} ${
+                    alignment === "center" ? this.decorateCSS("center") : ""
+                  }`}
+                >
+                  {this.castToString(subtitle) && (
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("subtitle")}
+                    >
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
 
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
+                  {this.castToString(title) && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
+                  )}
 
-                {this.castToString(description) && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
-                  >
-                    {description}
-                  </Base.SectionDescription>
-                )}
+                  {this.castToString(description) && (
+                    <Base.SectionDescription
+                      className={this.decorateCSS("description")}
+                    >
+                      {description}
+                    </Base.SectionDescription>
+                  )}
 
-                {validButtons.length > 0 && (
-                  <div className={this.decorateCSS("buttons-wrapper")}>
-                    {validButtons.map((item, index) => {
-                      const buttonTextExist = this.castToString(item.text || "");
-                      const iconExist = item.icon && item.icon.name;
-                      return (
-                        <ComposerLink key={index} path={item.url}>
-                          <Base.Button
-                            buttonType={item.type}
-                            className={this.decorateCSS("button")}
-                          >
-                            {iconExist && (
-                              <Base.Media
-                                value={item.icon}
-                                className={this.decorateCSS("icon")}
-                              />
-                            )}
-                            {buttonTextExist && (
-                              <Base.P
-                                className={this.decorateCSS("button-text")}
-                              >
-                                {item.text}
-                              </Base.P>
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            )}
+                  {validButtons.length > 0 && (
+                    <div className={this.decorateCSS("buttons-wrapper")}>
+                      {validButtons.map((item, index) => {
+                        const buttonTextExist = this.castToString(
+                          item.text || ""
+                        );
+                        const iconExist = item.icon && item.icon.name;
+                        return (
+                          <ComposerLink key={index} path={item.url}>
+                            <Base.Button
+                              buttonType={item.type}
+                              className={this.decorateCSS("button")}
+                            >
+                              {iconExist && (
+                                <Base.Media
+                                  value={item.icon}
+                                  className={this.decorateCSS("icon")}
+                                />
+                              )}
+                              {buttonTextExist && (
+                                <Base.P
+                                  className={this.decorateCSS("button-text")}
+                                >
+                                  {item.text}
+                                </Base.P>
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
 
-            {hasImage && (
-              <div
-                className={`${this.decorateCSS("image-wrapper")} ${
-                  !isContentVisible ? this.decorateCSS("full-width") : ""
-                }`}
-              >
-                <Base.Media
-                  value={image}
-                  className={this.decorateCSS("image")}
-                />
-                {overlay && (image as any).url && (
-                  <div className={this.decorateCSS("overlay")}></div>
-                )}
-              </div>
-            )}
-          </div>
+              {hasImage && (
+                <div
+                  className={`${this.decorateCSS("image-wrapper")} ${
+                    !isContentVisible ? this.decorateCSS("full-width") : ""
+                  }`}
+                >
+                  <Base.Media
+                    value={image}
+                    className={this.decorateCSS("image")}
+                  />
+                  {overlay && (image as any).url && (
+                    <div className={this.decorateCSS("overlay")}></div>
+                  )}
+                </div>
+              )}
+            </div>
+          </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
     );
