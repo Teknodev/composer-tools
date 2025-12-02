@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseAbout } from "../../EditorComponent";
-import styles from "./about8.module.scss";
+import styles from "./about10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -10,7 +10,7 @@ interface FeatureItem {
   description: React.JSX.Element;
 }
 
-class About8 extends BaseAbout {
+class About10 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
 
@@ -200,7 +200,7 @@ class About8 extends BaseAbout {
   }
 
   static getName(): string {
-    return "About 8";
+    return "About 10";
   }
 
   render() {
@@ -311,4 +311,4 @@ class About8 extends BaseAbout {
   }
 }
 
-export default About8;
+export default About10;
