@@ -2,11 +2,23 @@
   as *;
 
 .container {
+  position: relative;
   background-color: color-mix(
     in srgb,
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%
   );
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: var(--composer-html-background);
+    pointer-events: none;
+  }
 
   .max-content {
     .content {
@@ -28,7 +40,7 @@
       }
 
       &:has(.spacer):not(:has(.action-buttons)) .vertical-content {
-        padding-bottom: 70px;
+        padding-bottom: 5rem;
       }
 
       .subtitle {
@@ -72,22 +84,20 @@
             justify-content: center;
 
             svg {
-              width: 20px;
-              height: 30px;
+              width: 2rem;
+              height: 2rem;
             }
           }
         }
-
-        
       }
       .spacer {
-          background-color: var(--composer-html-background);
-          position: absolute;
-          bottom: 0;
-          height: 50px;
-          width: 100vw;
-          z-index: 1;
-        }
+        background-color: var(--composer-html-background);
+        position: absolute;
+        bottom: 0;
+        height: 3rem;
+        width: 100vw;
+        z-index: 1;
+      }
     }
   }
 }

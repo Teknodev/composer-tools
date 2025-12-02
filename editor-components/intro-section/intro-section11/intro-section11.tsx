@@ -48,13 +48,6 @@ class IntroSection11 extends BaseIntroSection {
         ),
       ],
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "spacer",
-      displayer: "Spacer",
-      value: true,
-    });
   }
 
   static getName(): string {
@@ -72,7 +65,7 @@ class IntroSection11 extends BaseIntroSection {
     const hasAnyButton =
       Array.isArray(buttons) &&
       buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
-    const showSpacer = this.getPropValue("spacer");
+
     const hasVerticalContent = hasTitle || hasSubtitle || hasDescription;
 
     return (
@@ -80,9 +73,13 @@ class IntroSection11 extends BaseIntroSection {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {hasVerticalContent && (
-              <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              <Base.VerticalContent
+                className={this.decorateCSS("vertical-content")}
+              >
                 {hasSubtitle && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
@@ -134,7 +131,7 @@ class IntroSection11 extends BaseIntroSection {
               </div>
             )}
 
-            {showSpacer && <div className={this.decorateCSS("spacer")}></div>}
+            {<div className={this.decorateCSS("spacer")}></div>}
           </div>
         </Base.MaxContent>
       </Base.Container>
