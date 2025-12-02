@@ -17,24 +17,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  text-align: left;
+  align-items: flex-start !important;
+  text-align: left !important;
   gap: var(--composer-gap-md);
-
-  &.center {
-    align-items: center;
-    text-align: center;
-
-    .buttons-wrapper {
-      justify-content: center;
-    }
-  }
 }
 
 .subtitle,
 .title,
 .description {
   color: var(--composer-font-color-primary);
+  text-align: left !important;
 }
 
 .buttons-wrapper {
@@ -117,12 +109,12 @@
 
   .content {
     width: 100%;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start !important;
+    text-align: left !important;
   }
 
   .buttons-wrapper {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .image-wrapper {
