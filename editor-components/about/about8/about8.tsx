@@ -36,14 +36,60 @@ class About8 extends BaseAbout {
         "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "More about us", "", null, null, "Primary"));
+    this.addProp({
+      type: "object",
+      key: "button",
+      displayer: "Button",
+      value: [
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: "More about us",
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Navigate To",
+          value: "",
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "",
+          },
+        },
+        {
+          type: "select",
+          key: "type",
+          displayer: "Type",
+          value: "Primary",
+          additionalParams: {
+            selectItems: [
+              "Primary",
+              "Secondary",
+              "Tertiary",
+              "Link",
+              "White",
+              "Black",
+            ],
+          },
+        },
+      ],
+    });
 
     this.addProp({
       type: "media",
       key: "mainImage",
-      displayer: "Main Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -162,17 +208,23 @@ class About8 extends BaseAbout {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonObject = this.castToObject<any>("button");
+    const buttonIcon = buttonObject?.icon;
     const mainImage = this.getPropValue("mainImage");
     const features = this.castToObject<FeatureItem[]>("features");
 
     const isLeftContentExist = this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(button.text);
+    const isRightContentExist = this.castToString(description) || this.castToString(button.text) || (buttonIcon && buttonIcon.name);
     const isImageExist = mainImage;
     const isFeaturesExist = features.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
+          <div 
+            className={this.decorateCSS("header")}
+            data-right-content={isRightContentExist ? "true" : "false"}
+          >
             <div className={this.decorateCSS("content-section")}>
               {isLeftContentExist && (
                 <Base.VerticalContent className={this.decorateCSS("text-content")}>
@@ -197,10 +249,16 @@ class About8 extends BaseAbout {
                       {description}
                     </Base.SectionDescription>
                   )}
-                  {this.castToString(button.text) && (
+                  {(this.castToString(button.text) || (buttonIcon && buttonIcon.name)) && (
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type}>
-                        {button.text}
+                        {buttonIcon && buttonIcon.name && (
+                          <Base.Media
+                            value={buttonIcon}
+                            className={this.decorateCSS("button-icon")}
+                          />
+                        )}
+                        {this.castToString(button.text) && button.text}
                       </Base.Button>
                     </ComposerLink>
                   )}

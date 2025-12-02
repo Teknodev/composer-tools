@@ -4,25 +4,63 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: 0;
 
     .header {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--composer-gap-lg);
-      align-items: flex-start;
-      margin-bottom: var(--composer-gap-lg);
+      grid-template-rows: auto auto;
+      row-gap: var(--composer-gap-md);
+      column-gap: var(--composer-gap-xl);
+      align-items: start;
+      margin-bottom: var(--composer-gap-xl);
 
       .content-section {
-        display: flex;
-        flex-direction: column;
+        display: contents;
 
         .text-content {
-          gap: var(--composer-gap-md);
-          
+          display: contents;
+
           .subtitle, .title, .description {
             margin: 0;
             text-align: left !important;
+          }
+        }
+        
+        &:first-child {
+          .subtitle {
+            grid-column: 1;
+            grid-row: 1;
+          }
+          
+          .title {
+            grid-column: 1;
+            grid-row: 2;
+          }
+        }
+        
+        &:last-child {
+          .text-content {
+            grid-column: 2;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            align-items: flex-start;
+            
+            .description {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      
+      &[data-right-content="false"] {
+        grid-template-columns: 1fr;
+        
+        .content-section:first-child {
+          .title {
+            grid-column: 1 / -1;
           }
         }
       }
@@ -31,8 +69,8 @@
     .image-section {
       position: relative;
       width: 100%;
-      height: 36rem;
-      border-radius: var(--composer-border-radius-md);
+      height: 580px;
+      border-radius: var(--composer-border-radius-sm);
       overflow: hidden;
 
       &[data-animation~="animate1"] {
@@ -88,6 +126,12 @@
         object-fit: cover;
         border-radius: var(--composer-border-radius-sm);
       }
+      
+      video.main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
 
       .overlay {
         position: absolute;
@@ -103,22 +147,36 @@
 
     .features-section {
       padding-top: var(--composer-gap-xl);
+      width: 100%;
 
       .features-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: var(--composer-gap-lg);
+        justify-items: stretch;
+        align-items: start;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        flex-wrap: unset !important;
 
         .feature-item {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-xs);
+          gap: 0;
+          width: 100%;
+          min-width: 0;
+          padding: 0 !important;
+          flex-basis: unset !important;
+          flex-grow: unset !important;
 
           .feature-title {
             font-size: 1.25rem;
             color: var(--composer-font-color-primary);
             margin: 0;
             text-align: left !important;
+            word-break: break-word;
+            overflow-wrap: break-word;
           }
 
           .feature-description {
@@ -136,33 +194,34 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-lg);
+      gap: 0;
 
       .header {
-        grid-template-columns: 1fr;
         gap: var(--composer-gap-md);
 
         .content-section {
           .text-content {
             .title, .subtitle, .description {
-              text-align: inherit;
+              text-align: left !important;
             }
           }
         }
       }
 
       .image-section {
-        height: 24rem;
+        height: 384px;
       }
 
       .features-section {
         .features-grid {
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: var(--composer-gap-md);
+          justify-items: stretch;
+          align-items: start;
 
           .feature-item {
             .feature-title, .feature-description {
-              text-align: inherit;
+              text-align: left !important;
             }
           }
         }
@@ -174,20 +233,52 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
+      gap: 0;
 
       .header {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: unset;
+        grid-template-rows: unset;
+        gap: var(--composer-gap-md);
+        
         .content-section {
+          display: flex;
+          flex-direction: column;
+          
           .text-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            
             .title, .subtitle, .description {
-              text-align: inherit;
+              text-align: left !important;
             }
+          }
+        }
+        
+        .content-section:first-child {
+          .subtitle {
+            grid-column: unset;
+            grid-row: unset;
+          }
+          
+          .title {
+            grid-column: unset;
+            grid-row: unset;
+          }
+        }
+        
+        .content-section:last-child {
+          .text-content {
+            grid-column: unset;
+            grid-row: unset;
           }
         }
       }
 
       .image-section {
-        height: 16rem;
+        height: 260px;
       }
 
       .features-section {
@@ -195,7 +286,7 @@
 
         .features-grid {
           grid-template-columns: 1fr;
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-lg);
 
           .feature-item {
             padding: var(--composer-gap-sm);
@@ -203,7 +294,7 @@
             background-color: var(--composer-background-secondary);
 
             .feature-title, .feature-description {
-              text-align: inherit;
+              text-align: left !important;
             }
           }
         }
