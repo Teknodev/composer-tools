@@ -151,7 +151,6 @@ class About11 extends BaseAbout {
   }
   render() {
     const image = this.getPropValue("image");
-    const isVideo = image?.type === "video";
 
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
@@ -172,17 +171,18 @@ class About11 extends BaseAbout {
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {image && (
               <Base.GridCell className={this.decorateCSS("left")}>
-                <div className={this.decorateCSS(isVideo ? "video-wrapper" : "image-wrapper")}>
+                <div className={this.decorateCSS("image-wrapper")}>
                   <Base.Media
                     value={this.getPropValue("image")}
-                    className={this.decorateCSS(isVideo ? "video" : "image")}
+                    className={this.decorateCSS("image")}
                   />
                   {this.getPropValue("overlay") && (
                     <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
               </Base.GridCell>
-            )}            {hasRightContent && (
+            )}{" "}
+            {hasRightContent && (
               <Base.GridCell className={this.decorateCSS("right")}>
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
