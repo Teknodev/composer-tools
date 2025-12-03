@@ -126,6 +126,9 @@ class Feature24 extends BaseFeature {
       iconBackground ? this.decorateCSS("with-bg") : ""
     }`;
 
+    // Alignment değerini alıyoruz (Feature22'deki gibi)
+    const alignmentValue = Base.getContentAlignment();
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -133,7 +136,9 @@ class Feature24 extends BaseFeature {
             {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle 
+                    className={`${this.decorateCSS("subtitle")} ${alignmentValue === "left" ? this.decorateCSS("subtitle-center") : ""}`}
+                  >
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}

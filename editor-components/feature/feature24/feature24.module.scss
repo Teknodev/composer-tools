@@ -8,27 +8,40 @@
 
     .header {
       width: 100%;
+      // Header her zaman ortalı olacak, Feature22'deki gibi
       display: flex;
       flex-direction: column;
       align-items: center !important;
       text-align: center !important;
       justify-content: center !important;
 
-      .subtitle,
       .title,
+      .subtitle,
       .description {
         text-align: center !important;
         margin-left: auto !important;
         margin-right: auto !important;
         width: 100%;
       }
+
+      // Feature22'den alınan subtitle özelleştirmesi
+      .subtitle-center {
+        &:before {
+          display: none !important;
+        }
+
+        transform: none !important;
+      }
     }
 
     .list {
+      gap: var(--composer-gap-lg);
       margin-top: var(--composer-gap-md);
       margin-bottom: var(--composer-gap-md);
 
       @media (max-width: $composer-phone-width) {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 8px !important;
       }
     }
@@ -47,23 +60,22 @@
       }
 
       .icon-wrapper {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
         position: relative;
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        min-height: 40px;
         padding: 0;
-        flex-shrink: 0;
 
         flex: 0 0 40px;
 
         &.with-bg {
           background: var(--composer-primary-color);
-          padding: var(--composer-gap-sm);
 
           .icon {
             color: var(--composer-font-color-secondary);
@@ -71,9 +83,9 @@
         }
 
         .icon {
-          width: 24px;
-          height: 24px;
-          font-size: 24px;
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
           display: flex;
           justify-content: center;
           align-items: center;
