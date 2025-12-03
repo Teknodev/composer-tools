@@ -52,7 +52,7 @@ class Feature31 extends BaseFeature {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
+                            additionalParams: { availableTypes: ["image", "icon"] },
                             value: { type: "icon", name: "FaRocket" },
                         },
                         {
@@ -79,7 +79,7 @@ class Feature31 extends BaseFeature {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
+                            additionalParams: { availableTypes: ["image", "icon"] },
                             value: { type: "icon", name: "FaLifeRing" },
                         },
                         {
@@ -106,7 +106,7 @@ class Feature31 extends BaseFeature {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
+                            additionalParams: { availableTypes: ["image", "icon"] },
                             value: { type: "icon", name: "FaPiggyBank" },
                         },
                         {
@@ -133,7 +133,7 @@ class Feature31 extends BaseFeature {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
+                            additionalParams: { availableTypes: ["image", "icon"] },
                             value: { type: "icon", name: "FaShieldAlt" },
                         },
                         {
@@ -160,7 +160,7 @@ class Feature31 extends BaseFeature {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
+                            additionalParams: { availableTypes: ["image", "icon"] },
                             value: { type: "icon", name: "FaSailboat" },
                         },
                         {
