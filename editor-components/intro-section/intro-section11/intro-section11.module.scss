@@ -101,3 +101,23 @@
     }
   }
 }
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .content {
+        .action-buttons {
+          .button {
+            padding: var(--padding-xl) !important;
+            .button-icon {
+              svg {
+                width: 1.5rem;
+                height: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
