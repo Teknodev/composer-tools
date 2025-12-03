@@ -312,7 +312,7 @@ type AvailablePropTypes =
   | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
   | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
   | { type: "tag"; value: string[]}
-  | { type: "phone"; value: string }
+  | { type: "phone"; value: string, additionalParams?: {  countriesEnabled?: boolean; phonePattern?: "US" | "US_PARENTHESES" | "DOTTED" | "SPACED" } }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
@@ -349,6 +349,7 @@ export enum CATEGORIES {
   TESTIMONIALS = "testimonials",
   LIST = "list",
   HERO_SECTION = "heroSection",
+  INTRO_SECTION = "introSection",
   PRICING = "pricing",
   FOOTER = "footer",
   TEAM = "team",
@@ -947,6 +948,10 @@ export abstract class BaseList extends Component {
 
 export abstract class BaseHeroSection extends Component {
   static category = CATEGORIES.HERO_SECTION;
+}
+
+export abstract class BaseIntroSection extends Component {
+  static category = CATEGORIES.INTRO_SECTION;
 }
 
 export abstract class BasePricingTable extends Component {

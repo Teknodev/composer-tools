@@ -1,0 +1,179 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .content {
+      width: 100%;
+      display: flex;
+      align-items: center;
+       justify-content: space-between;;
+      gap: var(--composer-gap-xl);
+
+      .left-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-lg);
+      }
+
+      .title {
+        text-align: left;
+      }
+
+      .features-list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: var(--composer-gap-xl);
+
+        .features-list-item {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-self: flex-start;
+
+          .topText {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+          }
+
+          .bottomText {
+            color: var(--composer-font-color-primary);
+            text-align: left;
+          }
+        }
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-md);
+        justify-content: flex-start;
+
+        .button {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+        }
+
+        .button-text {
+          white-space: nowrap;
+        }
+      }
+
+      .right-container {
+        width: 100%;
+        max-width: 50%;
+        aspect-ratio: 1 / 1;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        overflow: hidden;
+
+        &.right-container-alone {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .image-circle {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: inherit;
+        }
+
+        .overlay {
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          background-color: var(--composer-overlay-color);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+
+        .title {
+          &.title-center {
+            text-align: center;
+          }
+        }
+
+        &.alignment-center {
+          align-items: center;
+          text-align: center;
+
+          .left-container {
+            align-items: center;
+            text-align: center;
+          }
+
+          .features-list {
+            justify-content: center;
+
+            .features-list-item {
+              align-items: center;
+
+              .topText {
+                text-align: center;
+              }
+
+              .bottomText {
+                text-align: center;
+              }
+            }
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
+
+        &.alignment-left {
+          align-items: flex-start;
+          text-align: left;
+
+          .left-container {
+            align-items: flex-start;
+            text-align: left;
+          }
+
+          .button-container {
+            justify-content: flex-start;
+          }
+        }
+
+        .right-container {
+          order: 3;
+          width: 100%;
+          max-width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &.right-container-alone {
+            margin: 0 auto;
+          }
+
+          .image-circle {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}

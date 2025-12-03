@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature18.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -11,7 +11,7 @@ type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
-  icon: string;
+  icon: TypeMediaInputValue;
 };
 
 class Feature18 extends BaseFeature {
@@ -26,19 +26,25 @@ class Feature18 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Title",
               value: "Business Strategy",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaBox",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaBox"
+              },
             },
             {
               type: "string",
@@ -59,19 +65,25 @@ class Feature18 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Title",
               value: "Research",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "HiBeaker",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "HiBeaker"
+              },
             },
             {
               type: "string",
@@ -92,19 +104,25 @@ class Feature18 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Title",
               value: "Data Analysis",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "GrAnalytics",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "GrAnalytics"
+              },
             },
             {
               type: "string",
@@ -125,19 +143,25 @@ class Feature18 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Title",
               value: "UI Design",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "HiGlobeAlt",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "HiGlobeAlt"
+              },
             },
             {
               type: "string",
@@ -158,19 +182,25 @@ class Feature18 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Title",
               value: "Ux Design",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "SiAltiumdesigner",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "SiAltiumdesigner"
+              },
             },
             {
               type: "string",
@@ -191,19 +221,25 @@ class Feature18 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Title",
               value: "Technology",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "SlBulb",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "SlBulb"
+              },
             },
             {
               type: "string",
@@ -224,19 +260,25 @@ class Feature18 extends BaseFeature {
         {
           type: "object",
           key: "tab",
-          displayer: "Button text",
+          displayer: "Tab Item",
           value: [
             {
               type: "string",
               key: "tabText",
-              displayer: "Button",
+              displayer: "Tab Title",
               value: "Creative",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiAperture",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiAperture"
+              },
             },
             {
               type: "string",
@@ -286,7 +328,7 @@ class Feature18 extends BaseFeature {
           <div className={this.decorateCSS("tabs")}>
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
-                (tab: ITabs, index: number) => (
+                (tab: ITabs, index: number) => (this.castToString(tab.tabText) || tab.icon) && (
                   <div
                     className={
                       `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
@@ -297,16 +339,14 @@ class Feature18 extends BaseFeature {
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     onClick={() => this.setActiveTab(index)}
                   >
-                    <Base.Icon
-                      name={tab.icon}
-                      propsIcon={{
-                        className: this.decorateCSS("tab-icon"),
-                      }}
+                    <Base.Media
+                      value={tab.icon}
+                      className={this.decorateCSS("tab-icon")}
                     />
                     <div className={this.decorateCSS("square")}></div>
-                    <div className={this.decorateCSS("tab-text")}>
+                    <Base.H5 className={this.decorateCSS("tab-text")}>
                       {tab.tabText}
-                    </div>
+                    </Base.H5>
                   </div>
                 )
               )}
@@ -327,11 +367,9 @@ class Feature18 extends BaseFeature {
                   <Base.VerticalContent className={this.decorateCSS("content")}>
                     {tab.icon && (
                       <Base.Row className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon
-                          name={tab.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
+                        <Base.Media
+                          value={tab.icon}
+                          className={this.decorateCSS("icon")}
                         />
                       </Base.Row>
                     )}
@@ -350,7 +388,7 @@ class Feature18 extends BaseFeature {
                     {this.castToString(tab.button.text) && (
                       <ComposerLink path={tab.button.url}>
                         <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
-                          {tab.button.text}
+                          <Base.P className={this.decorateCSS("button-text")}>{tab.button.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     )}

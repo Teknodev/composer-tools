@@ -1,0 +1,83 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--composer-gap-xl);
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .heading,
+  .subheading {
+    content: "";
+  }
+
+  .features-grid {
+    width: 100%;
+    justify-content: center;
+    gap: var(--composer-gap-lg);
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--composer-gap-md);
+      text-align: center;
+
+      &.center {
+        align-items: center;
+      }
+
+      .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+          font-size: 2rem;
+          color: var(--composer-primary-color);
+        }
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        .title,
+        .description {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+
+  .button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--composer-gap-md);
+
+    .button {
+      .button-text {
+        content: "";
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+    }
+  }
+}

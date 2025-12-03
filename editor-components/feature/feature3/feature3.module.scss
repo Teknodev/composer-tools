@@ -1,11 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-$space: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
-$cardsmargintop: -300px;
+$space: 5%;
+$cardsmargintop: max(-15%, -300px);
 $logosmargintop: calc(-1 * $cardsmargintop / 2);
-$circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
+$circlepaddingbottom: calc(300px + var(--composer-gap-xl));
 
 .container {
+    min-height: auto;
     .max-content {
         .wrapper {
             .upper {
@@ -25,7 +26,6 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                     &.circle-exist {
                         text-align: left;
                         margin: 0;
-
                         color: var(--composer-font-color-secondary);
                     }
                 }
@@ -36,15 +36,12 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                     color: var(--composer-font-color-primary);
 
                     &.circle-exist {
-                        // reset alignment if circle exists
                         text-align: left;
                         margin: 0;
-
                         position: absolute;
                         top: calc(var(--composer-gap-xl) + var(--composer-gap-md));
                         right: 0;
                         width: 30%;
-
                         line-clamp: 7;
                         -webkit-line-clamp: 7;
                         display: -webkit-box;
@@ -63,6 +60,9 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                     padding-top: calc(var(--composer-gap-xl) + var(--composer-gap-md));
                     padding-bottom: $circlepaddingbottom;
                     max-height: 100%;
+                    overflow: hidden;
+                    word-wrap: break-word;
+                    overflow-wrap: break-word;
 
                     &.absolute {
                         position: absolute;
@@ -71,6 +71,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 
                 .cards-container {
                     gap: var(--composer-gap-lg);
+                    margin-top: var(--composer-gap-lg);
 
                     &.circle-exist {
                         padding-left: $space;
@@ -84,15 +85,12 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         flex-direction: column;
 
                         .card-content {
-                            width: 100%;
                             height: 100%;
-                            display: flex;
-                            flex-direction: column;
                             justify-content: center;
-                            padding: var(--composer-gap-md) var(--composer-gap-lg);
+                            padding: var(--composer-gap-lg);
                             gap: var(--composer-gap-md);
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                            border-radius: var(--composer-border-radius-xl);
+                            border-radius: var(--composer-border-radius-sm);
                             z-index: 1;
                             transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
 
@@ -106,6 +104,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                                 margin: 0;
                                 width: 75px;
                                 height: 75px;
+                                font-size: 5rem;
                                 transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
                             }
 
@@ -121,7 +120,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
             &:has(.upper .cards-container) {
                 &:has(.logos-container) {
                     .upper .cards-container {
-                        margin-bottom: var(--composer-gap-md);
+                        margin-bottom: var(--composer-gap-lg);
                     }
                 }
             }
@@ -134,7 +133,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                 }
 
                 &.no-cards {
-                    margin-top: 0;
+                    margin-top: var(--composer-gap-xl);
                 }
 
                 .logo-container {
@@ -147,19 +146,20 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         position: relative;
                         overflow: hidden;
                         transition: transform var(--composer-transition-duration-slow) ease;
-                        height: 150px;                    .logo-image {
-                        width: 90%;
-                        height: 100%;
-                        object-fit: contain;
-                        position: absolute;
-                        top: 0;
-                        left: 5%;
-                        transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
-                        filter: grayscale(100%);
+                        height: 150px;                    
+                        .logo-image {
+                            width: 90%;
+                            height: 100%;
+                            object-fit: contain;
+                            position: absolute;
+                            top: 0;
+                            left: 5%;
+                            transition: opacity var(--composer-transition-duration-slow) ease, transform var(--composer-transition-duration-slow) ease;
+                            filter: grayscale(100%);
 
-                        &:hover {
-                            filter: grayscale(0);
-                        }
+                            &:hover {
+                                filter: grayscale(0);
+                            }
                     }
                 }
             }
@@ -168,8 +168,8 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    $space : var(--composer-gap-xl);
-    $cardsmargintop : -220px;
+    $space : 5%;
+    $cardsmargintop : -150px;
     $logosmargintop : calc(-1 * $cardsmargintop / 3);
 
     .container {
@@ -186,6 +186,15 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         padding: calc($space + var(--composer-gap-md));
                         aspect-ratio: 1 / 1;
                         padding-bottom: -$cardsmargintop;
+                        overflow: hidden;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
+                    }
+
+                    .title {
+                        &.circle-exist {
+                            margin-top: var(--composer-gap-lg);
+                        }
                     }
 
                     .description {
@@ -199,6 +208,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 
                     .cards-container {
                         gap: var(--composer-gap-md);
+                        margin-top: var(--composer-gap-md);
 
                         &.circle-exist {
                             padding-left: calc($space + var(--composer-gap-md));
@@ -213,6 +223,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                                 gap: var(--composer-gap-sm);
 
                                 .card-icon {
+                                    font-size: 3rem;
                                     width: var(--composer-gap-xl);
                                     height: var(--composer-gap-xl);
                                 }
@@ -237,10 +248,16 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
             .wrapper {
                 .upper {
                     position: static;
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
 
                     .circle {
                         padding: calc(2 * var(--composer-gap-xl)) var(--composer-gap-md);
                         width: 100%;
+                        overflow: hidden;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
 
                         .title {
                             text-align: center;
@@ -263,18 +280,26 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         }
                     }
 
+                    .title {
+                        &.circle-exist {
+                            text-align: center;
+                        }
+                    }
+
                     .description {
                         &.circle-exist {
                             width: 100%;
                             position: static;
-                            color: var(--composer-font-color-secondary);
+                            color: var(--composer-font-color-primary);
                             line-clamp: unset;
                             -webkit-line-clamp: unset;
+                            text-align: center;
                         }
                     }
 
                     .cards-container {
                         gap: var(--composer-gap-sm);
+                        margin-top: var(--composer-gap-md);
 
                         &.circle-exist {
                             margin-top: 0;
