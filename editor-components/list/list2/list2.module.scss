@@ -124,6 +124,29 @@
               }
             }
           }
+
+          &.card-no-image {
+            .image-container {
+              display: none;
+            }
+            .overlay-gradient {
+              opacity: 0;
+            }
+            .card-content {
+              color: var(--composer-font-color-primary);
+              .category {
+                .category-name {
+                  color: var(--composer-font-color-primary);
+                }
+                .count-badge {
+                  .count-value,
+                  .count-label {
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+              }
+            }
+          }
         }
       }
       .button-wrapper {

@@ -6,8 +6,8 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
     padding: 0 var(--composer-gap-lg);
+    gap: 0;
     
     .header {
       padding: 0;
@@ -301,15 +301,9 @@
             text-align: left;
           }
         }
-      }
 
-      .card {
-        &:where(:hover, :focus-within) {
-          .card-content {
-            .card-description {
-              opacity: 1;
-            }
-          }
+        .image-container:hover + .card-content .card-description {
+          opacity: 1;
         }
       }
 
@@ -366,18 +360,14 @@
     .grid-container {
       .card {
         .card-content {
-          bottom: -10;
+          bottom: -90px;
           .card-description {
             opacity: 0;
           }
         }
 
-        &:hover {
-          .card-content {
-            .card-description {
-              opacity: 1;
-            }
-          }
+        .image-container:hover + .card-content .card-description {
+          opacity: 1;
         }
       }
 
