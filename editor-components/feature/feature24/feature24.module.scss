@@ -1,0 +1,126 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  &[class*="center"] {
+    .list {
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .buttons {
+      justify-content: center;
+    }
+  }
+
+  &[class*="right"] {
+    .list {
+      .row {
+        justify-content: flex-end;
+        text-align: right;
+        flex-direction: row-reverse;
+      }
+    }
+
+    .buttons {
+      justify-content: flex-end;
+    }
+  }
+
+  .max-content {
+    .page {
+      width: 100%;
+    }
+
+    .header {
+      width: 100%;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--composer-gap-lg);
+
+      @media (min-width: $composer-tablet-width) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--composer-gap-md);
+      width: 100%;
+      text-align: left;
+
+      .icon-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        position: relative;
+        // fit-content ile ikon + padding kadar yer kaplar (Örnekteki gibi)
+        width: fit-content;
+        height: fit-content;
+        padding: 0;
+        flex-shrink: 0;
+
+        &.with-bg {
+          background: var(--composer-primary-color);
+          // İkon etrafındaki boşluk (yuvarlağın büyüklüğü)
+          padding: var(--composer-gap-sm);
+
+          .icon {
+            color: var(--composer-font-color-secondary);
+          }
+
+          @media (max-width: $composer-phone-width) {
+            padding: var(--composer-gap-xs);
+          }
+        }
+
+        .icon {
+          // İkonun sabit boyutu (Örnekteki gibi 30px)
+          width: 30px;
+          height: 30px;
+          font-size: 2rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--composer-primary-color);
+
+          @media (max-width: $composer-phone-width) {
+            width: 20px;
+            height: 20px;
+            font-size: 1.25rem;
+          }
+        }
+      }
+
+      .text {
+        margin: 0;
+        color: var(--composer-font-color-primary);
+        text-align: left;
+        flex: 1;
+        min-width: 0;
+        word-break: break-word;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-md);
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+      margin-top: var(--composer-gap-xl);
+
+      .button {
+        .button-text {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
