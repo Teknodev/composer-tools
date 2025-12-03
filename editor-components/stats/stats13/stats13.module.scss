@@ -44,18 +44,17 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: flex-start;
 
                 .vertical-content {
                     width: 100%;
-                    align-items: flex-start !important;
+                    justify-content: flex-start;
+                    align-items: flex-start;
 
                     .rating-container {
                         display: flex;
                         align-items: flex-end;
                         gap: var(--composer-gap-sm);
                         color: var(--composer-primary-color);
-                        justify-content: flex-start !important;
 
 
                         .rating-content {
@@ -71,31 +70,30 @@
                         }
 
                         .rating-number {
-                            text-align: left !important;
                             margin: 0;
                         }
                     }
 
                     .subtitle {
                         overflow-wrap: anywhere;
-                        text-align: left !important;
                         width: fit-content;
-                        margin-left: 0 !important;
+                        margin: 0;
+                        text-align: left;
                     }
 
                     .title,
                     .description {
                         overflow-wrap: anywhere;
-                        text-align: left !important;
                         width: 100%;
+                        text-align: left;
                     }
 
                     .child-container {
                         display: grid;
                         gap: var(--gap-xl);
+                        justify-items: start;
 
                         .button-container {
-                            justify-content: flex-start !important;
                             display: flex;
                             gap: var(--composer-gap-md);
                             flex-wrap: wrap;
@@ -109,19 +107,16 @@
 
                         .stats-container {
                             display: flex;
-                            justify-content: flex-start !important;
                             flex-wrap: wrap;
                             gap: var(--gap-xl);
 
                             .stat-item {
-                                text-align: start;
                                 gap: var(--gap-md);
                                 display: flex;
                                 flex-direction: column;
 
                                 .stat-number {
                                     color: var(--composer-font-color-primary);
-                                    text-align: left !important;
                                     font-size: 3rem;
                                     font-weight: 550;
                                     display: flex;
@@ -129,7 +124,6 @@
 
                                 .stat-description {
                                     flex-wrap: wrap;
-                                    text-align: start !important;
                                 }
                             }
                         }
@@ -182,36 +176,20 @@
                     padding: 0 calc(var(--padding-md) * 4);
 
                     .vertical-content {
-                        align-items: var(--composer-content-alignment) !important;
-
-                        .rating-container {
-                            justify-content: var(--composer-content-alignment) !important;
-
-                            .rating-number {
-                                text-align: var(--composer-content-alignment) !important;
-                            }
-                        }
+                        align-items: var(--composer-content-alignment);
 
                         .subtitle,
                         .title,
                         .description {
-                            text-align: var(--composer-content-alignment) !important;
+                            text-align: var(--composer-content-alignment);
                         }
 
                         .child-container {
-                            .button-container {
-                                justify-content: var(--composer-content-alignment) !important;
-                            }
+                            justify-items: var(--composer-content-alignment);
 
                             .stats-container {
-                                justify-content: var(--composer-content-alignment) !important;
-
-                                .stat-number {
-                                    text-align: var(--composer-content-alignment) !important;
-                                }
-
-                                .stat-description {
-                                    text-align: var(--composer-content-alignment) !important;
+                                .stat-item {
+                                    align-items: var(--composer-content-alignment);
                                 }
                             }
                         }
@@ -241,14 +219,9 @@
 
                     .vertical-content {
                         .child-container {
-                            .button-container {
-                                flex-direction: column;
-                                align-content: flex-start;
-                                align-items: flex-start;
-                            }
 
                             .stats-container {
-                                gap: var(--gap-sm) !important;
+                                gap: var(--gap-lg) !important;
 
                                 .stat-item {
                                     .stat-number {

@@ -328,14 +328,14 @@ class Stats13 extends BaseStats {
         const ratingItems = this.castToObject<RatingItemType[]>("rating");
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleProp = this.getPropValue("title");
-        const titleString = this.castToString(titleProp) as string;
+        const titleExist = this.castToString(titleProp) as string;
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableTextAnimation = this.getPropValue("enableTextAnimation");
         const enableStatAnimation = this.getPropValue("enableStatAnimation");
         const statsItems = this.castToObject<StatItemType[]>("statsItems");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const enableOverlay = this.getPropValue("enableOverlay");
-        const hasContent = ratingItems.length > 0 || !!titleString || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
+        const hasContent = ratingItems.length > 0 || !!titleExist || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
 
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist ? this.decorateCSS("no-image-container") : ""} ${!hasContent ? this.decorateCSS("no-left-content-container") : ""}`} isFull={true}>
@@ -360,7 +360,7 @@ class Stats13 extends BaseStats {
                                         </Base.Row>
                                     )}
                                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
-                                    {titleString && (<Base.SectionTitle className={this.decorateCSS("title")}><this.TypewriterText content={titleProp} text={titleString} enableAnimation={enableTextAnimation} /></Base.SectionTitle>)}
+                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}><this.TypewriterText content={titleProp} text={titleExist} enableAnimation={enableTextAnimation} /></Base.SectionTitle>)}
                                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
                                     <div className={this.decorateCSS("child-container")}>
                                         {buttons.length > 0 && (
