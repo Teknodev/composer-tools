@@ -15,39 +15,18 @@ class About11 extends BaseAbout {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value:
-        '<p dir="ltr"><span style="white-space: pre-wrap;">About Me </span></p><p dir="ltr"><span style="white-space: pre-wrap;">and My Works</span></p>',
-    });
-
-    this.addProp({
-      type: "string",
       key: "subtitle",
       displayer: "Subtitle",
       value: "",
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692947183596a1002b31c684?alt=media",
-      },
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value:
+        '<p dir="ltr"><span style="white-space: pre-wrap;">About Me </span></p><p dir="ltr"><span style="white-space: pre-wrap;">and My Works</span></p>',
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
     this.addProp({
       type: "string",
       key: "description",
@@ -145,31 +124,53 @@ class About11 extends BaseAbout {
       displayer: "Icon Background",
       value: true,
     });
+
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692947183596a1002b31c684?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
   }
   static getName(): string {
     return "About 11";
   }
   render() {
-    const image = this.getPropValue("image");
-
-    const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    
+    const rightItems = this.castToObject<Icon[]>("right-items") || [];
     const iconBackground = this.getPropValue("iconBackground");
 
-    const rightItems = this.castToObject<Icon[]>("right-items") || [];
+    const image = this.getPropValue("image");
 
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
     const hasDescription = this.castToString(description);
     const hasRightContent =
       hasTitle || hasSubtitle || hasDescription || rightItems.length > 0;
+    const hasImage = !!(image && image.url);
+    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("content")}>
-            {image && (
+            {hasImage && (
               <Base.GridCell className={this.decorateCSS("left")}>
                 <div className={this.decorateCSS("image-wrapper")}>
                   <Base.Media
@@ -183,7 +184,11 @@ class About11 extends BaseAbout {
               </Base.GridCell>
             )}{" "}
             {hasRightContent && (
-              <Base.GridCell className={this.decorateCSS("right")}>
+              <Base.GridCell className={`${this.decorateCSS("right")} ${
+                !hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""
+              } ${
+                alignmentValue === "center" ? this.decorateCSS("center") : ""
+              }`}>
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
                 >

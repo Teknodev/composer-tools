@@ -21,11 +21,12 @@
 
     .content {
       width: 100%;
-      align-items: center;
+      align-items: stretch;
+      display: flex;
+      justify-content: flex-start;
 
       .left {
-        display: flex;
-        justify-content: flex-start;
+        aspect-ratio: 1 / 1;
 
         &:only-child {
           justify-content: center;
@@ -36,6 +37,11 @@
         position: relative;
         overflow: hidden;
         box-shadow: var(--box-shadow-active);
+        display: flex;
+        align-items: stretch;
+
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
 
         .image {
           width: 100%;
@@ -56,14 +62,29 @@
         }
       }
 
-      .image-wrapper {
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-      }
-
       .right {
         display: flex;
         align-items: center;
+
+        &.no-image-center {
+          .vertical-content {
+            align-items: center;
+
+            .section-title,
+            .section-subtitle,
+            .section-description {
+              text-align: center;
+            }
+
+            .section-subtitle {
+              margin-left: auto;
+            }
+
+            .icons {
+              justify-content: center;
+            }
+          }
+        }
       }
 
       .vertical-content {
@@ -151,8 +172,24 @@
           max-width: 100%;
         }
 
-        .image-wrapper {
-          max-height: 500px;
+        .right.center {
+          .vertical-content {
+            align-items: center;
+
+            .section-title,
+            .section-subtitle,
+            .section-description {
+              text-align: center;
+            }
+
+            .section-subtitle {
+              margin-left: auto;
+            }
+
+            .icons {
+              justify-content: center;
+            }
+          }
         }
       }
     }
