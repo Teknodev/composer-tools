@@ -4,7 +4,7 @@
     background: var(--composer-html-background);
 
     &.no-background {
-        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        background: var(--composer-html-background);
 
         .max-content {
             background: transparent;
@@ -51,10 +51,14 @@
 
                     .subtitle {
                         overflow-wrap: anywhere;
-                        text-align: left !important;
-                        width: fit-content;
-                        margin-left: 0 !important;
                         color: var(--composer-font-color-secondary);
+                        margin-left: 0;
+                        width: fit-content;
+                        text-align: left;
+
+                        &:before {
+                            background: var(--composer-font-color-secondary);
+                        }
                     }
 
                     .title,
@@ -85,18 +89,20 @@
             .images-content {
                 flex: 1;
                 min-width: 0;
+                display: flex;
+                flex-direction: column;
 
                 .images-wrapper {
                     display: flex;
                     gap: var(--gap-xl);
+                    flex: 1;
 
                     .image-box {
                         flex: 1;
                         position: relative;
                         overflow: hidden;
-                        aspect-ratio: 1 / 1.5;
                         border-radius: var(--composer-border-radius-sm);
-                        max-height: 600px;
+                        min-height: 500px;
 
                         .image {
                             width: 100%;
@@ -131,12 +137,17 @@
 
             .wrapper {
                 flex-direction: column;
-                gap: calc(var(--gap-xl) * 2.5);
+                gap: calc(var(--gap-xl) * 2.25);
 
                 .vertical-content {
                     width: 100%;
 
                     .text-content {
+
+                        .subtitle {
+                            margin: auto;
+                            width: unset;
+                        }
 
                         .subtitle,
                         .title,
@@ -156,13 +167,19 @@
     @container (max-width: #{$composer-phone-width}) {
         .container {
             .max-content {
-                padding: calc(var(--padding-xxl) * 2) calc(var(--padding-md) * 2) calc(var(--padding-xxl) * 2) calc(var(--padding-md) * 2);
+                padding: var(--padding-xxl) calc(var(--padding-md) * 2) var(--padding-xxl) calc(var(--padding-md) * 2);
 
                 .wrapper {
+                    gap: calc(var(--gap-md) * 3);
 
                     .images-content {
                         .images-wrapper {
                             gap: var(--gap-md);
+
+                            .image-box {
+                                min-height: 200px;
+
+                            }
                         }
                     }
                 }

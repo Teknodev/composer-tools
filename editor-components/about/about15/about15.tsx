@@ -25,20 +25,20 @@ class About15 extends BaseAbout {
         this.addProp({
             type: "array",
             key: "images",
-            displayer: "Product Images",
+            displayer: "Images",
             additionalParams: {
                 maxElementCount: 3,
             },
             value: [
                 {
                     type: "object",
-                    key: "productImageItem",
-                    displayer: "Product Image Item",
+                    key: "ImageItem",
+                    displayer: "Image Item",
                     value: [
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Product Image",
+                            displayer: "Image",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
@@ -51,13 +51,13 @@ class About15 extends BaseAbout {
                 },
                 {
                     type: "object",
-                    key: "productImageItem",
-                    displayer: "Product Image Item",
+                    key: "ImageItem",
+                    displayer: "Image Item",
                     value: [
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Product Image",
+                            displayer: "Image",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
@@ -70,13 +70,13 @@ class About15 extends BaseAbout {
                 },
                 {
                     type: "object",
-                    key: "productImageItem",
-                    displayer: "Product Image Item",
+                    key: "ImageItem",
+                    displayer: "Image Item",
                     value: [
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Product Image",
+                            displayer: "Image",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
