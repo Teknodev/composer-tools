@@ -32,6 +32,7 @@
 
           .arrows-wrap {
             width: 100%;
+            margin-top: var(--composer-gap-md);
 
             .arrows {
               display: flex;
@@ -313,9 +314,7 @@
       }
 
       .slide {
-        &.wide {
-          width: 390px;
-        }
+        width: 390px;
       }
 
       .text {
