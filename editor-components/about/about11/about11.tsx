@@ -187,19 +187,19 @@ class About11 extends BaseAbout {
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
                 >
-                  {hasTitle && (
-                    <Base.SectionTitle
-                      className={this.decorateCSS("section-title")}
-                    >
-                      {title}
-                    </Base.SectionTitle>
-                  )}
                   {hasSubtitle && (
                     <Base.SectionSubTitle
                       className={this.decorateCSS("section-subtitle")}
                     >
                       {subtitle}
                     </Base.SectionSubTitle>
+                  )}
+                  {hasTitle && (
+                    <Base.SectionTitle
+                      className={this.decorateCSS("section-title")}
+                    >
+                      {title}
+                    </Base.SectionTitle>
                   )}
 
                   {hasDescription && (
