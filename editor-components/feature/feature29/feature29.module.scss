@@ -236,24 +236,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content {
-    .header-container {
-      align-items: center;
-      .subtitle {
-        text-align: center;
-        width: 100%;
-        transform: none;
-        &::before {
-          display: none;
-        }
-      }
-      .title {
-        text-align: center;
-      }
-      .description {
-        text-align: center;
-      }
-    }
-
     .card {
       .card-text-container {
         gap: var(--composer-gap-sm);

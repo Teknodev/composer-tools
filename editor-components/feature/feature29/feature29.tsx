@@ -196,7 +196,7 @@ class Feature29 extends BaseFeature {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690e36303596a1002b214633?alt=media",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69304acc496aa1002ca78ef1?alt=media",
           },
         },
         {
