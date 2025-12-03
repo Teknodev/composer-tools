@@ -9,10 +9,9 @@
     .intro-wrapper {
       display: flex;
       width: 100%;
-      height: 100%;
-      justify-content: end;
-      min-height: 500px;
+      justify-content: space-between;
       align-items: center;
+      gap: var(--composer-gap-xl);
 
       &.no-image {
         min-height: unset;
@@ -43,15 +42,12 @@
       }
 
       .image-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: calc(50% - var(--composer-gap-xl));
-        height: 100%;
+        position: relative;
+        width: 50%;
+        flex-shrink: 0;
 
         &.image-container-alone {
           width: 100%;
-          height: 100%;
         }
 
         .thumbnail-overlay {
@@ -68,7 +64,7 @@
 
         .media-image {
           width: 100%;
-          height: 100%;
+          aspect-ratio: 1 / 1;
           object-fit: cover;
         }
       }
@@ -78,7 +74,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 100%;
+        padding-left: var(--composer-gap-xl);
 
         &.text-content-alone {
           width: 100%;
@@ -125,25 +121,27 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0 !important;
     .max-content {
       .intro-wrapper {
         flex-direction: column;
+        gap: var(--composer-gap-lg);
 
         .image-container {
           order: 2;
           flex: 0 0 100%;
           width: 100%;
-          position: relative;
-          padding: 0;
+          .media-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+          }
         }
 
         .text-content {
-          padding: 80px 40px !important;
           order: 1;
           width: 100%;
           flex: 0 0 100%;
-
+          padding-left: 40px;
+          padding-right: 40px;
           &.center {
             .vertical-content {
               align-items: center;
