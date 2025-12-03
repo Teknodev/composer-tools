@@ -1,0 +1,99 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: var(--composer-gap-xl);
+
+        .header {
+            .subtitle {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                transform: none !important;
+
+                &::before,
+                &::after {
+                    display: none !important;
+                }
+            }
+        }
+
+        .title,
+        .description {
+            text-align: center !important;
+        }
+
+        .features-grid {
+            width: 100%;
+            justify-content: center;
+            gap: var(--composer-gap-lg);
+
+            .feature-card {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
+                align-items: center;
+
+                &.center {
+                    align-items: center;
+                }
+
+                .icon-container {
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    border-radius: var(--composer-border-radius-full);
+
+                    &.no-bg {
+                        background-color: transparent;
+                    }
+
+                    .icon {
+                        font-size: 3rem;
+                        color: var(--composer-font-color-primary);
+                        width: 100px;
+                        height: 100px;
+                        display: flex;
+                        align-content: center;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                .content {
+                    display: flex;
+                    flex-direction: column;
+
+                    .title,
+                    .description {
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center !important;
+            flex-wrap: wrap;
+            width: 100%;
+            gap: var(--composer-gap-sm);
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+        }
+    }
+}
