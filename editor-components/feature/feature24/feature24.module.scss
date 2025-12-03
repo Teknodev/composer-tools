@@ -80,7 +80,6 @@
         }
 
         .icon {
-          // İkon ve Resim için ortak boyut kuralları
           width: 24px;
           height: 24px;
           font-size: 24px;
@@ -89,9 +88,8 @@
           align-items: center;
           color: var(--composer-primary-color);
 
-          // Resimler için özel ayar
-          object-fit: contain; // Resmi oranını bozmadan sığdır
-          border-radius: 0; // İstenirse resimlere de radius verilebilir
+          object-fit: contain;
+          border-radius: 0;
 
           @media (max-width: $composer-phone-width) {
             width: 18px;

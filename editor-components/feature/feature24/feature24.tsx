@@ -117,7 +117,6 @@ class Feature24 extends BaseFeature {
   renderMedia(media: TypeMediaInputValue, className: string) {
     if (!media) return null;
 
-    // Resim Durumu
     if (media.type === "image" && media.url) {
       return (
         <img 
@@ -128,7 +127,6 @@ class Feature24 extends BaseFeature {
       );
     }
 
-    // İkon Durumu
     if (media.type === "icon" && media.name) {
       if (media.name === "TiTick") {
         return <TiTick className={className} />;
@@ -191,7 +189,6 @@ class Feature24 extends BaseFeature {
                   const iconData = item.icon; 
                   const hasText = this.castToString(text);
                   
-                  // İkon veya resim var mı kontrolü
                   const hasMedia = (iconData?.type === "icon" && iconData.name) || (iconData?.type === "image" && iconData.url);
 
                   if (!hasText && !hasMedia) return null;
