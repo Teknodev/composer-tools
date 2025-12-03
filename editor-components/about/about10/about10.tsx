@@ -45,7 +45,7 @@ class About10 extends BaseAbout {
           type: "string",
           key: "text",
           displayer: "Text",
-          value: "More about us",
+          value: "More About Us",
         },
         {
           type: "page",
@@ -58,7 +58,7 @@ class About10 extends BaseAbout {
           key: "icon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon","image"],
           },
           value: {
             type: "icon",
@@ -213,8 +213,8 @@ class About10 extends BaseAbout {
     const mainImage = this.getPropValue("mainImage");
     const features = this.castToObject<FeatureItem[]>("features");
 
-    const isLeftContentExist = this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(button.text);
-    const isRightContentExist = this.castToString(description) || this.castToString(button.text) || (buttonIcon && buttonIcon.name);
+    const hasSubtitleOrTitle = this.castToString(subtitle) || this.castToString(title);
+    const hasDescriptionOrButton = this.castToString(description) || this.castToString(button.text) || (buttonIcon && buttonIcon.name);
     const isImageExist = mainImage;
     const isFeaturesExist = features.length > 0;
 
@@ -222,11 +222,10 @@ class About10 extends BaseAbout {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div 
-            className={this.decorateCSS("header")}
-            data-right-content={isRightContentExist ? "true" : "false"}
+            className={`${this.decorateCSS("header")} ${!hasSubtitleOrTitle ? this.decorateCSS("no-left") : ""} ${!hasDescriptionOrButton ? this.decorateCSS("no-right") : ""}`}
           >
-            <div className={this.decorateCSS("content-section")}>
-              {isLeftContentExist && (
+            {hasSubtitleOrTitle && (
+              <div className={this.decorateCSS("content-section")}>
                 <Base.VerticalContent className={this.decorateCSS("text-content")}>
                   {this.castToString(subtitle) && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -239,32 +238,38 @@ class About10 extends BaseAbout {
                     </Base.SectionTitle>
                   )}
                 </Base.VerticalContent>
-              )}
-            </div>
-            <div className={this.decorateCSS("content-section")}>
-              {(this.castToString(description) || this.castToString(button.text)) && (
-                <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                  {this.castToString(description) && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
-                    </Base.SectionDescription>
-                  )}
-                  {(this.castToString(button.text) || (buttonIcon && buttonIcon.name)) && (
+              </div>
+            )}
+            {hasDescriptionOrButton && (
+              <div className={this.decorateCSS("content-section")}>
+                {this.castToString(description) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
+                {(this.castToString(button.text) || (buttonIcon && buttonIcon.name)) && (
+                  <div className={this.decorateCSS("button-wrapper")}>
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type}>
                         {buttonIcon && buttonIcon.name && (
-                          <Base.Media
-                            value={buttonIcon}
-                            className={this.decorateCSS("button-icon")}
-                          />
+                          <div className={this.decorateCSS("button-icon-wrapper")}>
+                            <Base.Media
+                              value={buttonIcon}
+                              className={this.decorateCSS("button-icon")}
+                            />
+                          </div>
                         )}
-                        {this.castToString(button.text) && button.text}
+                        {this.castToString(button.text) && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        )}
                       </Base.Button>
                     </ComposerLink>
-                  )}
-                </Base.VerticalContent>
-              )}
-            </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           {isImageExist && (
@@ -291,9 +296,9 @@ class About10 extends BaseAbout {
                     className={this.decorateCSS("feature-item")}
                   >
                     {this.castToString(feature.title) && (
-                      <Base.H3 className={this.decorateCSS("feature-title")}>
+                      <Base.H4 className={this.decorateCSS("feature-title")}>
                         {feature.title}
-                      </Base.H3>
+                      </Base.H4>
                     )}
                     {this.castToString(feature.description) && (
                       <Base.P className={this.decorateCSS("feature-description")}>

@@ -7,61 +7,87 @@
     gap: 0;
 
     .header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-      row-gap: var(--composer-gap-md);
-      column-gap: var(--composer-gap-xl);
-      align-items: start;
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-xl);
       margin-bottom: var(--composer-gap-xl);
 
       .content-section {
-        display: contents;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
 
         .text-content {
-          display: contents;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          align-items: flex-start;
 
-          .subtitle, .title, .description {
+          .subtitle, .title {
             margin: 0;
             text-align: left !important;
           }
         }
-        
-        &:first-child {
-          .subtitle {
-            grid-column: 1;
-            grid-row: 1;
-          }
-          
-          .title {
-            grid-column: 1;
-            grid-row: 2;
-          }
+
+        .description {
+          margin: 0;
+          text-align: left !important;
         }
         
-        &:last-child {
-          .text-content {
-            grid-column: 2;
-            grid-row: 2;
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            align-items: flex-start;
+        .button-wrapper {
+          display: flex;
+          align-self: flex-start;
+          
+          .button {
+            content: "";
             
-            .description {
-              margin-bottom: 0;
+            .button-text {
+              content: "";
+            }
+            
+            .button-icon-wrapper {
+              content: "";
+              display: flex;
+              align-items: center;
+            }
+            
+            .button-icon {
+              content: "";
+              font-size: 1.5rem;
+              width: 24px;
+              height: 24px;
+              display: flex;
+              align-items: center;
             }
           }
         }
+        
+        &:first-child {
+          flex: 1;
+        }
+        
+        &:last-child {
+          flex: 1;
+          align-items: flex-start;
+        }
       }
       
-      &[data-right-content="false"] {
-        grid-template-columns: 1fr;
+      &.no-left {
+        justify-content: flex-start;
+        
+        .content-section:last-child {
+          flex: 0 0 auto;
+          max-width: 100%;
+          align-items: flex-start;
+        }
+      }
+      
+      &.no-right {
+        justify-content: flex-start;
         
         .content-section:first-child {
-          .title {
-            grid-column: 1 / -1;
-          }
+          flex: 0 0 auto;
+          max-width: 100%;
         }
       }
     }
@@ -171,7 +197,6 @@
           flex-grow: unset !important;
 
           .feature-title {
-            font-size: 1.25rem;
             color: var(--composer-font-color-primary);
             margin: 0;
             text-align: left !important;
@@ -180,7 +205,6 @@
           }
 
           .feature-description {
-            font-size: 1rem;
             color: var(--composer-tertiary-color);
             margin: 0;
             text-align: left !important;
@@ -198,18 +222,10 @@
 
       .header {
         gap: var(--composer-gap-md);
-
-        .content-section {
-          .text-content {
-            .title, .subtitle, .description {
-              text-align: left !important;
-            }
-          }
-        }
       }
 
       .image-section {
-        height: 384px;
+        height: 385px;
       }
 
       .features-section {
@@ -236,43 +252,23 @@
       gap: 0;
 
       .header {
-        display: flex;
         flex-direction: column;
-        grid-template-columns: unset;
-        grid-template-rows: unset;
         gap: var(--composer-gap-md);
+        align-items: flex-start;
         
         .content-section {
-          display: flex;
           flex-direction: column;
+          gap: var(--composer-gap-md);
+          width: 100%;
           
           .text-content {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            
-            .title, .subtitle, .description {
+            .subtitle {
               text-align: left !important;
             }
           }
-        }
-        
-        .content-section:first-child {
-          .subtitle {
-            grid-column: unset;
-            grid-row: unset;
-          }
           
-          .title {
-            grid-column: unset;
-            grid-row: unset;
-          }
-        }
-        
-        .content-section:last-child {
-          .text-content {
-            grid-column: unset;
-            grid-row: unset;
+          .description {
+            align-self: flex-start;
           }
         }
       }
