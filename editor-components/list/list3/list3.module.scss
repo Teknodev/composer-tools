@@ -217,6 +217,7 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
+          margin-bottom: var(--composer-gap-md);
           position: relative;
 
           .card-title {
@@ -307,9 +308,9 @@
           }
           .card-number {
             left: var(--composer-gap-lg);
-            bottom: calc(var(--composer-gap-lg) * (-0.5));
+            bottom: calc(var(--composer-gap-lg) * (-1.3));
             font-size: 12rem;
-            transform: scale(1.45);
+            transform: scale(2.5);
             transform-origin: left bottom;
           }
         }
@@ -318,8 +319,8 @@
           .card {
             .card-number {
               left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-0.5));
-              transform: translateX(-50%) scale(1.15);
+              bottom: calc(var(--composer-gap-lg) * (-1.3));
+              transform: translateX(-50%) scale(2.5);
               transform-origin: center bottom;
             }
           }
@@ -329,8 +330,8 @@
           .card {
             .card-number {
               left: var(--composer-gap-lg);
-              bottom: calc(var(--composer-gap-lg) * (-0.5));
-              transform: scale(1.45);
+              bottom: calc(var(--composer-gap-lg) * (-1.3));
+              transform: scale(2.5);
               transform-origin: left bottom;
             }
           }
@@ -377,10 +378,10 @@
             .card-title { text-align: center; }
           }
           .card-number {
-            bottom: calc(var(--composer-gap-lg) * -0.5);
+            bottom: calc(var(--composer-gap-lg) * -1.2);
             left: var(--composer-gap-sm);
             font-size: 6rem;
-            transform: scale(1.55);
+            transform: scale(2.5);
             transform-origin: left bottom;
           }
         }
@@ -393,8 +394,8 @@
           .card {
             .card-number {
               left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-0.5));
-              transform: translateX(-50%) scale(1.6);
+              bottom: calc(var(--composer-gap-lg) * (-1.2));
+              transform: translateX(-50%) scale(2.7);
               transform-origin: center bottom;
             }
           }
@@ -409,8 +410,8 @@
             }
             .card-number {
               left: var(--composer-gap-sm);
-              bottom: calc(var(--composer-gap-lg) * -0.6);
-              transform: scale(1.6);
+              bottom: calc(var(--composer-gap-lg) * -1.2);
+              transform: scale(2.7);
               transform-origin: left bottom;
             }
           }

@@ -302,6 +302,9 @@ class List1 extends BaseList {
       this.castToString(subTitle) ||
       this.castToString(title) ||
       this.castToString(description);
+    const dotsClassName = backgroundColor
+      ? `${this.decorateCSS("dots")} ${this.decorateCSS("dots-colored")}`
+      : this.decorateCSS("dots");
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
@@ -312,7 +315,7 @@ class List1 extends BaseList {
       initialSlide: 1,
       arrows: false,
       centerMode: true,
-      dotsClass: this.decorateCSS("dots"),
+      dotsClass: dotsClassName,
       centerPadding: "0px",
       beforeChange: (_previndex: number, currindex: number) => {
         this.setComponentState("active-index", currindex);
@@ -365,12 +368,11 @@ class List1 extends BaseList {
                 return cardExist && (
                   <Base.VerticalContent
                     key={indexSlider}
-                    className={`${this.decorateCSS("card")}
-                    ${backgroundColor &&
-                        this.getComponentState("active-index") === indexSlider
+                    className={`${this.decorateCSS("card")} ${
+                      backgroundColor && this.getComponentState("active-index") === indexSlider
                         ? this.decorateCSS("active")
                         : ""
-                      }`}
+                    }`}
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
                     {item.image && (
@@ -408,7 +410,7 @@ class List1 extends BaseList {
                               </Base.P>
                               {item.button.icon && (
                                 <Base.Media
-                                  value={item.button.icon}
+                                  value={item.button.icon as unknown as TypeMediaInputValue}
                                   className={this.decorateCSS("icon")}
                                 />
                               )}
