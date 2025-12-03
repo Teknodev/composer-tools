@@ -83,7 +83,7 @@ class Feature24 extends BaseFeature {
             key: "icon",
             displayer: "Icon / Image",
             additionalParams: {
-              availableTypes: ["icon", "image"]
+              availableTypes: ["image", "icon"]
             },
             value: {
               type: "icon",
