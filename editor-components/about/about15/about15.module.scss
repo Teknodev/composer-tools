@@ -133,11 +133,11 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            padding: calc(var(--padding-xxl) * 1.5);
+            padding: var(--padding-xxl);
 
             .wrapper {
                 flex-direction: column;
-                gap: calc(var(--gap-xl) * 2.25);
+                gap: calc(var(--gap-md) * 3);
 
                 .vertical-content {
                     width: 100%;
@@ -167,7 +167,7 @@
     @container (max-width: #{$composer-phone-width}) {
         .container {
             .max-content {
-                padding: var(--padding-xxl) calc(var(--padding-md) * 2) var(--padding-xxl) calc(var(--padding-md) * 2);
+                padding: var(--padding-xxl) var(--padding-md) var(--padding-xxl) var(--padding-md);
 
                 .wrapper {
                     gap: calc(var(--gap-md) * 3);
