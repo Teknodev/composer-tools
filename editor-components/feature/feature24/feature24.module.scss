@@ -8,16 +8,28 @@
 
     .header {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center !important;
+      text-align: center !important;
+      justify-content: center !important;
+
+      .subtitle,
+      .title,
+      .description {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100%;
+      }
     }
 
     .list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--composer-gap-lg);
+      margin-top: var(--composer-gap-md);
+      margin-bottom: var(--composer-gap-md);
 
-
-      @media (min-width: $composer-tablet-width) {
-        grid-template-columns: repeat(2, 1fr);
+      @media (max-width: $composer-phone-width) {
+        gap: 8px !important;
       }
     }
 
@@ -29,16 +41,25 @@
       width: 100%;
       text-align: left;
 
+      @media (max-width: $composer-phone-width) {
+        gap: 6px;
+        align-items: flex-start;
+      }
+
       .icon-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
         border-radius: 50%;
         position: relative;
-        width: fit-content;
-        height: fit-content;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
         padding: 0;
         flex-shrink: 0;
+
+        flex: 0 0 40px;
 
         &.with-bg {
           background: var(--composer-primary-color);
@@ -46,10 +67,6 @@
 
           .icon {
             color: var(--composer-font-color-secondary);
-          }
-
-          @media (max-width: $composer-phone-width) {
-            padding: var(--composer-gap-xs);
           }
         }
 
@@ -61,12 +78,6 @@
           justify-content: center;
           align-items: center;
           color: var(--composer-primary-color);
-
-          @media (max-width: $composer-phone-width) {
-            width: 18px;
-            height: 18px;
-            font-size: 18px;
-          }
         }
       }
 
@@ -77,6 +88,14 @@
         flex: 1;
         min-width: 0;
         word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+
+        @media (max-width: $composer-phone-width) {
+          font-size: 0.75rem;
+          line-height: 1.3;
+          margin-top: 2px;
+        }
       }
     }
 

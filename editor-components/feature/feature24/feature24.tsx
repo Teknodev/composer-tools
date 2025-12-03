@@ -36,132 +36,61 @@ class Feature24 extends BaseFeature {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4,
+    });
+
+    this.addProp({
       type: "boolean",
       key: "iconBackground",
       displayer: "Icon Background",
       value: true,
     });
 
+    const defaultItems = [
+      "Expertly crafted components",
+      "Built-in interactive examples",
+      "Beautifully designed templates",
+      "SEO & accessibility best practices",
+      "Mobile notifications included",
+      "Highly customizable layouts",
+      "Cloud storage integration",
+      "Real-time data sync",
+      "Advanced security features",
+      "Multi-language support",
+      "Dark mode enabled",
+      "Performance optimized",
+      "User-friendly interface",
+      "24/7 Customer support",
+      "Regular updates",
+      "Detailed documentation"
+    ];
+
     this.addProp({
       type: "array",
       key: "features",
       displayer: "List",
-      value: [
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TiTick",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Expertly crafted components",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TiTick",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Built-in interactive examples",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TiTick",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Beautifully designed templates",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TiTick",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "SEO & accessibility best practices",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TiTick",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Mobile notifications included",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TiTick",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Highly customizable layouts",
-            },
-          ],
-        },
-      ],
+      value: defaultItems.map((text, index) => ({
+        type: "object",
+        key: `item_${index}`,
+        displayer: "Item",
+        value: [
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "Icon",
+            value: "TiTick",
+          },
+          {
+            type: "string",
+            key: "text",
+            displayer: "Text",
+            value: text,
+          },
+        ],
+      })),
     });
 
     this.addProp({
@@ -188,6 +117,7 @@ class Feature24 extends BaseFeature {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const iconBackground = this.getPropValue("iconBackground");
+    const itemCount = this.getPropValue("itemCount");
 
     const features = this.castToObject<FeatureItem[]>("features");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -221,7 +151,10 @@ class Feature24 extends BaseFeature {
             )}
 
             {features.length > 0 && (
-              <div className={this.decorateCSS("list")}>
+              <Base.ListGrid 
+                gridCount={{ pc: itemCount, tablet: 4, phone: 2 }} 
+                className={this.decorateCSS("list")}
+              >
                 {features.map((item: FeatureItem, index: number) => {
                   const text = item.text;
                   const icon = item.icon;
@@ -240,7 +173,7 @@ class Feature24 extends BaseFeature {
                     </Base.Row>
                   );
                 })}
-              </div>
+              </Base.ListGrid>
             )}
 
             {buttons.length > 0 && (
