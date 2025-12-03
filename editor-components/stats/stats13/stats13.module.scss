@@ -5,6 +5,7 @@
     &.no-image-container {
         .max-content {
             .wrapper {
+                padding-right: calc(var(--padding-md) * 5);
 
                 .left-content {
                     width: 100%;
@@ -188,6 +189,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
+        &.no-image-container {
+            .max-content {
+                .wrapper {
+                    padding-right: 0;
+                }
+            }
+        }
+
         .max-content {
             .wrapper {
                 gap: var(--gap-xl);
