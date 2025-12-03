@@ -1,12 +1,13 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature24.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { TiTick } from "react-icons/ti";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FeatureItem = {
-  icon: string;
+  icon: TypeMediaInputValue;
   text: React.JSX.Element;
 };
 
@@ -78,10 +79,16 @@ class Feature24 extends BaseFeature {
         displayer: "Item",
         value: [
           {
-            type: "icon",
+            type: "media",
             key: "icon",
-            displayer: "Icon",
-            value: "TiTick",
+            displayer: "Icon / Image",
+            additionalParams: {
+              availableTypes: ["icon", "image"]
+            },
+            value: {
+              type: "icon",
+              name: "TiTick"
+            }
           },
           {
             type: "string",
@@ -107,9 +114,29 @@ class Feature24 extends BaseFeature {
     return "Feature 24";
   }
 
-  renderIcon(iconName: string, className: string) {
-    if (!iconName) return null;
-    return <Base.Icon name={iconName} propsIcon={{ className }} />;
+  renderMedia(media: TypeMediaInputValue, className: string) {
+    if (!media) return null;
+
+    // Resim Durumu
+    if (media.type === "image" && media.url) {
+      return (
+        <img 
+          src={media.url} 
+          alt="feature-icon" 
+          className={className} 
+        />
+      );
+    }
+
+    // İkon Durumu
+    if (media.type === "icon" && media.name) {
+      if (media.name === "TiTick") {
+        return <TiTick className={className} />;
+      }
+      return <Base.Icon name={media.name} propsIcon={{ className }} />;
+    }
+
+    return null;
   }
 
   render() {
@@ -126,7 +153,6 @@ class Feature24 extends BaseFeature {
       iconBackground ? this.decorateCSS("with-bg") : ""
     }`;
 
-    // Alignment değerini alıyoruz (Feature22'deki gibi)
     const alignmentValue = Base.getContentAlignment();
 
     return (
@@ -162,16 +188,19 @@ class Feature24 extends BaseFeature {
               >
                 {features.map((item: FeatureItem, index: number) => {
                   const text = item.text;
-                  const icon = item.icon;
+                  const iconData = item.icon; 
                   const hasText = this.castToString(text);
                   
-                  if (!hasText && !icon) return null;
+                  // İkon veya resim var mı kontrolü
+                  const hasMedia = (iconData?.type === "icon" && iconData.name) || (iconData?.type === "image" && iconData.url);
+
+                  if (!hasText && !hasMedia) return null;
 
                   return (
                     <Base.Row key={index} className={this.decorateCSS("row")}>
-                      {icon && (
+                      {hasMedia && (
                         <div className={iconWrapperClass}>
-                          {this.renderIcon(icon, this.decorateCSS("icon"))}
+                          {this.renderMedia(iconData, this.decorateCSS("icon"))}
                         </div>
                       )}
                       <Base.H6 className={this.decorateCSS("text")}>{text}</Base.H6>

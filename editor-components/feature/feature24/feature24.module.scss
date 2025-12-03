@@ -8,7 +8,6 @@
 
     .header {
       width: 100%;
-      // Header her zaman ortalı olacak, Feature22'deki gibi
       display: flex;
       flex-direction: column;
       align-items: center !important;
@@ -23,7 +22,6 @@
         margin-right: auto !important;
       }
 
-      // Feature22'den alınan subtitle özelleştirmesi
       .subtitle-center {
         &:before {
           display: none !important;
@@ -82,13 +80,24 @@
         }
 
         .icon {
-          width: 20px;
-          height: 20px;
-          font-size: 20px;
+          // İkon ve Resim için ortak boyut kuralları
+          width: 24px;
+          height: 24px;
+          font-size: 24px;
           display: flex;
           justify-content: center;
           align-items: center;
           color: var(--composer-primary-color);
+
+          // Resimler için özel ayar
+          object-fit: contain; // Resmi oranını bozmadan sığdır
+          border-radius: 0; // İstenirse resimlere de radius verilebilir
+
+          @media (max-width: $composer-phone-width) {
+            width: 18px;
+            height: 18px;
+            font-size: 18px;
+          }
         }
       }
 
