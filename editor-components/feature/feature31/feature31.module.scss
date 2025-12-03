@@ -59,6 +59,8 @@ as *;
                         align-content: center;
                         justify-content: center;
                         align-items: center;
+                        object-fit: cover;
+                        padding: calc(var(--padding-md) * 3);
                     }
                 }
 
