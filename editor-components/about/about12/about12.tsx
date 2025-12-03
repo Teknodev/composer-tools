@@ -32,6 +32,13 @@ class About12 extends BaseAbout {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
+    });
+
+    this.addProp({
       type: "media",
       key: "image",
       displayer: "Image",
@@ -42,13 +49,6 @@ class About12 extends BaseAbout {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8d39496aa1002ca48910?alt=media",
       },
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
     });
 
     this.addProp({
@@ -67,8 +67,8 @@ class About12 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle") || "";
     const title = this.getPropValue("title") || "";
     const description = this.getPropValue("description") || "";
-    const image = this.getPropValue("image");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
 
     const hasImage = !!(image && image.url);
@@ -125,7 +125,9 @@ class About12 extends BaseAbout {
                 } ${
                   alignmentValue === "center" ? this.decorateCSS("center") : ""
                 } ${
-                  !hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""
+                  !hasImage && alignmentValue === "center"
+                    ? this.decorateCSS("no-image-center")
+                    : ""
                 }`}
               >
                 <Base.VerticalContent

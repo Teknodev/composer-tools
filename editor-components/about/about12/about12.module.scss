@@ -10,7 +10,7 @@
       display: flex;
       width: 100%;
       justify-content: space-between;
-      align-items: center;
+      align-items: stretch;
       gap: var(--composer-gap-xl);
 
       &.no-image {
@@ -50,6 +50,9 @@
             .bottomText {
               text-align: center;
             }
+            .subtitle {
+              margin-left: auto;
+            }
             .actions-wrapper {
               align-items: center;
             }
@@ -70,6 +73,8 @@
         position: relative;
         width: 50%;
         flex-shrink: 0;
+        display: flex;
+        align-items: stretch;
 
         &.image-container-alone {
           width: 100%;
@@ -89,7 +94,7 @@
 
         .media-image {
           width: 100%;
-          aspect-ratio: 1 / 1;
+          height: 100%;
           object-fit: cover;
         }
       }
@@ -159,6 +164,7 @@
           .media-image {
             width: 100%;
             aspect-ratio: 1 / 1;
+            height: auto;
           }
         }
 
