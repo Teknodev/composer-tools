@@ -307,8 +307,8 @@
           }
           .card-number {
             left: var(--composer-gap-lg);
-            bottom: calc(var(--composer-gap-lg) * (-0.7));
-            font-size: 8rem;
+            bottom: calc(var(--composer-gap-lg) * (-0.5));
+            font-size: 12rem;
             transform: scale(1.45);
             transform-origin: left bottom;
           }
@@ -318,7 +318,7 @@
           .card {
             .card-number {
               left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-0.7));
+              bottom: calc(var(--composer-gap-lg) * (-0.5));
               transform: translateX(-50%) scale(1.15);
               transform-origin: center bottom;
             }
@@ -329,8 +329,8 @@
           .card {
             .card-number {
               left: var(--composer-gap-lg);
-              bottom: calc(var(--composer-gap-lg) * (-0.7));
-              transform: scale(1.35);
+              bottom: calc(var(--composer-gap-lg) * (-0.5));
+              transform: scale(1.45);
               transform-origin: left bottom;
             }
           }
@@ -377,10 +377,10 @@
             .card-title { text-align: center; }
           }
           .card-number {
-            bottom: calc(var(--composer-gap-lg) * -0.8);
+            bottom: calc(var(--composer-gap-lg) * -0.5);
             left: var(--composer-gap-sm);
-            font-size: 4.8rem;
-            transform: scale(1.4);
+            font-size: 6rem;
+            transform: scale(1.55);
             transform-origin: left bottom;
           }
         }
@@ -393,7 +393,7 @@
           .card {
             .card-number {
               left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-0.7));
+              bottom: calc(var(--composer-gap-lg) * (-0.5));
               transform: translateX(-50%) scale(1.6);
               transform-origin: center bottom;
             }
@@ -409,7 +409,7 @@
             }
             .card-number {
               left: var(--composer-gap-sm);
-              bottom: calc(var(--composer-gap-lg) * -0.7);
+              bottom: calc(var(--composer-gap-lg) * -0.6);
               transform: scale(1.6);
               transform-origin: left bottom;
             }
