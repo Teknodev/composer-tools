@@ -28,45 +28,9 @@ class IntroSection10 extends BaseIntroSection {
       key: "rotatingWords",
       displayer: "Rotating Words",
       value: [
-        {
-          type: "object",
-          key: "word1",
-          displayer: "Word 1",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Illustrator"
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "word2", 
-          displayer: "Word 2",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text", 
-              value: "UI Designer"
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "word3",
-          displayer: "Word 3",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Photographer"
-            }
-          ]
-        }
+        this.createWordObject("word1", "Illustrator"),
+        this.createWordObject("word2", "UI Designer"),
+        this.createWordObject("word3", "Photographer")
       ]
     });
 
@@ -102,14 +66,28 @@ class IntroSection10 extends BaseIntroSection {
     });
   }
 
+  private createWordObject(key: string, text: string) {
+    return {
+      type: "object",
+      key,
+      displayer: `Word ${key.charAt(key.length-1)}`,
+      value: [
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: text
+        }
+      ]
+    };
+  }
+
   static getName(): string {
     return "Intro Section 10";
   }
 
   TypewriterText = ({ content, text, enableAnimation }: { content: any, text: string, enableAnimation: boolean }) => {
-    if (!enableAnimation || !text) {
-      return <>{content}</>;
-    }
+    if (!enableAnimation || !text) return <>{content}</>;
 
     const [displayedText, setDisplayedText] = useState("");
     const [isCompleted, setIsCompleted] = useState(false);
@@ -118,14 +96,13 @@ class IntroSection10 extends BaseIntroSection {
       setIsCompleted(false);
       setDisplayedText("");
 
-      const textToAnimate = text;
       const TYPE_SPEED = 100;
       let timeoutId: NodeJS.Timeout;
       let index = 0;
 
       const animate = () => {
-        if (index < textToAnimate.length) {
-          setDisplayedText(textToAnimate.substring(0, index + 1));
+        if (index < text.length) {
+          setDisplayedText(text.substring(0, index + 1));
           index++;
           timeoutId = setTimeout(animate, TYPE_SPEED);
         } else {
@@ -137,11 +114,7 @@ class IntroSection10 extends BaseIntroSection {
       return () => clearTimeout(timeoutId);
     }, [text, enableAnimation]);
 
-    if (isCompleted) {
-      return <>{content}</>;
-    }
-
-    return <>{displayedText}</>;
+    return <>{isCompleted ? content : displayedText}</>;
   };
 
   RotatingWords = ({ words, enableAnimation }: { words: string[], enableAnimation: boolean }) => {
@@ -156,10 +129,8 @@ class IntroSection10 extends BaseIntroSection {
       
       const type = () => {
         if (isDeleting) {
-          // Silme animasyonu
           setCurrentText(current.substring(0, currentText.length - 1));
         } else {
-          // Yazma animasyonu
           setCurrentText(current.substring(0, currentText.length + 1));
         }
       };
@@ -167,14 +138,11 @@ class IntroSection10 extends BaseIntroSection {
       let timeout: NodeJS.Timeout;
 
       if (!isDeleting && currentText === current) {
-        // Kelime tamamlandı, 2 saniye bekleyip silmeye başla
         timeout = setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && currentText === "") {
-        // Kelime silindi, sonraki kelimeye geç
         setIsDeleting(false);
         setCurrentWordIndex((prev) => (prev + 1) % words.length);
       } else {
-        // Yazma/silme işlemi devam ediyor
         timeout = setTimeout(type, isDeleting ? 50 : 100);
       }
 
@@ -182,7 +150,7 @@ class IntroSection10 extends BaseIntroSection {
     }, [currentText, isDeleting, currentWordIndex, words, enableAnimation]);
 
     if (!enableAnimation && words.length > 0) {
-      return <span>{words[0]}</span>;
+      return <span> {words[0]}</span>;
     }
 
     return (
@@ -193,6 +161,17 @@ class IntroSection10 extends BaseIntroSection {
     );
   };
 
+  private extractWordsArray(rotatingWords: any): string[] {
+    return Array.isArray(rotatingWords) 
+      ? rotatingWords.map((wordObj: any) => {
+          if (wordObj && typeof wordObj.getPropValue === 'function') {
+            return this.castToString(wordObj.getPropValue("text"));
+          }
+          return "";
+        }).filter(Boolean)
+      : [];
+  }
+
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title"); 
@@ -202,23 +181,11 @@ class IntroSection10 extends BaseIntroSection {
     const buttons = this.castToObject<Array<any>>("buttons") || [];
     const backgroundImage = this.getPropValue("backgroundImage");
 
-    // Rotating words array'ini doğru şekilde al
-    const wordsArray = Array.isArray(rotatingWords) 
-      ? rotatingWords.map((wordObj: any) => {
-          if (wordObj && typeof wordObj.getPropValue === 'function') {
-            return this.castToString(wordObj.getPropValue("text"));
-          }
-          return "";
-        }).filter(Boolean)
-      : [];
-
-    const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
-    const hasSubtitle = this.castToString(subtitle);
-    const hasDescription = this.castToString(description);
-    const hasBackgroundImage = this.castToString(backgroundImage);
+    const wordsArray = this.extractWordsArray(rotatingWords);
+    const hasAnyButton = buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
     const titleString = this.castToString(title);
 
-    const containerStyle = hasBackgroundImage ? {
+    const containerStyle = this.castToString(backgroundImage) ? {
       backgroundImage: `url(${backgroundImage})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -231,7 +198,7 @@ class IntroSection10 extends BaseIntroSection {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("intro-wrapper")}>
             <div className={this.decorateCSS("left-content")}>
-              {hasSubtitle && (
+              {this.castToString(subtitle) && (
                 <Base.SectionTitle className={this.decorateCSS("name")}>{subtitle}</Base.SectionTitle>
               )}
               
@@ -242,7 +209,7 @@ class IntroSection10 extends BaseIntroSection {
                     text={titleString}
                     enableAnimation={enableTextAnimation}
                   />
-                  {" "}
+                  &nbsp;
                   {wordsArray.length > 0 ? (
                     <this.RotatingWords 
                       words={wordsArray} 
@@ -256,45 +223,48 @@ class IntroSection10 extends BaseIntroSection {
             </div>
             
             <div className={this.decorateCSS("right-content")}>
-              {hasDescription && (
+              {this.castToString(description) && (
                 <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
               )}
 
               {hasAnyButton && (
                 <div className={this.decorateCSS("action-buttons")}>
-                  {buttons.map((btn: any, idx: number) => {
-                    const btnTextExist = this.castToString(btn.text);
-                    const iconName = (btn?.icon && (btn.icon.name || btn.icon)) || null;
-                    if (!btnTextExist && !iconName) {
-                      return null;
-                    }
-                    const url = btn.url || "#";
-                    const isPrimary = btn.type === "Primary"; 
-                    
-                    return (
-                      <div key={idx} className={this.decorateCSS("button-wrapper")}>
-                        <ComposerLink path={url}>
-                          <Base.Button 
-                            buttonType={btn.type} 
-                            className={`${this.decorateCSS("button")} ${isPrimary ? this.decorateCSS("primary-button") : this.decorateCSS("secondary-button")}`}
-                          >
-                            {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
-                            {iconName && (
-                              <div className={this.decorateCSS("button-icon-wrapper")}>
-                                <Base.Media value={{ type: "icon", name: iconName }} className={this.decorateCSS("button-icon")} />
-                              </div>
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      </div>
-                    );
-                  })}
+                  {buttons.map((btn: any, idx: number) => this.renderButton(btn, idx))}
                 </div>
               )}
             </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
+    );
+  }
+
+  private renderButton(btn: any, idx: number) {
+    const btnTextExist = this.castToString(btn.text);
+    const iconName = (btn?.icon && (btn.icon.name || btn.icon)) || null;
+    
+    if (!btnTextExist && !iconName) return null;
+
+    const url = btn.url || "#";
+    const buttonClass = `${this.decorateCSS("button")} ${btn.type === "Primary" ? 
+      this.decorateCSS("primary-button") : this.decorateCSS("secondary-button")}`;
+
+    return (
+      <div key={idx} className={this.decorateCSS("button-wrapper")}>
+        <ComposerLink path={url}>
+          <Base.Button buttonType={btn.type} className={buttonClass}>
+            {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+            {iconName && (
+              <div className={this.decorateCSS("button-icon-wrapper")}>
+                <Base.Media 
+                  value={{ type: "icon", name: iconName }} 
+                  className={this.decorateCSS("button-icon")} 
+                />
+              </div>
+            )}
+          </Base.Button>
+        </ComposerLink>
+      </div>
     );
   }
 }
