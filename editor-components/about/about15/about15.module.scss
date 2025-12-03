@@ -46,6 +46,27 @@
 
                 &.no-images {
                     width: 100%;
+
+                    .text-content {
+
+                        text-align: var(--composer-content-alignment) !important;
+
+                        .subtitle {
+                            display: inline-block;
+                            margin: 0;
+                            text-align: var(--composer-content-alignment) !important;
+                        }
+
+
+                        .title,
+                        .description {
+                            text-align: var(--composer-content-alignment) !important;
+                        }
+
+                        .button-container {
+                            justify-content: var(--composer-content-alignment) !important;
+                        }
+                    }
                 }
 
                 .text-content {
@@ -54,9 +75,8 @@
                     .subtitle {
                         overflow-wrap: anywhere;
                         color: var(--composer-font-color-secondary);
-                        margin-left: 0;
                         width: fit-content;
-                        text-align: left;
+                        text-align: left !important;
 
                         &:before {
                             background: var(--composer-font-color-secondary);
