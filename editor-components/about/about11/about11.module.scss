@@ -24,8 +24,9 @@
       align-items: stretch;
       display: flex;
       justify-content: flex-start;
-
+    align-items: stretch;
       .left {
+        display: flex;
         aspect-ratio: 1 / 1;
 
         &:only-child {
