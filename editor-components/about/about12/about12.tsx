@@ -124,6 +124,8 @@ class About12 extends BaseAbout {
                   !hasImage ? this.decorateCSS("text-content-alone") : ""
                 } ${
                   alignmentValue === "center" ? this.decorateCSS("center") : ""
+                } ${
+                  !hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""
                 }`}
               >
                 <Base.VerticalContent
