@@ -10,16 +10,16 @@ class IntroSection10 extends BaseIntroSection {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      type: "string", 
+      key: "title",
+      displayer: "Title",
       value: "I'M ALEX GREEN"
     });
 
     this.addProp({
-      type: "string", 
-      key: "title",
-      displayer: "Title",
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Your"
     });
 
@@ -56,13 +56,6 @@ class IntroSection10 extends BaseIntroSection {
         INPUTS.BUTTON("button", "Primary Button", "Contact Me", "", null, null, "Primary"),
         INPUTS.BUTTON("button", "Secondary Button", "My Portfolio", "", null, null, "Secondary"), 
       ],
-    });
-    
-    this.addProp({
-      type: "image",
-      key: "backgroundImage",
-      displayer: "Background Image",
-      value: ""
     });
   }
 
@@ -173,40 +166,32 @@ class IntroSection10 extends BaseIntroSection {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title"); 
+    const subtitle = this.getPropValue("subtitle");
     const rotatingWords = this.getPropValue("rotatingWords");
     const description = this.getPropValue("description");
     const enableTextAnimation = this.getPropValue("enableTextAnimation");
     const buttons = this.castToObject<Array<any>>("buttons") || [];
-    const backgroundImage = this.getPropValue("backgroundImage");
 
     const wordsArray = this.extractWordsArray(rotatingWords);
     const hasAnyButton = buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
-    const titleString = this.castToString(title);
-
-    const containerStyle = this.castToString(backgroundImage) ? {
-      backgroundImage: `url(${backgroundImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    } : {};
+    const subtitleString = this.castToString(subtitle);
 
     return (
-      <Base.Container className={this.decorateCSS("container")} style={containerStyle}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("overlay")}></div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("intro-wrapper")}>
             <div className={this.decorateCSS("left-content")}>
-              {this.castToString(subtitle) && (
-                <Base.SectionTitle className={this.decorateCSS("name")}>{subtitle}</Base.SectionTitle>
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("name")}>{title}</Base.SectionTitle>
               )}
               
-              {titleString && (
+              {subtitleString && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   <this.TypewriterText
-                    content={title}
-                    text={titleString}
+                    content={subtitle}
+                    text={subtitleString}
                     enableAnimation={enableTextAnimation}
                   />
                   &nbsp;
