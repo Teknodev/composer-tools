@@ -150,7 +150,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .intro-wrapper {
@@ -172,8 +172,8 @@
           order: 1;
           width: 100%;
           flex: 0 0 100%;
-          padding-left: var(--composer-gap-lg);
-          padding-right: var(--composer-gap-lg);
+          padding-left: var(--composer-gap-md);
+          padding-right: var(--composer-gap-md);
           &.center {
             .vertical-content {
               align-items: center;

@@ -86,7 +86,6 @@ class About12 extends BaseAbout {
       hasAnyButton
     );
     const alignmentValue = Base.getContentAlignment();
-    console.log("alignmentValue", alignmentValue);
 
     return (
       <Base.Container className={this.decorateCSS("container")} isFull={true}>
