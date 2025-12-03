@@ -152,6 +152,7 @@
       .button-wrapper {
         display: flex;
         justify-content: center;
+        margin-top: var(--composer-gap-md);
 
         .button {
           content: "";

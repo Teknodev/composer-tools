@@ -75,6 +75,7 @@
         position: relative;
         display: flex !important;
         flex-direction: column;
+        align-items: flex-start;
         padding: var(--composer-gap-lg);
         background-color: var(--composer-html-background);
         border-radius: var(--composer-border-radius-sm);
@@ -82,7 +83,7 @@
         height: 100%;
 
         .image-container {
-          margin: 0 auto;
+          margin: 0;
           overflow: hidden;
           border-radius: 50%;
           position: relative;
@@ -91,7 +92,7 @@
           aspect-ratio: 1 / 1;
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           .image {
             border-radius: inherit;
             width: 100%;
@@ -115,11 +116,13 @@
           flex-direction: column;
           gap: var(--composer-gap-md);
           margin: 0;
+          align-items: flex-start;
           .card-title {
             content: "";
             color: var(--composer-font-color-primary);
             transition: color var(--composer-transition-duration-normal) ease;
             cursor: pointer;
+            text-align: left !important;
 
             &:hover {
               color: var(--composer-primary-color);
@@ -128,6 +131,7 @@
           .card-subtitle {
             content: "";
             color: var(--composer-tertiary-color);
+            text-align: left !important;
           }
         }
         .button {
