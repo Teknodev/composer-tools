@@ -527,7 +527,7 @@ class Slider12 extends BaseSlider {
                     const textClasses = [this.decorateCSS("text")];
 
                     const slideClasses = [this.decorateCSS("slide")];
-                    if (sliderMode === "desktop" && i % 3 === 2) {
+                    if (sliderMode !== "mobile" && i % 3 === 2) {
                       slideClasses.push(this.decorateCSS("wide"));
                     }
                     if (i === 0) {

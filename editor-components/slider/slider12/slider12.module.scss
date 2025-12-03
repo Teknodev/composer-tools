@@ -161,7 +161,7 @@
       }
 
       &.wide {
-        width: 585px;
+        width: 480px;
         .media {
           width: 100%;
         }
@@ -313,9 +313,6 @@
         width: auto !important;
       }
 
-      .slide {
-        width: 390px;
-      }
 
       .text {
         margin-top: var(--composer-gap-xs);
