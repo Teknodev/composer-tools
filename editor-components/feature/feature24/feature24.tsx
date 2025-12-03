@@ -1,10 +1,14 @@
 import * as React from "react";
-import { BaseFeature, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature24.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { TiTick } from "react-icons/ti";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type FeatureItem = {
+  icon: string;
+  text: React.JSX.Element;
+};
 
 class Feature24 extends BaseFeature {
   constructor(props?: any) {
@@ -33,7 +37,7 @@ class Feature24 extends BaseFeature {
 
     this.addProp({
       type: "boolean",
-      key: "enableIconBackground",
+      key: "iconBackground",
       displayer: "Icon Background",
       value: true,
     });
@@ -41,7 +45,7 @@ class Feature24 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "features",
-      displayer: "Row",
+      displayer: "List",
       value: [
         {
           type: "object",
@@ -174,15 +178,22 @@ class Feature24 extends BaseFeature {
     return "Feature 24";
   }
 
+  renderIcon(iconName: string, className: string) {
+    if (!iconName) return null;
+    return <Base.Icon name={iconName} propsIcon={{ className }} />;
+  }
+
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const features = this.getPropValue("features");
-    const enableIconBackground = this.getPropValue("enableIconBackground");
+    const iconBackground = this.getPropValue("iconBackground");
+
+    const features = this.castToObject<FeatureItem[]>("features");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const iconWrapperClass = `${this.decorateCSS("icon-wrapper")} ${
-      enableIconBackground ? this.decorateCSS("with-bg") : ""
+      iconBackground ? this.decorateCSS("with-bg") : ""
     }`;
 
     return (
@@ -211,9 +222,9 @@ class Feature24 extends BaseFeature {
 
             {features.length > 0 && (
               <div className={this.decorateCSS("list")}>
-                {features.map((item: TypeUsableComponentProps, index: number) => {
-                  const text = item.getPropValue("text");
-                  const icon = item.getPropValue("icon");
+                {features.map((item: FeatureItem, index: number) => {
+                  const text = item.text;
+                  const icon = item.icon;
                   const hasText = this.castToString(text);
                   
                   if (!hasText && !icon) return null;
@@ -222,43 +233,45 @@ class Feature24 extends BaseFeature {
                     <Base.Row key={index} className={this.decorateCSS("row")}>
                       {icon && (
                         <div className={iconWrapperClass}>
-                          {icon === "TiTick" ? (
-                            <TiTick className={this.decorateCSS("icon")} />
-                          ) : (
-                            <Base.Icon 
-                              name={icon} 
-                              propsIcon={{ className: this.decorateCSS("icon") }} 
-                            />
-                          )}
+                          {this.renderIcon(icon, this.decorateCSS("icon"))}
                         </div>
                       )}
-                      <Base.P className={this.decorateCSS("text")}>{text}</Base.P>
+                      <Base.H6 className={this.decorateCSS("text")}>{text}</Base.H6>
                     </Base.Row>
                   );
                 })}
               </div>
             )}
 
-            {this.getPropValue("buttons").length > 0 && (
+            {buttons.length > 0 && (
               <div className={this.decorateCSS("buttons")}>
-                {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
-                  (button: INPUTS.CastedButton, index: number) => {
-                    return (
-                      this.castToString(button.text) && (
-                        <ComposerLink key={index} path={button.url}>
-                          <Base.Button
-                            buttonType={button.type}
-                            className={this.decorateCSS("button")}
-                          >
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {button.text}
-                            </Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      )
-                    );
-                  }
-                )}
+                {buttons.map((buttonItem: INPUTS.CastedButton, index: number) => {
+                  const text = buttonItem.text;
+                  const url = buttonItem.url;
+                  const type = buttonItem.type;
+                  const icon = buttonItem.icon;
+
+                  if (!this.castToString(text)) return null;
+
+                  return (
+                    <ComposerLink key={index} path={url}>
+                      <Base.Button
+                        buttonType={type}
+                        className={this.decorateCSS("button")}
+                      >
+                        {icon && (
+                          <Base.Icon 
+                            name={icon} 
+                            propsIcon={{ className: this.decorateCSS("btn-icon") }} 
+                          />
+                        )}
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
               </div>
             )}
           </Base.VerticalContent>

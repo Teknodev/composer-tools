@@ -1,31 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  &[class*="center"] {
-    .list {
-      width: fit-content;
-      margin: 0 auto;
-    }
-
-    .buttons {
-      justify-content: center;
-    }
-  }
-
-  &[class*="right"] {
-    .list {
-      .row {
-        justify-content: flex-end;
-        text-align: right;
-        flex-direction: row-reverse;
-      }
-    }
-
-    .buttons {
-      justify-content: flex-end;
-    }
-  }
-
   .max-content {
     .page {
       width: 100%;
@@ -39,6 +14,8 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--composer-gap-lg);
+      margin-top: var(--composer-gap-md);
+      margin-bottom: var(--composer-gap-md);
 
       @media (min-width: $composer-tablet-width) {
         grid-template-columns: repeat(2, 1fr);
@@ -59,7 +36,6 @@
         align-items: center;
         border-radius: 50%;
         position: relative;
-        // fit-content ile ikon + padding kadar yer kaplar (Örnekteki gibi)
         width: fit-content;
         height: fit-content;
         padding: 0;
@@ -67,7 +43,6 @@
 
         &.with-bg {
           background: var(--composer-primary-color);
-          // İkon etrafındaki boşluk (yuvarlağın büyüklüğü)
           padding: var(--composer-gap-sm);
 
           .icon {
@@ -80,19 +55,18 @@
         }
 
         .icon {
-          // İkonun sabit boyutu (Örnekteki gibi 30px)
-          width: 30px;
-          height: 30px;
-          font-size: 2rem;
+          width: 24px;
+          height: 24px;
+          font-size: 24px;
           display: flex;
           justify-content: center;
           align-items: center;
           color: var(--composer-primary-color);
 
           @media (max-width: $composer-phone-width) {
-            width: 20px;
-            height: 20px;
-            font-size: 1.25rem;
+            width: 18px;
+            height: 18px;
+            font-size: 18px;
           }
         }
       }
@@ -117,6 +91,14 @@
       margin-top: var(--composer-gap-xl);
 
       .button {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+
+        .btn-icon {
+          font-size: var(--composer-font-size-lg);
+        }
+
         .button-text {
           margin: 0;
         }
