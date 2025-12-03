@@ -15,14 +15,17 @@
       justify-content: center !important;
 
       .title,
-      .subtitle,
       .description {
         text-align: center !important;
         margin-left: auto !important;
         margin-right: auto !important;
       }
 
-      .subtitle-center {
+      .subtitle {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+
         &:before {
           display: none !important;
         }
