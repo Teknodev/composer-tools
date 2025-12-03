@@ -1,15 +1,18 @@
 export type GuiQueries = {
   // TODO: Remove 'all' in future updates
   all: null;
-  desktop: string;
+  desktop: string | null;
   tablet: string;
   mobile: string;
 };
 
+// NOTE: "desktop" currently behaves as "all" (no container query).
+// This may revert to the original @container playground(min-width: 1280px) behavior in the future.
 export const GUI_QUERIES: GuiQueries = {
   // TODO: Remove 'all' in future updates
   all: null,
-  desktop: "@container playground (min-width: 1280px)",
+  // desktop: "@container playground (min-width: 1280px)",
+  desktop: null,
   tablet: "@container playground (min-width: 641px) and (max-width: 1279px)",
   mobile: "@container playground (max-width: 640px)"
 };
