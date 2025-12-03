@@ -14,8 +14,7 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--composer-gap-lg);
-      margin-top: var(--composer-gap-md);
-      margin-bottom: var(--composer-gap-md);
+
 
       @media (min-width: $composer-tablet-width) {
         grid-template-columns: repeat(2, 1fr);
