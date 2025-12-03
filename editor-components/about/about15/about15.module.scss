@@ -28,14 +28,16 @@
     }
 
     .max-content {
-        padding: calc(var(--padding-xxl) * 2);
+
+        padding: calc(var(--padding-xxl) * 2) calc(var(--padding-md) * 4);
+
         background-color: var(--composer-primary-color);
         border-radius: var(--border-radius-md);
         box-shadow: var(--box-shadow-active);
 
         .wrapper {
             display: flex;
-            gap: calc(var(--gap-xl) * 2);
+            gap: var(--gap-xl);
 
             .vertical-content {
                 width: 40%;
