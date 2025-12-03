@@ -10,14 +10,21 @@ class About14 extends BaseAbout {
         this.addProp({
             type: "media",
             key: "sideImage",
-            displayer: "Side Image",
+            displayer: "Image",
             additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
             },
             value: {
                 type: "image",
                 url: "https://res.cloudinary.com/dyjpupuop/image/upload/v1764600443/Ekran_g%C3%B6r%C3%BCnt%C3%BCs%C3%BC_2025-12-01_174601_porglt.png",
             },
+        });
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
         });
 
         this.addProp({
@@ -34,6 +41,33 @@ class About14 extends BaseAbout {
             value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.",
         });
 
+        this.addProp({
+            type: "object",
+            key: "toggleSettings",
+            displayer: "Buttons",
+            value: [
+                {
+                    type: "string",
+                    key: "showMoreText",
+                    displayer: "Text 1",
+                    value: "Show More",
+                },
+                {
+                    type: "string",
+                    key: "showLessText",
+                    displayer: "Text 2",
+                    value: "Show Less",
+                }
+            ]
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: true,
+        });
+
         this.setComponentState("isExpanded", false);
     }
 
@@ -41,7 +75,8 @@ class About14 extends BaseAbout {
         return "About 14";
     }
 
-    toggleExpand = () => {
+    toggleExpand = (e: React.MouseEvent) => {
+        e.stopPropagation();
         const currentState = this.getComponentState("isExpanded");
         this.setComponentState("isExpanded", !currentState);
     }
@@ -50,50 +85,79 @@ class About14 extends BaseAbout {
         const isExpanded = this.getComponentState("isExpanded");
         const imageMedia = this.getPropValue("sideImage");
 
-        const title = this.castToString(this.getPropValue("title"));
-        const description = this.castToString(this.getPropValue("description"));
+        const title = this.getPropValue("title");
+        const description = this.getPropValue("description");
+        const subtitle = this.getPropValue("subtitle");
+
+        const toggleSettings = this.castToObject<any>("toggleSettings");
+        const showMoreText = toggleSettings.showMoreText;
+        const showLessText = toggleSettings.showLessText;
+
+        const hasOverlay = this.getPropValue("overlay");
+
+        const hasTextContent = this.castToString(title) || this.castToString(description) || this.castToString(subtitle);
+        const hasImageContent = imageMedia && imageMedia.url;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
                     <div className={this.decorateCSS("wrapper")}>
+                        {hasTextContent && (
+                            <div className={this.decorateCSS("contentSide")}>
+                                {(this.castToString(subtitle) || this.castToString(title)) && (
+                                    <Base.VerticalContent className={this.decorateCSS("heading")}>
+                                        {this.castToString(subtitle) && (
+                                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                                {subtitle}
+                                            </Base.SectionSubTitle>
+                                        )}
+                                        {this.castToString(title) && (
+                                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                                {title}
+                                            </Base.SectionTitle>
+                                        )}
+                                    </Base.VerticalContent>
+                                )}
 
-                        {/* Metin Alanı */}
-                        <div className={this.decorateCSS("contentSide")}>
-                            {title && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {title}
-                                </Base.SectionTitle>
-                            )}
+                                {this.castToString(description) && (
+                                    <div className={`${this.decorateCSS("descriptionWrapper")} ${isExpanded ? this.decorateCSS("expandedWrapper") : ""}`}>
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {description}
+                                        </Base.SectionDescription>
 
-                            {description && (
-                                <Base.SectionDescription
-                                    className={`${this.decorateCSS("description")} ${isExpanded ? this.decorateCSS("expanded") : ""}`}
-                                >
-                                    {description}
-                                </Base.SectionDescription>
-                            )}
-
-                            <div
-                                onClick={this.toggleExpand}
-                                className={this.decorateCSS("showMoreContainer")}
-                            >
-                                <Base.P className={this.decorateCSS("showMoreBtn")}>
-                                    {isExpanded ? "Show Less" : "Show More"}
-                                </Base.P>
+                                        <div
+                                            className={this.decorateCSS("showMoreOverlay")}
+                                            onClick={this.toggleExpand}
+                                        >
+                                            <div className={this.decorateCSS("showMoreBtn")}>
+                                                {!isExpanded && (
+                                                    <Base.P className={this.decorateCSS("btnText")}>
+                                                        {showMoreText}
+                                                    </Base.P>
+                                                )}
+                                                {isExpanded && (
+                                                    <Base.P className={this.decorateCSS("btnText")}>
+                                                        {showLessText}
+                                                    </Base.P>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
-                        </div>
+                        )}
 
-                        {/* Görsel Alanı */}
-                        <div className={this.decorateCSS("imageSide")}>
-                            {imageMedia && (
+                        {hasImageContent && (
+                            <div className={this.decorateCSS("imageSide")}>
                                 <Base.Media
                                     value={imageMedia}
                                     className={this.decorateCSS("image")}
                                 />
-                            )}
-                        </div>
-
+                                {hasOverlay && (
+                                    <div className={this.decorateCSS("overlay")} />
+                                )}
+                            </div>
+                        )}
                     </div>
                 </Base.MaxContent>
             </Base.Container>
