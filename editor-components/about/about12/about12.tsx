@@ -55,7 +55,7 @@ class About12 extends BaseAbout {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
   }
 
@@ -169,7 +169,7 @@ class About12 extends BaseAbout {
                           return (
                             <ComposerLink
                               path={buttonUrl}
-                              key={`is6-btn-${index}`}
+                              key={`about12-btn-${index}`}
                             >
                               <Base.Button
                                 buttonType={item.type}
