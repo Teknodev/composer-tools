@@ -139,6 +139,14 @@
             }
           }
 
+          &:hover {
+            .card-title,
+            .card-description {
+              color: var(--composer-font-color-secondary);
+              transition: color var(--composer-transition-duration-normal) ease;
+            }
+          }
+
           .card-header {
             display: flex;
             justify-content: center;
