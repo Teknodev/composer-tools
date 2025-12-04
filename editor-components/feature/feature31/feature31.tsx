@@ -280,9 +280,9 @@ class Feature31 extends BaseFeature {
                                                 className={this.decorateCSS("content")}
                                             >
                                                 {featureTitleExist && (
-                                                    <Base.H3 className={this.decorateCSS("title")}>
+                                                    <Base.H4 className={this.decorateCSS("title")}>
                                                         {feature.title}
-                                                    </Base.H3>
+                                                    </Base.H4>
                                                 )}
                                                 {featureDescExist && (
                                                     <Base.P className={this.decorateCSS("description")}>
