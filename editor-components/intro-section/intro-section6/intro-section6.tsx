@@ -244,7 +244,7 @@ class IntroSection6 extends BaseIntroSection {
                           )}
 
                           {hasBottomText && (
-                            <Base.P className={this.decorateCSS("bottomText")}>
+                            <Base.P className={this.decorateCSS("bottom-text")}>
                               {bottomText}
                             </Base.P>
                           )}

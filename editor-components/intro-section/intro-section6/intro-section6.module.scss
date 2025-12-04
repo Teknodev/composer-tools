@@ -32,7 +32,7 @@
         .vertical-content {
           .title,
           .description,
-          .bottomText {
+          .bottom-text {
             text-align: left;
           }
 
@@ -79,7 +79,7 @@
               color: var(--composer-tertiary-color);
             }
 
-            .bottomText {
+            .bottom-text {
               color: var(--composer-font-color-primary);
             }
           }
