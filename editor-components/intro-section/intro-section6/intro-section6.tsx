@@ -32,19 +32,6 @@ class IntroSection6 extends BaseIntroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
-      },
-    });
-
-    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -82,6 +69,19 @@ class IntroSection6 extends BaseIntroSection {
     });
 
     this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
+      },
+    });
+
+    this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
@@ -96,26 +96,27 @@ class IntroSection6 extends BaseIntroSection {
   render() {
     const subtitle = this.getPropValue("subtitle") || "";
     const title = this.getPropValue("title") || "";
-
     const description = this.getPropValue("description") || "";
-    const image = this.getPropValue("image");
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const bottomText = this.getPropValue("text") || "";
     const textIcon = this.getPropValue("textIcon");
 
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
-
-    const hasImage = !!(image && image.url);
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
-    const hasBottomText = this.castToString(bottomText);
-    const alignmentValue = Base.getContentAlignment();
 
     const hasAnyButton =
       Array.isArray(buttons) &&
       buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+    const hasBottomText = this.castToString(bottomText);
+
+    const hasImage = !!(image && image.url);
+
+    const alignmentValue = Base.getContentAlignment();
 
     const hasRightContainer = !!(
       hasSubtitle ||
@@ -143,13 +144,7 @@ class IntroSection6 extends BaseIntroSection {
             }`}
           >
             {hasImage && (
-              <div
-                className={`${this.decorateCSS("image-container")} ${
-                  !hasRightContainer
-                    ? this.decorateCSS("image-container-alone")
-                    : ""
-                }`}
-              >
+              <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("media-wrapper")}>
                   <Base.Media
                     value={image}
@@ -168,7 +163,11 @@ class IntroSection6 extends BaseIntroSection {
                 }`}
               >
                 <Base.VerticalContent
-                  className={this.decorateCSS("vertical-content")}
+                  className={`${this.decorateCSS("vertical-content")} ${
+                    alignmentValue === "center"
+                      ? this.decorateCSS("center")
+                      : null
+                  }`}
                 >
                   {hasSubtitle && (
                     <Base.SectionSubTitle
