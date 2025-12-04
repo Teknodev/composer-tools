@@ -5,19 +5,35 @@
   position: relative;
   overflow: hidden;
 
+  &.image-only {
+    height: 100%;
+  }
   .max-content {
     .intro-wrapper {
       display: flex;
       width: 100%;
-      justify-content: space-between;
-      align-items: stretch;
-      gap: var(--composer-gap-xl);
+      height: 100%;
+      justify-content: end;
+
+      align-items: center;
 
       &.no-image {
-        min-height: unset;
+        .text-content {
+          padding-left: 50px;
+          padding-right: 50px;
+        }
       }
 
       .text-content {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        &.text-content-alone {
+          width: 100%;
+        }
         .vertical-content {
           .title,
           .subtitle,
@@ -25,25 +41,39 @@
           .bottomText {
             text-align: left;
           }
+          .subtitle {
+            margin-left: 0;
+          }
           .actions-wrapper {
             align-items: flex-start;
           }
+
           .action-buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: var(--composer-gap-md);
             justify-content: flex-start;
+
+            .button {
+              display: flex;
+            }
+            .button-text {
+              content: "";
+            }
+            .button-icon {
+              display: flex;
+            }
           }
           .text-wrapper {
             justify-content: flex-start;
             width: 100%;
           }
-          .thumb-row {
-            justify-content: flex-start;
-          }
         }
 
         &.no-image-center {
           .vertical-content {
-            align-items: center;
-
             .title,
             .subtitle,
             .description,
@@ -62,22 +92,20 @@
             .text-wrapper {
               justify-content: center;
             }
-            .thumb-row {
-              justify-content: center;
-            }
           }
         }
       }
 
       .image-container {
-        position: relative;
-        width: 50%;
-        flex-shrink: 0;
-        display: flex;
-        align-items: stretch;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(50% - var(--composer-gap-xl));
+        height: 100%;
 
         &.image-container-alone {
           width: 100%;
+          height: 100%;
         }
 
         .thumbnail-overlay {
@@ -98,52 +126,6 @@
           object-fit: cover;
         }
       }
-
-      .text-content {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-left: var(--composer-gap-lg);
-        padding-right: var(--composer-gap-lg);
-
-        &.text-content-alone {
-          width: 100%;
-        }
-
-        .vertical-content {
-          .subtitle,
-          .title,
-          .description,
-          .text-wrapper {
-            content: "";
-          }
-
-          .subtitle {
-            margin-left: 0;
-          }
-
-          .action-buttons {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--composer-gap-md);
-          }
-
-          .button {
-            display: flex;
-          }
-
-          .button-text {
-            content: "";
-          }
-
-          .button-icon {
-            display: flex;
-          }
-        }
-      }
     }
   }
 }
@@ -152,7 +134,12 @@
   .container {
     .max-content {
       .intro-wrapper {
-        gap: calc(var(--composer-gap-md) * 1.5);
+        &.no-image {
+          .text-content {
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+          }
+        }
       }
     }
   }
@@ -163,9 +150,11 @@
     .max-content {
       .intro-wrapper {
         flex-direction: column;
-        
+        gap: var(--composer-gap-lg);
+        min-height: unset;
 
         .image-container {
+          position: static;
           order: 2;
           flex: 0 0 100%;
           width: 100%;
@@ -180,8 +169,8 @@
           order: 1;
           width: 100%;
           flex: 0 0 100%;
-          padding-left: var(--composer-gap-md);
-          padding-right: var(--composer-gap-md);
+          padding: 0 40px !important;
+
           &.center {
             .vertical-content {
               align-items: center;
@@ -200,6 +189,12 @@
                 justify-content: center;
               }
             }
+          }
+        }
+        &.no-image {
+          .text-content {
+            padding-left: 40px !important;
+            padding-right: 40px !important;
           }
         }
       }

@@ -88,7 +88,12 @@ class About12 extends BaseAbout {
     const alignmentValue = Base.getContentAlignment();
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${
+          hasImage && !hasRightContainer ? this.decorateCSS("image-only") : ""
+        }`}
+        isFull={true}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={`${this.decorateCSS("intro-wrapper")} ${
