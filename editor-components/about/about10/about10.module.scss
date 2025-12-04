@@ -8,7 +8,7 @@
 
     .header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--composer-gap-xl);
       margin-bottom: var(--composer-gap-xl);
 
@@ -32,6 +32,8 @@
         .description {
           margin: 0;
           text-align: left !important;
+          margin-left: 0;
+          align-self: flex-start;
         }
         
         .button-wrapper {
@@ -282,7 +284,7 @@
 
         .features-grid {
           grid-template-columns: 1fr;
-          gap: var(--composer-gap-lg);
+          gap: var(--composer-gap-md);
 
           .feature-item {
             padding: var(--composer-gap-sm);
