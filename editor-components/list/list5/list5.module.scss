@@ -84,6 +84,33 @@
 
           &[data-animation~="animate1"]:hover {
             background-color: var(--composer-primary-color);
+
+            .card-header {
+              .item-index {
+                color: var(--composer-font-color-secondary);
+                transition: color var(--composer-transition-duration-normal) ease;
+              }
+              .icon-badge {
+                .icon-wrapper {
+                  background-color: var(--composer-font-color-primary);
+                  transition: background-color var(--composer-transition-duration-normal) ease;
+                  .icon {
+                    color: var(--composer-html-background);
+                    transition: color var(--composer-transition-duration-normal) ease;
+                  }
+                }
+                &::after {
+                  border-right: var(--composer-border-width-sm) solid var(--composer-font-color-secondary);
+                  transition: border-color var(--composer-transition-duration-normal) ease;
+                }
+              }
+            }
+
+            .card-title,
+            .card-description {
+              color: var(--composer-font-color-secondary);
+              transition: color var(--composer-transition-duration-normal) ease;
+            }
           }
           &[data-animation~="animate2"]:hover {
             transform: translateY(calc(var(--composer-gap-md) * -1));
@@ -136,14 +163,6 @@
             .icon-badge {
               transform: rotate(360deg);
               transition: transform var(--composer-transition-duration-normal);
-            }
-          }
-
-          &:hover {
-            .card-title,
-            .card-description {
-              color: var(--composer-font-color-secondary);
-              transition: color var(--composer-transition-duration-normal) ease;
             }
           }
 
