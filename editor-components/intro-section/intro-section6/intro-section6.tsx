@@ -20,7 +20,7 @@ class IntroSection6 extends BaseIntroSection {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Design You Website Easily",
+      value: "Design Your Website Easily",
     });
 
     this.addProp({
@@ -129,7 +129,9 @@ class IntroSection6 extends BaseIntroSection {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("intro-wrapper")} ${!hasImage ? this.decorateCSS("no-image") : ""} ${
+            className={`${this.decorateCSS("intro-wrapper")} ${
+              !hasImage ? this.decorateCSS("no-image") : ""
+            } ${
               hasImage && !hasRightContainer
                 ? this.decorateCSS("image-container-alone")
                 : ""
@@ -241,7 +243,7 @@ class IntroSection6 extends BaseIntroSection {
                             />
                           )}
 
-                          {bottomText && (
+                          {hasBottomText && (
                             <Base.P className={this.decorateCSS("bottomText")}>
                               {bottomText}
                             </Base.P>
