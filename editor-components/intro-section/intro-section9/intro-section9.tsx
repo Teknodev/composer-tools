@@ -63,9 +63,7 @@ class IntroSection9 extends BaseIntroSection {
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
-    const hasAnyButton =
-      Array.isArray(buttons) &&
-      buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+    const hasAnyButton = buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -94,18 +92,17 @@ class IntroSection9 extends BaseIntroSection {
                 <div className={this.decorateCSS("action-buttons")}>
                   {buttons.map((item: INPUTS.CastedButton, index: number) => {
                     const btnTextExist = this.castToString(item.text);
+                    const btnIconExist = this.castToString(item.icon?.name);
                     const buttonIcon = item.icon;
-                    if (!btnTextExist && !buttonIcon) {
-                      return null;
-                    }
+                    const buttonExist = btnTextExist || btnIconExist;
                     const buttonUrl = item.url || "#";
-                    return (
+                    return buttonExist && (
                       <ComposerLink key={`is9-btn-${index}`} path={buttonUrl}>
                         <Base.Button
                           buttonType={item.type}
                           className={this.decorateCSS("button")}
                         >
-                          {buttonIcon && (
+                          {btnIconExist && (
                             <Base.Media
                               value={buttonIcon}
                               className={this.decorateCSS("button-icon")}

@@ -4,7 +4,7 @@
 .container {
   .max-content {
     .card {
-      padding: 80px 50px;
+      padding: 80px var(--composer-gap-xl);
       border-radius: var(--composer-border-radius-md);
       background: color-mix(
         in srgb,
@@ -14,7 +14,7 @@
       .content {
         align-items: center;
 
-        .title {
+        .title, .description {
           text-align: center;
         }
 
@@ -27,10 +27,6 @@
           }
         }
 
-        .description {
-          text-align: center;
-        }
-
         .action-buttons {
           padding-top: var(--composer-gap-xl);
           display: flex;
@@ -39,12 +35,12 @@
 
           .button {
             content: "";
-            .button-text {
+            .button-text{
               content: "";
             }
-            .button-icon {
-              display: flex;
-              content: "";
+            .button-icon{
+              width: 16px;
+              height: 16px;
             }
           }
         }
