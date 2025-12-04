@@ -526,6 +526,10 @@ class Slider12 extends BaseSlider {
                     const hasHeaderText = this.castToString(item.header);
                     const textClasses = [this.decorateCSS("text")];
 
+                    if (!hasMedia && !hasHeaderText && !hasCardDescription) {
+                      return null;
+                    }
+
                     const slideClasses = [this.decorateCSS("slide")];
                     if (sliderMode !== "mobile" && i % 3 === 2) {
                       slideClasses.push(this.decorateCSS("wide"));
