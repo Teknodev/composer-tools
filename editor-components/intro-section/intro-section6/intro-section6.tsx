@@ -111,6 +111,7 @@ class IntroSection6 extends BaseIntroSection {
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
     const hasBottomText = this.castToString(bottomText);
+    const alignmentValue = Base.getContentAlignment();
 
     const hasAnyButton =
       Array.isArray(buttons) &&
@@ -131,6 +132,10 @@ class IntroSection6 extends BaseIntroSection {
           <div
             className={`${this.decorateCSS("intro-wrapper")} ${
               !hasImage ? this.decorateCSS("no-image") : ""
+            } ${
+              !hasImage && alignmentValue === "center"
+                ? this.decorateCSS("no-image-center")
+                : ""
             } ${
               hasImage && !hasRightContainer
                 ? this.decorateCSS("image-container-alone")
