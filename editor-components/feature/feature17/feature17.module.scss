@@ -128,18 +128,31 @@
           .content-description {
             color: var(--composer-tertiary-color);
           }
-            .action-buttons {
-                display: flex;
-                flex-direction: row;
-                gap: var(--composer-gap-md);
-          .button {
-            .button-text,
-            .button-icon {
-              content: "";
+          .action-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: var(--composer-gap-md);
+            .button {
+              .button-text,
+              .button-icon {
+                content: "";
+              }
             }
           }
         }
-          
+
+        .content.no-image-center {
+          align-items: center;
+
+          .content-title,
+          .content-subtitle,
+          .content-description {
+            text-align: center;
+          }
+
+          .action-buttons {
+            justify-content: center;
+          }
         }
 
         .image-container {
@@ -170,6 +183,20 @@
           .image-container {
             .image {
               aspect-ratio: 1;
+            }
+          }
+
+          .content.center {
+            align-items: center;
+
+            .content-title,
+            .content-subtitle,
+            .content-description {
+              text-align: center;
+            }
+
+            .action-buttons {
+              justify-content: center;
             }
           }
         }

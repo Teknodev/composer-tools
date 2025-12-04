@@ -415,6 +415,8 @@ class Feature17 extends BaseFeature {
                 tabDescriptionExist ||
                 hasAnyButton;
 
+              const hasImage = !!(tab.image && (tab.image as any).url);
+
               return (
                 <Base.ContainerGrid
                   key={`feature17-tab-${index}`}
@@ -437,7 +439,9 @@ class Feature17 extends BaseFeature {
                   {contentExist && (
                     <Base.VerticalContent
                       className={`${this.decorateCSS("content")} ${
-                        alignment === "center" ? this.decorateCSS("center") : ""
+                        alignment === "center" && hasImage ? this.decorateCSS("center") : ""
+                      } ${
+                        alignment === "center" && !hasImage ? this.decorateCSS("no-image-center") : ""
                       }`}
                     >
                       {tabSubtitleExist && (
