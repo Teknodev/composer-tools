@@ -66,14 +66,14 @@
         .button {
           padding: calc(var(--composer-gap-md) * 1.5) !important;
 
-          .button-text {
-            content: "";
+          .button-text,
+          .button-icon {
+            font-size: 2rem;
           }
           .button-icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
           }
         }
       }
@@ -96,7 +96,8 @@
         .action-buttons {
           .button {
             padding: calc(var(--composer-gap-xl) / 2) !important;
-            .button-icon {
+            .button-icon,
+            .button-text {
               font-size: 1.5rem;
             }
           }
