@@ -10,7 +10,7 @@ class About14 extends BaseAbout {
         this.addProp({
             type: "media",
             key: "sideImage",
-            displayer: "Image",
+            displayer: "Media",
             additionalParams: {
                 availableTypes: ["image", "video"],
             },
@@ -38,7 +38,8 @@ class About14 extends BaseAbout {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.",
+            value:
+                "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.",
         });
 
         this.addProp({
@@ -57,8 +58,8 @@ class About14 extends BaseAbout {
                     key: "showLessText",
                     displayer: "Text 2",
                     value: "Show Less",
-                }
-            ]
+                },
+            ],
         });
 
         this.addProp({
@@ -79,7 +80,7 @@ class About14 extends BaseAbout {
         e.stopPropagation();
         const currentState = this.getComponentState("isExpanded");
         this.setComponentState("isExpanded", !currentState);
-    }
+    };
 
     render() {
         const isExpanded = this.getComponentState("isExpanded");
@@ -95,48 +96,69 @@ class About14 extends BaseAbout {
 
         const hasOverlay = this.getPropValue("overlay");
 
-        const hasTextContent = this.castToString(title) || this.castToString(description) || this.castToString(subtitle);
+        const hasTextContent =
+            this.castToString(title) ||
+            this.castToString(description) ||
+            this.castToString(subtitle);
         const hasImageContent = imageMedia && imageMedia.url;
+
+        const alignment = Base.getContentAlignment();
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("maxContent")}>
-                    <div className={this.decorateCSS("wrapper")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    <div
+                        className={`${this.decorateCSS("wrapper")} ${!hasImageContent ? this.decorateCSS("no-image") : ""
+                            }`}
+                        data-alignment={!hasImageContent ? alignment : undefined}
+                    >
                         {hasTextContent && (
-                            <div className={this.decorateCSS("contentSide")}>
-                                {(this.castToString(subtitle) || this.castToString(title)) && (
-                                    <Base.VerticalContent className={this.decorateCSS("heading")}>
-                                        {this.castToString(subtitle) && (
-                                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                                {subtitle}
-                                            </Base.SectionSubTitle>
-                                        )}
-                                        {this.castToString(title) && (
-                                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                                {title}
-                                            </Base.SectionTitle>
-                                        )}
-                                    </Base.VerticalContent>
-                                )}
+                            <div className={this.decorateCSS("content-side")}>
+                                {(this.castToString(subtitle) ||
+                                    this.castToString(title)) && (
+                                        <Base.VerticalContent className={this.decorateCSS("heading")}>
+                                            {this.castToString(subtitle) && (
+                                                <Base.SectionSubTitle
+                                                    className={this.decorateCSS("subtitle")}
+                                                >
+                                                    {subtitle}
+                                                </Base.SectionSubTitle>
+                                            )}
+                                            {this.castToString(title) && (
+                                                <Base.SectionTitle
+                                                    className={this.decorateCSS("title")}
+                                                >
+                                                    {title}
+                                                </Base.SectionTitle>
+                                            )}
+                                        </Base.VerticalContent>
+                                    )}
 
                                 {this.castToString(description) && (
-                                    <div className={`${this.decorateCSS("descriptionWrapper")} ${isExpanded ? this.decorateCSS("expandedWrapper") : ""}`}>
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    <div
+                                        className={`${this.decorateCSS("description-wrapper")} ${isExpanded
+                                                ? this.decorateCSS("expanded-wrapper")
+                                                : ""
+                                            }`}
+                                    >
+                                        <Base.SectionDescription
+                                            className={this.decorateCSS("description")}
+                                        >
                                             {description}
                                         </Base.SectionDescription>
 
                                         <div
-                                            className={this.decorateCSS("showMoreOverlay")}
+                                            className={this.decorateCSS("show-more-overlay")}
                                             onClick={this.toggleExpand}
                                         >
-                                            <div className={this.decorateCSS("showMoreBtn")}>
+                                            <div className={this.decorateCSS("show-more-btn")}>
                                                 {!isExpanded && (
-                                                    <Base.P className={this.decorateCSS("btnText")}>
+                                                    <Base.P className={this.decorateCSS("btn-text")}>
                                                         {showMoreText}
                                                     </Base.P>
                                                 )}
                                                 {isExpanded && (
-                                                    <Base.P className={this.decorateCSS("btnText")}>
+                                                    <Base.P className={this.decorateCSS("btn-text")}>
                                                         {showLessText}
                                                     </Base.P>
                                                 )}
@@ -148,7 +170,7 @@ class About14 extends BaseAbout {
                         )}
 
                         {hasImageContent && (
-                            <div className={this.decorateCSS("imageSide")}>
+                            <div className={this.decorateCSS("image-side")}>
                                 <Base.Media
                                     value={imageMedia}
                                     className={this.decorateCSS("image")}
