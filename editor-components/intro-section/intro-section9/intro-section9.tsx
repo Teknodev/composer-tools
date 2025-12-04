@@ -5,7 +5,7 @@ import styles from "./intro-section9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class IntroSection9Page extends BaseIntroSection {
+class IntroSection9 extends BaseIntroSection {
   constructor(props?: any) {
     super(props, styles);
 
@@ -132,4 +132,4 @@ class IntroSection9Page extends BaseIntroSection {
   }
 }
 
-export default IntroSection9Page;
+export default IntroSection9;
