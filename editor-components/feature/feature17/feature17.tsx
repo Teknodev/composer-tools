@@ -8,9 +8,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type ITabs = {
   tabText: React.JSX.Element;
   title: React.JSX.Element;
-  subtitle: React.JSX.Element;
+  subtitle?: React.JSX.Element;
   description: React.JSX.Element;
-  button: INPUTS.CastedButton[];
+  buttons: INPUTS.CastedButton[];
   image: TypeMediaInputValue;
 };
 
@@ -75,11 +75,11 @@ class Feature17 extends BaseFeature {
               key: "description",
               displayer: "Description",
               value:
-                "This powerfull tool eliminates the need to leave Salesforce to get things done as I can create a custom proposal with dynamic pricing tables. You can also customize your own dynamic versions.",
+                "This powerful tool eliminates the need to leave Salesforce to get things done as I can create a custom proposal with dynamic pricing tables. You can also customize your own dynamic versions.",
             },
             {
               type: "array",
-              key: "button",
+              key: "buttons",
               displayer: "Button",
               value: [
                 INPUTS.BUTTON(
@@ -142,7 +142,7 @@ class Feature17 extends BaseFeature {
             },
             {
               type: "array",
-              key: "button",
+              key: "buttons",
               displayer: "Button",
               value: [
                 INPUTS.BUTTON(
@@ -205,7 +205,7 @@ class Feature17 extends BaseFeature {
             },
             {
               type: "array",
-              key: "button",
+              key: "buttons",
               displayer: "Button",
               value: [
                 INPUTS.BUTTON(
@@ -269,7 +269,7 @@ class Feature17 extends BaseFeature {
             },
             {
               type: "array",
-              key: "button",
+              key: "buttons",
               displayer: "Button",
               value: [
                 INPUTS.BUTTON(
@@ -339,7 +339,7 @@ class Feature17 extends BaseFeature {
       const tabTitleExist = this.castToString(tab.title);
       const tabDescriptionExist = this.castToString(tab.description);
 
-      const buttons = tab.button || [];
+      const buttons = tab.buttons || [];
       const hasAnyButton = buttons.some(
         (btn) => this.castToString(btn.text) || (btn.icon as any)?.name
       );
@@ -357,9 +357,7 @@ class Feature17 extends BaseFeature {
     });
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-      >
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(hasTitle || hasDescription || hasSubtitle) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
@@ -404,7 +402,7 @@ class Feature17 extends BaseFeature {
               const tabTitleExist = this.castToString(tab.title);
               const tabDescriptionExist = this.castToString(tab.description);
 
-              const buttons = tab.button || [];
+              const buttons = tab.buttons || [];
               const hasAnyButton = buttons.some(
                 (btn) => this.castToString(btn.text) || (btn.icon as any)?.name
               );
@@ -439,9 +437,13 @@ class Feature17 extends BaseFeature {
                   {contentExist && (
                     <Base.VerticalContent
                       className={`${this.decorateCSS("content")} ${
-                        alignment === "center" && hasImage ? this.decorateCSS("center") : ""
+                        alignment === "center" && hasImage
+                          ? this.decorateCSS("center")
+                          : ""
                       } ${
-                        alignment === "center" && !hasImage ? this.decorateCSS("no-image-center") : ""
+                        alignment === "center" && !hasImage
+                          ? this.decorateCSS("no-image-center")
+                          : ""
                       }`}
                     >
                       {tabSubtitleExist && (
