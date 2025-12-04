@@ -35,10 +35,6 @@
         margin-bottom: calc(2 * var(--composer-gap-md));
         box-sizing: border-box;
         height: auto;
-
-        > div {
-          height: 100%;
-        }
       }
 
       .dots {
@@ -80,7 +76,6 @@
         }
       }
       .card {
-        height: 100%;
         margin: 0;
         position: relative;
         display: flex !important;
