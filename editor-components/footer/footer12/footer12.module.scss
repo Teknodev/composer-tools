@@ -3,27 +3,12 @@
 .container {
   width: 100%;
 
-  &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
-
-    .first-container {
-      background: transparent;
-    }
-
-    .second-container {
-      background: transparent;
-    }
-  }
-
   .first-container {
-    padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .first-max-content {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       justify-content: space-between;
       gap: var(--composer-gap-lg);
 
@@ -37,33 +22,33 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xs);
-        align-items: baseline;
 
         .logo {
           .image {
-             width: 200px;
-             height: var(--composer-gap-lg);
-             object-fit: cover;
+            width: 150px;
+            height: var(--composer-gap-xl);
           }
         }
 
         .description {
-          text-align: left;
+          font-size: 1rem;
           color: var(--composer-font-color-primary);
         }
       }
 
       .list-group {
         .title {
+          font-size: 1rem;
           color: var(--composer-tertiary-color);
         }
 
         .text {
+          font-size: 1rem;
           color: var(--composer-font-color-primary);
           position: relative;
           display: inline-block;
           transition: all 0.3s ease;
-          padding: var(--composer-gap-xs) 0;
+          padding: var(--composer-gap-xs);
           margin: 0;
 
           &[data-animation~="animate1"] {
@@ -162,7 +147,7 @@
   }
 
   .second-container {
-    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .second-max-content {
       .footer-bottom {
         display: flex;
@@ -170,10 +155,8 @@
 
         .footer-text {
           max-width: 50%;
+          font-size: 1rem;
           color: var(--composer-font-color-primary);
-          width: fit-content;
-          margin: 0;
-          text-align: left;
 
           &.no-image {
             max-width: 100%;
@@ -208,18 +191,12 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .first-container{
-      .first-max-content{
-        .list-group{
-          align-items: baseline;
-          .title, .text{
-            text-align: left;
-          }
-        }
-      }
+    .first-container {
+      padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
+
     .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+      padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
   }
 }
@@ -228,35 +205,25 @@
   .container {
     width: 100%;
 
-    &.center-alignment {
-      .first-container {
-        .first-max-content {
-          .left {
-            align-items: center !important;
-            .description {
-              text-align: center;
-            }
-          }
-          .list-group {
-            align-items: center !important;
-
-            .title,
-            .text {
-              text-align: center !important;
-            }
+    .first-container {
+      padding: var(--composer-gap-md);
+      .first-max-content {
+        gap: var(--composer-gap-sm);
+        flex-direction: column;
+        align-items: center;
+        .left{
+          align-items: center;
+          .description{
+            text-align: center;
           }
         }
-      }
-    }
-
-    .first-container {
-      .first-max-content {
-        gap: var(--composer-gap-md);
-        flex-direction: column;
         .list-group{
           display: flex;
           flex-direction: column;
+          justify-content: center;
+          align-items: center;
           .title, .text{
+            text-align: center;
             width: 100%;
           }
         }
@@ -271,12 +238,11 @@
     }
 
     .second-container {
-      padding: var(--composer-gap-md) !important;
+      padding: var(--composer-gap-md);
       .second-max-content {
         .footer-bottom {
           flex-direction: column;
           align-items: center;
-          gap: var(--composer-gap-sm);
 
           .footer-text {
             max-width: 100%;

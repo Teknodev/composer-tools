@@ -43,7 +43,6 @@ export namespace INPUTS {
               "Link",
               "White",
               "Black",
-              "Bare"
             ],
           },
         },
@@ -61,31 +60,19 @@ export namespace INPUTS {
 
     if (icon !== null) {
       button.value.push({
-        type: "media",
+        type: "icon",
         key: "icon",
         displayer: "Icon",
-        additionalParams: {
-          availableTypes: ["icon"],
-        },
-        value: {
-          type: "icon",
-          name: icon,
-        },
+        value: icon,
       });
     }
 
     if (image !== null) {
       button.value.push({
-        type: "media",
+        type: "image",
         key: "image",
         displayer: "Image",
-        additionalParams: {
-          availableTypes: ["image"],
-        },
-        value: {
-          type: "image",
-          url: image,
-        },
+        value: image,
       });
     }
 
@@ -105,24 +92,18 @@ export namespace INPUTS {
       displayer: displayer,
       value: [
         {
-          type: "media",
+          type: "image",
           key: "image",
+          value:
+            defaultImage ||
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
           displayer: "Image",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url:
-              defaultImage ||
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
-          },
         },
         {
           type: "page",
           key: "imageLink",
           value: "",
-          displayer: "Navigate To",
+          displayer: "Image Link",
         },
       ],
     } as TypeUsableComponentProps;

@@ -1,15 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
-
-  &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
-  }
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     display: flex;
     flex-direction: column;
@@ -19,6 +11,7 @@
 
     .text {
       text-align: center;
+      font-size: 1rem;
       color: var(--composer-font-color-primary);
     }
 
@@ -110,13 +103,13 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md) !important;
+    padding: var(--composer-gap-md);
   }
 }
 

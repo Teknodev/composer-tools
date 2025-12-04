@@ -1,14 +1,12 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
-
 .container {
     .max-content {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xl);
         .heading{
-           .subtitle, .title, .description {
-            content: ""
-            }
+            .subtitle{content: "";}
+            .title {content: "";}
+            .description{content: "";}
         }
         .images-container{
             .image-item {
@@ -18,19 +16,9 @@
                 .image {
                     object-fit: contain;
                     width: 100%;
-                    height: auto;
-                    aspect-ratio: 3/1;
+                    height: 90px;
                 }
             }
-        }
-    }
-}
-
-
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            gap: var(--composer-gap-md);
         }
     }
 }

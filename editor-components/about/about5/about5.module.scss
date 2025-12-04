@@ -20,12 +20,21 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        min-width: 275px;
-        align-items: baseline;
+        min-width: 200px;
+        gap: var(--composer-gap-xs);
+        color: var(--composer-font-color-primary);
 
-        .title, .subtitle, .description {
+        .title {
+          margin: 0;
+          font-size: 2rem;
           text-align: left;
-          margin-left: 0;
+        }
+
+        .sub-title {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+          margin: 0;
+          text-align: left;
         }
       }
 
@@ -35,9 +44,11 @@
         flex: 2;
         min-width: 300px;
 
-        .left-text {
+        .text-1 {
+          font-size: 1rem;
           color: var(--composer-tertiary-color);
           text-align: justify;
+          margin: 0;
         }
       }
 
@@ -48,9 +59,11 @@
         min-width: 300px;
         gap: var(--composer-gap-md);
 
-        .right-text {
+        .text-2 {
+          font-size: 1rem;
           color: var(--composer-tertiary-color);
           text-align: justify;
+          margin: 0;
         }
 
         .information {
@@ -60,13 +73,15 @@
           align-items: flex-start;
 
           .name {
+            font-size: 1.5rem;
             color: var(--composer-primary-color);
-            text-align: left;
+            margin: 0;
           }
 
           .job-title {
+            font-size: 1rem;
             color: var(--composer-tertiary-color);
-            text-align: left;
+            margin: 0;
           }
         }
       }
@@ -78,9 +93,11 @@
         min-width: 400px;
         gap: var(--composer-gap-md);
 
-        .left-text {
+        .text-1 {
+          font-size: 1rem;
           color: var(--composer-tertiary-color);
           text-align: justify;
+          margin: 0;
         }
 
         .information-below-text1 {
@@ -90,11 +107,15 @@
           align-items: flex-start;
 
           .name {
+            font-size: 1.5rem;
             color: var(--composer-primary-color);
+            margin: 0;
           }
 
           .job-title {
+            font-size: 1rem;
             color: var(--composer-tertiary-color);
+            margin: 0;
           }
         }
       }
@@ -109,16 +130,20 @@
       .card-1 {
         display: flex;
         flex-direction: column;
+        gap: var(--composer-gap-xs);
         color: var(--composer-font-color-primary);
         align-items: flex-start;
 
         .title {
-          content: "";
+          margin: 0;
+          font-size: 2rem;
           text-align: left;
         }
 
-        .subtitle {
+        .sub-title {
+          font-size: 1rem;
           color: var(--composer-tertiary-color);
+          margin: 0;
           text-align: left;
         }
       }
@@ -131,13 +156,15 @@
         align-items: flex-start;
 
         .name {
+          font-size: 1.5rem;
           color: var(--composer-primary-color);
-          text-align: left;
+          margin: 0;
         }
 
         .job-title {
+          font-size: 1rem;
           color: var(--composer-tertiary-color);
-          text-align: left;
+          margin: 0;
         }
       }
       .card-2,
@@ -152,7 +179,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .max-content {
     .card-1 {
-      min-width: 200px !important;
+      gap: var(--composer-gap-md) !important;
     }
   }
 }
@@ -161,7 +188,14 @@
   .max-content {
     .content {
       flex-direction: column;
-      gap: var(--composer-gap-sk) !important;
+      gap: var(--composer-gap-md) !important;
+
+      .card-1 {
+        gap: var(--composer-gap-xs) !important;
+        .title {
+          font-size: 1.5rem !important;
+        }
+      }
 
       .content-right-section-empty {
         gap: var(--composer-gap-md) !important;
@@ -176,6 +210,7 @@
       gap: var(--composer-gap-md) !important;
 
       .card-1 {
+        gap: var(--composer-gap-xs) !important;
         align-items: flex-start !important;
       }
 

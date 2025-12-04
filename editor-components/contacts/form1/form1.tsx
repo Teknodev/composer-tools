@@ -10,13 +10,6 @@ class Form1 extends BaseContacts {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Contact Us",
-    });
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Get connected",
@@ -40,16 +33,10 @@ class Form1 extends BaseContacts {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "MdMail"
-              },
+              value: "MdMail",
             },
             {
               type: "boolean",
@@ -104,16 +91,10 @@ class Form1 extends BaseContacts {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaPhone"
-              },
+              value: "FaPhone",
             },
             {
               type: "boolean",
@@ -168,16 +149,10 @@ class Form1 extends BaseContacts {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaLocationDot"
-              },
+              value: "FaLocationDot",
             },
             {
               type: "boolean",
@@ -236,9 +211,7 @@ class Form1 extends BaseContacts {
 
   render() {
     const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
     const titleExist = this.castToString(title);
-    const subtitleExist = this.castToString(subtitle);
 
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
@@ -248,21 +221,20 @@ class Form1 extends BaseContacts {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist || descriptionExist) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>{subtitle}</Base.SectionSubTitle>}
+          {(titleExist || descriptionExist) && (
+            <Base.VerticalContent>
               {titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
 
           {cards?.length > 0 && (
-            <Base.ListGrid gridCount={{ pc: 3, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
+            <Base.ListGrid gridCount={{ pc: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((item: any, index: number) => {
                 const iconExist = !!item.icon;
                 const titleExist = !!this.castToString(item.title);
 
-                if (!iconExist && !titleExist && !item.rows.length) return null;
+                if (!iconExist && !titleExist) return null;
 
                 return (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
@@ -273,9 +245,11 @@ class Form1 extends BaseContacts {
                     ${item.isIconFilled && this.decorateCSS("filled")}
                   `}
                       >
-                        <Base.Media
-                          value={item.icon}
-                          className={this.decorateCSS("icon")}
+                        <Base.Icon
+                          name={item.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                          }}
                         />
                       </div>
                     )}
@@ -283,7 +257,7 @@ class Form1 extends BaseContacts {
                     <Base.VerticalContent className={this.decorateCSS("rows")}>
                       {item.rows.map((row: any, rowIndex: number) => {
                         const itemExist = this.castToString(row.item);
-                        return itemExist && <Base.P className={this.decorateCSS("row-item")}>{row.item}</Base.P>;
+                        return itemExist && <Base.P className={this.decorateCSS("row")}>{row.item}</Base.P>;
                       })}
                     </Base.VerticalContent>
                   </Base.VerticalContent>

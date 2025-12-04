@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -12,7 +12,7 @@ type FooterValues = {
 };
 
 type FooterTextValues = {
-  footerIcon: TypeMediaInputValue;
+  footerIcon: string;
   footerText: React.JSX.Element;
   path: string;
 };
@@ -21,39 +21,17 @@ class Footer3Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "select",
-      key: "position",
-      displayer: "Position",
-      value: "Default",
-      additionalParams: {
-        selectItems: ["Default", "Absolute"],
-      },
+      type: "image",
+      key: "logo",
+      displayer: "Logo",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
     });
 
     this.addProp({
-      type: "object",
-      key: "logo",
-      displayer: "Logo",
-      value: [
-        {
-          type: "media",
-          key: "logo",
-          displayer: "Logo",
-          additionalParams: {
-            availableTypes: ["image"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
-          },
-        },
-        {
-          type: "page",
-          key: "logoUrl",
-          displayer: "Navigate To",
-          value: ""
-        },
-      ],
+      type: "page",
+      key: "logoUrl",
+      displayer: "Logo Url",
+      value:""
     });
 
     this.addProp({
@@ -74,21 +52,15 @@ class Footer3Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaFacebookF",
-              },
+              value: "FaFacebookF",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -99,21 +71,15 @@ class Footer3Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaInstagram",
-              },
+              value: "FaInstagram",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -124,21 +90,15 @@ class Footer3Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaXTwitter",
-              },
+              value: "FaXTwitter",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -176,23 +136,17 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "49 Featherstone Street London, UK",
+                      value: "49 Featherstone Street London, United Kingdom",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaLocationDot",
-                      },
+                      value: "FaLocationDot",
                     },
                     {
                       type: "page",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       key: "path",
                       value: "",
                     },
@@ -211,21 +165,15 @@ class Footer3Page extends BaseFooter {
                       value: "Phone: [+44] 450 88 800",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "FaPhoneAlt",
-                      },
+                      value: "FaPhoneAlt",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -242,21 +190,15 @@ class Footer3Page extends BaseFooter {
                       value: "E-Mail: contact@website.com",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "IoMdMail",
-                      },
+                      value: "IoMdMail",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -273,21 +215,15 @@ class Footer3Page extends BaseFooter {
                       value: "Web: keydesign-themes.com",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "TiWorld",
-                      },
+                      value: "TiWorld",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -324,20 +260,14 @@ class Footer3Page extends BaseFooter {
                       value: "About us",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       key: "path",
                       value: "",
                     },
@@ -355,21 +285,15 @@ class Footer3Page extends BaseFooter {
                       value: "Terms and conditions",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -386,21 +310,15 @@ class Footer3Page extends BaseFooter {
                       value: "Privacy Policy",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -417,21 +335,15 @@ class Footer3Page extends BaseFooter {
                       value: "News",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -448,21 +360,15 @@ class Footer3Page extends BaseFooter {
                       value: "Contact us",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -499,20 +405,14 @@ class Footer3Page extends BaseFooter {
                       value: "Future design concept - February 3, 2016",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       key: "path",
                       value: "",
                     },
@@ -530,21 +430,15 @@ class Footer3Page extends BaseFooter {
                       value: "Stand out venues - January 25, 2016",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -561,21 +455,15 @@ class Footer3Page extends BaseFooter {
                       value: "Technology upgraded - January 25, 2016",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -592,21 +480,15 @@ class Footer3Page extends BaseFooter {
                       value: "Deliver fresh news - February 15, 2015",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -623,21 +505,15 @@ class Footer3Page extends BaseFooter {
                       value: "Development solutions - January 25, 2015",
                     },
                     {
-                      type: "media",
+                      type: "icon",
                       key: "footerIcon",
                       displayer: "Icon",
-                      additionalParams: {
-                        availableTypes: ["icon"],
-                      },
-                      value: {
-                        type: "icon",
-                        name: "",
-                      },
+                      value: "",
                     },
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -682,7 +558,7 @@ class Footer3Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -701,7 +577,7 @@ class Footer3Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -729,9 +605,8 @@ class Footer3Page extends BaseFooter {
     const links = this.castToObject<any[]>("links");
     const footer = this.castToObject<any[]>("footer");
 
-    const logoObject = this.castToObject<any>("logo");
-    const logo = logoObject?.logo;
-    const logoUrl = logoObject?.logoUrl;
+    const logo = this.getPropValue("logo");
+    const logoUrl = this.getPropValue("logoUrl");
     const line = this.getPropValue("line");
 
     const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
@@ -741,25 +616,20 @@ class Footer3Page extends BaseFooter {
 
     const alignment = Base.getContentAlignment();
 
-    const position = this.getPropValue("position");
-
-    const firstContainerExist = headerExist || footer.length > 0;
-    const secondContainerExist = links.length > 0 || bottomTextExist;
-
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-           {firstContainerExist && <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.Container className={this.decorateCSS("first-container")}>
               <Base.MaxContent className={this.decorateCSS("first-max-content")}>
                 {
-                  <div className={`${this.decorateCSS("items")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`} data-alignment={alignment}>
+                  <div className={this.decorateCSS("items")}>
                     {headerExist && (
                       <Base.VerticalContent className={this.decorateCSS("header")}>
-                        {logo?.url && (
+                        {logo && (
                           <ComposerLink path={logoUrl}>
                             <div className={this.decorateCSS("logo")}>
-                              <Base.Media value={logo} className={this.decorateCSS("image")} />
+                              <img src={logo} className={this.decorateCSS("image")} alt="" />
                             </div>
                           </ComposerLink>
                         )}
@@ -775,9 +645,9 @@ class Footer3Page extends BaseFooter {
                                       data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                       data-has-link={Boolean(item.url)}
                                     >
-                                      <Base.Media 
-                                        value={item.icon}
-                                        className={this.decorateCSS("icon")} 
+                                      <Base.Icon 
+                                        propsIcon={{ className: this.decorateCSS("icon") }} 
+                                        name={item.icon} 
                                       />
                                     </div>
                                   </ComposerLink>
@@ -796,8 +666,8 @@ class Footer3Page extends BaseFooter {
                         const listExist = footerTitleExist || footerTextExist;
                         return (
                           listExist && (
-                            <div key={indexFooter} className={`${this.decorateCSS("list-group")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                              {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
+                            <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                              {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
                               {item.footerText.length > 0 && (
                                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                   {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
@@ -809,10 +679,12 @@ class Footer3Page extends BaseFooter {
                                           className={`${this.decorateCSS("element")} ${v.path && this.decorateCSS("has-path")}`}
                                           data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                         >
-                                          {v.footerIcon?.name && (
-                                            <Base.Media 
-                                              value={v.footerIcon}
-                                              className={this.decorateCSS("element-icon")}
+                                          {v.footerIcon && (
+                                            <Base.Icon 
+                                              propsIcon={{ 
+                                                className: this.decorateCSS("element-icon")
+                                              }} 
+                                              name={v.footerIcon} 
                                             />
                                           )}
                                           {footerTextExist && (
@@ -833,11 +705,11 @@ class Footer3Page extends BaseFooter {
                   </div>
                 }
               </Base.MaxContent>
-            </Base.Container>}
+            </Base.Container>
 
             {line && <div className={this.decorateCSS("line")}></div>}
 
-            {secondContainerExist && <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.Container className={this.decorateCSS("second-container")}>
               <Base.MaxContent className={this.decorateCSS("second-max-content")}>
                 {(bottomTextExist || links.length > 0) && (
                   <div className={`${this.decorateCSS("footer-bottom")} 
@@ -864,7 +736,7 @@ class Footer3Page extends BaseFooter {
                   </div>
                 )}
               </Base.MaxContent>
-            </Base.Container>}
+            </Base.Container>
           </div>
         </div>
       </div>

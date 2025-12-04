@@ -10,7 +10,7 @@ class About4 extends BaseAbout {
         this.addProp({
             type: "string",
             key: "subTitle",
-            displayer: "Subtitle",
+            displayer: "Sub Title",
             value: "WHAT WE DO"
         })
         this.addProp({
@@ -53,7 +53,7 @@ class About4 extends BaseAbout {
                     {showContent && (
                         <Base.VerticalContent className={this.decorateCSS("content")}>
                             {this.castToString(subTitle) && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                                     {subTitle}
                                 </Base.SectionSubTitle>
                             )}

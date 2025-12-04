@@ -13,7 +13,7 @@
         align-items: center;
 
         .header-title, .header-description {
-          text-align: center;
+          content: "";
         }
       }
 
@@ -22,12 +22,10 @@
         align-items: center;
         margin: 0 auto;
         gap: var(--composer-gap-md);
+      }
 
-        .button {
-          .button-text {
-            content: "";
-          }
-        }
+      .button {
+        content: "";
       }
     }
   }
@@ -87,7 +85,6 @@
           background: transparent;
 
           .title {
-            text-align: left;
             color: black;
           }
         }
@@ -97,7 +94,6 @@
         background: linear-gradient(to bottom, transparent, black 100%);
 
         .title {
-          text-align: left;
           color: white;
         }
       }
@@ -106,7 +102,8 @@
       >a .title {
         margin: var(--composer-gap-sm);
         margin-top: 0;
-        text-align: left;
+
+
         color: var(--composer-font-color-primary);
       }
     }

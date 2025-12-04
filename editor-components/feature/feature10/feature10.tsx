@@ -1,13 +1,14 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  image: TypeMediaInputValue;
+  image: string;
   title: React.JSX.Element;
   description: React.JSX.Element;
   url: string;
@@ -31,35 +32,16 @@ class Feature10 extends BaseFeature {
       value: "We've helped plenty of SaaS startups and scaleups develop reliable, secure infrastructure."
     });
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "rightArrow",
       displayer: "Right Arrow",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "GoArrowRight"
-      }
+      value: "GoArrowRight"
     });
     this.addProp({
-      type: "media",
+      type: "icon",
       key: "leftArrow",
-      displayer: "Left Arrow",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "GoArrowLeft"
-      }
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: true
+      displayer: "Right Arrow",
+      value: "GoArrowLeft"
     });
 
     this.addProp({
@@ -73,16 +55,10 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
-              }
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
             },
             {
               type: "string",
@@ -99,7 +75,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: ""
             }
           ]
@@ -110,16 +86,10 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6737443e506a40002c2ac5ae?alt=media"
-              }
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6737443e506a40002c2ac5ae?alt=media"
             },
             {
               type: "string",
@@ -136,7 +106,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: ""
             }
           ]
@@ -147,16 +117,10 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
-              }
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
             },
             {
               type: "string",
@@ -173,7 +137,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: ""
             }
           ]
@@ -184,16 +148,10 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
-              }
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
             },
             {
               type: "string",
@@ -210,7 +168,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: ""
             }
           ]
@@ -221,16 +179,10 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
-              }
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
             },
             {
               type: "string",
@@ -247,7 +199,7 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: ""
             }
           ]
@@ -258,16 +210,10 @@ class Feature10 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
-              }
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
             },
             {
               type: "string",
@@ -284,14 +230,14 @@ class Feature10 extends BaseFeature {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: ""
             }
           ]
         }
       ]
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", "GoArrowRight", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary"));
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
@@ -314,7 +260,7 @@ class Feature10 extends BaseFeature {
       arrows: false,
       dots: false,
       speed: 725,
-      autoplay: this.getPropValue("autoplay"),
+      autoplay: true,
       autoplaySpeed: 2000,
       slidesToShow: cards.length > 2 ? 3 : cards.length,
       slidesToScroll: 1,
@@ -369,7 +315,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickPrev();
                     }}
                     className={this.decorateCSS("arrow-left")}>
-                    <Base.Media value={this.getPropValue("leftArrow")} className={this.decorateCSS("icon")} />
+                    <Base.Icon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></Base.Icon>
                   </button>
                 )}
                 {this.getPropValue("rightArrow") && (
@@ -378,7 +324,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickNext();
                     }}
                     className={this.decorateCSS("arrow-right")}>
-                    <Base.Media value={this.getPropValue("rightArrow")} className={this.decorateCSS("icon")} />
+                    <Base.Icon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                   </button>
                 )}
               </div>
@@ -396,7 +342,7 @@ class Feature10 extends BaseFeature {
                     const titleExist = !!this.castToString(item.title);
                     const descExist = !!this.castToString(item.description);
 
-                    if (!item.image?.url && !titleExist && !descExist) return null;
+                    if (!item.image && !titleExist && !descExist) return null;
 
                     return (
                       <ComposerLink path={item.url}>
@@ -405,7 +351,7 @@ class Feature10 extends BaseFeature {
                           className={`${this.decorateCSS("card-container")} ${!(titleExist || descExist) && this.decorateCSS("fit-content")}`}
                         >
                           {item.image && (
-                            <Base.Media value={item.image} className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} />
+                            <img className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} src={item.image} alt={this.castToString(item.title)} />
                           )}
                           {(titleExist || descExist) && (
                             <div className={this.decorateCSS("bottom")}>
@@ -432,13 +378,7 @@ class Feature10 extends BaseFeature {
               {!!this.castToString(button.text) && (
                 <ComposerLink path={button.url}>
                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {button.icon && (
-                      <Base.Media
-                        value={{ type: "icon", name: button.icon }}
-                        className={this.decorateCSS("button-icon")}
-                      />
-                    )}
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    {button.text}
                   </Base.Button>
                 </ComposerLink>
               )}

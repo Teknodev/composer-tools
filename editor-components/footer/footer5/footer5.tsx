@@ -10,16 +10,6 @@ class Footer5Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
-      type: "select",
-      key: "position",
-      displayer: "Position",
-      value: "Default",
-      additionalParams: {
-        selectItems: ["Default", "Absolute"],
-      },
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -61,7 +51,7 @@ class Footer5Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -80,7 +70,7 @@ class Footer5Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -136,10 +126,8 @@ class Footer5Page extends BaseFooter {
 
     const alignment = Base.getContentAlignment();
 
-    const position = this.getPropValue("position");
-
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <div className={this.decorateCSS("container")}>
         {headerExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
@@ -147,15 +135,15 @@ class Footer5Page extends BaseFooter {
                 {textsExist && (
                   <Base.VerticalContent
                     className={`${this.decorateCSS("left")} ${!this.castToString(button.text) && this.decorateCSS("left-full")}`}>
-                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                    {subtitleExist && <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   </Base.VerticalContent>
                 )}
                 {this.castToString(button.text) && (
                   <div className={this.decorateCSS("right")}>
                     <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type}className={this.decorateCSS("button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                      <Base.Button buttonType={button.type}
+                        className={this.decorateCSS("button")}>{button.text}
                       </Base.Button>
                     </ComposerLink>
                   </div>

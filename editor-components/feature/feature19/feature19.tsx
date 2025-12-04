@@ -1,6 +1,7 @@
 import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature19.module.scss";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -8,7 +9,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface ListItem {
   title: string;
   text: string;
-  icon: TypeMediaInputValue;
+  icon: string;
 }
 class Feature19 extends BaseFeature {
   constructor(props?: any) {
@@ -33,23 +34,11 @@ class Feature19 extends BaseFeature {
       value: "A better way to get your home, rental, or office clean.",
     });
     this.addProp({
-      type: "media",
+      type: "image",
       key: "image",
       displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
-      },
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661bad1bd2970002c628768?alt=media&timestamp=1719564173697",
     });
     this.addProp({
       type: "array",
@@ -64,27 +53,21 @@ class Feature19 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "List Item Title",
               value: "Smart & Creative",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Description",
+              displayer: "Text",
               value:
                 "Each member of our team has at least 5 years of experience in the industry.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaTwitter"
-              },
+              value: "FaTwitter",
             },
           ],
         },
@@ -96,34 +79,27 @@ class Feature19 extends BaseFeature {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "List Item Title",
               value: "Distributed",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Description",
+              displayer: "Text",
               value:
                 "More than 2 500 private and corporate facilities were cleaned this year.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaFacebook"
-              },
+              value: "FaFacebook",
             },
           ],
         },
       ],
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
-
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -133,7 +109,6 @@ class Feature19 extends BaseFeature {
         selectItems: ["animate1", "animate2"]
       }
     });
-
   }
   static getName(): string {
     return "Feature 19";
@@ -141,7 +116,6 @@ class Feature19 extends BaseFeature {
 
   render() {
     const subTitle = this.getPropValue("subtitle");
-    const overlay = this.getPropValue("overlay") as boolean;
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
@@ -163,7 +137,9 @@ class Feature19 extends BaseFeature {
                 this.castToString(description)) && (
                   <Base.VerticalContent className={this.decorateCSS("header")}>
                     {this.castToString(subTitle) && (
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      <Base.SectionSubTitle
+                        className={this.decorateCSS("subtitle")}
+                      >
                         {subTitle}
                       </Base.SectionSubTitle>
                     )}
@@ -173,7 +149,9 @@ class Feature19 extends BaseFeature {
                       </Base.SectionTitle>
                     )}
                     {this.castToString(description) && (
-                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                      <Base.SectionDescription
+                        className={this.decorateCSS("description")}
+                      >
                         {description}
                       </Base.SectionDescription>
                     )}
@@ -185,16 +163,20 @@ class Feature19 extends BaseFeature {
                   {list.map((listItem: any, index: number) => (
                     <Base.VerticalContent className={this.decorateCSS("list-item-content")}>
                       <Base.Row className={this.decorateCSS("item-content-top")}>
-                        {listItem.icon?.name && (
-                          <Base.Media
-                            value={listItem.icon}
-                            className={this.decorateCSS("icon")}
+                        {listItem.icon && (
+                          <Base.Icon
+                            name={listItem.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
                           />
                         )}
                         {this.castToString(listItem.title) && (
-                          <Base.H3 className={this.decorateCSS("list-item-title")}>
+                          <Base.H2
+                            className={this.decorateCSS("list-item-title")}
+                          >
                             {listItem.title}
-                          </Base.H3>
+                          </Base.H2>
                         )}
                       </Base.Row>
 
@@ -211,7 +193,7 @@ class Feature19 extends BaseFeature {
               {this.castToString(button.text) && (
                 <ComposerLink path={button.url}>
                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                    {button.text}
                   </Base.Button>
                 </ComposerLink>
               )}
@@ -221,13 +203,12 @@ class Feature19 extends BaseFeature {
             <div 
               className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
-              style={{ position: "relative" }}
             >
-              <Base.Media
-                value={this.getPropValue("image")}
+              <img
+                src={this.getPropValue("image")}
+                alt="blockPhoto"
                 className={this.decorateCSS("img")}
               />
-              {overlay && <div className={this.decorateCSS("overlay")} />}
             </div>
           )}
         </Base.MaxContent>

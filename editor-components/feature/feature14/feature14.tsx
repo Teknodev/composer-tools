@@ -1,13 +1,13 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  icon: TypeMediaInputValue,
+  icon: React.JSX.Element,
   title: string,
   description: string,
 };
@@ -46,16 +46,10 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "IoPricetagsOutline"
-              },
+              value: "IoPricetagsOutline",
             },
             {
               type: "string",
@@ -77,16 +71,10 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "MdSupportAgent"
-              },
+              value: "MdSupportAgent",
             },
             {
               type: "string",
@@ -108,16 +96,10 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "CiStar"
-              },
+              value: "CiStar",
             },
             {
               type: "string",
@@ -139,16 +121,10 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "media",
+              type: "icon",
               key: "icon",
               displayer: "Card Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "GrUserManager"
-              },
+              value: "GrUserManager",
             },
             {
               type: "string",
@@ -169,7 +145,7 @@ class Feature14 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item count in a row",
       value: 4,
     });
   }
@@ -189,27 +165,27 @@ class Feature14 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(this.getPropValue("title")) || this.castToString(button.text)
+          {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("linkTitle"))
             || this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && (
               <div className={`${this.decorateCSS("title-wrapper")} ${alignment == "center" && this.decorateCSS("center")}`}>
-                {(this.castToString(this.getPropValue("title")) || this.castToString(button.text)) && <Base.VerticalContent className={this.decorateCSS("title-left")}>
+                <Base.VerticalContent className={this.decorateCSS("title-left")}>
                   {this.castToString(this.getPropValue("title")) && (
                     <Base.SectionTitle className={this.decorateCSS("header")}>
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
-                  {(alignment == "left" && (this.castToString(button.text) || button.icon)) && (
+                  {(alignment == "left" && this.castToString(button.text)) && (
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                          {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
+                          {button.text}
+                          <Base.Icon name={button.icon} />
                         </Base.Button>
                       </ComposerLink>
                     </div>
                   )}
-                </Base.VerticalContent>}
-                {(this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && <Base.VerticalContent className={this.decorateCSS("title-right")}>
+                </Base.VerticalContent>
+                <Base.VerticalContent className={this.decorateCSS("title-right")}>
                   {this.castToString(this.getPropValue("firstdescription")) && (
                     <Base.SectionDescription className={this.decorateCSS("description-1")}>
                       {this.getPropValue("firstdescription")}
@@ -221,17 +197,17 @@ class Feature14 extends BaseFeature {
                       {this.getPropValue("seconddescription")}
                     </Base.SectionDescription>
                   )}
-                  {(alignment == "center" && (this.castToString(button.text) || button.icon)) && (
+                  {(alignment == "center" && this.castToString(button.text)) && (
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                          {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
+                          {button.text}
+                          <Base.Icon name={button.icon} />
                         </Base.Button>
                       </ComposerLink>
                     </div>
                   )}
-                </Base.VerticalContent>}
+                </Base.VerticalContent>
               </div>
             )
           }
@@ -240,10 +216,10 @@ class Feature14 extends BaseFeature {
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount") }}>
               {cardItems.map((item: any, index: number) => {
                 return (
-                  <Base.VerticalContent className={this.decorateCSS("card")}>
+                  <div className={this.decorateCSS("card")}>
                     {item.icon && (
                       <div className={this.decorateCSS("icon-box")}>
-                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                        <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
                     )}
 
@@ -255,7 +231,7 @@ class Feature14 extends BaseFeature {
                         <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
                       )}
                     </div>
-                  </Base.VerticalContent>
+                  </div>
                 );
               })}
             </Base.ListGrid>

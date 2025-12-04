@@ -1,7 +1,8 @@
 
 import * as React from "react";
-import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery6.module.scss";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -10,13 +11,13 @@ interface GalleryItem {
     images: ImageItem[],
 }
 interface ImageItem {
-    image: TypeMediaInputValue,
+    image: string,
     badge: React.JSX.Element,
     title: React.JSX.Element,
     description: React.JSX.Element,
     buttonText: React.JSX.Element,
     url: string,
-    nextArrow: TypeMediaInputValue
+    nextArrow: string
 }
 
 class ImageGallery6 extends BaseImageGallery {
@@ -47,7 +48,7 @@ class ImageGallery6 extends BaseImageGallery {
             type: "string",
             key: "allText",
             displayer: "All Button Text",
-            value: "ALL",
+            value: "All",
         })
 
         this.addProp({
@@ -77,16 +78,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/671618cab4a116002cfc6451?alt=media",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/671618cab4a116002cfc6451?alt=media",
                                         },
                                         {
                                             type: "string",
@@ -107,27 +103,15 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -138,16 +122,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/2.jpg",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/2.jpg",
                                         },
                                         {
                                             type: "string",
@@ -168,27 +147,15 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -199,16 +166,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/3.jpg",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/3.jpg",
                                         },
                                         {
                                             type: "string",
@@ -229,28 +191,16 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
 
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -282,16 +232,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/5.jpg",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/5.jpg",
                                         },
                                         {
                                             type: "string",
@@ -312,27 +257,15 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -343,16 +276,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/6.jpg",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/6.jpg",
                                         },
                                         {
                                             type: "string",
@@ -373,27 +301,15 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -404,16 +320,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/8.jpg",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/8.jpg",
                                         },
                                         {
                                             type: "string",
@@ -434,27 +345,15 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -465,16 +364,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/7.jpg",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/7.jpg",
                                         },
                                         {
                                             type: "string",
@@ -495,27 +389,15 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -546,16 +428,11 @@ class ImageGallery6 extends BaseImageGallery {
                                     displayer: "Image",
                                     value: [
                                         {
-                                            type: "media",
+                                            type: "image",
                                             key: "image",
                                             displayer: "Image",
-                                            value: {
-                                                type: "image",
-                                                url: "https://ruizarch-react.vercel.app/img/covers/4.jpg",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["image", "video"],
-                                            },
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/4.jpg",
                                         },
                                         {
                                             type: "string",
@@ -576,27 +453,15 @@ class ImageGallery6 extends BaseImageGallery {
                                             value: "START A PROJECT",
                                         },
                                         {
-                                            type: "boolean",
-                                            key: "active",
-                                            displayer: "Active",
-                                            value: false,
-                                        },
-                                        {
-                                            type: "media",
+                                            type: "icon",
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
-                                            value: {
-                                                type: "icon",
-                                                name: "FaArrowRightLong",
-                                            },
-                                            additionalParams: {
-                                                availableTypes: ["icon"],
-                                            },
+                                            value: "FaArrowRightLong",
                                         },
                                         {
                                             type: "page",
                                             key: "url",
-                                            displayer: "Navigate To",
+                                            displayer: "Link",
                                             value: "",
                                         },
                                     ]
@@ -657,27 +522,27 @@ class ImageGallery6 extends BaseImageGallery {
 
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.Row className={this.decorateCSS("section-container")}>
+                    <Base.VerticalContent className={this.decorateCSS("section-container")}>
                         {this.getPropValue("showAll") && (
-                            <Base.H5
+                            <Base.H4
                                 className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getPropValue("allText")) || !selectedSection) ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClickAll()}
                             >
                                 {this.getPropValue("allText")}
-                            </Base.H5>
+                            </Base.H4>
                         )}
 
                         {galleries.map((element: any) => (
-                            <Base.H5
+                            <Base.H4
                                 className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.getComponentState("selectedSection") ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClick(element)}
                             >
                                 {element.getPropValue("sectionTitle")}
-                            </Base.H5>
+                            </Base.H4>
                         ))}
-                    </Base.Row>
+                    </Base.VerticalContent>
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("left-container")}>
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
@@ -697,37 +562,37 @@ class ImageGallery6 extends BaseImageGallery {
 
                                     return (
                                         <ComposerLink path={item.url}>
-                                            <div className={`${this.decorateCSS("images")} ${imageClass} ${item.active ? this.decorateCSS("active") : ""}`}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
 
                                                 <div className={this.decorateCSS("image-wrapper")}>
                                                     {item.image && (
-                                                        <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                                                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
                                                     )}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>
-                                                            <Base.P className={this.decorateCSS("badge-text")}>
+                                                            <div className={this.decorateCSS("badge-text")}>
                                                                 {item.badge}
-                                                            </Base.P>
+                                                            </div>
                                                         </div>
                                                     )}
                                                     {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <Base.H3 className={this.decorateCSS("title")}>
+                                                                    <div className={this.decorateCSS("title")}>
                                                                         {item.title}
-                                                                    </Base.H3>
+                                                                    </div>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <Base.H4 className={this.decorateCSS("description")}>
+                                                                            <div className={this.decorateCSS("description")}>
                                                                                 {item.description}
-                                                                            </Base.H4>
+                                                                            </div>
                                                                         )}
                                                                         {item.nextArrow && (
                                                                             <div className={this.decorateCSS("button")}>
-                                                                                <Base.Media value={item.nextArrow} className={this.decorateCSS("icon")} />
+                                                                                <Base.Icon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                                                                             </div>
                                                                         )}
                                                                     </div>
@@ -760,37 +625,37 @@ class ImageGallery6 extends BaseImageGallery {
                                     }
                                     return (
                                         <ComposerLink path={item.url}>
-                                            <div className={`${this.decorateCSS("images")} ${imageClass} ${item.active ? this.decorateCSS("active") : ""}`}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
                                                 <div className={this.decorateCSS("image-wrapper")}>
                                                     {item.image && (
-                                                        <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                                                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
                                                     )}
                                                     {this.castToString(item.badge) && (
                                                         <div className={this.decorateCSS("badge")}>
-                                                            <Base.P className={this.decorateCSS("badge-text")}>
+                                                            <div className={this.decorateCSS("badge-text")}>
                                                                 {item.badge}
-                                                            </Base.P>
+                                                            </div>
                                                         </div>
                                                     )}
                                                     {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
                                                         <div className={this.decorateCSS("badge-container")}>
                                                             <div className={this.decorateCSS("text-container")}>
                                                                 {this.castToString(item.title) && (
-                                                                    <Base.H3 className={this.decorateCSS("title")}>
+                                                                    <div className={this.decorateCSS("title")}>
                                                                         {item.title}
-                                                                    </Base.H3>
+                                                                    </div>
                                                                 )}
                                                                 {(this.castToString(item.description) || item.nextArrow) && (
                                                                     <div className={this.decorateCSS("bottom-container")}>
                                                                         {this.castToString(item.description) && (
-                                                                            <Base.H4 className={this.decorateCSS("description")}>
+                                                                            <div className={this.decorateCSS("description")}>
                                                                                 {item.description}
-                                                                            </Base.H4>
+                                                                            </div>
                                                                         )}
                                                                         {item.nextArrow && (
 
                                                                             <button className={this.decorateCSS("button")}>
-                                                                                <Base.Media value={item.nextArrow} className={this.decorateCSS("icon")} />
+                                                                                <Base.Icon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                                                                             </button>
 
                                                                         )}
@@ -808,10 +673,10 @@ class ImageGallery6 extends BaseImageGallery {
                             })}
                         </div>
                     </div>
-                    {(this.getComponentState("imageCount") < currentGallery.length) && this.castToString(button.text) && (
+                    {(this.getComponentState("imageCount") < currentGallery.length) && (
                         <div className={this.decorateCSS("button-wrapper")}>
                             <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                {button.text}
                             </Base.Button>
                         </div>
                     )}

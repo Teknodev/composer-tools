@@ -5,7 +5,11 @@
     .max-content {
         .wrapper {
             .section-wrapper{
-                .section-title, .section-description {
+                .section-title {
+                    content: "";
+                }
+
+                .section-description {
                     content: "";
                 }
             }
@@ -15,7 +19,8 @@
                 justify-content: end;
                 gap: var(--composer-gap-md);
                 .arrow-right, .arrow-left{
-                    border: none;
+                    border: 2px solid var(--composer-font-color-primary);
+                    border-radius: var(--composer-border-radius-full);
                     padding: var(--composer-gap-xs);
                     display: flex;
                     align-items: center;
@@ -24,9 +29,8 @@
                     background-color: transparent;
                     .icon{
                         background-color: transparent;
-                        font-size: 3rem;
+
                         color: var(--composer-font-color-primary);
-                        padding: var(--composer-gap-xs);
                     }
                 }
             }
@@ -60,7 +64,7 @@
                         }
     
                     .card-container {
-                        border-radius: var(--composer-border-radius-sm);
+                        border-radius: var(--composer-border-radius-md);
                         background-color: var(--composer-html-background);
                         transform: scale(1);
                         transition: var(--composer-transition-duration-slow);
@@ -71,21 +75,24 @@
                         .image{
                             height: 300px;
                             width: 100%;
-                            border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
+                            border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
                             object-fit: cover;
                             &.border-radius{
-                                border-radius: var(--composer-border-radius-sm);
+                                border-radius: var(--composer-border-radius-md);
                             }
                         }
                         .bottom{
-                            padding: var(--composer-gap-lg);
+                            padding: var(--composer-gap-xl);
                             display: flex;
                             flex-direction: column;
-                            align-items: baseline;
-                            justify-content: baseline;
                             gap: var(--composer-gap-md);
-                            .title, .description {
-                                text-align: left;
+                            .title {
+
+                                color: var(--composer-font-color-primary);
+                            }
+        
+                            .description {
+
                                 color: var(--composer-font-color-primary);
                             }
                         }
@@ -102,13 +109,7 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 .button {
-                    .button-text {
-                        content: "";
-                    }
-                    .icon{
-                        height: 15px;
-                        width: 15px;
-                    }
+                    content: "";
                 }
             }
         }
@@ -119,13 +120,6 @@
     .container {
         .max-content {
             .wrapper {
-                .arrow-container{
-                    .arrow-right, .arrow-left{
-                        .icon{
-                            font-size: 1.5rem;
-                        }
-                    }
-                }
                     .cards-container {
                         .carousel{
                             >div{
@@ -142,6 +136,14 @@
                             }
                             .bottom{
                                 padding: var(--composer-gap-md);
+
+                                .title {
+
+                                }
+            
+                                .description {
+
+                                }
                             }
                         }
                     
@@ -160,6 +162,12 @@
                 gap: var(--composer-gap-xs);
                 .arrow-container{
                     gap: var(--composer-gap-sm);
+                    .arrow-right, .arrow-left{
+
+                        .icon{
+
+                        }
+                    }
                 }
                 .cards-container {
                     .carousel{

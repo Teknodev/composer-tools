@@ -1,12 +1,12 @@
 import * as React from "react";
-import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
+import { LogoClouds } from "../../EditorComponent";
 import styles from "./logo-comp5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
-  image: TypeMediaInputValue;
+  image: string;
   imageLink: string;
 };
 
@@ -29,7 +29,7 @@ class LogoComp5Page extends LogoClouds {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description",
+      displayer: "description",
       value:
         "Sponsors can range from small local businesses to multinational corporations and can sponsor everything from sports teams to music festivals to non-profit organizations.",
     });
@@ -37,7 +37,7 @@ class LogoComp5Page extends LogoClouds {
     this.addProp({
       type: "number",
       key: "imageCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item count in a row",
       value: 3,
       max: 4
     });
@@ -46,7 +46,6 @@ class LogoComp5Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-        INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
@@ -66,16 +65,16 @@ class LogoComp5Page extends LogoClouds {
   render() {
     const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("title"));
-    const isDescriptionExists = this.castToString(this.getPropValue("description"));
+    const isDescriptionExists = this.castToString(
+      this.getPropValue("description")
+    );
     const images = this.castToObject<TImage[]>("image-items");
-
-    const alignment = Base.getContentAlignment()
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
-            <Base.VerticalContent className={this.decorateCSS("left")} data-alignment={alignment}>
+            <Base.VerticalContent className={this.decorateCSS("left")}>
               {isSubtitleExists && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
@@ -96,17 +95,18 @@ class LogoComp5Page extends LogoClouds {
             </Base.VerticalContent>
           )}
 
-          {images.length > 0 && <Base.ListGrid gridCount={{ pc: this.getPropValue("imageCount"), tablet: 4, phone: 2 }} className={this.decorateCSS("right")}>
+          {images.length > 0 && <Base.ListGrid gridCount={{ pc: this.getPropValue("imageCount") }} className={this.decorateCSS("right")}>
             {images.map(
               (image: TImage, index: number) => (
                 <ComposerLink path={image.imageLink}>
                   <div key={index} className={this.decorateCSS("image-item")}>
-                    <Base.Media value={image.image} className={this.decorateCSS("image")} />
+                    <img className={this.decorateCSS("image")} src={image.image} alt={image.imageLink} />
                   </div>
                 </ComposerLink>
               )
             )}
           </Base.ListGrid>}
+
         </Base.MaxContent>
       </Base.Container>
     );

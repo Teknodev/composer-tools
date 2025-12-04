@@ -8,8 +8,11 @@
     .content {
       display: flex;
       flex-direction: column;
-      .subtitle, .title {
-        content: "";
+      .sub-title {
+        margin: 0;
+      }
+      .title {
+        margin-top: 1rem;
       }
       .text-container {
         display: flex;
@@ -28,7 +31,7 @@
   .max-content {
     .content {
       align-items: center !important;
-      .subtitle {
+      .sub-title {
         transform: translateX(0) !important;
         &::before {
           content: none !important;

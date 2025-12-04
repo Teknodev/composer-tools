@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -23,19 +23,9 @@ class Footer4Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
-      type: "select",
-      key: "position",
-      displayer: "Position",
-      value: "Default",
-      additionalParams: {
-        selectItems: ["Default", "Absolute"],
-      },
-    });
-
-    this.addProp({
       type: "string",
       key: "text",
-      displayer: "Title",
+      displayer: "Text",
       value: "We accept:",
     });
 
@@ -50,16 +40,10 @@ class Footer4Page extends BaseFooter {
           displayer: "Item Elements",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
-              },
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
             },
           ],
         },
@@ -69,21 +53,15 @@ class Footer4Page extends BaseFooter {
           displayer: "Item Elements",
           value: [
             {
-              type: "media",
+              type: "image",
               key: "image",
               displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
-              },
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -125,7 +103,7 @@ class Footer4Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       key: "path",
                       value: "",
                     },
@@ -145,7 +123,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -164,7 +142,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -183,7 +161,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -202,7 +180,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -240,7 +218,7 @@ class Footer4Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       key: "path",
                       value: "",
                     },
@@ -260,7 +238,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -279,7 +257,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -298,7 +276,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -317,7 +295,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -336,7 +314,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -355,7 +333,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -374,7 +352,7 @@ class Footer4Page extends BaseFooter {
                     {
                       type: "page",
                       key: "path",
-                      displayer: "Navigate To",
+                      displayer: "Path",
                       value: "",
                     },
                   ],
@@ -389,7 +367,7 @@ class Footer4Page extends BaseFooter {
     this.addProp({
       type: "string",
       key: "subscriptionPlaceholder",
-      displayer: "Placeholder",
+      displayer: "Subscription Placeholder",
       value: "Type your e-mail",
     });
 
@@ -449,7 +427,7 @@ class Footer4Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -468,7 +446,7 @@ class Footer4Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -487,7 +465,7 @@ class Footer4Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -534,7 +512,7 @@ class Footer4Page extends BaseFooter {
     const buttonTextExist = this.castToString(button.text);
     const placeHolderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
 
-    const rightExist = rightTitleExist || rightDescExist || (placeHolderExist && buttonTextExist);
+    const rightExist = rightTitleExist || rightDescExist || buttonTextExist || placeHolderExist;
 
     const line = this.getPropValue("line");
 
@@ -546,18 +524,16 @@ class Footer4Page extends BaseFooter {
 
     const alignment = Base.getContentAlignment();
 
-    const position = this.getPropValue("position");
-
     return (
-      <div className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               <div className={this.decorateCSS("footer-page")}>
-                <div className={`${this.decorateCSS("items")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
+                <div className={this.decorateCSS("items")}>
                   {leftExist && (
-                    <Base.VerticalContent className={this.decorateCSS("left")}>
-                      {textExist && <Base.P className={this.decorateCSS("left-title")}>{this.getPropValue("text")}</Base.P>}
+                    <div className={this.decorateCSS("left")}>
+                      {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
                       <div className={this.decorateCSS("images")}>
                         {images.length > 0 && (
                           <Base.Row className={this.decorateCSS("image-container")}>
@@ -566,7 +542,7 @@ class Footer4Page extends BaseFooter {
                                 item.image && (
                                   <div className={this.decorateCSS("image-element")}>
                                     <ComposerLink key={index} path={item.url}>
-                                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                                      <img className={this.decorateCSS("image")} src={item.image} />
                                     </ComposerLink>
                                   </div>
                                 )
@@ -575,7 +551,7 @@ class Footer4Page extends BaseFooter {
                           </Base.Row>
                         )}
                       </div>
-                    </Base.VerticalContent>
+                    </div>
                   )}
 
                   {this.castToObject<any[]>("footer").length > 0 &&
@@ -585,7 +561,7 @@ class Footer4Page extends BaseFooter {
                       return (
                         footerExist && (
                           <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                            {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
+                            {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
                             {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                               const footerTextExist = this.castToString(item.footerText);
                               return (
@@ -627,29 +603,26 @@ class Footer4Page extends BaseFooter {
                       >
                         {({ handleSubmit, handleChange, values, errors, touched }) => (
                           <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                            <div className={this.decorateCSS("form-row")}>
-                              {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
-                                <div className={this.decorateCSS("input-element")}>
-                                  <input
-                                    className={this.decorateCSS("input")}
-                                    type="text"
-                                    placeholder={this.getComponentState("placeholderText") || String(this.castToString(this.getPropValue("subscriptionPlaceholder")))}
-                                    name="email"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                  />
-                                </div>
-                              )}
+                            {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
+                              <div className={this.decorateCSS("input-element")}>
+                                <input
+                                  className={this.decorateCSS("input")}
+                                  type="text"
+                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
+                                  name="email"
+                                  value={values.email}
+                                  onChange={handleChange}
+                                />
+                                {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
+                              </div>
+                            )}
 
-                              {placeHolderExist && buttonTextExist && (
-                                <Base.Button buttonType={button.type}
-                                  className={this.decorateCSS("button")}>
-                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
-                              )}
-                            </div>
-                            
-                            {errors.email && touched.email && <span className={this.decorateCSS("error")}>{errors.email}</span>}
+                            {buttonTextExist && (
+                              <Base.Button buttonType={button.type}
+                                className={this.decorateCSS("button")}>
+                                {button.text}
+                              </Base.Button>
+                            )}
                           </Form>
                         )}
                       </Formik>

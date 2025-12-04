@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-  height: 120vh;
+  height: 100vh;
 
   .overlay {
     position: absolute;
@@ -53,6 +53,7 @@
         padding: var(--composer-gap-xl);
         gap: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md);
+
         background: rgba(0, 0, 0, 0.52);
         backdrop-filter: blur(4.1px);
         -webkit-backdrop-filter: blur(4.1px);
@@ -61,51 +62,38 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         }
 
-       .header {
-        margin: 0;
-        padding: 0 var(--composer-gap-xl);
-        .subtitle, .title {
-          &.subtitle-with-image, &.title-with-image {
-            color: white;
-            background: transparent;
-            &::before {
-              background: white;
-            }
-          }
+        .title {
+          margin: 0;
+          padding: 0 var(--composer-gap-xl);
 
-          &.subtitle-badge {
-            transform: translateX(0);
-            
-            &.subtitle-with-image {
-              padding: 0;
-            }
+          &.title-with-image {
+            color: white;
           }
         }
-       }
+
         .form {
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
-          padding: 0 var(--composer-gap-xl);
+          padding: var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg) var(--composer-gap-xl);
 
           .input-container {
             position: relative;
 
             .error-message {
-              text-align: left;
+              text-align: end;
               margin-top: var(--composer-gap-xs);
               color: var(--composer-danger-color);
             }
 
             .placeholder {
+              font-size: 0.75rem;
               position: absolute;
               top: var(--composer-gap-xs);
               left: var(--composer-gap-sm);
               transition: all 0.3s ease;
               pointer-events: none;
               color: white;
-              width: fit-content;
-              font-size: 0.75rem;
 
               &.placeholder-no-image {
                 color: var(--composer-font-color-primary);
@@ -115,14 +103,14 @@
             .input {
               width: 100%;
               min-height: var(--composer-gap-xl);
-              border-radius: var(--composer-border-radius-sm);
+              border-radius: var(--composer-border-radius-md);
+              font-size: 1rem;
               transition: border-color 0.3s ease;
               background-color: rgba(255, 255, 255, 0);
               padding-left: var(--composer-gap-sm);
               outline: none;
               border: 1px solid gray;
               color: white;
-              padding-top: var(--composer-gap-sm);
 
               &.input-no-image {
                 color: var(--composer-font-color-primary);
@@ -140,11 +128,18 @@
           }
         }
 
-          .button {
-            .button-text {
-              text-align: center;
-            }
-          }
+        .button-div {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .button-div .submit-button:nth-child(odd):last-child {
+          flex-basis: 100%;
+          justify-content: center;
+        }
       }
     }
   }
@@ -157,9 +152,13 @@
         .input-item {
           max-width: 700px;
           max-height: 700px;
-          gap: 0;
+
+          .title {
+            padding: 0 var(--composer-gap-lg);
+          }
+
           .form {
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
+            padding: var(--composer-gap-lg);
           }
         }
       }
@@ -176,7 +175,7 @@
           padding: var(--composer-gap-md);
           gap: 0;
 
-          .header {
+          .title {
             padding: 0 var(--composer-gap-md);
           }
 

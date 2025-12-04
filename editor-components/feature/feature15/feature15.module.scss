@@ -1,19 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--composer-overlay-color);
-  pointer-events: none;
-}
-
-.video-overlay {
-    content: "";
-}
-
 .container {
     position: relative;
     padding-top: 0px;
@@ -38,14 +24,13 @@
 
     .max-content {
         display: flex;
-        gap: var(--composer-gap-lg);
         .cards {
             &:before{
                 content: "";
                 position: absolute;
-                right: -30%;
+                right: 0px;
                 top: 0px;
-                width: 1500px;
+                width: 2000px;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);;
                 height: 100%;
                 z-index: 0;
@@ -55,7 +40,7 @@
             width: 100%;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             height: fit-content;
-            padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) 0px;
+            padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) + 20px) var(--composer-gap-xl) 0px;
             margin-bottom: var(--composer-gap-lg);
 
             .card {
@@ -69,20 +54,23 @@
 
                 .icon-box {
                     .icon {
-                        font-size: 2rem;
+                        font-size: 3rem;
                     }
                 }
 
                 .labels {
-                    align-items: baseline;
+
                     .subtitle {
                         color: var(--composer-primary-color);
                         transition: 0.4s;
-                        text-align: left;
                     }
 
-                    .title, .description {
-                        text-align: left;
+                    .title {
+                        margin: 0 0 var(--composer-gap-md) 0;
+                    }
+
+                    .description {
+                        content: "";
                     }
                 }
 
@@ -102,6 +90,7 @@
         .video-container {
             width: 80%;
             position: relative;
+            margin-left: calc(-1 * var(--composer-gap-lg));
             margin-top: var(--composer-gap-lg);
 
             .image {
@@ -125,24 +114,16 @@
                 justify-content: center;
                 cursor: pointer;
                 .play-icon{
-                    width: 30px;
-                    height: 30px;
-                    font-size: 2.5rem;
+                    width: 35px;
+                    height: 35px;
                 }
             }
         }
 
-        &:not(:has(.cards)) {
-            .video-container {
-                width: 100%;
-            }
-        }
-
-        .video-overlay {
+        .overlay {
             .video-container {
               height: fit-content;
               width: 70%;
-              max-width: 800px;
               .video {
                 height: 100%;
                 display: flex;
@@ -164,7 +145,8 @@
               color: var(--composer-font-color-secondary);
               background-color: transparent;   
               .close-icon {
-                font-size: 1.5rem;
+                width: 1.5em;
+                height: 1.5em;
               }
             }
           }
@@ -173,24 +155,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: 0px !important;
+        padding: 0px;
         .max-content {
-            gap: var(--composer-gap-lg);
-            .cards{
-                padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) 0px;
-                margin-bottom: var(--composer-gap-lg);
-            }
-            .video-container{
-                width: 60%;
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container{
-        padding: var(--composer-gap-xl) 0 !important;
-        .max-content{
             flex-direction: column;
             gap: 0;
             align-items: center;
@@ -201,12 +167,29 @@
                 .card{
                     padding: var(--composer-gap-md);
                 }
+                &::before{
+                    left: -50%;
+                    right: unset;
+                }
             }
             .video-container{
+                padding: 0px var(--composer-gap-md);
                 height: 370px;
-                min-width: 70%;
+                min-width: 100%;
                 margin: var(--composer-gap-md) 0px 0px;
-                width: 85%;
+            }
+        }
+    }
+}
+@container (max-width: #{$composer-phone-width}) {
+    .container{
+        .max-content{
+            .cards{
+                padding: 0px;
+                border-radius: 0px;
+                .card{
+                    border-radius: 0px;
+                }
             }
         }
     }

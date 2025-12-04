@@ -4,41 +4,27 @@
   width: 100%;
   background-color: var(--composer-html-background);
 
-  &.absolute {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: transparent;
-
-    .max-content {
-      .first-container {
-        background: transparent;
-      }
-
-      .second-container {
-        background: transparent;
-      }
-    }
-  }
-
   .max-content {
     .first-container {
-        padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
+
       .first-max-content {
         .footer-upper {
           display: flex;
           justify-content: space-between;
-          align-items: center;
+          align-items: end;
           gap: var(--composer-gap-lg);
 
           .header {
             flex: 1;
 
-            .subtitle, .title, .description {
-              text-align: left;
-              margin-left: 0;
-              width: fit-content;
+            .title {
+              font-size: 2rem;
+            }
+
+            .description {
+              font-size: 1rem;
+              color: var(--composer-tertiary-color);
             }
           }
 
@@ -84,19 +70,27 @@
               }
 
               .button {
-                .button-text {
-                  content: "";
-                }
+                content: "";
               }
             }
           }
+        }
+
+        .line {
+          width: 100%;
+          border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+          margin-top: var(--composer-gap-md);
         }
       }
     }
     .line{
       height: 1px;
       width: 100%;
-      border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+      background-color: rgb(var(--composer-font-color-primary-rgb), 0.2);
+      margin-top: var(--composer-gap-xl);
+      .without-padding{
+        margin-top: 0px
+      }
     }
 
     .second-container {
@@ -120,9 +114,10 @@
           .copyright-container {
             justify-content: flex-start;
 
-            .copyright-text {
+            .text {
               width: 100%;
               text-align: start;
+              font-size: 1rem;
               color: var(--composer-tertiary-color);
             }
           }
@@ -223,6 +218,7 @@
             column-gap: var(--composer-gap-lg);
 
             .text {
+              font-size: 1rem;
               color: var(--composer-tertiary-color);
               transition: all 0.3s ease;
               position: relative;
@@ -346,33 +342,37 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .second-container {
-      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-    }
     .max-content {
       display: flex;
       flex-direction: column;
+      gap: var(--composer-gap-md);
+
+      .first-container {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+      }
+
+      .second-container {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+      }
 
       .footer-upper {
         .header {
           flex: 1;
+
+          .title {
+            font-size: 1.5rem;
+          }
+
+          .description {
+            font-size: 1rem;
+          }
         }
       }
 
       .footer-bottom {
+        flex-direction: column;
         gap: var(--composer-gap-sm);
         padding: 0;
-
-        &.center-alignment {
-          flex-direction: column;
-          align-items: center;
-
-          .copyright-container,
-          .social,
-          .pages {
-            justify-content: center;
-          }
-        }
       }
     }
   }
@@ -380,17 +380,26 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .second-container {
-      padding: var(--composer-gap-md) !important;
-    }
     .max-content {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
 
+      .first-container {
+        padding: var(--composer-gap-md);
+      }
+      .line{
+        margin-top: 0px;
+      }
+
+      .second-container {
+        padding: var(--composer-gap-md);
+      }
+
       .footer-upper {
         flex-direction: column;
         align-items: center;
+
         gap: var(--composer-gap-md);
 
         .subscribe {
@@ -402,12 +411,12 @@
           width: 100%;
           align-items: center;
 
-          &.center-alignment {
-            .subtitle,
-            .title,
-            .description {
-              text-align: center !important;
-            }
+          .title {
+            font-size: 1.5rem;
+          }
+
+          .description {
+            font-size: 1rem;
           }
         }
       }
