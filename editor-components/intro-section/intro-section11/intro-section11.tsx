@@ -108,7 +108,7 @@ class IntroSection11 extends BaseIntroSection {
                   }
                   const buttonUrl = item.url || "#";
                   return (
-                    <ComposerLink path={buttonUrl}>
+                    <ComposerLink key={index} path={buttonUrl}>
                       <Base.Button
                         buttonType={item.type}
                         className={this.decorateCSS("button")}
@@ -131,7 +131,7 @@ class IntroSection11 extends BaseIntroSection {
               </div>
             )}
 
-            {<div className={this.decorateCSS("spacer")}></div>}
+            <div className={this.decorateCSS("spacer")}></div>
           </div>
         </Base.MaxContent>
       </Base.Container>
