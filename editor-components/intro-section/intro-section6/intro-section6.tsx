@@ -111,7 +111,9 @@ class IntroSection6 extends BaseIntroSection {
 
     const hasAnyButton =
       Array.isArray(buttons) &&
-      buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+      buttons.some(
+        (b: any) => this.castToString(b?.text) || b?.icon.name || b?.icon
+      );
     const hasBottomText = this.castToString(bottomText);
 
     const hasImage = !!(image && image.url);
@@ -197,8 +199,11 @@ class IntroSection6 extends BaseIntroSection {
                           {buttons.map(
                             (item: INPUTS.CastedButton, index: number) => {
                               const btnTextExist = this.castToString(item.text);
+                              const btnIconExist =
+                                this.castToString(item.icon?.name) ||
+                                this.castToString(item.icon);
                               const buttonIcon = item.icon;
-                              if (!btnTextExist && !buttonIcon) {
+                              if (!btnTextExist && !btnIconExist) {
                                 return null;
                               }
                               const buttonUrl = item.url || "#";
@@ -212,7 +217,7 @@ class IntroSection6 extends BaseIntroSection {
                                       buttonType={item.type}
                                       className={this.decorateCSS("button")}
                                     >
-                                      {buttonIcon && (
+                                      {btnIconExist && (
                                         <Base.Media
                                           value={buttonIcon}
                                           className={this.decorateCSS(
