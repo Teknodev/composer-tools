@@ -7,24 +7,12 @@
     flex-direction: column;
     justify-content: center;
 
-    .heading {
-      margin-bottom: var(--composer-gap-md);
-      .section-title,
-      .section-subtitle {
-        margin: inherit;
-      }
-      .icon {
-        color: var(--composer-primary-color);
-        font-size: 4rem;
-      }
-    }
-
     .content {
       width: 100%;
       align-items: stretch;
       display: flex;
       justify-content: flex-start;
-    align-items: stretch;
+
       .left {
         display: flex;
         aspect-ratio: 1 / 1;
@@ -47,6 +35,7 @@
         .image {
           width: 100%;
           height: 100%;
+
           object-fit: cover;
         }
 
@@ -54,12 +43,9 @@
           position: absolute;
           top: 0;
           left: 0;
-          right: 0;
-          bottom: 0;
+          width: 100%;
+          height: 100%;
           background-color: var(--composer-overlay-color);
-          opacity: 0.3;
-          pointer-events: none;
-          transition: opacity 0.3s ease;
         }
       }
 
@@ -92,7 +78,6 @@
         .section-title,
         .section-subtitle,
         .section-description {
-          content: "";
           text-align: left;
         }
 
@@ -107,6 +92,7 @@
           align-items: center;
           width: 100%;
           gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
 
           .icon-wrapper {
             display: flex;
@@ -132,9 +118,17 @@
 
             .icon {
               display: flex;
+              align-items: center;
+              justify-content: center;
               color: var(--composer-font-color-primary);
               font-size: 1.5rem;
               transition: color 0.3s ease;
+              width: 25px;
+              height: 25px;
+            }
+            img {
+              width: 25px;
+              height: 25px;
             }
           }
 
@@ -152,6 +146,10 @@
               &:hover {
                 color: var(--composer-font-color-secondary);
               }
+            }
+            img {
+              width: 25px;
+              height: 25px;
             }
           }
         }
