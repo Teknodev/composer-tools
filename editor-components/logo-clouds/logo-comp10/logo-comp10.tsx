@@ -44,11 +44,9 @@ class LogoComp10Page extends LogoClouds {
     return "Logo Cloud 10";
   }
   componentDidMount() {
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", this.handleResize);
-      window.addEventListener("orientationchange", this.handleResize);
-    }
-    if (this.containerRef && typeof ResizeObserver !== "undefined") {
+    window.addEventListener("resize", this.handleResize);
+    window.addEventListener("orientationchange", this.handleResize);
+    if (this.containerRef) {
       this.resizeObserver = new ResizeObserver(this.handleResize);
       this.resizeObserver.observe(this.containerRef);
     }
@@ -67,10 +65,8 @@ class LogoComp10Page extends LogoClouds {
       this.resizeObserver = null;
     }
     this.containerRef?.removeEventListener('wheel', this.handleWheel);
-    if (typeof window !== "undefined") {
-      window.removeEventListener("resize", this.handleResize);
-      window.removeEventListener("orientationchange", this.handleResize);
-    }
+    window.removeEventListener("resize", this.handleResize);
+    window.removeEventListener("orientationchange", this.handleResize);
   }
   handleWheel = (e: WheelEvent) => {
     const sliderRef = this.getComponentState("slider-ref");
@@ -96,10 +92,8 @@ class LogoComp10Page extends LogoClouds {
     }
     this.containerRef = el;
     if (!el) return;
-    if (typeof ResizeObserver !== "undefined") {
-      this.resizeObserver ??= new ResizeObserver(this.handleResize);
-      this.resizeObserver.observe(el);
-    }
+    this.resizeObserver ??= new ResizeObserver(this.handleResize);
+    this.resizeObserver.observe(el);
     setTimeout(() => {
       if (el !== this.containerRef) return;
       const logoItems = this.getVisibleLogoItems();
@@ -109,12 +103,12 @@ class LogoComp10Page extends LogoClouds {
       }
     }, 0);
   };
-  getAllLogoItems = (): TImage[] => this.castToObject<TImage[]>("image-items") || [];
-  getVisibleLogoItems = (): TImage[] => this.getAllLogoItems().filter((img) => !!img?.image);
+  getAllLogoItems = (): TImage[] => this.castToObject<TImage[]>("image-items") ?? [];
+  getVisibleLogoItems = (): TImage[] => this.getAllLogoItems().filter((img) => Boolean(img?.image));
   getChunkSize = (): number => {
     const propValue = this.getPropValue("itemCount");
-    const requested = typeof propValue === "number" ? propValue : 4;
-    return Math.max(1, requested);
+    const requested = Number(propValue) || 4;
+    return requested > 0 ? requested : 1;
   };
   getEffectiveChunkSize = (): number => {
     const desktopChunkSize = this.getChunkSize();
@@ -122,37 +116,17 @@ class LogoComp10Page extends LogoClouds {
   };
   getViewportKey = (): string => (this.isPhone() ? "phone" : "desktop");
   isPhone = (): boolean => {
-    const containerWidth = this.containerRef?.clientWidth ?? 0;
-    const playgroundWidth = typeof document !== 'undefined'
-      ? document.getElementById('playground')?.clientWidth ?? 0
-      : 0;
-    const width = containerWidth > 0 ? containerWidth : playgroundWidth;
-    return width > 0 && width <= 640;
+    const width = this.containerRef?.clientWidth
+      ?? document.getElementById('playground')?.clientWidth
+      ?? window.innerWidth;
+    return width <= 640;
   };
   chunkLogos = (logos: TImage[], size: number): TImage[][] => {
-    if (!logos.length) return [];
     const chunkSize = Math.max(1, size);
-    if (logos.length <= chunkSize) {
-      const chunk = [...logos];
-      let fillIndex = 0;
-      while (chunk.length < chunkSize) {
-        chunk.push(logos[fillIndex % logos.length]);
-        fillIndex++;
-      }
-      return [chunk];
-    }
-
+    if (logos.length === 0) return [];
     const chunks: TImage[][] = [];
     for (let i = 0; i < logos.length; i += chunkSize) {
-      const slice = logos.slice(i, i + chunkSize);
-      if (slice.length < chunkSize) {
-        let fillIndex = 0;
-        while (slice.length < chunkSize) {
-          slice.push(logos[fillIndex % logos.length]);
-          fillIndex++;
-        }
-      }
-      chunks.push(slice);
+      chunks.push(logos.slice(i, i + chunkSize));
     }
     return chunks;
   };
@@ -203,8 +177,8 @@ class LogoComp10Page extends LogoClouds {
                 >
                   {chunks.map((chunk, slideIndex) => {
                     const visibleItems = chunk.filter((img: TImage) => img.image);
-                    const gridColumns = Math.max(1, Math.min(itemCount, visibleItems.length));
-                    const phoneColumns = Math.max(1, Math.min(gridColumns, 2));
+                    const gridColumns = Math.min(itemCount, Math.max(1, visibleItems.length));
+                    const phoneColumns = Math.min(2, gridColumns);
                     return (
                       <div key={slideIndex}>
                         <Base.ListGrid
