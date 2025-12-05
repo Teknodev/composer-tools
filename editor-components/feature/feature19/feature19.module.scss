@@ -1,13 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--composer-overlay-color);
-    pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--composer-overlay-color);
+  pointer-events: none;
 }
 
 .container {
@@ -15,7 +15,6 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-lg);
-
         .right-image {
             flex: 1;
             align-items: center;
@@ -30,8 +29,8 @@
                 object-fit: cover;
             }
 
-            &.no-content {
-                .img {
+            &.no-content{
+                .img{
                     aspect-ratio: 16/9;
                 }
             }
@@ -50,8 +49,10 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background: linear-gradient(rgba(var(--composer-primary-color-rgb), 0.7),
-                            rgba(0, 0, 0, 0.7));
+                    background: linear-gradient(
+                        rgba(var(--composer-primary-color-rgb), 0.7),
+                        rgba(0, 0, 0, 0.7)
+                    );
                     z-index: 2;
                     opacity: 0;
                     transition: opacity 0.9s;
@@ -79,9 +80,11 @@
                     left: -100%;
                     width: 100%;
                     height: 100%;
-                    background: linear-gradient(to right,
-                            rgba(var(--composer-primary-color-rgb), 0.8),
-                            transparent);
+                    background: linear-gradient(
+                        to right,
+                        rgba(var(--composer-primary-color-rgb), 0.8),
+                        transparent
+                    );
                     transition: left 0.5s ease;
                     z-index: 1;
                     border-radius: var(--composer-border-radius-sm);
@@ -102,69 +105,58 @@
                 }
             }
         }
-
         .content {
             display: flex;
             flex-direction: column;
             align-items: baseline;
             gap: var(--composer-gap-xl);
             flex: 1;
-
             .header {
                 align-items: baseline;
-
-                .subtitle,
-                .title {
+                .subtitle, .title{
                     text-align: left;
                 }
-
                 .description {
                     margin-bottom: 0px;
                     text-align: left;
                 }
-
-                .subtitle {
+                .subtitle{
                     margin-left: 0;
                 }
             }
-
             .item-block {
                 display: flex;
                 flex-direction: column;
                 gap: var(--composer-gap-lg);
 
-                .list-item-content {
-                    .item-content-top {
-                        display: flex;
-                        gap: var(--composer-gap-md);
-                        align-items: baseline;
-                        justify-content: flex-start;
-                        width: 100%;
-
-                        .icon {
-                            font-size: 2.5rem;
-                            color: var(--composer-primary-color);
+                    .list-item-content{
+                        .item-content-top{
+                            display: flex;
+                            gap: var(--composer-gap-md);
+                            align-items: baseline;
+                            justify-content: flex-start;
+                            width: 100%;
+                            .icon{
+                                font-size: 2.5rem;
+                                color: var(--composer-primary-color);
+                            }
+                            .list-item-title{
+                                margin-top: 0px;
+                                margin-bottom: var(--composer-gap-sm);
+                                color: var(--composer-font-color-primary);
+                                margin: 0px;
+                                text-align: left;
+                                width: fit-content;
+                            }
                         }
-
-                        .list-item-title {
-                            margin-top: 0px;
-                            margin-bottom: var(--composer-gap-sm);
-                            color: var(--composer-font-color-primary);
-                            margin: 0px;
+                        .texts-inside {
                             text-align: left;
-                            width: fit-content;
+                            margin-bottom: 0px;
+                            color: var(--composer-font-color-primary);
                         }
                     }
-
-                    .texts-inside {
-                        text-align: left;
-                        margin-bottom: 0px;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-
+                
             }
-
             .button {
                 .button-text {
                     content: "";
@@ -173,20 +165,19 @@
         }
     }
 }
-
 @container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
+    .container{
+        .max-content{
             flex-direction: column;
-
+            
             .right-image {
                 width: 100%;
-
+                
                 .img {
                     height: 700px;
                 }
             }
-
+            
             .content {
                 .item-block {
                     .list-item-content {
@@ -203,17 +194,15 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
+    .container{
+        .max-content{
             .right-image {
                 .img {
                     height: 300px;
                 }
             }
-
             .content {
                 gap: var(--composer-gap-md);
-
                 .item-block {
                     gap: var(--composer-gap-md);
                 }
