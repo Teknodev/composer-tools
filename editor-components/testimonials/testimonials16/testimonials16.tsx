@@ -398,13 +398,7 @@ class Testimonials16 extends Testimonials {
     const subtitleType = Base.getSectionSubTitleType()
     const hideBadgeBackground = subtitleType === "badge" && !!activePortrait
     const lightenLineColor = subtitleType === "line" && !!activePortrait
-    const subtitleClasses = [
-      this.decorateCSS("subtitle"),
-      hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : "",
-      lightenLineColor ? this.decorateCSS("subtitle-line-light") : "",
-    ]
-      .filter(Boolean)
-      .join(" ")
+    const subtitleClasses = `${this.decorateCSS("subtitle")} ${hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : ""} ${lightenLineColor ? this.decorateCSS("subtitle-line-light") : ""}`.trim()
 
     const baseSettings = {
       arrows: false,
