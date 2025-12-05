@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .overlay {
   position: absolute;
@@ -32,11 +31,10 @@
       align-items: center;
       flex-direction: column;
       gap: var(--composer-gap-md);
-      .title,
-      .description {
+      .title, .description {
         text-align: center;
       }
-
+      
       .line {
         width: 5rem;
         height: 2.5px;
@@ -58,12 +56,13 @@
           opacity: 1;
           transform: translateY(0);
           pointer-events: auto;
+
         }
       }
 
       &.reverse {
         flex-direction: row-reverse;
-        .text {
+        .text{
           text-align: left;
           margin: 0 3% 0 0% !important;
         }
@@ -109,8 +108,8 @@
           text-align: left;
         }
 
-        .desc {
-          color: var(--composer-tertiary-color) !important;
+        .desc{
+          color: var(--composer-tertiary-color)!important;
           text-align: left;
         }
 
@@ -127,23 +126,26 @@
       }
 
       &:hover {
-        .button {
-          display: inline-block;
-          opacity: 1;
-          transform: translateY(0);
+          .button {
+            display: inline-block;
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-      }
 
       &:not(:has(.image-container .image)) {
         .text {
           margin: 0 !important;
         }
       }
+
     }
   }
 
   @container (max-width: #{$composer-tablet-width}) {
+    
     .max-content {
+      
       .content {
         display: flex;
         flex-direction: row;
@@ -152,7 +154,7 @@
         flex-wrap: nowrap;
         &.reverse {
           flex-direction: row-reverse;
-          .text {
+          .text{
             text-align: left;
             margin: 0 3% 0 0% !important;
           }
@@ -160,7 +162,7 @@
             justify-content: center;
           }
         }
-
+        
         .text {
           flex: 1 1 50%;
           padding: 0 1rem;
@@ -172,14 +174,14 @@
           .desc {
             margin-bottom: 2rem;
           }
-
+          
           .button {
             display: inline-block;
             opacity: 1;
             transform: translateY(0);
           }
         }
-
+        
         .image-container {
           .image {
             min-width: 300px;
@@ -195,29 +197,28 @@
         text-align: center;
         align-items: center;
         flex-direction: column;
-        .title,
-        .description {
+        .title, .description {
           text-align: center;
         }
       }
-
+      
       .content {
         align-items: center;
         gap: 1rem;
         flex-wrap: wrap;
-
+        
         .text {
           justify-items: center;
           margin: 0% !important;
           padding: 0%;
 
           .button {
-            display: inline-block;
+            display: inline-block; 
             opacity: 1;
             transform: translateY(0);
           }
         }
-
+        
         .image-container {
           flex: 1 1 50%;
           .image {
