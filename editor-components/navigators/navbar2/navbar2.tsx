@@ -732,9 +732,9 @@ class Navbar2 extends BaseNavigator {
                                           "dropdownItemContent"
                                         )}
                                       >
-                                        <span className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
+                                        <Base.P className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
                                           {subItem.nav_title}
-                                        </span>
+                                        </Base.P>
                                       </div>
                                     </ComposerLink>
                                     {subItem.sub_items.length > 0 &&

@@ -430,6 +430,13 @@
           }
         }
       }
+      .languageIcon{
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
       .localizationContent{
         &.animation1{
           &:hover{
@@ -505,7 +512,7 @@
       color: white !important;
     }
     .languageIcon {
-      color: white;
+      color: white !important;
     }
     .localizationContent {
       content: "";
@@ -513,7 +520,7 @@
   }
 
   .hamburgerIcon {
-    color: white;
+    color: white !important;
   }
 }
 
