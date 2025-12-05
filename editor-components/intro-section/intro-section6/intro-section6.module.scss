@@ -84,18 +84,20 @@
           .action-buttons {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             justify-content: flex-start;
             align-items: center;
             gap: var(--composer-gap-md);
             .button-wrapper {
               display: flex;
               .button {
-                content: "";
                 .button-text {
                   content: "";
                 }
                 .button-icon {
-                  display: flex;
+                  font-size: 1.5rem;
+                  height: 25px;
+                  width: 25px;
                 }
               }
             }
