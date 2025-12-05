@@ -1,0 +1,117 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  width: 100%;
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .slider-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .heading {
+      gap: var(--composer-gap-md);
+
+      .title {
+        color: var(--composer-font-color-primary);
+        margin: 0px;
+        text-align: center;
+        content: "";
+      }
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      :global(.container) {
+        width: 100%;
+      }
+
+      .slider {
+        width: 100%;
+      }
+
+
+      .gallery {
+        width: 100%;
+        max-width: 100%;
+        gap: var(--composer-gap-xl);
+        justify-content: space-around;
+        justify-items: center;
+        > div {
+          width: 100% !important;
+        }
+
+        .image-link {
+          display: flex;
+          width: 100%;
+        }
+
+        .image-child {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 0;
+          width: 100%;
+
+          .image {
+            max-width: 400px;
+            max-height: auto;
+            aspect-ratio: 3/1;
+            object-fit: cover;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .slider-wrapper {
+        width: 100%;
+      }
+      .slider-container {
+        .image {
+          max-width: 200px !important;
+          aspect-ratio: 3/1;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+
+
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .slider-container {
+        .gallery {
+          content: "";
+        }
+        .image {
+          max-width: 150px !important;
+          aspect-ratio: 3/1;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
