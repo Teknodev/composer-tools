@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type ISliderData = {
   title: string;
-  image: string;
+  image: TypeMediaInputValue;
   description: string;
   topWriting: string;
 };
@@ -37,13 +37,27 @@ class HeroSection8 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "line",
-      displayer: "Line Enabled",
+      displayer: "Line",
       value: true,
     });
     this.addProp({
       type: "boolean",
       key: "overlay",
-      displayer: "Overlay Enabled",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "pageNumber",
+      displayer: "Page Number",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
       value: true,
     });
 
@@ -76,10 +90,16 @@ class HeroSection8 extends BaseHeroSection {
               value: "Vin TRIES TO REFLECT D  DIESEL'S VISION AND COMBINES",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+              type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -107,10 +127,16 @@ class HeroSection8 extends BaseHeroSection {
               value: "SYMBOLS THROUGH WHICH EXPRESS THEMSELVES",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+              type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -138,10 +164,16 @@ class HeroSection8 extends BaseHeroSection {
               value: "HUGGL IS AN INDUCTION CHARGING",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://eremia-react.vercel.app/img/project/project3/1.jpg",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+              type: "image",
+                url: "https://eremia-react.vercel.app/img/project/project3/1.jpg",
+              },
             },
           ],
         },
@@ -169,26 +201,44 @@ class HeroSection8 extends BaseHeroSection {
               value: "WE ARE THRILLED TO SHARE OUR NEW REEL WITH YOU ALL",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://eremia-react.vercel.app/img/project/project4/1.jpg",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+              type: "image",
+                url: "https://eremia-react.vercel.app/img/project/project4/1.jpg",
+              },
             },
           ],
         },
       ],
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "previousArrow",
-      displayer: "Previous Arrow Icon",
-      value: "GoArrowLeft"
+      displayer: "Previous Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+      type: "icon",
+        name: "GoArrowLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextArrow",
-      displayer: "Next Arrow Icon",
-      value: "GoArrowRight"
+      displayer: "Next Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+      type: "icon",
+        name: "GoArrowRight",
+      },
     });
 
     this.setComponentState("prevIndex", 1);
@@ -227,16 +277,18 @@ class HeroSection8 extends BaseHeroSection {
   render() {
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
     let sliderEffect = this.getPropValue("slider_animation") ? true : false;
+    const autoplay = this.getPropValue("autoplay");
     const allSlidesWithoutImages = this.castToObject<ISliderData[]>("slider").every(
       (slide) => !slide.image
     );
     const settings = {
       dots: false,
+      arrows: false,
       infinite: true,
       speed: 1500,
       fade: sliderEffect,
       swipe: true,
-      autoplay: false,
+      autoplay: autoplay,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -248,33 +300,42 @@ class HeroSection8 extends BaseHeroSection {
       },
     };
     const sliderRef = this.getComponentState("slider-ref");
-    const nextArrow = this.getPropValue("nextArrow");
-    const previousArrow = this.getPropValue("previousArrow");
-    const arrowsExist = (this.getPropValue("slider").length > 1 && (previousArrow || nextArrow))
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <ComposerSlider {...settings} ref={sliderRef} className={`${this.decorateCSS("carousel")} ${allSlidesWithoutImages && this.decorateCSS("no-image")}`}>
-          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
+          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => {
+            const imageWithSettings = item.image?.type === "video" ? {
+              ...item.image,
+              settings: {
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false
+              }
+            } : item.image;
+            
+            return (
             <div className={`
               ${this.decorateCSS("slide")}
               ${!this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
               ${!item.image ? this.decorateCSS("slide-no-image") : ""}
               ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
             `}>
-              <div className={`${this.decorateCSS("image-wrapper")} ${this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
+                <div className={`${this.decorateCSS("image-wrapper")} ${item.image && this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
                 {item.image && (
-                  <img src={item.image} alt={item.title} className={this.decorateCSS("image")} />
+                    <Base.Media value={imageWithSettings} className={this.decorateCSS("image")} />
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </ComposerSlider>
         <Base.Container className={`${this.decorateCSS("max-content")}`}>
           {this.getPropValue("slider").length > 0 && (
             <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
-                <div
+                <Base.H5
                   className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
                     : ""
@@ -289,9 +350,9 @@ class HeroSection8 extends BaseHeroSection {
                   }}
                 >
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
-                </div>
+                </Base.H5>
               }
-              <div
+              <Base.H1
                 className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
                   ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                   : ""
@@ -306,12 +367,12 @@ class HeroSection8 extends BaseHeroSection {
                 }}
               >
                 {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
-              </div>
+              </Base.H1>
 
 
               {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
-                <div
+                <Base.H5
                   className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                     : ""
@@ -326,31 +387,33 @@ class HeroSection8 extends BaseHeroSection {
                   }}
                 >
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
-                </div>
+                </Base.H5>
               }
-              <div className={this.decorateCSS("pagination")}>
-                <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
-                <div className={this.decorateCSS("slash")}> / </div>
-                <div className={this.decorateCSS("total-page")}>{slideCount}</div>
-              </div>
               <div className={this.decorateCSS("arrow-wrapper")}>
                 <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                   sliderRef.current.slickPrev();
                 }}>
                   <div className={this.decorateCSS("arrow-prev")}>
-                    <Base.Icon
-                      name={this.getPropValue("previousArrow")}
-                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    <Base.Media
+                      value={this.getPropValue("previousArrow")}
+                      className={this.decorateCSS("icon")}
                     />
                   </div>
                 </div>
+                {this.getPropValue("pageNumber") && (
+                  <div className={`${this.decorateCSS("pagination")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
+                    <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
+                    <div className={this.decorateCSS("slash")}> / </div>
+                    <div className={this.decorateCSS("total-page")}>{slideCount}</div>
+                  </div>
+                )}
                 <div className={`${this.decorateCSS("arrow-next-wrapper")} ${this.decorateCSS("next")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                   sliderRef.current.slickNext();
                 }}>
                   <div className={this.decorateCSS("arrow-next")}>
-                    <Base.Icon
-                      name={this.getPropValue("nextArrow")}
-                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    <Base.Media
+                      value={this.getPropValue("nextArrow")}
+                      className={this.decorateCSS("icon")}
                     />
                   </div>
                 </div>
