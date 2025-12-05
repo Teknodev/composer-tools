@@ -174,7 +174,19 @@ class About11 extends BaseAbout {
               <Base.GridCell className={this.decorateCSS("left")}>
                 <div className={this.decorateCSS("image-wrapper")}>
                   <Base.Media
-                    value={this.getPropValue("image")}
+                    value={
+                      image && (image as any).type === "video" && (image as any).url
+                        ? {
+                            type: "video",
+                            url: (image as any).url,
+                            settings: {
+                              autoplay: true,
+                              muted: true,
+                              loop: true,
+                            },
+                          }
+                        : image
+                    }
                     className={this.decorateCSS("image")}
                   />
                   {this.getPropValue("overlay") && (
