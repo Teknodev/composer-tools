@@ -182,7 +182,7 @@ class About11 extends BaseAbout {
                   )}
                 </div>
               </Base.GridCell>
-            )}{" "}
+            )}
             {hasRightContent && (
               <Base.GridCell className={`${this.decorateCSS("right")} ${
                 !hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""
