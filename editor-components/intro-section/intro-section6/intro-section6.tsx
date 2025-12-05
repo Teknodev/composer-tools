@@ -112,7 +112,7 @@ class IntroSection6 extends BaseIntroSection {
     const hasAnyButton =
       Array.isArray(buttons) &&
       buttons.some(
-        (b: any) => this.castToString(b?.text) || b?.icon.name || b?.icon
+        (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon
       );
     const hasBottomText = this.castToString(bottomText);
 
