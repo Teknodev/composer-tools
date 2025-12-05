@@ -126,7 +126,7 @@ class Feature29 extends BaseFeature {
           value:
             "Every payment option covered. Designed to support diverse gaming setups, including online casinos, sportsbooks, bookmakers, lotteries, bingo, draws and raffles, and more.",
         },
-        INPUTS.BUTTON("topLeftSideButton", "Button", "Link", "", "", null, "Bare"),
+        INPUTS.BUTTON("topLeftSideButton", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
       ],
     });
 
@@ -172,7 +172,7 @@ class Feature29 extends BaseFeature {
           value:
             "Streamlined onboarding that is quick, transparent, and efficient. Get full visibility at every step to help you speed up your market entry.",
         },
-        INPUTS.BUTTON("bottomLeftSideButton", "Button", "Link", "", "", null, "Bare"),
+        INPUTS.BUTTON("bottomLeftSideButton", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
       ],
     });
 
