@@ -530,19 +530,19 @@ class Testimonials16 extends Testimonials {
                                     }`}
                                   />
                                   <div className={this.decorateCSS("author-block")}>
-                                    <Base.P className={this.decorateCSS("author")}>
-                                      {hasAuthor && <span className={this.decorateCSS("author-text")}>{item.author}</span>}
-                                      {(hasAuthor && (hasRole || hasCompany)) && (
-                                        <span className={this.decorateCSS("author-separator")}> - </span>
-                                      )}
-                                      {(hasRole || hasCompany) && (
-                                        <span className={this.decorateCSS("role-company")}>
-                                          {hasRole && <span>{item.role}</span>}
-                                          {hasRole && hasCompany && <span>, </span>}
-                                          {hasCompany && <span>{item.company}</span>}
-                                        </span>
-                                      )}
-                                    </Base.P>
+                                    {hasAuthor && (
+                                      <Base.P className={this.decorateCSS("author")}>{item.author}</Base.P>
+                                    )}
+                                    {hasAuthor && (hasRole || hasCompany) && (
+                                      <Base.P className={this.decorateCSS("author-separator")}>-</Base.P>
+                                    )}
+                                    {(hasRole || hasCompany) && (
+                                      <Base.P className={this.decorateCSS("role-company")}>
+                                        {hasRole && item.role}
+                                        {hasRole && hasCompany && ", "}
+                                        {hasCompany && item.company}
+                                      </Base.P>
+                                    )}
                                   </div>
                                 </>
                               )}
@@ -553,11 +553,9 @@ class Testimonials16 extends Testimonials {
                                     {hasAuthor && <Base.P className={this.decorateCSS("author")}>{item.author}</Base.P>}
                                     {(hasRole || hasCompany) && (
                                       <Base.P className={this.decorateCSS("role")}>
-                                        <span className={this.decorateCSS("role-company")}>
-                                          {hasRole && <span>{item.role}</span>}
-                                          {hasRole && hasCompany && <span>, </span>}
-                                          {hasCompany && <span>{item.company}</span>}
-                                        </span>
+                                        {hasRole && item.role}
+                                        {hasRole && hasCompany && ", "}
+                                        {hasCompany && item.company}
                                       </Base.P>
                                     )}
                                   </div>
