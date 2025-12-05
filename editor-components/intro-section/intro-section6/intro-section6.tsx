@@ -217,14 +217,7 @@ class IntroSection6 extends BaseIntroSection {
                                       buttonType={item.type}
                                       className={this.decorateCSS("button")}
                                     >
-                                      {btnIconExist && (
-                                        <Base.Media
-                                          value={buttonIcon}
-                                          className={this.decorateCSS(
-                                            "button-icon"
-                                          )}
-                                        />
-                                      )}
+                                      
                                       {btnTextExist && (
                                         <Base.P
                                           className={this.decorateCSS(
@@ -233,6 +226,14 @@ class IntroSection6 extends BaseIntroSection {
                                         >
                                           {item.text}
                                         </Base.P>
+                                      )}
+                                      {btnIconExist && (
+                                        <Base.Media
+                                          value={buttonIcon}
+                                          className={this.decorateCSS(
+                                            "button-icon"
+                                          )}
+                                        />
                                       )}
                                     </Base.Button>
                                   </ComposerLink>

@@ -97,6 +97,8 @@
                   content: "";
                 }
                 .button-icon {
+                  display: flex;
+                  align-items: center;
                   font-size: 1.5rem;
                   height: 25px;
                   width: 25px;
