@@ -181,6 +181,9 @@
         transition: transform 0.3s ease-in;
         .icon{
           font-size: 1.5rem;
+          height: 30px;
+          width: 30px;
+          object-fit: contain;
         }
       }
       &::before {

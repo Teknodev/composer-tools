@@ -47,7 +47,7 @@ class HeroSection11 extends BaseHeroSection {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -59,7 +59,7 @@ class HeroSection11 extends BaseHeroSection {
       key: "exitButton",
       displayer: "Exit Button",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -79,7 +79,7 @@ class HeroSection11 extends BaseHeroSection {
       key: "backgroundImage",
       displayer: "Background Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",

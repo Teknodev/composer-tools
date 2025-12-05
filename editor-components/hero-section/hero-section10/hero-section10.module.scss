@@ -103,6 +103,7 @@
                     font-size: 2.5rem;
                     width: 36px;
                     height: 36px;
+                    object-fit: contain;
                   }
                 }
               }
@@ -213,6 +214,7 @@
               justify-content: center;
               font-size: 30rem;
               color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              object-fit: contain;
             }
           }
           .right-page-content {
@@ -247,6 +249,11 @@
             gap: var(--composer-gap-md);
             font-size: 1.5rem;
             cursor: pointer;
+            .icon {
+              width: 24px;
+              height: 24px;
+              object-fit: contain;
+            }
           }
         }
       }
@@ -314,6 +321,7 @@
                       font-size: 1.5rem;
                       width: 24px;
                       height: 24px;
+                      object-fit: contain;
                     }
                   }
                 }
@@ -402,6 +410,9 @@
                   .prev_icon_wrapper, .next_icon_wrapper{
                     .prev_icon, .next_icon {
                       font-size: 1.5rem;
+                      width: 24px;
+                      height: 24px;
+                      object-fit: contain;
                     }
                   }
                 }

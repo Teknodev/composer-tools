@@ -125,9 +125,10 @@
           align-items: center;
           color: var(--composer-font-color-secondary);
           .play-button {
-            width: 25px;
+            width: 26px;
             height: 30px;
             font-size: 2.5rem;
+            object-fit: contain;
           }
         }
       }
@@ -161,6 +162,9 @@
 
     .close-button {
         font-size: 1.5rem;
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
     }
 }
 }
@@ -194,6 +198,8 @@
           .icon {
             .play-button {
               height: 35px;
+              width: 35px;
+              object-fit: contain;
             }
           }
         }
@@ -233,6 +239,11 @@
           height: 70px;
           .icon {
             font-size: 2rem;
+            .play-button {
+              width: 26px;
+              height: 26px;
+              object-fit: contain;
+            }
           }
         }
       }

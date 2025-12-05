@@ -31,7 +31,7 @@ class HeroSection10 extends BaseHeroSection {
           key: "icon",
           displayer: "Platform Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -57,7 +57,7 @@ class HeroSection10 extends BaseHeroSection {
           key: "icon",
           displayer: "Platform Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -83,7 +83,7 @@ class HeroSection10 extends BaseHeroSection {
           key: "icon",
           displayer: "Platform Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -104,7 +104,7 @@ class HeroSection10 extends BaseHeroSection {
       key: "nextIcon",
       displayer: "Next icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -116,7 +116,7 @@ class HeroSection10 extends BaseHeroSection {
       key: "prevIcon",
       displayer: "Prev icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -128,7 +128,7 @@ class HeroSection10 extends BaseHeroSection {
       key: "ampersandIcon",
       displayer: "Ampersand Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -420,28 +420,32 @@ class HeroSection10 extends BaseHeroSection {
                             {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon")) && (
                               <div className={this.decorateCSS("iconsSection")}>
                                 {this.getPropValue("prevIcon") && (
-                                  <div className={this.decorateCSS("prev_icon_wrapper")}>
+                                  <div 
+                                    className={this.decorateCSS("prev_icon_wrapper")}
+                                    onClick={() => {
+                                      this.getComponentState(
+                                        "slider-ref"
+                                      ).current.slickPrev();
+                                    }}
+                                  >
                                     <Base.Media
                                       value={this.getPropValue("prevIcon")}
                                       className={`${this.decorateCSS("prev_icon")}`}
-                                      onClick={() => {
-                                          this.getComponentState(
-                                            "slider-ref"
-                                          ).current.slickPrev();
-                                        }}
                                     />
                                   </div>
                                 )}
                                 {this.getPropValue("nextIcon") && (
-                                  <div className={this.decorateCSS("next_icon_wrapper")}>
+                                  <div 
+                                    className={this.decorateCSS("next_icon_wrapper")}
+                                    onClick={() => {
+                                      this.getComponentState(
+                                        "slider-ref"
+                                      ).current.slickNext();
+                                    }}
+                                  >
                                     <Base.Media
                                       value={this.getPropValue("nextIcon")}
                                       className={`${this.decorateCSS("next_icon")}`}
-                                      onClick={() => {
-                                        this.getComponentState(
-                                          "slider-ref"
-                                        ).current.slickNext();
-                                      }}
                                     />
                                   </div>
                                 )}
@@ -450,7 +454,7 @@ class HeroSection10 extends BaseHeroSection {
                           </div>
                         )}
                         {item.button.map(
-                          (buttonItem: INPUTS.CastedButton, indexButton: number) => {
+                          (buttonItem: INPUTS.CastedButton) => {
                             const buttonText = this.castToString(
                               buttonItem.text
                             );
@@ -530,8 +534,8 @@ class HeroSection10 extends BaseHeroSection {
                           )}
                           <div className={this.decorateCSS("icon-group")}>
                             {item.icons.map(
-                              (item: any, indexSlider: number) => (
-                                <ComposerLink path={item.getPropValue("url")}>
+                              (item: any) => (
+                                <ComposerLink key={item.getPropValue("url")} path={item.getPropValue("url")}>
                                   <Base.Media
                                     value={item.getPropValue("icon")}
                                     className={this.decorateCSS("icon")}

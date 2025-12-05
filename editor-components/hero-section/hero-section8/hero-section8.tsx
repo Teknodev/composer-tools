@@ -97,7 +97,7 @@ class HeroSection8 extends BaseHeroSection {
                 availableTypes: ["image", "video"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
               },
             },
@@ -134,7 +134,7 @@ class HeroSection8 extends BaseHeroSection {
                 availableTypes: ["image", "video"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
               },
             },
@@ -171,7 +171,7 @@ class HeroSection8 extends BaseHeroSection {
                 availableTypes: ["image", "video"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://eremia-react.vercel.app/img/project/project3/1.jpg",
               },
             },
@@ -208,7 +208,7 @@ class HeroSection8 extends BaseHeroSection {
                 availableTypes: ["image", "video"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://eremia-react.vercel.app/img/project/project4/1.jpg",
               },
             },
@@ -221,10 +221,10 @@ class HeroSection8 extends BaseHeroSection {
       key: "previousArrow",
       displayer: "Previous Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
-        type: "icon",
+      type: "icon",
         name: "GoArrowLeft",
       },
     });
@@ -233,10 +233,10 @@ class HeroSection8 extends BaseHeroSection {
       key: "nextArrow",
       displayer: "Next Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
-        type: "icon",
+      type: "icon",
         name: "GoArrowRight",
       },
     });
@@ -316,18 +316,18 @@ class HeroSection8 extends BaseHeroSection {
             } : item.image;
             
             return (
-              <div className={`
-                ${this.decorateCSS("slide")}
-                ${!this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
-                ${!item.image ? this.decorateCSS("slide-no-image") : ""}
-                ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
-              `}>
+            <div className={`
+              ${this.decorateCSS("slide")}
+              ${!this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
+              ${!item.image ? this.decorateCSS("slide-no-image") : ""}
+              ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
+            `}>
                 <div className={`${this.decorateCSS("image-wrapper")} ${item.image && this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
-                  {item.image && (
+                {item.image && (
                     <Base.Media value={imageWithSettings} className={this.decorateCSS("image")} />
-                  )}
-                </div>
+                )}
               </div>
+            </div>
             );
           })}
         </ComposerSlider>
