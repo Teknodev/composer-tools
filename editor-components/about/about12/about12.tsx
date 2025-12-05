@@ -76,9 +76,9 @@ class About12 extends BaseAbout {
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
-    const hasAnyButton =
-      Array.isArray(buttons) &&
-      buttons.some((b: any) => this.castToString(b?.text) || b?.icon?.name);
+    const hasAnyButton = buttons.some(
+      (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon
+    );
     const hasRightContainer = !!(
       hasTitle ||
       hasSubtitle ||
@@ -163,11 +163,11 @@ class About12 extends BaseAbout {
                       {buttons.map(
                         (item: INPUTS.CastedButton, index: number) => {
                           const btnTextExist = this.castToString(item.text);
+                          const buttonIconExist = item.icon?.name || item.icon;
                           const buttonIcon = item.icon;
+                          const buttonText = item.text;
 
-                          const isIconExist = buttonIcon?.name;
-
-                          if (!btnTextExist && !isIconExist) {
+                          if (!btnTextExist && !buttonIconExist) {
                             return null;
                           }
                           const buttonUrl = item.url || "#";
@@ -180,7 +180,7 @@ class About12 extends BaseAbout {
                                 buttonType={item.type}
                                 className={this.decorateCSS("button")}
                               >
-                                {isIconExist && (
+                                {buttonIconExist && (
                                   <Base.Media
                                     value={buttonIcon}
                                     className={this.decorateCSS("button-icon")}
@@ -190,7 +190,7 @@ class About12 extends BaseAbout {
                                   <Base.P
                                     className={this.decorateCSS("button-text")}
                                   >
-                                    {item.text}
+                                    {buttonText}
                                   </Base.P>
                                 )}
                               </Base.Button>
