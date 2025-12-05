@@ -213,58 +213,43 @@ class HeroSection38 extends BaseHeroSection {
   }
 
   private hasImage = (image?: TypeMediaInputValue) => {
-    if (!image) {
-      return false;
-    }
-
-    const candidate =
-      ("url" in image && image.url) ||
-      (typeof image === "object" &&
-        "value" in (image as any) &&
-        (image as any).value?.url);
-
-    return !!candidate;
-  };
-
-  private hasTitle = (title?: React.JSX.Element) => {
-    if (!title) {
-      return false;
-    }
-    const titleText = this.castToString(title);
-    return !!titleText;
+    const media = image as { url?: string; value?: { url?: string } };
+    return !!(media?.url ?? media?.value?.url);
   };
 
   private getValidSlides = () => {
     const slidesRaw = this.castToObject<SlideItem[]>("slides");
     return slidesRaw.filter((item: SlideItem) => {
       const imageExist = this.hasImage(item.image);
-      const nameExist = this.hasTitle(item.name);
+      const nameExist = this.castToString(item.name);
       return imageExist || nameExist;
     });
   };
 
   componentDidMount() {
-    const animation = !!this.getPropValue("animation");
-    if (animation && window.innerWidth > 640) {
-      setTimeout(() => {
-        const slides = this.getValidSlides();
-        const isSingleSlide = slides.length === 1;
-        const activeIndex = isSingleSlide ? 0 : this.getComponentState("active-index");
-        this.setComponentState("scaled-index", activeIndex);
-      }, 1000);
-    }
+    this.setScaledIndexWithDelay();
   }
 
   startScaleDelay = () => {
-    const animation = !!this.getPropValue("animation");
-    if (animation && window.innerWidth > 640) {
-      this.setComponentState("scaled-index", null);
-      setTimeout(() => {
-        const activeIndex = this.getComponentState("active-index");
-        this.setComponentState("scaled-index", activeIndex);
-      }, 1000);
-    }
+    this.setScaledIndexWithDelay(true);
   };
+
+  private setScaledIndexWithDelay(reset?: boolean) {
+    const animation = !!this.getPropValue("animation");
+    const isWide = window.innerWidth > 640;
+    if (!animation || !isWide) return;
+
+    if (reset) {
+      this.setComponentState("scaled-index", null);
+    }
+
+    setTimeout(() => {
+      const slides = this.getValidSlides();
+      const isSingleSlide = slides.length === 1;
+      const activeIndex = isSingleSlide ? 0 : this.getComponentState("active-index");
+      this.setComponentState("scaled-index", activeIndex);
+    }, 1000);
+  }
 
   handlePrevClick = () => {
     if (this.sliderRef.current) {
@@ -322,12 +307,9 @@ class HeroSection38 extends BaseHeroSection {
       ],
     };
 
-    const containerClassNames = [
-      this.decorateCSS("container"),
-      !animation ? this.decorateCSS("no-animation") : "",
-    ]
-      .filter(Boolean)
-      .join(" ");
+    const containerClassNames = !animation
+      ? `${this.decorateCSS("container")} ${this.decorateCSS("no-animation")}`
+      : this.decorateCSS("container");
 
     return (
       <Base.Container className={containerClassNames}>
@@ -341,21 +323,16 @@ class HeroSection38 extends BaseHeroSection {
                   const navigateTo = item.navigateTo;
                   const imageExists = this.hasImage(item.image);
                   const isVideoMedia = item.image?.type === "video";
-                  const titleExists = this.hasTitle(item.name);
+                  const titleExists = this.castToString(item.name);
 
                   if (!imageExists && !titleExists) {
                     return null;
                   }
 
-                  const slideClass = [
-                    this.decorateCSS("slide-item"),
-                    !imageExists && titleExists ? this.decorateCSS("no-image") : "",
-                    isScaled ? this.decorateCSS("active-slide") : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ");
+                  const slideClass = `${this.decorateCSS("slide-item")} ${!imageExists && titleExists ? this.decorateCSS("no-image") : ""} ${isScaled ? this.decorateCSS("active-slide") : ""}`.trim();
                   
                   const slideContent = (
+                    <ComposerLink path={navigateTo}>
                     <div className={this.decorateCSS("image-wrapper")}>
                       {imageExists && (
                         <>
@@ -372,17 +349,12 @@ class HeroSection38 extends BaseHeroSection {
                         {item.name}
                       </Base.H2>
                     </div>
+                    </ComposerLink>
                   );
 
                   return (
                     <div key={index} className={slideClass}>
-                      {navigateTo ? (
-                        <ComposerLink path={navigateTo}>
-                          {slideContent}
-                        </ComposerLink>
-                      ) : (
-                        slideContent
-                      )}
+                      {slideContent}
                     </div>
                   );
                 })}
@@ -396,7 +368,7 @@ class HeroSection38 extends BaseHeroSection {
                     >
                       <Base.Media
                         value={this.getPropValue("previousArrow")}
-                        className={this.decorateCSS("arrow-icon")}
+                        className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
                       />
                     </Base.Button>
                   )}
@@ -408,7 +380,10 @@ class HeroSection38 extends BaseHeroSection {
                           className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
                           onClick={() => this.sliderRef.current?.slickGoTo(index)}
                         >
-                          <Base.Media value={dotIconValue} className={this.decorateCSS("dot-icon")} />
+                          <Base.Media
+                            value={dotIconValue}
+                            className={`${this.decorateCSS("dot-icon")} ${this.decorateCSS("dot-icon-media")}`}
+                          />
                         </Base.Button>
                       ))}
                     </div>
@@ -420,7 +395,7 @@ class HeroSection38 extends BaseHeroSection {
                     >
                       <Base.Media
                         value={this.getPropValue("nextArrow")}
-                        className={this.decorateCSS("arrow-icon")}
+                        className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
                       />
                     </Base.Button>
                   )}
