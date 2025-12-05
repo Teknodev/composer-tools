@@ -60,32 +60,42 @@
         z-index: 2;
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: var(--composer-gap-md);
         width: 100%;
         overflow-x: auto;
         align-items: center;
+        justify-content: center;
 
-        &::before,
-        &::after {
-          content: "";
-          margin: auto;
-        }
+        .button-wrapper {
+          display: flex;
 
-        .button {
-          flex-shrink: 0;
-          padding: calc(var(--composer-gap-md) * 1.5) !important;
+          .button {
+            flex-shrink: 0;
+            // box-sizing: border-box !important;
+            padding: calc(var(--composer-gap-md) * 2) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: var(--composer-gap-sm);
 
-          .button-text,
-          .button-icon {
-            font-size: 2rem;
-          }
-          .button-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            .button-text {
+              font-size: 2rem;
+            }
+
+            .button-icon {
+              font-size: 2rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+              margin: 0 !important;
+              padding: 0 !important;
+            }
           }
         }
       }
+
       .spacer {
         background-color: var(--composer-html-background);
         position: absolute;
@@ -103,11 +113,14 @@
     .max-content {
       .content {
         .action-buttons {
-          .button {
-            padding: calc(var(--composer-gap-xl) / 2) !important;
-            .button-icon,
-            .button-text {
-              font-size: 1.5rem;
+          .button-wrapper {
+            .button {
+              padding: calc(var(--composer-gap-xl) / 2) !important;
+
+              .button-icon,
+              .button-text {
+                font-size: 1.5rem;
+              }
             }
           }
         }
