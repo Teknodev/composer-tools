@@ -338,7 +338,7 @@ class Stats13 extends BaseStats {
         const hasContent = ratingItems.length > 0 || !!titleExist || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist ? this.decorateCSS("no-image-container") : ""} ${!hasContent ? this.decorateCSS("no-left-content-container") : ""}`} isFull={true}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist ? this.decorateCSS("content-full-width") : ""} ${!hasContent ? this.decorateCSS("image-full-width") : ""}`} isFull={true}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
