@@ -1,14 +1,14 @@
 import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section7.module.scss";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base, TypeButton } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type ButtonType = {
+type ButtonTypeObj = {
     text: React.JSX.Element;
     url: string;
-    type: any;
+    type: TypeButton;
 }
 
 type TextType = {
@@ -88,7 +88,7 @@ class IntroSection7 extends BaseIntroSection {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const buttons = this.castToObject<ButtonType[]>("buttons") || [];
+        const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const textProp = this.castToObject<TextType>("texts");
         const textValueStr = this.castToString(textProp?.value);
         const textLabelStr = this.castToString(textProp?.label);
@@ -105,10 +105,10 @@ class IntroSection7 extends BaseIntroSection {
                                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
                                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
                                 {(buttons.length > 0 || hasText) && (
-                                    <div className={this.decorateCSS("btn-text-content")}>
+                                    <div className={this.decorateCSS("actions-container")}>
                                         {buttons.length > 0 && (
                                             <div className={this.decorateCSS("button-container")}>
-                                                {buttons.map((item: ButtonType, index: number) => {
+                                                {buttons.map((item: ButtonTypeObj, index: number) => {
                                                     const buttonTextExist = this.castToString(item.text);
                                                     return (
                                                         buttonTextExist && (
@@ -133,9 +133,9 @@ class IntroSection7 extends BaseIntroSection {
                                                         </Base.P>
                                                     )}
                                                     {textValueStr && (
-                                                        <div className={this.decorateCSS("text-value")}>
+                                                        <Base.P className={this.decorateCSS("text-value")}>
                                                             {textProp.value}
-                                                        </div>
+                                                        </Base.P>
                                                     )}
                                                 </div>
                                             </div>

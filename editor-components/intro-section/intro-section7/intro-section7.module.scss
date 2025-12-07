@@ -7,14 +7,14 @@
             color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
 
     .max-content {
-        padding: calc(var(--padding-xxl) * 2);
+        padding: var(--composer-gap-xl);
         border-radius: var(--composer-border-radius-md);
         background-color: var(--composer-html-background);
         box-shadow: var(--box-shadow-active);
 
         .content {
             display: flex;
-            gap: var(--gap-xl);
+            gap: var(--composer-gap-md);
             align-items: stretch;
 
             .left-content {
@@ -34,7 +34,7 @@
                     text-align: left;
                 }
 
-                .btn-text-content {
+                .actions-container {
                     flex-wrap: wrap;
                     display: flex;
                     gap: var(--composer-gap-md);
@@ -68,7 +68,6 @@
                                 display: flex;
                                 flex-direction: row;
                                 margin: 0;
-                                font-size: 1.3rem;
                                 justify-content: left;
                                 color: var(--composer-primary-color);
                             }
@@ -95,7 +94,7 @@
 
                 .image-wrapper {
                     position: relative;
-                    border-radius: var(--border-radius-sm);
+                    border-radius: var(--composer-border-radius-sm);
                     width: 100%;
                     height: 100%;
                     display: flex;
@@ -129,7 +128,7 @@
                 flex-direction: column;
 
                 .left-content {
-                    .btn-text-content {
+                    .actions-container {
                         flex-direction: column;
 
                         .text-row {
