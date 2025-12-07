@@ -68,16 +68,12 @@
                 margin-right: auto !important;
                 transform: none !important;
 
-                &::before,
-                &::after {
+                &::before {
                     display: none !important;
                 }
             }
 
-            .title {
-                text-align: center !important;
-            }
-
+            .title,
             .description {
                 text-align: center !important;
             }

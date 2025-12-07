@@ -83,7 +83,6 @@ class IntroSection4 extends BaseIntroSection {
         const description = this.castToString(this.getPropValue("description")) || "";
         const label = this.castToString(this.getPropValue("label")) || "";
         const hasMedia = !!coverImage?.url;
-        const isVideo = coverImage?.type === "video";
 
         return (
             <Base.Container
@@ -93,22 +92,10 @@ class IntroSection4 extends BaseIntroSection {
             >
                 {hasMedia && (
                     <div className={this.decorateCSS("bg-media-container")}>
-                        {isVideo ? (
-                            <video
-                                src={coverImage.url}
-                                className={this.decorateCSS("bg-media")}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                            />
-                        ) : (
-                            <img
-                                src={coverImage.url}
-                                alt="background"
-                                className={this.decorateCSS("bg-media")}
-                            />
-                        )}
+                        <Base.Media
+                            value={coverImage}
+                            className={this.decorateCSS("bg-media")}
+                        />
                     </div>
                 )}
                 <Base.MaxContent className={this.decorateCSS("content")}>
