@@ -1,17 +1,16 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature31.module.scss";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 interface FeatureCardType {
-    media?:
-    | { type: "icon"; name: string }
-    | { type: "image"; url: string };
+    media?: TypeMediaInputValue;
     title: React.JSX.Element;
     description: React.JSX.Element;
 }
+
 
 class Feature31 extends BaseFeature {
     constructor(props?: any) {
@@ -65,8 +64,7 @@ class Feature31 extends BaseFeature {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value:
-                                "",
+                            value: "",
                         },
                     ],
                 },
@@ -92,8 +90,7 @@ class Feature31 extends BaseFeature {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value:
-                                "",
+                            value: "",
                         },
                     ],
                 },
@@ -119,8 +116,7 @@ class Feature31 extends BaseFeature {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value:
-                                "",
+                            value: "",
                         },
                     ],
                 },
@@ -146,8 +142,7 @@ class Feature31 extends BaseFeature {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value:
-                                "",
+                            value: "",
                         },
                     ],
                 },
@@ -173,8 +168,7 @@ class Feature31 extends BaseFeature {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value:
-                                "",
+                            value: "",
                         },
                     ],
                 },
@@ -280,12 +274,12 @@ class Feature31 extends BaseFeature {
                                                 className={this.decorateCSS("content")}
                                             >
                                                 {featureTitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("title")}>
+                                                    <Base.H4 className={this.decorateCSS("features-title")}>
                                                         {feature.title}
                                                     </Base.H4>
                                                 )}
                                                 {featureDescExist && (
-                                                    <Base.P className={this.decorateCSS("description")}>
+                                                    <Base.P className={this.decorateCSS("features-description")}>
                                                         {feature.description}
                                                     </Base.P>
                                                 )}
