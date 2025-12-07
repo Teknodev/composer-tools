@@ -5,8 +5,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+type About13Props = Record<string, unknown>;
+
 class About13 extends BaseAbout {
-  constructor(props?: any) {
+  constructor(props?: About13Props) {
     super(props, styles);
 
     this.addProp({
@@ -85,8 +87,8 @@ class About13 extends BaseAbout {
     const validButtons = Array.isArray(buttons)
       ? buttons.filter((item) => {
           const text = this.castToString(item.text || "");
-          const iconName = (item as any)?.icon?.name;
-          const hasValidIcon = iconName && iconName !== "";
+          const iconName = item.icon?.name;
+          const hasValidIcon = !!iconName;
           return !!text || hasValidIcon;
         })
       : [];
@@ -97,16 +99,16 @@ class About13 extends BaseAbout {
       this.castToString(description) ||
       validButtons.length > 0;
 
-    const hasImage = !!(image && (image as any).url);
+    const hasImage = Boolean(image?.url);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("wrapper")}>
               {isContentVisible && (
                 <div
-                  className={`${this.decorateCSS("content")} ${
+                  className={`${this.decorateCSS("content-inner")} ${
                     alignment === "center" ? this.decorateCSS("center") : ""
                   }`}
                 >
@@ -177,7 +179,7 @@ class About13 extends BaseAbout {
                     value={image}
                     className={this.decorateCSS("image")}
                   />
-                  {overlay && (image as any).url && (
+                  {overlay && image?.url && (
                     <div className={this.decorateCSS("overlay")}></div>
                   )}
                 </div>
