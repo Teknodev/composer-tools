@@ -1,10 +1,18 @@
 import * as React from "react";
-import { BaseIntroSection, TypeMediaInputValue } from "../../EditorComponent";
+import {
+  BaseIntroSection,
+  TypeMediaInputValue,
+  TypeUsableComponentProps,
+} from "../../EditorComponent";
 import styles from "./intro-section8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
+type IntroMediaValue = TypeMediaInputValue & {
+  name?: string;
+};
+
 class IntroSection8 extends BaseIntroSection {
-  constructor(props?: any) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
     this.addProp({
@@ -47,7 +55,7 @@ class IntroSection8 extends BaseIntroSection {
       displayer: "Thumbnail",
       value: {
         type: "image",
-        url: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6936735a496aa1002ca98cfa?alt=media",
       } as TypeMediaInputValue,
       additionalParams: {
         availableTypes: ["image"],
@@ -64,7 +72,7 @@ class IntroSection8 extends BaseIntroSection {
     this.addProp({
       type: "boolean",
       key: "showBackgroundShape",
-      displayer: "Colorful Background",
+      displayer: "Background",
       value: true,
     });
 
@@ -74,8 +82,8 @@ class IntroSection8 extends BaseIntroSection {
       displayer: "Play Icon",
       value: {
         type: "icon",
-        name: "FaPlay"
-      } as any,
+        name: "FaPlay",
+      } as TypeMediaInputValue,
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -95,9 +103,11 @@ class IntroSection8 extends BaseIntroSection {
   };
 
   private hasTextContent(): boolean {
-    return !!(this.castToString(this.getPropValue("subtitle")) || 
-             this.castToString(this.getPropValue("title")) || 
-             this.castToString(this.getPropValue("description")));
+    return !!(
+      this.castToString(this.getPropValue("subtitle")) ||
+      this.castToString(this.getPropValue("title")) ||
+      this.castToString(this.getPropValue("description"))
+    );
   }
 
   private renderTextContent() {
@@ -111,17 +121,31 @@ class IntroSection8 extends BaseIntroSection {
     return (
       <div className={this.decorateCSS("text-content")}>
         {this.castToString(subtitle) && (
-          <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${showBackgroundShape ? this.decorateCSS("with-background") : "badge"}`}>
+          <Base.SectionSubTitle
+            className={`${this.decorateCSS("subtitle")} ${
+              showBackgroundShape
+                ? this.decorateCSS("with-background")
+                : "badge"
+            }`}
+          >
             {subtitle}
           </Base.SectionSubTitle>
         )}
         {this.castToString(title) && (
-          <Base.SectionTitle className={`${this.decorateCSS("title")} ${showBackgroundShape && this.decorateCSS("with-background")}`}>
+          <Base.SectionTitle
+            className={`${this.decorateCSS("title")} ${
+              showBackgroundShape && this.decorateCSS("with-background")
+            }`}
+          >
             {title}
           </Base.SectionTitle>
         )}
         {this.castToString(description) && (
-          <Base.SectionDescription className={`${this.decorateCSS("description")} ${showBackgroundShape && this.decorateCSS("with-background")}`}>
+          <Base.SectionDescription
+            className={`${this.decorateCSS("description")} ${
+              showBackgroundShape && this.decorateCSS("with-background")
+            }`}
+          >
             {description}
           </Base.SectionDescription>
         )}
@@ -129,16 +153,30 @@ class IntroSection8 extends BaseIntroSection {
     );
   }
 
-  private renderThumbnailContent(thumbnail: TypeMediaInputValue, overlay: boolean, playIcon: any, hasPlayIcon: boolean) {
+  private renderThumbnailContent(
+    thumbnail: TypeMediaInputValue,
+    overlay: boolean,
+    playIcon: IntroMediaValue | null,
+    hasPlayIcon: boolean
+  ) {
     return (
-      <div className={this.decorateCSS("thumbnail-container")} onClick={this.handlePlayVideo}>
-        {!!(thumbnail as any)?.url && (
-          <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />
+      <div
+        className={this.decorateCSS("thumbnail-container")}
+        onClick={this.handlePlayVideo}
+      >
+        {thumbnail?.url && (
+          <Base.Media
+            value={thumbnail}
+            className={this.decorateCSS("thumbnail-image")}
+          />
         )}
         {overlay && <div className={this.decorateCSS("overlay")} />}
-        {hasPlayIcon && (
+        {hasPlayIcon && playIcon && (
           <div className={this.decorateCSS("play-icon-wrapper")}>
-            <Base.Media value={playIcon} className={this.decorateCSS("icon")} />
+            <Base.Media
+              value={playIcon}
+              className={this.decorateCSS("icon")}
+            />
           </div>
         )}
       </div>
@@ -151,10 +189,10 @@ class IntroSection8 extends BaseIntroSection {
         value={{
           type: "video",
           url: mediaUrl,
-          settings: { autoplay: true, controls: true }
+          settings: { autoplay: true, controls: true },
         }}
         className={this.decorateCSS("video")}
-        {...({ onEnded: this.handleVideoPause } as any)}
+        onEnded={this.handleVideoPause}
       />
     );
   }
@@ -169,12 +207,12 @@ class IntroSection8 extends BaseIntroSection {
   }
 
   private renderMediaContent() {
-    const media = this.getPropValue("media") as TypeMediaInputValue;
-    const mediaUrl = (media as any)?.url;
+    const media = this.getPropValue("media") as TypeMediaInputValue | null;
+    const mediaUrl = media?.url;
     const overlay = this.getPropValue("overlay");
     const thumbnail = this.getPropValue("thumbnail") as TypeMediaInputValue;
-    const playIcon = this.getPropValue("playIcon") as any;
-    const hasPlayIcon = !!(playIcon?.name || playIcon?.url);
+    const playIcon = this.getPropValue("playIcon") as IntroMediaValue | null;
+    const hasPlayIcon = !!(playIcon && (playIcon.name || playIcon.url));
     const isPlaying = this.getComponentState("isPlaying");
     const isVideo = media?.type === "video";
 
@@ -183,9 +221,14 @@ class IntroSection8 extends BaseIntroSection {
     return (
       <div className={this.decorateCSS("media-wrapper")}>
         {isVideo ? (
-          !isPlaying ? 
-            this.renderThumbnailContent(thumbnail, overlay, playIcon, hasPlayIcon) :
-            this.renderVideoContent(mediaUrl)
+          !isPlaying
+            ? this.renderThumbnailContent(
+                thumbnail,
+                overlay,
+                playIcon,
+                hasPlayIcon
+              )
+            : this.renderVideoContent(mediaUrl)
         ) : (
           this.renderImageContent(media, overlay)
         )}
@@ -195,9 +238,9 @@ class IntroSection8 extends BaseIntroSection {
 
   render() {
     const showBackgroundShape = this.getPropValue("showBackgroundShape");
-    const containerClass = showBackgroundShape ? 
-      `${this.decorateCSS("container")} ${this.decorateCSS("has-background")}` :
-      this.decorateCSS("container");
+    const containerClass = showBackgroundShape
+      ? `${this.decorateCSS("container")} ${this.decorateCSS("has-background")}`
+      : this.decorateCSS("container");
 
     return (
       <Base.Container className={containerClass}>
@@ -205,7 +248,7 @@ class IntroSection8 extends BaseIntroSection {
           <div className={this.decorateCSS("background-shape")} />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
             {this.renderTextContent()}
             {this.renderMediaContent()}
           </Base.VerticalContent>
