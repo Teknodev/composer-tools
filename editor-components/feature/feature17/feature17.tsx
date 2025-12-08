@@ -152,7 +152,7 @@ class Feature17 extends BaseFeature {
                   "",
                   "FaArrowRight",
                   null,
-                  "Link"
+                  "Bare"
                 ),
               ],
             },
@@ -215,7 +215,7 @@ class Feature17 extends BaseFeature {
                   "",
                   "FaArrowRight",
                   null,
-                  "Link"
+                  "Bare"
                 ),
               ],
             },
@@ -279,7 +279,7 @@ class Feature17 extends BaseFeature {
                   "",
                   "FaArrowRight",
                   null,
-                  "Link"
+                  "Bare"
                 ),
               ],
             },
@@ -305,7 +305,7 @@ class Feature17 extends BaseFeature {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.setActiveTab(0);

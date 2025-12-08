@@ -40,8 +40,8 @@
         overflow-x: auto;
         overflow-y: hidden;
 
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: thin;
+        scrollbar-color: var(--composer-primary-color) transparent;
 
         border-radius: var(--border-radius-md);
         background-color: color-mix(
@@ -51,14 +51,14 @@
         );
 
         &::-webkit-scrollbar {
-          display: none;
+          height: 2px;
         }
 
         .tab-button {
           flex: 1;
-          color: rgba(var(--composer-font-color-primary-rgb), 0.7);
-          font-weight: bold;
+          color: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
+
           white-space: nowrap;
           position: relative;
           display: flex;
@@ -71,7 +71,7 @@
             white-space: nowrap !important;
           }
 
-          &::after {
+          &::before {
             content: "";
             position: absolute;
             bottom: 0;
@@ -83,9 +83,7 @@
           }
 
           &.active {
-            color: var(--composer-font-color-primary);
-
-            &::after {
+            &::before {
               width: 100%;
             }
           }
@@ -183,20 +181,6 @@
           .image-container {
             .image {
               aspect-ratio: 1;
-            }
-          }
-
-          .content.center {
-            align-items: center;
-
-            .content-title,
-            .content-subtitle,
-            .content-description {
-              text-align: center;
-            }
-
-            .action-buttons {
-              justify-content: center;
             }
           }
         }
