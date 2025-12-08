@@ -6,7 +6,7 @@
     flex-direction: column;
 
     .header-container {
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
 
       .subtitle {
         content: "";
@@ -71,10 +71,6 @@
             background-color: var(--composer-font-color-primary);
             color: var(--composer-html-background);
 
-            .card-media {
-              display: none;
-            }
-
             .card-text-container {
               color: var(--composer-html-background);
 
@@ -83,6 +79,22 @@
               .button-text,
               .button-icon {
                 color: var(--composer-html-background);
+              }
+            }
+
+            &.with-bg {
+              background-color: transparent !important;
+              color: white;
+
+              .card-text-container {
+                color: white;
+
+                .card-title,
+                .card-description,
+                .button-text,
+                .button-icon {
+                  color: white;
+                }
               }
             }
           }
@@ -127,18 +139,6 @@
           box-shadow: none;
           margin-bottom: 0 !important;
           display: block;
-          
-          img,
-          video {
-            width: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-sm);
-            border: none;
-            outline: none;
-            box-shadow: none;
-            display: block;
-          }
         }
 
         &[data-animation~="animate1"]:hover {
@@ -172,21 +172,24 @@
         .button {
           display: inline-flex;
           align-items: center;
+          gap: var(--composer-gap-xs);
+        }
 
+        .button-text {
+          content: "";
+          padding: 0;
+          margin: 0;
+          text-align: left;
+        }
 
-          .button-text {
-            content: "";
-            padding: 0;
-            margin: 0;
-          }
-
-          .button-icon {
-            width: 16px;
-            height: 16px;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-          }
+        .button-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
         }
 
         .card-text-container {
@@ -200,17 +203,11 @@
           z-index: 2;
           padding: var(--composer-gap-lg);
 
-          > * {
+          .card-title,
+          .card-description {
             text-align: left;
             align-self: flex-start;
             width: 100%;
-          }
-
-          .card-title {
-            word-break: break-word;
-          }
-
-          .card-description {
             word-break: break-word;
           }
         }
