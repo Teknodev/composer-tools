@@ -1,6 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
+  width: 100%;
   min-height: 600px;
   display: flex;
   justify-content: center;
@@ -499,7 +501,6 @@
   align-items: center;
   justify-content: center;
   background: color-mix(in srgb, var(--composer-font-color-primary), transparent 85%);
-  border: 1px solid color-mix(in srgb, var(--composer-font-color-primary), transparent 55%);
   transition: transform 260ms ease, border-color 260ms ease;
   cursor: pointer;
   padding: 0;
