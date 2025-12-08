@@ -29,6 +29,7 @@
       width: 100%;
       overflow: hidden;
       padding: 0 var(--composer-gap-md);
+      position: relative;
 
       :global(.slick-slide) {
         padding: 0 calc(var(--composer-gap-md) / 2);
@@ -48,6 +49,7 @@
         left: 0;
         right: 0;
         justify-content: center;
+        z-index: 2 !important;
         li {
           button {
             border: none;
