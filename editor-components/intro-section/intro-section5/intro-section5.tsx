@@ -2,14 +2,19 @@ import * as React from "react";
 import {
   BaseIntroSection,
   TypeMediaInputValue,
+  TypeUsableComponentProps,
 } from "../../EditorComponent";
 import styles from "./intro-section5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type IntroSection5Button = INPUTS.CastedButton & {
+  icon?: TypeMediaInputValue | null;
+};
+
 class IntroSection5 extends BaseIntroSection {
-  constructor(props?: any) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
     this.addProp({
@@ -41,7 +46,7 @@ class IntroSection5 extends BaseIntroSection {
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
-      } as TypeMediaInputValue,
+      },
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -54,21 +59,21 @@ class IntroSection5 extends BaseIntroSection {
       value: true,
     });
 
-    const buttonProp = INPUTS.BUTTON(
-      "button",
-      "Button",
-      "",
-      "",
-      "FaChevronDown",
-      null,
-      "Bare"
-    );
-
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [buttonProp],
+      value: [
+        INPUTS.BUTTON(
+          "button",
+          "Button",
+          "",
+          "",
+          "FaChevronDown",
+          null,
+          "Bare"
+        ),
+      ],
     });
 
     this.addProp({
@@ -92,31 +97,33 @@ class IntroSection5 extends BaseIntroSection {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const bgMedia = this.getPropValue("backgroundMedia") as TypeMediaInputValue;
+    const bgMedia = this.getPropValue("backgroundMedia") as
+      | TypeMediaInputValue
+      | null;
     const hasOverlay = this.getPropValue("overlay");
 
-    const buttons = this.castToObject<any[]>("buttons");
-    const hasButtons = buttons && buttons.length > 0;
-
+    const buttons = this.castToObject<IntroSection5Button[]>("buttons");
     const buttonsAnimation = this.getPropValue("buttonsAnimation");
 
-    const hasBgMedia = bgMedia && (bgMedia as any).url;
-    const isVideoBg = hasBgMedia && bgMedia.type === "video";
-    const isImageBg = hasBgMedia && bgMedia.type !== "video";
+    const hasBgMedia = !!(bgMedia && bgMedia.url);
+    const isVideoBg = hasBgMedia && bgMedia?.type === "video";
+    const isImageBg = hasBgMedia && bgMedia?.type === "image";
+
+    const hasButtons = Array.isArray(buttons) && buttons.length > 0;
 
     const containerClasses = [
       this.decorateCSS("container"),
       hasBgMedia ? this.decorateCSS("media-active") : "",
       isImageBg ? this.decorateCSS("image-active") : "",
       isVideoBg ? this.decorateCSS("video-active") : "",
-      hasOverlay && hasBgMedia ? this.decorateCSS("overlay-active") : ""
+      hasOverlay && hasBgMedia ? this.decorateCSS("overlay-active") : "",
     ]
       .filter(Boolean)
       .join(" ");
 
     return (
       <Base.Container className={containerClasses}>
-        {hasBgMedia && (
+        {hasBgMedia && bgMedia && (
           <Base.Media
             value={bgMedia}
             className={this.decorateCSS("background-media")}
@@ -153,19 +160,24 @@ class IntroSection5 extends BaseIntroSection {
 
             {hasButtons && (
               <div className={this.decorateCSS("buttons")}>
-                {buttons.map((button: any, index: number) => {
-                  const hasIcon = button.icon && button.icon.name;
-                  const hasText = this.castToString(button.text);
+                {buttons.map((button, index) => {
+                  const iconValue = button.icon || null;
+                  const hasIcon =
+                    !!iconValue &&
+                    ((iconValue.type === "icon" &&
+                      !!this.castToString(iconValue.name || "")) ||
+                      (iconValue.type === "image" &&
+                        !!this.castToString(iconValue.url || "")));
+
+                  const hasText = this.castToString(button.text || "");
                   const isAnimated = buttonsAnimation;
 
-                  if (!hasIcon && !hasText) return null;
+                  if (!hasIcon && !hasText) {
+                    return null;
+                  }
 
                   return (
-                    <ComposerLink
-                      key={index}
-                      path={button.url}
-                      className={this.decorateCSS("button-link")}
-                    >
+                    <ComposerLink key={index} path={button.url || "#"}>
                       <Base.Button
                         buttonType={button.type || "Link"}
                         className={`${this.decorateCSS("button")} ${
@@ -173,9 +185,9 @@ class IntroSection5 extends BaseIntroSection {
                         }`}
                       >
                         {hasText && button.text}
-                        {hasIcon && (
+                        {hasIcon && iconValue && (
                           <Base.Media
-                            value={button.icon}
+                            value={iconValue}
                             className={this.decorateCSS("icon")}
                           />
                         )}
