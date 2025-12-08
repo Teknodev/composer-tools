@@ -420,6 +420,7 @@ class Feature29 extends BaseFeature {
     ) => {
       const mediaWithUrl = image as { url?: string } | undefined;
       const imageUrl = mediaWithUrl?.url;
+      const mediaValue = image?.type === "video" ? { ...image, settings: { ...image.settings, controls: true } } : image;
       const titleExist = this.castToString(title);
       const descriptionExist = this.castToString(description);
 
@@ -428,7 +429,7 @@ class Feature29 extends BaseFeature {
           className={`${this.decorateCSS("card")} ${additionalClass || ""} ${imageUrl ? this.decorateCSS("with-bg") : ""}`}
           data-animation={hoverAnimation}
         >
-          {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
+          {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={mediaValue} />}
           {overlay && imageUrl && <div className={this.decorateCSS("overlay-layer")} />}
           <Base.VerticalContent className={this.decorateCSS("card-text-container")}>
             {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{title}</Base.H3>}
