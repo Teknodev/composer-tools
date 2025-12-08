@@ -430,13 +430,14 @@
 .author-block {
   display: flex;
   justify-content: flex-start !important;
-  align-items: baseline;
-  padding-top: var(--composer-gap-xs);
+  align-items: center;
+  gap: var(--composer-border-width-xs);
+  padding-top: 0;
   flex-wrap: nowrap;
   text-align: left !important;
   align-self: flex-start !important;
-  margin-right: auto !important;
   width: fit-content !important;
+  line-height: 1;
 
   .author,
   .role,
@@ -464,11 +465,12 @@
 .role,
 .role-company {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   margin: 0 !important;
   text-align: left !important;
   justify-content: flex-start !important;
   align-self: flex-start !important;
+  line-height: 1;
 }
 
 .author {
@@ -486,11 +488,12 @@
 }
 
 .author-separator {
-  margin: 0 var(--composer-gap-xs);
+  margin: 0;
   width: fit-content;
   text-align: left !important;
   justify-content: flex-start !important;
   align-self: flex-start !important;
+  line-height: 1;
 }
 
 .navigation-button {
