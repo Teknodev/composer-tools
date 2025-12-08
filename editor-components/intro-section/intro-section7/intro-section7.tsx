@@ -29,7 +29,7 @@ class IntroSection7 extends BaseIntroSection {
             },
             value: {
                 type: "image",
-                url: "https://res.cloudinary.com/dmydg7kum/image/upload/v1763966784/luca-bravo-9l_326FISzk-unsplash-1070x713_zubkjk.jpg"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367d22496aa1002ca9ac4a?alt=media"
             }
         });
 
