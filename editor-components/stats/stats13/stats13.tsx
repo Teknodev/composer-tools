@@ -25,7 +25,7 @@ class Stats13 extends BaseStats {
             key: "image",
             displayer: "Image",
             value: {
-                url: "https://res.cloudinary.com/dmydg7kum/image/upload/v1763361329/avel-chuklanov-DUmFLtMeAbQ-unsplash-1070x713_heioka.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367e0a496aa1002ca9b081?alt=media",
                 type: "image",
             },
             additionalParams: { availableTypes: ["image", "video"] }
