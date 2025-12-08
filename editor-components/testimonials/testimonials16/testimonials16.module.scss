@@ -504,25 +504,10 @@
   cursor: pointer;
   padding: 0;
 
-  &:hover {
-    transform: translateY(-1px);
-    border-color: color-mix(in srgb, var(--composer-font-color-primary), transparent 45%);
-  }
-
+  &:hover,
   &:active {
-    transform: translateY(0);
-  }
-
-  &.navigation-no-animation {
-    transition: none;
-
-    &:hover {
-      transform: none;
-    }
-
-    &:active {
-      transform: none;
-    }
+    transform: none;
+    border-color: color-mix(in srgb, var(--composer-font-color-primary), transparent 55%);
   }
 }
 
@@ -558,15 +543,7 @@
   transition: transform 260ms ease;
 
   &:hover {
-    transform: translateY(-1px);
-  }
-
-  &.navigation-no-animation {
-    transition: none;
-
-    &:hover {
-      transform: none;
-    }
+    transform: none;
   }
 }
 
@@ -616,19 +593,6 @@
     }
   }
 
-  &.navigation-no-animation {
-    &::after {
-      animation: none;
-      opacity: 0;
-    }
-
-    &.navigation-dot-active {
-      &::after {
-        animation: none;
-        opacity: 0;
-      }
-    }
-  }
 }
 
 @keyframes navigationDotFill {
