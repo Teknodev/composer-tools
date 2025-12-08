@@ -1,12 +1,11 @@
 import * as React from "react";
-import { LogoClouds } from "../../EditorComponent";
+import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 type TImage = {
-  image: string;
+  image?: TypeMediaInputValue;
   imageLink: string;
 };
 class LogoComp10Page extends LogoClouds {
@@ -32,10 +31,106 @@ class LogoComp10Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-        INPUTS.LOGO("Section", ""),
-        INPUTS.LOGO("Section", ""),
-        INPUTS.LOGO("Section", ""),
-        INPUTS.LOGO("Section", ""),
+        {
+          type: "object",
+          key: "logo",
+          displayer: "Logo",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "logo",
+          displayer: "Logo",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "logo",
+          displayer: "Logo",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "logo",
+          displayer: "Logo",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
       ],
     });
     this.setComponentState("slider-ref", React.createRef());
@@ -103,8 +198,12 @@ class LogoComp10Page extends LogoClouds {
       }
     }, 0);
   };
+  hasMedia = (media?: TypeMediaInputValue) => {
+    const value = media as { url?: string; value?: { url?: string } } | undefined;
+    return Boolean(value?.url ?? value?.value?.url);
+  };
   getAllLogoItems = (): TImage[] => this.castToObject<TImage[]>("image-items") ?? [];
-  getVisibleLogoItems = (): TImage[] => this.getAllLogoItems().filter((img) => Boolean(img?.image));
+  getVisibleLogoItems = (): TImage[] => this.getAllLogoItems().filter((img) => this.hasMedia(img?.image));
   getChunkSize = (): number => {
     const propValue = this.getPropValue("itemCount");
     const requested = Number(propValue) || 4;
@@ -133,13 +232,22 @@ class LogoComp10Page extends LogoClouds {
   render() {
     const titleExists = this.castToString(this.getPropValue("title"));
     const logoItems = this.getVisibleLogoItems();
-    const totalLogos = logoItems.length;
     const itemCount = this.getChunkSize();
     const sliderRef = this.getComponentState("slider-ref");
     const effectiveChunkSize = this.getEffectiveChunkSize();
     const viewportKey = this.getViewportKey();
+
+    const paddedLogos = [...logoItems];
+    const minimumFill = effectiveChunkSize;
+    let padIndex = 0;
+    while (paddedLogos.length > 0 && paddedLogos.length < minimumFill) {
+      paddedLogos.push(paddedLogos[padIndex % paddedLogos.length]);
+      padIndex += 1;
+    }
+
+    const totalLogos = paddedLogos.length;
     const shouldAnimate = totalLogos > effectiveChunkSize;
-    const chunks = this.chunkLogos(logoItems, effectiveChunkSize);
+    const chunks = this.chunkLogos(paddedLogos, effectiveChunkSize);
     const sliderKey = `slider-${itemCount}-${totalLogos}-${effectiveChunkSize}-${viewportKey}`;
     const sliderSettings = {
       arrows: false,
@@ -176,7 +284,7 @@ class LogoComp10Page extends LogoClouds {
                   className={this.decorateCSS("slider")}
                 >
                   {chunks.map((chunk, slideIndex) => {
-                    const visibleItems = chunk.filter((img: TImage) => img.image);
+                    const visibleItems = chunk.filter((img: TImage) => this.hasMedia(img.image));
                     const gridColumns = Math.min(itemCount, Math.max(1, visibleItems.length));
                     const phoneColumns = Math.min(2, gridColumns);
                     return (
@@ -190,7 +298,7 @@ class LogoComp10Page extends LogoClouds {
                               <div className={this.decorateCSS("image-child")}>
                                 <Base.Media
                                   className={this.decorateCSS("image")}
-                                  value={{ type: "image", url: img.image }}
+                                  value={img.image}
                                 />
                               </div>
                             </ComposerLink>

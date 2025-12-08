@@ -67,7 +67,7 @@
             max-width: 400px;
             max-height: auto;
             aspect-ratio: 3/1;
-            object-fit: cover;
+            object-fit: contain;
             width: 100%;
           }
         }
@@ -86,7 +86,7 @@
         .image {
           max-width: 200px !important;
           aspect-ratio: 3/1;
-          object-fit: cover;
+          object-fit: contain;
           width: 100%;
         }
       }
@@ -107,7 +107,7 @@
         .image {
           max-width: 150px !important;
           aspect-ratio: 3/1;
-          object-fit: cover;
+          object-fit: contain;
           width: 100%;
         }
       }
