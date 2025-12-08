@@ -24,7 +24,7 @@
         .slick-track {
           display: flex !important;
           align-items: stretch;
-          gap: var(--composer-gap-xl);
+          gap: calc(2 * var(--composer-gap-lg));
         }
 
         :global(.slick-slide > div) {
@@ -51,7 +51,7 @@
         .slide-item {
           width: 900px;
           max-width: 1200px;
-          padding: 0 var(--composer-gap-xl);
+          padding: 0 calc(2 * var(--composer-gap-xl));
           display: flex;
           justify-content: center;
           transition: transform var(--composer-transition-duration-normal) ease;
@@ -320,7 +320,7 @@
       .slider-wrapper {
         .slider {
           .slick-track {
-            gap: var(--composer-gap-lg);
+            gap: calc(2 * var(--composer-gap-lg));
           }
 
           .slick-slide,
@@ -336,7 +336,7 @@
           .slide-item {
             width: 480px;
             max-width: 480px;
-            padding: 0 var(--composer-gap-lg);
+            padding: 0 calc(2 * var(--composer-gap-lg));
             transform: translateY(calc(var(--composer-gap-sm))) scale(0.85);
             transform-origin: center;
             height: 240px;
@@ -510,13 +510,13 @@
         .slider {
           .slick-track {
             justify-content: center;
-            gap: var(--composer-gap-md);
+            gap: calc(2 * var(--composer-gap-md));
           }
 
           .slick-slide,
           :global(.slick-slide > div) {
             width: 100% !important;
-            padding: 0 var(--composer-gap-sm);
+            padding: 0 calc(2 * var(--composer-gap-sm));
           }
 
           .slick-list,
