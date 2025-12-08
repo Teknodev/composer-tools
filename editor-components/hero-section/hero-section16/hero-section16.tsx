@@ -11,6 +11,7 @@ type ISliderData = {
   image: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   button: INPUTS.CastedButton;
+  overlay: boolean;
 };
 class HeroSection16 extends BaseHeroSection {
   constructor(props?: any) {
@@ -18,7 +19,7 @@ class HeroSection16 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider",
       key: "slider",
       value: [
         {
@@ -31,7 +32,7 @@ class HeroSection16 extends BaseHeroSection {
               key: "image",
               displayer: "Background Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -50,6 +51,12 @@ class HeroSection16 extends BaseHeroSection {
               value: "We're getting married!",
               displayer: "Title",
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
             INPUTS.BUTTON("button", "Button", "Discuss The Wedding", "", null, null, "White"),
           ],
         },
@@ -63,7 +70,7 @@ class HeroSection16 extends BaseHeroSection {
               key: "image",
               displayer: "Background Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -82,6 +89,12 @@ class HeroSection16 extends BaseHeroSection {
               value: "Your special day",
               displayer: "Title",
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
             INPUTS.BUTTON("button", "Button", "Online Request", "", null, null, "White"),
           ],
         },
@@ -95,7 +108,7 @@ class HeroSection16 extends BaseHeroSection {
               key: "image",
               displayer: "Background Image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -114,6 +127,12 @@ class HeroSection16 extends BaseHeroSection {
               value: "See you at the wedding",
               displayer: "Title",
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
 
             INPUTS.BUTTON("button", "Button", "View Details", "", null, null, "White"),
           ],
@@ -122,11 +141,18 @@ class HeroSection16 extends BaseHeroSection {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    })
+
+    this.addProp({
       type: "media",
       key: "prev-button-icon",
-      displayer: "Previous Slide Button",
+      displayer: "Previous Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -136,9 +162,9 @@ class HeroSection16 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "next-button-icon",
-      displayer: "Next Slide Button",
+      displayer: "Next Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -162,7 +188,7 @@ class HeroSection16 extends BaseHeroSection {
       infinite: true,
       fade: true,
       speed: 500,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -205,7 +231,8 @@ class HeroSection16 extends BaseHeroSection {
                 <div className={this.decorateCSS("item")} key={`key${index}`}>
                   {imageExist && (
                     <div className={this.decorateCSS("image-container")}>
-                      <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                      <Base.Media value={item.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                      {item.overlay && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
                   {contentExist && (
@@ -219,7 +246,7 @@ class HeroSection16 extends BaseHeroSection {
                       {buttonTextExist && (
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                            {item.button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       )}

@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./hero-section14.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -13,6 +12,7 @@ type Slides = {
   description: React.JSX.Element;
   image: TypeMediaInputValue;
   buttons: Array<Buttons>;
+  overlay: boolean;
 };
 
 type Buttons = INPUTS.CastedButton;
@@ -24,9 +24,9 @@ class HeroSection14 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "prevIcon",
-      displayer: "Prev icon",
+      displayer: "Prev Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -36,9 +36,9 @@ class HeroSection14 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "nextIcon",
-      displayer: "Next icon",
+      displayer: "Next Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -48,7 +48,14 @@ class HeroSection14 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Animation Enabled",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
       value: true,
     });
 
@@ -79,19 +86,25 @@ class HeroSection14 extends BaseHeroSection {
               displayer: "Image",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
 
             {
               type: "array",
               displayer: "Buttons",
               key: "buttons",
-              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary")],
+              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "White")],
             },
           ],
         },
@@ -117,7 +130,7 @@ class HeroSection14 extends BaseHeroSection {
               displayer: "Image",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -125,10 +138,16 @@ class HeroSection14 extends BaseHeroSection {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "array",
               displayer: "Buttons",
               key: "buttons",
-              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
+              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "White")],
             },
           ],
         },
@@ -154,18 +173,24 @@ class HeroSection14 extends BaseHeroSection {
               displayer: "Image",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
-                url: "https://mobiles77.com/wp-content/uploads/2022/09/accessories-slide-3.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "array",
               displayer: "Buttons",
               key: "buttons",
-              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
+              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "White")],
             },
           ],
         },
@@ -188,7 +213,7 @@ class HeroSection14 extends BaseHeroSection {
       dots: true,
       arrows: false,
       infinite: true,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -225,11 +250,16 @@ class HeroSection14 extends BaseHeroSection {
 
               return (
                 <div className={this.decorateCSS("slide")} key={`header14-${index}`}>
-                  {image && <Base.Media value={item.image} className={this.decorateCSS("bg-img")} />}
+                  {image && (
+                    <>
+                      <Base.Media value={item.image} className={this.decorateCSS("bg-img")} autoPlay muted loop playsInline />
+                      {item.overlay && <div className={this.decorateCSS("overlay")} />}
+                    </>
+                  )}
                   <div className={`${this.decorateCSS("content-wrapper")} ${isActive && isAnimation && this.decorateCSS("fade-in")}`}>
-                    <div className={`${containerClass} ${noBgClass}`}>
+                    <Base.VerticalContent className={`${containerClass} ${noBgClass}`}>
                       {title && <Base.SectionTitle className={`${this.decorateCSS("title")} ${image && this.decorateCSS("title-with-image")}`}>{item.title}</Base.SectionTitle>}
-                      {description && <div className={this.decorateCSS("description")}>{item.description}</div>}
+                      {description && <Base.SectionDescription className={`${this.decorateCSS("description")} ${image && this.decorateCSS("description-with-image")}`}>{item.description}</Base.SectionDescription>}
 
                       {item.buttons.length > 0 && (
                         <div className={this.decorateCSS("buttons-container")}>
@@ -239,7 +269,7 @@ class HeroSection14 extends BaseHeroSection {
                               buttonText && (
                                 <ComposerLink path={buttonItem.url}>
                                   <Base.Button buttonType={buttonItem.type} key={indexButton} className={this.decorateCSS("button")}>
-                                    <span className={this.decorateCSS("text")}>{buttonItem.text}</span>
+                                    <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                                   </Base.Button>
                                 </ComposerLink>
                               )
@@ -247,7 +277,7 @@ class HeroSection14 extends BaseHeroSection {
                           })}
                         </div>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   </div>
                   {slides.length > 1 && (
                     <>
@@ -257,7 +287,7 @@ class HeroSection14 extends BaseHeroSection {
                           this.getComponentState("slider-ref").current.slickPrev();
                         }}
                       >
-                        <Base.Media value={this.getPropValue("prevIcon")} />
+                        <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("prevIcon")} />
                       </div>
                       <div
                         className={`${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("next-icon")}`}
@@ -265,7 +295,7 @@ class HeroSection14 extends BaseHeroSection {
                           this.getComponentState("slider-ref").current.slickNext();
                         }}
                       >
-                        <Base.Media value={this.getPropValue("nextIcon")} />
+                        <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("nextIcon")} />
                       </div>
                     </>
                   )}

@@ -12,6 +12,7 @@ type ISliderData = {
   image: TypeMediaInputValue;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
+  overlay: boolean;
 };
 
 class HeroSection17 extends BaseHeroSection {
@@ -19,11 +20,18 @@ class HeroSection17 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
       type: "media",
       key: "prev_icon",
-      displayer: "Prev icon",
+      displayer: "Prev Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -33,9 +41,9 @@ class HeroSection17 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "next_icon",
-      displayer: "Next icon",
+      displayer: "Next Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -70,14 +78,19 @@ class HeroSection17 extends BaseHeroSection {
               displayer: "Image",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
               },
             },
-
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            },
             INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
           ],
         },
@@ -103,14 +116,19 @@ class HeroSection17 extends BaseHeroSection {
               displayer: "Image",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
               },
             },
-
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            },
             INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
           ],
         },
@@ -136,14 +154,19 @@ class HeroSection17 extends BaseHeroSection {
               displayer: "Image",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193ed63f1a2002c3c5b49?alt=media&timestamp=1719483666663",
               },
             },
-
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            },
             INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
           ],
         },
@@ -165,7 +188,7 @@ class HeroSection17 extends BaseHeroSection {
       dotsClass: this.decorateCSS("dots"),
       infinite: true,
       speed: 1000,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -183,7 +206,8 @@ class HeroSection17 extends BaseHeroSection {
             return (
               sliderExist && (
                 <div className={this.decorateCSS("slider-content")} key={`key${index}`}>
-                  {image && <Base.Media value={item.image} className={this.decorateCSS("bg-img")} />}
+                  {image && <Base.Media value={item.image} className={this.decorateCSS("bg-img")} autoPlay muted loop playsInline />}
+                  {image && item.overlay && <div className={this.decorateCSS("overlay")} />}
                   <Base.Container className={this.decorateCSS("sub-container")}>
                     <Base.MaxContent className={this.decorateCSS("sub-content")}>
                       {cardExist && (
@@ -195,7 +219,7 @@ class HeroSection17 extends BaseHeroSection {
                       {buttonExist && (
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                            {item.button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       )}
@@ -208,7 +232,7 @@ class HeroSection17 extends BaseHeroSection {
                         this.getComponentState("slider-ref").current.slickNext();
                       }}
                     >
-                      <Base.Media value={this.getPropValue("next_icon") as TypeMediaInputValue} />
+                      <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("next_icon") as TypeMediaInputValue} />
                     </div>
                   )}
                   {slider.length > 1 && (
@@ -218,7 +242,7 @@ class HeroSection17 extends BaseHeroSection {
                         this.getComponentState("slider-ref").current.slickPrev();
                       }}
                     >
-                      <Base.Media value={this.getPropValue("prev_icon") as TypeMediaInputValue} />
+                      <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("prev_icon") as TypeMediaInputValue} />
                     </div>
                   )}
                 </div>

@@ -43,10 +43,9 @@ class HeroSection19 extends BaseHeroSection {
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f79?alt=media&timestamp=1719483639150",
           },
         },
+       INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button1", "Button", "READ MORE", "", null, null, "Primary"));
 
     this.addProp({
       type: "object",
@@ -83,10 +82,9 @@ class HeroSection19 extends BaseHeroSection {
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f78?alt=media&timestamp=1719483639150",
           },
         },
+        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button2", "Button", "READ MORE", "", null, null, "Primary"));
 
     this.addProp({
       type: "object",
@@ -111,7 +109,6 @@ class HeroSection19 extends BaseHeroSection {
           key: "description",
           value: "Adipiscing Sodales",
         },
-
         {
           type: "media",
           displayer: "Image",
@@ -124,10 +121,9 @@ class HeroSection19 extends BaseHeroSection {
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150",
           },
         },
+       INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button3", "Button", "READ MORE", "", null, null, "Primary"));
 
     this.addProp({
       type: "object",
@@ -152,7 +148,6 @@ class HeroSection19 extends BaseHeroSection {
           key: "description",
           value: "",
         },
-
         {
           type: "media",
           displayer: "Image",
@@ -165,10 +160,9 @@ class HeroSection19 extends BaseHeroSection {
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7b?alt=media&timestamp=1719483639150",
           },
         },
+       INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button4", "Button", "", "", null, null, "Primary"));
   }
 
   static getName(): string {
@@ -181,31 +175,28 @@ class HeroSection19 extends BaseHeroSection {
     const itemBottomLeft = this.castToObject<any>("item-right-bottom-left");
     const itemBottomRight = this.castToObject<any>("item-right-bottom-right");
 
-    const button1: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button1");
-    const button2: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button2");
-    const button3: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button3");
-    const button4: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button4");
+    const getButton = (parentButton) => ({
+      text: this.getPropValue("text", { parent_object: parentButton }),
+      type: this.getPropValue("type", { parent_object: parentButton }),
+      url: this.getPropValue("url", { parent_object: parentButton }),
+    });
+
+    const buttonLeft = getButton(itemLeft.button);
+    const buttonRightTop = getButton(itemRightTop.button);
+    const buttonBottomLeft = getButton(itemBottomLeft.button);
+    const buttonBottomRight = getButton(itemBottomRight.button);
 
     const items = [
-      { name: "Left", data: itemLeft },
-      { name: "RightTop", data: itemRightTop },
-      { name: "BottomLeft", data: itemBottomLeft },
-      { name: "BottomRight", data: itemBottomRight },
+      { name: "Left", data: itemLeft, button: buttonLeft },
+      { name: "RightTop", data: itemRightTop, button: buttonRightTop },
+      { name: "BottomLeft", data: itemBottomLeft, button: buttonBottomLeft },
+      { name: "BottomRight", data: itemBottomRight, button: buttonBottomRight },
     ];
 
     let visibleContents: any = {};
 
-    items.forEach(({ name, data }) => {
-      let isVisible = Boolean(this.castToString(data.title) || this.castToString(data.description));
-
-      const buttons = ["button1", "button2", "button3", "button4"];
-      buttons.forEach((buttonName) => {
-        const button = this.castToObject<INPUTS.CastedButton>(buttonName);
-        if (this.castToString(button.text)) {
-          isVisible = true;
-        }
-      });
-
+    items.forEach(({ name, data, button }) => {
+      let isVisible = Boolean(this.castToString(data.title) || this.castToString(data.description) || this.castToString(button.text));
       visibleContents[`isContentVisible${name}`] = isVisible;
     });
 
@@ -229,10 +220,10 @@ class HeroSection19 extends BaseHeroSection {
                   <div className={`${this.decorateCSS("content")} ${!itemLeft.image && this.decorateCSS("no-bg-img")}`}>
                     {this.castToString(itemLeft.title) && <div className={this.decorateCSS("title")}>{itemLeft.title}</div>}
                     {this.castToString(itemLeft.description) && <div className={this.decorateCSS("description")}>{itemLeft.description}</div>}
-                    {this.castToString(button1.text) && (
-                      <ComposerLink path={button1.url}>
-                        <Base.Button buttonType={button1.type} className={this.decorateCSS("button")}>
-                          {button1.text}
+                    {this.castToString(buttonLeft.text) && (
+                      <ComposerLink path={buttonLeft.url}>
+                        <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
+                          {buttonLeft.text}
                         </Base.Button>
                       </ComposerLink>
                     )}
@@ -256,10 +247,10 @@ class HeroSection19 extends BaseHeroSection {
                       <div className={`${this.decorateCSS("content")} ${!itemRightTop.image && this.decorateCSS("no-bg-img")}`}>
                         {this.castToString(itemRightTop.title) && <div className={this.decorateCSS("title")}>{itemRightTop.title}</div>}
                         {this.castToString(itemRightTop.description) && <div className={this.decorateCSS("description")}>{itemRightTop.description}</div>}
-                        {this.castToString(button2.text) && (
-                          <ComposerLink path={button2.url}>
-                            <Base.Button buttonType={button2.type} className={this.decorateCSS("button")}>
-                              {button2.text}
+                        {this.castToString(buttonRightTop.text) && (
+                          <ComposerLink path={buttonRightTop.url}>
+                            <Base.Button buttonType={buttonRightTop.type} className={this.decorateCSS("button")}>
+                              {buttonRightTop.text}
                             </Base.Button>
                           </ComposerLink>
                         )}
@@ -282,10 +273,10 @@ class HeroSection19 extends BaseHeroSection {
                         <div className={`${this.decorateCSS("content")} ${!itemBottomLeft.image && this.decorateCSS("no-bg-img")}`}>
                           {this.castToString(itemBottomLeft.title) && <div className={this.decorateCSS("title")}>{itemBottomLeft.title}</div>}
                           {this.castToString(itemBottomLeft.description) && <div className={this.decorateCSS("description")}>{itemBottomLeft.description}</div>}
-                          {this.castToString(button3.text) && (
-                            <ComposerLink path={button3.url}>
-                              <Base.Button buttonType={button3.type} className={this.decorateCSS("button")}>
-                                {button3.text}
+                          {this.castToString(buttonBottomLeft.text) && (
+                            <ComposerLink path={buttonBottomLeft.url}>
+                              <Base.Button buttonType={buttonBottomLeft.type} className={this.decorateCSS("button")}>
+                                {buttonBottomLeft.text}
                               </Base.Button>
                             </ComposerLink>
                           )}
@@ -304,10 +295,10 @@ class HeroSection19 extends BaseHeroSection {
                         <div className={`${this.decorateCSS("content")} ${!itemBottomRight.image && this.decorateCSS("no-bg-img")}`}>
                           {this.castToString(itemBottomRight.title) && <div className={this.decorateCSS("title")}>{itemBottomRight.title}</div>}
                           {this.castToString(itemBottomRight.description) && <div className={this.decorateCSS("description")}>{itemBottomRight.description}</div>}
-                          {this.castToString(button4.text) && (
-                            <ComposerLink path={button4.url}>
-                              <Base.Button buttonType={button4.type} className={this.decorateCSS("button")}>
-                                {button4.text}
+                          {this.castToString(buttonBottomRight.text) && (
+                            <ComposerLink path={buttonBottomRight.url}>
+                              <Base.Button buttonType={buttonBottomRight.type} className={this.decorateCSS("button")}>
+                                {buttonBottomRight.text}
                               </Base.Button>
                             </ComposerLink>
                           )}

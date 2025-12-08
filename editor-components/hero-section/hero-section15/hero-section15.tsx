@@ -18,15 +18,15 @@ class HeroSection15 extends BaseHeroSection {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.addProp({
       type: "media",
       key: "background-image",
-      displayer: "Background Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -63,7 +63,7 @@ class HeroSection15 extends BaseHeroSection {
             {
               type: "string",
               key: "placeholder",
-              displayer: "Placeholder",
+              displayer: "Placeholder Text",
               value: "Your Order",
             },
           ],
@@ -76,7 +76,7 @@ class HeroSection15 extends BaseHeroSection {
             {
               type: "string",
               key: "placeholder",
-              displayer: "Placeholder",
+              displayer: "Placeholder Text",
               value: "Your Address",
             },
           ],
@@ -96,7 +96,6 @@ class HeroSection15 extends BaseHeroSection {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const backgroundImageValue = this.getPropValue("background-image") as TypeMediaInputValue | undefined;
-    const backgroundImageUrl = backgroundImageValue && typeof backgroundImageValue === "object" && backgroundImageValue.type === "image" && "url" in backgroundImageValue ? backgroundImageValue.url : "";
     const backgroundImageExist = backgroundImageValue;
 
     function getInitialValue() {
@@ -105,12 +104,15 @@ class HeroSection15 extends BaseHeroSection {
       return value;
     }
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : undefined,
-        }}
-      >
+      <Base.Container className={this.decorateCSS("container")}>
+        {backgroundImageValue && (
+          <Base.Media
+            value={backgroundImageValue}
+            className={this.decorateCSS("background-image")}
+            autoPlay
+            loop
+          />
+        )}
         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
         <div className={this.decorateCSS("max-content")}>
           <Base.MaxContent className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
@@ -153,7 +155,7 @@ class HeroSection15 extends BaseHeroSection {
                               {this.castToString(button.text) && (
                                 <div className={this.decorateCSS("button-box")}>
                                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")} type="submit">
-                                    {button.text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                   </Base.Button>
                                 </div>
                               )}
@@ -167,7 +169,7 @@ class HeroSection15 extends BaseHeroSection {
                     <div className={this.decorateCSS("button-box")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {button.text}
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     </div>

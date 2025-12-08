@@ -37,12 +37,20 @@ class HeroSection20 extends BaseHeroSection {
       displayer: "Overlay",
       value: true,
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.addProp({
       type: "media",
       key: "up_icon",
-      displayer: "Up icon",
+      displayer: "Up Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -52,9 +60,9 @@ class HeroSection20 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "down_icon",
-      displayer: "Down icon",
+      displayer: "Down Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -86,10 +94,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -105,7 +113,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -136,10 +144,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -155,7 +163,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -186,10 +194,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -205,7 +213,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -236,10 +244,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -255,7 +263,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -286,10 +294,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -305,7 +313,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -336,10 +344,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -355,7 +363,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -386,10 +394,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -405,7 +413,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -436,10 +444,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -455,7 +463,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -486,10 +494,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -505,7 +513,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -536,10 +544,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -555,7 +563,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -586,10 +594,10 @@ class HeroSection20 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -605,7 +613,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -813,7 +821,7 @@ class HeroSection20 extends BaseHeroSection {
       verticalSwiping: true,
       swipeToSlide: true,
       draggable: true,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       beforeChange: (current: number, next: number) => {
         this.setComponentState("slider", next);
         this.setComponentState("titleSlider", next);
@@ -849,7 +857,7 @@ class HeroSection20 extends BaseHeroSection {
         <ComposerSlider ref={this.sliderRef} {...settings}>
           {slider.map((slide, index) => (
             <div className={this.decorateCSS("image-container")} key={`title-key-${index}`}>
-              {slide.image && <Base.Media value={slide.image} className={this.decorateCSS("image")} />}
+              {slide.image && <Base.Media value={slide.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline controls={false} />}
               {overlay && !imageless && <div className={this.decorateCSS("overlay")} key={`title-key-${index}`}></div>}
             </div>
           ))}
@@ -890,7 +898,7 @@ class HeroSection20 extends BaseHeroSection {
                               className={this.decorateCSS("icon")}
                               onClick={this.handleUpClick}
                             >
-                              <Base.Media value={up_icon} />
+                              <Base.Media className={this.decorateCSS("icon-element")} value={up_icon} />
                             </div>
                           )}
                           {down_icon && (
@@ -898,7 +906,7 @@ class HeroSection20 extends BaseHeroSection {
                               className={this.decorateCSS("icon")}
                               onClick={this.handleDownClick}
                             >
-                              <Base.Media value={down_icon} />
+                              <Base.Media className={this.decorateCSS("icon-element")} value={down_icon} />
                             </div>
                           )}
                         </div>

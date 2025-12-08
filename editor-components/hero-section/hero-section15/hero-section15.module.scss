@@ -2,6 +2,17 @@
 .container {
   min-height: 100vh;
   position: relative;
+  
+  .background-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
   .overlay {
     position: absolute;
     left: 0;
@@ -9,14 +20,13 @@
     width: 100%;
     height: 100%;
     background: var(--composer-overlay-color);
-    z-index: 0;
+    z-index: 1;
   }
   .max-content {
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100vh;
     display: flex;
     position: relative;
+    z-index: 2;
     .wrapper {
       display: flex;
       .left {
@@ -31,19 +41,18 @@
         .content-wrapper {
           width: 100%;
           .content {
+            align-items: baseline;
             .title {
-              font-size: 4rem;
-
+              text-align: left;
               &.title-with-image {
-                color: white;
+                color: black;
               }
             }
 
             .description {
-              font-size: 1.5rem;
-
+              text-align: left;
               &.description-with-image {
-                color: white;
+                color: black;
               }
             }
 
@@ -77,17 +86,17 @@
                       width: 100%;
                       height: 100%;
                       margin: 0px;
-                      border: 1px solid #e5e5e5;
-                      border-radius: var(--composer-border-radius-md);
+                      border: 1px solid white;
+                      border-radius: var(--composer-border-radius-sm);
                       padding: var(--composer-gap-sm);
                       background-color: transparent;
                       color: black;
 
                       &.placeholder-no-image {
-                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                        border: 1px solid var(--composer-tertiary-color);
                         color: var(--composer-font-color-primary);
                         &::placeholder {
-                          color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+                          color: var(--composer-tertiary-color);
                         }
                         &:focus {
                           border: 1px solid var(--composer-font-color-primary);
@@ -115,7 +124,9 @@
                   .button-box {
                     min-width: fit-content;
                     .button {
-                      content: "";
+                      .button-text{
+                        content: "";
+                      }
                     }
                   }
                 }

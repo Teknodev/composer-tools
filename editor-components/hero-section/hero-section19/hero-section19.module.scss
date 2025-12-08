@@ -23,6 +23,7 @@
 
         .content {
           text-overflow: ellipsis;
+          padding: var(--composer-gap-md);
 
           .title {
             font-size: 1rem;
@@ -223,12 +224,12 @@
 
       .left {
         width: 100%;
-        height: auto;
+        aspect-ratio: 1;
 
         .item {
           width: 100%;
           padding: var(--composer-gap-md);
-          height: auto;
+          height: 100%;
 
           .content {
             .description {

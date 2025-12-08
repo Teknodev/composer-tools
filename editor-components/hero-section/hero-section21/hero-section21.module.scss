@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     .content {
       display: flex;
@@ -142,7 +141,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg);
     .max-content {
       .content {
         display: flex;
@@ -204,7 +202,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0 var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
 
     .max-content {
       gap: var(--composer-gap-xs);

@@ -54,7 +54,7 @@ class HeroSection21 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Thumbnail",
       additionalParams: {
         availableTypes: ["image"],
       },
@@ -65,29 +65,35 @@ class HeroSection21 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "icon",
-      displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "MdOutlinePlayCircleOutline",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      displayer: "Video",
-      key: "video",
-      additionalParams: {
-        availableTypes: ["video"],
-      },
-      value: {
-        type: "video",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
-      },
+      type: "object",
+      key: "video_player",
+      displayer: "Video Player",
+      value: [
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdOutlinePlayCircleOutline",
+          },
+        },
+        {
+          type: "media",
+          displayer: "Video",
+          key: "video",
+          additionalParams: {
+            availableTypes: ["video"],
+          },
+          value: {
+            type: "video",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
+          },
+        },
+      ],
     });
 
     this.setComponentState("is_video_visible", false);
@@ -104,7 +110,9 @@ class HeroSection21 extends BaseHeroSection {
     const descExist = this.castToString(card.description);
 
     const imageValue = this.getPropValue("image") as TypeMediaInputValue | undefined;
-    const videoValue = this.getPropValue("video") as TypeMediaInputValue | undefined;
+    const videoPlayer = this.castToObject<any>("video_player");
+    const videoValue = videoPlayer?.video as TypeMediaInputValue | undefined;
+    const iconValue = videoPlayer?.icon as TypeMediaInputValue | undefined;
     const videoUrl = videoValue && typeof videoValue === "object" && videoValue.type === "video" && "url" in videoValue ? videoValue.url : "";
     const image = imageValue;
     const video = videoValue;
@@ -143,13 +151,13 @@ class HeroSection21 extends BaseHeroSection {
             )}
             {image && (
               <div className={`${this.decorateCSS("image-box")} ${!cardExist && this.decorateCSS("image-box-full")}`}>
-                {this.getPropValue("icon") && <button
+                {iconValue && <button
                   className={this.decorateCSS("button")}
                   onClick={() => {
                     this.setComponentState("is_video_visible", true);
                   }}
                 >
-                  <Base.Media value={this.getPropValue("icon") as TypeMediaInputValue} className={this.decorateCSS("btn-icon")} />
+                  <Base.Media value={iconValue} className={this.decorateCSS("btn-icon")} />
                 </button>}
                 {image && <Base.Media value={imageValue} className={this.decorateCSS("image")} />}
                 {this.getComponentState("is_video_visible") && video && image && (
