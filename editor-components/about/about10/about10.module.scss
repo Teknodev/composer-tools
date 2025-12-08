@@ -38,6 +38,8 @@
           align-self: flex-start;
           margin-top: var(--composer-gap-sm);
           gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          justify-content: flex-start;
           align-items: center;
           
           .button {
