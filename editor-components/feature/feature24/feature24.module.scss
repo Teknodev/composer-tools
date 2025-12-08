@@ -4,6 +4,15 @@
   .max-content {
     .page {
       width: 100%;
+      gap: var(--composer-gap-lg);
+
+      @media (max-width: $composer-tablet-width) {
+        gap: var(--composer-gap-md);
+      }
+
+      @media (max-width: $composer-phone-width) {
+        gap: var(--composer-gap-sm);
+      }
     }
 
     .header {
@@ -12,6 +21,12 @@
       align-items: center !important;
       text-align: center !important;
       justify-content: center !important;
+      width: 100%;
+      margin-bottom: var(--composer-gap-md);
+
+      @media (max-width: $composer-phone-width) {
+        margin-bottom: var(--composer-gap-xs);
+      }
 
       .title,
       .description {
@@ -24,6 +39,7 @@
         text-align: center !important;
         margin-left: auto !important;
         margin-right: auto !important;
+        display: inline-block;
 
         &:before {
           display: none !important;
@@ -34,19 +50,18 @@
     }
 
     .list {
-      gap: var(--composer-gap-lg);
-      margin-top: var(--composer-gap-md);
-      margin-bottom: var(--composer-gap-md);
+      width: 100%;
 
       @media (max-width: $composer-tablet-width) {
-        margin-top: var(--composer-gap-sm);
-        margin-bottom: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
+        margin-top: 0;
       }
 
       @media (max-width: $composer-phone-width) {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: var(--composer-gap-xs) !important;
+        gap: var(--composer-gap-sm) !important;
+        row-gap: var(--composer-gap-md) !important;
       }
     }
 
@@ -59,7 +74,7 @@
       text-align: left;
 
       @media (max-width: $composer-phone-width) {
-        gap: 6px;
+        gap: var(--composer-gap-sm);
         align-items: flex-start;
       }
 
@@ -85,20 +100,19 @@
         }
 
         .icon {
-          width: 24px;
-          height: 24px;
-          font-size: 24px;
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
           display: flex;
           justify-content: center;
           align-items: center;
           color: var(--composer-primary-color);
           object-fit: contain;
-          border-radius: 0;
 
           @media (max-width: $composer-phone-width) {
-            width: 18px;
-            height: 18px;
-            font-size: 18px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
           }
         }
       }
@@ -111,10 +125,8 @@
         min-width: 0;
         word-break: break-word;
         overflow-wrap: break-word;
-        hyphens: auto;
 
         @media (max-width: $composer-phone-width) {
-          font-size: 0.75rem;
           line-height: 1.3;
           margin-top: 2px;
         }
@@ -148,18 +160,19 @@
     .buttons {
       display: flex;
       align-items: center;
+      justify-content: center !important;
       gap: var(--composer-gap-md);
       flex-wrap: wrap;
       width: 100%;
-      justify-content: center;
-      margin-top: var(--composer-gap-xl);
+      margin-top: var(--composer-gap-lg);
 
       @media (max-width: $composer-tablet-width) {
-        margin-top: var(--composer-gap-lg);
+        margin-top: var(--composer-gap-md);
       }
 
       @media (max-width: $composer-phone-width) {
-        margin-top: var(--composer-gap-md);
+        margin-top: var(--composer-gap-sm);
+        gap: var(--composer-gap-sm);
       }
 
       .button {
@@ -168,7 +181,7 @@
         gap: var(--composer-gap-sm);
 
         .btn-icon {
-          font-size: var(--composer-font-size-lg);
+          font-size: var(--composer-font-size-md);
         }
 
         .button-text {
