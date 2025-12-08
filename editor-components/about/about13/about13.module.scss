@@ -24,23 +24,6 @@
         justify-content: center;
         align-items: flex-start !important;
         text-align: left !important;
-
-        &.center {
-          align-items: center !important;
-          text-align: center !important;
-
-          .subtitle,
-          .title,
-          .description {
-            text-align: center !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-          }
-
-          .buttons-wrapper {
-            justify-content: center !important;
-          }
-        }
       }
 
       .subtitle,
@@ -135,6 +118,23 @@
 
         .content-inner {
           width: 100%;
+
+          &.center {
+            align-items: center !important;
+            text-align: center !important;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .buttons-wrapper {
+              justify-content: center !important;
+            }
+          }
         }
 
         .image-wrapper {

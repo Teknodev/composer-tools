@@ -67,7 +67,7 @@ class About13 extends BaseAbout {
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
-      } as TypeMediaInputValue,
+      },
     });
   }
 
@@ -80,7 +80,7 @@ class About13 extends BaseAbout {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const image = this.getPropValue("image") as TypeMediaInputValue | null;
-    const imageUrl = (image as any)?.url as string | undefined;
+    const imageUrl = image?.url;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
@@ -100,7 +100,7 @@ class About13 extends BaseAbout {
       validButtons.length > 0;
 
     const hasImage = !!imageUrl;
-    const shouldCenterContent = alignment === "center" && !hasImage;
+    const shouldCenterContent = alignment === "center";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
