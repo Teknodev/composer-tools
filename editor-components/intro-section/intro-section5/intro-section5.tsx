@@ -131,7 +131,7 @@ class IntroSection5 extends BaseIntroSection {
         )}
 
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist || descriptionExist) && (
               <div className={this.decorateCSS("text-wrapper")}>
                 {subtitleExist && (
