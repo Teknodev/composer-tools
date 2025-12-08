@@ -87,14 +87,14 @@ class IntroSection4 extends BaseIntroSection {
         return (
             <Base.Container
                 className={`${this.decorateCSS("container")} 
-                ${hasMedia ? this.decorateCSS("has-bg-image") : this.decorateCSS("no-bg")} 
+                ${hasMedia ? this.decorateCSS("fullscreen-mode") : this.decorateCSS("content-mode")} 
                 ${hasMedia && this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
             >
                 {hasMedia && (
-                    <div className={this.decorateCSS("bg-media-container")}>
+                    <div className={this.decorateCSS("background-media-container")}>
                         <Base.Media
                             value={coverImage}
-                            className={this.decorateCSS("bg-media")}
+                            className={this.decorateCSS("background-media")}
                         />
                     </div>
                 )}
