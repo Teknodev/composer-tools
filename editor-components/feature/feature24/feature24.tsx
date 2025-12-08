@@ -33,7 +33,8 @@ class Feature24 extends BaseFeature {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+      value:
+        "Completely iterate covalent strategic theme areas via accurate e-markets.",
     });
 
     this.addProp({
@@ -66,7 +67,7 @@ class Feature24 extends BaseFeature {
       "User-friendly interface",
       "24/7 Customer support",
       "Regular updates",
-      "Detailed documentation"
+      "Detailed documentation",
     ];
 
     this.addProp({
@@ -83,12 +84,12 @@ class Feature24 extends BaseFeature {
             key: "icon",
             displayer: "Icon",
             additionalParams: {
-              availableTypes: ["image", "icon"]
+              availableTypes: ["image", "icon"],
             },
             value: {
               type: "icon",
-              name: "TiTick"
-            }
+              name: "TiTick",
+            },
           },
           {
             type: "string",
@@ -105,7 +106,15 @@ class Feature24 extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
+        INPUTS.BUTTON(
+          "button",
+          "Button",
+          "Get Started",
+          "",
+          null,
+          null,
+          "Primary"
+        ),
       ],
     });
   }
@@ -118,13 +127,7 @@ class Feature24 extends BaseFeature {
     if (!media) return null;
 
     if (media.type === "image" && media.url) {
-      return (
-        <img 
-          src={media.url} 
-          alt="feature-icon" 
-          className={className} 
-        />
-      );
+      return <img src={media.url} alt="feature-icon" className={className} />;
     }
 
     if (media.type === "icon" && media.name) {
@@ -155,10 +158,14 @@ class Feature24 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("page")}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
+            {(this.castToString(subtitle) ||
+              this.castToString(title) ||
+              this.castToString(description)) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
@@ -168,7 +175,9 @@ class Feature24 extends BaseFeature {
                   </Base.SectionTitle>
                 )}
                 {this.castToString(description) && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
                     {description}
                   </Base.SectionDescription>
                 )}
@@ -176,27 +185,44 @@ class Feature24 extends BaseFeature {
             )}
 
             {features.length > 0 && (
-              <Base.ListGrid 
-                gridCount={{ pc: itemCount, tablet: 4, phone: 2 }} 
+              <Base.ListGrid
+                gridCount={{ pc: itemCount, tablet: 4, phone: 2 }}
                 className={this.decorateCSS("list")}
               >
                 {features.map((item: FeatureItem, index: number) => {
                   const text = item.text;
-                  const iconData = item.icon; 
+                  const iconData = item.icon;
                   const hasText = this.castToString(text);
-                  
-                  const hasMedia = (iconData?.type === "icon" && iconData.name) || (iconData?.type === "image" && iconData.url);
+
+                  const hasMedia =
+                    (iconData?.type === "icon" && iconData.name) ||
+                    (iconData?.type === "image" && iconData.url);
 
                   if (!hasText && !hasMedia) return null;
 
+                  const rowClassName = `${this.decorateCSS("row")} ${
+                    !iconBackground ? this.decorateCSS("no-bg-icon") : ""
+                  }`;
+
                   return (
-                    <Base.Row key={index} className={this.decorateCSS("row")}>
-                      {hasMedia && (
-                        <div className={iconWrapperClass}>
-                          {this.renderMedia(iconData, this.decorateCSS("icon"))}
-                        </div>
-                      )}
-                      <Base.H6 className={this.decorateCSS("text")}>{text}</Base.H6>
+                    <Base.Row key={index} className={rowClassName}>
+                      {hasMedia &&
+                        (iconBackground ? (
+                          <div className={iconWrapperClass}>
+                            {this.renderMedia(
+                              iconData,
+                              this.decorateCSS("icon")
+                            )}
+                          </div>
+                        ) : (
+                          this.renderMedia(
+                            iconData,
+                            this.decorateCSS("icon")
+                          )
+                        ))}
+                      <Base.H6 className={this.decorateCSS("text")}>
+                        {text}
+                      </Base.H6>
                     </Base.Row>
                   );
                 })}
@@ -205,33 +231,39 @@ class Feature24 extends BaseFeature {
 
             {buttons.length > 0 && (
               <div className={this.decorateCSS("buttons")}>
-                {buttons.map((buttonItem: INPUTS.CastedButton, index: number) => {
-                  const text = buttonItem.text;
-                  const url = buttonItem.url;
-                  const type = buttonItem.type;
-                  const icon = buttonItem.icon;
+                {buttons.map(
+                  (buttonItem: INPUTS.CastedButton, index: number) => {
+                    const text = buttonItem.text;
+                    const url = buttonItem.url;
+                    const type = buttonItem.type;
+                    const icon = buttonItem.icon;
 
-                  if (!this.castToString(text)) return null;
+                    if (!this.castToString(text)) return null;
 
-                  return (
-                    <ComposerLink key={index} path={url}>
-                      <Base.Button
-                        buttonType={type}
-                        className={this.decorateCSS("button")}
-                      >
-                        {icon && (
-                          <Base.Icon 
-                            name={icon} 
-                            propsIcon={{ className: this.decorateCSS("btn-icon") }} 
-                          />
-                        )}
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
+                    return (
+                      <ComposerLink key={index} path={url}>
+                        <Base.Button
+                          buttonType={type}
+                          className={this.decorateCSS("button")}
+                        >
+                          {icon && (
+                            <Base.Icon
+                              name={icon}
+                              propsIcon={{
+                                className: this.decorateCSS("btn-icon"),
+                              }}
+                            />
+                          )}
+                          <Base.P
+                            className={this.decorateCSS("button-text")}
+                          >
+                            {text}
+                          </Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  }
+                )}
               </div>
             )}
           </Base.VerticalContent>
