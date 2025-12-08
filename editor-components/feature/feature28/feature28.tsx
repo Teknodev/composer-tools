@@ -1,25 +1,61 @@
 import * as React from "react";
-import { BaseFeature, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature28.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+type Feature28Props = Record<string, unknown>;
+
 class Feature28Component extends BaseFeature {
-  constructor(props?: any) {
+  constructor(props?: Feature28Props) {
     super(props, styles);
 
-    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
-    this.addProp({ type: "string", key: "title", displayer: "Title", value: "The best-rated top-seller" });
-    this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely." });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "The best-rated top-seller",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Nanotechnology immersion along the information highway will close the loop on focusing solely.",
+    });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "About us", "", "", null, "White"),
-        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaArrowRight", null, "White"),
+        INPUTS.BUTTON(
+          "button",
+          "Button",
+          "About us",
+          "",
+          "",
+          null,
+          "White"
+        ),
+        INPUTS.BUTTON(
+          "button",
+          "Button",
+          "Watch how we work",
+          "",
+          "FaArrowRight",
+          null,
+          "White"
+        ),
       ],
     });
 
@@ -34,7 +70,25 @@ class Feature28Component extends BaseFeature {
       },
     });
 
-    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
+      key: "buttonIcon",
+      displayer: "Button Icon",
+      value: {
+        type: "icon",
+        name: "FaArrowRight",
+      } as TypeMediaInputValue,
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+    });
   }
 
   static getName(): string {
@@ -46,22 +100,29 @@ class Feature28Component extends BaseFeature {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("image") as TypeMediaInputValue | null;
     const overlayEnabled = this.getPropValue("overlay");
 
     const alignment = Base.getContentAlignment();
     const hasBackground = !!image?.url;
     const isVideo = image?.type === "video" && hasBackground;
-    
+
     const effectiveAlignment = alignment;
 
     const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttonIcon = this.getPropValue("buttonIcon") as
+      | TypeMediaInputValue
+      | null;
+
+    const hasButtonIcon =
+      !!buttonIcon && ((buttonIcon as any).name || (buttonIcon as any).url);
 
     const validButtons = Array.isArray(buttonsList)
       ? buttonsList.filter((item) => {
           const text = this.castToString(item.text || "");
-          const iconName = (item as any)?.icon?.name;
-          return !!text || !!iconName;
+          const iconName =
+            (item as any)?.icon?.name || (item as any)?.icon || "";
+          return !!text || !!this.castToString(iconName);
         })
       : [];
 
@@ -70,14 +131,21 @@ class Feature28Component extends BaseFeature {
     const isDescriptionExist = this.castToString(description);
 
     const isContentExist =
-      isSubtitleExist || isTitleExist || isDescriptionExist || validButtons.length > 0;
+      isSubtitleExist ||
+      isTitleExist ||
+      isDescriptionExist ||
+      validButtons.length > 0;
 
     return (
       <Base.Container
         className={`
           ${this.decorateCSS("container")}
           ${hasBackground ? this.decorateCSS("hasBackground") : ""}
-          ${hasBackground && overlayEnabled ? this.decorateCSS("overlay") : ""}
+          ${
+            hasBackground && overlayEnabled
+              ? this.decorateCSS("overlay")
+              : ""
+          }
         `}
       >
         {hasBackground && (
@@ -102,7 +170,9 @@ class Feature28Component extends BaseFeature {
               data-alignment={effectiveAlignment}
             >
               {isSubtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle
+                  className={this.decorateCSS("subtitle")}
+                >
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
@@ -114,7 +184,9 @@ class Feature28Component extends BaseFeature {
               )}
 
               {isDescriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
                   {description}
                 </Base.SectionDescription>
               )}
@@ -123,20 +195,31 @@ class Feature28Component extends BaseFeature {
                 <Base.Row className={this.decorateCSS("button-container")}>
                   {validButtons.map((item, index) => {
                     const text = this.castToString(item.text || "");
-                    const iconName = (item as any)?.icon?.name;
+                    const iconName =
+                      (item as any)?.icon?.name || (item as any)?.icon || "";
+                    const hasIconFlag = !!this.castToString(iconName);
+                    const showIcon = hasIconFlag && hasButtonIcon;
 
                     return (
-                      <ComposerLink key={`btn-${index}`} path={item.url || "#"}>
-                        <Base.Button className={this.decorateCSS("button")} buttonType={item.type}>
-                          {iconName && (
+                      <ComposerLink
+                        key={`btn-${index}`}
+                        path={item.url || "#"}
+                      >
+                        <Base.Button
+                          className={this.decorateCSS("button")}
+                          buttonType={item.type}
+                        >
+                          {showIcon && buttonIcon && (
                             <Base.Media
                               className={this.decorateCSS("button-icon")}
-                              value={{ type: "icon", name: iconName }}
+                              value={buttonIcon}
                             />
                           )}
-                          
+
                           {text && (
-                            <Base.P className={this.decorateCSS("button-text")}>
+                            <Base.P
+                              className={this.decorateCSS("button-text")}
+                            >
                               {item.text}
                             </Base.P>
                           )}
