@@ -192,7 +192,7 @@ class About10 extends BaseAbout {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: [],
       additionalParams: {
         selectItems: ["animate1", "animate2"]
       }
@@ -212,6 +212,8 @@ class About10 extends BaseAbout {
     const buttonIcon = buttonObject?.icon;
     const mainImage = this.getPropValue("mainImage");
     const features = this.castToObject<FeatureItem[]>("features");
+    const hoverAnimation = this.getPropValue("hoverAnimation") || [];
+    const animationClass = hoverAnimation.length ? hoverAnimation.join(" ") : "";
 
     const hasSubtitleOrTitle = this.castToString(subtitle) || this.castToString(title);
     const hasDescriptionOrButton = this.castToString(description) || this.castToString(button.text) || (buttonIcon && buttonIcon.name);
@@ -242,32 +244,34 @@ class About10 extends BaseAbout {
             )}
             {hasDescriptionOrButton && (
               <div className={this.decorateCSS("content-section")}>
-                {this.castToString(description) && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
-                {(this.castToString(button.text) || (buttonIcon && buttonIcon.name)) && (
-                  <div className={this.decorateCSS("button-wrapper")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button buttonType={button.type}>
-                        {buttonIcon && buttonIcon.name && (
-                          <div className={this.decorateCSS("button-icon-wrapper")}>
-                            <Base.Media
-                              value={buttonIcon}
-                              className={this.decorateCSS("button-icon")}
-                            />
-                          </div>
-                        )}
-                        {this.castToString(button.text) && (
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {button.text}
-                          </Base.P>
-                        )}
-                      </Base.Button>
-                    </ComposerLink>
-                  </div>
-                )}
+                <Base.VerticalContent className={this.decorateCSS("action-content")}>
+                  {this.castToString(description) && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
+                  )}
+                  {(this.castToString(button.text) || (buttonIcon && buttonIcon.name)) && (
+                    <div className={this.decorateCSS("button-wrapper")}>
+                      <ComposerLink path={button.url}>
+                        <Base.Button buttonType={button.type}>
+                          {buttonIcon && buttonIcon.name && (
+                            <div className={this.decorateCSS("button-icon-wrapper")}>
+                              <Base.Media
+                                value={buttonIcon}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            </div>
+                          )}
+                          {this.castToString(button.text) && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {button.text}
+                            </Base.P>
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  )}
+                </Base.VerticalContent>
               </div>
             )}
           </div>
@@ -275,7 +279,7 @@ class About10 extends BaseAbout {
           {isImageExist && (
             <div 
               className={this.decorateCSS("image-section")}
-              data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              data-animation={animationClass || undefined}
             >
               <Base.Media
                 value={mainImage}
