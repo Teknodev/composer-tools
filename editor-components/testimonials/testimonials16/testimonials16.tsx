@@ -312,6 +312,13 @@ class Testimonials16 extends Testimonials {
 
     this.addProp({
       type: "boolean",
+      key: "navigationAnimation",
+      displayer: "Navigation Animation",
+      value: true,
+    })
+
+    this.addProp({
+      type: "boolean",
       key: "divider",
       displayer: "Divider",
       value: true,
@@ -394,6 +401,7 @@ class Testimonials16 extends Testimonials {
     const showBackgroundOverlay = this.getPropValue("backgroundOverlay")
     const autoplayEnabled = this.getPropValue("autoplay") !== false
     const showNavigation = this.getPropValue("navigation") !== false
+    const navigationAnimationEnabled = this.getPropValue("navigationAnimation") !== false
     const activePortrait = filteredTestimonials[activeIndex]?.image
     const subtitleType = Base.getSectionSubTitleType()
     const hideBadgeBackground = subtitleType === "badge" && !!activePortrait
@@ -569,7 +577,7 @@ class Testimonials16 extends Testimonials {
             <div className={this.decorateCSS("nav-wrapper")}>
               {prevIcon && (
                 <div
-                  className={this.decorateCSS("navigation-button")}
+                  className={`${this.decorateCSS("navigation-button")} ${!navigationAnimationEnabled ? this.decorateCSS("navigation-no-animation") : ""}`}
                   role="button"
                   tabIndex={0}
                   onClick={() => {
@@ -585,12 +593,12 @@ class Testimonials16 extends Testimonials {
                   <Base.Media value={prevIcon} className={this.decorateCSS("navigation-icon")} />
                 </div>
               )}
-              <div className={this.decorateCSS("navigation-dots-panel")}>
+              <div className={`${this.decorateCSS("navigation-dots-panel")} ${!navigationAnimationEnabled ? this.decorateCSS("navigation-no-animation") : ""}`}>
                 <div className={this.decorateCSS("navigation-dots")}>
                   {filteredTestimonials.map((_: TestimonialItem, index: number) => (
                     <div
                       key={index}
-                      className={`${this.decorateCSS("navigation-dot")} ${activeIndex === index ? this.decorateCSS("navigation-dot-active") : ""}`}
+                      className={`${this.decorateCSS("navigation-dot")} ${activeIndex === index ? this.decorateCSS("navigation-dot-active") : ""} ${!navigationAnimationEnabled ? this.decorateCSS("navigation-no-animation") : ""}`}
                       onClick={() => {
                         sliderRef?.current?.slickGoTo(index)
                       }}
@@ -600,7 +608,7 @@ class Testimonials16 extends Testimonials {
               </div>
               {nextIcon && (
                 <div
-                  className={this.decorateCSS("navigation-button")}
+                  className={`${this.decorateCSS("navigation-button")} ${!navigationAnimationEnabled ? this.decorateCSS("navigation-no-animation") : ""}`}
                   role="button"
                   tabIndex={0}
                   onClick={() => {

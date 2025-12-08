@@ -108,6 +108,10 @@
 
   .author-divider {
     background: gray !important;
+
+    &.author-divider-hidden {
+      background: transparent !important;
+    }
   }
 
   }
@@ -312,7 +316,7 @@
 .image-inner {
   position: relative;
   width: 100%;
-  border-radius: var(--composer-border-radius-sm);
+  border-radius: var(--composer-border-radius-md);
   overflow: hidden;
   aspect-ratio: 3 / 4;
   margin-top: var(--composer-gap-xs);
@@ -428,6 +432,18 @@
   padding-top: var(--composer-gap-xs);
   flex-wrap: nowrap;
   text-align: left !important;
+  align-self: flex-start !important;
+  margin-right: auto !important;
+  width: fit-content !important;
+
+  .author,
+  .role,
+  .role-company,
+  .author-separator {
+    text-align: left !important;
+    justify-content: flex-start !important;
+    align-self: flex-start !important;
+  }
 }
 
 .author-divider {
@@ -450,6 +466,7 @@
   margin: 0 !important;
   text-align: left !important;
   justify-content: flex-start !important;
+  align-self: flex-start !important;
 }
 
 .author {
@@ -468,8 +485,10 @@
 
 .author-separator {
   margin: 0 var(--composer-gap-xs);
-  width:fit-content;
-
+  width: fit-content;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-self: flex-start !important;
 }
 
 .navigation-button {
@@ -492,6 +511,18 @@
 
   &:active {
     transform: translateY(0);
+  }
+
+  &.navigation-no-animation {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+
+    &:active {
+      transform: none;
+    }
   }
 }
 
@@ -528,6 +559,14 @@
 
   &:hover {
     transform: translateY(-1px);
+  }
+
+  &.navigation-no-animation {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
   }
 }
 
@@ -574,6 +613,24 @@
     &::after {
       animation: navigationDotFill 5200ms linear forwards;
       opacity: 1;
+    }
+  }
+
+  &.navigation-no-animation {
+    transition: none;
+
+    &::after {
+      transition: none;
+    }
+
+    &.navigation-dot-active {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+
+      &::after {
+        animation: none;
+      }
     }
   }
 }
