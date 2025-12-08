@@ -35,6 +35,12 @@
     &.no-bg {
         .content {
             min-height: auto !important;
+
+            .vertical-content {
+                .subtitle {
+                    padding: var(--composer-gap-xs) var(--composer-gap-md);
+                }
+            }
         }
     }
 
@@ -67,6 +73,7 @@
                 margin-left: auto !important;
                 margin-right: auto !important;
                 transform: none !important;
+                padding: 0;
 
                 &::before {
                     display: none !important;
