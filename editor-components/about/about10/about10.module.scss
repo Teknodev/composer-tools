@@ -37,6 +37,8 @@
           display: flex;
           align-self: flex-start;
           margin-top: var(--composer-gap-sm);
+          gap: var(--composer-gap-sm);
+          align-items: center;
           
           .button {
             content: "";

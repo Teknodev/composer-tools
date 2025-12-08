@@ -1,9 +1,8 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface FeatureItem {
   title: React.JSX.Element;
@@ -37,49 +36,56 @@ class About10 extends BaseAbout {
     });
 
     this.addProp({
-      type: "object",
+      type: "array",
       key: "button",
       displayer: "Button",
       value: [
         {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "More About Us",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: {
-            availableTypes: ["icon","image"],
-          },
-          value: {
-            type: "icon",
-            name: "",
-          },
-        },
-        {
-          type: "select",
-          key: "type",
-          displayer: "Type",
-          value: "Primary",
-          additionalParams: {
-            selectItems: [
-              "Primary",
-              "Secondary",
-              "Tertiary",
-              "Link",
-              "White",
-              "Black",
-            ],
-          },
+          type: "object",
+          key: "buttonItem",
+          displayer: "Button Item",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "More About Us",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon","image"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Primary",
+              additionalParams: {
+                selectItems: [
+                  "Primary",
+                  "Secondary",
+                  "Tertiary",
+                  "Link",
+                  "White",
+                  "Black",
+                ],
+              },
+            },
+          ],
         },
       ],
     });
@@ -207,16 +213,27 @@ class About10 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonObject = this.castToObject<any>("button");
-    const buttonIcon = buttonObject?.icon;
+    const buttonArray = this.castToObject<any[]>("button") || [];
+    const buttonItems = buttonArray
+      .map((btn) => {
+        const btnText = this.castToString(btn?.text);
+        const btnUrl = btn?.url;
+        const btnIcon = btn?.icon as TypeMediaInputValue | undefined;
+        const btnType = btn?.type;
+        const hasIcon = !!(btnIcon && (btnIcon as { name?: string }).name);
+        const hasText = !!btnText;
+        return { btnText, btnUrl, btnIcon, btnType, hasIcon, hasText };
+      })
+      .filter((btn) => btn.hasIcon || btn.hasText);
+    const hasButtonIcon = buttonItems.some((btn) => btn.hasIcon);
+    const hasButtonText = buttonItems.some((btn) => btn.hasText);
     const mainImage = this.getPropValue("mainImage");
     const features = this.castToObject<FeatureItem[]>("features");
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
     const animationClass = hoverAnimation.length ? hoverAnimation.join(" ") : "";
 
     const hasSubtitleOrTitle = this.castToString(subtitle) || this.castToString(title);
-    const hasDescriptionOrButton = this.castToString(description) || this.castToString(button.text) || (buttonIcon && buttonIcon.name);
+    const hasDescriptionOrButton = this.castToString(description) || hasButtonText || hasButtonIcon;
     const isImageExist = mainImage;
     const isFeaturesExist = features.length > 0;
 
@@ -250,25 +267,27 @@ class About10 extends BaseAbout {
                       {description}
                     </Base.SectionDescription>
                   )}
-                  {(this.castToString(button.text) || (buttonIcon && buttonIcon.name)) && (
+                  {buttonItems.length > 0 && (
                     <div className={this.decorateCSS("button-wrapper")}>
-                      <ComposerLink path={button.url}>
-                        <Base.Button buttonType={button.type}>
-                          {buttonIcon && buttonIcon.name && (
-                            <div className={this.decorateCSS("button-icon-wrapper")}>
-                              <Base.Media
-                                value={buttonIcon}
-                                className={this.decorateCSS("button-icon")}
-                              />
-                            </div>
-                          )}
-                          {this.castToString(button.text) && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {button.text}
-                            </Base.P>
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
+                      {buttonItems.map((btn, idx) => (
+                        <ComposerLink key={idx} path={btn.btnUrl}>
+                          <Base.Button buttonType={(btn.btnType as any) || "Primary"}>
+                            {btn.hasIcon && (
+                              <div className={this.decorateCSS("button-icon-wrapper")}>
+                                <Base.Media
+                                  value={btn.btnIcon}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              </div>
+                            )}
+                            {btn.hasText && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {btn.btnText}
+                              </Base.P>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      ))}
                     </div>
                   )}
                 </Base.VerticalContent>
