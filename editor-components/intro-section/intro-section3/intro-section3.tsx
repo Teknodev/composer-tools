@@ -1,12 +1,16 @@
 import * as React from "react";
-import { BaseIntroSection, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
+import {
+  BaseIntroSection,
+  TypeUsableComponentProps,
+  TypeMediaInputValue,
+} from "../../EditorComponent";
 import styles from "./intro-section3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class IntroSection3 extends BaseIntroSection {
-  constructor(props?: any) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
     this.addProp({
@@ -64,15 +68,21 @@ class IntroSection3 extends BaseIntroSection {
       value: false,
     });
 
-    const buttonProp = INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary");
+    const buttonProp = INPUTS.BUTTON(
+      "button",
+      "Button 1",
+      "Start Now",
+      "",
+      "",
+      null,
+      "Primary"
+    );
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        buttonProp,
-      ],
+      value: [buttonProp],
     });
   }
 
@@ -84,17 +94,17 @@ class IntroSection3 extends BaseIntroSection {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    
+
     const subtitle1 = this.getPropValue("subtitle1");
     const subtitle2 = this.getPropValue("subtitle2");
-    
-    const image = this.getPropValue("image") as TypeMediaInputValue;
-    const imageUrl = (image as any)?.url;
+
+    const image = this.getPropValue("image") as TypeMediaInputValue | null;
+    const imageUrl = image?.url;
     const overlay = this.getPropValue("overlay");
 
     const buttonsProp = this.getProp("buttons");
     const buttonsList = (buttonsProp?.value || []) as TypeUsableComponentProps[];
-    
+
     const subtitleText = this.castToString(subtitle);
     const titleText = this.castToString(title);
     const descriptionText = this.castToString(description);
@@ -107,9 +117,10 @@ class IntroSection3 extends BaseIntroSection {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            
             {subtitleText && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              <Base.SectionSubTitle
+                className={this.decorateCSS("subtitle")}
+              >
                 {subtitle}
               </Base.SectionSubTitle>
             )}
@@ -121,45 +132,66 @@ class IntroSection3 extends BaseIntroSection {
             )}
 
             {descriptionText && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
+              <Base.SectionDescription
+                className={this.decorateCSS("description")}
+              >
                 {description}
               </Base.SectionDescription>
             )}
 
-            <div className={`${this.decorateCSS("button-group-container")} ${alignment === "center" ? this.decorateCSS("center") : ""}`}>
+            <div
+              className={`${this.decorateCSS("button-group-container")} ${
+                alignment === "center" ? this.decorateCSS("center") : ""
+              }`}
+            >
               <div className={this.decorateCSS("buttons-wrapper")}>
-                
-                {buttonsList && buttonsList.map((buttonItem: TypeUsableComponentProps, index: number) => {
-                  if (!buttonItem.getPropValue) return null;
+                {buttonsList &&
+                  buttonsList.map(
+                    (buttonItem: TypeUsableComponentProps, index: number) => {
+                      if (!buttonItem.getPropValue) return null;
 
-                  const buttonTextElement = buttonItem.getPropValue("text");
-                  const url = buttonItem.getPropValue("url", { as_string: true });
-                  const buttonType = buttonItem.getPropValue("type", { as_string: true });
-                  const buttonImage = buttonItem.getPropValue("buttonImage") as TypeMediaInputValue;
+                      const buttonTextElement = buttonItem.getPropValue("text");
+                      const url = buttonItem.getPropValue("url", {
+                        as_string: true,
+                      });
+                      const buttonType = buttonItem.getPropValue("type", {
+                        as_string: true,
+                      });
+                      const buttonImage =
+                        buttonItem.getPropValue(
+                          "buttonImage"
+                        ) as TypeMediaInputValue | null;
 
-                  const hasButtonText = !!this.castToString(buttonTextElement);
-                  const hasButtonImage = buttonImage && (buttonImage as any).url;
+                      const hasButtonText =
+                        !!this.castToString(buttonTextElement);
+                      const hasButtonImage = !!buttonImage?.url;
 
-                  if (!hasButtonText && !hasButtonImage) return null;
-                  
-                  return (
-                    <ComposerLink key={index} path={url || "#"}>
-                      <Base.Button 
-                        buttonType={buttonType || "Primary"} 
-                        className={this.decorateCSS("button")}
-                      >
-                        {hasButtonImage && (
-                          <Base.Media value={buttonImage} className={this.decorateCSS("button-image")} />
-                        )}
-                        {hasButtonText && (
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {buttonTextElement}
-                          </Base.P>
-                        )}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
+                      if (!hasButtonText && !hasButtonImage) return null;
+
+                      return (
+                        <ComposerLink key={index} path={url || "#"}>
+                          <Base.Button
+                            buttonType={buttonType || "Primary"}
+                            className={this.decorateCSS("button")}
+                          >
+                            {hasButtonImage && (
+                              <Base.Media
+                                value={buttonImage}
+                                className={this.decorateCSS("button-image")}
+                              />
+                            )}
+                            {hasButtonText && (
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {buttonTextElement}
+                              </Base.P>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    }
+                  )}
               </div>
 
               {(subtitle1Text || subtitle2Text) && (
@@ -179,11 +211,17 @@ class IntroSection3 extends BaseIntroSection {
             </div>
 
             {imageUrl && (
-              <div className={`${this.decorateCSS("image")} ${overlay ? this.decorateCSS("overlay") : ""}`}>
-                <Base.Media value={image} />
+              <div
+                className={`${this.decorateCSS("image")} ${
+                  overlay ? this.decorateCSS("overlay") : ""
+                }`}
+              >
+                <Base.Media
+                  value={image as TypeMediaInputValue}
+                  className={this.decorateCSS("image")}
+                />
               </div>
             )}
-
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
