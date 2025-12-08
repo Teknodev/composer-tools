@@ -6,13 +6,25 @@ import {
 } from "../../EditorComponent";
 import styles from "./intro-section8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IntroMediaValue = TypeMediaInputValue & {
   name?: string;
 };
 
+type IntroButton = {
+  text: React.JSX.Element;
+  url: string;
+  icon?: TypeMediaInputValue;
+  image?: TypeMediaInputValue;
+  type: string;
+};
+
+type IntroSection8Props = TypeUsableComponentProps;
+
 class IntroSection8 extends BaseIntroSection {
-  constructor(props?: TypeUsableComponentProps) {
+  constructor(props?: IntroSection8Props) {
     super(props, styles);
 
     this.addProp({
@@ -43,7 +55,7 @@ class IntroSection8 extends BaseIntroSection {
       value: {
         type: "video",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
-      } as TypeMediaInputValue,
+      },
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -56,7 +68,7 @@ class IntroSection8 extends BaseIntroSection {
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6936735a496aa1002ca98cfa?alt=media",
-      } as TypeMediaInputValue,
+      },
       additionalParams: {
         availableTypes: ["image"],
       },
@@ -71,7 +83,7 @@ class IntroSection8 extends BaseIntroSection {
 
     this.addProp({
       type: "boolean",
-      key: "showBackgroundShape",
+      key: "background",
       displayer: "Background",
       value: true,
     });
@@ -83,10 +95,17 @@ class IntroSection8 extends BaseIntroSection {
       value: {
         type: "icon",
         name: "FaPlay",
-      } as TypeMediaInputValue,
+      },
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [],
     });
   }
 
@@ -116,16 +135,14 @@ class IntroSection8 extends BaseIntroSection {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const showBackgroundShape = this.getPropValue("showBackgroundShape");
+    const background = this.getPropValue("background");
 
     return (
       <div className={this.decorateCSS("text-content")}>
         {this.castToString(subtitle) && (
           <Base.SectionSubTitle
             className={`${this.decorateCSS("subtitle")} ${
-              showBackgroundShape
-                ? this.decorateCSS("with-background")
-                : "badge"
+              background ? this.decorateCSS("with-background") : "badge"
             }`}
           >
             {subtitle}
@@ -134,7 +151,7 @@ class IntroSection8 extends BaseIntroSection {
         {this.castToString(title) && (
           <Base.SectionTitle
             className={`${this.decorateCSS("title")} ${
-              showBackgroundShape && this.decorateCSS("with-background")
+              background && this.decorateCSS("with-background")
             }`}
           >
             {title}
@@ -143,12 +160,80 @@ class IntroSection8 extends BaseIntroSection {
         {this.castToString(description) && (
           <Base.SectionDescription
             className={`${this.decorateCSS("description")} ${
-              showBackgroundShape && this.decorateCSS("with-background")
+              background && this.decorateCSS("with-background")
             }`}
           >
             {description}
           </Base.SectionDescription>
         )}
+      </div>
+    );
+  }
+
+  private renderMediaButtons() {
+    const buttons = this.castToObject<IntroButton[]>("buttons");
+
+    if (!Array.isArray(buttons) || buttons.length === 0) {
+      return null;
+    }
+
+    const validButtons = buttons.filter((buttonItem) => {
+      const textExist = this.castToString(buttonItem.text);
+      const iconExist =
+        buttonItem.icon && (buttonItem.icon as IntroMediaValue).name;
+      const imageExist =
+        buttonItem.image && (buttonItem.image as IntroMediaValue).url;
+      return !!textExist || !!iconExist || !!imageExist;
+    });
+
+    if (validButtons.length === 0) {
+      return null;
+    }
+
+    return (
+      <div className={this.decorateCSS("media-buttons")}>
+        {validButtons.map((buttonItem, index) => {
+          const textExist = this.castToString(buttonItem.text);
+          const iconExist =
+            buttonItem.icon && (buttonItem.icon as IntroMediaValue).name;
+          const imageExist =
+            buttonItem.image && (buttonItem.image as IntroMediaValue).url;
+
+          const hasText = !!textExist;
+          const hasIcon = !!iconExist;
+          const hasImage = !!imageExist;
+
+          const url = buttonItem.url;
+          const type = buttonItem.type;
+
+          return (
+            <ComposerLink key={index} path={url}>
+              {hasImage ? (
+                <Base.Media
+                  value={buttonItem.image as TypeMediaInputValue}
+                  className={this.decorateCSS("media-button-image")}
+                />
+              ) : (
+                <Base.Button
+                  buttonType={type}
+                  className={this.decorateCSS("media-button")}
+                >
+                  {hasIcon && (
+                    <Base.Media
+                      value={buttonItem.icon as TypeMediaInputValue}
+                      className={this.decorateCSS("media-button-icon")}
+                    />
+                  )}
+                  {hasText && (
+                    <Base.P className={this.decorateCSS("media-button-text")}>
+                      {buttonItem.text}
+                    </Base.P>
+                  )}
+                </Base.Button>
+              )}
+            </ComposerLink>
+          );
+        })}
       </div>
     );
   }
@@ -237,19 +322,15 @@ class IntroSection8 extends BaseIntroSection {
   }
 
   render() {
-    const showBackgroundShape = this.getPropValue("showBackgroundShape");
-    const containerClass = showBackgroundShape
-      ? `${this.decorateCSS("container")} ${this.decorateCSS("has-background")}`
-      : this.decorateCSS("container");
+    const background = this.getPropValue("background");
 
     return (
-      <Base.Container className={containerClass}>
-        {showBackgroundShape && (
-          <div className={this.decorateCSS("background-shape")} />
-        )}
+      <Base.Container className={this.decorateCSS("container")}>
+        {background && <div className={this.decorateCSS("background")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             {this.renderTextContent()}
+            {this.renderMediaButtons()}
             {this.renderMediaContent()}
           </Base.VerticalContent>
         </Base.MaxContent>

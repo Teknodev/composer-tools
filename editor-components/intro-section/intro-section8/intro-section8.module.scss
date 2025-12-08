@@ -5,7 +5,7 @@
   width: 100%;
   overflow: hidden;
 
-  .background-shape {
+  .background {
     position: absolute;
     inset: 0;
     background-color: var(--composer-primary-color);
@@ -75,6 +75,52 @@
 
         &.with-background {
           color: var(--composer-font-color-secondary) !important;
+        }
+      }
+
+      .media-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: var(--composer-gap-sm);
+        margin-bottom: var(--composer-gap-sm);
+
+        .media-button {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+
+          .media-button-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .img,
+            .svg {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+
+          .media-button-text {
+            content: "";
+          }
+        }
+
+        .media-button-image {
+          width: auto;
+          max-width: 100%;
+          height: auto;
+          display: block;
+
+          .img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
         }
       }
 
@@ -168,10 +214,11 @@
             justify-content: center;
             align-items: center;
 
-            svg {
+            .svg,
+            .img {
               width: 100%;
               height: 100%;
-              fill: currentColor;
+              object-fit: contain;
             }
           }
         }
@@ -182,7 +229,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .background-shape {
+    .background {
       clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
     }
 
@@ -190,6 +237,26 @@
       .content {
         .media-wrapper {
           height: auto !important;
+          aspect-ratio: 16 / 9;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        gap: var(--composer-gap-sm);
+
+        .media-buttons {
+          margin-top: var(--composer-gap-xs);
+          margin-bottom: var(--composer-gap-xs);
+        }
+
+        .media-wrapper {
+          height: auto;
           aspect-ratio: 16 / 9;
         }
       }
