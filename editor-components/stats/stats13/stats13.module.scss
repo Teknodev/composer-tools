@@ -58,7 +58,7 @@
         .wrapper {
             display: flex;
             width: 100%;
-            gap: var(--gap-md);
+            gap: var(--composer-gap-md);
             padding-left: calc(var(--padding-md) * 5);
 
             .left-content {
