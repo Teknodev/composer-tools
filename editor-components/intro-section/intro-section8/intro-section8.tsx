@@ -9,22 +9,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type IntroMediaValue = TypeMediaInputValue & {
-  name?: string;
-};
-
-type IntroButton = {
-  text: React.JSX.Element;
-  url: string;
-  icon?: TypeMediaInputValue;
-  image?: TypeMediaInputValue;
-  type: string;
-};
-
-type IntroSection8Props = TypeUsableComponentProps;
-
 class IntroSection8 extends BaseIntroSection {
-  constructor(props?: IntroSection8Props) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
     this.addProp({
@@ -45,7 +31,8 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value:
+        "Completely iterate covalent strategic theme areas via accurate e-markets.",
     });
 
     this.addProp({
@@ -105,7 +92,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [],
+      value: [], // Başlangıçta tamamen boş
     });
   }
 
@@ -171,21 +158,25 @@ class IntroSection8 extends BaseIntroSection {
   }
 
   private renderMediaButtons() {
-    const buttons = this.castToObject<IntroButton[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
+    // Dizi yoksa veya boşsa hiç render etme (boşluk oluşmaz)
     if (!Array.isArray(buttons) || buttons.length === 0) {
       return null;
     }
 
+    // İçeriği (yazısı, ikonu veya resmi) olan butonları filtrele
     const validButtons = buttons.filter((buttonItem) => {
-      const textExist = this.castToString(buttonItem.text);
-      const iconExist =
-        buttonItem.icon && (buttonItem.icon as IntroMediaValue).name;
-      const imageExist =
-        buttonItem.image && (buttonItem.image as IntroMediaValue).url;
-      return !!textExist || !!iconExist || !!imageExist;
+      const hasText = !!this.castToString(buttonItem.text);
+      const hasIcon =
+        buttonItem.icon &&
+        (buttonItem.icon.name || (buttonItem.icon as any).url);
+      // 'any' casting used for safety if type implies url exists on icon type
+      
+      return hasText || hasIcon;
     });
 
+    // Eğer geçerli (dolu) buton yoksa null dön
     if (validButtons.length === 0) {
       return null;
     }
@@ -193,44 +184,29 @@ class IntroSection8 extends BaseIntroSection {
     return (
       <div className={this.decorateCSS("media-buttons")}>
         {validButtons.map((buttonItem, index) => {
-          const textExist = this.castToString(buttonItem.text);
-          const iconExist =
-            buttonItem.icon && (buttonItem.icon as IntroMediaValue).name;
-          const imageExist =
-            buttonItem.image && (buttonItem.image as IntroMediaValue).url;
-
-          const hasText = !!textExist;
-          const hasIcon = !!iconExist;
-          const hasImage = !!imageExist;
-
+          const text = buttonItem.text;
           const url = buttonItem.url;
           const type = buttonItem.type;
+          const icon = buttonItem.icon;
 
           return (
             <ComposerLink key={index} path={url}>
-              {hasImage ? (
-                <Base.Media
-                  value={buttonItem.image as TypeMediaInputValue}
-                  className={this.decorateCSS("media-button-image")}
-                />
-              ) : (
-                <Base.Button
-                  buttonType={type}
-                  className={this.decorateCSS("media-button")}
-                >
-                  {hasIcon && (
-                    <Base.Media
-                      value={buttonItem.icon as TypeMediaInputValue}
-                      className={this.decorateCSS("media-button-icon")}
-                    />
-                  )}
-                  {hasText && (
-                    <Base.P className={this.decorateCSS("media-button-text")}>
-                      {buttonItem.text}
-                    </Base.P>
-                  )}
-                </Base.Button>
-              )}
+              <Base.Button
+                buttonType={type}
+                className={this.decorateCSS("media-button")}
+              >
+                {icon && (
+                  <Base.Icon
+                    name={icon}
+                    propsIcon={{
+                      className: this.decorateCSS("media-button-icon"),
+                    }}
+                  />
+                )}
+                <Base.P className={this.decorateCSS("media-button-text")}>
+                  {text}
+                </Base.P>
+              </Base.Button>
             </ComposerLink>
           );
         })}
@@ -241,15 +217,17 @@ class IntroSection8 extends BaseIntroSection {
   private renderThumbnailContent(
     thumbnail: TypeMediaInputValue,
     overlay: boolean,
-    playIcon: IntroMediaValue | null,
+    playIcon: TypeMediaInputValue | null,
     hasPlayIcon: boolean
   ) {
+    const thumbnailUrl = thumbnail.type === "image" ? thumbnail.url : "";
+
     return (
       <div
         className={this.decorateCSS("thumbnail-container")}
         onClick={this.handlePlayVideo}
       >
-        {thumbnail?.url && (
+        {thumbnailUrl && (
           <Base.Media
             value={thumbnail}
             className={this.decorateCSS("thumbnail-image")}
@@ -277,7 +255,6 @@ class IntroSection8 extends BaseIntroSection {
           settings: { autoplay: true, controls: true },
         }}
         className={this.decorateCSS("video")}
-        onEnded={this.handleVideoPause}
       />
     );
   }
@@ -293,11 +270,23 @@ class IntroSection8 extends BaseIntroSection {
 
   private renderMediaContent() {
     const media = this.getPropValue("media") as TypeMediaInputValue | null;
-    const mediaUrl = media?.url;
     const overlay = this.getPropValue("overlay");
     const thumbnail = this.getPropValue("thumbnail") as TypeMediaInputValue;
-    const playIcon = this.getPropValue("playIcon") as IntroMediaValue | null;
-    const hasPlayIcon = !!(playIcon && (playIcon.name || playIcon.url));
+    const playIcon = this.getPropValue("playIcon") as TypeMediaInputValue;
+
+    const mediaUrl =
+      media && media.type === "video"
+        ? media.url
+        : media && media.type === "image"
+        ? media.url
+        : "";
+
+    const hasPlayIcon = !!(
+      playIcon &&
+      ((playIcon.type === "icon" && playIcon.name) ||
+        (playIcon.type === "image" && playIcon.url))
+    );
+
     const isPlaying = this.getComponentState("isPlaying");
     const isVideo = media?.type === "video";
 
@@ -306,14 +295,16 @@ class IntroSection8 extends BaseIntroSection {
     return (
       <div className={this.decorateCSS("media-wrapper")}>
         {isVideo ? (
-          !isPlaying
-            ? this.renderThumbnailContent(
-                thumbnail,
-                overlay,
-                playIcon,
-                hasPlayIcon
-              )
-            : this.renderVideoContent(mediaUrl)
+          !isPlaying ? (
+            this.renderThumbnailContent(
+              thumbnail,
+              overlay,
+              playIcon,
+              hasPlayIcon
+            )
+          ) : (
+            this.renderVideoContent(mediaUrl)
+          )
         ) : (
           this.renderImageContent(media, overlay)
         )}
