@@ -73,7 +73,7 @@ class About10 extends BaseAbout {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "Primary",
+              value: "Secondary",
               additionalParams: {
                 selectItems: [
                   "Primary",
@@ -218,7 +218,7 @@ class About10 extends BaseAbout {
       .map((btn) => {
         const btnText = this.castToString(btn?.text);
         const btnUrl = btn?.url;
-        const btnIcon = btn?.icon as TypeMediaInputValue | undefined;
+        const btnIcon = btn?.icon;
         const btnType = btn?.type;
         const hasIcon = !!(btnIcon && (btnIcon as { name?: string }).name);
         const hasText = !!btnText;
@@ -271,7 +271,7 @@ class About10 extends BaseAbout {
                     <div className={this.decorateCSS("button-wrapper")}>
                       {buttonItems.map((btn, idx) => (
                         <ComposerLink key={idx} path={btn.btnUrl}>
-                          <Base.Button buttonType={(btn.btnType as any) || "Primary"}>
+                          <Base.Button buttonType={(btn.btnType as any) || "Secondary"}>
                             {btn.hasIcon && (
                               <div className={this.decorateCSS("button-icon-wrapper")}>
                                 <Base.Media
