@@ -14,7 +14,7 @@ class IntroSection4 extends BaseIntroSection {
             key: "cover-image",
             displayer: "Image",
             value: {
-                url: "https://res.cloudinary.com/dmydg7kum/image/upload/v1763494879/thought-catalog-Nv-vx3kUR2A-unsplash_hlncis.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367c26496aa1002ca9a73c?alt=media",
                 type: "image",
             },
 
