@@ -16,9 +16,21 @@ class LogoComp10Page extends LogoClouds {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "OUR TRUSTED PARTNERS",
+    });
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "OUR TRUSTED PARTNERS",
+      value: "",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
     this.addProp({
       type: "number",
@@ -230,7 +242,12 @@ class LogoComp10Page extends LogoClouds {
     return chunks;
   };
   render() {
-    const titleExists = this.castToString(this.getPropValue("title"));
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const subtitleStr = this.castToString(subtitle);
+    const titleStr = this.castToString(title);
+    const descStr = this.castToString(description);
     const logoItems = this.getVisibleLogoItems();
     const itemCount = this.getChunkSize();
     const sliderRef = this.getComponentState("slider-ref");
@@ -238,9 +255,9 @@ class LogoComp10Page extends LogoClouds {
     const viewportKey = this.getViewportKey();
 
     const paddedLogos = [...logoItems];
-    const minimumFill = effectiveChunkSize;
+    const chunkSize = Math.max(1, effectiveChunkSize);
     let padIndex = 0;
-    while (paddedLogos.length > 0 && paddedLogos.length < minimumFill) {
+    while (paddedLogos.length > 0 && paddedLogos.length % chunkSize !== 0) {
       paddedLogos.push(paddedLogos[padIndex % paddedLogos.length]);
       padIndex += 1;
     }
@@ -265,11 +282,23 @@ class LogoComp10Page extends LogoClouds {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {titleExists && (
-            <Base.VerticalContent className={this.decorateCSS("heading")}>
-              <Base.H4 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.H4>
+          {(subtitleStr || titleStr || descStr) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")} ref={this.setContainerRef}>
+              {subtitleStr && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {titleStr && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descStr && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
             </Base.VerticalContent>
           )}
           {logoItems.length > 0 && (
