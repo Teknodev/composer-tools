@@ -61,7 +61,7 @@
     .max-content {
       min-height: 100vh;
 
-      .vertical-content {
+      .content {
         .text-wrapper {
           margin-top: auto;
           margin-bottom: auto;
@@ -76,7 +76,7 @@
 
   &:not(.media-active) {
     .max-content {
-      .vertical-content {
+      .content {
         .text-wrapper {
           margin-top: 0;
           margin-bottom: 0;
@@ -125,7 +125,7 @@
     align-items: center;
     padding: 0;
 
-    .vertical-content {
+    .content {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -235,7 +235,7 @@
     }
 
     .max-content {
-      .vertical-content {
+      .content {
         .buttons {
           flex-direction: column;
           width: 100%;
