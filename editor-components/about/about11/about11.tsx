@@ -142,7 +142,7 @@ class About11 extends BaseAbout {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
   }
   static getName(): string {
@@ -152,7 +152,7 @@ class About11 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    
+
     const rightItems = this.castToObject<Icon[]>("right-items") || [];
     const iconBackground = this.getPropValue("iconBackground");
 
@@ -161,8 +161,13 @@ class About11 extends BaseAbout {
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
     const hasDescription = this.castToString(description);
+    const hasRightIcon = rightItems.some((ri) => {
+      const icon = ri?.icon;
+      return icon?.name || icon?.url;
+    });
     const hasRightContent =
-      hasTitle || hasSubtitle || hasDescription || rightItems.length > 0;
+      hasTitle || hasSubtitle || hasDescription || hasRightIcon;
+
     const hasImage = !!(image && image.url);
     const alignmentValue = Base.getContentAlignment();
 
@@ -175,7 +180,9 @@ class About11 extends BaseAbout {
                 <div className={this.decorateCSS("image-wrapper")}>
                   <Base.Media
                     value={
-                      image && (image as any).type === "video" && (image as any).url
+                      image &&
+                      (image as any).type === "video" &&
+                      (image as any).url
                         ? {
                             type: "video",
                             url: (image as any).url,
@@ -196,11 +203,15 @@ class About11 extends BaseAbout {
               </Base.GridCell>
             )}
             {hasRightContent && (
-              <Base.GridCell className={`${this.decorateCSS("right")} ${
-                !hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""
-              } ${
-                alignmentValue === "center" ? this.decorateCSS("center") : ""
-              }`}>
+              <Base.GridCell
+                className={`${this.decorateCSS("right")} ${
+                  !hasImage && alignmentValue === "center"
+                    ? this.decorateCSS("no-image-center")
+                    : ""
+                } ${
+                  alignmentValue === "center" ? this.decorateCSS("center") : ""
+                }`}
+              >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
                 >
