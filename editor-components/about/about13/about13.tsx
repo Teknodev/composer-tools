@@ -102,8 +102,15 @@ class About13 extends BaseAbout {
     const hasImage = !!imageUrl;
     const shouldCenterContent = alignment === "center";
 
+    const containerClasses = [
+      this.decorateCSS("container"),
+      !hasImage ? this.decorateCSS("no-image") : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={containerClasses}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("wrapper")}>

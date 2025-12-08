@@ -105,6 +105,31 @@
       }
     }
   }
+
+  &.no-image {
+    .max-content {
+      .content {
+        .content-inner {
+          &.center {
+            align-items: center !important;
+            text-align: center !important;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .buttons-wrapper {
+              justify-content: center !important;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
