@@ -80,6 +80,7 @@ class About13 extends BaseAbout {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const image = this.getPropValue("image") as TypeMediaInputValue | null;
+    const imageUrl = (image as any)?.url as string | undefined;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
@@ -87,8 +88,7 @@ class About13 extends BaseAbout {
     const validButtons = Array.isArray(buttons)
       ? buttons.filter((item) => {
           const text = this.castToString(item.text || "");
-          const iconName = item.icon?.name;
-          const hasValidIcon = !!iconName;
+          const hasValidIcon = !!item.icon;
           return !!text || hasValidIcon;
         })
       : [];
@@ -99,7 +99,8 @@ class About13 extends BaseAbout {
       this.castToString(description) ||
       validButtons.length > 0;
 
-    const hasImage = Boolean(image?.url);
+    const hasImage = !!imageUrl;
+    const shouldCenterContent = alignment === "center" && !hasImage;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -109,7 +110,7 @@ class About13 extends BaseAbout {
               {isContentVisible && (
                 <div
                   className={`${this.decorateCSS("content-inner")} ${
-                    alignment === "center" ? this.decorateCSS("center") : ""
+                    shouldCenterContent ? this.decorateCSS("center") : ""
                   }`}
                 >
                   {this.castToString(subtitle) && (
@@ -140,7 +141,12 @@ class About13 extends BaseAbout {
                         const buttonTextExist = this.castToString(
                           item.text || ""
                         );
-                        const iconExist = item.icon && item.icon.name;
+                        const iconExist = !!item.icon;
+
+                        if (!buttonTextExist && !iconExist) {
+                          return null;
+                        }
+
                         return (
                           <ComposerLink key={index} path={item.url}>
                             <Base.Button
@@ -148,9 +154,11 @@ class About13 extends BaseAbout {
                               className={this.decorateCSS("button")}
                             >
                               {iconExist && (
-                                <Base.Media
-                                  value={item.icon}
-                                  className={this.decorateCSS("icon")}
+                                <Base.Icon
+                                  name={item.icon as string}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
                                 />
                               )}
                               {buttonTextExist && (
@@ -176,11 +184,11 @@ class About13 extends BaseAbout {
                   }`}
                 >
                   <Base.Media
-                    value={image}
+                    value={image as TypeMediaInputValue}
                     className={this.decorateCSS("image")}
                   />
-                  {overlay && image?.url && (
-                    <div className={this.decorateCSS("overlay")}></div>
+                  {overlay && imageUrl && (
+                    <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
               )}

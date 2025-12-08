@@ -24,6 +24,23 @@
         justify-content: center;
         align-items: flex-start !important;
         text-align: left !important;
+
+        &.center {
+          align-items: center !important;
+          text-align: center !important;
+
+          .subtitle,
+          .title,
+          .description {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+
+          .buttons-wrapper {
+            justify-content: center !important;
+          }
+        }
       }
 
       .subtitle,
@@ -62,13 +79,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        .img,
-        .svg {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
       }
 
       .image-wrapper {
@@ -116,41 +126,38 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .content {
-      .wrapper {
-        flex-direction: column;
-        gap: var(--composer-gap-lg);
-      }
+    .max-content {
+      .content {
+        .wrapper {
+          flex-direction: column;
+          gap: var(--composer-gap-lg);
+        }
 
-      .content-inner {
-        width: 100%;
+        .content-inner {
+          width: 100%;
+        }
 
-        &.center {
-          align-items: center !important;
-          text-align: center !important;
+        .image-wrapper {
+          justify-content: center;
 
-          .subtitle,
-          .title,
-          .description {
-            text-align: center !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-          }
-
-          .buttons-wrapper {
-            justify-content: center !important;
+          &.full-width {
+            .image {
+              height: auto;
+              max-height: 400px;
+            }
           }
         }
       }
+    }
+  }
+}
 
-      .image-wrapper {
-        justify-content: center;
-
-        &.full-width {
-          .image {
-            height: auto;
-            max-height: 400px;
-          }
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        .image-wrapper {
+          min-height: 200px;
         }
       }
     }
