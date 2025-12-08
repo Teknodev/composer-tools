@@ -206,14 +206,15 @@
           padding: var(--composer-gap-md);
 
           .icon {
-            width: 36px;
-            height: 36px;
+            width: 35px;
+            height: 35px;
             color: currentColor;
             fill: currentColor;
             display: flex;
             justify-content: center;
             align-items: center;
 
+            svg,
             .svg,
             .img {
               width: 100%;
@@ -257,7 +258,6 @@
 
         .media-wrapper {
           height: auto;
-          aspect-ratio: 16 / 9;
         }
       }
     }
