@@ -25,11 +25,12 @@
       }
 
       .text-content {
-        width: 50%;
+        width: calc(50% - var(--composer-gap-xl));
         display: flex;
         flex-direction: column;
         justify-content: center;
         height: 100%;
+
         padding-right: var(--composer-gap-xl);
 
         &.text-content-alone {
@@ -107,7 +108,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: calc(50% - var(--composer-gap-xl));
+        width: 50%;
         height: 100%;
 
         &.image-container-alone {
