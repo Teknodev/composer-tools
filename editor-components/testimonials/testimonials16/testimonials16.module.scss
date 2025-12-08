@@ -280,7 +280,7 @@
 
 .card {
   background: white;
-  border-radius: var(--composer-border-radius-sm);
+  border-radius: var(--composer-border-radius-md);
   overflow: hidden;
   display: flex;
   min-height: 420px;
@@ -316,7 +316,7 @@
 .image-inner {
   position: relative;
   width: 100%;
-  border-radius: var(--composer-border-radius-md);
+  border-radius: var(--composer-border-radius-sm);
   overflow: hidden;
   aspect-ratio: 3 / 4;
   margin-top: var(--composer-gap-xs);
@@ -617,19 +617,15 @@
   }
 
   &.navigation-no-animation {
-    transition: none;
-
     &::after {
-      transition: none;
+      animation: none;
+      opacity: 0;
     }
 
     &.navigation-dot-active {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-
       &::after {
         animation: none;
+        opacity: 0;
       }
     }
   }
