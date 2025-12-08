@@ -343,12 +343,14 @@ class ImageGallery11 extends BaseImageGallery {
     const hasBackgroundMedia = !!backgroundMedia;
     const showOverlay = this.getPropValue("backgroundOverlay") && hasBackgroundMedia;
     const subtitleType = Base.getSectionSubTitleType();
+    const alignment = Base.getContentAlignment();
     const baseSubtitleClass = this.decorateCSS("subtitle");
     const subtitleClassList = [baseSubtitleClass];
     if (hasBackgroundMedia) {
       subtitleClassList.push(this.decorateCSS("subtitle-with-bg"));
       if (subtitleType === "badge") {
         subtitleClassList.push(this.decorateCSS("subtitle-transparent"));
+        subtitleClassList.push(this.decorateCSS("subtitle-badge-hidden"));
       }
     }
     const subtitleClasses = subtitleClassList.join(" ");
@@ -376,7 +378,7 @@ class ImageGallery11 extends BaseImageGallery {
           {hasTextContent && (
             <div className={this.decorateCSS("content")}>
               <div className={this.decorateCSS("text-wrapper")}>
-                <div className={headingClasses}>
+                <div className={headingClasses} data-alignment={alignment}>
                   {hasSubtitle && (
                     <Base.SectionSubTitle className={subtitleClasses}>
                       {subtitle}
