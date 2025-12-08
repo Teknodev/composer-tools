@@ -77,7 +77,7 @@ class About12 extends BaseAbout {
     const hasDescription = this.castToString(description);
 
     const hasAnyButton = buttons.some(
-      (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon
+      (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
     );
     const hasRightContainer = !!(
       hasTitle ||
@@ -163,8 +163,8 @@ class About12 extends BaseAbout {
                       {buttons.map(
                         (item: INPUTS.CastedButton, index: number) => {
                           const btnTextExist = this.castToString(item.text);
-                          const buttonIconExist = item.icon?.name || item.icon;
                           const buttonIcon = item.icon;
+                          const buttonIconExist = buttonIcon?.name || buttonIcon?.url;
                           const buttonText = item.text;
 
                           if (!btnTextExist && !buttonIconExist) {
