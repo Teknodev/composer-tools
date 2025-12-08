@@ -267,6 +267,22 @@ class ImageGallery11 extends BaseImageGallery {
         .filter((row) => row.images.length > 0);
     };
 
+    const pauseSlider = (sliderRef: any) => {
+      if (!sliderRef) return;
+      const target = sliderRef.slickPause ? sliderRef : sliderRef.innerSlider;
+      if (target && typeof target.slickPause === "function") {
+        target.slickPause();
+      }
+    };
+
+    const playSlider = (sliderRef: any) => {
+      if (!sliderRef) return;
+      const target = sliderRef.slickPlay ? sliderRef : sliderRef.innerSlider;
+      if (target && typeof target.slickPlay === "function") {
+        target.slickPlay();
+      }
+    };
+
     const handleOpenPopup = (media: TypeMediaInputValue | undefined, rowIndex: number, imageIndex: number) => {
       if (!media) return;
       this.setComponentState("imagePopupOpen", true);
@@ -274,14 +290,7 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupRow", rowIndex);
       this.setComponentState("imagePopupIndex", imageIndex);
       this.setComponentState("imagePopupZoomed", false);
-      const slider = this.sliderRefs[rowIndex];
-      if (slider) {
-        if (slider?.slickPause) {
-          slider.slickPause();
-        } else if (slider?.innerSlider?.slickPause) {
-          slider.innerSlider.slickPause();
-        }
-      }
+      pauseSlider(this.sliderRefs[rowIndex]);
     };
 
     const handleClosePopup = () => {
@@ -291,14 +300,7 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupIndex", null);
       this.setComponentState("imagePopupZoomed", false);
 
-      (this.sliderRefs || []).forEach((r) => {
-        if (!r) return;
-        if (r?.slickPlay) {
-          r.slickPlay();
-        } else if (r?.innerSlider?.slickPlay) {
-          r.innerSlider.slickPlay();
-        }
-      });
+      (this.sliderRefs || []).forEach((ref) => playSlider(ref));
     };
 
     const handlePopupNavigate = (direction: "prev" | "next") => {
@@ -366,7 +368,7 @@ class ImageGallery11 extends BaseImageGallery {
       >
         {backgroundMedia && backgroundMedia.type === "video" && (
           <div className={this.decorateCSS("background-media")}>
-            <Base.Media value={backgroundMedia} className={this.decorateCSS("background-media-asset")} />
+            <Base.Media value={backgroundMedia} className={this.decorateCSS("background-media-content")} />
           </div>
         )}
         {showOverlay && <div className={this.decorateCSS("background-overlay")} />}

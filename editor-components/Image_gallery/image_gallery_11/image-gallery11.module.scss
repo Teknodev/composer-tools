@@ -12,24 +12,13 @@
     background-color: var(--composer-html-background) !important;
   }
 
-  .heading :global(.sectionSubTitle),
-  .heading .subtitle,
-  .heading.with-bg :global(.sectionSubTitle),
-  .heading.with-bg .subtitle {
-    text-align: left !important;
-    width: fit-content !important;
-    align-self: flex-start !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
-  }
-
   .background-media {
     position: absolute;
     inset: 0;
     z-index: 0;
     overflow: hidden;
 
-    .background-media-asset {
+    .background-media-content {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -45,7 +34,7 @@
   }
   
   .max-content {
-    padding: 0px 50px;
+    padding: 0px var(--composer-gap-lg);
   }
 
   .content {
@@ -55,12 +44,10 @@
     flex-direction: column;
     gap: var(--composer-gap-xl);
     padding: 0;
-    max-width: var(--composer-content-width);
     margin: 0 auto;
     width: 100%;
   }
   .heading {
-    max-width: var(--composer-content-width);
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -69,15 +56,13 @@
     align-self: center;
     padding: 0;
 
-    .subtitle,
-    :global(.sectionSubTitle),
-    :global(h3.sectionSubTitle) {
-      text-align: left !important;
-      width: fit-content !important;
-      align-self: flex-start !important;
-      margin-left: 0 !important;
-      margin-right: auto !important;
-      justify-content: flex-start !important;
+    .subtitle {
+      text-align: left;
+      width: fit-content;
+      align-self: flex-start;
+      margin-left: 0;
+      margin-right: auto;
+      justify-content: flex-start;
     }
   }
 
@@ -89,68 +74,57 @@
   .title,
   .description {
     margin: 0;
-    color: #fff;
-    text-align: left !important;
+    color: white;
+    text-align: left;
 
   }
 
   .subtitle-with-bg {
-    color: #fff !important;
-    text-align: left !important;
-    width: fit-content !important;
-    align-self: flex-start !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
-    justify-content: flex-start !important;
+    color: white;
+    text-align: left;
+    width: fit-content;
+    align-self: flex-start;
+    margin-left: 0;
+    margin-right: auto;
+    justify-content: flex-start;
     &::before {
-      background: #fff !important;
+      background: white;
     }
   }
 
-  .subtitle-with-bg:global(.sectionSubTitle),
-  :global(.heading.with-bg .sectionSubTitle) {
-    text-align: left !important;
-    width: fit-content !important;
-    align-self: flex-start !important;
-    margin-left: 0 !important;
-    margin-right: auto !important;
-  }
-
   .subtitle-transparent {
-    background: transparent !important;
+    background: transparent;
   }
 
   .subtitle-with-bg.subtitle-transparent {
-    padding: 0 !important;
-    border-radius: 0 !important;
+    padding: 0;
+    border-radius: 0;
     &::before {
-      content: none !important;
-      display: none !important;
+      content: none;
+      display: none;
     }
   }
 
   .heading.with-bg {
     align-items: flex-start;
 
-    .subtitle,
-    :global(.sectionSubTitle),
-    :global(h3.sectionSubTitle) {
-      color: #fff !important;
-      text-align: left !important;
-      width: fit-content !important;
-      align-self: flex-start !important;
-      margin-left: 0 !important;
-      margin-right: auto !important;
-      justify-content: flex-start !important;
+    .subtitle {
+      color: white;
+      text-align: left;
+      width: fit-content;
+      align-self: flex-start;
+      margin-left: 0;
+      margin-right: auto;
+      justify-content: flex-start;
       &::before {
-        background: #fff !important;
+        background: white;
       }
     }
 
     .title,
     .description {
-      color: #fff;
-      text-align: left !important;
+      color: white;
+      text-align: left;
     }
   }
 
@@ -282,7 +256,6 @@
 
   .modal-content {
     position: relative;
-    background: var(--composer-surface-color);
     border-radius: var(--composer-border-radius-md);
     padding: var(--composer-gap-lg);
     max-width: 960px;
@@ -445,7 +418,7 @@
   .container {
     padding: 60px 0;
     .max-content {
-      padding: 0px 20px;
+      padding: 0px var(--composer-gap-md);
     }
     .gallery {
       gap: var(--composer-gap-md);
@@ -468,9 +441,9 @@
         right: var(--composer-gap-xs);
         margin-top: 0;
         .icon {
-          font-size: 1.8rem;
-          width: 1.8rem;
-          height: 1.8rem;
+          font-size: 2rem;
+          width: 2rem;
+          height: 2rem;
         }
       }
     }
