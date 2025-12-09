@@ -98,10 +98,6 @@ class About12 extends BaseAbout {
           <div
             className={`${this.decorateCSS("intro-wrapper")} ${
               !hasImage ? this.decorateCSS("no-image") : ""
-            } ${
-              hasImage && !hasRightContainer
-                ? this.decorateCSS("image-container-alone")
-                : ""
             }`}
           >
             {hasImage && (
@@ -164,7 +160,8 @@ class About12 extends BaseAbout {
                         (item: INPUTS.CastedButton, index: number) => {
                           const btnTextExist = this.castToString(item.text);
                           const buttonIcon = item.icon;
-                          const buttonIconExist = buttonIcon?.name || buttonIcon?.url;
+                          const buttonIconExist =
+                            buttonIcon?.name || buttonIcon?.url;
                           const buttonText = item.text;
 
                           if (!btnTextExist && !buttonIconExist) {
