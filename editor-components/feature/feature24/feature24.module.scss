@@ -152,12 +152,12 @@
       .list {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: var(--composer-gap-sm) !important;
-        row-gap: var(--composer-gap-sm) !important;
+        gap: var(--composer-gap-md) !important;
+        row-gap: var(--composer-gap-md) !important;
       }
 
       .row {
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
         align-items: flex-start;
 
         .icon-wrapper {
