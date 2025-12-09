@@ -252,31 +252,34 @@ class Feature33 extends BaseFeature {
                   </Base.SectionDescription>
                 )}
 
-                {hasButtons &&
-                  buttons.map((buttonItem, index) => {
-                    const text = buttonItem.text;
-                    const url = buttonItem.url;
-                    const type = buttonItem.type;
+                {hasButtons && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((buttonItem, index) => {
+                      const text = buttonItem.text;
+                      const url = buttonItem.url;
+                      const type = buttonItem.type;
 
-                    if (!this.castToString(text)) {
-                      return null;
-                    }
+                      if (!this.castToString(text)) {
+                        return null;
+                      }
 
-                    return (
-                      <ComposerLink key={index} path={url}>
-                        <Base.Button
-                          buttonType={type}
-                          className={this.decorateCSS("button")}
-                        >
-                          <Base.P
-                            className={this.decorateCSS("button-text")}
+                      return (
+                        <ComposerLink key={index} path={url}>
+                          <Base.Button
+                            buttonType={type}
+                            className={this.decorateCSS("button")}
                           >
-                            {text}
-                          </Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
+                            <Base.P
+                              className={this.decorateCSS("button-text")}
+                            >
+                              {text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
 
