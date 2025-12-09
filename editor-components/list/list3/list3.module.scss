@@ -7,18 +7,25 @@
     .cards-grid {
       gap: 0;
       &.alignment-center {
-        text-align: center;
+        text-align: left !important;
 
         .card {
           .card-content {
-            align-items: center;
-            text-align: center;
+            align-items: flex-start !important;
+            text-align: left !important;
 
-            .card-title { text-align: center; }
+            .card-title { text-align: left !important; }
+            .event-item {
+              align-items: flex-start !important;
+              text-align: left !important;
+            }
+            .event-text-top { text-align: left !important; }
+            .event-text-bottom { text-align: left !important; }
+            .divider { text-align: left !important; }
           }
 
           .card-number {
-            left: 50%;
+            left: 23%;
             bottom: calc(var(--composer-gap-xl) * (-0.8));
             transform: translateX(-50%) scale(1.15);
             transform-origin: center bottom;
