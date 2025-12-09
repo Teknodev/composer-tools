@@ -109,10 +109,9 @@ class IntroSection6 extends BaseIntroSection {
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
-    const hasAnyButton =
-      buttons.some(
-        (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
-      );
+    const hasAnyButton = buttons.some(
+      (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
+    );
     const hasBottomText = this.castToString(bottomText);
 
     const hasImage = !!(image && image.url);
@@ -193,50 +192,54 @@ class IntroSection6 extends BaseIntroSection {
 
                   {(hasAnyButton || hasBottomText || textIcon) && (
                     <div className={this.decorateCSS("actions-wrapper")}>
-                      {hasAnyButton &&
-                        
-                        buttons.map(
+                      {hasAnyButton && (
+                        <div className={this.decorateCSS("action-buttons")}>
+                          {buttons.map(
                             (item: INPUTS.CastedButton, index: number) => {
                               const btnTextExist = this.castToString(item.text);
                               const buttonIcon = item.icon;
                               const btnIconExist =
                                 this.castToString(item.icon?.name) ||
                                 this.castToString(item.icon?.url);
-                           if (!btnTextExist && !btnIconExist) {
-                             return null;
-                           }
-                           const buttonUrl = item.url || "#";
-                           return (
-                             <div
-                               key={`is6-btn-${index}`}
-                               className={this.decorateCSS("button-wrapper")}
-                             >
-                               <ComposerLink path={buttonUrl}>
-                                 <Base.Button
-                                   buttonType={item.type}
-                                   className={this.decorateCSS("button")}
-                                 >
-                                   {btnTextExist && (
-                                     <Base.P
-                                       className={this.decorateCSS("button-text")}
-                                     >
-                                       {item.text}
-                                     </Base.P>
-                                   )}
-                                   {btnIconExist && (
-                                     <Base.Media
-                                       value={buttonIcon}
-                                       className={this.decorateCSS(
-                                         "button-icon"
-                                       )}
-                                     />
-                                   )}
-                                 </Base.Button>
-                               </ComposerLink>
-                             </div>
-                           );
-                         })}
-
+                              if (!btnTextExist && !btnIconExist) {
+                                return null;
+                              }
+                              const buttonUrl = item.url || "#";
+                              return (
+                                <div
+                                  key={`is6-btn-${index}`}
+                                  className={this.decorateCSS("button-wrapper")}
+                                >
+                                  <ComposerLink path={buttonUrl}>
+                                    <Base.Button
+                                      buttonType={item.type}
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      {btnTextExist && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "button-text"
+                                          )}
+                                        >
+                                          {item.text}
+                                        </Base.P>
+                                      )}
+                                      {btnIconExist && (
+                                        <Base.Media
+                                          value={buttonIcon}
+                                          className={this.decorateCSS(
+                                            "button-icon"
+                                          )}
+                                        />
+                                      )}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                </div>
+                              );
+                            }
+                          )}
+                        </div>
+                      )}
                       {(hasBottomText || textIcon) && (
                         <Base.Row className={this.decorateCSS("text-wrapper")}>
                           {textIcon && (
