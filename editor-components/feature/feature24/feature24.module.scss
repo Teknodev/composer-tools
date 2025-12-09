@@ -161,6 +161,12 @@
         align-items: flex-start;
 
         .icon-wrapper {
+          width: 32px;
+          height: 32px;
+          min-width: 32px;
+          min-height: 32px;
+          flex: 0 0 32px;
+
           .icon {
             width: 16px;
             height: 16px;
