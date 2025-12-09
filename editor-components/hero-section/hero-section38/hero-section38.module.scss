@@ -78,6 +78,11 @@
               transition: transform var(--composer-transition-duration-normal) ease;
             }
 
+          .title {
+            word-break: break-word;
+            white-space: normal;
+          }
+
             .video-media {
               transform: scale(1) !important;
             }
@@ -125,7 +130,7 @@
               align-items: center;
               justify-content: center;
               overflow: hidden;
-              min-height: 450px; 
+                min-height: 400px;
 
               .title {
                 position: static;
@@ -303,8 +308,11 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    max-height: 450px;
 
     .title {
+      word-break: break-word;
+      white-space: normal;
       color: var(--composer-font-color-primary);
       z-index: 1;
       padding: 0 var(--composer-gap-lg);
@@ -400,6 +408,7 @@
               align-items: center;
               justify-content: center;
               overflow: hidden;
+              min-height: 270px;
 
               .title {
                 position: static;
@@ -557,6 +566,7 @@
               align-items: center;
               justify-content: center;
               overflow: hidden;
+              min-height: 210px;
 
               .title {
                 padding: 0 var(--composer-gap-md);

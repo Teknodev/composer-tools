@@ -321,9 +321,11 @@ class HeroSection38 extends BaseHeroSection {
                   const scaledIndex = this.getComponentState("scaled-index");
                   const isScaled = animation && scaledIndex === index;
                   const navigateTo = item.navigateTo;
-                  const imageExists = this.hasImage(item.image);
-                  const isVideoMedia = item.image?.type === "video";
-                  const titleExists = this.castToString(item.name);
+                  const liveName = this.getPropValue(`slides.${index}.name`) ?? item.name;
+                  const imageValue = (this.getPropValue(`slides.${index}.image`) as TypeMediaInputValue | undefined) ?? item.image;
+                  const imageExists = this.hasImage(imageValue);
+                  const isVideoMedia = imageValue?.type === "video";
+                  const titleExists = !!liveName;
 
                   if (!imageExists && !titleExists) {
                     return null;
@@ -338,7 +340,7 @@ class HeroSection38 extends BaseHeroSection {
                         <>
                           <Base.Media
                             className={`${this.decorateCSS("image")} ${isVideoMedia ? this.decorateCSS("video-media") : ""}`.trim()}
-                            value={item.image}
+                            value={imageValue}
                           />
                           {overlay && (
                             <div className={this.decorateCSS("overlay")} />
@@ -346,7 +348,7 @@ class HeroSection38 extends BaseHeroSection {
                         </>
                       )}
                       <Base.H2 className={this.decorateCSS("title")}>
-                        {item.name}
+                        {liveName}
                       </Base.H2>
                     </div>
                     </ComposerLink>
