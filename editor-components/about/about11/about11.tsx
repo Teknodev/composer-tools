@@ -1,12 +1,11 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about11.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "../../../composer-base-components/base/base";
 
 interface Icon {
-  icon: { type: string; name: string };
+  icon: TypeMediaInputValue;
   link: string;
 }
 class About11 extends BaseAbout {
@@ -32,7 +31,7 @@ class About11 extends BaseAbout {
       key: "description",
       displayer: "Description",
       value:
-        "Our work is design-led: creating the new and conserving the old. We approach projects with fresh ideas and open minds, developing imaginative and sustainable spaces.My enthusiasm for the contemporary is balanced with a deep respect of history, adding value through appropriate and sensitive design.",
+        "Our work is design-led: creating the new and conserving the old. We approach projects with fresh ideas and open minds, developing imaginative and sustainable spaces. My enthusiasm for the contemporary is balanced with a deep respect of history, adding value through appropriate and sensitive design.",
     });
 
     this.addProp({
@@ -179,21 +178,11 @@ class About11 extends BaseAbout {
               <Base.GridCell className={this.decorateCSS("left")}>
                 <div className={this.decorateCSS("image-wrapper")}>
                   <Base.Media
-                    value={
-                      image &&
-                      (image as any).type === "video" &&
-                      (image as any).url
-                        ? {
-                            type: "video",
-                            url: (image as any).url,
-                            settings: {
-                              autoplay: true,
-                              muted: true,
-                              loop: true,
-                            },
-                          }
-                        : image
-                    }
+                    autoPlay
+                    loop
+                    muted
+                    controls={false}
+                    value={image}
                     className={this.decorateCSS("image")}
                   />
                   {this.getPropValue("overlay") && (
