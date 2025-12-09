@@ -120,13 +120,14 @@
     .content {
       .button-container {
         width: 100%;
-        flex-wrap: nowrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: var(--composer-gap-sm);
+        justify-content: center;
       }
 
       .button-container>* {
-        flex: 1 1 0;
+        width: 100%;
       }
 
       .button-container .button {
