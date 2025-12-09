@@ -3,15 +3,22 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-interface FeatureItem {
+type FeatureItem = {
   icon: { type: "icon"; name: string } | { type: "image"; url: string };
   title: React.JSX.Element;
   description: React.JSX.Element;
-}
+};
 
 class Feature31 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -22,16 +29,10 @@ class Feature31 extends BaseFeature {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Our Features",
-    });
-
-    this.addProp({
-      type: "string",
       key: "description",
       displayer: "Description",
-      value: "Podcasting operational change management inside of workflows to establish indicators offline to maximise the long tail.",
+      value:
+        "Podcasting operational change management inside of workflows to establish indicators offline to maximise the long tail.",
     });
 
     this.addProp({
@@ -49,11 +50,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "MdDesignServices",
+                name: "BiCheck",
               },
             },
             {
@@ -80,11 +81,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "IoMdStar",
+                name: "BiCheck",
               },
             },
             {
@@ -111,11 +112,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "MdOutlineDevices",
+                name: "BiCheck",
               },
             },
             {
@@ -142,11 +143,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "MdSupportAgent",
+                name: "BiCheck",
               },
             },
             {
@@ -173,11 +174,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "MdTune",
+                name: "BiCheck",
               },
             },
             {
@@ -204,11 +205,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "MdExtension",
+                name: "BiCheck",
               },
             },
             {
@@ -235,11 +236,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "MdTranslate",
+                name: "BiCheck",
               },
             },
             {
@@ -266,11 +267,11 @@ class Feature31 extends BaseFeature {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
-                name: "MdDriveEta",
+                name: "BiCheck",
               },
             },
             {
@@ -295,7 +296,6 @@ class Feature31 extends BaseFeature {
       key: "itemCount",
       displayer: "Item Count In a Row",
       value: 4,
-      max: 6,
     });
   }
 
@@ -310,27 +310,25 @@ class Feature31 extends BaseFeature {
     const features = this.castToObject<FeatureItem[]>("features");
     const itemCount = this.getPropValue("itemCount");
 
-    const isTitleExist = this.castToString(title);
-    const isSubtitleExist = this.castToString(subtitle);
-    const isDescriptionExist = this.castToString(description);
-    const isFeaturesExist = features.length > 0;
+    const showHeader = this.castToString(title) || this.castToString(subtitle) || this.castToString(description);
+    const showFeatures = features.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(isTitleExist || isSubtitleExist || isDescriptionExist) && (
+          {showHeader && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {isSubtitleExist && (
+              {this.castToString(subtitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
-              {isTitleExist && (
+              {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {title}
                 </Base.SectionTitle>
               )}
-              {isDescriptionExist && (
+              {this.castToString(description) && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
@@ -338,36 +336,32 @@ class Feature31 extends BaseFeature {
             </Base.VerticalContent>
           )}
 
-          {isFeaturesExist && (
-            <Base.ListGrid 
-              className={this.decorateCSS("features-grid")} 
+          {showFeatures && (
+            <Base.ListGrid
               gridCount={{ pc: itemCount }}
+              className={this.decorateCSS("features-grid")}
             >
               {features.map((feature, index) => {
-                const isFeatureTitleExist = this.castToString(feature.title);
-                const isFeatureDescExist = this.castToString(feature.description);
-                const isIconExist = !!feature.icon;
+                const hasContent = this.castToString(feature.title) || this.castToString(feature.description) || feature.icon;
 
-                if (!isFeatureTitleExist && !isFeatureDescExist && !isIconExist) return null;
+                if (!hasContent) {
+                  return null;
+                }
 
                 return (
                   <div key={index} className={this.decorateCSS("feature-item")}>
-                    {isIconExist && (
+                    {feature.icon && (
                       <div className={this.decorateCSS("icon-container")}>
-                        <Base.Media
-                          value={feature.icon} 
-                          className={this.decorateCSS("icon")} 
-                        />
+                        <Base.Media value={feature.icon} className={this.decorateCSS("icon")} />
                       </div>
                     )}
-                    
                     <Base.VerticalContent className={this.decorateCSS("content")}>
-                      {isFeatureTitleExist && (
-                        <Base.H3 className={this.decorateCSS("feature-title")}>
+                      {this.castToString(feature.title) && (
+                        <Base.H4 className={this.decorateCSS("feature-title")}>
                           {feature.title}
-                        </Base.H3>
+                        </Base.H4>
                       )}
-                      {isFeatureDescExist && (
+                      {this.castToString(feature.description) && (
                         <Base.P className={this.decorateCSS("feature-description")}>
                           {feature.description}
                         </Base.P>
@@ -385,3 +379,4 @@ class Feature31 extends BaseFeature {
 }
 
 export default Feature31;
+

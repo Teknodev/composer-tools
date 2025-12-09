@@ -1,120 +1,136 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-xl);
+  background: var(--composer-html-background);
+  color: var(--composer-font-color-primary);
+}
 
-    .header {
-      text-align: center;
-      gap: var(--composer-gap-md);
-      align-items: center;
-      margin-bottom: var(--composer-gap-lg);
+.header {
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--composer-gap-md);
+}
 
-      .subtitle, .title, .description {
-        margin: 0;
-        text-align: left;
-        margin-left: 0;
-      }
+.subtitle {
+  color: var(--composer-primary-color);
+}
+
+.title {
+  color: var(--composer-font-color-primary);
+}
+
+.description {
+  color: var(--composer-font-color-primary);
+}
+
+.features-grid {
+  gap: var(--composer-gap-lg);
+  justify-items: flex-start !important;
+  justify-content: flex-start !important;
+  text-align: left;
+
+  .feature-item {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .content {
+  align-items: flex-start !important;
+  text-align: left !important;
+  
+  .feature-description {
+    text-align: left !important;
+  }
+
+  .feature-title {
+    text-align: left !important;
+  }
+  }
+
+  .feature-title,
+  .feature-description {
+    text-align: left;
+  }
+  
+  &.align-left {
+    .feature-item {
+      align-items: flex-start;
+      text-align: left !important;
     }
-
-    .features-grid {
-      display: grid;
-      gap: var(--composer-gap-lg);
-
-      .feature-item {
-        display: flex;
-        align-items: center;
-        gap: var(--composer-gap-md);
-
-        .icon-container {
-          flex-shrink: 0;
-          width: 20px;
-          height: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-
-          .icon {
-            width: 20px;
-            height: 20px;
-            color: var(--composer-primary-color);
-          }
-        }
-
-        .content {
-          flex: 1;
-          gap: var(--composer-gap-xs);
-
-          .feature-title {
-            font-size: 1.125rem;
-            color: var(--composer-font-color-primary);
-            margin: 0;
-            text-align: left;
-            margin-left: 0;
-          }
-
-          .feature-description {
-            font-size: 1rem;
-            line-height: 1.5;
-            color: var(--composer-tertiary-color);
-            margin: 0;
-            text-align: left;
-            margin-left: 0;
-          }
-        }
-      }
+    .content {
+      align-items: flex-start !important;
+    }
+    .feature-description {
+      text-align: left !important;
+    }
+    .feature-title {
+      text-align: left !important;
+    }
+    .icon-container {
+      align-self: flex-start;
     }
   }
 }
 
+.feature-item {
+  display: flex;
+  gap: var(--composer-gap-xs);
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--composer-gap-lg);
+  height: var(--composer-gap-lg);
+}
+
+.icon {
+  width: var(--composer-gap-lg);
+  height: var(--composer-gap-lg);
+  font-size: 2.5rem;
+  color: var(--composer-primary-color);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-title {
+  color: var(--composer-font-color-primary);
+}
+
+.feature-description {
+  color: var(--composer-font-color-primary);
+}
+
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      gap: var(--composer-gap-lg);
 
-      .header {
-        .subtitle, .title, .description {
-          text-align: inherit;
-        }
-      }
+  .features-grid {
+    gap: var(--composer-gap-md);
+  }
 
-      .features-grid {
-        gap: var(--composer-gap-md);
-
-        .feature-item {
-          .content {
-            .feature-title, .feature-description {
-              text-align: inherit;
-            }
-          }
-        }
-      }
-    }
+  .feature-item {
+    gap: var(--composer-gap-sm);
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      gap: var(--composer-gap-md);
 
-      .features-grid {
-        gap: var(--composer-gap-sm);
+  .features-grid {
+    gap: var(--composer-gap-md);
+    justify-items: flex-start;
+  }
 
-        .feature-item {
-          padding: var(--composer-gap-sm);
-          border-radius: var(--composer-border-radius-sm);
-          background-color: var(--composer-background-secondary);
 
-          .content {
-            .feature-title, .feature-description {
-              text-align: inherit;
-            }
-          }
-        }
-      }
-    }
+  .feature-item {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .content {
+    align-items: flex-start;
   }
 }
