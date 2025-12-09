@@ -92,7 +92,9 @@ class IntroSection8 extends BaseIntroSection {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [], // Başlangıçta tamamen boş
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
   }
 
@@ -159,24 +161,10 @@ class IntroSection8 extends BaseIntroSection {
 
   private renderMediaButtons() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const validButtons = Array.isArray(buttons)
+      ? buttons.filter((buttonItem) => this.castToString(buttonItem.text))
+      : [];
 
-    // Dizi yoksa veya boşsa hiç render etme (boşluk oluşmaz)
-    if (!Array.isArray(buttons) || buttons.length === 0) {
-      return null;
-    }
-
-    // İçeriği (yazısı, ikonu veya resmi) olan butonları filtrele
-    const validButtons = buttons.filter((buttonItem) => {
-      const hasText = !!this.castToString(buttonItem.text);
-      const hasIcon =
-        buttonItem.icon &&
-        (buttonItem.icon.name || (buttonItem.icon as any).url);
-      // 'any' casting used for safety if type implies url exists on icon type
-      
-      return hasText || hasIcon;
-    });
-
-    // Eğer geçerli (dolu) buton yoksa null dön
     if (validButtons.length === 0) {
       return null;
     }
