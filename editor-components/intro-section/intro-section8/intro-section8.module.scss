@@ -82,8 +82,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: var(--composer-gap-sm);
-        margin-bottom: var(--composer-gap-sm);
 
         .media-button {
           display: inline-flex;
@@ -251,14 +249,10 @@
       .content {
         gap: var(--composer-gap-sm);
 
-        .media-buttons {
-          margin-top: var(--composer-gap-xs);
-          margin-bottom: var(--composer-gap-xs);
-        }
+        .media-buttons {}
 
         .media-wrapper {
           height: auto;
-
         }
       }
     }
