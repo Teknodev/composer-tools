@@ -2,12 +2,16 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FeatureItem = {
   icon: { type: "icon"; name: string } | { type: "image"; url: string };
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
+
+type ButtonIcon = { type: "icon"; name: string } | { type: "image"; url: string };
 
 class Feature31 extends BaseFeature {
   constructor(props?: any) {
@@ -34,6 +38,7 @@ class Feature31 extends BaseFeature {
       value:
         "Podcasting operational change management inside of workflows to establish indicators offline to maximise the long tail.",
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -309,6 +314,9 @@ class Feature31 extends BaseFeature {
     const description = this.getPropValue("description");
     const features = this.castToObject<FeatureItem[]>("features");
     const itemCount = this.getPropValue("itemCount");
+    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonIcon = this.castToObject<{ icon?: ButtonIcon }>("button").icon;
+    const iconExist = buttonIcon ? (buttonIcon.type === "icon" ? buttonIcon.name : buttonIcon.url) : "";
 
     const showHeader = this.castToString(title) || this.castToString(subtitle) || this.castToString(description);
     const showFeatures = features.length > 0;
@@ -371,6 +379,22 @@ class Feature31 extends BaseFeature {
                 );
               })}
             </Base.ListGrid>
+          )}
+          {(this.castToString(buttonType.text) || iconExist) && (
+            <Base.VerticalContent className={this.decorateCSS("button-wrapper")}>
+              <ComposerLink path={buttonType.url}>
+                <Base.Button buttonType={buttonType.type} className={this.decorateCSS("action-button")}>
+                  {this.castToString(buttonType.text) && (
+                    <Base.P className={this.decorateCSS("action-button-text")}>
+                      {buttonType.text}
+                    </Base.P>
+                  )}
+                  {iconExist && (
+                    <Base.Media value={buttonIcon} className={this.decorateCSS("action-button-icon")} />
+                  )}
+                </Base.Button>
+              </ComposerLink>
+            </Base.VerticalContent>
           )}
         </Base.MaxContent>
       </Base.Container>

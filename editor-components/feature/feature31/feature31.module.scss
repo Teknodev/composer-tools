@@ -6,21 +6,24 @@
 }
 
 .header {
-  align-items: center;
-  text-align: center;
+  align-items: center !important;
+  text-align: center !important;
   margin-bottom: var(--composer-gap-md);
 }
 
 .subtitle {
   color: var(--composer-primary-color);
+  text-align: center !important;
 }
 
 .title {
   color: var(--composer-font-color-primary);
+  text-align: center !important;
 }
 
 .description {
   color: var(--composer-font-color-primary);
+  text-align: center !important;
 }
 
 .features-grid {
@@ -103,6 +106,32 @@
 
 .feature-description {
   color: var(--composer-font-color-primary);
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center !important;
+  margin-top: var(--composer-gap-xl);
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.action-button {
+  display: inline-flex;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: var(--composer-gap-xs);
+}
+
+.action-button-text {
+  text-align: center !important;
+}
+
+.action-button-icon {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.6rem;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
