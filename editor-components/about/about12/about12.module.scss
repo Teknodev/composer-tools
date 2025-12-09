@@ -18,6 +18,7 @@
       align-items: center;
 
       &.no-image {
+        min-height: unset;
         .text-content {
           padding-left: var(--composer-gap-xl);
           padding-right: var(--composer-gap-xl);
