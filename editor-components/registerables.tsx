@@ -105,6 +105,7 @@ import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
+import IntroSection7 from "./intro-section/intro-section7/intro-section7";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
@@ -128,11 +129,12 @@ import FeatureComponent19 from "./feature/feature19/feature19";
 import FeatureComponent20 from "./feature/feature20/feature20";
 import FeatureComponent21 from "./feature/feature21/feature21";
 import FeatureComponent22 from "./feature/feature22/feature22";
-import FeatureComponent32 from "./feature/feature32/feature32";
 import FeatureComponent25 from "./feature/feature25/feature25";
 import FeatureComponent26 from "./feature/feature26/feature26";
 import FeatureComponent27 from "./feature/feature27/feature27";
 import FeatureComponent30 from "./feature/feature30/feature30";
+import FeatureComponent31 from "./feature/feature31/feature31";
+import FeatureComponent32 from "./feature/feature32/feature32";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -408,6 +410,7 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection35,
     IntroSection1,
     IntroSection2,
+    IntroSection7,
     IntroSection9,
     NavbarComponent1,
     NavbarComponent2,
@@ -456,6 +459,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent27,
     FeatureComponent30,
     FeatureComponent32,
+    FeatureComponent31,
     CallToAction1,
     CallToAction2,
     CallToAction3,

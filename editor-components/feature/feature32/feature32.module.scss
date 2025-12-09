@@ -12,7 +12,7 @@
   align-items: flex-start;
 }
 
-.grid {
+.contentWrapper {
   display: flex;
   width: 100%;
   align-items: stretch;
@@ -64,9 +64,7 @@
   position: relative;
   cursor: pointer;
   color: var(--composer-font-color-primary);
-
   padding: var(--composer-gap-xs) 0 var(--composer-gap-xs) var(--composer-gap-md);
-
   transition: all 0.3s ease;
   width: 100%;
   display: flex;
@@ -141,7 +139,7 @@
   border: 1px solid var(--composer-tertiary-color);
   border-radius: var(--composer-border-radius-md);
   padding: var(--composer-gap-md);
-  margin-bottom:var(--composer-gap-lg);
+  margin-bottom: var(--composer-gap-lg);
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -165,7 +163,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: var(--composer-overlay-color);
       pointer-events: none;
       z-index: 1;
     }
@@ -188,19 +186,10 @@
     &::after {
       content: "\00a0";
     }
-
-    :global(*) {
-      display: inline !important;
-      font-weight: 700 !important;
-    }
   }
 
   .infoText {
     display: inline;
-
-    :global(*) {
-      display: inline !important;
-    }
   }
 }
 
@@ -224,7 +213,7 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .grid {
+  .contentWrapper {
     flex-direction: column;
     gap: var(--composer-gap-md);
   }
@@ -247,7 +236,7 @@
   }
 
   .imageWrapper {
-    padding:var(--composer-gap-md);
+    padding: var(--composer-gap-md);
     border-radius: var(--composer-border-radius-sm);
     margin-bottom: var(--composer-gap-md) !important;
   }
