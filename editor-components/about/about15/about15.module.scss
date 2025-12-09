@@ -17,6 +17,10 @@
                         background: transparent;
                         padding: 0;
 
+                        &::before {
+                            background: var(--composer-font-color-primary) !important;
+                        }
+
                         &.is-badge {
                             background: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 20%) !important;
                             padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
@@ -42,6 +46,10 @@
                 .title,
                 .subtitle {
                     color: var(--composer-primary-color) !important;
+
+                    &::before {
+                        background: var(--composer-primary-color) !important;
+                    }
 
                     &.is-badge {
                         background:
