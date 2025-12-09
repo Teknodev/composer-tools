@@ -44,7 +44,7 @@
         content: "";
       }
 
-      .button-icon {
+      .icon {
         content: "";
       }
     }
@@ -112,15 +112,25 @@
 
   .button,
   .button-text,
-  .button-icon {
+  .icon {
     content: "";
   }
 
   @container (max-width: #{$composer-phone-width}) {
     .content {
       .button-container {
-        flex-direction: column;
+        width: 100%;
         flex-wrap: nowrap;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+      }
+
+      .button-container>* {
+        flex: 1 1 0;
+      }
+
+      .button-container .button {
+        width: 100%;
       }
     }
   }

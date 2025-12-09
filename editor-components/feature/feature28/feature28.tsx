@@ -76,19 +76,6 @@ class Feature28Component extends BaseFeature {
       displayer: "Overlay",
       value: true,
     });
-
-    this.addProp({
-      type: "media",
-      key: "buttonIcon",
-      displayer: "Button Icon",
-      value: {
-        type: "icon",
-        name: "FaArrowRight",
-      } as TypeMediaInputValue,
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-    });
   }
 
   static getName(): string {
@@ -107,21 +94,17 @@ class Feature28Component extends BaseFeature {
     const hasBackground = !!image?.url;
     const isVideo = image?.type === "video" && hasBackground;
 
-    const effectiveAlignment = alignment;
-
     const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const buttonIcon = this.getPropValue("buttonIcon") as
-      | TypeMediaInputValue
-      | null;
-
-    const hasButtonIcon =
-      !!buttonIcon && ((buttonIcon as any).name || (buttonIcon as any).url);
 
     const validButtons = Array.isArray(buttonsList)
       ? buttonsList.filter((item) => {
           const text = this.castToString(item.text || "");
+          const rawIcon = (item as any)?.icon;
           const iconName =
-            (item as any)?.icon?.name || (item as any)?.icon || "";
+            (rawIcon as any)?.name ||
+            (rawIcon as any)?.url ||
+            rawIcon ||
+            "";
           return !!text || !!this.castToString(iconName);
         })
       : [];
@@ -167,7 +150,7 @@ class Feature28Component extends BaseFeature {
           {isContentExist && (
             <Base.VerticalContent
               className={this.decorateCSS("content")}
-              data-alignment={effectiveAlignment}
+              data-alignment={alignment}
             >
               {isSubtitleExist && (
                 <Base.SectionSubTitle
@@ -195,26 +178,38 @@ class Feature28Component extends BaseFeature {
                 <Base.Row className={this.decorateCSS("button-container")}>
                   {validButtons.map((item, index) => {
                     const text = this.castToString(item.text || "");
+                    const rawIcon = (item as any)?.icon;
                     const iconName =
-                      (item as any)?.icon?.name || (item as any)?.icon || "";
-                    const hasIconFlag = !!this.castToString(iconName);
-                    const showIcon = hasIconFlag && hasButtonIcon;
+                      (rawIcon as any)?.name ||
+                      (rawIcon as any)?.url ||
+                      rawIcon ||
+                      "";
+                    const hasIcon = !!this.castToString(iconName);
 
                     return (
                       <ComposerLink
                         key={`btn-${index}`}
-                        path={item.url || "#"}
+                        path={item.url || ""}
                       >
                         <Base.Button
                           className={this.decorateCSS("button")}
                           buttonType={item.type}
                         >
-                          {showIcon && buttonIcon && (
-                            <Base.Media
-                              className={this.decorateCSS("button-icon")}
-                              value={buttonIcon}
-                            />
-                          )}
+                          {hasIcon &&
+                            (typeof rawIcon === "string" ? (
+                              <Base.Icon
+                                name={rawIcon}
+                                propsIcon={{
+                                  className:
+                                    this.decorateCSS("icon"),
+                                }}
+                              />
+                            ) : (
+                              <Base.Media
+                                className={this.decorateCSS("icon")}
+                                value={rawIcon as TypeMediaInputValue}
+                              />
+                            ))}
 
                           {text && (
                             <Base.P
