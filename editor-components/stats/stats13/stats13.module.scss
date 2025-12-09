@@ -100,9 +100,9 @@
                     .subtitle {
                         overflow-wrap: anywhere;
                         width: fit-content;
-                        margin: 0;
+                        margin-left: 0;
+                        margin-right: 0;
                         text-align: left;
-                        margin-bottom: var(--gap-md);
                     }
 
                     .title,
