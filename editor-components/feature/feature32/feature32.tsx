@@ -5,15 +5,16 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-interface Feature32Section {
+interface FeatureSection {
   title: string;
   text: string;
 }
 
-interface Feature32Item {
+interface FeatureItem {
   title: string;
   media: TypeMediaInputValue;
-  sections: Feature32Section[];
+  sections: FeatureSection[];
+  idx?: number;
 }
 
 class Feature32 extends BaseFeature {
@@ -59,7 +60,7 @@ class Feature32 extends BaseFeature {
               displayer: "Media",
               value: {
                 type: "image",
-                url: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-1@2x.png?v=1"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937febc875e15002c5f0c01?alt=media"
               },
               additionalParams: {
                 availableTypes: ["image", "video"]
@@ -113,7 +114,7 @@ class Feature32 extends BaseFeature {
               displayer: "Media",
               value: {
                 type: "image",
-                url: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-2@2x.png?v=1"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937ff83875e15002c5f0f68?alt=media"
               },
               additionalParams: {
                 availableTypes: ["image", "video"]
@@ -167,7 +168,7 @@ class Feature32 extends BaseFeature {
               displayer: "Media",
               value: {
                 type: "image",
-                url: "https://du-cdn.cdn-website.com/duda_website/images/solutions/agencies/success-story-3@2x.png?v=2"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937ffc0875e15002c5f0fe6?alt=media"
               },
               additionalParams: {
                 availableTypes: ["image", "video"]
@@ -246,10 +247,9 @@ class Feature32 extends BaseFeature {
   render() {
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
-    const overlay = this.getPropValue("overlay");
+    const overlay = this.getPropValue("overlay") as boolean;
 
-    const items = this.castToObject<Feature32Item[]>("items") || [];
-
+    const items = this.castToObject<FeatureItem[]>("items") || [];
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const filteredButtons = buttons.filter((btn: INPUTS.CastedButton) => !!this.castToString(btn.text));
     const showDivider = this.getPropValue("showDivider");
@@ -265,10 +265,9 @@ class Feature32 extends BaseFeature {
 
     const hasMedia = !!activeItem?.media;
 
-    const hasSections = activeItem?.sections?.some((s) =>
+    const hasSections = activeItem?.sections?.some((s: FeatureSection) =>
       this.castToString(s.title) || this.castToString(s.text)
     );
-
     const hasButton = filteredButtons.length > 0;
 
     const hasRightContent = !!activeItem && (hasMedia || hasSections || hasButton);
@@ -277,9 +276,10 @@ class Feature32 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
-          <div className={this.decorateCSS("contentWrapper")}>
+          <div className={this.decorateCSS("flexContainer")}>
             {hasLeftContent && (
               <Base.VerticalContent className={`${this.decorateCSS("leftContent")} ${!hasRightContent ? this.decorateCSS("fullWidth") : ""}`}>
+
                 {(this.castToString(subtitle) || this.castToString(title)) && (
                   <Base.VerticalContent className={this.decorateCSS("headerWrapper")}>
                     {this.castToString(subtitle) && (
@@ -298,7 +298,7 @@ class Feature32 extends BaseFeature {
                 {displayList.length > 0 && (
                   <Base.VerticalContent className={this.decorateCSS("list")}>
                     {displayList.map((item) => (
-                      <Base.VerticalContent
+                      <div
                         key={item.idx}
                         className={`${this.decorateCSS("listItem")} ${item.idx === activeTab ? this.decorateCSS("isActive") : ""}`}
                         onClick={() => this.setComponentState("activeTab", item.idx)}
@@ -306,7 +306,7 @@ class Feature32 extends BaseFeature {
                         <Base.H5 className={this.decorateCSS("listItemText")}>
                           {item.title}
                         </Base.H5>
-                      </Base.VerticalContent>
+                      </div>
                     ))}
                   </Base.VerticalContent>
                 )}
@@ -336,25 +336,26 @@ class Feature32 extends BaseFeature {
                   </div>
                 )}
 
-                {hasSections && activeItem.sections.map((section: Feature32Section, idx: number) => {
+                {hasSections && activeItem.sections.map((section: FeatureSection, idx: number) => {
                   const titleStr = this.castToString(section?.title);
                   const textStr = this.castToString(section?.text);
 
                   if (!titleStr && !textStr) return null;
 
                   return (
-                    <Base.Container key={idx} className={this.decorateCSS("infoLine")}>
+                    <Base.P key={idx} className={this.decorateCSS("infoLine")}>
                       {titleStr && (
-                        <Base.P className={this.decorateCSS("infoLabel")}>
+                        <span className={this.decorateCSS("infoLabel")}>
                           {section.title}
-                        </Base.P>
+                        </span>
                       )}
+                      {titleStr && textStr && " "}
                       {textStr && (
-                        <Base.P className={this.decorateCSS("infoText")}>
+                        <span className={this.decorateCSS("infoText")}>
                           {section.text}
-                        </Base.P>
+                        </span>
                       )}
-                    </Base.Container>
+                    </Base.P>
                   );
                 })}
 

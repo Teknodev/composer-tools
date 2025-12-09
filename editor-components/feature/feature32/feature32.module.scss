@@ -12,10 +12,11 @@
   align-items: flex-start;
 }
 
-.contentWrapper {
+.flexContainer {
   display: flex;
   width: 100%;
   align-items: stretch;
+  flex-wrap: nowrap;
 }
 
 .leftContent {
@@ -24,6 +25,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--composer-gap-xl);
+  flex-shrink: 0;
 
   &.fullWidth {
     flex: 0 0 100%;
@@ -50,7 +52,6 @@
 }
 
 .list {
-  list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
@@ -70,6 +71,7 @@
   display: flex;
   align-items: center;
   text-align: left;
+  white-space: normal;
 
   &::before {
     content: "";
@@ -86,7 +88,7 @@
 
   &.isActive {
     color: var(--composer-primary-color);
-    transform: translateX(8px);
+    transform: translateX(var(--composer-gap-sm));
 
     &::before {
       height: 100%;
@@ -97,6 +99,7 @@
   .listItemText {
     text-align: left !important;
     margin: 0 !important;
+    font-weight: 400 !important;
   }
 }
 
@@ -173,23 +176,30 @@
 .infoLine {
   width: 100%;
   text-align: left !important;
-  margin-bottom: var(--composer-gap-md) !important;
+  margin-bottom: var(--composer-gap-xs) !important;
   color: var(--composer-font-color-primary);
   display: block !important;
+  line-height: 1.6;
+
+  &>*,
+  div,
+  span,
+  p,
+  strong {
+    display: inline !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
 
   .infoLabel {
-    font-weight: 700;
-    margin-right: var(--composer-gap-xs) !important;
+    font-weight: 700 !important;
     color: var(--composer-font-color-primary);
-    display: inline;
-
-    &::after {
-      content: "\00a0";
-    }
   }
 
   .infoText {
-    display: inline;
+    opacity: 0.9;
+    color: var(--composer-font-color-primary);
   }
 }
 
@@ -213,7 +223,7 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .contentWrapper {
+  .flexContainer {
     flex-direction: column;
     gap: var(--composer-gap-md);
   }
@@ -222,6 +232,7 @@
     width: 100%;
     flex: auto;
     gap: var(--composer-gap-md);
+
 
     .sectionTitle {
       margin-bottom: var(--composer-gap-md) !important;
