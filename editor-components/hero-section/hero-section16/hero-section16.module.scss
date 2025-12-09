@@ -50,6 +50,7 @@
           width: 90%;
           display: flex;
           flex-direction: column;
+          gap: var(--composer-gap-xs);
           align-items: center;
           top: 50%;
           left: 50%;
@@ -69,6 +70,20 @@
 
             &.image-no-content {
               transform: translate(-50%, 40vh) translateY(0);
+            }
+          }
+
+          .logo-wrapper {
+            margin-bottom: 20px;
+            width: auto;
+            max-width: 200px;
+
+            .logo {
+              width: 100%;
+              height: auto;
+              display: block;
+              object-fit: contain;
+              font-size: 2rem;
             }
           }
         }
@@ -91,8 +106,20 @@
           color: white;
           text-align: center;
           width: fit-content;
+          line-height: normal;
 
           &.title-no-image {
+            color: var(--composer-font-color-primary);
+          }
+        }
+
+        .description{
+          margin: 0;
+          color: white;
+          width: fit-content;
+          text-align: center;
+
+          &.description-no-image {
             color: var(--composer-font-color-primary);
           }
         }

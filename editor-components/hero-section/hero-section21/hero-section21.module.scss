@@ -31,6 +31,21 @@
             padding: 0;
           }
 
+          .logo-wrapper {
+            margin-bottom: var(--composer-gap-md);
+            width: auto;
+            max-width: 200px;
+
+            .logo {
+              width: 100%;
+              height: auto;
+              display: block;
+              object-fit: contain;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+            }
+          }
+
           .buttons {
             display: flex;
             gap: var(--composer-gap-md);

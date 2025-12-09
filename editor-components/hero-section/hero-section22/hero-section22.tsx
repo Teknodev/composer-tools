@@ -30,7 +30,7 @@ class HeroSection22 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
             {
               type: "string",
@@ -73,7 +73,7 @@ class HeroSection22 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
             {
               type: "string",
@@ -116,7 +116,7 @@ class HeroSection22 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
             {
               type: "string",
@@ -158,10 +158,18 @@ class HeroSection22 extends BaseHeroSection {
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.addProp({
       type: "media",
       key: "prev-button-icon",
-      displayer: "Previous Slide Button",
+      displayer: "Previous Icon",
       additionalParams: {
         availableTypes: ["icon"],
       },
@@ -173,7 +181,7 @@ class HeroSection22 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "next-button-icon",
-      displayer: "Next Slide Button",
+      displayer: "Next Icon",
       additionalParams: {
         availableTypes: ["icon"],
       },
@@ -185,7 +193,7 @@ class HeroSection22 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Content Animation",
+      displayer: "Animation",
       value: true,
     });
     this.addProp({
@@ -239,7 +247,7 @@ class HeroSection22 extends BaseHeroSection {
       arrows: false,
       infinite: slider.length > 1,
       speed: 1500,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -297,7 +305,7 @@ class HeroSection22 extends BaseHeroSection {
                                     <div className={this.decorateCSS("link-button-container")}>
                                       <ComposerLink key={`hdr-22-${indexButton}`} path={buttonItem.url}>
                                         <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
-                                          {buttonItem.text}
+                                          <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                                         </Base.Button>
                                       </ComposerLink>
                                     </div>

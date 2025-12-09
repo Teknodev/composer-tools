@@ -13,6 +13,7 @@ type SliderItem = {
   background2: TypeMediaInputValue;
   background3: TypeMediaInputValue;
   background4: TypeMediaInputValue;
+  baseColor: string;
 };
 
 class HeroSection23 extends BaseHeroSection {
@@ -21,13 +22,13 @@ class HeroSection23 extends BaseHeroSection {
 
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider",
       key: "slider",
       value: [
         {
           type: "object",
-          displayer: "Item 1",
-          key: "item1",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "media",
@@ -101,12 +102,18 @@ class HeroSection23 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
               },
             },
+            {
+              type: "color",
+              key: "baseColor",
+              displayer: "Color",
+              value: "rgba(186, 226, 255, 0.8)",
+            },
           ],
         },
         {
           type: "object",
-          displayer: "Item 2",
-          key: "item2",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "media",
@@ -186,12 +193,18 @@ class HeroSection23 extends BaseHeroSection {
               key: "circleActivation",
               value: true,
             },
+            {
+              type: "color",
+              key: "baseColor",
+              displayer: "Color",
+              value: "rgba(255, 162, 173, 0.8)",
+            },
           ],
         },
         {
           type: "object",
-          displayer: "Item 3",
-          key: "item3",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "media",
@@ -262,8 +275,14 @@ class HeroSection23 extends BaseHeroSection {
               },
               value: {
                 type: "image",
-                url: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69381480875e15002c5f6d55?alt=media",
               },
+            },
+            {
+              type: "color",
+              key: "baseColor",
+              displayer: "Color",
+              value: "rgba(255, 190, 162, 0.8)",
             },
           ],
         },
@@ -288,15 +307,9 @@ class HeroSection23 extends BaseHeroSection {
       value: true,
     });
     this.addProp({
-      type: "boolean",
-      displayer: "Background Color",
-      key: "bgColorActivation",
-      value: false,
-    });
-    this.addProp({
       type: "media",
       key: "previousArrow",
-      displayer: "Previous Arrow Icon",
+      displayer: "Previous Icon",
       additionalParams: {
         availableTypes: ["icon"],
       },
@@ -308,7 +321,7 @@ class HeroSection23 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "nextArrow",
-      displayer: "Next Arrow Icon",
+      displayer: "Next Icon",
       additionalParams: {
         availableTypes: ["icon"],
       },
@@ -318,47 +331,75 @@ class HeroSection23 extends BaseHeroSection {
       },
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.setComponentState("active", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
 
   handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const container = e.currentTarget.getBoundingClientRect();
-
     const xRatio = ((e.clientX - container.left) / container.width - 0.5) * 2;
     const yRatio = ((e.clientY - container.top) / container.height - 0.5) * 2;
 
-    const applyTransform = (elements: HTMLElement[], transform: string) => {
+    const applyTransform = (elements: NodeListOf<Element>, transform: string) => {
       elements.forEach((element) => {
-        element.style.transform = transform;
+        (element as HTMLElement).style.transform = transform;
       });
     };
 
-    const transformWrapperBg1Elements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-background1-wrapper")}`)) as HTMLElement[];
-    const transformWrapperBg2Elements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-background2-wrapper")}`)) as HTMLElement[];
-    const transformWrapperBg3Elements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-background3-wrapper")}`)) as HTMLElement[];
-    const transformWrapperImgBgElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-img-bg")}`)) as HTMLElement[];
+    const PARALLAX_FACTORS = {
+      bg1: 10,
+      bg2: 15,
+      bg3: 20,
+      imgBg: 10,
+      text: 20,
+      topImg: 20,
+    };
 
-    const transformWrapperUpperTextElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-wrapper-upperText")}`)) as HTMLElement[];
-    const transformWrapperLowerTextElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-wrapper-lowerText")}`)) as HTMLElement[];
-    const transformWrapperTopImgElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-wrapper-topImg")}`)) as HTMLElement[];
+    const bg1Elements = e.currentTarget.querySelectorAll(`[class*="header23-background1-wrapper"]`);
+    const bg2Elements = e.currentTarget.querySelectorAll(`[class*="header23-background2-wrapper"]`);
+    const bg3Elements = e.currentTarget.querySelectorAll(`[class*="header23-background3-wrapper"]`);
+    const imgBgElements = e.currentTarget.querySelectorAll(`[class*="header23-img-bg"]`);
+    const upperTextElements = e.currentTarget.querySelectorAll(`[class*="header23-wrapper-upperText"]`);
+    const lowerTextElements = e.currentTarget.querySelectorAll(`[class*="header23-wrapper-lowerText"]`);
+    const topImgElements = e.currentTarget.querySelectorAll(`[class*="header23-wrapper-topImg"]`);
 
-    const factorBg1 = 10;
-    const factorBg2 = 15;
-    const factorBg3 = 20;
-    const factorImgBg = 10;
-    const factorText = 20;
-    const factorTopImg = 20;
-
-    applyTransform(transformWrapperBg1Elements, `translate(${xRatio * factorBg1}px, ${yRatio * factorBg1}px)`);
-    applyTransform(transformWrapperBg2Elements, `translate(-50%, -50%) translate(${xRatio * factorBg2}px, ${yRatio * factorBg2}px)`);
-    applyTransform(transformWrapperBg3Elements, `translate(${xRatio * factorBg3}px, ${yRatio * factorBg3}px)`);
-    applyTransform(transformWrapperImgBgElements, `translate(-50%, -50%) translate(${xRatio * factorImgBg}px, ${yRatio * factorImgBg}px)`);
-
-    applyTransform(transformWrapperUpperTextElements, `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`);
-    applyTransform(transformWrapperLowerTextElements, `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`);
-    applyTransform(transformWrapperTopImgElements, `translate(-50%, -50%) translate(${-xRatio * factorTopImg}px, ${-yRatio * factorTopImg}px)`);
+    applyTransform(bg1Elements, `translate(${xRatio * PARALLAX_FACTORS.bg1}px, ${yRatio * PARALLAX_FACTORS.bg1}px)`);
+    applyTransform(bg2Elements, `translate(-50%, -50%) translate(${xRatio * PARALLAX_FACTORS.bg2}px, ${yRatio * PARALLAX_FACTORS.bg2}px)`);
+    applyTransform(bg3Elements, `translate(${xRatio * PARALLAX_FACTORS.bg3}px, ${yRatio * PARALLAX_FACTORS.bg3}px)`);
+    applyTransform(imgBgElements, `translate(-50%, -50%) translate(${xRatio * PARALLAX_FACTORS.imgBg}px, ${yRatio * PARALLAX_FACTORS.imgBg}px)`);
+    applyTransform(upperTextElements, `translate(${xRatio * PARALLAX_FACTORS.text}px, ${yRatio * PARALLAX_FACTORS.text}px)`);
+    applyTransform(lowerTextElements, `translate(${xRatio * PARALLAX_FACTORS.text}px, ${yRatio * PARALLAX_FACTORS.text}px)`);
+    applyTransform(topImgElements, `translate(-50%, -50%) translate(${-xRatio * PARALLAX_FACTORS.topImg}px, ${-yRatio * PARALLAX_FACTORS.topImg}px)`);
   };
+
+  getColorVariations(baseColor: string) {
+    const parseColor = (color: string) => {
+      const rgbMatch = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+      const rgbaMatch = color.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+      
+      if (rgbMatch) {
+        return { r: rgbMatch[1], g: rgbMatch[2], b: rgbMatch[3], a: 1 };
+      } else if (rgbaMatch) {
+        return { r: rgbaMatch[1], g: rgbaMatch[2], b: rgbaMatch[3], a: parseFloat(rgbaMatch[4]) };
+      }
+      return { r: 186, g: 226, b: 255, a: 0.8 };
+    };
+    
+    const { r, g, b, a } = parseColor(baseColor);
+    
+    return {
+      innerCircle: baseColor,
+      circle: `rgba(${r}, ${g}, ${b}, ${a * 0.4})`, 
+      section: `rgba(${r}, ${g}, ${b}, ${a * 0.3125})`, 
+    };
+  }
 
   static getName(): string {
     return "Hero Section 23";
@@ -370,7 +411,7 @@ class HeroSection23 extends BaseHeroSection {
       dots: false,
       infinite: true,
       speed: 440,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -390,7 +431,6 @@ class HeroSection23 extends BaseHeroSection {
 
     const mouseMoveActive = this.getPropValue("mouseMoveActivation");
     const animateActive = this.getPropValue("animateActivation");
-    const bgColorActivation = this.getPropValue("bgColorActivation");
 
     return (
       <div className={this.decorateCSS("container")} onMouseMove={mouseMoveActive ? this.handleMouseMove : undefined}>
@@ -398,7 +438,7 @@ class HeroSection23 extends BaseHeroSection {
           <div className={this.decorateCSS("wrapper")}>
             {slider.length > 1 && previousArrow && (
               <div
-                className={`${this.decorateCSS("prevArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`}
+                className={this.decorateCSS("prevArrow")}
                 onClick={() => {
                   sliderRef.current.slickPrev();
                 }}
@@ -408,7 +448,7 @@ class HeroSection23 extends BaseHeroSection {
             )}
             {slider.length > 1 && nextArrow && (
               <div
-                className={`${this.decorateCSS("nextArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`}
+                className={this.decorateCSS("nextArrow")}
                 onClick={() => {
                   sliderRef.current.slickNext();
                 }}
@@ -429,10 +469,15 @@ class HeroSection23 extends BaseHeroSection {
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={sliderRef}>
               {slider.map((item: SliderItem, index: number) => {
                 const isActive = activeSlide === index;
+                const baseColor = this.castToString(item.baseColor) || "rgba(186, 226, 255, 0.8)";
+                const colors = this.getColorVariations(baseColor);
 
                 return (
                   <div className={this.decorateCSS("items")} key={`key${index}`}>
-                    <div className={`${this.decorateCSS("wrapper-slick")} ${bgColorActivation && this.decorateCSS("bg-color-activation")}`}>
+                    <div 
+                      className={this.decorateCSS("wrapper-slick")}
+                      style={{ backgroundColor: colors.section }}
+                    >
                       {item.background1 && (
                         <div className={this.decorateCSS("header23-background1-wrapper")}>
                           <Base.Media value={item.background1} className={`${this.decorateCSS("background1")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
@@ -464,8 +509,7 @@ class HeroSection23 extends BaseHeroSection {
                         <div className={this.decorateCSS("header23-wrapper-upperText")}>
                           <div
                             className={`${this.decorateCSS("upper-text")} 
-                          ${isActive && animateActive && this.decorateCSS("animate")}
-                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}
+                          ${isActive && animateActive && this.decorateCSS("animate")}`}
                           >
                             {item.upperText}
                           </div>
@@ -476,8 +520,7 @@ class HeroSection23 extends BaseHeroSection {
                         <div className={this.decorateCSS("header23-wrapper-lowerText")}>
                           <div
                             className={`${this.decorateCSS("lower-text")} 
-                          ${isActive && animateActive && this.decorateCSS("animate")}
-                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}
+                          ${isActive && animateActive && this.decorateCSS("animate")}`}
                           >
                             {item.bottomText}
                           </div>
@@ -485,10 +528,13 @@ class HeroSection23 extends BaseHeroSection {
                       )}
                       {this.getPropValue("circleActivation") && (
                         <div
-                          className={`${this.decorateCSS("circle")} ${isActive && animateActive && this.decorateCSS("animate")}
-                        ${bgColorActivation && this.decorateCSS("bg-active-c")}`}
+                          className={`${this.decorateCSS("circle")} ${isActive && animateActive && this.decorateCSS("animate")}`}
+                          style={{ backgroundColor: colors.circle }}
                         >
-                          <div className={`${this.decorateCSS("innerCircle")} ${bgColorActivation && this.decorateCSS("bg-active-ic")}`}></div>
+                          <div 
+                            className={this.decorateCSS("innerCircle")}
+                            style={{ backgroundColor: colors.innerCircle }}
+                          ></div>
                         </div>
                       )}
                     </div>

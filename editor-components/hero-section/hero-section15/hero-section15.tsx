@@ -24,13 +24,39 @@ class HeroSection15 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "background-image",
-      displayer: "Media",
+      displayer: "Background Image",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765394d0655f8002ca9e088?alt=media",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1ef875e15002c5eb402?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1d3875e15002c5eb3e2?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
       },
     });
 
@@ -97,6 +123,8 @@ class HeroSection15 extends BaseHeroSection {
 
     const backgroundImageValue = this.getPropValue("background-image") as TypeMediaInputValue | undefined;
     const backgroundImageExist = backgroundImageValue;
+    const imageValue = this.getPropValue("image") as TypeMediaInputValue | undefined;
+    const logoValue = this.getPropValue("logo") as TypeMediaInputValue | undefined;
 
     function getInitialValue() {
       let value: any = {};
@@ -110,7 +138,9 @@ class HeroSection15 extends BaseHeroSection {
             value={backgroundImageValue}
             className={this.decorateCSS("background-image")}
             autoPlay
+            muted
             loop
+            playsInline
           />
         )}
         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
@@ -119,6 +149,11 @@ class HeroSection15 extends BaseHeroSection {
             <div className={`${this.decorateCSS("left")} ${!backgroundImageExist && this.decorateCSS("left-no-image")}`}>
               <div className={this.decorateCSS("content-wrapper")}>
                 <Base.VerticalContent className={this.decorateCSS("content")}>
+                  {logoValue && (
+                    <div className={this.decorateCSS("logo-wrapper")}>
+                      <Base.Media value={logoValue} className={`${this.decorateCSS("logo")} ${backgroundImageExist && this.decorateCSS("logo-with-image")}`} />
+                    </div>
+                  )}
                   {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("title-with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {this.castToString(this.getPropValue("description")) && (
                     <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageExist && this.decorateCSS("description-with-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>
@@ -177,6 +212,13 @@ class HeroSection15 extends BaseHeroSection {
                 </Base.VerticalContent>
               </div>
             </div>
+            {imageValue && (
+              <div className={this.decorateCSS("right")}>
+                <div className={this.decorateCSS("image-wrapper")}>
+                  <Base.Media value={imageValue} className={this.decorateCSS("image")} />
+                </div>
+              </div>
+            )}
           </Base.MaxContent>
         </div>
       </Base.Container>

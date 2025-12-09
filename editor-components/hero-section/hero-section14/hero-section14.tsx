@@ -7,6 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Slides = {
+  logo: TypeMediaInputValue;
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
@@ -21,30 +22,6 @@ class HeroSection14 extends BaseHeroSection {
   slideRefs: React.RefObject<HTMLDivElement>[] = [];
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "media",
-      key: "prevIcon",
-      displayer: "Prev Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "GrFormPrevious",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "nextIcon",
-      displayer: "Next Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "GrFormNext",
-      },
-    });
     this.addProp({
       type: "boolean",
       key: "animation",
@@ -69,6 +46,18 @@ class HeroSection14 extends BaseHeroSection {
           displayer: "Slide",
           key: "slide",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
             {
               type: "string",
               displayer: "Title",
@@ -114,6 +103,18 @@ class HeroSection14 extends BaseHeroSection {
           key: "slide",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               displayer: "Title",
               key: "title",
@@ -156,6 +157,18 @@ class HeroSection14 extends BaseHeroSection {
           displayer: "Slide",
           key: "slide",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
             {
               type: "string",
               displayer: "Title",
@@ -236,15 +249,9 @@ class HeroSection14 extends BaseHeroSection {
               const image = item.image;
               const title = this.castToString(item.title);
               const description = this.castToString(item.description);
+              const logo = item.logo;
               const isActive = this.getComponentState("activeSlide") === index;
-              const containerClass =
-                !this.getPropValue("prevIcon") && !this.getPropValue("nextIcon")
-                  ? this.decorateCSS("content-full")
-                  : !this.getPropValue("prevIcon")
-                  ? this.decorateCSS("content-left")
-                  : !this.getPropValue("nextIcon")
-                  ? this.decorateCSS("content-right")
-                  : this.decorateCSS("content");
+              const containerClass = this.decorateCSS("content");
 
               const noBgClass = !image && this.decorateCSS("no-bg");
 
@@ -258,6 +265,11 @@ class HeroSection14 extends BaseHeroSection {
                   )}
                   <div className={`${this.decorateCSS("content-wrapper")} ${isActive && isAnimation && this.decorateCSS("fade-in")}`}>
                     <Base.VerticalContent className={`${containerClass} ${noBgClass}`}>
+                      {logo && (
+                        <div className={this.decorateCSS("logo-wrapper")}>
+                          <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${image && this.decorateCSS("logo-with-image")}`} />
+                        </div>
+                      )}
                       {title && <Base.SectionTitle className={`${this.decorateCSS("title")} ${image && this.decorateCSS("title-with-image")}`}>{item.title}</Base.SectionTitle>}
                       {description && <Base.SectionDescription className={`${this.decorateCSS("description")} ${image && this.decorateCSS("description-with-image")}`}>{item.description}</Base.SectionDescription>}
 
@@ -279,26 +291,6 @@ class HeroSection14 extends BaseHeroSection {
                       )}
                     </Base.VerticalContent>
                   </div>
-                  {slides.length > 1 && (
-                    <>
-                      <div
-                        className={`${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("prev-icon")}`}
-                        onClick={() => {
-                          this.getComponentState("slider-ref").current.slickPrev();
-                        }}
-                      >
-                        <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("prevIcon")} />
-                      </div>
-                      <div
-                        className={`${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("next-icon")}`}
-                        onClick={() => {
-                          this.getComponentState("slider-ref").current.slickNext();
-                        }}
-                      >
-                        <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("nextIcon")} />
-                      </div>
-                    </>
-                  )}
                 </div>
               );
             })}

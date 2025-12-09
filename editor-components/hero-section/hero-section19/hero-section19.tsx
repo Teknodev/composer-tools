@@ -36,12 +36,18 @@ class HeroSection19 extends BaseHeroSection {
           displayer: "Image",
           key: "image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f79?alt=media&timestamp=1719483639150",
           },
+        },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
         },
        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
@@ -75,12 +81,18 @@ class HeroSection19 extends BaseHeroSection {
           displayer: "Image",
           key: "image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f78?alt=media&timestamp=1719483639150",
           },
+        },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
         },
         INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
@@ -114,12 +126,18 @@ class HeroSection19 extends BaseHeroSection {
           displayer: "Image",
           key: "image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150",
           },
+        },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
         },
        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
@@ -153,12 +171,18 @@ class HeroSection19 extends BaseHeroSection {
           displayer: "Image",
           key: "image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7b?alt=media&timestamp=1719483639150",
           },
+        },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
         },
        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
@@ -213,7 +237,8 @@ class HeroSection19 extends BaseHeroSection {
               <div className={this.decorateCSS("item")}>
                 {itemLeft.image && (
                   <div className={this.decorateCSS("background-image")}>
-                    <Base.Media value={itemLeft.image} className={this.decorateCSS("image")} />
+                    <Base.Media value={itemLeft.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                    {itemLeft.overlay && <div className={this.decorateCSS("overlay")} />}
                   </div>
                 )}
                 {isContentVisibleLeft && (
@@ -240,7 +265,8 @@ class HeroSection19 extends BaseHeroSection {
                   <div className={this.decorateCSS("item")}>
                     {itemRightTop.image && (
                       <div className={this.decorateCSS("background-image")}>
-                        <Base.Media value={itemRightTop.image} className={this.decorateCSS("image")} />
+                        <Base.Media value={itemRightTop.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                        {itemRightTop.overlay && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
                     {isContentVisibleRightTop && (
@@ -266,7 +292,8 @@ class HeroSection19 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-left")}`}>
                       {itemBottomLeft.image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <Base.Media value={itemBottomLeft.image} className={this.decorateCSS("image")} />
+                          <Base.Media value={itemBottomLeft.image} className={this.decorateCSS("image")} autoPlay loop />
+                          {itemBottomLeft.overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
                       {isContentVisibleBottomLeft && (
@@ -288,7 +315,8 @@ class HeroSection19 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-right")}`}>
                       {itemBottomRight.image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <Base.Media value={itemBottomRight.image} className={this.decorateCSS("image")} />
+                          <Base.Media value={itemBottomRight.image} className={this.decorateCSS("image")} autoPlay loop />
+                          {itemBottomRight.overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
                       {isContentVisibleBottomRight && (

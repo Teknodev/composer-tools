@@ -7,6 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardState = {
+  logo: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
@@ -23,6 +24,18 @@ class HeroSection21 extends BaseHeroSection {
       key: "card",
       displayer: "Card",
       value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image", "icon"],
+          },
+          value: {
+            type: "icon",
+            name: "",
+          },
+        },
         {
           type: "string",
           key: "subtitle",
@@ -108,6 +121,7 @@ class HeroSection21 extends BaseHeroSection {
     const titleExist = this.castToString(card.title);
     const subtitleExist = this.castToString(card.subtitle);
     const descExist = this.castToString(card.description);
+    const logoExist = card.logo;
 
     const imageValue = this.getPropValue("image") as TypeMediaInputValue | undefined;
     const videoPlayer = this.castToObject<any>("video_player");
@@ -126,6 +140,11 @@ class HeroSection21 extends BaseHeroSection {
             {cardExist && (
               <div className={`${this.decorateCSS("card")} ${!image && this.decorateCSS("card-no-image")}`}>
                 <Base.VerticalContent className={`${this.decorateCSS("card-box")} ${!image && this.decorateCSS("card-box-no-image")}`}>
+                  {logoExist && (
+                    <div className={this.decorateCSS("logo-wrapper")}>
+                      <Base.Media value={card.logo} className={this.decorateCSS("logo")} />
+                    </div>
+                  )}
                   {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.SectionSubTitle>}
                   {titleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{card.title}</Base.SectionTitle>}
                   {descExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.description}</Base.SectionDescription>}

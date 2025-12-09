@@ -39,33 +39,6 @@
           background: var(--composer-overlay-color);
           z-index: 1;
         }
-        .arrow {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          margin: 0 auto;
-          color: black;
-          cursor: pointer;
-          font-size: 2.5rem;
-          z-index: 3;
-          &.prev-icon {
-            left: 50px;
-            .icon{
-              width: 30px;
-              height: 30px;
-            }
-          }
-          &.next-icon {
-            right: 50px;
-            .icon{
-              width: 30px;
-              height: 30px;
-            }
-          }
-          &.no-bg {
-            color: var(--composer-font-color-primary);
-          }
-        }
         .content-wrapper{
           position: absolute;
           top: 0;
@@ -79,12 +52,30 @@
           &.fade-in {
             animation: fade-in 3s ease-in-out forwards;
           }
-          .content, .content-full, .content-left, .content-right {
-            width : 85%;
+          .content {
+            width : 95%;
             align-items: baseline;
             &.no-bg {
               .description {
                 width: 100%;
+              }
+            }
+
+            .logo-wrapper {
+              margin-bottom: var(--composer-gap-md);
+              width: auto;
+              max-width: 200px;
+
+              .logo {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: contain;
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
+                &.logo-with-image {
+                  color: black;
+                }
               }
             }
   
@@ -117,20 +108,6 @@
               }
             }
           }
-          .content-left{
-            width: 100%;
-            padding: var(--composer-gap-md) var(--composer-gap-xl);
-            padding-right: calc(100px + var(--composer-gap-md));
-          }
-          .content-right{
-            width: 100%;
-            padding: var(--composer-gap-md) var(--composer-gap-xl);
-            padding-left: calc(100px + var(--composer-gap-md));
-          }
-          .content-full{
-            width: 100%;
-            padding: var(--composer-gap-md) var(--composer-gap-xl);
-          }
         }
       }
       .customDots {
@@ -154,11 +131,8 @@
     .max-content {
       .carousel {
         .slide {
-          .arrow {
-            display: none;
-          }
           .content-wrapper{
-            .content, .content-full, .content-left, .content-right {
+            .content {
               width: 100%;
               padding: var(--composer-gap-md) var(--composer-gap-lg);
             }
@@ -174,7 +148,7 @@
       .carousel {
         .slide {
           .content-wrapper{
-            .content, .content-full, .content-left, .content-right {
+            .content {
               padding: var(--composer-gap-md);
               .title {
                 width: 100%;

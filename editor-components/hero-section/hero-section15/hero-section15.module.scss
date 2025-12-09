@@ -2,6 +2,7 @@
 .container {
   min-height: 100vh;
   position: relative;
+  padding: 0 !important;
   
   .background-image {
     position: absolute;
@@ -29,6 +30,8 @@
     z-index: 2;
     .wrapper {
       display: flex;
+      height: 100%;
+      
       .left {
         display: flex;
         align-items: center;
@@ -40,8 +43,28 @@
         }
         .content-wrapper {
           width: 100%;
+          padding: 80px var(--composer-gap-xl);
           .content {
             align-items: baseline;
+
+            .logo-wrapper {
+              margin-bottom: var(--composer-gap-md);
+              width: auto;
+              max-width: 200px;
+
+              .logo {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: contain;
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
+                &.logo-with-image {
+                  color: black;
+                }
+              }
+            }
+
             .title {
               text-align: left;
               &.title-with-image {
@@ -65,7 +88,7 @@
               padding: var(--composer-gap-md);
               max-width: 75%;
               width: fit-content;
-              min-width: 30%;
+              min-width: 100%;
 
               &.form-display-no-image {
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -135,6 +158,28 @@
           }
         }
       }
+      
+      .right {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 50%;
+        
+        .image-wrapper {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          .image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
     }
   }
 }
@@ -147,9 +192,15 @@
         .left-no-image {
           max-width: 100%;
           .content-wrapper {
+            padding: 80px var(--composer-gap-lg);
             .content {
               .form-display {
                 min-width: 75%;
+                .form-wrapper {
+                  .form {
+                    flex-direction: column;
+                  }
+                }
               }
             }
           }
@@ -162,9 +213,12 @@
   .container {
     .max-content {
       .wrapper {
+        flex-direction: column;
+        
         .left {
           max-width: 100%;
           .content-wrapper {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
             .content {
               .form-display {
                 gap: var(--composer-gap-sm);
@@ -187,6 +241,10 @@
               }
             }
           }
+        }
+        
+        .right {
+          max-width: 100%;
         }
       }
     }

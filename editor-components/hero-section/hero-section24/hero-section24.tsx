@@ -1,18 +1,17 @@
 import * as React from "react";
 import styles from "./hero-section24.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  image: string;
-  flower_image: string;
-  background_image: string;
+  image: TypeMediaInputValue;
+  flower_image: TypeMediaInputValue;
+  background_image: TypeMediaInputValue;
   buttons: IButton[];
 };
 type IButton = INPUTS.CastedButton;
@@ -21,26 +20,38 @@ class HeroSection24 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prevIcon",
-      displayer: "Icon",
-      value: "IoIosArrowBack",
+      displayer: "Prev Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowBack",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextIcon",
-      displayer: "Icon",
-      value: "IoIosArrowForward",
+      displayer: "Next Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowForward",
+      },
     });
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider",
       key: "slider",
       value: [
         {
           type: "object",
-          displayer: "Item 1",
-          key: "item1",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -55,22 +66,40 @@ class HeroSection24 extends BaseHeroSection {
               value: "When you order a bouqet of flowers ,your goal is to impress that someone special needed.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c2?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c2?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Flower Image",
               key: "flower_image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background Image",
               key: "background_image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c3?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c3?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "array",
@@ -82,8 +111,8 @@ class HeroSection24 extends BaseHeroSection {
         },
         {
           type: "object",
-          displayer: "Item 2",
-          key: "item2",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -98,22 +127,40 @@ class HeroSection24 extends BaseHeroSection {
               value: "A symbol of simple love,charity,paradise on earth, heavenly and reminder of the passion life.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267be?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267be?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Flower Image",
               key: "flower_image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background Image",
               key: "background_image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bf?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bf?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "array",
@@ -125,8 +172,8 @@ class HeroSection24 extends BaseHeroSection {
         },
         {
           type: "object",
-          displayer: "Item 3",
-          key: "item3",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "string",
@@ -141,22 +188,40 @@ class HeroSection24 extends BaseHeroSection {
               value: "Make your life lovely.",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c0?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c0?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Flower Image",
               key: "flower_image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bd?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Background Image",
               key: "background_image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c1?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c1?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "array",
@@ -168,6 +233,14 @@ class HeroSection24 extends BaseHeroSection {
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.setComponentState("previousIndex", -1);
     this.setComponentState("currentIndex", 0);
     this.setComponentState("arrowDisabled", false);
@@ -200,7 +273,7 @@ class HeroSection24 extends BaseHeroSection {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -239,7 +312,7 @@ class HeroSection24 extends BaseHeroSection {
                                 className={`${this.decorateCSS("flower")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`}
                               >
-                                <img src={item.flower_image} alt={this.castToString(item.title)} />
+                                <Base.Media value={item.flower_image} alt={this.castToString(item.title)} />
                               </div>
                             )}
                             {this.castToString(item.title) && (
@@ -272,7 +345,7 @@ class HeroSection24 extends BaseHeroSection {
                                   {this.castToString(item.text) && (
                                     <ComposerLink path={item.url}>
                                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                        {item.text}
+                                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                                       </Base.Button>
                                     </ComposerLink>
                                   )}
@@ -285,7 +358,7 @@ class HeroSection24 extends BaseHeroSection {
                       {item.image && (
                         <div className={this.decorateCSS("right")}>
                           <div className={this.decorateCSS("image-wrapper")}>
-                            <img src={item.image} alt={this.castToString(item.title)} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
+                            <Base.Media value={item.image} alt={this.castToString(item.title)} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
                           </div>
                         </div>
                       )}
@@ -311,7 +384,7 @@ class HeroSection24 extends BaseHeroSection {
         <div className={this.decorateCSS("background-container")} >
             {currentBackgroundImage && (
               <div className={this.decorateCSS("background-image-container")}>
-                <img src={currentBackgroundImage} alt={currentBackgroundImage} className={this.decorateCSS("background-image")} />
+                <Base.Media value={currentBackgroundImage} alt="background" className={this.decorateCSS("background-image")} autoPlay muted loop playsInline />
               </div>
             )}
         </div> 
@@ -321,14 +394,14 @@ class HeroSection24 extends BaseHeroSection {
             <div className={currentBackgroundImage ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
             onClick={() => {sliderRef.current.slickPrev();}}>
               <div className={this.decorateCSS("arrow-prev")}>
-                <Base.Icon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                <Base.Media value={this.getPropValue("prevIcon")} className={this.decorateCSS("icon")} />
               </div>
             </div>
           <div
             className={currentBackgroundImage ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
             onClick={() => {sliderRef.current.slickNext();}}>
               <div className={this.decorateCSS("arrow-next")}>
-                <Base.Icon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                <Base.Media value={this.getPropValue("nextIcon")} className={this.decorateCSS("icon")} />
               </div>
           </div>
         </div>

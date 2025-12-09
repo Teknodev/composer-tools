@@ -19,14 +19,12 @@
 }
 
 .container {
-  width: 100%;
   height: 100%;
-  background-color: var(--composer-html-background);
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
-  padding: 0 var(--composer-gap-xl) var(--composer-gap-md) 0;
+  padding: 0 var(--composer-gap-xl) var(--composer-gap-md) 0 !important;
 
   .max-content {
     width: 100%;
@@ -140,19 +138,12 @@
                   font-size: 3.5rem;
                   color: var(--composer-font-color-primary);
                   text-align: left;
-                  > div {
-                    > blinkpage {
-                      line-clamp: 5;
-                      display: -webkit-box;
-                      -webkit-line-clamp: 3;
-                      -webkit-box-orient: vertical;
-                      overflow: hidden;
-                    }
-                  }
                 }
 
                 .button {
-                  font-size: 1rem;
+                  .button-text {
+                    content: "";
+                  }
                 }
               }
             }
@@ -160,7 +151,7 @@
             .right-content {
               flex: 1;
               display: flex;
-              align-items: start;
+              align-items: center;
               justify-content: end;
               position: relative;
               .mid-right-animation {
@@ -254,7 +245,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0 var(--composer-gap-lg) var(--composer-gap-md) 0;
+    padding: 0 var(--composer-gap-lg) var(--composer-gap-md) 0 !important;
     .max-content {
       .slider-parent {
         .carousel {
@@ -282,9 +273,6 @@
                   .text-wrapper {
                     .title {
                       font-size: 2rem;
-                    }
-                    .button {
-                      font-size: 1rem;
                     }
                   }
                 }
@@ -321,7 +309,7 @@
 
   @container (max-width: #{$composer-phone-width}) {
     .container {
-      padding: 0 var(--composer-gap-md) var(--composer-gap-md) 0;
+      padding: 0 var(--composer-gap-md) var(--composer-gap-md) 0 !important;
       .max-content {
         .slider-parent {
           .carousel {
@@ -346,9 +334,6 @@
                   .text-wrapper {
                     gap: var(--composer-gap-sm);
                     .title {
-                      font-size: 1rem;
-                    }
-                    .button {
                       font-size: 1rem;
                     }
                   }

@@ -91,7 +91,7 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "White"),
           ],
         },
         {
@@ -129,7 +129,7 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "White"),
           ],
         },
         {
@@ -167,7 +167,7 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "White"),
           ],
         },
       ],

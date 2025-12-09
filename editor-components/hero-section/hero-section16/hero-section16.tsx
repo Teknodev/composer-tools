@@ -12,6 +12,7 @@ type ISliderData = {
   subtitle: React.JSX.Element;
   button: INPUTS.CastedButton;
   overlay: boolean;
+  logo: TypeMediaInputValue;
 };
 class HeroSection16 extends BaseHeroSection {
   constructor(props?: any) {
@@ -40,6 +41,18 @@ class HeroSection16 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               value: "THE BEST WEDDING DAY",
@@ -50,6 +63,12 @@ class HeroSection16 extends BaseHeroSection {
               key: "title",
               value: "We're getting married!",
               displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "",
+              displayer: "Description",
             },
             {
               type: "boolean",
@@ -78,6 +97,18 @@ class HeroSection16 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               value: "TRUST US TO ORGANİZE",
@@ -88,6 +119,12 @@ class HeroSection16 extends BaseHeroSection {
               key: "title",
               value: "Your special day",
               displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "",
+              displayer: "Description",
             },
             {
               type: "boolean",
@@ -116,6 +153,18 @@ class HeroSection16 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               value: "FLOWER ARRANGEMENTS",
@@ -126,6 +175,12 @@ class HeroSection16 extends BaseHeroSection {
               key: "title",
               value: "See you at the wedding",
               displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "",
+              displayer: "Description",
             },
             {
               type: "boolean",
@@ -222,8 +277,10 @@ class HeroSection16 extends BaseHeroSection {
             {slider.map((item, index) => {
               const subtitleExist = this.castToString(item.subtitle);
               const titleExist = this.castToString(item.title);
+              const descriptonExist = this.castToString(item.description);
               const buttonTextExist = this.castToString(item.button.text);
               const imageExist = item.image;
+              const logoExist = item.logo;
 
               const contentExist = subtitleExist || titleExist || buttonTextExist;
 
@@ -241,8 +298,14 @@ class HeroSection16 extends BaseHeroSection {
               ${!imageExist && this.decorateCSS("image-no-content")} 
               ${activeSlideIndex === index ? this.decorateCSS(imageExist ? "active" : "active-no-image") : ""}`}
                     >
+                      {logoExist && (
+                        <div className={this.decorateCSS("logo-wrapper")}>
+                          <Base.Media value={item.logo} className={this.decorateCSS("logo")} />
+                        </div>
+                      )}
                       {subtitleExist && <Base.P className={`${this.decorateCSS("subtitle")} ${!imageExist && this.decorateCSS("subtitle-no-image")}`}>{item.subtitle}</Base.P>}
                       {titleExist && <Base.P className={`${this.decorateCSS("title")} ${!imageExist && this.decorateCSS("title-no-image")}`}>{item.title}</Base.P>}
+                      {descriptonExist && <Base.P className={`${this.decorateCSS("description")} ${!imageExist && this.decorateCSS("description-no-image")}`}>{item.description}</Base.P>}
                       {buttonTextExist && (
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
