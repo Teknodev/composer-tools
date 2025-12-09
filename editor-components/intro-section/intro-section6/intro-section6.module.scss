@@ -190,14 +190,6 @@
           flex: 0 0 100%;
 
           .vertical-content {
-            .actions-wrapper {
-              .action-buttons {
-                flex-direction: column;
-              }
-            }
-          }
-
-          .vertical-content {
             &.center {
               .title,
               .description,
