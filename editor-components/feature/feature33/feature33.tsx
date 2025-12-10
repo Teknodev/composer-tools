@@ -216,13 +216,9 @@ class Feature33 extends BaseFeature {
     const itemCount = this.getPropValue("itemCount");
     const alignment = Base.getContentAlignment();
 
-    const subtitleText = this.castToString(subtitle);
-    const titleText = this.castToString(title);
-    const descriptionText = this.castToString(description);
-
-    const hasSubtitle = !!subtitleText;
-    const hasTitle = !!titleText;
-    const hasDescription = !!descriptionText;
+    const hasSubtitle = !!this.castToString(subtitle);
+    const hasTitle = !!this.castToString(title);
+    const hasDescription = !!this.castToString(description);
 
     const hasButtons =
       Array.isArray(buttons) &&
