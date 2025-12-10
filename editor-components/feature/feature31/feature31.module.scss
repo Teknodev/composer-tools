@@ -2,9 +2,11 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
     .header {
       align-items: center !important;
-      margin-bottom: var(--composer-gap-md);
     }
 
     .subtitle {
@@ -22,8 +24,6 @@
 
     .features-grid {
       gap: var(--composer-gap-lg);
-      justify-content: flex-start !important;
-      text-align: left;
 
       .feature-item {
         align-items: flex-start;
@@ -97,20 +97,13 @@
     }
 
     .action-button {
-      display: inline-flex;
-      align-items: center !important;
-      gap: var(--composer-gap-xs);
-    }
+      .action-button-text {
+        content: "";
+      }
 
-    .action-button-text {
-      text-align: center !important;
-    }
-
-    .action-button-icon {
-      display: flex;
-      align-items: center !important;
-      justify-content: center !important;
-      font-size: 1.5rem;
+      .action-button-icon {
+        font-size: 1.5rem;
+      }
     }
   }
 }

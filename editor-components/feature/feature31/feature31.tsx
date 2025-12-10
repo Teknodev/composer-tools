@@ -319,12 +319,14 @@ class Feature31 extends BaseFeature {
     const description = this.getPropValue("description");
     const features = this.castToObject<FeatureItem[]>("features");
     const itemCount = this.getPropValue("itemCount");
-    const buttons = (this.castToObject<INPUTS.CastedButton[]>("buttons") || []).filter((btn) => {
-      const text = this.castToString(btn.text || "");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const buttonsToRender = buttons.filter((btn) => {
       const iconVal = btn.icon as { name?: string; url?: string } | undefined;
-      return text || iconVal?.name || iconVal?.url;
+      const hasIcon = iconVal && (iconVal.name || iconVal.url);
+      const hasText = this.castToString(btn.text);
+      return hasIcon || hasText;
     });
-    const hasButtons = buttons.length > 0;
+    const hasButtons = buttonsToRender.length > 0;
 
     const showHeader = this.castToString(title) || this.castToString(subtitle) || this.castToString(description);
     const showFeatures = features.length > 0;
@@ -389,8 +391,8 @@ class Feature31 extends BaseFeature {
             </Base.ListGrid>
           )}
           {hasButtons && (
-          <Base.VerticalContent className={this.decorateCSS("button-wrapper")}>
-            {buttons.map((btn, idx) => {
+          <Base.Row className={this.decorateCSS("button-wrapper")}>
+            {buttonsToRender.map((btn, idx) => {
               const iconVal = (btn.icon as { type?: string; name?: string; url?: string } | undefined);
               const btnHasIcon = iconVal && ((iconVal as { name?: string }).name || (iconVal as { url?: string }).url);
               const btnText = this.castToString(btn.text);
@@ -413,7 +415,7 @@ class Feature31 extends BaseFeature {
                 </ComposerLink>
               );
             })}
-          </Base.VerticalContent>
+          </Base.Row>
           )}
         </Base.MaxContent>
       </Base.Container>
