@@ -3,6 +3,14 @@ import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type ButtonData = {
+  text?: React.JSX.Element;
+  url?: string;
+  icon?: TypeMediaInputValue;
+  type?: INPUTS.CastedButton["type"];
+};
 
 interface FeatureItem {
   title: React.JSX.Element;
@@ -35,60 +43,7 @@ class About10 extends BaseAbout {
         "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail.",
     });
 
-    this.addProp({
-      type: "array",
-      key: "button",
-      displayer: "Button",
-      value: [
-        {
-          type: "object",
-          key: "buttonItem",
-          displayer: "Button Item",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "More About Us",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon","image"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "select",
-              key: "type",
-              displayer: "Type",
-              value: "Secondary",
-              additionalParams: {
-                selectItems: [
-                  "Primary",
-                  "Secondary",
-                  "Tertiary",
-                  "Link",
-                  "White",
-                  "Black",
-                ],
-              },
-            },
-          ],
-        },
-      ],
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "More About Us", "", "IoIosArrowForward", null, "Primary"));
 
     this.addProp({
       type: "media",
@@ -213,20 +168,12 @@ class About10 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const buttonArray = this.castToObject<any[]>("button") || [];
-    const buttonItems = buttonArray
-      .map((btn) => {
-        const btnText = this.castToString(btn?.text);
-        const btnUrl = btn?.url;
-        const btnIcon = btn?.icon;
-        const btnType = btn?.type;
-        const hasIcon = !!(btnIcon && (btnIcon as { name?: string }).name);
-        const hasText = !!btnText;
-        return { btnText, btnUrl, btnIcon, btnType, hasIcon, hasText };
-      })
-      .filter((btn) => btn.hasIcon || btn.hasText);
-    const hasButtonIcon = buttonItems.some((btn) => btn.hasIcon);
-    const hasButtonText = buttonItems.some((btn) => btn.hasText);
+    const buttonData = this.castToObject<ButtonData>("button");
+    const buttonIcon = buttonData.icon;
+    const hasButtonIcon = buttonIcon ? (buttonIcon.type === "icon" ? buttonIcon.name : buttonIcon.url) : "";
+    const buttonTextValue = buttonData.text;
+    const buttonText = buttonTextValue ? this.castToString(buttonTextValue) : "";
+    const hasButtonText = !!buttonText;
     const mainImage = this.getPropValue("mainImage");
     const features = this.castToObject<FeatureItem[]>("features");
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
@@ -240,7 +187,7 @@ class About10 extends BaseAbout {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div 
+          <div
             className={`${this.decorateCSS("header")} ${!hasSubtitleOrTitle ? this.decorateCSS("no-left") : ""} ${!hasDescriptionOrButton ? this.decorateCSS("no-right") : ""}`}
           >
             {hasSubtitleOrTitle && (
@@ -267,27 +214,20 @@ class About10 extends BaseAbout {
                       {description}
                     </Base.SectionDescription>
                   )}
-                  {buttonItems.length > 0 && (
+                  {(hasButtonText || hasButtonIcon) && (
                     <div className={this.decorateCSS("button-wrapper")}>
-                      {buttonItems.map((btn, idx) => (
-                        <ComposerLink key={idx} path={btn.btnUrl}>
-                          <Base.Button buttonType={(btn.btnType as any) || "Secondary"}>
-                            {btn.hasIcon && (
-                              <div className={this.decorateCSS("button-icon-wrapper")}>
-                                <Base.Media
-                                  value={btn.btnIcon}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              </div>
-                            )}
-                            {btn.hasText && (
-                              <Base.P className={this.decorateCSS("button-text")}>
-                                {btn.btnText}
-                              </Base.P>
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      ))}
+                      <ComposerLink path={buttonData.url}>
+                        <Base.Button buttonType={buttonData.type || "Secondary"}>
+                          {hasButtonIcon && (
+                            <Base.Media value={buttonIcon} className={this.decorateCSS("button-icon")} />
+                          )}
+                          {hasButtonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {buttonText}
+                            </Base.P>
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
                     </div>
                   )}
                 </Base.VerticalContent>
@@ -312,9 +252,12 @@ class About10 extends BaseAbout {
 
           {isFeaturesExist && (
             <div className={this.decorateCSS("features-section")}>
-              <Base.ContainerGrid className={this.decorateCSS("features-grid")}>
+              <Base.ListGrid
+                className={this.decorateCSS("features-grid")}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}
+              >
                 {features.map((feature, index) => (
-                  <Base.GridCell 
+                  <div
                     key={index}
                     className={this.decorateCSS("feature-item")}
                   >
@@ -328,9 +271,9 @@ class About10 extends BaseAbout {
                         {feature.description}
                       </Base.P>
                     )}
-                  </Base.GridCell>
+                  </div>
                 ))}
-              </Base.ContainerGrid>
+              </Base.ListGrid>
             </div>
           )}
         </Base.MaxContent>
