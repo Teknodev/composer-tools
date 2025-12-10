@@ -15,6 +15,11 @@ type ITabs = {
 };
 
 class Feature17 extends BaseFeature {
+  private scrollTimeoutId: ReturnType<typeof setTimeout> | null = null;
+  private tabButtonsRef = React.createRef<HTMLDivElement>();
+  private customScrollbarThumbRef = React.createRef<HTMLDivElement>();
+  private wrapperRef = React.createRef<HTMLDivElement>();
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -315,6 +320,63 @@ class Feature17 extends BaseFeature {
     this.setComponentState("activeTab", activeTabIndex);
   }
 
+  updateCustomScrollbar = () => {
+    const el = this.tabButtonsRef.current;
+    const thumb = this.customScrollbarThumbRef.current;
+    const wrapper = this.wrapperRef.current;
+    
+    if (!el || !thumb || !wrapper) return;
+
+    const scrollRatio = el.scrollLeft / (el.scrollWidth - el.clientWidth);
+    const thumbWidth = (el.clientWidth / el.scrollWidth) * 100;
+    const thumbPosition = scrollRatio * (100 - thumbWidth);
+
+    thumb.style.width = `${thumbWidth}%`;
+    thumb.style.left = `${thumbPosition}%`;
+  };
+
+  handleScroll = () => {
+    const wrapper = this.wrapperRef.current;
+    if (!wrapper) return;
+
+    
+    this.updateCustomScrollbar();
+
+    
+    wrapper.classList.add(styles["is-scrolling"]);
+
+    
+    if (this.scrollTimeoutId) {
+      clearTimeout(this.scrollTimeoutId);
+    }
+
+    this.scrollTimeoutId = setTimeout(() => {
+      wrapper.classList.remove(styles["is-scrolling"]);
+    }, 200);
+  };
+
+  componentDidMount() {
+    const el = this.tabButtonsRef.current;
+    if (el) {
+      el.addEventListener("scroll", this.handleScroll);
+      
+      this.updateCustomScrollbar();
+      
+      window.addEventListener("resize", this.updateCustomScrollbar);
+    }
+  }
+
+  componentWillUnmount() {
+    const el = this.tabButtonsRef.current;
+    if (el) {
+      el.removeEventListener("scroll", this.handleScroll);
+    }
+    window.removeEventListener("resize", this.updateCustomScrollbar);
+    if (this.scrollTimeoutId) {
+      clearTimeout(this.scrollTimeoutId);
+    }
+  }
+
   static getName(): string {
     return "Feature 17";
   }
@@ -384,18 +446,23 @@ class Feature17 extends BaseFeature {
           )}
 
           <div className={this.decorateCSS("tabs")}>
-            <div className={this.decorateCSS("tab-buttons")}>
-              {filteredTabs.map((tab: ITabs, index: number) => (
-                <Base.P
-                  key={`feature17-tab-button-${index}`}
-                  className={`${this.decorateCSS("tab-button")} ${
-                    activeTab === index ? this.decorateCSS("active") : ""
-                  }`}
-                  onClick={() => this.setActiveTab(index)}
-                >
-                  {tab.tabText}
-                </Base.P>
-              ))}
+            <div ref={this.wrapperRef} className={this.decorateCSS("tab-buttons-wrapper")}>
+              <div ref={this.tabButtonsRef} className={this.decorateCSS("tab-buttons")}>
+                {filteredTabs.map((tab: ITabs, index: number) => (
+                  <Base.P
+                    key={`feature17-tab-button-${index}`}
+                    className={`${this.decorateCSS("tab-button")} ${
+                      activeTab === index ? this.decorateCSS("active") : ""
+                    }`}
+                    onClick={() => this.setActiveTab(index)}
+                  >
+                    {tab.tabText}
+                  </Base.P>
+                ))}
+              </div>
+              <div className={this.decorateCSS("custom-scrollbar")}>
+                <div ref={this.customScrollbarThumbRef} className={this.decorateCSS("custom-scrollbar-thumb")} />
+              </div>
             </div>
             {filteredTabs.map((tab: ITabs, index: number) => {
               const tabSubtitleExist = this.castToString(tab.subtitle);
