@@ -37,7 +37,6 @@
 
           .card {
             flex: 1;
-            min-height: 320px;
           }
         }
       }
@@ -117,7 +116,7 @@
         padding: 0;
         transition: all 0.3s ease;
         flex: 1;
-        min-height: 280px;
+        min-height: 320px;
 
         .card-media {
           position: absolute;
