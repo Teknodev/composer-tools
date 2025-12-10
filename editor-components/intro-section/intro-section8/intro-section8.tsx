@@ -106,10 +106,6 @@ class IntroSection8 extends BaseIntroSection {
     this.setComponentState("isPlaying", true);
   };
 
-  handleVideoPause = () => {
-    this.setComponentState("isPlaying", false);
-  };
-
   private hasTextContent(): boolean {
     return !!(
       this.castToString(this.getPropValue("subtitle")) ||
@@ -184,11 +180,9 @@ class IntroSection8 extends BaseIntroSection {
                 className={this.decorateCSS("media-button")}
               >
                 {icon && (
-                  <Base.Icon
-                    name={icon}
-                    propsIcon={{
-                      className: this.decorateCSS("media-button-icon"),
-                    }}
+                  <Base.Media
+                    value={{ type: "icon", name: icon }}
+                    className={this.decorateCSS("media-button-icon")}
                   />
                 )}
                 <Base.P className={this.decorateCSS("media-button-text")}>
