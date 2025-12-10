@@ -89,9 +89,11 @@
 
     .button-wrapper {
       display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       justify-content: center !important;
+      gap: var(--composer-gap-sm);
       margin-top: var(--composer-gap-xl);
-      align-items: center !important;
     }
 
     .action-button {
