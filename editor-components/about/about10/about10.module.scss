@@ -4,12 +4,11 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: 0;
 
     .header {
       display: flex;
       align-items: flex-start;
-      margin-bottom: var(--composer-gap-xl);
+      margin-bottom: var(--composer-gap-lg);
 
       .content-section {
         display: flex;
@@ -22,6 +21,9 @@
 
           .subtitle, .title {
             text-align: left !important;
+            margin-left: 0;
+            align-self: flex-start;
+  
           }
         }
 
@@ -166,11 +168,11 @@
     }
 
     .features-section {
-      padding-top: var(--composer-gap-xl);
+      padding-top: var(--composer-gap-lg);
       width: 100%;
 
       .features-grid {
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-md);
         justify-items: stretch;
         align-items: start;
         width: 100%;
@@ -229,8 +231,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: 0;
-
       .header {
         flex-direction: column;
         align-items: flex-start;
@@ -257,7 +257,7 @@
       }
 
       .features-section {
-        padding-top: var(--composer-gap-lg);
+        padding-top: var(--composer-gap-md);
 
         .features-grid {
           gap: var(--composer-gap-sm);
