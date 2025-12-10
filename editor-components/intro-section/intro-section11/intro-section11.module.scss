@@ -21,7 +21,7 @@
   }
 
   .max-content {
-    .content {
+    .card {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -34,8 +34,7 @@
       }
 
       .vertical-content {
-        display: flex;
-        flex-direction: column;
+        
         align-items: center;
       }
 
@@ -102,7 +101,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .content {
+      .card {
         .action-buttons {
           .button {
             padding: calc(var(--composer-gap-md) * 1.7) !important;

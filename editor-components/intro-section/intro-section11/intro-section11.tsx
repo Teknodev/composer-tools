@@ -71,7 +71,7 @@ class IntroSection11 extends BaseIntroSection {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+          <div className={this.decorateCSS("card")}>
             {hasVerticalContent && (
               <Base.VerticalContent
                 className={this.decorateCSS("vertical-content")}
