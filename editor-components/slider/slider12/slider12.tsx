@@ -478,30 +478,24 @@ class Slider12 extends BaseSlider {
                     <div className={this.decorateCSS("arrows-wrap")}>
                       <div className={this.decorateCSS("arrows")}>
                         {prevMedia && (
-                          <Base.Button
-                            type="button"
-                            buttonType="Link"
-                            className={this.decorateCSS("prevArrow")}
-                            onClick={() => this.sliderRef.current?.slickPrev()}
-                          >
-                            <Base.Media
-                              value={prevMedia}
-                              className={this.decorateCSS("arrow-media")}
-                            />
-                          </Base.Button>
+                          <div className={this.decorateCSS("arrow")}>
+                            <div
+                              className={this.decorateCSS("prevArrow")}
+                              onClick={() => this.sliderRef.current?.slickPrev()}
+                            >
+                              <Base.Media value={prevMedia} className={this.decorateCSS("arrow-media")} />
+                            </div>
+                          </div>
                         )}
                         {nextMedia && (
-                          <Base.Button
-                            type="button"
-                            buttonType="Link"
-                            className={this.decorateCSS("nextArrow")}
-                            onClick={() => this.sliderRef.current?.slickNext()}
-                          >
-                            <Base.Media
-                              value={nextMedia}
-                              className={this.decorateCSS("arrow-media")}
-                            />
-                          </Base.Button>
+                          <div className={this.decorateCSS("arrow")}>
+                            <div
+                              className={this.decorateCSS("nextArrow")}
+                              onClick={() => this.sliderRef.current?.slickNext()}
+                            >
+                              <Base.Media value={nextMedia} className={this.decorateCSS("arrow-media")} />
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>
