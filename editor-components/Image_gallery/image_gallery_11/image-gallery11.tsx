@@ -338,8 +338,6 @@ class ImageGallery11 extends BaseImageGallery {
     const hasSubtitle = this.castToString(subtitle);
     const hasTextContent = !!(hasSubtitle || hasTitle || hasDescription);
     const backgroundMedia = this.getPropValue("background") as TypeMediaInputValue | undefined;
-    const isBackgroundImage = !!backgroundMedia && backgroundMedia.type === "image";
-    const backgroundImage = isBackgroundImage ? backgroundMedia.url || "" : "";
     const hasBackgroundMedia = !!backgroundMedia;
     const showOverlay = this.getPropValue("backgroundOverlay") && hasBackgroundMedia;
     const subtitleType = Base.getSectionSubTitleType();
@@ -358,17 +356,9 @@ class ImageGallery11 extends BaseImageGallery {
       ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
       : this.decorateCSS("heading");
     const showImageOverlay = !!this.getPropValue("imageOverlay");
-    const containerClasses = [this.decorateCSS("container")];
-    if (!hasBackgroundMedia) {
-      containerClasses.push(this.decorateCSS("no-background-media"));
-    }
     return (
-      <Base.Container
-        isFull
-        className={containerClasses.join(" ")}
-        style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
-      >
-        {backgroundMedia && backgroundMedia.type === "video" && (
+      <Base.Container isFull className={this.decorateCSS("container")}>
+        {backgroundMedia && (
           <div className={this.decorateCSS("background-media")}>
             <Base.Media value={backgroundMedia} className={this.decorateCSS("background-media-content")} />
           </div>
@@ -401,11 +391,7 @@ class ImageGallery11 extends BaseImageGallery {
         </Base.MaxContent>
         {rows.length > 0 && (
           <div
-            className={
-              hasTextContent
-                ? `${this.decorateCSS("gallery")} ${this.decorateCSS("gallery-with-heading")}`
-                : this.decorateCSS("gallery")
-            }
+            className={`${this.decorateCSS("gallery")} ${hasTextContent ? this.decorateCSS("gallery-with-heading") : ""}`}
           >
               {rows.map((row: GalleryRow, rowIndex: number) => {
                 const isRightToLeft = rowIndex % 2 !== 0;
@@ -428,6 +414,13 @@ class ImageGallery11 extends BaseImageGallery {
                   : this.decorateCSS("gallery-row");
 
                 const rowWrapperClass = `${rowClassName} ${this.decorateCSS("slider-wrapper")}`;
+                const sliderSettings = {
+                  ...baseSettings,
+                  speed: slideDuration,
+                  autoplaySpeed,
+                  slidesToShow: Math.max(1, slidesToShow),
+                  rtl: false,
+                };
                 return (
                   <div
                     className={rowWrapperClass}
@@ -436,11 +429,7 @@ class ImageGallery11 extends BaseImageGallery {
                   >
                     <ComposerSlider
                       ref={(s: any) => (this.sliderRefs[rowIndex] = s)}
-                      {...baseSettings}
-                      speed={slideDuration}
-                      autoplaySpeed={autoplaySpeed}
-                      slidesToShow={Math.max(1, slidesToShow)}
-                      rtl={false}
+                      {...sliderSettings}
                       className={this.decorateCSS("slider")}
                       key={sliderKey}
                     >
@@ -455,16 +444,15 @@ class ImageGallery11 extends BaseImageGallery {
                         }
                         return (
                           <div className={this.decorateCSS("image-card")} key={`row-${rowIndex}-img-${imageIndex}`}>
-                            <Base.Button
-                              buttonType="Link"
+                            <div
                               className={this.decorateCSS("image-button")}
                               onClick={() => handleOpenPopup(mediaValue, rowIndex, originalIndex)}
                             >
-                          <div className={this.decorateCSS("image-media-wrapper")}>
-                            <Base.Media value={mediaValue} className={this.decorateCSS("image-media")} />
-                            {showImageOverlay && <div className={this.decorateCSS("image-overlay")} />}
-                          </div>
-                            </Base.Button>
+                              <div className={this.decorateCSS("image-media-wrapper")}>
+                                <Base.Media value={mediaValue} className={this.decorateCSS("image-media")} />
+                                {showImageOverlay && <div className={this.decorateCSS("image-overlay")} />}
+                              </div>
+                            </div>
                           </div>
                         );
                       })}
