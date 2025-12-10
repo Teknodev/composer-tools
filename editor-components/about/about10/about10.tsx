@@ -73,7 +73,7 @@ class About10 extends BaseAbout {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "Secondary",
+              value: "Primary",
               additionalParams: {
                 selectItems: [
                   "Primary",
@@ -271,7 +271,7 @@ class About10 extends BaseAbout {
                     <div className={this.decorateCSS("button-wrapper")}>
                       {buttonItems.map((btn, idx) => (
                         <ComposerLink key={idx} path={btn.btnUrl}>
-                          <Base.Button buttonType={(btn.btnType as any) || "Secondary"}>
+                          <Base.Button buttonType={(btn.btnType as any) || "Primary"}>
                             {btn.hasIcon && (
                               <div className={this.decorateCSS("button-icon-wrapper")}>
                                 <Base.Media
