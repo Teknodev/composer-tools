@@ -19,7 +19,6 @@ type StatItemType = {
 class Stats13 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
-
         this.addProp({
             type: "media",
             key: "image",

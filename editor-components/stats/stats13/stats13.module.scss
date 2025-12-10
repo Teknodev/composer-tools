@@ -202,7 +202,7 @@
         .max-content {
             .wrapper {
                 gap: var(--gap-xl);
-                flex-direction: column;
+                flex-direction: row;
                 padding: 0;
 
                 .left-content {
@@ -224,6 +224,10 @@
                             .stats-container {
                                 .stat-item {
                                     align-items: var(--composer-content-alignment);
+
+                                    .stat-number {
+                                        font-size: 2rem;
+                                    }
                                 }
                             }
                         }
@@ -247,6 +251,7 @@
         .max-content {
             .wrapper {
                 gap: var(--gap-md);
+                flex-direction: column;
 
                 .left-content {
                     padding: 0 calc(var(--padding-md) * 2);
@@ -256,12 +261,6 @@
 
                             .stats-container {
                                 gap: var(--gap-lg) !important;
-
-                                .stat-item {
-                                    .stat-number {
-                                        font-size: 2rem;
-                                    }
-                                }
                             }
                         }
                     }
