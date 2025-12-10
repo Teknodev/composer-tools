@@ -144,6 +144,8 @@
                 }
 
                 .right {
+                    gap: var(--composer-gap-md);
+
                     .card-container {
                         .card-icon-wrapper {
                             .card-icon {
@@ -161,7 +163,7 @@
     .container {
         .max-content {
             .wrapper {
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-sm);
 
                 .left {
                     .buttons {
@@ -176,6 +178,9 @@
                 }
 
                 .right {
+                    gap: var(--composer-gap-sm);
+                    row-gap: var(--composer-gap-md);
+
                     .card-container {
                         .card-icon-wrapper {
                             .card-icon {
