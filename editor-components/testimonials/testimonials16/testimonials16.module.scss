@@ -619,7 +619,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    min-height: 500px;
+    min-height: 520px;
   }
 
   .max-content {
@@ -641,6 +641,10 @@
     order: 2;
   }
 
+  .card {
+    max-height: 520px;
+  }
+
   .link-item {
     justify-content: flex-start;
     width: auto;
@@ -655,6 +659,11 @@
     padding: var(--composer-gap-md);
     gap: var(--composer-gap-md);
     min-height: 200px;
+    .mobile-author-row {
+      margin-top: auto;
+      align-self: flex-start;
+      width: 100%;
+    }
   }
 
   .image-wrapper {
@@ -695,5 +704,11 @@
   .logo-box {
     width: 60px;
     aspect-ratio: 3 / 1;
+  }
+
+  .slider {
+    :global(.slick-track) {
+      gap: var(--composer-gap-sm);
+    }
   }
 }
