@@ -1415,7 +1415,7 @@ class Navbar1 extends BaseNavigator {
               </nav>
             )}
 
-            <div className={this.decorateCSS("rightSide")}>
+            <div className={`${this.decorateCSS("rightSide")} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}>
               {buttons.length > 0 && (
                 <div className={this.decorateCSS("buttons")}>
                   {buttons.map((button) => this.castToString(button.text) && (

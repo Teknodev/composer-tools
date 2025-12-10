@@ -517,6 +517,15 @@
     .localizationContent {
       content: "";
     }
+
+    &.hamburgerActive {
+      .localizationLabel {
+        color: var(--composer-font-color-primary) !important;
+      }
+      .languageIcon {
+        color: var(--composer-font-color-primary) !important;
+      }
+    }
   }
 
   .hamburgerIcon {
