@@ -56,6 +56,7 @@ class HeroSection36 extends BaseHeroSection {
                 settings: {
                   loop: false,
                   autoplay: true,
+                  controls: false,
                 },
               },
             },
@@ -78,124 +79,128 @@ class HeroSection36 extends BaseHeroSection {
             },
           ],
         },
-        {
-          type: "object",
-          key: "items4",
-          displayer: "Header",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "video",
-                url: "https://cdn.website.hautech.ai/cdn/4%20actual%20size.mp4",
-                settings: {
-                  loop: false,
-                  autoplay: true,
-                },
-              },
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items5",
-          displayer: "Header",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "image",
-                url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae1_slider%20img%205-min.webp",
-              },
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items6",
-          displayer: "Header",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "video",
-                url: "https://cdn.website.hautech.ai/cdn/7%20actual%20size.mp4",
-                settings: {
-                  loop: false,
-                  autoplay: true,
-                },
-              },
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items7",
-          displayer: "Header",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "video",
-                url: "https://cdn.website.hautech.ai/cdn/8%20actual%20size.mp4",
-                settings: {
-                  loop: true,
-                  autoplay: true,
-                },
-              },
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items8",
-          displayer: "Header",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "image",
-                url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae6_slider%20img%2010-min.webp",
-              },
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items9",
-          displayer: "Header",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "video",
-                url: "https://cdn.website.hautech.ai/cdn/10%20actual%20size.mp4",
-                settings: {
-                  loop: false,
-                  autoplay: true,
-                },
-              },
-            },
-          ],
-        },
+        // {
+        //   type: "object",
+        //   key: "items4",
+        //   displayer: "Header",
+        //   value: [
+        //     {
+        //       type: "media",
+        //       key: "image",
+        //       displayer: "Image",
+        //       additionalParams: { availableTypes: ["image", "video"] },
+        //       value: {
+        //         type: "video",
+        //         url: "https://cdn.website.hautech.ai/cdn/4%20actual%20size.mp4",
+        //         settings: {
+        //           loop: false,
+        //           autoplay: true,
+        //           controls: false,
+        //         },
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   type: "object",
+        //   key: "items5",
+        //   displayer: "Header",
+        //   value: [
+        //     {
+        //       type: "media",
+        //       key: "image",
+        //       displayer: "Image",
+        //       additionalParams: { availableTypes: ["image", "video"] },
+        //       value: {
+        //         type: "image",
+        //         url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae1_slider%20img%205-min.webp",
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   type: "object",
+        //   key: "items6",
+        //   displayer: "Header",
+        //   value: [
+        //     {
+        //       type: "media",
+        //       key: "image",
+        //       displayer: "Image",
+        //       additionalParams: { availableTypes: ["image", "video"] },
+        //       value: {
+        //         type: "video",
+        //         url: "https://cdn.website.hautech.ai/cdn/7%20actual%20size.mp4",
+        //         settings: {
+        //           loop: false,
+        //           autoplay: true,
+        //           controls: false,
+        //         },
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   type: "object",
+        //   key: "items7",
+        //   displayer: "Header",
+        //   value: [
+        //     {
+        //       type: "media",
+        //       key: "image",
+        //       displayer: "Image",
+        //       additionalParams: { availableTypes: ["image", "video"] },
+        //       value: {
+        //         type: "video",
+        //         url: "https://cdn.website.hautech.ai/cdn/8%20actual%20size.mp4",
+        //         settings: {
+        //           loop: true,
+        //           autoplay: true,
+        //           controls: false,
+        //         },
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   type: "object",
+        //   key: "items8",
+        //   displayer: "Header",
+        //   value: [
+        //     {
+        //       type: "media",
+        //       key: "image",
+        //       displayer: "Image",
+        //       additionalParams: { availableTypes: ["image", "video"] },
+        //       value: {
+        //         type: "image",
+        //         url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae6_slider%20img%2010-min.webp",
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   type: "object",
+        //   key: "items9",
+        //   displayer: "Header",
+        //   value: [
+        //     {
+        //       type: "media",
+        //       key: "image",
+        //       displayer: "Image",
+        //       additionalParams: { availableTypes: ["image", "video"] },
+        //       value: {
+        //         type: "video",
+        //         url: "https://cdn.website.hautech.ai/cdn/10%20actual%20size.mp4",
+        //         settings: {
+        //           loop: false,
+        //           autoplay: true,
+        //           controls: false,
+        //         },
+        //       },
+        //     },
+        //   ],
+        // },
       ],
     });
   }
@@ -210,13 +215,14 @@ class HeroSection36 extends BaseHeroSection {
     const lineOfLogos: ImageItem[] = [];
 
     if (originals.length > 0) {
-      const repeatCount = Math.round(14 / originals.length);
+      const repeatCount = Math.round(18 / originals.length);
       for (let i = 0; i < repeatCount; i++) {
         lineOfLogos.push(...originals);
       }
     }
 
     const scrollItems = [...lineOfLogos, ...lineOfLogos];
+    console.log("scrollItems", scrollItems.length);
 
     return (
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
