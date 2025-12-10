@@ -82,12 +82,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-xs);
+        flex-wrap: wrap;
+        max-width: 100%;
 
         .media-button {
           display: inline-flex;
           align-items: center;
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-xs);
+          max-width: 100%;
+          white-space: normal;
+          text-align: center;
 
           .media-button-icon {
             width: 24px;
@@ -106,6 +111,9 @@
 
           .media-button-text {
             content: "";
+            white-space: normal;
+            word-break: break-word;
+            text-align: center;
           }
         }
 
