@@ -137,9 +137,6 @@
                             margin-left: auto;
                         }
 
-                        .buttons {
-                            justify-content: center;
-                        }
                     }
                 }
 
@@ -167,7 +164,6 @@
 
                 .left {
                     .buttons {
-                        justify-content: center;
                         gap: var(--composer-gap-sm);
                         row-gap: var(--composer-gap-md);
                     }
