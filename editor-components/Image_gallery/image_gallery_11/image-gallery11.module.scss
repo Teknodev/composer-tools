@@ -1,11 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
 
+  background-color: transparent !important;
   .background-media {
     position: absolute;
     inset: 0;
@@ -22,7 +19,7 @@
   .background-overlay {
     position: absolute;
     inset: 0;
-    background: var(--composer-overlay-color);
+    background: var(--composer-overlay-color) !important;
     z-index: 1;
     pointer-events: none;
   }
