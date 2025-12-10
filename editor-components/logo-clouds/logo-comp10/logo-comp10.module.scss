@@ -2,7 +2,6 @@
   as *;
 
 .container {
-  width: 100%;
   .max-content {
     display: flex;
     flex-direction: column;
@@ -61,9 +60,7 @@
       width: 100%;
       position: relative;
       overflow: hidden;
-      :global(.container) {
-        width: 100%;
-      }
+
 
       .slider {
         width: 100%;
@@ -76,13 +73,8 @@
         gap: var(--composer-gap-xl);
         justify-content: space-around;
         justify-items: center;
-        > div {
+        .cell {
           width: 100% !important;
-        }
-
-        .image-link {
-          display: flex;
-          width: 100%;
         }
 
         .image-child {
@@ -119,9 +111,6 @@
           width: 100%;
         }
       }
-
-
-
     }
   }
 }
@@ -130,9 +119,6 @@
   .container {
     .max-content {
       .slider-container {
-        .gallery {
-          content: "";
-        }
         .image {
           max-width: 150px !important;
           aspect-ratio: 3/1;

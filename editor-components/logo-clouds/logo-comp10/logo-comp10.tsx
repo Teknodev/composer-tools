@@ -323,14 +323,16 @@ class LogoComp10Page extends LogoClouds {
                           className={this.decorateCSS("gallery")}
                         >
                           {visibleItems.map((img: TImage, i: number) => (
-                            <ComposerLink key={i} path={img.imageLink}>
-                              <div className={this.decorateCSS("image-child")}>
-                                <Base.Media
-                                  className={this.decorateCSS("image")}
-                                  value={img.image}
-                                />
-                              </div>
-                            </ComposerLink>
+                            <div key={i} className={this.decorateCSS("cell")}>
+                              <ComposerLink path={img.imageLink}>
+                                <div className={this.decorateCSS("image-child")}>
+                                  <Base.Media
+                                    className={this.decorateCSS("image")}
+                                    value={img.image}
+                                  />
+                                </div>
+                              </ComposerLink>
+                            </div>
                           ))}
                         </Base.ListGrid>
                       </div>
