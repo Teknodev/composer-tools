@@ -82,11 +82,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: var(--composer-gap-sm);
 
         .media-button {
           display: inline-flex;
           align-items: center;
-          gap: var(--composer-gap-xs);
+          gap: var(--composer-gap-sm);
 
           .media-button-icon {
             width: 24px;
