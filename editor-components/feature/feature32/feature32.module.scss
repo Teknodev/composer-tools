@@ -5,7 +5,7 @@
         .wrapper {
             display: flex;
             flex-direction: column;
-            gap: var(--gap-xl);
+            gap: calc(var(--gap-xl) * 2);
 
             .text-content {
                 flex: 1;
@@ -91,6 +91,28 @@
 
                 .features-content {
                     gap: var(--composer-gap-md);
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                .features-content {
+                    .card-container {
+                        .icon-box {
+                            padding: calc(var(--padding-sm) * 3);
+                            width: 60px;
+                            height: 60px;
+
+                            .card-icon {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
                 }
             }
         }

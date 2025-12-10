@@ -158,12 +158,10 @@ class Feature32 extends BaseFeature {
         const hasContent = subtitleExist || titleExist || descriptionExist || (buttonItem && buttonItem.length > 0);
         const cards = this.castToObject<Card[]>("cards");
 
-
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
-
                         {hasContent && (
                             <Base.VerticalContent className={this.decorateCSS("text-content")}>
                                 {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}
@@ -171,7 +169,6 @@ class Feature32 extends BaseFeature {
                                 {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
                             </Base.VerticalContent>
                         )}
-
                         {cards?.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("features-content")}
@@ -212,7 +209,6 @@ class Feature32 extends BaseFeature {
                                 })}
                             </Base.ListGrid>
                         )}
-
                         {buttonItem.length > 0 && (
                             <Base.Row className={this.decorateCSS("button-container")}>
                                 {buttonItem.map(
