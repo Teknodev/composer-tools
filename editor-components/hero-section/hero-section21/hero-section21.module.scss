@@ -150,13 +150,14 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     .max-content {
+      gap: var(--composer-gap-xs);
       .content {
         display: flex;
         flex-direction: column-reverse;
@@ -170,7 +171,7 @@
           margin-right: 0%;
           width: 100%;
           .card-box {
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
+            padding: 0;
             position: relative;
             max-width: 100%;
 
@@ -189,8 +190,8 @@
 
           .video {
             .player {
-              max-width: 700px;
-              height: 500px;
+              max-width: 350px;
+              height: auto;
             }
           }
           .button {
@@ -208,30 +209,6 @@
           .image {
             width: 100%;
             height: auto;
-          }
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-
-    .max-content {
-      gap: var(--composer-gap-xs);
-      .content {
-        .card {
-          .card-box {
-            padding: var(--composer-gap-md);
-          }
-        }
-        .image-box {
-          .video {
-            .player {
-              max-width: 350px;
-              height: auto;
-            }
           }
         }
       }

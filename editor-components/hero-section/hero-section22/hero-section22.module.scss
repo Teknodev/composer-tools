@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 @keyframes scaleUpDown {
   0% {
     transform: scale(1.5);
@@ -248,6 +248,7 @@
     padding: 0 var(--composer-gap-lg) var(--composer-gap-md) 0 !important;
     .max-content {
       .slider-parent {
+        min-height: auto !important;
         .carousel {
           .sliders {
             .slider {
@@ -278,7 +279,9 @@
                 }
 
                 .right-content {
-                  display: none;
+                  .right-image {
+                    height: 60%;
+                  }
                 }
               }
             }
@@ -312,6 +315,7 @@
       padding: 0 var(--composer-gap-md) var(--composer-gap-md) 0 !important;
       .max-content {
         .slider-parent {
+          min-height: 100% !important;
           .carousel {
             .sliders {
               .slider {

@@ -8,6 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: React.JSX.Element;
+  description: React.JSX.Element;
   image: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   button: INPUTS.CastedButton;
@@ -227,6 +228,13 @@ class HeroSection16 extends BaseHeroSection {
       },
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    })
+
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
@@ -258,6 +266,7 @@ class HeroSection16 extends BaseHeroSection {
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon = this.getPropValue("prev-button-icon") as TypeMediaInputValue | undefined;
     const nextIcon = this.getPropValue("next-button-icon") as TypeMediaInputValue | undefined;
+    const animation = this.getPropValue("animation");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -285,10 +294,17 @@ class HeroSection16 extends BaseHeroSection {
               const contentExist = subtitleExist || titleExist || buttonTextExist;
 
               return (
-                <div className={this.decorateCSS("item")} key={`key${index}`}>
+                <div className={this.decorateCSS("item")} key={`slide-${index}-${activeSlideIndex}`}>
                   {imageExist && (
-                    <div className={this.decorateCSS("image-container")}>
-                      <Base.Media value={item.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                    <div className={this.decorateCSS("image-container")} key={`image-${activeSlideIndex}-${index}`}>
+                      <Base.Media 
+                        value={item.image} 
+                        className={`${this.decorateCSS("image")} ${animation && this.decorateCSS("image-with-animation")}`} 
+                        autoPlay 
+                        muted 
+                        loop 
+                        playsInline 
+                      />
                       {item.overlay && <div className={this.decorateCSS("overlay")} />}
                     </div>
                   )}
@@ -296,6 +312,7 @@ class HeroSection16 extends BaseHeroSection {
                     <Base.MaxContent
                       className={`${this.decorateCSS("content")} 
               ${!imageExist && this.decorateCSS("image-no-content")} 
+              ${animation && this.decorateCSS("content-with-animation")} 
               ${activeSlideIndex === index ? this.decorateCSS(imageExist ? "active" : "active-no-image") : ""}`}
                     >
                       {logoExist && (
