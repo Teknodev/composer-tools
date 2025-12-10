@@ -150,6 +150,13 @@ class About10 extends BaseAbout {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4
+    });
+
+    this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
@@ -158,6 +165,7 @@ class About10 extends BaseAbout {
         selectItems: ["animate1", "animate2"]
       }
     });
+
   }
 
   static getName(): string {

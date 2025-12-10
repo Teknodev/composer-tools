@@ -170,8 +170,6 @@
       width: 100%;
 
       .features-grid {
-        display: grid !important;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: var(--composer-gap-lg);
         justify-items: stretch;
         align-items: start;
@@ -182,7 +180,6 @@
           flex-direction: column;
           gap: var(--composer-gap-sm);
           width: 100%;
-          min-width: 0;
 
           .feature-title {
             color: var(--composer-font-color-primary);
@@ -263,7 +260,6 @@
         padding-top: var(--composer-gap-lg);
 
         .features-grid {
-          grid-template-columns: 1fr;
           gap: var(--composer-gap-sm);
 
           .feature-item {
