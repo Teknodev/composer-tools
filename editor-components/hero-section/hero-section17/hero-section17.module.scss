@@ -23,7 +23,16 @@
         height: 100vh;
         object-fit: cover;
         display: block;
-        z-index: 2;
+        z-index: 0;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
+        z-index: 1;
       }
       .sub-container {
         width: 100%;
@@ -31,7 +40,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1;
+        z-index: 2;
         .sub-content {
           width: 100%;
           height: 100%;
@@ -50,20 +59,22 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
             height: auto;
-            min-height: 30%;
+            min-height: 60%;
             .title {
-              font-size: 3rem;
+              font-size: 6rem;
               height: fit-content;
               margin: 0;
               color: var(--composer-tertiary-color);
+              line-height: normal;
             }
 
             .description {
               margin: 0;
-              font-size: 2.5rem;
+              font-size: 4rem;
               color: var(--composer-font-color-primary);
+              line-height: normal;
             }
           }
 
@@ -74,6 +85,9 @@
             bottom: 0;
             z-index: 10;
             overflow: hidden;
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -85,7 +99,13 @@
         font-size: 3rem;
         cursor: pointer;
         z-index: 10;
-        color: white;
+        color: var(--composer-html-background);
+        
+        .icon{
+          width: 30px;
+          height: 30px;
+          margin: var(--composer-gap-sm);
+        }
       }
       .next-icon {
         right: 0;
@@ -106,6 +126,25 @@
 
   .dots {
     display: none !important;
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .carousel {
+      .slider-content {
+        .sub-container {
+          .sub-content {
+            .card {
+              min-width: 450px;
+              max-width: 450px;
+              max-height: 45%;
+              min-width: 45%;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -151,7 +190,7 @@
       width: fit-content;
       gap: var(--composer-gap-md);
       list-style-type: none;
-      margin-top: var(--composer-gap-md);
+      margin-bottom: var(--composer-gap-md);
       padding: 0;
 
       li {

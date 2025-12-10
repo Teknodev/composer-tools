@@ -1,14 +1,14 @@
 import * as React from "react";
 import styles from "./hero-section20.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type SliderItem = {
   title: string;
   number: string;
-  image: string;
+  image: TypeMediaInputValue;
   link: string;
   buttomRow: {
     comment: React.JSX.Element;
@@ -37,17 +37,37 @@ class HeroSection20 extends BaseHeroSection {
       displayer: "Overlay",
       value: true,
     });
+
     this.addProp({
-      type: "icon",
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
       key: "up_icon",
-      displayer: "Up icon",
-      value: "IoIosArrowUp",
+      displayer: "Up Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowUp",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "down_icon",
-      displayer: "Down icon",
-      value: "IoIosArrowDown",
+      displayer: "Down Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowDown",
+      },
     });
 
     this.addProp({
@@ -73,21 +93,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "01",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -117,21 +143,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "02",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -161,21 +193,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "03",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -205,21 +243,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "04",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -249,21 +293,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "05",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -293,21 +343,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "06",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -337,21 +393,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "07",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -381,21 +443,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "08",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -425,21 +493,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "09",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -469,21 +543,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "10",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -513,21 +593,27 @@ class HeroSection20 extends BaseHeroSection {
               value: "11",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
               type: "object",
               key: "buttomRow",
-              displayer: "Buttom Row",
+              displayer: "Bottom Row",
               value: [
                 {
                   type: "string",
@@ -548,10 +634,16 @@ class HeroSection20 extends BaseHeroSection {
       displayer: "Icons Header",
       value: [
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon",
-          value: "IoMdShare",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdShare",
+          },
         },
         {
           type: "string",
@@ -581,7 +673,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -600,7 +692,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -619,7 +711,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -638,7 +730,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -657,7 +749,7 @@ class HeroSection20 extends BaseHeroSection {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -729,7 +821,7 @@ class HeroSection20 extends BaseHeroSection {
       verticalSwiping: true,
       swipeToSlide: true,
       draggable: true,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       beforeChange: (current: number, next: number) => {
         this.setComponentState("slider", next);
         this.setComponentState("titleSlider", next);
@@ -750,8 +842,8 @@ class HeroSection20 extends BaseHeroSection {
     };
 
     const slider = this.castToObject<SliderItem[]>("slider");
-    const up_icon = this.getPropValue("up_icon");
-    const down_icon = this.getPropValue("down_icon");
+    const up_icon = this.getPropValue("up_icon") as TypeMediaInputValue | undefined;
+    const down_icon = this.getPropValue("down_icon") as TypeMediaInputValue | undefined;
     const icons = this.castToObject<SocialIcon[]>("social_icons");
 
     const activeIndex = this.getComponentState("slider");
@@ -765,7 +857,7 @@ class HeroSection20 extends BaseHeroSection {
         <ComposerSlider ref={this.sliderRef} {...settings}>
           {slider.map((slide, index) => (
             <div className={this.decorateCSS("image-container")} key={`title-key-${index}`}>
-              {slide.image && <img src={slide.image} alt={slide.title} className={this.decorateCSS("image")} />}
+              {slide.image && <Base.Media value={slide.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline controls={false} />}
               {overlay && !imageless && <div className={this.decorateCSS("overlay")} key={`title-key-${index}`}></div>}
             </div>
           ))}
@@ -802,22 +894,20 @@ class HeroSection20 extends BaseHeroSection {
                       {(up_icon || down_icon) && (
                         <div className={this.decorateCSS("navigation")}>
                           {up_icon && (
-                            <Base.Icon
-                              name={up_icon}
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                                onClick: this.handleUpClick,
-                              }}
-                            />
+                            <div
+                              className={this.decorateCSS("icon")}
+                              onClick={this.handleUpClick}
+                            >
+                              <Base.Media className={this.decorateCSS("icon-element")} value={up_icon} />
+                            </div>
                           )}
                           {down_icon && (
-                            <Base.Icon
-                              name={down_icon}
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                                onClick: this.handleDownClick,
-                              }}
-                            />
+                            <div
+                              className={this.decorateCSS("icon")}
+                              onClick={this.handleDownClick}
+                            >
+                              <Base.Media className={this.decorateCSS("icon-element")} value={down_icon} />
+                            </div>
                           )}
                         </div>
                       )}
@@ -829,11 +919,9 @@ class HeroSection20 extends BaseHeroSection {
                       <div className={this.decorateCSS("icon-text-container")}>
                         {this.castToString(iconText.iconText) && <div className={this.decorateCSS("icon_text")}>{iconText.iconText}</div>}
                         {iconText.icon && (
-                          <Base.Icon
-                            name={iconText.icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon-next-to-text"),
-                            }}
+                          <Base.Media
+                            value={iconText.icon as TypeMediaInputValue}
+                            className={this.decorateCSS("icon-next-to-text")}
                           />
                         )}
                         {(!(this.castToString(iconText.iconText) && !iconText.icon) || icons.length > 0) && (

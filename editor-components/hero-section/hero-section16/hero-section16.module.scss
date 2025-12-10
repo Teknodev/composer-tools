@@ -4,7 +4,7 @@
   position: relative;
   overflow: hidden;
   height: 100vh;
-  padding: 0;
+  padding: 0 !important;
 
   .max-content {
     position: relative;
@@ -24,12 +24,40 @@
         .image-container {
           height: 100vh;
           z-index: 1;
+          position: relative;
 
           .image {
             width: 100%;
             min-height: 100%;
             display: block;
             object-fit: cover;
+
+            &.image-with-animation {
+              animation: imageBlurFadeIn 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+          }
+
+          @keyframes imageBlurFadeIn {
+            0% {
+              filter: blur(15px);
+              opacity: 0.5;
+              transform: scale(1.08);
+            }
+            100% {
+              filter: blur(0);
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+          
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--composer-overlay-color);
+            z-index: 2;
           }
         }
 
@@ -39,26 +67,52 @@
           width: 90%;
           display: flex;
           flex-direction: column;
+          gap: var(--composer-gap-xs);
           align-items: center;
           top: 50%;
           left: 50%;
-          opacity: 0;
           text-align: center;
           color: white;
-          gap: var(--composer-gap-md);
-          transition: transform 0.6s ease, opacity 0.6s ease;
-          transform: translate(-50%, -50%) translateY(100px);
 
-          &.image-no-content {
-            transform: translate(-50%, 50vh) translateY(100px);
-          }
-
-          &.active {
+          &:not(.content-with-animation) {
             opacity: 1;
-            transform: translate(-50%, -50%) translateY(0);
+            transform: translate(-50%, -50%);
 
             &.image-no-content {
-              transform: translate(-50%, 40vh) translateY(0);
+              transform: translate(-50%, 40vh);
+            }
+          }
+
+          &.content-with-animation {
+            opacity: 0;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            transform: translate(-50%, -50%) translateY(100px);
+
+            &.image-no-content {
+              transform: translate(-50%, 50vh) translateY(100px);
+            }
+
+            &.active {
+              opacity: 1;
+              transform: translate(-50%, -50%) translateY(0);
+
+              &.image-no-content {
+                transform: translate(-50%, 40vh) translateY(0);
+              }
+            }
+          }
+
+          .logo-wrapper {
+            margin-bottom: 20px;
+            width: auto;
+            max-width: 200px;
+
+            .logo {
+              width: 100%;
+              height: auto;
+              display: block;
+              object-fit: contain;
+              font-size: 2rem;
             }
           }
         }
@@ -67,6 +121,8 @@
           font-size: 1.5rem;
           margin: 0;
           color: white;
+          text-align: center;
+          width: fit-content;
 
           &.subtitle-no-image {
             color: var(--composer-font-color-primary);
@@ -77,14 +133,30 @@
           font-size: 4rem;
           margin: 0;
           color: white;
+          text-align: center;
+          width: fit-content;
+          line-height: normal;
 
           &.title-no-image {
             color: var(--composer-font-color-primary);
           }
         }
 
+        .description{
+          margin: 0;
+          color: white;
+          width: fit-content;
+          text-align: center;
+
+          &.description-no-image {
+            color: var(--composer-font-color-primary);
+          }
+        }
+
         .button {
-          content: "";
+          .button-text{
+            content: "";
+          }
         }
       }
     }
@@ -117,6 +189,8 @@
         .number {
           font-size: 1.5rem;
           color: white;
+          font-weight: bold;
+          width: fit-content;
 
           &.number-with-image {
             font-size: 1.5rem;
@@ -131,10 +205,15 @@
           height: 1px;
           background-color: var(--composer-font-color-primary);
           transition: width 0.3s ease;
+          height: 2px;
+        }
+
+        &:hover::after {
+          width: var(--composer-gap-xl);
         }
 
         &.active::after {
-          width: var(--composer-gap-lg);
+          width: var(--composer-gap-xl);
         }
       }
     }
@@ -168,6 +247,8 @@
 
       .icon {
         font-size: 1.5rem;
+        width: 30px;
+        height: 30px;
       }
     }
 

@@ -4,7 +4,6 @@
   transition: $property $duration $timing-function $delay;
 }
 
-
 .container {
   position: relative;
   height: 100vh;
@@ -85,32 +84,12 @@
               color: transparent;
               -webkit-text-stroke: 1px #777;
               max-width: 90%;
-
-              > blinkpage {
-                width: 100%;
-
-                > p {
-                  text-overflow: ellipsis;
-                  overflow: hidden;
-                  white-space: nowrap;
-                }
-              }
             }
 
             &.current {
               opacity: 1;
               -webkit-text-stroke: none;
               max-width: 90%;
-
-              > blinkpage {
-                width: 100%;
-
-                > p {
-                  text-overflow: ellipsis;
-                  overflow: hidden;
-                  white-space: nowrap;
-                }
-              }
             }
           }
 
@@ -157,6 +136,12 @@
               .icon {
                 z-index: 10;
                 font-size: 2.5rem;
+                cursor: pointer;
+
+                .icon-element{
+                  width: 30px;
+                  height: 30px;
+                }
               }
             }
 
@@ -165,21 +150,6 @@
               display: flex;
               word-break: break-word;
               width: 100%;
-
-              > blinkpage {
-                height: 100%;
-                width: 100%;
-
-                > p {
-                  width: 100%;
-                  max-height: 100%;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  display: -webkit-box;
-                  -webkit-line-clamp: 1;
-                  -webkit-box-orient: vertical;
-                }
-              }
             }
           }
 
@@ -223,19 +193,6 @@
                 display: flex;
                 align-items: center;
                 height: 100%;
-
-                > blinkpage {
-                  height: 100%;
-
-                  > p {
-                    max-height: 100%;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1;
-                    -webkit-box-orient: vertical;
-                  }
-                }
               }
 
               .social-icons {
