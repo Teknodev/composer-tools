@@ -383,7 +383,7 @@ class Feature29 extends BaseFeature {
           data-animation={hoverAnimation}
         >
           {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
-          {overlay && imageUrl && <div className={this.decorateCSS("overlay-layer")} />}
+          {overlay && <div className={this.decorateCSS("overlay-layer")} />}
           <Base.VerticalContent className={this.decorateCSS("card-text-container")}>
             {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{title}</Base.H3>}
             {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{description}</Base.SectionDescription>}

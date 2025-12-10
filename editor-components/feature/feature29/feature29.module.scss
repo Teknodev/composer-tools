@@ -7,16 +7,8 @@
 
     .header-container {
       margin-bottom: var(--composer-gap-md);
-
-      .subtitle {
-        content: "";
-      }
-
-      .title {
-        content: "";
-      }
-
-      .description {
+      
+      .subtitle,.title,.description {
         content: "";
       }
     }
@@ -34,18 +26,17 @@
           display: flex;
           flex-direction: column;
           flex: 1;
+          width: 100%;
         }
 
         .left-bottom-cards {
           display: flex;
           flex-direction: row;
+          width: 100%;
           gap: var(--composer-gap-md);
 
           .card {
             flex: 1;
-          }
-
-          .card:last-child {
             min-height: 320px;
           }
         }
@@ -55,15 +46,20 @@
         display: flex;
         flex-direction: column;
         flex: 1;
+        width: 100%;
       }
 
       .right-side {
         flex: 1;
+        width: 100%;
+
 
         .topRightSide {
           flex: 1;
           display: flex;
           flex-direction: column;
+          width: 100%;
+
 
           .card {
             background-color: var(--composer-font-color-primary);
@@ -109,17 +105,19 @@
         position: relative;
         color: var(--composer-font-color-primary);
         width: 100%;
+        display: flex;
+        flex-direction: column;
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
         border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
         padding: 0;
-
         transition: all 0.3s ease;
-        min-height: 280px;
         flex: 1;
+        min-height: 280px;
 
         .card-media {
           position: absolute;
@@ -204,6 +202,8 @@
           inset: 0;
           z-index: 1;
           background-color: var(--composer-overlay-color);
+          border-radius: var(--composer-border-radius-sm);
+          margin: 0;
         }
       }
     }
