@@ -55,6 +55,7 @@
   .max-content {
     position: relative;
     container-type: inline-size;
+    max-width: 100%;
     .pagination {
       width: max-content;
       position: absolute;

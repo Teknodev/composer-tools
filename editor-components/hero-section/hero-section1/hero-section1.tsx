@@ -50,6 +50,14 @@ class HeroSection1 extends BaseHeroSection {
       displayer: "Autoplay",
       value: true,
     });
+  
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "sliders",
@@ -361,6 +369,7 @@ class HeroSection1 extends BaseHeroSection {
     const isLineActive = this.getPropValue("numberLine");
     const backgroundLayout = this.getPropValue("background-layout");
     const backgroundOverlay = this.getPropValue("backgroundOverlay");
+    const animationEnabled = this.getPropValue("animation");
     const animation = this.getComponentState("animation");
 
     const backgroundWithSettings = backgroundLayout?.type === "video" ? {
@@ -397,6 +406,7 @@ class HeroSection1 extends BaseHeroSection {
             <ComposerSlider ref={this.sliderRef} {...settings}>
               {this.castToObject<[]>("sliders").map((item: any, index: number) => {
                 const isActive = this.getComponentState("activeTab") === index;
+                const titleText = this.castToString(item.title);
                 const imageWithSettings = item.image?.type === "video" ? {
                   ...item.image,
                   settings: {
@@ -441,7 +451,15 @@ class HeroSection1 extends BaseHeroSection {
                           ${(!backgroundLayout && item.image) && this.decorateCSS("dark")}
                           ${(!backgroundLayout && !item.image) && this.decorateCSS("dark-without-image")}`}
                           >
-                            {item.title}
+                            {animationEnabled && titleText ? titleText.split('').map((char: string, charIndex: number) => (
+                              <span
+                                key={charIndex}
+                                className={this.decorateCSS("title-char")}
+                                style={{animationDelay: `${charIndex * 0.05}s`}}
+                              >
+                                {char}
+                              </span>
+                            )) : item.title}
                           </h1>
                         )}
 

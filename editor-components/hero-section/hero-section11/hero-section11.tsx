@@ -128,13 +128,15 @@ class HeroSection11 extends BaseHeroSection {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const logo = this.getPropValue("logo");
     const alignment = Base.getContentAlignment();
+    const hasBackgroundImage = this.getPropValue("backgroundImage");
+    
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasBackgroundImage ? this.decorateCSS("no-background-image") : ""}`}>
         {(hasLeft) && (
           <div className={this.decorateCSS("box")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
 
-              <Base.VerticalContent className={`${this.decorateCSS("content")} ${!this.getPropValue("backgroundImage") && this.decorateCSS("no-image")}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("content")} ${!hasBackgroundImage && this.decorateCSS("no-image")} ${!hasBackgroundImage ? this.decorateCSS("without-background") : ""}`}>
                 {logo && (
                   <Base.Media 
                     value={logo} 

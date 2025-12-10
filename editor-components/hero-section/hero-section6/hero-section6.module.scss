@@ -15,6 +15,36 @@
   &.center-alignment {
     .max-content {
       .left-content {
+        &.without-images {
+          align-items: center;
+
+          .logo-container {
+            justify-content: center;
+          }
+
+          .subtitle {
+            text-align: center;
+          }
+
+          .title-container {
+            .title {
+              text-align: center;
+            }
+
+            .title2 {
+              text-align: center;
+            }
+          }
+
+          .description {
+            text-align: center;
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
+
         .subtitle {
           transform: translateX(0);
           &::before {
@@ -40,7 +70,7 @@
 
     .left-content {
       word-wrap: break-word;
-      gap: var(--composer-gap-lg);
+      gap: var(--composer-gap-md);
       align-items: baseline;
       .logo-container {
         width: 100%;

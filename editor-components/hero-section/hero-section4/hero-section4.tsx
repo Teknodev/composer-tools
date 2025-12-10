@@ -179,6 +179,7 @@ handleScroll = () => {
     const note = this.castToString(this.getPropValue("note"));
     const hasButtons = buttons && buttons.length > 0 && buttons.some(btn => this.castToString(btn.text) || btn.icon);
     const showCard = subtitle || title || description || hasButtons || note;
+    const alignment = Base.getContentAlignment();
 
 const getStyle = (direction: "up" | "down") => {
   const isAnimating = this.getComponentState("animate");
@@ -207,7 +208,7 @@ const getStyle = (direction: "up" | "down") => {
       <Base.Container
         className={`${this.decorateCSS("container")} ${
           !imageAnm && this.decorateCSS("no-image-anm")
-        }`}
+        } ${!image && this.decorateCSS("no-background-image")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}
       >
         <div className={`${this.decorateCSS("max-content")} ${!image && this.decorateCSS("no-image-wrapper")}`}>
           {image && (
@@ -234,7 +235,7 @@ const getStyle = (direction: "up" | "down") => {
             </div>
           )}
 
-         <Base.MaxContent className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("no-image")}`}>
+         <Base.MaxContent className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("no-image")} ${!image ? this.decorateCSS("without-image") : ""}`}>
           {showCard && (
               <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
                 {logo && (

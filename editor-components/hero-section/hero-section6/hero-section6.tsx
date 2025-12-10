@@ -86,7 +86,7 @@ class HeroSection6 extends BaseHeroSection {
       key: "image2",
       displayer: "Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -151,12 +151,13 @@ class HeroSection6 extends BaseHeroSection {
 
     const showRightContent = this.getPropValue("image1") || image2;
     const alignment = Base.getContentAlignment();
+    const hasImages = this.getPropValue("image1") || image2;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {showLeftContent && (
-            <Base.VerticalContent className={this.decorateCSS("left-content")}>
+            <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!hasImages ? this.decorateCSS("without-images") : ""}`}>
               {logo && (
                 <div className={this.decorateCSS("logo-container")}>
                   <Base.Media 
@@ -222,6 +223,9 @@ class HeroSection6 extends BaseHeroSection {
               )}
               {image2 && (
                 <Base.Media
+                  autoPlay
+                  loop
+                  muted
                   value={image2}
                   className={`${this.decorateCSS("image2")} 
                   ${(!image2Animation) && this.decorateCSS("noanimation")}

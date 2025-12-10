@@ -26,6 +26,17 @@
   transform: translate(-50%, -50%) !important;
 }
 
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes moveUpDown {
   0% {
     transform: translateY(0);
@@ -305,6 +316,14 @@
             opacity: 0;
             transition: all 0.3s linear;
             @include textEllipsis(3);
+
+            .title-char {
+              opacity: 0;
+              transform: translateX(-30px);
+              white-space: pre;
+              display: inline-block;
+            }
+
             &.dark{
               color: var(--composer-font-color-primary); 
             }
@@ -348,6 +367,10 @@
           .content-container {
             .title {
               opacity: 1;
+
+              .title-char {
+                animation: slideInFromLeft 0.5s ease forwards;
+              }
             }
 
             .subtitle{
@@ -550,6 +573,7 @@
             .title{
               right: unset;
               @include absoluteCenter;
+              left: 70% !important;
             }
           }
         }

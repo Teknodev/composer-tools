@@ -22,6 +22,35 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 
+  &.no-background-image {
+    padding: 80px 50px !important;
+  }
+
+  &.center-alignment {
+    .card-container {
+      &.without-image {
+        .card {
+          align-items: center;
+
+          .logo {
+            text-align: center;
+          }
+
+          .subtitle,
+          .title,
+          .description,
+          .note {
+            text-align: center;
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -80,6 +109,7 @@
         width: 100%;
         max-width: var(--composer-content-width);
         margin: 0 auto;
+        padding: 0;
       }
     }
     
@@ -115,7 +145,7 @@
 
       .subtitle, .title, .note {
         @include textEllipsis(2);
-        margin-left: 0;
+        margin-left: auto;
       }
 
       .button-container {
@@ -144,6 +174,11 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container{
     padding: 0 !important;
+
+    &.no-background-image {
+      padding: 80px 40px !important;
+    }
+
     .max-content{
       position: relative;
       min-height: 100vh;
@@ -207,6 +242,11 @@
   .container {
     height: fit-content;
     padding: 0 !important;
+
+    &.no-background-image {
+      padding: 50px 20px !important;
+    }
+
     .max-content {
       position: static;
       display: flex;

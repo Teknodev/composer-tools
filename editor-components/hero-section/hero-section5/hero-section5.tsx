@@ -111,13 +111,13 @@ class HeroSection5 extends BaseHeroSection {
               {logo && (
                 <Base.Media 
                   value={logo} 
-                  className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                  className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")} ${backgroundImage?.url ? this.decorateCSS("with-background") : ""}`} 
                 />
               )}
               {isSubtitleExist && (
-                <Base.H1 className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
-                </Base.H1>
+                </Base.SectionSubTitle>
               )}
               {isTitleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
