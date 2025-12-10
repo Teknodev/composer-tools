@@ -11,8 +11,6 @@ type FeatureItem = {
   description: React.JSX.Element;
 };
 
-type ButtonIcon = { type: "icon"; name: string } | { type: "image"; url: string };
-
 class Feature31 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
@@ -38,7 +36,14 @@ class Feature31 extends BaseFeature {
       value:
         "Podcasting operational change management inside of workflows to establish indicators offline to maximise the long tail.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -314,9 +319,12 @@ class Feature31 extends BaseFeature {
     const description = this.getPropValue("description");
     const features = this.castToObject<FeatureItem[]>("features");
     const itemCount = this.getPropValue("itemCount");
-    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonIcon = this.castToObject<{ icon?: ButtonIcon }>("button").icon;
-    const iconExist = buttonIcon ? (buttonIcon.type === "icon" ? buttonIcon.name : buttonIcon.url) : "";
+    const buttons = (this.castToObject<INPUTS.CastedButton[]>("buttons") || []).filter((btn) => {
+      const text = this.castToString(btn.text || "");
+      const iconVal = btn.icon as { name?: string; url?: string } | undefined;
+      return text || iconVal?.name || iconVal?.url;
+    });
+    const hasButtons = buttons.length > 0;
 
     const showHeader = this.castToString(title) || this.castToString(subtitle) || this.castToString(description);
     const showFeatures = features.length > 0;
@@ -380,21 +388,32 @@ class Feature31 extends BaseFeature {
               })}
             </Base.ListGrid>
           )}
-          {(this.castToString(buttonType.text) || iconExist) && (
-            <Base.VerticalContent className={this.decorateCSS("button-wrapper")}>
-              <ComposerLink path={buttonType.url}>
-                <Base.Button buttonType={buttonType.type} className={this.decorateCSS("action-button")}>
-                  {this.castToString(buttonType.text) && (
-                    <Base.P className={this.decorateCSS("action-button-text")}>
-                      {buttonType.text}
-                    </Base.P>
-                  )}
-                  {iconExist && (
-                    <Base.Media value={buttonIcon} className={this.decorateCSS("action-button-icon")} />
-                  )}
-                </Base.Button>
-              </ComposerLink>
-            </Base.VerticalContent>
+          {hasButtons && (
+          <Base.VerticalContent className={this.decorateCSS("button-wrapper")}>
+            {buttons.map((btn, idx) => {
+              const iconVal = (btn.icon as { type?: string; name?: string; url?: string } | undefined);
+              const btnHasIcon = iconVal && ((iconVal as { name?: string }).name || (iconVal as { url?: string }).url);
+              const btnText = this.castToString(btn.text);
+              const btnHasText = !!btnText;
+              return (
+                <ComposerLink key={`feature31-btn-${idx}`} path={btn.url}>
+                  <Base.Button buttonType={btn.type || "Primary"} className={this.decorateCSS("action-button")}>
+                    {btnHasText && (
+                      <Base.P className={this.decorateCSS("action-button-text")}>
+                        {btn.text}
+                      </Base.P>
+                    )}
+                    {btnHasIcon && (
+                      <Base.Media
+                        value={iconVal as any}
+                        className={this.decorateCSS("action-button-icon")}
+                      />
+                    )}
+                  </Base.Button>
+                </ComposerLink>
+              );
+            })}
+          </Base.VerticalContent>
           )}
         </Base.MaxContent>
       </Base.Container>
