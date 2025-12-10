@@ -1,18 +1,22 @@
 import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import {
+  BaseFeature,
+  TypeMediaInputValue,
+  TypeUsableComponentProps,
+} from "../../EditorComponent";
 import styles from "./feature33.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  icon: TypeMediaInputValue;
+  icon?: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
 class Feature33 extends BaseFeature {
-  constructor(props?: any) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
     this.addProp({
@@ -209,11 +213,16 @@ class Feature33 extends BaseFeature {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const iconBackground = this.getPropValue("iconBackground");
+    const itemCount = this.getPropValue("itemCount");
     const alignment = Base.getContentAlignment();
 
-    const hasSubtitle = this.castToString(subtitle);
-    const hasTitle = this.castToString(title);
-    const hasDescription = this.castToString(description);
+    const subtitleText = this.castToString(subtitle);
+    const titleText = this.castToString(title);
+    const descriptionText = this.castToString(description);
+
+    const hasSubtitle = !!subtitleText;
+    const hasTitle = !!titleText;
+    const hasDescription = !!descriptionText;
 
     const hasButtons =
       Array.isArray(buttons) &&
@@ -287,12 +296,12 @@ class Feature33 extends BaseFeature {
               <Base.ListGrid
                 className={this.decorateCSS("right")}
                 gridCount={{
-                  pc: this.getPropValue("itemCount"),
-                  tablet: this.getPropValue("itemCount"),
+                  pc: itemCount,
+                  tablet: itemCount,
                   phone: 2,
                 }}
               >
-                {cards.map((card: Card, index: number) => {
+                {cards.map((card, index) => {
                   const titleExist = !!this.castToString(card.title);
                   const descExist = !!this.castToString(card.description);
 
