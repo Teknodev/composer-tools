@@ -5,58 +5,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type Feature29TopLeftSide = {
+type Feature29CardSide = {
   visibility?: boolean;
   overlay?: boolean;
-  topLeftSideImage?: TypeMediaInputValue;
-  topLeftSideTitle: React.JSX.Element;
-  topLeftSideDescription: React.JSX.Element;
-  topLeftSideButton?: TypeUsableComponentProps[];
-};
-
-type Feature29BottomLeftSide = {
-  visibility?: boolean;
-  overlay?: boolean;
-  bottomLeftSideImage?: TypeMediaInputValue;
-  bottomLeftSideTitle: React.JSX.Element;
-  bottomLeftSideDescription: React.JSX.Element;
-  bottomLeftSideButton?: TypeUsableComponentProps[];
-};
-
-type Feature29BottomLeftSide2 = {
-  visibility?: boolean;
-  overlay?: boolean;
-  bottomLeftSide2Image?: TypeMediaInputValue;
-  bottomLeftSide2Title: React.JSX.Element;
-  bottomLeftSide2Description: React.JSX.Element;
-  bottomLeftSide2Button?: TypeUsableComponentProps[];
-};
-
-type Feature29MiddleSide = {
-  visibility?: boolean;
-  overlay?: boolean;
-  middleSideImage?: TypeMediaInputValue;
-  middleSideTitle: React.JSX.Element;
-  middleSideDescription: React.JSX.Element;
-  middleSideButton?: TypeUsableComponentProps[];
-};
-
-type Feature29TopRightSide = {
-  visibility?: boolean;
-  overlay?: boolean;
-  topRightSideImage?: TypeMediaInputValue;
-  topRightSideTitle: React.JSX.Element;
-  topRightSideDescription: React.JSX.Element;
-  topRightSideButton?: TypeUsableComponentProps[];
-};
-
-type Feature29BottomRightSide = {
-  visibility?: boolean;
-  overlay?: boolean;
-  bottomRightSideImage?: TypeMediaInputValue;
-  bottomRightSideTitle: React.JSX.Element;
-  bottomRightSideDescription: React.JSX.Element;
-  bottomRightSideButton?: TypeUsableComponentProps[];
+  image?: TypeMediaInputValue;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  button?: TypeUsableComponentProps[];
 };
 
 class Feature29 extends BaseFeature {
@@ -97,7 +52,7 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "media",
-          key: "topLeftSideImage",
+          key: "image",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -115,18 +70,18 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "string",
-          key: "topLeftSideTitle",
+          key: "title",
           displayer: "Title",
           value: "One integration, all your transaction needs",
         },
         {
           type: "string",
-          key: "topLeftSideDescription",
+          key: "description",
           displayer: "Description",
           value:
             "Every payment option covered. Designed to support diverse gaming setups, including online casinos, sportsbooks, bookmakers, lotteries, bingo, draws and raffles, and more.",
         },
-        INPUTS.BUTTON("topLeftSideButton", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
+        INPUTS.BUTTON("button", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
       ],
     });
 
@@ -143,7 +98,7 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "media",
-          key: "bottomLeftSideImage",
+          key: "image",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -161,18 +116,18 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "string",
-          key: "bottomLeftSideTitle",
+          key: "title",
           displayer: "Title",
           value: "Seamless setup, faster payments",
         },
         {
           type: "string",
-          key: "bottomLeftSideDescription",
+          key: "description",
           displayer: "Description",
           value:
             "Streamlined onboarding that is quick, transparent, and efficient. Get full visibility at every step to help you speed up your market entry.",
         },
-        INPUTS.BUTTON("bottomLeftSideButton", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
+        INPUTS.BUTTON("button", "Button", "Link", "", "IoIosArrowForward", null, "Bare"),
       ],
     });
 
@@ -189,7 +144,7 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "media",
-          key: "bottomLeftSide2Image",
+          key: "image",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -207,17 +162,17 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "string",
-          key: "bottomLeftSide2Title",
+          key: "title",
           displayer: "Title",
           value: "",
         },
         {
           type: "string",
-          key: "bottomLeftSide2Description",
+          key: "description",
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON("bottomLeftSide2Button", "Button", "", "", "", null, "Bare"),
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
       ],
     });
 
@@ -234,7 +189,7 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "media",
-          key: "middleSideImage",
+          key: "image",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -252,17 +207,17 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "string",
-          key: "middleSideTitle",
+          key: "title",
           displayer: "Title",
           value: "",
         },
         {
           type: "string",
-          key: "middleSideDescription",
+          key: "description",
           displayer: "Description",
           value: "",
         },
-        INPUTS.BUTTON("middleSideButton", "Button", "", "", "", null, "Bare"),
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
       ],
     });
 
@@ -279,7 +234,7 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "media",
-          key: "topRightSideImage",
+          key: "image",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -297,18 +252,18 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "string",
-          key: "topRightSideTitle",
+          key: "title",
           displayer: "Title",
           value: "New payment methods, made easy",
         },
         {
           type: "string",
-          key: "topRightSideDescription",
+          key: "description",
           displayer: "Description",
           value:
             "Providing eWallets, SMS top-ups, and various alternative payment methods to step-up your gaming operations.",
         },
-        INPUTS.BUTTON("topRightSideButton", "Button", "", "", "", null, "Bare"),
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
       ],
     });
 
@@ -325,7 +280,7 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "media",
-          key: "bottomRightSideImage",
+          key: "image",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -343,18 +298,18 @@ class Feature29 extends BaseFeature {
         },
         {
           type: "string",
-          key: "bottomRightSideTitle",
+          key: "title",
           displayer: "Title",
           value: "Reliable payouts engine, total dependability",
         },
         {
           type: "string",
-          key: "bottomRightSideDescription",
+          key: "description",
           displayer: "Description",
           value:
             "Timely and consistent player payments guaranteed, so no payout is ever missed. Processed through a single API request.",
         },
-        INPUTS.BUTTON("bottomRightSideButton", "Button", "", "", "", null, "Bare"),
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Bare"),
       ],
     });
 
@@ -372,12 +327,12 @@ class Feature29 extends BaseFeature {
   }
 
   render() {
-    const topLeftSide = this.castToObject<Feature29TopLeftSide>("topLeftSide");
-    const bottomLeftSide = this.castToObject<Feature29BottomLeftSide>("bottomLeftSide");
-    const bottomLeftSide2 = this.castToObject<Feature29BottomLeftSide2>("bottomLeftSide2");
-    const middleSide = this.castToObject<Feature29MiddleSide>("middleSide");
-    const topRightSide = this.castToObject<Feature29TopRightSide>("topRightSide");
-    const bottomRightSide = this.castToObject<Feature29BottomRightSide>("bottomRightSide");
+    const topLeftSide = this.castToObject<Feature29CardSide>("topLeftSide");
+    const bottomLeftSide = this.castToObject<Feature29CardSide>("bottomLeftSide");
+    const bottomLeftSide2 = this.castToObject<Feature29CardSide>("bottomLeftSide2");
+    const middleSide = this.castToObject<Feature29CardSide>("middleSide");
+    const topRightSide = this.castToObject<Feature29CardSide>("topRightSide");
+    const bottomRightSide = this.castToObject<Feature29CardSide>("bottomRightSide");
 
     const heading = this.getPropValue("heading");
     const title = this.getPropValue("title");
@@ -418,9 +373,7 @@ class Feature29 extends BaseFeature {
       button?: TypeUsableComponentProps[],
       additionalClass?: string
     ) => {
-      const mediaWithUrl = image as { url?: string } | undefined;
-      const imageUrl = mediaWithUrl?.url;
-      const mediaValue = image?.type === "video" ? { ...image, settings: { ...image.settings, controls: true } } : image;
+      const imageUrl = image && image.type !== "icon" ? image.url : undefined;
       const titleExist = this.castToString(title);
       const descriptionExist = this.castToString(description);
 
@@ -429,7 +382,7 @@ class Feature29 extends BaseFeature {
           className={`${this.decorateCSS("card")} ${additionalClass || ""} ${imageUrl ? this.decorateCSS("with-bg") : ""}`}
           data-animation={hoverAnimation}
         >
-          {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={mediaValue} />}
+          {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
           {overlay && imageUrl && <div className={this.decorateCSS("overlay-layer")} />}
           <Base.VerticalContent className={this.decorateCSS("card-text-container")}>
             {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{title}</Base.H3>}
@@ -459,15 +412,15 @@ class Feature29 extends BaseFeature {
 
           <div className={this.decorateCSS("side-container")}>
             {(topLeftSide.visibility || bottomLeftSide.visibility || bottomLeftSide2.visibility) && (
-              <div className={this.decorateCSS("left-side")}>
+              <Base.VerticalContent className={this.decorateCSS("left-side")}>
                 {topLeftSide.visibility && (
                   <div className={this.decorateCSS("left-top-card")}>
                     {renderCard(
-                      topLeftSide.topLeftSideImage,
+                      topLeftSide.image,
                       !!topLeftSide.overlay,
-                      topLeftSide.topLeftSideTitle,
-                      topLeftSide.topLeftSideDescription,
-                      topLeftSide.topLeftSideButton
+                      topLeftSide.title,
+                      topLeftSide.description,
+                      topLeftSide.button
                     )}
                   </div>
                 )}
@@ -476,47 +429,47 @@ class Feature29 extends BaseFeature {
                   <div className={this.decorateCSS("left-bottom-cards")}>
                     {bottomLeftSide.visibility &&
                       renderCard(
-                        bottomLeftSide.bottomLeftSideImage,
+                        bottomLeftSide.image,
                         !!bottomLeftSide.overlay,
-                        bottomLeftSide.bottomLeftSideTitle,
-                        bottomLeftSide.bottomLeftSideDescription,
-                        bottomLeftSide.bottomLeftSideButton
+                        bottomLeftSide.title,
+                        bottomLeftSide.description,
+                        bottomLeftSide.button
                       )}
                     {bottomLeftSide2.visibility &&
                       renderCard(
-                        bottomLeftSide2.bottomLeftSide2Image,
+                        bottomLeftSide2.image,
                         !!bottomLeftSide2.overlay,
-                        bottomLeftSide2.bottomLeftSide2Title,
-                        bottomLeftSide2.bottomLeftSide2Description,
-                        bottomLeftSide2.bottomLeftSide2Button
+                        bottomLeftSide2.title,
+                        bottomLeftSide2.description,
+                        bottomLeftSide2.button
                       )}
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
 
             {middleSide.visibility && (
               <div className={this.decorateCSS("middle-side")}>
                 {renderCard(
-                  middleSide.middleSideImage,
+                  middleSide.image,
                   !!middleSide.overlay,
-                  middleSide.middleSideTitle,
-                  middleSide.middleSideDescription,
-                  middleSide.middleSideButton
+                  middleSide.title,
+                  middleSide.description,
+                  middleSide.button
                 )}
               </div>
             )}
 
             {(topRightSide.visibility || bottomRightSide.visibility) && (
-              <div className={this.decorateCSS("right-side")}>
+              <Base.VerticalContent className={this.decorateCSS("right-side")}>
                 {topRightSide.visibility && (
                   <div className={this.decorateCSS("topRightSide")}>
                     {renderCard(
-                      topRightSide.topRightSideImage,
+                      topRightSide.image,
                       !!topRightSide.overlay,
-                      topRightSide.topRightSideTitle,
-                      topRightSide.topRightSideDescription,
-                      topRightSide.topRightSideButton,
+                      topRightSide.title,
+                      topRightSide.description,
+                      topRightSide.button,
                       this.decorateCSS("right-card")
                     )}
                   </div>
@@ -524,16 +477,16 @@ class Feature29 extends BaseFeature {
                 {bottomRightSide.visibility && (
                   <div className={this.decorateCSS("bottom-right-card")}>
                     {renderCard(
-                      bottomRightSide.bottomRightSideImage,
+                      bottomRightSide.image,
                       !!bottomRightSide.overlay,
-                      bottomRightSide.bottomRightSideTitle,
-                      bottomRightSide.bottomRightSideDescription,
-                      bottomRightSide.bottomRightSideButton,
+                      bottomRightSide.title,
+                      bottomRightSide.description,
+                      bottomRightSide.button,
                       this.decorateCSS("right-card")
                     )}
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
           </div>
         </Base.MaxContent>
