@@ -48,38 +48,29 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-xl);
-            align-items: flex-start !important;
-            text-align: left !important;
             justify-content: center;
 
             .header {
-                display: flex !important;
-                flex-direction: column !important;
-
+                display: flex;
+                flex-direction: column;
                 gap: var(--composer-gap-md);
-                align-items: flex-start !important;
-                text-align: left !important;
 
                 .subtitle {
-                    margin: 0 !important;
-                    width: fit-content !important;
-                    align-self: flex-start !important;
-                    text-align: left !important;
-                    display: block !important;
+                    margin: 0;
+                    width: fit-content;
+                    display: block;
                 }
 
                 .title {
                     margin: 0;
-                    width: 100% !important;
-                    text-align: left !important;
+                    width: 100%;
                 }
 
                 .description {
                     margin: 0;
                     margin-top: var(--composer-gap-md);
                     color: var(--composer-tertiary-color);
-                    text-align: left !important;
-                    width: 100% !important;
+                    width: 100%;
                 }
             }
 
@@ -91,19 +82,61 @@
                     display: flex;
                     flex-direction: column;
                     gap: var(--composer-gap-md);
-                    align-items: flex-start !important;
-                    text-align: left !important;
 
                     .feature-title {
                         color: var(--composer-font-color-primary);
                         margin: 0;
-                        text-align: left !important;
                     }
 
                     .feature-text {
                         color: var(--composer-tertiary-color);
                         margin: 0;
-                        text-align: left !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (min-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            &:has(.image-side) {
+                .content-side {
+                    align-items: flex-start;
+                    text-align: left;
+
+                    .header {
+                        align-items: flex-start;
+                        text-align: left;
+
+                        .subtitle {
+                            align-self: flex-start;
+                            text-align: left;
+                        }
+
+                        .title {
+                            text-align: left;
+                        }
+
+                        .description {
+                            text-align: left;
+                        }
+                    }
+
+                    .features-grid {
+                        .feature-item {
+                            align-items: flex-start;
+                            text-align: left;
+
+                            .feature-title {
+                                text-align: left;
+                            }
+
+                            .feature-text {
+                                text-align: left;
+                            }
+                        }
                     }
                 }
             }
