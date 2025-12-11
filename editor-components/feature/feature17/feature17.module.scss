@@ -34,6 +34,14 @@
 
       .tab-buttons-wrapper {
         position: relative;
+        padding: 0 var(--padding-xl);
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
       }
 
       .tab-buttons {
@@ -43,36 +51,21 @@
         flex-wrap: nowrap;
         overflow-x: auto;
         overflow-y: hidden;
-        
-        border-radius: var(--border-radius-md);
-        background-color: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
-
-        
-        &::-webkit-scrollbar {
-          display: none;
-        }
-        scrollbar-width: none;
 
         .tab-button {
-          flex: 1;
+          flex: 0 0 auto;
+          min-width: 0;
+          width: auto;
           color: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
 
           white-space: nowrap;
           position: relative;
-          display: flex;
+          display: inline-flex;
           cursor: pointer;
           justify-content: center;
           align-items: center;
           transition: color 0.3s ease;
-
-          & * {
-            white-space: nowrap !important;
-          }
 
           &::before {
             content: "";
@@ -89,15 +82,18 @@
               width: 100%;
             }
           }
+
+          & span {
+            white-space: nowrap !important;
+          }
         }
       }
 
-      
       .custom-scrollbar {
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 100%;
+        left: var(--padding-xl);
+        right: var(--padding-xl);
         height: 2px;
         pointer-events: none;
         z-index: 10;
@@ -106,7 +102,8 @@
       .custom-scrollbar-thumb {
         position: absolute;
         height: 100%;
-        background-color: red;
+
+        background-color: var(--composer-tertiary-color);
         border-radius: 2px;
         opacity: 0;
         transition: opacity 0.5s ease-out;
@@ -116,8 +113,6 @@
         opacity: 1;
         transition: none;
       }
-      
-      
 
       .tab {
         width: 100%;
