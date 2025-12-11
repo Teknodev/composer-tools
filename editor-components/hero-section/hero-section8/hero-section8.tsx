@@ -4,8 +4,8 @@ import styles from "./hero-section8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
-
 type ISliderData = {
+  logo: TypeMediaInputValue;
   title: string;
   image: TypeMediaInputValue;
   description: string;
@@ -72,6 +72,18 @@ class HeroSection8 extends BaseHeroSection {
           displayer: "Slider Object",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "topWriting",
               displayer: "Subtitle",
@@ -109,6 +121,18 @@ class HeroSection8 extends BaseHeroSection {
           displayer: "Slider Object",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "topWriting",
               displayer: "Subtitle",
@@ -145,6 +169,18 @@ class HeroSection8 extends BaseHeroSection {
           key: "sliderObject",
           displayer: "Slider Object",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
             {
               type: "string",
               key: "topWriting",
@@ -334,6 +370,12 @@ class HeroSection8 extends BaseHeroSection {
         <Base.Container className={`${this.decorateCSS("max-content")}`}>
           {this.getPropValue("slider").length > 0 && (
             <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
+              {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("logo") && (
+                <Base.Media 
+                  value={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("logo")} 
+                  className={this.decorateCSS("logo")} 
+                />
+              )}
               {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
                 <Base.H5
                   className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")

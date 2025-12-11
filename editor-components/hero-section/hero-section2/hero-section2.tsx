@@ -9,6 +9,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
   image: TypeMediaInputValue;
+  logo: TypeMediaInputValue;
   category: React.JSX.Element;
   title: React.JSX.Element;
   author: React.JSX.Element;
@@ -40,6 +41,18 @@ class HeroSection2 extends BaseHeroSection {
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -98,6 +111,18 @@ class HeroSection2 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "category",
               value: "Culture",
@@ -150,6 +175,18 @@ class HeroSection2 extends BaseHeroSection {
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -276,6 +313,12 @@ class HeroSection2 extends BaseHeroSection {
                         <div className={this.decorateCSS("content-max-width")}>
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
+                              {item.logo && (
+                                <Base.Media 
+                                  value={item.logo} 
+                                  className={this.decorateCSS("logo")} 
+                                />
+                              )}
                               {isCategoryExist && (
                                 <Base.H6 className={this.decorateCSS("category")}>{item.category}</Base.H6>
                               )}

@@ -242,7 +242,9 @@ class HeroSection7 extends BaseHeroSection {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("content")} ${!image && this.decorateCSS("without-image")}`}>
             <div className={this.decorateCSS("items")}>
-              {this.castToObject<ISliderData[]>("pages").map((item: ISliderData, index: number) => (
+              {this.castToObject<ISliderData[]>("pages")
+                .filter((item: ISliderData) => item.image && ((item.image.type === "image" || item.image.type === "video") && item.image.url))
+                .map((item: ISliderData, index: number) => (
                 <ComposerLink path={item.pagepath} key={index}>
                   <Base.H2
                     onMouseOver={() => handleMouseOver(item.image)}

@@ -6,6 +6,7 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type SliderItem = {
+  logo: TypeMediaInputValue;
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
@@ -61,6 +62,18 @@ class HeroSection12 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -101,6 +114,18 @@ class HeroSection12 extends BaseHeroSection {
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -147,6 +172,18 @@ class HeroSection12 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -190,6 +227,18 @@ class HeroSection12 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -230,6 +279,18 @@ class HeroSection12 extends BaseHeroSection {
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -284,6 +345,18 @@ class HeroSection12 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -324,6 +397,18 @@ class HeroSection12 extends BaseHeroSection {
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -370,6 +455,18 @@ class HeroSection12 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -413,6 +510,18 @@ class HeroSection12 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -453,6 +562,18 @@ class HeroSection12 extends BaseHeroSection {
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
               },
             },
             {
@@ -712,6 +833,12 @@ class HeroSection12 extends BaseHeroSection {
                     <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
                       !item.image && this.decorateCSS("no-image-text")
                     }`}>
+                      {item.logo && (
+                        <Base.Media
+                          value={item.logo}
+                          className={this.decorateCSS("logo")}
+                        />
+                      )}
                       {this.castToString(item.subtitle) && (
                         <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
                           {item.subtitle}
@@ -775,6 +902,12 @@ class HeroSection12 extends BaseHeroSection {
                     <Base.VerticalContent className={`${this.decorateCSS("slider-item-content")} ${
                       !item.image && this.decorateCSS("no-image-text")
                     }`}>
+                      {item.logo && (
+                        <Base.Media
+                          value={item.logo}
+                          className={item.logo.type === "icon" ? this.decorateCSS("logo-icon") : this.decorateCSS("logo-image")}
+                        />
+                      )}
                       {this.castToString(item.subtitle) && (
                         <Base.H5 className={this.decorateCSS("slider-item-subtitle")}>
                           {item.subtitle}

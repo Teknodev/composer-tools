@@ -7,6 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
+  logo: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
   imageTitle: React.JSX.Element;
@@ -102,7 +103,7 @@ class HeroSection10 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "nextIcon",
-      displayer: "Next icon",
+      displayer: "Next Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -114,7 +115,7 @@ class HeroSection10 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "prevIcon",
-      displayer: "Prev icon",
+      displayer: "Prev Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -173,6 +174,18 @@ class HeroSection10 extends BaseHeroSection {
           key: "sliderObject",
           displayer: "Slider Object",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
             {
               type: "string",
               key: "title",
@@ -240,8 +253,20 @@ class HeroSection10 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
             {
               type: "string",
               key: "title",
@@ -382,6 +407,12 @@ class HeroSection10 extends BaseHeroSection {
                   {leftPage && (
                     <div className={this.decorateCSS("left")}>
                       <div className={this.decorateCSS("left-container")}>
+                          {item.logo && (
+                            <Base.Media
+                              value={item.logo}
+                              className={this.decorateCSS("logo")}
+                            />
+                          )}
                           {(title || imageTitle) && (
                         <div className={this.decorateCSS("title-wrapper")}>
                           {title && (

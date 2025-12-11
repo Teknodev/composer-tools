@@ -43,6 +43,7 @@
       .slider-item {
         .slider-item-container {
           position: relative;
+          transform: scale(0.99);
 
           .background-image {
             position: absolute;
@@ -101,6 +102,15 @@
             top: 0;
             left: 0;
             border-radius: var(--composer-border-radius-md);
+          }
+
+          .logo {
+            margin-bottom: var(--composer-gap-sm);
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
+            aspect-ratio: 3/1;
+            object-fit: cover;
+            max-width: 150px;
           }
 
           .category {

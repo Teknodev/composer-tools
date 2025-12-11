@@ -40,6 +40,15 @@
           padding-top: 20px;
           padding-bottom: 20px;
 
+          .logo {
+            margin-bottom: var(--composer-gap-sm);
+            font-size: 3rem;
+            color: white;
+            aspect-ratio: 3/1;
+            object-fit: cover;
+            max-width: 150px;
+          }
+          
           .left-container {
             position: absolute;
             z-index: 9;

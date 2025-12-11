@@ -100,8 +100,20 @@
       gap: var(--composer-gap-md);
       color: white;
       max-width: 100%;
+
+      .logo {
+        font-size: 3rem;
+        color: white;
+        aspect-ratio: 3/1;
+        object-fit: cover;
+        max-width: 150px;
+      }
+
       &.no-image{
         color: var(--composer-font-color-primary);
+        .logo {
+          color: var(--composer-font-color-primary);
+        }
         .line {
           border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
@@ -125,7 +137,7 @@
         color: white;
         text-align: left;
       }
-      
+
       &.no-image {
         .tag, .title, .description {
           color: var(--composer-font-color-primary);

@@ -135,6 +135,20 @@
           width: auto;
           box-sizing: border-box;
 
+          .logo-icon {
+            margin-bottom: var(--composer-gap-sm);
+            font-size: 3rem;
+            color: white;
+          }
+
+          .logo-image {
+            margin-bottom: var(--composer-gap-sm);
+            color: white;
+            aspect-ratio: 3/1;
+            object-fit: cover;
+            max-width: 150px;
+          }
+
           .slider-item-subtitle {
             color: white;
             text-align: start;
@@ -215,6 +229,22 @@
           width: auto;
           box-sizing: border-box;
           align-items: flex-end;
+
+          .logo-icon {
+            margin-bottom: var(--composer-gap-sm);
+            font-size: 3rem;
+            color: white;
+            align-self: flex-end;
+          }
+
+          .logo-image {
+            margin-bottom: var(--composer-gap-sm);
+            color: white;
+            aspect-ratio: 3/1;
+            object-fit: cover;
+            max-width: 150px;
+            align-self: flex-end;
+          }
 
           .slider-item-subtitle {
             color: white;
