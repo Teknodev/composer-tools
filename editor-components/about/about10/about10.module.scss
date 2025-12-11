@@ -100,6 +100,7 @@
 
 
 
+
       &[data-animation~="animate1"] {
         .main-image {
           transition: transform 0.4s ease;
@@ -169,6 +170,7 @@
     }
 
     .features-section {
+      padding-top: var(--composer-gap-sm);
       width: 100%;
 
       .features-grid {
@@ -230,9 +232,11 @@
 
       .image-section {
         height: 260px;
+        margin-top: var(--composer-gap-md);
       }
 
       .features-section {
+        padding-top: var(--composer-gap-md);
         .features-grid {
           gap: var(--composer-gap-sm);
 
