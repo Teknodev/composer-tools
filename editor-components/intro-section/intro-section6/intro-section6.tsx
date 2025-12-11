@@ -132,15 +132,13 @@ class IntroSection6 extends BaseIntroSection {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={`${this.decorateCSS("intro-wrapper")} ${
-              !hasImage ? this.decorateCSS("no-image") : ""
+              !hasImage && this.decorateCSS("no-image")
             } ${
               !hasImage && alignmentValue === "center"
-                ? this.decorateCSS("no-image-center")
-                : ""
+                && this.decorateCSS("no-image-center")
             } ${
               hasImage && !hasRightContainer
-                ? this.decorateCSS("image-container-alone")
-                : ""
+                && this.decorateCSS("image-container-alone")
             }`}
           >
             {hasImage && (
@@ -159,14 +157,13 @@ class IntroSection6 extends BaseIntroSection {
             {hasRightContainer && (
               <div
                 className={`${this.decorateCSS("text-content")} ${
-                  !hasImage ? this.decorateCSS("text-content-alone") : ""
+                  !hasImage && this.decorateCSS("text-content-alone")
                 }`}
               >
                 <Base.VerticalContent
                   className={`${this.decorateCSS("vertical-content")} ${
                     alignmentValue === "center"
-                      ? this.decorateCSS("center")
-                      : null
+                      && this.decorateCSS("center")
                   }`}
                 >
                   {hasSubtitle && (
