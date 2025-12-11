@@ -153,6 +153,11 @@ class LogoComp10Page extends LogoClouds {
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("orientationchange", this.handleResize);
+    if (this.containerRef) {
+      this.resizeObserver = new ResizeObserver(this.handleResize);
+      this.resizeObserver.observe(this.containerRef);
+    }
+    this.handleResize();
   }
   handleResize = () => {
     this.forceUpdate();
