@@ -8,7 +8,6 @@
     .header {
       display: flex;
       align-items: flex-start;
-      margin-bottom: var(--composer-gap-lg);
 
       .content-section {
         display: flex;
@@ -40,12 +39,8 @@
           justify-content: flex-start;
           align-items: center;
           
-          .button {
+          .button,.button-text {
             content: "";
-            
-            .button-text {
-              content: "";
-            }
             
             .button-icon-wrapper {
               content: "";
@@ -100,15 +95,19 @@
       height: 580px;
       border-radius: var(--composer-border-radius-sm);
       overflow: hidden;
+      margin-bottom: var(--composer-gap-lg);
+
 
       &[data-animation~="animate1"] {
         .main-image {
           transition: transform 0.4s ease;
+          transform: scale(1);
+          transform-origin: center;
         }
 
         &:hover {
           .main-image {
-            transform: scale(1.05);
+            transform: scale(1.02);
           }
         }
       }
@@ -210,20 +209,6 @@
       .image-section {
         height: 385px;
       }
-
-      .features-section {
-        .features-grid {
-          gap: var(--composer-gap-md);
-          justify-items: stretch;
-          align-items: start;
-
-          .feature-item {
-            .feature-title, .feature-description {
-              text-align: left !important;
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -239,16 +224,6 @@
           flex-direction: column;
           gap: var(--composer-gap-md);
           width: 100%;
-          
-          .text-content {
-            .subtitle {
-              text-align: left !important;
-            }
-          }
-          
-          .description {
-            align-self: flex-start;
-          }
         }
       }
 
