@@ -3,9 +3,9 @@
 
 .container {
   .upper-container {
-    padding: 80px 50px 20px;
+    padding: 80px var(--composer-gap-xl) var(--composer-gap-md);
 
-    .max-content {
+    .max-content { 
       width: 100%;
 
       .section-header {

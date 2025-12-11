@@ -597,29 +597,28 @@ class Slider12 extends BaseSlider {
                 </ComposerSlider>
               </div>
             )}
+            {buttonText && (
+              <div className={this.decorateCSS("button-container")}>
+                <ComposerLink path={button?.url}>
+                  <Base.Button
+                    buttonType={button?.type || "Primary"}
+                    className={this.decorateCSS("button")}
+                  >
+                    <Base.P className={this.decorateCSS("button-text")}>
+                      {buttonContent}
+                    </Base.P>
+                    {button?.icon && (
+                      <Base.Media
+                        value={button.icon}
+                        className={this.decorateCSS("button-icon")}
+                      />
+                    )}
+                  </Base.Button>
+                </ComposerLink>
+              </div>
+            )}
           </Base.MaxContent>
         </Base.Container>
-
-        {buttonText && (
-          <div className={this.decorateCSS("button-container")}>
-            <ComposerLink path={button?.url}>
-              <Base.Button
-                buttonType={button?.type || "Primary"}
-                className={this.decorateCSS("button")}
-              >
-                <Base.P className={this.decorateCSS("button-text")}>
-                  {buttonContent}
-                </Base.P>
-                {button?.icon && (
-                  <Base.Media
-                    value={button.icon}
-                    className={this.decorateCSS("button-icon")}
-                  />
-                )}
-              </Base.Button>
-            </ComposerLink>
-          </div>
-        )}
       </div>
     );
   }
