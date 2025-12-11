@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .laneContainer {
   background-color: color-mix(
     in srgb,
@@ -31,7 +35,13 @@
     .laneContact, .laneNews, .loacalizationContainer{
       flex:1;
     }
-    .languageIcon, .localizationItem{
+    .languageIcon {
+      content: "";
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+    }
+    .localizationItem{
       content: "";
     }
     .localizationLabel, .localizationContent{
@@ -85,6 +95,9 @@
         font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
       }
 
          .localization{
@@ -180,6 +193,7 @@
         color: var(--composer-font-color-primary);
         width: 20px;
         height: 20px;
+        object-fit: cover;
       }
 
       &:hover {
@@ -265,6 +279,9 @@
             font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
           }
 
           .subdropdown {
@@ -362,6 +379,15 @@
           color: white !important;
         }
       }
+    }
+  }
+
+  .localization {
+    .localizationLabel {
+      color: white !important;
+    }
+    .languageIcon {
+      color: white !important;
     }
   }
 
@@ -528,7 +554,7 @@
       }
     }
 
-    &.filledBackground {
+    &.transparentBackground {
       background: var(--composer-html-background) !important;
       color: var(--composer-font-color-primary) !important;
       transition: all 0.3s ease !important;

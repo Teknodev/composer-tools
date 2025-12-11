@@ -47,7 +47,7 @@ class Navbar8 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
         },
         {
@@ -73,7 +73,7 @@ class Navbar8 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
         },
         {
@@ -145,7 +145,7 @@ class Navbar8 extends BaseNavigator {
       key: "hamburgerIcon",
       displayer: "Hamburger Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -157,7 +157,7 @@ class Navbar8 extends BaseNavigator {
       key: "closeIcon",
       displayer: "Close Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -477,7 +477,7 @@ class Navbar8 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <Base.Navigator.Container screenSize={1960} position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""}`} 
+      <Base.Navigator.Container screenSize={1960} position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""} ${isMenuOpen ? this.decorateCSS("hamburgerActive") : ""}`} 
       hamburgerNavActive={isMenuOpen}
       setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
       >
@@ -515,7 +515,7 @@ class Navbar8 extends BaseNavigator {
               <Base.Language
                 type="dropdown"
                 title={language.label}
-                icon={language.icon?.name || "IoIosArrowDown"}
+                icon={language.icon}
                 dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                 dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${backgroundChange && this.decorateCSS("openedLabel")} ${animations}`}
                 iconClassName={`${this.decorateCSS("localizationIcon")} ${backgroundChange && this.decorateCSS("openedIcon")}`}

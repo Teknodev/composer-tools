@@ -539,7 +539,7 @@ export namespace Base {
         dropdownButtonClassName,
         dropdownLabelClassName,
         dropdownItemClassName,
-        icon = "GrLanguage",
+        icon = { type: "icon", name: "GrLanguage" },
         title = "name",
         iconClassName,
         dropdownContentClassName,
@@ -551,7 +551,7 @@ export namespace Base {
           buttonLabel={composerToolsCurrentLanguage[title || "code"]}
           labelClassName={`${styles["label"]} ${dropdownLabelClassName}`}
           dropdownButtonClassName={dropdownButtonClassName}
-          icon={typeof icon === "string" ? { type: "icon", name: icon } : icon}
+          icon={icon}
           iconClassName={`${styles.languageIcon} ${iconClassName}`}
           disabled={false}
           dropdownContentClassName={dropdownContentClassName}
@@ -579,7 +579,7 @@ export namespace Base {
         itemClassName,
         openClassName,
         languageAccordionClassName,
-        icon = "MdArrowDropDown",
+        icon = { type: "icon", name: "MdArrowDropDown" },
         title = "name",
         accordionIconClassName,
         titleClassName,

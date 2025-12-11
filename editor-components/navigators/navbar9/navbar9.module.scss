@@ -1,5 +1,19 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+  .localizationContainer {
+    .localizationLabel, .languageIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
+  }
+  .localization {
+    .localizationLabel, .languageIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
+  }
+}
+
 .container{
   z-index: 101;
 }
@@ -95,8 +109,9 @@
             font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
-            height: 25px;
-            width: 25px;
+            height: 24px;
+            width: 24px;
+            object-fit: cover;
           }
 
           &:hover {
@@ -189,6 +204,9 @@
                 font-size: calc(1 * var(--composer-font-size-md));
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
+                width: 20px;
+                height: 20px;
+                object-fit: cover;
               }
 
               .subdropdown {
@@ -285,6 +303,9 @@
     cursor: pointer;
     font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
   }
 
 
@@ -481,6 +502,18 @@
     }
     .languageIcon{
       color: white;
+      width: 15px;
+      height: 15px;
+      object-fit: cover;
+    }
+  }
+
+  .localization {
+    .localizationLabel {
+      color: white !important;
+    }
+    .languageIcon {
+      color: white !important;
     }
   }
 
@@ -488,6 +521,19 @@
     .icon-container{
       .icon{
         color: white;
+      }
+    }
+  }
+
+  &.hamburgerActive {
+    .localizationContainer {
+      .localizationLabel, .languageIcon {
+        color: var(--composer-font-color-primary) !important;
+      }
+    }
+    .localization {
+      .localizationLabel, .languageIcon {
+        color: var(--composer-font-color-primary) !important;
       }
     }
   }

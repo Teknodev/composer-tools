@@ -117,7 +117,7 @@ class Navbar3 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
         },
         {
@@ -143,7 +143,7 @@ class Navbar3 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
         },
         {
@@ -1065,7 +1065,7 @@ class Navbar3 extends BaseNavigator {
           key: "dropdownIcon",
           displayer: "Dropdown Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1077,7 +1077,7 @@ class Navbar3 extends BaseNavigator {
           key: "rightIcon",
           displayer: "Right Arrow Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1089,7 +1089,7 @@ class Navbar3 extends BaseNavigator {
           key: "hamburgerIcon",
           displayer: "Hamburger Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1101,7 +1101,7 @@ class Navbar3 extends BaseNavigator {
           key: "closeIcon",
           displayer: "Close Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1342,7 +1342,7 @@ class Navbar3 extends BaseNavigator {
                   <Base.Language
                     type="dropdown"
                     title={language.label}
-                    icon={language.icon?.name || "GrLanguage"}
+                    icon={language.icon}
                     dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                     dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                     iconClassName={this.decorateCSS("languageIcon")}
@@ -1359,7 +1359,7 @@ class Navbar3 extends BaseNavigator {
         <Base.Navigator.Container
           position={position}
           className={this.decorateCSS("pcNavbarContainer")}
-          positionContainer={this.decorateCSS("pcNavbarPositionContainer")}
+          positionContainer={`${this.decorateCSS("pcNavbarPositionContainer")} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}
           setIsBigScreen={(value: boolean) =>
             this.setComponentState("isBigScreen", value)
           }
@@ -1525,6 +1525,7 @@ class Navbar3 extends BaseNavigator {
           setIsScrolled={(value: boolean) =>
             this.setComponentState("isScrolled", value)
           }
+          positionContainer={`${this.decorateCSS("smallDeviceNavbarPositionContainer")} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${

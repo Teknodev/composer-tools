@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .container{
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
@@ -132,6 +136,9 @@
     .menuIcon {
       font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
     
 
@@ -306,8 +313,11 @@
     .localizationLabel{
       color: white;
     }
-    .languageIcon{
+    .localizationIcon{
       color: white;
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
     .closeIcon,
     .menuIcon {

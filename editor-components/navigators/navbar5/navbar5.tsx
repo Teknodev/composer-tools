@@ -145,7 +145,7 @@ class Navbar5 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           },
         },
         {
@@ -171,7 +171,7 @@ class Navbar5 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           },
         },
         {
@@ -229,7 +229,7 @@ class Navbar5 extends BaseNavigator {
       key: "hamburger-icon",
       displayer: "Hamburger Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -242,7 +242,7 @@ class Navbar5 extends BaseNavigator {
       key: "cross-icon",
       displayer: "Cross Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -505,7 +505,7 @@ class Navbar5 extends BaseNavigator {
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
-        positionContainer={`${this.decorateCSS("navbarContainer")} ${navActive ? this.decorateCSS("filledBackground") : ""}`}
+        positionContainer={`${this.decorateCSS("navbarContainer")} ${navActive ? this.decorateCSS("filledBackground") : ""} ${navActive ? this.decorateCSS("hamburgerActive") : ""}`}
         hamburgerNavActive={navActive}
         setIsBigScreen={(value: boolean) => {
           this.setComponentState("isBigScreen", value);
@@ -557,7 +557,7 @@ class Navbar5 extends BaseNavigator {
                 <Base.Language
                   type="dropdown"
                   title={language.label}
-                  icon={language.icon?.name || "GrLanguage"}
+                  icon={language.icon}
                   dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}

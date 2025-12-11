@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .upperContainer {
   padding-top: calc(var(--composer-gap-md) * 1.5) !important;
   padding-bottom: calc(var(--composer-gap-md) * 1.5) !important;
@@ -156,6 +160,9 @@
           font-size: calc(1 * var(--composer-font-size-md));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          width: 20px;
+          height: 20px;
+          object-fit: cover;
         }
 
         &:hover {
@@ -255,6 +262,9 @@
               font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -509,6 +519,9 @@
   .closeIcon {
     font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
   }
   .hamburgerMenuTitle {
     margin: 0;
@@ -547,6 +560,9 @@
      }
      .languageIcon{
       color: white;
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
      }
     }
     .localizationItem, .localizationContent{

@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .navbarContainer {
   display: flex;
   flex-direction: column;
@@ -87,11 +91,17 @@
     
     .languageIcon{
       content: "";
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
 
     .hamburgerIcon {
       font-size: 2rem;
       cursor: pointer;
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
 
     .activeHamburgerIcon {

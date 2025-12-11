@@ -1,6 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .navbarContainer {
   padding: 0 var(--composer-gap-xl) !important;
   transition: all 0.3s ease !important;
@@ -78,8 +82,9 @@
           font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
-          height: 25px;
-          width: 25px;
+          height: 24px;
+          width: 24px;
+          object-fit: cover;
           
           &.active {
             transform: rotate(180deg);
@@ -282,6 +287,9 @@
               font-size: calc(1.5 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -651,6 +659,9 @@
       cursor: pointer;
       font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
 
 

@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .navbarContainer {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
@@ -57,8 +61,9 @@
           font-size: 2rem;
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
-          width: 30px;
+          width: 25px;
           height: 30px;
+          object-fit: cover;
         }
 
         &:hover {
@@ -141,6 +146,9 @@
               font-size: 2rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 15px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -431,6 +439,10 @@
         }
       }
       .languageIcon{
+        width: 20px;
+        height: 15px;
+        object-fit: cover;
+        
         &.animation1{
           &:hover{
             font-weight: bold;
@@ -452,6 +464,9 @@
     cursor: pointer;
     font-size: 2rem;
     color: var(--composer-font-color-primary);
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
   }
 
   .overlay {

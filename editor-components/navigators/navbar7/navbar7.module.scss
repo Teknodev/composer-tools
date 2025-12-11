@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .pcNavbarContainer {
   z-index: 101;
   .maxContent {
@@ -57,10 +61,11 @@
 
         .dropdownIcon {
           font-size: 1.5rem;
-          width: var(--composer-gap-md);
-          height: var(--composer-gap-md);
+          width: 20px;
+          height: 20px;
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
+          object-fit: cover;
         }
         &.animation3{
           &:hover{
@@ -153,6 +158,9 @@
               font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -297,10 +305,37 @@
     .icon, .localizationLabel, .languageIcon  {
       color: white;
     }
+    .languageIcon {
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
+    }
+  }
+
+  .localization {
+    .localizationLabel {
+      color: white !important;
+    }
+    .languageIcon {
+      color: white !important;
+    }
   }
 
   .mobileMenuButton {
     color: white !important;
+  }
+}
+
+.hamburgerActive {
+  .iconsContainer {
+    .localizationLabel, .languageIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
+  }
+  .localization {
+    .localizationLabel, .languageIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
   }
 }
 
@@ -336,6 +371,9 @@
       color: var(--composer-font-color-primary);
       padding: 0;
       font-size: calc(1.5 * var(--composer-font-size-md));
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
 
     .mobileMenu {

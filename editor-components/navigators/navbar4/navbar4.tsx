@@ -1271,7 +1271,7 @@ class Navbar4 extends BaseNavigator {
           key: "dropdownIcon",
           displayer: "Dropdown Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1283,7 +1283,7 @@ class Navbar4 extends BaseNavigator {
           key: "rightIcon",
           displayer: "Right Arrow Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1295,7 +1295,7 @@ class Navbar4 extends BaseNavigator {
           key: "hamburgerIcon",
           displayer: "Hamburger Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1307,7 +1307,7 @@ class Navbar4 extends BaseNavigator {
           key: "closeIcon",
           displayer: "Close Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -1512,7 +1512,7 @@ class Navbar4 extends BaseNavigator {
           position={position}
           positionContainer={`${this.decorateCSS("pcNavbarPosition")} ${
             backgroundChange ? this.decorateCSS("activeBackground") : ""
-          }`}
+          } ${isHamburgerActive ? this.decorateCSS("hamburgerActive") : ""}`}
           className={this.decorateCSS("pcNavbarContainer")}
           hamburgerNavActive={isHamburgerActive}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
@@ -1633,7 +1633,7 @@ class Navbar4 extends BaseNavigator {
                 <Base.Language
                   type="dropdown"
                   title={language.label}
-                  icon={language.icon?.name || "GrLanguage"}
+                  icon={language.icon}
                   dropdownButtonClassName={`${this.decorateCSS("localization")}`}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
