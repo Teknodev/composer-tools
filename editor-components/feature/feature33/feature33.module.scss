@@ -69,7 +69,6 @@
                 .description {
                     margin: 0;
                     margin-top: var(--composer-gap-md);
-                    color: var(--composer-tertiary-color);
                     width: 100%;
                 }
             }
@@ -89,7 +88,7 @@
                     }
 
                     .feature-text {
-                        color: var(--composer-tertiary-color);
+                        color: var(--composer-font-color-primary);
                         margin: 0;
                     }
                 }
