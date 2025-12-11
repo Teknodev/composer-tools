@@ -36,13 +36,6 @@
         text-align: left;
 
         .card {
-          .card-content {
-            align-items: flex-start;
-            text-align: left;
-
-            .card-title { text-align: left; }
-          }
-
           .card-number {
             left: var(--composer-gap-xl);
             bottom: calc(var(--composer-gap-xl) * (-0.8));
@@ -55,11 +48,20 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: flex-start;
+        text-align: left;
         padding: var(--composer-gap-xl);
         border: var(--composer-border-width-xs) solid rgba(var(--composer-font-color-primary-rgb), 0.2);
 
         .intro-content {
-          gap: 0; 
+          gap: 0;
+          align-items: flex-start;
+          text-align: left;
+          .subtitle, .title, .description {
+            text-align: left;
+            margin-left: 0;
+            margin-right: auto;
+          }
           .subtitle {
             content: "";
           }
@@ -88,6 +90,7 @@
         .button {
           content: "";
           position: relative;
+          align-self: flex-start;
           transition: all var(--composer-transition-duration-slow) ease;
 
           .button-text {
@@ -301,9 +304,21 @@
       .cards-grid {
         .intro-card {
           padding: var(--composer-gap-lg);
+          align-items: flex-start;
+          text-align: left;
           
           .intro-content {
             gap: 0;
+            align-items: flex-start;
+            text-align: left;
+            .subtitle, .title, .description {
+              text-align: left;
+              margin-left: 0;
+              margin-right: auto;
+            }
+          }
+          .button {
+            align-self: flex-start;
           }
         }
 
@@ -358,13 +373,17 @@
         &.alignment-center { text-align: center; }
         .intro-card {
           padding: var(--composer-gap-lg);
-          align-items: center;
-          text-align: center;
+          align-items: flex-start;
+          text-align: left;
           .intro-content {
             gap: 0;
-            align-items: center;
-            text-align: center;
-            .subtitle, .title, .description { text-align: center; margin-left: auto; margin-right: auto; }
+            align-items: flex-start;
+            text-align: left;
+            .subtitle, .title, .description { 
+              text-align: left; 
+              margin-left: 0;
+              margin-right: auto;
+            }
             
             .subtitle {
               transform: translateX(0);
@@ -373,16 +392,22 @@
               }
             }
           }
-          .button { align-self: center; }
+          .button { align-self: flex-start; }
         }
 
         .card {
           padding: var(--composer-gap-lg) var(--composer-gap-sm);
           .card-content {
             gap: var(--composer-gap-lg);
-            align-items: center;
-            text-align: center;
-            .card-title { text-align: center; }
+            align-items: flex-start;
+            text-align: left;
+            .card-title { text-align: left; }
+            .event-item {
+              align-items: flex-start;
+              text-align: left;
+              .event-text-top { text-align: left; }
+              .event-text-bottom { text-align: left; }
+            }
           }
           .card-number {
             bottom: calc(var(--composer-gap-lg) * -1.2);
@@ -410,11 +435,6 @@
 
         &.alignment-left {
           .card {
-            .card-content {
-              align-items: flex-start;
-              text-align: left;
-              .card-title { text-align: left; }
-            }
             .card-number {
               left: var(--composer-gap-sm);
               bottom: calc(var(--composer-gap-lg) * -1.2);

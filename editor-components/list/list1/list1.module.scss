@@ -270,19 +270,14 @@
       .dots-colored {
         li {
           button {
-            background-color: var(--composer-font-color-primary);
+            background-color: var(--composer-primary-color);
           }
         }
         :global(li.slick-active) button {
-          background-color: var(--composer-font-color-primary);
+          background-color: var(--composer-primary-color);
         }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
-  }
-}
