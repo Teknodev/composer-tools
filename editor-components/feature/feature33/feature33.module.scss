@@ -1,0 +1,149 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container {
+
+    .max-content {
+        display: flex;
+        gap: var(--composer-gap-lg);
+        position: relative;
+        z-index: 1;
+        align-items: stretch;
+        width: 100%;
+
+        .image-side {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--composer-border-radius-sm);
+            min-height: 200px;
+
+            &.no-content {
+                aspect-ratio: 16/9;
+            }
+
+            .image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--composer-overlay-color);
+                z-index: 1;
+                pointer-events: none;
+            }
+        }
+
+        .content-side {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xl);
+            align-items: flex-start !important;
+            text-align: left !important;
+            justify-content: center;
+
+            .header {
+                display: flex !important;
+                flex-direction: column !important;
+
+                gap: var(--composer-gap-md);
+                align-items: flex-start !important;
+                text-align: left !important;
+
+                .subtitle {
+                    margin: 0 !important;
+                    width: fit-content !important;
+                    align-self: flex-start !important;
+                    text-align: left !important;
+                    display: block !important;
+                }
+
+                .title {
+                    margin: 0;
+                    width: 100% !important;
+                    text-align: left !important;
+                }
+
+                .description {
+                    margin: 0;
+                    margin-top: var(--composer-gap-md);
+                    color: var(--composer-tertiary-color);
+                    text-align: left !important;
+                    width: 100% !important;
+                }
+            }
+
+            .features-grid {
+                width: 100%;
+                margin-top: var(--composer-gap-md);
+
+                .feature-item {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
+                    align-items: flex-start !important;
+                    text-align: left !important;
+
+                    .feature-title {
+                        color: var(--composer-font-color-primary);
+                        margin: 0;
+                        text-align: left !important;
+                    }
+
+                    .feature-text {
+                        color: var(--composer-tertiary-color);
+                        margin: 0;
+                        text-align: left !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            flex-direction: column;
+            align-items: stretch;
+            gap: var(--composer-gap-lg);
+
+            .image-side {
+                width: 100%;
+                flex: none;
+                height: auto;
+                min-height: 300px;
+
+                .image {
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
+
+            .content-side {
+                width: 100%;
+                flex: none;
+                gap: var(--composer-gap-md);
+
+                .header {
+                    gap: var(--composer-gap-sm);
+
+                    .description {
+                        margin-top: var(--composer-gap-sm);
+                    }
+                }
+            }
+        }
+    }
+}
