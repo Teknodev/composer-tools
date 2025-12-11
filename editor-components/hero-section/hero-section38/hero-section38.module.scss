@@ -8,7 +8,7 @@
   .max-content {
     width: 100%;
     max-width: unset !important;
-    padding-top: var(--composer-gap-xl);
+    padding-top:calc(1.5 * var(--composer-gap-xl));
 
 
     .slider-wrapper {
@@ -24,7 +24,7 @@
         .slick-track {
           display: flex !important;
           align-items: stretch;
-          gap: calc(2 * var(--composer-gap-lg));
+          gap: var(--composer-gap-lg);
         }
 
         :global(.slick-slide > div) {
@@ -44,7 +44,6 @@
             transform: scale(1);
             margin: 0 auto;
             width: 850px;
-            height: 460px;
           }
         }
 
@@ -130,7 +129,6 @@
               align-items: center;
               justify-content: center;
               overflow: hidden;
-                min-height: 400px;
 
               .title {
                 position: static;
@@ -146,29 +144,25 @@
         }
 
         .active-slide {
-          transform: scale(1.20);
+          transform: scale(1.35);
           z-index: 10;
           transition: transform var(--composer-transition-duration-normal) ease;
-
-          &:hover {
-            .image-wrapper {
-              .overlay {
-                opacity: 0;
-              }
-            }
-          }
 
           .image-wrapper {
             border-radius: var(--composer-border-radius-sm);
 
             .image {
               border-radius: inherit;
-              transform: scale(1.20);
+              transform: scale(1.35);
               transform-origin: center;
             }
 
             .video-media {
               transform: scale(1) !important;
+            }
+
+            .overlay {
+              opacity: 0.5;
             }
           }
 
@@ -186,9 +180,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: calc(var(--composer-gap-md));
         position: relative;
         width: 100%;
+        margin-top: var(--composer-gap-md);
 
         .arrow-button {
           border: none !important;
@@ -294,6 +288,12 @@
 .container.no-animation {
   .max-content {
     padding-top: 0;
+
+    .slider-wrapper {
+      .navigation-wrapper {
+        margin-top: var(--composer-gap-lg);
+      }
+    }
   }
 }
 
@@ -308,7 +308,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    max-height: 450px;
 
     .title {
       word-break: break-word;
@@ -408,7 +407,6 @@
               align-items: center;
               justify-content: center;
               overflow: hidden;
-              min-height: 270px;
 
               .title {
                 position: static;
@@ -425,7 +423,6 @@
 
           .image-wrapper {
             border-radius: var(--composer-border-radius-sm);
-              height: 270px;
 
               .image {
                 border-radius: inherit;
@@ -566,7 +563,7 @@
               align-items: center;
               justify-content: center;
               overflow: hidden;
-              min-height: 210px;
+              height: 200px;
 
               .title {
                 padding: 0 var(--composer-gap-md);
