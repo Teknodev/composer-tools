@@ -1,17 +1,17 @@
 import * as React from "react";
-import { BaseHeroSection, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./hero-section10.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
+  logo: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
   imageTitle: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   description1: React.JSX.Element;
   icons: { icon: string; url: string }[];
@@ -28,15 +28,21 @@ class HeroSection10 extends BaseHeroSection {
       displayer: "Twitter",
       value: [
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaTwitter",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaTwitter",
+          },
         },
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Navigate To",
           value: "",
         },
       ],
@@ -48,15 +54,21 @@ class HeroSection10 extends BaseHeroSection {
       displayer: "Platform",
       value: [
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaFacebookF",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaFacebookF",
+          },
         },
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Navigate To",
           value: "",
         },
       ],
@@ -68,37 +80,61 @@ class HeroSection10 extends BaseHeroSection {
       displayer: "Platform",
       value: [
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaInstagram",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaInstagram",
+          },
         },
         {
           type: "page",
           key: "url",
-          displayer: "Url",
+          displayer: "Navigate To",
           value: "",
         },
       ],
     };
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextIcon",
-      displayer: "Next icon",
-      value: "MdArrowRight",
+      displayer: "Next Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "MdArrowRight",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prevIcon",
-      displayer: "Prev icon",
-      value: "MdArrowLeft",
+      displayer: "Prev Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "MdArrowLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "ampersandIcon",
       displayer: "Ampersand Icon",
-      value: "LuAmpersand",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "LuAmpersand",
+      },
     });
 
     this.addProp({
@@ -114,6 +150,19 @@ class HeroSection10 extends BaseHeroSection {
       value: true
     })
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -125,6 +174,18 @@ class HeroSection10 extends BaseHeroSection {
           key: "sliderObject",
           displayer: "Slider Object",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
             {
               type: "string",
               key: "title",
@@ -145,11 +206,16 @@ class HeroSection10 extends BaseHeroSection {
               value: "Structures ",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: " Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media",
+              },
             },
             {
               type: "string",
@@ -187,8 +253,20 @@ class HeroSection10 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
             {
               type: "string",
               key: "title",
@@ -209,11 +287,16 @@ class HeroSection10 extends BaseHeroSection {
               value: "Structures ",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: " Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media",
+              },
             },
             {
               type: "string",
@@ -258,11 +341,12 @@ class HeroSection10 extends BaseHeroSection {
   }
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
     const settings = {
       dots: false,
       infinite: true,
       speed: 2500,
-      autoplay: false,
+      autoplay: autoplay,
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -287,6 +371,15 @@ class HeroSection10 extends BaseHeroSection {
               const description = this.castToString(item.description);
               const imageTitle = this.castToString(item.imageTitle);
               const image = item.image;
+              const imageWithSettings = image?.type === "video" ? {
+                ...image,
+                settings: {
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false
+                }
+              } : image;
               const subtitle = this.castToString(item.subtitle);
               const description1 = this.castToString(item.description1);
               const leftPage =
@@ -313,6 +406,27 @@ class HeroSection10 extends BaseHeroSection {
                 >
                   {leftPage && (
                     <div className={this.decorateCSS("left")}>
+                      <div className={this.decorateCSS("left-container")}>
+                          {item.logo && (
+                            <Base.Media
+                              value={item.logo}
+                              className={this.decorateCSS("logo")}
+                            />
+                          )}
+                          {(title || imageTitle) && (
+                        <div className={this.decorateCSS("title-wrapper")}>
+                          {title && (
+                            <h1 className={this.decorateCSS("title")}>
+                              {item.title}
+                            </h1>
+                          )}
+                          {imageTitle && (
+                            <h1 className={this.decorateCSS("imagetitle")}>
+                              {item.imageTitle}
+                            </h1>
+                          )}
+                        </div>
+                      )}
                       <div
                         className={
                           this.decorateCSS("left-page-content") +
@@ -322,17 +436,6 @@ class HeroSection10 extends BaseHeroSection {
                             : "")
                         }
                       >
-                        {(title && image) && (
-                          <h1 className={this.decorateCSS("title")}>
-                            {item.title}
-                          </h1>
-                        )}
-                        {(!image && (title || imageTitle)) && (
-                          <div className={this.decorateCSS("title-wrapper")}>
-                            {title && (<div className={this.decorateCSS("title")}>{item.title}</div>)}
-                            {imageTitle && (<div className={this.decorateCSS("image-title")}>{item.imageTitle}</div>)}
-                          </div>
-                        )}
                         {description && (
                           <p className={this.decorateCSS("description")}>
                             {item.description}
@@ -348,32 +451,32 @@ class HeroSection10 extends BaseHeroSection {
                             {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon")) && (
                               <div className={this.decorateCSS("iconsSection")}>
                                 {this.getPropValue("prevIcon") && (
-                                  <div className={this.decorateCSS("prev_icon_wrapper")}>
-                                    <Base.Icon
-                                      name={this.getPropValue("prevIcon")}
-                                      propsIcon={{
-                                        className: `${this.decorateCSS("prev_icon")}`,
-                                        onClick: () => {
-                                          this.getComponentState(
-                                            "slider-ref"
-                                          ).current.slickPrev();
-                                        },
-                                      }}
+                                  <div 
+                                    className={this.decorateCSS("prev_icon_wrapper")}
+                                    onClick={() => {
+                                      this.getComponentState(
+                                        "slider-ref"
+                                      ).current.slickPrev();
+                                    }}
+                                  >
+                                    <Base.Media
+                                      value={this.getPropValue("prevIcon")}
+                                      className={`${this.decorateCSS("prev_icon")}`}
                                     />
                                   </div>
                                 )}
                                 {this.getPropValue("nextIcon") && (
-                                  <div className={this.decorateCSS("next_icon_wrapper")}>
-                                    <Base.Icon
-                                      name={this.getPropValue("nextIcon")}
-                                      propsIcon={{
-                                        className: `${this.decorateCSS("next_icon")}`,
-                                        onClick: () => {
-                                          this.getComponentState(
-                                            "slider-ref"
-                                          ).current.slickNext();
-                                        },
-                                      }}
+                                  <div 
+                                    className={this.decorateCSS("next_icon_wrapper")}
+                                    onClick={() => {
+                                      this.getComponentState(
+                                        "slider-ref"
+                                      ).current.slickNext();
+                                    }}
+                                  >
+                                    <Base.Media
+                                      value={this.getPropValue("nextIcon")}
+                                      className={`${this.decorateCSS("next_icon")}`}
                                     />
                                   </div>
                                 )}
@@ -382,7 +485,7 @@ class HeroSection10 extends BaseHeroSection {
                           </div>
                         )}
                         {item.button.map(
-                          (buttonItem: INPUTS.CastedButton, indexButton: number) => {
+                          (buttonItem: INPUTS.CastedButton) => {
                             const buttonText = this.castToString(
                               buttonItem.text
                             );
@@ -402,7 +505,7 @@ class HeroSection10 extends BaseHeroSection {
                                     <Base.Button buttonType={buttonItem.type}
                                       className={this.decorateCSS("button")}
                                     >
-                                      {buttonItem.text}
+                                      <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                                     </Base.Button>
                                   </ComposerLink>
                                 </div>
@@ -411,20 +514,21 @@ class HeroSection10 extends BaseHeroSection {
                         )}
                       </div>
                     </div>
+                        
+                    </div>
                   )}
                   {image && (
                     <div className={this.decorateCSS("middle")}>
-                      {imageTitle && (
-                        <h1 className={this.decorateCSS("imagetitle")}>
-                          {item.imageTitle}
-                        </h1>
-                      )}
                       {image && (
-                        <img
-                          className={this.decorateCSS("image")}
-                          src={item.image}
-                          alt=""
-                        />
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <Base.Media
+                            className={this.decorateCSS("image")}
+                            value={imageWithSettings}
+                          />
+                          {this.getPropValue("overlay") && image && (image.type === "image" || image.type === "video") && image.url && (
+                            <div className={this.decorateCSS("overlay")} />
+                          )}
+                        </div>
                       )}
                     </div>
                   )}
@@ -432,13 +536,9 @@ class HeroSection10 extends BaseHeroSection {
                     <div className={this.decorateCSS("right")}>
                       {
                         <div className={this.decorateCSS("icon")}>
-                          <Base.Icon
-                            name={this.getPropValue("ampersandIcon")}
-                            propsIcon={{
-                              className: `${this.decorateCSS(
-                                "ampersand-icon"
-                              )}`,
-                            }}
+                          <Base.Media
+                            value={this.getPropValue("ampersandIcon")}
+                            className={this.decorateCSS("ampersand-icon")}
                           />
                         </div>
                       }
@@ -465,10 +565,11 @@ class HeroSection10 extends BaseHeroSection {
                           )}
                           <div className={this.decorateCSS("icon-group")}>
                             {item.icons.map(
-                              (item: any, indexSlider: number) => (
-                                <ComposerLink path={item.getPropValue("url")}>
-                                  <Base.Icon
-                                    name={item.getPropValue("icon")}
+                              (item: any) => (
+                                <ComposerLink key={item.getPropValue("url")} path={item.getPropValue("url")}>
+                                  <Base.Media
+                                    value={item.getPropValue("icon")}
+                                    className={this.decorateCSS("icon")}
                                   />
                                 </ComposerLink>
                               )
