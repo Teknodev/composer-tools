@@ -153,11 +153,6 @@ class LogoComp10Page extends LogoClouds {
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
     window.addEventListener("orientationchange", this.handleResize);
-    if (this.containerRef) {
-      this.resizeObserver = new ResizeObserver(this.handleResize);
-      this.resizeObserver.observe(this.containerRef);
-    }
-    this.handleResize();
   }
   handleResize = () => {
     this.forceUpdate();
@@ -210,22 +205,14 @@ class LogoComp10Page extends LogoClouds {
       }
     }, 0);
   };
-  hasMedia = (media?: TypeMediaInputValue) => {
-    const value = media as { url?: string; value?: { url?: string } } | undefined;
-    return Boolean(value?.url ?? value?.value?.url);
-  };
   getAllLogoItems = (): TImage[] => this.castToObject<TImage[]>("image-items") ?? [];
-  getVisibleLogoItems = (): TImage[] => this.getAllLogoItems().filter((img) => this.hasMedia(img?.image));
+  getVisibleLogoItems = (): TImage[] => this.getAllLogoItems().filter((img) => img?.image);
   getChunkSize = (): number => {
-    const propValue = this.getPropValue("itemCount");
-    const requested = Number(propValue) || 4;
-    return requested > 0 ? requested : 1;
+    return this.getPropValue("itemCount") || 4;
   };
   getEffectiveChunkSize = (): number => {
-    const desktopChunkSize = this.getChunkSize();
-    return this.isPhone() ? Math.min(2, desktopChunkSize) : desktopChunkSize;
+    return this.isPhone() ? Math.min(2, this.getChunkSize()) : this.getChunkSize();
   };
-  getViewportKey = (): string => (this.isPhone() ? "phone" : "desktop");
   isPhone = (): boolean => {
     const width = this.containerRef?.clientWidth
       ?? document.getElementById('playground')?.clientWidth
@@ -252,20 +239,15 @@ class LogoComp10Page extends LogoClouds {
     const itemCount = this.getChunkSize();
     const sliderRef = this.getComponentState("slider-ref");
     const effectiveChunkSize = this.getEffectiveChunkSize();
-    const viewportKey = this.getViewportKey();
-
     const paddedLogos = [...logoItems];
-    const chunkSize = Math.max(1, effectiveChunkSize);
     let padIndex = 0;
-    while (paddedLogos.length > 0 && paddedLogos.length % chunkSize !== 0) {
+    while (paddedLogos.length > 0 && paddedLogos.length % effectiveChunkSize !== 0) {
       paddedLogos.push(paddedLogos[padIndex % paddedLogos.length]);
       padIndex += 1;
     }
-
-    const totalLogos = paddedLogos.length;
-    const shouldAnimate = totalLogos > effectiveChunkSize;
+    const shouldAnimate = paddedLogos.length > effectiveChunkSize;
     const chunks = this.chunkLogos(paddedLogos, effectiveChunkSize);
-    const sliderKey = `slider-${itemCount}-${totalLogos}-${effectiveChunkSize}-${viewportKey}`;
+    const sliderKey = `slider-${itemCount}-${paddedLogos.length}-${effectiveChunkSize}`;
     const sliderSettings = {
       arrows: false,
       dots: false,
@@ -283,7 +265,7 @@ class LogoComp10Page extends LogoClouds {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleStr || titleStr || descStr) && (
-            <Base.VerticalContent className={this.decorateCSS("heading")} ref={this.setContainerRef}>
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
               {subtitleStr && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
@@ -313,8 +295,7 @@ class LogoComp10Page extends LogoClouds {
                   className={this.decorateCSS("slider")}
                 >
                   {chunks.map((chunk, slideIndex) => {
-                    const visibleItems = chunk.filter((img: TImage) => this.hasMedia(img.image));
-                    const gridColumns = Math.min(itemCount, Math.max(1, visibleItems.length));
+                    const gridColumns = Math.min(itemCount, Math.max(1, chunk.length));
                     const phoneColumns = Math.min(2, gridColumns);
                     return (
                       <div key={slideIndex}>
@@ -322,7 +303,7 @@ class LogoComp10Page extends LogoClouds {
                           gridCount={{ pc: gridColumns, tablet: gridColumns, phone: phoneColumns }}
                           className={this.decorateCSS("gallery")}
                         >
-                          {visibleItems.map((img: TImage, i: number) => (
+                          {chunk.map((img: TImage, i: number) => (
                             <div key={i} className={this.decorateCSS("cell")}>
                               <ComposerLink path={img.imageLink}>
                                 <div className={this.decorateCSS("image-child")}>
