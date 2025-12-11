@@ -97,15 +97,13 @@ class About12 extends BaseAbout {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={`${this.decorateCSS("intro-wrapper")} ${
-              !hasImage ? this.decorateCSS("no-image") : ""
+              !hasImage && this.decorateCSS("no-image")
             }`}
           >
             {hasImage && (
               <div
                 className={`${this.decorateCSS("image-container")} ${
-                  !hasRightContainer
-                    ? this.decorateCSS("image-container-alone")
-                    : ""
+                  !hasRightContainer && this.decorateCSS("image-container-alone")
                 }`}
               >
                 <Base.Media
@@ -122,12 +120,8 @@ class About12 extends BaseAbout {
               <div
                 className={`${this.decorateCSS("text-content")} ${
                   !hasImage ? this.decorateCSS("text-content-alone") : ""
-                } ${
-                  alignmentValue === "center" ? this.decorateCSS("center") : ""
-                } ${
-                  !hasImage && alignmentValue === "center"
-                    ? this.decorateCSS("no-image-center")
-                    : ""
+                } ${alignmentValue === "center" && this.decorateCSS("center")} ${
+                  !hasImage && alignmentValue === "center" && this.decorateCSS("no-image-center")
                 }`}
               >
                 <Base.VerticalContent
