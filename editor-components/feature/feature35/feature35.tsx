@@ -1,17 +1,19 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
-import styles from "./feature31.module.scss";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import styles from "./feature35.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FeatureItem = {
-  icon: { type: "icon"; name: string } | { type: "image"; url: string };
+  icon: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
 
-class Feature31 extends BaseFeature {
+type ButtonIcon = TypeMediaInputValue | undefined;
+
+class Feature35 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
 
@@ -310,21 +312,21 @@ class Feature31 extends BaseFeature {
   }
 
   static getName(): string {
-    return "Feature 31";
+    return "Feature 35";
   }
 
   render() {
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
-    const features = this.castToObject<FeatureItem[]>("features");
+    const features = this.castToObject<FeatureItem[]>("features") || [];
     const itemCount = this.getPropValue("itemCount");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const buttonsToRender = buttons.filter((btn) => {
-      const iconVal = btn.icon as { name?: string; url?: string } | undefined;
-      const hasIcon = iconVal && (iconVal.name || iconVal.url);
-      const hasText = this.castToString(btn.text);
-      return hasIcon || hasText;
+      const iconVal: ButtonIcon =
+        btn.icon && (btn.icon as { type?: string }).type ? (btn.icon as TypeMediaInputValue) : undefined;
+      const hasIcon = iconVal && (iconVal.type === "icon" ? iconVal.name : iconVal.url);
+      return hasIcon || this.castToString(btn.text);
     });
     const hasButtons = buttonsToRender.length > 0;
 
@@ -360,7 +362,9 @@ class Feature31 extends BaseFeature {
               className={this.decorateCSS("features-grid")}
             >
               {features.map((feature, index) => {
-                const hasContent = this.castToString(feature.title) || this.castToString(feature.description) || feature.icon;
+                const hasTitle = this.castToString(feature.title);
+                const hasDescription = this.castToString(feature.description);
+                const hasContent = hasTitle || hasDescription || feature.icon;
 
                 if (!hasContent) {
                   return null;
@@ -374,12 +378,12 @@ class Feature31 extends BaseFeature {
                       </div>
                     )}
                     <Base.VerticalContent className={this.decorateCSS("content")}>
-                      {this.castToString(feature.title) && (
+                      {hasTitle && (
                         <Base.H4 className={this.decorateCSS("feature-title")}>
                           {feature.title}
                         </Base.H4>
                       )}
-                      {this.castToString(feature.description) && (
+                      {hasDescription && (
                         <Base.P className={this.decorateCSS("feature-description")}>
                           {feature.description}
                         </Base.P>
@@ -393,21 +397,21 @@ class Feature31 extends BaseFeature {
           {hasButtons && (
           <Base.Row className={this.decorateCSS("button-wrapper")}>
             {buttonsToRender.map((btn, idx) => {
-              const iconVal = (btn.icon as { type?: string; name?: string; url?: string } | undefined);
-              const btnHasIcon = iconVal && ((iconVal as { name?: string }).name || (iconVal as { url?: string }).url);
+              const iconVal: ButtonIcon =
+                btn.icon && (btn.icon as { type?: string }).type ? (btn.icon as TypeMediaInputValue) : undefined;
+              const btnHasIcon = iconVal && (iconVal.type === "icon" ? iconVal.name : iconVal.url);
               const btnText = this.castToString(btn.text);
-              const btnHasText = !!btnText;
               return (
-                <ComposerLink key={`feature31-btn-${idx}`} path={btn.url}>
+                <ComposerLink key={`feature35-btn-${idx}`} path={btn.url}>
                   <Base.Button buttonType={btn.type || "Primary"} className={this.decorateCSS("action-button")}>
-                    {btnHasText && (
+                    {btnText && (
                       <Base.P className={this.decorateCSS("action-button-text")}>
                         {btn.text}
                       </Base.P>
                     )}
                     {btnHasIcon && (
                       <Base.Media
-                        value={iconVal as any}
+                        value={iconVal}
                         className={this.decorateCSS("action-button-icon")}
                       />
                     )}
@@ -423,5 +427,5 @@ class Feature31 extends BaseFeature {
   }
 }
 
-export default Feature31;
+export default Feature35;
 
