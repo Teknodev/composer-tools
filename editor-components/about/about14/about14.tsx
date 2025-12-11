@@ -16,7 +16,7 @@ class About14 extends BaseAbout {
             },
             value: {
                 type: "image",
-                url: "https://res.cloudinary.com/dyjpupuop/image/upload/v1764600443/Ekran_g%C3%B6r%C3%BCnt%C3%BCs%C3%BC_2025-12-01_174601_porglt.png",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693ad982875e15002c62337c?alt=media",
             },
         });
 
@@ -66,7 +66,7 @@ class About14 extends BaseAbout {
             type: "boolean",
             key: "overlay",
             displayer: "Overlay",
-            value: true,
+            value: false,
         });
 
         this.setComponentState("isExpanded", false);
@@ -110,7 +110,7 @@ class About14 extends BaseAbout {
                     <div
                         className={`${this.decorateCSS("wrapper")} ${!hasImageContent ? this.decorateCSS("no-image") : ""
                             }`}
-                        data-alignment={!hasImageContent ? alignment : undefined}
+                        data-alignment={alignment}
                     >
                         {hasTextContent && (
                             <div className={this.decorateCSS("content-side")}>
@@ -137,8 +137,8 @@ class About14 extends BaseAbout {
                                 {this.castToString(description) && (
                                     <div
                                         className={`${this.decorateCSS("description-wrapper")} ${isExpanded
-                                                ? this.decorateCSS("expanded-wrapper")
-                                                : ""
+                                            ? this.decorateCSS("expanded-wrapper")
+                                            : ""
                                             }`}
                                     >
                                         <Base.SectionDescription

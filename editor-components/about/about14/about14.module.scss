@@ -7,7 +7,6 @@
             flex-direction: row-reverse;
             align-items: stretch;
             overflow: hidden;
-            min-height: auto;
 
             .content-side,
             .image-side {
@@ -19,8 +18,11 @@
                     flex: 0 0 100%;
                     width: 100%;
                     max-width: 100%;
-                    min-height: 450px;
                 }
+            }
+
+            .image-side:only-child {
+                min-height: 450px;
             }
 
             .content-side {
@@ -28,13 +30,12 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: flex-start;
-                text-align: left;
+                gap: var(--composer-gap-sm);
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                border-radius: var(--composer-border-radius-sm);
 
                 .heading {
                     width: 100%;
-                    margin-bottom: var(--composer-gap-sm) !important;
                     align-items: inherit;
 
                     .subtitle,
@@ -65,7 +66,6 @@
                         z-index: 10;
                         display: flex;
                         align-items: flex-end;
-                        justify-content: flex-start;
                         background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 60%);
                         pointer-events: auto;
                         cursor: pointer;
@@ -102,7 +102,6 @@
                             position: relative;
                             background: none;
                             height: auto;
-
                         }
                     }
                 }
@@ -111,7 +110,7 @@
             .image-side {
                 position: relative;
                 overflow: hidden;
-                border-radius: var(--composer-border-radius);
+                border-radius: var(--composer-border-radius-sm);
 
                 .image,
                 .overlay {
@@ -124,7 +123,6 @@
                 .image {
                     object-fit: cover;
                     object-position: center;
-                    display: block;
                 }
 
                 .overlay {
@@ -138,7 +136,7 @@
                 align-items: center;
                 text-align: center;
 
-                .description-wrapper .show-more-overlay {
+                .show-more-overlay {
                     justify-content: center;
                 }
             }
@@ -146,10 +144,20 @@
     }
 }
 
+@container (min-width: #{$composer-phone-width}) {
+    .container .max-content .wrapper:not(.no-image) .content-side {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .wrapper {
         flex-direction: column-reverse;
         height: auto !important;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
 
         .content-side,
         .image-side {
@@ -159,27 +167,23 @@
         }
 
         .content-side {
-            padding: 0;
-            align-items: flex-start !important;
-            text-align: left !important;
-
-            .description-wrapper .show-more-overlay {
-                justify-content: flex-start !important;
-            }
+            padding: var(--composer-gap-md) 0 var(--composer-gap-lg) 0;
+            background-color: transparent;
+            border-radius: 0;
         }
 
         .image-side {
             height: 300px;
             min-height: 300px;
-            margin-bottom: var(--composer-gap-lg);
+            border-radius: 0;
         }
 
-        &.no-image[data-alignment="center"] .content-side {
-            align-items: center !important;
-            text-align: center !important;
+        &[data-alignment="center"] .content-side {
+            align-items: center;
+            text-align: center;
 
-            .description-wrapper .show-more-overlay {
-                justify-content: center !important;
+            .show-more-overlay {
+                justify-content: center;
             }
         }
     }
