@@ -1,0 +1,191 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .content {
+      width: 100%;
+      align-items: stretch;
+      display: flex;
+      justify-content: flex-start;
+
+      .left {
+        display: flex;
+        aspect-ratio: 1 / 1;
+
+        &:only-child {
+          max-height: 500px;
+          justify-content: center;
+        }
+      }
+
+      .image-wrapper {
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--box-shadow-active);
+        display: flex;
+        align-items: stretch;
+
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+
+        .image {
+          width: 100%;
+          height: 100%;
+
+          object-fit: cover;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+
+        &.no-image-center {
+          .vertical-content {
+            align-items: center;
+
+            .section-title,
+            .section-subtitle,
+            .section-description {
+              text-align: center;
+            }
+
+            .section-subtitle {
+              margin-left: auto;
+            }
+
+            .icons {
+              justify-content: center;
+            }
+          }
+        }
+      }
+
+      .vertical-content {
+        .section-title,
+        .section-subtitle,
+        .section-description {
+          text-align: left;
+        }
+
+        .section-subtitle {
+          margin-left: 0;
+          margin-right: auto;
+        }
+
+        .icons {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          width: 100%;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+
+          .icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 50%;
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: var(--composer-primary-color);
+
+              .icon {
+                color: var(--composer-font-color-secondary);
+              }
+            }
+
+            .icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--composer-font-color-primary);
+              font-size: 1.5rem;
+              transition: color 0.3s ease;
+              width: 25px;
+              height: 25px;
+            }
+          }
+
+          .icon-wrapper-no-bg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .icon {
+              display: flex;
+              color: var(--composer-font-color-primary);
+              font-size: 1.5rem;
+              transition: color 0.3s ease;
+              width: 25px;
+              height: 25px;
+
+              &:hover {
+                color: var(--composer-font-color-secondary);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        align-items: flex-start;
+        flex-direction: column;
+
+        .left,
+        .right {
+          padding: 0;
+          max-width: 100%;
+        }
+
+        .right.center {
+          .vertical-content {
+            align-items: center;
+
+            .section-title,
+            .section-subtitle,
+            .section-description {
+              text-align: center;
+            }
+
+            .section-subtitle {
+              margin-left: auto;
+            }
+
+            .icons {
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
