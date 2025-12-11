@@ -332,12 +332,14 @@
 }
 
 .logo-box {
+  max-width:140px;
   height: auto;
   aspect-ratio: 3 / 1;
   border-radius: var(--composer-border-radius-sm);
   display: flex;
   align-items: center;
   position: relative;
+  object-fit: cover;
   overflow: hidden;
 }
 
@@ -652,6 +654,7 @@
   }
 
   .logo-box {
+    max-width: 70px;
     aspect-ratio: 3 / 1;
   }
 }
