@@ -96,6 +96,8 @@
       border-radius: var(--composer-border-radius-sm);
       overflow: hidden;
       margin-bottom: var(--composer-gap-lg);
+      margin-top: var(--composer-gap-md);
+
 
 
       &[data-animation~="animate1"] {
@@ -167,7 +169,6 @@
     }
 
     .features-section {
-      padding-top: var(--composer-gap-lg);
       width: 100%;
 
       .features-grid {
@@ -232,8 +233,6 @@
       }
 
       .features-section {
-        padding-top: var(--composer-gap-md);
-
         .features-grid {
           gap: var(--composer-gap-sm);
 
