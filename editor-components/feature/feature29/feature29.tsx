@@ -333,6 +333,12 @@ class Feature29 extends BaseFeature {
     const middleSide = this.castToObject<Feature29CardSide>("middleSide");
     const topRightSide = this.castToObject<Feature29CardSide>("topRightSide");
     const bottomRightSide = this.castToObject<Feature29CardSide>("bottomRightSide");
+    const leftVisible = topLeftSide.visibility || bottomLeftSide.visibility || bottomLeftSide2.visibility;
+    const bottomLeftCards = [bottomLeftSide, bottomLeftSide2].filter((card) => card.visibility);
+    const rightCards = [
+      { data: topRightSide, className: this.decorateCSS("topRightSide") },
+      { data: bottomRightSide, className: this.decorateCSS("bottom-right-card") },
+    ].filter((card) => card.data.visibility);
 
     const heading = this.getPropValue("heading");
     const title = this.getPropValue("title");
@@ -411,7 +417,7 @@ class Feature29 extends BaseFeature {
           )}
 
           <div className={this.decorateCSS("side-container")}>
-            {(topLeftSide.visibility || bottomLeftSide.visibility || bottomLeftSide2.visibility) && (
+            {leftVisible && (
               <Base.VerticalContent className={this.decorateCSS("left-side")}>
                 {topLeftSide.visibility && (
                   <div className={this.decorateCSS("left-top-card")}>
@@ -425,24 +431,13 @@ class Feature29 extends BaseFeature {
                   </div>
                 )}
 
-                {(bottomLeftSide.visibility || bottomLeftSide2.visibility) && (
+                {bottomLeftCards.length > 0 && (
                   <div className={this.decorateCSS("left-bottom-cards")}>
-                    {bottomLeftSide.visibility &&
-                      renderCard(
-                        bottomLeftSide.image,
-                        !!bottomLeftSide.overlay,
-                        bottomLeftSide.title,
-                        bottomLeftSide.description,
-                        bottomLeftSide.button
-                      )}
-                    {bottomLeftSide2.visibility &&
-                      renderCard(
-                        bottomLeftSide2.image,
-                        !!bottomLeftSide2.overlay,
-                        bottomLeftSide2.title,
-                        bottomLeftSide2.description,
-                        bottomLeftSide2.button
-                      )}
+                    {bottomLeftCards.map((card, index) => (
+                      <React.Fragment key={`left-card-${index}`}>
+                        {renderCard(card.image, !!card.overlay, card.title, card.description, card.button)}
+                      </React.Fragment>
+                    ))}
                   </div>
                 )}
               </Base.VerticalContent>
@@ -460,32 +455,20 @@ class Feature29 extends BaseFeature {
               </div>
             )}
 
-            {(topRightSide.visibility || bottomRightSide.visibility) && (
+            {rightCards.length > 0 && (
               <Base.VerticalContent className={this.decorateCSS("right-side")}>
-                {topRightSide.visibility && (
-                  <div className={this.decorateCSS("topRightSide")}>
+                {rightCards.map((card, index) => (
+                  <div className={card.className} key={`${card.className}-${index}`}>
                     {renderCard(
-                      topRightSide.image,
-                      !!topRightSide.overlay,
-                      topRightSide.title,
-                      topRightSide.description,
-                      topRightSide.button,
+                      card.data.image,
+                      !!card.data.overlay,
+                      card.data.title,
+                      card.data.description,
+                      card.data.button,
                       this.decorateCSS("right-card")
                     )}
                   </div>
-                )}
-                {bottomRightSide.visibility && (
-                  <div className={this.decorateCSS("bottom-right-card")}>
-                    {renderCard(
-                      bottomRightSide.image,
-                      !!bottomRightSide.overlay,
-                      bottomRightSide.title,
-                      bottomRightSide.description,
-                      bottomRightSide.button,
-                      this.decorateCSS("right-card")
-                    )}
-                  </div>
-                )}
+                ))}
               </Base.VerticalContent>
             )}
           </div>
