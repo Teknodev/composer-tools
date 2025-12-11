@@ -19,6 +19,7 @@ class Feature17 extends BaseFeature {
   private tabButtonsRef = React.createRef<HTMLDivElement>();
   private customScrollbarThumbRef = React.createRef<HTMLDivElement>();
   private wrapperRef = React.createRef<HTMLDivElement>();
+  private hasWindowListener = false;
 
   constructor(props?: any) {
     super(props, styles);
@@ -323,13 +324,19 @@ class Feature17 extends BaseFeature {
   updateCustomScrollbar = () => {
     const el = this.tabButtonsRef.current;
     const thumb = this.customScrollbarThumbRef.current;
-    const wrapper = this.wrapperRef.current;
     
-    if (!el || !thumb || !wrapper) return;
+    if (!el || !thumb) return;
 
-    const scrollRatio = el.scrollLeft / (el.scrollWidth - el.clientWidth);
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    
+    if (maxScroll <= 0) {
+      thumb.style.display = 'none';
+      return;
+    }
+    
+    thumb.style.display = '';
     const thumbWidth = (el.clientWidth / el.scrollWidth) * 100;
-    const thumbPosition = scrollRatio * (100 - thumbWidth);
+    const thumbPosition = (el.scrollLeft / maxScroll) * (100 - thumbWidth);
 
     thumb.style.width = `${thumbWidth}%`;
     thumb.style.left = `${thumbPosition}%`;
@@ -339,13 +346,9 @@ class Feature17 extends BaseFeature {
     const wrapper = this.wrapperRef.current;
     if (!wrapper) return;
 
-    
     this.updateCustomScrollbar();
-
-    
     wrapper.classList.add(styles["is-scrolling"]);
 
-    
     if (this.scrollTimeoutId) {
       clearTimeout(this.scrollTimeoutId);
     }
@@ -363,6 +366,7 @@ class Feature17 extends BaseFeature {
       this.updateCustomScrollbar();
       
       window.addEventListener("resize", this.updateCustomScrollbar);
+      this.hasWindowListener = true;
     }
   }
 
@@ -371,7 +375,9 @@ class Feature17 extends BaseFeature {
     if (el) {
       el.removeEventListener("scroll", this.handleScroll);
     }
-    window.removeEventListener("resize", this.updateCustomScrollbar);
+    if (this.hasWindowListener) {
+      window.removeEventListener("resize", this.updateCustomScrollbar);
+    }
     if (this.scrollTimeoutId) {
       clearTimeout(this.scrollTimeoutId);
     }

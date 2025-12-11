@@ -53,9 +53,8 @@
         overflow-y: hidden;
 
         .tab-button {
-          flex: 0 0 auto;
-          min-width: 0;
-          width: auto;
+          flex: 1 1 0;
+          min-width: fit-content;
           color: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
 
@@ -137,7 +136,7 @@
           .content-title,
           .content-subtitle,
           .content-description {
-            content: "";
+            
             margin: 0;
             text-align: left;
           }
