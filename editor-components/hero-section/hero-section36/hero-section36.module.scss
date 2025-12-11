@@ -26,25 +26,29 @@
     display: flex;
     overflow: hidden;
 
-    // > * {
-    //   flex: 0 0 100%;
-    // }
+    > * {
+      flex: 0 0 100%;
+    }
+    .images-track {
+      display: flex;
+      width: max-content; 
+      min-width: 100%;
+      will-change: transform;
+      animation: marquee var(--marquee-duration, 20s) linear infinite;
+    }
 
     .images-container {
       display: flex;
-      gap: 0; 
-      padding-left: 0; 
-      min-width: 100vw; 
-      animation: scroll 20s linear infinite;
-      will-change: transform;
+      gap: var(--composer-gap-md);
+      padding-left: 0;
+      min-width: max-content;
 
       .image-child {
         flex: 0 0 auto;
-        margin: 0 0 var(--composer-gap-md) 0; 
-        margin-right: var(--composer-gap-md); 
+        margin: 0 0 var(--composer-gap-md) 0;
 
         .image {
-          width: 275px; 
+          width: 275px;
           height: 400px;
           object-fit: cover;
         }
@@ -52,12 +56,12 @@
     }
   }
 
-  @keyframes scroll {
-    0% {
+  @keyframes marquee {
+    from {
       transform: translateX(0);
     }
-    100% {
-      transform: translateX(-100%);
+    to {
+      transform: translateX(calc(-1 * var(--marquee-distance, 100%)));
     }
   }
 }

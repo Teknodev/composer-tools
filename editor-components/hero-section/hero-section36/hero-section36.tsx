@@ -1,13 +1,16 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section36.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type ImageItem = {
-  image: "";
+  image: TypeMediaInputValue | undefined;
 };
 
 class HeroSection36 extends BaseHeroSection {
+  private imagesTrackRef = React.createRef<HTMLDivElement>();
+  private resizeObserver?: ResizeObserver;
+
   constructor(props?: unknown) {
     super(props, styles);
 
@@ -40,28 +43,28 @@ class HeroSection36 extends BaseHeroSection {
             },
           ],
         },
-        {
-          type: "object",
-          key: "items2",
-          displayer: "Header",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "video",
-                url: "https://cdn.website.hautech.ai/cdn/2%20actual%20size.mp4",
-                settings: {
-                  loop: false,
-                  autoplay: true,
-                  controls: false,
-                },
-              },
-            },
-          ],
-        },
+        // {
+        //   type: "object",
+        //   key: "items2",
+        //   displayer: "Header",
+        //   value: [
+        //     {
+        //       type: "media",
+        //       key: "image",
+        //       displayer: "Image",
+        //       additionalParams: { availableTypes: ["image", "video"] },
+        //       value: {
+        //         type: "video",
+        //         url: "https://cdn.website.hautech.ai/cdn/2%20actual%20size.mp4",
+        //         settings: {
+        //           loop: false,
+        //           autoplay: true,
+        //           controls: false,
+        //         },
+        //       },
+        //     },
+        //   ],
+        // },
         {
           type: "object",
           key: "items3",
@@ -101,23 +104,23 @@ class HeroSection36 extends BaseHeroSection {
         //     },
         //   ],
         // },
-        // {
-        //   type: "object",
-        //   key: "items5",
-        //   displayer: "Header",
-        //   value: [
-        //     {
-        //       type: "media",
-        //       key: "image",
-        //       displayer: "Image",
-        //       additionalParams: { availableTypes: ["image", "video"] },
-        //       value: {
-        //         type: "image",
-        //         url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae1_slider%20img%205-min.webp",
-        //       },
-        //     },
-        //   ],
-        // },
+        {
+          type: "object",
+          key: "items5",
+          displayer: "Header",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Image",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae1_slider%20img%205-min.webp",
+              },
+            },
+          ],
+        },
         // {
         //   type: "object",
         //   key: "items6",
@@ -162,23 +165,23 @@ class HeroSection36 extends BaseHeroSection {
         //     },
         //   ],
         // },
-        // {
-        //   type: "object",
-        //   key: "items8",
-        //   displayer: "Header",
-        //   value: [
-        //     {
-        //       type: "media",
-        //       key: "image",
-        //       displayer: "Image",
-        //       additionalParams: { availableTypes: ["image", "video"] },
-        //       value: {
-        //         type: "image",
-        //         url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae6_slider%20img%2010-min.webp",
-        //       },
-        //     },
-        //   ],
-        // },
+        {
+          type: "object",
+          key: "items8",
+          displayer: "Header",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Image",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://cdn.prod.website-files.com/676eb533fc85a4a340e80a98/676eb533fc85a4a340e80ae6_slider%20img%2010-min.webp",
+              },
+            },
+          ],
+        },
         // {
         //   type: "object",
         //   key: "items9",
@@ -209,20 +212,15 @@ class HeroSection36 extends BaseHeroSection {
     return "Hero Section 36";
   }
 
+  componentWillUnmount() {
+    if (this.resizeObserver && this.imagesTrackRef.current) {
+      this.resizeObserver.unobserve(this.imagesTrackRef.current);
+    }
+  }
+
   render() {
     const title = this.castToString(this.getPropValue("title"));
-    const originals = this.castToObject<ImageItem[]>("image-items") || [];
-    const lineOfLogos: ImageItem[] = [];
-
-    if (originals.length > 0) {
-      const repeatCount = Math.round(18 / originals.length);
-      for (let i = 0; i < repeatCount; i++) {
-        lineOfLogos.push(...originals);
-      }
-    }
-
-    const scrollItems = [...lineOfLogos, ...lineOfLogos];
-    console.log("scrollItems", scrollItems.length);
+    const imageItems = this.castToObject<ImageItem[]>("image-items") || [];
 
     return (
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
@@ -234,26 +232,13 @@ class HeroSection36 extends BaseHeroSection {
           </Base.VerticalContent>
         )}
 
-        {scrollItems.length > 0 && (
+        {imageItems.length > 0 && (
           <div className={this.decorateCSS("gallery")}>
             <div
-              className={this.decorateCSS("images-container")}
-              style={{ animationDuration: `${scrollItems.length * 2}s` }}
+              className={this.decorateCSS("images-track")}
+              ref={this.imagesTrackRef}
             >
-              {scrollItems.map((img, idx) => (
-                <div className={this.decorateCSS("image-child")} key={idx}>
-                  <Base.Media
-                    value={img.image}
-                    className={this.decorateCSS("image")}
-                  />
-                </div>
-              ))}
-            </div>
-            <div
-              className={this.decorateCSS("images-container")}
-              style={{ animationDuration: `${scrollItems.length * 2}s` }}
-            >
-              {scrollItems.map((img, idx) => (
+              {imageItems.map((img, idx) => (
                 <div className={this.decorateCSS("image-child")} key={idx}>
                   <Base.Media
                     value={img.image}
