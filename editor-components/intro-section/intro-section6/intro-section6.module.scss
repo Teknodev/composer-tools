@@ -53,7 +53,7 @@
       }
 
       .text-content {
-        width: 50%;
+        width: calc(50% - var(--composer-gap-xl));
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -138,7 +138,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: calc(50% - var(--composer-gap-xl));
+        width: 50%;
         height: 100%;
 
         .media-wrapper {
@@ -165,15 +165,14 @@
     }
   }
 }
-
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0 !important;
-    padding-bottom: 50px !important;
+    padding: var(--composer-gap-xl) 0 !important;
     .max-content {
       .intro-wrapper {
         flex-direction: column;
         min-height: unset;
+        gap: var(--composer-gap-lg);
 
         .image-container {
           order: 2;
@@ -184,7 +183,7 @@
         }
 
         .text-content {
-          padding: 50px 20px !important;
+          padding: 0 var(--composer-gap-md) 0 !important;
           order: 1;
           width: 100%;
           flex: 0 0 100%;
