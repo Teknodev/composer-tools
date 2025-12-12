@@ -277,7 +277,6 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   componentDidMount() {
-    this.refreshTrackStates();
     requestAnimationFrame(() => this.refreshTrackStates());
   }
 
@@ -366,14 +365,6 @@ class ImageGallery11 extends BaseImageGallery {
     this.startRowAnimation(rowIndex);
   }
 
-  private pauseAllRows() {
-    this.trackStates.forEach((_, rowIndex) => this.pauseRow(rowIndex));
-  }
-
-  private resumeAllRows() {
-    this.trackStates.forEach((_, rowIndex) => this.resumeRow(rowIndex));
-  }
-
   private refreshTrackStates() {
     const rows = this.getProcessedRows();
     rows.forEach((_, rowIndex) => {
@@ -422,19 +413,7 @@ class ImageGallery11 extends BaseImageGallery {
     }
   }
 
-  private handleRowHover(rowIndex: number) {
-    this.pauseRow(rowIndex);
-  }
-
-  private handleRowLeave(rowIndex: number) {
-    const state = this.trackStates[rowIndex];
-    if (state && !state.isDragging) {
-      this.resumeRow(rowIndex);
-    }
-  }
-
   private handleRowPointerDown(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
-    event.preventDefault();
     const state = this.trackStates[rowIndex];
     if (!state) {
       return;
@@ -445,7 +424,6 @@ class ImageGallery11 extends BaseImageGallery {
     state.startOffset = state.offset;
     const wrapper = this.rowWrapperRefs[rowIndex];
     if (wrapper) {
-      wrapper.setPointerCapture?.(event.pointerId);
       wrapper.classList.add(this.decorateCSS("dragging"));
     }
   }
@@ -459,7 +437,7 @@ class ImageGallery11 extends BaseImageGallery {
     this.applyOffset(rowIndex, false);
   }
 
-  private handleRowPointerUp(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
+  private handleRowPointerUp(rowIndex: number) {
     const state = this.trackStates[rowIndex];
     if (!state || !state.isDragging) {
       return;
@@ -470,7 +448,6 @@ class ImageGallery11 extends BaseImageGallery {
     state.startOffset = state.offset;
     const wrapper = this.rowWrapperRefs[rowIndex];
     if (wrapper) {
-      wrapper.releasePointerCapture?.(event.pointerId);
       wrapper.classList.remove(this.decorateCSS("dragging"));
     }
     this.resumeRow(rowIndex);
@@ -485,7 +462,7 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupRow", rowIndex);
       this.setComponentState("imagePopupIndex", imageIndex);
       this.setComponentState("imagePopupZoomed", false);
-      this.pauseAllRows();
+      rows.forEach((_, index) => this.pauseRow(index));
     };
 
     const handleClosePopup = () => {
@@ -494,7 +471,7 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupRow", null);
       this.setComponentState("imagePopupIndex", null);
       this.setComponentState("imagePopupZoomed", false);
-      this.resumeAllRows();
+      rows.forEach((_, index) => this.resumeRow(index));
     };
 
     const handlePopupNavigate = (direction: "prev" | "next") => {
@@ -518,9 +495,6 @@ class ImageGallery11 extends BaseImageGallery {
     const popupValue = popupRow?.images?.[popupImageIndex]?.media;
     const isPopupOpen = !!(this.getComponentState("imagePopupOpen") && popupValue);
     const isPopupZoomed = !!this.getComponentState("imagePopupZoomed");
-    const handleTogglePopupZoom = () => {
-      this.setComponentState("imagePopupZoomed", !isPopupZoomed);
-    };
     
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
@@ -606,7 +580,7 @@ class ImageGallery11 extends BaseImageGallery {
                 const sliderSettings = {
                   ...baseSettings,
                   slidesToShow: Math.max(1, slidesToShow),
-                  rtl: false,
+                  rtl: isRightToLeft,
                 };
                 return (
                   <div
@@ -617,12 +591,17 @@ class ImageGallery11 extends BaseImageGallery {
                       this.refreshTrackStates();
                     }}
                     onDragStart={(event) => event.preventDefault()}
-                    onMouseEnter={() => this.handleRowHover(rowIndex)}
-                    onMouseLeave={() => this.handleRowLeave(rowIndex)}
+                    onMouseEnter={() => this.pauseRow(rowIndex)}
+                    onMouseLeave={() => {
+                      const state = this.trackStates[rowIndex];
+                      if (state && !state.isDragging) {
+                        this.resumeRow(rowIndex);
+                      }
+                    }}
                     onPointerDown={(event) => this.handleRowPointerDown(rowIndex, event)}
                     onPointerMove={(event) => this.handleRowPointerMove(rowIndex, event)}
-                    onPointerUp={(event) => this.handleRowPointerUp(rowIndex, event)}
-                    onPointerCancel={(event) => this.handleRowPointerUp(rowIndex, event)}
+                    onPointerUp={() => this.handleRowPointerUp(rowIndex)}
+                    onPointerCancel={() => this.handleRowPointerUp(rowIndex)}
                   >
                     <ComposerSlider
                       ref={(s: any) => {
@@ -670,7 +649,10 @@ class ImageGallery11 extends BaseImageGallery {
                     <Base.Media value={this.getPropValue("popupCloseIcon")} className={this.decorateCSS("icon")} />
                   </div>
 
-                  <div className={this.decorateCSS("image-container")} onClick={handleTogglePopupZoom}>
+                  <div
+                    className={this.decorateCSS("image-container")}
+                    onClick={() => this.setComponentState("imagePopupZoomed", !isPopupZoomed)}
+                  >
                     <Base.Media
                       value={popupValue}
                       className={`${this.decorateCSS("modal-image")} ${isPopupZoomed ? this.decorateCSS("zoom") : ""}`}
