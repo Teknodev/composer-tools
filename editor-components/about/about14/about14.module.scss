@@ -23,6 +23,11 @@
 
             .image-side:only-child {
                 min-height: 450px;
+                border-radius: var(--composer-border-radius-sm);
+            }
+
+            .content-side:only-child {
+                border-radius: var(--composer-border-radius-sm);
             }
 
             .content-side {
@@ -32,7 +37,7 @@
                 justify-content: center;
                 gap: var(--composer-gap-sm);
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-sm);
+                border-radius: 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0;
 
                 .heading {
                     width: 100%;
@@ -110,7 +115,7 @@
             .image-side {
                 position: relative;
                 overflow: hidden;
-                border-radius: var(--composer-border-radius-sm);
+                border-radius: var(--composer-border-radius-sm) 0 0 var(--composer-border-radius-sm);
 
                 .image,
                 .overlay {
