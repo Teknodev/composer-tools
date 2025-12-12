@@ -7,7 +7,7 @@
   .max-content {
     width: 100%;
     max-width: unset !important;
-    padding-top:calc(2 * var(--composer-gap-xl));
+    padding-top: calc(3 * var(--composer-gap-xl));
 
 
     .slider-wrapper {
@@ -27,7 +27,7 @@
           }
 
         :global(.slick-slide > div) {
-          width: 900px !important;
+          width: 1260px !important;
         }
 
         :global(.slick-list) {
@@ -42,34 +42,34 @@
           .slide-item {
             transform: scale(1);
             margin: 0 auto;
-            width: 850px;
+            width: 1260px;
           }
         }
 
         .slide-item {
-          width: 900px;
-          max-width: 1200px;
-          padding: 0 calc(2.5 * var(--composer-gap-xl));
+          width: 1260px;
+          max-width: 1500px;
+          padding: 0 calc(3.8 * var(--composer-gap-lg));
           display: flex;
           justify-content: center;
           transition: transform var(--composer-transition-duration-normal) ease;
           transform-origin: center;
           transform: scale(0.95);
           z-index: 1;
-          height: 450px;
+          height: 620px;
           overflow: visible;
 
           .image-wrapper {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 580px;
             border-radius: var(--composer-border-radius-sm);
             overflow: hidden;
 
             .image {
               width: 100%;
               height: 100%;
-              min-height: 280px;
+              min-height: 420px;
               object-fit: cover;
               display: block;
               transform: scale(1.05);
@@ -289,18 +289,24 @@
     .slider-wrapper {
       .slider {
         .slide-item {
-          height: 320px;
+          height: 620px;
           transform: scale(1);
           .image-wrapper {
-            min-height: 280px;
+            height: 580px;
+            min-height: 420px;
           }
           &.no-image {
             .image-wrapper {
-              min-height: 280px;
+              height: 580px;
+              min-height: 420px;
             }
           }
         }
       }
+    }
+
+    .navigation-wrapper {
+      margin-top: var(--composer-gap-sm) !important;
     }
   }
 }
@@ -497,9 +503,7 @@
     }
   }
 
-  .container.no-animation .navigation-wrapper {
-    margin-top: 30px !important;
-  }
+
 }
 
 @container (max-width: #{$composer-phone-width}) {
@@ -519,7 +523,7 @@
 
           .slick-slide,
           :global(.slick-slide > div) {
-            width: 100% !important;
+            width: 420px !important;
             padding: 0 calc(2 * var(--composer-gap-sm));
           }
 
@@ -529,8 +533,8 @@
           }
 
           .slide-item {
-            width: 100%;
-            max-width: 100%;
+            width: 420px;
+            max-width: 420px;
             padding: 0;
             transform: scale(1);
             transform-origin: center;
