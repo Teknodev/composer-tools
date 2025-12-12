@@ -17,6 +17,7 @@ type ITabs = {
 class Feature17 extends BaseFeature {
   private tabButtonsRef = React.createRef<HTMLDivElement>();
   private wrapperRef = React.createRef<HTMLDivElement>();
+  private hasResizeListener = false;
 
   constructor(props?: any) {
     super(props, styles);
@@ -369,7 +370,6 @@ class Feature17 extends BaseFeature {
       if (Math.abs(dx) > 5) {
         this.dragMoved = true;
       }
-      // const walk = dx * 2;
       el.scrollLeft = this.scrollLeft - dx;
     } else if (e.type === "mouseup" || e.type === "mouseleave") {
       this.isDragging = false;
@@ -382,7 +382,10 @@ class Feature17 extends BaseFeature {
     const el = this.tabButtonsRef.current;
     if (el) {
       el.addEventListener("scroll", this.updateScrollbar);
-      window.addEventListener("resize", this.updateScrollbar);
+      if (!this.hasResizeListener) {
+        window.addEventListener("resize", this.updateScrollbar);
+        this.hasResizeListener = true;
+      }
       this.updateScrollbar();
     }
   }
@@ -392,7 +395,10 @@ class Feature17 extends BaseFeature {
     if (el) {
       el.removeEventListener("scroll", this.updateScrollbar);
     }
-    window.removeEventListener("resize", this.updateScrollbar);
+    if (this.hasResizeListener) {
+      window.removeEventListener("resize", this.updateScrollbar);
+      this.hasResizeListener = false;
+    }
   }
 
   static getName(): string {
