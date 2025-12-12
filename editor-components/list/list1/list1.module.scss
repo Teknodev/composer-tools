@@ -1,11 +1,7 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
   as *;
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
+  background-color: var(--composer-html-background);
   padding: 80px 50px !important;
   .max-content {
     display: flex;
@@ -84,7 +80,11 @@
         flex-direction: column;
         align-items: flex-start;
         padding: var(--composer-gap-lg);
-        background-color: var(--composer-html-background);
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
         border-radius: var(--composer-border-radius-sm);
         gap: var(--composer-gap-md);
         height: 100%;

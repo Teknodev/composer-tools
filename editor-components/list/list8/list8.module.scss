@@ -1,11 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
+  background-color: var(--composer-html-background);
   .max-content {
     .section {
       display: flex;
@@ -47,7 +43,11 @@
       .items-wrapper {
         gap: var(--composer-gap-xl);
         .list-item {
-          background-color: var(--composer-html-background);
+          background-color: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
           border-radius: var(--composer-border-radius-sm);
           position: relative;
           padding: var(--composer-gap-xl);
@@ -96,7 +96,11 @@
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 5%
               );
-            background-color: var(--composer-html-background);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
             display: flex;
             align-items: center;
             justify-content: center;
