@@ -15,10 +15,7 @@ type ITabs = {
 };
 
 class Feature17 extends BaseFeature {
-  private scrollTimeoutId: ReturnType<typeof setTimeout> | null = null;
   private tabButtonsRef = React.createRef<HTMLDivElement>();
-  private customScrollbarThumbRef = React.createRef<HTMLDivElement>();
-  private wrapperRef = React.createRef<HTMLDivElement>();
   private hasWindowListener = false;
 
   constructor(props?: any) {
@@ -322,44 +319,17 @@ class Feature17 extends BaseFeature {
   }
 
   private isDragging = false;
+  private dragMoved = false;
   private startX = 0;
   private scrollLeft = 0;
 
-  updateCustomScrollbar = () => {
-    const el = this.tabButtonsRef.current;
-    const thumb = this.customScrollbarThumbRef.current;
-
-    if (!el || !thumb) return;
-
-    const maxScroll = el.scrollWidth - el.clientWidth;
-
-    if (maxScroll <= 0) {
-      thumb.style.display = "none";
+  onTabClick = (e: React.MouseEvent, index: number) => {
+    if (this.dragMoved) {
+      this.dragMoved = false;
+      e.preventDefault();
       return;
     }
-
-    thumb.style.display = "";
-    const thumbWidth = (el.clientWidth / el.scrollWidth) * 100;
-    const thumbPosition = (el.scrollLeft / maxScroll) * (100 - thumbWidth);
-
-    thumb.style.width = `${thumbWidth}%`;
-    thumb.style.left = `${thumbPosition}%`;
-  };
-
-  handleScroll = () => {
-    const wrapper = this.wrapperRef.current;
-    if (!wrapper) return;
-
-    this.updateCustomScrollbar();
-    wrapper.classList.add(styles["is-scrolling"]);
-
-    if (this.scrollTimeoutId) {
-      clearTimeout(this.scrollTimeoutId);
-    }
-
-    this.scrollTimeoutId = setTimeout(() => {
-      wrapper.classList.remove(styles["is-scrolling"]);
-    }, 200);
+    this.setActiveTab(index);
   };
 
   handleDragScroll = (e: React.MouseEvent) => {
@@ -368,50 +338,58 @@ class Feature17 extends BaseFeature {
 
     if (e.type === "mousedown") {
       this.isDragging = true;
+      this.dragMoved = false;
       this.startX = e.pageX - el.offsetLeft;
       this.scrollLeft = el.scrollLeft;
       el.style.cursor = "grabbing";
       el.style.userSelect = "none";
-    } else if (e.type === "mouseleave" || e.type === "mouseup") {
+    } else if (e.type === "mousemove") {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - el.offsetLeft;
+      const dx = x - this.startX;
+      if (Math.abs(dx) > 5) {
+        this.dragMoved = true;
+      }
+      const walk = dx * 2;
+      el.scrollLeft = this.scrollLeft - walk;
+    } else if (e.type === "mouseup" || e.type === "mouseleave") {
       this.isDragging = false;
       el.style.cursor = "grab";
       el.style.userSelect = "";
-    } else if (e.type === "mousemove" && this.isDragging) {
-      e.preventDefault();
-      const x = e.pageX - el.offsetLeft;
-      const walk = (x - this.startX) * 2;
-      el.scrollLeft = this.scrollLeft - walk;
     }
   };
 
   componentDidMount() {
     const el = this.tabButtonsRef.current;
     if (el) {
-      el.addEventListener("scroll", this.handleScroll);
+      // Add CSS custom property for scrollbar position
+      const updateScrollPosition = () => {
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        if (maxScroll > 0) {
+          const scrollPercentage = (el.scrollLeft / maxScroll) * 100;
+          el.style.setProperty('--scroll-position', `${scrollPercentage}%`);
+        }
+      };
 
-      this.updateCustomScrollbar();
-
-      window.addEventListener("resize", this.updateCustomScrollbar);
+      el.addEventListener("scroll", updateScrollPosition);
+      window.addEventListener("resize", updateScrollPosition);
       this.hasWindowListener = true;
+      updateScrollPosition();
     }
   }
 
   componentWillUnmount() {
     const el = this.tabButtonsRef.current;
-    if (el) {
-      el.removeEventListener("scroll", this.handleScroll);
-    }
-    if (this.hasWindowListener) {
-      window.removeEventListener("resize", this.updateCustomScrollbar);
-    }
-    if (this.scrollTimeoutId) {
-      clearTimeout(this.scrollTimeoutId);
+    if (el && this.hasWindowListener) {
+      window.removeEventListener("resize", () => {});
     }
   }
 
   static getName(): string {
     return "Feature 17";
   }
+  
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
@@ -478,10 +456,7 @@ class Feature17 extends BaseFeature {
           )}
 
           <div className={this.decorateCSS("tabs")}>
-            <div
-              ref={this.wrapperRef}
-              className={this.decorateCSS("tab-buttons-wrapper")}
-            >
+            <div className={this.decorateCSS("tab-buttons-wrapper")}>
               <div
                 ref={this.tabButtonsRef}
                 className={this.decorateCSS("tab-buttons")}
@@ -497,17 +472,11 @@ class Feature17 extends BaseFeature {
                     className={`${this.decorateCSS("tab-button")} ${
                       activeTab === index ? this.decorateCSS("active") : ""
                     }`}
-                    onClick={() => this.setActiveTab(index)}
+                    onClick={(e) => this.onTabClick(e, index)}
                   >
                     {tab.tabText}
                   </Base.H6>
                 ))}
-              </div>
-              <div className={this.decorateCSS("custom-scrollbar")}>
-                <div
-                  ref={this.customScrollbarThumbRef}
-                  className={this.decorateCSS("custom-scrollbar-thumb")}
-                />
               </div>
             </div>
             {filteredTabs.map((tab: ITabs, index: number) => {

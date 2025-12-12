@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .overlay {
   position: absolute;
@@ -42,9 +41,31 @@
         );
         border-radius: var(--border-radius-md);
         overflow: hidden;
+
+        // Pseudo-element scrollbar positioned at same coordinates as tab button underlines
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: var(--padding-xl);
+          right: var(--padding-xl);
+          height: 2px;
+          background: linear-gradient(
+            to right,
+            var(--composer-tertiary-color) 0%,
+            var(--composer-tertiary-color) var(--scroll-position, 0%),
+            transparent var(--scroll-position, 0%),
+            transparent 100%
+          );
+          opacity: 0;
+          transition: opacity 0.2s ease-out;
+          pointer-events: none;
+          z-index: 10;
+        }
       }
 
       .tab-buttons {
+        --scroll-position: 0%;
         width: 100%;
         display: flex;
         gap: var(--composer-gap-lg);
@@ -52,12 +73,17 @@
         overflow-x: auto;
         overflow-y: hidden;
 
+        // Show scrollbar on scroll or drag (via :active)
+        &:active ~ &-wrapper::after,
+        &:hover::-webkit-scrollbar-thumb {
+          opacity: 1;
+        }
+
         .tab-button {
           flex: 1 1 0;
           min-width: fit-content;
           color: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
-          
           white-space: nowrap;
           position: relative;
           display: inline-flex;
@@ -76,41 +102,25 @@
             background-color: var(--composer-primary-color);
             transition: width 0.3s ease;
           }
-          &.active {
-            &::before {
-              width: 100%;
-            }
+
+          &.active::before {
+            width: 100%;
           }
 
           & span {
             white-space: nowrap !important;
           }
         }
+
+        // Show scrollbar during scroll
+        &:is(:hover, :active, :focus-within) + .tab-buttons-wrapper::after {
+          opacity: 1;
+        }
       }
 
-      .custom-scrollbar {
-        position: absolute;
-        bottom: 0;
-        left: var(--padding-xl);
-        right: var(--padding-xl);
-        height: 2px;
-        pointer-events: none;
-        z-index: 10;
-      }
-
-      .custom-scrollbar-thumb {
-        position: absolute;
-        height: 100%;
-
-        background-color: var(--composer-tertiary-color);
-        border-radius: 2px;
-        opacity: 0;
-        transition: opacity 0.5s ease-out;
-      }
-
-      .is-scrolling .custom-scrollbar-thumb {
+      // Fallback: show on parent hover/active
+      .tab-buttons-wrapper:has(.tab-buttons:is(:hover, :active))::after {
         opacity: 1;
-        transition: none;
       }
 
       .tab {
@@ -148,11 +158,13 @@
           .content-description {
             color: var(--composer-tertiary-color);
           }
+
           .action-buttons {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             gap: var(--composer-gap-md);
+
             .button {
               .button-text,
               .button-icon {
@@ -209,34 +221,6 @@
           .image-container {
             order: -1;
           }
-
-          // .content.center {
-          //   align-items: center;
-
-          //   .content-title,
-          //   .content-subtitle,
-          //   .content-description {
-          //     text-align: center;
-          //   }
-
-          //   .action-buttons {
-          //     justify-content: center;
-          //   }
-          // }
-
-          // .content.no-image-center {
-          //   align-items: center;
-
-          //   .content-title,
-          //   .content-subtitle,
-          //   .content-description {
-          //     text-align: center;
-          //   }
-
-          //   .action-buttons {
-          //     justify-content: center;
-          //   }
-          // }
         }
       }
     }
