@@ -8,6 +8,10 @@ type ImageItem = {
 };
 
 class HeroSection36 extends BaseHeroSection {
+  private carouselRef = React.createRef<HTMLDivElement>();
+  private animationFrameId: number | null = null;
+  private currentOffset = 0;
+
   constructor(props?: unknown) {
     super(props, styles);
 
@@ -121,23 +125,111 @@ class HeroSection36 extends BaseHeroSection {
     return "Hero Section 36";
   }
 
+  componentDidMount() {
+    this.startAnimation();
+  }
+
+  componentWillUnmount() {
+    this.stopAnimation();
+  }
+
+  startAnimation = () => {
+    const speed = 0.3; // pixels per frame
+    const animate = () => {
+      this.currentOffset += speed;
+      this.updateCarousel();
+      this.animationFrameId = requestAnimationFrame(animate);
+    };
+    this.animationFrameId = requestAnimationFrame(animate);
+  };
+
+  stopAnimation = () => {
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+  };
+
+  updateCarousel = () => {
+    const carousel = this.carouselRef.current;
+    if (!carousel) return;
+
+    const items = carousel.querySelectorAll('[data-carousel-item]') as NodeListOf<HTMLElement>;
+    // smaller spacing between items to tighten the gaps
+    const itemWidth = 260;
+    const totalItems = items.length;
+    const totalWidth = itemWidth * totalItems;
+
+    // Reset offset when it exceeds total width
+    if (this.currentOffset >= totalWidth) {
+      this.currentOffset = 0;
+    }
+
+    items.forEach((item, index) => {
+      const basePosition = index * itemWidth;
+      let position = basePosition - this.currentOffset;
+
+      // Wrap around for infinite effect
+      if (position < -itemWidth) {
+        position += totalWidth;
+      }
+      if (position > totalWidth - itemWidth) {
+        position -= totalWidth;
+      }
+
+      // Calculate distance from center (0 = center)
+      const containerWidth = carousel.offsetWidth;
+      const centerX = containerWidth / 2;
+      const itemCenterX = position + itemWidth / 2;
+      const distanceFromCenter = itemCenterX - centerX; // px distance from center
+
+      // Normalize distance (-1 to 1 range, where 0 is center)
+      const maxDistance = containerWidth / 2 + itemWidth;
+      const normalizedDistance = Math.max(-1, Math.min(1, distanceFromCenter / maxDistance));
+
+      // CURVE BACKWARDS (concave): make center only slightly back and push sides forward more
+      const centerDepth = 80; // center pushed back by up to 80px
+      const sideForward = 160; // sides come forward up to +160px
+      // interpolate so center is negative, sides are positive
+      const translateZ = -centerDepth * (1 - Math.abs(normalizedDistance)) + sideForward * Math.abs(normalizedDistance);
+
+      // Stronger rotation on sides to increase curve appearance (inverted sign for concave look)
+      const rotateY = -normalizedDistance * 80; // up to ~80deg at sides
+
+      // Scale: center slightly smaller, sides larger to accentuate curve
+      const scale = 0.8 + Math.abs(normalizedDistance) * 0.3; // center ~0.8 -> sides ~1.1
+
+      // Opacity: sides more visible
+      const opacity = 0.75 + Math.abs(normalizedDistance) * 0.25; // center ~0.75 -> sides ~1.0
+
+      // Z-index so sides render above center (higher for larger abs distance)
+      const zIndex = Math.round(Math.abs(normalizedDistance) * 100);
+
+      // TranslateX relative to centered left:50% anchor
+      const translateX = distanceFromCenter;
+
+      // Use translateX(-50%) to center each item at left:50% then offset by distance
+      item.style.transform = `translateX(-50%) translateX(${translateX}px) perspective(1200px) rotateY(${rotateY}deg) translateZ(${translateZ}px) scale(${scale})`;
+      item.style.opacity = String(Math.max(0, Math.min(1, opacity)));
+      item.style.zIndex = String(zIndex);
+    });
+  };
+
   render() {
     const title = this.castToString(this.getPropValue("title"));
     const originalImageArray =
       this.castToObject<ImageItem[]>("image-items") || [];
 
-    let images: any[] = [];
+    const images: ImageItem[] = [];
 
+    // Duplicate images to ensure enough items for the carousel
     if (originalImageArray.length > 0) {
-      for (let x = 0; x < Math.round(30 / originalImageArray.length); x++) {
+      const minItems = 12;
+      const repeats = Math.ceil(minItems / originalImageArray.length);
+      for (let x = 0; x < repeats; x++) {
         images.push(...originalImageArray);
       }
     }
-    images = [...images, ...images];
-
-    // const validImages = images.filter(
-    //   (img) => img.image && (img.image as any).url
-    // );
 
     return (
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
@@ -152,41 +244,21 @@ class HeroSection36 extends BaseHeroSection {
         {images.length > 0 && (
           <div className={this.decorateCSS("gallery")}>
             <div
-              className={this.decorateCSS("images-track")}
-              style={{ animationDuration: `${images.length * 4}s` }}
+              ref={this.carouselRef}
+              className={this.decorateCSS("carousel-3d")}
             >
-              <div className={this.decorateCSS("images-group")}>
-                {images.map((img, idx) => (
-                  <div className={this.decorateCSS("image-child")} key={idx}>
-                    <Base.Media
-                      autoplay
-                      autoPlay
-                      controls={false}
-                      loop
-                      muted
-                      value={img.image}
-                      className={this.decorateCSS("image")}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <div
-                className={this.decorateCSS("images-group")}
-                aria-hidden="true"
-              >
-                {images.map((img, idx) => (
-                  <div
-                    className={this.decorateCSS("image-child")}
-                    key={`dup-${idx}`}
-                  >
-                    <Base.Media
-                      value={img.image}
-                      className={this.decorateCSS("image")}
-                    />
-                  </div>
-                ))}
-              </div>
+              {images.map((img, idx) => (
+                <div
+                  key={idx}
+                  data-carousel-item
+                  className={this.decorateCSS("carousel-item")}
+                >
+                  <Base.Media
+                    value={img.image}
+                    className={this.decorateCSS("carousel-media")}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         )}
