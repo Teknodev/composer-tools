@@ -4,22 +4,17 @@ import styles from "./slider12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import type { Settings } from "react-slick";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  image?: string;
+  image?: TypeMediaInputValue;
   media?: TypeMediaInputValue;
   header: React.JSX.Element;
   description: React.JSX.Element;
   navigateTo: string;
 };
 
-const TABLET_BREAKPOINT = 1024;
-const PHONE_BREAKPOINT = 640;
-
 class Slider12 extends BaseSlider {
-  private settings: Settings;
   private sliderRef = React.createRef<any>();
   private sliderParentRef = React.createRef<HTMLDivElement>();
   private resizeObserver: ResizeObserver | null = null;
@@ -308,27 +303,6 @@ class Slider12 extends BaseSlider {
     this.addProp(
       INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
     );
-
-    this.settings = {
-      infinite: false,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      arrows: false,
-      speed: 620,
-      swipeToSlide: true,
-      touchThreshold: 12,
-      waitForAnimate: false,
-      useCSS: true,
-      useTransform: true,
-      swipe: true,
-      autoplay: false,
-      variableWidth: true,
-      responsive: [
-        { breakpoint: 1280, settings: { slidesToShow: 3, dots: false, variableWidth: true } },
-        { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1, dots: false, variableWidth: false } },
-        { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1, dots: false, variableWidth: false } },
-      ],
-    };
   }
 
   static getName(): string {
@@ -356,47 +330,56 @@ class Slider12 extends BaseSlider {
     }
 
     if (!this.resizeObserver) {
-      this.resizeObserver = new ResizeObserver(() => {
-        this.updateSliderOffset();
-      });
+      this.resizeObserver = new ResizeObserver(() => this.updateSliderOffset());
     } else {
       this.resizeObserver.disconnect();
     }
 
-    const elements = [this.sliderParentRef.current].filter(
-      (el): el is HTMLDivElement => !!el,
-    );
-
-    elements.forEach((el) => this.resizeObserver?.observe(el));
+    const el = this.sliderParentRef.current;
+    if (el) {
+      this.resizeObserver.observe(el);
+    }
   };
 
   updateSliderOffset = () => {
-    const sliderParent = this.sliderParentRef.current;
-    if (!sliderParent) {
+    const width = this.sliderParentRef.current?.getBoundingClientRect().width;
+    if (!width) {
       return;
     }
-
-    const sliderRect = sliderParent.getBoundingClientRect();
-    const sliderWidth = sliderRect.width;
-    let nextMode: "desktop" | "tablet" | "mobile" = "desktop";
-    if (sliderWidth <= PHONE_BREAKPOINT) {
-      nextMode = "mobile";
-    } else if (sliderWidth <= TABLET_BREAKPOINT) {
-      nextMode = "tablet";
-    }
-    const currentMode = this.getComponentState("slider-mode");
-    if (currentMode !== nextMode) {
+    const nextMode =
+      width <= 640
+        ? "mobile"
+        : width <= 1024
+        ? "tablet"
+        : "desktop";
+    if (this.getComponentState("slider-mode") !== nextMode) {
       this.setComponentState("slider-mode", nextMode);
     }
-
-  };
-
-  getMediaUrl = (media?: TypeMediaInputValue, fallback?: string) => {
-    const mediaWithUrl = media as { url?: string; value?: { url?: string } } | undefined;
-    return mediaWithUrl?.url ?? mediaWithUrl?.value?.url ?? fallback ?? "";
   };
 
   render() {
+
+    const settings = {
+      infinite: false,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      arrows: false,
+      speed: 620,
+      swipeToSlide: true,
+      touchThreshold: 12,
+      waitForAnimate: false,
+      useCSS: true,
+      useTransform: true,
+      swipe: true,
+      autoplay: false,
+      variableWidth: true,
+      responsive: [
+        { breakpoint: 1280, settings: { slidesToShow: 3, dots: false, variableWidth: true, adaptiveHeight: false } },
+        { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1, dots: false, variableWidth: false, adaptiveHeight: true } },
+        { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1, dots: false, variableWidth: false, adaptiveHeight: true } },
+      ],
+    };
+
     const items = this.castToObject<Card[]>("slider") ?? [];
     const prevMedia = this.getPropValue("previousArrow");
     const nextMedia = this.getPropValue("nextArrow");
@@ -417,23 +400,12 @@ class Slider12 extends BaseSlider {
     const validItems = items.filter((item) => {
     const media = item.media;
     const mediaType = media?.type ?? (item.image ? "image" : undefined);
-    const url = this.getMediaUrl(media, item.image);
-    const hasMedia = mediaType && url;
+    const hasMedia = mediaType && item.image;
     const hasCardDescription = this.castToString(item.description);
     const hasHeaderText = this.castToString(item.header);
     return hasMedia || hasHeaderText || hasCardDescription;
     });
     const hasNav = validItems.length > 1 && (prevMedia || nextMedia);
-    const isMobile = sliderMode === "mobile";
-    const isTablet = sliderMode === "tablet";
-    const sliderSettings: Settings = {
-      ...this.settings,
-      slidesToShow: isMobile ? 1 : isTablet ? 2 : 3,
-      slidesToScroll: 1,
-      variableWidth: !isMobile && !isTablet,
-      adaptiveHeight: isMobile || isTablet,
-    };
-
     return (
       <div className={this.decorateCSS("container")}>
         <Base.Container className={this.decorateCSS("upper-container")}>
@@ -501,12 +473,9 @@ class Slider12 extends BaseSlider {
                 className={this.decorateCSS("slider-parent")}
                 ref={this.sliderParentRef}
               >
-                <ComposerSlider key={sliderMode} ref={this.sliderRef} {...sliderSettings}>
+                <ComposerSlider key={sliderMode} ref={this.sliderRef} {...settings}>
                     {validItems.map((item, i) => {
                     const media = item.media;
-                    const mediaType = media?.type ?? (item.image ? "image" : undefined);
-                    const url = this.getMediaUrl(media, item.image);
-                    const hasMedia = mediaType && url;
                     const hasCardDescription = this.castToString(item.description);
                     const hasHeaderText = this.castToString(item.header);
 
@@ -529,20 +498,9 @@ class Slider12 extends BaseSlider {
                             className={this.decorateCSS("card")}
                             onMouseDown={(e) => e.preventDefault()}
                           >
-                            {hasMedia && (
+                            {media && (
                               <div className={this.decorateCSS("media")}>
-                                <Base.Media
-                                  value={
-                                    mediaType === "video" && media && media.type === "video"
-                                      ? { type: "video", url, settings: media.settings }
-                                      : { type: "image", url }
-                                  }
-                                  className={
-                                    mediaType === "video"
-                                      ? this.decorateCSS("video")
-                                      : this.decorateCSS("image")
-                                  }
-                                />
+                                <Base.Media value={media} className={this.decorateCSS("media-content")} />
                                 {overlayEnabled && (
                                   <div className={this.decorateCSS("media-overlay")} />
                                 )}
