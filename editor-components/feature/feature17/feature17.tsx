@@ -16,7 +16,7 @@ type ITabs = {
 
 class Feature17 extends BaseFeature {
   private tabButtonsRef = React.createRef<HTMLDivElement>();
-  private hasWindowListener = false;
+  private wrapperRef = React.createRef<HTMLDivElement>();
 
   constructor(props?: any) {
     super(props, styles);
@@ -329,7 +329,25 @@ class Feature17 extends BaseFeature {
       e.preventDefault();
       return;
     }
+
     this.setActiveTab(index);
+  };
+
+  updateScrollbar = () => {
+    const el = this.tabButtonsRef.current;
+    const wrapper = this.wrapperRef.current;
+    if (!el || !wrapper) return;
+
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll <= 0) {
+      wrapper.style.setProperty("--thumb-width", "0%");
+      return;
+    }
+
+    const thumbWidth = (el.clientWidth / el.scrollWidth) * 100;
+    const thumbLeft = (el.scrollLeft / maxScroll) * (100 - thumbWidth);
+    wrapper.style.setProperty("--thumb-width", `${thumbWidth}%`);
+    wrapper.style.setProperty("--thumb-left", `${thumbLeft}%`);
   };
 
   handleDragScroll = (e: React.MouseEvent) => {
@@ -351,8 +369,8 @@ class Feature17 extends BaseFeature {
       if (Math.abs(dx) > 5) {
         this.dragMoved = true;
       }
-      const walk = dx * 2;
-      el.scrollLeft = this.scrollLeft - walk;
+      // const walk = dx * 2;
+      el.scrollLeft = this.scrollLeft - dx;
     } else if (e.type === "mouseup" || e.type === "mouseleave") {
       this.isDragging = false;
       el.style.cursor = "grab";
@@ -363,33 +381,23 @@ class Feature17 extends BaseFeature {
   componentDidMount() {
     const el = this.tabButtonsRef.current;
     if (el) {
-      // Add CSS custom property for scrollbar position
-      const updateScrollPosition = () => {
-        const maxScroll = el.scrollWidth - el.clientWidth;
-        if (maxScroll > 0) {
-          const scrollPercentage = (el.scrollLeft / maxScroll) * 100;
-          el.style.setProperty('--scroll-position', `${scrollPercentage}%`);
-        }
-      };
-
-      el.addEventListener("scroll", updateScrollPosition);
-      window.addEventListener("resize", updateScrollPosition);
-      this.hasWindowListener = true;
-      updateScrollPosition();
+      el.addEventListener("scroll", this.updateScrollbar);
+      window.addEventListener("resize", this.updateScrollbar);
+      this.updateScrollbar();
     }
   }
 
   componentWillUnmount() {
     const el = this.tabButtonsRef.current;
-    if (el && this.hasWindowListener) {
-      window.removeEventListener("resize", () => {});
+    if (el) {
+      el.removeEventListener("scroll", this.updateScrollbar);
     }
+    window.removeEventListener("resize", this.updateScrollbar);
   }
 
   static getName(): string {
     return "Feature 17";
   }
-  
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
@@ -456,7 +464,10 @@ class Feature17 extends BaseFeature {
           )}
 
           <div className={this.decorateCSS("tabs")}>
-            <div className={this.decorateCSS("tab-buttons-wrapper")}>
+            <div
+              ref={this.wrapperRef}
+              className={this.decorateCSS("tab-buttons-wrapper")}
+            >
               <div
                 ref={this.tabButtonsRef}
                 className={this.decorateCSS("tab-buttons")}
@@ -472,11 +483,14 @@ class Feature17 extends BaseFeature {
                     className={`${this.decorateCSS("tab-button")} ${
                       activeTab === index ? this.decorateCSS("active") : ""
                     }`}
-                    onClick={(e) => this.onTabClick(e, index)}
+                    onClick={(e: React.MouseEvent) => this.onTabClick(e, index)}
                   >
                     {tab.tabText}
                   </Base.H6>
                 ))}
+              </div>
+              <div className={this.decorateCSS("custom-scrollbar")}>
+                <div className={this.decorateCSS("custom-scrollbar-thumb")} />
               </div>
             </div>
             {filteredTabs.map((tab: ITabs, index: number) => {
