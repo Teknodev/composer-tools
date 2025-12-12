@@ -140,7 +140,7 @@ class Feature34 extends BaseFeature {
 
         const overlay = this.getPropValue("overlay");
 
-        const hasMedia = image && ((image as any).url || (image as any).name);
+        const hasMedia = !!(image?.url || image?.name);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
