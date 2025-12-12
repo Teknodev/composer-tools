@@ -2,50 +2,37 @@
   as *;
 
 .container {
+  background: var(--composer-html-background);
   .upper-container {
-    padding: 80px var(--composer-gap-xl) var(--composer-gap-md);
+    padding: 80px var(--composer-gap-xl) 0;
+    background: var(--composer-html-background);
 
     .max-content { 
-      width: 100%;
-
       .section-header {
-        width: 100%;
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
-        justify-content: space-between;
-        gap: var(--composer-gap-md);
+        max-width: 100%;
 
         .section-header-content {
-          width: 100%;
-          align-self: stretch;
+          max-width: 100%;
           align-items: flex-start;
-          text-align: left;
 
-          .section-subtitle {
-            text-align: left !important;
-            align-self: flex-start;
-            margin-left: 0 !important;
-            margin-right: auto !important;
+         .section-subtitle,.section-title,.section-description {
+            text-align: left;
           }
 
-          .section-title {
-            text-align: left;
-            align-self: flex-start;
-          }
-
-          .section-description {
-            text-align: left;
-            align-self: flex-start;
+          .section-subtitle-alt {
+            max-width: 520px;
           }
         }
 
         .arrows-wrap {
           width: auto;
-          margin-top: var(--composer-gap-md);
+          margin-top: var(--composer-gap-sm);
           display: flex;
           justify-content: flex-end;
           margin-left: auto;
-          align-self: flex-end;
 
           .arrows {
             display: flex;
@@ -54,17 +41,11 @@
 
             .prevArrow,
             .nextArrow {
-              border: none;
-              outline: none;
-              display: grid;
-              place-items: center;
               cursor: pointer;
-              background: transparent;
-              padding: 0;
-              width: 4rem;
-              height: 4rem;
-              font-size: 4rem;
+              font-size: 5rem;
               color: var(--composer-tertiary-color);
+              width: 70px !important;
+              height: 70px !important;
 
               .arrow-media {
                 width: 100%;
@@ -90,7 +71,9 @@
   }
 
   .lower-container {
-    padding: 0 50px 0;
+    padding: 0 var(--composer-gap-xl) 0;
+    background: var(--composer-html-background);
+    border: none;
 
     &.no-button {
       padding-bottom: 80px;
@@ -99,17 +82,11 @@
 }
 
 .wrap {
-  padding: 0;
-
   .slider-parent {
-    background-color: var(--composer-html-background);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    padding-left: 0;
-    padding-right: 0;
     overflow: visible;
-    min-width: 0;
 
     :global(.slick-list) {
       overflow: visible;
@@ -189,10 +166,10 @@
 
       .card-description {
         color: var(--composer-tertiary-color);
-        text-align: left;
-
-        p {
-          text-align: left;
+        justify-content: flex-start !important;
+       
+        .card-description-text {
+          text-align: left !important;
         }
       }
     }
@@ -204,13 +181,6 @@
   inset: 0;
   background: var(--composer-overlay-color);
   pointer-events: none;
-}
-
-.vertical-content {
-  .vertical-last-child {
-    margin-bottom: 0px;
-    width: 100%;
-  }
 }
 
 .button-container {
@@ -228,53 +198,54 @@
   gap: var(--composer-gap-sm);
   padding: var(--composer-gap-sm) var(--composer-gap-xl);
   border-radius: var(--composer-border-radius-sm);
-}
 
-.button-text {
-  content: "";
-}
+  .button-text {
+    content: "";
+  }
 
-.button-icon {
-  font-size: 1.4rem;
+  .button-icon {
+    font-size: 1.5rem;
+  }
+   
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .upper-container {
-      padding: 80px 40px 1px !important;
+      padding: 80px var(--composer-gap-lg) 0px !important;
 
       .max-content {
         width: 100% !important;
 
         .section-header {
           display: flex;
+          flex-direction: column;
           align-items: flex-start;
-          justify-content: space-between;
+          justify-content: flex-start;
           gap: var(--composer-gap-sm);
           width: 100%;
 
           .section-header-content {
             width: 100%;
-            align-self: stretch;
-
-            .arrows-wrap {
-              margin-top: var(--composer-gap-md);
-              display: flex;
-              justify-content: flex-end;
-              margin-left: auto;
-
-              .arrows {
-                .prevArrow,
-                .nextArrow {
-                  width: 3.5rem !important;
-                  height: 3.5rem !important;
-                  font-size: 3.5rem !important;
-                }
-              }
-            }
 
             .section-title {
               margin-bottom: var(--composer-gap-sm);
+            }
+          }
+
+          .arrows-wrap {
+            margin-top: var(--composer-gap-md);
+            display: flex;
+            justify-content: flex-end;
+            margin-left: auto;
+
+            .arrows {
+              .prevArrow,
+              .nextArrow {
+                font-size: 4rem !important;
+                width: 60px !important;
+                height: 60px !important;
+              }
             }
           }
         }
@@ -282,7 +253,8 @@
     }
 
     .lower-container {
-      padding: 0 40px 0 !important;
+      padding: 0 var(--composer-gap-lg) 0 !important;
+      border: none;
 
       &.no-button {
         padding-bottom: 80px !important;
@@ -291,12 +263,7 @@
   }
 
   .wrap {
-    padding: 0;
-
     .slider-parent {
-      padding-left: 0;
-      padding-right: 0;
-
       :global(.slick-track) {
         justify-content: flex-start;
       }
@@ -316,9 +283,6 @@
         margin-top: var(--composer-gap-xs);
       }
 
-      .arrows-wrap {
-        margin-bottom: 1rem;
-      }
     }
   }
 }
@@ -326,7 +290,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .upper-container {
-      padding: 50px 20px 15px !important;
+      padding: var(--composer-gap-xl) var(--composer-gap-md) 0 !important;
 
       .max-content {
         width: 100% !important;
@@ -334,30 +298,36 @@
         .section-header {
           margin-bottom: 0 !important;
           padding-bottom: 0 !important;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
 
           .section-header-content {
-            gap: 0 !important;
             align-items: flex-start;
-
-            .arrows-wrap {
-              margin-top: 40px;
-            }
 
             .section-description {
               margin-bottom: 0 !important;
               font-size: var(--composer-font-size-md) !important;
             }
+          }
+
+          .arrows-wrap {
+            margin-top: var(--composer-gap-sm);
+            justify-content: flex-start;
+            margin-left: 0 !important;
+            width: 100%;
+            display: flex;
 
             .arrows {
-              gap: var(--composer-gap-xs);
               justify-content: flex-start !important;
               width: 100%;
 
               .prevArrow,
               .nextArrow {
+                font-size: 3.5rem !important;
                 width: 50px !important;
                 height: 50px !important;
-                font-size: 50px !important;
               }
             }
           }
@@ -366,24 +336,20 @@
     }
 
     .lower-container {
-      padding: 0 20px 0 !important;
+      padding: 0 var(--composer-gap-md) 0 !important;
+      border: none;
 
       &.no-button {
-        padding-bottom: 50px !important;
+        padding-bottom: var(--composer-gap-xl) !important;
       }
     }
   }
 
   .wrap {
-    padding: 0;
-
     .slider-parent {
-      padding-left: 0;
-      padding-right: 0;
-
       :global(.slick-track) {
         gap: var(--composer-gap-sm);
-        margin-top: 20px;
+        margin-top: var(--composer-gap-md);
         margin-left: 0 !important;
         display: flex !important;
         width: auto !important;
