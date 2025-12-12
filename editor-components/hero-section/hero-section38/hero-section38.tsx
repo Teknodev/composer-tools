@@ -364,7 +364,7 @@ class HeroSection38 extends BaseHeroSection {
               {slides.length > 1 && (
                 <div className={this.decorateCSS("navigation-wrapper")}>
                   {this.getPropValue("previousArrow") && (
-                    <Base.Button
+                    <div
                       className={this.decorateCSS("arrow-button")}
                       onClick={this.handlePrevClick}
                     >
@@ -372,7 +372,7 @@ class HeroSection38 extends BaseHeroSection {
                         value={this.getPropValue("previousArrow")}
                         className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
                       />
-                    </Base.Button>
+                    </div>
                   )}
                   {dotIconValue && (
                     <div className={this.decorateCSS("pagination")}>
@@ -391,7 +391,7 @@ class HeroSection38 extends BaseHeroSection {
                     </div>
                   )}
                   {this.getPropValue("nextArrow") && (
-                    <Base.Button
+                    <div
                       className={this.decorateCSS("arrow-button")}
                       onClick={this.handleNextClick}
                     >
@@ -399,7 +399,7 @@ class HeroSection38 extends BaseHeroSection {
                         value={this.getPropValue("nextArrow")}
                         className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
                       />
-                    </Base.Button>
+                    </div>
                   )}
                 </div>
               )}
