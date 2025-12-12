@@ -20,14 +20,19 @@
           .section-title,
           .section-description {
             text-align: left;
+            align-self: flex-start;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-left: 0;
           }
 
           .section-subtitle-alt {
             max-width: 520px;
+            align-self: flex-start;
+            margin-left: 0;
           }
         }
 
-        /* --- BASE ARROWS --- */
         .arrows-wrap {
           width: auto;
           margin-top: var(--composer-gap-sm);
@@ -80,10 +85,6 @@
     }
   }
 }
-
-/* --------------------------- */
-/* SLIDER BASE STYLES          */
-/* --------------------------- */
 
 .wrap {
   .slider-parent {
@@ -143,6 +144,7 @@
 
       .card-header {
         color: var(--composer-font-color-primary);
+        text-align: left;
       }
 
       .card-description {
