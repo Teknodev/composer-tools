@@ -90,7 +90,7 @@ class Navbar4 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1914e31d2002b32b378?alt=media",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1f54e31d2002b32b3d7?alt=media",
           },
         },
         {
@@ -116,7 +116,7 @@ class Navbar4 extends BaseNavigator {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1f54e31d2002b32b3d7?alt=media",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6847f1914e31d2002b32b378?alt=media",
           },
         },
         {
@@ -1643,48 +1643,50 @@ class Navbar4 extends BaseNavigator {
                 />
               )}
             </div>
+
             <div className={this.decorateCSS("mobileRight")}>
-            <div className={this.decorateCSS("hamburgerIconContainer")}>
-              {isHamburgerActive ? (
-                <div onClick={this.handleCloseMenu}>
-                  <Base.Media
-                    value={navigationIcons?.closeIcon}
-                    className={this.decorateCSS("closeIcon")}
+              <div className={this.decorateCSS("mobileLocalizationContainer")}>
+                {(language.showLanguage && language.showLocalizationAlways) && (
+                  <Base.Language
+                    type="dropdown"
+                    title={language.label}
+                    icon={language.icon?.name || "GrLanguage"}
+                    dropdownButtonClassName={`${this.decorateCSS(
+                      "localization"
+                    )}`}
+                    dropdownLabelClassName={`${this.decorateCSS(
+                      "localizationLabel"
+                    )}`}
+                    iconClassName={this.decorateCSS("languageIcon")}
+                    dropdownItemClassName={this.decorateCSS("localizationItem")}
+                    dropdownContentClassName={this.decorateCSS(
+                      "localizationContent"
+                    )}
+                    divider={language.showDivider}
                   />
-                </div>
-              ) : (
-                <div onClick={this.handleOpenMenu}>
-                  <Base.Media
-                    value={navigationIcons?.hamburgerIcon}
-                    className={this.decorateCSS("hamburgerIcon")}
-                  />
-                </div>
-              )}
-              <Base.P className={this.decorateCSS("hamburgerMenuTitle")}>
-                {hamburgerMenuTitle}
-              </Base.P>
-            </div> 
-            <div className={this.decorateCSS("mobileLocalizationContainer")}>
-              {(language.showLanguage && language.showLocalizationAlways) && (
-                <Base.Language
-                  type="dropdown"
-                  title={language.label}
-                  icon={language.icon?.name || "GrLanguage"}
-                  dropdownButtonClassName={`${this.decorateCSS(
-                    "localization"
-                  )}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
-                  iconClassName={this.decorateCSS("languageIcon")}
-                  dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS(
-                    "localizationContent"
-                  )}
-                  divider={language.showDivider}
-                />
-              )}
-            </div>
+                )}
+              </div>
+
+              <div className={this.decorateCSS("hamburgerIconContainer")}>
+                <Base.P className={this.decorateCSS("hamburgerMenuTitle")}>
+                  {hamburgerMenuTitle}
+                </Base.P>
+                {isHamburgerActive ? (
+                  <div onClick={this.handleCloseMenu}>
+                    <Base.Media
+                      value={navigationIcons?.closeIcon}
+                      className={this.decorateCSS("closeIcon")}
+                    />
+                  </div>
+                ) : (
+                  <div onClick={this.handleOpenMenu}>
+                    <Base.Media
+                      value={navigationIcons?.hamburgerIcon}
+                      className={this.decorateCSS("hamburgerIcon")}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
 
 

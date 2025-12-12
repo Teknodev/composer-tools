@@ -12,6 +12,7 @@
    }
 
    .accordionTitle {
+    color: var(--composer-font-color-primary);
      @container (max-width: #{$composer-tablet-width}) {
        text-align: left !important;
      }

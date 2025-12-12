@@ -134,11 +134,12 @@
 
     .closeIcon,
     .menuIcon {
-      font-size: calc(1.5 * var(--composer-font-size-md));
+      font-size: 1.5rem !important;
       color: var(--composer-font-color-primary);
       width: 20px;
       height: 20px;
       object-fit: cover;
+      display: flex;
     }
     
 
@@ -346,6 +347,8 @@
       .menuIcon {
         font-size: calc(1.5 * var(--composer-font-size-md)) !important;
         height: 25px;
+        width: 25px;
+        display: flex;
       }
     }
   }

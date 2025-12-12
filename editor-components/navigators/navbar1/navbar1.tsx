@@ -1450,19 +1450,17 @@ class Navbar1 extends BaseNavigator {
               {!isBigScreen && (
                 <>
                   {hamburgerNavActive ? (
-                    <div onClick={() => this.handleCloseMenu()}>
-                      <Base.Media
-                        value={navigationIcons?.closeIcon}
-                        className={this.decorateCSS("closeIcon")}
-                      />
-                    </div>
+                    <Base.Media
+                      onClick={() => this.handleCloseMenu()}
+                      value={navigationIcons?.closeIcon}
+                      className={this.decorateCSS("closeIcon")}
+                    />
                   ) : (
-                    <div onClick={() => this.handleOpenMenu()}>
-                      <Base.Media
-                        value={navigationIcons?.hamburgerIcon}
-                        className={this.decorateCSS("hamburgerIcon")}
-                      />
-                    </div>
+                    <Base.Media
+                      onClick={() => this.handleOpenMenu()}
+                      value={navigationIcons?.hamburgerIcon}
+                      className={this.decorateCSS("hamburgerIcon")}
+                    />
                   )}
                 </>
               )}

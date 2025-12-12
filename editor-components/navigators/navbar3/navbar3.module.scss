@@ -9,8 +9,8 @@
     in srgb,
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%);
-    padding-top: var(--composer-gap-sm) !important;
-    padding-bottom: var(--composer-gap-sm) !important;
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+    
 
   .lane {
     display: flex;
@@ -37,8 +37,8 @@
     }
     .languageIcon {
       content: "";
-      width: 20px;
-      height: 20px;
+      width: 14px;
+      height: 14px;
       object-fit: cover;
     }
     .localizationItem{
@@ -95,9 +95,10 @@
         font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         object-fit: cover;
+        display: flex;
       }
 
          .localization{
