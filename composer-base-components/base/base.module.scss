@@ -598,6 +598,7 @@
 .label{
     color: var(--composer-font-color-primary);
     font-size: var(--composer-font-size-md) !important;
+    font-family: var(--composer-font-family);
 }
 
 .accordionList{
@@ -616,8 +617,9 @@
 
 .languageIcon{
     color: var(--composer-font-color-primary);
-    width: var(--composer-font-size-md);
-    height: var(--composer-font-size-md);
+    width: 14px;
+    height: 14px;
+    font-size: 1rem;
 }
 
 .baseCard {
