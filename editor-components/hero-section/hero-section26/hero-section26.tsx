@@ -1,15 +1,16 @@
 import * as React from "react";
 import styles from "./hero-section26.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type Slide = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   url: string;
-  image: string;
+  image: TypeMediaInputValue;
+  overlay: boolean;
 };
 
 class HeroSection26 extends BaseHeroSection {
@@ -35,21 +36,30 @@ class HeroSection26 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "3D Visualization",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f611?alt=media&timestamp=1719412135932",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f611?alt=media&timestamp=1719412135932",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -67,21 +77,30 @@ class HeroSection26 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "New illustrations",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f612?alt=media&timestamp=1719412135932",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f612?alt=media&timestamp=1719412135932",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -99,21 +118,30 @@ class HeroSection26 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "Design trends",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f613?alt=media&timestamp=1719412135932",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f613?alt=media&timestamp=1719412135932",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -131,21 +159,30 @@ class HeroSection26 extends BaseHeroSection {
             {
               type: "string",
               key: "subtitle",
-              displayer: "SubTitle",
+              displayer: "Subtitle",
               value: "Photography",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f614?alt=media&timestamp=1719412135932",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667c25984fe95d002b35f614?alt=media&timestamp=1719412135932",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -153,29 +190,38 @@ class HeroSection26 extends BaseHeroSection {
     });
 
     this.addProp({
-      type: "icon",
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
       key: "up_icon",
-      displayer: "Up icon",
-      value: "IoIosArrowUp",
+      displayer: "Up Icon",
+      value: { type: "icon", name: "IoIosArrowUp" },
+      additionalParams: { availableTypes: ["icon", "image"] },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "down_icon",
-      displayer: "Down icon",
-      value: "IoIosArrowDown",
+      displayer: "Down Icon",
+      value: { type: "icon", name: "IoIosArrowDown" },
+      additionalParams: { availableTypes: ["icon", "image"] },
     });
 
     this.addProp({
       type: "boolean",
       key: "enable_line",
-      displayer: "Enable Line",
+      displayer: "Line",
       value: true
     })
 
     this.addProp({
       type: "boolean",
       key: "enable_slider_animation",
-      displayer: "Enable Slider Animation",
+      displayer: "Animation",
       value: true
     })
 
@@ -205,7 +251,7 @@ class HeroSection26 extends BaseHeroSection {
       arrows: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -263,29 +309,34 @@ class HeroSection26 extends BaseHeroSection {
                           >
                             {titleExist && (
                               <ComposerLink path={item.url}>
-                                <h1 className={this.decorateCSS("title")}>
+                                <Base.H1 className={this.decorateCSS("title")}>
                                   {item.title}
-                                </h1>
+                                </Base.H1>
                               </ComposerLink>
                             )}
                             {enableLine && (
                               <span className={this.decorateCSS("line")} />
                             )}
                             {subtitleExist && (
-                              <h1 className={this.decorateCSS("subtitle")}>
+                              <Base.P className={this.decorateCSS("subtitle")}>
                                 {item.subtitle}
-                              </h1>
+                              </Base.P>
                             )}
                           </div>
                         </div>
                       )}
                       {item.image && (
                         <div className={this.decorateCSS("right-side")}>
-                          <img
+                          <Base.Media
+                            autoPlay
+                            loop
+                            muted
                             className={this.decorateCSS("image")}
-                            src={item.image}
-                            alt={item.image}
-                          />
+                            value={item.image}
+                            />
+                          {item.overlay && (
+                            <div className={this.decorateCSS("overlay")} />
+                          )}
                         </div>
                       )}
                       {
@@ -297,13 +348,13 @@ class HeroSection26 extends BaseHeroSection {
                             className={this.decorateCSS("up-arrow")}
                             onClick={handlePrevClick}
                           >
-                            <Base.Icon name={this.getPropValue("up_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            <Base.Media value={this.getPropValue("up_icon")} className={this.decorateCSS("icon")} />
                           </div>
                           <div
                             className={this.decorateCSS("down-arrow")}
                             onClick={handleNextClick}
                           >
-                            <Base.Icon name={this.getPropValue("down_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            <Base.Media value={this.getPropValue("down_icon")} className={this.decorateCSS("icon")} />
                           </div>
                         </div>
                       }

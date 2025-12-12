@@ -2,29 +2,40 @@ import * as React from "react";
 import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section28.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 class HeroSection28 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "play_icon",
       displayer: "Play Icon",
-      value: "IoPlay",
+      value: { type: "icon", name: "IoPlay" },
+      additionalParams: { availableTypes: ["icon", "image"] },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "close_icon",
       displayer: "Close Icon",
-      value: "IoCloseOutline",
+      value: { type: "icon", name: "IoCloseOutline" },
+      additionalParams: { availableTypes: ["icon", "image"] },
     });
     this.addProp({
       type: "boolean",
       key: "textAnimation",
-      displayer: "Text Animation",
+      displayer: "Animation",
       value: true,
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "slider",
@@ -36,18 +47,24 @@ class HeroSection28 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg",
+              value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg" },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "video",
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "media",
               key: "video",
-              displayer: "Video Embeded Link",
-              value:
-                "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
+              displayer: "Video",
+              value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151" },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
               type: "string",
@@ -64,7 +81,7 @@ class HeroSection28 extends BaseHeroSection {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub Title",
+              displayer: "Subtitle",
               value: "Official Season 1 Trailer",
             },
             {
@@ -81,18 +98,24 @@ class HeroSection28 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg",
+              value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg" },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "video",
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "media",
               key: "video",
               displayer: "Video",
-              value:
-                "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
+              value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151" },
+              additionalParams: { availableTypes: ["video"] },
             },
             {
               type: "string",
@@ -109,7 +132,7 @@ class HeroSection28 extends BaseHeroSection {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub Title",
+              displayer: "Subtitle",
               value: "Official Season 1 Trailer",
             },
             {
@@ -126,18 +149,24 @@ class HeroSection28 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg",
+              value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg" },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "video",
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "media",
               key: "video",
               displayer: "Video",
-              value:
-                "https://www.youtube.com/embed/UvAIMAlm48c?si=lSauLnwvWi-ezEZV",
+              value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151" },
+              additionalParams: { availableTypes: ["video"] },
             },
             {
               type: "string",
@@ -154,7 +183,7 @@ class HeroSection28 extends BaseHeroSection {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub Title",
+              displayer: "Subtitle",
               value: "Worldwide Premiere",
             },
             {
@@ -185,7 +214,7 @@ class HeroSection28 extends BaseHeroSection {
       infinite: true,
       accessibility: true,
       speed: 800,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay") && !this.getComponentState("play-video"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       draggable: false,
@@ -216,7 +245,7 @@ class HeroSection28 extends BaseHeroSection {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${this.getComponentState("play-video") && this.decorateCSS("with-overlay")}`}>
         <ComposerSlider
           {...settings}
           className={this.decorateCSS("carousel")}
@@ -225,52 +254,16 @@ class HeroSection28 extends BaseHeroSection {
             <div className={this.decorateCSS("content")} key={indexSlider}>
               {item.getPropValue("image") && (
                 <div className={this.decorateCSS("image-box")}>
-                  <img
+                  <Base.Media
                     className={this.decorateCSS("bg-img")}
-                    src={item.getPropValue("image")}
-                    alt={"slider-image"}
+                    value={item.getPropValue("image")}
                   />
+                  {item.getPropValue("overlay") && (
+                    <div className={this.decorateCSS("image-overlay")} />
+                  )}
                 </div>
               )}
 
-              {item.getPropValue("video") && (
-                <div
-                  className={`${this.decorateCSS("video-player-container")} ${this.getComponentState("play-video") &&
-                    this.decorateCSS("video-player")
-                    }`}
-                  onClick={() => {
-                    this.setComponentState("play-video", false);
-                  }}
-                >
-                  {this.getComponentState("play-video") && (
-                    <iframe
-                      className={this.decorateCSS("video-iframe")}
-                      width="70%"
-                      height="60%"
-                      src={item.getPropValue("video")}
-                      title="Video player"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    ></iframe>
-                  )}
-                  {this.getPropValue("close_icon") && (
-                    <div
-                      className={this.decorateCSS("close-button")}
-                      onClick={() =>
-                        this.setComponentState("play-video", false)
-                      }
-                    >
-                      <Base.Icon
-                        propsIcon={{
-                          className: this.decorateCSS("close-button-icon"),
-                        }}
-                        name={this.getPropValue("close_icon")}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
               {this.getPropValue("play_icon") && (
                 <div
                   className={`${this.decorateCSS("play-button")} ${item.getPropValue("image") && this.decorateCSS("withImage")
@@ -281,7 +274,7 @@ class HeroSection28 extends BaseHeroSection {
                       : () => { }
                   }
                 >
-                  <Base.Icon name={this.getPropValue("play_icon")} />
+                  <Base.Media value={this.getPropValue("play_icon")} />
                 </div>
               )}
               <div
@@ -290,51 +283,79 @@ class HeroSection28 extends BaseHeroSection {
                   this.decorateCSS("visible")
                   }`}
                 onClick={
-                  item.getPropValue("video")
-                    ? () => this.setComponentState("play-video", true)
+                  item.getPropValue("video") ? () => this.setComponentState("play-video", true)
                     : () => { }
                 }
               >
                 {this.castToString(item.getPropValue("tag")) && (
-                  <span
+                  <Base.H5
                     className={`${this.decorateCSS("tag")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
                       }`}
                   >
                     {item.getPropValue("tag")}
-                  </span>
+                  </Base.H5>
                 )}
                 {this.castToString(item.getPropValue("title")) && (
-                  <h1
+                  <Base.H1
                     className={`${this.decorateCSS("title")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
                       }`}
                   >
                     {item.getPropValue("title")}
-                  </h1>
+                  </Base.H1>
                 )}
                 {this.castToString(item.getPropValue("sub_title")) && (
-                  <h3
+                  <Base.H3
                     className={`${this.decorateCSS("sub_title")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
                       }`}
                   >
                     {item.getPropValue("sub_title")}
-                  </h3>
+                  </Base.H3>
                 )}
                 {this.castToString(item.getPropValue("description")) && (
-                  <p
+                  <Base.P
                     className={`${this.decorateCSS("description")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
                       }`}
                   >
                     {item.getPropValue("description")}
-                  </p>
+                  </Base.P>
                 )}
               </div>
             </div>
           ))}
         </ComposerSlider>
+        {this.getComponentState("play-video") && slides[this.getComponentState("active-index")]?.getPropValue("video") && (
+          <Base.Overlay
+            isVisible={this.getComponentState("play-video")}
+            onClick={() => this.setComponentState("play-video", false)}
+            className={this.decorateCSS("overlay")}
+          >
+            <div 
+              className={this.decorateCSS("video-container")}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Base.Media
+                autoPlay
+                className={this.decorateCSS("video-iframe")}
+                value={slides[this.getComponentState("active-index")].getPropValue("video")}
+              />
+            </div>
+            {this.getPropValue("close_icon") && (
+              <div
+                className={this.decorateCSS("close-button")}
+                onClick={() => this.setComponentState("play-video", false)}
+              >
+                <Base.Media
+                  className={this.decorateCSS("close-button-icon")}
+                  value={this.getPropValue("close_icon")}
+                />
+              </div>
+            )}
+          </Base.Overlay>
+        )}
       </div>
     );
   }

@@ -29,28 +29,39 @@ interface Icon {
 class HeroSection31 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
+    
     this.addProp({
       type: "boolean",
-      displayer: "Text Animation",
+      displayer: "Animation",
       key: "textAnimation",
       value: true,
     });
+
     this.addProp({
       type: "boolean",
       displayer: "Overlay",
       key: "overlay",
       value: true,
     });
+
     this.addProp({
       type: "boolean",
-      displayer: "Line Enable",
+      displayer: "Line",
       key: "lineEnable",
       value: true,
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider Carousel",
+      displayer: "Slider",
       value: [
         {
           type: "object",
@@ -58,18 +69,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dbc03b007002cc7d5c8?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dbc03b007002cc7d5c8?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dd303b007002cc7d5e1?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dd303b007002cc7d5e1?alt=media" },
             },
             {
               type: "string",
@@ -112,18 +123,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e0c03b007002cc7d5f0?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e0c03b007002cc7d5f0?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e2003b007002cc7d60d?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e2003b007002cc7d60d?alt=media" },
             },
             {
               type: "string",
@@ -172,18 +183,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5603b007002cc7d623?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5603b007002cc7d623?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5c03b007002cc7d632?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5c03b007002cc7d632?alt=media" },
             },
             {
               type: "string",
@@ -226,18 +237,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9903b007002cc7d653?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9903b007002cc7d653?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9f03b007002cc7d65a?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9f03b007002cc7d65a?alt=media" },
             },
             {
               type: "string",
@@ -280,18 +291,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ecb03b007002cc7d667?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ecb03b007002cc7d667?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ed103b007002cc7d66e?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ed103b007002cc7d66e?alt=media" },
             },
             {
               type: "string",
@@ -334,18 +345,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0003b007002cc7d67a?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0003b007002cc7d67a?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0e03b007002cc7d681?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0e03b007002cc7d681?alt=media" },
             },
             {
               type: "string",
@@ -387,18 +398,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4003b007002cc7d6a7?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4003b007002cc7d6a7?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4503b007002cc7d6b2?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4503b007002cc7d6b2?alt=media" },
             },
             {
               type: "string",
@@ -441,18 +452,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7403b007002cc7d6c5?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7403b007002cc7d6c5?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7b03b007002cc7d6cc?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7b03b007002cc7d6cc?alt=media" },
             },
             {
               type: "string",
@@ -495,18 +506,18 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "media",
               displayer: "Right Image",
               key: "rightImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fcc03b007002cc7d709?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fcc03b007002cc7d709?alt=media" },
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Left Image",
               key: "leftImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fd303b007002cc7d714?alt=media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fd303b007002cc7d714?alt=media" },
             },
             {
               type: "string",
@@ -552,22 +563,32 @@ class HeroSection31 extends BaseHeroSection {
       ],
     });
     this.addProp({
-      type: "icon",
-      key: "prev_icon",
-      displayer: "Prev icon",
-      value: "GrFormPrevious",
-    });
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Next icon",
-      value: "GrFormNext",
-    });
-    this.addProp({
-      type: "icon",
-      key: "social-icon",
-      displayer: "Social Icon",
-      value: "IoMdShare",
+      type: "object",
+      key: "navigation_icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "prev_icon",
+          displayer: "Prev Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "GrFormPrevious" },
+        },
+        {
+          type: "media",
+          key: "next_icon",
+          displayer: "Next Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "GrFormNext" },
+        },
+        {
+          type: "media",
+          key: "social_icon",
+          displayer: "Social Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "IoMdShare" },
+        },
+      ],
     });
     this.addProp({
       type: "array",
@@ -580,15 +601,16 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "iconItem",
               displayer: "Icon Item",
-              value: "FaFacebookF"
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaFacebookF" }
             },
             {
               type: "page",
               key: "iconUrl",
-              displayer: "Icon Url",
+              displayer: "Navigate To",
               value: ""
             },
           ]
@@ -599,15 +621,16 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "iconItem",
               displayer: "Icon Item",
-              value: "FaXTwitter"
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaXTwitter" }
             },
             {
               type: "page",
               key: "iconUrl",
-              displayer: "Icon Url",
+              displayer: "Navigate To",
               value: ""
             },
           ]
@@ -618,15 +641,16 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "iconItem",
               displayer: "Icon Item",
-              value: "FaInstagram"
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaInstagram" }
             },
             {
               type: "page",
               key: "iconUrl",
-              displayer: "Icon Url",
+              displayer: "Navigate To",
               value: ""
             },
           ]
@@ -637,15 +661,16 @@ class HeroSection31 extends BaseHeroSection {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "iconItem",
               displayer: "Icon Item",
-              value: "FaLinkedinIn"
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaLinkedinIn" }
             },
             {
               type: "page",
               key: "iconUrl",
-              displayer: "Icon Url",
+              displayer: "Navigate To",
               value: ""
             },
           ]
@@ -686,7 +711,7 @@ class HeroSection31 extends BaseHeroSection {
       infinite: conditionalInfinite,
       accessibility: false,
       speed: 1500,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 4000,
       slidesToShow: 1,
       draggable: false,
@@ -741,10 +766,9 @@ class HeroSection31 extends BaseHeroSection {
                     <div key={index} className={this.decorateCSS("wrapper")}>
                       <div className={this.decorateCSS("right-slider")}>
                         {item?.rightImage && (
-                          <img
+                          <Base.Media
+                            value={item.rightImage}
                             className={this.decorateCSS("background-right")}
-                            src={item.rightImage}
-                            alt={item.rightImage}
                           />
                         )}
                         {overlay && <div className={this.decorateCSS("overlay")}></div>}
@@ -785,22 +809,24 @@ class HeroSection31 extends BaseHeroSection {
                                 </span>
                               </div>
                             )}
-                            <img
-                              className={`${this.decorateCSS(
-                                "background-left"
-                              )} ${activeIndex === index
-                                ? this.decorateCSS("active")
-                                : ""
-                                }`}
-                              src={item.leftImage}
-                              alt={item.leftImage}
-                              onClick={() => {
-                                this.getComponentState(
-                                  "slider-ref"
-                                ).current.slickGoTo(index);
-                                this.getComponentState(
-                                  "second-slider-ref"
-                                ).current.slickGoTo(index);
+                            <Base.Media
+                              value={item.leftImage}
+                              propsMedia={{
+                                className: `${this.decorateCSS(
+                                  "background-left"
+                                )} ${activeIndex === index
+                                  ? this.decorateCSS("active")
+                                  : ""
+                                  }`,
+                                alt: "Left Image",
+                                onClick: () => {
+                                  this.getComponentState(
+                                    "slider-ref"
+                                  ).current.slickGoTo(index);
+                                  this.getComponentState(
+                                    "second-slider-ref"
+                                  ).current.slickGoTo(index);
+                                }
                               }}
                             />
                           </div>
@@ -902,12 +928,10 @@ class HeroSection31 extends BaseHeroSection {
                   </div>
                 </div>
                 <div className={this.decorateCSS("main-social")}>
-                  {this.getPropValue("social-icon") && (
-                    <Base.Icon
-                      name={this.getPropValue("social-icon")}
-                      propsIcon={{
-                        className: this.decorateCSS("social-icon"),
-                      }}
+                  {this.castToObject<any>("navigation_icons")?.social_icon && (
+                    <Base.Media
+                      value={this.castToObject<any>("navigation_icons")?.social_icon}
+                      className={this.decorateCSS("social-icon")}
                     />
                   )}
                   <div className={this.decorateCSS("icon-stick")}></div>
@@ -921,11 +945,9 @@ class HeroSection31 extends BaseHeroSection {
                               className={this.decorateCSS("icon-item")}
                             >
                               <ComposerLink path={icon.iconUrl}>
-                                <Base.Icon
-                                  name={icon.iconItem}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
+                                <Base.Media
+                                  value={icon.iconItem}
+                                  className={this.decorateCSS("icon")}
                                 />
                               </ComposerLink>
                             </div>
@@ -934,48 +956,52 @@ class HeroSection31 extends BaseHeroSection {
                     </div>
                   )}
                 </div>
-                {(this.getPropValue("prev_icon") ||
-                  this.getPropValue("next_icon")) && (
+                {(this.castToObject<any>("navigation_icons")?.prev_icon ||
+                  this.castToObject<any>("navigation_icons")?.next_icon) && (
                     <div className={this.decorateCSS("control-nav")}>
-                      {this.getPropValue("prev_icon") && (
-                        <Base.Icon
-                          name={this.getPropValue("prev_icon")}
-                          propsIcon={{
-                            className: `${this.decorateCSS(
-                              "prev-icon"
-                            )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                            this.decorateCSS("un-visible")
-                              }`,
-                            onClick: () => {
-                              this.getComponentState(
-                                "slider-ref"
-                              ).current.slickPrev();
-                              this.getComponentState(
-                                "second-slider-ref"
-                              ).current.slickPrev();
-                            },
+                      {this.castToObject<any>("navigation_icons")?.prev_icon && (
+                        <div
+                          className={`${this.decorateCSS(
+                            "prev-icon"
+                          )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
+                          this.decorateCSS("un-visible")
+                            }`}
+                          onClick={() => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickPrev();
+                            this.getComponentState(
+                              "second-slider-ref"
+                            ).current.slickPrev();
                           }}
-                        />
+                        >
+                          <Base.Media
+                            value={this.castToObject<any>("navigation_icons")?.prev_icon}
+                            className={this.decorateCSS("icon-image")}
+                          />
+                        </div>
                       )}
-                      {this.getPropValue("next_icon") && (
-                        <Base.Icon
-                          name={this.getPropValue("next_icon")}
-                          propsIcon={{
-                            className: `${this.decorateCSS(
-                              "next-icon"
-                            )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                            this.decorateCSS("un-visible")
-                              }`,
-                            onClick: () => {
-                              this.getComponentState(
-                                "slider-ref"
-                              ).current.slickNext();
-                              this.getComponentState(
-                                "second-slider-ref"
-                              ).current.slickNext();
-                            },
+                      {this.castToObject<any>("navigation_icons")?.next_icon && (
+                        <div
+                          className={`${this.decorateCSS(
+                            "next-icon"
+                          )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
+                          this.decorateCSS("un-visible")
+                            }`}
+                          onClick={() => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickNext();
+                            this.getComponentState(
+                              "second-slider-ref"
+                            ).current.slickNext();
                           }}
-                        />
+                        >
+                          <Base.Media
+                            value={this.castToObject<any>("navigation_icons")?.next_icon}
+                            className={this.decorateCSS("icon-image")}
+                          />
+                        </div>
                       )}
                     </div>
                   )}

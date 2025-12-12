@@ -17,6 +17,13 @@ class HeroSection32 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "header",
       displayer: "Header",
@@ -27,11 +34,16 @@ class HeroSection32 extends BaseHeroSection {
           displayer: "Slider Content",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383502f8a5b002ce6aa53?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383502f8a5b002ce6aa53?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -55,7 +67,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -66,11 +78,16 @@ class HeroSection32 extends BaseHeroSection {
           displayer: "Slider Content",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383962f8a5b002ce6aa92?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383962f8a5b002ce6aa92?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -94,7 +111,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -105,11 +122,16 @@ class HeroSection32 extends BaseHeroSection {
           displayer: "Slider Content",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383c62f8a5b002ce6aac7?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383c62f8a5b002ce6aac7?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -133,7 +155,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -144,11 +166,16 @@ class HeroSection32 extends BaseHeroSection {
           displayer: "Slider Content",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383fd2f8a5b002ce6aae3?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383fd2f8a5b002ce6aae3?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
             },
             {
               type: "string",
@@ -172,7 +199,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -183,36 +210,48 @@ class HeroSection32 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Enable Animation",
+      displayer: "Animation",
       value: true,
     });
 
     this.addProp({
       type: "boolean",
       key: "enableOverlay",
-      displayer: "Enable Overlay",
+      displayer: "Overlay",
       value: true,
     });
 
     this.addProp({
       type: "boolean",
       key: "enableBackgroundImageOverlay",
-      displayer: "Enable Background Image Overlay",
+      displayer: "Background Image Overlay",
       value: true,
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "leftButtonIcon",
-      displayer: "Previous Button",
-      value: "GrPrevious",
+      displayer: "Previous Icon",
+      value: {
+        type: "icon",
+        name: "GrPrevious",
+      },
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightButtonIcon",
-      displayer: "Next Button",
-      value: "GrNext",
+      displayer: "Next Icon",
+      value: {
+        type: "icon",
+        name: "GrNext",
+      },
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
     });
     this.setComponentState("activeSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -233,7 +272,7 @@ class HeroSection32 extends BaseHeroSection {
       dots: true,
       infinite: itemsCount > 1,
       speed: 1000,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       fade: animation,
       autoplaySpeed: 5000,
       slidesToShow: 1,
@@ -297,8 +336,8 @@ class HeroSection32 extends BaseHeroSection {
                           key={`hdr-32-${index}`}
                         >
                           <div className={this.decorateCSS("content")}>
-                            <img
-                              src={item.backgroundImage}
+                            <Base.Media
+                              value={item.backgroundImage}
                               className={`${this.decorateCSS(
                                 "backgroundImage"
                               )} ${animation &&
@@ -327,7 +366,7 @@ class HeroSection32 extends BaseHeroSection {
                               )}
 
                               {this.castToString(item.imageTitle) && (
-                                <h2
+                                <Base.H2
                                   className={`${this.decorateCSS("imageTitle")} ${animation &&
                                     this.getComponentState("activeSlide") ===
                                     index
@@ -339,7 +378,7 @@ class HeroSection32 extends BaseHeroSection {
                                     }`}
                                 >
                                   {item.imageTitle}
-                                </h2>
+                                </Base.H2>
                               )}
 
                               {(this.castToString(item.imageDescription) ||
@@ -348,7 +387,7 @@ class HeroSection32 extends BaseHeroSection {
                                     className={this.decorateCSS("image-details")}
                                   >
                                     {this.castToString(item.imageDescription) && (
-                                      <p
+                                      <Base.P
                                         className={`${this.decorateCSS(
                                           "description"
                                         )} ${animation &&
@@ -359,7 +398,7 @@ class HeroSection32 extends BaseHeroSection {
                                           }`}
                                       >
                                         {item.imageDescription}
-                                      </p>
+                                      </Base.P>
                                     )}
 
                                     {this.castToString(item.imageDescription) &&
@@ -391,7 +430,7 @@ class HeroSection32 extends BaseHeroSection {
                                           key={`hdr-32-${index}`}
                                           path={item.url}
                                         >
-                                          <p
+                                          <Base.P
                                             className={`${this.decorateCSS(
                                               "urlTitles"
                                             )} ${animation &&
@@ -405,7 +444,7 @@ class HeroSection32 extends BaseHeroSection {
                                               }`}
                                           >
                                             {item.urlTitle}
-                                          </p>
+                                          </Base.P>
                                         </ComposerLink>
                                       </div>
                                     )}
@@ -431,14 +470,9 @@ class HeroSection32 extends BaseHeroSection {
                                         ).current.slickPrev();
                                       }}
                                     >
-                                      <Base.Icon
-                                        name={this.getPropValue("leftButtonIcon")}
-                                        propsIcon={{
-                                          className: `${this.decorateCSS(
-                                            "Icon"
-                                          )}`,
-                                          size: 20,
-                                        }}
+                                      <Base.Media
+                                        value={this.getPropValue("leftButtonIcon")}
+                                        className={this.decorateCSS("icon")}
                                       />
                                     </button>
                                   )}
@@ -459,16 +493,11 @@ class HeroSection32 extends BaseHeroSection {
                                         ).current.slickNext();
                                       }}
                                     >
-                                      <Base.Icon
-                                        name={this.getPropValue(
+                                      <Base.Media
+                                        value={this.getPropValue(
                                           "rightButtonIcon"
                                         )}
-                                        propsIcon={{
-                                          className: `${this.decorateCSS(
-                                            "Icon"
-                                          )}`,
-                                          size: 20,
-                                        }}
+                                        className={this.decorateCSS("icon")}
                                       />
                                     </button>
                                   )}

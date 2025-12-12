@@ -36,16 +36,6 @@
   }
 }
 
-@mixin blink-page {
-  > blinkpage {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
 @keyframes zoomOutToIn {
   0% {
     transform: scale(1);
@@ -179,15 +169,10 @@
                   animation: slideDownUp 1s ease-out;
                 }
 
-                h2 {
-                  @include blink-page;
-                }
-                p {
-                  @include blink-page;
-                }
-
                 .imageTitle {
                   font-size: 7rem;
+                  line-height: normal;
+                  width: auto;
                   position: absolute;
                   text-align: center;
                   top: 40%;
@@ -252,8 +237,6 @@
                       width: 100% !important;
                     }
                     .urlTitles {
-                      font-size: 1rem;
-                      line-height: 1.5;
                       max-width: 100%;
                       text-align: center;
                       margin: 0;
@@ -365,7 +348,7 @@
       width: 70%;
       height: 15%;
       .description {
-        font-size: 1rem;
+        content: "";
       }
       .stick {
         height: 80px;
@@ -374,7 +357,7 @@
       }
       .url-container {
         .urlTitles {
-          font-size: 1rem;
+          content: "";
         }
       }
     }
@@ -383,6 +366,11 @@
       .nav-button {
         width: 60px;
         height: 60px;
+        .icon{
+          font-size: 1rem;
+          width: 30px;
+          height: 15px;
+        }
       }
     }
   }

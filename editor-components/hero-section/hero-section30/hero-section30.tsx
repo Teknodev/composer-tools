@@ -10,11 +10,21 @@ class HeroSection30 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "video",
+      type: "media",
       key: "video",
       displayer: "Background Video",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "video",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -30,11 +40,14 @@ class HeroSection30 extends BaseHeroSection {
       value: "GAMES",
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
+      },
     });
     this.addProp({
       type: "string",
@@ -72,13 +85,19 @@ class HeroSection30 extends BaseHeroSection {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {video && (
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              className={this.decorateCSS("video-section")}
-            />
+            <>
+              <Base.Media
+                value={video}
+                autoPlay
+                loop
+                muted
+                controls={false}
+                className={this.decorateCSS("video-section")}
+              />
+              {this.getPropValue("overlay") && (
+                <div className={this.decorateCSS("video-overlay")} />
+              )}
+            </>
           )}
 
           <div className={this.decorateCSS("content")}>
@@ -94,10 +113,9 @@ class HeroSection30 extends BaseHeroSection {
 
             <div className={this.decorateCSS("title-with-image")}>
               {image && (
-                <img
+                <Base.Media
+                  value={image}
                   className={this.decorateCSS("title-image")}
-                  src={image}
-                  alt=""
                 />
               )}
 
@@ -113,17 +131,17 @@ class HeroSection30 extends BaseHeroSection {
             </div>
 
             {this.castToString(this.getPropValue("description")) && (
-              <p className={this.decorateCSS("description")}>
+              <Base.P className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
-              </p>
+              </Base.P>
             )}
 
             {buttons.length > 0 &&
               <div className={this.decorateCSS("buttons")}>
-                {buttons.map((button: INPUTS.CastedButton) => (
+                {buttons.map((button: INPUTS.CastedButton) => this.castToString(button.text) && (
                   <ComposerLink path={button.url}>
                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      {button.text}
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                     </Base.Button>
                   </ComposerLink>
                 ))}

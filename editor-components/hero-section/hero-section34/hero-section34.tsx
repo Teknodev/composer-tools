@@ -15,16 +15,22 @@ class HeroSection34 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev_icon",
       displayer: "Prev icon",
-      value: "GrFormPrevious",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: { type: "icon", name: "GrFormPrevious" },  
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next_icon",
       displayer: "Next icon",
-      value: "GrFormNext",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: { type: "icon", name: "GrFormNext" },  
     });
     this.addProp({
       type: "array",
@@ -37,11 +43,15 @@ class HeroSection34 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
+              },
             },
             {
               type: "string",
@@ -58,11 +68,15 @@ class HeroSection34 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cbb?alt=media&timestamp=1719483639151",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
+              },
             },
             {
               type: "string",
@@ -79,11 +93,15 @@ class HeroSection34 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
+              },
             },
             {
               type: "string",
@@ -187,15 +205,14 @@ class HeroSection34 extends BaseHeroSection {
                 }`}
             >
               <div className={this.decorateCSS("overlay-image")}>
-                {slides[overlayActiveIndex].image && <img src={slides[overlayActiveIndex].image} alt="" />}
+                {slides[overlayActiveIndex].image && <Base.Media value={slides[overlayActiveIndex].image} />}
               </div>
             </div>
 
             <div className={this.decorateCSS("slider")}>
               {slides[activeIndex].image &&
-                <img
-                  src={slides[activeIndex].image}
-                  alt=""
+                <Base.Media
+                  value={slides[activeIndex].image}
                   className={this.decorateCSS("image")}
                 />}
             </div>
@@ -216,7 +233,7 @@ class HeroSection34 extends BaseHeroSection {
               {this.castToString(slides[overlayActiveIndex].button.text) && (
                 <ComposerLink path={slides[overlayActiveIndex].button.url}>
                   <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
-                    {slides[overlayActiveIndex].button.text}
+                    <Base.P className={this.decorateCSS("button-text")}>{slides[overlayActiveIndex].button.text}</Base.P>
                   </Base.Button>
                 </ComposerLink>
               )}
@@ -229,7 +246,7 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
             onClick={handlePrev}
           >
-            <Base.Icon name={this.getPropValue("prev_icon")} />
+            <Base.Media value={this.getPropValue("prev_icon")} />
           </div>
 
           <div
@@ -238,7 +255,7 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
             onClick={handleNext}
           >
-            <Base.Icon name={this.getPropValue("next_icon")} />
+            <Base.Media value={this.getPropValue("next_icon")} />
           </div>
 
           <div className={this.decorateCSS("dots")}>

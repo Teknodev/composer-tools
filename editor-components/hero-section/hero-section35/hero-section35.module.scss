@@ -165,13 +165,30 @@
                 .image-container{
                     position: relative;
                     height: 100%;
-                    .image{
+                    .image-wrapper{
+                        position: relative;
                         width: 100%;
                         height: 100%;
-                        position: relative;
-                        overflow: hidden;
-                        object-fit: cover;
-                        border-radius: var(--composer-border-radius-lg);
+                        .image{
+                            width: 100%;
+                            height: 100%;
+                            position: relative;
+                            overflow: hidden;
+                            object-fit: cover;
+                            border-radius: var(--composer-border-radius-lg);
+                            display: block;
+                        }
+                        .image-overlay{
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: var(--composer-overlay-color, rgba(0,0,0,0.35));
+                            border-radius: var(--composer-border-radius-lg);
+                            pointer-events: none;
+                            z-index: 3;
+                        }
                     }
                     .box-area {
                         position: absolute;
@@ -183,6 +200,7 @@
                         padding: 15px 15px 0 0;
                         border-top-right-radius: var(--composer-border-radius-lg);
                         border-bottom-left-radius: var(--composer-border-radius-lg);
+                        z-index: 5;
                         
                         &.full-size {
                             position: relative;

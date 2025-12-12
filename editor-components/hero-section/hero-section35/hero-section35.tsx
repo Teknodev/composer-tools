@@ -18,6 +18,7 @@ class HeroSection35 extends BaseHeroSection {
                     type: "media",
                     key: "pattern",
                     displayer: "Pattern Image",
+                    additionalParams: { availableTypes: ["image", "video"] },
                     value: {
                         type: "image",
                         url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/pattern-bg.webp",
@@ -36,15 +37,19 @@ class HeroSection35 extends BaseHeroSection {
                     value: "Driving Excellence Through Evolution and <span style='color: var(--composer-secondary-color)'>Trust.</span>",
                },
                {
-                    type: "icon",
+                    type: "media",
                     key: "mainIcon",
                     displayer: "Main Icon",
-                    value: "LiaArrowRightSolid",
+                    additionalParams: { availableTypes: ["icon", "image"] },
+                    value: {
+                        type: "icon",
+                        name: "LiaArrowRightSolid",
+                    },
                },
                {
                     type: "page",
                     key: "page",
-                    displayer: "Page",
+                    displayer: "Navigate To",
                     value: "",
                },
                {
@@ -60,10 +65,14 @@ class HeroSection35 extends BaseHeroSection {
                     value: "Scroll Down",
                },
                {
-                    type: "icon",
+                    type: "media",
                     key: "smallIcon",
                     displayer: "Icon",
-                    value: "FaArrowDown",
+                    additionalParams: { availableTypes: ["icon", "image"] },
+                    value: {
+                        type: "icon",
+                        name: "FaArrowDown",
+                    },
                },
             ]
         });
@@ -98,10 +107,17 @@ class HeroSection35 extends BaseHeroSection {
                     type: "media",
                     key: "image",
                     displayer: "Image",
+                    additionalParams: { availableTypes: ["image", "video"] },
                     value: {
                         type: "image",
-                        url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/hero-img.webp",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
                     }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
                 },
                 {
                     type: "object",
@@ -118,6 +134,7 @@ class HeroSection35 extends BaseHeroSection {
                             type: "media",
                             key: "customer1Image",
                             displayer: "Customer Image",
+                            additionalParams: { availableTypes: ["image", "video"] },
                             value: {
                                 type: "image",
                                 url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-1.webp",
@@ -127,6 +144,7 @@ class HeroSection35 extends BaseHeroSection {
                             type: "media",
                             key: "customer2Image",
                             displayer: "Customer Image",
+                            additionalParams: { availableTypes: ["image", "video"] },
                             value: {
                                 type: "image",
                                 url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-2.webp",
@@ -136,16 +154,21 @@ class HeroSection35 extends BaseHeroSection {
                             type: "media",
                             key: "customer3Image",
                             displayer: "Customer Image",
+                            additionalParams: { availableTypes: ["image", "video"] },
                             value: {
                                 type: "image",
                                 url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-3.webp",
                             },
                         },
                         {
-                            type: "icon",
+                            type: "media",
                             key: "customerIcon",
                             displayer: "Customer Icon",
-                            value: "FaPlus",
+                            additionalParams: { availableTypes: ["icon", "image"] },
+                            value: {
+                                type: "icon",
+                                name: "FaPlus",
+                            },
                         },
                         {
                             type: "string",
@@ -239,19 +262,15 @@ class HeroSection35 extends BaseHeroSection {
                                                         <div className={this.decorateCSS("main-icon-container")}>
                                                             {page ? (
                                                                 <ComposerLink path={page}>
-                                                                    <Base.Icon 
-                                                                        name={leftCard.mainIcon} 
-                                                                        propsIcon={{
-                                                                            className: this.decorateCSS("main-icon")
-                                                                        }}
+                                                                    <Base.Media 
+                                                                        value={leftCard.mainIcon} 
+                                                                        className={this.decorateCSS("main-icon")}
                                                                     />
                                                                 </ComposerLink>
                                                             ) : (
-                                                                <Base.Icon 
-                                                                    name={leftCard.mainIcon} 
-                                                                    propsIcon={{
-                                                                        className: this.decorateCSS("main-icon")
-                                                                    }}
+                                                                <Base.Media 
+                                                                    value={leftCard.mainIcon} 
+                                                                    className={this.decorateCSS("main-icon")}
                                                                 />
                                                             )}
                                                         </div>
@@ -284,9 +303,9 @@ class HeroSection35 extends BaseHeroSection {
                                         )}
                                         <div className={this.decorateCSS("scroll-icon-container")}>
                                             {leftCard.smallIcon && (
-                                                <Base.Icon
-                                                    name={leftCard.smallIcon}
-                                                    propsIcon={{className: this.decorateCSS("scroll-icon")}}
+                                                <Base.Media
+                                                    value={leftCard.smallIcon}
+                                                    className={this.decorateCSS("scroll-icon")}
                                                 />
                                             )}
                                         </div>
@@ -298,10 +317,13 @@ class HeroSection35 extends BaseHeroSection {
                             <div className={leftCardExist ? this.decorateCSS("right-card") : this.decorateCSS("right-card-no-left-card")}>
                                 <div className={this.decorateCSS("image-container")}>
                                     {rightCard.image && (
-                                        <Base.Media
-                                            value={rightCard.image}
-                                            className={this.decorateCSS("image")}
-                                        />
+                                        <div className={this.decorateCSS("image-wrapper")}>
+                                            <Base.Media
+                                                value={rightCard.image}
+                                                className={this.decorateCSS("image")}
+                                            />
+                                            {rightCard.overlay && <div className={this.decorateCSS("image-overlay")} />}
+                                        </div>
                                     )}
                                     {customerBox && customerBox.visibility && Object.keys(customerBox).length > 1 && customerBoxExist && (
                                         <div className={`${this.decorateCSS("box-area")} ${!rightCard.image ? this.decorateCSS("full-size") : ""}`}>
@@ -327,9 +349,9 @@ class HeroSection35 extends BaseHeroSection {
                                                     )}
                                                     {customerBox.customerIcon && (
                                                         <div className={this.decorateCSS("customer-icon-container")}>
-                                                            <Base.Icon 
-                                                                name={customerBox.customerIcon} 
-                                                                propsIcon={{ className: this.decorateCSS("customer-icon") }} 
+                                                            <Base.Media 
+                                                                value={customerBox.customerIcon} 
+                                                                className={this.decorateCSS("customer-icon")}
                                                             />
                                                         </div>
                                                     )}  
