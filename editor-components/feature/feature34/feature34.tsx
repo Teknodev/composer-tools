@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
-import styles from "./feature33.module.scss";
+import styles from "./feature34.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface FeatureItem {
@@ -10,7 +10,7 @@ interface FeatureItem {
     rawText?: unknown;
 }
 
-class Feature33 extends BaseFeature {
+class Feature34 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
 
@@ -111,7 +111,7 @@ class Feature33 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 33";
+        return "Feature 34";
     }
 
     render() {
@@ -212,4 +212,4 @@ class Feature33 extends BaseFeature {
     }
 }
 
-export default Feature33;
+export default Feature34;

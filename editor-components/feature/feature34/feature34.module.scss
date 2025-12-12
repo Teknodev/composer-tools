@@ -1,7 +1,6 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
-
     .max-content {
         display: flex;
         gap: var(--composer-gap-lg);
@@ -94,49 +93,39 @@
                 }
             }
         }
-    }
-}
 
-@container (min-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            &:has(.image-side) {
-                .content-side {
-                    align-items: flex-start;
-                    text-align: left;
+        &:has(.image-side) .content-side {
+            align-items: flex-start !important;
+            text-align: left !important;
 
-                    .header {
-                        align-items: flex-start;
-                        text-align: left;
+            .header {
+                align-items: flex-start !important;
+                text-align: left !important;
 
-                        .subtitle {
-                            align-self: flex-start;
-                            text-align: left;
-                        }
+                .subtitle {
+                    align-self: flex-start !important;
+                    text-align: left !important;
+                }
 
-                        .title {
-                            text-align: left;
-                        }
+                .title {
+                    text-align: left !important;
+                }
 
-                        .description {
-                            text-align: left;
-                        }
-                    }
+                .description {
+                    text-align: left !important;
+                }
+            }
 
-                    .features-grid {
-                        .feature-item {
-                            align-items: flex-start;
-                            text-align: left;
+            .features-grid .feature-item {
+                align-items: flex-start !important;
+                text-align: left !important;
 
-                            .feature-title {
-                                text-align: left;
-                            }
+                .feature-title {
+                    text-align: left !important;
+                }
 
-                            .feature-text {
-                                text-align: left;
-                            }
-                        }
-                    }
+                .feature-text {
+                    text-align: left !important;
                 }
             }
         }
@@ -144,38 +133,37 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            flex-direction: column;
-            align-items: stretch;
-            gap: var(--composer-gap-lg);
+    .container .max-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--composer-gap-lg);
 
-            .image-side {
+        .image-side {
+            width: 100%;
+            flex: none;
+            height: auto;
+            min-height: 300px;
+
+            .image {
                 width: 100%;
-                flex: none;
                 height: auto;
-                min-height: 300px;
-
-                .image {
-                    width: 100%;
-                    height: auto;
-                    object-fit: contain;
-                }
+                object-fit: contain;
             }
+        }
 
-            .content-side {
-                width: 100%;
-                flex: none;
-                gap: var(--composer-gap-md);
+        .content-side {
+            width: 100%;
+            flex: none;
+            gap: var(--composer-gap-md);
 
-                .header {
-                    gap: var(--composer-gap-sm);
+            .header {
+                gap: var(--composer-gap-sm);
 
-                    .description {
-                        margin-top: var(--composer-gap-sm);
-                    }
+                .description {
+                    margin-top: var(--composer-gap-sm);
                 }
             }
         }
+
     }
 }
