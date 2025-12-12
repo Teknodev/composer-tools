@@ -32,6 +32,16 @@
       transition: opacity 0.5s ease-in-out;
       z-index: 1;
     }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--composer-overlay-color);
+      z-index: 2;
+    }
   }
 
   .item {
@@ -65,11 +75,12 @@
           align-items: center;
 
           .arrow {
-            transition: 0.2s all;
-            min-width: fit-content;
             color: white;
             opacity: 0.2;
             transition: all 0.5s;
+            font-size: 1.5rem;
+            width: 24px;
+            height: 24px;
           }
 
           .arrow:nth-child(1) {
@@ -140,7 +151,6 @@
         padding-top: var(--composer-gap-xl);
 
         .pagination {
-
           .active-slide {
             color: var(--composer-primary-color);
             font-size: 10vh;
@@ -273,11 +283,8 @@
             width: 100%;
             height: 100%;
             justify-content: center;
-            gap: var(--composer-gap-lg);
 
             .title {
-              font-size: 4rem;
-              margin: 0;
               text-align: end;
               display: -webkit-box;
               -webkit-box-orient: vertical;
@@ -288,10 +295,7 @@
             }
 
             .description {
-              width: 100%;
-              margin: 0;
               text-align: end;
-              font-size: 1.5rem;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               overflow: hidden;
@@ -301,7 +305,9 @@
             }
 
             .button {
-              content: "";
+              .button-text {
+                content: "";
+              }
 
               .button-icon {
                 width: 20px;
@@ -350,12 +356,8 @@
           padding: 0 var(--composer-gap-lg) 0 var(--composer-gap-md);
           align-items: end;
 
-          div {
-            height: fit-content;
-          }
-
           .arrow-text {
-            font-size: 1rem;
+            content: "";
           }
 
           &.no-left-side {
@@ -389,16 +391,6 @@
 
             .content {
               gap: var(--composer-gap-md);
-
-              .title {
-                font-size: 3rem;
-              }
-
-              .description {
-                width: unset;
-                max-width: unset;
-                font-size: 1rem;
-              }
             }
           }
         }
@@ -416,14 +408,6 @@
           left: 20%;
           max-width: 80%;
           padding: 0 var(--composer-gap-md);
-
-          div {
-            align-items: end;
-          }
-
-          .arrow-text {
-            font-size: 1rem;
-          }
 
           &.no-left-side {
             left: 0%;
@@ -484,15 +468,6 @@
 
             .content {
               width: 100%;
-
-              .title {
-                font-size: 2rem;
-              }
-
-              .description {
-                max-width: 100%;
-                font-size: 1rem;
-              }
             }
           }
         }

@@ -3,11 +3,12 @@ import styles from "./hero-section33.module.scss";
 import { BaseHeroSection } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type Slide = {
   centered: boolean;
-  backgroundImage: string;
-  image: string;
+  backgroundImage: { type: string; url?: string; name?: string };
+  image: { type: string; url?: string; name?: string };
   title: React.JSX.Element;
   rotate_icon: string;
   rotate_text: React.JSX.Element;
@@ -26,7 +27,14 @@ class HeroSection33 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Content Animation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
       value: true,
     });
 
@@ -47,18 +55,30 @@ class HeroSection33 extends BaseHeroSection {
               value: false,
             },
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -85,7 +105,7 @@ class HeroSection33 extends BaseHeroSection {
                     {
                       type: "page",
                       key: "button_link",
-                      displayer: "Button Navigate",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -106,18 +126,30 @@ class HeroSection33 extends BaseHeroSection {
               value: true,
             },
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -144,7 +176,7 @@ class HeroSection33 extends BaseHeroSection {
                     {
                       type: "page",
                       key: "button_link",
-                      displayer: "Button Navigate",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -165,18 +197,30 @@ class HeroSection33 extends BaseHeroSection {
               value: false,
             },
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -203,7 +247,7 @@ class HeroSection33 extends BaseHeroSection {
                     {
                       type: "page",
                       key: "button_link",
-                      displayer: "Button Navigate",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -229,8 +273,8 @@ class HeroSection33 extends BaseHeroSection {
     const activeSlide: number = this.getComponentState("activeSlide");
     const currentSlide: Slide = slides[activeSlide] || {
       centered: false,
-      backgroundImage: "",
-      image: "",
+      backgroundImage: { type: "image", url: "" },
+      image: { type: "image", url: "" },
       title: <></>,
       rotate_icon: "",
       rotate_text: <></>,
@@ -243,7 +287,7 @@ class HeroSection33 extends BaseHeroSection {
       infinite: true,
       accessibility: false,
       speed: 500,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -262,7 +306,7 @@ class HeroSection33 extends BaseHeroSection {
                 className={`
                 ${this.decorateCSS("dotBullet")} 
               ${activeSlide == index && this.decorateCSS("withCenterDot")}
-              ${!currentSlide.backgroundImage && this.decorateCSS("primaryBackground")}
+              ${!currentSlide.backgroundImage?.url && this.decorateCSS("primaryBackground")}
               `}
               >
                 <div>{dot}</div>
@@ -286,17 +330,19 @@ class HeroSection33 extends BaseHeroSection {
               {slides.map((item: Slide, index: number) => {
                 const buttons = item.buttons;
                 const titleExist = this.castToString(item.title);
-                const render = buttons?.length > 0 || titleExist || item.image;
+                const render = buttons?.length > 0 || titleExist || item.image?.url;
 
                 if (!render) return null;
                 return (
                   <div className={this.decorateCSS("content")} key={index}>
-                    {item.backgroundImage && (
-                      <img
-                        src={item.backgroundImage}
-                        alt={this.castToString(item.title)}
-                        className={this.decorateCSS("background-image")}
-                      />
+                    {item.backgroundImage?.url && (
+                      <div className={this.decorateCSS("background-wrapper")}>
+                        <Base.Media
+                          value={item.backgroundImage}
+                          className={this.decorateCSS("background-image")}
+                        />
+                        {item.overlay && <div className={this.decorateCSS("background-overlay")} />}
+                      </div>
                     )}
                     <div className={this.decorateCSS("carousel-content-div")}>
                       <div
@@ -313,18 +359,17 @@ class HeroSection33 extends BaseHeroSection {
                             ${item.centered && this.decorateCSS("centered")}
                           `}
                       >
-                        {item.image && (
+                        {item.image?.url && (
                           <div className={this.decorateCSS("circle")}>
-                            <img
-                              src={item.image}
+                            <Base.Media
+                              value={item.image}
                               className={this.decorateCSS("circle-image")}
-                              alt="circular"
                             />
                           </div>
                         )}
                         {titleExist && (
                           <h1
-                            className={`${this.decorateCSS("content-title")} ${item.backgroundImage &&
+                            className={`${this.decorateCSS("content-title")} ${item.backgroundImage?.url &&
                               this.decorateCSS("blackColor")
                               }`}
                           >
@@ -342,7 +387,7 @@ class HeroSection33 extends BaseHeroSection {
                                   path={button.button_link}
                                 >
                                   <button
-                                    className={`${this.decorateCSS("button")} ${item.backgroundImage &&
+                                    className={`${this.decorateCSS("button")} ${item.backgroundImage?.url &&
                                       this.decorateCSS("blackColor")
                                       }`}
                                   >

@@ -151,7 +151,9 @@
       }
 
       .button {
-        content: "";
+        .button-text{
+          content: "";
+        }
       }
     }
 
@@ -238,8 +240,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .slider-container {}
-
       .contentContainer {
         .content {
           padding: var(--composer-gap-md);
