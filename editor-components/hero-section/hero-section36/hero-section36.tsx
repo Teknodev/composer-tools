@@ -8,9 +8,6 @@ type ImageItem = {
 };
 
 class HeroSection36 extends BaseHeroSection {
-  private imagesTrackRef = React.createRef<HTMLDivElement>();
-  private resizeObserver?: ResizeObserver;
-
   constructor(props?: unknown) {
     super(props, styles);
 
@@ -43,28 +40,28 @@ class HeroSection36 extends BaseHeroSection {
             },
           ],
         },
-        // {
-        //   type: "object",
-        //   key: "items2",
-        //   displayer: "Header",
-        //   value: [
-        //     {
-        //       type: "media",
-        //       key: "image",
-        //       displayer: "Image",
-        //       additionalParams: { availableTypes: ["image", "video"] },
-        //       value: {
-        //         type: "video",
-        //         url: "https://cdn.website.hautech.ai/cdn/2%20actual%20size.mp4",
-        //         settings: {
-        //           loop: false,
-        //           autoplay: true,
-        //           controls: false,
-        //         },
-        //       },
-        //     },
-        //   ],
-        // },
+        {
+          type: "object",
+          key: "items4",
+          displayer: "Header",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Image",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "video",
+                url: "https://cdn.website.hautech.ai/cdn/4%20actual%20size.mp4",
+                settings: {
+                  loop: true,
+                  autoplay: true,
+                  controls: false,
+                },
+              },
+            },
+          ],
+        },
         {
           type: "object",
           key: "items3",
@@ -82,28 +79,6 @@ class HeroSection36 extends BaseHeroSection {
             },
           ],
         },
-        // {
-        //   type: "object",
-        //   key: "items4",
-        //   displayer: "Header",
-        //   value: [
-        //     {
-        //       type: "media",
-        //       key: "image",
-        //       displayer: "Image",
-        //       additionalParams: { availableTypes: ["image", "video"] },
-        //       value: {
-        //         type: "video",
-        //         url: "https://cdn.website.hautech.ai/cdn/4%20actual%20size.mp4",
-        //         settings: {
-        //           loop: false,
-        //           autoplay: true,
-        //           controls: false,
-        //         },
-        //       },
-        //     },
-        //   ],
-        // },
         {
           type: "object",
           key: "items5",
@@ -121,50 +96,6 @@ class HeroSection36 extends BaseHeroSection {
             },
           ],
         },
-        // {
-        //   type: "object",
-        //   key: "items6",
-        //   displayer: "Header",
-        //   value: [
-        //     {
-        //       type: "media",
-        //       key: "image",
-        //       displayer: "Image",
-        //       additionalParams: { availableTypes: ["image", "video"] },
-        //       value: {
-        //         type: "video",
-        //         url: "https://cdn.website.hautech.ai/cdn/7%20actual%20size.mp4",
-        //         settings: {
-        //           loop: false,
-        //           autoplay: true,
-        //           controls: false,
-        //         },
-        //       },
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "items7",
-        //   displayer: "Header",
-        //   value: [
-        //     {
-        //       type: "media",
-        //       key: "image",
-        //       displayer: "Image",
-        //       additionalParams: { availableTypes: ["image", "video"] },
-        //       value: {
-        //         type: "video",
-        //         url: "https://cdn.website.hautech.ai/cdn/8%20actual%20size.mp4",
-        //         settings: {
-        //           loop: true,
-        //           autoplay: true,
-        //           controls: false,
-        //         },
-        //       },
-        //     },
-        //   ],
-        // },
         {
           type: "object",
           key: "items8",
@@ -182,28 +113,6 @@ class HeroSection36 extends BaseHeroSection {
             },
           ],
         },
-        // {
-        //   type: "object",
-        //   key: "items9",
-        //   displayer: "Header",
-        //   value: [
-        //     {
-        //       type: "media",
-        //       key: "image",
-        //       displayer: "Image",
-        //       additionalParams: { availableTypes: ["image", "video"] },
-        //       value: {
-        //         type: "video",
-        //         url: "https://cdn.website.hautech.ai/cdn/10%20actual%20size.mp4",
-        //         settings: {
-        //           loop: false,
-        //           autoplay: true,
-        //           controls: false,
-        //         },
-        //       },
-        //     },
-        //   ],
-        // },
       ],
     });
   }
@@ -212,15 +121,23 @@ class HeroSection36 extends BaseHeroSection {
     return "Hero Section 36";
   }
 
-  componentWillUnmount() {
-    if (this.resizeObserver && this.imagesTrackRef.current) {
-      this.resizeObserver.unobserve(this.imagesTrackRef.current);
-    }
-  }
-
   render() {
     const title = this.castToString(this.getPropValue("title"));
-    const imageItems = this.castToObject<ImageItem[]>("image-items") || [];
+    const originalImageArray =
+      this.castToObject<ImageItem[]>("image-items") || [];
+
+    let images: any[] = [];
+
+    if (originalImageArray.length > 0) {
+      for (let x = 0; x < Math.round(30 / originalImageArray.length); x++) {
+        images.push(...originalImageArray);
+      }
+    }
+    images = [...images, ...images];
+
+    // const validImages = images.filter(
+    //   (img) => img.image && (img.image as any).url
+    // );
 
     return (
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
@@ -232,20 +149,44 @@ class HeroSection36 extends BaseHeroSection {
           </Base.VerticalContent>
         )}
 
-        {imageItems.length > 0 && (
+        {images.length > 0 && (
           <div className={this.decorateCSS("gallery")}>
             <div
               className={this.decorateCSS("images-track")}
-              ref={this.imagesTrackRef}
+              style={{ animationDuration: `${images.length * 4}s` }}
             >
-              {imageItems.map((img, idx) => (
-                <div className={this.decorateCSS("image-child")} key={idx}>
-                  <Base.Media
-                    value={img.image}
-                    className={this.decorateCSS("image")}
-                  />
-                </div>
-              ))}
+              <div className={this.decorateCSS("images-group")}>
+                {images.map((img, idx) => (
+                  <div className={this.decorateCSS("image-child")} key={idx}>
+                    <Base.Media
+                      autoplay
+                      autoPlay
+                      controls={false}
+                      loop
+                      muted
+                      value={img.image}
+                      className={this.decorateCSS("image")}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className={this.decorateCSS("images-group")}
+                aria-hidden="true"
+              >
+                {images.map((img, idx) => (
+                  <div
+                    className={this.decorateCSS("image-child")}
+                    key={`dup-${idx}`}
+                  >
+                    <Base.Media
+                      value={img.image}
+                      className={this.decorateCSS("image")}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
