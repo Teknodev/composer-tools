@@ -10,7 +10,14 @@ class IntroSection10 extends BaseIntroSection {
     super(props, styles);
 
     this.addProp({
-      type: "string", 
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: ""
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "I'M ALEX GREEN"
@@ -18,34 +25,24 @@ class IntroSection10 extends BaseIntroSection {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Your"
+      key: "title2",
+      displayer: "Title 2",
+      value: "Your Illustrator"
     });
 
     this.addProp({
-      type: "array",
-      key: "rotatingWords",
-      displayer: "Rotating Words",
-      value: [
-        this.createWordObject("word1", "Illustrator"),
-        this.createWordObject("word2", "UI Designer"),
-        this.createWordObject("word3", "Photographer")
-      ]
+      type: "boolean",
+      key: "enableTitleAnimation",
+      displayer: "Title Animation",
+      value: true
     });
 
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description", 
-      value: "Objectively innovate empowered products platforms. Holisticly predominate extensible testing procedures for reliable supply chains."
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "enableTextAnimation",
-      displayer: "Text Animation",
-      value: true,
+      displayer: "Description",
+      value:
+        "Objectively innovate empowered products platforms. Holisticly predominate extensible testing procedures for reliable supply chains."
     });
 
     this.addProp({
@@ -53,38 +50,48 @@ class IntroSection10 extends BaseIntroSection {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Primary Button", "Contact Me", "", null, null, "Primary"),
-        INPUTS.BUTTON("button", "Secondary Button", "My Portfolio", "", null, null, "Secondary"), 
-      ],
-    });
-  }
-
-  private createWordObject(key: string, text: string) {
-    return {
-      type: "object",
-      key,
-      displayer: `Word ${key.charAt(key.length-1)}`,
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: text
-        }
+        INPUTS.BUTTON(
+          "button",
+          "Primary Button",
+          "Contact Me",
+          "",
+          null,
+          null,
+          "Primary"
+        ),
+        INPUTS.BUTTON(
+          "button",
+          "Secondary Button",
+          "My Portfolio",
+          "",
+          null,
+          null,
+          "Secondary"
+        )
       ]
-    };
+    });
   }
 
   static getName(): string {
     return "Intro Section 10";
   }
 
-  TypewriterText = ({ content, text, enableAnimation }: { content: any, text: string, enableAnimation: boolean }) => {
-    if (!enableAnimation || !text) return <>{content}</>;
+  TypewriterText = ({
+    content,
+    text,
+    enableAnimation
+  }: {
+    content: any;
+    text: string;
+    enableAnimation: boolean;
+  }) => {
+    if (!enableAnimation || !text) {
+      return <>{content}</>;
+    }
 
     const [displayedText, setDisplayedText] = useState("");
     const [isCompleted, setIsCompleted] = useState(false);
-    
+
     useEffect(() => {
       setIsCompleted(false);
       setDisplayedText("");
@@ -102,80 +109,34 @@ class IntroSection10 extends BaseIntroSection {
           setIsCompleted(true);
         }
       };
-      
+
       timeoutId = setTimeout(animate, TYPE_SPEED);
+
       return () => clearTimeout(timeoutId);
     }, [text, enableAnimation]);
 
-    return <>{isCompleted ? content : displayedText}</>;
+    if (isCompleted) return <>{content}</>;
+
+    return <>{displayedText}</>;
   };
-
-  RotatingWords = ({ words, enableAnimation }: { words: string[], enableAnimation: boolean }) => {
-    const [currentWordIndex, setCurrentWordIndex] = useState(0);
-    const [currentText, setCurrentText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-
-    useEffect(() => {
-      if (!enableAnimation || words.length === 0) return;
-
-      const current = words[currentWordIndex];
-      
-      const type = () => {
-        if (isDeleting) {
-          setCurrentText(current.substring(0, currentText.length - 1));
-        } else {
-          setCurrentText(current.substring(0, currentText.length + 1));
-        }
-      };
-
-      let timeout: NodeJS.Timeout;
-
-      if (!isDeleting && currentText === current) {
-        timeout = setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && currentText === "") {
-        setIsDeleting(false);
-        setCurrentWordIndex((prev) => (prev + 1) % words.length);
-      } else {
-        timeout = setTimeout(type, isDeleting ? 50 : 100);
-      }
-
-      return () => clearTimeout(timeout);
-    }, [currentText, isDeleting, currentWordIndex, words, enableAnimation]);
-
-    if (!enableAnimation && words.length > 0) {
-      return <span> {words[0]}</span>;
-    }
-
-    return (
-      <span className={this.decorateCSS("rotating-word")}>
-        {currentText}
-        <span className={this.decorateCSS("cursor")}>|</span>
-      </span>
-    );
-  };
-
-  private extractWordsArray(rotatingWords: any): string[] {
-    return Array.isArray(rotatingWords) 
-      ? rotatingWords.map((wordObj: any) => {
-          if (wordObj && typeof wordObj.getPropValue === 'function') {
-            return this.castToString(wordObj.getPropValue("text"));
-          }
-          return "";
-        }).filter(Boolean)
-      : [];
-  }
 
   render() {
-    const title = this.getPropValue("title"); 
     const subtitle = this.getPropValue("subtitle");
-    const rotatingWords = this.getPropValue("rotatingWords");
+    const title = this.getPropValue("title");
+    const title2 = this.getPropValue("title2");
     const description = this.getPropValue("description");
-    const enableTextAnimation = this.getPropValue("enableTextAnimation");
     const buttons = this.castToObject<Array<any>>("buttons") || [];
 
-    const wordsArray = this.extractWordsArray(rotatingWords);
-    const hasAnyButton = buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
-    const subtitleString = this.castToString(subtitle);
+    const enableTitleAnimation = this.getPropValue("enableTitleAnimation");
+
+    const hasAnyButton =
+      Array.isArray(buttons) &&
+      buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
+
+    const hasSubtitle = this.castToString(subtitle);
+    const hasDescription = this.castToString(description);
+    const titleString = this.castToString(title) as string;
+    const title2String = this.castToString(title2) as string;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -183,73 +144,94 @@ class IntroSection10 extends BaseIntroSection {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("intro-wrapper")}>
             <div className={this.decorateCSS("left-content")}>
-              {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("name")}>{title}</Base.SectionTitle>
+              {hasSubtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
               )}
-              
-              {subtitleString && (
+
+              {titleString && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   <this.TypewriterText
-                    content={subtitle}
-                    text={subtitleString}
-                    enableAnimation={enableTextAnimation}
+                    content={titleString}
+                    text={titleString}
+                    enableAnimation={enableTitleAnimation}
                   />
-                  &nbsp;
-                  {wordsArray.length > 0 ? (
-                    <this.RotatingWords 
-                      words={wordsArray} 
-                      enableAnimation={enableTextAnimation} 
-                    />
-                  ) : (
-                    <span>Illustrator</span>
-                  )}
                 </Base.SectionTitle>
               )}
+
+              {title2String && (
+                <Base.H1 className={this.decorateCSS("title2")}>
+                  <this.TypewriterText
+                    content={title2String}
+                    text={title2String}
+                    enableAnimation={enableTitleAnimation}
+                  />
+                </Base.H1>
+              )}
             </div>
-            
+
             <div className={this.decorateCSS("right-content")}>
-              {this.castToString(description) && (
-                <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
+              {hasDescription && (
+                <Base.P className={this.decorateCSS("description")}>
+                  {description}
+                </Base.P>
               )}
 
               {hasAnyButton && (
                 <div className={this.decorateCSS("action-buttons")}>
-                  {buttons.map((btn: any, idx: number) => this.renderButton(btn, idx))}
+                  {buttons.map((btn: any, idx: number) => {
+                    const btnTextExist = this.castToString(btn.text);
+                    const iconName =
+                      (btn?.icon && (btn.icon.name || btn.icon)) || null;
+                    if (!btnTextExist && !iconName) return null;
+
+                    const url = btn.url || "#";
+
+                    const isPrimary =
+                      btn.type === "Primary" ||
+                      btn.template === "Primary" ||
+                      btn.variant === "Primary" ||
+                      btn?.displayer?.toLowerCase()?.includes("primary");
+
+                    return (
+                      <div key={idx} className={this.decorateCSS("button-wrapper")}>
+                        <ComposerLink path={url}>
+                          <Base.Button
+                            buttonType={btn.type}
+                            className={`${this.decorateCSS("button")} ${
+                              isPrimary
+                                ? this.decorateCSS("primary-button")
+                                : this.decorateCSS("secondary-button")
+                            }`}
+                          >
+                            {btnTextExist && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {btn.text}
+                              </Base.P>
+                            )}
+
+                            {iconName && (
+                              <div
+                                className={this.decorateCSS("button-icon-wrapper")}
+                              >
+                                <Base.Media
+                                  value={{ type: "icon", name: iconName }}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              </div>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
-    );
-  }
-
-  private renderButton(btn: any, idx: number) {
-    const btnTextExist = this.castToString(btn.text);
-    const iconName = (btn?.icon && (btn.icon.name || btn.icon)) || null;
-    
-    if (!btnTextExist && !iconName) return null;
-
-    const url = btn.url || "#";
-    const buttonClass = `${this.decorateCSS("button")} ${btn.type === "Primary" ? 
-      this.decorateCSS("primary-button") : this.decorateCSS("secondary-button")}`;
-
-    return (
-      <div key={idx} className={this.decorateCSS("button-wrapper")}>
-        <ComposerLink path={url}>
-          <Base.Button buttonType={btn.type} className={buttonClass}>
-            {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
-            {iconName && (
-              <div className={this.decorateCSS("button-icon-wrapper")}>
-                <Base.Media 
-                  value={{ type: "icon", name: iconName }} 
-                  className={this.decorateCSS("button-icon")} 
-                />
-              </div>
-            )}
-          </Base.Button>
-        </ComposerLink>
-      </div>
     );
   }
 }

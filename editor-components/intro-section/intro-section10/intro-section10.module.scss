@@ -5,9 +5,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   .max-content {
     width: 100%;
+    position: relative;
+    z-index: 1;
 
     .intro-wrapper {
       display: flex;
@@ -17,212 +20,142 @@
       width: 100%;
 
       .left-content {
-        flex: 1;
+        flex: 1 1 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
 
-        .name {
-          color: var(--composer-font-color-primary);
-          font-size: clamp(2.5rem, 6vw, 5rem);
-          font-weight: 800;
-          line-height: 1.1;
-          margin: 0 0 var(--composer-gap-sm) 0;
+        .subtitle {
+          margin-bottom: var(--composer-gap-sm);
           text-align: left;
+          align-self: flex-start;
+          width: auto;
+          margin-left: 0 !important;
+          margin-right: auto !important;
         }
 
         .title {
-          color: var(--composer-primary-color);
-          font-size: clamp(2.5rem, 6vw, 5rem);
-          font-weight: 800;
-          line-height: 1.1;
-          margin: 0;
+          margin-bottom: calc(var(--composer-gap-sm) / 1.5);
           text-align: left;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
+        }
 
-          .rotating-word {
-            color: var(--composer-primary-color);
-            position: relative;
-
-            .cursor {
-              animation: blink 1s infinite;
-              margin-left: 2px;
-              color: var(--composer-primary-color);
-            }
-          }
+        .title2 {
+          color: var(--composer-primary-color);
+          text-align: left;
         }
       }
 
       .right-content {
-        flex: 1;
+        flex: 1 1 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
 
         .description {
           color: var(--composer-tertiary-color);
-          font-size: clamp(1.2rem, 2.5vw, 2rem);
-          line-height: 1.6;
+          margin-bottom: var(--composer-gap-md);
           text-align: left;
-          margin-bottom: var(--composer-gap-lg);
         }
 
         .action-buttons {
           display: flex;
           gap: var(--composer-gap-md);
-
-          .button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: var(--composer-border-radius-sm);
-            border: 1px solid transparent;
-            cursor: pointer;
-          }
-
-          .primary-button {
-            background-color: var(--composer-primary-color);
-            color: var(--composer-font-color-secondary);
-          }
-
-          .secondary-button {
-            background-color: var(--composer-tertiary-color);
-            color: var(--composer-font-color-secondary);
-          }
         }
       }
     }
   }
 }
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-/* TABLET GÖRÜNÜMÜ */
+ 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px 0;
+    padding: 60px 0;
 
-    .max-content .intro-wrapper {
+    .intro-wrapper {
       flex-direction: column;
-      gap: var(--composer-gap-xl);
+      gap: var(--composer-gap-lg);
 
-      .left-content {
-        width: 100%;
-        
-        .name,
-        .title {
-          font-size: clamp(1.8rem, 6vw, 3rem);
-          text-align: left;
-          justify-content: flex-start;
-        }
-      }
-
+      .left-content,
       .right-content {
         width: 100%;
         
-        .description {
-          text-align: left;
-          font-size: clamp(1rem, 2.5vw, 1.5rem);
-        }
+      }
 
-        .action-buttons {
-          justify-content: flex-start;
-        }
+      .action-buttons {
+        flex-wrap: wrap;
       }
     }
   }
 }
 
-/* MOBİL GÖRÜNÜMÜ */
+ 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 50px 0;
+    padding: 40px 0;
 
-    .max-content .intro-wrapper {
-      .left-content {
-        .name,
-        .title {
-          font-size: clamp(1.6rem, 8vw, 2.5rem);
-          text-align: left;
-        }
-      }
+    .intro-wrapper {
+      gap: var(--composer-gap-md);
 
-      .right-content {
-        .description {
-          font-size: clamp(0.95rem, 4vw, 1.2rem);
-          text-align: left;
-        }
-
-        .action-buttons {
-          flex-direction: column;
-          align-items: flex-start;
-          
-          .button {
-            width: 100%;
-            text-align: center;
-          }
-        }
+      .action-buttons {
+        display: flex;
+        gap: var(--composer-gap-xs);
+        
       }
     }
   }
 }
 
-/* TABLET - CENTER ALIGNMENT */
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content .intro-wrapper[data-tablet-alignment="center"] {
-      align-items: center;
-      
-      .left-content {
-        .name,
-        .title {
-          text-align: center;
-          justify-content: center;
-        }
-      }
-      
-      .right-content {
-        .description {
-          text-align: center;
-        }
-        
-        .action-buttons {
-          justify-content: center;
-        }
-      }
-    }
+ 
+
+.button-wrapper {
+  display: inline-flex;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+ 
+.primary-button {
+  background-color: var(--composer-primary-color);
+  border: none;
+  color: #fff;
+
+  &:hover {
+    background-color: color-mix(in srgb, var(--composer-primary-color), #000 10%);
   }
 }
 
-/* MOBİL - CENTER ALIGNMENT */
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content .intro-wrapper[data-mobile-alignment="center"] {
-      align-items: center;
-      
-      .left-content {
-        .name,
-        .title {
-          text-align: center;
-          justify-content: center;
-        }
-      }
-      
-      .right-content {
-        .description {
-          text-align: center;
-        }
-        
-        .action-buttons {
-          justify-content: center;
-          align-items: center;
-        }
-      }
-    }
+ 
+.secondary-button {
+  background-color: transparent;
+  border: 2px solid var(--composer-primary-color);
+  color: var(--composer-primary-color);
+
+  &:hover {
+    background-color: var(--composer-primary-color);
+    color: #fff;
   }
+}
+
+.button-text {
+  white-space: nowrap;
+}
+
+.button-icon-wrapper {
+  display: inline-flex;
+  margin-left: 8px;
+}
+
+.button-icon {
+  width: 20px;
+  height: 20px;
 }
