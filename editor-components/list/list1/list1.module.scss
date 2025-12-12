@@ -263,6 +263,10 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 80px 40px !important;
+
+    .carousel {
+      padding:0 !important;
+    }
   }
 }
 
@@ -270,8 +274,13 @@
   .container {
     padding: 50px 20px !important;
     .carousel {
+      padding:0 !important;
       .card.active::after {
         display: none;
+      }
+
+      :global(.slick-slide) {
+        padding: 0 !important;
       }
 
       .dots-colored {
