@@ -90,16 +90,17 @@ class About14 extends BaseAbout {
         const description = this.getPropValue("description");
         const subtitle = this.getPropValue("subtitle");
 
+        const hasTitle = this.castToString(title);
+        const hasSubtitle = this.castToString(subtitle);
+        const hasDescription = this.castToString(description);
+
         const toggleSettings = this.castToObject<any>("toggleSettings");
         const showMoreText = toggleSettings.showMoreText;
         const showLessText = toggleSettings.showLessText;
 
         const hasOverlay = this.getPropValue("overlay");
 
-        const hasTextContent =
-            this.castToString(title) ||
-            this.castToString(description) ||
-            this.castToString(subtitle);
+        const hasTextContent = hasTitle || hasSubtitle || hasDescription;
         const hasImageContent = imageMedia && imageMedia.url;
 
         const alignment = Base.getContentAlignment();
@@ -114,27 +115,26 @@ class About14 extends BaseAbout {
                     >
                         {hasTextContent && (
                             <div className={this.decorateCSS("content-side")}>
-                                {(this.castToString(subtitle) ||
-                                    this.castToString(title)) && (
-                                        <Base.VerticalContent className={this.decorateCSS("heading")}>
-                                            {this.castToString(subtitle) && (
-                                                <Base.SectionSubTitle
-                                                    className={this.decorateCSS("subtitle")}
-                                                >
-                                                    {subtitle}
-                                                </Base.SectionSubTitle>
-                                            )}
-                                            {this.castToString(title) && (
-                                                <Base.SectionTitle
-                                                    className={this.decorateCSS("title")}
-                                                >
-                                                    {title}
-                                                </Base.SectionTitle>
-                                            )}
-                                        </Base.VerticalContent>
-                                    )}
+                                {(hasSubtitle || hasTitle) && (
+                                    <Base.VerticalContent className={this.decorateCSS("heading")}>
+                                        {hasSubtitle && (
+                                            <Base.SectionSubTitle
+                                                className={this.decorateCSS("subtitle")}
+                                            >
+                                                {subtitle}
+                                            </Base.SectionSubTitle>
+                                        )}
+                                        {hasTitle && (
+                                            <Base.SectionTitle
+                                                className={this.decorateCSS("title")}
+                                            >
+                                                {title}
+                                            </Base.SectionTitle>
+                                        )}
+                                    </Base.VerticalContent>
+                                )}
 
-                                {this.castToString(description) && (
+                                {hasDescription && (
                                     <div
                                         className={`${this.decorateCSS("description-wrapper")} ${isExpanded
                                             ? this.decorateCSS("expanded-wrapper")
