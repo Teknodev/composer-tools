@@ -52,7 +52,7 @@ class IntroSection10 extends BaseIntroSection {
       value: [
         INPUTS.BUTTON(
           "button",
-          "Primary Button",
+          "Button",
           "Contact Me",
           "",
           null,
@@ -61,12 +61,12 @@ class IntroSection10 extends BaseIntroSection {
         ),
         INPUTS.BUTTON(
           "button",
-          "Secondary Button",
+          "Button 2",
           "My Portfolio",
           "",
           null,
           null,
-          "Secondary"
+          "White"
         )
       ]
     });
@@ -143,7 +143,8 @@ class IntroSection10 extends BaseIntroSection {
         <div className={this.decorateCSS("overlay")}></div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("intro-wrapper")}>
-            <div className={this.decorateCSS("left-content")}>
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              <div className={this.decorateCSS("left-content")}>
               {hasSubtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
@@ -201,25 +202,14 @@ class IntroSection10 extends BaseIntroSection {
                             buttonType={btn.type}
                             className={`${this.decorateCSS("button")} ${
                               isPrimary
-                                ? this.decorateCSS("primary-button")
-                                : this.decorateCSS("secondary-button")
+                                ? this.decorateCSS("Button")
+                                : this.decorateCSS("Button 2")
                             }`}
                           >
                             {btnTextExist && (
                               <Base.P className={this.decorateCSS("button-text")}>
                                 {btn.text}
                               </Base.P>
-                            )}
-
-                            {iconName && (
-                              <div
-                                className={this.decorateCSS("button-icon-wrapper")}
-                              >
-                                <Base.Media
-                                  value={{ type: "icon", name: iconName }}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              </div>
                             )}
                           </Base.Button>
                         </ComposerLink>
@@ -228,7 +218,8 @@ class IntroSection10 extends BaseIntroSection {
                   })}
                 </div>
               )}
-            </div>
+              </div>
+            </Base.VerticalContent>
           </div>
         </Base.MaxContent>
       </Base.Container>

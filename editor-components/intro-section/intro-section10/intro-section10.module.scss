@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,6 +12,10 @@
     z-index: 1;
 
     .intro-wrapper {
+      .vertical-content {
+        display: contents;
+      }
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -52,9 +55,20 @@
         justify-content: center;
 
         .description {
-          color: var(--composer-tertiary-color);
+          color: var(--composer-font-color-primary);
           margin-bottom: var(--composer-gap-md);
           text-align: left;
+        }
+
+        .button-wrapper {
+          .button {
+            display: flex;
+            justify-content: var(--composer-content-alignment, flex-start);
+
+            .button-text {
+              content: "";
+            }
+          }
         }
 
         .action-buttons {
@@ -66,19 +80,18 @@
   }
 }
 
- 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 60px 0;
 
     .intro-wrapper {
-      flex-direction: column;
+      flex-direction: row;
       gap: var(--composer-gap-lg);
 
       .left-content,
       .right-content {
+        flex: 1 1 50%;
         width: 100%;
-        
       }
 
       .action-buttons {
@@ -88,74 +101,18 @@
   }
 }
 
- 
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 40px 0;
 
     .intro-wrapper {
+      flex-direction: column;
       gap: var(--composer-gap-md);
 
       .action-buttons {
         display: flex;
         gap: var(--composer-gap-xs);
-        
       }
     }
   }
-}
-
- 
-
-.button-wrapper {
-  display: inline-flex;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
- 
-.primary-button {
-  background-color: var(--composer-primary-color);
-  border: none;
-  color: #fff;
-
-  &:hover {
-    background-color: color-mix(in srgb, var(--composer-primary-color), #000 10%);
-  }
-}
-
- 
-.secondary-button {
-  background-color: transparent;
-  border: 2px solid var(--composer-primary-color);
-  color: var(--composer-primary-color);
-
-  &:hover {
-    background-color: var(--composer-primary-color);
-    color: #fff;
-  }
-}
-
-.button-text {
-  white-space: nowrap;
-}
-
-.button-icon-wrapper {
-  display: inline-flex;
-  margin-left: 8px;
-}
-
-.button-icon {
-  width: 20px;
-  height: 20px;
 }
