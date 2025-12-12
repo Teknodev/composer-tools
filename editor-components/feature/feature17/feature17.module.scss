@@ -57,7 +57,7 @@
           min-width: fit-content;
           color: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
-
+          
           white-space: nowrap;
           position: relative;
           display: inline-flex;
@@ -136,7 +136,6 @@
           .content-title,
           .content-subtitle,
           .content-description {
-            
             margin: 0;
             text-align: left;
           }
@@ -152,6 +151,7 @@
           .action-buttons {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             gap: var(--composer-gap-md);
             .button {
               .button-text,
@@ -159,20 +159,6 @@
                 content: "";
               }
             }
-          }
-        }
-
-        .content.no-image-center {
-          align-items: center;
-
-          .content-title,
-          .content-subtitle,
-          .content-description {
-            text-align: center;
-          }
-
-          .action-buttons {
-            justify-content: center;
           }
         }
 
@@ -224,19 +210,33 @@
             order: -1;
           }
 
-          .content.center {
-            align-items: center;
+          // .content.center {
+          //   align-items: center;
 
-            .content-title,
-            .content-subtitle,
-            .content-description {
-              text-align: center;
-            }
+          //   .content-title,
+          //   .content-subtitle,
+          //   .content-description {
+          //     text-align: center;
+          //   }
 
-            .action-buttons {
-              justify-content: center;
-            }
-          }
+          //   .action-buttons {
+          //     justify-content: center;
+          //   }
+          // }
+
+          // .content.no-image-center {
+          //   align-items: center;
+
+          //   .content-title,
+          //   .content-subtitle,
+          //   .content-description {
+          //     text-align: center;
+          //   }
+
+          //   .action-buttons {
+          //     justify-content: center;
+          //   }
+          // }
         }
       }
     }

@@ -321,20 +321,24 @@ class Feature17 extends BaseFeature {
     this.setComponentState("activeTab", activeTabIndex);
   }
 
+  private isDragging = false;
+  private startX = 0;
+  private scrollLeft = 0;
+
   updateCustomScrollbar = () => {
     const el = this.tabButtonsRef.current;
     const thumb = this.customScrollbarThumbRef.current;
-    
+
     if (!el || !thumb) return;
 
     const maxScroll = el.scrollWidth - el.clientWidth;
-    
+
     if (maxScroll <= 0) {
-      thumb.style.display = 'none';
+      thumb.style.display = "none";
       return;
     }
-    
-    thumb.style.display = '';
+
+    thumb.style.display = "";
     const thumbWidth = (el.clientWidth / el.scrollWidth) * 100;
     const thumbPosition = (el.scrollLeft / maxScroll) * (100 - thumbWidth);
 
@@ -358,13 +362,35 @@ class Feature17 extends BaseFeature {
     }, 200);
   };
 
+  handleDragScroll = (e: React.MouseEvent) => {
+    const el = this.tabButtonsRef.current;
+    if (!el) return;
+
+    if (e.type === "mousedown") {
+      this.isDragging = true;
+      this.startX = e.pageX - el.offsetLeft;
+      this.scrollLeft = el.scrollLeft;
+      el.style.cursor = "grabbing";
+      el.style.userSelect = "none";
+    } else if (e.type === "mouseleave" || e.type === "mouseup") {
+      this.isDragging = false;
+      el.style.cursor = "grab";
+      el.style.userSelect = "";
+    } else if (e.type === "mousemove" && this.isDragging) {
+      e.preventDefault();
+      const x = e.pageX - el.offsetLeft;
+      const walk = (x - this.startX) * 2;
+      el.scrollLeft = this.scrollLeft - walk;
+    }
+  };
+
   componentDidMount() {
     const el = this.tabButtonsRef.current;
     if (el) {
       el.addEventListener("scroll", this.handleScroll);
-      
+
       this.updateCustomScrollbar();
-      
+
       window.addEventListener("resize", this.updateCustomScrollbar);
       this.hasWindowListener = true;
     }
@@ -452,10 +478,21 @@ class Feature17 extends BaseFeature {
           )}
 
           <div className={this.decorateCSS("tabs")}>
-            <div ref={this.wrapperRef} className={this.decorateCSS("tab-buttons-wrapper")}>
-              <div ref={this.tabButtonsRef} className={this.decorateCSS("tab-buttons")}>
+            <div
+              ref={this.wrapperRef}
+              className={this.decorateCSS("tab-buttons-wrapper")}
+            >
+              <div
+                ref={this.tabButtonsRef}
+                className={this.decorateCSS("tab-buttons")}
+                onMouseDown={this.handleDragScroll}
+                onMouseLeave={this.handleDragScroll}
+                onMouseUp={this.handleDragScroll}
+                onMouseMove={this.handleDragScroll}
+                style={{ cursor: "grab" }}
+              >
                 {filteredTabs.map((tab: ITabs, index: number) => (
-                  <Base.P
+                  <Base.H6
                     key={`feature17-tab-button-${index}`}
                     className={`${this.decorateCSS("tab-button")} ${
                       activeTab === index ? this.decorateCSS("active") : ""
@@ -463,11 +500,14 @@ class Feature17 extends BaseFeature {
                     onClick={() => this.setActiveTab(index)}
                   >
                     {tab.tabText}
-                  </Base.P>
+                  </Base.H6>
                 ))}
               </div>
               <div className={this.decorateCSS("custom-scrollbar")}>
-                <div ref={this.customScrollbarThumbRef} className={this.decorateCSS("custom-scrollbar-thumb")} />
+                <div
+                  ref={this.customScrollbarThumbRef}
+                  className={this.decorateCSS("custom-scrollbar-thumb")}
+                />
               </div>
             </div>
             {filteredTabs.map((tab: ITabs, index: number) => {
