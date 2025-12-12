@@ -178,18 +178,6 @@
   .gallery-row {
     overflow: hidden;
   }
-  .gallery-row-reverse {
-    .slider {
-      padding: 0;
-      transform: scaleX(-1);
-      :global(.slick-track) {
-        transform: scaleX(-1);
-      }
-    }
-    .image-card {
-      transform: scaleX(-1);
-    }
-  }
   .slider {
     width: 100%;
     :global(.slick-slider) {
@@ -202,10 +190,9 @@
       display: flex !important;
       gap: var(--composer-gap-md);
       align-items: stretch;
-      animation-name: composer-scroll;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-duration: var(--track-duration, 40000ms);
+      transform: translate3d(var(--track-offset, 0px), 0, 0) !important;
+      transition: none !important;
+      will-change: transform;
     }
     :global(.slick-slide) {
       width: auto !important;
@@ -214,18 +201,15 @@
 
   .slider-wrapper {
     width: 100%;
+    --track-offset: 0px;
+    cursor: grab;
     :global(.slick-track) {
       will-change: transform;
     }
-    &:hover :global(.slick-track),
-    &:active :global(.slick-track) {
-      animation-play-state: paused !important;
-    }
   }
 
-  @keyframes composer-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+  .dragging {
+    cursor: grabbing;
   }
   .image-card {
     width: 420px;
@@ -381,6 +365,7 @@
       height: 150px;
     }
     .slider {
+      width: 100%;
       :global(.slick-track) {
         gap: var(--composer-gap-md);
       }

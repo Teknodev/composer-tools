@@ -1,3 +1,4 @@
+import { PointerEvent } from "react";
 import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -16,13 +17,27 @@ type GalleryRow = {
   images: GalleryImageItem[];
 };
 
+type TrackState = {
+  offset: number;
+  loopWidth: number;
+  lastTime: number;
+  rafId: number | null;
+  isPaused: boolean;
+  isDragging: boolean;
+  startX: number;
+  startOffset: number;
+  direction: number;
+  speed: number;
+};
+
 const MIN_DUPLICATED_SLIDES = 6;
+const REPEAT_COUNT = 4;
 
 const baseSettings = {
   dots: false,
   arrows: false,
-  infinite: true,
-  autoplay: true,
+  infinite: false,
+  autoplay: false,
   cssEase: "linear",
   slidesToScroll: 1,
   variableWidth: true,
@@ -30,10 +45,15 @@ const baseSettings = {
   draggable: false,
   touchMove: false,
   pauseOnHover: false,
+  speed: 0,
+  autoplaySpeed: 0,
 };
 
 class ImageGallery11 extends BaseImageGallery {
   private sliderRefs: any[] = [];
+  private rowWrapperRefs: (HTMLDivElement | null)[] = [];
+  private trackStates: TrackState[] = [];
+  private animationDuration = 420000;
 
   constructor(props?: unknown) {
     super(props, styles);
@@ -256,33 +276,208 @@ class ImageGallery11 extends BaseImageGallery {
     return "Image Gallery 11";
   }
 
+  componentDidMount() {
+    this.refreshTrackStates();
+    requestAnimationFrame(() => this.refreshTrackStates());
+  }
+
+  componentDidUpdate() {
+    this.refreshTrackStates();
+  }
+
+  componentWillUnmount() {
+    this.trackStates.forEach((state) => {
+      if (state && state.rafId) {
+        cancelAnimationFrame(state.rafId);
+      }
+    });
+  }
+
+  private getProcessedRows(): GalleryRow[] {
+    const rawRows = (this.castToObject("galleryRows") || []) as RawGalleryRow[];
+    const rows = rawRows
+      .filter((row) => !!row)
+      .map((row: RawGalleryRow) => ({
+        images: (row.images || []).filter((img) => !!img?.media),
+      }));
+    return rows.filter((row) => row.images.length > 0);
+  }
+
+  private applyOffset(rowIndex: number, shouldWrap = true) {
+    const state = this.trackStates[rowIndex];
+    const wrapper = this.rowWrapperRefs[rowIndex];
+    if (!state || !wrapper || !state.loopWidth) {
+      return;
+    }
+    if (shouldWrap) {
+      const width = state.loopWidth;
+      const normalized = ((state.offset % width) + width) % width;
+      state.offset = normalized - width;
+    }
+    wrapper.style.setProperty("--track-offset", `${state.offset}px`);
+  }
+
+  private startRowAnimation(rowIndex: number) {
+    const state = this.trackStates[rowIndex];
+    if (!state || state.isPaused || state.isDragging || !state.loopWidth || state.speed === 0) {
+      return;
+    }
+    const step = (timestamp: number) => {
+      if (!state.lastTime) {
+        state.lastTime = timestamp;
+      }
+      const delta = timestamp - state.lastTime;
+      state.lastTime = timestamp;
+      state.offset += state.speed * state.direction * delta;
+      this.applyOffset(rowIndex);
+      state.rafId = requestAnimationFrame(step);
+    };
+    state.rafId = requestAnimationFrame(step);
+  }
+
+  private stopRowAnimation(rowIndex: number) {
+    const state = this.trackStates[rowIndex];
+    if (!state) {
+      return;
+    }
+    if (state.rafId) {
+      cancelAnimationFrame(state.rafId);
+      state.rafId = null;
+    }
+    state.lastTime = 0;
+  }
+
+  private pauseRow(rowIndex: number) {
+    const state = this.trackStates[rowIndex];
+    if (!state) {
+      return;
+    }
+    state.isPaused = true;
+    this.stopRowAnimation(rowIndex);
+  }
+
+  private resumeRow(rowIndex: number) {
+    const state = this.trackStates[rowIndex];
+    if (!state) {
+      return;
+    }
+    state.isPaused = false;
+    state.lastTime = 0;
+    this.startRowAnimation(rowIndex);
+  }
+
+  private pauseAllRows() {
+    this.trackStates.forEach((_, rowIndex) => this.pauseRow(rowIndex));
+  }
+
+  private resumeAllRows() {
+    this.trackStates.forEach((_, rowIndex) => this.resumeRow(rowIndex));
+  }
+
+  private refreshTrackStates() {
+    const rows = this.getProcessedRows();
+    rows.forEach((_, rowIndex) => {
+      const sliderRef = this.sliderRefs[rowIndex];
+      const track = sliderRef?.innerSlider?.list?.querySelector(".slick-track") as HTMLElement | null;
+      const wrapper = this.rowWrapperRefs[rowIndex];
+      if (!track || !wrapper) {
+        return;
+      }
+      const loopWidth = track.scrollWidth / REPEAT_COUNT;
+      if (!loopWidth) {
+        return;
+      }
+      const direction = rowIndex % 2 !== 0 ? 1 : -1;
+      let state = this.trackStates[rowIndex];
+      if (!state) {
+        const baseOffset = direction > 0 ? -loopWidth : 0;
+        state = {
+          offset: baseOffset,
+          loopWidth,
+          lastTime: 0,
+          rafId: null,
+          isPaused: false,
+          isDragging: false,
+          startX: 0,
+          startOffset: baseOffset,
+          direction,
+          speed: 0,
+        };
+        this.trackStates[rowIndex] = state;
+      }
+      state.loopWidth = loopWidth;
+      state.direction = direction;
+      state.speed = loopWidth / this.animationDuration;
+      if (!state.isDragging && direction > 0 && state.offset === 0) {
+        state.offset = -loopWidth;
+        state.startOffset = state.offset;
+      }
+      this.applyOffset(rowIndex, !state.isDragging);
+      if (!state.isPaused && !state.isDragging && !state.rafId) {
+        this.startRowAnimation(rowIndex);
+      }
+    });
+    for (let i = rows.length; i < this.trackStates.length; i += 1) {
+      this.stopRowAnimation(i);
+    }
+  }
+
+  private handleRowHover(rowIndex: number) {
+    this.pauseRow(rowIndex);
+  }
+
+  private handleRowLeave(rowIndex: number) {
+    const state = this.trackStates[rowIndex];
+    if (state && !state.isDragging) {
+      this.resumeRow(rowIndex);
+    }
+  }
+
+  private handleRowPointerDown(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
+    event.preventDefault();
+    const state = this.trackStates[rowIndex];
+    if (!state) {
+      return;
+    }
+    this.pauseRow(rowIndex);
+    state.isDragging = true;
+    state.startX = event.clientX;
+    state.startOffset = state.offset;
+    const wrapper = this.rowWrapperRefs[rowIndex];
+    if (wrapper) {
+      wrapper.setPointerCapture?.(event.pointerId);
+      wrapper.classList.add(this.decorateCSS("dragging"));
+    }
+  }
+
+  private handleRowPointerMove(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
+    const state = this.trackStates[rowIndex];
+    if (!state || !state.isDragging) {
+      return;
+    }
+    state.offset = state.startOffset + (event.clientX - state.startX);
+    this.applyOffset(rowIndex, false);
+  }
+
+  private handleRowPointerUp(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
+    const state = this.trackStates[rowIndex];
+    if (!state || !state.isDragging) {
+      return;
+    }
+    state.isDragging = false;
+    state.startX = 0;
+    this.applyOffset(rowIndex);
+    state.startOffset = state.offset;
+    const wrapper = this.rowWrapperRefs[rowIndex];
+    if (wrapper) {
+      wrapper.releasePointerCapture?.(event.pointerId);
+      wrapper.classList.remove(this.decorateCSS("dragging"));
+    }
+    this.resumeRow(rowIndex);
+  }
+
   render() {
-    const getProcessedRows = (): GalleryRow[] => {
-      const rawRows = (this.castToObject("galleryRows") || []) as RawGalleryRow[];
-      return rawRows
-        .filter((row): row is RawGalleryRow => !!row)
-        .map((row: RawGalleryRow) => ({
-          images: (row.images || []).filter((img) => !!img?.media),
-        }))
-        .filter((row) => row.images.length > 0);
-    };
-
-    const pauseSlider = (sliderRef: any) => {
-      if (!sliderRef) return;
-      const target = sliderRef.slickPause ? sliderRef : sliderRef.innerSlider;
-      if (target && typeof target.slickPause === "function") {
-        target.slickPause();
-      }
-    };
-
-    const playSlider = (sliderRef: any) => {
-      if (!sliderRef) return;
-      const target = sliderRef.slickPlay ? sliderRef : sliderRef.innerSlider;
-      if (target && typeof target.slickPlay === "function") {
-        target.slickPlay();
-      }
-    };
-
+    const rows = this.getProcessedRows();
     const handleOpenPopup = (media: TypeMediaInputValue | undefined, rowIndex: number, imageIndex: number) => {
       if (!media) return;
       this.setComponentState("imagePopupOpen", true);
@@ -290,7 +485,7 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupRow", rowIndex);
       this.setComponentState("imagePopupIndex", imageIndex);
       this.setComponentState("imagePopupZoomed", false);
-      pauseSlider(this.sliderRefs[rowIndex]);
+      this.pauseAllRows();
     };
 
     const handleClosePopup = () => {
@@ -299,14 +494,12 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupRow", null);
       this.setComponentState("imagePopupIndex", null);
       this.setComponentState("imagePopupZoomed", false);
-
-      (this.sliderRefs || []).forEach((ref) => playSlider(ref));
+      this.resumeAllRows();
     };
 
     const handlePopupNavigate = (direction: "prev" | "next") => {
       const rowIndex = this.getComponentState("imagePopupRow");
       if (rowIndex == null) return;
-      const rows = getProcessedRows();
       const row = rows[rowIndex];
       if (!row || row.images.length === 0) return;
 
@@ -319,10 +512,9 @@ class ImageGallery11 extends BaseImageGallery {
       this.setComponentState("imagePopupZoomed", false);
     };
 
-    const rows = getProcessedRows();
     const popupRowIndex = this.getComponentState("imagePopupRow");
     const popupImageIndex = this.getComponentState("imagePopupIndex") ?? 0;
-    const popupRow = typeof popupRowIndex === "number" ? rows[popupRowIndex] : undefined;
+    const popupRow = popupRowIndex !== null && popupRowIndex !== undefined ? rows[popupRowIndex] : undefined;
     const popupValue = popupRow?.images?.[popupImageIndex]?.media;
     const isPopupOpen = !!(this.getComponentState("imagePopupOpen") && popupValue);
     const isPopupZoomed = !!this.getComponentState("imagePopupZoomed");
@@ -343,15 +535,13 @@ class ImageGallery11 extends BaseImageGallery {
     const subtitleType = Base.getSectionSubTitleType();
     const alignment = Base.getContentAlignment();
     const baseSubtitleClass = this.decorateCSS("subtitle");
-    const subtitleClassList = [baseSubtitleClass];
+    let subtitleClasses = baseSubtitleClass;
     if (hasBackgroundMedia) {
-      subtitleClassList.push(this.decorateCSS("subtitle-with-bg"));
+      subtitleClasses += ` ${this.decorateCSS("subtitle-with-bg")}`;
       if (subtitleType === "badge") {
-        subtitleClassList.push(this.decorateCSS("subtitle-transparent"));
-        subtitleClassList.push(this.decorateCSS("subtitle-badge-hidden"));
+        subtitleClasses += ` ${this.decorateCSS("subtitle-transparent")} ${this.decorateCSS("subtitle-badge-hidden")}`;
       }
     }
-    const subtitleClasses = subtitleClassList.join(" ");
     const headingClasses = hasBackgroundMedia
       ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
       : this.decorateCSS("heading");
@@ -395,18 +585,17 @@ class ImageGallery11 extends BaseImageGallery {
           >
               {rows.map((row: GalleryRow, rowIndex: number) => {
                 const isRightToLeft = rowIndex % 2 !== 0;
-                let duplicatedImages =
+                const minLength = Math.max(MIN_DUPLICATED_SLIDES, row.images.length);
+                let baseImages =
                   row.images.length === 1
-                    ? Array.from({ length: MIN_DUPLICATED_SLIDES }, () => row.images[0])
+                    ? Array.from({ length: minLength }, () => row.images[0])
                     : [...row.images];
-
-                while (duplicatedImages.length < Math.max(MIN_DUPLICATED_SLIDES, row.images.length)) {
-                  duplicatedImages = [...duplicatedImages, ...row.images];
+                while (baseImages.length < minLength) {
+                  baseImages = [...baseImages, ...row.images];
                 }
+                const duplicatedImages = Array.from({ length: REPEAT_COUNT }, () => baseImages).flat();
+                const rowImages = isRightToLeft ? [...duplicatedImages].reverse() : duplicatedImages;
 
-                const totalDuration = 420000;
-                const slideDuration = 12000;
-                const autoplaySpeed = 0;
                 const slidesToShow = row.images.length;
                 const sliderKey = `slider-${rowIndex}-${slidesToShow}-${isRightToLeft ? "rtl" : "ltr"}`;
                 const rowClassName = isRightToLeft
@@ -416,8 +605,6 @@ class ImageGallery11 extends BaseImageGallery {
                 const rowWrapperClass = `${rowClassName} ${this.decorateCSS("slider-wrapper")}`;
                 const sliderSettings = {
                   ...baseSettings,
-                  speed: slideDuration,
-                  autoplaySpeed,
                   slidesToShow: Math.max(1, slidesToShow),
                   rtl: false,
                 };
@@ -425,19 +612,29 @@ class ImageGallery11 extends BaseImageGallery {
                   <div
                     className={rowWrapperClass}
                     key={`row-${rowIndex}`}
-                    style={{ ["--track-duration" as any]: `${totalDuration}ms` }}
+                    ref={(el) => {
+                      this.rowWrapperRefs[rowIndex] = el;
+                      this.refreshTrackStates();
+                    }}
+                    onDragStart={(event) => event.preventDefault()}
+                    onMouseEnter={() => this.handleRowHover(rowIndex)}
+                    onMouseLeave={() => this.handleRowLeave(rowIndex)}
+                    onPointerDown={(event) => this.handleRowPointerDown(rowIndex, event)}
+                    onPointerMove={(event) => this.handleRowPointerMove(rowIndex, event)}
+                    onPointerUp={(event) => this.handleRowPointerUp(rowIndex, event)}
+                    onPointerCancel={(event) => this.handleRowPointerUp(rowIndex, event)}
                   >
                     <ComposerSlider
-                      ref={(s: any) => (this.sliderRefs[rowIndex] = s)}
+                      ref={(s: any) => {
+                        this.sliderRefs[rowIndex] = s;
+                        this.refreshTrackStates();
+                      }}
                       {...sliderSettings}
                       className={this.decorateCSS("slider")}
                       key={sliderKey}
                     >
-                      {(isRightToLeft ? [...duplicatedImages].reverse() : duplicatedImages).map((imageItem, imageIndex) => {
-                        const originalIndex = (() => {
-                          const foundIndex = row.images.indexOf(imageItem);
-                          return foundIndex >= 0 ? foundIndex : imageIndex % row.images.length;
-                        })();
+                      {rowImages.map((_, imageIndex) => {
+                        const originalIndex = imageIndex % row.images.length;
                         const mediaValue = row.images[originalIndex]?.media;
                         if (!mediaValue) {
                           return null;
@@ -446,6 +643,8 @@ class ImageGallery11 extends BaseImageGallery {
                           <div className={this.decorateCSS("image-card")} key={`row-${rowIndex}-img-${imageIndex}`}>
                             <div
                               className={this.decorateCSS("image-button")}
+                              draggable={false}
+                              onDragStart={(event) => event.preventDefault()}
                               onClick={() => handleOpenPopup(mediaValue, rowIndex, originalIndex)}
                             >
                               <div className={this.decorateCSS("image-media-wrapper")}>
