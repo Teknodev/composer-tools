@@ -106,6 +106,7 @@ import HeroSection35 from "./hero-section/hero-section35/hero-section35";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
+import IntroSection11 from "./intro-section/intro-section11/intro-section11";
 import IntroSection7 from "./intro-section/intro-section7/intro-section7";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
 import FeatureComponent1 from "./feature/feature1/feature1";
@@ -284,6 +285,7 @@ import About6 from "./about/about6/about6";
 import About7 from "./about/about7/about7";
 import About8 from "./about/about8/about8";
 import About9 from "./about/about9/about9";
+import About11 from "./about/about11/about11";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
@@ -411,6 +413,7 @@ function Registerables(composer: ComponentsRegistery) {
     IntroSection1,
     IntroSection2,
     IntroSection4,
+    IntroSection11,
     IntroSection7,
     IntroSection9,
     NavbarComponent1,
@@ -576,6 +579,7 @@ function Registerables(composer: ComponentsRegistery) {
     About7,
     About8,
     About9,
+    About11,
     Portfolio1,
     Portfolio2,
     Portfolio3,
