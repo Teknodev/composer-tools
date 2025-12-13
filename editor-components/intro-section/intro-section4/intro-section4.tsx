@@ -45,16 +45,14 @@ class IntroSection4 extends BaseIntroSection {
             type: "string",
             key: "description",
             displayer: "Description",
-            value:
-                "Objectively innovate empowered manufactured products whereas parallel platforms.",
+            value: "Objectively innovate empowered manufactured products whereas parallel platforms.",
         });
 
         this.addProp({
             type: "string",
             key: "label",
             displayer: "Label",
-            value:
-                "OUR COURSES",
+            value: "OUR COURSES",
         });
 
         this.addProp({
@@ -86,7 +84,7 @@ class IntroSection4 extends BaseIntroSection {
         const hasContent = subtitle || title || description || label || buttonItem.length > 0;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : this.decorateCSS("no-media")}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
                 {hasMedia && (
                     <div className={this.decorateCSS("background-container")}>
                         <Base.Media
@@ -99,28 +97,10 @@ class IntroSection4 extends BaseIntroSection {
                 {hasContent && (
                     <Base.MaxContent className={this.decorateCSS("content")}>
                         <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                            {subtitle && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {this.getPropValue("subtitle")}
-                                </Base.SectionSubTitle>
-                            )}
-                            {title && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </Base.SectionTitle>
-                            )}
-                            {description && (
-                                <Base.SectionDescription
-                                    className={this.decorateCSS("description")}
-                                >
-                                    {this.getPropValue("description")}
-                                </Base.SectionDescription>
-                            )}
-                            {label && (
-                                <Base.H6 className={this.decorateCSS("label")}>
-                                    {this.getPropValue("label")}
-                                </Base.H6>
-                            )}
+                            {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                            {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                            {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                            {label && (<Base.H6 className={this.decorateCSS("label")}>{this.getPropValue("label")}</Base.H6>)}
                             {buttonItem.length > 0 && (
                                 <Base.Row className={this.decorateCSS("button-container")}>
                                     {buttonItem.map(

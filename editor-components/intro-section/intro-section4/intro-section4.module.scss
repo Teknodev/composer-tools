@@ -33,29 +33,27 @@
     }
 
     &.has-media {
-
-        .subtitle {
-            padding: 0 !important;
-            background: transparent !important;
-        }
-
-        .subtitle,
-        .title,
-        .description,
-        .label {
-            color: var(--color-white) !important;
-        }
-    }
-
-    &.no-media {
         .content {
-            min-height: auto !important;
+            min-height: 100vh !important;
+
+            .vertical-content {
+                .subtitle {
+                    padding: 0 !important;
+                    background: transparent !important;
+                }
+
+                .subtitle,
+                .title,
+                .description,
+                .label {
+                    color: var(--color-white) !important;
+                }
+            }
         }
     }
 
     .content {
         position: relative;
-        min-height: 100vh;
         z-index: 2;
         display: flex;
 
