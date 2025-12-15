@@ -368,9 +368,9 @@ class Feature35 extends BaseFeature {
                       )}
                       <Base.VerticalContent className={this.decorateCSS("content")}>
                         {hasTitle && (
-                          <Base.H4 className={this.decorateCSS("feature-title")}>
+                          <Base.H5 className={this.decorateCSS("feature-title")}>
                             {feature.title}
-                          </Base.H4>
+                          </Base.H5>
                         )}
                         {hasDescription && (
                           <Base.P className={this.decorateCSS("feature-description")}>
