@@ -1,51 +1,66 @@
+import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { useState, useEffect } from "react";
+
+const TypeWriter: React.FC<{
+  text: string;
+  className?: string;
+  speed?: number;
+}> = ({ text, className, speed = 80 }) => {
+  const [display, setDisplay] = React.useState("");
+
+  React.useEffect(() => {
+    if (!text) {
+      setDisplay("");
+      return;
+    }
+
+    let i = 0;
+    const id = window.setInterval(() => {
+      i += 1;
+      setDisplay(text.slice(0, i));
+      if (i >= text.length) window.clearInterval(id);
+    }, speed);
+
+    return () => window.clearInterval(id);
+  }, [text, speed]);
+
+  return <Base.H1 className={className}>{display}</Base.H1>;
+};
 
 class IntroSection10 extends BaseIntroSection {
-  constructor(props?: any) {
+  constructor(props?: unknown) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "topText",
+      displayer: "Top Text",
+      value: "I'm Alex Green",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "bottomText",
+      displayer: "Bottom Text",
+      value: "Your Illustrator",
+    });
 
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "I'M ALEX GREEN"
-    });
-
-    this.addProp({
-      type: "string", 
-      key: "title",
-      displayer: "Title",
-      value: "Your"
-    });
-
-    this.addProp({
-      type: "array",
-      key: "rotatingWords",
-      displayer: "Rotating Words",
-      value: [
-        this.createWordObject("word1", "Illustrator"),
-        this.createWordObject("word2", "UI Designer"),
-        this.createWordObject("word3", "Photographer")
-      ]
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description", 
-      value: "Objectively innovate empowered products platforms. Holisticly predominate extensible testing procedures for reliable supply chains."
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "enableTextAnimation",
-      displayer: "Text Animation",
-      value: true,
+      displayer: "Description",
+      value:
+        "Objectively innovate empowered products platforms. Holisticly predominate extensible testing procedures for reliable supply chains.",
     });
 
     this.addProp({
@@ -53,218 +68,112 @@ class IntroSection10 extends BaseIntroSection {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Primary Button", "Contact Me", "", null, null, "Primary"),
-        INPUTS.BUTTON("button", "Secondary Button", "My Portfolio", "", null, null, "Secondary"), 
+        INPUTS.BUTTON("button", "Button", "Contact Me", null, "", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "My Portfolio", null, "", null, "White"),
       ],
     });
-    
-    this.addProp({
-      type: "image",
-      key: "backgroundImage",
-      displayer: "Background Image",
-      value: ""
-    });
-  }
 
-  private createWordObject(key: string, text: string) {
-    return {
-      type: "object",
-      key,
-      displayer: `Word ${key.charAt(key.length-1)}`,
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: text
-        }
-      ]
-    };
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"],
+      },
+    });
   }
 
   static getName(): string {
     return "Intro Section 10";
   }
 
-  TypewriterText = ({ content, text, enableAnimation }: { content: any, text: string, enableAnimation: boolean }) => {
-    if (!enableAnimation || !text) return <>{content}</>;
-
-    const [displayedText, setDisplayedText] = useState("");
-    const [isCompleted, setIsCompleted] = useState(false);
-    
-    useEffect(() => {
-      setIsCompleted(false);
-      setDisplayedText("");
-
-      const TYPE_SPEED = 100;
-      let timeoutId: NodeJS.Timeout;
-      let index = 0;
-
-      const animate = () => {
-        if (index < text.length) {
-          setDisplayedText(text.substring(0, index + 1));
-          index++;
-          timeoutId = setTimeout(animate, TYPE_SPEED);
-        } else {
-          setIsCompleted(true);
-        }
-      };
-      
-      timeoutId = setTimeout(animate, TYPE_SPEED);
-      return () => clearTimeout(timeoutId);
-    }, [text, enableAnimation]);
-
-    return <>{isCompleted ? content : displayedText}</>;
-  };
-
-  RotatingWords = ({ words, enableAnimation }: { words: string[], enableAnimation: boolean }) => {
-    const [currentWordIndex, setCurrentWordIndex] = useState(0);
-    const [currentText, setCurrentText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
-
-    useEffect(() => {
-      if (!enableAnimation || words.length === 0) return;
-
-      const current = words[currentWordIndex];
-      
-      const type = () => {
-        if (isDeleting) {
-          setCurrentText(current.substring(0, currentText.length - 1));
-        } else {
-          setCurrentText(current.substring(0, currentText.length + 1));
-        }
-      };
-
-      let timeout: NodeJS.Timeout;
-
-      if (!isDeleting && currentText === current) {
-        timeout = setTimeout(() => setIsDeleting(true), 2000);
-      } else if (isDeleting && currentText === "") {
-        setIsDeleting(false);
-        setCurrentWordIndex((prev) => (prev + 1) % words.length);
-      } else {
-        timeout = setTimeout(type, isDeleting ? 50 : 100);
-      }
-
-      return () => clearTimeout(timeout);
-    }, [currentText, isDeleting, currentWordIndex, words, enableAnimation]);
-
-    if (!enableAnimation && words.length > 0) {
-      return <span> {words[0]}</span>;
-    }
-
-    return (
-      <span className={this.decorateCSS("rotating-word")}>
-        {currentText}
-        <span className={this.decorateCSS("cursor")}>|</span>
-      </span>
-    );
-  };
-
-  private extractWordsArray(rotatingWords: any): string[] {
-    return Array.isArray(rotatingWords) 
-      ? rotatingWords.map((wordObj: any) => {
-          if (wordObj && typeof wordObj.getPropValue === 'function') {
-            return this.castToString(wordObj.getPropValue("text"));
-          }
-          return "";
-        }).filter(Boolean)
-      : [];
-  }
-
   render() {
+    const topText = this.getPropValue("topText");
     const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title"); 
-    const rotatingWords = this.getPropValue("rotatingWords");
+    const hasSubtitle = !!this.castToString(subtitle);
+    const bottomText = this.getPropValue("bottomText");
     const description = this.getPropValue("description");
-    const enableTextAnimation = this.getPropValue("enableTextAnimation");
-    const buttons = this.castToObject<Array<any>>("buttons") || [];
-    const backgroundImage = this.getPropValue("backgroundImage");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
-    const wordsArray = this.extractWordsArray(rotatingWords);
-    const hasAnyButton = buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
-    const titleString = this.castToString(title);
+    const hoverAnimationArr = (this.getPropValue("hoverAnimation") || []) as string[];
+    const hoverAnimationAttr = hoverAnimationArr.join(" ");
+    const isAnimate1 = hoverAnimationAttr.includes("animate1");
 
-    const containerStyle = this.castToString(backgroundImage) ? {
-      backgroundImage: `url(${backgroundImage})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
-    } : {};
+    const bottomTextStr = String(this.castToString(bottomText || ""));
+
+    const alignment = Base.getContentAlignment();
+    const isLeftContainerExist =
+      !!this.castToString(topText || "") ||
+      hasSubtitle ||
+      !!this.castToString(description || "") ||
+      (Array.isArray(buttons) && buttons.length > 0);
 
     return (
-      <Base.Container className={this.decorateCSS("container")} style={containerStyle}>
-        <div className={this.decorateCSS("overlay")}></div>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("intro-wrapper")}>
-            <div className={this.decorateCSS("left-content")}>
-              {this.castToString(subtitle) && (
-                <Base.SectionTitle className={this.decorateCSS("name")}>{subtitle}</Base.SectionTitle>
-              )}
-              
-              {titleString && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  <this.TypewriterText
-                    content={title}
-                    text={titleString}
-                    enableAnimation={enableTextAnimation}
-                  />
-                  &nbsp;
-                  {wordsArray.length > 0 ? (
-                    <this.RotatingWords 
-                      words={wordsArray} 
-                      enableAnimation={enableTextAnimation} 
-                    />
-                  ) : (
-                    <span>Illustrator</span>
+          <div
+            className={`${this.decorateCSS("content")} ${
+              alignment === "left"
+                ? this.decorateCSS("alignment-left")
+                : this.decorateCSS("alignment-center")
+            }`}
+          >
+            {isLeftContainerExist && (
+              <div className={this.decorateCSS("left-container")} data-animation={hoverAnimationAttr}>
+                <Base.VerticalContent className={this.decorateCSS("vertical-left")}>
+                  {hasSubtitle && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
                   )}
-                </Base.SectionTitle>
-              )}
-            </div>
-            
-            <div className={this.decorateCSS("right-content")}>
-              {this.castToString(description) && (
-                <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
-              )}
+                  <Base.H1 className={this.decorateCSS("top-text")}>{topText}</Base.H1>
 
-              {hasAnyButton && (
-                <div className={this.decorateCSS("action-buttons")}>
-                  {buttons.map((btn: any, idx: number) => this.renderButton(btn, idx))}
+                  {isAnimate1 ? (
+                    <TypeWriter text={bottomTextStr} className={this.decorateCSS("bottom-text")} />
+                  ) : (
+                    <Base.H1 className={this.decorateCSS("bottom-text")}>{bottomTextStr}</Base.H1>
+                  )}
+                </Base.VerticalContent>
+              </div>
+            )}
+
+            <div
+              className={`${this.decorateCSS("right-container")} ${
+                !isLeftContainerExist ? this.decorateCSS("right-container-alone") : ""
+              }`}
+            >
+              <Base.VerticalContent className={this.decorateCSS("vertical-right")}>
+                <div className={this.decorateCSS("description-wrapper")}>
+                  <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
                 </div>
-              )}
+
+                <div className={this.decorateCSS("buttons-wrapper")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const label = String(this.castToString(item.text || ""));
+                    const rawIcon = (item as any).icon;
+                    const iconName =
+                      (rawIcon as any)?.name ?? (rawIcon as any)?.value?.name ?? (rawIcon as string) ?? "";
+
+                    const buttonType = item.type ?? "Primary";
+                    const shouldRender = (label && label.length > 0) || (iconName && iconName.length > 0);
+                    if (!shouldRender) return null;
+
+                    return (
+                      <div key={index} className={this.decorateCSS("button-wrapper")}>
+                        <Base.Button buttonType={buttonType} className={this.decorateCSS("button")}>
+                          {iconName && (
+                            <Base.Media className={this.decorateCSS("icon")} value={{ type: "icon", name: iconName }} />
+                          )}
+                          {label && <Base.P className={this.decorateCSS("button-text")}>{label}</Base.P>}
+                        </Base.Button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Base.VerticalContent>
             </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
-    );
-  }
-
-  private renderButton(btn: any, idx: number) {
-    const btnTextExist = this.castToString(btn.text);
-    const iconName = (btn?.icon && (btn.icon.name || btn.icon)) || null;
-    
-    if (!btnTextExist && !iconName) return null;
-
-    const url = btn.url || "#";
-    const buttonClass = `${this.decorateCSS("button")} ${btn.type === "Primary" ? 
-      this.decorateCSS("primary-button") : this.decorateCSS("secondary-button")}`;
-
-    return (
-      <div key={idx} className={this.decorateCSS("button-wrapper")}>
-        <ComposerLink path={url}>
-          <Base.Button buttonType={btn.type} className={buttonClass}>
-            {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
-            {iconName && (
-              <div className={this.decorateCSS("button-icon-wrapper")}>
-                <Base.Media 
-                  value={{ type: "icon", name: iconName }} 
-                  className={this.decorateCSS("button-icon")} 
-                />
-              </div>
-            )}
-          </Base.Button>
-        </ComposerLink>
-      </div>
     );
   }
 }
