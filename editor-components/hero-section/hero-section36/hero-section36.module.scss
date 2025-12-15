@@ -21,34 +21,80 @@
     }
   }
 
-  .carousel-3d {
-    position: relative;
+  .gallery {
     width: 100%;
-    height: 400px;
-    perspective: 1200px;
-    perspective-origin: center center;
-    overflow: visible;
+    overflow: hidden;
+    display: flex;
+    will-change: transform;
+    position: relative;
+    --v-offset: 40px;
+    --curve-height: 80px;
 
-    .carousel-item {
+    // Curved top edge
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      background: var(--composer-html-background);
+      width: calc(100% + 2 * var(--v-offset));
+      height: var(--curve-height);
       position: absolute;
-      top: 0;
-      left: 50%;
-      width: 260px; // tightened width to reduce gaps
-      height: 400px;
-      transform-style: preserve-3d;
-      transform-origin: center center;
-      backface-visibility: hidden;
-      will-change: transform, opacity;
+      border-radius: 50%;
+      left: calc(-1 * var(--v-offset));
+      right: calc(-1 * var(--v-offset));
+      z-index: 2;
       pointer-events: none;
+    }
 
-      .carousel-media {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: var(--composer-border-radius, 8px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        transition: transform 300ms ease, opacity 300ms ease;
+    &:before {
+      top: calc(-0.65 * var(--curve-height));
+    }
+
+    &:after {
+      bottom: calc(-0.65 * var(--curve-height));
+    }
+
+    .images-track {
+      display: flex;
+      width: fit-content;
+      animation: scroll-left 20s infinite linear;
+      will-change: transform;
+      gap: var(--composer-gap-md);
+
+      .images-group {
+        display: flex;
+        gap: var(--composer-gap-md);
+        will-change: transform;
+
+        .image-child {
+          flex: 0 0 auto;
+          display: flex;
+          margin-right: var(--composer-gap-md);
+          will-change: transform;
+
+          .image {
+            width: 275px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius, 8px);
+            display: block;
+            will-change: transform;
+          }
+        }
+
+        .image-child:last-child {
+          margin-right: 0;
+        }
       }
+    }
+  }
+
+  @keyframes scroll-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
 }
@@ -57,12 +103,25 @@
   .container {
     gap: var(--composer-gap-md);
 
-    .carousel-3d {
-      height: 300px;
+    .gallery {
+      --v-offset: 30px;
+      --curve-height: 60px;
 
-      .carousel-item {
-        width: 200px;
-        height: 300px;
+      .images-track {
+        gap: var(--composer-gap-sm);
+
+        .images-group {
+          gap: var(--composer-gap-sm);
+
+          .image-child {
+            margin-right: var(--composer-gap-sm);
+
+            .image {
+              width: 200px;
+              height: 300px;
+            }
+          }
+        }
       }
     }
   }
@@ -72,12 +131,25 @@
   .container {
     gap: var(--composer-gap-md);
 
-    .carousel-3d {
-      height: 225px;
+    .gallery {
+      --v-offset: 20px;
+      --curve-height: 40px;
 
-      .carousel-item {
-        width: 150px;
-        height: 225px;
+      .images-track {
+        gap: var(--composer-gap-xs);
+
+        .images-group {
+          gap: var(--composer-gap-xs);
+
+          .image-child {
+            margin-right: var(--composer-gap-xs);
+
+            .image {
+              width: 150px;
+              height: 225px;
+            }
+          }
+        }
       }
     }
   }
