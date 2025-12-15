@@ -28,16 +28,6 @@
     .description {
       color: var(--color-white) !important;
     }
-
-    .subtitle {
-      padding: 0 !important;
-      border-radius: 0 !important;
-      background: transparent !important;
-
-      &::before {
-        background: var(--color-white) !important;
-      }
-    }
   }
 
   .max-content {
@@ -58,9 +48,9 @@
     pointer-events: none;
     max-height: 100%;
     object-fit: cover;
+    object-position: center;
 
-    .img,
-    .video {
+    >* {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -97,10 +87,6 @@
       display: flex;
       flex-wrap: wrap;
       gap: var(--composer-gap-md);
-    }
-
-    .button-link {
-      content: "";
     }
   }
 

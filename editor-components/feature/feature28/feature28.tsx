@@ -38,7 +38,7 @@ class Feature28Component extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "About us", "", "", null, "White"),
+        INPUTS.BUTTON("button", "Button", "About us", "", null, null, "White"),
         INPUTS.BUTTON(
           "button",
           "Button",
@@ -86,17 +86,13 @@ class Feature28Component extends BaseFeature {
     const hasBackground = !!image?.url;
     const isVideo = image?.type === "video" && hasBackground;
 
-    const subtitleTypeClass = hasBackground ? "line" : "badge";
-
     const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const validButtons = Array.isArray(buttonsList)
       ? buttonsList.filter((item) => {
           const text = this.castToString(item.text || "");
-          const rawIcon = (item as any)?.icon;
-          const iconName =
-            (rawIcon as any)?.name || (rawIcon as any)?.url || rawIcon || "";
-          return !!text || !!this.castToString(iconName);
+          const iconValue = (item as any)?.icon as TypeMediaInputValue | null;
+          return !!text || !!iconValue;
         })
       : [];
 
@@ -140,9 +136,7 @@ class Feature28Component extends BaseFeature {
               data-alignment={alignment}
             >
               {isSubtitleExist && (
-                <Base.SectionSubTitle
-                  className={`${this.decorateCSS("subtitle")} ${subtitleTypeClass}`}
-                >
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
@@ -154,9 +148,7 @@ class Feature28Component extends BaseFeature {
               )}
 
               {isDescriptionExist && (
-                <Base.SectionDescription
-                  className={this.decorateCSS("description")}
-                >
+                <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
               )}
@@ -165,19 +157,7 @@ class Feature28Component extends BaseFeature {
                 <Base.Row className={this.decorateCSS("button-container")}>
                   {validButtons.map((item, index) => {
                     const text = this.castToString(item.text || "");
-                    const rawIcon = (item as any)?.icon;
-                    const iconName =
-                      (rawIcon as any)?.name ||
-                      (rawIcon as any)?.url ||
-                      rawIcon ||
-                      "";
-                    const hasIcon = !!this.castToString(iconName);
-
-                    const iconValue: TypeMediaInputValue | null = hasIcon
-                      ? typeof rawIcon === "string"
-                        ? { type: "icon", name: rawIcon }
-                        : (rawIcon as TypeMediaInputValue)
-                      : null;
+                    const iconValue = (item as any)?.icon as TypeMediaInputValue | null;
 
                     return (
                       <ComposerLink
