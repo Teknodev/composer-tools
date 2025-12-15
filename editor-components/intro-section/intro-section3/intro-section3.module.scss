@@ -7,7 +7,7 @@
       .subtitle,
       .title,
       .description {
-        content: "";
+        width: 100%;
       }
 
       .button-group-container {
@@ -20,45 +20,40 @@
 
         &.center {
           justify-content: center;
-
-          .subtitle-group {
-            content: "";
-          }
         }
 
         .buttons-wrapper {
           display: flex;
           gap: var(--composer-gap-md);
           flex-wrap: wrap;
+        }
 
-          &:empty {
-            display: none;
-          }
+        .button-link {
+          display: inline-flex;
+        }
 
-          .button {
+        .button {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .button-image {
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
-            gap: var(--composer-gap-sm);
+            justify-content: center;
+            flex-shrink: 0;
+            object-fit: contain;
+            fill: currentColor;
+          }
 
-            .button-image {
-              width: 20px;
-              height: 20px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              flex-shrink: 0;
-              object-fit: contain;
-              fill: currentColor;
-            }
-
-            .button-text {
-              content: "";
-            }
+          .button-text {
+            max-width: 100%;
           }
         }
 
         .subtitle-group {
-          content: "";
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -76,7 +71,7 @@
         }
       }
 
-      .image {
+      .image-wrapper {
         position: relative;
         width: 100%;
         height: 700px;
@@ -99,7 +94,7 @@
           }
         }
 
-        .image {
+        .image-media {
           width: 100%;
           height: 100%;
           display: block;
@@ -117,7 +112,6 @@
         .button-group-container {
           justify-content: flex-start;
           gap: var(--composer-gap-md);
-          
 
           &.center {
             justify-content: center;
@@ -135,22 +129,23 @@
             }
           }
 
-          &.center .subtitle-group {
-            align-items: center;
-            text-align: center !important;
-
-            .subtitle1,
-            .subtitle2 {
+          &.center {
+            .subtitle-group {
+              align-items: center;
               text-align: center !important;
+
+              .subtitle1,
+              .subtitle2 {
+                text-align: center !important;
+              }
             }
           }
         }
 
-        .image {
+        .image-wrapper {
           width: 100%;
           height: 300px;
-          gap: var(--composer-gap-md);
-          margin-top:var(--composer-gap-md);
+          margin-top: var(--composer-gap-md);
         }
       }
     }

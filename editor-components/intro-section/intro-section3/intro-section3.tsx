@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  BaseIntroSection,
-  TypeUsableComponentProps,
-  TypeMediaInputValue,
-} from "../../EditorComponent";
+import { BaseIntroSection, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./intro-section3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -13,12 +9,7 @@ class IntroSection3 extends BaseIntroSection {
   constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -27,12 +18,7 @@ class IntroSection3 extends BaseIntroSection {
       value: "Everything You Need to Run Your Websites",
     });
 
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "description", displayer: "Description", value: "" });
 
     this.addProp({
       type: "string",
@@ -52,37 +38,20 @@ class IntroSection3 extends BaseIntroSection {
       type: "media",
       key: "image",
       displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
+      additionalParams: { availableTypes: ["image", "video"] },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691c5ca53596a1002b2a1afc?alt=media",
       } as TypeMediaInputValue,
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    const buttonProp = INPUTS.BUTTON(
-      "button",
-      "Button 1",
-      "Start Now",
-      "",
-      "",
-      null,
-      "Primary"
-    );
+    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: false });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [buttonProp],
+      value: [INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary")],
     });
   }
 
@@ -90,20 +59,18 @@ class IntroSection3 extends BaseIntroSection {
     return "Intro Section 3";
   }
 
+  private hasMediaValue(value: TypeMediaInputValue | null | undefined): boolean {
+    if (!value) return false;
+    const maybeName = (value as unknown as { name?: string }).name;
+    return !!(value.url || maybeName);
+  }
+
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-
     const subtitle1 = this.getPropValue("subtitle1");
     const subtitle2 = this.getPropValue("subtitle2");
-
-    const image = this.getPropValue("image") as TypeMediaInputValue | null;
-    const imageUrl = image?.url;
-    const overlay = this.getPropValue("overlay");
-
-    const buttonsProp = this.getProp("buttons");
-    const buttonsList = (buttonsProp?.value || []) as TypeUsableComponentProps[];
 
     const subtitleText = this.castToString(subtitle);
     const titleText = this.castToString(title);
@@ -112,15 +79,31 @@ class IntroSection3 extends BaseIntroSection {
     const subtitle2Text = this.castToString(subtitle2);
 
     const alignment = Base.getContentAlignment();
+    const isCenter = alignment === "center";
+
+    const image = this.getPropValue("image") as TypeMediaInputValue | null;
+    const hasImage = this.hasMediaValue(image);
+    const overlay = this.getPropValue("overlay");
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const validButtons = buttons.filter((btn) => {
+      const text = this.castToString(btn?.text || "");
+      const media = btn?.buttonImage as TypeMediaInputValue | null | undefined;
+      return !!text || this.hasMediaValue(media);
+    });
+
+    const hasSubtitleGroup = !!subtitle1Text || !!subtitle2Text;
+
+    const buttonGroupClassName = `${this.decorateCSS("button-group-container")} ${
+      isCenter ? this.decorateCSS("center") : ""
+    }`.trim();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             {subtitleText && (
-              <Base.SectionSubTitle
-                className={this.decorateCSS("subtitle")}
-              >
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {subtitle}
               </Base.SectionSubTitle>
             )}
@@ -132,93 +115,78 @@ class IntroSection3 extends BaseIntroSection {
             )}
 
             {descriptionText && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}
               </Base.SectionDescription>
             )}
 
-            <div
-              className={`${this.decorateCSS("button-group-container")} ${
-                alignment === "center" ? this.decorateCSS("center") : ""
-              }`}
-            >
-              <div className={this.decorateCSS("buttons-wrapper")}>
-                {buttonsList &&
-                  buttonsList.map(
-                    (buttonItem: TypeUsableComponentProps, index: number) => {
-                      if (!buttonItem.getPropValue) return null;
+            {(validButtons.length > 0 || hasSubtitleGroup) && (
+              <div className={buttonGroupClassName}>
+                {validButtons.length > 0 && (
+                  <div className={this.decorateCSS("buttons-wrapper")}>
+                    {validButtons.map((btn, index) => {
+                      const url = btn.url || "#";
+                      const buttonType = (btn.type as string) || "Primary";
+                      const media = btn.buttonImage as TypeMediaInputValue | null | undefined;
+                      const hasButtonMedia = this.hasMediaValue(media);
 
-                      const buttonTextElement = buttonItem.getPropValue("text");
-                      const url = buttonItem.getPropValue("url", {
-                        as_string: true,
-                      });
-                      const buttonType = buttonItem.getPropValue("type", {
-                        as_string: true,
-                      });
-                      const buttonImage =
-                        buttonItem.getPropValue(
-                          "buttonImage"
-                        ) as TypeMediaInputValue | null;
-
-                      const hasButtonText =
-                        !!this.castToString(buttonTextElement);
-                      const hasButtonImage = !!buttonImage?.url;
-
-                      if (!hasButtonText && !hasButtonImage) return null;
+                      const hasButtonText = !!this.castToString(btn.text || "");
 
                       return (
-                        <ComposerLink key={index} path={url || "#"}>
+                        <ComposerLink
+                          key={`btn-${index}`}
+                          path={url}
+                          className={this.decorateCSS("button-link")}
+                        >
                           <Base.Button
-                            buttonType={buttonType || "Primary"}
+                            buttonType={buttonType}
                             className={this.decorateCSS("button")}
                           >
-                            {hasButtonImage && (
+                            {hasButtonMedia && (
                               <Base.Media
-                                value={buttonImage}
+                                value={media as TypeMediaInputValue}
                                 className={this.decorateCSS("button-image")}
                               />
                             )}
+
                             {hasButtonText && (
-                              <Base.P
-                                className={this.decorateCSS("button-text")}
-                              >
-                                {buttonTextElement}
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {btn.text}
                               </Base.P>
                             )}
                           </Base.Button>
                         </ComposerLink>
                       );
-                    }
-                  )}
+                    })}
+                  </div>
+                )}
+
+                {hasSubtitleGroup && (
+                  <div className={this.decorateCSS("subtitle-group")}>
+                    {subtitle1Text && (
+                      <Base.P className={this.decorateCSS("subtitle1")}>
+                        {subtitle1}
+                      </Base.P>
+                    )}
+                    {subtitle2Text && (
+                      <Base.P className={this.decorateCSS("subtitle2")}>
+                        {subtitle2}
+                      </Base.P>
+                    )}
+                  </div>
+                )}
               </div>
+            )}
 
-              {(subtitle1Text || subtitle2Text) && (
-                <div className={this.decorateCSS("subtitle-group")}>
-                  {subtitle1Text && (
-                    <Base.P className={this.decorateCSS("subtitle1")}>
-                      {subtitle1}
-                    </Base.P>
-                  )}
-                  {subtitle2Text && (
-                    <Base.P className={this.decorateCSS("subtitle2")}>
-                      {subtitle2}
-                    </Base.P>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {imageUrl && (
+            {hasImage && (
               <div
-                className={`${this.decorateCSS("image")} ${
+                className={`${this.decorateCSS("image-wrapper")} ${
                   overlay ? this.decorateCSS("overlay") : ""
-                }`}
+                }`.trim()}
               >
                 <Base.Media
                   value={image as TypeMediaInputValue}
-                  className={this.decorateCSS("image")}
+                  className={this.decorateCSS("image-media")}
                 />
               </div>
             )}
