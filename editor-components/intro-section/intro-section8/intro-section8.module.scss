@@ -38,34 +38,12 @@
         text-align: center;
       }
 
-      .subtitle {
-        text-align: center !important;
-        transform: translateX(0) !important;
-
-        &::before,
-        &::after {
+      .subtitle-center {
+        &:before {
           display: none !important;
-          content: none !important;
-          width: 0 !important;
-          height: 0 !important;
         }
 
-        &.badge {
-          background: color-mix(in srgb,
-              var(--composer-primary-color),
-              var(--composer-html-background) 80%) !important;
-          padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
-          border-radius: var(--composer-border-radius-xl) !important;
-          width: fit-content !important;
-        }
-
-        &.with-background {
-          color: var(--composer-font-color-secondary) !important;
-          background: transparent !important;
-          padding: 0 !important;
-          border-radius: 0 !important;
-          width: 100% !important;
-        }
+        transform: none !important;
       }
 
       .title,
@@ -90,7 +68,6 @@
           align-items: center;
           gap: var(--composer-gap-xs);
           max-width: 100%;
-          white-space: normal;
           text-align: center;
 
           .media-button-icon {
@@ -100,8 +77,8 @@
             align-items: center;
             justify-content: center;
 
-            .img,
-            .svg {
+            svg,
+            img {
               width: 100%;
               height: 100%;
               object-fit: contain;
@@ -109,22 +86,7 @@
           }
 
           .media-button-text {
-            white-space: normal;
-            word-break: break-word;
             text-align: center;
-          }
-        }
-
-        .media-button-image {
-          width: auto;
-          max-width: 100%;
-          height: auto;
-          display: block;
-
-          .img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
           }
         }
       }
@@ -148,14 +110,6 @@
           height: 100%;
           display: block;
           object-fit: cover;
-
-          .img,
-          .video {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-          }
         }
 
         .thumbnail-container {
@@ -188,6 +142,7 @@
           }
 
           &::after {
+            content: "";
             position: absolute;
             inset: 0;
             z-index: 2;
@@ -210,8 +165,8 @@
           padding: var(--composer-gap-md);
 
           .icon {
-            width: 35px;
-            height: 35px;
+            width: 36px;
+            height: 36px;
             color: currentColor;
             fill: currentColor;
             display: flex;
@@ -219,8 +174,7 @@
             align-items: center;
 
             svg,
-            .svg,
-            .img {
+            img {
               width: 100%;
               height: 100%;
               object-fit: contain;

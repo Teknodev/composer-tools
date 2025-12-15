@@ -420,6 +420,7 @@ function Registerables(composer: ComponentsRegistery) {
     IntroSection4,
     IntroSection6,
     IntroSection7,
+    IntroSection8,
     IntroSection9,
     IntroSection11,
     NavbarComponent1,
