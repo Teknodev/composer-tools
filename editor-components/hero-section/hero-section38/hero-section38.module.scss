@@ -328,7 +328,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      padding-top: var(--composer-gap-md);
+      padding-top: calc(1.5 * var(--composer-gap-md));
 
       .slider-wrapper {
         .slider {
@@ -475,7 +475,7 @@
     padding: var(--composer-gap-xl) 0px !important;
 
     .max-content {
-      padding-top: var(--composer-gap-md);
+      padding-top: calc(1.5 * var(--composer-gap-md));
 
       .slider-wrapper {
         padding: 0;
