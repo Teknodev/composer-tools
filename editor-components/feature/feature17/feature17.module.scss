@@ -57,7 +57,7 @@
           min-width: fit-content;
           color: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
-          
+
           white-space: nowrap;
           position: relative;
           display: inline-flex;
@@ -184,6 +184,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
       .tabs {
         .tab {
           flex-direction: row;
@@ -191,15 +192,6 @@
           .image-container {
             .image {
               aspect-ratio: 1;
-            }
-          }
-
-          /* Reduce the vertical gap inside .content for tablet and set description bottom margin */
-          .content {
-            gap: var(--composer-gap-sm);
-
-            .content-description {
-              margin-bottom: var(--composer-gap-sm);
             }
           }
         }
