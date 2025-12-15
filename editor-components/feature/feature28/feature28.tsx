@@ -136,7 +136,11 @@ class Feature28Component extends BaseFeature {
               data-alignment={alignment}
             >
               {isSubtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle
+                  className={`${this.decorateCSS("subtitle")} ${
+                    hasBackground ? "line" : "badge"
+                  } ${hasBackground ? this.decorateCSS("subtitle-no-badge") : ""}`}
+                >
                   {subtitle}
                 </Base.SectionSubTitle>
               )}

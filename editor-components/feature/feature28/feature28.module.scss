@@ -59,6 +59,15 @@
     }
   }
 
+  .subtitle-no-badge {
+    &.badge {
+      padding: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      text-decoration: none !important;
+    }
+  }
+
   .content {
     width: 100%;
     display: flex;
