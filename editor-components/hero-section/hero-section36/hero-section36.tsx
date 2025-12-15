@@ -7,6 +7,10 @@ type ImageItem = {
 };
 
 class HeroSection36 extends BaseHeroSection {
+  private animationRef: number | null = null;
+  private translateX: number = 0;
+  private containerRef: HTMLDivElement | null = null;
+
   constructor(props?: unknown) {
     super(props, styles);
 
@@ -120,23 +124,49 @@ class HeroSection36 extends BaseHeroSection {
     return "Hero Section 36";
   }
 
+  componentDidMount() {
+    if (this.containerRef) {
+      this.forceUpdate();
+    }
+    // this.startAnimation();
+  }
+
+  componentWillUnmount() {
+    if (this.animationRef) {
+      cancelAnimationFrame(this.animationRef);
+    }
+  }
+
+  private startAnimation = () => {
+    const animate = () => {
+      this.translateX -= 1; // Move slides to the left
+      this.forceUpdate(); // Trigger re-render for animation
+      this.animationRef = requestAnimationFrame(animate);
+    };
+    this.animationRef = requestAnimationFrame(animate);
+  };
+
   render() {
     const title = this.castToString(this.getPropValue("title"));
     const originalImageArray =
       this.castToObject<ImageItem[]>("image-items") || [];
 
-    let images: ImageItem[] = [];
+    const images: ImageItem[] = [];
 
     if (originalImageArray.length > 0) {
-      for (let x = 0; x < Math.round(30 / originalImageArray.length); x++) {
+      // Create enough images for seamless loop
+      for (let x = 0; x < Math.ceil(15 / originalImageArray.length); x++) {
         images.push(...originalImageArray);
       }
     }
-    images = [...images, ...images];
-
-    // const validImages = images.filter(
-    //   (img) => img.image && (img.image as any).url
-    // );
+    
+    const imageWidth = 300; // Width of each image + gap
+    const totalWidth = images.length * imageWidth;
+    
+    // Reset position for seamless loop
+    if (Math.abs(this.translateX) >= totalWidth / 2) {
+      this.translateX = 0;
+    }
 
     return (
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
@@ -149,38 +179,85 @@ class HeroSection36 extends BaseHeroSection {
         )}
 
         {images.length > 0 && (
-          <div className={this.decorateCSS("gallery")}>
-            <div
-              className={this.decorateCSS("images-track")}
-              style={{ animationDuration: `${images.length * 4}s` }}
-            >
-              <div className={this.decorateCSS("images-group")}>
-                {images.map((img, idx) => (
-                  <div className={this.decorateCSS("image-child")} key={idx}>
-                    <Base.Media
-                      value={img.image}
-                      className={this.decorateCSS("image")}
-                    />
-                  </div>
-                ))}
-              </div>
+          <div 
+            className={this.decorateCSS("gallery")}
+            ref={(ref) => { this.containerRef = ref; }}
+          >
+            <div className={this.decorateCSS("panoramic-track")}>
+              {images.map((img, idx) => {
+                // Calculate horizontal position
+                const basePosition = idx * imageWidth + this.translateX;
+                const containerWidth = this.containerRef?.offsetWidth || 1920;
+                const centerX = containerWidth / 2;
+                
+                // Normalize position relative to center
+                const relativePosition = basePosition - centerX + imageWidth / 2;
+                const normalizedPos = relativePosition / (containerWidth / 2);
+                
+                // Panoramic curve calculations
+                const rotateY = normalizedPos * -30; // Max 30 degrees rotation at edges
+                // const translateZ = Math.abs(normalizedPos) * 20; // Push back at edges
+                const scale = 1 + Math.abs(normalizedPos) * 0.15; 
+                const opacity = 1 - Math.abs(normalizedPos) * 0.5; // Fade at edges
 
-              <div
-                className={this.decorateCSS("images-group")}
-                aria-hidden="true"
-              >
-                {images.map((img, idx) => (
+                return (
+                  <div
+                    className={this.decorateCSS("image-child")}
+                    key={idx}
+                    style={{
+                      transform: `translateX(${basePosition}px)`,
+                      opacity: Math.max(0.3, opacity),
+                    }}
+                  >
+                    <div
+                      style={{
+                        transform: `perspective(1000px) rotateY(${rotateY}deg)  scale(${Math.max(0.6, scale)})`,
+                      }}
+                    >
+                      <Base.Media
+                        value={img.image}
+                        className={this.decorateCSS("image")}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+              {/* Duplicate set for seamless loop */}
+              {images.map((img, idx) => {
+                const basePosition = (idx + images.length) * imageWidth + this.translateX;
+                const containerWidth = this.containerRef?.offsetWidth || 1920;
+                const centerX = containerWidth / 2;
+                
+                const relativePosition = basePosition - centerX + imageWidth / 2;
+                const normalizedPos = relativePosition / (containerWidth / 2);
+                
+                const rotateY = normalizedPos * -30;
+                // const translateZ = Math.abs(normalizedPos) * 20;
+                const scale = 1 + Math.abs(normalizedPos) * 0.15; 
+                const opacity = 1 - Math.abs(normalizedPos) * 0.5;
+                
+                return (
                   <div
                     className={this.decorateCSS("image-child")}
                     key={`dup-${idx}`}
+                    style={{
+                      transform: `translateX(${basePosition}px)`,
+                      opacity: Math.max(0.3, opacity),
+                    }}
                   >
-                    <Base.Media
-                      value={img.image}
-                      className={this.decorateCSS("image")}
-                    />
+                    <div
+                      style={{
+                        transform: `perspective(1000px) rotateY(${rotateY}deg) `,
+                      }}
+                    >
+                      <Base.Media
+                        value={img.image}
+                        className={this.decorateCSS("image")}
+                      />
+                    </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         )}
