@@ -45,10 +45,6 @@
       &::before,
       &::after {
         display: none !important;
-        content: "";
-        width: 0;
-        height: 0;
-        border: none;
       }
     }
 
@@ -150,10 +146,6 @@
         &::before,
         &::after {
           display: none !important;
-          content: "";
-          width: 0;
-          height: 0;
-          border: none;
         }
       }
 
@@ -173,6 +165,18 @@
         margin-top: 0;
         position: relative;
         z-index: 2;
+
+        .button-link {
+          display: inline-flex;
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .button-text {
+          display: inline-flex;
+          align-items: center;
+        }
+
 
         .button {
           transition: transform 0.3s ease;
@@ -243,6 +247,27 @@
           .button {
             width: auto;
             justify-content: center;
+
+            &.button {
+              font-size: 2rem !important;
+            }
+
+            .button-text {
+              font-size: 2rem !important;
+              line-height: 1.1 !important;
+            }
+
+            .icon {
+              width: 2rem !important;
+              height: 2rem !important;
+              font-size: 2rem !important;
+            }
+
+            .icon .svg,
+            .icon svg {
+              width: 100% !important;
+              height: 100% !important;
+            }
           }
         }
       }
