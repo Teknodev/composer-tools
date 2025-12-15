@@ -22,25 +22,23 @@
     align-items: center;
     text-align: center;
 
-      .content {
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: var(--composer-gap-md);
+
+      .text-content {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        gap: var(--composer-gap-md);
+      }
 
-        .text-content {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-        }
-
-        .media-buttons {
-          margin-top: calc(var(--composer-gap-md) * -1);
-        }      .subtitle {
+      .subtitle {
         text-align: center !important;
         transform: translateX(0) !important;
 
@@ -259,15 +257,6 @@
 
         .media-wrapper {
           height: auto;
-          
-          .play-icon-wrapper {
-            padding: var(--composer-gap-sm);
-            
-            .icon {
-              width: 20px;
-              height: 20px;
-            }
-          }
         }
       }
     }
