@@ -257,6 +257,15 @@
 
         .media-wrapper {
           height: auto;
+          
+          .play-icon-wrapper {
+            padding: var(--composer-gap-sm);
+            
+            .icon {
+              width: 20px;
+              height: 20px;
+            }
+          }
         }
       }
     }
