@@ -129,6 +129,26 @@
                 }
             }
         }
+
+        &:not(:has(.image-side)) .content-side {
+            .features-grid {
+                align-self: flex-start !important;
+                width: 100%;
+
+                .feature-item {
+                    align-items: flex-start !important;
+                    text-align: left !important;
+
+                    .feature-title {
+                        text-align: left !important;
+                    }
+
+                    .feature-text {
+                        text-align: left !important;
+                    }
+                }
+            }
+        }
     }
 }
 
