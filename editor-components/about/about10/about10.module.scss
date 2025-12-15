@@ -81,7 +81,7 @@
       border-radius: var(--composer-border-radius-sm);
       overflow: hidden;
       margin-bottom: var(--composer-gap-lg);
-      margin-top: var(--composer-gap-md);
+      margin-top: var(--composer-gap-lg);
 
 
 
@@ -155,7 +155,6 @@
     }
 
     .features-section {
-      padding-top: var(--composer-gap-sm);
       width: 100%;
 
       .features-grid {
@@ -218,10 +217,10 @@
       .image-section {
         height: 260px;
         margin-top: var(--composer-gap-md);
+        margin-bottom: var(--composer-gap-md);
       }
 
       .features-section {
-        padding-top: var(--composer-gap-md);
         .features-grid {
           gap: var(--composer-gap-sm);
 
