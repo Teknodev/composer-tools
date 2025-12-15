@@ -507,6 +507,7 @@
 
             .image-wrapper {
               height: 250px;
+              margin-bottom: var(--composer-gap-md);
 
               .image {
                 min-height: 280px;
@@ -537,7 +538,7 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-sm);
-          margin-top: var(--composer-gap-xl) !important;
+          margin-top: var(--composer-gap-md) !important;
 
           .arrow-button {
             border: none !important;
