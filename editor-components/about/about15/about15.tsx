@@ -139,17 +139,16 @@ class About15 extends BaseAbout {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const images = this.castToObject<ImageItemType[]>("images") || [];
-        const subtitleType = Base.getSectionSubTitleType();
         const hasImages = images.length > 0;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!cardBackground ? this.decorateCSS("content-full-width") : ""}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${cardBackground ? this.decorateCSS("has-background") : ""}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
                             <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!hasImages ? this.decorateCSS("full-width") : ""}`}>
-                                {subtitleExist && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${subtitleType === 'badge' ? this.decorateCSS("is-badge") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                                {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                 {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>)}
                                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
                                 {buttons.length > 0 && (
@@ -158,7 +157,6 @@ class About15 extends BaseAbout {
                                             const buttonText = this.castToString(item.text || "");
                                             const buttonUrl = item.url || "#";
                                             if (!buttonText && !item.icon) return null;
-
                                             return (
                                                 <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                     <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
@@ -182,17 +180,9 @@ class About15 extends BaseAbout {
                                 <div className={this.decorateCSS("images-wrapper")}>
                                     {images.map((item: ImageItemType, index: number) => {
                                         const imageSource = item.image;
-
                                         if (!imageSource || !imageSource.url) return null;
-
                                         return (
-                                            <div
-                                                key={`img-${index}`}
-                                                className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
-                                                    ? this.decorateCSS("overlay")
-                                                    : ""
-                                                    }`}
-                                            >
+                                            <div key={`img-${index}`} className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`} >
                                                 <Base.Media
                                                     value={imageSource}
                                                     className={this.decorateCSS("image")}
