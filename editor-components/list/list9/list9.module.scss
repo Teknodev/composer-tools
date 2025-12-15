@@ -357,10 +357,15 @@
     padding-top: 50px !important;
     padding-bottom: 50px !important;
 
+    .max-content {
+      padding: 0 var(--composer-gap-md) !important;
+    }
+
     .grid-container {
       .card {
         .card-content {
           bottom: -90px;
+          padding: var(--composer-gap-md) !important;
           .card-description {
             opacity: 0;
           }

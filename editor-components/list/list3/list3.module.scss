@@ -25,10 +25,11 @@
           }
 
           .card-number {
-            left: 23%;
+            text-align: left !important;
+            left: var(--composer-gap-xl);
             bottom: calc(var(--composer-gap-xl) * (-0.8));
-            transform: translateX(-50%) scale(1.15);
-            transform-origin: center bottom;
+            transform:scale(1.15);
+            transform-origin: left bottom;
           }
         }
       }
@@ -37,7 +38,7 @@
 
         .card {
           .card-number {
-            left: var(--composer-gap-xl);
+            left: var(--composer-gap-xl) !important;
             bottom: calc(var(--composer-gap-xl) * (-0.8));
             transform: scale(1.15);
             transform-origin: left bottom;
@@ -372,7 +373,7 @@
         &.alignment-left { text-align: left; }
         &.alignment-center { text-align: center; }
         .intro-card {
-          padding: var(--composer-gap-lg);
+          padding: var(--composer-gap-md);
           align-items: flex-start;
           text-align: left;
           .intro-content {
@@ -396,7 +397,7 @@
         }
 
         .card {
-          padding: var(--composer-gap-lg) var(--composer-gap-sm);
+          padding: var(--composer-gap-lg) var(--composer-gap-md) !important;
           .card-content {
             gap: var(--composer-gap-lg);
             align-items: flex-start;
@@ -436,7 +437,7 @@
         &.alignment-left {
           .card {
             .card-number {
-              left: var(--composer-gap-sm);
+              left: var(--composer-gap-md) !important;
               bottom: calc(var(--composer-gap-lg) * -1.2);
               transform: scale(2.7);
               transform-origin: left bottom;

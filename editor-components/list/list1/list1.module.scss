@@ -51,7 +51,7 @@
             border: none;
             transition: var(--composer-transition-duration-normal);
             content-visibility: hidden;
-            background-color: var(--composer-font-color-primary);
+            background-color: var(--composer-primary-color);
             width: var(--composer-gap-sm);
             height: var(--composer-gap-sm);
             border-radius: var(--composer-border-radius-xl);
@@ -85,7 +85,7 @@
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
-        border-radius: var(--composer-border-radius-sm);
+        border-radius: var(--composer-border-radius-md);
         gap: var(--composer-gap-md);
         height: 100%;
         min-height: 550px;
