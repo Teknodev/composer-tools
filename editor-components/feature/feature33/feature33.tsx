@@ -19,12 +19,7 @@ class Feature33 extends BaseFeature {
   constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -33,20 +28,13 @@ class Feature33 extends BaseFeature {
       value: "A better way to keep your skills",
     });
 
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "description", displayer: "Description", value: "" });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
     this.addProp({
@@ -73,26 +61,11 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaChess",
-              },
+              additionalParams: { availableTypes: ["icon"] },
+              value: { type: "icon", name: "FaChess" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Competitive rates",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: cardDescription,
-            },
+            { type: "string", key: "title", displayer: "Title", value: "Competitive rates" },
+            { type: "string", key: "description", displayer: "Description", value: cardDescription },
           ],
         },
         {
@@ -104,26 +77,11 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaCoins",
-              },
+              additionalParams: { availableTypes: ["icon"] },
+              value: { type: "icon", name: "FaCoins" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "No hidden fees",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: cardDescription,
-            },
+            { type: "string", key: "title", displayer: "Title", value: "No hidden fees" },
+            { type: "string", key: "description", displayer: "Description", value: cardDescription },
           ],
         },
         {
@@ -135,26 +93,11 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaTachometerAlt",
-              },
+              additionalParams: { availableTypes: ["icon"] },
+              value: { type: "icon", name: "FaTachometerAlt" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Stable performance",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: cardDescription,
-            },
+            { type: "string", key: "title", displayer: "Title", value: "Stable performance" },
+            { type: "string", key: "description", displayer: "Description", value: cardDescription },
           ],
         },
         {
@@ -166,26 +109,11 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaBolt",
-              },
+              additionalParams: { availableTypes: ["icon"] },
+              value: { type: "icon", name: "FaBolt" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Instant transfers",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: cardDescription,
-            },
+            { type: "string", key: "title", displayer: "Title", value: "Instant transfers" },
+            { type: "string", key: "description", displayer: "Description", value: cardDescription },
           ],
         },
       ],
@@ -196,9 +124,7 @@ class Feature33 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 2,
-      additionalParams: {
-        maxElementCount: 5,
-      },
+      additionalParams: { maxElementCount: 5 },
     });
   }
 
@@ -209,9 +135,11 @@ class Feature33 extends BaseFeature {
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+
     const iconBackground = this.getPropValue("iconBackground");
     const itemCount = this.getPropValue("itemCount");
     const alignment = Base.getContentAlignment();
@@ -221,38 +149,35 @@ class Feature33 extends BaseFeature {
     const hasDescription = !!this.castToString(description);
 
     const hasButtons =
-      Array.isArray(buttons) &&
-      buttons.some((btn) => this.castToString(btn.text));
+      Array.isArray(buttons) && buttons.some((btn) => this.castToString(btn?.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
+          <div
+            className={`${this.decorateCSS("wrapper")} ${
+              hasButtons ? this.decorateCSS("has-buttons") : ""
+            }`.trim()}
+          >
             {(hasSubtitle || hasTitle || hasDescription || hasButtons) && (
               <Base.VerticalContent
                 className={this.decorateCSS("left")}
                 data-alignment={alignment}
               >
                 {hasSubtitle && (
-                  <Base.SectionSubTitle
-                    className={this.decorateCSS("section-subtitle")}
-                  >
+                  <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
 
                 {hasTitle && (
-                  <Base.SectionTitle
-                    className={this.decorateCSS("section-title")}
-                  >
+                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
 
                 {hasDescription && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("section-description")}
-                  >
+                  <Base.SectionDescription className={this.decorateCSS("section-description")}>
                     {description}
                   </Base.SectionDescription>
                 )}
@@ -260,23 +185,23 @@ class Feature33 extends BaseFeature {
                 {hasButtons && (
                   <div className={this.decorateCSS("buttons")}>
                     {buttons.map((buttonItem, index) => {
-                      const text = buttonItem.text;
-                      const url = buttonItem.url;
-                      const type = buttonItem.type;
+                      const text = buttonItem?.text;
+                      const url = buttonItem?.url;
+                      const type = buttonItem?.type;
 
-                      if (!this.castToString(text)) {
-                        return null;
-                      }
+                      if (!this.castToString(text)) return null;
 
                       return (
-                        <ComposerLink key={index} path={url || ""}>
+                        <ComposerLink
+                          key={`btn-${index}`}
+                          path={url || ""}
+                          className={this.decorateCSS("button-link")}
+                        >
                           <Base.Button
                             buttonType={type}
                             className={this.decorateCSS("button")}
                           >
-                            <Base.P
-                              className={this.decorateCSS("button-text")}
-                            >
+                            <Base.P className={this.decorateCSS("button-text")}>
                               {text}
                             </Base.P>
                           </Base.Button>
@@ -288,31 +213,22 @@ class Feature33 extends BaseFeature {
               </Base.VerticalContent>
             )}
 
-            {cards?.length > 0 && (
+            {Array.isArray(cards) && cards.length > 0 && (
               <Base.ListGrid
                 className={this.decorateCSS("right")}
-                gridCount={{
-                  pc: itemCount,
-                  tablet: itemCount,
-                  phone: 2,
-                }}
+                gridCount={{ pc: itemCount, tablet: itemCount, phone: 2 }}
               >
                 {cards.map((card, index) => {
-                  const titleExist = !!this.castToString(card.title);
-                  const descExist = !!this.castToString(card.description);
+                  const titleExist = !!this.castToString(card?.title);
+                  const descExist = !!this.castToString(card?.description);
 
-                  if (!titleExist && !descExist && !card.icon) return null;
+                  if (!titleExist && !descExist && !card?.icon) return null;
 
                   return (
-                    <div
-                      key={index}
-                      className={this.decorateCSS("card-container")}
-                    >
+                    <div key={`card-${index}`} className={this.decorateCSS("card-container")}>
                       {card.icon && (
                         <div
-                          className={`${this.decorateCSS(
-                            "card-icon-wrapper"
-                          )} ${
+                          className={`${this.decorateCSS("card-icon-wrapper")} ${
                             iconBackground
                               ? this.decorateCSS("with-bg")
                               : this.decorateCSS("no-bg")
@@ -324,18 +240,16 @@ class Feature33 extends BaseFeature {
                           />
                         </div>
                       )}
-                      <Base.VerticalContent
-                        className={this.decorateCSS("card-content")}
-                      >
+
+                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {titleExist && (
                           <Base.H6 className={this.decorateCSS("card-title")}>
                             {card.title}
                           </Base.H6>
                         )}
+
                         {descExist && (
-                          <Base.P
-                            className={this.decorateCSS("card-description")}
-                          >
+                          <Base.P className={this.decorateCSS("card-description")}>
                             {card.description}
                           </Base.P>
                         )}

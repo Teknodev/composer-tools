@@ -35,6 +35,10 @@
                     width: 100%;
                 }
 
+                .button-link {
+                    display: inline-flex;
+                }
+
                 .button {
                     flex: 1 1 auto;
                     max-width: fit-content;
@@ -114,11 +118,26 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+/* Tablet için extra center override YOK:
+   alignment center olsa bile tablet, desktop gibi left kalır. */
+
+@container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .wrapper {
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+
+                /* Mobilde buton varsa left-right (items) arası boşluk artsın */
+                &.has-buttons {
+                    gap: var(--composer-gap-md);
+                }
+
                 .left {
+                    max-width: 100%;
+                    width: 100%;
+
+                    /* Telefonda alignment center seçilince gerçekten center olsun */
                     &[data-alignment="center"] {
                         align-items: center;
 
@@ -133,32 +152,6 @@
                             margin-right: auto;
                         }
 
-                        .buttons {
-                            justify-content: center;
-                        }
-
-                        .button {
-                            flex: 0 1 auto;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            .wrapper {
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
-
-                .left {
-                    max-width: 100%;
-                    width: 100%;
-
-                    &[data-alignment="center"] {
                         .buttons {
                             justify-content: center;
                         }
