@@ -2,7 +2,6 @@
 
 .container {
   position: relative;
-  width: 100%;
   overflow: hidden;
 
   .background {
@@ -82,7 +81,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: var(--composer-gap-xs);
+        gap: var(--composer-gap-sm);
         flex-wrap: wrap;
         max-width: 100%;
 
@@ -110,7 +109,6 @@
           }
 
           .media-button-text {
-            content: "";
             white-space: normal;
             word-break: break-word;
             text-align: center;
@@ -190,7 +188,6 @@
           }
 
           &::after {
-            content: "";
             position: absolute;
             inset: 0;
             z-index: 2;
@@ -257,8 +254,6 @@
     .max-content {
       .content {
         gap: var(--composer-gap-sm);
-
-        .media-buttons {}
 
         .media-wrapper {
           height: auto;

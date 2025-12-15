@@ -136,7 +136,7 @@ class IntroSection8 extends BaseIntroSection {
         {this.castToString(title) && (
           <Base.SectionTitle
             className={`${this.decorateCSS("title")} ${
-              background && this.decorateCSS("with-background")
+              background ? this.decorateCSS("with-background") : ""
             }`}
           >
             {title}
@@ -145,7 +145,7 @@ class IntroSection8 extends BaseIntroSection {
         {this.castToString(description) && (
           <Base.SectionDescription
             className={`${this.decorateCSS("description")} ${
-              background && this.decorateCSS("with-background")
+              background ? this.decorateCSS("with-background") : ""
             }`}
           >
             {description}
@@ -171,7 +171,8 @@ class IntroSection8 extends BaseIntroSection {
           const text = buttonItem.text;
           const url = buttonItem.url;
           const type = buttonItem.type;
-          const icon = buttonItem.icon;
+          const icon =
+            buttonItem.icon as unknown as TypeMediaInputValue | string | null;
 
           return (
             <ComposerLink key={index} path={url}>
@@ -181,7 +182,11 @@ class IntroSection8 extends BaseIntroSection {
               >
                 {icon && (
                   <Base.Media
-                    value={{ type: "icon", name: icon }}
+                    value={
+                      typeof icon === "object"
+                        ? (icon as TypeMediaInputValue)
+                        : ({ type: "icon", name: icon } as TypeMediaInputValue)
+                    }
                     className={this.decorateCSS("media-button-icon")}
                   />
                 )}
