@@ -384,7 +384,7 @@ class Testimonials16 extends Testimonials {
     const links = this.castToObject<LinkItem[]>("links")
     const sliderRef = this.getComponentState("sliderRef")
     const storedActiveIndex = this.getComponentState("activeSlideIndex") || 0
-    const activeIndex = filteredTestimonials.length > 0 ? Math.min(storedActiveIndex, filteredTestimonials.length - 1) : 0
+    const activeIndex = storedActiveIndex
     const prevBackground = this.getComponentState("prevBackground")
     const prevIcon = this.getPropValue("prevButtonIcon")
     const nextIcon = this.getPropValue("nextButtonIcon")
