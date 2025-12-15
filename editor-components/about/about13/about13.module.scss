@@ -11,6 +11,7 @@
 
       .content-inner {
         flex: 1;
+        min-width: 0;
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
@@ -19,7 +20,15 @@
         .subtitle,
         .title,
         .description {
+          max-width: 100%;
           text-align: left;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .subtitle {
+          margin-left: 0;
+          margin-right: auto;
         }
 
         .buttons-wrapper {
@@ -27,11 +36,19 @@
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
           justify-content: flex-start;
+          max-width: 100%;
+        }
+
+        .link {
+          display: inline-flex;
+          max-width: 100%;
+          text-decoration: none;
         }
 
         .button {
           display: inline-flex;
           align-items: center;
+          max-width: 100%;
 
           .icon {
             width: 1em;
@@ -51,12 +68,15 @@
             padding: 0;
             display: inline;
             text-align: left;
+            overflow-wrap: anywhere;
+            word-break: break-word;
           }
         }
       }
 
       .image-wrapper {
         flex: 1;
+        min-width: 0;
         position: relative;
 
         .image {
@@ -64,6 +84,7 @@
           height: 100%;
           border-radius: var(--composer-border-radius-sm);
           object-fit: cover;
+          display: block;
         }
 
         .overlay {
@@ -71,11 +92,6 @@
           inset: 0;
           border-radius: var(--composer-border-radius-sm);
           background-color: var(--composer-overlay-color);
-        }
-
-        &.full-width {
-          flex: none;
-          width: 100%;
         }
       }
     }
@@ -119,6 +135,8 @@
             }
 
             .subtitle {
+              margin-left: auto;
+              margin-right: auto;
               transform: none !important;
 
               &::before {
