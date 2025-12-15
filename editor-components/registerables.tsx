@@ -161,6 +161,7 @@ import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
 import LogoComponent7 from "./logo-clouds/logo-comp7/logo-comp7";
 import LogoComponent8 from "./logo-clouds/logo-comp8/logo-comp8";
 import LogoComponent9 from "./logo-clouds/logo-comp9/logo-comp9";
+import LogoComponent10 from "./logo-clouds/logo-comp10/logo-comp10";
 import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
 import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
 import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
@@ -292,7 +293,7 @@ import About12 from "./about/about12/about12";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
-import Comparison1 from "./comparison/comparison1/comparison1";
+import Comparison1 from "./comparison/comparison1/comparison1"; 
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -491,6 +492,7 @@ function Registerables(composer: ComponentsRegistery) {
     LogoComponent7,
     LogoComponent8,
     LogoComponent9,
+    LogoComponent10,
     TestimonialsComponent1,
     TestimonialsComponent2,
     TestimonialsComponent3,
@@ -594,3 +596,5 @@ function Registerables(composer: ComponentsRegistery) {
 }
 
 export default Registerables;
+
+
