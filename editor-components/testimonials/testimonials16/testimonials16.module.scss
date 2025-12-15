@@ -21,6 +21,10 @@
         min-height: 0 !important;
       }
     }
+
+    .content {
+      gap: var(--composer-gap-lg) !important;
+    }
   }
 
   &.no-background {    
