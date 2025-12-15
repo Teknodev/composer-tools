@@ -220,7 +220,7 @@ class About10 extends BaseAbout {
             )}
             {hasDescriptionOrButton && (
               <div className={this.decorateCSS("content-section")}>
-                <Base.VerticalContent className={this.decorateCSS("action-content")}>
+                <Base.VerticalContent>
                   {this.castToString(description) && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}

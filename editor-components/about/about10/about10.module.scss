@@ -14,21 +14,16 @@
         flex-direction: column;
 
         .text-content {
-          display: flex;
-          flex-direction: column;
           align-items: flex-start;
 
           .subtitle, .title {
             text-align: left !important;
-            margin-left: 0;
-            align-self: flex-start;
-  
+            margin-left: 0;  
           }
         }
 
         .description {
           text-align: left !important;
-          align-self: flex-start;
         }
         
         .button-wrapper {
@@ -38,15 +33,6 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
-          
-          .button,.button-text {
-            content: "";
-            
-            .button-icon-wrapper {
-              content: "";
-              display: flex;
-              align-items: center;
-            }
             
             .button-icon {
               content: "";
@@ -56,7 +42,6 @@
               display: flex;
               align-items: center;
             }
-          }
         }
         
         &:first-child {
