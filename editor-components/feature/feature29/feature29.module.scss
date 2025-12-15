@@ -61,11 +61,7 @@
 
           .card {
             background-color: var(--composer-font-color-primary);
-            color: var(--composer-html-background);
-
             .card-text-container {
-              color: var(--composer-html-background);
-
               .card-title,
               .card-description,
               .button-text,
@@ -132,8 +128,6 @@
           background-color: transparent;
 
           .card-text-container {
-            color: white;
-
             .card-title,
             .card-description,
             .button-text,
@@ -144,14 +138,11 @@
         }
 
         .button {
-          align-self: flex-start;
-        }
-
         .button-text {
           text-align: left;
-          align-self: flex-start;
+          justify-content: flex-start;
         }
-
+        
         .button-icon {
           width: var(--composer-gap-md);
           height: var(--composer-gap-md);
@@ -161,6 +152,7 @@
           justify-content: center;
           flex-shrink: 0;
         }
+      }
 
         .card-text-container {
           position: relative;
@@ -176,7 +168,6 @@
           .card-title,
           .card-description {
             text-align: left;
-            align-self: flex-start;
             width: 100%;
             word-break: break-word;
           }
