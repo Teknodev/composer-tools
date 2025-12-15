@@ -1,13 +1,15 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section34.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Slider {
+  logo?: TypeMediaInputValue;
   image: string;
   title: React.JSX.Element;
+  description?: React.JSX.Element;
   button: INPUTS.CastedButton;
 }
 
@@ -44,6 +46,13 @@ class HeroSection34 extends BaseHeroSection {
           value: [
             {
               type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "media",
               key: "image",
               displayer: "Image",
               additionalParams: {
@@ -59,6 +68,12 @@ class HeroSection34 extends BaseHeroSection {
               displayer: "Title",
               value: "Premium Quality Design",
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
             INPUTS.BUTTON("button", "Button", "PURCHASE INTACT", "", null, null, "White"),
           ],
         },
@@ -67,6 +82,13 @@ class HeroSection34 extends BaseHeroSection {
           key: "slide",
           displayer: "Slide",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
             {
               type: "media",
               key: "image",
@@ -84,6 +106,12 @@ class HeroSection34 extends BaseHeroSection {
               displayer: "Title",
               value: "Premium Quality Jobs",
             },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
             INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "White"),
           ],
         },
@@ -92,6 +120,13 @@ class HeroSection34 extends BaseHeroSection {
           key: "slide",
           displayer: "Slide",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
             {
               type: "media",
               key: "image",
@@ -108,6 +143,12 @@ class HeroSection34 extends BaseHeroSection {
               key: "title",
               displayer: "Title",
               value: "Premium Quality Clothes",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             INPUTS.BUTTON("button", "Button", "BUY", "", null, null, "White"),
           ],
@@ -205,7 +246,7 @@ class HeroSection34 extends BaseHeroSection {
                 }`}
             >
               <div className={this.decorateCSS("overlay-image")}>
-                {slides[overlayActiveIndex].image && <Base.Media value={slides[overlayActiveIndex].image} />}
+                {slides[overlayActiveIndex].image && <Base.Media className={this.decorateCSS("image")} value={slides[overlayActiveIndex].image} />}
               </div>
             </div>
 
@@ -224,20 +265,28 @@ class HeroSection34 extends BaseHeroSection {
               "contentAnimationClass"
             )}`}
           >
-            <Base.MaxContent className={this.decorateCSS("content")}>
-              {this.castToString(slides[overlayActiveIndex].title) && (
-                <Base.H1 className={this.decorateCSS("content-title")}>
-                  {slides[overlayActiveIndex].title}
-                </Base.H1>
-              )}
-              {this.castToString(slides[overlayActiveIndex].button.text) && (
-                <ComposerLink path={slides[overlayActiveIndex].button.url}>
-                  <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
-                    <Base.P className={this.decorateCSS("button-text")}>{slides[overlayActiveIndex].button.text}</Base.P>
-                  </Base.Button>
-                </ComposerLink>
-              )}
-            </Base.MaxContent>
+              <Base.MaxContent className={this.decorateCSS("content")}>
+                {slides[overlayActiveIndex].logo && (
+                  <Base.Media value={slides[overlayActiveIndex].logo} className={this.decorateCSS("logo")} />
+                )}
+                {this.castToString(slides[overlayActiveIndex].title) && (
+                  <Base.H1 className={this.decorateCSS("content-title")}>
+                    {slides[overlayActiveIndex].title}
+                  </Base.H1>
+                )}
+                {this.castToString(slides[overlayActiveIndex].description) && (
+                  <Base.P className={this.decorateCSS("description")}>
+                    {slides[overlayActiveIndex].description}
+                  </Base.P>
+                )}
+                {this.castToString(slides[overlayActiveIndex].button.text) && (
+                  <ComposerLink path={slides[overlayActiveIndex].button.url}>
+                    <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
+                      <Base.P className={this.decorateCSS("button-text")}>{slides[overlayActiveIndex].button.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                )}
+              </Base.MaxContent>
           </div>
 
           <div

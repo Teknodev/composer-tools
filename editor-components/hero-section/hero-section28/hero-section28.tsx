@@ -48,6 +48,13 @@ class HeroSection28 extends BaseHeroSection {
           value: [
             {
               type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "media",
               key: "image",
               displayer: "Image",
               value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg" },
@@ -99,6 +106,13 @@ class HeroSection28 extends BaseHeroSection {
           value: [
             {
               type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "media",
               key: "image",
               displayer: "Image",
               value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg" },
@@ -148,6 +162,13 @@ class HeroSection28 extends BaseHeroSection {
           key: "slide",
           displayer: "Slide",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
             {
               type: "media",
               key: "image",
@@ -288,13 +309,21 @@ class HeroSection28 extends BaseHeroSection {
                 }
               >
                 {this.castToString(item.getPropValue("tag")) && (
-                  <Base.H5
-                    className={`${this.decorateCSS("tag")} ${item.getPropValue("image") &&
-                      this.decorateCSS("withImage")
-                      }`}
-                  >
-                    {item.getPropValue("tag")}
-                  </Base.H5>
+                  <>
+                    {item.getPropValue("logo") && (
+                      <Base.Media
+                        className={this.decorateCSS("logo")}
+                        value={item.getPropValue("logo")}
+                      />
+                    )}
+                    <Base.H5
+                      className={`${this.decorateCSS("tag")} ${item.getPropValue("image") &&
+                        this.decorateCSS("withImage")
+                        }`}
+                    >
+                      {item.getPropValue("tag")}
+                    </Base.H5>
+                  </>
                 )}
                 {this.castToString(item.getPropValue("title")) && (
                   <Base.H1

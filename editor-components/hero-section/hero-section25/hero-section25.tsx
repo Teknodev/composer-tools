@@ -16,6 +16,7 @@ interface IAnimationProps {
 interface SliderItem {
   title: React.JSX.Element;
   description: React.JSX.Element;
+  logo?: TypeMediaInputValue;
   image: TypeMediaInputValue;
   overlay: boolean;
   button: INPUTS.CastedButton;
@@ -189,6 +190,13 @@ class HeroSection25 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
               type: "string",
               displayer: "Title",
               key: "title",
@@ -226,6 +234,13 @@ class HeroSection25 extends BaseHeroSection {
           key: "item",
           value: [
             {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
               type: "string",
               displayer: "Title",
               key: "title",
@@ -262,6 +277,13 @@ class HeroSection25 extends BaseHeroSection {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
             {
               type: "string",
               displayer: "Title",
@@ -509,22 +531,37 @@ class HeroSection25 extends BaseHeroSection {
                     ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("full-width-right-item")}`}>
                         <Base.VerticalContent className={this.decorateCSS("content")}>
                           {this.castToString(sliderItem.title) &&
-                            <Base.SectionTitle
-                              className={`
+                            <React.Fragment>
+                              {sliderItem.logo && (
+                                <Base.Media
+                                  value={sliderItem.logo}
+                                  className={`${this.decorateCSS("logo")} animate__animated ${this.getComponentState("titleAnimationClass")}`}
+                                  onAnimationEnd={() => {
+                                    this.handleAnimationEnd({
+                                      animationState: "titleAnimationClass",
+                                      startingAnimation: "animate__fadeInRight",
+                                      endingAnimation: "animate__fadeOutDown",
+                                    });
+                                  }}
+                                />
+                              )}
+                              <Base.SectionTitle
+                                className={`
                               ${this.decorateCSS("title")} 
                               animate__animated 
                               ${this.getComponentState("titleAnimationClass")
                                 }`}
-                              onAnimationEnd={() => {
-                                this.handleAnimationEnd({
-                                  animationState: "titleAnimationClass",
-                                  startingAnimation: "animate__fadeInRight",
-                                  endingAnimation: "animate__fadeOutDown",
-                                });
-                              }}
-                            >
-                              {sliderItem.title}
-                            </Base.SectionTitle>}
+                                onAnimationEnd={() => {
+                                  this.handleAnimationEnd({
+                                    animationState: "titleAnimationClass",
+                                    startingAnimation: "animate__fadeInRight",
+                                    endingAnimation: "animate__fadeOutDown",
+                                  });
+                                }}
+                              >
+                                {sliderItem.title}
+                              </Base.SectionTitle>
+                            </React.Fragment>}
                           {this.castToString(sliderItem.description) &&
                             <Base.SectionDescription
                               className={`${this.decorateCSS("description")} 

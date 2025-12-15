@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section31.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -8,8 +8,9 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
-  rightImage: string;
-  leftImage: string;
+  logo?: TypeMediaInputValue;
+  rightImage: TypeMediaInputValue;
+  leftImage: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
@@ -83,6 +84,13 @@ class HeroSection31 extends BaseHeroSection {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dd303b007002cc7d5e1?alt=media" },
             },
             {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaBuilding" },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -135,6 +143,13 @@ class HeroSection31 extends BaseHeroSection {
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e2003b007002cc7d60d?alt=media" },
+            },
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaBuilding" },
             },
             {
               type: "string",
@@ -197,6 +212,13 @@ class HeroSection31 extends BaseHeroSection {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5c03b007002cc7d632?alt=media" },
             },
             {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaBuilding" },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -249,6 +271,13 @@ class HeroSection31 extends BaseHeroSection {
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9f03b007002cc7d65a?alt=media" },
+            },
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaBuilding" },
             },
             {
               type: "string",
@@ -305,6 +334,13 @@ class HeroSection31 extends BaseHeroSection {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ed103b007002cc7d66e?alt=media" },
             },
             {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaBuilding" },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -359,6 +395,13 @@ class HeroSection31 extends BaseHeroSection {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0e03b007002cc7d681?alt=media" },
             },
             {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaBuilding" },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -410,6 +453,13 @@ class HeroSection31 extends BaseHeroSection {
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4503b007002cc7d6b2?alt=media" },
+            },
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaBuilding" },
             },
             {
               type: "string",
@@ -836,8 +886,39 @@ class HeroSection31 extends BaseHeroSection {
 
 
                   <div className={this.decorateCSS("slider-inner")}>
+                        {activeSlideObj.logo && (
+                          <Base.Media
+                            value={activeSlideObj.logo}
+                            className={`${this.decorateCSS("logo")} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState("subtitleAnimationClass")}`}
+                            onAnimationEnd={() => {
+                              this.handleAnimationEnd({
+                                animationState: "subtitleAnimationClass",
+                                startingAnimation: "animate__fadeInRight",
+                                endingAnimation: "animate__fadeOutDown",
+                              });
+                            }}
+                          />
+                        )}
+                        
                     {this.castToString(activeSlideObj.subtitle) && (
-                      <div className={this.decorateCSS("up-text")}>
+                      <div
+                        className={`${this.decorateCSS("up-text")} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState(
+                          "subtitleAnimationClass"
+                        )}`}
+                        onAnimationEnd={() => {
+                          this.handleAnimationEnd({
+                            animationState: "subtitleAnimationClass",
+                            startingAnimation: "animate__fadeInRight",
+                            endingAnimation: "animate__fadeOutDown",
+                          });
+                        }}
+                      >
+                        {activeSlideObj.logo && (
+                          <Base.Media
+                            value={activeSlideObj.logo}
+                            className={this.decorateCSS("logo")}
+                          />
+                        )}
                         {this.getPropValue("lineEnable") && (
                           <div
                             className={`${this.decorateCSS("stick")} ${textAnimationEnabled ? "animate__animated" : ""
@@ -851,19 +932,7 @@ class HeroSection31 extends BaseHeroSection {
                             }}
                           ></div>
                         )}
-                        <span
-                          className={`${this.decorateCSS("subtitle")} ${textAnimationEnabled ? "animate__animated" : ""
-                            } ${this.getComponentState(
-                              "subtitleAnimationClass"
-                            )}`}
-                          onAnimationEnd={() => {
-                            this.handleAnimationEnd({
-                              animationState: "subtitleAnimationClass",
-                              startingAnimation: "animate__fadeInRight",
-                              endingAnimation: "animate__fadeOutDown",
-                            });
-                          }}
-                        >
+                        <span className={this.decorateCSS("subtitle")}>
                           {activeSlideObj.subtitle}
                         </span>
                       </div>

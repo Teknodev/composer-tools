@@ -37,10 +37,17 @@
       }
 
       .carousel {
+        position: relative;
         width: 100%;
 
         :global(.slick-dots) {
-          position: static !important;
+          position: absolute !important;
+          bottom: calc(-1 * var(--composer-gap-xl));
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 10;
+          margin: 0 !important;
+          padding: 0 !important;
         }
 
         .max-content {
@@ -319,6 +326,10 @@
     .content {
       .slider-parent {
         .carousel {
+          :global(.slick-dots) {
+            bottom: calc(-1 * var(--composer-gap-lg)) !important;
+          }
+
           .max-content {
             .upperDiv {
               margin-bottom: var(--composer-gap-md);
@@ -346,12 +357,21 @@
                 gap: var(--composer-gap-sm);
 
                 .middleImages-container {
-                  .image-wrapper {
+                      .image-wrapper {
+                        height: 9vw;
+                        min-height: 80px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden;
 
-                    .middleImages {
-                      max-height: 9vw;
-                    }
-                  }
+                        .middleImages {
+                          height: 100%;
+                          width: 100%;
+                          object-fit: cover;
+                          max-height: none;
+                        }
+                      }
                 }
 
                 .middleTitle-container {

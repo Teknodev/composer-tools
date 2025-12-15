@@ -49,6 +49,8 @@
                             color: var(--composer-font-color-secondary);
                             margin-bottom: var(--composer-gap-md);
                             letter-spacing: 1.5px;
+                            width: fit-content;
+                            margin-left: 0;
                             &::before{
                                 background: var(--composer-font-color-secondary) !important;
                             }

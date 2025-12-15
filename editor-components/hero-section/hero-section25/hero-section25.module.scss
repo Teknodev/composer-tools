@@ -284,6 +284,16 @@
             height: 100%;
             justify-content: center;
 
+            .logo {
+              margin-bottom: var(--composer-gap-sm);
+              font-size: 2rem;
+              aspect-ratio: 3 / 1;
+              object-fit: cover;
+              max-width: 150px;
+              color: white;
+              text-align: right;
+            }
+
             .title {
               text-align: end;
               display: -webkit-box;
@@ -325,11 +335,7 @@
         &.black-theme {
           .layout {
             .content {
-              .title {
-                color: var(--composer-font-color-primary);
-              }
-
-              .description {
+              .title, .description, .logo {
                 color: var(--composer-font-color-primary);
               }
             }
