@@ -14,6 +14,7 @@
   .title,
   .description {
     width: 100%;
+    color: var(--composer-font-color-primary);
   }
 }
 
@@ -87,7 +88,6 @@
 
 .subtitle1 {
   font-weight: 700;
-  color: var(--composer-font-color-primary);
 }
 
 .image-wrapper {
