@@ -159,8 +159,8 @@
           font-size: calc(1 * var(--composer-font-size-md));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
-          width: 20px;
-          height: 20px;
+          width: 24px;
+          height: 14px;
           object-fit: cover;
         }
 
@@ -600,14 +600,13 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .upperContainer {
-    padding-top: var(--composer-gap-sm) !important;
-    padding-bottom: var(--composer-gap-sm) !important;
     background-color: color-mix(
       in srgb,
       var(--composer-html-background),
       var(--composer-font-color-primary) 5%
     );
     border: none;
+    padding: var(--composer-gap-md) !important;
     .content {
       flex-direction: row-reverse;
 
