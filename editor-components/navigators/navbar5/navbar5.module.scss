@@ -97,10 +97,10 @@
     }
 
     .hamburgerIcon {
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--composer-font-size-md));
       cursor: pointer;
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       object-fit: cover;
       display: flex;
     }
@@ -327,6 +327,9 @@
       .hamburgerIcon {
         font-size: 1.5rem;
         display: flex;
+        font-size: calc(1.5 * var(--composer-font-size-md));
+        height: 24px;
+        width: 24px;
       }
     }
 
