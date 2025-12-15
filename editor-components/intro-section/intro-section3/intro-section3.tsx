@@ -1,34 +1,19 @@
 import * as React from "react";
 import {
   BaseIntroSection,
-  TypeMediaInputValue,
   TypeUsableComponentProps,
+  TypeMediaInputValue,
 } from "../../EditorComponent";
 import styles from "./intro-section3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type IntroSection3Props = TypeUsableComponentProps;
-
-type CastedButton = INPUTS.CastedButton & {
-  icon?: unknown;
-  image?: unknown;
-  type?: unknown;
-  url?: unknown;
-  text?: unknown;
-};
-
 class IntroSection3 extends BaseIntroSection {
-  constructor(props?: IntroSection3Props) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -37,12 +22,7 @@ class IntroSection3 extends BaseIntroSection {
       value: "Everything You Need to Run Your Websites",
     });
 
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "description", displayer: "Description", value: "" });
 
     this.addProp({
       type: "string",
@@ -69,20 +49,13 @@ class IntroSection3 extends BaseIntroSection {
       } as TypeMediaInputValue,
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
+    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: false });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary")],
     });
   }
 
@@ -90,23 +63,10 @@ class IntroSection3 extends BaseIntroSection {
     return "Intro Section 3";
   }
 
-  private normalizeMedia(value: unknown): TypeMediaInputValue | null {
-    if (!value) return null;
-
-    if (typeof value === "string") {
-      const name = this.castToString(value);
-      return name ? ({ type: "icon", name } as unknown as TypeMediaInputValue) : null;
-    }
-
-    if (typeof value !== "object") return null;
-
-    const v = value as { url?: unknown; name?: unknown; type?: unknown };
-    const url = this.castToString(v.url || "");
-    const name = this.castToString(v.name || "");
-
-    if (!url && !name) return null;
-
-    return value as TypeMediaInputValue;
+  private hasMediaValue(value: TypeMediaInputValue | null | undefined): boolean {
+    if (!value) return false;
+    const maybeName = (value as unknown as { name?: string }).name;
+    return !!(value.url || maybeName);
   }
 
   render() {
@@ -125,30 +85,26 @@ class IntroSection3 extends BaseIntroSection {
     const alignment = Base.getContentAlignment();
     const isCenter = alignment === "center";
 
-    const image = this.normalizeMedia(this.getPropValue("image"));
-    const overlay = !!this.getPropValue("overlay");
+    const image = this.getPropValue("image") as TypeMediaInputValue | null;
+    const hasImage = this.hasMediaValue(image);
+    const overlay = this.getPropValue("overlay");
 
-    const buttons = this.castToObject<CastedButton[]>("buttons") || [];
-    const validButtons = buttons
-      .map((btn) => {
-        const rawText = btn?.text as unknown as React.JSX.Element;
-        const text = this.castToString(rawText);
-        const icon = this.normalizeMedia((btn as unknown as { icon?: unknown })?.icon);
-        const image = this.normalizeMedia((btn as unknown as { image?: unknown })?.image);
-        const media = icon || image;
-        const url = this.castToString(btn?.url || "");
-        const type = this.castToString(btn?.type || "") || "Primary";
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
-        return { rawText, text, url, type, media };
-      })
-      .filter((btn) => !!btn.text || !!btn.media);
+    const hasAnyButton = buttons.some((btn) => {
+      const text = this.castToString(btn?.text || "");
+
+      const rawMedia = (btn as any)?.icon ?? (btn as any)?.buttonImage ?? null;
+      const media =
+        typeof rawMedia === "string"
+          ? ({ type: "icon", name: rawMedia } as unknown as TypeMediaInputValue)
+          : (rawMedia as TypeMediaInputValue | null);
+
+      return !!text || this.hasMediaValue(media);
+    });
 
     const hasSubtitleGroup = !!subtitle1Text || !!subtitle2Text;
-    const hasButtons = validButtons.length > 0;
-
-    const buttonGroupClassName = `${this.decorateCSS("button-group-container")} ${
-      isCenter ? this.decorateCSS("center") : ""
-    }`.trim();
+    const showActions = hasAnyButton || hasSubtitleGroup;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -172,35 +128,56 @@ class IntroSection3 extends BaseIntroSection {
               </Base.SectionDescription>
             )}
 
-            {(hasButtons || hasSubtitleGroup) && (
-              <div className={buttonGroupClassName}>
-                {hasButtons && (
+            {showActions && (
+              <div
+                className={`${this.decorateCSS("button-group-container")} ${
+                  isCenter ? this.decorateCSS("center") : ""
+                }`.trim()}
+              >
+                {hasAnyButton && (
                   <div className={this.decorateCSS("buttons-wrapper")}>
-                    {validButtons.map((btn, index) => (
-                      <ComposerLink
-                        key={`btn-${index}`}
-                        path={btn.url}
-                        className={this.decorateCSS("button-link")}
-                      >
-                        <Base.Button
-                          buttonType={btn.type}
-                          className={this.decorateCSS("button")}
-                        >
-                          {btn.media && (
-                            <Base.Media
-                              value={btn.media}
-                              className={this.decorateCSS("button-image")}
-                            />
-                          )}
+                    {buttons.map((btn, index) => {
+                      const textStr = this.castToString(btn?.text || "");
 
-                          {btn.text && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {btn.rawText}
-                            </Base.P>
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                    ))}
+                      const rawMedia = (btn as any)?.icon ?? (btn as any)?.buttonImage ?? null;
+                      const media =
+                        typeof rawMedia === "string"
+                          ? ({ type: "icon", name: rawMedia } as unknown as TypeMediaInputValue)
+                          : (rawMedia as TypeMediaInputValue | null);
+
+                      const hasButtonMedia = this.hasMediaValue(media);
+
+                      if (!textStr && !hasButtonMedia) return null;
+
+                      const url = btn.url || "#";
+                      const buttonType = (btn.type as string) || "Primary";
+
+                      return (
+                        <ComposerLink
+                          key={`btn-${index}`}
+                          path={url}
+                          className={this.decorateCSS("button-link")}
+                        >
+                          <Base.Button
+                            buttonType={buttonType}
+                            className={this.decorateCSS("button")}
+                          >
+                            {hasButtonMedia && (
+                              <Base.Media
+                                value={media as TypeMediaInputValue}
+                                className={this.decorateCSS("button-image")}
+                              />
+                            )}
+
+                            {textStr && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {btn.text}
+                              </Base.P>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
                 )}
 
@@ -221,14 +198,14 @@ class IntroSection3 extends BaseIntroSection {
               </div>
             )}
 
-            {image && (
+            {hasImage && (
               <div
                 className={`${this.decorateCSS("image-wrapper")} ${
                   overlay ? this.decorateCSS("overlay") : ""
                 }`.trim()}
               >
                 <Base.Media
-                  value={image}
+                  value={image as TypeMediaInputValue}
                   className={this.decorateCSS("image-media")}
                 />
               </div>
