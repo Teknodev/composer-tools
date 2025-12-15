@@ -44,9 +44,7 @@ class Feature33 extends BaseFeature {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
     this.addProp({
@@ -57,7 +55,7 @@ class Feature33 extends BaseFeature {
     });
 
     const cardDescription =
-      "Completely iterate covalent strategic theme areas via accurate e-markets.";
+      "Complete macro analytics will close the loop on focusing solely.";
 
     this.addProp({
       type: "array",
@@ -196,9 +194,7 @@ class Feature33 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 2,
-      additionalParams: {
-        maxElementCount: 5,
-      },
+      additionalParams: { maxElementCount: 5 },
     });
   }
 
@@ -207,28 +203,45 @@ class Feature33 extends BaseFeature {
   }
 
   render() {
-    const cards = this.castToObject<Card[]>("cards");
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const iconBackground = this.getPropValue("iconBackground");
-    const itemCount = this.getPropValue("itemCount");
+    const iconBackground = !!this.getPropValue("iconBackground");
+    const itemCountProp = this.getPropValue("itemCount");
     const alignment = Base.getContentAlignment();
 
     const hasSubtitle = !!this.castToString(subtitle);
     const hasTitle = !!this.castToString(title);
     const hasDescription = !!this.castToString(description);
 
-    const hasButtons =
-      Array.isArray(buttons) &&
-      buttons.some((btn) => this.castToString(btn.text));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const validButtons = Array.isArray(buttons)
+      ? buttons.filter((btn) => !!this.castToString(btn.text))
+      : [];
+    const hasButtons = validButtons.length > 0;
+
+    const cards = this.castToObject<Card[]>("cards");
+    const validCards = Array.isArray(cards)
+      ? cards.filter((card) => {
+          const hasCardTitle = !!this.castToString(card.title);
+          const hasCardDescription = !!this.castToString(card.description);
+          return !!card.icon || hasCardTitle || hasCardDescription;
+        })
+      : [];
+    const hasCards = validCards.length > 0;
+
+    const itemCount =
+      typeof itemCountProp === "number" && itemCountProp > 0
+        ? Math.max(1, Math.min(5, itemCountProp))
+        : 2;
+
+    const showLeft = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(hasSubtitle || hasTitle || hasDescription || hasButtons) && (
+            {showLeft && (
               <Base.VerticalContent
                 className={this.decorateCSS("left")}
                 data-alignment={alignment}
@@ -242,9 +255,7 @@ class Feature33 extends BaseFeature {
                 )}
 
                 {hasTitle && (
-                  <Base.SectionTitle
-                    className={this.decorateCSS("section-title")}
-                  >
+                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
@@ -259,25 +270,20 @@ class Feature33 extends BaseFeature {
 
                 {hasButtons && (
                   <div className={this.decorateCSS("buttons")}>
-                    {buttons.map((buttonItem, index) => {
-                      const text = buttonItem.text;
-                      const url = buttonItem.url;
-                      const type = buttonItem.type;
-
-                      if (!this.castToString(text)) {
-                        return null;
-                      }
-
+                    {validButtons.map((buttonItem, index) => {
+                      const url = buttonItem.url || "";
                       return (
-                        <ComposerLink key={index} path={url}>
+                        <ComposerLink
+                          key={`btn-${index}`}
+                          path={url}
+                          className={this.decorateCSS("button-link")}
+                        >
                           <Base.Button
-                            buttonType={type}
+                            buttonType={buttonItem.type}
                             className={this.decorateCSS("button")}
                           >
-                            <Base.P
-                              className={this.decorateCSS("button-text")}
-                            >
-                              {text}
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {buttonItem.text}
                             </Base.P>
                           </Base.Button>
                         </ComposerLink>
@@ -288,42 +294,36 @@ class Feature33 extends BaseFeature {
               </Base.VerticalContent>
             )}
 
-            {cards?.length > 0 && (
+            {hasCards && (
               <Base.ListGrid
                 className={this.decorateCSS("right")}
-                gridCount={{
-                  pc: itemCount,
-                  tablet: itemCount,
-                  phone: 2,
-                }}
+                gridCount={{ pc: itemCount, tablet: itemCount, phone: 2 }}
               >
-                {cards.map((card, index) => {
+                {validCards.map((card, index) => {
                   const titleExist = !!this.castToString(card.title);
                   const descExist = !!this.castToString(card.description);
-
-                  if (!titleExist && !descExist && !card.icon) return null;
+                  const iconWrapperClass = `${this.decorateCSS(
+                    "card-icon-wrapper"
+                  )} ${
+                    iconBackground
+                      ? this.decorateCSS("with-bg")
+                      : this.decorateCSS("no-bg")
+                  }`;
 
                   return (
                     <div
-                      key={index}
+                      key={`card-${index}`}
                       className={this.decorateCSS("card-container")}
                     >
                       {card.icon && (
-                        <div
-                          className={`${this.decorateCSS(
-                            "card-icon-wrapper"
-                          )} ${
-                            iconBackground
-                              ? this.decorateCSS("with-bg")
-                              : this.decorateCSS("no-bg")
-                          }`}
-                        >
+                        <div className={iconWrapperClass}>
                           <Base.Media
                             value={card.icon}
                             className={this.decorateCSS("card-icon")}
                           />
                         </div>
                       )}
+
                       <Base.VerticalContent
                         className={this.decorateCSS("card-content")}
                       >
@@ -332,10 +332,9 @@ class Feature33 extends BaseFeature {
                             {card.title}
                           </Base.H6>
                         )}
+
                         {descExist && (
-                          <Base.P
-                            className={this.decorateCSS("card-description")}
-                          >
+                          <Base.P className={this.decorateCSS("card-description")}>
                             {card.description}
                           </Base.P>
                         )}
