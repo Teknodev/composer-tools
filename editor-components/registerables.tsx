@@ -106,9 +106,9 @@ import HeroSection35 from "./hero-section/hero-section35/hero-section35";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
-import IntroSection11 from "./intro-section/intro-section11/intro-section11";
 import IntroSection7 from "./intro-section/intro-section7/intro-section7";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
+import IntroSection11 from "./intro-section/intro-section11/intro-section11";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -413,9 +413,9 @@ function Registerables(composer: ComponentsRegistery) {
     IntroSection1,
     IntroSection2,
     IntroSection4,
-    IntroSection11,
     IntroSection7,
     IntroSection9,
+    IntroSection11,
     NavbarComponent1,
     NavbarComponent2,
     NavbarComponent3,
