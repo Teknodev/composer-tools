@@ -38,15 +38,7 @@ class About13 extends BaseAbout {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Learn More",
-          "",
-          "",
-          null,
-          "Link"
-        ),
+        INPUTS.BUTTON("button", "Button", "Learn More", "", "", null, "Link"),
       ],
     });
 
@@ -79,12 +71,16 @@ class About13 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+
+    const subtitleExist = !!this.castToString(subtitle);
+    const titleExist = !!this.castToString(title);
+    const descriptionExist = !!this.castToString(description);
+
     const image = this.getPropValue("image") as TypeMediaInputValue | null;
-    const imageUrl = image?.url;
+    const hasImage = !!image?.url;
+
     const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
-    const overlay = this.getPropValue("overlay");
-    const alignment = Base.getContentAlignment();
 
     const hasButtons = buttons.some((item) => {
       const text = this.castToString(item.text || "");
@@ -93,17 +89,16 @@ class About13 extends BaseAbout {
     });
 
     const isContentVisible =
-      this.castToString(subtitle) ||
-      this.castToString(title) ||
-      this.castToString(description) ||
-      hasButtons;
+      subtitleExist || titleExist || descriptionExist || hasButtons;
 
-    const hasImage = !!imageUrl;
-    const shouldCenterContent = alignment === "center";
+    const overlay = !!this.getPropValue("overlay");
+
+    const alignment = Base.getContentAlignment();
+    const isCentered = alignment === "center";
 
     const containerClassName = `${this.decorateCSS("container")} ${
       !hasImage ? this.decorateCSS("no-image") : ""
-    }`;
+    }`.trim();
 
     return (
       <Base.Container className={containerClassName}>
@@ -113,10 +108,10 @@ class About13 extends BaseAbout {
               {isContentVisible && (
                 <div
                   className={`${this.decorateCSS("content-inner")} ${
-                    shouldCenterContent ? this.decorateCSS("center") : ""
+                    isCentered ? this.decorateCSS("center") : ""
                   }`}
                 >
-                  {this.castToString(subtitle) && (
+                  {subtitleExist && (
                     <Base.SectionSubTitle
                       className={this.decorateCSS("subtitle")}
                     >
@@ -124,13 +119,13 @@ class About13 extends BaseAbout {
                     </Base.SectionSubTitle>
                   )}
 
-                  {this.castToString(title) && (
+                  {titleExist && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
                       {title}
                     </Base.SectionTitle>
                   )}
 
-                  {this.castToString(description) && (
+                  {descriptionExist && (
                     <Base.SectionDescription
                       className={this.decorateCSS("description")}
                     >
@@ -141,24 +136,24 @@ class About13 extends BaseAbout {
                   {hasButtons && (
                     <div className={this.decorateCSS("buttons-wrapper")}>
                       {buttons.map((item, index) => {
-                        const buttonTextExist = this.castToString(
-                          item.text || ""
-                        );
+                        const buttonText = this.castToString(item.text || "");
                         const rawIcon = (item as any).icon;
+
                         let iconValue: TypeMediaInputValue | null = null;
 
-                        if (rawIcon) {
-                          if (typeof rawIcon === "string") {
+                        if (typeof rawIcon === "string") {
+                          const name = this.castToString(rawIcon);
+                          if (name) {
                             iconValue = {
                               type: "icon",
-                              name: rawIcon,
+                              name,
                             } as unknown as TypeMediaInputValue;
-                          } else {
-                            iconValue = rawIcon as TypeMediaInputValue;
                           }
+                        } else if (rawIcon && (rawIcon.url || rawIcon.name)) {
+                          iconValue = rawIcon as TypeMediaInputValue;
                         }
 
-                        const hasContent = buttonTextExist || iconValue;
+                        const hasContent = !!buttonText || !!iconValue;
 
                         return (
                           hasContent && (
@@ -167,19 +162,19 @@ class About13 extends BaseAbout {
                                 buttonType={item.type}
                                 className={this.decorateCSS("button")}
                               >
-                                {iconValue && (
+                                {iconValue ? (
                                   <Base.Media
                                     value={iconValue}
                                     className={this.decorateCSS("icon")}
                                   />
-                                )}
-                                {buttonTextExist && (
+                                ) : null}
+                                {buttonText ? (
                                   <Base.P
                                     className={this.decorateCSS("button-text")}
                                   >
                                     {item.text}
                                   </Base.P>
-                                )}
+                                ) : null}
                               </Base.Button>
                             </ComposerLink>
                           )
@@ -200,9 +195,9 @@ class About13 extends BaseAbout {
                     value={image as TypeMediaInputValue}
                     className={this.decorateCSS("image")}
                   />
-                  {overlay && imageUrl && (
+                  {overlay ? (
                     <div className={this.decorateCSS("overlay")} />
-                  )}
+                  ) : null}
                 </div>
               )}
             </div>
