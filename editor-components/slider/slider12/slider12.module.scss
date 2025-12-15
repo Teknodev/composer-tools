@@ -99,7 +99,7 @@
     }
 
     :global(.slick-track) {
-      margin-top: var(--composer-gap-md);
+      margin-top: var(--composer-gap-sm);
       display: flex !important;
       gap: var(--composer-gap-md);
       width: auto !important;
@@ -168,9 +168,9 @@
 .button-container {
   display: flex;
   justify-content: center;
-  padding: var(--composer-gap-lg);
-  padding-bottom: 80px;
-  margin: var(--composer-gap-xs) var(--composer-gap-lg);
+  padding: var(--composer-gap-md);
+  padding-bottom: 40px;
+  margin: var(--composer-gap-xs) var(--composer-gap-md);
 
   .button {
     .button-icon {

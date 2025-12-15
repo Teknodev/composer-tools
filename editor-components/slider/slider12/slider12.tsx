@@ -400,7 +400,7 @@ class Slider12 extends BaseSlider {
     const validItems = items.filter((item) => {
     const media = item.media;
     const mediaType = media?.type ?? (item.image ? "image" : undefined);
-    const hasMedia = mediaType && item.image;
+    const hasMedia = !!(mediaType && (media || item.image));
     const hasCardDescription = this.castToString(item.description);
     const hasHeaderText = this.castToString(item.header);
     return hasMedia || hasHeaderText || hasCardDescription;
