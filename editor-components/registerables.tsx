@@ -137,6 +137,7 @@ import FeatureComponent26 from "./feature/feature26/feature26";
 import FeatureComponent27 from "./feature/feature27/feature27";
 import FeatureComponent30 from "./feature/feature30/feature30";
 import FeatureComponent31 from "./feature/feature31/feature31";
+import FeatureComponent35 from "./feature/feature35/feature35";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -466,6 +467,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent27,
     FeatureComponent30,
     FeatureComponent31,
+    FeatureComponent35,
     CallToAction1,
     CallToAction2,
     CallToAction3,
