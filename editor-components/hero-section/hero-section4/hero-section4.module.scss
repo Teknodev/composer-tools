@@ -48,6 +48,11 @@
           }
         }
       }
+      .card {
+        .subtitle {
+          margin-left: 0;
+        }
+      }
     }
   }
 
@@ -145,7 +150,6 @@
 
       .subtitle, .title, .note {
         @include textEllipsis(2);
-        margin-left: auto;
       }
 
       .button-container {
@@ -288,6 +292,7 @@
           max-width: 100%;
           padding: var(--composer-gap-md);
           margin-top: var(--composer-gap-md);
+          border-radius: 0;
         }
       }
     }

@@ -39,7 +39,6 @@
           .content {
             .text-container {
               .subtitle {
-                padding: 0 var(--composer-gap-lg);
                 transform: none;
                 &::before {
                   display: none;
@@ -207,7 +206,7 @@
           z-index: 1;
           flex: 1;
           @include flexCenter;
-          margin-left: var(--composer-gap-md);
+          margin-left: var(--composer-gap-xl);
 
           .logo-container {
             width: 100%;
@@ -215,7 +214,6 @@
             justify-content: start;
             align-items: baseline;
             margin-bottom: var(--composer-gap-sm);
-            padding: 0 var(--composer-gap-lg);
             .logo {
               &.logo-icon {
                 font-size: 3rem;
@@ -234,24 +232,14 @@
 
           .title,
           .subtitle {
-            text-align: left;
-            top: -20vw;
-            padding: 0 var(--composer-gap-lg);
-            color: var(--composer-font-color-primary);
-            @include transitionOpacity;
-          }
-
-          .subtitle {
-            margin-left: 0;
-            padding: 0;
-            transform: translateX(6rem);
+           text-align: left;
+           margin-left: 0;
           }
 
           .description {
             text-align: left;
             @include transitionOpacity;
             color: var(--composer-font-color-primary);
-            padding: 0 var(--composer-gap-lg);
           }
 
           .button-container {
@@ -260,7 +248,6 @@
             position: relative;
             bottom: calc(-1 * 20vw);
             opacity: 0;
-            padding: 0 var(--composer-gap-lg);
             .button {
               text-transform: capitalize;
               .button-text{
@@ -325,7 +312,7 @@
         &.type-2 {
           &.active-slide 
             .text-container {
-              margin-left: clamp(7%, 7%, 10%);
+              margin-left: clamp(8%, 9%, 10%);
 
             }
             .image-container .image {
@@ -434,7 +421,7 @@
           &.type-2 {
             &.active-slide {
               .text-container {
-                margin-left: 5% !important;
+                margin-left: 10% !important;
               }
             }
           }
@@ -522,6 +509,14 @@
             }
           }
 
+          &.has-image {
+            .text-container {
+              .subtitle {
+                background: transparent !important;
+              }
+            }
+          }
+
           .text-container {
             position: relative;
             z-index: 1;
@@ -567,14 +562,10 @@
               position: relative !important;
               top: 0 !important;
               opacity: 1 !important;
-              padding: 0;
               text-align: center;
               color: #fff;
               margin-left: 0 !important;
-              transform: translateX(0) !important;
-              &::before {
-                display: none !important;
-              }
+            
             }
 
             .description {

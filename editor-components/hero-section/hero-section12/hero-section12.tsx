@@ -914,11 +914,11 @@ class HeroSection12 extends BaseHeroSection {
                         </Base.H5>
                       )}
                       {this.castToString(item.title) && (
-                        <Base.H2 className={this.decorateCSS("slider-item-text")}>
-                          <ComposerLink path={item.page}>
-                            {item.title}
-                          </ComposerLink>
-                        </Base.H2>
+                        <ComposerLink path={item.page}>
+                          <Base.H2 className={this.decorateCSS("slider-item-text")}>
+                              {item.title}
+                          </Base.H2>
+                        </ComposerLink>
                       )}
                       {this.castToString(item.description) && (
                         <Base.P className={this.decorateCSS("slider-item-description")}>

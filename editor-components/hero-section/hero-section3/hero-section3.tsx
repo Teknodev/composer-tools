@@ -313,6 +313,7 @@ class HeroSection3 extends BaseHeroSection {
                   )} ${index === activeSlide && this.decorateCSS("active-slide")}
                   ${!item.image && this.decorateCSS("full-text-container")}
                   ${!showContent && this.decorateCSS("full-image")}
+                  ${item.image && this.decorateCSS("has-image")}
                   `}
                 >
                   {!showContent && item.type === "Overlay on Image" ? null : (

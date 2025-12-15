@@ -315,6 +315,7 @@
             z-index: 10;
             opacity: 0;
             transition: all 0.3s linear;
+            width: 100%;
             @include textEllipsis(3);
 
             .title-char {
@@ -454,72 +455,6 @@
   }
 }
 
-@container (max-width : #{$composer-phone-width}) {
-  @include titleSize(4rem !important);
-
-  .image-container-2 {
-    width: 60% !important;
-    max-width: 60% !important;
-  }
-  .image-container-3 {
-    left: -100px !important;
-    max-width: 70% !important;
-    top: 45rem !important;
-  }
-  .container {
-    .max-content {
-      .wrapper {
-        .return-container {
-          .background-text {
-            opacity: 0 !important;
-          }
-          .content-container {
-            width: 100% !important;
-            .image-wrapper,
-            .without-image-wrapper {
-              min-height: 20vh !important;
-              width: 100%;
-              .image {
-                transform: scale(1) !important;
-              }
-
-              .subtitle{
-                display: none;
-              }
-              .sliderNumber {
-                top: 0px !important;
-                .overlay {
-                  width: 1rem;
-                }
-              }
-            }
-            .title{
-              @include absoluteCenter;
-              font-size: 3rem !important;
-              width: 100% !important;
-              padding: var(--composer-gap-sm) !important;
-              top: 40% !important;
-            }
-          }
-        }
-      }
-    }
-  }
-  .dots,
-  .dark-dots {
-    display: flex !important;
-    flex-direction: row !important;
-    width: 100%;
-    justify-content: center !important;
-    align-items: flex-end !important;
-    padding-bottom: var(--composer-gap-md) !important;
-    max-height: 950px !important;
-  }
-  .dots :global(li.slick-active) button,
-  .dark-dots :global(li.slick-active) button {
-    transform-origin: left !important;
-  }
-}
 
 @container (max-width: #{$composer-tablet-width}) {
   @include titleSize(6rem !important);
@@ -589,5 +524,73 @@
         }
       }
     }
+  }
+}
+
+@container (max-width : #{$composer-phone-width}) {
+  @include titleSize(4rem !important);
+
+  .image-container-2 {
+    width: 60% !important;
+    max-width: 60% !important;
+  }
+  .image-container-3 {
+    left: -100px !important;
+    max-width: 70% !important;
+    top: 45rem !important;
+  }
+  .container {
+    .max-content {
+      .wrapper {
+        .return-container {
+          .background-text {
+            opacity: 0 !important;
+          }
+          .content-container {
+            width: 100% !important;
+            .image-wrapper,
+            .without-image-wrapper {
+              min-height: 20vh !important;
+              width: 100%;
+              .image {
+                transform: scale(1) !important;
+              }
+
+              .subtitle{
+                display: none;
+              }
+              .sliderNumber {
+                top: 0px !important;
+                .overlay {
+                  width: 1rem;
+                }
+              }
+            }
+            .title{
+              @include absoluteCenter;
+              left: 50% !important;
+              font-size: 3rem !important;
+              width: 100% !important;
+              padding: var(--composer-gap-sm) !important;
+              top: 50% !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .dots,
+  .dark-dots {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100%;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    padding-bottom: var(--composer-gap-md) !important;
+    max-height: 950px !important;
+  }
+  .dots :global(li.slick-active) button,
+  .dark-dots :global(li.slick-active) button {
+    transform-origin: left !important;
   }
 }

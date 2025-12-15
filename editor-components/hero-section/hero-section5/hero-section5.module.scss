@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
   .max-content {
     .background-layer {
       position: relative;
@@ -44,7 +43,6 @@
 
        .subtitle {
           width: fit-content !important;
-          margin-left: auto;
           transform: translateX(0);
           &::before{
             display: none;
@@ -66,7 +64,6 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      padding: var(--composer-gap-lg) 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -140,16 +137,24 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
+.container.with-background {
+  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
+  .max-content {
+    .background-layer.with-image {
+      .content {
+        padding: var(--composer-gap-lg);
+        height: calc(100vh - var(--composer-gap-md));
+      }
+    }
+    .content {
+      padding: var(--composer-gap-lg) 0;
+    }
   }
 }
 
-
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    padding: 0px var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) !important;
+  .container.with-background {
+    padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
     .max-content {
       .content {
         padding: var(--composer-gap-md);

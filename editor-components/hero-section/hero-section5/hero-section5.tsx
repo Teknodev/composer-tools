@@ -93,8 +93,10 @@ class HeroSection5 extends BaseHeroSection {
       }
     } : backgroundImage;
 
+    const hasBackground = !!(backgroundImage && backgroundImage.url);
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${hasBackground ? this.decorateCSS("with-background") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={`${this.decorateCSS("background-layer")} ${backgroundImage && this.decorateCSS("with-image")

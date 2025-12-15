@@ -174,7 +174,6 @@
             .slider-item-text,
             .slider-item-description {
               color: var(--composer-font-color-primary);
-              width: 95%;
             }
           }
         }
@@ -207,13 +206,11 @@
         -webkit-text-stroke: 1px background-color;
         transition: 300ms;
         transition-property: scale;
-
-        &:hover {
-        }
       }
 
       .slider-item {
         position: relative;
+        height: 650px;
 
         .slider-item-image {
           width: 100%;
