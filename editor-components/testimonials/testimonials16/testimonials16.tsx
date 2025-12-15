@@ -379,6 +379,10 @@ class Testimonials16 extends Testimonials {
       const hasCompany = item.company ? this.castToString(item.company) : ""
       return hasLogo || hasImage || hasQuote || hasAuthor || hasRole || hasCompany
     })
+    const hasAnyPortrait = filteredTestimonials.some((item: TestimonialItem) => {
+      const portraitVal = item.image as { url?: string } | undefined
+      return !!portraitVal?.url
+    })
     const subtitleValue = this.getPropValue("subtitle")
     const titleValue = this.getPropValue("title")
     const links = this.castToObject<LinkItem[]>("links")
@@ -403,6 +407,13 @@ class Testimonials16 extends Testimonials {
     const lightenLineColor = subtitleType === "line" && !!activePortrait
     const subtitleClasses = `${this.decorateCSS("subtitle")} ${hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : ""} ${lightenLineColor ? this.decorateCSS("subtitle-line-light") : ""}`.trim()
 
+    // detect mobile viewport to apply inline styles for mobile author row and texts
+    const isMobileViewport = typeof window !== "undefined" && window.innerWidth <= 768
+    const mobileAuthorRowInlineStyle = isMobileViewport
+      ? { position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)" as unknown as string }
+      : undefined
+    const mobileAuthorTextInlineStyle = isMobileViewport ? { textAlign: "left", display: "inline" } : undefined
+
     const baseSettings = {
       arrows: false,
       dots: false,
@@ -424,6 +435,7 @@ class Testimonials16 extends Testimonials {
       this.decorateCSS("container"),
       hasActivePortrait ? this.decorateCSS("with-background") : "",
       !hasActivePortrait ? this.decorateCSS("no-background") : "",
+      !hasAnyPortrait ? this.decorateCSS("no-portrait") : "",
     ]
       .filter(Boolean)
       .join(" ")
