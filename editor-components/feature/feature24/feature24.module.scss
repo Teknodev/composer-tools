@@ -44,7 +44,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
       width: 100%;
       text-align: left;
 
@@ -124,6 +124,9 @@
     .max-content {
       .list {
         margin-top: 0;
+
+        gap: var(--composer-gap-sm) !important;
+        row-gap: var(--composer-gap-md) !important;
       }
 
       .buttons {
@@ -136,6 +139,11 @@
     .max-content {
       .header {
         margin-bottom: var(--composer-gap-xs);
+      }
+
+      .list {
+        gap: var(--composer-gap-sm) !important;
+        row-gap: var(--composer-gap-md) !important;
       }
 
       .row {

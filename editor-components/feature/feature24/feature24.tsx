@@ -5,21 +5,18 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+type Feature24Props = Record<string, unknown>;
+
 type FeatureItem = {
   icon: TypeMediaInputValue;
   text: React.JSX.Element;
 };
 
 class Feature24 extends BaseFeature {
-  constructor(props?: any) {
+  constructor(props?: Feature24Props) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -50,102 +47,44 @@ class Feature24 extends BaseFeature {
       value: true,
     });
 
+    const defaultItems = [
+      "Expertly crafted components",
+      "Built-in interactive examples",
+      "Beautifully designed templates",
+      "SEO & accessibility best practices",
+      "Mobile notifications included",
+      "Highly customizable layouts",
+      "Cloud storage integration",
+      "Real-time data sync",
+      "Advanced security features",
+      "Multi-language support",
+      "Dark mode enabled",
+      "Performance optimized",
+      "User-friendly interface",
+      "24/7 Customer support",
+      "Regular updates",
+      "Detailed documentation",
+    ];
+
     this.addProp({
       type: "array",
       key: "features",
       displayer: "List",
-      value: [
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "TiTick" },
-            },
-            { type: "string", key: "text", displayer: "Text", value: "Expertly crafted components" },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "TiTick" },
-            },
-            { type: "string", key: "text", displayer: "Text", value: "Built-in interactive examples" },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "TiTick" },
-            },
-            { type: "string", key: "text", displayer: "Text", value: "Beautifully designed templates" },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "TiTick" },
-            },
-            { type: "string", key: "text", displayer: "Text", value: "SEO & accessibility best practices" },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "TiTick" },
-            },
-            { type: "string", key: "text", displayer: "Text", value: "Highly customizable layouts" },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: { availableTypes: ["image", "icon"] },
-              value: { type: "icon", name: "TiTick" },
-            },
-            { type: "string", key: "text", displayer: "Text", value: "Performance optimized" },
-          ],
-        },
-      ],
+      value: defaultItems.map((text, index) => ({
+        type: "object",
+        key: `item_${index}`,
+        displayer: "Item",
+        value: [
+          {
+            type: "media",
+            key: "icon",
+            displayer: "Icon",
+            additionalParams: { availableTypes: ["image", "icon"] },
+            value: { type: "icon", name: "TiTick" },
+          },
+          { type: "string", key: "text", displayer: "Text", value: text },
+        ],
+      })),
     });
 
     this.addProp({
@@ -153,15 +92,7 @@ class Feature24 extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Get Started",
-          "",
-          null,
-          null,
-          "Primary"
-        ),
+        INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
       ],
     });
   }
@@ -174,38 +105,85 @@ class Feature24 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const iconBackground = this.getPropValue("iconBackground");
-    const itemCount = this.getPropValue("itemCount");
 
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
+    const subtitleExist = !!this.castToString(subtitle);
+    const titleExist = !!this.castToString(title);
+    const descriptionExist = !!this.castToString(description);
+    const headerExist = subtitleExist || titleExist || descriptionExist;
 
-    const features = this.castToObject<FeatureItem[]>("features");
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const iconBackground = !!this.getPropValue("iconBackground");
+    const itemCount = Number(this.getPropValue("itemCount") as any) || 4;
 
-    const iconWrapperClassName = `${this.decorateCSS("icon-wrapper")} ${
-      iconBackground ? this.decorateCSS("with-bg") : ""
+    const featuresRaw = this.castToObject<FeatureItem[]>("features");
+    const features = Array.isArray(featuresRaw) ? featuresRaw : [];
+
+    const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
+
+    const iconWrapperClassName = `${this.decorateCSS("icon-wrapper")}${
+      iconBackground ? ` ${this.decorateCSS("with-bg")}` : ""
     }`;
+
+    const buttonNodes: React.ReactNode[] = [];
+    for (let index = 0; index < buttons.length; index++) {
+      const buttonItem = buttons[index];
+
+      const textExist = !!this.castToString(buttonItem?.text || "");
+      if (!textExist) continue;
+
+      const iconName = this.castToString((buttonItem as any)?.icon || "");
+      const iconValue = iconName
+        ? ({ type: "icon", name: iconName } as unknown as TypeMediaInputValue)
+        : null;
+
+      buttonNodes.push(
+        <ComposerLink
+          key={index}
+          path={buttonItem.url}
+          className={this.decorateCSS("button-link")}
+        >
+          <Base.Button
+            buttonType={buttonItem.type}
+            className={this.decorateCSS("button")}
+          >
+            {iconValue && (
+              <Base.Media
+                value={iconValue}
+                className={this.decorateCSS("btn-icon")}
+              />
+            )}
+            <Base.P className={this.decorateCSS("button-text")}>
+              {buttonItem.text}
+            </Base.P>
+          </Base.Button>
+        </ComposerLink>
+      );
+    }
+
+    const hasButtons = buttonNodes.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("page")}>
-            {(subtitleExist || titleExist || descriptionExist) && (
+            {headerExist && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
+
                 {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
+
                 {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
                     {description}
                   </Base.SectionDescription>
                 )}
@@ -217,40 +195,41 @@ class Feature24 extends BaseFeature {
                 gridCount={{ pc: itemCount, tablet: 4, phone: 2 }}
                 className={this.decorateCSS("list")}
               >
-                {features.map((item: FeatureItem, index: number) => {
-                  const text = item.text;
-                  const hasText = this.castToString(text);
+                {features.map((item, index) => {
+                  const textExist = !!this.castToString(item?.text);
+                  const media = item?.icon;
 
-                  const media = item.icon;
                   const hasMedia =
                     !!media &&
                     ((media.type === "icon" && !!media.name) ||
                       (media.type !== "icon" && !!media.url));
 
-                  if (!hasText && !hasMedia) return null;
+                  if (!textExist && !hasMedia) return null;
 
-                  const mediaEl = hasMedia ? (
-                    <Base.Media
-                      value={media}
-                      className={this.decorateCSS("icon")}
-                    />
-                  ) : null;
-
-                  const rowClassName = `${this.decorateCSS("row")} ${
-                    !iconBackground ? this.decorateCSS("no-bg-icon") : ""
+                  const rowClassName = `${this.decorateCSS("row")}${
+                    !iconBackground ? ` ${this.decorateCSS("no-bg-icon")}` : ""
                   }`;
 
                   return (
                     <Base.Row key={index} className={rowClassName}>
-                      {mediaEl &&
+                      {hasMedia &&
                         (iconBackground ? (
-                          <div className={iconWrapperClassName}>{mediaEl}</div>
+                          <div className={iconWrapperClassName}>
+                            <Base.Media
+                              value={media}
+                              className={this.decorateCSS("icon")}
+                            />
+                          </div>
                         ) : (
-                          mediaEl
+                          <Base.Media
+                            value={media}
+                            className={this.decorateCSS("icon")}
+                          />
                         ))}
-                      {hasText && (
+
+                      {textExist && (
                         <Base.H6 className={this.decorateCSS("text")}>
-                          {text}
+                          {item.text}
                         </Base.H6>
                       )}
                     </Base.Row>
@@ -259,36 +238,8 @@ class Feature24 extends BaseFeature {
               </Base.ListGrid>
             )}
 
-            {buttons.length > 0 && (
-              <div className={this.decorateCSS("buttons")}>
-                {buttons.map((buttonItem: INPUTS.CastedButton, index: number) => {
-                  const text = buttonItem.text;
-                  const url = buttonItem.url;
-                  const type = buttonItem.type;
-                  const icon = buttonItem.icon;
-
-                  if (!this.castToString(text)) return null;
-
-                  return (
-                    <ComposerLink key={index} path={url}>
-                      <Base.Button
-                        buttonType={type}
-                        className={this.decorateCSS("button")}
-                      >
-                        {icon && (
-                          <Base.Media
-                            value={{ type: "icon", name: icon }}
-                            className={this.decorateCSS("btn-icon")}
-                          />
-                        )}
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
+            {hasButtons && (
+              <div className={this.decorateCSS("buttons")}>{buttonNodes}</div>
             )}
           </Base.VerticalContent>
         </Base.MaxContent>
