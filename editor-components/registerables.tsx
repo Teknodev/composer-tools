@@ -590,6 +590,7 @@ function Registerables(composer: ComponentsRegistery) {
     About13,
     About11,
     About12,
+    About13,
     Portfolio1,
     Portfolio2,
     Portfolio3,
