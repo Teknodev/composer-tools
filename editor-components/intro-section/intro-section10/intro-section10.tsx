@@ -32,10 +32,9 @@ const TypeWriter: React.FC<{
 class IntroSection10 extends BaseIntroSection {
   constructor(props?: unknown) {
     super(props, styles);
-
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.addProp({ type: "string", key: "topText", displayer: "Top Text", value: "I'm Alex Green" });
     this.addProp({ type: "string", key: "bottomText", displayer: "Bottom Text", value: "Your Illustrator" });
-    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.addProp({
       type: "string",
       key: "description",
