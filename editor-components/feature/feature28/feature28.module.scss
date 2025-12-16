@@ -27,7 +27,22 @@
     .title,
     .description {
       color: var(--color-white) !important;
+    }
+
+    .subtitle-no-badge {
+      background: transparent !important;
+      background-color: transparent !important;
       padding: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      border: 0 !important;
+      text-decoration: none !important;
+
+      &::before,
+      &:before {
+        background-color: currentColor !important;
+        border-color: currentColor !important;
+      }
     }
   }
 
@@ -57,15 +72,6 @@
       object-fit: cover;
       object-position: center;
       display: block;
-    }
-  }
-
-  .subtitle-no-badge {
-    &.badge {
-      padding: 0 !important;
-      border-radius: 0 !important;
-      background: transparent !important;
-      text-decoration: none !important;
     }
   }
 

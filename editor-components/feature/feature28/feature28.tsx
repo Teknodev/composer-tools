@@ -11,12 +11,7 @@ class Feature28Component extends BaseFeature {
   constructor(props?: Feature28Props) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -79,53 +74,95 @@ class Feature28Component extends BaseFeature {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
+    const subtitleExist = !!this.castToString(subtitle);
+    const titleExist = !!this.castToString(title);
+    const descriptionExist = !!this.castToString(description);
+
     const image = this.getPropValue("image") as TypeMediaInputValue | null;
-    const overlayEnabled = this.getPropValue("overlay");
-
-    const alignment = Base.getContentAlignment();
     const hasBackground = !!image?.url;
-    const isVideo = image?.type === "video" && hasBackground;
 
-    const buttonsList = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const overlayEnabled = !!this.getPropValue("overlay");
+    const alignment = Base.getContentAlignment();
 
-    const validButtons = Array.isArray(buttonsList)
-      ? buttonsList.filter((item) => {
-          const text = this.castToString(item.text || "");
-          const iconValue = (item as any)?.icon as TypeMediaInputValue | null;
-          return !!text || !!iconValue;
-        })
-      : [];
+    const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
 
-    const isSubtitleExist = this.castToString(subtitle);
-    const isTitleExist = this.castToString(title);
-    const isDescriptionExist = this.castToString(description);
+    const buttonNodes: React.ReactNode[] = [];
+    for (let index = 0; index < buttons.length; index++) {
+      const item = buttons[index];
 
-    const isContentExist =
-      isSubtitleExist ||
-      isTitleExist ||
-      isDescriptionExist ||
-      validButtons.length > 0;
+      const textExist = !!this.castToString(item?.text || "");
+
+      const iconInput = (item as any)?.icon as unknown;
+      let iconValue: TypeMediaInputValue | null = null;
+
+      if (typeof iconInput === "string") {
+        const name = this.castToString(iconInput);
+        if (name) iconValue = { type: "icon", name } as unknown as TypeMediaInputValue;
+      } else if (iconInput && typeof iconInput === "object") {
+        const media = iconInput as TypeMediaInputValue;
+        const mediaOk =
+          (media.type === "icon" && !!(media as any)?.name) ||
+          (media.type === "image" && !!(media as any)?.url) ||
+          (media.type === "video" && !!(media as any)?.url);
+
+        if (mediaOk) iconValue = media;
+      }
+
+      if (!textExist && !iconValue) continue;
+
+      buttonNodes.push(
+        <ComposerLink
+          key={`btn-${index}`}
+          path={item.url || ""}
+          className={this.decorateCSS("button-link")}
+        >
+          <Base.Button
+            className={this.decorateCSS("button")}
+            buttonType={item.type}
+          >
+            {iconValue && (
+              <Base.Media className={this.decorateCSS("icon")} value={iconValue} />
+            )}
+            {textExist && (
+              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+            )}
+          </Base.Button>
+        </ComposerLink>
+      );
+    }
+
+    const hasButtons = buttonNodes.length > 0;
+    const isContentExist = subtitleExist || titleExist || descriptionExist || hasButtons;
+
+    const containerClassName = `${this.decorateCSS("container")}${
+      hasBackground ? ` ${this.decorateCSS("hasBackground")}` : ""
+    }${hasBackground && overlayEnabled ? ` ${this.decorateCSS("overlay")}` : ""}`;
+
+    const subtitleClassName = `${this.decorateCSS("subtitle")}${
+      hasBackground ? ` ${this.decorateCSS("subtitle-no-badge")}` : ""
+    }`;
+
+    const isVideo = hasBackground && image?.type === "video";
+    const backgroundMediaValue =
+      hasBackground && image
+        ? ({
+            ...image,
+            ...(isVideo && {
+              autoPlay: true,
+              muted: true,
+              loop: true,
+              playsInline: true,
+            }),
+          } as TypeMediaInputValue)
+        : null;
 
     return (
-      <Base.Container
-        className={`
-          ${this.decorateCSS("container")}
-          ${hasBackground ? this.decorateCSS("hasBackground") : ""}
-          ${hasBackground && overlayEnabled ? this.decorateCSS("overlay") : ""}
-        `}
-      >
-        {hasBackground && (
+      <Base.Container className={containerClassName}>
+        {hasBackground && backgroundMediaValue && (
           <Base.Media
             className={this.decorateCSS("background-media")}
-            value={{
-              ...image,
-              ...(isVideo && {
-                autoPlay: true,
-                muted: true,
-                loop: true,
-                playsInline: true,
-              }),
-            }}
+            value={backgroundMediaValue}
           />
         )}
 
@@ -135,60 +172,27 @@ class Feature28Component extends BaseFeature {
               className={this.decorateCSS("content")}
               data-alignment={alignment}
             >
-              {isSubtitleExist && (
-                <Base.SectionSubTitle
-                  className={`${this.decorateCSS("subtitle")} ${
-                    hasBackground ? "line" : "badge"
-                  } ${hasBackground ? this.decorateCSS("subtitle-no-badge") : ""}`}
-                >
+              {subtitleExist && (
+                <Base.SectionSubTitle className={subtitleClassName}>
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
 
-              {isTitleExist && (
+              {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {title}
                 </Base.SectionTitle>
               )}
 
-              {isDescriptionExist && (
+              {descriptionExist && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
               )}
 
-              {validButtons.length > 0 && (
+              {hasButtons && (
                 <Base.Row className={this.decorateCSS("button-container")}>
-                  {validButtons.map((item, index) => {
-                    const text = this.castToString(item.text || "");
-                    const iconValue = (item as any)?.icon as TypeMediaInputValue | null;
-
-                    return (
-                      <ComposerLink
-                        key={`btn-${index}`}
-                        path={item.url || ""}
-                        className={this.decorateCSS("button-link")}
-                      >
-                        <Base.Button
-                          className={this.decorateCSS("button")}
-                          buttonType={item.type}
-                        >
-                          {iconValue && (
-                            <Base.Media
-                              className={this.decorateCSS("icon")}
-                              value={iconValue}
-                            />
-                          )}
-
-                          {text && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {item.text}
-                            </Base.P>
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
+                  {buttonNodes}
                 </Base.Row>
               )}
             </Base.VerticalContent>
