@@ -22,7 +22,12 @@ class IntroSection3 extends BaseIntroSection {
       value: "Everything You Need to Run Your Websites",
     });
 
-    this.addProp({ type: "string", key: "description", displayer: "Description", value: "" });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -49,24 +54,25 @@ class IntroSection3 extends BaseIntroSection {
       } as TypeMediaInputValue,
     });
 
-    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: false });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary")],
+      value: [
+        INPUTS.BUTTON("button", "Button 1", "Start Now", "", "", null, "Primary"),
+      ],
     });
   }
 
   static getName(): string {
     return "Intro Section 3";
-  }
-
-  private hasMediaValue(value: TypeMediaInputValue | null | undefined): boolean {
-    if (!value) return false;
-    const maybeName = (value as unknown as { name?: string }).name;
-    return !!(value.url || maybeName);
   }
 
   render() {
@@ -76,53 +82,90 @@ class IntroSection3 extends BaseIntroSection {
     const subtitle1 = this.getPropValue("subtitle1");
     const subtitle2 = this.getPropValue("subtitle2");
 
-    const subtitleText = this.castToString(subtitle);
-    const titleText = this.castToString(title);
-    const descriptionText = this.castToString(description);
-    const subtitle1Text = this.castToString(subtitle1);
-    const subtitle2Text = this.castToString(subtitle2);
+    const subtitleExist = !!this.castToString(subtitle);
+    const titleExist = !!this.castToString(title);
+    const descriptionExist = !!this.castToString(description);
+
+    const subtitle1Exist = !!this.castToString(subtitle1);
+    const subtitle2Exist = !!this.castToString(subtitle2);
+    const hasSubtitleGroup = subtitle1Exist || subtitle2Exist;
 
     const alignment = Base.getContentAlignment();
     const isCenter = alignment === "center";
 
     const image = this.getPropValue("image") as TypeMediaInputValue | null;
-    const hasImage = this.hasMediaValue(image);
-    const overlay = this.getPropValue("overlay");
+    const hasImage = !!(image as any)?.url;
 
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const overlay = !!this.getPropValue("overlay");
 
-    const hasAnyButton = buttons.some((btn) => {
-      const text = this.castToString(btn?.text || "");
+    const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
+
+    const buttonNodes: React.ReactNode[] = [];
+    for (let index = 0; index < buttons.length; index++) {
+      const btn = buttons[index];
+
+      const textExist = !!this.castToString(btn?.text || "");
 
       const rawMedia = (btn as any)?.icon ?? (btn as any)?.buttonImage ?? null;
-      const media =
-        typeof rawMedia === "string"
-          ? ({ type: "icon", name: rawMedia } as unknown as TypeMediaInputValue)
-          : (rawMedia as TypeMediaInputValue | null);
+      let mediaValue: TypeMediaInputValue | null = null;
 
-      return !!text || this.hasMediaValue(media);
-    });
+      if (typeof rawMedia === "string") {
+        const name = this.castToString(rawMedia);
+        if (name) mediaValue = { type: "icon", name } as unknown as TypeMediaInputValue;
+      } else if (rawMedia && typeof rawMedia === "object") {
+        const maybe = rawMedia as any;
+        if (maybe?.url || maybe?.name) mediaValue = rawMedia as TypeMediaInputValue;
+      }
 
-    const hasSubtitleGroup = !!subtitle1Text || !!subtitle2Text;
-    const showActions = hasAnyButton || hasSubtitleGroup;
+      if (!textExist && !mediaValue) continue;
+
+      buttonNodes.push(
+        <ComposerLink
+          key={`btn-${index}`}
+          path={btn?.url || "#"}
+          className={this.decorateCSS("button-link")}
+        >
+          <Base.Button
+            buttonType={btn?.type}
+            className={this.decorateCSS("button")}
+          >
+            {mediaValue && (
+              <Base.Media
+                value={mediaValue}
+                className={this.decorateCSS("button-image")}
+              />
+            )}
+            {textExist && (
+              <Base.P className={this.decorateCSS("button-text")}>
+                {btn.text}
+              </Base.P>
+            )}
+          </Base.Button>
+        </ComposerLink>
+      );
+    }
+
+    const hasButtons = buttonNodes.length > 0;
+    const showActions = hasButtons || hasSubtitleGroup;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {subtitleText && (
+            {subtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {subtitle}
               </Base.SectionSubTitle>
             )}
 
-            {titleText && (
+            {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
             )}
 
-            {descriptionText && (
+            {descriptionExist && (
               <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}
               </Base.SectionDescription>
@@ -130,65 +173,24 @@ class IntroSection3 extends BaseIntroSection {
 
             {showActions && (
               <div
-                className={`${this.decorateCSS("button-group-container")} ${
-                  isCenter ? this.decorateCSS("center") : ""
-                }`.trim()}
+                className={`${this.decorateCSS("button-group-container")}${
+                  isCenter ? ` ${this.decorateCSS("center")}` : ""
+                }`}
               >
-                {hasAnyButton && (
+                {hasButtons && (
                   <div className={this.decorateCSS("buttons-wrapper")}>
-                    {buttons.map((btn, index) => {
-                      const textStr = this.castToString(btn?.text || "");
-
-                      const rawMedia = (btn as any)?.icon ?? (btn as any)?.buttonImage ?? null;
-                      const media =
-                        typeof rawMedia === "string"
-                          ? ({ type: "icon", name: rawMedia } as unknown as TypeMediaInputValue)
-                          : (rawMedia as TypeMediaInputValue | null);
-
-                      const hasButtonMedia = this.hasMediaValue(media);
-
-                      if (!textStr && !hasButtonMedia) return null;
-
-                      const url = btn.url || "#";
-                      const buttonType = (btn.type as string) || "Primary";
-
-                      return (
-                        <ComposerLink
-                          key={`btn-${index}`}
-                          path={url}
-                          className={this.decorateCSS("button-link")}
-                        >
-                          <Base.Button
-                            buttonType={buttonType}
-                            className={this.decorateCSS("button")}
-                          >
-                            {hasButtonMedia && (
-                              <Base.Media
-                                value={media as TypeMediaInputValue}
-                                className={this.decorateCSS("button-image")}
-                              />
-                            )}
-
-                            {textStr && (
-                              <Base.P className={this.decorateCSS("button-text")}>
-                                {btn.text}
-                              </Base.P>
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
+                    {buttonNodes}
                   </div>
                 )}
 
                 {hasSubtitleGroup && (
                   <div className={this.decorateCSS("subtitle-group")}>
-                    {subtitle1Text && (
+                    {subtitle1Exist && (
                       <Base.P className={this.decorateCSS("subtitle1")}>
                         {subtitle1}
                       </Base.P>
                     )}
-                    {subtitle2Text && (
+                    {subtitle2Exist && (
                       <Base.P className={this.decorateCSS("subtitle2")}>
                         {subtitle2}
                       </Base.P>
@@ -200,9 +202,9 @@ class IntroSection3 extends BaseIntroSection {
 
             {hasImage && (
               <div
-                className={`${this.decorateCSS("image-wrapper")} ${
-                  overlay ? this.decorateCSS("overlay") : ""
-                }`.trim()}
+                className={`${this.decorateCSS("image-wrapper")}${
+                  overlay ? ` ${this.decorateCSS("overlay")}` : ""
+                }`}
               >
                 <Base.Media
                   value={image as TypeMediaInputValue}
