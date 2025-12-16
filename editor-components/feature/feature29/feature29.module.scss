@@ -16,7 +16,7 @@
     .side-container {
       display: flex;
       align-items: stretch;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
 
       .left-side {
         flex: 2;
@@ -33,7 +33,7 @@
           display: flex;
           flex-direction: row;
           width: 100%;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
 
           .card {
             flex: 1;
@@ -97,7 +97,7 @@
         padding: 0;
         transition: all 0.3s ease;
         flex: 1;
-        min-height: 260px;
+        min-height: 280px;
 
         .card-media {
           position: absolute;
