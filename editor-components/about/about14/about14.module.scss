@@ -38,17 +38,22 @@
                 gap: var(--composer-gap-sm);
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 border-radius: 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0;
-                align-items: flex-start !important;
-                text-align: left !important;
+                align-items: flex-start;
+                text-align: left;
 
                 .heading {
                     width: 100%;
-                    align-items: flex-start !important;
+                    align-items: flex-start;
 
                     .subtitle,
-                    .title {
-                        margin: 0;
-                        text-align: left !important;
+                    .section-subtitle {
+                        margin-left: 0;
+                        margin-right: auto;
+                    }
+
+                    .title,
+                    .section-title {
+                        text-align: left;
                     }
                 }
 
@@ -62,8 +67,7 @@
                     user-select: none;
 
                     .description {
-                        margin-bottom: var(--composer-gap-lg);
-                        text-align: inherit;
+                        text-align: left;
                     }
 
                     .show-more-overlay {
@@ -91,10 +95,6 @@
                         max-height: 2000px;
                         pointer-events: auto;
                         user-select: auto;
-
-                        .description {
-                            margin-bottom: 0;
-                        }
 
                         .show-more-overlay {
                             position: relative;
@@ -133,15 +133,22 @@
             }
 
             &.no-image[data-alignment="center"] .content-side {
-                align-items: center !important;
-                text-align: center !important;
+                align-items: center;
+                text-align: center;
 
                 .heading {
-                    align-items: center !important;
+                    align-items: center;
 
+                    .section-subtitle,
                     .subtitle,
+                    .section-title,
                     .title {
-                        text-align: center !important;
+                        text-align: center;
+                    }
+
+                    .section-subtitle,
+                    .subtitle {
+                        margin-left: auto;
                     }
                 }
 
