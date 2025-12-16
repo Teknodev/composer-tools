@@ -16,8 +16,6 @@ type ITabs = {
 
 class Feature17 extends BaseFeature {
   private tabButtonsRef = React.createRef<HTMLDivElement>();
-  private wrapperRef = React.createRef<HTMLDivElement>();
-  private hasResizeListener = false;
 
   constructor(props?: any) {
     super(props, styles);
@@ -334,23 +332,6 @@ class Feature17 extends BaseFeature {
     this.setActiveTab(index);
   };
 
-  updateScrollbar = () => {
-    const el = this.tabButtonsRef.current;
-    const wrapper = this.wrapperRef.current;
-    if (!el || !wrapper) return;
-
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    if (maxScroll <= 0) {
-      wrapper.style.setProperty("--thumb-width", "0%");
-      return;
-    }
-
-    const thumbWidth = (el.clientWidth / el.scrollWidth) * 100;
-    const thumbLeft = (el.scrollLeft / maxScroll) * (100 - thumbWidth);
-    wrapper.style.setProperty("--thumb-width", `${thumbWidth}%`);
-    wrapper.style.setProperty("--thumb-left", `${thumbLeft}%`);
-  };
-
   handleDragScroll = (e: React.MouseEvent) => {
     const el = this.tabButtonsRef.current;
     if (!el) return;
@@ -377,29 +358,6 @@ class Feature17 extends BaseFeature {
       el.style.userSelect = "";
     }
   };
-
-  componentDidMount() {
-    const el = this.tabButtonsRef.current;
-    if (el) {
-      el.addEventListener("scroll", this.updateScrollbar);
-      if (!this.hasResizeListener) {
-        window.addEventListener("resize", this.updateScrollbar);
-        this.hasResizeListener = true;
-      }
-      this.updateScrollbar();
-    }
-  }
-
-  componentWillUnmount() {
-    const el = this.tabButtonsRef.current;
-    if (el) {
-      el.removeEventListener("scroll", this.updateScrollbar);
-    }
-    if (this.hasResizeListener) {
-      window.removeEventListener("resize", this.updateScrollbar);
-      this.hasResizeListener = false;
-    }
-  }
 
   static getName(): string {
     return "Feature 17";
@@ -470,10 +428,7 @@ class Feature17 extends BaseFeature {
           )}
 
           <div className={this.decorateCSS("tabs")}>
-            <div
-              ref={this.wrapperRef}
-              className={this.decorateCSS("tab-buttons-wrapper")}
-            >
+            <div className={this.decorateCSS("tab-buttons-wrapper")}>
               <div
                 ref={this.tabButtonsRef}
                 className={this.decorateCSS("tab-buttons")}
@@ -494,9 +449,6 @@ class Feature17 extends BaseFeature {
                     {tab.tabText}
                   </Base.H6>
                 ))}
-              </div>
-              <div className={this.decorateCSS("custom-scrollbar")}>
-                <div className={this.decorateCSS("custom-scrollbar-thumb")} />
               </div>
             </div>
             {filteredTabs.map((tab: ITabs, index: number) => {

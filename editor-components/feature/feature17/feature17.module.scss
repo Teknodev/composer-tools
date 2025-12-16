@@ -34,13 +34,13 @@
 
       .tab-buttons-wrapper {
         position: relative;
-        padding: 0 var(--padding-xl);
+        padding: 0 var(--composer-gap-md);
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
-        border-radius: var(--border-radius-sm);
+        border-radius: var(--composer-border-radius-sm);
         overflow: hidden;
       }
 
@@ -58,7 +58,6 @@
           color: var(--composer-font-color-primary);
           padding: var(--composer-gap-md);
 
-          white-space: nowrap;
           position: relative;
           display: inline-flex;
           cursor: pointer;
@@ -81,37 +80,7 @@
               width: 100%;
             }
           }
-
-          & span {
-            white-space: nowrap !important;
-          }
         }
-      }
-
-      .custom-scrollbar {
-        position: absolute;
-        bottom: 0;
-        left: var(--padding-xl);
-        right: var(--padding-xl);
-        height: 2px;
-        pointer-events: none;
-        z-index: 10;
-      }
-
-      .custom-scrollbar-thumb {
-        position: absolute;
-        height: 100%;
-        width: var(--thumb-width, 0%);
-        left: var(--thumb-left, 0%);
-        background-color: var(--composer-tertiary-color);
-        border-radius: 2px;
-        opacity: 0;
-        transition: opacity 0.3s ease-out;
-      }
-
-      .tab-buttons-wrapper:hover .custom-scrollbar-thumb,
-      .tab-buttons-wrapper:active .custom-scrollbar-thumb {
-        opacity: 1;
       }
 
       .tab {
