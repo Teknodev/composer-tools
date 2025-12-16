@@ -404,15 +404,7 @@ class Testimonials16 extends Testimonials {
     const activePortrait = activePortraitValue?.url ? filteredTestimonials[activeIndex]?.image : null
     const subtitleType = Base.getSectionSubTitleType()
     const hideBadgeBackground = subtitleType === "badge" && !!activePortrait
-    const lightenLineColor = subtitleType === "line" && !!activePortrait
-    const subtitleClasses = `${this.decorateCSS("subtitle")} ${hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : ""} ${lightenLineColor ? this.decorateCSS("subtitle-line-light") : ""}`.trim()
-
-    // detect mobile viewport to apply inline styles for mobile author row and texts
-    const isMobileViewport = typeof window !== "undefined" && window.innerWidth <= 768
-    const mobileAuthorRowInlineStyle = isMobileViewport
-      ? { position: "absolute", left: "1rem", top: "50%", transform: "translateY(-50%)" as unknown as string }
-      : undefined
-    const mobileAuthorTextInlineStyle = isMobileViewport ? { textAlign: "left", display: "inline" } : undefined
+    const subtitleClasses = `${this.decorateCSS("subtitle")} ${hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : ""}`
 
     const baseSettings = {
       arrows: false,
@@ -537,8 +529,8 @@ class Testimonials16 extends Testimonials {
                                 <>
                                   <div
                                     className={`${this.decorateCSS("author-divider")} ${
-                                      !dividerEnabled ? this.decorateCSS("author-divider-hidden") : ""
-                                    }`}
+                                      !dividerEnabled && this.decorateCSS("author-divider-hidden")
+                                   }`}
                                   />
                                   <div className={this.decorateCSS("author-block")}>
                                     {hasAuthor && (
@@ -558,7 +550,7 @@ class Testimonials16 extends Testimonials {
                                 </>
                               )}
                               {(hasAuthor || hasRole || hasCompany) && (
-                                <div className={`${this.decorateCSS("mobile-author-row")} ${!portrait ? this.decorateCSS("mobile-author-row-no-image") : ""}`}>
+                                <div className={`${this.decorateCSS("mobile-author-row")} ${!portrait && this.decorateCSS("mobile-author-row-no-image")}`}>
                                   {portrait && <Base.Media value={portrait} className={this.decorateCSS("mobile-author-image")} />}
                                   <div className={this.decorateCSS("mobile-author-info")}>
                                     {hasAuthor && <Base.P className={this.decorateCSS("author")}>{item.author}</Base.P>}
@@ -592,12 +584,6 @@ class Testimonials16 extends Testimonials {
                   onClick={() => {
                     sliderRef?.current?.slickPrev()
                   }}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault()
-                      sliderRef?.current?.slickPrev()
-                    }
-                  }}
                 >
                   <Base.Media value={prevIcon} className={this.decorateCSS("navigation-icon")} />
                 </div>
@@ -607,7 +593,7 @@ class Testimonials16 extends Testimonials {
                   {filteredTestimonials.map((_: TestimonialItem, index: number) => (
                     <div
                       key={index}
-                      className={`${this.decorateCSS("navigation-dot")} ${activeIndex === index ? this.decorateCSS("navigation-dot-active") : ""}`}
+                      className={`${this.decorateCSS("navigation-dot")} ${activeIndex === index && this.decorateCSS("navigation-dot-active")}`}
                       onClick={() => {
                         sliderRef?.current?.slickGoTo(index)
                       }}
@@ -622,12 +608,6 @@ class Testimonials16 extends Testimonials {
                   tabIndex={0}
                   onClick={() => {
                     sliderRef?.current?.slickNext()
-                  }}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault()
-                      sliderRef?.current?.slickNext()
-                    }
                   }}
                 >
                   <Base.Media value={nextIcon} className={this.decorateCSS("navigation-icon")} />
