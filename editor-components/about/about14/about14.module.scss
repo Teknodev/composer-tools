@@ -136,15 +136,16 @@
                 align-items: center;
                 text-align: center;
 
+                .heading .section-subtitle,
+                .heading .subtitle,
+                .heading .section-title,
+                .heading .title,
+                .description-wrapper .description {
+                    text-align: center;
+                }
+
                 .heading {
                     align-items: center;
-
-                    .section-subtitle,
-                    .subtitle,
-                    .section-title,
-                    .title {
-                        text-align: center;
-                    }
 
                     .section-subtitle,
                     .subtitle {
