@@ -33,7 +33,6 @@
           display: flex;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
-          justify-content: flex-start;
         }
 
         .link {
@@ -93,13 +92,25 @@
   &.no-image {
     .max-content {
       .content {
+        .content-inner {
+          flex: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
         .wrapper {
-          justify-content: flex-start;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
         }
 
         .content-inner {
-          flex: none;
-
           &.center {
             align-items: center;
 
@@ -123,62 +134,6 @@
               justify-content: center;
             }
           }
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    &.no-image {
-      .max-content {
-        .content {
-          .content-inner {
-            width: 100%;
-          }
-        }
-      }
-    }
-
-    .max-content {
-      .content {
-        .content-inner {
-          &.center {
-            align-items: flex-start;
-
-            .subtitle,
-            .title,
-            .description {
-              text-align: left;
-            }
-
-            .subtitle {
-              margin-left: 0;
-              margin-right: auto;
-
-              &::before {
-                display: block !important;
-              }
-            }
-
-            .buttons-wrapper {
-              justify-content: flex-start;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .content {
-        .wrapper {
-          flex-direction: column;
-          gap: var(--composer-gap-md);
         }
 
         .image-wrapper {

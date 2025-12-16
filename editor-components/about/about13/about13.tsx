@@ -6,6 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type About13Props = Record<string, unknown>;
+type ButtonItem = INPUTS.CastedButton & { icon?: unknown };
 
 class About13 extends BaseAbout {
   constructor(props?: About13Props) {
@@ -58,6 +59,35 @@ class About13 extends BaseAbout {
     return "About 13";
   }
 
+  private isRecord(value: unknown): value is Record<string, unknown> {
+    return typeof value === "object" && value !== null;
+  }
+
+  private getIconValue(input: unknown): TypeMediaInputValue | null {
+    if (!input) return null;
+
+    if (typeof input === "string") {
+      const name = this.castToString(input);
+      return name ? ({ type: "icon", name } as unknown as TypeMediaInputValue) : null;
+    }
+
+    if (!this.isRecord(input)) return null;
+
+    const type = input["type"];
+    const url = input["url"];
+    const name = input["name"];
+
+    const hasUrl = typeof url === "string" && !!url;
+    const hasName = typeof name === "string" && !!name;
+
+    if (type === "icon" && hasName) return input as unknown as TypeMediaInputValue;
+    if ((type === "image" || type === "video") && hasUrl) return input as unknown as TypeMediaInputValue;
+
+    if (hasUrl || hasName) return input as unknown as TypeMediaInputValue;
+
+    return null;
+  }
+
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
@@ -68,66 +98,39 @@ class About13 extends BaseAbout {
     const descriptionExist = !!this.castToString(description);
 
     const image = this.getPropValue("image") as TypeMediaInputValue | null;
-    const hasImage = !!image?.url;
+    const imageUrl = (image as { url?: string } | null)?.url;
+    const hasImage = !!imageUrl;
 
-    const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttonsRaw = this.castToObject<ButtonItem[]>("buttons");
     const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
 
     const buttonNodes: React.ReactNode[] = [];
     for (let index = 0; index < buttons.length; index++) {
       const item = buttons[index];
 
-      const buttonText = this.castToString(item?.text || "");
-      const buttonTextExist = !!buttonText;
-
-      const iconInput = (item as any)?.icon as unknown;
-      let iconValue: TypeMediaInputValue | null = null;
-
-      if (typeof iconInput === "string") {
-        const name = this.castToString(iconInput);
-        if (name) iconValue = { type: "icon", name } as unknown as TypeMediaInputValue;
-      } else if (iconInput && typeof iconInput === "object") {
-        const iconObj = iconInput as any;
-        const type = iconObj?.type;
-        const validMedia =
-          (type === "icon" && !!iconObj?.name) ||
-          (type === "image" && !!iconObj?.url) ||
-          (type === "video" && !!iconObj?.url);
-
-        if (validMedia) iconValue = iconInput as TypeMediaInputValue;
-      }
+      const buttonTextExist = !!this.castToString(item?.text || "");
+      const iconValue = this.getIconValue(item?.icon);
 
       if (!buttonTextExist && !iconValue) continue;
-
-      const content: React.ReactNode[] = [];
-      if (iconValue) {
-        content.push(
-          <Base.Media
-            key="icon"
-            value={iconValue}
-            className={this.decorateCSS("icon")}
-          />
-        );
-      }
-      if (buttonTextExist) {
-        content.push(
-          <Base.P key="text" className={this.decorateCSS("button-text")}>
-            {item.text}
-          </Base.P>
-        );
-      }
 
       buttonNodes.push(
         <ComposerLink
           key={index}
-          path={item.url || ""}
+          path={item?.url || ""}
           className={this.decorateCSS("link")}
         >
           <Base.Button
-            buttonType={item.type}
+            buttonType={item?.type}
             className={this.decorateCSS("button")}
           >
-            {content}
+            {iconValue && (
+              <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
+            )}
+            {buttonTextExist && (
+              <Base.P className={this.decorateCSS("button-text")}>
+                {item.text}
+              </Base.P>
+            )}
           </Base.Button>
         </ComposerLink>
       );
