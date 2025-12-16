@@ -1,0 +1,195 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  position: relative;
+  overflow: hidden;
+
+  &.image-only {
+    height: 100%;
+  }
+  .max-content {
+    .intro-wrapper {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: end;
+      min-height: 500px;
+      align-items: center;
+
+      &.no-image {
+        min-height: unset;
+        .text-content {
+          padding-left: var(--composer-gap-xl);
+          padding-right: var(--composer-gap-xl);
+        }
+      }
+
+      .text-content {
+        width: calc(50% - var(--composer-gap-xl));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        padding-right: var(--composer-gap-xl);
+
+        &.text-content-alone {
+          width: 100%;
+        }
+        .vertical-content {
+          .title,
+          .subtitle,
+          .description {
+            text-align: left;
+          }
+          .subtitle {
+            margin-left: 0;
+          }
+
+          .action-buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+            justify-content: flex-start;
+
+            .button-text {
+              content: "";
+            }
+            .button-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.5rem;
+              height: 25px;
+              width: 25px;
+            }
+          }
+        }
+
+        &.no-image-center {
+          .vertical-content {
+            .title,
+            .subtitle,
+            .description {
+              text-align: center;
+            }
+            .subtitle {
+              margin-left: auto;
+            }
+
+            .action-buttons {
+              justify-content: center;
+            }
+          }
+        }
+      }
+
+      .image-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+
+        &.image-container-alone {
+          width: 100%;
+          height: 100%;
+        }
+
+        .thumbnail-overlay {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+          transition: opacity var(--composer-transition-duration-normal) ease;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .media-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .intro-wrapper {
+        .text-content {
+          padding-right: var(--composer-gap-lg) !important;
+        }
+        &.no-image {
+          .text-content {
+            padding-left: var(--composer-gap-lg) !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    &.image-only {
+      height: auto;
+    }
+    .max-content {
+      .intro-wrapper {
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+        min-height: unset;
+
+        .image-container {
+          position: static;
+          order: 2;
+          flex: 0 0 100%;
+          width: 100%;
+        }
+
+        .text-content {
+          order: 1;
+          width: 100%;
+          flex: 0 0 100%;
+          padding: 0 var(--composer-gap-md) !important;
+
+          &.center {
+            .vertical-content {
+              align-items: center;
+
+              .title,
+              .subtitle,
+              .description {
+                text-align: center !important;
+              }
+
+              .subtitle {
+                margin-left: auto;
+              }
+
+              .action-buttons {
+                justify-content: center;
+              }
+            }
+          }
+        }
+        &.no-image {
+          .text-content {
+            padding-left: var(--composer-gap-md) !important;
+            padding-right: var(--composer-gap-md) !important;
+          }
+        }
+      }
+    }
+  }
+}
