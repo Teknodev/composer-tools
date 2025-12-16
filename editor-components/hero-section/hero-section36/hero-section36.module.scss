@@ -29,6 +29,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
 
     .panoramic-track {
       position: relative;
@@ -37,6 +39,8 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      
+    transform-style: preserve-3d;
 
       .image-child {
         position: absolute;
@@ -45,16 +49,24 @@
         justify-content: center;
         align-items: center;
         will-change: transform, opacity;
-        transform-style: preserve-3d;
         transition: opacity 0.1s ease;
 
+        .image-wrapper {
+          transform-style: preserve-3d;
+        }
+
         .image {
-          padding: 0px 10px;
+          // padding: 0px 10px;
           width: 300px;
           height: 400px;
           object-fit: cover;
-          border-radius: var(--composer-border-radius, 12px);
+          // border-radius: var(--composer-border-radius, 12px);
           display: block;
+          transform-origin: center center;
+          backface-visibility: hidden;
+          transform: rotateY(var(--rotate-y, 0deg)) translateZ(var(--translate-z, 0px)) scale(var(--scale, 1));
+          transition: transform 5000ms linear;
+          will-change: transform;
         }
       }
     }

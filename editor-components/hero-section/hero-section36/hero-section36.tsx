@@ -128,7 +128,7 @@ class HeroSection36 extends BaseHeroSection {
     if (this.containerRef) {
       this.forceUpdate();
     }
-    // this.startAnimation();
+    this.startAnimation();
   }
 
   componentWillUnmount() {
@@ -160,7 +160,7 @@ class HeroSection36 extends BaseHeroSection {
       }
     }
     
-    const imageWidth = 300; // Width of each image + gap
+    const imageWidth = 290; // Width of each image + gap
     const totalWidth = images.length * imageWidth;
     
     // Reset position for seamless loop
@@ -189,35 +189,47 @@ class HeroSection36 extends BaseHeroSection {
                 const basePosition = idx * imageWidth + this.translateX;
                 const containerWidth = this.containerRef?.offsetWidth || 1920;
                 const centerX = containerWidth / 2;
-                
-                // Normalize position relative to center
-                const relativePosition = basePosition - centerX + imageWidth / 2;
-                const normalizedPos = relativePosition / (containerWidth / 2);
+
+                // Calculate image center position (not left edge)
+                const imageCenterPosition = basePosition + imageWidth / 2;
+                // Normalize position relative to container center
+                const normalizedPos = (imageCenterPosition - centerX) / (containerWidth / 2);
                 
                 // Panoramic curve calculations
-                const rotateY = normalizedPos * -30; // Max 30 degrees rotation at edges
-                // const translateZ = Math.abs(normalizedPos) * 20; // Push back at edges
-                const scale = 1 + Math.abs(normalizedPos) * 0.15; 
+                // Negative rotateY to angle images toward center
+                const rotateY = normalizedPos * -35; // Negative for inward angle
+                // Push images back at edges to create curved cylinder effect
+                const translateZ = -Math.abs(normalizedPos) * 150; // Recede at edges
+                const scale = 0.90 + Math.abs(normalizedPos) * 0.30;
                 const opacity = 1 - Math.abs(normalizedPos) * 0.5; // Fade at edges
+
+               
 
                 return (
                   <div
                     className={this.decorateCSS("image-child")}
                     key={idx}
                     style={{
+                      perspective: '2000px',
+                      transformOrigin: 'center center',
+                      backfaceVisibility: 'hidden',
                       transform: `translateX(${basePosition}px)`,
                       opacity: Math.max(0.3, opacity),
                     }}
                   >
-                    <div
-                      style={{
-                        transform: `perspective(1000px) rotateY(${rotateY}deg)  scale(${Math.max(0.6, scale)})`,
-                      }}
-                    >
-                      <Base.Media
-                        value={img.image}
-                        className={this.decorateCSS("image")}
-                      />
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <div
+                        style={{
+                          ['--rotate-y' as string]: `${rotateY}deg`,
+                          ['--translate-z' as string]: `${translateZ}px`,
+                          ['--scale' as string]: scale,
+                        }}
+                      >
+                        <Base.Media
+                          value={img.image}
+                          className={this.decorateCSS("image")}
+                        />
+                      </div>
                     </div>
                   </div>
                 );
@@ -228,12 +240,16 @@ class HeroSection36 extends BaseHeroSection {
                 const containerWidth = this.containerRef?.offsetWidth || 1920;
                 const centerX = containerWidth / 2;
                 
-                const relativePosition = basePosition - centerX + imageWidth / 2;
-                const normalizedPos = relativePosition / (containerWidth / 2);
-                
-                const rotateY = normalizedPos * -30;
-                // const translateZ = Math.abs(normalizedPos) * 20;
-                const scale = 1 + Math.abs(normalizedPos) * 0.15; 
+                // Calculate image center position (not left edge)
+                const imageCenterPosition = basePosition + imageWidth / 2;
+                // Normalize position relative to container center
+                const normalizedPos = (imageCenterPosition - centerX) / (containerWidth / 2);
+
+                // Negative rotateY to angle images toward center
+                const rotateY = normalizedPos * -35; // Negative for inward angle
+                // Push images back at edges to create curved cylinder effect
+                const translateZ = -Math.abs(normalizedPos) * 150; // Recede at edges
+                const scale = 0.90 + Math.abs(normalizedPos) * 0.30;
                 const opacity = 1 - Math.abs(normalizedPos) * 0.5;
                 
                 return (
@@ -241,19 +257,26 @@ class HeroSection36 extends BaseHeroSection {
                     className={this.decorateCSS("image-child")}
                     key={`dup-${idx}`}
                     style={{
+                      perspective: '2000px',
+                      transformOrigin: 'center center',
+                      backfaceVisibility: 'hidden',
                       transform: `translateX(${basePosition}px)`,
                       opacity: Math.max(0.3, opacity),
                     }}
                   >
-                    <div
-                      style={{
-                        transform: `perspective(1000px) rotateY(${rotateY}deg) `,
-                      }}
-                    >
-                      <Base.Media
-                        value={img.image}
-                        className={this.decorateCSS("image")}
-                      />
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <div
+                        style={{
+                          ['--rotate-y' as string]: `${rotateY}deg`,
+                          ['--translate-z' as string]: `${translateZ}px`,
+                          ['--scale' as string]: scale,
+                        }}
+                      >
+                        <Base.Media
+                          value={img.image}
+                          className={this.decorateCSS("image")}
+                        />
+                      </div>
                     </div>
                   </div>
                 );
