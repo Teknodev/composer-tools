@@ -11,12 +11,7 @@ class About13 extends BaseAbout {
   constructor(props?: About13Props) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -37,9 +32,7 @@ class About13 extends BaseAbout {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", "", null, "Link"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", "", null, "Link")],
     });
 
     this.addProp({
@@ -53,9 +46,7 @@ class About13 extends BaseAbout {
       type: "media",
       key: "image",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
+      additionalParams: { availableTypes: ["image", "video"] },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
@@ -94,9 +85,7 @@ class About13 extends BaseAbout {
 
       if (typeof iconInput === "string") {
         const name = this.castToString(iconInput);
-        if (name) {
-          iconValue = { type: "icon", name } as unknown as TypeMediaInputValue;
-        }
+        if (name) iconValue = { type: "icon", name } as unknown as TypeMediaInputValue;
       } else if (iconInput && typeof iconInput === "object") {
         const iconObj = iconInput as any;
         const type = iconObj?.type;
@@ -131,7 +120,7 @@ class About13 extends BaseAbout {
       buttonNodes.push(
         <ComposerLink
           key={index}
-          path={item.url}
+          path={item.url || ""}
           className={this.decorateCSS("link")}
         >
           <Base.Button
@@ -170,9 +159,7 @@ class About13 extends BaseAbout {
               {isContentVisible && (
                 <div className={contentInnerClassName}>
                   {subtitleExist && (
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS("subtitle")}
-                    >
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {subtitle}
                     </Base.SectionSubTitle>
                   )}
@@ -184,9 +171,7 @@ class About13 extends BaseAbout {
                   )}
 
                   {descriptionExist && (
-                    <Base.SectionDescription
-                      className={this.decorateCSS("description")}
-                    >
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}
                     </Base.SectionDescription>
                   )}

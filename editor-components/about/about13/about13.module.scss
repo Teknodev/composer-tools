@@ -131,30 +131,39 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    &.no-image {
+      .max-content {
+        .content {
+          .content-inner {
+            width: 100%;
+          }
+        }
+      }
+    }
+
     .max-content {
       .content {
         .content-inner {
           &.center {
-            align-items: center;
+            align-items: flex-start;
 
             .subtitle,
             .title,
             .description {
-              text-align: center;
+              text-align: left;
             }
 
             .subtitle {
-              margin-left: auto;
+              margin-left: 0;
               margin-right: auto;
-              transform: none !important;
 
               &::before {
-                display: none !important;
+                display: block !important;
               }
             }
 
             .buttons-wrapper {
-              justify-content: center;
+              justify-content: flex-start;
             }
           }
         }
