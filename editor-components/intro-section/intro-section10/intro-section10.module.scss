@@ -19,7 +19,7 @@
           white-space: nowrap;
           overflow: hidden;
 
-          &::after {
+          &:not([data-typed-complete="true"])::after {
             content: "|";
             margin-left: 0.25rem;
             animation: blink-caret 0.8s steps(1) infinite;
@@ -58,8 +58,12 @@
     }
 
     .left {
-      .top-text,
+      .top-text{
+        text-align: left !important;
+        margin-left: 0 !important;
+      }
       .bottom-text {
+        color: var(--composer-font-color-primary);
         text-align: left;
         margin-bottom: 0 !important;
       }

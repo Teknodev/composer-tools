@@ -21,7 +21,12 @@ const TypeWriter: React.FC<{
     return () => clearTimeout(id);
   }, [text, index, speed]);
 
-  return <Base.SectionTitle className={className}>{text.slice(0, index)}</Base.SectionTitle>;
+  const finished = !!text && index >= text.length;
+  return (
+    <Base.SectionTitle className={className} data-typed-complete={finished ? "true" : "false"}>
+      {text.slice(0, index)}
+    </Base.SectionTitle>
+  );
 };
 
 class IntroSection10 extends BaseIntroSection {
@@ -98,20 +103,20 @@ class IntroSection10 extends BaseIntroSection {
             {hasLeft && (
               <Base.VerticalContent className={this.decorateCSS("left")}>
                 {subtitleStr && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitleStr}</Base.SectionSubTitle>
                 )}
                 {topTextStr && (
                   <Base.SectionTitle className={this.decorateCSS("top-text")}>
-                    {topText}
+                    {topTextStr}
                   </Base.SectionTitle>
                 )}
 
                 {isAnimate1 ? (
-                  <TypeWriter text={bottomTextStr} className={this.decorateCSS("bottom-text")} />
+                    <TypeWriter text={bottomTextStr} className={this.decorateCSS("bottom-text")} />
                 ) : (
                   bottomTextStr && (
                     <Base.SectionTitle className={this.decorateCSS("bottom-text")}>
-                      {bottomText}
+                      {bottomTextStr}
                     </Base.SectionTitle>
                   )
                 )}
