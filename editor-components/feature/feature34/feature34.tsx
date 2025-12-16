@@ -3,13 +3,6 @@ import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature34.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-interface FeatureItem {
-    title: string;
-    text: string;
-    rawTitle?: unknown;
-    rawText?: unknown;
-}
-
 class Feature34 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
@@ -120,20 +113,16 @@ class Feature34 extends BaseFeature {
         const rawTitle = this.getPropValue("title");
         const rawSubtitle = this.getPropValue("subtitle");
         const rawDescription = this.getPropValue("description");
-        
+
         const subtitleText = this.castToString(rawSubtitle);
         const titleText = this.castToString(rawTitle);
         const descriptionText = this.castToString(rawDescription);
 
         const rawFeatures = (this.castToObject<any[]>("features") || []).filter(Boolean);
-        const features: FeatureItem[] = rawFeatures
-            .map((feature) => ({
-                title: this.castToString(feature?.title),
-                text: this.castToString(feature?.text),
-                rawTitle: feature?.title,
-                rawText: feature?.text,
-            }))
-            .filter((feature) => feature.title || feature.text);
+        const features = rawFeatures.map((feature) => ({
+            title: feature?.title,
+            text: feature?.text,
+        })).filter((item) => this.castToString(item.title) || this.castToString(item.text));
 
         const itemsPerRow = this.getPropValue("itemsPerRow") || 2;
         const hasContent = Boolean(subtitleText || titleText || descriptionText || features.length > 0);
@@ -141,6 +130,9 @@ class Feature34 extends BaseFeature {
         const overlay = this.getPropValue("overlay");
 
         const hasMedia = !!(image?.url || image?.name);
+
+        const alignmentValue = Base.getContentAlignment();
+        const noImageCenterClass = !hasMedia && alignmentValue === "center" ? this.decorateCSS("no-image-center") : "";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -161,7 +153,7 @@ class Feature34 extends BaseFeature {
                     )}
 
                     {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("content-side")}>
+                        <Base.VerticalContent className={`${this.decorateCSS("content-side")} ${noImageCenterClass}`}>
                             {(subtitleText || titleText || descriptionText) && (
                                 <Base.VerticalContent className={this.decorateCSS("header")}>
                                     {subtitleText && (
@@ -189,14 +181,14 @@ class Feature34 extends BaseFeature {
                                 >
                                     {features.map((feature, index) => (
                                         <div key={index} className={this.decorateCSS("feature-item")}>
-                                            {feature.title && (
+                                            {this.castToString(feature.title) && (
                                                 <Base.H5 className={this.decorateCSS("feature-title")}>
-                                                    {feature.rawTitle}
+                                                    {feature.title}
                                                 </Base.H5>
                                             )}
-                                            {feature.text && (
+                                            {this.castToString(feature.text) && (
                                                 <Base.P className={this.decorateCSS("feature-text")}>
-                                                    {feature.rawText}
+                                                    {feature.text}
                                                 </Base.P>
                                             )}
                                         </div>
