@@ -34,15 +34,7 @@ class Feature28Component extends BaseFeature {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "About us", "", null, null, "White"),
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Watch how we work",
-          "",
-          "FaArrowRight",
-          null,
-          "White"
-        ),
+        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaArrowRight", null, "White"),
       ],
     });
 
@@ -90,42 +82,41 @@ class Feature28Component extends BaseFeature {
     const buttonNodes: React.ReactNode[] = [];
     for (let index = 0; index < buttons.length; index++) {
       const item = buttons[index];
-
       const textExist = !!this.castToString(item?.text || "");
 
       const iconInput = (item as any)?.icon as unknown;
-      let iconValue: TypeMediaInputValue | null = null;
+      const iconName = typeof iconInput === "string" ? this.castToString(iconInput) : "";
 
-      if (typeof iconInput === "string") {
-        const name = this.castToString(iconInput);
-        if (name) iconValue = { type: "icon", name } as unknown as TypeMediaInputValue;
-      } else if (iconInput && typeof iconInput === "object") {
-        const media = iconInput as TypeMediaInputValue;
-        const mediaOk =
-          (media.type === "icon" && !!(media as any)?.name) ||
-          (media.type === "image" && !!(media as any)?.url) ||
-          (media.type === "video" && !!(media as any)?.url);
+      const iconValue =
+        iconName
+          ? ({ type: "icon", name: iconName } as unknown as TypeMediaInputValue)
+          : iconInput && typeof iconInput === "object"
+            ? (iconInput as TypeMediaInputValue)
+            : null;
 
-        if (mediaOk) iconValue = media;
-      }
+      const iconExist =
+        !!iconValue &&
+        ((iconValue.type === "icon" && !!(iconValue as any)?.name) ||
+          ((iconValue.type === "image" || iconValue.type === "video") &&
+            !!(iconValue as any)?.url));
 
-      if (!textExist && !iconValue) continue;
+      if (!textExist && !iconExist) continue;
 
       buttonNodes.push(
         <ComposerLink
           key={`btn-${index}`}
-          path={item.url || ""}
+          path={item?.url || ""}
           className={this.decorateCSS("button-link")}
         >
-          <Base.Button
-            className={this.decorateCSS("button")}
-            buttonType={item.type}
-          >
-            {iconValue && (
-              <Base.Media className={this.decorateCSS("icon")} value={iconValue} />
+          <Base.Button className={this.decorateCSS("button")} buttonType={item?.type}>
+            {iconExist && (
+              <Base.Media
+                className={this.decorateCSS("icon")}
+                value={iconValue as TypeMediaInputValue}
+              />
             )}
             {textExist && (
-              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+              <Base.P className={this.decorateCSS("button-text")}>{item?.text}</Base.P>
             )}
           </Base.Button>
         </ComposerLink>
@@ -143,18 +134,20 @@ class Feature28Component extends BaseFeature {
       hasBackground ? ` ${this.decorateCSS("subtitle-no-badge")}` : ""
     }`;
 
-    const isVideo = hasBackground && image?.type === "video";
     const backgroundMediaValue =
       hasBackground && image
-        ? ({
-            ...image,
-            ...(isVideo && {
-              autoPlay: true,
-              muted: true,
-              loop: true,
-              playsInline: true,
-            }),
-          } as TypeMediaInputValue)
+        ? (image.type === "video"
+            ? ({
+                ...image,
+                settings: {
+                  ...(image as any)?.settings,
+                  autoplay: true,
+                  muted: true,
+                  loop: true,
+                  controls: false,
+                },
+              } as TypeMediaInputValue)
+            : image)
         : null;
 
     return (
@@ -168,20 +161,13 @@ class Feature28Component extends BaseFeature {
 
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isContentExist && (
-            <Base.VerticalContent
-              className={this.decorateCSS("content")}
-              data-alignment={alignment}
-            >
+            <Base.VerticalContent className={this.decorateCSS("content")} data-alignment={alignment}>
               {subtitleExist && (
-                <Base.SectionSubTitle className={subtitleClassName}>
-                  {subtitle}
-                </Base.SectionSubTitle>
+                <Base.SectionSubTitle className={subtitleClassName}>{subtitle}</Base.SectionSubTitle>
               )}
 
               {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
               )}
 
               {descriptionExist && (
@@ -191,9 +177,7 @@ class Feature28Component extends BaseFeature {
               )}
 
               {hasButtons && (
-                <Base.Row className={this.decorateCSS("button-container")}>
-                  {buttonNodes}
-                </Base.Row>
+                <Base.Row className={this.decorateCSS("button-container")}>{buttonNodes}</Base.Row>
               )}
             </Base.VerticalContent>
           )}
