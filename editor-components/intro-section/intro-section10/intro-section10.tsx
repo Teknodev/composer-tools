@@ -9,52 +9,27 @@ const TypeWriter: React.FC<{
   className?: string;
   speed?: number;
 }> = ({ text, className, speed = 80 }) => {
-  const [display, setDisplay] = React.useState("");
+  const [index, setIndex] = React.useState(0);
 
   React.useEffect(() => {
-    if (!text) {
-      setDisplay("");
-      return;
-    }
+    setIndex(0);
+  }, [text]);
 
-    let i = 0;
-    const id = window.setInterval(() => {
-      i += 1;
-      setDisplay(text.slice(0, i));
-      if (i >= text.length) window.clearInterval(id);
-    }, speed);
+  React.useEffect(() => {
+    if (!text || index >= text.length) return;
+    const id = setTimeout(() => setIndex((v) => v + 1), speed);
+    return () => clearTimeout(id);
+  }, [text, index, speed]);
 
-    return () => window.clearInterval(id);
-  }, [text, speed]);
-
-  return <Base.H1 className={className}>{display}</Base.H1>;
+  return <Base.H1 className={className}>{text.slice(0, index)}</Base.H1>;
 };
 
 class IntroSection10 extends BaseIntroSection {
   constructor(props?: unknown) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "topText",
-      displayer: "Top Text",
-      value: "I'm Alex Green",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "bottomText",
-      displayer: "Bottom Text",
-      value: "Your Illustrator",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
-
+    this.addProp({ type: "string", key: "topText", displayer: "Top Text", value: "I'm Alex Green" });
+    this.addProp({ type: "string", key: "bottomText", displayer: "Bottom Text", value: "Your Illustrator" });
     this.addProp({
       type: "string",
       key: "description",
@@ -62,7 +37,6 @@ class IntroSection10 extends BaseIntroSection {
       value:
         "Objectively innovate empowered products platforms. Holisticly predominate extensible testing procedures for reliable supply chains.",
     });
-
     this.addProp({
       type: "array",
       key: "buttons",
@@ -72,15 +46,12 @@ class IntroSection10 extends BaseIntroSection {
         INPUTS.BUTTON("button", "Button", "My Portfolio", null, "", null, "White"),
       ],
     });
-
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
       value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1", "animate2"],
-      },
+      additionalParams: { selectItems: ["animate1"] },
     });
   }
 
@@ -90,88 +61,94 @@ class IntroSection10 extends BaseIntroSection {
 
   render() {
     const topText = this.getPropValue("topText");
-    const subtitle = this.getPropValue("subtitle");
-    const hasSubtitle = !!this.castToString(subtitle);
     const bottomText = this.getPropValue("bottomText");
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
-    const hoverAnimationArr = (this.getPropValue("hoverAnimation") || []) as string[];
-    const hoverAnimationAttr = hoverAnimationArr.join(" ");
-    const isAnimate1 = hoverAnimationAttr.includes("animate1");
+    const topTextStr = this.castToString(topText || "");
+    const bottomTextStr = this.castToString(bottomText || "");
+    const descriptionStr = this.castToString(description || "");
 
-    const bottomTextStr = String(this.castToString(bottomText || ""));
+    const hoverAnimation = ((this.getPropValue("hoverAnimation") || []) as string[]).join(" ");
+    const isAnimate1 = hoverAnimation.includes("animate1");
+
+    const hasLeft = !!topTextStr || !!bottomTextStr;
+    const hasRight = !!descriptionStr || buttons.length > 0;
 
     const alignment = Base.getContentAlignment();
-    const isLeftContainerExist =
-      !!this.castToString(topText || "") ||
-      hasSubtitle ||
-      !!this.castToString(description || "") ||
-      (Array.isArray(buttons) && buttons.length > 0);
+    const alignmentClass =
+      alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("content")} ${
-              alignment === "left"
-                ? this.decorateCSS("alignment-left")
-                : this.decorateCSS("alignment-center")
-            }`}
+          <Base.Row
+            className={[
+              this.decorateCSS("section-row"),
+              alignmentClass,
+              hasLeft && !hasRight ? this.decorateCSS("left-alone") : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            data-animation={hoverAnimation}
           >
-            {isLeftContainerExist && (
-              <div className={this.decorateCSS("left-container")} data-animation={hoverAnimationAttr}>
-                <Base.VerticalContent className={this.decorateCSS("vertical-left")}>
-                  {hasSubtitle && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                  )}
-                  <Base.H1 className={this.decorateCSS("top-text")}>{topText}</Base.H1>
+            {hasLeft && (
+              <Base.VerticalContent className={this.decorateCSS("left")}>
+                {topTextStr && (
+                  <Base.H1 className={this.decorateCSS("top-text")}>
+                    {topText}
+                  </Base.H1>
+                )}
 
-                  {isAnimate1 ? (
-                    <TypeWriter text={bottomTextStr} className={this.decorateCSS("bottom-text")} />
-                  ) : (
-                    <Base.H1 className={this.decorateCSS("bottom-text")}>{bottomTextStr}</Base.H1>
-                  )}
-                </Base.VerticalContent>
-              </div>
+                {isAnimate1 ? (
+                  <TypeWriter text={bottomTextStr} className={this.decorateCSS("bottom-text")} />
+                ) : (
+                  bottomTextStr && (
+                    <Base.H1 className={this.decorateCSS("bottom-text")}>
+                      {bottomText}
+                    </Base.H1>
+                  )
+                )}
+              </Base.VerticalContent>
             )}
 
-            <div
-              className={`${this.decorateCSS("right-container")} ${
-                !isLeftContainerExist ? this.decorateCSS("right-container-alone") : ""
-              }`}
-            >
-              <Base.VerticalContent className={this.decorateCSS("vertical-right")}>
-                <div className={this.decorateCSS("description-wrapper")}>
-                  <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
-                </div>
+            {hasRight && (
+              <Base.VerticalContent
+                className={[this.decorateCSS("right"), !hasLeft ? this.decorateCSS("right-alone") : ""]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                {descriptionStr && (
+                  <Base.P className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.P>
+                )}
 
-                <div className={this.decorateCSS("buttons-wrapper")}>
-                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                    const label = String(this.castToString(item.text || ""));
-                    const rawIcon = (item as any).icon;
-                    const iconName =
-                      (rawIcon as any)?.name ?? (rawIcon as any)?.value?.name ?? (rawIcon as string) ?? "";
-
-                    const buttonType = item.type ?? "Primary";
-                    const shouldRender = (label && label.length > 0) || (iconName && iconName.length > 0);
-                    if (!shouldRender) return null;
+                <Base.Row className={this.decorateCSS("actions-block")}>
+                  {buttons.map((btn, i) => {
+                    const icon =
+                      (btn as any)?.icon?.name ??
+                      (btn as any)?.icon?.value?.name ??
+                      (btn as any)?.icon ??
+                      "";
+                    const text = this.castToString(btn.text);
+                    if (!text && !icon) return null;
 
                     return (
-                      <div key={index} className={this.decorateCSS("button-wrapper")}>
-                        <Base.Button buttonType={buttonType} className={this.decorateCSS("button")}>
-                          {iconName && (
-                            <Base.Media className={this.decorateCSS("icon")} value={{ type: "icon", name: iconName }} />
+                      <Base.Row key={i} className={this.decorateCSS("button-wrapper")}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={btn.type ?? "Primary"}>
+                          {icon && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={{ type: "icon", name: icon }} />
                           )}
-                          {label && <Base.P className={this.decorateCSS("button-text")}>{label}</Base.P>}
+                          {text && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                         </Base.Button>
-                      </div>
+                      </Base.Row>
                     );
                   })}
-                </div>
+                </Base.Row>
               </Base.VerticalContent>
-            </div>
-          </div>
+            )}
+          </Base.Row>
         </Base.MaxContent>
       </Base.Container>
     );
