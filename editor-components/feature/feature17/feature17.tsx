@@ -15,8 +15,6 @@ type ITabs = {
 };
 
 class Feature17 extends BaseFeature {
-  private tabButtonsRef = React.createRef<HTMLDivElement>();
-
   constructor(props?: any) {
     super(props, styles);
 
@@ -317,48 +315,6 @@ class Feature17 extends BaseFeature {
     this.setComponentState("activeTab", activeTabIndex);
   }
 
-  private isDragging = false;
-  private dragMoved = false;
-  private startX = 0;
-  private scrollLeft = 0;
-
-  onTabClick = (e: React.MouseEvent, index: number) => {
-    if (this.dragMoved) {
-      this.dragMoved = false;
-      e.preventDefault();
-      return;
-    }
-
-    this.setActiveTab(index);
-  };
-
-  handleDragScroll = (e: React.MouseEvent) => {
-    const el = this.tabButtonsRef.current;
-    if (!el) return;
-
-    if (e.type === "mousedown") {
-      this.isDragging = true;
-      this.dragMoved = false;
-      this.startX = e.pageX - el.offsetLeft;
-      this.scrollLeft = el.scrollLeft;
-      el.style.cursor = "grabbing";
-      el.style.userSelect = "none";
-    } else if (e.type === "mousemove") {
-      if (!this.isDragging) return;
-      e.preventDefault();
-      const x = e.pageX - el.offsetLeft;
-      const dx = x - this.startX;
-      if (Math.abs(dx) > 5) {
-        this.dragMoved = true;
-      }
-      el.scrollLeft = this.scrollLeft - dx;
-    } else if (e.type === "mouseup" || e.type === "mouseleave") {
-      this.isDragging = false;
-      el.style.cursor = "grab";
-      el.style.userSelect = "";
-    }
-  };
-
   static getName(): string {
     return "Feature 17";
   }
@@ -429,22 +385,14 @@ class Feature17 extends BaseFeature {
 
           <div className={this.decorateCSS("tabs")}>
             <div className={this.decorateCSS("tab-buttons-wrapper")}>
-              <div
-                ref={this.tabButtonsRef}
-                className={this.decorateCSS("tab-buttons")}
-                onMouseDown={this.handleDragScroll}
-                onMouseLeave={this.handleDragScroll}
-                onMouseUp={this.handleDragScroll}
-                onMouseMove={this.handleDragScroll}
-                style={{ cursor: "grab" }}
-              >
+              <div className={this.decorateCSS("tab-buttons")}>
                 {filteredTabs.map((tab: ITabs, index: number) => (
                   <Base.H6
                     key={`feature17-tab-button-${index}`}
                     className={`${this.decorateCSS("tab-button")} ${
                       activeTab === index ? this.decorateCSS("active") : ""
                     }`}
-                    onClick={(e: React.MouseEvent) => this.onTabClick(e, index)}
+                    onClick={() => this.setActiveTab(index)}
                   >
                     {tab.tabText}
                   </Base.H6>
