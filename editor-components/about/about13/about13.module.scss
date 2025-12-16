@@ -20,6 +20,7 @@
         .subtitle,
         .title,
         .description {
+          max-width: 100%;
           text-align: left;
           overflow-wrap: anywhere;
           word-break: break-word;
@@ -35,15 +36,19 @@
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
           justify-content: flex-start;
+          max-width: 100%;
         }
 
         .link {
           display: inline-flex;
+          max-width: 100%;
+          text-decoration: none;
         }
 
         .button {
           display: inline-flex;
           align-items: center;
+          max-width: 100%;
 
           .icon {
             width: 1em;
@@ -59,6 +64,8 @@
           }
 
           .button-text {
+            margin: 0;
+            padding: 0;
             display: inline;
             text-align: left;
             overflow-wrap: anywhere;
@@ -99,6 +106,7 @@
 
         .content-inner {
           flex: none;
+          width: 100%;
         }
       }
     }
@@ -115,7 +123,7 @@
         }
 
         .content-inner {
-          content: "";
+          width: 100%;
 
           &.center {
             align-items: center;
