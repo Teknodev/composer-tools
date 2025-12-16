@@ -184,7 +184,7 @@ class HeroSection19 extends BaseHeroSection {
           key: "overlay",
           value: false,
         },
-       INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
+       INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
       ],
     });
   }

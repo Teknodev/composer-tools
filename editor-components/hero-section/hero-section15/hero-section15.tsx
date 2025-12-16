@@ -39,7 +39,7 @@ class HeroSection15 extends BaseHeroSection {
       key: "image",
       displayer: "Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -58,6 +58,13 @@ class HeroSection15 extends BaseHeroSection {
         type: "icon",
         name: "",
       },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
 
     this.addProp({
@@ -131,8 +138,10 @@ class HeroSection15 extends BaseHeroSection {
       inputs.map((_: any, indexOfItem: number) => (value["input_" + indexOfItem] = ""));
       return value;
     }
+    const imagesExist = !!(backgroundImageValue || imageValue);
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!imagesExist ? this.decorateCSS("no-image") : ""}`}>
         {backgroundImageValue && (
           <Base.Media
             value={backgroundImageValue}
@@ -154,6 +163,14 @@ class HeroSection15 extends BaseHeroSection {
                       <Base.Media value={logoValue} className={`${this.decorateCSS("logo")} ${backgroundImageExist && this.decorateCSS("logo-with-image")}`} />
                     </div>
                   )}
+                  {this.castToString(this.getPropValue("subtitle")) && (() => {
+                    const subtitleAlignment = Base.getSectionSubTitleType();
+                    return (
+                      <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageExist && this.decorateCSS("subtitle-with-image")} ${subtitleAlignment === "badge" && backgroundImageExist ? this.decorateCSS("subtitle-badge-with-image") : ""}`}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
+                    );
+                  })()}
                   {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("title-with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {this.castToString(this.getPropValue("description")) && (
                     <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageExist && this.decorateCSS("description-with-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>
@@ -214,9 +231,16 @@ class HeroSection15 extends BaseHeroSection {
             </div>
             {imageValue && (
               <div className={this.decorateCSS("right")}>
-                <div className={this.decorateCSS("image-wrapper")}>
-                  <Base.Media value={imageValue} className={this.decorateCSS("image")} />
-                </div>
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <Base.Media
+                        value={imageValue}
+                        className={this.decorateCSS("image")}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    </div>
               </div>
             )}
           </Base.MaxContent>

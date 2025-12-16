@@ -91,7 +91,7 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "White"),
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
           ],
         },
         {
@@ -129,7 +129,7 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "White"),
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
           ],
         },
         {
@@ -158,7 +158,7 @@ class HeroSection17 extends BaseHeroSection {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193ed63f1a2002c3c5b49?alt=media&timestamp=1719483666663",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
               },
             },
             {
@@ -167,7 +167,7 @@ class HeroSection17 extends BaseHeroSection {
               key: "overlay",
               value: false,
             },
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "White"),
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
           ],
         },
       ],
@@ -220,6 +220,10 @@ class HeroSection17 extends BaseHeroSection {
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
                             <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
+                            <Base.Media
+                              className={this.decorateCSS("button-icon")}
+                              value={item.button.icon}
+                            />
                           </Base.Button>
                         </ComposerLink>
                       )}

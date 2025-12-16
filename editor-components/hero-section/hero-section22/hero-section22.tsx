@@ -298,20 +298,20 @@ class HeroSection22 extends BaseHeroSection {
                               {hasDivider && <div className={this.decorateCSS("divider")} />}
                               {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
 
-                              {item.button.map((buttonItem: any, indexButton: number) => {
-                                const buttonText = this.castToString(buttonItem.text);
-                                if (buttonText) {
+                              <div className={this.decorateCSS("button-row")}>
+                                {item.button.map((buttonItem: any, indexButton: number) => {
+                                  const buttonText = this.castToString(buttonItem.text);
                                   return (
-                                    <div className={this.decorateCSS("link-button-container")}>
+                                    buttonText && (
                                       <ComposerLink key={`hdr-22-${indexButton}`} path={buttonItem.url}>
                                         <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
                                           <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                                         </Base.Button>
                                       </ComposerLink>
-                                    </div>
+                                    )
                                   );
-                                }
-                              })}
+                                })}
+                              </div>
                             </Base.VerticalContent>
                           </div>
                           {rightImageExist && (

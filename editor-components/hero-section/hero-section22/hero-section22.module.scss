@@ -134,17 +134,26 @@
                   height: 2px;
                 }
 
+                .button-row {
+                  display: flex;
+                  gap: var(--composer-gap-md);
+                  align-items: center;
+                  
+                  .button {
+                    .button-text {
+                      content: "";
+                    }
+                  }
+                }
+
+                
+
                 .title {
                   font-size: 3.5rem;
                   color: var(--composer-font-color-primary);
                   text-align: left;
                 }
 
-                .button {
-                  .button-text {
-                    content: "";
-                  }
-                }
               }
             }
 

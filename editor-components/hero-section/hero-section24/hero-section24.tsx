@@ -8,6 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   description: React.JSX.Element;
   image: TypeMediaInputValue;
   flower_image: TypeMediaInputValue;
@@ -58,6 +59,12 @@ class HeroSection24 extends BaseHeroSection {
               displayer: "Title",
               key: "title",
               value: "Best Roses In Amazing Colour",
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -122,6 +129,12 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               displayer: "Description",
               key: "description",
               value: "A symbol of simple love,charity,paradise on earth, heavenly and reminder of the passion life.",
@@ -180,6 +193,12 @@ class HeroSection24 extends BaseHeroSection {
               displayer: "Title",
               key: "title",
               value: "Lovely Flowers for Your Holiday",
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -306,14 +325,24 @@ class HeroSection24 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("main-content")} ${!item.image && this.decorateCSS("no-image-content")}`}>
                       {(item.flower_image || this.castToString(item.title) || this.castToString(item.description) || item.buttons.length > 0) && (
                         <div className={this.decorateCSS("left")}>
-                          <div className={this.decorateCSS("content")}>
+                          <Base.VerticalContent className={this.decorateCSS("content")}>
                             {item.flower_image && (
                               <div
                                 className={`${this.decorateCSS("flower")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`}
                               >
-                                <Base.Media value={item.flower_image} alt={this.castToString(item.title)} />
+                                <Base.Media value={item.flower_image} />
                               </div>
+                            )}
+                            {this.castToString(item.subtitle) && (
+                              <Base.SectionSubTitle
+                                className={`${this.decorateCSS("subtitle")} ${!item.background_image && this.decorateCSS("subtitle-no-image")}
+                              ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
+                              ${!item.image && this.decorateCSS("no-image")}
+                              `}
+                              >
+                                {item.subtitle}
+                              </Base.SectionSubTitle>
                             )}
                             {this.castToString(item.title) && (
                               <Base.SectionTitle
@@ -352,13 +381,13 @@ class HeroSection24 extends BaseHeroSection {
                                 </div>
                               ))}
                             </div>
-                          </div>
+                          </Base.VerticalContent>
                         </div>
                       )}
                       {item.image && (
                         <div className={this.decorateCSS("right")}>
                           <div className={this.decorateCSS("image-wrapper")}>
-                            <Base.Media value={item.image} alt={this.castToString(item.title)} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
+                            <Base.Media value={item.image} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
                           </div>
                         </div>
                       )}
@@ -384,7 +413,7 @@ class HeroSection24 extends BaseHeroSection {
         <div className={this.decorateCSS("background-container")} >
             {currentBackgroundImage && (
               <div className={this.decorateCSS("background-image-container")}>
-                <Base.Media value={currentBackgroundImage} alt="background" className={this.decorateCSS("background-image")} autoPlay muted loop playsInline />
+                <Base.Media value={currentBackgroundImage} className={this.decorateCSS("background-image")} autoPlay muted loop playsInline />
               </div>
             )}
         </div> 

@@ -1,4 +1,14 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+%text-animation {
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(100px);
+  transition-property: opacity, transform;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 0.87, 0.58, 1);
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -44,15 +54,9 @@
                 text-align: center;
                 align-items: center;
                 justify-content: center;
-                gap: var(--composer-gap-lg);
 
                 .flower {
-                  z-index: 8;
-                  opacity: 0;
-                  transform: translateY(100px);
-                  transition-property: opacity, transform;
-                  transition-duration: 0.5s;
-                  transition-timing-function: cubic-bezier(0, 0.87, 0.58, 1);
+                  @extend %text-animation;
                   transition-delay: 0.1s;
                 }
                 .flower.active {
@@ -61,19 +65,12 @@
                 }
 
                 .title {
-                  z-index: 2;
+                  @extend %text-animation;
                   font-size: 4rem;
                   width: 60%;
-                  opacity: 0;
-                  transform: translateY(100px);
-                  transition-property: opacity, transform;
-                  transition-duration: 0.5s;
-                  transition-timing-function: cubic-bezier(0, 0.87, 0.58, 1);
                   transition-delay: 0.2s;
-                  margin: 0;
                   text-align: center;
                   color: #93646a;
-
 
                   &.title-no-image {
                     color: var(--composer-font-color-primary);
@@ -90,16 +87,35 @@
                   }
                 }
 
-                .description {
-                  z-index: 2;
+                .subtitle {
+                  @extend %text-animation;
                   font-size: 2rem;
                   color: #93646a;
                   width: 60%;
-                  opacity: 0;
-                  transform: translateY(100px);
-                  transition-property: opacity, transform;
-                  transition-duration: 0.5s;
-                  transition-timing-function: cubic-bezier(0, 0.87, 0.58, 1);
+                  transition-delay: 0.25s;
+                  text-align: left;
+                  width: fit-content;
+
+                  &.subtitle-no-image {
+                    color: var(--composer-font-color-primary);
+                  }
+
+                  &.active {
+                    opacity: 1;
+                    transform: translateY(0px);
+                  }
+
+                  &.no-image {
+                    padding: 0;
+                    width: 100%;
+                  }
+                }
+
+                .description {
+                  @extend %text-animation;
+                  font-size: 2rem;
+                  color: #93646a;
+                  width: 60%;
                   transition-delay: 0.3s;
 
                   &.description-no-image {
@@ -294,14 +310,15 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    flex-direction: column;
+    /* keep desktop-like side-by-side layout on tablet */
+    flex-direction: row;
     .max-content {
-      flex-direction: column;
+      flex-direction: row;
       .wrapper {
         .carousel {
           .item {
             .main-content {
-              flex-direction: column;
+              flex-direction: row;
 
               &.no-image-content {
                 padding-bottom: var(--composer-gap-lg);
@@ -311,24 +328,20 @@
                 .content {
                   gap: var(--composer-gap-md);
                   .title {
-                    font-size: 2.5rem;
+                    font-size: 3rem;
                     padding: 0;
                   }
 
                   .description {
-                    font-size: 1.5rem;
+                    font-size: 1.75rem;
                     padding: 0;
                   }
                 }
               }
-              .left,
-              .right {
-                width: 100%;
-              }
 
               .right {
                 .image-wrapper {
-                  width: 50%;
+                  width: 60%;
                   .image {
                     position: relative;
                   }
@@ -347,8 +360,9 @@
         }
       }
     }
+    /* keep arrows visible on tablet like desktop */
     .arrow-wrapper {
-      display: none;
+      display: flex;
     }
   }
 }

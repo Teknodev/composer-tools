@@ -91,7 +91,7 @@ class HeroSection21 extends BaseHeroSection {
           },
           value: {
             type: "icon",
-            name: "MdOutlinePlayCircleOutline",
+            name: "IoIosPlay",
           },
         },
         {

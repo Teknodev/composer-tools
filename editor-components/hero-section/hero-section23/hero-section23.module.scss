@@ -132,6 +132,7 @@
         color: #fff;
         width: 45px;
         height: 45px;
+        font-size: 3rem;
         cursor: pointer;
         z-index: 10;
         top: 50%;
@@ -399,17 +400,7 @@
       .wrapper {
         .nextArrow,
         .prevArrow {
-          width: 40px;
-          height: 40px;
           display: none;
-
-          &.nextArrow {
-            right: var(--composer-gap-lg);
-          }
-
-          &.prevArrow {
-            left: var(--composer-gap-lg);
-          }
         }
 
         .dots {
@@ -476,20 +467,6 @@
   .container {
     .max-content {
       .wrapper {
-        .nextArrow,
-        .prevArrow {
-          width: 35px;
-          height: 35px;
-
-          &.nextArrow {
-            right: var(--composer-gap-md);
-          }
-
-          &.prevArrow {
-            left: var(--composer-gap-md);
-          }
-        }
-
         .dots {
           bottom: var(--composer-gap-md);
         }

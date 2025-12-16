@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
+  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl);
 
   .max-content {
     height: 100vh;
@@ -176,9 +176,10 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0 var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg);
+    padding: 0 var(--composer-gap-lg) 80px var(--composer-gap-lg);
 
     .max-content {
+      height: 50vh;
       .left {
         .item {
           align-items: flex-start;

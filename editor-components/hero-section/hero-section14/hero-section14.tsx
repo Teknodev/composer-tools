@@ -60,6 +60,12 @@ class HeroSection14 extends BaseHeroSection {
             },
             {
               type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               displayer: "Title",
               key: "title",
               value: "Charge Your Phone Safely!",
@@ -116,6 +122,12 @@ class HeroSection14 extends BaseHeroSection {
             },
             {
               type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               displayer: "Title",
               key: "title",
               value: "For Everything and Everyone",
@@ -168,6 +180,12 @@ class HeroSection14 extends BaseHeroSection {
                 type: "icon",
                 name: "",
               },
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -241,15 +259,18 @@ class HeroSection14 extends BaseHeroSection {
 
     const isAnimation = this.getPropValue("animation");
 
+    const subtitleAlignemnt = Base.getSectionSubTitleType(); 
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
             {slides.map((item: Slides, index: number) => {
-              const image = item.image;
-              const title = this.castToString(item.title);
-              const description = this.castToString(item.description);
-              const logo = item.logo;
+                const image = item.image;
+                const title = this.castToString(item.title);
+                const subtitle = this.castToString(item.subtitle);
+                const description = this.castToString(item.description);
+                const logo = item.logo;
               const isActive = this.getComponentState("activeSlide") === index;
               const containerClass = this.decorateCSS("content");
 
@@ -269,6 +290,13 @@ class HeroSection14 extends BaseHeroSection {
                         <div className={this.decorateCSS("logo-wrapper")}>
                           <Base.Media value={item.logo} className={`${this.decorateCSS("logo")} ${image && this.decorateCSS("logo-with-image")}`} />
                         </div>
+                      )}
+                      {subtitle && (
+                        <Base.SectionSubTitle
+                          className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("subtitle-with-image")} ${subtitleAlignemnt === "badge" && image ? this.decorateCSS("subtitle-badge-with-image") : ""}`}
+                        >
+                          {subtitle}
+                        </Base.SectionSubTitle>
                       )}
                       {title && <Base.SectionTitle className={`${this.decorateCSS("title")} ${image && this.decorateCSS("title-with-image")}`}>{item.title}</Base.SectionTitle>}
                       {description && <Base.SectionDescription className={`${this.decorateCSS("description")} ${image && this.decorateCSS("description-with-image")}`}>{item.description}</Base.SectionDescription>}

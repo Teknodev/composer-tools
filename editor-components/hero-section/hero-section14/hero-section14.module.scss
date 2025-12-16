@@ -78,6 +78,26 @@
                 }
               }
             }
+
+            .subtitle {
+              width: 50%;
+              text-align: left;
+              margin-left: 0;
+              width: fit-content;
+              &.subtitle-badge-with-image {
+                transform: translateX(0) !important;
+                padding: 0;
+
+              }
+              &.subtitle-with-image {
+                color: black;
+                background: transparent;
+
+                &::before {
+                  background-color: black;
+                }
+              }
+            }
   
             .title {
               width: 50%;
@@ -157,6 +177,16 @@
               .description {
                 width: 100%;
                 text-align: center;
+              }
+
+              .subtitle {
+                text-align: center;
+                margin: 0 auto;
+                transform: translateX(0);
+
+                &::before{
+                  display: none;
+                }
               }
   
               .buttons-container {

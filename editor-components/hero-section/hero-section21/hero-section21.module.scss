@@ -25,6 +25,16 @@
           position: relative;
           max-width: 65%;
           border-radius: var(--composer-border-radius-sm);
+          align-items: baseline;
+
+
+          .card-subtitle, .card-title, .card-description {
+            text-align: left;
+          }
+
+          .card-subtitle{
+            margin-left: 0;
+          }
 
           &.card-box-no-image {
             max-width: 100%;
@@ -117,14 +127,17 @@
         }
 
         .btn-icon {
-          color: var(--composer-font-color-primary);
-          width: var(--composer-gap-xl);
-          height: var(--composer-gap-xl);
+          color: black;
+          background-color: white;
+          display: flex;
+          width: auto;
+          height: auto;
+          font-size: 2rem;
           transition: transform 0.3s ease-in-out;
-
           position: relative;
           border-radius: 50%;
           animation: pulse 1.5s infinite;
+          padding: var(--composer-gap-md);
         }
 
         @keyframes pulse {
@@ -202,8 +215,7 @@
             cursor: pointer;
             z-index: 2;
             .btn-icon {
-              width: var(--composer-gap-lg);
-              height: var(--composer-gap-lg);
+              font-size: 1.5rem;
             }
           }
           .image {
