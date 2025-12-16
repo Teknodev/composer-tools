@@ -28,7 +28,7 @@
   }
 
   &.media-active {
-    min-height: 100vh;
+    min-height: 50vh;
 
     .subtitle,
     .title,
@@ -55,7 +55,7 @@
     }
 
     .max-content {
-      min-height: 100vh;
+      min-height: 50vh;
 
       .content {
         .text-wrapper {
@@ -235,7 +235,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     &.media-active {
-      min-height: 70vh;
+      min-height: 50vh;
     }
 
     .max-content {
