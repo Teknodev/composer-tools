@@ -171,7 +171,7 @@
 
                 .imageTitle {
                   font-size: 7rem;
-                  line-height: normal;
+                  line-height: normal !important;
                   width: auto;
                   position: absolute;
                   text-align: center;
@@ -342,7 +342,7 @@
       left: 20%;
     }
     .imageTitle {
-      font-size: 4rem;
+      font-size: 4rem !important;
     }
     .image-details {
       width: 70%;
@@ -389,7 +389,7 @@
     }
 
     .imageTitle {
-      font-size: 3.5rem;
+      font-size: 3.5rem !important;
     }
 
     .image-details {

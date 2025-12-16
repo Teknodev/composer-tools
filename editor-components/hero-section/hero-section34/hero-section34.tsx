@@ -2,9 +2,9 @@ import * as React from "react";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section34.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
 interface Slider {
   logo?: TypeMediaInputValue;
   image: string;
@@ -19,7 +19,7 @@ class HeroSection34 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "prev_icon",
-      displayer: "Prev icon",
+      displayer: "Prev Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -28,7 +28,7 @@ class HeroSection34 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "next_icon",
-      displayer: "Next icon",
+      displayer: "Next Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },

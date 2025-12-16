@@ -45,10 +45,9 @@
                         .subtitle{
                             text-align: left;
                             text-transform: uppercase;
-                            font-size: 1rem;
+                            font-size: 1.5rem;
                             color: var(--composer-font-color-secondary);
                             margin-bottom: var(--composer-gap-md);
-                            letter-spacing: 1.5px;
                             width: fit-content;
                             margin-left: 0;
                             &::before{

@@ -47,13 +47,6 @@ class HeroSection31 extends BaseHeroSection {
 
     this.addProp({
       type: "boolean",
-      displayer: "Line",
-      key: "lineEnable",
-      value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
       key: "autoplay",
       displayer: "Autoplay",
       value: true,
@@ -88,7 +81,7 @@ class HeroSection31 extends BaseHeroSection {
               displayer: "Logo",
               key: "logo",
               additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaBuilding" },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
@@ -149,7 +142,7 @@ class HeroSection31 extends BaseHeroSection {
               displayer: "Logo",
               key: "logo",
               additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaBuilding" },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
@@ -216,7 +209,7 @@ class HeroSection31 extends BaseHeroSection {
               displayer: "Logo",
               key: "logo",
               additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaBuilding" },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
@@ -277,7 +270,7 @@ class HeroSection31 extends BaseHeroSection {
               displayer: "Logo",
               key: "logo",
               additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaBuilding" },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
@@ -338,7 +331,7 @@ class HeroSection31 extends BaseHeroSection {
               displayer: "Logo",
               key: "logo",
               additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaBuilding" },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
@@ -399,7 +392,7 @@ class HeroSection31 extends BaseHeroSection {
               displayer: "Logo",
               key: "logo",
               additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaBuilding" },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
@@ -459,7 +452,7 @@ class HeroSection31 extends BaseHeroSection {
               displayer: "Logo",
               key: "logo",
               additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "FaBuilding" },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
@@ -734,7 +727,6 @@ class HeroSection31 extends BaseHeroSection {
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("second-slider-ref", React.createRef());
     this.setComponentState("subtitleAnimationClass", "animate__fadeRight");
-    this.setComponentState("stickAnimationClass", "animate__fadeRight");
     this.setComponentState("titleAnimationClass", "animate__fadeInRight");
     this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
     this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
@@ -770,25 +762,26 @@ class HeroSection31 extends BaseHeroSection {
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("titleAnimationClass", "animate__fadeOut");
+        this.setComponentState("titleAnimationClass", "");
+        setTimeout(() => {
+          this.setComponentState("titleAnimationClass", "letter-out");
+        }, 20);
         this.setComponentState("subtitleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("stickAnimationClass", "animate__fadeOutDown");
         this.setComponentState("descriptionAnimationClass", "animate__fadeOutDown");
 
-        setTimeout(() => {
-          this.setComponentState("active-index", newIndex);
+            setTimeout(() => {
+              this.setComponentState("active-index", newIndex);
 
-          this.getComponentState("slider-ref").current.slickGoTo(newIndex);
-          this.getComponentState("second-slider-ref").current.slickGoTo(
-            newIndex
-          );
+              this.getComponentState("slider-ref").current.slickGoTo(newIndex);
+              this.getComponentState("second-slider-ref").current.slickGoTo(
+                newIndex
+              );
 
-          this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
-          this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-          this.setComponentState("subtitleAnimationClass", "animate__fadeInRight");
-          this.setComponentState("stickAnimationClass", "animate__fadeInRight");
-          this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-        }, 1000);
+              this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
+              this.setComponentState("titleAnimationClass", "animate__fadeInRight");
+              this.setComponentState("subtitleAnimationClass", "animate__fadeInRight");
+              this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
+            }, 900);
       },
     };
 
@@ -800,7 +793,7 @@ class HeroSection31 extends BaseHeroSection {
     const icons = this.castToObject<Icon[]>("icons");
 
     return (
-      <div
+      <Base.Container
         className={`${this.decorateCSS("container")} ${!activeSlideObj.rightImage && this.decorateCSS("no-image")
           }`}>
         <div className={this.decorateCSS("max-content")}>
@@ -847,6 +840,14 @@ class HeroSection31 extends BaseHeroSection {
                           <div
                             key={index}
                             className={this.decorateCSS("swiper-wrapper")}
+                            onClick={() => {
+                              this.getComponentState(
+                                "slider-ref"
+                              ).current.slickGoTo(index);
+                              this.getComponentState(
+                                "second-slider-ref"
+                              ).current.slickGoTo(index);
+                            }}
                           >
                             {activeIndex === index && (
                               <div className={this.decorateCSS("content")}>
@@ -861,23 +862,12 @@ class HeroSection31 extends BaseHeroSection {
                             )}
                             <Base.Media
                               value={item.leftImage}
-                              propsMedia={{
-                                className: `${this.decorateCSS(
+                              className={`${this.decorateCSS(
                                   "background-left"
-                                )} ${activeIndex === index
+                                )} ${this.decorateCSS("slick-image")} ${activeIndex === index
                                   ? this.decorateCSS("active")
                                   : ""
-                                  }`,
-                                alt: "Left Image",
-                                onClick: () => {
-                                  this.getComponentState(
-                                    "slider-ref"
-                                  ).current.slickGoTo(index);
-                                  this.getComponentState(
-                                    "second-slider-ref"
-                                  ).current.slickGoTo(index);
-                                }
-                              }}
+                                  }`}
                             />
                           </div>
                         );
@@ -885,26 +875,19 @@ class HeroSection31 extends BaseHeroSection {
                   </ComposerSlider>
 
 
-                  <div className={this.decorateCSS("slider-inner")}>
+                  <Base.VerticalContent className={this.decorateCSS("slider-inner")}>
                         {activeSlideObj.logo && (
                           <Base.Media
                             value={activeSlideObj.logo}
-                            className={`${this.decorateCSS("logo")} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState("subtitleAnimationClass")}`}
-                            onAnimationEnd={() => {
-                              this.handleAnimationEnd({
-                                animationState: "subtitleAnimationClass",
-                                startingAnimation: "animate__fadeInRight",
-                                endingAnimation: "animate__fadeOutDown",
-                              });
-                            }}
+                            className={`${this.decorateCSS("logo")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState("subtitleAnimationClass")}` : ""}`}
                           />
                         )}
                         
                     {this.castToString(activeSlideObj.subtitle) && (
                       <div
-                        className={`${this.decorateCSS("up-text")} ${textAnimationEnabled ? "animate__animated" : ""} ${this.getComponentState(
+                        className={`${this.decorateCSS("up-text")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                           "subtitleAnimationClass"
-                        )}`}
+                        )}` : ""}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "subtitleAnimationClass",
@@ -919,46 +902,45 @@ class HeroSection31 extends BaseHeroSection {
                             className={this.decorateCSS("logo")}
                           />
                         )}
-                        {this.getPropValue("lineEnable") && (
-                          <div
-                            className={`${this.decorateCSS("stick")} ${textAnimationEnabled ? "animate__animated" : ""
-                              }  ${this.getComponentState("stickAnimationClass")}`}
-                            onAnimationEnd={() => {
-                              this.handleAnimationEnd({
-                                animationState: "stickAnimationClass",
-                                startingAnimation: "animate__fadeInRight",
-                                endingAnimation: "animate__fadeOutDown",
-                              });
-                            }}
-                          ></div>
-                        )}
-                        <span className={this.decorateCSS("subtitle")}>
+                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                           {activeSlideObj.subtitle}
-                        </span>
+                        </Base.SectionSubTitle>
                       </div>
                     )}
 
-                    {this.castToString(activeSlideObj.title) && (
-                      <span
-                        className={`${this.decorateCSS("title")} ${textAnimationEnabled ? "animate__animated" : ""
-                          } ${this.getComponentState("titleAnimationClass")}`}
-                        onAnimationEnd={() => {
-                          this.handleAnimationEnd({
-                            animationState: "titleAnimationClass",
-                            startingAnimation: "animate__fadeInRight",
-                            endingAnimation: "animate__fadeOutDown",
-                          });
-                        }}
-                      >
-                        {activeSlideObj.title}
-                      </span>
-                    )}
+                    {this.castToString(activeSlideObj.title) && (() => {
+                      const titleStr = this.castToString(activeSlideObj.title) as string;
+                      const titleState = this.getComponentState("titleAnimationClass");
+                      const isTitleAnimatingIn = titleState === "animate__fadeInRight";
+                      const isTitleAnimatingOut = titleState && (titleState === "letter-out" || titleState.indexOf("fadeOut") > -1);
+                      return (
+                        <Base.SectionTitle
+                          className={`${this.decorateCSS("title")} ${textAnimationEnabled ? "animate__animated" : ""} ${textAnimationEnabled && titleState === "letter-out" ? this.decorateCSS("letter-animate-out") : ""} ${textAnimationEnabled && isTitleAnimatingOut && titleState !== "letter-out" ? titleState : ""} ${textAnimationEnabled && isTitleAnimatingIn ? this.decorateCSS("letter-animate") : ""}`}
+                          onAnimationEnd={() => {
+                            this.handleAnimationEnd({
+                              animationState: "titleAnimationClass",
+                              startingAnimation: "animate__fadeInRight",
+                              endingAnimation: "animate__fadeOutDown",
+                            });
+                          }}
+                        >
+                          {Array.from(titleStr).map((ch, i) => (
+                            <span
+                              key={i}
+                              className={this.decorateCSS("char")}
+                              style={{ animationDelay: `${i * 60}ms` }}
+                            >
+                              {ch}
+                            </span>
+                          ))}
+                        </Base.SectionTitle>
+                      );
+                    })()}
                     {this.castToString(activeSlideObj.description) && (
-                      <p
-                        className={`${this.decorateCSS("description")} ${textAnimationEnabled ? "animate__animated" : ""
-                          } ${this.getComponentState(
+                        <Base.SectionDescription
+                        className={`${this.decorateCSS("description")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                             "descriptionAnimationClass"
-                          )} `}
+                          )}` : ""} `}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "descriptionAnimationClass",
@@ -968,7 +950,7 @@ class HeroSection31 extends BaseHeroSection {
                         }}
                       >
                         {activeSlideObj.description}
-                      </p>
+                      </Base.SectionDescription>
                     )}
 
                     {activeSlideObj.actions.length > 0 &&
@@ -976,10 +958,9 @@ class HeroSection31 extends BaseHeroSection {
                         <ComposerLink path={buttonItem.url}>
                           <div className={this.decorateCSS("button-box")}>
                             <Base.Button buttonType={buttonItem.type}
-                              className={`${this.decorateCSS("button")} ${textAnimationEnabled ? "animate__animated" : ""
-                                } ${this.getComponentState(
+                              className={`${this.decorateCSS("button")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                                   "buttonAnimationClass"
-                                )}`}
+                                )}` : ""}`}
                               onAnimationEnd={() => {
                                 this.handleAnimationEnd({
                                   animationState: "buttonAnimationClass",
@@ -988,13 +969,13 @@ class HeroSection31 extends BaseHeroSection {
                                 });
                               }}
                             >
-                              {buttonItem.text}
+                              <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                             </Base.Button>
                           </div>
                         </ComposerLink>
                       ))
                     }
-                  </div>
+                  </Base.VerticalContent>
                 </div>
                 <div className={this.decorateCSS("main-social")}>
                   {this.castToObject<any>("navigation_icons")?.social_icon && (
@@ -1083,7 +1064,7 @@ class HeroSection31 extends BaseHeroSection {
             </>
           )}
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }

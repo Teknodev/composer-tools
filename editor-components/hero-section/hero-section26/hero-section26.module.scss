@@ -33,7 +33,11 @@
   align-items: stretch;
   height: 100%;
   position: relative;
-  gap: var(--composer-gap-md);
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
 }
 
 .left-side {
@@ -41,6 +45,7 @@
   display: flex;
   justify-content: end;
   align-items: center;
+  margin: var(--composer-gap-md);
 
   &.no-image {
     .left-side-content {
@@ -60,6 +65,7 @@
   margin: 0px;
   cursor: pointer;
   overflow: hidden;
+  line-height: normal;
 
   &:hover {
     color: var(--composer-primary-color);
@@ -183,18 +189,24 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    height: auto;
     .max-content {
       .sliders {
+        height: auto;
         .slider {
+          height: auto;
+          min-height: auto;
+          align-items: flex-start;
 
           .left-side {
-            margin: 0 auto;
+            margin: 0;
             width: 100%;
             padding: var(--composer-gap-md);
             flex: 1;
 
             .left-side-content {
               width: 100%;
+              margin: var(--composer-gap-md);
 
               .title {
                 font-size: 3.5rem;
@@ -215,10 +227,15 @@
           .right-side {
             align-items: start;
             margin: 0;
-            flex: 4;
+            flex: 1;
+            max-height: 60vh;
+            overflow: hidden;
 
             .image {
-              height: 70%;
+              height: auto;
+              max-height: 100%;
+              width: 100%;
+              object-fit: cover;
             }
           }
 
