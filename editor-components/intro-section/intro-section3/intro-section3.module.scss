@@ -117,6 +117,10 @@
             justify-content: center;
           }
 
+          .buttons-wrapper {
+            justify-content: inherit;
+          }
+
           .subtitle-group {
             width: 100%;
             gap: var(--composer-gap-xs);
