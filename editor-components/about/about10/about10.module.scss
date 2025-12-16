@@ -222,10 +222,9 @@
 
       .features-section {
         .features-grid {
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-md);
 
           .feature-item {
-            padding: var(--composer-gap-sm);
             border-radius: var(--composer-border-radius-sm);
             background-color: var(--composer-background-secondary);
 
