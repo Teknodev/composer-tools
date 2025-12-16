@@ -19,7 +19,12 @@ class Feature33 extends BaseFeature {
   constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
-    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -28,7 +33,12 @@ class Feature33 extends BaseFeature {
       value: "A better way to keep your skills",
     });
 
-    this.addProp({ type: "string", key: "description", displayer: "Description", value: "" });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
 
     this.addProp({
       type: "array",
@@ -61,11 +71,21 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaChess" },
             },
-            { type: "string", key: "title", displayer: "Title", value: "Competitive rates" },
-            { type: "string", key: "description", displayer: "Description", value: cardDescription },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Competitive rates",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: cardDescription,
+            },
           ],
         },
         {
@@ -77,11 +97,21 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCoins" },
             },
-            { type: "string", key: "title", displayer: "Title", value: "No hidden fees" },
-            { type: "string", key: "description", displayer: "Description", value: cardDescription },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "No hidden fees",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: cardDescription,
+            },
           ],
         },
         {
@@ -93,11 +123,21 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaTachometerAlt" },
             },
-            { type: "string", key: "title", displayer: "Title", value: "Stable performance" },
-            { type: "string", key: "description", displayer: "Description", value: cardDescription },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Stable performance",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: cardDescription,
+            },
           ],
         },
         {
@@ -109,11 +149,21 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon"] },
+              additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaBolt" },
             },
-            { type: "string", key: "title", displayer: "Title", value: "Instant transfers" },
-            { type: "string", key: "description", displayer: "Description", value: cardDescription },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Instant transfers",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: cardDescription,
+            },
           ],
         },
       ],
@@ -133,14 +183,17 @@ class Feature33 extends BaseFeature {
   }
 
   render() {
-    const cards = this.castToObject<Card[]>("cards");
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const cardsRaw = this.castToObject<Card[]>("cards");
+    const cards = Array.isArray(cardsRaw) ? cardsRaw : [];
+
+    const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
-    const iconBackground = this.getPropValue("iconBackground");
+    const iconBackground = !!this.getPropValue("iconBackground");
     const itemCount = this.getPropValue("itemCount");
     const alignment = Base.getContentAlignment();
 
@@ -148,16 +201,15 @@ class Feature33 extends BaseFeature {
     const hasTitle = !!this.castToString(title);
     const hasDescription = !!this.castToString(description);
 
-    const hasButtons =
-      Array.isArray(buttons) && buttons.some((btn) => this.castToString(btn?.text));
+    const hasButtons = buttons.some((btn) => !!this.castToString(btn?.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("wrapper")} ${
-              hasButtons ? this.decorateCSS("has-buttons") : ""
-            }`.trim()}
+            className={`${this.decorateCSS("wrapper")}${
+              hasButtons ? ` ${this.decorateCSS("has-buttons")}` : ""
+            }`}
           >
             {(hasSubtitle || hasTitle || hasDescription || hasButtons) && (
               <Base.VerticalContent
@@ -165,19 +217,25 @@ class Feature33 extends BaseFeature {
                 data-alignment={alignment}
               >
                 {hasSubtitle && (
-                  <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("section-subtitle")}
+                  >
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
 
                 {hasTitle && (
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  <Base.SectionTitle
+                    className={this.decorateCSS("section-title")}
+                  >
                     {title}
                   </Base.SectionTitle>
                 )}
 
                 {hasDescription && (
-                  <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                  <Base.SectionDescription
+                    className={this.decorateCSS("section-description")}
+                  >
                     {description}
                   </Base.SectionDescription>
                 )}
@@ -213,10 +271,10 @@ class Feature33 extends BaseFeature {
               </Base.VerticalContent>
             )}
 
-            {Array.isArray(cards) && cards.length > 0 && (
+            {cards.length > 0 && (
               <Base.ListGrid
                 className={this.decorateCSS("right")}
-                gridCount={{ pc: itemCount, tablet: itemCount, phone: 2 }}
+                gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
               >
                 {cards.map((card, index) => {
                   const titleExist = !!this.castToString(card?.title);
@@ -225,10 +283,15 @@ class Feature33 extends BaseFeature {
                   if (!titleExist && !descExist && !card?.icon) return null;
 
                   return (
-                    <div key={`card-${index}`} className={this.decorateCSS("card-container")}>
+                    <div
+                      key={`card-${index}`}
+                      className={this.decorateCSS("card-container")}
+                    >
                       {card.icon && (
                         <div
-                          className={`${this.decorateCSS("card-icon-wrapper")} ${
+                          className={`${this.decorateCSS(
+                            "card-icon-wrapper"
+                          )} ${
                             iconBackground
                               ? this.decorateCSS("with-bg")
                               : this.decorateCSS("no-bg")
@@ -241,15 +304,21 @@ class Feature33 extends BaseFeature {
                         </div>
                       )}
 
-                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                      <Base.VerticalContent
+                        className={this.decorateCSS("card-content")}
+                      >
                         {titleExist && (
-                          <Base.H6 className={this.decorateCSS("card-title")}>
+                          <Base.H6
+                            className={this.decorateCSS("card-title")}
+                          >
                             {card.title}
                           </Base.H6>
                         )}
 
                         {descExist && (
-                          <Base.P className={this.decorateCSS("card-description")}>
+                          <Base.P
+                            className={this.decorateCSS("card-description")}
+                          >
                             {card.description}
                           </Base.P>
                         )}

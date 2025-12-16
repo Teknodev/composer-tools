@@ -118,9 +118,6 @@
     }
 }
 
-/* Tablet için extra center override YOK:
-   alignment center olsa bile tablet, desktop gibi left kalır. */
-
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
@@ -128,7 +125,6 @@
                 flex-direction: column;
                 gap: var(--composer-gap-sm);
 
-                /* Mobilde buton varsa left-right (items) arası boşluk artsın */
                 &.has-buttons {
                     gap: var(--composer-gap-md);
                 }
@@ -137,7 +133,6 @@
                     max-width: 100%;
                     width: 100%;
 
-                    /* Telefonda alignment center seçilince gerçekten center olsun */
                     &[data-alignment="center"] {
                         align-items: center;
 
