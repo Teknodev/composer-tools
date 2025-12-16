@@ -40,15 +40,23 @@
 
           .arrows {
             display: flex;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
 
             .prevArrow,
             .nextArrow {
               cursor: pointer;
-              font-size: 5rem;
-              width: 70px;
-              height: 70px;
+              font-size: 3rem;
+              width: 3rem;
+              height: 3rem;
               color: var(--composer-tertiary-color);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.4s ease;
+
+              &:hover {
+                color: var(--composer-font-color-primary);
+              }
 
               .arrow-media {
                 width: 100%;
@@ -196,9 +204,9 @@
 
           .arrows-wrap .arrows .prevArrow,
           .arrows-wrap .arrows .nextArrow {
-            font-size: 4rem !important;
-            width: 60px !important;
-            height: 60px !important;
+            font-size: 2.5rem !important;
+            width: 2.5rem !important;
+            height: 2.5rem !important;
           }
         }
       }
@@ -226,6 +234,9 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-sm);
     .upper-container {
       padding: var(--composer-gap-xl) var(--composer-gap-md) 0 !important;
 
@@ -247,9 +258,9 @@
 
               .prevArrow,
               .nextArrow {
-                font-size: 3.5rem !important;
-                width: 50px !important;
-                height: 50px !important;
+                font-size: 2rem !important;
+                width: 2rem !important;
+                height: 2rem !important;
               }
             }
           }
