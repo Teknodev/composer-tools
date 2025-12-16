@@ -483,13 +483,13 @@
         .slider {
           .slick-track {
             justify-content: center;
-            gap: calc(2 * var(--composer-gap-md));
+            gap: calc(3 * var(--composer-gap-md));
           }
 
           .slick-slide,
           :global(.slick-slide > div) {
             width: 100% !important;
-            padding: 0;
+            padding: 0 var(--composer-gap-md);
           }
 
           :global(.slick-list) {
@@ -499,18 +499,17 @@
           .slide-item {
             width: 100%;
             max-width: 100%;
-            padding: 0;
+            padding: 0 var(--composer-gap-md);
             transform: scale(1);
             transform-origin: center;
             margin: 0;
             transition: transform var(--composer-transition-duration-normal) ease;
 
             .image-wrapper {
-              height: 250px;
+              min-height: 250px !important;
               margin-bottom: var(--composer-gap-md);
 
               .image {
-                min-height: 280px;
               }
             }
           }
@@ -596,6 +595,7 @@
 
           .slide-item.no-image {
             .image-wrapper {
+              min-height: 250px !important;
               .title {
                 padding: 0 var(--composer-gap-md);
               }
