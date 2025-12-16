@@ -136,6 +136,13 @@ class Feature32 extends BaseFeature {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "iconBackground",
+            displayer: "Icon Background",
+            value: true,
+        });
+
+        this.addProp({
             type: "number",
             key: "itemCount",
             displayer: "Item count in a row",
@@ -155,6 +162,7 @@ class Feature32 extends BaseFeature {
         const description = this.getPropValue("description");
         const descriptionExist = this.castToString(description);
         const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const enableIconBackground = this.getPropValue("iconBackground");
         const hasContent = subtitleExist || titleExist || descriptionExist || (buttonItem && buttonItem.length > 0);
         const cards = this.castToObject<Card[]>("cards");
 
@@ -185,7 +193,7 @@ class Feature32 extends BaseFeature {
                                             className={this.decorateCSS("card-container")}
                                         >
                                             {card.media && (
-                                                <div className={this.decorateCSS("icon-box")}>
+                                                <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
                                                     <Base.Media
                                                         value={card.media}
                                                         className={this.decorateCSS("card-icon")}

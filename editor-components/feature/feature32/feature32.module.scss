@@ -37,6 +37,10 @@
                         width: 80px;
                         height: 80px;
 
+                        &.no-bg {
+                            background-color: transparent;
+                        }
+
                         .card-icon {
                             font-size: 2.5rem;
                             color: var(--composer-font-color-secondary);
