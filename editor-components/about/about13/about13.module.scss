@@ -20,7 +20,6 @@
         .subtitle,
         .title,
         .description {
-          max-width: 100%;
           text-align: left;
           overflow-wrap: anywhere;
           word-break: break-word;
@@ -36,19 +35,15 @@
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
           justify-content: flex-start;
-          max-width: 100%;
         }
 
         .link {
           display: inline-flex;
-          max-width: 100%;
-          text-decoration: none;
         }
 
         .button {
           display: inline-flex;
           align-items: center;
-          max-width: 100%;
 
           .icon {
             width: 1em;
@@ -90,7 +85,6 @@
         .overlay {
           position: absolute;
           inset: 0;
-          border-radius: var(--composer-border-radius-sm);
           background-color: var(--composer-overlay-color);
         }
       }
@@ -106,7 +100,6 @@
 
         .content-inner {
           flex: none;
-          width: 100%;
         }
       }
     }
@@ -123,7 +116,6 @@
         }
 
         .content-inner {
-          width: 100%;
 
           &.center {
             align-items: center;
