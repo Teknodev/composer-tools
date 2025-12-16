@@ -1,13 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: var(--composer-html-background);
-
     &.has-background {
         .max-content {
-            padding: calc(var(--padding-xxl) * 2) calc(var(--padding-md) * 4);
+            padding: var(--composer-gap-xl) var(--composer-gap-lg);
             background-color: var(--composer-primary-color);
-            border-radius: var(--border-radius-md);
+            border-radius: var(--composer-border-radius-md);
             box-shadow: var(--box-shadow-active);
 
             .wrapper {
@@ -33,14 +31,9 @@
     }
 
     .max-content {
-        background: transparent;
-        box-shadow: none;
-        padding: 0;
-        border-radius: 0;
-
         .wrapper {
             display: flex;
-            gap: var(--gap-xl);
+            gap: var(--composer-gap-md);
 
             .vertical-content {
                 width: 40%;
@@ -80,15 +73,13 @@
 
                 .button-container {
                     justify-content: flex-start !important;
-                    gap: var(--gap-md);
+                    gap: var(--composer-gap-sm);
                     flex-wrap: wrap;
                     flex-direction: row;
 
                     .button {
-                        .button-icon {
-                            content: "";
-                        }
 
+                        .button-icon,
                         .button-text {
                             content: "";
                         }
@@ -104,7 +95,7 @@
 
                 .images-wrapper {
                     display: flex;
-                    gap: var(--gap-xl);
+                    gap: var(--composer-gap-md);
                     flex: 1;
 
                     .image-box {
@@ -121,16 +112,13 @@
                             display: block;
                         }
 
-                        &.overlay {
-                            &::after {
-                                content: "";
-                                position: absolute;
-                                inset: 0;
-                                border-radius: inherit;
-                                background-color: var(--composer-overlay-color);
-                                pointer-events: none;
-                                z-index: 1;
-                            }
+                        .overlay {
+                            position: absolute;
+                            inset: 0;
+                            border-radius: inherit;
+                            background-color: var(--composer-overlay-color);
+                            pointer-events: none;
+                            z-index: 1;
                         }
                     }
                 }
@@ -144,7 +132,7 @@
     .container {
         &.has-background {
             .max-content {
-                padding: calc(var(--padding-xxl) * 2) var(--padding-xxl) !important;
+                padding: var(--composer-gap-xl) var(--padding-xxl) !important;
             }
         }
     }
@@ -154,13 +142,13 @@
     .container {
         &.has-background {
             .max-content {
-                padding: var(--padding-xxl) var(--padding-md) !important;
+                padding: var(--composer-gap-md) var(--padding-md) !important;
             }
         }
 
         .max-content {
             .wrapper {
-                gap: calc(var(--gap-md) * 3);
+                gap: var(--composer-gap-md);
                 flex-direction: column;
 
                 .vertical-content {
@@ -188,7 +176,7 @@
 
                 .images-content {
                     .images-wrapper {
-                        gap: var(--gap-md);
+                        gap: var(--composer-gap-sm);
                         flex: 1;
 
                         .image-box {

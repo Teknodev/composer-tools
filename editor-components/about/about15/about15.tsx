@@ -1,14 +1,11 @@
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about15.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ImageItemType = {
-    image: {
-        url: string;
-        type: "image" | "video";
-    };
+    image: TypeMediaInputValue;
 }
 
 class About15 extends BaseAbout {
@@ -139,6 +136,7 @@ class About15 extends BaseAbout {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const images = this.castToObject<ImageItemType[]>("images") || [];
+        const enableOverlay = this.getPropValue("overlay");
         const hasImages = images.length > 0;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
@@ -160,12 +158,7 @@ class About15 extends BaseAbout {
                                             return (
                                                 <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                     <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                        {item.icon && (
-                                                            <Base.Media
-                                                                className={this.decorateCSS("button-icon")}
-                                                                value={{ type: "icon", name: item.icon }}
-                                                            />
-                                                        )}
+                                                        {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={item.icon as any} />)}
                                                         {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                                     </Base.Button>
                                                 </ComposerLink>
@@ -180,13 +173,11 @@ class About15 extends BaseAbout {
                                 <div className={this.decorateCSS("images-wrapper")}>
                                     {images.map((item: ImageItemType, index: number) => {
                                         const imageSource = item.image;
-                                        if (!imageSource || !imageSource.url) return null;
+                                        if (!imageSource) return null;
                                         return (
-                                            <div key={`img-${index}`} className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`} >
-                                                <Base.Media
-                                                    value={imageSource}
-                                                    className={this.decorateCSS("image")}
-                                                />
+                                            <div key={`img-${index}`} className={this.decorateCSS("image-box")}>
+                                                <Base.Media value={imageSource} className={this.decorateCSS("image")} />
+                                                {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                             </div>
                                         );
                                     })}
