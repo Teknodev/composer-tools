@@ -97,7 +97,7 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon", "image"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FaCoins" },
             },
             {
@@ -123,7 +123,7 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon", "image"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FaTachometerAlt" },
             },
             {
@@ -149,7 +149,7 @@ class Feature33 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon", "image"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FaBolt" },
             },
             {
