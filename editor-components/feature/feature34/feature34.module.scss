@@ -71,6 +71,10 @@
                     margin-left: 0;
                     margin-right: auto;
                 }
+
+                .description {
+                    margin-top: var(--composer-gap-md);
+                }
             }
 
             .features-grid {
