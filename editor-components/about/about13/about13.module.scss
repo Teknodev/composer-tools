@@ -133,11 +133,6 @@
   .container {
     .max-content {
       .content {
-        .wrapper {
-          flex-direction: column;
-          gap: var(--composer-gap-md);
-        }
-
         .content-inner {
           &.center {
             align-items: center;
@@ -163,10 +158,6 @@
             }
           }
         }
-
-        .image-wrapper {
-          width: 100%;
-        }
       }
     }
   }
@@ -177,7 +168,12 @@
     .max-content {
       .content {
         .wrapper {
+          flex-direction: column;
           gap: var(--composer-gap-md);
+        }
+
+        .image-wrapper {
+          width: 100%;
         }
       }
     }
