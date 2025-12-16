@@ -21,7 +21,7 @@ const TypeWriter: React.FC<{
     return () => clearTimeout(id);
   }, [text, index, speed]);
 
-  return <Base.H1 className={className}>{text.slice(0, index)}</Base.H1>;
+  return <Base.SectionTitle className={className}>{text.slice(0, index)}</Base.SectionTitle>;
 };
 
 class IntroSection10 extends BaseIntroSection {
@@ -30,6 +30,7 @@ class IntroSection10 extends BaseIntroSection {
 
     this.addProp({ type: "string", key: "topText", displayer: "Top Text", value: "I'm Alex Green" });
     this.addProp({ type: "string", key: "bottomText", displayer: "Bottom Text", value: "Your Illustrator" });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.addProp({
       type: "string",
       key: "description",
@@ -62,17 +63,19 @@ class IntroSection10 extends BaseIntroSection {
   render() {
     const topText = this.getPropValue("topText");
     const bottomText = this.getPropValue("bottomText");
+    const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
     const topTextStr = this.castToString(topText || "");
     const bottomTextStr = this.castToString(bottomText || "");
+    const subtitleStr = this.castToString(subtitle || "");
     const descriptionStr = this.castToString(description || "");
 
     const hoverAnimation = ((this.getPropValue("hoverAnimation") || []) as string[]).join(" ");
     const isAnimate1 = hoverAnimation.includes("animate1");
 
-    const hasLeft = !!topTextStr || !!bottomTextStr;
+    const hasLeft = !!subtitleStr || !!topTextStr || !!bottomTextStr;
     const hasRight = !!descriptionStr || buttons.length > 0;
 
     const alignment = Base.getContentAlignment();
@@ -94,19 +97,22 @@ class IntroSection10 extends BaseIntroSection {
           >
             {hasLeft && (
               <Base.VerticalContent className={this.decorateCSS("left")}>
+                {subtitleStr && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                )}
                 {topTextStr && (
-                  <Base.H1 className={this.decorateCSS("top-text")}>
+                  <Base.SectionTitle className={this.decorateCSS("top-text")}>
                     {topText}
-                  </Base.H1>
+                  </Base.SectionTitle>
                 )}
 
                 {isAnimate1 ? (
                   <TypeWriter text={bottomTextStr} className={this.decorateCSS("bottom-text")} />
                 ) : (
                   bottomTextStr && (
-                    <Base.H1 className={this.decorateCSS("bottom-text")}>
+                    <Base.SectionTitle className={this.decorateCSS("bottom-text")}>
                       {bottomText}
-                    </Base.H1>
+                    </Base.SectionTitle>
                   )
                 )}
               </Base.VerticalContent>

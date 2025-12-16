@@ -60,8 +60,12 @@
     .left {
       .top-text,
       .bottom-text {
-        color: var(--composer-font-color-primary);
         text-align: left;
+        margin-bottom: 0 !important;
+      }
+      .subtitle {
+        text-align: left !important;
+        margin-left: 0 !important;
       }
     }
 
