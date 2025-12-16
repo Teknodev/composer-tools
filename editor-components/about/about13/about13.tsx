@@ -11,12 +11,7 @@ class About13 extends BaseAbout {
   constructor(props?: About13Props) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -37,25 +32,16 @@ class About13 extends BaseAbout {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", "", null, "Link"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", "", null, "Link")],
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
+    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: false });
 
     this.addProp({
       type: "media",
       key: "image",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
+      additionalParams: { availableTypes: ["image", "video"] },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
@@ -82,12 +68,67 @@ class About13 extends BaseAbout {
     const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
 
-    const hasButtons = buttons.some((item) => {
-      const textExist = !!this.castToString(item?.text || "");
-      const icon = (item as any)?.icon as TypeMediaInputValue | null;
-      const iconExist = !!icon?.name;
-      return textExist || iconExist;
-    });
+    const buttonNodes: React.ReactNode[] = [];
+    for (let index = 0; index < buttons.length; index++) {
+      const item = buttons[index];
+
+      const buttonText = this.castToString(item?.text || "");
+      const buttonTextExist = !!buttonText;
+
+      const iconInput = (item as any)?.icon as unknown;
+      let iconValue: TypeMediaInputValue | null = null;
+
+      if (typeof iconInput === "string") {
+        const name = this.castToString(iconInput);
+        if (name) iconValue = { type: "icon", name } as unknown as TypeMediaInputValue;
+      } else if (iconInput && typeof iconInput === "object") {
+        const iconObj = iconInput as any;
+        const type = iconObj?.type;
+        const validMedia =
+          (type === "icon" && !!iconObj?.name) ||
+          (type === "image" && !!iconObj?.url) ||
+          (type === "video" && !!iconObj?.url);
+
+        if (validMedia) iconValue = iconInput as TypeMediaInputValue;
+      }
+
+      if (!buttonTextExist && !iconValue) continue;
+
+      const content: React.ReactNode[] = [];
+      if (iconValue) {
+        content.push(
+          <Base.Media
+            key="icon"
+            value={iconValue}
+            className={this.decorateCSS("icon")}
+          />
+        );
+      }
+      if (buttonTextExist) {
+        content.push(
+          <Base.P key="text" className={this.decorateCSS("button-text")}>
+            {item.text}
+          </Base.P>
+        );
+      }
+
+      buttonNodes.push(
+        <ComposerLink
+          key={index}
+          path={item.url}
+          className={this.decorateCSS("link")}
+        >
+          <Base.Button
+            buttonType={item.type}
+            className={this.decorateCSS("button")}
+          >
+            {content}
+          </Base.Button>
+        </ComposerLink>
+      );
+    }
+
+    const hasButtons = buttonNodes.length > 0;
 
     const isContentVisible =
       subtitleExist || titleExist || descriptionExist || hasButtons;
@@ -113,9 +154,7 @@ class About13 extends BaseAbout {
               {isContentVisible && (
                 <div className={contentInnerClassName}>
                   {subtitleExist && (
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS("subtitle")}
-                    >
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {subtitle}
                     </Base.SectionSubTitle>
                   )}
@@ -127,54 +166,14 @@ class About13 extends BaseAbout {
                   )}
 
                   {descriptionExist && (
-                    <Base.SectionDescription
-                      className={this.decorateCSS("description")}
-                    >
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}
                     </Base.SectionDescription>
                   )}
 
                   {hasButtons && (
                     <div className={this.decorateCSS("buttons-wrapper")}>
-                      {buttons.map((item, index) => {
-                        const buttonTextExist = !!this.castToString(
-                          item?.text || ""
-                        );
-
-                        const icon = (item as any)?.icon as TypeMediaInputValue | null;
-                        const iconExist = !!icon?.name;
-
-                        const buttonExist = buttonTextExist || iconExist;
-
-                        return (
-                          buttonExist && (
-                            <ComposerLink
-                              key={index}
-                              path={item.url}
-                              className={this.decorateCSS("link")}
-                            >
-                              <Base.Button
-                                buttonType={item.type}
-                                className={this.decorateCSS("button")}
-                              >
-                                {iconExist && (
-                                  <Base.Media
-                                    value={icon as TypeMediaInputValue}
-                                    className={this.decorateCSS("icon")}
-                                  />
-                                )}
-                                {buttonTextExist && (
-                                  <Base.P
-                                    className={this.decorateCSS("button-text")}
-                                  >
-                                    {item.text}
-                                  </Base.P>
-                                )}
-                              </Base.Button>
-                            </ComposerLink>
-                          )
-                        );
-                      })}
+                      {buttonNodes}
                     </div>
                   )}
                 </div>
