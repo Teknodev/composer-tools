@@ -1,18 +1,14 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature32.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type MediaType =
-    | { type: "icon"; name: string; url?: never }
-    | { type: "image"; url: string; name?: never };
-
 type Card = {
-    media: MediaType;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    media: TypeMediaInputValue;
+    title: string;
+    description: string;
 };
 
 class Feature32 extends BaseFeature {
@@ -183,8 +179,8 @@ class Feature32 extends BaseFeature {
                                 gridCount={{ pc: this.getPropValue("itemCount") }}
                             >
                                 {cards.map((card: Card, index: number) => {
-                                    const titleExist = !!this.castToString(card.title);
-                                    const descExist = !!this.castToString(card.description);
+                                    const titleExist = !!this.castToString(card.title as any);
+                                    const descExist = !!this.castToString(card.description as any);
                                     if (!titleExist && !descExist && !card.media) return null;
 
                                     return (

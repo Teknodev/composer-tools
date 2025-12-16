@@ -5,7 +5,7 @@
         .wrapper {
             display: flex;
             flex-direction: column;
-            gap: calc(var(--gap-xl) * 2);
+            gap: var(--composer-gap-lg);
 
             .text-content {
                 flex: 1;
@@ -33,12 +33,16 @@
                         align-items: center;
                         background-color: var(--composer-primary-color);
                         border-radius: var(--composer-border-radius-full);
-                        padding: var(--padding-xl);
+                        padding: var(--composer-gap-md);
                         width: 80px;
                         height: 80px;
 
                         &.no-bg {
                             background-color: transparent;
+
+                            .card-icon {
+                                color: var(--composer-font-color-primary);
+                            }
                         }
 
                         .card-icon {
@@ -59,15 +63,10 @@
                     .card-content {
                         flex: 1;
 
+                        .card-description,
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left !important;
-
-                        }
-
-                        .card-description {
-                            text-align: left !important;
-                            color: var(--composer-font-color-primary);
                         }
                     }
                 }
@@ -108,7 +107,7 @@
                 .features-content {
                     .card-container {
                         .icon-box {
-                            padding: calc(var(--padding-sm) * 3);
+                            padding: var(--padding-lg);
                             width: 60px;
                             height: 60px;
 
