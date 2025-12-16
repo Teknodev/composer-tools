@@ -595,6 +595,10 @@
   .author {
     width: 150px;
   }
+
+  .link-text {
+    text-align: left !important;
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
