@@ -25,7 +25,8 @@
         }
 
         :global(.slick-slide > div) {
-          width: 1260px !important;
+          width: 1000px !important;
+          max-width: 1000px !important;
         }
 
         :global(.slick-list) {
@@ -45,29 +46,29 @@
         }
 
         .slide-item {
-          width: 1260px;
-          max-width: 1500px;
-          padding: 0 calc(3.8 * var(--composer-gap-lg));
+          width: 1000px;
+          max-width: 1050px;
+          padding: 0 calc(3 * var(--composer-gap-lg));
           display: flex;
           justify-content: center;
           transition: transform var(--composer-transition-duration-normal) ease;
           transform-origin: center;
           transform: scale(0.95);
           z-index: 1;
-          height: 620px;
+          height: 510px;
           overflow: visible;
 
           .image-wrapper {
             position: relative;
             width: 100%;
-            height: 510px;
+            height: 420px;
             border-radius: var(--composer-border-radius-sm);
             overflow: hidden;
 
             .image {
               width: 100%;
               height: 100%;
-              min-height: 420px;
+              min-height: 380px;
               object-fit: cover;
               display: block;
               transform: scale(1.05);
@@ -183,7 +184,7 @@
         align-items: center;
         position: relative;
         width: 100%;
-        margin-top: var(--composer-gap-md) !important;
+        margin-top:  var(--composer-gap-md) !important;
 
         .arrow-button {
           background: transparent;
@@ -508,9 +509,6 @@
             .image-wrapper {
               min-height: 250px !important;
               margin-bottom: var(--composer-gap-md);
-
-              .image {
-              }
             }
           }
 
