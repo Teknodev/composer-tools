@@ -36,6 +36,7 @@
 
           .card {
             flex: 1;
+            margin-bottom: 0;
           }
         }
       }
@@ -97,7 +98,7 @@
         padding: 0;
         transition: all 0.3s ease;
         flex: 1;
-        min-height: 280px;
+        min-height: 300px;
         margin-bottom: var(--composer-gap-md);
 
 
@@ -197,6 +198,10 @@
     .side-container {
       flex-direction: column;
     }
+
+    .middle-side {
+      max-height: 200px;
+    }
   }
 }
 
@@ -217,6 +222,10 @@
       .card-text-container {
         gap: var(--composer-gap-md);
       }
+    }
+
+    .middle-side {
+      max-height: 250px;
     }
 
     .left-bottom-cards {
