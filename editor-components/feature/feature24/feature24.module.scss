@@ -3,36 +3,35 @@
 .container {
   .max-content {
     .page {
-      content: "";
+      width: 100%;
     }
 
     .header {
       display: flex;
       flex-direction: column;
-      align-items: center !important;
-      text-align: center !important;
-      justify-content: center !important;
+      align-items: center;
+      justify-content: center;
       width: 100%;
+      text-align: center;
       margin-bottom: var(--composer-gap-md);
 
       .title,
       .description {
-        text-align: center !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .subtitle {
-        text-align: center !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
         display: inline-block;
+        transform: none;
 
-        &:before {
-          display: none !important;
+        &::before {
+          display: none;
         }
-
-        transform: none !important;
       }
     }
 
@@ -47,6 +46,20 @@
       gap: var(--composer-gap-sm);
       width: 100%;
       text-align: left;
+
+      &.no-bg-icon {
+        gap: var(--composer-gap-sm);
+
+        .icon {
+          width: 1.5rem;
+          height: 1.5rem;
+          font-size: 1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--composer-primary-color);
+        }
+      }
 
       .icon-wrapper {
         width: 2.5rem;
@@ -89,28 +102,19 @@
       }
     }
 
-    .no-bg-icon {
-      gap: var(--composer-gap-sm);
-
-      .icon {
-        width: 1.5rem;
-        height: 1.5rem;
-        font-size: 1.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: var(--composer-primary-color);
-      }
-    }
-
     .buttons {
       display: flex;
       align-items: center;
-      justify-content: center !important;
+      justify-content: center;
       gap: var(--composer-gap-md);
       flex-wrap: wrap;
       width: 100%;
       margin-top: var(--composer-gap-lg);
+
+      .button-link {
+        display: inline-flex;
+        text-decoration: none;
+      }
 
       .button {
         .btn-icon {
@@ -124,7 +128,6 @@
     .max-content {
       .list {
         margin-top: 0;
-
         gap: var(--composer-gap-sm) !important;
         row-gap: var(--composer-gap-md) !important;
       }
@@ -162,15 +165,15 @@
           height: 1rem;
           font-size: 1rem;
         }
-      }
 
-      .no-bg-icon {
-        gap: var(--composer-gap-xs);
+        &.no-bg-icon {
+          gap: var(--composer-gap-xs);
 
-        .icon {
-          width: 1.125rem;
-          height: 1.125rem;
-          font-size: 1.125rem;
+          .icon {
+            width: 1.125rem;
+            height: 1.125rem;
+            font-size: 1.125rem;
+          }
         }
       }
 

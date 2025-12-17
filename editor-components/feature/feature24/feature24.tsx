@@ -1,19 +1,26 @@
 import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import {
+  BaseFeature,
+  TypeMediaInputValue,
+  TypeUsableComponentProps,
+} from "../../EditorComponent";
 import styles from "./feature24.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-
-type Feature24Props = Record<string, unknown>;
 
 type FeatureItem = {
   icon: TypeMediaInputValue;
   text: React.JSX.Element;
 };
 
+type Feature24Button = Omit<INPUTS.CastedButton, "icon" | "image"> & {
+  icon?: TypeMediaInputValue | null;
+  image?: TypeMediaInputValue | null;
+};
+
 class Feature24 extends BaseFeature {
-  constructor(props?: Feature24Props) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
     this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
@@ -29,8 +36,7 @@ class Feature24 extends BaseFeature {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Completely iterate covalent strategic theme areas via accurate e-markets.",
+      value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
     });
 
     this.addProp({
@@ -91,9 +97,7 @@ class Feature24 extends BaseFeature {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
     });
   }
 
@@ -112,34 +116,32 @@ class Feature24 extends BaseFeature {
     const headerExist = subtitleExist || titleExist || descriptionExist;
 
     const iconBackground = !!this.getPropValue("iconBackground");
-    const itemCount = Number(this.getPropValue("itemCount") as any) || 4;
+    const itemCount = Number(this.getPropValue("itemCount")) || 4;
 
     const featuresRaw = this.castToObject<FeatureItem[]>("features");
     const features = Array.isArray(featuresRaw) ? featuresRaw : [];
 
-    const buttonsRaw = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttonsRaw = this.castToObject<Feature24Button[]>("buttons");
     const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
 
-    const iconWrapperClassName = `${this.decorateCSS("icon-wrapper")}${
-      iconBackground ? ` ${this.decorateCSS("with-bg")}` : ""
-    }`;
+    const iconWrapperClassName =
+      `${this.decorateCSS("icon-wrapper")}` +
+      (iconBackground ? ` ${this.decorateCSS("with-bg")}` : "");
 
     const buttonNodes: React.ReactNode[] = [];
     for (let index = 0; index < buttons.length; index++) {
       const buttonItem = buttons[index];
 
-      const textExist = !!this.castToString(buttonItem?.text || "");
+      const textExist = !!this.castToString(buttonItem?.text);
       if (!textExist) continue;
 
-      const iconName = this.castToString((buttonItem as any)?.icon || "");
-      const iconValue = iconName
-        ? ({ type: "icon", name: iconName } as unknown as TypeMediaInputValue)
-        : null;
+      const iconValue = buttonItem.icon || null;
+      const buttonUrl = buttonItem.url || "#";
 
       buttonNodes.push(
         <ComposerLink
           key={index}
-          path={buttonItem.url}
+          path={buttonUrl}
           className={this.decorateCSS("button-link")}
         >
           <Base.Button
@@ -181,9 +183,7 @@ class Feature24 extends BaseFeature {
                 )}
 
                 {descriptionExist && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
-                  >
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {description}
                   </Base.SectionDescription>
                 )}
@@ -206,9 +206,9 @@ class Feature24 extends BaseFeature {
 
                   if (!textExist && !hasMedia) return null;
 
-                  const rowClassName = `${this.decorateCSS("row")}${
-                    !iconBackground ? ` ${this.decorateCSS("no-bg-icon")}` : ""
-                  }`;
+                  const rowClassName =
+                    `${this.decorateCSS("row")}` +
+                    (!iconBackground ? ` ${this.decorateCSS("no-bg-icon")}` : "");
 
                   return (
                     <Base.Row key={index} className={rowClassName}>
