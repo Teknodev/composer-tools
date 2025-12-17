@@ -220,7 +220,7 @@ class About10 extends BaseAbout {
             )}
             {hasDescriptionOrButton && (
               <div className={this.decorateCSS("content-section")}>
-                <Base.VerticalContent>
+                <Base.VerticalContent className={this.decorateCSS("text-content")}>
                   {this.castToString(description) && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}
@@ -234,8 +234,8 @@ class About10 extends BaseAbout {
                       const btnText = this.castToString(btn.text);
                       const btnHasText = !!btnText;
                       return (
-                        <ComposerLink key={`about10-btn-${idx}`} path={btn.url}>
-                          <Base.Button buttonType={btn.type || "Primary"}>
+                        <ComposerLink key={`about10-btn-${idx}`} path={btn.url} className={this.decorateCSS("link")}>
+                          <Base.Button className={this.decorateCSS("button")} buttonType={btn.type || "Primary"}>
                             {btnHasIcon && <Base.Media value={iconVal as any} className={this.decorateCSS("button-icon")} />}
                             {btnHasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                           </Base.Button>

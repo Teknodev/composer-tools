@@ -10,15 +10,13 @@
       align-items: flex-start;
 
       .content-section {
-        display: flex;
-        flex-direction: column;
-
         .text-content {
+          content: "";
           align-items: flex-start;
 
           .subtitle, .title {
             text-align: left !important;
-            margin-left: 0;  
+            margin-left: 0;
           }
         }
 
@@ -33,15 +31,23 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
-            
-            .button-icon {
-              content: "";
-              font-size: 1.5rem;
-              width: 24px;
-              height: 24px;
-              display: flex;
-              align-items: center;
-            }
+
+          .link {
+            content: "";
+          }
+
+          .button-text {
+            content: "";
+          }
+
+          .button-icon {
+            content: "";
+            font-size: 1.5rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+          }
         }
         
         &:first-child {
@@ -182,7 +188,7 @@
       }
     }
   }
-}
+
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
@@ -236,4 +242,4 @@
       }
     }
   }
-}
+}}
