@@ -373,9 +373,9 @@ class Testimonials16 extends Testimonials {
       const imageVal = item.image as { url?: string } | undefined
       const hasLogo = !!logoVal?.url
       const hasImage = !!imageVal?.url
-      const hasQuote = item.quote ? this.castToString(item.quote) : ""
-      const hasAuthor = item.author ? this.castToString(item.author) : ""
-      const hasRole = item.role ? this.castToString(item.role) : ""
+      const hasQuote = this.castToString(item.quote)
+      const hasAuthor = this.castToString(item.author)
+      const hasRole = this.castToString(item.role)
       const hasCompany = item.company ? this.castToString(item.company) : ""
       return hasLogo || hasImage || hasQuote || hasAuthor || hasRole || hasCompany
     })
@@ -488,14 +488,14 @@ class Testimonials16 extends Testimonials {
             <div className={this.decorateCSS("slider-wrapper")}>
               <ComposerSlider {...baseSettings} ref={sliderRef} className={this.decorateCSS("slider")}>
                 {filteredTestimonials.map((item: TestimonialItem, index: number) => {
-                  const hasQuote = item.quote ? this.castToString(item.quote) : ""
-                  const hasAuthor = item.author ? this.castToString(item.author) : ""
-                  const hasRole = item.role ? this.castToString(item.role) : ""
+                  const hasQuote = this.castToString(item.quote)
+                  const hasAuthor = this.castToString(item.author)
+                  const hasRole = this.castToString(item.role)
                   const logoImageValue = item.logoImage as { url?: string } | undefined
                   const portraitValue = item.image as { url?: string } | undefined
                   const logoImage = logoImageValue?.url ? item.logoImage : null
                   const portrait = portraitValue?.url ? item.image : null
-                  const hasCompany = item.company ? this.castToString(item.company) : ""
+                  const hasCompany = this.castToString(item.company)
                   const hasCardBody = logoImage || hasQuote || hasAuthor || hasRole || hasCompany
                   const cardClassName = hasCardBody ? this.decorateCSS("card") : `${this.decorateCSS("card")} ${this.decorateCSS("card-single")}`
 
