@@ -129,10 +129,7 @@ class IntroSection5 extends BaseIntroSection {
                     <ComposerLink
                       key={`is5-btn-${index}`}
                       path={buttonUrl}
-                      className={`${this.decorateCSS("button-wrapper")} ${this.decorateCSS(
-                        "button-link"
-                      )}`}
-                    >
+                      className={`${this.decorateCSS("button-wrapper")} ${this.decorateCSS("button-link")}`}>
                       <Base.Button buttonType={item.type} className={buttonClassName}>
                         {btnTextExist && (
                           <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
