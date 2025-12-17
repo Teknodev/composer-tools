@@ -415,7 +415,7 @@ class Slider12 extends BaseSlider {
                 <Base.VerticalContent className={this.decorateCSS("section-header-content")}>
                   {hasSubtitle && (
                     <Base.SectionSubTitle
-                      className={`${this.decorateCSS("section-subtitle")} ${this.decorateCSS("section-subtitle-alt")}`}
+                      className={this.decorateCSS("section-subtitle")}
                     >
                       {subtitle}
                     </Base.SectionSubTitle>
@@ -491,12 +491,11 @@ class Slider12 extends BaseSlider {
                       <ComposerLink
                         key={i}
                         path={item.navigateTo ?? ""}
-                        isFullWidth={false}
                       >
                         <div className={slideClasses.join(" ")}>
                           <div
                             className={this.decorateCSS("card")}
-                            onMouseDown={(e) => e.preventDefault()}
+                            // onMouseDown={(e) => e.preventDefault()}
                           >
                             {media && (
                               <div className={this.decorateCSS("media")}>
