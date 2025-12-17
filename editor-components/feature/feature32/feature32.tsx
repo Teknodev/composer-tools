@@ -7,8 +7,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
     media: TypeMediaInputValue;
-    title: string;
-    description: string;
+    title: React.JSX.Element;
+    description: React.JSX.Element;
 };
 
 class Feature32 extends BaseFeature {
@@ -141,7 +141,7 @@ class Feature32 extends BaseFeature {
         this.addProp({
             type: "number",
             key: "itemCount",
-            displayer: "Item count in a row",
+            displayer: "Item Count in a Row",
             value: 1,
         });
     }
@@ -181,32 +181,19 @@ class Feature32 extends BaseFeature {
                                 {cards.map((card: Card, index: number) => {
                                     const titleExist = !!this.castToString(card.title as any);
                                     const descExist = !!this.castToString(card.description as any);
+                                    const isImage = card.media?.type === "image";
                                     if (!titleExist && !descExist && !card.media) return null;
 
                                     return (
-                                        <div
-                                            key={index}
-                                            className={this.decorateCSS("card-container")}
-                                        >
+                                        <div key={index} className={this.decorateCSS("card-container")}>
                                             {card.media && (
                                                 <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
-                                                    <Base.Media
-                                                        value={card.media}
-                                                        className={this.decorateCSS("card-icon")}
-                                                    />
+                                                    <Base.Media value={card.media} className={`${this.decorateCSS("card-icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />
                                                 </div>
                                             )}
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && (
-                                                    <Base.H5 className={this.decorateCSS("card-title")}>
-                                                        {card.title}
-                                                    </Base.H5>
-                                                )}
-                                                {descExist && (
-                                                    <Base.P className={this.decorateCSS("card-description")}>
-                                                        {card.description}
-                                                    </Base.P>
-                                                )}
+                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
+                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
                                             </Base.VerticalContent>
                                         </div>
                                     );
