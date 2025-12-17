@@ -4,31 +4,29 @@ import styles from "./intro-section10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-const TypeWriter: React.FC<{
-  text: string;
-  className?: string;
-  speed?: number;
-}> = ({ text, className, speed = 80 }) => {
+const TypeWriter: React.FC<{ text: string | React.ReactNode; className?: string; speed?: number }> = ({ text, className, speed = 80 }) => {
   const [index, setIndex] = React.useState(0);
+  const textStr = String(text ?? "");
 
   React.useEffect(() => {
     setIndex(0);
-  }, [text]);
+    if (!textStr) return;
+    const id = setInterval(() => {
+      setIndex((i) => {
+        if (i >= textStr.length) {
+          clearInterval(id);
+          return i;
+        }
+        return i + 1;
+      });
+    }, speed);
+    return () => clearInterval(id);
+  }, [textStr, speed]);
 
-  React.useEffect(() => {
-    if (!text || index >= text.length) return;
-    const id = setTimeout(() => setIndex((v) => v + 1), speed);
-    return () => clearTimeout(id);
-  }, [text, index, speed]);
-
-  const finished = !!text && index >= text.length;
+  const finished = !!textStr && index >= textStr.length;
   return (
-    <Base.SectionTitle
-      className={className}
-      data-typed-complete={finished ? "true" : "false"}
-      style={{ userSelect: "text" }}
-    >
-      {text.slice(0, index)}
+    <Base.SectionTitle className={className} data-typed-complete={finished ? "true" : "false"} style={{ userSelect: "text" }}>
+      {textStr.slice(0, index)}
     </Base.SectionTitle>
   );
 };
@@ -73,19 +71,15 @@ class IntroSection10 extends BaseIntroSection {
     const topTextNode = this.getPropValue("topText");
     const bottomTextNode = this.getPropValue("bottomText");
     const descriptionNode = this.getPropValue("description");
-
-    const subtitleText = this.castToString(subtitleNode);
-    const topText = this.castToString(topTextNode);
     const bottomText = this.castToString(bottomTextNode);
-    const descriptionText = this.castToString(descriptionNode);
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
     const hasAnimate1 = !!this.getPropValue("textAnimation");
     const textAnimation = hasAnimate1 ? "animate1" : "";
 
-    const hasLeft = !!(subtitleText || topText || bottomText);
-    const hasRight = !!descriptionText || buttons.length > 0;
+    const hasLeft = !!(subtitleNode || topTextNode || bottomTextNode);
+    const hasRight = !!descriptionNode || buttons.length > 0;
 
     const alignment = Base.getContentAlignment();
     const alignmentClass =
@@ -107,19 +101,19 @@ class IntroSection10 extends BaseIntroSection {
           >
             {hasLeft && (
               <Base.VerticalContent className={this.decorateCSS("left")}>
-                {subtitleText && (
+                {subtitleNode && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitleNode}
                   </Base.SectionSubTitle>
                 )}
 
-                {topText && (
+                {topTextNode && (
                   <Base.SectionTitle className={this.decorateCSS("top-text")}>
                     {topTextNode}
                   </Base.SectionTitle>
                 )}
 
-                {bottomText && (
+                {bottomTextNode && (
                   hasAnimate1 ? (
                     <TypeWriter text={bottomText} className={this.decorateCSS("bottom-text")} />
                   ) : (
@@ -137,7 +131,7 @@ class IntroSection10 extends BaseIntroSection {
                   .filter(Boolean)
                   .join(" ")}
               >
-                {descriptionText && (
+                {descriptionNode && (
                   <Base.P className={this.decorateCSS("description")} style={{ userSelect: "text" }}>
                     {descriptionNode}
                   </Base.P>
@@ -145,11 +139,8 @@ class IntroSection10 extends BaseIntroSection {
 
                 <Base.Row className={this.decorateCSS("actions-block")}>
                   {buttons.map((btn, i) => {
-                    const icon =
-                      (btn as any)?.icon?.name ??
-                      (btn as any)?.icon?.value?.name ??
-                      (btn as any)?.icon ??
-                      "";
+                  const rawIcon = (btn as any)?.icon;
+                  const icon = rawIcon?.name ?? rawIcon?.value?.name ?? rawIcon ?? "";
                     const textStr = this.castToString(btn.text);
                     if (!textStr && !icon) return null;
 
