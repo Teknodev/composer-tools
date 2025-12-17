@@ -425,12 +425,11 @@ class Testimonials16 extends Testimonials {
     const hasActivePortrait = !!activePortrait
     const containerClassNames = [
       this.decorateCSS("container"),
-      hasActivePortrait ? this.decorateCSS("with-background") : "",
-      !hasActivePortrait ? this.decorateCSS("no-background") : "",
-      !hasAnyPortrait ? this.decorateCSS("no-portrait") : "",
-    ]
-      .filter(Boolean)
-      .join(" ")
+      hasActivePortrait && this.decorateCSS("with-background"),
+      !hasActivePortrait && this.decorateCSS("no-background"),
+      !hasAnyPortrait && this.decorateCSS("no-portrait"),
+    ].filter(Boolean).join(" ");
+    
 
     return (
       <Base.Container className={containerClassNames}>
@@ -457,12 +456,12 @@ class Testimonials16 extends Testimonials {
           {(hasSubtitle || hasTitle || links.length > 0) && (
             <div className={this.decorateCSS("header")}>
               {(hasSubtitle || hasTitle) && (
-                <div className={this.decorateCSS("header-text")}>
+                <Base.VerticalContent className={this.decorateCSS("header-text")}>
                   {hasSubtitle && (
                     <Base.SectionSubTitle className={subtitleClasses}>{subtitleValue}</Base.SectionSubTitle>
                   )}
                   {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{titleValue}</Base.SectionTitle>}
-                </div>
+                </Base.VerticalContent>
               )}
               {links.length > 0 && (
                 <div className={this.decorateCSS("links")}>
