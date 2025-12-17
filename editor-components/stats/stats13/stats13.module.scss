@@ -11,7 +11,7 @@
         .wrapper {
             display: flex;
             width: 100%;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-lg);
             padding: 0;
 
             .left-content {
@@ -189,11 +189,11 @@
             padding-right: 0 !important;
 
             .wrapper {
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-md) !important
             }
 
             .stat-number {
-                font-size: 2rem;
+                font-size: 2rem !important;
             }
         }
 
@@ -250,18 +250,17 @@
                                 }
                             }
 
-                            .stats-container .stat-item {
-                                align-items: var(--composer-content-alignment);
-
-                                .stat-number {
-                                    font-size: 2rem;
-                                }
-                            }
-                        }
-
-                        .child-container {
                             .stats-container {
                                 gap: var(--composer-gap-sm) !important;
+                                justify-content: var(--composer-content-alignment) !important;
+
+                                .stat-item {
+                                    align-items: var(--composer-content-alignment);
+
+                                    .stat-number {
+                                        font-size: 2rem;
+                                    }
+                                }
                             }
                         }
                     }
