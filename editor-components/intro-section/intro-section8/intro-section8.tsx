@@ -31,7 +31,8 @@ class IntroSection8 extends BaseIntroSection {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+      value:
+        "Completely iterate covalent strategic theme areas via accurate e-markets.",
     });
 
     this.addProp({
@@ -56,9 +57,19 @@ class IntroSection8 extends BaseIntroSection {
       additionalParams: { availableTypes: ["image"] },
     });
 
-    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
 
-    this.addProp({ type: "boolean", key: "background", displayer: "Background", value: true });
+    this.addProp({
+      type: "boolean",
+      key: "background",
+      displayer: "Background",
+      value: true,
+    });
 
     this.addProp({
       type: "media",
@@ -99,7 +110,7 @@ class IntroSection8 extends BaseIntroSection {
     const titleText = this.castToString(title);
     const descriptionText = this.castToString(description);
 
-    const background = !!this.getPropValue("background");
+    const hasBackground = !!this.getPropValue("background");
     const overlay = !!this.getPropValue("overlay");
 
     const media = this.getPropValue("media") as TypeMediaInputValue | null;
@@ -114,9 +125,8 @@ class IntroSection8 extends BaseIntroSection {
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const hasButtons =
-      Array.isArray(buttons) && buttons.some((b) => !!this.castToString(b?.text || ""));
-
-    const hasText = !!subtitleText || !!titleText || !!descriptionText;
+      Array.isArray(buttons) &&
+      buttons.some((b) => !!this.castToString(b?.text || ""));
 
     const alignmentValue = Base.getContentAlignment();
     const subtitleCenterClass =
@@ -124,17 +134,17 @@ class IntroSection8 extends BaseIntroSection {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {background && <div className={this.decorateCSS("background")} />}
+        {hasBackground && <div className={this.decorateCSS("background")} />}
 
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {hasText && (
+            {(subtitleText || titleText || descriptionText) && (
               <div className={this.decorateCSS("text-content")}>
                 {subtitleText && (
                   <Base.SectionSubTitle
                     className={`${this.decorateCSS("subtitle")} ${subtitleCenterClass} ${
-                      background ? "" : "badge"
-                    }`.trim()}
+                      hasBackground ? this.decorateCSS("has-background") : ""
+                    }`}
                   >
                     {subtitle}
                   </Base.SectionSubTitle>
@@ -143,8 +153,8 @@ class IntroSection8 extends BaseIntroSection {
                 {titleText && (
                   <Base.SectionTitle
                     className={`${this.decorateCSS("title")} ${
-                      background ? this.decorateCSS("with-background") : ""
-                    }`.trim()}
+                      hasBackground ? this.decorateCSS("with-background") : ""
+                    }`}
                   >
                     {title}
                   </Base.SectionTitle>
@@ -153,8 +163,8 @@ class IntroSection8 extends BaseIntroSection {
                 {descriptionText && (
                   <Base.SectionDescription
                     className={`${this.decorateCSS("description")} ${
-                      background ? this.decorateCSS("with-background") : ""
-                    }`.trim()}
+                      hasBackground ? this.decorateCSS("with-background") : ""
+                    }`}
                   >
                     {description}
                   </Base.SectionDescription>
@@ -165,22 +175,21 @@ class IntroSection8 extends BaseIntroSection {
             {hasButtons && (
               <div className={this.decorateCSS("media-buttons")}>
                 {buttons.map((buttonItem, index) => {
-                  const textStr = this.castToString(buttonItem?.text || "");
-                  if (!textStr) return null;
-
-                  const url = buttonItem?.url;
-                  const type = buttonItem?.type;
+                  if (!this.castToString(buttonItem?.text || "")) return null;
 
                   const iconValue = (buttonItem as any)?.icon as TypeMediaInputValue | null;
-                  const hasIcon = this.hasMediaValue(iconValue);
 
                   return (
-                    <ComposerLink key={index} path={url}>
+                    <ComposerLink
+                      key={index}
+                      path={buttonItem?.url}
+                      className={this.decorateCSS("media-button-link")}
+                    >
                       <Base.Button
-                        buttonType={type}
+                        buttonType={buttonItem?.type}
                         className={this.decorateCSS("media-button")}
                       >
-                        {hasIcon && (
+                        {this.hasMediaValue(iconValue) && (
                           <Base.Media
                             value={iconValue as TypeMediaInputValue}
                             className={this.decorateCSS("media-button-icon")}

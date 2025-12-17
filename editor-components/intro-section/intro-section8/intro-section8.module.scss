@@ -1,8 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  position: relative;
-  overflow: hidden;
+
 
   .background {
     position: absolute;
@@ -15,7 +14,6 @@
   .max-content {
     position: relative;
     z-index: 1;
-    width: 100%;
     padding: 0;
     display: flex;
     justify-content: center;
@@ -28,7 +26,6 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      gap: var(--composer-gap-md);
 
       .text-content {
         display: flex;
@@ -36,6 +33,23 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+      }
+
+      .subtitle {
+        text-align: center;
+
+        &.has-background {
+          background: transparent !important;
+          padding: 0 !important;
+          border-radius: 0 !important;
+          box-shadow: none !important;
+          color: var(--composer-font-color-secondary) !important;
+
+          &::before,
+          &::after {
+            display: none !important;
+          }
+        }
       }
 
       .subtitle-center {
@@ -61,7 +75,10 @@
         align-items: center;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
-        max-width: 100%;
+
+        .media-button-link {
+          display: inline-flex;
+        }
 
         .media-button {
           display: inline-flex;
@@ -77,11 +94,10 @@
             align-items: center;
             justify-content: center;
 
-            svg,
-            img {
+            >* {
               width: 100%;
               height: 100%;
-              object-fit: contain;
+              display: block;
             }
           }
 
@@ -140,14 +156,6 @@
             z-index: 2;
             pointer-events: none;
           }
-
-          &::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            transition: background 0.3s ease;
-          }
         }
 
         .play-icon-wrapper {
@@ -167,17 +175,14 @@
           .icon {
             width: 36px;
             height: 36px;
-            color: currentColor;
-            fill: currentColor;
             display: flex;
             justify-content: center;
             align-items: center;
 
-            svg,
-            img {
+            >* {
               width: 100%;
               height: 100%;
-              object-fit: contain;
+              display: block;
             }
           }
         }
