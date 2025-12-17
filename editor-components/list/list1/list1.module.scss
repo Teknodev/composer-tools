@@ -59,6 +59,17 @@
           }
         }
       }
+
+      .dots:not(.dots-colored) {
+        li {
+          button {
+            background-color: var(--composer-primary-color);
+          }
+        }
+        :global(li.slick-active) button {
+          background-color: var(--composer-primary-color);
+        }
+      }
       .dots :global(li.slick-active) button {
         padding: 0 var(--composer-gap-md);
       }
