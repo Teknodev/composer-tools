@@ -321,6 +321,7 @@
 
   @container (max-width: #{$composer-phone-width}) {
     .container {
+      height: 400px;
       padding: 0 var(--composer-gap-md) var(--composer-gap-md) 0 !important;
       .max-content {
         .slider-parent {

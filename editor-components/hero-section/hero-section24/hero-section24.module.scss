@@ -12,7 +12,7 @@
 .container {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 0 !important;
   background-color: transparent;
   position: relative;
   min-height: 100px;
@@ -32,6 +32,18 @@
       .carousel {
         width: 100%;
 
+          :global(.slick-list) {
+            height: 100vh;
+          }
+
+          :global(.slick-track) {
+            height: 100%;
+          }
+
+          :global(.slick-slide) {
+            height: 100vh;
+          }
+
         .item {
           width: 100%;
           height: 100vh;
@@ -45,7 +57,7 @@
             .left {
               z-index: 1;
               flex: 1;
-              padding: var(--composer-gap-md) var(--composer-gap-xl);
+              padding: var(--composer-gap-md);
 
               .content {
                 height: 100%;
@@ -145,7 +157,9 @@
                   transition-delay: 0.4s;
                   .button-wrapper {
                     .button {
-                      content: "";
+                      .button-text {
+                        content: "";
+                      }
                     }
                   }
                 }
@@ -168,7 +182,7 @@
               .image-wrapper {
                 position: relative;
                 height: 100%;
-                width: 60%;
+                width: 100%;
                 display: flex;
                 align-items: end;
                 justify-content: start;
@@ -189,6 +203,8 @@
                   &.active {
                     opacity: 1;
                     transform: translateX(0px);
+                    width: 100%;
+                    height: 100%;
                   }
                 }
               }
@@ -310,7 +326,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    /* keep desktop-like side-by-side layout on tablet */
     flex-direction: row;
     .max-content {
       flex-direction: row;
@@ -324,7 +339,7 @@
                 padding-bottom: var(--composer-gap-lg);
               }
               .left {
-                padding: var(--composer-gap-md) var(--composer-gap-lg);
+                padding: 0;
                 .content {
                   gap: var(--composer-gap-md);
                   .title {
@@ -341,7 +356,10 @@
 
               .right {
                 .image-wrapper {
-                  width: 60%;
+                  width: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
                   .image {
                     position: relative;
                   }
@@ -360,7 +378,6 @@
         }
       }
     }
-    /* keep arrows visible on tablet like desktop */
     .arrow-wrapper {
       display: flex;
     }
@@ -375,6 +392,7 @@
           .item {
             height: fit-content;
             .main-content {
+              flex-direction: column;
               .left {
                 padding: var(--composer-gap-md);
                 .content {
@@ -401,6 +419,32 @@
           }
         }
       }
+    }
+    .arrow-wrapper {
+      .arrow-prev-wrapper,
+      .arrow-next-wrapper,
+      .arrow-next-wrapper-no-image,
+      .arrow-prev-wrapper-no-image {
+        .arrow-prev,
+        .arrow-next {
+          .icon {
+            font-size: 2rem;
+          }
+        }
+      }
+
+      .arrow-prev-wrapper,
+      .arrow-prev-wrapper-no-image {
+        left: 20px;
+      }
+      .arrow-next-wrapper,
+      .arrow-next-wrapper-no-image {
+        right: 20px;
+      }
+    }
+
+    .dots-container {
+      display: none !important;
     }
   }
 }

@@ -134,7 +134,7 @@
         bottom: 60px;
 
         li button::before {
-          font-size: 1.25rem;
+          font-size: 1rem;
         }
         
         &.noDots-img li button::before {
@@ -197,7 +197,7 @@
           }
         }
         .customDots {
-          bottom: var(--composer-gap-lg);
+          bottom: var(--composer-gap-md);
         }
       }
     }

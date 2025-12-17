@@ -218,6 +218,9 @@
   .container {
     .max-content {
       .wrapper {
+        .left {
+          padding: 0;
+        }
         .left,
         .left-no-image {
           max-width: 100%;
@@ -235,6 +238,16 @@
             }
           }
         }
+
+        .right {
+          max-width: 100%;
+          .image-wrapper {
+            padding: var(--composer-gap-lg);
+            .image {
+              max-height: 60vh;
+            }
+          }
+        }
       }
     }
   }
@@ -242,6 +255,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      height: auto;
       .wrapper {
         flex-direction: column;
         
@@ -275,6 +289,21 @@
         
         .right {
           max-width: 100%;
+          .image-wrapper {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            .image {
+              width: 100%;
+              height: auto;
+              object-fit: cover;
+              max-height: 40vh;
+            }
+          }
         }
       }
     }
