@@ -138,6 +138,7 @@ import FeatureComponent27 from "./feature/feature27/feature27";
 import FeatureComponent30 from "./feature/feature30/feature30";
 import FeatureComponent31 from "./feature/feature31/feature31";
 import FeatureComponent32 from "./feature/feature32/feature32";
+import FeatureComponent34 from "./feature/feature34/feature34";
 import FeatureComponent35 from "./feature/feature35/feature35";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
@@ -291,6 +292,7 @@ import About8 from "./about/about8/about8";
 import About9 from "./about/about9/about9";
 import About11 from "./about/about11/about11";
 import About12 from "./about/about12/about12";
+import About15 from "./about/about15/about15";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
@@ -470,6 +472,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent30,
     FeatureComponent31,
     FeatureComponent32,
+    FeatureComponent34,
     FeatureComponent35,
     CallToAction1,
     CallToAction2,
@@ -590,6 +593,7 @@ function Registerables(composer: ComponentsRegistery) {
     About9,
     About11,
     About12,
+    About15,
     Portfolio1,
     Portfolio2,
     Portfolio3,
