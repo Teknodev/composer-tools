@@ -418,7 +418,7 @@ class Feature29 extends BaseFeature {
 
           <div className={this.decorateCSS("side-container")}>
             {leftVisible && (
-              <Base.VerticalContent className={this.decorateCSS("left-side")}>
+              <div className={this.decorateCSS("left-side")}>
                 {topLeftSide.visibility && (
                   <div className={this.decorateCSS("left-top-card")}>
                     {renderCard(
@@ -440,7 +440,7 @@ class Feature29 extends BaseFeature {
                     ))}
                   </div>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
 
             {middleSide.visibility && (
@@ -456,7 +456,7 @@ class Feature29 extends BaseFeature {
             )}
 
             {rightCards.length > 0 && (
-              <Base.VerticalContent className={this.decorateCSS("right-side")}>
+              <div className={this.decorateCSS("right-side")}>
                 {rightCards.map((card, index) => (
                   <div className={card.className} key={`${card.className}-${index}`}>
                     {renderCard(
@@ -469,7 +469,7 @@ class Feature29 extends BaseFeature {
                     )}
                   </div>
                 ))}
-              </Base.VerticalContent>
+              </div>
             )}
           </div>
         </Base.MaxContent>
