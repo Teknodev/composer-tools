@@ -71,15 +71,17 @@ class IntroSection10 extends BaseIntroSection {
     const topTextNode = this.getPropValue("topText");
     const bottomTextNode = this.getPropValue("bottomText");
     const descriptionNode = this.getPropValue("description");
+    const subtitleText = this.castToString(subtitleNode);
     const bottomText = this.castToString(bottomTextNode);
-
+    const topText = this.castToString(topTextNode);
+    const descriptionText = this.castToString(descriptionNode);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
     const hasAnimate1 = !!this.getPropValue("textAnimation");
     const textAnimation = hasAnimate1 ? "animate1" : "";
 
-    const hasLeft = !!(subtitleNode || topTextNode || bottomTextNode);
-    const hasRight = !!descriptionNode || buttons.length > 0;
+    const hasLeft = !!(subtitleText || topText || bottomText);
+    const hasRight = !!descriptionText || buttons.length > 0;
 
     const alignment = Base.getContentAlignment();
     const alignmentClass =
@@ -101,19 +103,19 @@ class IntroSection10 extends BaseIntroSection {
           >
             {hasLeft && (
               <Base.VerticalContent className={this.decorateCSS("left")}>
-                {subtitleNode && (
+                {subtitleText && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitleNode}
                   </Base.SectionSubTitle>
                 )}
 
-                {topTextNode && (
+                {topText && (
                   <Base.SectionTitle className={this.decorateCSS("top-text")}>
                     {topTextNode}
                   </Base.SectionTitle>
                 )}
 
-                {bottomTextNode && (
+                {bottomText && (
                   hasAnimate1 ? (
                     <TypeWriter text={bottomText} className={this.decorateCSS("bottom-text")} />
                   ) : (
@@ -131,7 +133,7 @@ class IntroSection10 extends BaseIntroSection {
                   .filter(Boolean)
                   .join(" ")}
               >
-                {descriptionNode && (
+                {descriptionText && (
                   <Base.P className={this.decorateCSS("description")} style={{ userSelect: "text" }}>
                     {descriptionNode}
                   </Base.P>
