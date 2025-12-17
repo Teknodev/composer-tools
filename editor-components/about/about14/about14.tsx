@@ -115,57 +115,54 @@ class About14 extends BaseAbout {
                     >
                         {hasTextContent && (
                             <div className={this.decorateCSS("content-side")}>
-                                {(hasSubtitle || hasTitle) && (
-                                    <Base.VerticalContent className={this.decorateCSS("heading")}>
-                                        {hasSubtitle && (
-                                            <Base.SectionSubTitle
-                                                className={this.decorateCSS("subtitle")}
-                                            >
-                                                {subtitle}
-                                            </Base.SectionSubTitle>
-                                        )}
-                                        {hasTitle && (
-                                            <Base.SectionTitle
-                                                className={this.decorateCSS("title")}
-                                            >
-                                                {title}
-                                            </Base.SectionTitle>
-                                        )}
-                                    </Base.VerticalContent>
-                                )}
-
-                                {hasDescription && (
-                                    <div
-                                        className={`${this.decorateCSS("description-wrapper")} ${isExpanded
-                                            ? this.decorateCSS("expanded-wrapper")
-                                            : ""
-                                            }`}
-                                    >
-                                        <Base.SectionDescription
-                                            className={this.decorateCSS("description")}
+                                <Base.VerticalContent className={this.decorateCSS("heading")}>
+                                    {hasSubtitle && (
+                                        <Base.SectionSubTitle
+                                            className={this.decorateCSS("subtitle")}
                                         >
-                                            {description}
-                                        </Base.SectionDescription>
-
+                                            {subtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {hasTitle && (
+                                        <Base.SectionTitle
+                                            className={this.decorateCSS("title")}
+                                        >
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {hasDescription && (
                                         <div
-                                            className={this.decorateCSS("show-more-overlay")}
-                                            onClick={this.toggleExpand}
+                                            className={`${this.decorateCSS("description-wrapper")} ${isExpanded
+                                                ? this.decorateCSS("expanded-wrapper")
+                                                : ""
+                                                }`}
                                         >
-                                            <div className={this.decorateCSS("show-more-btn")}>
-                                                {!isExpanded && (
-                                                    <Base.P className={this.decorateCSS("btn-text")}>
-                                                        {showMoreText}
-                                                    </Base.P>
-                                                )}
-                                                {isExpanded && (
-                                                    <Base.P className={this.decorateCSS("btn-text")}>
-                                                        {showLessText}
-                                                    </Base.P>
-                                                )}
+                                            <Base.SectionDescription
+                                                className={this.decorateCSS("description")}
+                                            >
+                                                {description}
+                                            </Base.SectionDescription>
+
+                                            <div
+                                                className={this.decorateCSS("show-more-overlay")}
+                                                onClick={this.toggleExpand}
+                                            >
+                                                <div className={this.decorateCSS("show-more-btn")}>
+                                                    {!isExpanded && (
+                                                        <Base.P className={this.decorateCSS("btn-text")}>
+                                                            {showMoreText}
+                                                        </Base.P>
+                                                    )}
+                                                    {isExpanded && (
+                                                        <Base.P className={this.decorateCSS("btn-text")}>
+                                                            {showLessText}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
+                                </Base.VerticalContent>
                             </div>
                         )}
 
