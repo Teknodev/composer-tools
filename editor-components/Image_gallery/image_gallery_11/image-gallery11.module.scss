@@ -133,13 +133,13 @@
     color: white;
     text-align: left;
     width: auto;
+
     &::before {
       background: white;
     }
 
     &.subtitle-transparent {
       background: transparent !important;
-
     }
   }
 
@@ -329,10 +329,8 @@
       }
     }
   }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
+  @container (max-width: #{$composer-tablet-width}) {
     padding: 80px 0;
 
     .max-content {
@@ -402,10 +400,8 @@
       }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
+  @container (max-width: #{$composer-phone-width}) {
     padding: 50px 0;
 
     .max-content {
