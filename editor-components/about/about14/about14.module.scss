@@ -48,7 +48,6 @@
                     .subtitle,
                     .section-subtitle {
                         margin-left: 0;
-                        margin-right: auto;
                     }
 
                     .title,
@@ -64,7 +63,6 @@
                     overflow: hidden;
                     transition: max-height 0.5s ease-in-out;
                     pointer-events: none;
-                    user-select: none;
 
                     .description {
                         text-align: left;
