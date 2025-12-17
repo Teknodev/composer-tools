@@ -40,14 +40,32 @@
       width: 100%;
       height: 100%;
       min-height: 900px;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: start;
       animation: content-move 1s forwards cubic-bezier(0.38, 0.005, 0.215, 1);
       z-index: 99;
       flex-wrap: wrap;
       margin: auto 0;
+
+      
+        .logo {
+          font-size: 2rem;
+          aspect-ratio: 3 / 1;
+          object-fit: cover;
+          max-width: 250px;
+          color: white;
+          display: block;
+        }
+
+        .up-text {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+          .subtitle {
+            color: white;
+            width: fit-content;
+          }
+        }
 
       .titles {
         font-size: 12.5rem;
@@ -74,22 +92,36 @@
       .title-with-image {
         display: flex;
         align-items: center;
-        margin-bottom: var(--composer-gap-md);
         width: 100%;
         gap: var(--composer-gap-md);
 
-        .title-image {
-          max-width: 370px;
-          width: 370px;
-          height: 180px;
-          border-radius: var(--composer-border-radius-xl);
-          overflow: hidden;
+        .title-image-wrapper {
+          position: relative;
+
+          .title-image {
+            max-width: 370px;
+            width: 370px;
+            height: 180px;
+            border-radius: var(--composer-border-radius-xl);
+            overflow: hidden;
+            object-fit: cover;
+            display: block;
+          }
+
+          .title-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--composer-overlay-color);
+            pointer-events: none;
+            border-radius: var(--composer-border-radius-xl);
+            z-index: 2;
+          }
         }
       }
 
       .description {
         max-width: 640px;
-        margin: 0 0 var(--composer-gap-lg) 0;
+        text-align: left;
       }
 
       .buttons {

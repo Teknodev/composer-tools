@@ -34,6 +34,10 @@
   color: white !important;
 }
 
+.noImage{
+  color: var(--composer-font-color-primary) !important;
+}
+
 .overlay {
   .video-container {
     height: fit-content;
@@ -70,6 +74,7 @@
 }
 
 .container {
+  background-color: var(--composer-html-background);
   &.with-overlay {
     z-index: 103;
   }
@@ -193,6 +198,12 @@
           font-weight: 700;
           display: inline-block;
           line-height: normal;
+          width: fit-content;
+
+          &.hasLine {
+            border-bottom: 3px solid var(--color-primary);
+            margin-bottom: var(--composer-gap-sm);
+          }
         }
 
         &.visible {
@@ -239,9 +250,6 @@
           .bg-img {
             height: 100vh;
           }
-        }
-        .play-button {
-          display: none;
         }
 
         .slide-content {

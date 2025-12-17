@@ -141,10 +141,10 @@
                 .content {
                     position: absolute;
                     right: var(--composer-gap-xs);
-                    top: var(--composer-gap-xs);
+                    top: 0;
                     z-index: 2;
                     color: white;
-                    font-size: 1.5rem;
+                    font-size: 2rem;
                 }
 
                 .carousel {
@@ -173,6 +173,7 @@
                 }
 
                 .slider-inner {
+                    align-items: baseline;
                     padding-left: calc(var(--composer-gap-xl) * 2);
                     color: white;
                     top: 50%;
@@ -192,6 +193,8 @@
                         gap: var(--composer-gap-sm);
                         .subtitle {
                             color: white;
+                            text-align: left;
+                            width: fit-content;
                             &::before{
                                 background: white !important;
                             }
@@ -204,6 +207,7 @@
                         color: white;
                         overflow: hidden;
                         line-height: normal;
+                        text-align: left;
 
                         &.letter-animate {
                             .char {
@@ -259,10 +263,18 @@
                     .description {
                         font-size: 1.5rem;
                         color: white;
+                        text-align: left;
                     }
 
                     .button-box {
                         .button {
+                            .button-icon {
+                                display: flex;
+                                width: 24px;
+                                height: 24px;
+                                font-size: 1.5rem;
+                            }
+
                             .button-text{
                                 content: "";
                             }
@@ -410,7 +422,7 @@
                 }
 
                 .control-nav {
-                    top: 50%;
+                    bottom: 45px;
                     right: 20px;
                 }
             }

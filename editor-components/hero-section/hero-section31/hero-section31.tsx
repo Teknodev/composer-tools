@@ -111,9 +111,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -178,9 +178,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -239,9 +239,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -300,9 +300,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -361,9 +361,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -421,9 +421,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -482,9 +482,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -536,9 +536,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -596,9 +596,9 @@ class HeroSection31 extends BaseHeroSection {
             {
               type: "array",
               key: "actions",
-              displayer: "Action",
+              displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", "GrFormNext", null, "White"),
               ],
             },
           ],
@@ -969,6 +969,9 @@ class HeroSection31 extends BaseHeroSection {
                                 });
                               }}
                             >
+                              {buttonItem.icon && (
+                                <Base.Media value={buttonItem.icon} className={this.decorateCSS("button-icon")} />
+                              )}
                               <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                             </Base.Button>
                           </div>

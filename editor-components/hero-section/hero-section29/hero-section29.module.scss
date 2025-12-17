@@ -36,6 +36,7 @@
           }
 
           .service-card-list {
+            margin-top: var(--composer-gap-lg);
             .service-card {
               align-items: flex-start;
               text-align: left;
@@ -94,13 +95,20 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            color: var(--composer-font-color-primary);
           }
+        }
 
-          .description {
-            color: var(--composer-tertiary-color);
-            margin: 0;
-          }
+        .logo {
+          font-size: 2rem;
+          aspect-ratio: 3 / 1;
+          object-fit: cover;
+          max-width: 250px;
+          color: var(--composer-font-color-primary);
+          display: block;
+        }
+
+        .subtitle, .description {
+          content: "";
         }
 
         .form {
@@ -182,21 +190,10 @@
       margin: auto;
 
       .wrapper {
-
         .content {
           padding-top: 0;
           width: 100%;
 
-          .header {
-            .title {
-              font-size: 3rem;
-              display: flex;
-            }
-
-            .description {
-              font-size: 1.5rem;
-            }
-          }
 
           .form {
             gap: var(--composer-gap-sm);
@@ -207,6 +204,7 @@
           }
 
           .service-card-list {
+            margin-top: var(--composer-gap-md);
             .service-card {
               gap: var(--composer-gap-sm);
               flex: 1;
@@ -234,9 +232,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
-
       .wrapper {
         flex-direction: column;
 

@@ -8,6 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Slider {
   logo?: TypeMediaInputValue;
   image: string;
+  subtitle?: React.JSX.Element;
   title: React.JSX.Element;
   description?: React.JSX.Element;
   button: INPUTS.CastedButton;
@@ -54,13 +55,19 @@ class HeroSection34 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
               value: { type: "image", url:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
               },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -92,13 +99,19 @@ class HeroSection34 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
               value: { type: "image", url:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
               },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -130,13 +143,19 @@ class HeroSection34 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
               value: { type: "image", url:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
               },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -266,26 +285,35 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
           >
               <Base.MaxContent className={this.decorateCSS("content")}>
-                {slides[overlayActiveIndex].logo && (
-                  <Base.Media value={slides[overlayActiveIndex].logo} className={this.decorateCSS("logo")} />
-                )}
-                {this.castToString(slides[overlayActiveIndex].title) && (
-                  <Base.H1 className={this.decorateCSS("content-title")}>
-                    {slides[overlayActiveIndex].title}
-                  </Base.H1>
-                )}
-                {this.castToString(slides[overlayActiveIndex].description) && (
-                  <Base.P className={this.decorateCSS("description")}>
-                    {slides[overlayActiveIndex].description}
-                  </Base.P>
-                )}
-                {this.castToString(slides[overlayActiveIndex].button.text) && (
-                  <ComposerLink path={slides[overlayActiveIndex].button.url}>
-                    <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
-                      <Base.P className={this.decorateCSS("button-text")}>{slides[overlayActiveIndex].button.text}</Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                )}
+                <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                  {slides[overlayActiveIndex].logo && (
+                    <Base.Media value={slides[overlayActiveIndex].logo} className={this.decorateCSS("logo")} />
+                  )}
+                  {this.castToString(slides[overlayActiveIndex].subtitle) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {slides[overlayActiveIndex].subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {this.castToString(slides[overlayActiveIndex].title) && (
+                    <Base.H1 className={this.decorateCSS("content-title")}>
+                      {slides[overlayActiveIndex].title}
+                    </Base.H1>
+                  )}
+                  {this.castToString(slides[overlayActiveIndex].description) && (
+                    <Base.P className={this.decorateCSS("description")}>
+                      {slides[overlayActiveIndex].description}
+                    </Base.P>
+                  )}
+                  {this.castToString(slides[overlayActiveIndex].button.text) && (
+                    <div className={this.decorateCSS("button-container")}>
+                      <ComposerLink path={slides[overlayActiveIndex].button.url}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
+                          <Base.P className={this.decorateCSS("button-text")}>{slides[overlayActiveIndex].button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  )}
+                </Base.VerticalContent>
               </Base.MaxContent>
           </div>
 

@@ -16,6 +16,22 @@ interface ServiceItem {
 class HeroSection29 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "" },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
     this.addProp({
       type: "string",
       key: "mainTitle",
@@ -29,11 +45,12 @@ class HeroSection29 extends BaseHeroSection {
       value:
         "We offer a range of amenities that raise the standard of the property and thus potentially increase rental income",
     });
+
     this.addProp({
       type: "boolean",
       key: "reverser",
       displayer: "Reverse Direction",
-      value: true,
+      value: false,
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "CALL ME BACK", null, null, null, "Primary"));
 
@@ -166,9 +183,11 @@ class HeroSection29 extends BaseHeroSection {
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const logo = this.getPropValue("logo");
     const titleExist = this.castToString(this.getPropValue("mainTitle"));
-
     const descriptionExist = this.castToString(this.getPropValue("mainDescription"));
+
     const serviceItems = this.castToObject<ServiceItem[]>("serviceItems");
     const image = this.getPropValue("image");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
@@ -189,17 +208,30 @@ class HeroSection29 extends BaseHeroSection {
           >
             {showContent && (
               <Base.VerticalContent className={this.decorateCSS("content")}>
-                {(titleExist || descriptionExist) &&
+                {(titleExist || descriptionExist || subtitleExist || logo) &&
                   <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {this.getPropValue("logo") && (
+                      <Base.Media
+                        value={this.getPropValue("logo")}
+                        className={this.decorateCSS("logo")}
+                      />
+                    )}
+
+                    {this.castToString(this.getPropValue("subtitle")) && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
+                    )}
+
                     {titleExist && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("mainTitle")}
                       </Base.SectionTitle>
                     )}
                     {descriptionExist && (
-                      <Base.P className={this.decorateCSS("description")}>
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
                         {this.getPropValue("mainDescription")}
-                      </Base.P>
+                      </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>}
 

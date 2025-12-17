@@ -37,6 +37,13 @@ class HeroSection28 extends BaseHeroSection {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
@@ -230,7 +237,7 @@ class HeroSection28 extends BaseHeroSection {
     const slides = this.getPropValue("slider");
 
     const settings = {
-      arrows: false,
+      arrows: true,
       dots: true,
       infinite: true,
       accessibility: true,
@@ -319,7 +326,7 @@ class HeroSection28 extends BaseHeroSection {
                     <Base.H5
                       className={`${this.decorateCSS("tag")} ${item.getPropValue("image") &&
                         this.decorateCSS("withImage")
-                        }`}
+                        } ${!item.getPropValue("image") && this.decorateCSS("noImage")} ${this.getPropValue("line") && this.decorateCSS("hasLine")}`}
                     >
                       {item.getPropValue("tag")}
                     </Base.H5>
@@ -329,7 +336,7 @@ class HeroSection28 extends BaseHeroSection {
                   <Base.H1
                     className={`${this.decorateCSS("title")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
-                      }`}
+                      } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
                   >
                     {item.getPropValue("title")}
                   </Base.H1>
@@ -338,7 +345,7 @@ class HeroSection28 extends BaseHeroSection {
                   <Base.H3
                     className={`${this.decorateCSS("sub_title")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
-                      }`}
+                      } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
                   >
                     {item.getPropValue("sub_title")}
                   </Base.H3>
@@ -347,7 +354,7 @@ class HeroSection28 extends BaseHeroSection {
                   <Base.P
                     className={`${this.decorateCSS("description")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
-                      }`}
+                      } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
                   >
                     {item.getPropValue("description")}
                   </Base.P>

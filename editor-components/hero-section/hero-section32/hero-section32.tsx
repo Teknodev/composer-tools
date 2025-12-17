@@ -24,6 +24,13 @@ class HeroSection32 extends BaseHeroSection {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "header",
       displayer: "Header",
@@ -401,7 +408,8 @@ class HeroSection32 extends BaseHeroSection {
                                       </Base.P>
                                     )}
 
-                                    {this.castToString(item.imageDescription) &&
+                                    {this.getPropValue("line") &&
+                                      this.castToString(item.imageDescription) &&
                                       this.castToString(item.urlTitle) && (
                                         <div
                                           className={`${this.decorateCSS(

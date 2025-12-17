@@ -17,6 +17,7 @@ interface SliderItem {
   title: React.JSX.Element;
   description: React.JSX.Element;
   logo?: TypeMediaInputValue;
+  subtitle?: React.JSX.Element;
   image: TypeMediaInputValue;
   overlay: boolean;
   button: INPUTS.CastedButton;
@@ -196,6 +197,12 @@ class HeroSection25 extends BaseHeroSection {
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "" },
             },
+           {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -211,7 +218,7 @@ class HeroSection25 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Item",
+              displayer: "Media",
               key: "image",
               value: {
                 type: "image",
@@ -242,6 +249,12 @@ class HeroSection25 extends BaseHeroSection {
             },
             {
               type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               displayer: "Title",
               key: "title",
               value: "EXHIBITION CENTER IN BOSTON",
@@ -255,7 +268,7 @@ class HeroSection25 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Item",
+              displayer: "Media",
               key: "image",
               value: {
                 type: "image",
@@ -286,6 +299,12 @@ class HeroSection25 extends BaseHeroSection {
             },
             {
               type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               displayer: "Title",
               key: "title",
               value: "MODERN HOTEL IN LONDON",
@@ -299,7 +318,7 @@ class HeroSection25 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Item",
+              displayer: "Media",
               key: "image",
               value: {
                 type: "image",
@@ -544,6 +563,11 @@ class HeroSection25 extends BaseHeroSection {
                                     });
                                   }}
                                 />
+                              )}
+                              {this.castToString(sliderItem.subtitle) && (
+                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} animate__animated ${this.getComponentState("titleAnimationClass")}`}>
+                                  {sliderItem.subtitle}
+                                </Base.SectionSubTitle>
                               )}
                               <Base.SectionTitle
                                 className={`
