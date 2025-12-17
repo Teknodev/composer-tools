@@ -8,6 +8,7 @@
     .header {
       display: flex;
       align-items: flex-start;
+      gap: var(--composer-gap-md) !important;
 
         .text-content {
           content: "";
@@ -18,6 +19,7 @@
             margin-left: 0;
           }
         }
+
 
         .description {
           text-align: left !important;
@@ -184,6 +186,7 @@
     }
   }
 
+} 
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
@@ -191,7 +194,7 @@
       gap: 0;
 
       .header {
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-md) !important;
       }
 
       .image-section {
@@ -201,12 +204,14 @@
   }
 }
 
+
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .header {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: column !important ;
+        align-items: flex-start;          
         
         .content-section {
           flex-direction: column;
@@ -236,5 +241,4 @@
         }
       }
     }
-  }
-}}
+  } }
