@@ -57,11 +57,10 @@ class IntroSection10 extends BaseIntroSection {
       ],
     });
     this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Hover Animation Style",
-      value: ["animate1"],
-      additionalParams: { selectItems: ["animate1"] },
+      type: "boolean",
+      key: "textAnimation",
+      displayer: "Text Animation",
+      value: true,
     });
   }
 
@@ -82,8 +81,8 @@ class IntroSection10 extends BaseIntroSection {
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
-    const hoverAnimation = ((this.getPropValue("hoverAnimation") || []) as string[]).join(" ");
-    const hasAnimate1 = hoverAnimation.includes("animate1");
+    const hasAnimate1 = !!this.getPropValue("textAnimation");
+    const textAnimation = hasAnimate1 ? "animate1" : "";
 
     const hasLeft = !!(subtitleText || topText || bottomText);
     const hasRight = !!descriptionText || buttons.length > 0;
@@ -103,7 +102,7 @@ class IntroSection10 extends BaseIntroSection {
             ]
               .filter(Boolean)
               .join(" ")}
-            data-animation={hoverAnimation}
+            data-animation={textAnimation}
             data-animation-active={hasLeft || hasRight ? "true" : "false"}
           >
             {hasLeft && (
