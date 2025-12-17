@@ -12,6 +12,7 @@
       display: flex;
       justify-content: space-between;
       align-items: stretch;
+      gap: var(--composer-gap-md);
 
       &[data-animation~="animate1"] {
         .bottom-text {
@@ -66,6 +67,7 @@
         color: var(--composer-primary-color);
         text-align: left;
         margin-bottom: 0 !important;
+        white-space: inherit !important;
       }
       .subtitle {
         text-align: left !important;

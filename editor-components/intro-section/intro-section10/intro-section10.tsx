@@ -4,6 +4,35 @@ import styles from "./intro-section10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+const TypeWriter: React.FC<{
+  text: string;
+  className?: string;
+  speed?: number;
+}> = ({ text, className, speed = 80 }) => {
+  const [index, setIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setIndex(0);
+  }, [text]);
+
+  React.useEffect(() => {
+    if (!text || index >= text.length) return;
+    const id = setTimeout(() => setIndex((v) => v + 1), speed);
+    return () => clearTimeout(id);
+  }, [text, index, speed]);
+
+  const finished = !!text && index >= text.length;
+  return (
+    <Base.SectionTitle
+      className={className}
+      data-typed-complete={finished ? "true" : "false"}
+      style={{ userSelect: "text" }}
+    >
+      {text.slice(0, index)}
+    </Base.SectionTitle>
+  );
+};
+
 class IntroSection10 extends BaseIntroSection {
   constructor(props?: unknown) {
     super(props, styles);
@@ -92,12 +121,13 @@ class IntroSection10 extends BaseIntroSection {
                 )}
 
                 {bottomText && (
-                  <Base.SectionTitle
-                    className={this.decorateCSS("bottom-text")}
-                    data-typed={hasAnimate1 ? "true" : "false"}
-                  >
-                    {bottomTextNode}
-                  </Base.SectionTitle>
+                  hasAnimate1 ? (
+                    <TypeWriter text={bottomText} className={this.decorateCSS("bottom-text")} />
+                  ) : (
+                    <Base.SectionTitle className={this.decorateCSS("bottom-text")}>
+                      {bottomTextNode}
+                    </Base.SectionTitle>
+                  )
                 )}
               </Base.VerticalContent>
             )}
