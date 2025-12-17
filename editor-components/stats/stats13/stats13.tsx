@@ -257,21 +257,16 @@ class Stats13 extends BaseStats {
     }
 
     TypewriterText = ({ content, text, enableAnimation }: { content: any, text: string, enableAnimation: boolean }) => {
-        if (!enableAnimation || !text) {
-            return <>{content}</>;
-        }
-
+        if (!enableAnimation || !text) { return <>{content}</>; }
         const [displayedText, setDisplayedText] = useState("");
         const [isCompleted, setIsCompleted] = useState(false);
         useEffect(() => {
             setIsCompleted(false);
             setDisplayedText("");
-
             const textToAnimate = text;
             const TYPE_SPEED = 100;
             let timeoutId: NodeJS.Timeout;
             let index = 0;
-
             const animate = () => {
                 if (index < textToAnimate.length) {
                     setDisplayedText(textToAnimate.substring(0, index + 1));
@@ -284,40 +279,30 @@ class Stats13 extends BaseStats {
             timeoutId = setTimeout(animate, TYPE_SPEED);
             return () => clearTimeout(timeoutId);
         }, [text, enableAnimation]);
-
-        if (isCompleted) {
-            return <>{content}</>;
-        }
-
+        if (isCompleted) { return <>{content}</>; }
         return <>{displayedText}</>;
     };
 
     AnimatedNumber = ({ targetValue, duration = 4000 }: { targetValue: number, duration?: number }) => {
         const [currentValue, setCurrentValue] = useState(0);
-
         useEffect(() => {
             const startTime = Date.now();
             const startValue = 0;
-
             const updateNumber = () => {
                 const now = Date.now();
                 const elapsed = now - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-
                 const newValue = startValue + (targetValue - startValue) * easeOutQuart;
                 setCurrentValue(newValue);
-
                 if (progress < 1) {
                     requestAnimationFrame(updateNumber);
                 } else {
                     setCurrentValue(targetValue);
                 }
             };
-
             requestAnimationFrame(updateNumber);
         }, [targetValue, duration]);
-
         return <span>{currentValue.toFixed(targetValue % 1 === 0 ? 0 : 1)}</span>;
     };
 
@@ -348,10 +333,7 @@ class Stats13 extends BaseStats {
                                             {ratingItems.map((item: RatingItemType, index: number) => {
                                                 return (
                                                     <div key={index} className={this.decorateCSS("rating-content")}>
-                                                        <Base.Media
-                                                            value={item.icon}
-                                                            className={this.decorateCSS("icon")}
-                                                        />
+                                                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                                                     </div>
                                                 );
                                             })}
@@ -368,16 +350,10 @@ class Stats13 extends BaseStats {
                                                     const buttonText = this.castToString(item.text || "");
                                                     const buttonUrl = item.url || "#";
                                                     if (!buttonText && !item.icon) return null;
-
                                                     return (
                                                         <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                                {item.icon && (
-                                                                    <Base.Media
-                                                                        className={this.decorateCSS("button-icon")}
-                                                                        value={{ type: "icon", name: item.icon }}
-                                                                    />
-                                                                )}
+                                                                {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={{ type: "icon", name: item.icon }} />)}
                                                                 {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                                             </Base.Button>
                                                         </ComposerLink>
@@ -392,15 +368,10 @@ class Stats13 extends BaseStats {
                                                     const parsedNumber = parseFloat(numberAsString as string) || 0;
                                                     const symbol = item.symbol;
                                                     const description = item.description;
-
                                                     return (
                                                         <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
                                                             <span className={this.decorateCSS("stat-number")}>
-                                                                {enableStatAnimation ? (
-                                                                    <this.AnimatedNumber targetValue={parsedNumber} duration={3000} />
-                                                                ) : (
-                                                                    parsedNumber
-                                                                )}
+                                                                {enableStatAnimation ? (<this.AnimatedNumber targetValue={parsedNumber} duration={3000} />) : (parsedNumber)}
                                                                 <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>
                                                             </span>
                                                             <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
@@ -416,13 +387,8 @@ class Stats13 extends BaseStats {
                         {isImageExist && (
                             <div className={this.decorateCSS("right-content")}>
                                 <div className={this.decorateCSS("image-wrapper")}>
-                                    <Base.Media
-                                        value={image}
-                                        className={this.decorateCSS("image")}
-                                    />
-                                    {enableOverlay && (
-                                        <div className={this.decorateCSS("overlay")}></div>
-                                    )}
+                                    <Base.Media value={image} className={this.decorateCSS("image")} />
+                                    {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                 </div>
                             </div>
                         )}
