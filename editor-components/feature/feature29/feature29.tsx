@@ -384,7 +384,7 @@ class Feature29 extends BaseFeature {
       const descriptionExist = this.castToString(description);
 
       return (
-        <Base.VerticalContent
+        <div
           className={`${this.decorateCSS("card")} ${additionalClass || ""} ${imageUrl ? this.decorateCSS("with-bg") : ""}`}
           data-animation={hoverAnimation}
         >
@@ -395,7 +395,7 @@ class Feature29 extends BaseFeature {
             {descriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{description}</Base.SectionDescription>}
             {button && renderButton(button)}
           </Base.VerticalContent>
-        </Base.VerticalContent>
+        </div>
       );
     };
 
