@@ -59,7 +59,7 @@ class IntroSection10 extends BaseIntroSection {
     this.addProp({
       type: "boolean",
       key: "textAnimation",
-      displayer: "Text Animation",
+      displayer: "Title Animation",
       value: true,
     });
   }
