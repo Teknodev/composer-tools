@@ -78,7 +78,7 @@ class Feature24 extends BaseFeature {
       displayer: "List",
       value: defaultItems.map((text, index) => ({
         type: "object",
-        key: `item_${index}`,
+        key: `item`,
         displayer: "Item",
         value: [
           {
