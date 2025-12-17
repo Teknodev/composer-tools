@@ -28,8 +28,7 @@ type TrackState = {
   startOffset: number;
   direction: number;
   speed: number;
-  globalMove?: (e: any) => void;
-  globalUp?: (e: any) => void;
+  wasDragging: boolean;
 };
 
 const MIN_DUPLICATED_SLIDES = 6;
@@ -56,7 +55,6 @@ class ImageGallery11 extends BaseImageGallery {
   private rowWrapperRefs: (HTMLDivElement | null)[] = [];
   private trackStates: TrackState[] = [];
   private animationDuration = 420000;
-
   private refreshRaf: number | null = null;
 
   constructor(props?: unknown) {
@@ -288,24 +286,23 @@ class ImageGallery11 extends BaseImageGallery {
 
   componentWillUnmount() {
     if (this.refreshRaf) cancelAnimationFrame(this.refreshRaf);
-
-    this.trackStates.forEach((state) => {
-      if (state?.rafId) cancelAnimationFrame(state.rafId);
-
-      if (state?.globalMove) {
-        window.removeEventListener("pointermove", state.globalMove);
-        state.globalMove = undefined;
-      }
-      if (state?.globalUp) {
-        window.removeEventListener("pointerup", state.globalUp);
-        state.globalUp = undefined;
-      }
-    });
+    this.trackStates.forEach((s) => s?.rafId && cancelAnimationFrame(s.rafId));
   }
 
-  // ---------------------------
-  // Helpers
-  // ---------------------------
+  private getState(i: number) {
+    return this.trackStates[i];
+  }
+
+  private getWrapper(i: number) {
+    return this.rowWrapperRefs[i];
+  }
+
+  private setDraggingClass(rowIndex: number, isOn: boolean) {
+    const wrapper = this.getWrapper(rowIndex);
+    if (!wrapper) return;
+    const cls = this.decorateCSS("dragging").split(/\s+/).filter(Boolean);
+    wrapper.classList[isOn ? "add" : "remove"](...cls);
+  }
 
   private scheduleRefresh() {
     if (this.refreshRaf) return;
@@ -316,6 +313,17 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   private preventDefault = (event: any) => event.preventDefault();
+
+  private setPaused(rowIndex: number, paused: boolean) {
+    const state = this.getState(rowIndex);
+    if (!state) return;
+
+    state.isPaused = paused;
+    state.lastTime = 0;
+
+    if (paused) this.stopRowAnimation(rowIndex);
+    else this.startRowAnimation(rowIndex);
+  }
 
   private pauseAllRows(rows: GalleryRow[]) {
     rows.forEach((_, i) => this.pauseRow(i));
@@ -339,22 +347,21 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   private applyOffset(rowIndex: number, shouldWrap = true) {
-    const state = this.trackStates[rowIndex];
-    const wrapper = this.rowWrapperRefs[rowIndex];
+    const state = this.getState(rowIndex);
+    const wrapper = this.getWrapper(rowIndex);
     if (!state || !wrapper || !state.loopWidth) return;
 
-    if (shouldWrap) {
-      state.offset = this.normalizeOffset(state.offset, state.loopWidth);
-    }
-
+    if (shouldWrap) state.offset = this.normalizeOffset(state.offset, state.loopWidth);
     wrapper.style.setProperty("--track-offset", `${state.offset}px`);
   }
 
   private startRowAnimation(rowIndex: number) {
-    const state = this.trackStates[rowIndex];
+    const state = this.getState(rowIndex);
     if (!state || state.isPaused || state.isDragging || !state.loopWidth || state.speed === 0) return;
 
     const step = (timestamp: number) => {
+      if (state.isPaused || state.isDragging) return;
+
       if (!state.lastTime) state.lastTime = timestamp;
       const delta = timestamp - state.lastTime;
       state.lastTime = timestamp;
@@ -369,7 +376,7 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   private stopRowAnimation(rowIndex: number) {
-    const state = this.trackStates[rowIndex];
+    const state = this.getState(rowIndex);
     if (!state) return;
 
     if (state.rafId) {
@@ -380,20 +387,54 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   private pauseRow(rowIndex: number) {
-    const state = this.trackStates[rowIndex];
-    if (!state) return;
-
-    state.isPaused = true;
-    this.stopRowAnimation(rowIndex);
+    this.setPaused(rowIndex, true);
   }
 
   private resumeRow(rowIndex: number) {
-    const state = this.trackStates[rowIndex];
-    if (!state) return;
+    const state = this.getState(rowIndex);
+    if (!state || state.isDragging) return;
+    this.setPaused(rowIndex, false);
+  }
 
-    state.isPaused = false;
-    state.lastTime = 0;
-    this.startRowAnimation(rowIndex);
+  private ensureTrackState(rowIndex: number, loopWidth: number, direction: number) {
+    let state = this.trackStates[rowIndex];
+    if (state) return state;
+
+    const baseOffset = direction > 0 ? -loopWidth : 0;
+    state = {
+      offset: baseOffset,
+      loopWidth,
+      lastTime: 0,
+      rafId: null,
+      isPaused: false,
+      isDragging: false,
+      startX: 0,
+      startOffset: baseOffset,
+      direction,
+      speed: 0,
+      wasDragging: false,
+    };
+    this.trackStates[rowIndex] = state;
+    return state;
+  }
+
+  private updateTrackState(rowIndex: number, loopWidth: number, direction: number) {
+    const state = this.ensureTrackState(rowIndex, loopWidth, direction);
+
+    state.loopWidth = loopWidth;
+    state.direction = direction;
+    state.speed = loopWidth / this.animationDuration;
+
+    if (!state.isDragging && direction > 0 && state.offset === 0) {
+      state.offset = -loopWidth;
+      state.startOffset = state.offset;
+    }
+
+    this.applyOffset(rowIndex, !state.isDragging);
+
+    if (!state.isPaused && !state.isDragging && !state.rafId) {
+      this.startRowAnimation(rowIndex);
+    }
   }
 
   private refreshTrackStates() {
@@ -409,99 +450,57 @@ class ImageGallery11 extends BaseImageGallery {
       if (!loopWidth) return;
 
       const direction = rowIndex % 2 !== 0 ? 1 : -1;
-
-      let state = this.trackStates[rowIndex];
-      if (!state) {
-        const baseOffset = direction > 0 ? -loopWidth : 0;
-        state = {
-          offset: baseOffset,
-          loopWidth,
-          lastTime: 0,
-          rafId: null,
-          isPaused: false,
-          isDragging: false,
-          startX: 0,
-          startOffset: baseOffset,
-          direction,
-          speed: 0,
-        };
-        this.trackStates[rowIndex] = state;
-      }
-
-      state.loopWidth = loopWidth;
-      state.direction = direction;
-      state.speed = loopWidth / this.animationDuration;
-
-      // mevcut davranışı koru
-      if (!state.isDragging && direction > 0 && state.offset === 0) {
-        state.offset = -loopWidth;
-        state.startOffset = state.offset;
-      }
-
-      this.applyOffset(rowIndex, !state.isDragging);
-
-      if (!state.isPaused && !state.isDragging && !state.rafId) {
-        this.startRowAnimation(rowIndex);
-      }
+      this.updateTrackState(rowIndex, loopWidth, direction);
     });
 
-    // fazla state varsa animasyonları durdur
     for (let i = rows.length; i < this.trackStates.length; i += 1) {
       this.stopRowAnimation(i);
     }
   }
 
-  private removeGlobalPointerListeners(state: TrackState) {
-    if (state.globalMove) {
-      window.removeEventListener("pointermove", state.globalMove);
-      state.globalMove = undefined;
-    }
-    if (state.globalUp) {
-      window.removeEventListener("pointerup", state.globalUp);
-      state.globalUp = undefined;
-    }
-  }
-
   private handleRowPointerDown(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
-    const state = this.trackStates[rowIndex];
+    const state = this.getState(rowIndex);
     if (!state) return;
+
+    event.currentTarget.setPointerCapture(event.pointerId);
 
     this.pauseRow(rowIndex);
 
     state.isDragging = true;
     state.startX = event.clientX;
     state.startOffset = state.offset;
+    state.wasDragging = false;
 
-    const wrapper = this.rowWrapperRefs[rowIndex];
-    if (wrapper) wrapper.classList.add(this.decorateCSS("dragging"));
-
-    const boundMove = (e: any) => {
-      this.handleRowPointerMove(rowIndex, e as PointerEvent<HTMLDivElement>);
-    };
-    const boundUp = () => {
-      this.handleRowPointerUp(rowIndex);
-    };
-
-    this.removeGlobalPointerListeners(state);
-
-    state.globalMove = boundMove;
-    state.globalUp = boundUp;
-
-    window.addEventListener("pointermove", boundMove, { passive: true });
-    window.addEventListener("pointerup", boundUp);
+    this.setDraggingClass(rowIndex, true);
   }
 
   private handleRowPointerMove(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
-    const state = this.trackStates[rowIndex];
+    const state = this.getState(rowIndex);
     if (!state || !state.isDragging) return;
 
-    state.offset = state.startOffset + (event.clientX - state.startX);
+    const delta = event.clientX - state.startX;
+    if (Math.abs(delta) > 5) state.wasDragging = true;
+
+    state.offset = state.startOffset + delta;
     this.applyOffset(rowIndex, false);
   }
 
-  private handleRowPointerUp(rowIndex: number) {
-    const state = this.trackStates[rowIndex];
+  private tryOpenPopupFromPoint(rows: GalleryRow[], x: number, y: number) {
+    const el = document.elementFromPoint(x, y) as HTMLElement | null;
+    const btn = el?.closest("[data-image-row-index]") as HTMLElement | null;
+    if (!btn) return;
+
+    const r = parseInt(btn.getAttribute("data-image-row-index") || "", 10);
+    const idx = parseInt(btn.getAttribute("data-image-original-index") || "", 10);
+    const media = rows[r]?.images?.[idx]?.media;
+    if (media) this.openPopup(rows, media, r, idx);
+  }
+
+  private handleRowPointerUp(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
+    const state = this.getState(rowIndex);
     if (!state || !state.isDragging) return;
+
+    event.currentTarget.releasePointerCapture(event.pointerId);
 
     state.isDragging = false;
     state.startX = 0;
@@ -509,10 +508,12 @@ class ImageGallery11 extends BaseImageGallery {
     this.applyOffset(rowIndex);
     state.startOffset = state.offset;
 
-    const wrapper = this.rowWrapperRefs[rowIndex];
-    if (wrapper) wrapper.classList.remove(this.decorateCSS("dragging"));
+    this.setDraggingClass(rowIndex, false);
 
-    this.removeGlobalPointerListeners(state);
+    if (!state.wasDragging) {
+      this.tryOpenPopupFromPoint(this.getProcessedRows(), event.clientX, event.clientY);
+    }
+
     this.resumeRow(rowIndex);
   }
 
@@ -531,10 +532,6 @@ class ImageGallery11 extends BaseImageGallery {
 
     return { rowImages, slidesToShow: row.images.length };
   }
-
-  // ---------------------------
-  // Popup handlers
-  // ---------------------------
 
   private openPopup(rows: GalleryRow[], media: TypeMediaInputValue | undefined, rowIndex: number, imageIndex: number) {
     if (!media) return;
@@ -578,44 +575,40 @@ class ImageGallery11 extends BaseImageGallery {
 
   render() {
     const rows = this.getProcessedRows();
-
-    const popupRowIndex = this.getComponentState("imagePopupRow");
-    const popupImageIndex = this.getComponentState("imagePopupIndex") ?? 0;
-    const popupRow =
-      popupRowIndex !== null && popupRowIndex !== undefined ? rows[popupRowIndex] : undefined;
-    const popupValue = popupRow?.images?.[popupImageIndex]?.media;
-
-    const isPopupOpen = !!(this.getComponentState("imagePopupOpen") && popupValue);
+    const popupValue = this.getComponentState("imagePopupValue") as TypeMediaInputValue | undefined;
+    const isPopupOpen = !!this.getComponentState("imagePopupOpen");
     const isPopupZoomed = !!this.getComponentState("imagePopupZoomed");
 
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const subtitle = this.getPropValue("subtitle");
 
-    const hasTitle = this.castToString(title);
-    const hasDescription = this.castToString(description);
-    const hasSubtitle = this.castToString(subtitle);
-    const hasTextContent = !!(hasSubtitle || hasTitle || hasDescription);
+    const subtitleText = (this.castToString(subtitle));
+    const titleText = (this.castToString(title));
+    const descriptionText = (this.castToString(description));
+
+    const hasSubtitle = !!subtitleText;
+    const hasTitle = !!titleText;
+    const hasDescription = !!descriptionText;
+
+    const hasTextContent = hasSubtitle || hasTitle || hasDescription;
 
     const backgroundMedia = this.getPropValue("background") as TypeMediaInputValue | undefined;
     const hasBackgroundMedia = !!backgroundMedia;
-
     const showOverlay = this.getPropValue("backgroundOverlay") && hasBackgroundMedia;
     const showImageOverlay = !!this.getPropValue("imageOverlay");
 
     const subtitleType = Base.getSectionSubTitleType();
     const alignment = Base.getContentAlignment();
 
-    const baseSubtitleClass = this.decorateCSS("subtitle");
-    let subtitleClasses = baseSubtitleClass;
-    if (hasBackgroundMedia) {
-      subtitleClasses += ` ${this.decorateCSS("subtitle-with-bg")}`;
-      if (subtitleType === "badge") {
-        subtitleClasses += ` ${this.decorateCSS("subtitle-transparent")} ${this.decorateCSS(
-          "subtitle-badge-hidden"
-        )}`;
-      }
-    }
+    const subtitleClasses = [
+      this.decorateCSS("subtitle"),
+      hasBackgroundMedia && this.decorateCSS("subtitle-with-bg"),
+      hasBackgroundMedia && subtitleType === "badge" && this.decorateCSS("subtitle-transparent"),
+      hasBackgroundMedia && subtitleType === "badge" && this.decorateCSS("subtitle-badge-hidden"),
+    ]
+      .filter(Boolean)
+      .join(" ");
 
     const headingClasses = hasBackgroundMedia
       ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
@@ -636,10 +629,10 @@ class ImageGallery11 extends BaseImageGallery {
             <div className={this.decorateCSS("content")}>
               <div className={this.decorateCSS("text-wrapper")}>
                 <div className={headingClasses} data-alignment={alignment}>
-                  {hasSubtitle && <Base.SectionSubTitle className={subtitleClasses}>{subtitle}</Base.SectionSubTitle>}
-
+                  {hasSubtitle && (
+                    <Base.SectionSubTitle className={subtitleClasses}>{subtitle}</Base.SectionSubTitle>
+                  )}
                   {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-
                   {hasDescription && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}
@@ -652,7 +645,11 @@ class ImageGallery11 extends BaseImageGallery {
         </Base.MaxContent>
 
         {rows.length > 0 && (
-          <div className={`${this.decorateCSS("gallery")} ${hasTextContent ? this.decorateCSS("gallery-with-heading") : ""}`}>
+          <div
+            className={`${this.decorateCSS("gallery")} ${
+              hasTextContent ? this.decorateCSS("gallery-with-heading") : ""
+            }`}
+          >
             {rows.map((row: GalleryRow, rowIndex: number) => {
               const isRightToLeft = rowIndex % 2 !== 0;
               const { rowImages, slidesToShow } = this.buildRowImages(row, isRightToLeft);
@@ -681,14 +678,11 @@ class ImageGallery11 extends BaseImageGallery {
                   }}
                   onDragStart={this.preventDefault}
                   onMouseEnter={() => this.pauseRow(rowIndex)}
-                  onMouseLeave={() => {
-                    const state = this.trackStates[rowIndex];
-                    if (state && !state.isDragging) this.resumeRow(rowIndex);
-                  }}
+                  onMouseLeave={() => this.resumeRow(rowIndex)}
                   onPointerDown={(event) => this.handleRowPointerDown(rowIndex, event)}
                   onPointerMove={(event) => this.handleRowPointerMove(rowIndex, event)}
-                  onPointerUp={() => this.handleRowPointerUp(rowIndex)}
-                  onPointerCancel={() => this.handleRowPointerUp(rowIndex)}
+                  onPointerUp={(event) => this.handleRowPointerUp(rowIndex, event)}
+                  onPointerCancel={(event) => this.handleRowPointerUp(rowIndex, event)}
                 >
                   <ComposerSlider
                     ref={(s: any) => {
@@ -709,8 +703,9 @@ class ImageGallery11 extends BaseImageGallery {
                           <div
                             className={this.decorateCSS("image-button")}
                             draggable={false}
+                            data-image-row-index={rowIndex}
+                            data-image-original-index={originalIndex}
                             onDragStart={this.preventDefault}
-                            onClick={() => this.openPopup(rows, mediaValue, rowIndex, originalIndex)}
                           >
                             <div className={this.decorateCSS("image-media-wrapper")}>
                               <Base.Media value={mediaValue} className={this.decorateCSS("image-media")} />
@@ -727,12 +722,8 @@ class ImageGallery11 extends BaseImageGallery {
           </div>
         )}
 
-        {isPopupOpen && popupValue && (
-          <Base.Overlay
-            isVisible
-            className={this.decorateCSS("overlay")}
-            onClick={() => this.closePopup(rows)}
-          >
+        {isPopupOpen && (
+          <Base.Overlay isVisible className={this.decorateCSS("overlay")} onClick={() => this.closePopup(rows)}>
             <div className={this.decorateCSS("modal-wrapper")} onClick={(e) => e.stopPropagation()}>
               <div className={this.decorateCSS("modal-content")}>
                 <div className={this.decorateCSS("close")} onClick={() => this.closePopup(rows)}>
@@ -745,7 +736,9 @@ class ImageGallery11 extends BaseImageGallery {
                 >
                   <Base.Media
                     value={popupValue}
-                    className={`${this.decorateCSS("modal-image")} ${isPopupZoomed ? this.decorateCSS("zoom") : ""}`}
+                    className={`${this.decorateCSS("modal-image")} ${
+                      isPopupZoomed ? this.decorateCSS("zoom") : ""
+                    }`}
                   />
                 </div>
               </div>
