@@ -9,7 +9,6 @@
       display: flex;
       align-items: flex-start;
 
-      .content-section {
         .text-content {
           content: "";
           align-items: flex-start;
@@ -31,10 +30,6 @@
           flex-wrap: wrap;
           justify-content: flex-start;
           align-items: center;
-
-          .link {
-            content: "";
-          }
 
           .button-text {
             content: "";
@@ -58,7 +53,7 @@
           flex: 1;
           align-items: flex-start;
         }
-      }
+      
       
       &.no-left {
         justify-content: flex-start;

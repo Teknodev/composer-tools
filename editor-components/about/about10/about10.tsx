@@ -203,7 +203,6 @@ class About10 extends BaseAbout {
             className={`${this.decorateCSS("header")} ${!hasSubtitleOrTitle ? this.decorateCSS("no-left") : ""} ${!hasDescriptionOrButton ? this.decorateCSS("no-right") : ""}`}
           >
             {hasSubtitleOrTitle && (
-              <div className={this.decorateCSS("content-section")}>
                 <Base.VerticalContent className={this.decorateCSS("text-content")}>
                   {this.castToString(subtitle) && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -216,7 +215,6 @@ class About10 extends BaseAbout {
                     </Base.SectionTitle>
                   )}
                 </Base.VerticalContent>
-              </div>
             )}
             {hasDescriptionOrButton && (
               <div className={this.decorateCSS("content-section")}>
@@ -234,7 +232,7 @@ class About10 extends BaseAbout {
                       const btnText = this.castToString(btn.text);
                       const btnHasText = !!btnText;
                       return (
-                        <ComposerLink key={`about10-btn-${idx}`} path={btn.url} className={this.decorateCSS("link")}>
+                        <ComposerLink key={`about10-btn-${idx}`} path={btn.url}>
                           <Base.Button className={this.decorateCSS("button")} buttonType={btn.type || "Primary"}>
                             {btnHasIcon && <Base.Media value={iconVal as any} className={this.decorateCSS("button-icon")} />}
                             {btnHasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
