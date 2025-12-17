@@ -425,10 +425,12 @@ class Testimonials16 extends Testimonials {
     const hasActivePortrait = !!activePortrait
     const containerClassNames = [
       this.decorateCSS("container"),
-      hasActivePortrait && this.decorateCSS("with-background"),
-      !hasActivePortrait && this.decorateCSS("no-background"),
+      hasActivePortrait ? this.decorateCSS("with-background") : this.decorateCSS("no-background"),
       !hasAnyPortrait && this.decorateCSS("no-portrait"),
-    ].filter(Boolean).join(" ");
+    ]
+      .filter(Boolean)
+      .join(" ");
+    
     
 
     return (
