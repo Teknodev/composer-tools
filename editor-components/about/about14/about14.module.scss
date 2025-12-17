@@ -31,7 +31,7 @@
             }
 
             .content-side {
-                padding: var(--composer-gap-xl);
+                padding: var(--composer-gap-xl) 40px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -156,6 +156,12 @@
                 }
             }
         }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .wrapper .content-side {
+        padding: var(--composer-gap-xl) 30px;
     }
 }
 
