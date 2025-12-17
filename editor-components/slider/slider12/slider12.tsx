@@ -310,13 +310,11 @@ class Slider12 extends BaseSlider {
   }
 
   componentDidMount() {
-    this.observeElements();
-    this.updateSliderOffset();
+    this.initResize();
   }
 
   componentDidUpdate() {
-    this.observeElements();
-    this.updateSliderOffset();
+    this.initResize();
   }
 
   componentWillUnmount() {
@@ -324,37 +322,20 @@ class Slider12 extends BaseSlider {
     this.resizeObserver = null;
   }
 
-  observeElements = () => {
-    if (!globalThis.ResizeObserver) {
-      return;
-    }
-
-    if (!this.resizeObserver) {
-      this.resizeObserver = new ResizeObserver(() => this.updateSliderOffset());
-    } else {
-      this.resizeObserver.disconnect();
-    }
-
+  initResize = () => {
     const el = this.sliderParentRef.current;
-    if (el) {
-      this.resizeObserver.observe(el);
-    }
+    if (!globalThis.ResizeObserver || !el) return;
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = this.resizeObserver ?? new ResizeObserver(() => this.updateSliderOffset());
+    this.resizeObserver.observe(el);
+    this.updateSliderOffset();
   };
 
   updateSliderOffset = () => {
     const width = this.sliderParentRef.current?.getBoundingClientRect().width;
-    if (!width) {
-      return;
-    }
-    const nextMode =
-      width <= 640
-        ? "mobile"
-        : width <= 1024
-        ? "tablet"
-        : "desktop";
-    if (this.getComponentState("slider-mode") !== nextMode) {
-      this.setComponentState("slider-mode", nextMode);
-    }
+    if (!width) return;
+    const nextMode = width <= 640 ? "mobile" : width <= 1024 ? "tablet" : "desktop";
+    if (this.getComponentState("slider-mode") !== nextMode) this.setComponentState("slider-mode", nextMode);
   };
 
   render() {
@@ -390,17 +371,12 @@ class Slider12 extends BaseSlider {
     const titleStr = this.castToString(title);
     const subtitleStr = this.castToString(subtitle);
     const descStr = this.castToString(description);
-    const hasSubtitle = !!subtitleStr;
-    const hasTitle = !!titleStr;
-    const hasDescription = !!descStr;
     const button = this.castToObject<any>("button");
     const buttonContent = button?.text;
     const buttonText = this.castToString(buttonContent);
     const sliderMode = this.getComponentState("slider-mode") || "desktop";
     const validItems = items.filter((item) => {
-    const media = item.media;
-    const mediaType = media?.type ?? (item.image ? "image" : undefined);
-    const hasMedia = !!(mediaType && (media || item.image));
+    const hasMedia = !!(item.media);
     const hasCardDescription = this.castToString(item.description);
     const hasHeaderText = this.castToString(item.header);
     return hasMedia || hasHeaderText || hasCardDescription;
@@ -410,22 +386,22 @@ class Slider12 extends BaseSlider {
       <div className={this.decorateCSS("container")}>
         <Base.Container className={this.decorateCSS("upper-container")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {(hasSubtitle || hasTitle || hasDescription || hasNav) && (
+            {(subtitleStr || titleStr || descStr || hasNav) && (
               <div className={this.decorateCSS("section-header")}>
                 <Base.VerticalContent className={this.decorateCSS("section-header-content")}>
-                  {hasSubtitle && (
+                  {subtitleStr && (
                     <Base.SectionSubTitle
                       className={this.decorateCSS("section-subtitle")}
                     >
                       {subtitle}
                     </Base.SectionSubTitle>
                   )}
-                  {hasTitle && (
+                  {titleStr && (
                     <Base.SectionTitle className={this.decorateCSS("section-title")}>
                       {title}
                     </Base.SectionTitle>
                   )}
-                  {hasDescription && (
+                  {descStr && (
                     <Base.SectionDescription
                       className={this.decorateCSS("section-description")}
                     >
@@ -490,12 +466,11 @@ class Slider12 extends BaseSlider {
                     return (
                       <ComposerLink
                         key={i}
-                        path={item.navigateTo ?? ""}
+                        path={item.navigateTo}
                       >
                         <div className={slideClasses.join(" ")}>
                           <div
                             className={this.decorateCSS("card")}
-                            // onMouseDown={(e) => e.preventDefault()}
                           >
                             {media && (
                               <div className={this.decorateCSS("media")}>

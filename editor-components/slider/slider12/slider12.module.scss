@@ -54,18 +54,7 @@
               .arrow-media {
                 width: 100%;
                 height: 100%;
-                display: flex;
-                align-items: center;
                 justify-content: center;
-                font-size: inherit;
-              }
-
-              .arrow-media-image,
-              .arrow-media-video {
-                width: 100%;
-                height: 100%;
-                display: block;
-                object-fit: contain;
               }
             }
           }
@@ -77,7 +66,6 @@
   .lower-container {
     padding: 0 var(--composer-gap-xl);
     background: var(--composer-html-background);
-    border: none;
 
     &.no-button {
       padding-bottom: 80px;
@@ -172,6 +160,9 @@
   margin: var(--composer-gap-xs) var(--composer-gap-md);
 
   .button {
+    .button-text {
+      content: "";
+    }
     .button-icon {
       font-size: 1.5rem;
     }
@@ -188,12 +179,6 @@
 
         .section-header {
           gap: var(--composer-gap-sm);
-
-          .section-header-content {
-            .section-title {
-              margin-bottom: var(--composer-gap-sm);
-            }
-          }
 
           .arrows-wrap .arrows .prevArrow,
           .arrows-wrap .arrows .nextArrow {
@@ -235,12 +220,6 @@
 
       .max-content {
         .section-header {
-          .section-header-content {
-            .section-description {
-              font-size: var(--composer-font-size-md) !important;
-            }
-          }
-
           .arrows-wrap {
             width: 100%;
             margin-left: 0 !important;
