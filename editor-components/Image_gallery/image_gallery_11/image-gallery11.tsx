@@ -143,7 +143,7 @@ class ImageGallery11 extends BaseImageGallery {
                 },
                 {
                   type: "object",
-                  key: "image-item-2",
+                  key: "image-item",
                   displayer: "Image",
                   value: [
                     {
@@ -160,7 +160,7 @@ class ImageGallery11 extends BaseImageGallery {
                 },
                 {
                   type: "object",
-                  key: "image-item-3",
+                  key: "image-item",
                   displayer: "Image",
                   value: [
                     {
@@ -181,7 +181,7 @@ class ImageGallery11 extends BaseImageGallery {
         },
         {
           type: "object",
-          key: "row-2",
+          key: "row",
           displayer: "Row",
           value: [
             {
@@ -191,7 +191,7 @@ class ImageGallery11 extends BaseImageGallery {
               value: [
                 {
                   type: "object",
-                  key: "image-item-4",
+                  key: "image-item",
                   displayer: "Image",
                   value: [
                     {
@@ -208,7 +208,7 @@ class ImageGallery11 extends BaseImageGallery {
                 },
                 {
                   type: "object",
-                  key: "image-item-5",
+                  key: "image-item",
                   displayer: "Image",
                   value: [
                     {
@@ -225,7 +225,7 @@ class ImageGallery11 extends BaseImageGallery {
                 },
                 {
                   type: "object",
-                  key: "image-item-6",
+                  key: "image-item",
                   displayer: "Image",
                   value: [
                     {
@@ -605,14 +605,10 @@ class ImageGallery11 extends BaseImageGallery {
       this.decorateCSS("subtitle"),
       hasBackgroundMedia && this.decorateCSS("subtitle-with-bg"),
       hasBackgroundMedia && subtitleType === "badge" && this.decorateCSS("subtitle-transparent"),
-      hasBackgroundMedia && subtitleType === "badge" && this.decorateCSS("subtitle-badge-hidden"),
     ]
       .filter(Boolean)
       .join(" ");
 
-    const headingClasses = hasBackgroundMedia
-      ? `${this.decorateCSS("heading")} ${this.decorateCSS("with-bg")}`
-      : this.decorateCSS("heading");
 
     return (
       <Base.Container isFull className={this.decorateCSS("container")}>
@@ -628,7 +624,7 @@ class ImageGallery11 extends BaseImageGallery {
           {hasTextContent && (
             <div className={this.decorateCSS("content")}>
               <div className={this.decorateCSS("text-wrapper")}>
-                <div className={headingClasses} data-alignment={alignment}>
+                <Base.VerticalContent className={`${this.decorateCSS("heading")}${ hasBackgroundMedia && this.decorateCSS("with-bg") }`} data-alignment={alignment}>
                   {hasSubtitle && (
                     <Base.SectionSubTitle className={subtitleClasses}>{subtitle}</Base.SectionSubTitle>
                   )}
@@ -638,7 +634,7 @@ class ImageGallery11 extends BaseImageGallery {
                       {description}
                     </Base.SectionDescription>
                   )}
-                </div>
+                </Base.VerticalContent>
               </div>
             </div>
           )}
