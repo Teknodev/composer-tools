@@ -36,7 +36,7 @@ class HeroSection29 extends BaseHeroSection {
       type: "string",
       key: "mainTitle",
       displayer: "Title",
-      value: "Real Estate Investments",
+      value: "Real <span style='color: var(--composer-secondary-color)'>Estate</span> Investments"
     });
     this.addProp({
       type: "string",

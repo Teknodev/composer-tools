@@ -78,7 +78,7 @@ class HeroSection28 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg" },
               additionalParams: { availableTypes: ["image", "video"] },
             },
@@ -136,7 +136,7 @@ class HeroSection28 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg" },
               additionalParams: { availableTypes: ["image", "video"] },
             },
@@ -194,7 +194,7 @@ class HeroSection28 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: { type: "image", url: "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg" },
               additionalParams: { availableTypes: ["image", "video"] },
             },
@@ -319,7 +319,7 @@ class HeroSection28 extends BaseHeroSection {
                       : () => { }
                   }
                 >
-                  <Base.Media value={this.getPropValue("play_icon")} />
+                  <Base.Media className={this.decorateCSS("play-button-icon")} value={this.getPropValue("play_icon")} />
                 </div>
               )}
               <div

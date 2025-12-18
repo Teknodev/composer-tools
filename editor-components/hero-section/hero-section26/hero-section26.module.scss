@@ -5,137 +5,147 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
-}
 
-.max-content {
-  margin: 0 auto;
-  height: 100%;
+  .max-content {
+    margin: 0 auto;
+    height: 100%;
 
-  >div>div>div>div {
-    border: none !important;
-  }
-}
+    > div > div > div > div {
+      border: none !important;
+    }
 
-.sliders {
-  height: 100vh;
-  transition: transform 500ms ease;
-  transition-behavior: normal;
-  transition-delay: 0s;
+    .sliders {
+      height: 100vh;
+      transition: transform 500ms ease;
+      transition-behavior: normal;
+      transition-delay: 0s;
 
-  &.shrink {
-    transform: scale(0.9);
-  }
-}
+      &.shrink {
+        transform: scale(0.9);
+      }
 
-.slider {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  height: 100%;
-  position: relative;
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
-}
+      .slider {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        height: 100%;
+        position: relative;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
-.left-side {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  margin: var(--composer-gap-md);
+        .left-side {
+          width: 100%;
+          display: flex;
+          justify-content: end;
+          align-items: center;
+          margin: var(--composer-gap-md);
 
-  &.no-image {
-    .left-side-content {
-      width: 100%;
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+          &.no-image {
+            .left-side-content {
+              width: 100%;
+              padding: var(--composer-gap-md) var(--composer-gap-xl);
+            }
+          }
+
+          .left-side-content {
+            width: 75%;
+
+            .subtitle {
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
+              line-height: normal;
+            }
+
+            .logo {
+              margin-bottom: var(--composer-gap-sm);
+              font-size: 2rem;
+              aspect-ratio: 3 / 1;
+              object-fit: cover;
+              max-width: 150px;
+              color: var(--composer-font-color-primary);
+            }
+
+            .title {
+              font-size: 5rem;
+              color: var(--composer-font-color-primary);
+              cursor: pointer;
+              overflow: hidden;
+              line-height: normal;
+              margin: 0;
+
+              &:hover {
+                color: var(--composer-primary-color);
+              }
+            }
+
+            .line {
+              display: block;
+              width: 72px;
+              height: 1px;
+              background-color: var(--composer-primary-color);
+              margin: var(--composer-gap-sm) 0;
+            }
+
+            .description {
+              font-size: 1.5rem;
+              color: var(--composer-tertiary-color);
+              overflow: hidden;
+            }
+          }
+        }
+
+        .arrows {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          left: 50px;
+          bottom: 20px;
+          gap: var(--composer-gap-xs);
+          color: var(--composer-font-color-primary);
+
+          .up-arrow,
+          .down-arrow {
+            cursor: pointer;
+
+            .icon {
+              width: 40px;
+              height: 40px;
+              font-size: 4rem;
+            }
+          }
+
+          .up-arrow:hover .icon,
+          .down-arrow:hover .icon {
+            color: var(--composer-primary-color);
+          }
+        }
+
+        .right-side {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          position: relative;
+
+          .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            z-index: 2;
+          }
+        }
+      }
     }
   }
-}
-
-.left-side-content {
-  width: 75%;
-}
-
-.title {
-  font-size: 5rem;
-  color: var(--composer-font-color-primary);
-  margin: 0px;
-  cursor: pointer;
-  overflow: hidden;
-  line-height: normal;
-
-  &:hover {
-    color: var(--composer-primary-color);
-  }
-}
-
-.line {
-  display: block;
-  width: 72px;
-  height: 1px;
-  background-color: var(--composer-primary-color);
-  margin: var(--composer-gap-sm) 0;
-}
-
-.subtitle {
-  font-size: 1.5rem;
-  color: var(--composer-font-color-primary);
-  margin-top: var(--composer-gap-md);
-  overflow: hidden;
-}
-
-.arrows {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: 50px;
-  bottom: 20px;
-  gap: var(--composer-gap-xs);
-  color: var(--composer-font-color-primary);
-}
-
-.up-arrow,
-.down-arrow {
-  cursor: pointer;
-
-  .icon {
-    width: 40px;
-    height: 40px;
-    font-size: 4rem;
-  }
-}
-
-.arrows .up-arrow:hover .icon,
-.arrows .down-arrow:hover .icon {
-  color: var(--composer-primary-color);
-}
-
-.right-side {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--composer-overlay-color);
-  z-index: 2;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -143,7 +153,6 @@
     .max-content {
       .sliders {
         .slider {
-
           .left-side {
             padding: var(--composer-gap-md);
             justify-content: end;
@@ -153,8 +162,12 @@
                 font-size: 4rem;
               }
 
-              .subtitle {
+              .description {
                 font-size: 1.5rem;
+              }
+
+              .subtitle {
+                font-size: 1.25rem;
               }
             }
 
@@ -187,11 +200,12 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: auto;
+
     .max-content {
       .sliders {
         height: auto;
+
         .slider {
-          /* Stack left/right vertically on phones */
           flex-direction: column;
           height: auto;
           min-height: auto;
@@ -211,8 +225,12 @@
                 font-size: 3.5rem;
               }
 
-              .subtitle {
+              .description {
                 font-size: 2rem;
+              }
+
+              .subtitle {
+                font-size: 1.5rem;
               }
             }
 
@@ -241,13 +259,13 @@
           .arrows {
             left: 20px;
             bottom: var(--composer-gap-md);
-          }
 
-          .up-arrow,
-          .down-arrow {
-            .icon {
-              width: 30px;
-              height: 30px;
+            .up-arrow,
+            .down-arrow {
+              .icon {
+                width: 30px;
+                height: 30px;
+              }
             }
           }
         }

@@ -8,6 +8,8 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 type Slide = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
+  description: React.JSX.Element;
+  logo: TypeMediaInputValue;
   url: string;
   image: TypeMediaInputValue;
   overlay: boolean;
@@ -28,6 +30,19 @@ class HeroSection26 extends BaseHeroSection {
           displayer: "Slider",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -35,8 +50,8 @@ class HeroSection26 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "3D Visualization",
             },
             {
@@ -69,6 +84,19 @@ class HeroSection26 extends BaseHeroSection {
           displayer: "Slider",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -76,8 +104,8 @@ class HeroSection26 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "New illustrations",
             },
             {
@@ -110,6 +138,19 @@ class HeroSection26 extends BaseHeroSection {
           displayer: "Slider",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -117,8 +158,8 @@ class HeroSection26 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "Design trends",
             },
             {
@@ -151,6 +192,19 @@ class HeroSection26 extends BaseHeroSection {
           displayer: "Slider",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -158,8 +212,8 @@ class HeroSection26 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "Photography",
             },
             {
@@ -284,9 +338,11 @@ class HeroSection26 extends BaseHeroSection {
               {slides.map((item: Slide, index: number) => {
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
+                const logoExist = item.logo;
+                const descriptionExist = this.castToString(item.description);
                 const stickToBottomCondition =
-                  (item.image && !(titleExist || subtitleExist)) ||
-                    (!item.image && (titleExist || subtitleExist))
+                  (item.image && !(titleExist || descriptionExist)) ||
+                    (!item.image && (titleExist || descriptionExist))
                     ? this.decorateCSS("stick-to-bottom")
                     : "";
 
@@ -302,27 +358,38 @@ class HeroSection26 extends BaseHeroSection {
                     key={index}
                   >
                     <div className={this.decorateCSS("slider")}>
-                      {(titleExist || subtitleExist) && (
+                      {(titleExist || descriptionExist) && (
                         <div className={`${this.decorateCSS("left-side")} ${!item.image && this.decorateCSS("no-image")}`}>
-                          <div
+                          <Base.VerticalContent
                             className={this.decorateCSS("left-side-content")}
                           >
+                            {logoExist && (
+                              <Base.Media
+                                value={item.logo}
+                                className={this.decorateCSS("logo")}
+                              />
+                            )}
+                             {subtitleExist && (
+                              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {item.subtitle}
+                              </Base.SectionSubTitle>
+                            )}
                             {titleExist && (
                               <ComposerLink path={item.url}>
-                                <Base.H1 className={this.decorateCSS("title")}>
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
                                   {item.title}
-                                </Base.H1>
+                                </Base.SectionTitle>
                               </ComposerLink>
                             )}
                             {enableLine && (
                               <span className={this.decorateCSS("line")} />
                             )}
-                            {subtitleExist && (
-                              <Base.P className={this.decorateCSS("subtitle")}>
-                                {item.subtitle}
-                              </Base.P>
+                            {descriptionExist && (
+                              <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {item.description}
+                              </Base.SectionDescription>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         </div>
                       )}
                       {item.image && (

@@ -43,7 +43,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
+              displayer: "Background Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383502f8a5b002ce6aa53?alt=media",
@@ -87,7 +87,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
+              displayer: "Background Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383962f8a5b002ce6aa92?alt=media",
@@ -131,7 +131,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
+              displayer: "Background Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383c62f8a5b002ce6aac7?alt=media",
@@ -175,7 +175,7 @@ class HeroSection32 extends BaseHeroSection {
             {
               type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
+              displayer: "Background Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383fd2f8a5b002ce6aae3?alt=media",
@@ -231,7 +231,7 @@ class HeroSection32 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "enableBackgroundImageOverlay",
-      displayer: "Background Image Overlay",
+      displayer: "Background Media Overlay",
       value: true,
     });
 

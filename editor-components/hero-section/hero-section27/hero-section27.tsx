@@ -56,7 +56,7 @@ class HeroSection27 extends BaseHeroSection {
             {
               type: "media",
               key: "background",
-              displayer: "Background",
+              displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -79,7 +79,7 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Up Image",
+              displayer: "Up Media",
               key: "upImage",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -104,7 +104,7 @@ class HeroSection27 extends BaseHeroSection {
             {
               type: "array",
               key: "imageArray",
-              displayer: "Down Images",
+              displayer: "Down Medias",
               additionalParams: {
                 maxElementCount: 3,
               },
@@ -112,11 +112,11 @@ class HeroSection27 extends BaseHeroSection {
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Media",
                   value: [
                     {
                       type: "media",
-                      displayer: "Down Image",
+                      displayer: "Media",
                       key: "downImage",
                       additionalParams: {
                         availableTypes: ["image", "video"],
@@ -137,11 +137,11 @@ class HeroSection27 extends BaseHeroSection {
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
                       type: "media",
-                      displayer: "Down Image",
+                      displayer: "Media",
                       key: "downImage",
                       additionalParams: {
                         availableTypes: ["image", "video"],
@@ -162,11 +162,11 @@ class HeroSection27 extends BaseHeroSection {
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
                       type: "media",
-                      displayer: "Down Image",
+                      displayer: "Media",
                       key: "downImage",
                       additionalParams: {
                         availableTypes: ["image", "video"],
@@ -247,7 +247,7 @@ class HeroSection27 extends BaseHeroSection {
             {
               type: "media",
               key: "background",
-              displayer: "Background",
+              displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -270,7 +270,7 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Up Image",
+              displayer: "Up Media",
               key: "upImage",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -295,16 +295,16 @@ class HeroSection27 extends BaseHeroSection {
             {
               type: "array",
               key: "imageArray",
-              displayer: "Down Images",
+              displayer: "Down Medias",
               value: [
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
                       type: "media",
-                      displayer: "Down Image",
+                      displayer: "Media",
                       key: "downImage",
                       additionalParams: {
                         availableTypes: ["image", "video"],
@@ -325,13 +325,13 @@ class HeroSection27 extends BaseHeroSection {
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
                       type: "media",
-                      displayer: "Down Image",
+                      displayer: "Media",
                       key: "downImage",
-                      additionalParams: {
+                      additionalParams: { 
                         availableTypes: ["image", "video"],
                       },
                       value: {
@@ -350,11 +350,11 @@ class HeroSection27 extends BaseHeroSection {
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
                       type: "media",
-                      displayer: "Down Image",
+                      displayer: "Media",
                       key: "downImage",
                       additionalParams: {
                         availableTypes: ["image", "video"],

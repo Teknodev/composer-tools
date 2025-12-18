@@ -89,7 +89,7 @@ class HeroSection30 extends BaseHeroSection {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "OUR PROJECTS", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "OUR PROJECTS", "", "FiArrowRight", null, "Primary"),
       ],
     });
   }
@@ -136,7 +136,7 @@ class HeroSection30 extends BaseHeroSection {
 
               {this.castToString(this.getPropValue("subtitle")) && (
                 <div className={this.decorateCSS("up-text")}>
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${video ? this.decorateCSS("subtitle-transparent") : ""}`}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 </div>
@@ -181,17 +181,22 @@ class HeroSection30 extends BaseHeroSection {
               </Base.P>
             )}
 
-            {buttons.length > 0 &&
+            {buttons.length > 0 && (
               <div className={this.decorateCSS("buttons")}>
-                {buttons.map((button: INPUTS.CastedButton) => this.castToString(button.text) && (
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                ))}
+                {buttons.map((button: INPUTS.CastedButton, i: number) =>
+                  this.castToString(button.text) && (
+                    <ComposerLink path={button.url} key={i}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        {button.icon && (
+                          <Base.Media value={button.icon} className={this.decorateCSS("button-icon-right")} />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                )}
               </div>
-            }
+            )}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>

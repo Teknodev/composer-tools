@@ -17,7 +17,7 @@ class HeroSection35 extends BaseHeroSection {
                 {
                     type: "media",
                     key: "pattern",
-                    displayer: "Pattern Image",
+                    displayer: "Media",
                     additionalParams: { availableTypes: ["image", "video"] },
                     value: {
                         type: "image",
@@ -43,7 +43,7 @@ class HeroSection35 extends BaseHeroSection {
                     additionalParams: { availableTypes: ["icon", "image"] },
                     value: {
                         type: "icon",
-                        name: "LiaArrowRightSolid",
+                        name: "FiArrowUpRight",
                     },
                },
                {
@@ -106,7 +106,7 @@ class HeroSection35 extends BaseHeroSection {
                 {
                     type: "media",
                     key: "image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: { availableTypes: ["image", "video"] },
                     value: {
                         type: "image",
@@ -133,7 +133,7 @@ class HeroSection35 extends BaseHeroSection {
                         {
                             type: "media",
                             key: "customer1Image",
-                            displayer: "Customer Image",
+                            displayer: "Media",
                             additionalParams: { availableTypes: ["image", "video"] },
                             value: {
                                 type: "image",
@@ -143,7 +143,7 @@ class HeroSection35 extends BaseHeroSection {
                         {
                             type: "media",
                             key: "customer2Image",
-                            displayer: "Customer Image",
+                            displayer: "Media",
                             additionalParams: { availableTypes: ["image", "video"] },
                             value: {
                                 type: "image",
@@ -153,7 +153,7 @@ class HeroSection35 extends BaseHeroSection {
                         {
                             type: "media",
                             key: "customer3Image",
-                            displayer: "Customer Image",
+                            displayer: "Media",
                             additionalParams: { availableTypes: ["image", "video"] },
                             value: {
                                 type: "image",
@@ -163,7 +163,7 @@ class HeroSection35 extends BaseHeroSection {
                         {
                             type: "media",
                             key: "customerIcon",
-                            displayer: "Customer Icon",
+                            displayer: "Icon",
                             additionalParams: { availableTypes: ["icon", "image"] },
                             value: {
                                 type: "icon",

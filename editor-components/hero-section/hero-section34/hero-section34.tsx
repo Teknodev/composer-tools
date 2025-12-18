@@ -323,7 +323,7 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
             onClick={handlePrev}
           >
-            <Base.Media value={this.getPropValue("prev_icon")} />
+            <Base.Media className={this.decorateCSS("prev-icon")} value={this.getPropValue("prev_icon")} />
           </div>
 
           <div
@@ -332,7 +332,7 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
             onClick={handleNext}
           >
-            <Base.Media value={this.getPropValue("next_icon")} />
+            <Base.Media className={this.decorateCSS("next-icon")} value={this.getPropValue("next_icon")} />
           </div>
 
           <div className={this.decorateCSS("dots")}>

@@ -598,27 +598,27 @@
                       height: auto;
                     }
 
-                    .customers {
-                      padding-left: 0;
-                      display: flex;
-                      flex-direction: column;
-                      gap: var(--composer-gap-xs);
-                      width: auto;
-                      text-align: end;
+                      .customers {
+                        padding-left: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--composer-gap-xs);
+                        width: auto;
+                        text-align: start;
 
-                      .customerNo {
-                        margin: 0;
-                        padding: 0;
-                        font-size: 2rem;
-                        font-weight: bold;
-                        color: var(--composer-font-color-primary);
-                        text-align: end;
-                      }
+                        .customerNo {
+                          margin: 0;
+                          padding: 0;
+                          font-size: 2rem;
+                          font-weight: bold;
+                          color: var(--composer-font-color-primary);
+                          text-align: start;
+                        }
 
-                      .customerDesc {
-                        color: var(--composer-font-color-primary)
+                        .customerDesc {
+                          color: var(--composer-font-color-primary)
+                        }
                       }
-                    }
                   }
                 }
               }

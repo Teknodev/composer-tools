@@ -1,14 +1,15 @@
 import * as React from "react";
 import styles from "./hero-section33.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 
 type Slide = {
   centered: boolean;
-  backgroundImage: { type: string; url?: string; name?: string };
-  image: { type: string; url?: string; name?: string };
+  backgroundImage: TypeMediaInputValue;
+  image: TypeMediaInputValue;
+  subtitle?: React.JSX.Element;
   title: React.JSX.Element;
   rotate_icon: string;
   rotate_text: React.JSX.Element;
@@ -57,7 +58,7 @@ class HeroSection33 extends BaseHeroSection {
             {
               type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
+              displayer: "Background Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
@@ -67,7 +68,7 @@ class HeroSection33 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
@@ -79,6 +80,12 @@ class HeroSection33 extends BaseHeroSection {
               key: "overlay",
               displayer: "Overlay",
               value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -128,7 +135,7 @@ class HeroSection33 extends BaseHeroSection {
             {
               type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
+              displayer: "Background Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
@@ -138,7 +145,7 @@ class HeroSection33 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
@@ -150,6 +157,12 @@ class HeroSection33 extends BaseHeroSection {
               key: "overlay",
               displayer: "Overlay",
               value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -199,7 +212,7 @@ class HeroSection33 extends BaseHeroSection {
             {
               type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
+              displayer: "Background Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
@@ -209,7 +222,7 @@ class HeroSection33 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
@@ -221,6 +234,12 @@ class HeroSection33 extends BaseHeroSection {
               key: "overlay",
               displayer: "Overlay",
               value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -345,16 +364,12 @@ class HeroSection33 extends BaseHeroSection {
                       </div>
                     )}
                     <div className={this.decorateCSS("carousel-content-div")}>
-                      <div
+                      <Base.VerticalContent
                         className={`
                             ${this.decorateCSS("carousel-content")}
-                            ${animation
-                            ? this.decorateCSS("with-transition")
-                            : ""
+                            ${animation && this.decorateCSS("with-transition")
                           }
-                            ${activeSlide === index
-                            ? this.decorateCSS("fix-location")
-                            : ""
+                            ${activeSlide === index && this.decorateCSS("fix-location")
                           }
                             ${item.centered && this.decorateCSS("centered")}
                           `}
@@ -367,14 +382,19 @@ class HeroSection33 extends BaseHeroSection {
                             />
                           </div>
                         )}
+                        {this.castToString(item.subtitle) && (
+                          <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}>
+                            {item.subtitle}
+                          </Base.SectionSubTitle>
+                        )}
                         {titleExist && (
-                          <h1
+                          <Base.SectionTitle
                             className={`${this.decorateCSS("content-title")} ${item.backgroundImage?.url &&
                               this.decorateCSS("blackColor")
                               }`}
                           >
                             {item.title}
-                          </h1>
+                          </Base.SectionTitle>
                         )}
                         {buttons?.length > 0 && (
                           <div className={this.decorateCSS("buttons-div")}>
@@ -398,7 +418,7 @@ class HeroSection33 extends BaseHeroSection {
                             })}
                           </div>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     </div>
                   </div>
                 );
