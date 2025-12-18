@@ -139,8 +139,8 @@
                 .back-image,
                 .front-image {
                     position: relative;
-                    object-fit: cover;
                     border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
                     &.no-image{
                         position: relative;
                         width: 75%;
@@ -149,8 +149,17 @@
                     .image {
                         width: 100%;
                         height: 100%;
+                        display: block;
                         object-fit: cover;
                         border-radius: var(--composer-border-radius-sm);
+                    }
+
+                    video.image {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        object-fit: cover;
+                        max-width: 100%;
                     }
 
                     .overlay {

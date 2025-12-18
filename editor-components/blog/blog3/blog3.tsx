@@ -105,9 +105,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -141,9 +141,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -184,9 +184,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -221,9 +221,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -264,9 +264,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image", 
+              displayer: "Media", 
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -301,9 +301,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -344,9 +344,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -381,9 +381,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",

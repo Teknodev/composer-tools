@@ -77,7 +77,7 @@ class About3 extends BaseAbout {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -103,7 +103,7 @@ class About3 extends BaseAbout {
           key: "image",
           displayer: "Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -154,6 +154,8 @@ class About3 extends BaseAbout {
     );
     const backImage = this.castToObject<any>("back-image");
     const frontImage = this.castToObject<any>("front-image");
+    const backMedia = backImage?.image;
+    const frontMedia = frontImage?.image;
     const isImage1Exist = backImage?.image;
     const isImage2Exist = frontImage?.image;
     const showDiv =
@@ -241,10 +243,7 @@ class About3 extends BaseAbout {
                 </div>
                 {isImage1Exist && (
                   <div className={`${this.decorateCSS("back-image")} ${!isImage2Exist ? this.decorateCSS("no-image") : ""}`}>
-                    <Base.Media
-                      value={backImage.image}
-                      className={this.decorateCSS("image")}
-                    />
+                    <Base.Media value={backMedia} className={this.decorateCSS("image")} />
                     {backImage?.overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}
@@ -253,10 +252,7 @@ class About3 extends BaseAbout {
 
                 {isImage2Exist && (
                   <div className={`${this.decorateCSS("front-image")} ${!isImage1Exist ? this.decorateCSS("no-image") : ""} `}>
-                    <Base.Media
-                      value={frontImage.image}
-                      className={this.decorateCSS("image")}
-                    />
+                    <Base.Media value={frontMedia} className={this.decorateCSS("image")} />
                     {frontImage?.overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}

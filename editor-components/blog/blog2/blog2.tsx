@@ -53,7 +53,7 @@ class Blog2 extends BaseBlog {
           key: "videoImage",
           displayer: "Video Image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image","video"],
           },
           value: {
             type: "image",

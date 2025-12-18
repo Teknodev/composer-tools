@@ -26,9 +26,9 @@ class About7 extends BaseAbout {
             {
                 type: "media",
                 key: "image",
-                displayer: "Image",
+                displayer: "Media",
                 additionalParams: {
-                    availableTypes: ["image"],
+                    availableTypes: ["image", "video"],
                 },
                 value: {
                     type: "image",
@@ -57,9 +57,9 @@ class About7 extends BaseAbout {
                     {
                         type: "media",
                         key: "image",
-                        displayer: "Image",
+                        displayer: "Media",
                         additionalParams: {
-                            availableTypes: ["image"],
+                            availableTypes: ["image", "video"],
                         },
                         value: {
                             type: "image",
@@ -130,9 +130,9 @@ class About7 extends BaseAbout {
                     {
                         type: "media",
                         key: "image",
-                        displayer: "Image",
+                        displayer: "Media",
                         additionalParams: {
-                            availableTypes: ["image"],
+                            availableTypes: ["image", "video"],
                         },
                         value: {
                             type: "image",
