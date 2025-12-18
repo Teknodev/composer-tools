@@ -106,15 +106,12 @@ import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
-<<<<<<< HEAD
 import IntroSection10 from "./intro-section/intro-section10/intro-section10";
-=======
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
 import IntroSection6 from "./intro-section/intro-section6/intro-section6";
 import IntroSection7 from "./intro-section/intro-section7/intro-section7";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
 import IntroSection11 from "./intro-section/intro-section11/intro-section11";
->>>>>>> main
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -141,14 +138,11 @@ import FeatureComponent25 from "./feature/feature25/feature25";
 import FeatureComponent26 from "./feature/feature26/feature26";
 import FeatureComponent27 from "./feature/feature27/feature27";
 import FeatureComponent30 from "./feature/feature30/feature30";
-<<<<<<< HEAD
 import FeatureComponent37 from "./feature/feature37/feature37";
-=======
 import FeatureComponent31 from "./feature/feature31/feature31";
 import FeatureComponent32 from "./feature/feature32/feature32";
 import FeatureComponent34 from "./feature/feature34/feature34";
 import FeatureComponent35 from "./feature/feature35/feature35";
->>>>>>> main
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -431,15 +425,12 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection35,
     IntroSection1,
     IntroSection2,
-<<<<<<< HEAD
     IntroSection10,
-=======
     IntroSection4,
     IntroSection6,
     IntroSection7,
     IntroSection9,
     IntroSection11,
->>>>>>> main
     NavbarComponent1,
     NavbarComponent2,
     NavbarComponent3,
@@ -486,14 +477,11 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent26,
     FeatureComponent27,
     FeatureComponent30,
-<<<<<<< HEAD
     FeatureComponent37,
-=======
     FeatureComponent31,
     FeatureComponent32,
     FeatureComponent34,
     FeatureComponent35,
->>>>>>> main
     CallToAction1,
     CallToAction2,
     CallToAction3,
