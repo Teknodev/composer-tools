@@ -109,8 +109,7 @@ class About14 extends BaseAbout {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div
-                        className={`${this.decorateCSS("wrapper")} ${!hasImageContent ? this.decorateCSS("no-image") : ""
-                            }`}
+                        className={`${this.decorateCSS("wrapper")} ${!hasImageContent && this.decorateCSS("no-image")}`}
                         data-alignment={alignment}
                     >
                         {hasTextContent && (
@@ -132,10 +131,7 @@ class About14 extends BaseAbout {
                                     )}
                                     {hasDescription && (
                                         <div
-                                            className={`${this.decorateCSS("description-wrapper")} ${isExpanded
-                                                ? this.decorateCSS("expanded-wrapper")
-                                                : ""
-                                                }`}
+                                            className={`${this.decorateCSS("description-wrapper")} ${isExpanded && this.decorateCSS("expanded-wrapper")}`}
                                         >
                                             <Base.SectionDescription
                                                 className={this.decorateCSS("description")}
