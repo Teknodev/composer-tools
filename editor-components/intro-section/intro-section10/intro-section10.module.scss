@@ -18,7 +18,6 @@
         .bottom-text {
           display: inline-block;
           white-space: nowrap;
-          overflow: hidden;
 
           &:not([data-typed-complete="true"])::after {
             content: "|";
