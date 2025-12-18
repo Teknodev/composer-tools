@@ -603,37 +603,6 @@ class Portfolio1 extends BasePortfolio {
             <div className={this.decorateCSS("right")}>
               {(itemTopLeft.visibility || itemTopRight.visibility) && (
                 <div className={this.decorateCSS("top")}>
-                  {itemTopRight.visibility && (
-                    <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                      <div
-                        className={`${this.decorateCSS("item")} ${
-                          !itemTopRight.image || !itemTopRight.image.url
-                            ? this.decorateCSS("no-image")
-                            : ""
-                        }`}
-                        data-animation={this.getPropValue(
-                          "hoverAnimation"
-                        ).join(" ")}
-                      >
-                        {itemTopRight.image && itemTopRight.image.url && (
-                          <div className={this.decorateCSS("background-image")}>
-                            <Base.Media
-                              value={itemTopRight.image}
-                              className={this.decorateCSS("media-image")}
-                            />
-                            {itemTopRight.overlay && (
-                              <div
-                                className={this.decorateCSS(
-                                  "thumbnail-overlay"
-                                )}
-                              />
-                            )}
-                          </div>
-                        )}
-                        {renderItemContent(itemTopRight)}
-                      </div>
-                    </ComposerLink>
-                  )}
                   {itemTopLeft.visibility && (
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
                       <div
@@ -662,6 +631,37 @@ class Portfolio1 extends BasePortfolio {
                           </div>
                         )}
                         {renderItemContent(itemTopLeft)}
+                      </div>
+                    </ComposerLink>
+                  )}
+                  {itemTopRight.visibility && (
+                    <ComposerLink path={itemTopRight.url} isFullWidth={true}>
+                      <div
+                        className={`${this.decorateCSS("item")} ${
+                          !itemTopRight.image || !itemTopRight.image.url
+                            ? this.decorateCSS("no-image")
+                            : ""
+                        }`}
+                        data-animation={this.getPropValue(
+                          "hoverAnimation"
+                        ).join(" ")}
+                      >
+                        {itemTopRight.image && itemTopRight.image.url && (
+                          <div className={this.decorateCSS("background-image")}>
+                            <Base.Media
+                              value={itemTopRight.image}
+                              className={this.decorateCSS("media-image")}
+                            />
+                            {itemTopRight.overlay && (
+                              <div
+                                className={this.decorateCSS(
+                                  "thumbnail-overlay"
+                                )}
+                              />
+                            )}
+                          </div>
+                        )}
+                        {renderItemContent(itemTopRight)}
                       </div>
                     </ComposerLink>
                   )}
