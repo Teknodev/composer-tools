@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
-import styles from "./feature32.module.scss";
+import styles from "./feature36.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -17,7 +17,7 @@ interface FeatureItem {
   idx?: number;
 }
 
-class Feature32 extends BaseFeature {
+class Feature36 extends BaseFeature {
   constructor(props?: Record<string, unknown>) {
     super(props, styles);
     this.setComponentState("activeTab", 0);
@@ -241,7 +241,7 @@ class Feature32 extends BaseFeature {
   }
 
   static getName(): string {
-    return "Feature 32";
+    return "Feature 36";
   }
 
   render() {
@@ -401,4 +401,4 @@ class Feature32 extends BaseFeature {
   }
 }
 
-export default Feature32;
+export default Feature36;
