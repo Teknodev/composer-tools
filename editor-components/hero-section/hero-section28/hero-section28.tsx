@@ -44,6 +44,21 @@ class HeroSection28 extends BaseHeroSection {
     });
 
     this.addProp({
+      type: "media",
+      key: "prev_icon",
+      displayer: "Prev Icon",
+      value: { type: "icon", name: "IoChevronBack" },
+      additionalParams: { availableTypes: ["icon", "image"] },
+    });
+    this.addProp({
+      type: "media",
+      key: "next_icon",
+      displayer: "Next Icon",
+      value: { type: "icon", name: "IoChevronForward" },
+      additionalParams: { availableTypes: ["icon", "image"] },
+    });
+
+    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
@@ -228,6 +243,7 @@ class HeroSection28 extends BaseHeroSection {
     this.setComponentState("animation-active", false);
     this.setComponentState("active-index", 0);
     this.setComponentState("play-video", false);
+    this.setComponentState("sliderRef", React.createRef());
   }
   static getName(): string {
     return "Hero Section 28";
@@ -237,7 +253,7 @@ class HeroSection28 extends BaseHeroSection {
     const slides = this.getPropValue("slider");
 
     const settings = {
-      arrows: true,
+      arrows: false,
       dots: true,
       infinite: true,
       accessibility: true,
@@ -276,6 +292,7 @@ class HeroSection28 extends BaseHeroSection {
       <div className={`${this.decorateCSS("container")} ${this.getComponentState("play-video") && this.decorateCSS("with-overlay")}`}>
         <ComposerSlider
           {...settings}
+          ref={this.getComponentState("sliderRef")}
           className={this.decorateCSS("carousel")}
         >
           {slides.map((item: any, indexSlider: number) => (
@@ -363,6 +380,16 @@ class HeroSection28 extends BaseHeroSection {
             </div>
           ))}
         </ComposerSlider>
+        {slides.length > 1 && (
+          <div className={this.decorateCSS("slider-arrows")}>
+            <div className={this.decorateCSS("prev-icon")} onClick={() => this.getComponentState("sliderRef")?.current?.slickPrev()}>
+              <Base.Media value={this.getPropValue("prev_icon")} />
+            </div>
+            <div className={this.decorateCSS("next-icon")} onClick={() => this.getComponentState("sliderRef")?.current?.slickNext()}>
+              <Base.Media value={this.getPropValue("next_icon")} />
+            </div>
+          </div>
+        )}
         {this.getComponentState("play-video") && slides[this.getComponentState("active-index")]?.getPropValue("video") && (
           <Base.Overlay
             isVisible={this.getComponentState("play-video")}

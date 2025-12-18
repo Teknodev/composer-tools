@@ -242,6 +242,27 @@
   }
 }
 
+.slider-arrows {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 30;
+
+  .prev-icon,
+  .next-icon {
+    pointer-events: auto;
+    width: 30px;
+    height: 30px;
+    color: white;
+    font-size: 2rem;
+    margin: 0 var(--composer-gap-sm);
+  }
+}
+
 @container (max-width: #{$composer-tablet-width}){
   .container {
     .carousel {

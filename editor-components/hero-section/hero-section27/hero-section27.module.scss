@@ -20,13 +20,30 @@
     z-index: 0;
   }
 
+  .background-overlay, .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-overlay-color);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .image-overlay {
+    z-index: 3;
+  }
+
   .content {
     width: 100%;
     height: 100%;
     max-width: 100%;
     display: flex;
     justify-content: center;
-
+    position: relative; 
+    z-index: 4;
+    
     .slider-parent {
       height: 100%;
       width: 100%;
@@ -38,6 +55,7 @@
 
       .carousel {
         position: relative;
+        z-index: 2; 
         width: 100%;
 
         :global(.slick-dots) {
@@ -112,6 +130,8 @@
               .upImage-container {
                 width: 100%;
                 @include flexCenter;
+                position: relative; 
+                overflow: hidden; 
 
                 .upImage {
                   width: 100%;
@@ -119,6 +139,12 @@
                   border-radius: 100px;
                   object-fit: cover;
                   height: 100%;
+                  position: relative;
+                  z-index: 2; 
+                }
+
+                .image-overlay {
+                  border-radius: 100px;
                 }
               }
             }
@@ -144,6 +170,7 @@
                   justify-content: center;
                   align-items: center;
                   overflow: hidden;
+                  position: relative; 
 
                   .middleImages {
                     max-height: 10vw;
@@ -153,6 +180,12 @@
                     height: auto;
                     width: 100%;
                     max-width: 100%;
+                    position: relative;
+                    z-index: 2; 
+                  }
+
+                  .image-overlay {
+                    border-radius: 90px;
                   }
                 }
               }
@@ -176,6 +209,7 @@
 
           .LowerDiv {
             width: 100%;
+            margin-top: var(--composer-gap-lg);
 
             .button-container {
               width: 100%;
@@ -256,19 +290,19 @@
 
                 .count {
                   @include flexCenter;
-                  gap: var(--composer-gap-sm);
+                  gap: var(--composer-gap-md);
                   word-break: break-word;
                   flex: 1;
 
                   .count-items {
                     display: flex;
                     flex-direction: column;
-                    flex: 1;
-                    text-align: end;
+                    width: fit-content;
+                    text-align: left;
                     gap: var(--composer-gap-sm);
 
                     .itemsNo {
-                      font-size: 1.5rem;
+                      font-size: 2rem;
                       font-weight: bold;
                       color: var(--composer-font-color-primary);
                       padding: 0;
@@ -293,14 +327,14 @@
                   .customers {
                     display: flex;
                     flex-direction: column;
+                    width: fit-content;
                     gap: var(--composer-gap-sm);
-                    flex: 1;
                     text-align: start;
 
                     .customerNo {
                       margin: 0;
                       padding: 0;
-                      font-size: 1.5rem;
+                      font-size: 2rem;
                       font-weight: bold;
                       color: var(--composer-font-color-primary);
                     }
@@ -321,7 +355,6 @@
 }
 
 @container (max-width : #{$composer-tablet-width}) {
-
   .container {
     .content {
       .slider-parent {
@@ -388,10 +421,10 @@
                   gap: var(--composer-gap-md);
 
                   .count {
+                    gap: var(--composer-gap-sm);
                     .count-items {
                       .itemsNo {
                         font-size: 2rem;
-                        text-align: end;
                       }
 
                       .itemDesc {

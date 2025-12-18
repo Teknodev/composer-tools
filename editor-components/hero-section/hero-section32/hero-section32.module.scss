@@ -75,8 +75,8 @@
             .dot {
               display: inline-block;
               transition: 0.3s;
-              width: 4px;
-              height: 4px;
+              width: 6px;
+              height: 6px;
               background: white;
               border: none;
               border: 1px solid white;
@@ -95,11 +95,11 @@
             .dotIndex {
               display: none;
               color: white;
-              font-size: 1rem;
+              font-size: 1.25rem;
               margin-top: -30px;
-              transform: translateY(-10%);
+              transform: translateY(-15%);
               rotate: 270deg;
-              padding-left: var(--composer-gap-xs);
+              padding-left: var(--composer-gap-sm);
               &.colored{
                 color: var(--composer-font-color-primary);
               }
