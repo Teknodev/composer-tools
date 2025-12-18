@@ -338,6 +338,13 @@ class HeroSection23 extends BaseHeroSection {
       value: true,
     });
 
+    this.addProp({
+      type: "boolean",
+      displayer: "Wave",
+      key: "wave",
+      value: true,
+    })
+
     this.setComponentState("active", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
@@ -544,6 +551,9 @@ class HeroSection23 extends BaseHeroSection {
             </ComposerSlider>
           </div>
         </div>
+        {this.getPropValue("wave") && <svg className={this.decorateCSS("wave")} viewBox="0 0 1920 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M 0 20 C 0 20 169.5 0 510 0 C 850.5 0 1069.5 60 1410 60 C 1750.5 60 1920 20 1920 20 V 80 H 0 V 20 Z" />
+        </svg>}
       </div>
     );
   }
