@@ -79,6 +79,10 @@
           flex-direction: column;
           width: 100%;
         }
+        
+        .right-card {
+          content: "";
+        }
       }
 
       .card {
@@ -155,6 +159,10 @@
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+        }
+        
+        .button-image {
+          content: "";
         }
       }
 
