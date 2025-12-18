@@ -297,11 +297,11 @@
       .dots-colored {
         li {
           button {
-            background-color: var(--composer-primary-color);
+            background-color: var(--composer-font-color-primary) !important;
           }
         }
         :global(li.slick-active) button {
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-font-color-primary) !important;
         }
       }
     }
