@@ -187,6 +187,12 @@
             border-radius: 0;
         }
 
+        &.no-image {
+            .content-side {
+                padding: var(--composer-gap-lg) var(--composer-gap-md);
+            }
+        }
+
         .image-side {
             height: 300px;
             min-height: 300px;
