@@ -95,6 +95,13 @@ class Breadcrumb2 extends BaseBreadcrumb {
       displayer: "Show Gradient",
       value: true,
     });
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Background Image",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: { type: "image", url: "" },
+    });
         this.addProp({
             type: "media",
             key: "breadcrumbIcon",
@@ -128,6 +135,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
     const currentPageIcon = currentPage?.icon || "";
     const showGradient = this.getPropValue("showGradient");
     const overlay = this.getPropValue("overlay");
+    const bgImage = this.getPropValue("image");
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
@@ -136,7 +144,8 @@ class Breadcrumb2 extends BaseBreadcrumb {
             : this.decorateCSS("noGradient")
         }`}
       >
-        {overlay && <div className={this.decorateCSS("overlay")}></div>}
+        {bgImage?.url && <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />}
+        {overlay && bgImage?.url && <div className={this.decorateCSS("overlay")}></div>}
         {showBreadcrumb && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.Row className={this.decorateCSS("crumber-content")}>
