@@ -6,7 +6,7 @@
 
   .max-content {
     max-width: 100%;
-    padding-top: calc(3 * var(--composer-gap-xl));
+    padding-top: calc(3 * var(--composer-gap-lg));
 
     .slider-wrapper {
       position: relative;
@@ -55,20 +55,22 @@
           transform-origin: center;
           transform: scale(0.95);
           z-index: 1;
-          height: 510px;
+          height: 56vh;
+          max-height: 520px;
           overflow: visible;
 
           .image-wrapper {
             position: relative;
             width: 100%;
-            height: 420px;
+            height: 46vh;
+            max-height: 420px;
             border-radius: var(--composer-border-radius-sm);
             overflow: hidden;
 
             .image {
               width: 100%;
               height: 100%;
-              min-height: 380px;
+              min-height: 0;
               object-fit: cover;
               display: block;
               transform: scale(1.05);
@@ -129,7 +131,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            min-height: 380px;
+            min-height: 320px;
 
             .title {
               position: static;
@@ -184,7 +186,7 @@
         align-items: center;
         position: relative;
         width: 100%;
-        margin-top:  var(--composer-gap-md) !important;
+        margin-top: var(--composer-gap-md) !important;
 
         .arrow-button {
           background: transparent;
@@ -352,14 +354,16 @@
             padding: 0 var(--composer-gap-lg);
             transform: translateY(var(--composer-gap-sm)) scale(0.9);
             transform-origin: center;
-            height: 300px;
+            height: 40vh;
+            max-height: 360px;
             transition: transform var(--composer-transition-duration-normal) ease;
 
             .image-wrapper {
-              height: 300px;
+              height: 40vh;
+              max-height: 300px;
 
               .image {
-                min-height: 300px;
+                min-height: 0;
                 object-position: center;
               }
             }
@@ -390,7 +394,6 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-sm);
-          margin-top: calc(3 * var(--composer-gap-md)) !important;
 
           .arrow-button {
             border: none !important;
@@ -439,15 +442,17 @@
       .slider-wrapper {
         .slider {
           .slide-item {
-            height: 300px;
+            height: 40vh;
+            max-height: 360px;
             padding: 0 var(--composer-gap-md);
             transform: translateY(var(--composer-gap-sm)) scale(1) !important;
 
             .image-wrapper {
-              height: 300px;
+              height: 40vh;
+              max-height: 300px;
 
               .image {
-                min-height: 300px;
+                min-height: 0;
               }
             }
           }
@@ -476,7 +481,7 @@
     padding: var(--composer-gap-xl) 0px !important;
 
     .max-content {
-      padding-top: calc(1.5 * var(--composer-gap-md));
+      padding-top: calc(2 * var(--composer-gap-md));
 
       .slider-wrapper {
         padding: 0;
@@ -507,14 +512,14 @@
             transition: transform var(--composer-transition-duration-normal) ease;
 
             .image-wrapper {
-              min-height: 250px !important;
+              min-height: 240px !important;
               margin-bottom: var(--composer-gap-md);
             }
           }
 
           .slide-item.no-image {
             .image-wrapper {
-              min-height: 280px;
+              min-height: 260px;
 
               .title {
                 padding: 0 var(--composer-gap-md);
@@ -593,7 +598,8 @@
 
           .slide-item.no-image {
             .image-wrapper {
-              min-height: 250px !important;
+              min-height: 240px !important;
+
               .title {
                 padding: 0 var(--composer-gap-md);
               }
