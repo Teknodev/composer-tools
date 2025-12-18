@@ -33,11 +33,16 @@
         color: var(--composer-font-color-primary);
         display: flex;
         gap: var(--composer-gap-md);
+        text-align: justify;
         .left-text,
         .right-text {
           flex: 1;
-          text-align: center !important;
         }
+      }
+      
+      .text-container.single-text .left-text,
+      .text-container.single-text .right-text {
+        text-align: center;
       }
       
       .bottom-container {
