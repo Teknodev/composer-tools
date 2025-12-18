@@ -11,8 +11,8 @@ class Portfolio1 extends BasePortfolio {
     super(props, styles);
     this.addProp({
       type: "object",
-      key: "item-left",
-      displayer: "Item Left",
+      key: "leftSideItem",
+      displayer: "Left Side Item",
       value: [
         {
           type: "boolean",
@@ -86,8 +86,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Item Right Top Left",
-      key: "item-right-top-left",
+      displayer: "Right Side Top Left Item",
+      key: "rightSideTopLeftItem",
       value: [
         {
           type: "boolean",
@@ -161,8 +161,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Item Right Top Right",
-      key: "item-right-top-right",
+      displayer: "Right Side Top Right Item",
+      key: "rightSideTopRightItem",
       value: [
         {
           type: "boolean",
@@ -242,8 +242,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Item Right Bottom Left",
-      key: "item-right-bottom-left",
+      displayer: "Right Side Bottom Left Item",
+      key: "rightSideBottomLeftItem",
       value: [
         {
           type: "boolean",
@@ -323,8 +323,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Item Right Bottom Right",
-      key: "item-right-bottom-right",
+      displayer: "Right Side Bottom Right Item",
+      key: "rightSideBottomRightItem",
       value: [
         {
           type: "boolean",
@@ -411,11 +411,11 @@ class Portfolio1 extends BasePortfolio {
   }
 
   render() {
-    const itemLeft = this.castToObject<any>("item-left");
-    const itemTopRight = this.castToObject<any>("item-right-top-left");
-    const itemTopLeft = this.castToObject<any>("item-right-top-right");
-    const itemBottomLeft = this.castToObject<any>("item-right-bottom-left");
-    const itemBottomRight = this.castToObject<any>("item-right-bottom-right");
+    const itemLeft = this.castToObject<any>("leftSideItem");
+    const itemTopRight = this.castToObject<any>("rightSideTopRightItem");
+    const itemTopLeft = this.castToObject<any>("rightSideTopLeftItem");
+    const itemBottomLeft = this.castToObject<any>("rightSideBottomLeftItem");
+    const itemBottomRight = this.castToObject<any>("rightSideBottomRightItem");
 
     const hasIcon = (icon: any) => icon && (icon.name || icon.url);
     const getButtonsFromItem = (item: any) => {
@@ -437,8 +437,10 @@ class Portfolio1 extends BasePortfolio {
     };
 
     const hasAnyButtonInItem = (buttons: any[]) => {
-      return buttons.some((b: any) =>
-        this.castToString(b?.text) || (b?.media && (b.media.name || b.media.url))
+      return buttons.some(
+        (b: any) =>
+          this.castToString(b?.text) ||
+          (b?.media && (b.media.name || b.media.url))
       );
     };
 
@@ -529,13 +531,17 @@ class Portfolio1 extends BasePortfolio {
                 {buttons.map((btn: any, index: number) => {
                   const btnTextExist = this.castToString(btn.text);
                   const buttonMedia = btn.media;
-                  const buttonMediaExist = buttonMedia && (buttonMedia.name || buttonMedia.url);
+                  const buttonMediaExist =
+                    buttonMedia && (buttonMedia.name || buttonMedia.url);
                   const buttonText = btn.text;
 
                   if (!btnTextExist && !buttonMediaExist) return null;
                   const buttonUrl = btn.url || "#";
                   return (
-                    <ComposerLink path={buttonUrl} key={`portfolio-btn-${index}`}>
+                    <ComposerLink
+                      path={buttonUrl}
+                      key={`portfolio-btn-${index}`}
+                    >
                       <Base.Button
                         buttonType={btn.type}
                         className={this.decorateCSS("button")}
