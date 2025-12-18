@@ -489,8 +489,6 @@
           gap: var(--composer-gap-sm);
 
           .arrow-button {
-            border: none !important;
-
             .arrow-icon {
               font-size: 1rem;
               width: 15px;
@@ -508,7 +506,6 @@
             gap: var(--composer-gap-sm);
 
             .pagination-dot {
-              border: none !important;
               width: 20px;
               height: 20px;
 
