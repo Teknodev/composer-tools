@@ -3,19 +3,15 @@
 .container {
   .max-content {
     min-height: 100vh;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    height: 100vh;
+    display: flex;
     gap: var(--composer-gap-md);
   }
 
   .left {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
+    flex: 1 1 0;
     display: flex;
-    min-height: 0;
-    
+
     .item {
       width: 100%;
       height: 100%;
@@ -24,7 +20,7 @@
 
       .content {
         text-overflow: ellipsis;
-        white-space: nowrap;
+        // white-space: nowrap;
         width: 100%;
         .vertical-content {
           width: 100%;
@@ -43,30 +39,33 @@
   }
 
   .right {
-    grid-column: 2 / 3;
-    grid-row: 1 / 3;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    flex: 1 1 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
     gap: var(--composer-gap-md);
-    min-height: 0;
+    height: 100%;
 
     .top {
-      grid-column: 1 / 3;
-      grid-row: 1 / 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      flex: 1 1 50%;
+      display: flex;
       gap: var(--composer-gap-md);
-      min-height: 0;
+
+      .item {
+        flex: 1 1 0;
+        height: 100%;
+      }
     }
 
     .bottom {
-      grid-column: 1 / 3;
-      grid-row: 2 / 3;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       gap: var(--composer-gap-md);
-      min-height: 0;
+      flex: 1 1 50%;
+
+      .item {
+        flex: 1 1 0;
+        height: 100%;
+      }
     }
   }
 
@@ -75,10 +74,10 @@
     display: flex;
     justify-content: flex-start;
     position: relative;
-    min-height: 400px;
     height: 100%;
-    align-self: stretch;
     width: 100%;
+    align-self: stretch;
+    overflow: hidden;
     background-color: color-mix(
       in srgb,
       var(--composer-html-background),
@@ -95,20 +94,17 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       overflow: hidden;
       z-index: 0;
 
       img {
         position: absolute;
-        top: 0;
-        left: 0;
+        inset: 0;
         width: calc(100% + var(--composer-gap-md));
         height: 100%;
-        
-        max-height: 100%;
         object-fit: cover;
+        display: block;
       }
 
       .thumbnail-overlay {
@@ -147,7 +143,7 @@
         }
 
         .icons-wrapper .icon2 {
-          transform: translateX(4px); 
+          transform: translateX(4px);
         }
 
         .item-title::after {
@@ -231,7 +227,8 @@
         gap: var(--composer-gap-xs);
         align-items: center;
         margin-left: var(--composer-gap-sm);
-        font-size: 25px !important;
+        font-size: 25px;
+        // position: relative;
 
         .icon1,
         .icon2 {
@@ -265,40 +262,29 @@
     padding-bottom: var(--composer-gap-lg);
 
     .max-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
+      display: flex;
+      flex-direction: column;
       gap: var(--composer-gap-md);
-      min-height: auto;
-      height: auto;
+      // height: auto;
     }
 
     .left {
-      grid-column: 1 / 2;
-      grid-row: 1 / 2;
       min-height: 450px;
 
       .item {
         align-items: flex-start;
         padding: var(--composer-gap-xl);
-        height: 100%;
         min-height: 450px;
       }
     }
 
     .right {
-      grid-column: 1 / 2;
-      grid-row: 2 / 3;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
+      display: flex;
       gap: var(--composer-gap-md);
       height: auto;
 
       .top,
       .bottom {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
         gap: var(--composer-gap-md);
       }
     }
@@ -309,6 +295,7 @@
       justify-content: flex-end;
       min-height: 400px;
       height: 100%;
+      
 
       .content {
         .title {
@@ -322,41 +309,20 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-auto-rows: auto;
-      gap: var(--composer-gap-md);
-    }
-
-    .left {
-      grid-column: 1 / 2;
-      grid-row: 1 / 2;
-      height: auto;
-      min-height: 400px;
+      flex-direction: column;
     }
 
     .right {
-      grid-column: 1 / 2;
-      grid-row: 2 / 3;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-auto-rows: auto;
-      gap: var(--composer-gap-md);
+      width: 100%;
+    }
+
+    .right .item {
       width: 100%;
     }
 
     .right .top,
     .right .bottom {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--composer-gap-md);
-    }
-
-    .right .item,
-    .left .item {
-      width: 100%;
-      min-height: 400px;
-      height: auto;
+      flex-direction: column;
     }
   }
 }
