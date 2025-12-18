@@ -179,8 +179,8 @@ class Feature32 extends BaseFeature {
                                 gridCount={{ pc: this.getPropValue("itemCount") }}
                             >
                                 {cards.map((card: Card, index: number) => {
-                                    const titleExist = !!this.castToString(card.title as any);
-                                    const descExist = !!this.castToString(card.description as any);
+                                    const titleExist = this.castToString(card.title);
+                                    const descExist = this.castToString(card.description);
                                     const isImage = card.media?.type === "image";
                                     if (!titleExist && !descExist && !card.media) return null;
 
