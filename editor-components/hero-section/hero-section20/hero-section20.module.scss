@@ -210,7 +210,7 @@
                 @include smooth-transition($delay: 0.05s);
 
                 .icon {
-                  font-size: 1.5rem;
+                  font-size: 1rem;
                   z-index: 10;
                   align-items: center;
                   @include smooth-transition();
@@ -223,7 +223,7 @@
               }
 
               .icon-next-to-text {
-                font-size: 1.5rem;
+                font-size: 1rem;
                 min-width: 4%;
                 @include smooth-transition($delay: 0.05s);
               }
