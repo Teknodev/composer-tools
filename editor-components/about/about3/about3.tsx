@@ -70,12 +70,12 @@ class About3 extends BaseAbout {
     this.addProp({
       type: "object",
       key: "back-image",
-      displayer: "Back Image",
+      displayer: "Back Media",
       value: [
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -96,12 +96,12 @@ class About3 extends BaseAbout {
     this.addProp({
       type: "object",
       key: "front-image",
-      displayer: "Front Image",
+      displayer: "Front Media",
       value: [
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
           },

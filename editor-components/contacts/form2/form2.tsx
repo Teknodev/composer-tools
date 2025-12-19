@@ -13,9 +13,9 @@ class Form2 extends BaseContacts {
     this.addProp({
       type: "media",
       key: "background-img",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",
@@ -352,7 +352,8 @@ class Form2 extends BaseContacts {
     const subtitleType = Base.getSectionSubTitleType()
 
     return (
-      <Base.Container style={{ backgroundImage: `url(${backgroundImage?.url})` }} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.Media value={backgroundImage} className={this.decorateCSS("background-media")} />
         {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist)) && (

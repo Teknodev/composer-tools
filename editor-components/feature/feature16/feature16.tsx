@@ -33,9 +33,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topLeftSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -72,7 +72,7 @@ class Feature16 extends BaseFeature {
                     key: "bottomLeftSideImage",
                     displayer: "Left Side Bottom Image",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -107,9 +107,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -144,9 +144,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -181,9 +181,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "middleRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -218,9 +218,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "middleRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -255,9 +255,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -292,9 +292,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",

@@ -30,9 +30,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -42,9 +42,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "video",
-                            displayer: "Video",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["video"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "video",
@@ -74,9 +74,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -86,7 +86,7 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "video",
-                            displayer: "Video",
+                            displayer: "Video Media",
                             additionalParams: {
                                 availableTypes: ["video"],
                             },
@@ -118,9 +118,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -130,7 +130,7 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "video",
-                            displayer: "Video",
+                            displayer: "Video Media",
                             additionalParams: {
                                 availableTypes: ["video"],
                             },
@@ -162,9 +162,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -174,9 +174,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "video",
-                            displayer: "Video",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["video"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "video",

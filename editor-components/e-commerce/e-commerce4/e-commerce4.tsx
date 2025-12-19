@@ -240,7 +240,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -252,7 +252,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -365,7 +365,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -377,7 +377,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -490,7 +490,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -502,7 +502,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -784,7 +784,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -796,7 +796,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1053,7 +1053,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1065,7 +1065,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1153,7 +1153,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1165,7 +1165,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1447,7 +1447,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1459,7 +1459,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1547,7 +1547,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1559,7 +1559,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1841,7 +1841,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1853,7 +1853,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1947,7 +1947,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "cardImage",
-                                            displayer: "Card Image",
+                                            displayer: "Card Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },
@@ -1959,7 +1959,7 @@ class ECommerce4 extends BaseECommerce {
                                         {
                                             type: "media",
                                             key: "hoverImage",
-                                            displayer: "Hover Image",
+                                            displayer: "Hover Media",
                                             additionalParams: {
                                                 availableTypes: ["image", "video"],
                                             },

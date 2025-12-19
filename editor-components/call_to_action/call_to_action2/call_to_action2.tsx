@@ -33,7 +33,7 @@ class CallToAction2Page extends BaseCallToAction {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
