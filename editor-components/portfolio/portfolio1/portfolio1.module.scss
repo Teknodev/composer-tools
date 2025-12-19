@@ -3,7 +3,6 @@
 .container {
   .max-content {
     min-height: 100vh;
-    height: 100vh;
     display: flex;
     gap: var(--composer-gap-md);
   }
@@ -40,7 +39,6 @@
     width: 100%;
     flex-direction: column;
     gap: var(--composer-gap-md);
-    height: 100%;
 
     .top {
       flex: 1 1 50%;
@@ -261,6 +259,14 @@
           margin-left: 0;
         }
       }
+    }
+  }
+
+  &.no-visible {
+    .max-content {
+      min-height: 0;
+      height: auto;
+      display: block;
     }
   }
 }

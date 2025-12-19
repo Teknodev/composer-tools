@@ -417,7 +417,10 @@ class Portfolio1 extends BasePortfolio {
     const itemBottomLeft = this.castToObject<any>("rightSideBottomLeftItem");
     const itemBottomRight = this.castToObject<any>("rightSideBottomRightItem");
 
-    const hasIcon = (icon: any) => icon && (icon.name || icon.url);
+    const isRenderableImage = (m: any) => !!(m && m.url);
+
+    const hasIcon = (icon: any) => !!(icon && (icon.name || icon.url));
+
     const getButtonsFromItem = (item: any) => {
       const buttonsArray = item?.buttons;
       if (!buttonsArray) return [];
@@ -437,11 +440,12 @@ class Portfolio1 extends BasePortfolio {
     };
 
     const hasAnyButtonInItem = (buttons: any[]) => {
-      return buttons.some(
-        (b: any) =>
-          this.castToString(b?.text) ||
-          (b?.media && (b.media.name || b.media.url))
-      );
+      return buttons.some((b: any) => {
+        const textExists = !!this.castToString(b?.text);
+        const media = b?.media;
+        const mediaExists = !!(media && (media.name || media.url));
+        return textExists || mediaExists;
+      });
     };
 
     const hasContentInItem = (item: any) => {
@@ -450,23 +454,30 @@ class Portfolio1 extends BasePortfolio {
       const hasSubtitle = this.castToString(item?.subtitle);
       const hasTitle = this.castToString(item?.title);
       const hasDescription = this.castToString(item?.description);
+      const hasImage = isRenderableImage(item?.image);
       const hasAnyButton = hasAnyButtonInItem(buttons);
 
       return !!(
         hasSubtitle ||
         hasTitle ||
         hasDescription ||
+        hasImage ||
         hasIcon(item?.icon) ||
         hasIcon(item?.icon2) ||
         hasAnyButton
       );
     };
 
+    const itemHasContent = (item: any) =>
+      !!(item && item.visibility && hasContentInItem(item));
+
     const renderRight =
-      (itemTopLeft.visibility && hasContentInItem(itemTopLeft)) ||
-      (itemTopRight.visibility && hasContentInItem(itemTopRight)) ||
-      (itemBottomLeft.visibility && hasContentInItem(itemBottomLeft)) ||
-      (itemBottomRight.visibility && hasContentInItem(itemBottomRight));
+      itemHasContent(itemTopLeft) ||
+      itemHasContent(itemTopRight) ||
+      itemHasContent(itemBottomLeft) ||
+      itemHasContent(itemBottomRight);
+
+    const anyVisible = itemHasContent(itemLeft) || renderRight;
 
     const renderItemContent = (item: any) => {
       const buttons = getButtonsFromItem(item);
@@ -569,9 +580,15 @@ class Portfolio1 extends BasePortfolio {
     };
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container
+        isFull={true}
+        className={`${this.decorateCSS("container")} ${
+          !anyVisible ? this.decorateCSS("no-visible") : ""
+        }`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {itemLeft.visibility && (
+          {/* left */}
+          {itemHasContent(itemLeft) && (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
                 <div
@@ -601,9 +618,10 @@ class Portfolio1 extends BasePortfolio {
 
           {renderRight && (
             <div className={this.decorateCSS("right")}>
-              {(itemTopLeft.visibility || itemTopRight.visibility) && (
+              {(itemHasContent(itemTopLeft) ||
+                itemHasContent(itemTopRight)) && (
                 <div className={this.decorateCSS("top")}>
-                  {itemTopLeft.visibility && (
+                  {itemHasContent(itemTopLeft) && (
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
@@ -634,7 +652,7 @@ class Portfolio1 extends BasePortfolio {
                       </div>
                     </ComposerLink>
                   )}
-                  {itemTopRight.visibility && (
+                  {itemHasContent(itemTopRight) && (
                     <ComposerLink path={itemTopRight.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
@@ -667,9 +685,10 @@ class Portfolio1 extends BasePortfolio {
                   )}
                 </div>
               )}
-              {(itemBottomLeft.visibility || itemBottomRight.visibility) && (
+              {(itemHasContent(itemBottomLeft) ||
+                itemHasContent(itemBottomRight)) && (
                 <div className={this.decorateCSS("bottom")}>
-                  {itemBottomLeft.visibility && (
+                  {itemHasContent(itemBottomLeft) && (
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
@@ -700,7 +719,7 @@ class Portfolio1 extends BasePortfolio {
                       </div>
                     </ComposerLink>
                   )}
-                  {itemBottomRight.visibility && (
+                  {itemHasContent(itemBottomRight) && (
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
