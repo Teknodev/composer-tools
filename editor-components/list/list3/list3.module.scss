@@ -23,28 +23,17 @@
             .event-text-bottom { text-align: left !important; }
             .divider { text-align: left !important; }
           }
-
-          .card-number {
-            text-align: left !important;
-            left: var(--composer-gap-xl);
-            bottom: calc(var(--composer-gap-xl) * (-0.8));
-            transform:scale(1.15);
-            transform-origin: left bottom;
-          }
         }
       }
-      &.alignment-left {
-        text-align: left;
 
-        .card {
-          .card-number {
-            left: var(--composer-gap-xl) !important;
-            bottom: calc(var(--composer-gap-xl) * (-0.8));
-            transform: scale(1.15);
-            transform-origin: left bottom;
-          }
-        }
+      .card-number {
+        text-align: left !important;
+        left: var(--composer-gap-xl);
+        bottom: calc(var(--composer-gap-xl) * (-0.8));
+        transform:scale(1.15);
+        transform-origin: left bottom;
       }
+
       .intro-card {
         display: flex;
         flex-direction: column;
@@ -338,18 +327,6 @@
           }
         }
 
-        &.alignment-center {
-          .card {
-            .card-number {
-              left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-1.3));
-              transform: translateX(-50%) scale(2.5);
-              transform-origin: center bottom;
-            }
-          }
-        }
-
-        &.alignment-left {
           .card {
             .card-number {
               left: var(--composer-gap-lg);
@@ -358,7 +335,6 @@
               transform-origin: left bottom;
             }
           }
-        }
       }
     }
   }
@@ -423,18 +399,6 @@
           transform: translateY(calc(-1 * var(--composer-gap-xs)));
         }
 
-        &.alignment-center {
-          .card {
-            .card-number {
-              left: 50%;
-              bottom: calc(var(--composer-gap-lg) * (-1.2));
-              transform: translateX(-50%) scale(2.7);
-              transform-origin: center bottom;
-            }
-          }
-        }
-
-        &.alignment-left {
           .card {
             .card-number {
               left: var(--composer-gap-md) !important;
@@ -443,7 +407,6 @@
               transform-origin: left bottom;
             }
           }
-        }
       }
     }
   }
