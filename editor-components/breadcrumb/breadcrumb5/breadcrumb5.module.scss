@@ -6,10 +6,23 @@
   );
   padding-top: var(--composer-gap-md);
   padding-bottom: var(--composer-gap-md);
+  position: relative;
+  z-index: 0;
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
 
   .max-content {
     content: "";
-    
+    position: relative;
+    z-index: 3;
     .section {
       display: flex;
       justify-content: center;
@@ -74,5 +87,14 @@
       height: 14px;
     }
 
+  }
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--composer-overlay-color);
   }
 }

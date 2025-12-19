@@ -98,7 +98,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "" },
     });
