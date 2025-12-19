@@ -171,6 +171,7 @@
         justify-items: stretch;
         align-items: start;
         width: 100%;
+        margin-top: var(--composer-gap-md);
 
         .feature-item {
           display: flex;
