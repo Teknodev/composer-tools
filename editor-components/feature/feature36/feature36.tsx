@@ -278,7 +278,7 @@ class Feature36 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("flex-container")}>
             {hasLeftContent && (
-              <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!hasRightContent ? this.decorateCSS("full-width") : ""}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!hasRightContent && this.decorateCSS("full-width")}`}>
 
                 {(this.castToString(subtitle) || this.castToString(title)) && (
                   <Base.VerticalContent className={this.decorateCSS("header")}>
@@ -300,15 +300,8 @@ class Feature36 extends BaseFeature {
                     {displayList.map((item) => (
                       <div
                         key={item.idx}
-                        className={`${this.decorateCSS("list-item")} ${item.idx === activeTab ? this.decorateCSS("is-active") : ""}`}
+                        className={`${this.decorateCSS("list-item")} ${item.idx === activeTab && this.decorateCSS("is-active")}`}
                         onClick={() => this.setComponentState("activeTab", item.idx)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            this.setComponentState("activeTab", item.idx);
-                          }
-                        }}
                       >
                         <Base.H5 className={this.decorateCSS("list-item-text")}>
                           {item.title}
@@ -321,7 +314,7 @@ class Feature36 extends BaseFeature {
             )}
 
             {hasRightContent && (showDivider || hasLeftContent) && (
-              <Base.VerticalContent className={`${this.decorateCSS("divider-column")} ${!showDivider ? this.decorateCSS("hidden-divider") : ""}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("divider-column")} ${!showDivider && this.decorateCSS("hidden-divider")}`}>
                 <div className={this.decorateCSS("divider-line")} />
               </Base.VerticalContent>
             )}
@@ -334,7 +327,7 @@ class Feature36 extends BaseFeature {
                 {hasMedia && (
                   <div
                     className={this.decorateCSS("image-wrapper")}
-                    data-animation={Array.isArray(hoverAnimation) ? hoverAnimation.join(" ") : ""}
+                    data-animation={(hoverAnimation) && hoverAnimation.join(" ")}
                   >
                     <div className={this.decorateCSS("image-container")}>
                       <Base.Media
@@ -380,7 +373,7 @@ class Feature36 extends BaseFeature {
                         <ComposerLink key={btnIdx} path={item.url}>
                           {imageExist ? (
                             <div className={this.decorateCSS("image-container")}>
-                              <Base.Media value={item.image as any} className={this.decorateCSS("image")} />
+                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
                             </div>
                           ) : (
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
@@ -391,7 +384,7 @@ class Feature36 extends BaseFeature {
                               )}
                               {iconExist && (
                                 <Base.Media
-                                  value={item.icon as any}
+                                  value={item.icon}
                                   className={this.decorateCSS("icon")}
                                 />
                               )}
