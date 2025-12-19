@@ -64,14 +64,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dbc03b007002cc7d5c8?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22dd303b007002cc7d5e1?alt=media" },
@@ -125,14 +125,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e0c03b007002cc7d5f0?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e2003b007002cc7d60d?alt=media" },
@@ -192,14 +192,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5603b007002cc7d623?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e5c03b007002cc7d632?alt=media" },
@@ -253,14 +253,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9903b007002cc7d653?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22e9f03b007002cc7d65a?alt=media" },
@@ -314,14 +314,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ecb03b007002cc7d667?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22ed103b007002cc7d66e?alt=media" },
@@ -375,14 +375,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0003b007002cc7d67a?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f0e03b007002cc7d681?alt=media" },
@@ -435,14 +435,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4003b007002cc7d6a7?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f4503b007002cc7d6b2?alt=media" },
@@ -496,14 +496,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7403b007002cc7d6c5?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7b03b007002cc7d6cc?alt=media" },
@@ -550,14 +550,14 @@ class HeroSection31 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Right Image",
+              displayer: "Right Media",
               key: "rightImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fcc03b007002cc7d709?alt=media" },
             },
             {
               type: "media",
-              displayer: "Left Image",
+              displayer: "Left Media",
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fd303b007002cc7d714?alt=media" },
@@ -896,13 +896,9 @@ class HeroSection31 extends BaseHeroSection {
                           });
                         }}
                       >
-                        {activeSlideObj.logo && (
-                          <Base.Media
-                            value={activeSlideObj.logo}
-                            className={this.decorateCSS("logo")}
-                          />
-                        )}
-                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        <Base.SectionSubTitle
+                          className={`${this.decorateCSS("subtitle")} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-transparent") : ""}`}
+                        >
                           {activeSlideObj.subtitle}
                         </Base.SectionSubTitle>
                       </div>
@@ -952,11 +948,11 @@ class HeroSection31 extends BaseHeroSection {
                         {activeSlideObj.description}
                       </Base.SectionDescription>
                     )}
-
+                  
+                  <div className={this.decorateCSS("button-box")}>
                     {activeSlideObj.actions.length > 0 &&
                       activeSlideObj.actions.map((buttonItem: INPUTS.CastedButton) => (
-                        <ComposerLink path={buttonItem.url}>
-                          <div className={this.decorateCSS("button-box")}>
+                          <ComposerLink path={buttonItem.url}>
                             <Base.Button buttonType={buttonItem.type}
                               className={`${this.decorateCSS("button")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                                   "buttonAnimationClass"
@@ -974,10 +970,11 @@ class HeroSection31 extends BaseHeroSection {
                               )}
                               <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                             </Base.Button>
-                          </div>
-                        </ComposerLink>
+                          </ComposerLink>
                       ))
                     }
+                  </div>
+
                   </Base.VerticalContent>
                 </div>
                 <div className={this.decorateCSS("main-social")}>

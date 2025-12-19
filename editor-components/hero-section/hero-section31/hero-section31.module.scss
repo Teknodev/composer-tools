@@ -66,10 +66,11 @@
                 gap: var(--compoer-gap-md);
                 align-items: center;
                 cursor: pointer;
-                gap: var(--composer-gap-md);
 
                 .social-icon {
                     content: "";
+                    width: 30px;
+                    height: 30px;
                 }
 
                 .icon-stick {
@@ -92,6 +93,8 @@
 
                     .icon {
                         font-size: 1rem;
+                        width: 24px;
+                        height: 24px;
                     }
                 }
 
@@ -118,6 +121,20 @@
                 gap: var(--composer-gap-lg);
                 cursor: pointer;
                 font-size: 2rem;
+
+                .prev-icon, .next-icon {
+                    .icon-image {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+
+                .main-social {
+                    .social-icon {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
             }
 
             .control-num {
@@ -143,7 +160,8 @@
                     right: var(--composer-gap-xs);
                     top: 0;
                     z-index: 2;
-                    color: white;
+                    color: rgba(255, 255, 255, 0.03);
+                    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.11);
                     font-size: 2rem;
                 }
 
@@ -197,6 +215,10 @@
                             width: fit-content;
                             &::before{
                                 background: white !important;
+                            }
+                            &.subtitle-transparent {
+                                background: transparent !important;
+                                padding: 0 !important;
                             }
                         }
 
@@ -267,6 +289,8 @@
                     }
 
                     .button-box {
+                        display: flex;
+                        gap: var(--composer-gap-md);
                         .button {
                             .button-icon {
                                 display: flex;
