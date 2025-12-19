@@ -1,12 +1,9 @@
-import { PointerEvent } from "react";
 import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./image-gallery11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-type GalleryImageItem = {
-  media: TypeMediaInputValue;
-};
+type GalleryImageItem = { media: TypeMediaInputValue };
 
 type RawGalleryRow = {
   speed?: number;
@@ -15,20 +12,7 @@ type RawGalleryRow = {
 
 type GalleryRow = {
   images: GalleryImageItem[];
-};
-
-type TrackState = {
-  offset: number;
-  loopWidth: number;
-  lastTime: number;
-  rafId: number | null;
-  isPaused: boolean;
-  isDragging: boolean;
-  startX: number;
-  startOffset: number;
-  direction: number;
   speed: number;
-  wasDragging: boolean;
 };
 
 const MIN_DUPLICATED_SLIDES = 6;
@@ -45,7 +29,6 @@ const baseSettings = {
   swipe: false,
   draggable: false,
   touchMove: false,
-  pauseOnHover: false,
   speed: 0,
   autoplaySpeed: 0,
 };
@@ -53,28 +36,17 @@ const baseSettings = {
 class ImageGallery11 extends BaseImageGallery {
   private sliderRefs: any[] = [];
   private rowWrapperRefs: (HTMLDivElement | null)[] = [];
-  private trackStates: TrackState[] = [];
+  private rowStates: any[] = [];
+  private rafId: number | null = null;
   private animationDuration = 420000;
-  private refreshRaf: number | null = null;
 
   constructor(props?: unknown) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
-
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
     this.setComponentState("imagePopupZoomed", false);
 
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Studio Life",
-    });
+    this.addProp({ type: "string", key: "title", displayer: "Title", value: "Studio Life" });
 
     this.addProp({
       type: "string",
@@ -95,19 +67,8 @@ class ImageGallery11 extends BaseImageGallery {
       additionalParams: { availableTypes: ["image", "video"] },
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "backgroundOverlay",
-      displayer: "Background Overlay",
-      value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "imageOverlay",
-      displayer: "Overlay",
-      value: false,
-    });
+    this.addProp({ type: "boolean", key: "backgroundOverlay", displayer: "Background Overlay", value: true });
+    this.addProp({ type: "boolean", key: "imageOverlay", displayer: "Overlay", value: false });
 
     this.addProp({
       type: "array",
@@ -277,213 +238,126 @@ class ImageGallery11 extends BaseImageGallery {
   }
 
   componentDidMount() {
-    this.scheduleRefresh();
+    this.refreshRows();
+    this.startRaf();
   }
 
   componentDidUpdate() {
-    this.refreshTrackStates();
+    this.refreshRows();
   }
 
   componentWillUnmount() {
-    if (this.refreshRaf) cancelAnimationFrame(this.refreshRaf);
-    this.trackStates.forEach((s) => s?.rafId && cancelAnimationFrame(s.rafId));
+    this.rafId && cancelAnimationFrame(this.rafId);
   }
 
-  private getState(i: number) {
-    return this.trackStates[i];
+  private preventDefault = (e: any) => e.preventDefault();
+
+  private setAllPaused(paused: boolean) {
+    this.rowStates.forEach((s: any) => s && (s.paused = paused));
   }
 
-  private getWrapper(i: number) {
-    return this.rowWrapperRefs[i];
-  }
-
-  private setDraggingClass(rowIndex: number, isOn: boolean) {
-    const wrapper = this.getWrapper(rowIndex);
-    if (!wrapper) return;
-    const cls = this.decorateCSS("dragging").split(/\s+/).filter(Boolean);
-    wrapper.classList[isOn ? "add" : "remove"](...cls);
-  }
-
-  private scheduleRefresh() {
-    if (this.refreshRaf) return;
-    this.refreshRaf = requestAnimationFrame(() => {
-      this.refreshRaf = null;
-      this.refreshTrackStates();
-    });
-  }
-
-  private preventDefault = (event: any) => event.preventDefault();
-
-  private setPaused(rowIndex: number, paused: boolean) {
-    const state = this.getState(rowIndex);
-    if (!state) return;
-
-    state.isPaused = paused;
-    state.lastTime = 0;
-
-    if (paused) this.stopRowAnimation(rowIndex);
-    else this.startRowAnimation(rowIndex);
-  }
-
-  private pauseAllRows(rows: GalleryRow[]) {
-    rows.forEach((_, i) => this.pauseRow(i));
-  }
-
-  private resumeAllRows(rows: GalleryRow[]) {
-    rows.forEach((_, i) => this.resumeRow(i));
-  }
+  private setOffset = (i: number, wrap = true) => {
+    const s = this.rowStates[i],
+      el = this.rowWrapperRefs[i];
+    if (!s || !el) return;
+    wrap && (s.offset = ((s.offset % s.width) + s.width) % s.width - s.width);
+    el.style.setProperty("--track-offset", s.offset + "px");
+  };
 
   private getProcessedRows(): GalleryRow[] {
     const rawRows = (this.castToObject("galleryRows") || []) as RawGalleryRow[];
     return rawRows
       .filter(Boolean)
-      .map((row) => ({ images: (row.images || []).filter((img) => !!img?.media) }))
+      .map((row) => ({
+        speed: row.speed && row.speed > 0 ? row.speed : 1,
+        images: (row.images || []).filter((img) => !!img?.media),
+      }))
       .filter((row) => row.images.length > 0);
   }
 
-  private normalizeOffset(offset: number, width: number) {
-    const normalized = ((offset % width) + width) % width;
-    return normalized - width;
-  }
+  private refreshRows = () => {
+    const rows: any[] = this.getProcessedRows();
+    this.rowStates.length = rows.length;
 
-  private applyOffset(rowIndex: number, shouldWrap = true) {
-    const state = this.getState(rowIndex);
-    const wrapper = this.getWrapper(rowIndex);
-    if (!state || !wrapper || !state.loopWidth) return;
+    for (let i = 0; i < rows.length; i++) {
+      const t: any = this.sliderRefs[i]?.innerSlider?.list?.querySelector(".slick-track");
+      const w = t ? t.scrollWidth / REPEAT_COUNT : 0;
+      if (!w) continue;
 
-    if (shouldWrap) state.offset = this.normalizeOffset(state.offset, state.loopWidth);
-    wrapper.style.setProperty("--track-offset", `${state.offset}px`);
-  }
+      const dir = i % 2 ? 1 : -1;
+      const start = dir === 1 ? -w : 0;
 
-  private startRowAnimation(rowIndex: number) {
-    const state = this.getState(rowIndex);
-    if (!state || state.isPaused || state.isDragging || !state.loopWidth || state.speed === 0) return;
+      const s =
+        (this.rowStates[i] ??= {
+          offset: start,
+          startOffset: start,
+          startX: 0,
+          moved: false,
+          paused: false,
+          dragging: false,
+          width: w,
+          speed: 0,
+          dir,
+        });
 
-    const step = (timestamp: number) => {
-      if (state.isPaused || state.isDragging) return;
+      s.width = w;
+      s.dir = dir;
+      s.speed = (w / this.animationDuration) * (rows[i].speed || 1);
 
-      if (!state.lastTime) state.lastTime = timestamp;
-      const delta = timestamp - state.lastTime;
-      state.lastTime = timestamp;
+      !s.dragging && this.setOffset(i);
+    }
+  };
 
-      state.offset += state.speed * state.direction * delta;
-      this.applyOffset(rowIndex);
+  private startRaf = () => {
+    if (this.rafId) return;
+    let last = 0;
 
-      state.rafId = requestAnimationFrame(step);
+    const loop = (ts: number) => {
+      const dt = last ? ts - last : 0;
+      last = ts;
+
+      for (let i = 0; i < this.rowStates.length; i++) {
+        const s = this.rowStates[i];
+        if (!s || s.paused || s.dragging) continue;
+        s.offset += s.speed * s.dir * dt;
+        this.setOffset(i);
+      }
+
+      this.rafId = requestAnimationFrame(loop);
     };
 
-    state.rafId = requestAnimationFrame(step);
-  }
+    this.rafId = requestAnimationFrame(loop);
+  };
 
-  private stopRowAnimation(rowIndex: number) {
-    const state = this.getState(rowIndex);
-    if (!state) return;
+  private onDown = (i: number, e: any) => {
+    const s = this.rowStates[i];
+    if (!s) return;
+    e.currentTarget.setPointerCapture?.(e.pointerId);
+    s.dragging = true;
+    s.paused = true;
+    s.moved = false;
+    s.startX = e.clientX;
+    s.startOffset = s.offset;
+  };
 
-    if (state.rafId) {
-      cancelAnimationFrame(state.rafId);
-      state.rafId = null;
-    }
-    state.lastTime = 0;
-  }
+  private onMove = (i: number, e: any) => {
+    const s = this.rowStates[i];
+    if (!s?.dragging) return;
+    const dx = e.clientX - s.startX;
+    s.moved ||= Math.abs(dx) > 5;
+    s.offset = s.startOffset + dx;
+    this.setOffset(i, false);
+  };
 
-  private pauseRow(rowIndex: number) {
-    this.setPaused(rowIndex, true);
-  }
-
-  private resumeRow(rowIndex: number) {
-    const state = this.getState(rowIndex);
-    if (!state || state.isDragging) return;
-    this.setPaused(rowIndex, false);
-  }
-
-  private ensureTrackState(rowIndex: number, loopWidth: number, direction: number) {
-    let state = this.trackStates[rowIndex];
-    if (state) return state;
-
-    const baseOffset = direction > 0 ? -loopWidth : 0;
-    state = {
-      offset: baseOffset,
-      loopWidth,
-      lastTime: 0,
-      rafId: null,
-      isPaused: false,
-      isDragging: false,
-      startX: 0,
-      startOffset: baseOffset,
-      direction,
-      speed: 0,
-      wasDragging: false,
-    };
-    this.trackStates[rowIndex] = state;
-    return state;
-  }
-
-  private updateTrackState(rowIndex: number, loopWidth: number, direction: number) {
-    const state = this.ensureTrackState(rowIndex, loopWidth, direction);
-
-    state.loopWidth = loopWidth;
-    state.direction = direction;
-    state.speed = loopWidth / this.animationDuration;
-
-    if (!state.isDragging && direction > 0 && state.offset === 0) {
-      state.offset = -loopWidth;
-      state.startOffset = state.offset;
-    }
-
-    this.applyOffset(rowIndex, !state.isDragging);
-
-    if (!state.isPaused && !state.isDragging && !state.rafId) {
-      this.startRowAnimation(rowIndex);
-    }
-  }
-
-  private refreshTrackStates() {
-    const rows = this.getProcessedRows();
-
-    rows.forEach((_, rowIndex) => {
-      const sliderRef = this.sliderRefs[rowIndex];
-      const track = sliderRef?.innerSlider?.list?.querySelector(".slick-track") as HTMLElement | null;
-      const wrapper = this.rowWrapperRefs[rowIndex];
-      if (!track || !wrapper) return;
-
-      const loopWidth = track.scrollWidth / REPEAT_COUNT;
-      if (!loopWidth) return;
-
-      const direction = rowIndex % 2 !== 0 ? 1 : -1;
-      this.updateTrackState(rowIndex, loopWidth, direction);
-    });
-
-    for (let i = rows.length; i < this.trackStates.length; i += 1) {
-      this.stopRowAnimation(i);
-    }
-  }
-
-  private handleRowPointerDown(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
-    const state = this.getState(rowIndex);
-    if (!state) return;
-
-    event.currentTarget.setPointerCapture(event.pointerId);
-
-    this.pauseRow(rowIndex);
-
-    state.isDragging = true;
-    state.startX = event.clientX;
-    state.startOffset = state.offset;
-    state.wasDragging = false;
-
-    this.setDraggingClass(rowIndex, true);
-  }
-
-  private handleRowPointerMove(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
-    const state = this.getState(rowIndex);
-    if (!state || !state.isDragging) return;
-
-    const delta = event.clientX - state.startX;
-    if (Math.abs(delta) > 5) state.wasDragging = true;
-
-    state.offset = state.startOffset + delta;
-    this.applyOffset(rowIndex, false);
-  }
+  private onUp = (rows: any[], i: number, e: any) => {
+    const s = this.rowStates[i];
+    if (!s?.dragging) return;
+    e.currentTarget.releasePointerCapture?.(e.pointerId);
+    s.dragging = false;
+    this.setOffset(i);
+    !s.moved && this.tryOpenPopupFromPoint(rows, e.clientX, e.clientY);
+    s.paused = false;
+  };
 
   private tryOpenPopupFromPoint(rows: GalleryRow[], x: number, y: number) {
     const el = document.elementFromPoint(x, y) as HTMLElement | null;
@@ -496,39 +370,13 @@ class ImageGallery11 extends BaseImageGallery {
     if (media) this.openPopup(rows, media, r, idx);
   }
 
-  private handleRowPointerUp(rowIndex: number, event: PointerEvent<HTMLDivElement>) {
-    const state = this.getState(rowIndex);
-    if (!state || !state.isDragging) return;
+  private buildRowImages(row: GalleryRow, rtl: boolean) {
+    const min = Math.max(MIN_DUPLICATED_SLIDES, row.images.length);
+    let base = row.images.length === 1 ? Array.from({ length: min }, () => row.images[0]) : [...row.images];
+    while (base.length < min) base = [...base, ...row.images];
 
-    event.currentTarget.releasePointerCapture(event.pointerId);
-
-    state.isDragging = false;
-    state.startX = 0;
-
-    this.applyOffset(rowIndex);
-    state.startOffset = state.offset;
-
-    this.setDraggingClass(rowIndex, false);
-
-    if (!state.wasDragging) {
-      this.tryOpenPopupFromPoint(this.getProcessedRows(), event.clientX, event.clientY);
-    }
-
-    this.resumeRow(rowIndex);
-  }
-
-  private buildRowImages(row: GalleryRow, isRightToLeft: boolean) {
-    const minLength = Math.max(MIN_DUPLICATED_SLIDES, row.images.length);
-
-    let baseImages =
-      row.images.length === 1 ? Array.from({ length: minLength }, () => row.images[0]) : [...row.images];
-
-    while (baseImages.length < minLength) {
-      baseImages = [...baseImages, ...row.images];
-    }
-
-    const duplicated = Array.from({ length: REPEAT_COUNT }, () => baseImages).flat();
-    const rowImages = isRightToLeft ? [...duplicated].reverse() : duplicated;
+    const dup = Array.from({ length: REPEAT_COUNT }, () => base).flat();
+    const rowImages = rtl ? [...dup].reverse() : dup;
 
     return { rowImages, slidesToShow: row.images.length };
   }
@@ -542,7 +390,7 @@ class ImageGallery11 extends BaseImageGallery {
     this.setComponentState("imagePopupIndex", imageIndex);
     this.setComponentState("imagePopupZoomed", false);
 
-    this.pauseAllRows(rows);
+    this.setAllPaused(true);
   }
 
   private closePopup(rows: GalleryRow[]) {
@@ -552,7 +400,7 @@ class ImageGallery11 extends BaseImageGallery {
     this.setComponentState("imagePopupIndex", null);
     this.setComponentState("imagePopupZoomed", false);
 
-    this.resumeAllRows(rows);
+    this.setAllPaused(false);
   }
 
   private navigatePopup(rows: GalleryRow[], direction: "prev" | "next") {
@@ -564,9 +412,7 @@ class ImageGallery11 extends BaseImageGallery {
 
     const currentIndex = this.getComponentState("imagePopupIndex") ?? 0;
     const total = row.images.length;
-
-    const nextIndex =
-      direction === "next" ? (currentIndex + 1) % total : (currentIndex - 1 + total) % total;
+    const nextIndex = direction === "next" ? (currentIndex + 1) % total : (currentIndex - 1 + total) % total;
 
     this.setComponentState("imagePopupIndex", nextIndex);
     this.setComponentState("imagePopupValue", row.images[nextIndex].media);
@@ -583,32 +429,21 @@ class ImageGallery11 extends BaseImageGallery {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
-    const subtitleText = (this.castToString(subtitle));
-    const titleText = (this.castToString(title));
-    const descriptionText = (this.castToString(description));
-
-    const hasSubtitle = !!subtitleText;
-    const hasTitle = !!titleText;
-    const hasDescription = !!descriptionText;
-
-    const hasTextContent = hasSubtitle || hasTitle || hasDescription;
+    const subtitleText = this.castToString(subtitle);
+    const titleText = this.castToString(title);
+    const descriptionText = this.castToString(description);
+    const hasTextContent = subtitleText || titleText || !!descriptionText;
 
     const backgroundMedia = this.getPropValue("background") as TypeMediaInputValue | undefined;
     const hasBackgroundMedia = !!backgroundMedia;
     const showOverlay = this.getPropValue("backgroundOverlay") && hasBackgroundMedia;
     const showImageOverlay = !!this.getPropValue("imageOverlay");
 
-    const subtitleType = Base.getSectionSubTitleType();
     const alignment = Base.getContentAlignment();
-
-    const subtitleClasses = [
-      this.decorateCSS("subtitle"),
-      hasBackgroundMedia && this.decorateCSS("subtitle-with-bg"),
-      hasBackgroundMedia && subtitleType === "badge" && this.decorateCSS("subtitle-transparent"),
-    ]
+    const headingClasses = [this.decorateCSS("heading"), hasBackgroundMedia ? this.decorateCSS("with-bg") : ""]
       .filter(Boolean)
       .join(" ");
-
+    const headingProps = alignment === "center" ? { "data-alignment": "center" as const } : {};
 
     return (
       <Base.Container isFull className={this.decorateCSS("container")}>
@@ -624,12 +459,12 @@ class ImageGallery11 extends BaseImageGallery {
           {hasTextContent && (
             <div className={this.decorateCSS("content")}>
               <div className={this.decorateCSS("text-wrapper")}>
-                <Base.VerticalContent className={`${this.decorateCSS("heading")}${ hasBackgroundMedia && this.decorateCSS("with-bg") }`} data-alignment={alignment}>
-                  {hasSubtitle && (
-                    <Base.SectionSubTitle className={subtitleClasses}>{subtitle}</Base.SectionSubTitle>
+                <Base.VerticalContent className={headingClasses} {...headingProps}>
+                  {subtitleText && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
                   )}
-                  {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {hasDescription && (
+                  {titleText && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {descriptionText && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}
                     </Base.SectionDescription>
@@ -641,53 +476,36 @@ class ImageGallery11 extends BaseImageGallery {
         </Base.MaxContent>
 
         {rows.length > 0 && (
-          <div
-            className={`${this.decorateCSS("gallery")} ${
-              hasTextContent ? this.decorateCSS("gallery-with-heading") : ""
-            }`}
-          >
+          <div className={this.decorateCSS("gallery")}>
             {rows.map((row: GalleryRow, rowIndex: number) => {
-              const isRightToLeft = rowIndex % 2 !== 0;
-              const { rowImages, slidesToShow } = this.buildRowImages(row, isRightToLeft);
-
-              const sliderKey = `slider-${rowIndex}-${slidesToShow}-${isRightToLeft ? "rtl" : "ltr"}`;
-
-              const rowClassName = isRightToLeft
-                ? `${this.decorateCSS("gallery-row")} ${this.decorateCSS("gallery-row-reverse")}`
-                : this.decorateCSS("gallery-row");
-
-              const rowWrapperClass = `${rowClassName} ${this.decorateCSS("slider-wrapper")}`;
-
-              const sliderSettings = {
-                ...baseSettings,
-                slidesToShow: Math.max(1, slidesToShow),
-                rtl: isRightToLeft,
-              };
+              const rtl = rowIndex % 2 !== 0;
+              const { rowImages, slidesToShow } = this.buildRowImages(row, rtl);
+              const sliderSettings = { ...baseSettings, slidesToShow, rtl };
 
               return (
                 <div
-                  className={rowWrapperClass}
+                  className={`${this.decorateCSS("gallery-row")} ${this.decorateCSS("slider-wrapper")}`}
                   key={`row-${rowIndex}`}
                   ref={(el) => {
                     this.rowWrapperRefs[rowIndex] = el;
-                    this.scheduleRefresh();
+                    this.refreshRows();
                   }}
                   onDragStart={this.preventDefault}
-                  onMouseEnter={() => this.pauseRow(rowIndex)}
-                  onMouseLeave={() => this.resumeRow(rowIndex)}
-                  onPointerDown={(event) => this.handleRowPointerDown(rowIndex, event)}
-                  onPointerMove={(event) => this.handleRowPointerMove(rowIndex, event)}
-                  onPointerUp={(event) => this.handleRowPointerUp(rowIndex, event)}
-                  onPointerCancel={(event) => this.handleRowPointerUp(rowIndex, event)}
+                  onMouseEnter={() => this.rowStates[rowIndex] && (this.rowStates[rowIndex].paused = true)}
+                  onMouseLeave={() => this.rowStates[rowIndex] && (this.rowStates[rowIndex].paused = false)}
+                  onPointerDown={(e) => this.onDown(rowIndex, e)}
+                  onPointerMove={(e) => this.onMove(rowIndex, e)}
+                  onPointerUp={(e) => this.onUp(rows, rowIndex, e)}
+                  onPointerCancel={(e) => this.onUp(rows, rowIndex, e)}
                 >
                   <ComposerSlider
                     ref={(s: any) => {
                       this.sliderRefs[rowIndex] = s;
-                      this.scheduleRefresh();
+                      this.refreshRows();
                     }}
                     {...sliderSettings}
                     className={this.decorateCSS("slider")}
-                    key={sliderKey}
+                    key={`slider-${rowIndex}-${slidesToShow}-${rtl ? "rtl" : "ltr"}`}
                   >
                     {rowImages.map((_, imageIndex) => {
                       const originalIndex = imageIndex % row.images.length;
@@ -732,9 +550,7 @@ class ImageGallery11 extends BaseImageGallery {
                 >
                   <Base.Media
                     value={popupValue}
-                    className={`${this.decorateCSS("modal-image")} ${
-                      isPopupZoomed ? this.decorateCSS("zoom") : ""
-                    }`}
+                    className={`${this.decorateCSS("modal-image")} ${isPopupZoomed ? this.decorateCSS("zoom") : ""}`}
                   />
                 </div>
               </div>
