@@ -33,6 +33,7 @@ import SliderComponent8 from "./slider/slider8/slider8";
 import SliderComponent9 from "./slider/slider9/slider9";
 import SliderComponent10 from "./slider/slider10/slider10";
 import SliderComponent11 from "./slider/slider11/slider11";
+import SliderComponent12 from "./slider/slider12/slider12";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -180,6 +181,7 @@ import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials1
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
 import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
 import TestimonialsComponent15 from "./testimonials/testimonials15/testimonials15";
+import TestimonialsComponent16 from "./testimonials/testimonials16/testimonials16";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -349,6 +351,7 @@ function Registerables(composer: ComponentsRegistery) {
     SliderComponent9,
     SliderComponent10,
     SliderComponent11,
+    SliderComponent12,
     PricingComponent1,
     PricingComponent2,
     PricingComponent3,
@@ -516,6 +519,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent13,
     TestimonialsComponent14,
     TestimonialsComponent15,
+    TestimonialsComponent16,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
