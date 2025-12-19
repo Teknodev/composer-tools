@@ -661,8 +661,8 @@ class HeroSection20 extends BaseHeroSection {
       value: [
         {
           type: "object",
-          key: "icon_1",
-          displayer: "Icon 1",
+          key: "icon",
+          displayer: "Icon",
           value: [
             {
               type: "string",
@@ -680,8 +680,8 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon_2",
-          displayer: "Icon 2",
+          key: "icon",
+          displayer: "Icon",
           value: [
             {
               type: "string",
@@ -699,8 +699,8 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon_3",
-          displayer: "Icon 3",
+          key: "icon",
+          displayer: "Icon",
           value: [
             {
               type: "string",
@@ -718,8 +718,8 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon_4",
-          displayer: "Icon 4",
+          key: "icon",
+          displayer: "Icon",
           value: [
             {
               type: "string",
@@ -737,8 +737,8 @@ class HeroSection20 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "icon_5",
-          displayer: "Icon 5",
+          key: "icon",
+          displayer: "Icon",
           value: [
             {
               type: "string",

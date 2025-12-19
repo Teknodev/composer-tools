@@ -24,7 +24,7 @@ class HeroSection15 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "background-image",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -37,7 +37,7 @@ class HeroSection15 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },

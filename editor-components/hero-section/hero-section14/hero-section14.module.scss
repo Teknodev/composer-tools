@@ -164,12 +164,17 @@
 }
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    height: auto;
     .max-content {
       .carousel {
         .slide {
           .content-wrapper{
             .content {
               padding: var(--composer-gap-md);
+              .logo-wrapper {
+                max-width: 150px;
+                margin: 0 auto;
+              }
               .title {
                 width: 100%;
                 text-align: center;

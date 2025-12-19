@@ -14,8 +14,6 @@ type SliderObject = {
   button: INPUTS.CastedButton[];
 };
 
-
-
 class HeroSection22 extends BaseHeroSection {
   private sliderRef: React.RefObject<any>;
 
@@ -41,7 +39,7 @@ class HeroSection22 extends BaseHeroSection {
             {
               type: "media",
               key: "right_image",
-              displayer: "Right Image",
+              displayer: "Right Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -53,7 +51,7 @@ class HeroSection22 extends BaseHeroSection {
             {
               type: "media",
               key: "left_image",
-              displayer: "Left Image",
+              displayer: "Left Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -84,7 +82,7 @@ class HeroSection22 extends BaseHeroSection {
             {
               type: "media",
               key: "right_image",
-              displayer: "Right Image",
+              displayer: "Right Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -96,7 +94,7 @@ class HeroSection22 extends BaseHeroSection {
             {
               type: "media",
               key: "left_image",
-              displayer: "Left Image",
+              displayer: "Left Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -127,7 +125,7 @@ class HeroSection22 extends BaseHeroSection {
             {
               type: "media",
               key: "right_image",
-              displayer: "Right Image",
+              displayer: "Right Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -139,7 +137,7 @@ class HeroSection22 extends BaseHeroSection {
             {
               type: "media",
               key: "left_image",
-              displayer: "Left Image",
+              displayer: "Left Media",
               additionalParams: {
                 availableTypes: ["image"],
               },

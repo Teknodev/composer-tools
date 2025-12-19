@@ -78,7 +78,7 @@ class HeroSection14 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -140,7 +140,7 @@ class HeroSection14 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -201,7 +201,7 @@ class HeroSection14 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
                 availableTypes: ["image", "video"],
