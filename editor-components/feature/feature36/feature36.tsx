@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature36.module.scss";
@@ -14,7 +15,6 @@ interface FeatureItem {
   title: string;
   media: TypeMediaInputValue;
   sections: FeatureSection[];
-  idx?: number;
 }
 
 class Feature36 extends BaseFeature {
@@ -40,7 +40,7 @@ class Feature36 extends BaseFeature {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.addProp({
@@ -275,20 +275,20 @@ class Feature36 extends BaseFeature {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("maxContent")}>
-          <div className={this.decorateCSS("flexContainer")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ContainerGrid className={this.decorateCSS("flex-container")}>
             {hasLeftContent && (
-              <Base.VerticalContent className={`${this.decorateCSS("leftContent")} ${!hasRightContent ? this.decorateCSS("fullWidth") : ""}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!hasRightContent ? this.decorateCSS("full-width") : ""}`}>
 
                 {(this.castToString(subtitle) || this.castToString(title)) && (
-                  <Base.VerticalContent className={this.decorateCSS("headerWrapper")}>
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
                     {this.castToString(subtitle) && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                         {subtitle}
                       </Base.SectionSubTitle>
                     )}
                     {this.castToString(title) && (
-                      <Base.SectionTitle className={this.decorateCSS("sectionTitle")}>
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
                         {title}
                       </Base.SectionTitle>
                     )}
@@ -300,10 +300,17 @@ class Feature36 extends BaseFeature {
                     {displayList.map((item) => (
                       <div
                         key={item.idx}
-                        className={`${this.decorateCSS("listItem")} ${item.idx === activeTab ? this.decorateCSS("isActive") : ""}`}
+                        className={`${this.decorateCSS("list-item")} ${item.idx === activeTab ? this.decorateCSS("is-active") : ""}`}
                         onClick={() => this.setComponentState("activeTab", item.idx)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            this.setComponentState("activeTab", item.idx);
+                          }
+                        }}
                       >
-                        <Base.H5 className={this.decorateCSS("listItemText")}>
+                        <Base.H5 className={this.decorateCSS("list-item-text")}>
                           {item.title}
                         </Base.H5>
                       </div>
@@ -314,19 +321,22 @@ class Feature36 extends BaseFeature {
             )}
 
             {hasRightContent && (showDivider || hasLeftContent) && (
-              <div className={`${this.decorateCSS("dividerColumn")} ${!showDivider ? this.decorateCSS("hiddenDivider") : ""}`}>
-                <div className={this.decorateCSS("dividerLine")} />
-              </div>
+              <Base.VerticalContent className={`${this.decorateCSS("divider-column")} ${!showDivider ? this.decorateCSS("hidden-divider") : ""}`}>
+                <div className={this.decorateCSS("divider-line")} />
+              </Base.VerticalContent>
             )}
 
             {hasRightContent && (
-              <Base.VerticalContent className={`${this.decorateCSS("rightContent")} ${this.decorateCSS("activeContent")}`}>
+              <Base.VerticalContent
+                key={activeTab}
+                className={`${this.decorateCSS("right-content")} ${this.decorateCSS("active-content")}`}
+              >
                 {hasMedia && (
                   <div
-                    className={this.decorateCSS("imageWrapper")}
+                    className={this.decorateCSS("image-wrapper")}
                     data-animation={Array.isArray(hoverAnimation) ? hoverAnimation.join(" ") : ""}
                   >
-                    <div className={this.decorateCSS("imageContainer")}>
+                    <div className={this.decorateCSS("image-container")}>
                       <Base.Media
                         value={activeItem.media}
                         className={this.decorateCSS("image")}
@@ -343,15 +353,15 @@ class Feature36 extends BaseFeature {
                   if (!titleStr && !textStr) return null;
 
                   return (
-                    <Base.P key={idx} className={this.decorateCSS("infoLine")}>
+                    <Base.P key={idx} className={this.decorateCSS("info-line")}>
                       {titleStr && (
-                        <span className={this.decorateCSS("infoLabel")}>
+                        <span className={this.decorateCSS("info-label")}>
                           {section.title}
                         </span>
                       )}
                       {titleStr && textStr && " "}
                       {textStr && (
-                        <span className={this.decorateCSS("infoText")}>
+                        <span className={this.decorateCSS("info-text")}>
                           {section.text}
                         </span>
                       )}
@@ -360,7 +370,7 @@ class Feature36 extends BaseFeature {
                 })}
 
                 {hasButton && (
-                  <div className={this.decorateCSS("buttonContainer")}>
+                  <Base.Row className={this.decorateCSS("button-container")}>
                     {filteredButtons.map((item: INPUTS.CastedButton, btnIdx: number) => {
                       const buttonTitleExist = this.castToString(item.text);
                       const iconExist = item.icon;
@@ -369,19 +379,19 @@ class Feature36 extends BaseFeature {
                       return buttonExist && (
                         <ComposerLink key={btnIdx} path={item.url}>
                           {imageExist ? (
-                            <div className={this.decorateCSS("imageContainer")}>
-                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
+                            <div className={this.decorateCSS("image-container")}>
+                              <Base.Media value={item.image as any} className={this.decorateCSS("image")} />
                             </div>
                           ) : (
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                               {buttonTitleExist && (
-                                <Base.P className={this.decorateCSS("buttonText")}>
+                                <Base.P className={this.decorateCSS("button-text")}>
                                   {item.text}
                                 </Base.P>
                               )}
                               {iconExist && (
                                 <Base.Media
-                                  value={item.icon}
+                                  value={item.icon as any}
                                   className={this.decorateCSS("icon")}
                                 />
                               )}
@@ -390,11 +400,11 @@ class Feature36 extends BaseFeature {
                         </ComposerLink>
                       );
                     })}
-                  </div>
+                  </Base.Row>
                 )}
               </Base.VerticalContent>
             )}
-          </div>
+          </Base.ContainerGrid>
         </Base.MaxContent>
       </Base.Container>
     );
