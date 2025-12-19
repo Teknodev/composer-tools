@@ -25,7 +25,7 @@ const TypeWriter: React.FC<{ text: string | React.ReactNode; className?: string;
 
   const finished = !!textStr && index >= textStr.length;
   return (
-    <Base.SectionTitle className={className} data-typed-complete={finished ? "true" : "false"} style={{ userSelect: "text" }}>
+    <Base.SectionTitle className={className} data-typed-complete={finished ? "true" : "false"}>
       {textStr.slice(0, index)}
     </Base.SectionTitle>
   );
@@ -43,7 +43,7 @@ class IntroSection10 extends BaseIntroSection {
       key: "description",
       displayer: "Description",
       value:
-        "Objectively innovate empowered products platforms. Holisticly predominate extensible testing procedures for reliable supply chains.",
+        "Objectively innovate empowered products platforms. Holistically predominate extensible testing procedures for reliable supply chains.",
     });
     this.addProp({
       type: "array",
@@ -78,7 +78,6 @@ class IntroSection10 extends BaseIntroSection {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
     const hasAnimate1 = !!this.getPropValue("textAnimation");
-    const textAnimation = hasAnimate1 ? "animate1" : "";
 
     const hasLeft = !!(subtitleText || topText || bottomText);
     const hasRight = !!descriptionText || buttons.length > 0;
@@ -90,17 +89,15 @@ class IntroSection10 extends BaseIntroSection {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.Row
-            className={[
-              this.decorateCSS("section-row"),
-              alignmentClass,
-              hasLeft && !hasRight ? this.decorateCSS("left-alone") : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-            data-animation={textAnimation}
-            data-animation-active={hasLeft || hasRight ? "true" : "false"}
-          >
+        <Base.Row
+          className={[
+            this.decorateCSS("section-row"),
+            alignmentClass,
+            hasLeft && !hasRight && this.decorateCSS("left-alone"),
+            hasAnimate1 && this.decorateCSS("animate"),
+          ].filter(Boolean).join(" ")}
+        >
+
             {hasLeft && (
               <Base.VerticalContent className={this.decorateCSS("left")}>
                 {subtitleText && (
@@ -129,12 +126,10 @@ class IntroSection10 extends BaseIntroSection {
 
             {hasRight && (
               <Base.VerticalContent
-                className={[this.decorateCSS("right"), !hasLeft ? this.decorateCSS("right-alone") : ""]
-                  .filter(Boolean)
-                  .join(" ")}
+                className={[this.decorateCSS("right"), !hasLeft && this.decorateCSS("right-alone")]}
               >
                 {descriptionText && (
-                  <Base.P className={this.decorateCSS("description")} style={{ userSelect: "text" }}>
+                  <Base.P className={this.decorateCSS("description")}>
                     {descriptionNode}
                   </Base.P>
                 )}

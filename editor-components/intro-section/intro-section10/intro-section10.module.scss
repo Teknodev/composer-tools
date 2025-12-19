@@ -14,16 +14,31 @@
       align-items: stretch;
       gap: var(--composer-gap-md);
 
-      &[data-animation~="animate1"] {
-        .bottom-text {
-          display: inline-block;
-          white-space: nowrap;
-
+      &.animate {
+        .bottom-text {    
           &:not([data-typed-complete="true"])::after {
             content: "|";
             margin-left: 0.25rem;
             animation: blink-caret 0.8s steps(1) infinite;
           }
+    
+          &[data-typed-complete="true"]::after {
+            content: "|";
+            margin-left: 0.25rem;
+            animation: caret-hide 1ms linear 1s forwards;
+          }
+        }
+      }
+
+      @keyframes blink-caret {
+        50% {
+          opacity: 0;
+        }
+      }
+      
+      @keyframes caret-hide {
+        to {
+          opacity: 0;
         }
       }
 
@@ -77,7 +92,6 @@
       flex-direction: column;
       align-self: center;
       align-items: flex-start;
-      gap: var(--composer-gap-md);
 
       .description {
         margin: 0;
@@ -86,10 +100,10 @@
       }
 
       .actions-block {
-        display: flex;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
         justify-content: flex-start;
+        margin-top: var(--composer-gap-md);
 
         .icon {
           font-size: 1.5rem;
@@ -100,7 +114,6 @@
 
         .button {
           content: "";
-        }
 
         .button-text {
           content: "";
@@ -109,6 +122,7 @@
         .button-icon {
           content: "";
         }
+      }
 
       }
 
@@ -117,6 +131,7 @@
       &.right-alone {
         .actions-block {
           justify-content: center;
+          margin-top: var(--composer-gap-md);
         }
       }
     }
