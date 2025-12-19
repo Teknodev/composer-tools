@@ -13,6 +13,7 @@
         .text-content {
           content: "";
           align-items: flex-start;
+          flex: 1 1 50%;
 
           .subtitle, .title {
             text-align: left !important;
@@ -20,6 +21,9 @@
           }
         }
 
+        .content-section {
+          flex: 1 1 50%;
+        }
 
         .description {
           text-align: left !important;
