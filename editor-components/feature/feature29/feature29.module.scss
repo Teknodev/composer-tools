@@ -4,10 +4,9 @@
   .max-content {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-md);
 
     .header-container {
-      margin-bottom: var(--composer-gap-md);
-
       .subtitle,
       .title,
       .description {
@@ -213,7 +212,6 @@
           .card-title,
           .card-description {
             text-align: left;
-            width: 100%;
             word-break: break-word;
           }
         }

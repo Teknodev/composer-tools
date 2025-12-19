@@ -379,13 +379,13 @@ class Feature29 extends BaseFeature {
       button?: TypeUsableComponentProps[],
       additionalClass?: string
     ) => {
-      const imageUrl = image && image.type !== "icon" ? image.url : undefined;
-      const titleExist = this.castToString(title);
+      const imageUrl = image && image.type !== "icon" && image.url;
+      const titleExist = !!this.castToString(title);
       const descriptionExist = this.castToString(description);
 
       return (
         <div
-          className={`${this.decorateCSS("card")} ${additionalClass || ""} ${imageUrl ? this.decorateCSS("with-bg") : ""}`}
+        className={[this.decorateCSS("card"), additionalClass, imageUrl && this.decorateCSS("with-bg")].filter(Boolean).join(" ")}
           data-animation={hoverAnimation}
         >
           {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
