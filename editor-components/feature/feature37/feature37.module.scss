@@ -3,29 +3,21 @@
 .container {
   width: 100%;
 
-  .max-content {
+  .maxContent {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: var(--composer-gap-xl);
   }
 
-  .heading {
-    .subtitle,
-    .title,
-    .description {
-      content: "";
-    }
-  }
-
-  .features-grid {
+  .featuresGrid {
     display: flex;
     align-items: center;
     gap: var(--composer-gap-xl);
     width: 100%;
   }
 
-  .features-list {
+  .featuresList {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-xl);
@@ -33,22 +25,23 @@
     min-width: 0;
   }
 
-  .feature-card {
+  .featureCard {
     display: flex;
     align-items: flex-start;
     gap: var(--composer-gap-xl);
     padding: var(--composer-padding-lg);
     border-radius: var(--composer-border-radius-sm);
     text-align: left;
+    color: var(--composer-font-color-primary);
 
-    .icon-container {
+    .iconContainer {
       flex-shrink: 0;
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      width: calc(var(--composer-padding-xl) + var(--composer-padding-lg));
-      height: calc(var(--composer-padding-xl) + var(--composer-padding-lg));
-      min-width: calc(var(--composer-padding-xl) + var(--composer-padding-lg));
+      width: var(--composer-gap-xl);
+      height: var(--composer-gap-xl);
+      min-width: var(--composer-gap-xl);
 
       .icon {
         font-size: 3rem;
@@ -60,23 +53,21 @@
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
-      align-items: flex-start;
+      align-items: flex-start !important;
+      text-align: left !important;
 
-      .title {
-        margin: 0;
+      .cardTitle {
         color: var(--composer-font-color-primary);
-        text-align: left;
+        text-align: left !important;
       }
 
       .description {
-        margin: 0;
-        color: var(--composer-font-color-primary);
-        text-align: left;
+        text-align: left !important;
       }
     }
   }
 
-  .image-wrapper {
+  .imageWrapper {
     position: relative;
     flex: 1;
     min-width: 0;
@@ -94,25 +85,25 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .features-grid {
+    .featuresGrid {
       gap: var(--composer-gap-xl);
     }
 
-    .features-list {
+    .featuresList {
       gap: var(--composer-gap-md);
     }
 
-    .feature-card {
+    .featureCard {
       gap: var(--composer-gap-sm);
 
-      .icon-container {
+      .iconContainer {
         .icon {
           font-size: 2rem;
         }
       }
     }
 
-    .image-wrapper {
+    .imageWrapper {
       width: 100%;
       height: 100%;
 
@@ -126,29 +117,29 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .features-grid {
+    .featuresGrid {
       flex-direction: column;
       gap: var(--composer-gap-xl);
     }
 
-    .max-content {
+    .maxContent {
       gap: var(--composer-gap-md);
     }
 
-    .features-list {
+    .featuresList {
       gap: var(--composer-gap-md);
     }
 
-    .image-wrapper {
+    .imageWrapper {
       .image {
         min-height: 250px;
       }
     }
 
-    .feature-card {
+    .featureCard {
       gap: var(--composer-gap-sm);
 
-      .icon-container {
+      .iconContainer {
         .icon {
           font-size: 1.75rem;
         }

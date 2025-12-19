@@ -150,50 +150,50 @@ class Feature37 extends BaseFeature {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("maxContent")}>
 
           {(this.castToString(subtitle) ||
             this.castToString(title) ||
             this.castToString(description)) && (
-            <div className={this.decorateCSS("header")}>
-              <Base.VerticalContent>
-                {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
+              <div className={this.decorateCSS("header")}>
+                <Base.VerticalContent>
+                  {this.castToString(subtitle) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
 
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("heading")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
+                  {this.castToString(title) && (
+                    <Base.SectionTitle className={this.decorateCSS("heading")}>
+                      {title}
+                    </Base.SectionTitle>
+                  )}
 
-                {this.castToString(description) && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("header-description")}
-                  >
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            </div>
-          )}
+                  {this.castToString(description) && (
+                    <Base.SectionDescription
+                      className={this.decorateCSS("headerDescription")}
+                    >
+                      {description}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              </div>
+            )}
 
-          <Base.Row className={this.decorateCSS("features-grid")}>
+          <Base.Row className={this.decorateCSS("featuresGrid")}>
 
-            <div className={this.decorateCSS("features-list")}>
+            <div className={this.decorateCSS("featuresList")}>
               {list.map((item, index) => (
-                <div key={index} className={this.decorateCSS("feature-card")}>
-                  <div className={this.decorateCSS("icon-container")}>
+                <div key={index} className={this.decorateCSS("featureCard")}>
+                  <div className={this.decorateCSS("iconContainer")}>
                     <Base.Media
                       value={item.icon}
                       className={this.decorateCSS("icon")}
                     />
                   </div>
 
-                  <div className={this.decorateCSS("content")}>
-                    <Base.H4 className={this.decorateCSS("title")}>
+                  <Base.VerticalContent className={this.decorateCSS("content")}>
+                    <Base.H4 className={this.decorateCSS("cardTitle")}>
                       {item.title}
                     </Base.H4>
                     <Base.SectionDescription
@@ -201,12 +201,12 @@ class Feature37 extends BaseFeature {
                     >
                       {item.text}
                     </Base.SectionDescription>
-                  </div>
+                  </Base.VerticalContent>
                 </div>
               ))}
             </div>
 
-            <div className={this.decorateCSS("image-wrapper")}>
+            <div className={this.decorateCSS("imageWrapper")}>
               <Base.Media
                 value={image}
                 className={this.decorateCSS("image")}
