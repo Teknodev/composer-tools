@@ -383,10 +383,10 @@ class HeroSection28 extends BaseHeroSection {
         {slides.length > 1 && (
           <div className={this.decorateCSS("slider-arrows")}>
             <div className={this.decorateCSS("prev-icon")} onClick={() => this.getComponentState("sliderRef")?.current?.slickPrev()}>
-              <Base.Media value={this.getPropValue("prev_icon")} />
+              <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("prev_icon")} />
             </div>
             <div className={this.decorateCSS("next-icon")} onClick={() => this.getComponentState("sliderRef")?.current?.slickNext()}>
-              <Base.Media value={this.getPropValue("next_icon")} />
+              <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("next_icon")} />
             </div>
           </div>
         )}

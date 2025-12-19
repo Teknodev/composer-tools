@@ -565,7 +565,7 @@ class HeroSection25 extends BaseHeroSection {
                                 />
                               )}
                               {this.castToString(sliderItem.subtitle) && (
-                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} animate__animated ${this.getComponentState("titleAnimationClass")}`}>
+                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${sliderItem.image && this.decorateCSS("subtitle-has-image")} animate__animated ${this.getComponentState("titleAnimationClass")}`}>
                                   {sliderItem.subtitle}
                                 </Base.SectionSubTitle>
                               )}

@@ -67,6 +67,10 @@
           }
           .subtitle-transparent {
             background: transparent !important;
+            padding: 0;
+          }
+          .subtitle-transparent::before {
+            background: white !important;
           }
         }
 

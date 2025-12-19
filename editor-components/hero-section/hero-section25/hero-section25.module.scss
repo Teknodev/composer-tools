@@ -302,6 +302,12 @@
               &::before {
                 display: none !important;
               }
+              &.subtitle-has-image {
+                background: transparent;
+                padding: 0;
+                margin-bottom: 0;
+                &::before { background: transparent !important; }
+              }
             }
 
             .title {
@@ -453,7 +459,7 @@
 
           .low-op-text {
             font-size: 6vh;
-            margin-left: 35%;
+            margin-left: 65%;
           }
         }
 

@@ -202,13 +202,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 1",
+              displayer: "Stat 1",
               key: "itemNo",
               value: "30+",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 1",
+              displayer: "Stat Text 1",
               key: "itemDesc",
               value: "Items Of Coffee",
             },
@@ -220,13 +220,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 2",
+              displayer: "Stat 2",
               key: "customerNo",
               value: "3k+",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 2",
+              displayer: "Stat Text 2",
               key: "customerDesc",
               value: "Happy Customer",
             },
@@ -390,13 +390,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 1",
+              displayer: "Stat 1",
               key: "itemNo",
               value: "100%",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 1",
+              displayer: "Stat Text 1",
               key: "itemDesc",
               value: "Fresh Coffee",
             },
@@ -408,13 +408,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 2",
+              displayer: "Stat 2",
               key: "customerNo",
               value: "20+",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 2",
+              displayer: "Stat Text 2",
               key: "customerDesc",
               value: "Different Countries",
             },

@@ -40,6 +40,13 @@ class HeroSection33 extends BaseHeroSection {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "rotate",
+      displayer: "Rotate",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
@@ -73,7 +80,7 @@ class HeroSection33 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
               },
-              additionalParams: { availableTypes: ["image", "video"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
             },
             {
               type: "boolean",
@@ -150,7 +157,7 @@ class HeroSection33 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
               },
-              additionalParams: { availableTypes: ["image", "video"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
             },
             {
               type: "boolean",
@@ -227,7 +234,7 @@ class HeroSection33 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
               },
-              additionalParams: { availableTypes: ["image", "video"] },
+              additionalParams: { availableTypes: ["image", "icon"] },
             },
             {
               type: "boolean",
@@ -336,9 +343,10 @@ class HeroSection33 extends BaseHeroSection {
     };
 
     const animation: boolean = this.getPropValue("animation");
+    const rotateActive: boolean = this.getPropValue("rotate");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {slides.length > 0 && (
             <ComposerSlider
@@ -375,15 +383,15 @@ class HeroSection33 extends BaseHeroSection {
                           `}
                       >
                         {item.image?.url && (
-                          <div className={this.decorateCSS("circle")}>
+                          <div className={`${this.decorateCSS("circle")} ${rotateActive && this.decorateCSS("rotate")}`}>
                             <Base.Media
                               value={item.image}
-                              className={this.decorateCSS("circle-image")}
+                              className={`${this.decorateCSS("circle-image")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}
                             />
                           </div>
                         )}
                         {this.castToString(item.subtitle) && (
-                          <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}>
+                          <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")} ${item.backgroundImage?.url && this.decorateCSS("subtitle-has-bg")}`}>
                             {item.subtitle}
                           </Base.SectionSubTitle>
                         )}
@@ -426,7 +434,7 @@ class HeroSection33 extends BaseHeroSection {
             </ComposerSlider>
           )}
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }

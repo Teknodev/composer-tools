@@ -40,6 +40,8 @@
   .play-button-icon {
     color: rgba(255,255,255,.56);
     border-color: rgba(255,255,255,.56);
+    width: 30px;
+    height: 30px;
   }
 }
 
@@ -104,7 +106,7 @@
       display: flex !important;
       justify-content: center;
       align-items: center;
-      max-width: var(--composer-content-width);
+      max-width: 100%;
       margin: 0 auto;
       min-height: 100vh;
 
@@ -264,11 +266,14 @@
   .prev-icon,
   .next-icon {
     pointer-events: auto;
-    width: 30px;
-    height: 30px;
     color: white;
     font-size: 2rem;
     margin: 0 var(--composer-gap-sm);
+
+    .icon{
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
