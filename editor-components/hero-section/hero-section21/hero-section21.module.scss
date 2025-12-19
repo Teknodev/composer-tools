@@ -34,6 +34,7 @@
 
           .card-subtitle{
             margin-left: 0;
+            width: fit-content;
           }
 
           &.card-box-no-image {
@@ -97,21 +98,10 @@
           }
         }
         .video {
-          position: fixed;
-          width: 100vw;
-          height: 100vh;
-          background: var(--composer-overlay-color);
-          top: 0;
-          left: 0;
-          display: grid;
-          place-items: center;
-          z-index: 3;
-
           .player {
             width: 100%;
             max-width: 800px;
             height: 500px;
-            z-index: 10;
           }
         }
         .button {
@@ -138,6 +128,8 @@
           border-radius: 50%;
           animation: pulse 1.5s infinite;
           padding: var(--composer-gap-md);
+          max-width: 70px;
+          max-height: 70px;
         }
 
         @keyframes pulse {

@@ -87,7 +87,7 @@ class HeroSection21 extends BaseHeroSection {
           key: "icon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -130,6 +130,7 @@ class HeroSection21 extends BaseHeroSection {
     const videoUrl = videoValue && typeof videoValue === "object" && videoValue.type === "video" && "url" in videoValue ? videoValue.url : "";
     const image = imageValue;
     const video = videoValue;
+    const isVideo = (m: any) => m && m.type === "video";
 
     const cardExist = titleExist || subtitleExist || descExist || buttons?.length > 0;
 
@@ -179,15 +180,20 @@ class HeroSection21 extends BaseHeroSection {
                   <Base.Media value={iconValue} className={this.decorateCSS("btn-icon")} />
                 </button>}
                 {image && <Base.Media value={imageValue} className={this.decorateCSS("image")} />}
-                {this.getComponentState("is_video_visible") && video && image && (
-                  <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
-                    <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("player")} src={videoUrl}></video>
-                  </div>
-                )}
               </div>
             )}
           </div>
         </Base.MaxContent>
+        {this.getComponentState("is_video_visible") && video && image && (
+          <Base.Overlay isVisible={true} className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
+            <div onClick={(event) => event.stopPropagation()}>
+              <Base.Media
+                value={video}
+                className={this.decorateCSS("player")}
+              />
+            </div>
+          </Base.Overlay>
+        )}
       </Base.Container>
     );
   }

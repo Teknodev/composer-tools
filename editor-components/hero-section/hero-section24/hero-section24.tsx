@@ -86,10 +86,10 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Flower Image",
+              displayer: "Logo",
               key: "flower_image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -153,10 +153,10 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Flower Image",
+              displayer: "Logo",
               key: "flower_image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -220,10 +220,10 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Flower Image",
+              displayer: "Logo",
               key: "flower_image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "image",
@@ -257,6 +257,13 @@ class HeroSection24 extends BaseHeroSection {
       type: "boolean",
       key: "autoplay",
       displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
       value: true,
     });
 
@@ -313,9 +320,11 @@ class HeroSection24 extends BaseHeroSection {
     const sliderRef = this.getComponentState("slider-ref");
     const currentBackgroundImage =this.getPropValue("slider")[this.getComponentState("currentIndex")]?.getPropValue("background_image");
 
+    const animationActive = this.getPropValue("animation");
+
     return (
       <>
-      <Base.Container className={`${this.decorateCSS("container")} ${!currentBackgroundImage && this.decorateCSS("no-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!currentBackgroundImage && this.decorateCSS("no-image")} ${animationActive && this.decorateCSS("has-animation")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {slider.length > 0 && (
@@ -331,12 +340,12 @@ class HeroSection24 extends BaseHeroSection {
                                 className={`${this.decorateCSS("flower")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`}
                               >
-                                <Base.Media value={item.flower_image} />
+                                <Base.Media className={`${this.decorateCSS("logo")} ${!item.image && this.decorateCSS("no-image")}`} value={item.flower_image} />
                               </div>
                             )}
                             {this.castToString(item.subtitle) && (
                               <Base.SectionSubTitle
-                                className={`${this.decorateCSS("subtitle")} ${!item.background_image && this.decorateCSS("subtitle-no-image")}
+                                className={`${this.decorateCSS("subtitle")} ${!item.background_image && this.decorateCSS("subtitle-no-image")} ${item.background_image && this.decorateCSS("subtitle-has-bg")}
                               ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                               ${!item.image && this.decorateCSS("no-image")}
                               `}

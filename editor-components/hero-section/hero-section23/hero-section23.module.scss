@@ -141,20 +141,24 @@
       .prevArrow {
         position: absolute;
         color: #fff;
-        width: 45px;
-        height: 45px;
         font-size: 3rem;
         cursor: pointer;
         z-index: 10;
         top: 50%;
         transform: translateY(-50%);
 
+        .icon{
+          width: 45px;
+          height: 45px;
+          object-fit: cover;
+        }
+
         &.nextArrow {
-          right: 50px;
+          right: var(--composer-gap-xl);
         }
 
         &.prevArrow {
-          left: 50px;
+          left: var(--composer-gap-xl);
         }
 
         &.bg-color-icon {

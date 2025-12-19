@@ -35,7 +35,7 @@ class HeroSection23 extends BaseHeroSection {
               displayer: "Top Image",
               key: "topImage",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -59,7 +59,7 @@ class HeroSection23 extends BaseHeroSection {
               displayer: "Background 1",
               key: "background1",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -71,7 +71,7 @@ class HeroSection23 extends BaseHeroSection {
               displayer: "Background 2",
               key: "background2",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -83,7 +83,7 @@ class HeroSection23 extends BaseHeroSection {
               displayer: "Background 3",
               key: "background3",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -95,7 +95,7 @@ class HeroSection23 extends BaseHeroSection {
               displayer: "Background 4",
               key: "background4",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -186,12 +186,6 @@ class HeroSection23 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
               },
-            },
-            {
-              type: "boolean",
-              displayer: "Circle Activation",
-              key: "circleActivation",
-              value: true,
             },
             {
               type: "color",
@@ -311,7 +305,7 @@ class HeroSection23 extends BaseHeroSection {
       key: "previousArrow",
       displayer: "Previous Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -323,7 +317,7 @@ class HeroSection23 extends BaseHeroSection {
       key: "nextArrow",
       displayer: "Next Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -433,6 +427,8 @@ class HeroSection23 extends BaseHeroSection {
     const activeSlide = this.getComponentState("active");
     const sliderRef = this.getComponentState("slider-ref");
 
+    const isVideo = (m) => m && m.type === "video";
+
     const nextArrow = this.getPropValue("nextArrow") as TypeMediaInputValue | undefined;
     const previousArrow = this.getPropValue("previousArrow") as TypeMediaInputValue | undefined;
 
@@ -450,7 +446,7 @@ class HeroSection23 extends BaseHeroSection {
                   sliderRef.current.slickPrev();
                 }}
               >
-                <Base.Media value={previousArrow} />
+                <Base.Media className={this.decorateCSS("icon")} value={previousArrow} />
               </div>
             )}
             {slider.length > 1 && nextArrow && (
@@ -460,7 +456,7 @@ class HeroSection23 extends BaseHeroSection {
                   sliderRef.current.slickNext();
                 }}
               >
-                <Base.Media value={nextArrow} />
+                <Base.Media className={this.decorateCSS("icon")} value={nextArrow} />
               </div>
             )}
             {slider.length > 1 && (
@@ -487,28 +483,48 @@ class HeroSection23 extends BaseHeroSection {
                     >
                       {item.background1 && (
                         <div className={this.decorateCSS("header23-background1-wrapper")}>
-                          <Base.Media value={item.background1} className={`${this.decorateCSS("background1")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
+                          <Base.Media
+                            value={item.background1}
+                            className={`${this.decorateCSS("background1")} ${isActive && animateActive && this.decorateCSS("animate")}`}
+                            {...(isVideo(item.background1) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                          />
                         </div>
                       )}
 
                       {item.background3 && (
                         <div className={this.decorateCSS("header23-background3-wrapper")}>
-                          <Base.Media value={item.background3} className={`${this.decorateCSS("background3")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
+                          <Base.Media
+                            value={item.background3}
+                            className={`${this.decorateCSS("background3")} ${isActive && animateActive && this.decorateCSS("animate")}`}
+                            {...(isVideo(item.background3) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                          />
                         </div>
                       )}
                       {item.topImage && (
                         <div className={this.decorateCSS("header23-wrapper-topImg")}>
-                          <Base.Media value={item.topImage} className={`${this.decorateCSS("top-img")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
+                          <Base.Media
+                            value={item.topImage}
+                            className={`${this.decorateCSS("top-img")} ${isActive && animateActive && this.decorateCSS("animate")}`}
+                            {...(isVideo(item.topImage) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                          />
                         </div>
                       )}
                       {item.background2 && (
                         <div className={this.decorateCSS("header23-background2-wrapper")}>
-                          <Base.Media value={item.background2} className={`${this.decorateCSS("background2")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
+                          <Base.Media
+                            value={item.background2}
+                            className={`${this.decorateCSS("background2")} ${isActive && animateActive && this.decorateCSS("animate")}`}
+                            {...(isVideo(item.background2) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                          />
                         </div>
                       )}
                       {item.background4 && (
                         <div className={this.decorateCSS("header23-img-bg")}>
-                          <Base.Media value={item.background4} className={`${this.decorateCSS("img-background")} ${isActive && animateActive && this.decorateCSS("animate")}`} />
+                          <Base.Media
+                            value={item.background4}
+                            className={`${this.decorateCSS("img-background")} ${isActive && animateActive && this.decorateCSS("animate")}`}
+                            {...(isVideo(item.background4) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                          />
                         </div>
                       )}
 

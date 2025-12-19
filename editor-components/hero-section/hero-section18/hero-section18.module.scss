@@ -90,6 +90,7 @@
                 font-size: 1rem;
                 color: black;
                 z-index: 10;
+                text-align: left;
 
                 &.subtitle-no-image {
                   color: var(--composer-font-color-primary);
@@ -151,6 +152,10 @@
                   }
                 }
               }
+
+              .slide-count {
+                text-align: left;
+              }
             }
           }
 
@@ -174,7 +179,7 @@
             .description-title {
               margin: 0;
               font-size: 1rem;
-
+              text-align: left;
               display: -webkit-box;
               -webkit-line-clamp: 2;
               line-clamp: 2;
@@ -185,7 +190,7 @@
             .item-description {
               margin: 0;
               font-size: 1rem;
-
+              text-align: left;
               display: -webkit-box;
               -webkit-line-clamp: 4;
               line-clamp: 4;
@@ -283,6 +288,7 @@
 
                 .title {
                   font-size: 4rem;
+                  text-align: left;
                 }
               }
             }

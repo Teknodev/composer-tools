@@ -2,13 +2,14 @@ import * as React from "react";
 import styles from "./hero-section22.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
   title: React.JSX.Element;
+  subtitle?: React.JSX.Element;
+  logo?: TypeMediaInputValue;
   right_image: TypeMediaInputValue;
   left_image: TypeMediaInputValue;
   button: INPUTS.CastedButton[];
@@ -30,6 +31,24 @@ class HeroSection22 extends BaseHeroSection {
           key: "sliderObject",
           displayer: "Slider Item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -74,6 +93,24 @@ class HeroSection22 extends BaseHeroSection {
           displayer: "Slider Item",
           value: [
             {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
               type: "string",
               key: "title",
               displayer: "Title",
@@ -116,6 +153,24 @@ class HeroSection22 extends BaseHeroSection {
           key: "sliderObject",
           displayer: "Slider Item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -169,7 +224,7 @@ class HeroSection22 extends BaseHeroSection {
       key: "prev-button-icon",
       displayer: "Previous Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -181,7 +236,7 @@ class HeroSection22 extends BaseHeroSection {
       key: "next-button-icon",
       displayer: "Next Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -293,8 +348,18 @@ class HeroSection22 extends BaseHeroSection {
                             }  `}
                           >
                             <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                              {hasDivider && <div className={this.decorateCSS("divider")} />}
-                              {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                                {hasDivider && <div className={this.decorateCSS("divider")} />}
+                                {item.logo && (
+                                  <div className={this.decorateCSS("logo-wrapper")}>
+                                    <Base.Media value={item.logo} className={this.decorateCSS("logo")} />
+                                  </div>
+                                )}
+                                {this.castToString(item.subtitle) && (
+                                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {item.subtitle}
+                                  </Base.SectionSubTitle>
+                                )}
+                                {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
 
                               <div className={this.decorateCSS("button-row")}>
                                 {item.button.map((buttonItem: any, indexButton: number) => {

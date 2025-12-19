@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl);
-
   .max-content {
     height: 100vh;
     display: flex;
@@ -25,18 +23,18 @@
           text-overflow: ellipsis;
           padding: var(--composer-gap-md);
 
-          .title {
+          .subtitle {
             font-size: 1rem;
             overflow: hidden;
           }
 
-          .description {
+          .title {
             font-size: 3rem;
             overflow: hidden;
           }
 
           &.no-bg-img {
-            .description {
+            .title {
               color: var(--composer-font-color-primary);
             }
           }
@@ -63,7 +61,7 @@
           }
 
           .no-bg-img {
-            .description {
+            .title {
               color: var(--composer-font-color-primary);
             }
           }
@@ -87,7 +85,7 @@
           }
 
           .no-bg-img {
-            .description {
+            .title {
               color: var(--composer-font-color-primary);
             }
           }
@@ -103,14 +101,6 @@
       height: 100%;
       width: 100%;
 
-      &:hover {
-        .background-image {
-          .image {
-            transform: scale(1.1);
-            border-radius: var(--composer-border-radius-xs);
-          }
-        }
-      }
 
       .background-image {
         position: absolute;
@@ -154,13 +144,13 @@
           overflow: hidden;
         }
 
-        .title {
+        .subtitle {
           font-size: 1rem;
           color: var(--composer-primary-color);
           overflow: hidden;
         }
 
-        .description {
+        .title {
           font-size: 2rem;
           overflow: hidden;
         }
@@ -172,12 +162,25 @@
       width: 50%;
     }
   }
+
+  &.has-animation {
+    .max-content {
+      .item {
+        &:hover {
+          .background-image {
+            .image {
+              transform: scale(1.1);
+              border-radius: var(--composer-border-radius-xs);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0 var(--composer-gap-lg) 80px var(--composer-gap-lg);
-
     .max-content {
       height: 50vh;
       .left {
@@ -187,7 +190,7 @@
           .content {
             width: 100%;
 
-            .description {
+            .title {
               font-size: 2rem;
             }
           }
@@ -216,7 +219,7 @@
         .content {
           width: 100%;
 
-          .description {
+          .title {
             font-size: 1.5rem;
           }
         }
@@ -227,8 +230,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0 var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
-
     .max-content {
       flex-direction: column;
       height: auto;
@@ -243,7 +244,7 @@
           height: 100%;
 
           .content {
-            .description {
+            .title {
               font-size: 1.5rem;
             }
           }
@@ -262,7 +263,7 @@
 
           .item {
             .content {
-              .description {
+              .title {
                 font-size: 1.5rem;
               }
             }
@@ -287,11 +288,11 @@
         .content {
           flex-direction: column;
 
-          .title {
+          .subtitle {
             font-size: 1rem;
           }
 
-          .description {
+          .title {
             font-size: 1.5rem;
           }
         }

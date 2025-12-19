@@ -127,11 +127,34 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: start;
-                gap: var(--composer-gap-md);
                 .divider {
                   background-color: var(--composer-font-color-primary);
                   width: 25%;
                   height: 2px;
+                }
+
+                .logo-wrapper {
+                  width: 100%;
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+
+                  .logo {
+                    max-width: 150px;
+                    aspect-ratio: 3 / 1;
+                    object-fit: cover;
+                    font-size: 2rem;
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+
+              
+
+                .subtitle {
+                  font-size: 1rem;
+                  color: var(--composer-font-color-primary);
+                  text-align: left;
+                  margin-left: 0;
                 }
 
                 .button-row {
@@ -191,6 +214,9 @@
         .icon {
           color: var(--composer-font-color-primary);
           font-size: 3rem;
+          width: 25px;
+          height: 25px;
+          object-fit: cover;
         }
       }
     }

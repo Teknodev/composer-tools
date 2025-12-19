@@ -21,14 +21,14 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
-          displayer: "Title",
-          key: "title",
+          displayer: "Subtitle",
+          key: "subtitle",
           value: "MATTIS LAOREET SAPIEN",
         },
         {
           type: "string",
-          displayer: "Description",
-          key: "description",
+          displayer: "Title",
+          key: "title",
           value: "Porta Consectetur Imperdiet Frigilla",
         },
         {
@@ -66,14 +66,14 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
-          displayer: "Title",
-          key: "title",
+          displayer: "Subtitle",
+          key: "subtitle",
           value: "SEMPER",
         },
         {
           type: "string",
-          displayer: "Description",
-          key: "description",
+          displayer: "Title",
+          key: "title",
           value: "Feugiat Scelerisque Imperdiet",
         },
         {
@@ -111,14 +111,14 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
-          displayer: "Title",
-          key: "title",
+          displayer: "Subtitle",
+          key: "subtitle",
           value: "SEMPER",
         },
         {
           type: "string",
-          displayer: "Description",
-          key: "description",
+          displayer: "Title",
+          key: "title",
           value: "Adipiscing Sodales",
         },
         {
@@ -156,14 +156,14 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
-          displayer: "Title",
-          key: "title",
+          displayer: "Subtitle",
+          key: "subtitle",
           value: "",
         },
         {
           type: "string",
-          displayer: "Description",
-          key: "description",
+          displayer: "Title",
+          key: "title",
           value: "",
         },
         {
@@ -186,6 +186,12 @@ class HeroSection19 extends BaseHeroSection {
         },
        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
       ],
+    });
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
     });
   }
 
@@ -220,7 +226,7 @@ class HeroSection19 extends BaseHeroSection {
     let visibleContents: any = {};
 
     items.forEach(({ name, data, button }) => {
-      let isVisible = Boolean(this.castToString(data.title) || this.castToString(data.description) || this.castToString(button.text));
+      let isVisible = Boolean(this.castToString(data.subtitle) || this.castToString(data.title) || this.castToString(button.text));
       visibleContents[`isContentVisible${name}`] = isVisible;
     });
 
@@ -229,8 +235,10 @@ class HeroSection19 extends BaseHeroSection {
     const isContentVisibleBottomLeft = visibleContents["isContentVisibleBottomLeft"];
     const isContentVisibleBottomRight = visibleContents["isContentVisibleBottomRight"];
 
+    const animationActive = this.getPropValue("animation");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${animationActive && this.decorateCSS("has-animation")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {itemLeft.visibility && (
             <div className={this.decorateCSS("left")}>
@@ -243,8 +251,8 @@ class HeroSection19 extends BaseHeroSection {
                 )}
                 {isContentVisibleLeft && (
                   <div className={`${this.decorateCSS("content")} ${!itemLeft.image && this.decorateCSS("no-bg-img")}`}>
+                    {this.castToString(itemLeft.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemLeft.subtitle}</div>}
                     {this.castToString(itemLeft.title) && <div className={this.decorateCSS("title")}>{itemLeft.title}</div>}
-                    {this.castToString(itemLeft.description) && <div className={this.decorateCSS("description")}>{itemLeft.description}</div>}
                     {this.castToString(buttonLeft.text) && (
                       <ComposerLink path={buttonLeft.url}>
                         <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
@@ -271,8 +279,8 @@ class HeroSection19 extends BaseHeroSection {
                     )}
                     {isContentVisibleRightTop && (
                       <div className={`${this.decorateCSS("content")} ${!itemRightTop.image && this.decorateCSS("no-bg-img")}`}>
+                        {this.castToString(itemRightTop.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemRightTop.subtitle}</div>}
                         {this.castToString(itemRightTop.title) && <div className={this.decorateCSS("title")}>{itemRightTop.title}</div>}
-                        {this.castToString(itemRightTop.description) && <div className={this.decorateCSS("description")}>{itemRightTop.description}</div>}
                         {this.castToString(buttonRightTop.text) && (
                           <ComposerLink path={buttonRightTop.url}>
                             <Base.Button buttonType={buttonRightTop.type} className={this.decorateCSS("button")}>
@@ -298,8 +306,8 @@ class HeroSection19 extends BaseHeroSection {
                       )}
                       {isContentVisibleBottomLeft && (
                         <div className={`${this.decorateCSS("content")} ${!itemBottomLeft.image && this.decorateCSS("no-bg-img")}`}>
+                          {this.castToString(itemBottomLeft.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomLeft.subtitle}</div>}
                           {this.castToString(itemBottomLeft.title) && <div className={this.decorateCSS("title")}>{itemBottomLeft.title}</div>}
-                          {this.castToString(itemBottomLeft.description) && <div className={this.decorateCSS("description")}>{itemBottomLeft.description}</div>}
                           {this.castToString(buttonBottomLeft.text) && (
                             <ComposerLink path={buttonBottomLeft.url}>
                               <Base.Button buttonType={buttonBottomLeft.type} className={this.decorateCSS("button")}>
@@ -321,8 +329,8 @@ class HeroSection19 extends BaseHeroSection {
                       )}
                       {isContentVisibleBottomRight && (
                         <div className={`${this.decorateCSS("content")} ${!itemBottomRight.image && this.decorateCSS("no-bg-img")}`}>
+                          {this.castToString(itemBottomRight.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomRight.subtitle}</div>}
                           {this.castToString(itemBottomRight.title) && <div className={this.decorateCSS("title")}>{itemBottomRight.title}</div>}
-                          {this.castToString(itemBottomRight.description) && <div className={this.decorateCSS("description")}>{itemBottomRight.description}</div>}
                           {this.castToString(buttonBottomRight.text) && (
                             <ComposerLink path={buttonBottomRight.url}>
                               <Base.Button buttonType={buttonBottomRight.type} className={this.decorateCSS("button")}>
