@@ -1,13 +1,127 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { useState, useEffect } from "react";
+
+class TypewriterEffect extends React.Component<any, any> {
+    private timeoutId: any;
+    private index = 0;
+
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            displayedText: "",
+            isCompleted: false,
+        };
+    }
+
+    componentDidMount() {
+        if (this.props.enableAnimation && this.props.text) {
+            this.startAnimation();
+        }
+    }
+
+    componentDidUpdate(prevProps: any) {
+        if (prevProps.text !== this.props.text || prevProps.enableAnimation !== this.props.enableAnimation) {
+            this.stopAnimation();
+            this.index = 0;
+            this.setState({ displayedText: "", isCompleted: false }, () => {
+                if (this.props.enableAnimation) this.startAnimation();
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        this.stopAnimation();
+    }
+
+    stopAnimation = () => {
+        if (this.timeoutId) clearTimeout(this.timeoutId);
+    };
+
+    startAnimation = () => {
+        const { text } = this.props;
+        const TYPE_SPEED = 100;
+        const animate = () => {
+            if (this.index < text.length) {
+                this.setState({
+                    displayedText: text.substring(0, this.index + 1),
+                });
+                this.index++;
+                this.timeoutId = setTimeout(animate, TYPE_SPEED);
+            } else {
+                this.setState({ isCompleted: true });
+            }
+        };
+        this.timeoutId = setTimeout(animate, TYPE_SPEED);
+    };
+
+    render() {
+        const { content, enableAnimation, text } = this.props;
+        const { displayedText, isCompleted } = this.state;
+
+        if (!enableAnimation || !text || isCompleted) {
+            return <>{content}</>;
+        }
+        return <>{displayedText}</>;
+    }
+}
+
+class AnimatedNumberComponent extends React.Component<any, any> {
+    private requestRef: any;
+    private startTime: any;
+
+    constructor(props: any) {
+        super(props);
+        this.state = { currentValue: 0 };
+    }
+
+    componentDidMount() {
+        this.startAnimation();
+    }
+
+    componentDidUpdate(prevProps: any) {
+        if (prevProps.targetValue !== this.props.targetValue) {
+            cancelAnimationFrame(this.requestRef);
+            this.startAnimation();
+        }
+    }
+
+    componentWillUnmount() {
+        cancelAnimationFrame(this.requestRef);
+    }
+
+    startAnimation = () => {
+        this.startTime = Date.now();
+        const duration = this.props.duration || 3000;
+        const startValue = 0;
+        const targetValue = this.props.targetValue;
+        const updateNumber = () => {
+            const now = Date.now();
+            const elapsed = now - this.startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const newValue = startValue + (targetValue - startValue) * easeOutQuart;
+            this.setState({ currentValue: newValue });
+            if (progress < 1) {
+                this.requestRef = requestAnimationFrame(updateNumber);
+            } else {
+                this.setState({ currentValue: targetValue });
+            }
+        };
+        this.requestRef = requestAnimationFrame(updateNumber);
+    };
+    render() {
+        const { targetValue } = this.props;
+        const { currentValue } = this.state;
+        return <span>{currentValue.toFixed(targetValue % 1 === 0 ? 0 : 1)}</span>;
+    }
+}
 
 type RatingItemType = {
-    icon: any;
+    icon: TypeMediaInputValue;
 }
 
 type StatItemType = {
@@ -22,7 +136,7 @@ class Stats13 extends BaseStats {
         this.addProp({
             type: "media",
             key: "image",
-            displayer: "Image",
+            displayer: "Media",
             value: {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367e0a496aa1002ca9b081?alt=media",
                 type: "image",
@@ -200,7 +314,7 @@ class Stats13 extends BaseStats {
             value: [
                 {
                     type: "object",
-                    key: "stat1",
+                    key: "stat",
                     displayer: "Stat Item",
                     value: [
                         {
@@ -225,7 +339,7 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "stat2",
+                    key: "stat",
                     displayer: "Stat Item",
                     value: [
                         {
@@ -252,59 +366,7 @@ class Stats13 extends BaseStats {
         });
     }
 
-    static getName(): string {
-        return "Stats 13";
-    }
-
-    TypewriterText = ({ content, text, enableAnimation }: { content: any, text: string, enableAnimation: boolean }) => {
-        if (!enableAnimation || !text) { return <>{content}</>; }
-        const [displayedText, setDisplayedText] = useState("");
-        const [isCompleted, setIsCompleted] = useState(false);
-        useEffect(() => {
-            setIsCompleted(false);
-            setDisplayedText("");
-            const textToAnimate = text;
-            const TYPE_SPEED = 100;
-            let timeoutId: NodeJS.Timeout;
-            let index = 0;
-            const animate = () => {
-                if (index < textToAnimate.length) {
-                    setDisplayedText(textToAnimate.substring(0, index + 1));
-                    index++;
-                    timeoutId = setTimeout(animate, TYPE_SPEED);
-                } else {
-                    setIsCompleted(true);
-                }
-            };
-            timeoutId = setTimeout(animate, TYPE_SPEED);
-            return () => clearTimeout(timeoutId);
-        }, [text, enableAnimation]);
-        if (isCompleted) { return <>{content}</>; }
-        return <>{displayedText}</>;
-    };
-
-    AnimatedNumber = ({ targetValue, duration = 4000 }: { targetValue: number, duration?: number }) => {
-        const [currentValue, setCurrentValue] = useState(0);
-        useEffect(() => {
-            const startTime = Date.now();
-            const startValue = 0;
-            const updateNumber = () => {
-                const now = Date.now();
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-                const newValue = startValue + (targetValue - startValue) * easeOutQuart;
-                setCurrentValue(newValue);
-                if (progress < 1) {
-                    requestAnimationFrame(updateNumber);
-                } else {
-                    setCurrentValue(targetValue);
-                }
-            };
-            requestAnimationFrame(updateNumber);
-        }, [targetValue, duration]);
-        return <span>{currentValue.toFixed(targetValue % 1 === 0 ? 0 : 1)}</span>;
-    };
+    static getName(): string { return "Stats 13"; }
 
     render() {
         const image = this.getPropValue("image");
@@ -312,7 +374,7 @@ class Stats13 extends BaseStats {
         const ratingItems = this.castToObject<RatingItemType[]>("rating");
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleProp = this.getPropValue("title");
-        const titleExist = this.castToString(titleProp) as string;
+        const titleExist = this.castToString(titleProp)
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableTextAnimation = this.getPropValue("enableTextAnimation");
         const enableStatAnimation = this.getPropValue("enableStatAnimation");
@@ -322,7 +384,7 @@ class Stats13 extends BaseStats {
         const hasContent = ratingItems.length > 0 || !!titleExist || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist ? this.decorateCSS("content-full-width") : ""} ${!hasContent ? this.decorateCSS("image-full-width") : ""}`} isFull={true}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist && this.decorateCSS("content-full-width")} ${!hasContent && this.decorateCSS("image-full-width")}`} isFull={true}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
@@ -341,7 +403,7 @@ class Stats13 extends BaseStats {
                                         </Base.Row>
                                     )}
                                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
-                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}><this.TypewriterText content={titleProp} text={titleExist} enableAnimation={enableTextAnimation} /></Base.SectionTitle>)}
+                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}> <TypewriterEffect content={titleProp} text={titleExist} enableAnimation={enableTextAnimation} /></Base.SectionTitle>)}
                                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
                                     <div className={this.decorateCSS("child-container")}>
                                         {buttons.length > 0 && (
@@ -353,7 +415,6 @@ class Stats13 extends BaseStats {
                                                     return (
                                                         <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                                {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={{ type: "icon", name: item.icon }} />)}
                                                                 {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                                             </Base.Button>
                                                         </ComposerLink>
@@ -366,15 +427,15 @@ class Stats13 extends BaseStats {
                                                 {statsItems.map((item: StatItemType, index: number) => {
                                                     const numberAsString = this.castToString(item.number);
                                                     const parsedNumber = parseFloat(numberAsString as string) || 0;
-                                                    const symbol = item.symbol;
-                                                    const description = item.description;
                                                     return (
                                                         <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
-                                                            <span className={this.decorateCSS("stat-number")}>
-                                                                {enableStatAnimation ? (<this.AnimatedNumber targetValue={parsedNumber} duration={3000} />) : (parsedNumber)}
-                                                                <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>
-                                                            </span>
-                                                            <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
+                                                            <Base.H2 className={this.decorateCSS("stat-number")}>
+                                                                {enableStatAnimation ? (
+                                                                    <AnimatedNumberComponent targetValue={parsedNumber} />
+                                                                ) : (parsedNumber)}
+                                                                <span className={this.decorateCSS("stat-symbol")}>{item.symbol}</span>
+                                                            </Base.H2>
+                                                            <Base.SectionDescription className={this.decorateCSS("stat-description")}>{item.description}</Base.SectionDescription>
                                                         </div>
                                                     );
                                                 })}

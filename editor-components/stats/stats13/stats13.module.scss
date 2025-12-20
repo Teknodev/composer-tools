@@ -48,10 +48,7 @@
                     }
 
                     .subtitle {
-                        overflow-wrap: anywhere;
-                        width: fit-content;
                         margin-left: 0;
-                        margin-right: 0;
                         text-align: left;
                     }
 
@@ -88,7 +85,6 @@
                                 .stat-number {
                                     display: flex;
                                     color: var(--composer-font-color-primary);
-                                    font-size: 3rem;
                                 }
                             }
                         }
@@ -140,6 +136,11 @@
                         .title,
                         .description {
                             text-align: var(--composer-content-alignment);
+                        }
+
+                        .subtitle {
+                            margin-left: 0;
+                            margin-right: 0;
                         }
 
                         .child-container {
