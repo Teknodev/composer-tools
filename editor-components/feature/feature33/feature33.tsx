@@ -19,12 +19,7 @@ class Feature33 extends BaseFeature {
   constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
 
     this.addProp({
       type: "string",
@@ -33,12 +28,7 @@ class Feature33 extends BaseFeature {
       value: "A better way to keep your skills",
     });
 
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
-    });
+    this.addProp({ type: "string", key: "description", displayer: "Description", value: "" });
 
     this.addProp({
       type: "array",
@@ -74,12 +64,7 @@ class Feature33 extends BaseFeature {
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaChess" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Competitive rates",
-            },
+            { type: "string", key: "title", displayer: "Title", value: "Competitive rates" },
             {
               type: "string",
               key: "description",
@@ -100,12 +85,7 @@ class Feature33 extends BaseFeature {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FaCoins" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "No hidden fees",
-            },
+            { type: "string", key: "title", displayer: "Title", value: "No hidden fees" },
             {
               type: "string",
               key: "description",
@@ -126,12 +106,7 @@ class Feature33 extends BaseFeature {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FaTachometerAlt" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Stable performance",
-            },
+            { type: "string", key: "title", displayer: "Title", value: "Stable performance" },
             {
               type: "string",
               key: "description",
@@ -152,12 +127,7 @@ class Feature33 extends BaseFeature {
               additionalParams: { availableTypes: ["image", "icon"] },
               value: { type: "icon", name: "FaBolt" },
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Instant transfers",
-            },
+            { type: "string", key: "title", displayer: "Title", value: "Instant transfers" },
             {
               type: "string",
               key: "description",
@@ -174,7 +144,7 @@ class Feature33 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 2,
-      additionalParams: { maxElementCount: 5 },
+      max: 5,
     });
   }
 
@@ -193,72 +163,15 @@ class Feature33 extends BaseFeature {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
-    const iconBackground = !!this.getPropValue("iconBackground");
-    const alignment = Base.getContentAlignment();
-
-    const itemCountRaw = this.getPropValue("itemCount");
-    const itemCount = typeof itemCountRaw === "number" ? itemCountRaw : Number(itemCountRaw) || 1;
-
     const hasSubtitle = !!this.castToString(subtitle);
     const hasTitle = !!this.castToString(title);
     const hasDescription = !!this.castToString(description);
 
-    const renderedButtons: React.ReactNode[] = [];
-    for (let i = 0; i < buttons.length; i++) {
-      const buttonItem = buttons[i];
-      const text = buttonItem?.text;
-      const url = buttonItem?.url;
-      const type = buttonItem?.type;
+    const alignment = Base.getContentAlignment();
+    const iconBackground = !!this.getPropValue("iconBackground");
+    const itemCount = this.getPropValue("itemCount") as number;
 
-      if (!this.castToString(text)) continue;
-
-      renderedButtons.push(
-        <ComposerLink
-          key={`btn-${i}`}
-          path={url || ""}
-          className={this.decorateCSS("button-link")}
-        >
-          <Base.Button buttonType={type} className={this.decorateCSS("button")}>
-            <Base.P className={this.decorateCSS("button-text")}>{text}</Base.P>
-          </Base.Button>
-        </ComposerLink>
-      );
-    }
-
-    const hasButtons = renderedButtons.length > 0;
-
-    const renderedCards: React.ReactNode[] = [];
-    for (let i = 0; i < cards.length; i++) {
-      const card = cards[i];
-      const titleExist = !!this.castToString(card?.title);
-      const descExist = !!this.castToString(card?.description);
-      const iconExist = !!card?.icon;
-
-      if (!titleExist && !descExist && !iconExist) continue;
-
-      renderedCards.push(
-        <div key={`card-${i}`} className={this.decorateCSS("card-container")}>
-          {iconExist && (
-            <div
-              className={`${this.decorateCSS("card-icon-wrapper")} ${
-                iconBackground ? this.decorateCSS("with-bg") : this.decorateCSS("no-bg")
-              }`}
-            >
-              <Base.Media value={card.icon as TypeMediaInputValue} className={this.decorateCSS("card-icon")} />
-            </div>
-          )}
-
-          <Base.VerticalContent className={this.decorateCSS("card-content")}>
-            {titleExist && <Base.H6 className={this.decorateCSS("card-title")}>{card.title}</Base.H6>}
-            {descExist && (
-              <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>
-            )}
-          </Base.VerticalContent>
-        </div>
-      );
-    }
-
-    const hasCards = renderedCards.length > 0;
+    const hasButtons = buttons.some((btn) => !!this.castToString(btn?.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -269,38 +182,85 @@ class Feature33 extends BaseFeature {
             }`}
           >
             {(hasSubtitle || hasTitle || hasDescription || hasButtons) && (
-              <Base.VerticalContent
-                className={this.decorateCSS("left")}
-                data-alignment={alignment}
-              >
+              <Base.VerticalContent className={this.decorateCSS("left")} data-alignment={alignment}>
                 {hasSubtitle && (
-                  <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
 
                 {hasTitle && (
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                    {title}
-                  </Base.SectionTitle>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
                 )}
 
                 {hasDescription && (
-                  <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {description}
                   </Base.SectionDescription>
                 )}
 
-                {hasButtons && <div className={this.decorateCSS("buttons")}>{renderedButtons}</div>}
+                {hasButtons && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((buttonItem, index) => {
+                      const text = buttonItem?.text;
+                      if (!this.castToString(text)) return null;
+
+                      return (
+                        <ComposerLink
+                          key={`btn-${index}`}
+                          path={buttonItem?.url || ""}
+                          className={this.decorateCSS("button-link")}
+                        >
+                          <Base.Button buttonType={buttonItem?.type}>
+                            <Base.P>{text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
 
-            {hasCards && (
+            {cards.length > 0 && (
               <Base.ListGrid
                 className={this.decorateCSS("right")}
                 gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
               >
-                {renderedCards}
+                {cards.map((card, index) => {
+                  const titleExist = !!this.castToString(card?.title);
+                  const descExist = !!this.castToString(card?.description);
+                  const icon = card?.icon || null;
+
+                  if (!titleExist && !descExist && !icon) return null;
+
+                  return (
+                    <div key={`card-${index}`} className={this.decorateCSS("card-container")}>
+                      {icon && (
+                        <div
+                          className={`${this.decorateCSS("card-icon-wrapper")} ${
+                            iconBackground
+                              ? this.decorateCSS("with-bg")
+                              : this.decorateCSS("no-bg")
+                          }`}
+                        >
+                          <Base.Media value={icon} className={this.decorateCSS("card-icon")} />
+                        </div>
+                      )}
+
+                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        {titleExist && (
+                          <Base.H6 className={this.decorateCSS("card-title")}>{card.title}</Base.H6>
+                        )}
+                        {descExist && (
+                          <Base.P className={this.decorateCSS("card-description")}>
+                            {card.description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  );
+                })}
               </Base.ListGrid>
             )}
           </div>
