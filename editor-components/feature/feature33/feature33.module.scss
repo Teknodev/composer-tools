@@ -5,11 +5,16 @@
         .wrapper {
             display: flex;
             gap: var(--composer-gap-xl);
+            align-items: flex-start;
+
+            .left,
+            .right {
+                min-width: 0;
+            }
 
             .left {
-                flex: 1;
-                align-items: baseline;
-                max-width: 40%;
+                flex: 3;
+                align-items: flex-start;
 
                 .subtitle,
                 .title,
@@ -21,39 +26,21 @@
                     margin-left: 0;
                 }
 
-                .subtitle,
-                .description {
-                    white-space: normal;
-                    word-break: break-word;
-                }
-
-                .buttons {
+                .button-container {
                     display: flex;
                     flex-wrap: wrap;
                     gap: var(--composer-gap-sm);
                     align-items: center;
                     width: 100%;
-                }
 
-                .button-link {
-                    display: inline-flex;
-                }
-
-                .button {
-                    flex: 1 1 auto;
-                    max-width: fit-content;
-                    white-space: normal;
-                    word-break: break-word;
-                }
-
-                .button-text {
-                    white-space: normal;
-                    word-break: break-word;
+                    .button {
+                        flex: 0 1 auto;
+                    }
                 }
             }
 
             .right {
-                flex: 1.5;
+                flex: 7;
                 gap: var(--composer-gap-lg);
 
                 .card-container {
@@ -62,14 +49,15 @@
                     gap: var(--composer-gap-md);
 
                     .card-icon-wrapper {
-                        width: 56px;
-                        height: 56px;
-                        min-width: 56px;
-                        min-height: 56px;
+                        width: 55px;
+                        height: 55px;
+                        min-width: 55px;
+                        min-height: 55px;
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        flex-shrink: 0;
 
                         &.with-bg {
                             background: var(--composer-primary-color);
@@ -96,20 +84,20 @@
 
                     .card-content {
                         flex: 1;
-                        align-items: baseline;
+                        min-width: 0;
+                        align-items: flex-start;
+
+                        .card-title,
+                        .card-description {
+                            text-align: left;
+                        }
 
                         .card-title {
                             color: var(--composer-font-color-primary);
-                            width: fit-content;
-                            margin: 0;
-                            text-align: left;
                         }
 
                         .card-description {
                             color: var(--composer-tertiary-color);
-                            width: fit-content;
-                            margin: 0;
-                            text-align: left;
                         }
                     }
                 }
@@ -118,66 +106,73 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .wrapper {
+        gap: var(--composer-gap-lg);
+
+        .right {
+            gap: var(--composer-gap-md);
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            .wrapper {
-                flex-direction: column;
+    .container .max-content .wrapper {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        &.has-buttons {
+            gap: var(--composer-gap-lg);
+        }
+
+        .left,
+        .right {
+            width: 100%;
+        }
+
+        .left {
+            &[data-alignment="center"] {
+                align-items: center;
+
+                .subtitle,
+                .title,
+                .description {
+                    text-align: center;
+                }
+
+                .subtitle {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .button-container {
+                    justify-content: center;
+                }
+            }
+
+            .button-container {
                 gap: var(--composer-gap-sm);
+                row-gap: var(--composer-gap-md);
+            }
 
-                &.has-buttons {
-                    gap: var(--composer-gap-md);
-                }
+            .button {
+                text-align: center;
+            }
+        }
 
-                .left {
-                    max-width: 100%;
-                    width: 100%;
+        .right {
+            gap: var(--composer-gap-md);
 
-                    &[data-alignment="center"] {
-                        align-items: center;
+            .card-container .card-icon-wrapper {
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                min-height: 50px;
 
-                        .subtitle,
-                        .title,
-                        .description {
-                            text-align: center;
-                        }
-
-                        .subtitle {
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
-
-                        .buttons {
-                            justify-content: center;
-                        }
-
-                        .button {
-                            flex: 0 1 auto;
-                        }
-                    }
-
-                    .buttons {
-                        gap: var(--composer-gap-sm);
-                        row-gap: var(--composer-gap-md);
-                    }
-
-                    .button {
-                        text-align: center;
-                    }
-                }
-
-                .right {
-                    width: 100%;
-                    gap: var(--composer-gap-sm);
-                    row-gap: var(--composer-gap-md);
-
-                    .card-container {
-                        .card-icon-wrapper {
-                            .card-icon {
-                                font-size: 2rem;
-                            }
-                        }
-                    }
+                .card-icon {
+                    font-size: 1.5rem;
+                    width: 1.5rem;
+                    height: 1.5rem;
                 }
             }
         }
