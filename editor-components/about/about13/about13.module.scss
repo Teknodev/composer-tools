@@ -1,0 +1,153 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .content {
+      .wrapper {
+        display: flex;
+        gap: var(--composer-gap-xl);
+        align-items: center;
+      }
+
+      .content-inner {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        align-items: flex-start;
+
+        .subtitle,
+        .title,
+        .description {
+          max-width: 100%;
+          text-align: left;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .subtitle {
+          margin-left: 0;
+          margin-right: auto;
+        }
+
+        .buttons-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          justify-content: flex-start;
+          max-width: 100%;
+        }
+
+        .button {
+          display: inline-flex;
+          align-items: center;
+          max-width: 100%;
+
+          .icon {
+            width: 1em;
+            height: 1em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            >* {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .button-text {
+            margin: 0;
+            padding: 0;
+            display: inline;
+            text-align: left;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+          }
+        }
+      }
+
+      .image-wrapper {
+        flex: 1;
+        min-width: 0;
+        position: relative;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+          display: block;
+        }
+
+        .overlay {
+          position: absolute;
+          inset: 0;
+          border-radius: var(--composer-border-radius-sm);
+          background-color: var(--composer-overlay-color);
+        }
+      }
+    }
+  }
+
+  &.no-image {
+    .max-content {
+      .content {
+        .wrapper {
+          justify-content: flex-start;
+        }
+
+        .content-inner {
+          flex: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        .wrapper {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+        }
+
+        .content-inner {
+          width: 100%;
+
+          &.center {
+            align-items: center;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center;
+            }
+
+            .subtitle {
+              margin-left: auto;
+              margin-right: auto;
+              transform: none !important;
+
+              &::before {
+                display: none !important;
+              }
+            }
+
+            .buttons-wrapper {
+              justify-content: center;
+            }
+          }
+        }
+
+        .image-wrapper {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
