@@ -109,6 +109,26 @@ class HeroSection21 extends BaseHeroSection {
       ],
     });
 
+    this.addProp({
+    type: "object",
+    key: "right-box",
+    displayer: "Right Box",
+    value: [
+        {
+          type: "string",
+          key: "card_text",
+          displayer: "Card Text",
+          value: "STÖLKEN",
+        },
+        {
+          type: "string",
+          key: "card_description",
+          displayer: "Card Descirption",
+          value: "Chair with armrests from $65",
+        },
+      ],
+    });
+
     this.setComponentState("is_video_visible", false);
   }
   static getName(): string {
@@ -117,6 +137,7 @@ class HeroSection21 extends BaseHeroSection {
   render() {
     const card = this.castToObject<CardState>("card");
     const buttons = this.castToObject<Button[]>("buttons");
+    const rightBox = this.castToObject<any>("right-box");
 
     const titleExist = this.castToString(card.title);
     const subtitleExist = this.castToString(card.subtitle);
@@ -127,10 +148,8 @@ class HeroSection21 extends BaseHeroSection {
     const videoPlayer = this.castToObject<any>("video_player");
     const videoValue = videoPlayer?.video as TypeMediaInputValue | undefined;
     const iconValue = videoPlayer?.icon as TypeMediaInputValue | undefined;
-    const videoUrl = videoValue && typeof videoValue === "object" && videoValue.type === "video" && "url" in videoValue ? videoValue.url : "";
     const image = imageValue;
     const video = videoValue;
-    const isVideo = (m: any) => m && m.type === "video";
 
     const cardExist = titleExist || subtitleExist || descExist || buttons?.length > 0;
 
@@ -180,13 +199,19 @@ class HeroSection21 extends BaseHeroSection {
                   <Base.Media value={iconValue} className={this.decorateCSS("btn-icon")} />
                 </button>}
                 {image && <Base.Media value={imageValue} className={this.decorateCSS("image")} />}
+                {rightBox && (rightBox.card_text || rightBox.card_description) && (
+                  <div className={this.decorateCSS("right-box")}> 
+                    {rightBox.card_text && <Base.P className={this.decorateCSS("right-box-text")}>{rightBox.card_text}</Base.P>}
+                    {rightBox.card_description && <Base.P className={this.decorateCSS("right-box-desc")}>{rightBox.card_description}</Base.P>}
+                  </div>
+                )}
               </div>
             )}
           </div>
         </Base.MaxContent>
         {this.getComponentState("is_video_visible") && video && image && (
           <Base.Overlay isVisible={true} className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
-            <div onClick={(event) => event.stopPropagation()}>
+            <div className={this.decorateCSS("player-container")} onClick={(event) => event.stopPropagation()}>
               <Base.Media
                 value={video}
                 className={this.decorateCSS("player")}
