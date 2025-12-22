@@ -29,11 +29,16 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-lg);
+
+        .text-content-header {
+          .description {
+            content: "";
+          }
         .section-title {
           content: "";
           width: 100%;
         }
-
+      }
         .features-list {
           display: flex;
           flex-direction: column;
@@ -325,3 +330,4 @@
     }
   }
 }
+

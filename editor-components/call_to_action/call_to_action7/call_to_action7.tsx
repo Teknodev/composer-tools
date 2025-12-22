@@ -23,6 +23,12 @@ class CallToAction7Page extends BaseCallToAction {
       value: "Level up your portfolio, read the book today!",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "media",
       key: "image",
       displayer: "Image",
@@ -85,6 +91,8 @@ class CallToAction7Page extends BaseCallToAction {
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const disableAnimation = this.getPropValue("disableAnimation");
@@ -108,6 +116,11 @@ class CallToAction7Page extends BaseCallToAction {
                 <Base.VerticalContent className={this.decorateCSS("right-content")}>
                   {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
+                  )}
                   {placeholder &&
                     <div className={this.decorateCSS("input-button-wrapper")}>
                       <Formik
