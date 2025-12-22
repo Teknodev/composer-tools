@@ -129,7 +129,7 @@ class HeroSection11 extends BaseHeroSection {
     const logo = this.getPropValue("logo");
     const alignment = Base.getContentAlignment();
     const hasBackgroundImage = this.getPropValue("backgroundImage");
-    
+
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasBackgroundImage ? this.decorateCSS("no-background-image") : ""}`}>
         {(hasLeft) && (
@@ -198,19 +198,21 @@ class HeroSection11 extends BaseHeroSection {
             onClick={this.handleCloseVideoModal}
             className={this.decorateCSS("video-modal")}
           >
-              <button
-                className={this.decorateCSS("close-button-wrapper")}
-                onClick={this.handleCloseVideoModal}
-              >
-                <Base.Media value={this.getPropValue("exitButton")} className={this.decorateCSS("close-button")} />
-              </button>
+              <div className={this.decorateCSS("video-modal-container")}>
+                <button
+                  className={this.decorateCSS("close-button-wrapper")}
+                  onClick={this.handleCloseVideoModal}
+                >
+                  <Base.Media value={this.getPropValue("exitButton")} className={this.decorateCSS("close-button")} />
+                </button>
 
-              {this.getComponentState("videoUrl") && (
-                <Base.Media
-                  value={this.getComponentState("videoUrl")}
-                  className={this.decorateCSS("video-player")}
-                />
-              )}
+                {this.getComponentState("videoUrl") && (
+                  <Base.Media
+                    value={this.getComponentState("videoUrl")}
+                    className={this.decorateCSS("video-player")}
+                  />
+                )}
+              </div>
           </Base.Overlay>
         )}
       </Base.Container>

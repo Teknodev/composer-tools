@@ -23,6 +23,7 @@
 
             .subtitle {
               text-align: center;
+              margin-right: 0;
             }
 
             .title {
@@ -164,14 +165,14 @@
     justify-content: center;
     align-items: center;
 
-    .video-player {
-      display: flex;
-      margin: 0 auto;
-      width: 100%;
+    .video-modal-container{
+      width: 900px;
       height: auto;
-      max-height: 80vh;
-      border-radius: var(--composer-border-radius-xs);
-  }
+      .video-player {
+          width: 100%;
+          height: 100%;
+      }
+    }
 }
 
 .close-button-wrapper {
@@ -234,13 +235,6 @@
         }
       }
     }
-
-    .video-modal {
-      .video-player {
-        max-height: 50vh;
-        width: 90%;
-      }
-    }
   }
 } 
 
@@ -286,8 +280,8 @@
       }
     }
     .video-modal {
-      .video-player {
-        width: 85%;
+      .video-modal-container{
+        width: 350px;
       }
     }
   }

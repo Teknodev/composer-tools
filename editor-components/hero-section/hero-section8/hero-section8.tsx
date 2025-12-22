@@ -30,7 +30,7 @@ class HeroSection8 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "slider_animation",
-      displayer: "Slider Animation",
+      displayer: "Animation",
       value: true,
     });
 
@@ -394,7 +394,7 @@ class HeroSection8 extends BaseHeroSection {
                   {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
                 </Base.H5>
               }
-              <Base.H1
+              {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")) &&<Base.H1
                 className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
                   ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                   : ""
@@ -409,7 +409,7 @@ class HeroSection8 extends BaseHeroSection {
                 }}
               >
                 {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
-              </Base.H1>
+              </Base.H1>}
 
 
               {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}

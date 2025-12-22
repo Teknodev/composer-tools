@@ -547,6 +547,7 @@
     align-items: flex-end !important;
     padding-bottom: var(--composer-gap-md) !important;
     max-height: 950px !important;
+    top: -90px !important;
   }
   .dots :global(li.slick-active) button,
   .dark-dots :global(li.slick-active) button {
