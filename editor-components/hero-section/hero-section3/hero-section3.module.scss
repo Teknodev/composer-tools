@@ -207,6 +207,7 @@
           flex: 1;
           @include flexCenter;
           margin-left: var(--composer-gap-xl);
+          margin: 5%;
 
           .logo-container {
             width: 100%;
@@ -330,6 +331,7 @@
               transform: translate(100%, -50%);
             }
             .image-container {
+              left: 5%;
               .image {
                 top: -4vw;
               }
@@ -407,8 +409,8 @@
         .wrapper {
           &.active-slide {
             .image {
-              top: -2rem !important;
-              right: 6rem !important;
+              top: -3rem !important;
+              right: 2rem !important;
             }
           }
           .image-container {
@@ -429,7 +431,7 @@
           &.type-3 {
             .content-bg,
             .content .text-container {
-              width: 47%;
+              width: 46%;
             }
           }
         }
