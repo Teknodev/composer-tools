@@ -42,6 +42,13 @@ class Location3 extends Location {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "TOP DESTINATION",
@@ -252,6 +259,8 @@ class Location3 extends Location {
     const addresses: Address[] = this.getPropValue("addresses");
     const continents = this.getPropValue("continents");
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
 
     const description = this.getPropValue("description");
     const markerZoom = this.getPropValue("markerZoom");
@@ -311,6 +320,7 @@ class Location3 extends Location {
                     <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("icon")} />
                   </div>
                 )}
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
 
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}

@@ -42,9 +42,16 @@ class Location1 extends Location {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "Connect with socail media",
+      value: "Connect with social media",
     });
 
     this.addProp({
@@ -71,7 +78,7 @@ class Location1 extends Location {
     this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Icons",
+      displayer: "Social Media Items",
       value: [
         {
           type: "object",
@@ -88,7 +95,7 @@ class Location1 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -108,7 +115,7 @@ class Location1 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -128,7 +135,7 @@ class Location1 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -148,7 +155,7 @@ class Location1 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -168,7 +175,7 @@ class Location1 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -232,8 +239,8 @@ class Location1 extends Location {
 
     this.addProp({
       type: "object",
-      key: "buttom_row",
-      displayer: "Buttom Row",
+      key: "button_row",
+      displayer: "Contact",
       value: [
         {
           type: "string",
@@ -250,7 +257,7 @@ class Location1 extends Location {
         {
           type: "page",
           key: "phoneUrl",
-          displayer: "Number Url",
+          displayer: "Navigate To",
           value: "",
         },
       ],
@@ -328,7 +335,9 @@ class Location1 extends Location {
 
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
-    const buttom = this.castToObject<ButtomType>("buttom_row");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
+    const buttom = this.castToObject<ButtomType>("button_row");
     const icons = this.getPropValue("icons");
     const line = this.getPropValue("line");
     const description = this.castToString(buttom.description);
@@ -342,8 +351,11 @@ class Location1 extends Location {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {(titleExist || icons.length > 0) && (
-              <div className={this.decorateCSS("connect")}>
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              <div className={this.decorateCSS("header")}>
+                <div className={this.decorateCSS("title-block")}>
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                </div>
                 {titleExist && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
                 {icons.length > 0 && (
                   <div className={this.decorateCSS("icon-container")}>
@@ -362,7 +374,7 @@ class Location1 extends Location {
             )}
 
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+              <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
             </section>
 
             {(description || phone) && (

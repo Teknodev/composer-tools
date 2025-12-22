@@ -4,8 +4,10 @@
   background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
   .max-content {
-    .title {
-      margin-top: 0;
+    .title-block {
+    .subtitle, .title {
+      content: "";
+    }
     }
   }
 

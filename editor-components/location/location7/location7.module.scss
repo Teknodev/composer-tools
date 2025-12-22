@@ -14,6 +14,20 @@
       height: 100%;
       gap: var(--composer-gap-xl);
 
+      .title-block {
+        .subtitle, .title {
+          content: "";
+        }
+
+        .subtitle {
+          transform: translateX(0);
+          text-align: center !important;
+          &::before {
+            display: none;
+          }
+        }
+      }
+
       .title-row {
         display: flex;
         justify-content: center;

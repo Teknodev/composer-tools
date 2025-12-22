@@ -42,16 +42,16 @@ class Location6 extends Location {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Nearby Places of the Property",
+      key: "badge",
+      displayer: "Subtitle",
+      value: "Nearby places",
     });
 
     this.addProp({
       type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "Nearby places",
+      key: "title",
+      displayer: "Title",
+      value: "Nearby Places of the Property",
     });
 
     this.addProp({
@@ -86,7 +86,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "1.8 KM",
             },
@@ -111,7 +111,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "1.6 KM",
             },
@@ -136,7 +136,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "2.0 KM",
             },
@@ -161,7 +161,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "0.96 KM",
             },
@@ -186,7 +186,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "1.6 KM",
             },

@@ -10,6 +10,13 @@ class Location5 extends Location {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Header Title",
       value: "Offices",
@@ -54,13 +61,13 @@ class Location5 extends Location {
             {
               type: "string",
               key: "adress",
-              displayer: "Enter the address",
+              displayer: "Address",
               value: "Rua Fernando Palha, 47A, 1950-130",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Enter the description",
+              displayer: "Description",
               value: "(We work by appointment)",
             },
             {
@@ -114,13 +121,13 @@ class Location5 extends Location {
             {
               type: "string",
               key: "adress",
-              displayer: "Enter the address",
+              displayer: "Address",
               value: "Lermontovsky prospect, 35A",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Enter the description",
+              displayer: "Description",
               value: "(We work by appointment)",
             },
             {
@@ -165,6 +172,8 @@ class Location5 extends Location {
   render() {
     const locationAddresses = this.getPropValue("locationAddresses") || [];
 
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
@@ -209,7 +218,10 @@ class Location5 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.VerticalContent className={this.decorateCSS("title-block")}>
+          {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
           {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+          </Base.VerticalContent>
           <div className={this.decorateCSS("wrapper")}>
             <section className={this.decorateCSS("map-container")}>
               {locationAddresses.map((location: any, index: number) => {

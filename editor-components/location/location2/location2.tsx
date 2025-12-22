@@ -47,6 +47,13 @@ class Location2 extends Location {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Header Title",
       value: "Connect with us",
@@ -82,7 +89,7 @@ class Location2 extends Location {
         {
           type: "object",
           key: "content",
-          displayer: "Content Elements",
+          displayer: "Social Media Item",
           value: [
             {
               type: "icon",
@@ -93,7 +100,7 @@ class Location2 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+             displayer: "Navigate To",
               value: "",
             },
           ],
@@ -101,7 +108,7 @@ class Location2 extends Location {
         {
           type: "object",
           key: "content",
-          displayer: "Content Elements",
+          displayer: "Social Media Item",
           value: [
             {
               type: "icon",
@@ -112,7 +119,7 @@ class Location2 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+             displayer: "Navigate To",
               value: "",
             },
           ],
@@ -120,7 +127,7 @@ class Location2 extends Location {
         {
           type: "object",
           key: "content",
-          displayer: "Content Elements",
+          displayer: "Social Media Item",
           value: [
             {
               type: "icon",
@@ -131,7 +138,7 @@ class Location2 extends Location {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+             displayer: "Navigate To",
               value: "",
             },
           ],
@@ -142,12 +149,12 @@ class Location2 extends Location {
     this.addProp({
       type: "array",
       key: "middle-content",
-      displayer: "Content Items",
+      displayer: "Feature Items",
       value: [
         {
           type: "object",
           key: "content",
-          displayer: "Content Elements",
+          displayer: "Feature Elements",
           value: [
             {
               type: "icon",
@@ -158,13 +165,13 @@ class Location2 extends Location {
             {
               type: "string",
               key: "contentTitle",
-              displayer: "Title",
+              displayer: "Feature Title",
               value: "Address",
             },
             {
               type: "array",
               key: "contentDescriptionArray",
-              displayer: "Content Description",
+              displayer: "Feature Description",
               value: [
                 {
                   type: "object",
@@ -186,7 +193,7 @@ class Location2 extends Location {
         {
           type: "object",
           key: "content",
-          displayer: "Content Elements",
+          displayer: "Feature Elements",
           value: [
             {
               type: "icon",
@@ -197,13 +204,13 @@ class Location2 extends Location {
             {
               type: "string",
               key: "contentTitle",
-              displayer: "Title",
+              displayer: "Feature Title",
               value: "Bussiness Hours",
             },
             {
               type: "array",
               key: "contentDescriptionArray",
-              displayer: "Content Description",
+              displayer: "Feature Description",
               value: [
                 {
                   type: "object",
@@ -238,7 +245,7 @@ class Location2 extends Location {
         {
           type: "object",
           key: "content",
-          displayer: "Content Elements",
+          displayer: "Feature Elements",
           value: [
             {
               type: "icon",
@@ -249,13 +256,13 @@ class Location2 extends Location {
             {
               type: "string",
               key: "contentTitle",
-              displayer: "Title",
+              displayer: "Feature Title",
               value: "Phone",
             },
             {
               type: "array",
               key: "contentDescriptionArray",
-              displayer: "Content Description",
+              displayer: "Feature Description",
               value: [
                 {
                   type: "object",
@@ -290,7 +297,7 @@ class Location2 extends Location {
         {
           type: "object",
           key: "content",
-          displayer: "Content Elements",
+          displayer: "Feature Elements",
           value: [
             {
               type: "icon",
@@ -301,13 +308,13 @@ class Location2 extends Location {
             {
               type: "string",
               key: "contentTitle",
-              displayer: "Title",
+              displayer: "Feature Title",
               value: "Email",
             },
             {
               type: "array",
               key: "contentDescriptionArray",
-              displayer: "Content Description",
+              displayer: "Feature Description",
               value: [
                 {
                   type: "object",
@@ -435,13 +442,15 @@ class Location2 extends Location {
 
     const socials = this.castToObject<SocialMediaItemType[]>("socials");
     const headerExist = isTitleExist || isDescriptionExist || socials.length > 0;
-
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     return (
       <div className={this.decorateCSS("container")}>
         {headerExist && (
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
 
                 <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>

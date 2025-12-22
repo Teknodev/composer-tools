@@ -34,6 +34,13 @@ class Location4 extends Location {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Location",
@@ -42,7 +49,7 @@ class Location4 extends Location {
     this.addProp({
       type: "image",
       key: "image",
-      displayer: "Image",
+      displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
     });
 
@@ -182,6 +189,8 @@ class Location4 extends Location {
     const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
 
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
     return (
@@ -194,10 +203,12 @@ class Location4 extends Location {
               {titleExist && (
                 <Base.Container className={this.decorateCSS("content-container")}>
                   <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                     <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
                   </Base.MaxContent>
                 </Base.Container>
               )}
+              
             </div>
           ) : (
             titleExist && (

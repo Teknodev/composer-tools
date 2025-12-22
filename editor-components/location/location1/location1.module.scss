@@ -9,15 +9,20 @@
       height: 100%;
       gap: var(--composer-gap-xl);
 
-      .connect {
+      .header {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: var(--composer-gap-lg);
         width: 100%;
+        .title-block {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
 
-        .title {
-          margin: 0;
+          .subtitle, .title {
+            content: "";
+          }
         }
 
         .divider {

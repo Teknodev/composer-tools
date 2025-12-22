@@ -3,7 +3,6 @@ import { Location } from "../../EditorComponent";
 import styles from "./location7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-// Types
 
 type Address = {
   type: string;
@@ -29,6 +28,14 @@ type MarkerObject = {
 class Location7 extends Location {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -269,8 +276,9 @@ class Location7 extends Location {
     const activeMarkerIndex = this.getComponentState("activeMarkerIndex");
     const bgImage = this.getPropValue("background-image");
     const showTooltipLine = this.getPropValue("showTooltipLine");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
 
-    // Prepare markers
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const leftPercent = address.getPropValue("leftPercent");
@@ -282,7 +290,7 @@ class Location7 extends Location {
           topPercent,
           popupTitle,
           description,
-          markerImage: "", // not used
+          markerImage: "", 
           content: null,
         });
       }
@@ -292,12 +300,15 @@ class Location7 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}> 
         <Base.MaxContent className={this.decorateCSS("max-content")}> 
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+            <Base.VerticalContent className={this.decorateCSS("title-block")}>
+            {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
             {titleExist && (
               <div className={this.decorateCSS("title-row")}> 
                 <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
               </div>
             )}
+            </Base.VerticalContent>
             <section className={this.decorateCSS("map-container")}> 
               <div
                 className={this.decorateCSS("custom-map")}>
