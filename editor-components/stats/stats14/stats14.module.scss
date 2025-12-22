@@ -13,11 +13,15 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--composer-gap-lg);
-      }
 
-      .title {
-        text-align: left;
+        .title {
+          text-align: left;
+        }
+
+        .description {
+          content: "";
+        }
+
       }
 
       .features-list {
@@ -26,6 +30,8 @@
         align-items: flex-start;
         justify-content: flex-start;
         gap: var(--composer-gap-xl);
+        margin-bottom: var(--composer-gap-lg);
+        margin-top: var(--composer-gap-md) !important;
 
         .features-list-item {
           display: flex;
@@ -177,3 +183,4 @@
     }
   }
 }
+
