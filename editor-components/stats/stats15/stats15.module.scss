@@ -6,6 +6,10 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 800px;
+    .subtitle.subtitle-badge-hidden {
+      background: transparent !important;
+      padding-left: 0px !important;
+    }
   }
   &.overlay-active {
     position: relative;
@@ -35,7 +39,7 @@
         align-items: center;
         color: white;
         justify-content: center;
-        .title , .description {
+        .title , .description, .subtitle {
           text-align: center;
           &.with-bg {
             color: white;
