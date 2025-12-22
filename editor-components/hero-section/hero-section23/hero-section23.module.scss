@@ -113,12 +113,24 @@
   display: flex;
   align-items: center;
   pointer-events: auto;
+  position: relative;
+
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    color: var(--composer-html-background);
+    pointer-events: none;
+  }
 
   .max-content {
     width: 100%;
     margin: auto;
     display: flex;
     justify-content: center;
+    position: relative;
 
     .wrapper {
       border-radius: var(--composer-border-radius-md);
@@ -129,19 +141,24 @@
       .prevArrow {
         position: absolute;
         color: #fff;
-        width: 45px;
-        height: 45px;
+        font-size: 3rem;
         cursor: pointer;
         z-index: 10;
         top: 50%;
         transform: translateY(-50%);
 
+        .icon{
+          width: 45px;
+          height: 45px;
+          object-fit: cover;
+        }
+
         &.nextArrow {
-          right: 50px;
+          right: var(--composer-gap-xl);
         }
 
         &.prevArrow {
-          left: 50px;
+          left: var(--composer-gap-xl);
         }
 
         &.bg-color-icon {
@@ -196,8 +213,6 @@
         position: relative;
 
         .items {
-          background-color: rgba(71, 168, 233, 0.185);
-
           .wrapper-slick {
             position: relative;
             width: 100%;
@@ -217,6 +232,8 @@
               width: 100%;
               height: 100%;
               z-index: 3;
+              transition: transform 0.1s ease-out;
+              will-change: transform;
 
               .background1 {
                 height: 100%;
@@ -234,6 +251,8 @@
               left: 50%;
               transform: translate(-50%, -50%);
               z-index: 3;
+              transition: transform 0.1s ease-out;
+              will-change: transform;
 
               .background2 {
                 position: absolute;
@@ -252,6 +271,8 @@
               left: 20%;
               transform: translateX(0);
               z-index: 3;
+              transition: transform 0.1s ease-out;
+              will-change: transform;
 
               .background3 {
                 &.animate {
@@ -266,6 +287,8 @@
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
+              transition: transform 0.1s ease-out;
+              will-change: transform;
 
               .img-background {
                 z-index: 2;
@@ -286,6 +309,8 @@
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
+              transition: transform 0.1s ease-out;
+              will-change: transform;
 
               .top-img {
                 position: absolute;
@@ -303,6 +328,8 @@
               z-index: 4;
               flex: 1;
               padding: var(--composer-gap-md) calc(var(--composer-gap-xl) * 2) var(--composer-gap-md) var(--composer-gap-xl);
+              transition: transform 0.1s ease-out;
+              will-change: transform;
 
               .upper-text {
                 @include text_style();
@@ -322,6 +349,8 @@
               z-index: 1;
               flex: 1;
               padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) calc(var(--composer-gap-xl) * 2);
+              transition: transform 0.1s ease-out;
+              will-change: transform;
 
               .lower-text {
                 @include text_style();
@@ -345,7 +374,6 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              background-color: rgba(71, 168, 233, 0.247);
 
               &.animate {
                 animation: slideOut4 1s ease;
@@ -360,7 +388,6 @@
                 border-radius: 50%;
                 width: 400px;
                 height: 400px;
-                background-color: rgba(71, 168, 233, 0.199);
 
                 &.bg-active-ic {
                   background-color: var(--composer-primary-color);
@@ -376,21 +403,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    .wave {
+      height: 60px;
+    }
     .max-content {
       .wrapper {
         .nextArrow,
         .prevArrow {
-          width: 40px;
-          height: 40px;
           display: none;
-
-          &.nextArrow {
-            right: var(--composer-gap-lg);
-          }
-
-          &.prevArrow {
-            left: var(--composer-gap-lg);
-          }
         }
 
         .dots {
@@ -455,22 +475,11 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    .wave {
+      height: var(--composer-gap-lg);
+    }
     .max-content {
       .wrapper {
-        .nextArrow,
-        .prevArrow {
-          width: 35px;
-          height: 35px;
-
-          &.nextArrow {
-            right: var(--composer-gap-md);
-          }
-
-          &.prevArrow {
-            left: var(--composer-gap-md);
-          }
-        }
-
         .dots {
           bottom: var(--composer-gap-md);
         }
