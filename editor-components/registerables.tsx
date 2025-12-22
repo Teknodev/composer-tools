@@ -33,6 +33,7 @@ import SliderComponent8 from "./slider/slider8/slider8";
 import SliderComponent9 from "./slider/slider9/slider9";
 import SliderComponent10 from "./slider/slider10/slider10";
 import SliderComponent11 from "./slider/slider11/slider11";
+import SliderComponent12 from "./slider/slider12/slider12";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -138,6 +139,8 @@ import FeatureComponent26 from "./feature/feature26/feature26";
 import FeatureComponent27 from "./feature/feature27/feature27";
 import FeatureComponent30 from "./feature/feature30/feature30";
 import FeatureComponent31 from "./feature/feature31/feature31";
+import FeatureComponent32 from "./feature/feature32/feature32";
+import FeatureComponent34 from "./feature/feature34/feature34";
 import FeatureComponent35 from "./feature/feature35/feature35";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
@@ -178,6 +181,7 @@ import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials1
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
 import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
 import TestimonialsComponent15 from "./testimonials/testimonials15/testimonials15";
+import TestimonialsComponent16 from "./testimonials/testimonials16/testimonials16";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -291,10 +295,12 @@ import About8 from "./about/about8/about8";
 import About9 from "./about/about9/about9";
 import About11 from "./about/about11/about11";
 import About12 from "./about/about12/about12";
+import About14 from "./about/about14/about14";
+import About15 from "./about/about15/about15";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
-import Comparison1 from "./comparison/comparison1/comparison1"; 
+import Comparison1 from "./comparison/comparison1/comparison1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -345,6 +351,7 @@ function Registerables(composer: ComponentsRegistery) {
     SliderComponent9,
     SliderComponent10,
     SliderComponent11,
+    SliderComponent12,
     PricingComponent1,
     PricingComponent2,
     PricingComponent3,
@@ -472,6 +479,8 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent27,
     FeatureComponent30,
     FeatureComponent31,
+    FeatureComponent32,
+    FeatureComponent34,
     FeatureComponent35,
     CallToAction1,
     CallToAction2,
@@ -512,6 +521,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent13,
     TestimonialsComponent14,
     TestimonialsComponent15,
+    TestimonialsComponent16,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
@@ -592,6 +602,8 @@ function Registerables(composer: ComponentsRegistery) {
     About9,
     About11,
     About12,
+    About14,
+    About15,
     Portfolio1,
     Portfolio2,
     Portfolio3,
