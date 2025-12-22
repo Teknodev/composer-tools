@@ -1,8 +1,37 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
+
   &.has-background {
     min-height: 50vh;
+
+    .subtitle,
+    .title,
+    .description {
+      color: var(--color-white);
+    }
+
+    .subtitle {
+      background: transparent;
+      padding: 0;
+      width: auto;
+      display: inline-flex;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &.overlay-active::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--composer-overlay-color);
+    z-index: 1;
+    pointer-events: none;
   }
 
   .background-media {
@@ -24,17 +53,6 @@
     }
   }
 
-  &.overlay-active {
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: var(--composer-overlay-color);
-      z-index: 1;
-      pointer-events: none;
-    }
-  }
-
   .max-content {
     position: relative;
     z-index: 2;
@@ -45,51 +63,38 @@
 
     .content {
       min-height: inherit;
-      display: flex;
-      flex-direction: column;
-      align-items: center !important;
-      justify-content: flex-start !important;
-      text-align: center !important;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
       gap: var(--composer-gap-xl);
-
-      .buttons {
-        position: relative;
-        bottom: auto !important;
-        left: auto;
-        transform: none;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        flex-wrap: wrap;
-        gap: var(--composer-gap-sm);
-        padding: 0 !important;
-        margin: 0 !important;
-        margin-top: auto !important;
-        z-index: 5;
-      }
 
       .text-wrapper {
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
         justify-content: center;
+        align-items: center;
 
         .subtitle {
           transform: translateX(0);
-          margin: 0 !important;
-          display: flex;
-          justify-content: center !important;
-          text-align: center !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
+          margin: 0;
+          text-align: center;
         }
 
         .title,
         .description {
-          width: 100% !important;
-          text-align: center !important;
-          margin: 0 !important;
+          text-align: center;
         }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        margin-top: auto;
+        z-index: 5;
       }
     }
   }
@@ -98,8 +103,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-
   }
 
   .button {
@@ -113,17 +116,17 @@
   .button-text {
     display: inline-flex;
     align-items: center;
-    font-size: inherit !important;
+    font-size: 4rem !important;
   }
 
   .button-icon {
     width: 4rem !important;
     height: 4rem !important;
+    font-size: 4rem !important;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .svg,
     svg {
       width: 100%;
       height: 100%;
@@ -132,28 +135,8 @@
   }
 
   &.has-background {
-
-    .subtitle,
-    .title,
-    .description {
-      color: var(--color-white) !important;
-    }
-
-    .subtitle {
-      background: transparent !important;
-      padding: 0 !important;
-      width: auto !important;
-      display: inline-flex !important;
-
-      &::before,
-      &::after {
-        content: "";
-        display: none !important;
-      }
-    }
-
     .button {
-      color: var(--color-white) !important;
+      color: var(--color-white);
     }
   }
 
@@ -177,23 +160,20 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    &.has-background {
-      min-height: 50vh;
-    }
-  }
-}
-
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .button {
       font-size: 2rem !important;
     }
 
+    .button-text {
+      font-size: 2rem !important;
+    }
+
     .button-icon {
       width: 2rem !important;
       height: 2rem !important;
+      font-size: 2rem !important;
     }
   }
 }
