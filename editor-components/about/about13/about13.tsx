@@ -68,20 +68,20 @@ class About13 extends BaseAbout {
     return "About 13";
   }
 
-  private getIconValue(rawIcon: unknown): TypeMediaInputValue | null {
-    if (!rawIcon) return null;
+  private getIconValue(iconValue: unknown): TypeMediaInputValue | null {
+    if (!iconValue) return null;
 
-    if (typeof rawIcon === "string") {
-      const name = this.castToString(rawIcon);
+    if (typeof iconValue === "string") {
+      const name = this.castToString(iconValue);
       return name
         ? ({ type: "icon", name } as unknown as TypeMediaInputValue)
         : null;
     }
 
-    if (typeof rawIcon !== "object") return null;
+    if (typeof iconValue !== "object") return null;
 
-    const iconObj = rawIcon as Partial<TypeMediaInputValue> & { name?: string };
-    if (iconObj.url || iconObj.name) return rawIcon as TypeMediaInputValue;
+    const iconObj = iconValue as Partial<TypeMediaInputValue> & { name?: string };
+    if (iconObj.url || iconObj.name) return iconValue as TypeMediaInputValue;
 
     return null;
   }
@@ -96,7 +96,7 @@ class About13 extends BaseAbout {
     const descriptionExist = !!this.castToString(description);
 
     const image = this.getPropValue("image") as TypeMediaInputValue | null;
-    const hasImage = !!image?.url;
+    const hasImage = !!(image && (image as any).url);
 
     const buttons = this.castToObject<ButtonItem[]>("buttons") || [];
 
@@ -162,7 +162,6 @@ class About13 extends BaseAbout {
                           <ComposerLink
                             key={index}
                             path={item.url}
-                            className={this.decorateCSS("link")}
                           >
                             <Base.Button
                               buttonType={item.type}
