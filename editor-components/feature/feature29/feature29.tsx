@@ -385,7 +385,7 @@ class Feature29 extends BaseFeature {
 
       return (
         <div
-        className={[this.decorateCSS("card"), additionalClass, imageUrl && this.decorateCSS("with-bg")].filter(Boolean).join(" ")}
+        className={[this.decorateCSS("card"), additionalClass, imageUrl && this.decorateCSS("with-bg")]}
           data-animation={hoverAnimation}
         >
           {imageUrl && <Base.Media className={this.decorateCSS("card-media")} value={image} />}
