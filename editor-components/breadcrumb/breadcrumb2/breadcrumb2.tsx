@@ -21,6 +21,12 @@ class Breadcrumb2 extends BaseBreadcrumb {
       value: "The Best Time to Celebrate",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "array",
       key: "breadcrumbItems",
       displayer: "Breadcrumb Items",
@@ -122,6 +128,8 @@ class Breadcrumb2 extends BaseBreadcrumb {
   render() {
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
     const currentPage = this.castToObject("currentPage");
     const currentPageTitle = currentPage?.title || "";
@@ -184,11 +192,18 @@ class Breadcrumb2 extends BaseBreadcrumb {
           </Base.MaxContent>
         )}
         {isTitleExist && (
-          <Base.MaxContent>
+          <Base.VerticalContent>
             <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
-          </Base.MaxContent>
+          </Base.VerticalContent>
+        )}
+        {isDescriptionExist && (
+          <Base.VerticalContent>
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {description}
+            </Base.SectionDescription>
+          </Base.VerticalContent>
         )}
       </Base.Container>
     );

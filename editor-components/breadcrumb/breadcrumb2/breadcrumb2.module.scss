@@ -83,7 +83,11 @@
     }
   }
   .title {
-    content: "";
+    position: relative;
+    z-index: 3;
+    text-align: left !important;
+  }
+  .description {
     position: relative;
     z-index: 3;
     text-align: left !important;

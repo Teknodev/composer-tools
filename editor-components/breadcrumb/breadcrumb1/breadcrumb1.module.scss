@@ -32,7 +32,7 @@
     height: 100%;
     position: relative;
     z-index: 2;
-    .title-main {
+    .title-main, .description {
       content: "";
       &.title-with-bg {
         color: #534931;
