@@ -33,36 +33,24 @@
           display: flex;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
-        }
 
-        .link {
-          display: inline-flex;
-        }
-
-        .button {
-          display: inline-flex;
-          align-items: center;
-
-          .icon {
-            width: 16px;
-            height: 16px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            >* {
-              width: 100%;
-              height: 100%;
+          .button {
+            .icon {
+              width: 1rem;
+              height: 1rem;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
             }
-          }
 
-          .button-text {
-            margin: 0;
-            padding: 0;
-            display: inline;
-            text-align: left;
-            overflow-wrap: anywhere;
-            word-break: break-word;
+            .button-text {
+              margin: 0;
+              padding: 0;
+              display: inline;
+              text-align: left;
+              overflow-wrap: anywhere;
+              word-break: break-word;
+            }
           }
         }
       }
@@ -123,10 +111,10 @@
             .subtitle {
               margin-left: auto;
               margin-right: auto;
-              transform: none !important;
+              transform: none;
 
               &::before {
-                display: none !important;
+                display: none;
               }
             }
 
