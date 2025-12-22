@@ -62,8 +62,8 @@ class About6 extends BaseAbout {
         const signature = this.getPropValue("signature");
         const name = this.getPropValue("name");
 
-        const leftExists = !!this.castToString(leftText);
-        const rightExists = !!this.castToString(rightText);
+        const leftExists = this.castToString(leftText);
+        const rightExists = this.castToString(rightText);
         const showTextContainer = leftExists || rightExists;
         const singleText = (leftExists && !rightExists) || (!leftExists && rightExists);
         const showTopContainer = this.castToString(subTitle) || this.castToString(title);
@@ -100,7 +100,7 @@ class About6 extends BaseAbout {
                             )}
                     {showContentContainer && showTextContainer && (
                                 <div
-                                    className={`${this.decorateCSS("text-container")} ${singleText ? this.decorateCSS("single-text") : ""}`}>
+                                    className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
                                     {this.castToString(leftText) && (
                                         <Base.SectionDescription className={this.decorateCSS("left-text")}>
                                             {leftText}

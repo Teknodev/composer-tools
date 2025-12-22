@@ -40,9 +40,11 @@
         }
       }
       
-      .text-container.single-text .left-text,
-      .text-container.single-text .right-text {
-        text-align: center;
+      .text-container.single-text {
+          .left-text,
+          .right-text {
+          text-align: center;
+        }
       }
       
       .bottom-container {
