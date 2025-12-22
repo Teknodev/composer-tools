@@ -76,7 +76,7 @@ class HeroSection4 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },

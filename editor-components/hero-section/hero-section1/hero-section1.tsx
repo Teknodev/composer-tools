@@ -11,7 +11,7 @@ class HeroSection1 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "background-layout",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -95,7 +95,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -144,7 +144,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -187,7 +187,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -236,7 +236,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -285,7 +285,7 @@ class HeroSection1 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },

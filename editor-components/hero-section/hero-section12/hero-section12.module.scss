@@ -6,6 +6,7 @@
   width: 100%;
   position: relative;
   display: block;
+  background: var(--composer-html-background);
 
   .max-content {
     width: 100%;
@@ -26,14 +27,20 @@
     z-index: 100;
 
     .left-slider-button,
-    .right-slider-button {
+      .right-slider-button {
       pointer-events: auto;
       cursor: pointer;
       color: white;
       font-size: 3rem;
       transition: 300ms;
-      transition-property: scale;
+      transition-property: transform;
       -webkit-text-stroke: 1px background-color;
+
+      .icon{
+        width: 30px;
+        height: 30px;
+        font-size: 2rem;
+      }
     }
   }
 
@@ -114,9 +121,14 @@
         transition: 300ms;
         transition-property: scale;
 
-        &:hover {
+
+        .icon{
+          width: 30px;
+          height: 30px;
+          font-size: 2rem;
         }
       }
+    
       .slider-item {
         position: relative;
         height: 650px;
@@ -134,14 +146,13 @@
           z-index: 2;
           width: auto;
           box-sizing: border-box;
+          font-size: 2rem;
+          color: white;
 
-          .logo-icon {
+          .logo {
             margin-bottom: var(--composer-gap-sm);
             font-size: 3rem;
             color: white;
-          }
-
-          .logo-image {
             margin-bottom: var(--composer-gap-sm);
             color: white;
             aspect-ratio: 3/1;
@@ -206,6 +217,12 @@
         -webkit-text-stroke: 1px background-color;
         transition: 300ms;
         transition-property: scale;
+
+        .icon{
+          width: 30px;
+          height: 30px;
+          font-size: 2rem;
+        }
       }
 
       .slider-item {
@@ -226,21 +243,18 @@
           width: auto;
           box-sizing: border-box;
           align-items: flex-end;
+          font-size: 2rem;
+          color: white;
 
-          .logo-icon {
+          .logo {
             margin-bottom: var(--composer-gap-sm);
             font-size: 3rem;
             color: white;
-            align-self: flex-end;
-          }
-
-          .logo-image {
             margin-bottom: var(--composer-gap-sm);
             color: white;
             aspect-ratio: 3/1;
             object-fit: cover;
             max-width: 150px;
-            align-self: flex-end;
           }
 
           .slider-item-subtitle {

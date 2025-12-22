@@ -72,7 +72,7 @@ class HeroSection6 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "image1",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image"],
       },
@@ -84,7 +84,7 @@ class HeroSection6 extends BaseHeroSection {
     this.addProp({
       type: "media",
       key: "image2",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },

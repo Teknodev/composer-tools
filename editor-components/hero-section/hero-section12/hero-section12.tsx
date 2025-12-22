@@ -52,7 +52,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -107,7 +107,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -162,7 +162,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -217,7 +217,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -272,7 +272,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -335,7 +335,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -390,7 +390,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -445,7 +445,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -500,7 +500,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -555,7 +555,7 @@ class HeroSection12 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -610,7 +610,7 @@ class HeroSection12 extends BaseHeroSection {
       key: "leftSliderIcon",
       displayer: "Left Slider Arrow Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -623,7 +623,7 @@ class HeroSection12 extends BaseHeroSection {
       key: "rightSliderIcon",
       displayer: "Right Slider Arrow Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -685,7 +685,7 @@ class HeroSection12 extends BaseHeroSection {
       switeToSlide: true,
     };
 
-    const decorateIcon = { className: this.decorateCSS("Icon") };
+    const decorateIcon = { className: this.decorateCSS("icon") };
     const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
     const rightSliderItems =
       this.castToObject<SliderItem[]>("rightSliderItems");
@@ -905,7 +905,7 @@ class HeroSection12 extends BaseHeroSection {
                       {item.logo && (
                         <Base.Media
                           value={item.logo}
-                          className={item.logo.type === "icon" ? this.decorateCSS("logo-icon") : this.decorateCSS("logo-image")}
+                          className={this.decorateCSS("logo")}
                         />
                       )}
                       {this.castToString(item.subtitle) && (

@@ -79,12 +79,7 @@
         .subtitle {
           text-align: left;
           margin-left: 0;
-          color: var(--composer-font-color-primary);
           font-size: 2.5rem;
-          transform: translateX(0);
-          &::before {
-            display: none;
-          }
         }
         .title {
           font-size: 5rem;

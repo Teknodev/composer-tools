@@ -20,8 +20,8 @@ class HeroSection7 extends BaseHeroSection {
       value: [
         {
           type: "object",
-          key: "page1",
-          displayer: "Page-1",
+          key: "page",
+          displayer: "Page",
           value: [
             {
               type: "string",
@@ -51,7 +51,7 @@ class HeroSection7 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "page2",
+          key: "page",
           displayer: "Page",
           value: [
             {
@@ -82,7 +82,7 @@ class HeroSection7 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "page3",
+          key: "page",
           displayer: "Page",
           value: [
             {
@@ -113,7 +113,7 @@ class HeroSection7 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "page4",
+          key: "page",
           displayer: "Page",
           value: [
             {
@@ -144,7 +144,7 @@ class HeroSection7 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "page5",
+          key: "page",
           displayer: "Page",
           value: [
             {
@@ -175,7 +175,7 @@ class HeroSection7 extends BaseHeroSection {
         },
         {
           type: "object",
-          key: "page6",
+          key: "page",
           displayer: "Page",
           value: [
             {

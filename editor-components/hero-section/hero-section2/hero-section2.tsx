@@ -36,7 +36,7 @@ class HeroSection2 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Background Image",
+              displayer: "Background Media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
@@ -103,7 +103,7 @@ class HeroSection2 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Background Image",
+              displayer: "Background Media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
@@ -170,7 +170,7 @@ class HeroSection2 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Background Image",
+              displayer: "Background Media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
