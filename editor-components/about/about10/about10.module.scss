@@ -216,7 +216,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-lg) !important;
+      gap: var(--composer-gap-md) !important;
       .header {
         flex-direction: column !important ;
         align-items: flex-start;
