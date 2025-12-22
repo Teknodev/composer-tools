@@ -75,6 +75,7 @@
     .left {
       .top-text{
         text-align: left !important;
+        margin: var(--composer-gap-xs) !important;
       }
       .bottom-text {
         color: var(--composer-primary-color);
