@@ -19,30 +19,11 @@
           display: flex;
           gap: var(--composer-gap-sm);
           flex-wrap: wrap;
-        }
 
-        .button-link {
-          display: inline-flex;
-        }
-
-        .button {
-          display: flex;
-          align-items: center;
-          gap: var(--composer-gap-sm);
-
-          .button-image {
-            width: 20px;
-            height: 20px;
-            display: flex;
+          .button {
             align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            object-fit: contain;
-            fill: currentColor;
-          }
+            gap: var(--composer-gap-sm);
 
-          .button-text {
-            margin: 0;
           }
         }
 
@@ -50,12 +31,14 @@
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          text-align: left !important;
+          text-align: left;
+          gap: var(--composer-gap-xs);
 
           .subtitle1,
           .subtitle2 {
             color: var(--composer-font-color-primary);
-            text-align: left !important;
+            display: flex;
+            justify-content: flex-start;
           }
 
           .subtitle1 {
@@ -77,10 +60,7 @@
           &::after {
             content: "";
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-color: var(--composer-overlay-color);
             z-index: 2;
             pointer-events: none;
@@ -92,6 +72,8 @@
           height: 100%;
           display: block;
           object-fit: cover;
+          position: absolute;
+          inset: 0;
         }
       }
     }
@@ -108,16 +90,6 @@
 
           &.center {
             justify-content: center;
-
-            .subtitle-group {
-              align-items: center;
-              text-align: center !important;
-
-              .subtitle1,
-              .subtitle2 {
-                text-align: center !important;
-              }
-            }
           }
 
           .buttons-wrapper {
@@ -125,20 +97,12 @@
           }
 
           .subtitle-group {
-            width: 100%;
-            gap: var(--composer-gap-xs);
             align-items: flex-start;
-            text-align: left !important;
-
-            .subtitle1,
-            .subtitle2 {
-              text-align: left !important;
-            }
+            text-align: left;
           }
         }
 
         .image-wrapper {
-          width: 100%;
           height: 300px;
           margin-top: var(--composer-gap-md);
         }
