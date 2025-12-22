@@ -138,7 +138,7 @@
 }
 
 .container.with-background {
-  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
+  padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
   .max-content {
     .background-layer.with-image {
       .content {
@@ -154,7 +154,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container.with-background {
-    padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
+    padding: 0px var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) !important;
     .max-content {
       .content {
         padding: var(--composer-gap-md);
