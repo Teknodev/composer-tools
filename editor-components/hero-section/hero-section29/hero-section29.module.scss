@@ -170,8 +170,11 @@
               font-size: 2rem;
               color: var(--composer-primary-color);
               margin: 0;
-              width: 40px;
-              height: 40px;
+              
+              .icon{
+                width: 40px;
+                height: 40px;
+              }
             }
 
             .service-title {

@@ -93,12 +93,12 @@ class HeroSection28 extends BaseHeroSection {
               key: "video",
               displayer: "Video",
               value: { type: "video", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151" },
-              additionalParams: { availableTypes: ["image", "video"] },
+              additionalParams: { availableTypes: ["video"] },
             },
             {
               type: "string",
-              key: "tag",
-              displayer: "Tag",
+              key: "subtitle",
+              displayer: "Subtitle",
               value: "ACTION",
             },
             {
@@ -109,14 +109,14 @@ class HeroSection28 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sub_title",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "Official Season 1 Trailer",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "text",
+              displayer: "Text",
               value: "NOW AVAILABLE ON STREAMING SERVICES",
             },
           ],
@@ -155,8 +155,8 @@ class HeroSection28 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "tag",
-              displayer: "Tag",
+              key: "subtitle",
+              displayer: "Subtitle",
               value: "ACTION",
             },
             {
@@ -167,14 +167,14 @@ class HeroSection28 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sub_title",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "Official Season 1 Trailer",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "text",
+              displayer: "Text",
               value: "NOW AVAILABLE ON STREAMING SERVICES",
             },
           ],
@@ -213,8 +213,8 @@ class HeroSection28 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "tag",
-              displayer: "Tag",
+              key: "subtitle",
+              displayer: "Subtitle",
               value: "TECHNOLOGY",
             },
             {
@@ -225,14 +225,14 @@ class HeroSection28 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "sub_title",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "Worldwide Premiere",
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "text",
+              displayer: "Text",
               value: "NOW AVAILABLE ON STREAMING SERVICES",
             },
           ],
@@ -332,7 +332,7 @@ class HeroSection28 extends BaseHeroSection {
                     : () => { }
                 }
               >
-                {this.castToString(item.getPropValue("tag")) && (
+                {this.castToString(item.getPropValue("subtitle")) && (
                   <>
                     {item.getPropValue("logo") && (
                       <Base.Media
@@ -345,7 +345,7 @@ class HeroSection28 extends BaseHeroSection {
                         this.decorateCSS("withImage")
                         } ${!item.getPropValue("image") && this.decorateCSS("noImage")} ${this.getPropValue("line") && this.decorateCSS("hasLine")}`}
                     >
-                      {item.getPropValue("tag")}
+                      {item.getPropValue("subtitle")}
                     </Base.H5>
                   </>
                 )}
@@ -358,22 +358,22 @@ class HeroSection28 extends BaseHeroSection {
                     {item.getPropValue("title")}
                   </Base.H1>
                 )}
-                {this.castToString(item.getPropValue("sub_title")) && (
+                {this.castToString(item.getPropValue("description")) && (
                   <Base.H3
                     className={`${this.decorateCSS("sub_title")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
                       } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
                   >
-                    {item.getPropValue("sub_title")}
+                    {item.getPropValue("description")}
                   </Base.H3>
                 )}
-                {this.castToString(item.getPropValue("description")) && (
+                {this.castToString(item.getPropValue("text")) && (
                   <Base.P
                     className={`${this.decorateCSS("description")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
                       } ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
                   >
-                    {item.getPropValue("description")}
+                    {item.getPropValue("text")}
                   </Base.P>
                 )}
               </div>

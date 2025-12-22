@@ -130,7 +130,7 @@ class HeroSection30 extends BaseHeroSection {
              {this.getPropValue("logo") && (
                 <Base.Media
                   value={this.getPropValue("logo")}
-                  className={this.decorateCSS("logo")}
+                  className={`${this.decorateCSS("logo")} ${!video && this.decorateCSS("logo-no-image")}`}
                 />
               )}
 

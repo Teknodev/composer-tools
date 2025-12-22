@@ -55,6 +55,10 @@
           max-width: 250px;
           color: white;
           display: block;
+
+          &.logo-no-image {
+            color: var(--composer-font-color-primary);
+          }
         }
 
         .up-text {

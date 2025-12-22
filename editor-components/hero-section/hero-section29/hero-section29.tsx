@@ -192,11 +192,9 @@ class HeroSection29 extends BaseHeroSection {
     const image = this.getPropValue("image");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const buttonTextExist = this.castToString(button.text);
-    const showContent = titleExist || descriptionExist || serviceItems.length > 0;
+    const showContent = logo || subtitleExist || titleExist || descriptionExist || serviceItems.length > 0;
 
     const submitText = this.getPropValue("submitText");
-
-    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -303,7 +301,7 @@ class HeroSection29 extends BaseHeroSection {
                     {serviceItems.map((item: any, index: number) => (
                       <Base.VerticalContent className={this.decorateCSS("service-card")}>
                         <div className={this.decorateCSS("service-svg")}>
-                          <Base.Media value={item.icon} />
+                          <Base.Media className={this.decorateCSS("icon")} value={item.icon} />
                         </div>
                         <Base.H4 className={this.decorateCSS("service-title")}>
                           {item.title}

@@ -243,7 +243,7 @@ class HeroSection35 extends BaseHeroSection {
                                 <div className={this.decorateCSS("left-content-wrapper")}>
                                     {(leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <div className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
                                         {leftCardSubtitleExist && (
-                                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${rightCard.image && this.decorateCSS("subtitle-has-image")}`}>
+                                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${leftCard.pattern && this.decorateCSS("subtitle-has-image")}`}>
                                                 {leftCard.subtitle}
                                             </Base.SectionSubTitle>
                                         )}

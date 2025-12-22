@@ -814,7 +814,7 @@ class HeroSection31 extends BaseHeroSection {
                             className={this.decorateCSS("background-right")}
                           />
                         )}
-                        {overlay && <div className={this.decorateCSS("overlay")}></div>}
+                        {(overlay && item.rightImage) && <div className={this.decorateCSS("overlay")}></div>}
                       </div>
                     </div>
                   ))}
@@ -951,7 +951,7 @@ class HeroSection31 extends BaseHeroSection {
                   
                   <div className={this.decorateCSS("button-box")}>
                     {activeSlideObj.actions.length > 0 &&
-                      activeSlideObj.actions.map((buttonItem: INPUTS.CastedButton) => (
+                      activeSlideObj.actions.map((buttonItem: INPUTS.CastedButton) => (this.castToString(buttonItem.text) || buttonItem.icon) && (
                           <ComposerLink path={buttonItem.url}>
                             <Base.Button buttonType={buttonItem.type}
                               className={`${this.decorateCSS("button")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
@@ -968,7 +968,7 @@ class HeroSection31 extends BaseHeroSection {
                               {buttonItem.icon && (
                                 <Base.Media value={buttonItem.icon} className={this.decorateCSS("button-icon")} />
                               )}
-                              <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
+                              {this.castToString(buttonItem.text) && <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>}
                             </Base.Button>
                           </ComposerLink>
                       ))

@@ -5,6 +5,9 @@
   background: var(--composer-html-background);
   position: relative;
 
+              &.with-image {
+                color: white !important;
+              }
   .carousel {
 
     >div {
@@ -14,9 +17,6 @@
             position: relative;
             height: 100vh;
 
-            >div {
-              height: 100%;
-            }
           }
         }
       }
@@ -24,6 +24,9 @@
 
     .slider-image {
       position: absolute;
+              &.with-image {
+                color: white !important;
+              }
       top: 0;
       left: 0;
       width: 100%;
@@ -33,6 +36,9 @@
       z-index: 1;
     }
 
+              &.with-image {
+                color: white !important;
+              }
     .overlay {
       position: absolute;
       top: 0;
@@ -297,17 +303,21 @@
 
             .subtitle {
               text-align: end;
-              color: white;
               margin-right: 0;
               &::before {
                 display: none !important;
               }
               &.subtitle-has-image {
                 background: transparent;
+                color: white;
                 padding: 0;
                 margin-bottom: 0;
                 &::before { background: transparent !important; }
               }
+            }
+
+            .with-image {
+              color: white !important;
             }
 
             .title {
@@ -317,7 +327,9 @@
               overflow: hidden;
               text-overflow: ellipsis;
               -webkit-line-clamp: 3;
-              color: white;
+              &.with-image {
+                color: white;
+              }
             }
 
             .description {
@@ -327,7 +339,9 @@
               overflow: hidden;
               text-overflow: ellipsis;
               -webkit-line-clamp: 5;
-              color: white;
+              &.with-image {
+                color: white;
+              }
             }
 
             .button {
@@ -351,7 +365,7 @@
         &.black-theme {
           .layout {
             .content {
-              .title, .description, .logo {
+              .logo {
                 color: var(--composer-font-color-primary);
               }
             }

@@ -334,10 +334,30 @@
 
                 .slider-container {
                     .slider-inner {
+                        /* when no image, make inner texts use primary font color */
+                        color: var(--composer-font-color-primary);
+
+                        .logo {
+                            color: var(--composer-font-color-primary);
+                        }
+
                         .up-text {
                             .subtitle, .title, .description {
-                                content: "";
+                                color: var(--composer-font-color-primary);
                             }
+                            .subtitle::before {
+                                background: var(--composer-font-color-primary) !important;
+                            }
+                        }
+
+                        .title {
+                            color: var(--composer-font-color-primary);
+                            -webkit-text-stroke-color: var(--composer-font-color-primary);
+                            stroke: var(--composer-font-color-primary);
+                        }
+
+                        .description {
+                            color: var(--composer-font-color-primary);
                         }
                     }
                 }

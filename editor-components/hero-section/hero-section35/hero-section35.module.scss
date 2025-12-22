@@ -51,15 +51,15 @@
                             margin-bottom: var(--composer-gap-md);
                             width: fit-content;
                             margin-left: 0;
-                            &::before{
-                                background: var(--composer-font-color-secondary) !important;
-                            }
+                            background: transparent;
+                            padding: 0;
+                           
                             &.subtitle-has-image{
                                 background: transparent;
                                 padding: 0;
                                 margin-bottom: 0;
                                 &::before{
-                                    background: transparent !important;
+                                    background: white !important;
                                 }
                             }
                         }
@@ -83,7 +83,7 @@
                             }
                             .divider-top {
                                 width: 100%;
-                                border-top: 2px dashed var(--composer-font-color-primary);
+                                border-top: 2px dashed white;
                                 margin-bottom: var(--composer-gap-md);
                             }
                             .main-info{
@@ -107,7 +107,7 @@
                                 .divider-middle {
                                     width: 1px;
                                     align-self: stretch; 
-                                    border-left: 2px dashed var(--composer-font-color-primary);
+                                    border-left: 2px dashed white;
                                 }
                                 .description{
                                     font-size: 1.5rem;
@@ -117,7 +117,7 @@
                             }
                             .divider-bottom {
                                 width: 100%;
-                                border-top: 2px dashed var(--composer-font-color-primary);
+                                border-top: 2px dashed white;
                                 margin-top: var(--composer-gap-md);
                             }
                         }

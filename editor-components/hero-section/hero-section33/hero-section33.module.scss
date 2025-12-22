@@ -158,9 +158,14 @@
           width: 100%;
 
           &.centered {
-            text-align: center;
-            justify-content: center;
-            align-items: center;
+            text-align: center !important;
+            justify-content: center !important;
+            align-items: center !important;
+
+            .content-subtitle, .content-title, .buttons-div {
+              text-align: center !important;
+            }
+
           }
 
           &.with-transition {
@@ -170,11 +175,14 @@
           &.fix-location {
             transform: translateX(0);
             opacity: 1;
+            align-items: baseline;
           }
 
           .content-subtitle {
             font-size: 2rem;
             margin-bottom: var(--composer-gap-sm);
+            text-align: left;
+            margin-left: 0;
 
             &.blackColor {
               color: black;
@@ -194,10 +202,12 @@
 
           .content-title {
             color: var(--composer-font-color-primary);
+            text-align: left;
             font-size: 6rem;
             font-weight: bold;
             width: calc(100% - var(--composer-gap-lg));
             word-break: unset;
+            margin-left: 0;
 
             &.blackColor {
               color: black;
@@ -211,6 +221,7 @@
             flex-wrap: wrap;
             row-gap: 0;
             width: fit-content;
+            align-items: baseline;
 
             > div {
               height: 40px;
@@ -245,7 +256,7 @@
   .circle {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline;
     transform-origin: center;
     width: 100px;
     height: 100px;
