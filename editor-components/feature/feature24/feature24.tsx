@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  BaseFeature,
-  TypeMediaInputValue,
-  TypeUsableComponentProps,
-} from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature24.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -14,13 +10,8 @@ type FeatureItem = {
   text: React.JSX.Element;
 };
 
-type Feature24Button = Omit<INPUTS.CastedButton, "icon" | "image"> & {
-  icon?: TypeMediaInputValue | null;
-  image?: TypeMediaInputValue | null;
-};
-
 class Feature24 extends BaseFeature {
-  constructor(props?: TypeUsableComponentProps) {
+  constructor(props?: any) {
     super(props, styles);
 
     this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
@@ -116,53 +107,14 @@ class Feature24 extends BaseFeature {
     const headerExist = subtitleExist || titleExist || descriptionExist;
 
     const iconBackground = !!this.getPropValue("iconBackground");
-    const itemCount = Number(this.getPropValue("itemCount")) || 4;
+    const itemCount = this.getPropValue("itemCount") || 4;
 
-    const featuresRaw = this.castToObject<FeatureItem[]>("features");
-    const features = Array.isArray(featuresRaw) ? featuresRaw : [];
-
-    const buttonsRaw = this.castToObject<Feature24Button[]>("buttons");
-    const buttons = Array.isArray(buttonsRaw) ? buttonsRaw : [];
+    const features = this.castToObject<FeatureItem[]>("features");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const iconWrapperClassName =
       `${this.decorateCSS("icon-wrapper")}` +
       (iconBackground ? ` ${this.decorateCSS("with-bg")}` : "");
-
-    const buttonNodes: React.ReactNode[] = [];
-    for (let index = 0; index < buttons.length; index++) {
-      const buttonItem = buttons[index];
-
-      const textExist = !!this.castToString(buttonItem?.text);
-      if (!textExist) continue;
-
-      const iconValue = buttonItem.icon || null;
-      const buttonUrl = buttonItem.url || "#";
-
-      buttonNodes.push(
-        <ComposerLink
-          key={index}
-          path={buttonUrl}
-          className={this.decorateCSS("button-link")}
-        >
-          <Base.Button
-            buttonType={buttonItem.type}
-            className={this.decorateCSS("button")}
-          >
-            {iconValue && (
-              <Base.Media
-                value={iconValue}
-                className={this.decorateCSS("btn-icon")}
-              />
-            )}
-            <Base.P className={this.decorateCSS("button-text")}>
-              {buttonItem.text}
-            </Base.P>
-          </Base.Button>
-        </ComposerLink>
-      );
-    }
-
-    const hasButtons = buttonNodes.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -238,8 +190,25 @@ class Feature24 extends BaseFeature {
               </Base.ListGrid>
             )}
 
-            {hasButtons && (
-              <div className={this.decorateCSS("buttons")}>{buttonNodes}</div>
+            {buttons.length > 0 && (
+              <div className={this.decorateCSS("buttons")}>
+                {buttons.map((buttonItem, index) => {
+                  const textExist = this.castToString(buttonItem?.text);
+                  if (!textExist) return null;
+                  return (
+                    <ComposerLink key={index} path={buttonItem.url}>
+                      <Base.Button
+                        buttonType={buttonItem.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {buttonItem.text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
             )}
           </Base.VerticalContent>
         </Base.MaxContent>

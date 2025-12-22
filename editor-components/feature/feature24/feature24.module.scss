@@ -106,21 +106,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
       flex-wrap: wrap;
       width: 100%;
       margin-top: var(--composer-gap-lg);
 
-      .button-link {
-        display: inline-flex;
-        text-decoration: none;
-      }
-
-      .button {
-        .btn-icon {
-          font-size: var(--composer-font-size-md);
-        }
-      }
     }
   }
 
