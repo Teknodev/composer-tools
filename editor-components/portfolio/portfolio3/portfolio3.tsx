@@ -29,10 +29,24 @@ class Portfolio3 extends BasePortfolio {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Explore Our Collection",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value:
         "OUR <span style='color: transparent; -webkit-text-stroke: 2px var(--composer-font-color-primary); text-stroke: 2px var(--composer-font-color-primary);'>GAMES</span>",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Discover our latest gaming experiences",
     });
 
     this.addProp({
@@ -578,10 +592,15 @@ class Portfolio3 extends BasePortfolio {
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("title"));
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const games = this.castToObject<Game[]>("games") || [];
 
+    const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
     
     const hasAnyButton =
       buttons &&
@@ -589,6 +608,7 @@ class Portfolio3 extends BasePortfolio {
         (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
       );
 
+    const hasHeaderContent = hasSubtitle || hasTitle || hasDescription || hasAnyButton;
     
     this.gameCardRefs = Array(games.length).fill(null);
     this.sentinelRefs = Array(games.length).fill(null);
@@ -597,15 +617,27 @@ class Portfolio3 extends BasePortfolio {
       <Base.Container className={`${this.decorateCSS("container-bg")} ${this.decorateCSS("container")}`}>
           <div className={this.decorateCSS("content-wrapper")}>
             
-            {(title || hasAnyButton) && (
-              <div className={this.decorateCSS("header-section")}>
-                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS("header-content")}`}>
+            {hasHeaderContent && (
+              
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
                   <div className={this.decorateCSS("header-content")}>
-                    {title && (
-                      <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                        {this.getPropValue("title")}
-                      </Base.SectionTitle>
-                    )}
+                    <Base.VerticalContent className={this.decorateCSS("header-text")}>
+                      {hasSubtitle && (
+                        <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                          {subtitle}
+                        </Base.SectionSubTitle>
+                      )}
+                      {hasTitle && (
+                        <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                          {title}
+                        </Base.SectionTitle>
+                      )}
+                      {hasDescription && (
+                        <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                          {description}
+                        </Base.SectionDescription>
+                      )}
+                    </Base.VerticalContent>
                     {hasAnyButton && (
                       <div className={this.decorateCSS("header-buttons")}>
                         {buttons.map(
@@ -663,7 +695,7 @@ class Portfolio3 extends BasePortfolio {
                     )}
                   </div>
                 </Base.MaxContent>
-              </div>
+              
             )}
 
             <Base.MaxContent className={this.decorateCSS("max-content")}>
