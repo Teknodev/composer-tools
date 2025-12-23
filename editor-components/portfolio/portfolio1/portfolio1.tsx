@@ -1,10 +1,23 @@
 import * as React from "react";
 import styles from "./portfolio1.module.scss";
-import { BasePortfolio } from "../../EditorComponent";
+import { BasePortfolio, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+interface PortfolioItem {
+  visibility: boolean;
+  url: string;
+  subtitle: string;
+  title: string;
+  description: string;
+  icon: TypeMediaInputValue;
+  icon2: TypeMediaInputValue;
+  buttons: any[];
+  image: TypeMediaInputValue;
+  overlay: boolean;
+}
 
 class Portfolio1 extends BasePortfolio {
   constructor(props?: any) {
@@ -49,14 +62,14 @@ class Portfolio1 extends BasePortfolio {
           key: "icon",
           displayer: "Icon",
           additionalParams: { availableTypes: ["icon", "image"] },
-          value: "",
+          value: { type: "icon", name: "" },
         },
         {
           type: "media",
           key: "icon2",
           displayer: "Icon2",
           additionalParams: { availableTypes: ["icon", "image"] },
-          value: "",
+          value: { type: "icon", name: "" },
         },
         {
           type: "array",
@@ -124,14 +137,14 @@ class Portfolio1 extends BasePortfolio {
           key: "icon",
           displayer: "Icon",
           additionalParams: { availableTypes: ["icon", "image"] },
-          value: "",
+          value: { type: "icon", name: "" },
         },
         {
           type: "media",
           key: "icon2",
           displayer: "Icon2",
           additionalParams: { availableTypes: ["icon", "image"] },
-          value: "",
+          value: { type: "icon", name: "" },
         },
         {
           type: "array",
@@ -361,14 +374,14 @@ class Portfolio1 extends BasePortfolio {
           key: "icon",
           displayer: "Icon",
           additionalParams: { availableTypes: ["icon", "image"] },
-          value: "",
+          value: { type: "icon", name: "" },
         },
         {
           type: "media",
           key: "icon2",
           displayer: "Icon2",
           additionalParams: { availableTypes: ["icon", "image"] },
-          value: "",
+          value: { type: "icon", name: "" },
         },
         {
           type: "array",
@@ -399,7 +412,7 @@ class Portfolio1 extends BasePortfolio {
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
-      displayer: "Hover Animation Style",
+      displayer: "Animation",
       value: ["animate1"],
       additionalParams: {
         selectItems: ["animate1", "animate2"],
@@ -411,21 +424,31 @@ class Portfolio1 extends BasePortfolio {
   }
 
   render() {
-    const itemLeft = this.castToObject<any>("leftSideItem");
-    const itemTopRight = this.castToObject<any>("rightSideTopRightItem");
-    const itemTopLeft = this.castToObject<any>("rightSideTopLeftItem");
-    const itemBottomLeft = this.castToObject<any>("rightSideBottomLeftItem");
-    const itemBottomRight = this.castToObject<any>("rightSideBottomRightItem");
+    const itemLeft = this.castToObject<PortfolioItem>("leftSideItem");
+    const itemTopRight = this.castToObject<PortfolioItem>(
+      "rightSideTopRightItem"
+    );
+    const itemTopLeft = this.castToObject<PortfolioItem>(
+      "rightSideTopLeftItem"
+    );
+    const itemBottomLeft = this.castToObject<PortfolioItem>(
+      "rightSideBottomLeftItem"
+    );
+    const itemBottomRight = this.castToObject<PortfolioItem>(
+      "rightSideBottomRightItem"
+    );
 
-    const isRenderableImage = (m: any) => !!(m && m.url);
+    const isRenderableImage = (m: TypeMediaInputValue) =>
+      !!(m && typeof m === "object" && "url" in m && m.url);
 
-    const hasIcon = (icon: any) => !!(icon && (icon.name || icon.url));
+    const hasIcon = (icon: TypeMediaInputValue) =>
+      !!(icon && typeof icon === "object" && ("name" in icon || "url" in icon));
 
-    const getButtonsFromItem = (item: any) => {
+    const getButtonsFromItem = (item: PortfolioItem) => {
       const buttonsArray = item?.buttons;
       if (!buttonsArray) return [];
 
-      return buttonsArray.map((btn: any) => {
+      return buttonsArray.map((btn: { value?: any }) => {
         const parent = btn?.value;
         const icon = this.getPropValue("icon", { parent_object: parent });
         const image = this.getPropValue("image", { parent_object: parent });
@@ -439,22 +462,34 @@ class Portfolio1 extends BasePortfolio {
       });
     };
 
-    const hasAnyButtonInItem = (buttons: any[]) => {
-      return buttons.some((b: any) => {
+    const hasAnyButtonInItem = (
+      buttons: { text?: string; media?: TypeMediaInputValue }[]
+    ) => {
+      return buttons.some((b) => {
         const textExists = !!this.castToString(b?.text);
         const media = b?.media;
-        const mediaExists = !!(media && (media.name || media.url));
+        const mediaExists = !!(
+          media &&
+          typeof media === "object" &&
+          ("name" in media || "url" in media)
+        );
         return textExists || mediaExists;
       });
     };
 
-    const hasContentInItem = (item: any) => {
+    const hasContentInItem = (item: PortfolioItem) => {
       const buttons = getButtonsFromItem(item);
+      const subtitle = item?.subtitle;
+      const title = item?.title;
+      const description = item?.description;
+      const image = item?.image;
+      const icon = item?.icon;
+      const icon2 = item?.icon2;
 
-      const hasSubtitle = this.castToString(item?.subtitle);
-      const hasTitle = this.castToString(item?.title);
-      const hasDescription = this.castToString(item?.description);
-      const hasImage = isRenderableImage(item?.image);
+      const hasSubtitle = this.castToString(subtitle);
+      const hasTitle = this.castToString(title);
+      const hasDescription = this.castToString(description);
+      const hasImage = isRenderableImage(image);
       const hasAnyButton = hasAnyButtonInItem(buttons);
 
       return !!(
@@ -462,13 +497,13 @@ class Portfolio1 extends BasePortfolio {
         hasTitle ||
         hasDescription ||
         hasImage ||
-        hasIcon(item?.icon) ||
-        hasIcon(item?.icon2) ||
+        hasIcon(icon) ||
+        hasIcon(icon2) ||
         hasAnyButton
       );
     };
 
-    const itemHasContent = (item: any) =>
+    const itemHasContent = (item: PortfolioItem) =>
       !!(item && item.visibility && hasContentInItem(item));
 
     const renderRight =
@@ -479,12 +514,17 @@ class Portfolio1 extends BasePortfolio {
 
     const anyVisible = itemHasContent(itemLeft) || renderRight;
 
-    const renderItemContent = (item: any) => {
+    const renderItemContent = (item: PortfolioItem) => {
       const buttons = getButtonsFromItem(item);
+      const subtitle = item?.subtitle;
+      const title = item?.title;
+      const description = item?.description;
+      const icon = item?.icon;
+      const icon2 = item?.icon2;
 
-      const hasSubtitle = this.castToString(item?.subtitle);
-      const hasTitle = this.castToString(item?.title);
-      const hasDescription = this.castToString(item?.description);
+      const hasSubtitle = this.castToString(subtitle);
+      const hasTitle = this.castToString(title);
+      const hasDescription = this.castToString(description);
       const hasAnyButton = hasAnyButtonInItem(buttons);
 
       if (!hasContentInItem(item)) {
@@ -498,29 +538,29 @@ class Portfolio1 extends BasePortfolio {
           >
             {hasSubtitle && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {item.subtitle}
+                {subtitle}
               </Base.SectionSubTitle>
             )}
 
-            {(hasTitle || hasIcon(item.icon) || hasIcon(item.icon2)) && (
+            {(hasTitle || hasIcon(icon) || hasIcon(icon2)) && (
               <div className={this.decorateCSS("title-row")}>
                 {hasTitle && (
                   <Base.H2 className={this.decorateCSS("title")}>
-                    {item.title}
+                    {title}
                   </Base.H2>
                 )}
 
-                {(hasIcon(item.icon) || hasIcon(item.icon2)) && (
+                {(hasIcon(icon) || hasIcon(icon2)) && (
                   <div className={this.decorateCSS("icons-wrapper")}>
-                    {hasIcon(item.icon) && (
+                    {hasIcon(icon) && (
                       <Base.Media
-                        value={item.icon}
+                        value={icon}
                         className={this.decorateCSS("icon1")}
                       />
                     )}
-                    {hasIcon(item.icon2) && (
+                    {hasIcon(icon2) && (
                       <Base.Media
-                        value={item.icon2}
+                        value={icon2}
                         className={this.decorateCSS("icon2")}
                       />
                     )}
@@ -533,28 +573,31 @@ class Portfolio1 extends BasePortfolio {
               <Base.SectionDescription
                 className={this.decorateCSS("description")}
               >
-                {item.description}
+                {description}
               </Base.SectionDescription>
             )}
 
             {hasAnyButton && (
               <div className={this.decorateCSS("action-buttons")}>
-                {buttons.map((btn: any, index: number) => {
-                  const btnTextExist = this.castToString(btn.text);
+                {buttons.map((btn, index: number) => {
+                  const buttonText = btn.text;
                   const buttonMedia = btn.media;
+                  const buttonUrl = btn.url || "#";
+                  const buttonType = btn.type;
+
+                  const btnTextExist = this.castToString(buttonText);
                   const buttonMediaExist =
                     buttonMedia && (buttonMedia.name || buttonMedia.url);
-                  const buttonText = btn.text;
 
                   if (!btnTextExist && !buttonMediaExist) return null;
-                  const buttonUrl = btn.url || "#";
+
                   return (
                     <ComposerLink
                       path={buttonUrl}
                       key={`portfolio-btn-${index}`}
                     >
                       <Base.Button
-                        buttonType={btn.type}
+                        buttonType={buttonType}
                         className={this.decorateCSS("button")}
                       >
                         {buttonMediaExist && (
@@ -583,17 +626,17 @@ class Portfolio1 extends BasePortfolio {
       <Base.Container
         isFull={true}
         className={`${this.decorateCSS("container")} ${
-          !anyVisible ? this.decorateCSS("no-visible") : ""
+          !anyVisible && this.decorateCSS("no-visible")
         }`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {/* left */}
           {itemHasContent(itemLeft) && (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
                 <div
                   className={`${this.decorateCSS("item")} ${
-                    !itemLeft.image ? this.decorateCSS("no-image") : ""
+                    !itemLeft.image ||
+                    (!itemLeft.image.url && this.decorateCSS("no-image"))
                   }`}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
@@ -625,9 +668,9 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemTopLeft.image || !itemTopLeft.image.url
-                            ? this.decorateCSS("no-image")
-                            : ""
+                          !itemTopLeft.image ||
+                          (!itemTopLeft.image.url &&
+                            this.decorateCSS("no-image"))
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"
@@ -656,9 +699,9 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemTopRight.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemTopRight.image || !itemTopRight.image.url
-                            ? this.decorateCSS("no-image")
-                            : ""
+                          !itemTopRight.image ||
+                          (!itemTopRight.image.url &&
+                            this.decorateCSS("no-image"))
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"
@@ -692,9 +735,9 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemBottomLeft.image || !itemBottomLeft.image.url
-                            ? this.decorateCSS("no-image")
-                            : ""
+                          !itemBottomLeft.image ||
+                          (!itemBottomLeft.image.url &&
+                            this.decorateCSS("no-image"))
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"
@@ -723,9 +766,9 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemBottomRight.image || !itemBottomRight.image.url
-                            ? this.decorateCSS("no-image")
-                            : ""
+                          !itemBottomRight.image ||
+                          (!itemBottomRight.image.url &&
+                            this.decorateCSS("no-image"))
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"

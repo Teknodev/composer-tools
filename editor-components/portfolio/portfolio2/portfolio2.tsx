@@ -30,6 +30,22 @@ class Portfolio2 extends BasePortfolio {
         "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
     });
     this.addProp({
+      type: "array",
+      key: "leftCardButtons",
+      displayer: "Left Card Buttons",
+      value: [
+        INPUTS.BUTTON(
+          "leftCardButton",
+          "Left Card Button",
+          "READ MORE",
+          "",
+          "BsArrowRight",
+          null,
+          "Tertiary"
+        ),
+      ],
+    });
+    this.addProp({
       type: "media",
       key: "image",
       displayer: "Image",
@@ -68,32 +84,6 @@ class Portfolio2 extends BasePortfolio {
         "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
     });
     this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Hover Animation Style",
-      value: ["animate1", "animate2"],
-      additionalParams: {
-        selectItems: ["animate1", "animate2"],
-      },
-    });
-
-    this.addProp({
-      type: "array",
-      key: "leftCardButtons",
-      displayer: "Left Card Buttons",
-      value: [
-        INPUTS.BUTTON(
-          "leftCardButton",
-          "Left Card Button",
-          "READ MORE",
-          "",
-          "BsArrowRight",
-          null,
-          "Tertiary"
-        ),
-      ],
-    });
-    this.addProp({
       type: "array",
       key: "rightCardButtons",
       displayer: "Right Card Buttons",
@@ -109,6 +99,16 @@ class Portfolio2 extends BasePortfolio {
         ),
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Animation",
+      value: ["animate1", "animate2"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"],
+      },
+    });
+    
   }
 
   static getName(): string {
@@ -131,6 +131,10 @@ class Portfolio2 extends BasePortfolio {
       this.castToString(text) ||
       showNavigateContainer;
 
+      const hasTitle = this.castToString(title);
+      const hasSubTitle = this.castToString(subTitle);
+      const hasText = this.castToString(text);
+
     if (!showSideContainer) {
       return null;
     }
@@ -140,17 +144,17 @@ class Portfolio2 extends BasePortfolio {
         {showSideContainer && (
           <div className={this.decorateCSS("side-container")}>
             <Base.VerticalContent className={this.decorateCSS("side")}>
-              {this.castToString(subTitle) && (
+              {hasSubTitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                   {subTitle}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(title) && (
+              {hasTitle && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {title}
                 </Base.SectionTitle>
               )}
-              {this.castToString(text) && (
+              {hasText && (
                 <Base.SectionDescription className={this.decorateCSS("text")}>
                   {text}
                 </Base.SectionDescription>
@@ -180,11 +184,11 @@ class Portfolio2 extends BasePortfolio {
                         <ComposerLink path={buttonUrl}>
                           <div className={this.decorateCSS("text-and-icon")}>
                             {btnTextExist && (
-                              <div
+                              <Base.P
                                 className={this.decorateCSS("navigate-text")}
                               >
                                 {btn.text}
-                              </div>
+                              </Base.P>
                             )}
                             {buttonIconExist && (
                               <Base.Media
