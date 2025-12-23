@@ -6,14 +6,13 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 const TypeWriter: React.FC<{ text: string | React.ReactNode; className?: string; speed?: number }> = ({ text, className, speed = 80 }) => {
   const [index, setIndex] = React.useState(0);
-  const textStr = String(text ?? "");
 
   React.useEffect(() => {
     setIndex(0);
-    if (!textStr) return;
+    if (!text) return;
     const id = setInterval(() => {
       setIndex((i) => {
-        if (i >= textStr.length) {
+        if (i >= text.length) {
           clearInterval(id);
           return i;
         }
@@ -21,12 +20,12 @@ const TypeWriter: React.FC<{ text: string | React.ReactNode; className?: string;
       });
     }, speed);
     return () => clearInterval(id);
-  }, [textStr, speed]);
+  }, [text, speed]);
 
-  const finished = !!textStr && index >= textStr.length;
+  const finished = !!text && index >= text.length;
   return (
     <Base.SectionTitle className={className} data-typed-complete={finished ? "true" : "false"}>
-      {textStr.slice(0, index)}
+      {text.slice(0, index)}
     </Base.SectionTitle>
   );
 };
@@ -136,7 +135,7 @@ class IntroSection10 extends BaseIntroSection {
 
                 <Base.Row className={this.decorateCSS("actions-block")}>
                   {buttons.map((btn, i) => {
-                  const rawIcon = (btn as any)?.icon;
+                  const rawIcon = btn?.icon;
                   const icon = rawIcon?.name ?? rawIcon?.value?.name ?? rawIcon ?? "";
                     const textStr = this.castToString(btn.text);
                     if (!textStr && !icon) return null;

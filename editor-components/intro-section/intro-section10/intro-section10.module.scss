@@ -18,13 +18,13 @@
         .bottom-text {    
           &:not([data-typed-complete="true"])::after {
             content: "|";
-            margin-left: 0.25rem;
+            margin-left: var(--composer-gap-xs);
             animation: blink-caret 0.8s steps(1) infinite;
           }
     
           &[data-typed-complete="true"]::after {
             content: "|";
-            margin-left: 0.25rem;
+            margin-left: var(--composer-gap-xs);
             animation: caret-hide 1ms linear 1s forwards;
           }
         }
@@ -89,8 +89,6 @@
     }
 
     .right {
-      display: flex;
-      flex-direction: column;
       align-self: center;
       align-items: flex-start;
 
@@ -139,11 +137,6 @@
   }
 }
 
-@keyframes blink-caret {
-  50% {
-    opacity: 0;
-  }
-}
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
