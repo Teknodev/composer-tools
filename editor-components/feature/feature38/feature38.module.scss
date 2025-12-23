@@ -1,0 +1,110 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+
+            .text-content {
+
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
+                }
+            }
+
+            .cards-container {
+                gap: var(--composer-gap-lg);
+                align-items: stretch;
+                justify-items: stretch;
+
+                .card {
+                    position: relative;
+                    width: 100%;
+                    height: 300px;
+                    transform-style: preserve-3d;
+                    transition: transform 0.5s;
+                    cursor: pointer;
+                    background-color: transparent !important;
+                    box-shadow: none !important;
+                    padding: 0 !important;
+                    border-radius: 0 !important;
+
+                    .face {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: var(--composer-border-radius-sm);
+                        box-shadow: var(box-shadow-active);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: var(--composer-gap-lg);
+                        box-sizing: border-box;
+                        backface-visibility: hidden;
+                    }
+
+                    .front {
+                        transform: translateZ(150px);
+                        background-color: var(--composer-primary-color);
+                        z-index: 2;
+                    }
+
+                    .top {
+                        transform: rotateX(90deg) translateZ(150px);
+                        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        z-index: 1;
+                    }
+
+                    &:hover {
+                        transform: rotateX(-90deg);
+                    }
+
+                    .card-title,
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left !important;
+                    }
+
+                    .icon-wrapper {
+                        .icon {
+                            font-size: 5rem;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center !important;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: var(--composer-gap-md);
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content-wrapper {
+                gap: calc(var(--composer-gap-sm) * 3);
+            }
+        }
+    }
+}
