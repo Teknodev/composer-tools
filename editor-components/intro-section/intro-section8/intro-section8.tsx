@@ -78,7 +78,7 @@ class IntroSection8 extends BaseIntroSection {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
+      value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White")],
     });
   }
 
