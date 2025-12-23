@@ -92,8 +92,10 @@ class Download3 extends BaseDownload {
           <div className={this.decorateCSS("page")}>
             {alignmentValue === "left" && (
               <div className={this.decorateCSS("group-container")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!buttonsExist && this.decorateCSS("full")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+                <Base.VerticalContent className={this.decorateCSS("title-block")}>
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!buttonsExist && this.decorateCSS("full")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+                </Base.VerticalContent>
                 <Base.SectionDescription className={`${this.decorateCSS("description")} ${!titleExist && this.decorateCSS("full")}`}>{this.getPropValue("description")}</Base.SectionDescription>
                 {buttonsExist && (
                   <Base.VerticalContent className={this.decorateCSS("button-group")}>

@@ -33,19 +33,23 @@
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         gap: var(--composer-gap-lg);
 
-        .title {
+        .title-block {
+          display: flex;
+          flex-direction: column;
           width: 20%;
-          margin: 0;
-          &.full{
-            width: 40%;
+          align-items: flex-start;
+          justify-content: center;
+          .subtitle {
+            content: "";
+            text-align: left;
+            margin-bottom: calc(var(--composer-gap-xs));
+
           }
-        }
-        .subtitle {
-          content: "";
-          transform: translateX(0);
-          text-align: center;
-          &::before {
-            display: none;
+          .title {
+            margin: 0;
+            &.full {
+              width: 40%;
+            }
           }
         }
         .description {
