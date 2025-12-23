@@ -169,10 +169,18 @@
                   }
                 }
               }
+              .button-wrapper{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
               .card-button {
                 width: 100%;
                 justify-content: center;
+                
               }
+            }
   
               .pricingTitle {
                 margin-top: var(--composer-gap-md);
