@@ -10,7 +10,7 @@
         content: "";
         position: absolute;
         pointer-events: none;
-        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%); // İstenen düz renk
+        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         opacity: 0;
         z-index: 0;
         inset: 0;
@@ -52,7 +52,6 @@
                     box-sizing: border-box;
                     overflow: hidden;
                     text-align: left !important;
-                    align-items: left !important;
 
                     .card-title,
                     .card-description {

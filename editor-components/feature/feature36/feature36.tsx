@@ -135,6 +135,7 @@ class Feature36 extends BaseFeature {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const cards = this.castToObject<Card[]>("cards");
         const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
+        const textButtons = buttons.filter(btn => this.castToString(btn.text));
         const hasContent = subtitleExist || titleExist || descriptionExist;
 
         return (
@@ -168,9 +169,9 @@ class Feature36 extends BaseFeature {
                             )}
                         </div>
                     )}
-                    {buttons.length > 0 && (
+                    {textButtons.length > 0 && (
                         <div className={this.decorateCSS("button-container")}>
-                            {buttons.map((item: ButtonTypeObj, index: number) => {
+                            {textButtons.map((item: ButtonTypeObj, index: number) => {
                                 const buttonTextExist = this.castToString(item.text);
                                 return (
                                     buttonTextExist && (
