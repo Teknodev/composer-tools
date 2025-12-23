@@ -63,7 +63,7 @@ class Feature28Component extends BaseFeature {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const image = this.getPropValue("image") as TypeMediaInputValue;
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
     const hasSubtitle = !!this.castToString(subtitle);
     const hasTitle = !!this.castToString(title);
@@ -72,18 +72,13 @@ class Feature28Component extends BaseFeature {
     const hasOverlay = hasBackground && !!this.getPropValue("overlay");
     const isVideo = image?.type === "video";
 
-    const validButtons = buttons.filter((btn) => {
-      const text = this.castToString(btn?.text);
-      const icon = btn.icon as unknown as TypeMediaInputValue;
-      const hasIcon = icon && ((icon.type === "icon" && !!icon.name) || ((icon.type === "image" || icon.type === "video") && !!icon.url));
-      return !!text || hasIcon;
-    });
+    const validButtons = buttons.filter((btn) => !!this.castToString(btn?.text));
     const hasButtons = validButtons.length > 0;
     const hasContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
     const alignment = Base.getContentAlignment();
 
-    const containerClassName = `${this.decorateCSS("container")}${hasBackground ? ` ${this.decorateCSS("has-background")}` : ""}${hasOverlay ? ` ${this.decorateCSS("overlay")}` : ""}`;
+    const containerClassName = `${this.decorateCSS("container")}${hasBackground && ` ${this.decorateCSS("has-background")}`}${hasOverlay && ` ${this.decorateCSS("overlay")}`}`;
 
     const backgroundMedia = hasBackground && isVideo
       ? { ...image, settings: { autoplay: true, muted: true, loop: true, controls: false } }
@@ -96,7 +91,7 @@ class Feature28Component extends BaseFeature {
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("content")} data-alignment={alignment}>
               {hasSubtitle && (
-                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}${hasBackground ? ` ${this.decorateCSS("has-background")}` : ""}`}>
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}${hasBackground && ` ${this.decorateCSS("has-background")}`}`}>
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
@@ -108,18 +103,14 @@ class Feature28Component extends BaseFeature {
               )}
               {hasButtons && (
                 <Base.Row className={this.decorateCSS("buttons")}>
-                  {validButtons.map((btn, i) => {
-                    const icon = btn.icon as unknown as TypeMediaInputValue;
-                    const hasIcon = icon && ((icon.type === "icon" && !!icon.name) || ((icon.type === "image" || icon.type === "video") && !!icon.url));
-                    return (
-                      <ComposerLink key={`btn-${i}`} path={btn.url || ""}>
-                        <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
-                          {hasIcon && <Base.Media value={icon} className={this.decorateCSS("button-icon")} />}
-                          {this.castToString(btn.text) && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
+                  {validButtons.map((btn, i) => (
+                    <ComposerLink key={`btn-${i}`} path={btn.url || ""}>
+                      <Base.Button buttonType={btn.type}>
+                        {btn.icon && <Base.Media value={btn.icon as TypeMediaInputValue} />}
+                        {this.castToString(btn.text) && <Base.P>{btn.text}</Base.P>}
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
                 </Base.Row>
               )}
             </Base.VerticalContent>

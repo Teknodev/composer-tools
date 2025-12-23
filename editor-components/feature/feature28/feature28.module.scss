@@ -28,13 +28,6 @@
 
       .subtitle.has-background {
         background: transparent;
-        box-shadow: none;
-        border: 0;
-
-        &::before {
-          background-color: currentColor;
-          border-color: currentColor;
-        }
       }
     }
   }
@@ -85,16 +78,6 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
-
-        .button {
-          display: inline-flex;
-          align-items: center;
-          gap: var(--composer-gap-xs);
-
-          .button-icon {
-            flex-shrink: 0;
-          }
-        }
       }
     }
   }
