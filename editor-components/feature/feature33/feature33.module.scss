@@ -1,0 +1,184 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .wrapper {
+            display: flex;
+            gap: var(--composer-gap-xl);
+            align-items: flex-start;
+
+            .left,
+            .right {
+                min-width: 0;
+            }
+
+            .left {
+                flex: 3;
+                align-items: flex-start;
+
+                .subtitle,
+                .title,
+                .description {
+                    text-align: left;
+                }
+
+                .subtitle {
+                    margin-left: 0;
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+                    align-items: center;
+                    width: 100%;
+
+                    .button {
+                        flex: 0 1 auto;
+
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .right {
+                flex: 7;
+                gap: var(--composer-gap-lg);
+
+                .card-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
+
+                    .card-icon-wrapper {
+                        width: 55px;
+                        height: 55px;
+                        min-width: 55px;
+                        min-height: 55px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-shrink: 0;
+
+                        &.with-bg {
+                            background: var(--composer-primary-color);
+
+                            .card-icon {
+                                color: var(--composer-font-color-secondary);
+                            }
+                        }
+
+                        &.no-bg {
+                            background: transparent;
+                        }
+
+                        .card-icon {
+                            font-size: 2rem;
+                            width: 2rem;
+                            height: 2rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: var(--composer-primary-color);
+                        }
+                    }
+
+                    .card-content {
+                        flex: 1;
+                        min-width: 0;
+                        align-items: flex-start;
+
+                        .card-title,
+                        .card-description {
+                            text-align: left;
+                        }
+
+                        .card-title {
+                            color: var(--composer-font-color-primary);
+                        }
+
+                        .card-description {
+                            color: var(--composer-tertiary-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .wrapper {
+        gap: var(--composer-gap-lg);
+
+        .right {
+            gap: var(--composer-gap-md);
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .wrapper {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        &.has-buttons {
+            gap: var(--composer-gap-lg);
+        }
+
+        .left,
+        .right {
+            width: 100%;
+        }
+
+        .left {
+            &[data-alignment="center"] {
+                align-items: center;
+
+                .subtitle,
+                .title,
+                .description {
+                    text-align: center;
+                }
+
+                .subtitle {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .button-container {
+                    justify-content: center;
+                }
+            }
+
+            .button-container {
+                gap: var(--composer-gap-sm);
+                row-gap: var(--composer-gap-md);
+            }
+
+            .button {
+                text-align: center;
+            }
+        }
+
+        .right {
+            gap: var(--composer-gap-md);
+
+            .card-container .card-icon-wrapper {
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                min-height: 50px;
+
+                .card-icon {
+                    font-size: 1.5rem;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                }
+            }
+        }
+    }
+}
