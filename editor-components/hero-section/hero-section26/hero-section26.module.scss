@@ -128,6 +128,7 @@
           position: relative;
 
           .image {
+            width: 100%;
             height: 100%;
             object-fit: cover;
           }
@@ -196,75 +197,26 @@
   }
 }
 
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    height: auto;
-
     .max-content {
       .sliders {
-        height: auto;
-
         .slider {
           flex-direction: column;
-          height: auto;
-          min-height: auto;
-          align-items: flex-start;
 
-          .left-side {
+          .left-side{
+            justify-content: flex-start;
             margin: 0;
-            width: 100%;
-            padding: var(--composer-gap-md);
-            flex: 1;
 
-            .left-side-content {
+            .left-side-content{
               width: 100%;
-              margin: var(--composer-gap-md) 0;
-
-              .title {
-                font-size: 3.5rem;
-              }
-
-              .description {
-                font-size: 2rem;
-              }
-
-              .subtitle {
-                font-size: 1.5rem;
-              }
-            }
-
-            &.no-image {
-              .left-side-content {
-                padding: var(--composer-gap-md);
-              }
-            }
-          }
-
-          .right-side {
-            align-items: start;
-            margin: 0;
-            flex: 1;
-            max-height: 60vh;
-            overflow: hidden;
-
-            .image {
-              height: auto;
-              max-height: 100%;
-              object-fit: cover;
+              align-items: baseline;
             }
           }
 
           .arrows {
-            left: 20px;
-            bottom: var(--composer-gap-md);
-
-            .up-arrow,
-            .down-arrow {
-              .icon {
-                width: 30px;
-                height: 30px;
-              }
-            }
+            left: var(--composer-gap-md);
           }
         }
       }

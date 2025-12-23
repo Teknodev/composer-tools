@@ -126,7 +126,7 @@
 
           .input-container {
             position: relative;
-            width: 45vh;
+            width: clamp(20vh, 40vh, 40vh);
             border-radius: var(--composer-border-radius-sm);
             border: var(--composer-font-color-primary) solid 2px;
 

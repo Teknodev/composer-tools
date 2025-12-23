@@ -382,14 +382,17 @@ class HeroSection33 extends BaseHeroSection {
                             ${item.centered && this.decorateCSS("centered")}
                           `}
                       >
-                        {item.image?.url && (
-                          <div className={`${this.decorateCSS("circle")} ${rotateActive && this.decorateCSS("rotate")}`}>
-                            <Base.Media
-                              value={item.image}
-                              className={`${this.decorateCSS("circle-image")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}
-                            />
-                          </div>
-                        )}
+                        {item.image && (() => {
+                          const isIcon = item.image?.type === "icon";
+                          return (
+                            <div className={`${this.decorateCSS(isIcon ? "icon-wrapper" : "circle")} ${!isIcon && rotateActive ? this.decorateCSS("rotate") : ""}`}>
+                              <Base.Media
+                                value={item.image}
+                                className={`${this.decorateCSS(isIcon ? "icon-media" : "circle-image")} ${item.backgroundImage && this.decorateCSS("blackColor")}`}
+                              />
+                            </div>
+                          );
+                        })()}
                         {this.castToString(item.subtitle) && (
                           <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")} ${item.backgroundImage?.url && this.decorateCSS("subtitle-has-bg")}`}>
                             {item.subtitle}

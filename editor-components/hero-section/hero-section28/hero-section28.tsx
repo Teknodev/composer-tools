@@ -336,7 +336,7 @@ class HeroSection28 extends BaseHeroSection {
                   <>
                     {item.getPropValue("logo") && (
                       <Base.Media
-                        className={this.decorateCSS("logo")}
+                        className={`${this.decorateCSS("logo")} ${!item.getPropValue("image") && this.decorateCSS("noImage")}`}
                         value={item.getPropValue("logo")}
                       />
                     )}

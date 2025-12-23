@@ -295,14 +295,14 @@ class HeroSection34 extends BaseHeroSection {
                     </Base.SectionSubTitle>
                   )}
                   {this.castToString(slides[overlayActiveIndex].title) && (
-                    <Base.H1 className={this.decorateCSS("content-title")}>
+                    <Base.SectionTitle className={this.decorateCSS("content-title")}>
                       {slides[overlayActiveIndex].title}
-                    </Base.H1>
+                    </Base.SectionTitle>
                   )}
                   {this.castToString(slides[overlayActiveIndex].description) && (
-                    <Base.P className={this.decorateCSS("description")}>
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
                       {slides[overlayActiveIndex].description}
-                    </Base.P>
+                    </Base.SectionDescription>
                   )}
                   {this.castToString(slides[overlayActiveIndex].button.text) && (
                     <div className={this.decorateCSS("button-container")}>

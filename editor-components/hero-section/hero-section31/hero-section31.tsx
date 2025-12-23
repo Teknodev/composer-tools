@@ -726,7 +726,7 @@ class HeroSection31 extends BaseHeroSection {
     this.setComponentState("display-none", true);
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("second-slider-ref", React.createRef());
-    this.setComponentState("subtitleAnimationClass", "animate__fadeRight");
+    this.setComponentState("subtitleAnimationClass", "animate__fadeIn");
     this.setComponentState("titleAnimationClass", "animate__fadeInRight");
     this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
     this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
@@ -766,7 +766,7 @@ class HeroSection31 extends BaseHeroSection {
         setTimeout(() => {
           this.setComponentState("titleAnimationClass", "letter-out");
         }, 20);
-        this.setComponentState("subtitleAnimationClass", "animate__fadeOutDown");
+        this.setComponentState("subtitleAnimationClass", "animate__fadeOut");
         this.setComponentState("descriptionAnimationClass", "animate__fadeOutDown");
 
             setTimeout(() => {
@@ -779,7 +779,7 @@ class HeroSection31 extends BaseHeroSection {
 
               this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
               this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-              this.setComponentState("subtitleAnimationClass", "animate__fadeInRight");
+              this.setComponentState("subtitleAnimationClass", "animate__fadeIn");
               this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
             }, 900);
       },
@@ -891,8 +891,8 @@ class HeroSection31 extends BaseHeroSection {
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "subtitleAnimationClass",
-                            startingAnimation: "animate__fadeInRight",
-                            endingAnimation: "animate__fadeOutDown",
+                            startingAnimation: "animate__fadeIn",
+                            endingAnimation: "animate__fadeOut",
                           });
                         }}
                       >

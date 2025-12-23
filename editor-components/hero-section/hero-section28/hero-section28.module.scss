@@ -184,6 +184,10 @@
           object-fit: cover;
           max-width: 150px;
           color: white;
+
+          &.noImage {
+            color: var(--composer-font-color-primary) !important;
+          }
         }
 
         .sub_title {
