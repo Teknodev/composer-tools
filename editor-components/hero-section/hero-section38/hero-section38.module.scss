@@ -444,7 +444,7 @@
         .slider {
           :global(.slick-slide > div) {
             width: 100% !important;
-            padding: 0 var(--composer-gap-md);
+            padding: 0;
           }
 
           .slide-item {
