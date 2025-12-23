@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BaseNavigator } from "../../EditorComponent";
+import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Icon = {
-  icon: string;
+  icon: TypeMediaInputValue;
   url: string;
 };
 
@@ -16,13 +16,13 @@ type MenuItems = {
 };
 
 interface Logo {
-  image: string;
+  image: TypeMediaInputValue;
   navigateTo: string;
 }
 
 interface Language {
   label: "code" | "name";
-  icon: string;
+  icon: TypeMediaInputValue;
   showLanguage: boolean;
   showDivider: boolean;
 }
@@ -31,7 +31,7 @@ class Navbar8 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Type"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Type"));
 
     this.addProp({
       type: "object",
@@ -39,11 +39,16 @@ class Navbar8 extends BaseNavigator {
       displayer: "Default Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -60,11 +65,16 @@ class Navbar8 extends BaseNavigator {
       displayer: "Absolute Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -97,17 +107,23 @@ class Navbar8 extends BaseNavigator {
         {
           type: "select",
           key: "label",
-          displayer: "Language Label",
+          displayer: "Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
           },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon",
-          value: "IoIosArrowDown",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoIosArrowDown",
+          },
         },
         {
           type: "boolean",
@@ -118,23 +134,35 @@ class Navbar8 extends BaseNavigator {
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Show Divider",
+          displayer: "Divider",
           value: true,
         },
       ],
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "hamburgerIcon",
       displayer: "Hamburger Icon",
-      value: "RxHamburgerMenu",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "RxHamburgerMenu",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Icon",
-      value: "RxCross2",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "RxCross2",
+      },
     });
 
     this.addProp({
@@ -156,7 +184,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -175,7 +203,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -194,7 +222,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -213,7 +241,7 @@ class Navbar8 extends BaseNavigator {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -261,10 +289,16 @@ class Navbar8 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaFacebook",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebook",
+              },
             },
             {
               type: "page",
@@ -280,10 +314,16 @@ class Navbar8 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "AiFillTwitterCircle",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "AiFillTwitterCircle",
+              },
             },
             {
               type: "page",
@@ -299,10 +339,41 @@ class Navbar8 extends BaseNavigator {
           displayer: "Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              value: "FaLinkedin",
               displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaPinterestP",
+              },
+            },
+            {
+              type: "page",
+              key: "url",
+              value: "",
+              displayer: "Navigate To",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedin",
+              },
             },
             {
               type: "page",
@@ -337,7 +408,7 @@ class Navbar8 extends BaseNavigator {
   handleMenuClick = () => {
     Base.Navigator.changeScrollBehaviour("hidden");
     const wrapperContainer = Base.Navigator.getWrapperContainer();
-    this.setComponentState("backgroundChange", wrapperContainer.scrollY === 0);
+    this.setComponentState("backgroundChange", wrapperContainer?.scrollY === 0);
     setTimeout(() => {
     this.setComponentState("isMenuOpen", true);
     }, 100);
@@ -406,7 +477,7 @@ class Navbar8 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <Base.Navigator.Container screenSize={1960} position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""}`} 
+      <Base.Navigator.Container screenSize={1960} position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""} ${isMenuOpen ? this.decorateCSS("hamburgerActive") : ""}`} 
       hamburgerNavActive={isMenuOpen}
       setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
       >
@@ -420,8 +491,8 @@ class Navbar8 extends BaseNavigator {
           {currentLogo.image && (
             <div onClick={() => this.setComponentState("isMenuOpen", false)} className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
-                <img
-                  src={currentLogo.image}
+                <Base.Media
+                  value={currentLogo.image}
                   className={`${this.decorateCSS("logoImage")} ${backgroundChange ? this.decorateCSS("openedLogoImage") : ""}`}
                   onClick={()=> this.handleCloseMenu()}
                 />
@@ -454,21 +525,19 @@ class Navbar8 extends BaseNavigator {
               />
             )}
             {isMenuOpen ? (
-      
-                <Base.Icon
-                  name={this.getPropValue("closeIcon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("closeIcon")} ${backgroundChange && this.decorateCSS("openedCloseIcon")}`, onClick: this.handleCloseMenu
-                  }}
+              <div onClick={this.handleCloseMenu}>
+                <Base.Media
+                  value={this.getPropValue("closeIcon")}
+                  className={`${this.decorateCSS("closeIcon")} ${backgroundChange && this.decorateCSS("openedCloseIcon")}`}
                 />
+              </div>
             ) : (
-
-                <Base.Icon
-                  name={this.getPropValue("hamburgerIcon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("menuIcon")} ${backgroundChange && this.decorateCSS("openedMenuIcon")}`, onClick: this.handleMenuClick
-                  }}
+              <div onClick={this.handleMenuClick}>
+                <Base.Media
+                  value={this.getPropValue("hamburgerIcon")}
+                  className={`${this.decorateCSS("menuIcon")} ${backgroundChange && this.decorateCSS("openedMenuIcon")}`}
                 />
+              </div>
             )}
           </div>
 
@@ -490,9 +559,9 @@ class Navbar8 extends BaseNavigator {
               {rightSide && (
                 <div className={this.decorateCSS("dropdownRightSide")}>
                   {dropdownTitle && (
-                    <Base.H1 className={this.decorateCSS("dropdownTitle")}>
+                    <Base.H3 className={this.decorateCSS("dropdownTitle")}>
                       {this.getPropValue("dropdownTitle")}
-                    </Base.H1>
+                    </Base.H3>
                   )}
                   <div className={this.decorateCSS("line")}></div>
                   {dropdownDescription && (
@@ -516,11 +585,11 @@ class Navbar8 extends BaseNavigator {
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
-                            <Base.H2 className={`${this.decorateCSS("dropdownItem")} ${animations}`}
+                            <Base.H3 className={`${this.decorateCSS("dropdownItem")} ${animations}`}
                             onClick={()=> this.handleCloseMenu()}
                             >
                               {item.title}
-                            </Base.H2>
+                            </Base.H3>
                         </ComposerLink>
                        </div>
                     )
@@ -531,9 +600,9 @@ class Navbar8 extends BaseNavigator {
                   {socialMediaLinksCondition && (
                     <div className={this.decorateCSS("socialMediaWrapper")}>
                     <div className={this.decorateCSS("socialMediaLinks")}>
-                      <Base.H3 className={this.decorateCSS("socialMediaLinksTitle")}>
+                      <Base.H5 className={this.decorateCSS("socialMediaLinksTitle")}>
                         {this.getPropValue("dropdownSocialMediaTitle")}
-                      </Base.H3>
+                      </Base.H5>
                       <div className={this.decorateCSS("socialMediaLinksList")}>
                         {socialMediaLinks.map((item: any, index: number) => (
                           <div
@@ -543,12 +612,9 @@ class Navbar8 extends BaseNavigator {
                           >
                             <ComposerLink path={item.url}>
                               <div className={`${this.decorateCSS("socialMediaIconContainer")} ${animations}`} onClick={()=> this.handleCloseMenu()}>
-                              <Base.Icon
-                                name={item.icon}
-                                propsIcon={{
-                                  className:
-                                    this.decorateCSS("socialMediaIcon"),
-                                }}
+                              <Base.Media
+                                value={item.icon}
+                                className={this.decorateCSS("socialMediaIcon")}
                               />
                               </div>
                             </ComposerLink>
