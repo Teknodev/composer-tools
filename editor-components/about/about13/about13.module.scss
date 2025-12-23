@@ -6,7 +6,7 @@
       .wrapper {
         display: flex;
         gap: var(--composer-gap-xl);
-        align-items: center;
+        align-items: stretch;
       }
 
       .content-inner {
@@ -34,7 +34,6 @@
             }
 
             .button-text {
-              content: "";
               margin: 0;
               padding: 0;
               display: inline;
