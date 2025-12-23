@@ -13,16 +13,16 @@ class About8 extends BaseAbout {
 
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
+      key: "title",
+      displayer: "Title",
+      value: "Our Technologies Encircle the World",
     });
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Our Technologies Encircle the World",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
