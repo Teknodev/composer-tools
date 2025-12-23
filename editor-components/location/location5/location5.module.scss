@@ -53,8 +53,12 @@
         min-height: 300px;
         box-shadow: var(--box-shadow-active);
 
+        .icon {
+          font-size: 1.6rem;
+        }
+
         > div {
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
         }
 
         &.full-width {

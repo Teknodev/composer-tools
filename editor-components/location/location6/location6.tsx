@@ -5,6 +5,8 @@ import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -91,10 +93,16 @@ class Location6 extends Location {
               value: "1.8 KM",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaArrowRight",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaArrowRight",
+              },
             },
           ],
         },
@@ -221,10 +229,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/1.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/1.svg",
+              },
             },
             {
               type: "string",
@@ -249,10 +263,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/2.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/2.svg",
+              },
             },
             {
               type: "string",
@@ -277,10 +297,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/3.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/3.svg",
+              },
             },
             {
               type: "string",
@@ -305,10 +331,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/4.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/4.svg",
+              },
             },
             {
               type: "string",
@@ -333,10 +365,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/5.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/5.svg",
+              },
             },
             {
               type: "string",
@@ -379,22 +417,51 @@ class Location6 extends Location {
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
 
+        let iconUrl: string | undefined =
+          markerImage && typeof markerImage === "object" && markerImage.type === "image"
+            ? markerImage.url
+            : markerImage;
+
+        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+          try {
+            const iconName = (markerImage as any).name;
+            let ElementIcon: any = null;
+            for (const lib of iconLibraries) {
+              if (ElementIcon) break;
+              for (const [name, Comp] of Object.entries(lib)) {
+                if (name === iconName) {
+                  ElementIcon = Comp;
+                  break;
+                }
+              }
+            }
+
+            if (ElementIcon) {
+              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+            }
+          } catch (e) {
+            iconUrl = undefined;
+          }
+        }
+
         const description = this.castToString(address.getPropValue("description"));
 
         if (lat !== undefined && lng !== undefined) {
           const content = description ? (
             <div className={this.decorateCSS("popup")}>
-              {description && <p>{description}</p>}
+              {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
               <div className={this.decorateCSS("popup-balloon")} />
             </div>
           ) : null;
 
+          const finalIconUrl = iconUrl || defaultMarkerIcon;
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: markerImage,
+              url: finalIconUrl,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,
@@ -435,7 +502,7 @@ class Location6 extends Location {
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("left-side")}>
               <div>
-                {buttons?.length > 0 && (
+                      {buttons?.length > 0 && (
                   <Base.VerticalContent className={this.decorateCSS("button-container")}>
                     {buttons.map((button: any, index: number) => {
                       const buttonTextExist = this.castToString(button?.text);
@@ -451,7 +518,7 @@ class Location6 extends Location {
                                   {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
                                   {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                                 </div>
-                                {button.icon && <Base.Icon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                                {button.icon && <Base.Media value={button.icon} className={this.decorateCSS("icon")} />}
                               </div>
                             </ComposerLink>
                           </div>

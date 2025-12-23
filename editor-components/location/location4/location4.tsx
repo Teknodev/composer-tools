@@ -3,6 +3,8 @@ import { Location } from "../../EditorComponent";
 import styles from "./location4.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -47,10 +49,16 @@ class Location4 extends Location {
     });
 
     this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
+      type: "media",
+      key: "media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
+      },
     });
 
     this.addProp({
@@ -100,10 +108,16 @@ class Location4 extends Location {
               value: "Crafto Resort",
             },
             {
-              type: "image",
               key: "marker-image",
               displayer: "Marker Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1b5c0655f8002ca6cccb?alt=media",
+              type: "media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1b5c0655f8002ca6cccb?alt=media",
+              },
             },
             {
               type: "string",
@@ -112,10 +126,16 @@ class Location4 extends Location {
               value: "16122 Collins street, Melbourne, Australia",
             },
             {
-              type: "image",
+              type: "media",
               key: "popupImage",
               displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c28660655f8002ca6d50a?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c28660655f8002ca6d50a?alt=media",
+              },
             },
           ],
         },
@@ -140,10 +160,10 @@ class Location4 extends Location {
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.getPropValue("coordinate");
+        const markerData = address.value.find((addr: any) => addr.type === "location");
 
-        const lat = markerData?.lat;
-        const lng = markerData?.lng;
+        const lat = markerData?.value?.lat;
+        const lng = markerData?.value?.lng;
         const description = this.castToString(address.getPropValue("description"));
         const popupTitle = this.castToString(address.getPropValue("popupTitle"));
         const popupImage = address.getPropValue("popupImage");
@@ -153,26 +173,61 @@ class Location4 extends Location {
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
 
+        let iconUrl: string | undefined =
+          markerImage && typeof markerImage === "object" && markerImage.type === "image"
+            ? markerImage.url
+            : markerImage;
+
+        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+          try {
+            const iconName = (markerImage as any).name;
+            let ElementIcon: any = null;
+            for (const lib of iconLibraries) {
+              if (ElementIcon) break;
+              for (const [name, Comp] of Object.entries(lib)) {
+                if (name === iconName) {
+                  ElementIcon = Comp;
+                  break;
+                }
+              }
+            }
+
+            if (ElementIcon) {
+              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+            }
+          } catch (e) {
+            iconUrl = undefined;
+          }
+        }
+
         if (lat !== undefined && lng !== undefined) {
           const content =
             description || popupTitle ? (
               <div className={this.decorateCSS("popup")}>
-                {popupImage && <img className={this.decorateCSS("popup-image")} src={popupImage} />}
+                {popupImage && (
+                  <Base.Media
+                    className={this.decorateCSS("popup-image")}
+                    value={popupImage}
+                  />
+                )}
                 {(popupTitle || description) && (
                   <div className={this.decorateCSS("popup-texts")}>
-                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{address.getPropValue("popupTitle")} </Base.P>}
-                    {description && <Base.P className={this.decorateCSS("popup-content")}>{address.getPropValue("description")}</Base.P>}
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle}</Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
                   </div>
                 )}
               </div>
             ) : null;
+
+          const finalIconUrl = iconUrl || defaultMarkerIcon;
 
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: markerImage,
+              url: finalIconUrl,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,
@@ -186,7 +241,7 @@ class Location4 extends Location {
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
-    const image = this.getPropValue("image");
+    const media = this.getPropValue("media");
     const overlay = this.getPropValue("overlay");
 
     const subtitle = this.getPropValue("subtitle");
@@ -196,10 +251,10 @@ class Location4 extends Location {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("page")}>
-          {image ? (
+          {media ? (
             <div className={this.decorateCSS("content")}>
-              {overlay && image && <div className={this.decorateCSS("overlay")}></div>}
-              {image && <img src={image} className={this.decorateCSS("image")} />}
+              {overlay && media && <div className={this.decorateCSS("overlay")}></div>}
+              {media && <Base.Media value={media} className={this.decorateCSS("image")}/>}
               {titleExist && (
                 <Base.Container className={this.decorateCSS("content-container")}>
                   <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -220,9 +275,11 @@ class Location4 extends Location {
             )
           )}
 
-          <section className={this.decorateCSS("map-container")}>
-            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+          {markers.length > 0 && (
+            <section className={this.decorateCSS("map-container")}>
+            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
           </section>
+          )}
         </div>
       </div>
     );

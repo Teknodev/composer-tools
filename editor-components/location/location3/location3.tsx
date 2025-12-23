@@ -4,6 +4,8 @@ import styles from "./location3.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -34,10 +36,16 @@ class Location3 extends Location {
     super(props, styles);
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
-      displayer: "Icon",
-      value: "BiWorld",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BiWorld",
+      },
     });
 
     this.addProp({
@@ -96,10 +104,16 @@ class Location3 extends Location {
             },
 
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "",
+              },
             },
           ],
         },
@@ -287,15 +301,44 @@ class Location3 extends Location {
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
 
+        let iconUrl: string | undefined =
+          markerImage && typeof markerImage === "object" && markerImage.type === "image"
+            ? markerImage.url
+            : markerImage;
+
+        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+          try {
+            const iconName = (markerImage as any).name;
+            let ElementIcon: any = null;
+            for (const lib of iconLibraries) {
+              if (ElementIcon) break;
+              for (const [name, Comp] of Object.entries(lib)) {
+                if (name === iconName) {
+                  ElementIcon = Comp;
+                  break;
+                }
+              }
+            }
+
+            if (ElementIcon) {
+              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+            }
+          } catch (e) {
+            iconUrl = undefined;
+          }
+        }
+
         if (lat !== undefined && lng !== undefined) {
           const content = <></>;
+          const finalIconUrl = iconUrl || defaultMarkerIcon;
 
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: markerImage,
+              url: finalIconUrl,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,
@@ -317,7 +360,7 @@ class Location3 extends Location {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.getPropValue("icon") && (
                   <div className={this.decorateCSS("icon-wrapper")}>
-                    <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("icon")} />
+                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
                   </div>
                 )}
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}

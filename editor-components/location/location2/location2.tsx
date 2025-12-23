@@ -4,6 +4,8 @@ import styles from "./location2.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -30,7 +32,7 @@ type MarkerObject = {
 };
 
 type ContentItemType = {
-  contentIcon: string;
+  contentIcon: any;
   contentTitle: React.JSX.Element;
   contentDescriptionArray: {
     text: React.JSX.Element;
@@ -38,7 +40,7 @@ type ContentItemType = {
 };
 
 type SocialMediaItemType = {
-  icon: string;
+  icon: any;
 };
 
 class Location2 extends Location {
@@ -92,10 +94,16 @@ class Location2 extends Location {
           displayer: "Social Media Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaFacebookF",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebookF",
+              },
             },
             {
               type: "page",
@@ -111,10 +119,16 @@ class Location2 extends Location {
           displayer: "Social Media Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaInstagram",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
             {
               type: "page",
@@ -130,10 +144,16 @@ class Location2 extends Location {
           displayer: "Social Media Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaXTwitter",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaXTwitter",
+              },
             },
             {
               type: "page",
@@ -157,10 +177,16 @@ class Location2 extends Location {
           displayer: "Feature Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "contentIcon",
-              displayer: "Icon",
-              value: "SlLocationPin",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "SlLocationPin",
+              },
             },
             {
               type: "string",
@@ -196,10 +222,16 @@ class Location2 extends Location {
           displayer: "Feature Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "contentIcon",
-              displayer: "Icon",
-              value: "Ri24HoursLine",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "Ri24HoursLine",
+              },
             },
             {
               type: "string",
@@ -248,10 +280,16 @@ class Location2 extends Location {
           displayer: "Feature Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "contentIcon",
-              displayer: "Icon",
-              value: "HiOutlinePhone",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "HiOutlinePhone",
+              },
             },
             {
               type: "string",
@@ -300,10 +338,16 @@ class Location2 extends Location {
           displayer: "Feature Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "contentIcon",
-              displayer: "Icon",
-              value: "SiMinutemailer",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "SiMinutemailer",
+              },
             },
             {
               type: "string",
@@ -357,10 +401,16 @@ class Location2 extends Location {
             },
 
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+              },
             },
           ],
         },
@@ -379,10 +429,16 @@ class Location2 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+              },
             },
           ],
         },
@@ -410,6 +466,8 @@ class Location2 extends Location {
 
     const mapStyle = this.selectTheme(selectedTheme);
 
+    const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675acbf30655f8002ca64e33?alt=media";
+
     const alignmentValue = Base.getContentAlignment();
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
@@ -421,15 +479,44 @@ class Location2 extends Location {
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
 
+        let iconUrl: string | undefined =
+          markerImage && typeof markerImage === "object" && markerImage.type === "image"
+            ? markerImage.url
+            : markerImage;
+
+        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+          try {
+            const iconName = (markerImage as any).name;
+            let ElementIcon: any = null;
+            for (const lib of iconLibraries) {
+              if (ElementIcon) break;
+              for (const [name, Comp] of Object.entries(lib)) {
+                if (name === iconName) {
+                  ElementIcon = Comp;
+                  break;
+                }
+              }
+            }
+
+            if (ElementIcon) {
+              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+            }
+          } catch (e) {
+            iconUrl = undefined;
+          }
+        }
+
         if (lat !== undefined && lng !== undefined) {
           const content = <></>;
+          const finalIconUrl = iconUrl || defaultMarkerIcon;
 
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: markerImage,
+              url: finalIconUrl,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,
@@ -457,14 +544,14 @@ class Location2 extends Location {
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
                   {socials.length > 0 && (
                     <div className={this.decorateCSS("socials")}>
-                      {socials.map((item: SocialMediaItemType, index: number) => {
+                      {socials.map((item: SocialMediaItemType) => {
                         return (
                           item.icon && (
-                            <div className={this.decorateCSS("socials-container")}>
-                              <div className={this.decorateCSS("social-button")}>
-                                <Base.Icon name={item.icon} />
-                              </div>
-                            </div>
+                            <Base.VerticalContent className={this.decorateCSS("socials-container")}>
+                              <Base.Row className={this.decorateCSS("social-button")}>
+                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                              </Base.Row>
+                            </Base.VerticalContent>
                           )
                         );
                       })}
@@ -479,25 +566,25 @@ class Location2 extends Location {
         {this.castToObject<ContentItemType[]>("middle-content").length > 0 && (
           <div className={this.decorateCSS("middle-content")}>
             <div className={this.decorateCSS("middle-content-container")}>
-              {this.castToObject<ContentItemType[]>("middle-content").map((item: ContentItemType, index: number) => {
+              {this.castToObject<ContentItemType[]>("middle-content").map((item: ContentItemType) => {
                 const isContTitleExist = this.castToString(item.contentTitle);
                 const isContIconExist = item.contentIcon;
                 const isDesExist = item.contentDescriptionArray.some((desc) => this.castToString(desc.text));
 
                 if (isContTitleExist || isContIconExist || isDesExist) {
                   return (
-                    <div className={this.decorateCSS("element-container")}>
-                      {isContIconExist && <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.contentIcon} />}
+                    <Base.VerticalContent className={this.decorateCSS("element-container")}>
+                      {isContIconExist && <Base.Media value={item.contentIcon} className={this.decorateCSS("icon")} />}
                       {isContTitleExist && (
                         <div className={this.decorateCSS("content-title-container")}>
                           <Base.H3 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H3>
                         </div>
                       )}
-                      {item.contentDescriptionArray.map((item, index: number) => {
+                      {item.contentDescriptionArray.map((item) => {
                         const isDesExist = this.castToString(item.text);
                         return isDesExist && <Base.P className={this.decorateCSS("content-description")}>{item.text}</Base.P>;
                       })}
-                    </div>
+                    </Base.VerticalContent>
                   );
                 }
               })}
@@ -506,7 +593,7 @@ class Location2 extends Location {
         )}
 
         <div className={this.decorateCSS("map-container")}>
-          <ComposerMap styles={mapStyle.colors} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} />
+          <ComposerMap styles={mapStyle?.colors} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} />
         </div>
       </div>
     );

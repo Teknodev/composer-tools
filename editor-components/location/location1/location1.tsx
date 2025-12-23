@@ -5,6 +5,8 @@ import ComposerMap from "../../../composer-base-components/map/map";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -31,8 +33,8 @@ type MarkerObject = {
 };
 
 type ButtomType = {
-  description: React.JSX.Element;
-  phoneNumber: React.JSX.Element;
+  description: string;
+  phoneNumber: string;
   phoneUrl: string;
 };
 
@@ -86,10 +88,16 @@ class Location1 extends Location {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaLinkedinIn",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedinIn",
+              },
             },
 
             {
@@ -106,10 +114,16 @@ class Location1 extends Location {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+                type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaTwitter",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTwitter",
+              },
             },
 
             {
@@ -126,10 +140,16 @@ class Location1 extends Location {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaFacebookF",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebookF",
+              },
             },
 
             {
@@ -146,10 +166,16 @@ class Location1 extends Location {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "IoBasketballOutline",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoBasketballOutline",
+              },
             },
 
             {
@@ -166,10 +192,16 @@ class Location1 extends Location {
           displayer: "Icon",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaInstagram",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
 
             {
@@ -209,10 +241,16 @@ class Location1 extends Location {
             },
 
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "",
+              },
             },
             {
               type: "string",
@@ -228,8 +266,8 @@ class Location1 extends Location {
             },
             {
               type: "page",
-              key: "popupButtonUrl",
-              displayer: "Popup Button Url",
+              key: "popupUrl",
+              displayer: "Popup Navigate To",
               value: "",
             },
           ],
@@ -285,17 +323,44 @@ class Location1 extends Location {
         const markerData = address.value.find((addr: any) => addr.type === "location");
         const lat = markerData?.value.lat;
         const lng = markerData?.value.lng;
-        const description = this.castToString(address.getPropValue("description"));
-        const popupTitle = this.castToString(address.getPropValue("popupTitle"));
+        const description = address.getPropValue("description");
+        const popupTitle = address.getPropValue("popupTitle");
 
-        const popupButtonText = this.castToString(address.getPropValue("popupButtonText"));
+        const popupButtonText = address.getPropValue("popupButtonText");
 
-        const popupButtonUrl = address.getPropValue("popupButtonUrl");
+        const popupButtonUrl = address.getPropValue("popupUrl");
 
         const markerImage = address.getPropValue("marker-image");
 
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
+        let iconUrl: string | undefined =
+          markerImage && typeof markerImage === "object" && markerImage.type === "image"
+            ? markerImage.url
+            : markerImage;
+
+        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+          try {
+            const iconName = (markerImage as any).name;
+            let ElementIcon: any = null;
+            for (const lib of iconLibraries) {
+              if (ElementIcon) break;
+              for (const [name, Comp] of Object.entries(lib)) {
+                if (name === iconName) {
+                  ElementIcon = Comp;
+                  break;
+                }
+              }
+            }
+
+            if (ElementIcon) {
+              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+            }
+          } catch (e) {
+            iconUrl = undefined;
+          }
+        }
 
         if (lat !== undefined && lng !== undefined) {
           const content =
@@ -303,26 +368,27 @@ class Location1 extends Location {
               <div className={this.decorateCSS("popup")}>
                 {(popupTitle || description) && (
                   <div className={this.decorateCSS("popup-header")}>
-                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle}</Base.P>}
-                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle && (popupTitle.charAt ? popupTitle.charAt(0).toUpperCase() + popupTitle.slice(1) : popupTitle)}</Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description && (description.charAt ? description.charAt(0).toUpperCase() + description.slice(1) : description)}</Base.P>}
                   </div>
                 )}
                 {popupButtonText && (
                   <div className={this.decorateCSS("popup-link")}>
                     <ComposerLink path={popupButtonUrl}>
-                      <div className={this.decorateCSS("popup-button")}>{popupButtonText}</div>
+                      <div className={this.decorateCSS("popup-button")}>{popupButtonText && (popupButtonText.charAt ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}</div>
                     </ComposerLink>
                   </div>
                 )}
               </div>
             ) : null;
 
+          const finalIconUrl = iconUrl || defaultMarkerIcon;
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: markerImage,
+              url: finalIconUrl,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,
@@ -334,14 +400,14 @@ class Location1 extends Location {
     }, []);
 
     const title = this.getPropValue("title");
-    const titleExist = this.castToString(title);
+    const titleExist = !!title;
     const subtitle = this.getPropValue("subtitle");
-    const subtitleExist = this.castToString(subtitle);
+    const subtitleExist = !!this.castToString(subtitle);
     const buttom = this.castToObject<ButtomType>("button_row");
     const icons = this.getPropValue("icons");
     const line = this.getPropValue("line");
-    const description = this.castToString(buttom.description);
-    const phone = this.castToString(buttom.phoneNumber);
+    const description = buttom.description;
+    const phone = buttom.phoneNumber;
 
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
@@ -352,10 +418,10 @@ class Location1 extends Location {
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {(titleExist || icons.length > 0) && (
               <div className={this.decorateCSS("header")}>
-                <div className={this.decorateCSS("title-block")}>
+                <Base.VerticalContent className={this.decorateCSS("title-block")}>
                   {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                   {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                </div>
+                </Base.VerticalContent>
                 {titleExist && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
                 {icons.length > 0 && (
                   <div className={this.decorateCSS("icon-container")}>
@@ -363,7 +429,7 @@ class Location1 extends Location {
                       return (
                         <div className={this.decorateCSS("icon-wrapper")} key={index}>
                           <ComposerLink path={icon.getPropValue("url")}>
-                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={icon.getPropValue("icon")} />
+                          <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
                           </ComposerLink>
                         </div>
                       );
@@ -381,11 +447,11 @@ class Location1 extends Location {
               <div className={this.decorateCSS("bottom-container")}>
                 {description && <Base.P className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.P>}
                 {phone && (
-                  <div className={this.decorateCSS("phone-container")}>
+                  <Base.VerticalContent className={this.decorateCSS("phone-container")}>
                     <ComposerLink path={buttom.phoneUrl}>
                       <Base.P className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.P>
                     </ComposerLink>
-                  </div>
+                  </Base.VerticalContent>
                 )}
               </div>
             )}

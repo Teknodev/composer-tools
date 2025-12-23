@@ -21,7 +21,7 @@
 
         .subtitle {
           transform: translateX(0);
-          text-align: center !important;
+          align-self: center !important;
           &::before {
             display: none;
           }
@@ -97,6 +97,9 @@
           top: 0;
           z-index: 0;
           object-fit: contain;
+        }
+        .icon {
+          font-size: 1.6rem;
         }
         .marker-image {
           width: 100%;

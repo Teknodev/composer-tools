@@ -3,6 +3,8 @@ import { Location } from "../../EditorComponent";
 import styles from "./location5.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 class Location5 extends Location {
   constructor(props?: any) {
@@ -90,10 +92,16 @@ class Location5 extends Location {
                       },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "marker-image",
-                      displayer: "Marker Image",
-                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      displayer: "Marker Media",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      },
                     },
                   ],
                 },
@@ -150,10 +158,16 @@ class Location5 extends Location {
                       },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "marker-image",
-                      displayer: "Marker Image",
-                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      displayer: "Marker Media",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      },
                     },
                   ],
                 },
@@ -198,12 +212,41 @@ class Location5 extends Location {
           const width = 32;
           const height = 32;
 
+          let iconUrl: string | undefined =
+            markerImage && typeof markerImage === "object" && markerImage.type === "image"
+              ? markerImage.url
+              : markerImage;
+
+          if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+            try {
+              const iconName = (markerImage as any).name;
+              let ElementIcon: any = null;
+              for (const lib of iconLibraries) {
+                if (ElementIcon) break;
+                for (const [name, Comp] of Object.entries(lib)) {
+                  if (name === iconName) {
+                    ElementIcon = Comp;
+                    break;
+                  }
+                }
+              }
+
+              if (ElementIcon) {
+                const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+                iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+              }
+            } catch (e) {
+              iconUrl = undefined;
+            }
+          }
+
           if (lat !== undefined && lng !== undefined) {
+            const finalIconUrl = iconUrl || defaultMarkerIcon;
             return {
               lat,
               lng,
               icon: {
-                url: markerImage,
+                url: finalIconUrl,
                 scaledSize: new google.maps.Size(width, height),
               },
             };

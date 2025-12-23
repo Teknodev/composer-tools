@@ -1,6 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
   .max-content {
     .wrapper {
       justify-content: center;
@@ -19,9 +20,12 @@
           display: flex;
           flex-direction: column;
           width: 100%;
+          align-items: flex-start;
 
           .subtitle, .title {
             content: "";
+            text-align: left;
+            margin-left: 0;
           }
         }
 
@@ -46,6 +50,7 @@
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
               color: var(--composer-primary-color);
+              font-size: 1.8rem;
 
               &:hover {
                 color: var(--composer-secondary-color);
@@ -76,7 +81,7 @@
         justify-content: center;
 
         .bottom-title {
-          font-size: 2.5rem;
+          font-size: var(--composer-font-size-xl);
           padding-bottom: 2px;
           color: var(--composer-primary-color);
           max-width: 50%;
@@ -85,7 +90,7 @@
 
         .phone-container {
           .phone {
-            font-size: 2.5rem;
+            font-size: var(--composer-font-size-xl);
             color: var(--composer-primary-color);
             width: fit-content;
             border-bottom: solid 2px var(--composer-primary-color);
@@ -113,14 +118,14 @@
           padding: var(--composer-gap-md);
 
           .popup-title {
-            font-size: 1.5rem;
+            font-size: var(--composer-font-size-lg);
             color: var(--composer-font-color-primary);
             margin: 0;
             text-align: center;
           }
 
           .popup-content {
-            font-size: 1.5rem;
+            font-size: var(--composer-font-size-md);
             color: var(--composer-tertiary-color);
             text-align: center;
             margin: 0;
@@ -138,14 +143,15 @@
             cursor: pointer;
             width: 100%;
             padding: var(--composer-gap-md);
-            font-size: 1.5rem;
-            border-bottom-left-radius: var(--composer-border-radius-xs);
-            border-bottom-right-radius: var(--composer-border-radius-xs);
+            font-size: var(--composer-font-size-md);
+            border-bottom-left-radius: var(--composer-border-radius-sm);
+            border-bottom-right-radius: var(--composer-border-radius-sm);
           }
         }
       }
     }
   }
+ 
 }
 
 @container (max-width: #{$composer-tablet-width}) {

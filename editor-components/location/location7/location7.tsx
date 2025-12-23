@@ -2,6 +2,8 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 
 type Address = {
@@ -244,10 +246,16 @@ class Location7 extends Location {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background-image",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
+      },
     });
     this.setComponentState("activeMarkerIndex", null);
   }
@@ -313,7 +321,7 @@ class Location7 extends Location {
               <div
                 className={this.decorateCSS("custom-map")}>
                 {bgImage && (
-                  <img src={bgImage} alt="World Map" className={this.decorateCSS("background-image")}/>
+                  <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />
                 )}
                 {markers.map((marker, idx) => {
                   const popupTitle = this.castToString(marker.popupTitle);
