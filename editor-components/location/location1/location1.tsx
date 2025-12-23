@@ -35,7 +35,7 @@ type MarkerObject = {
 type ButtomType = {
   description: string;
   phoneNumber: string;
-  phoneUrl: string;
+  path: string;
 };
 
 class Location1 extends Location {
@@ -102,7 +102,7 @@ class Location1 extends Location {
 
             {
               type: "page",
-              key: "url",
+              key: "path",
               displayer: "Navigate To",
               value: "",
             },
@@ -114,7 +114,7 @@ class Location1 extends Location {
           displayer: "Icon",
           value: [
             {
-                type: "media",
+              type: "media",
               key: "icon",
               displayer: "Media",
               additionalParams: {
@@ -128,7 +128,7 @@ class Location1 extends Location {
 
             {
               type: "page",
-              key: "url",
+              key: "path",
               displayer: "Navigate To",
               value: "",
             },
@@ -154,7 +154,7 @@ class Location1 extends Location {
 
             {
               type: "page",
-              key: "url",
+              key: "path",
               displayer: "Navigate To",
               value: "",
             },
@@ -266,7 +266,13 @@ class Location1 extends Location {
             },
             {
               type: "page",
-              key: "popupUrl",
+              key: "navigateTo",
+              displayer: "Popup Navigate To",
+              value: "",
+            },
+            {
+              type: "page",
+              key: "navigateTo",
               displayer: "Popup Navigate To",
               value: "",
             },
@@ -294,7 +300,7 @@ class Location1 extends Location {
         },
         {
           type: "page",
-          key: "phoneUrl",
+          key: "navigateTo",
           displayer: "Navigate To",
           value: "",
         },
@@ -328,7 +334,7 @@ class Location1 extends Location {
 
         const popupButtonText = address.getPropValue("popupButtonText");
 
-        const popupButtonUrl = address.getPropValue("popupUrl");
+        const popupButtonUrl = address.getPropValue("navigateTo");
 
         const markerImage = address.getPropValue("marker-image");
 
@@ -373,11 +379,11 @@ class Location1 extends Location {
                   </div>
                 )}
                 {popupButtonText && (
-                  <div className={this.decorateCSS("popup-link")}>
-                    <ComposerLink path={popupButtonUrl}>
-                      <div className={this.decorateCSS("popup-button")}>{popupButtonText && (popupButtonText.charAt ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}</div>
-                    </ComposerLink>
-                  </div>
+                  <ComposerLink path={popupButtonUrl} className={this.decorateCSS("popup-link")}>
+                    <div className={this.decorateCSS("popup-button")}>
+                      {popupButtonText && (popupButtonText.charAt ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}
+                    </div>
+                  </ComposerLink>
                 )}
               </div>
             ) : null;
@@ -400,9 +406,9 @@ class Location1 extends Location {
     }, []);
 
     const title = this.getPropValue("title");
-    const titleExist = !!title;
+    const hasTitle = this.castToString(title);
     const subtitle = this.getPropValue("subtitle");
-    const subtitleExist = !!this.castToString(subtitle);
+    const hasSubtitle = this.castToString(subtitle);
     const buttom = this.castToObject<ButtomType>("button_row");
     const icons = this.getPropValue("icons");
     const line = this.getPropValue("line");
@@ -416,20 +422,20 @@ class Location1 extends Location {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {(titleExist || icons.length > 0) && (
+            {(hasTitle || icons.length > 0) && (
               <div className={this.decorateCSS("header")}>
                 <Base.VerticalContent className={this.decorateCSS("title-block")}>
-                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                  {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 </Base.VerticalContent>
-                {titleExist && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
+                {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
                 {icons.length > 0 && (
                   <div className={this.decorateCSS("icon-container")}>
                     {icons.map((icon: any, index: number) => {
                       return (
                         <div className={this.decorateCSS("icon-wrapper")} key={index}>
-                          <ComposerLink path={icon.getPropValue("url")}>
-                          <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                          <ComposerLink path={icon.getPropValue("path")}>
+                            <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
                           </ComposerLink>
                         </div>
                       );
@@ -448,7 +454,7 @@ class Location1 extends Location {
                 {description && <Base.P className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.P>}
                 {phone && (
                   <Base.VerticalContent className={this.decorateCSS("phone-container")}>
-                    <ComposerLink path={buttom.phoneUrl}>
+                    <ComposerLink path={buttom.path}>
                       <Base.P className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.P>
                     </ComposerLink>
                   </Base.VerticalContent>

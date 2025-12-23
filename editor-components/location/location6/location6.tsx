@@ -44,7 +44,7 @@ class Location6 extends Location {
 
     this.addProp({
       type: "string",
-      key: "badge",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "Nearby places",
     });
@@ -407,6 +407,8 @@ class Location6 extends Location {
 
     const mapStyle = this.selectTheme(selectedTheme);
 
+    const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1b5c0655f8002ca6cccb?alt=media";
+
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const markerData = address.getPropValue("coordinate");
@@ -445,12 +447,13 @@ class Location6 extends Location {
           }
         }
 
-        const description = this.castToString(address.getPropValue("description"));
+        const description = address.getPropValue("description");
+        const hasDescription = this.castToString(description);
 
         if (lat !== undefined && lng !== undefined) {
-          const content = description ? (
+          const content = hasDescription ? (
             <div className={this.decorateCSS("popup")}>
-              {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+              {hasDescription && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
               <div className={this.decorateCSS("popup-balloon")} />
             </div>
           ) : null;
@@ -480,21 +483,21 @@ class Location6 extends Location {
       }
     };
 
-    const subtitle = this.getPropValue("badge");
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
 
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
+    const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
 
-    const headerExist = subtitleExist || titleExist;
+    const headerExist = hasSubtitle || hasTitle;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         {headerExist && (
           <Base.MaxContent className={this.decorateCSS("max-content-header")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+              {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
             </Base.VerticalContent>
           </Base.MaxContent>
         )}
@@ -502,7 +505,7 @@ class Location6 extends Location {
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("left-side")}>
               <div>
-                      {buttons?.length > 0 && (
+                {buttons?.length > 0 && (
                   <Base.VerticalContent className={this.decorateCSS("button-container")}>
                     {buttons.map((button: any, index: number) => {
                       const buttonTextExist = this.castToString(button?.text);
@@ -532,7 +535,7 @@ class Location6 extends Location {
           </Base.MaxContent>
 
           <div className={this.decorateCSS("map-container")}>
-            <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+            <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
           </div>
         </div>
       </Base.Container>

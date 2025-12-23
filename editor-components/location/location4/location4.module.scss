@@ -97,13 +97,11 @@
     margin: var(--composer-gap-md);
 
     .popup-title {
-      font-size: 1.5rem;
       margin: 0;
       color: var(--composer-font-color-primary);
     }
 
     .popup-content {
-      font-size: 1.5rem;
       margin: 0;
       color: var(--composer-tertiary-color);
     }
@@ -121,13 +119,6 @@
 
   .popup {
     width: 250px;
-
-    .popup-texts {
-      .popup-title,
-      .popup-content {
-        font-size: 1rem;
-      }
-    }
   }
 }
 

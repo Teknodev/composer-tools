@@ -45,7 +45,7 @@ class Location5 extends Location {
       value: [
         {
           type: "object",
-          key: "firstadress",
+          key: "firstAddress",
           displayer: "First Location",
           value: [
             {
@@ -62,7 +62,7 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "adress",
+              key: "address",
               displayer: "Address",
               value: "Rua Fernando Palha, 47A, 1950-130",
             },
@@ -111,7 +111,7 @@ class Location5 extends Location {
         },
         {
           type: "object",
-          key: "secondadress",
+          key: "secondAddress",
           displayer: "Second Location",
           value: [
             {
@@ -128,7 +128,7 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "adress",
+              key: "address",
               displayer: "Address",
               value: "Lermontovsky prospect, 35A",
             },
@@ -187,7 +187,9 @@ class Location5 extends Location {
     const locationAddresses = this.getPropValue("locationAddresses") || [];
 
     const subtitle = this.getPropValue("subtitle");
-    const subtitleExist = this.castToString(subtitle);
+    const hasSubtitle = this.castToString(subtitle);
+    const title = this.getPropValue("title");
+    const hasTitle = this.castToString(title);
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
@@ -261,9 +263,9 @@ class Location5 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-        <Base.VerticalContent className={this.decorateCSS("title-block")}>
-          {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-          {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+          <Base.VerticalContent className={this.decorateCSS("title-block")}>
+            {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+            {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
           </Base.VerticalContent>
           <div className={this.decorateCSS("wrapper")}>
             <section className={this.decorateCSS("map-container")}>
@@ -271,30 +273,30 @@ class Location5 extends Location {
                 const markers = createMarkers(location);
 
                 const city = location.getPropValue("city");
-                const adress = location.getPropValue("adress");
+                const address = location.getPropValue("address");
                 const description = location.getPropValue("description");
                 const locationIndex = location.getPropValue("index");
 
-                const cityExist = this.castToString(city);
-                const adressExist = this.castToString(adress);
-                const descriptionExist = this.castToString(description);
+                const hasCity = this.castToString(city);
+                const hasAddress = this.castToString(address);
+                const hasDescription = this.castToString(description);
 
-                const hasItemsExist = cityExist || adressExist || descriptionExist || locationIndex;
+                const hasItemsExist = hasCity || hasAddress || hasDescription || locationIndex;
 
                 return (
                   <div key={index} className={this.decorateCSS("location-item")}>
                     {hasItemsExist && (
                       <Base.VerticalContent className={this.decorateCSS("location-items")}>
                         {locationIndex && <Base.H2 className={this.decorateCSS("location-index")}>{locationIndex}</Base.H2>}
-                        {cityExist && <Base.P className={this.decorateCSS("location-city")}>{city}</Base.P>}
-                        {adressExist && <Base.P className={this.decorateCSS("location-adress")}>{adress}</Base.P>}
-                        {descriptionExist && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
+                        {hasCity && <Base.P className={this.decorateCSS("location-city")}>{city}</Base.P>}
+                        {hasAddress && <Base.P className={this.decorateCSS("location-address")}>{address}</Base.P>}
+                        {hasDescription && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
                       </Base.VerticalContent>
                     )}
                     <ComposerMap
                       defaultMarkerIcon={defaultMarkerIcon}
                       markers={markers}
-                      styles={mapStyle.colors}
+                      styles={mapStyle?.colors}
                       className={`${this.decorateCSS("location-map")} ${!hasItemsExist && this.decorateCSS("full-width")}`}
                       defaultZoom={centerZoom}
                       handleMarkerZoom={markerZoom}

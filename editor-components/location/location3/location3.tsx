@@ -274,14 +274,14 @@ class Location3 extends Location {
     const continents = this.getPropValue("continents");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
-    const subtitleExist = this.castToString(subtitle);
+    const hasSubtitle = this.castToString(subtitle);
 
     const description = this.getPropValue("description");
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
+    const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
 
     const theme = this.getPropValue("theme");
 
@@ -351,7 +351,7 @@ class Location3 extends Location {
 
     const iconExist = this.getPropValue("icon");
 
-    const topExist = iconExist || titleExist || descriptionExist || continents.length > 0;
+    const topExist = iconExist || hasTitle || hasDescription || continents.length > 0;
     return (
       <div className={this.decorateCSS("wrapper")}>
         {topExist && (
@@ -363,20 +363,20 @@ class Location3 extends Location {
                     <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
                   </div>
                 )}
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
 
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
 
                 {continents.length > 0 && (
-                  <div className={styles["continents-wrapper"]}>
+                  <div className={this.decorateCSS("continents-wrapper")}>
                     {continents.map((continentObj: any, index: number) => {
                       const name = this.castToString(continentObj.getPropValue("name"));
                       const count = continentObj.getPropValue("count");
 
                       return (
                         (name || count) && (
-                          <div key={index} className={styles["continent-item"]}>
+                          <div key={index} className={this.decorateCSS("continent-item")}>
                             <Base.P className={this.decorateCSS("continent-name")}>{continentObj.getPropValue("name")}</Base.P>
                             <Base.P className={this.decorateCSS("continent-count")}>{count}</Base.P>
                           </div>
@@ -390,7 +390,7 @@ class Location3 extends Location {
           </Base.Container>
         )}
         <section className={this.decorateCSS("map-container")}>
-          <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+          <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
         </section>
       </div>
     );

@@ -2,6 +2,7 @@
 
 .container {
   position: relative;
+
   .max-content {
     .wrapper {
       justify-content: center;
@@ -16,13 +17,15 @@
         justify-content: center;
         gap: var(--composer-gap-lg);
         width: 100%;
+
         .title-block {
           display: flex;
           flex-direction: column;
           width: 100%;
           align-items: flex-start;
 
-          .subtitle, .title {
+          .subtitle,
+          .title {
             content: "";
             text-align: left;
             margin-left: 0;
@@ -81,7 +84,6 @@
         justify-content: center;
 
         .bottom-title {
-          font-size: var(--composer-font-size-xl);
           padding-bottom: 2px;
           color: var(--composer-primary-color);
           max-width: 50%;
@@ -90,7 +92,6 @@
 
         .phone-container {
           .phone {
-            font-size: var(--composer-font-size-xl);
             color: var(--composer-primary-color);
             width: fit-content;
             border-bottom: solid 2px var(--composer-primary-color);
@@ -118,14 +119,12 @@
           padding: var(--composer-gap-md);
 
           .popup-title {
-            font-size: var(--composer-font-size-lg);
             color: var(--composer-font-color-primary);
             margin: 0;
             text-align: center;
           }
 
           .popup-content {
-            font-size: var(--composer-font-size-md);
             color: var(--composer-tertiary-color);
             text-align: center;
             margin: 0;
@@ -143,7 +142,6 @@
             cursor: pointer;
             width: 100%;
             padding: var(--composer-gap-md);
-            font-size: var(--composer-font-size-md);
             border-bottom-left-radius: var(--composer-border-radius-sm);
             border-bottom-right-radius: var(--composer-border-radius-sm);
           }
@@ -151,7 +149,7 @@
       }
     }
   }
- 
+
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -162,8 +160,10 @@
 
         .popup {
           width: 200px;
+
           .popup-header {
             gap: var(--composer-gap-sm);
+
             .popup-title,
             .popup-content {
               font-size: 1rem;

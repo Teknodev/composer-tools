@@ -52,13 +52,7 @@
                 align-items: center;
                 gap: var(--composer-gap-xs);
 
-                .text {
-                  font-size: 1.5rem;
-                }
-
-                .info {
-                  font-size: 1rem;
-                }
+                // font-size removed from .text and .info
               }
 
               .icon {
@@ -79,10 +73,12 @@
       .map {
         width: 100%;
         height: 100%;
-        > div {
+
+        >div {
           border-top-left-radius: var(--composer-border-radius-sm);
           border-bottom-left-radius: var(--composer-border-radius-sm);
-          > div {
+
+          >div {
             border-top-left-radius: var(--composer-border-radius-sm);
             border-bottom-left-radius: var(--composer-border-radius-sm);
           }
@@ -115,9 +111,9 @@
     margin-left: calc(-1 * var(--composer-gap-md));
     margin-bottom: 0;
   }
- 
+
   .popup-content {
-    content: "";
+    margin: 0;
   }
 }
 
@@ -188,6 +184,7 @@
           .button-container {
             .button {
               width: 80% !important;
+
               .button-element {
                 .button-text {
                   .text {

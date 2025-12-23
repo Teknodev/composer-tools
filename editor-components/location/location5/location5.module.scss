@@ -5,9 +5,11 @@
 
   .max-content {
     .title-block {
-    .subtitle, .title {
-      content: "";
-    }
+
+      .subtitle,
+      .title {
+        content: "";
+      }
     }
   }
 
@@ -31,18 +33,15 @@
           width: 40%;
 
           .location-index {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
 
           .location-city {
-            font-size: 2rem;
             color: var(--composer-font-color-primary);
           }
 
-          .location-adress,
+          .location-address,
           .location-description {
-            font-size: 1rem;
             color: var(--composer-tertiary-color);
           }
         }
@@ -57,7 +56,7 @@
           font-size: 1.6rem;
         }
 
-        > div {
+        >div {
           border-radius: var(--composer-border-radius-sm);
         }
 

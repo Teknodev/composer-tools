@@ -2,6 +2,7 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location2.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
@@ -107,8 +108,8 @@ class Location2 extends Location {
             },
             {
               type: "page",
-              key: "url",
-             displayer: "Navigate To",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -132,8 +133,8 @@ class Location2 extends Location {
             },
             {
               type: "page",
-              key: "url",
-             displayer: "Navigate To",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -157,8 +158,8 @@ class Location2 extends Location {
             },
             {
               type: "page",
-              key: "url",
-             displayer: "Navigate To",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -530,27 +531,29 @@ class Location2 extends Location {
     const socials = this.castToObject<SocialMediaItemType[]>("socials");
     const headerExist = isTitleExist || isDescriptionExist || socials.length > 0;
     const subtitle = this.getPropValue("subtitle");
-    const subtitleExist = this.castToString(subtitle);
+    const hasSubtitle = this.castToString(subtitle);
     return (
       <div className={this.decorateCSS("container")}>
         {headerExist && (
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
 
                 <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
                   {socials.length > 0 && (
                     <div className={this.decorateCSS("socials")}>
-                      {socials.map((item: SocialMediaItemType) => {
+                      {socials.map((item: any) => {
                         return (
-                          item.icon && (
+                          item.getPropValue("icon") && (
                             <Base.VerticalContent className={this.decorateCSS("socials-container")}>
-                              <Base.Row className={this.decorateCSS("social-button")}>
-                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
-                              </Base.Row>
+                              <ComposerLink path={item.getPropValue("path")}>
+                                <Base.Row className={this.decorateCSS("social-button")}>
+                                  <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                                </Base.Row>
+                              </ComposerLink>
                             </Base.VerticalContent>
                           )
                         );

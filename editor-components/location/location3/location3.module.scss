@@ -7,6 +7,7 @@
 
   .container {
     padding-bottom: 0;
+
     .max-content {
       .header {
         text-align: center;
@@ -23,13 +24,16 @@
           }
         }
 
-        .subtitle, .title, .description {
+        .subtitle,
+        .title,
+        .description {
           text-align: center;
         }
 
-        .subtitle{
+        .subtitle {
           transform: translateX(0);
-          &::before { 
+
+          &::before {
             display: none;
           }
         }
@@ -51,12 +55,10 @@
             align-items: center;
 
             .continent-name {
-              font-size: 1rem;
               color: var(--composer-primary-color);
             }
 
             .continent-count {
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
             }
           }

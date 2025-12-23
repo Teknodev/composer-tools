@@ -164,8 +164,10 @@ class Location4 extends Location {
 
         const lat = markerData?.value?.lat;
         const lng = markerData?.value?.lng;
-        const description = this.castToString(address.getPropValue("description"));
-        const popupTitle = this.castToString(address.getPropValue("popupTitle"));
+        const description = address.getPropValue("description");
+        const hasDescription = this.castToString(description);
+        const popupTitle = address.getPropValue("popupTitle");
+        const hasPopupTitle = this.castToString(popupTitle);
         const popupImage = address.getPropValue("popupImage");
 
         const markerImage = address.getPropValue("marker-image");
@@ -203,7 +205,7 @@ class Location4 extends Location {
 
         if (lat !== undefined && lng !== undefined) {
           const content =
-            description || popupTitle ? (
+            hasDescription || hasPopupTitle ? (
               <div className={this.decorateCSS("popup")}>
                 {popupImage && (
                   <Base.Media
@@ -211,10 +213,10 @@ class Location4 extends Location {
                     value={popupImage}
                   />
                 )}
-                {(popupTitle || description) && (
+                {(hasPopupTitle || hasDescription) && (
                   <div className={this.decorateCSS("popup-texts")}>
-                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle}</Base.P>}
-                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                    {hasPopupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle}</Base.P>}
+                    {hasDescription && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
                   </div>
                 )}
               </div>
@@ -254,7 +256,7 @@ class Location4 extends Location {
           {media ? (
             <div className={this.decorateCSS("content")}>
               {overlay && media && <div className={this.decorateCSS("overlay")}></div>}
-              {media && <Base.Media value={media} className={this.decorateCSS("image")}/>}
+              {media && <Base.Media value={media} className={this.decorateCSS("image")} />}
               {titleExist && (
                 <Base.Container className={this.decorateCSS("content-container")}>
                   <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -263,7 +265,7 @@ class Location4 extends Location {
                   </Base.MaxContent>
                 </Base.Container>
               )}
-              
+
             </div>
           ) : (
             titleExist && (
@@ -277,8 +279,8 @@ class Location4 extends Location {
 
           {markers.length > 0 && (
             <section className={this.decorateCSS("map-container")}>
-            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
-          </section>
+              <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
+            </section>
           )}
         </div>
       </div>
