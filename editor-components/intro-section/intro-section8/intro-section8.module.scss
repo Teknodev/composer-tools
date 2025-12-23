@@ -69,6 +69,7 @@
           gap: var(--composer-gap-xs);
 
           .button-text {
+            content: "";
             text-align: center;
           }
         }
