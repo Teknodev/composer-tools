@@ -207,12 +207,15 @@
 
           .left-side{
             justify-content: flex-start;
-            margin: 0;
 
             .left-side-content{
               width: 100%;
               align-items: baseline;
             }
+          }
+
+          .right-side {
+            height: 100%;
           }
 
           .arrows {
