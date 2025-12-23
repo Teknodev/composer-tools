@@ -9,7 +9,7 @@
     .subtitle,
     .title,
     .description {
-      color: var(--color-white);
+      color: var(--color-white) !important;
     }
 
     .subtitle {
@@ -86,6 +86,11 @@
         .subtitle {
           transform: translateX(0) !important;
           margin: 0 auto !important;
+
+          &::before,
+          &::after {
+            display: none !important;
+          }
         }
       }
 
