@@ -148,7 +148,9 @@ class Feature33 extends BaseFeature {
                   <div className={this.decorateCSS("button-container")}>
                     {validButtons.map((btn, i) => (
                       <ComposerLink key={`btn-${i}`} path={btn?.url || ""}>
-                        <Base.Button buttonType={btn?.type} className={this.decorateCSS("button")}>{btn.text}</Base.Button>
+                        <Base.Button buttonType={btn?.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                        </Base.Button>
                       </ComposerLink>
                     ))}
                   </div>
