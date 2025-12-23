@@ -1,4 +1,3 @@
-import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -36,7 +35,7 @@ class IntroSection2 extends BaseIntroSection {
       key: "cover-image",
       displayer: "Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -74,6 +73,8 @@ class IntroSection2 extends BaseIntroSection {
     const description =
       this.castToString(this.getPropValue("description")) || "";
     const coverImage = this.getPropValue("cover-image");
+    const coverUrl = coverImage?.url ?? (typeof coverImage === "string" ? coverImage : "");
+    const coverIsVideo = coverImage?.type === "video";
     const button = this.castToObject<any>("button");
     const hasButton = !!(button && this.castToString(button.text));
     const alignemnt = Base.getContentAlignment();
@@ -88,9 +89,14 @@ class IntroSection2 extends BaseIntroSection {
             : ""
         }`}
         style={{
-          backgroundImage: coverImage ? `url(${coverImage.url})` : undefined,
+          backgroundImage: !coverIsVideo && coverUrl ? `url(${coverUrl})` : undefined,
         }}
       >
+        {coverIsVideo && coverImage && (
+          <div className={this.decorateCSS("background-media")}>
+            <Base.Media value={coverImage} className={this.decorateCSS("background-media-element")} />
+          </div>
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent
             className={this.decorateCSS("vertical-content")}

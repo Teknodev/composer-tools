@@ -206,13 +206,21 @@ class About7 extends BaseAbout {
   render() {
     const items = this.castToObject<ItemType[]>("items");
     const backgroundImage = this.castToObject<any>("background-image");
-    const isBackgroundImageExist = backgroundImage?.image;
+    const bgMedia = backgroundImage?.image;
+    const bgUrl = bgMedia?.url ?? (typeof bgMedia === "string" ? bgMedia : "");
+    const bgIsVideo = bgMedia?.type === "video";
+    const isBackgroundImageExist = !!bgMedia;
 
     const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${backgroundImage?.image?.url})`}}>
-        {backgroundImage?.overlay && backgroundImage.image && (
+      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: !bgIsVideo && bgUrl ? `url(${bgUrl})` : undefined}}>
+        {bgIsVideo && bgMedia && (
+          <div className={this.decorateCSS("background-media")}>
+            <Base.Media value={bgMedia} className={this.decorateCSS("background-media-element")} />
+          </div>
+        )}
+        {backgroundImage?.overlay && bgMedia && (
           <div className={this.decorateCSS("background-overlay")} />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>

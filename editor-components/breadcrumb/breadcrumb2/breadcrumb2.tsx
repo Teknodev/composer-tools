@@ -5,9 +5,9 @@ import { BaseBreadcrumb } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
-    title: string;
-    icon: string;
-    navigateTo: string;
+    title: any;
+    icon: any;
+    navigateTo: any;
 };
 
 
@@ -130,7 +130,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
-    const currentPage = this.castToObject("currentPage");
+    const currentPage = this.castToObject<any>("currentPage");
     const currentPageTitle = currentPage?.title || "";
     const currentPageIcon = currentPage?.icon || "";
     const showGradient = this.getPropValue("showGradient");
@@ -144,8 +144,8 @@ class Breadcrumb2 extends BaseBreadcrumb {
             : this.decorateCSS("noGradient")
         }`}
       >
-        {bgImage?.url && <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />}
-        {overlay && bgImage?.url && <div className={this.decorateCSS("overlay")}></div>}
+        {bgImage && <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />}
+        {overlay && bgImage && <div className={this.decorateCSS("overlay")}></div>}
         {showBreadcrumb && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.Row className={this.decorateCSS("crumber-content")}>

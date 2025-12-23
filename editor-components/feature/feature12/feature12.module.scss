@@ -27,6 +27,7 @@
       }
 
       .card-item-first {
+        position: relative;
         align-items: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -38,13 +39,41 @@
         gap: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md) 0 0 var(--composer-border-radius-md);
 
+        .background-media {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          display: block;
+        }
+        .background-overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background: var(--composer-overlay-color);
+          pointer-events: none;
+        }
+        .background-media-element {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
         .first-card-title {
+          position: relative;
+          z-index: 2;
           color: var(--composer-font-color-primary);
           text-align: center;
           margin: 0px;
         }
 
         .button {
+          position: relative;
+          z-index: 2;
           .button-text {
             content: "";
           }

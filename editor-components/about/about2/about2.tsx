@@ -26,7 +26,7 @@ class About2 extends BaseAbout {
       displayer: "Media",
       key: "cover-image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
