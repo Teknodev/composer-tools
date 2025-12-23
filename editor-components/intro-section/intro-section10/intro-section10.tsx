@@ -76,7 +76,7 @@ class IntroSection10 extends BaseIntroSection {
     const descriptionText = this.castToString(descriptionNode);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
-    const hasAnimate1 = !!this.getPropValue("textAnimation");
+    const hasAnimate = !!this.getPropValue("textAnimation");
 
     const hasLeft = !!(subtitleText || topText || bottomText);
     const hasRight = !!descriptionText || buttons.length > 0;
@@ -93,7 +93,7 @@ class IntroSection10 extends BaseIntroSection {
             this.decorateCSS("section-row"),
             alignmentClass,
             hasLeft && !hasRight && this.decorateCSS("left-alone"),
-            hasAnimate1 && this.decorateCSS("animate"),
+            hasAnimate && this.decorateCSS("animate"),
           ].filter(Boolean).join(" ")}
         >
 
@@ -112,7 +112,7 @@ class IntroSection10 extends BaseIntroSection {
                 )}
 
                 {bottomText && (
-                  hasAnimate1 ? (
+                  hasAnimate ? (
                     <TypeWriter text={bottomText} className={this.decorateCSS("bottom-text")} />
                   ) : (
                     <Base.SectionTitle className={this.decorateCSS("bottom-text")}>
