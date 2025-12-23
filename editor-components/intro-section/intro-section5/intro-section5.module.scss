@@ -1,0 +1,180 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  position: relative;
+
+  &.has-background {
+    min-height: 50vh;
+
+    .subtitle,
+    .title,
+    .description {
+      color: var(--color-white) !important;
+    }
+
+    .subtitle {
+      background: transparent !important;
+      padding: 0 !important;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    .button {
+      color: var(--color-white);
+    }
+  }
+
+  &.overlay-active::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: var(--composer-overlay-color);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .background-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    object-fit: cover;
+
+    .img,
+    .video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .max-content {
+    position: relative;
+    z-index: 2;
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .content {
+      min-height: inherit;
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      gap: var(--composer-gap-xl);
+
+      .text-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        justify-content: center;
+        align-items: center;
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: center !important;
+        }
+
+        .subtitle {
+          transform: translateX(0) !important;
+          margin: 0 auto !important;
+
+          &::before,
+          &::after {
+            display: none !important;
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        margin-top: auto;
+        z-index: 5;
+      }
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button {
+    font-size: 4rem !important;
+
+    &.has-animation {
+      animation: bounce 2s infinite;
+    }
+  }
+
+  .button-text {
+    display: inline-flex;
+    align-items: center;
+    font-size: 4rem !important;
+  }
+
+  .button-icon {
+    width: 4rem !important;
+    height: 4rem !important;
+    font-size: 4rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  }
+
+  @keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+
+    40% {
+      transform: translateY(-10px);
+    }
+
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .button {
+      font-size: 2rem !important;
+    }
+
+    .button-text {
+      font-size: 2rem !important;
+    }
+
+    .button-icon {
+      width: 2rem !important;
+      height: 2rem !important;
+      font-size: 2rem !important;
+    }
+  }
+}
