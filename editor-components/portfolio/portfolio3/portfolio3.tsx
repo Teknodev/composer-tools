@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BasePortfolio, BaseSocialWidget, TypeMediaInputValue } from "../../EditorComponent";
+import { BasePortfolio, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./portfolio3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";

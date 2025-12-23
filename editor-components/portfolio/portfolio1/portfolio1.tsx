@@ -442,7 +442,7 @@ class Portfolio1 extends BasePortfolio {
       !!(m && typeof m === "object" && "url" in m && m.url);
 
     const hasIcon = (icon: TypeMediaInputValue) =>
-      !!(icon && typeof icon === "object" && ("name" in icon || "url" in icon));
+      !!(icon && typeof icon === "object" && (icon?.name || icon?.url));
 
     const getButtonsFromItem = (item: PortfolioItem) => {
       const buttonsArray = item?.buttons;
@@ -465,16 +465,10 @@ class Portfolio1 extends BasePortfolio {
     const hasAnyButtonInItem = (
       buttons: { text?: string; media?: TypeMediaInputValue }[]
     ) => {
-      return buttons.some((b) => {
-        const textExists = !!this.castToString(b?.text);
-        const media = b?.media;
-        const mediaExists = !!(
-          media &&
-          typeof media === "object" &&
-          ("name" in media || "url" in media)
-        );
-        return textExists || mediaExists;
-      });
+      return buttons.some(
+        (b: any) =>
+          this.castToString(b?.text) || b?.media?.name || b?.media?.url
+      );
     };
 
     const hasContentInItem = (item: PortfolioItem) => {
@@ -490,6 +484,7 @@ class Portfolio1 extends BasePortfolio {
       const hasTitle = this.castToString(title);
       const hasDescription = this.castToString(description);
       const hasImage = isRenderableImage(image);
+
       const hasAnyButton = hasAnyButtonInItem(buttons);
 
       return !!(
@@ -635,8 +630,8 @@ class Portfolio1 extends BasePortfolio {
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
                 <div
                   className={`${this.decorateCSS("item")} ${
-                    !itemLeft.image ||
-                    (!itemLeft.image.url && this.decorateCSS("no-image"))
+                    (!itemLeft.image || !itemLeft.image.url) &&
+                    this.decorateCSS("no-image")
                   }`}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
@@ -668,9 +663,8 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemTopLeft.image ||
-                          (!itemTopLeft.image.url &&
-                            this.decorateCSS("no-image"))
+                          (!itemTopLeft.image || !itemTopLeft.image.url) &&
+                          this.decorateCSS("no-image")
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"
@@ -699,9 +693,8 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemTopRight.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemTopRight.image ||
-                          (!itemTopRight.image.url &&
-                            this.decorateCSS("no-image"))
+                          (!itemTopRight.image || !itemTopRight.image.url) &&
+                          this.decorateCSS("no-image")
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"
@@ -735,9 +728,8 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemBottomLeft.image ||
-                          (!itemBottomLeft.image.url &&
-                            this.decorateCSS("no-image"))
+                          (!itemBottomLeft.image || !itemBottomLeft.image.url) &&
+                          this.decorateCSS("no-image")
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"
@@ -766,9 +758,8 @@ class Portfolio1 extends BasePortfolio {
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
                       <div
                         className={`${this.decorateCSS("item")} ${
-                          !itemBottomRight.image ||
-                          (!itemBottomRight.image.url &&
-                            this.decorateCSS("no-image"))
+                          (!itemBottomRight.image || !itemBottomRight.image.url) &&
+                          this.decorateCSS("no-image")
                         }`}
                         data-animation={this.getPropValue(
                           "hoverAnimation"
