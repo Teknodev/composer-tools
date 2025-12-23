@@ -126,9 +126,6 @@
 
         .play-icon-wrapper {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
           z-index: 99;
           display: flex;
           justify-content: center;
@@ -139,12 +136,9 @@
           padding: var(--composer-gap-md);
 
           .play-icon {
-            width: 48px;
-            height: 48px;
-            font-size: 48px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 50px;
+            height: 50px;
+            font-size: 3.4rem;
           }
         }
       }
@@ -163,7 +157,7 @@
       .play-icon {
         width: 32px;
         height: 32px;
-        font-size: 32px;
+        font-size: 2.2rem;
       }
     }
   }
@@ -186,7 +180,7 @@
         .play-icon {
           width: 24px;
           height: 24px;
-          font-size: 24px;
+          font-size: 1.6rem;
         }
       }
     }

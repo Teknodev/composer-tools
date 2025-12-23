@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BaseIntroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseIntroSection, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./intro-section8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class IntroSection8 extends BaseIntroSection {
-  constructor(props?: {}) {
+  constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
     this.addProp({
