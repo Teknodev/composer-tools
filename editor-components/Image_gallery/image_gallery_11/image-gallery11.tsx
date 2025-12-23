@@ -15,10 +15,22 @@ type GalleryRow = {
   speed: number;
 };
 
+type RowState = {
+  offset: number;
+  startOffset: number;
+  startX: number;
+  moved: boolean;
+  paused: boolean;
+  dragging: boolean;
+  width: number;
+  speed: number;
+  dir: number;
+};
+
 const MIN_DUPLICATED_SLIDES = 6;
 const REPEAT_COUNT = 4;
 
-const baseSettings = {
+const BASE_SETTINGS = {
   dots: false,
   arrows: false,
   infinite: false,
@@ -34,11 +46,38 @@ const baseSettings = {
 };
 
 class ImageGallery11 extends BaseImageGallery {
-  private sliderRefs: any[] = [];
-  private rowWrapperRefs: (HTMLDivElement | null)[] = [];
-  private rowStates: any[] = [];
-  private rafId: number | null = null;
+  private sliderRefs: Array<{ innerSlider?: any } | null> = [];
+  private rowWrapperRefs: Array<HTMLDivElement | null> = [];
+
   private animationDuration = 420000;
+
+  private rafId: number | null = null;
+
+  private rowStates: RowState[] = [];
+
+  private popupOpenRow: number | null = null;
+  private _handlers: Record<string, Array<any>> = { enter: [], leave: [], down: [], move: [], up: [] };
+
+  private getHandler(kind: keyof typeof this._handlers, rowIndex: number, factory: () => any) {
+    const bucket = this._handlers[kind] || (this._handlers[kind] = []);
+    if (!bucket[rowIndex]) bucket[rowIndex] = factory();
+    return bucket[rowIndex];
+  }
+
+  private getMouseEnter = (rowIndex: number) =>
+    this.getHandler("enter", rowIndex, () => () => (this.rowStates[rowIndex] && (this.rowStates[rowIndex].paused = true)));
+
+  private getMouseLeave = (rowIndex: number) =>
+    this.getHandler("leave", rowIndex, () =>
+      () => {
+        if (this.getComponentState("imagePopupOpen") && this.popupOpenRow === rowIndex) return;
+        this.rowStates[rowIndex] && (this.rowStates[rowIndex].paused = false);
+      }
+    );
+
+  private getPointerDown = (rowIndex: number) => this.getHandler("down", rowIndex, () => (e: any) => this.onDown(rowIndex, e));
+  private getPointerMove = (rowIndex: number) => this.getHandler("move", rowIndex, () => (e: any) => this.onMove(rowIndex, e));
+  private getPointerUp = (rowIndex: number) => this.getHandler("up", rowIndex, () => (e: any) => this.onUp(rowIndex, e));
 
   constructor(props?: unknown) {
     super(props, styles);
@@ -59,7 +98,7 @@ class ImageGallery11 extends BaseImageGallery {
     this.addProp({
       type: "media",
       key: "background",
-      displayer: "Background Image",
+      displayer: "Background Media",
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689af25436675f002db98b79?alt=media",
@@ -83,17 +122,17 @@ class ImageGallery11 extends BaseImageGallery {
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media",
                   value: [
                     {
                       type: "media",
                       key: "media",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b16de36675f002db9baf2?alt=media",
@@ -105,12 +144,12 @@ class ImageGallery11 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media",
                   value: [
                     {
                       type: "media",
                       key: "media",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b177536675f002db9bbfe?alt=media",
@@ -122,12 +161,12 @@ class ImageGallery11 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media",
                   value: [
                     {
                       type: "media",
                       key: "media",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b17fb36675f002db9bcd0?alt=media",
@@ -148,17 +187,17 @@ class ImageGallery11 extends BaseImageGallery {
             {
               type: "array",
               key: "images",
-              displayer: "Images",
+              displayer: "Media",
               value: [
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media",
                   value: [
                     {
                       type: "media",
                       key: "media",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1a6036675f002db9c11e?alt=media",
@@ -170,12 +209,12 @@ class ImageGallery11 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media",
                   value: [
                     {
                       type: "media",
                       key: "media",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b1c4636675f002db9c592?alt=media",
@@ -187,12 +226,12 @@ class ImageGallery11 extends BaseImageGallery {
                 {
                   type: "object",
                   key: "image-item",
-                  displayer: "Image",
+                  displayer: "Media",
                   value: [
                     {
                       type: "media",
                       key: "media",
-                      displayer: "Image",
+                      displayer: "Media",
                       value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689b188936675f002db9bde7?alt=media",
@@ -253,86 +292,66 @@ class ImageGallery11 extends BaseImageGallery {
   private preventDefault = (e: any) => e.preventDefault();
 
   private setAllPaused(paused: boolean) {
-    this.rowStates.forEach((s: any) => s && (s.paused = paused));
+    this.rowStates.forEach((s) => s && (s.paused = paused));
   }
 
   private setOffset = (i: number, wrap = true) => {
-    const s = this.rowStates[i],
-      el = this.rowWrapperRefs[i];
+    const s = this.rowStates[i];
+    const el = this.rowWrapperRefs[i];
     if (!s || !el) return;
-    wrap && (s.offset = ((s.offset % s.width) + s.width) % s.width - s.width);
-    el.style.setProperty("--track-offset", s.offset + "px");
+    if (wrap) s.offset = ((s.offset % s.width) + s.width) % s.width - s.width;
+    el.style.setProperty("--track-offset", `${s.offset}px`);
   };
 
   private getProcessedRows(): GalleryRow[] {
     const rawRows = (this.castToObject("galleryRows") || []) as RawGalleryRow[];
     return rawRows
       .filter(Boolean)
-      .map((row) => ({
-        speed: row.speed && row.speed > 0 ? row.speed : 1,
-        images: (row.images || []).filter((img) => !!img?.media),
-      }))
+      .map((row) => ({ speed: row.speed && row.speed > 0 ? row.speed : 1, images: (row.images || []).filter((img) => !!img?.media) }))
       .filter((row) => row.images.length > 0);
   }
 
   private refreshRows = () => {
-    const rows: any[] = this.getProcessedRows();
+    const rows = this.getProcessedRows();
     this.rowStates.length = rows.length;
-
     for (let i = 0; i < rows.length; i++) {
-      const t: any = this.sliderRefs[i]?.innerSlider?.list?.querySelector(".slick-track");
-      const w = t ? t.scrollWidth / REPEAT_COUNT : 0;
-      if (!w) continue;
-
+      const row = rows[i];
+      const track: any = this.sliderRefs[i]?.innerSlider?.list?.querySelector(".slick-track");
+      const width = track ? track.scrollWidth / REPEAT_COUNT : 0;
+      if (!width) continue;
       const dir = i % 2 ? 1 : -1;
-      const start = dir === 1 ? -w : 0;
-
-      const s =
-        (this.rowStates[i] ??= {
-          offset: start,
-          startOffset: start,
-          startX: 0,
-          moved: false,
-          paused: false,
-          dragging: false,
-          width: w,
-          speed: 0,
-          dir,
-        });
-
-      s.width = w;
+      const start = dir === 1 ? -width : 0;
+      const existing = this.rowStates[i];
+      const s: RowState = existing ?? { offset: start, startOffset: start, startX: 0, moved: false, paused: false, dragging: false, width, speed: 0, dir };
+      s.width = width;
       s.dir = dir;
-      s.speed = (w / this.animationDuration) * (rows[i].speed || 1);
-
-      !s.dragging && this.setOffset(i);
+      s.speed = (width / this.animationDuration) * (row.speed || 1);
+      this.rowStates[i] = s;
+      if (!s.dragging) this.setOffset(i);
     }
   };
 
   private startRaf = () => {
     if (this.rafId) return;
     let last = 0;
-
     const loop = (ts: number) => {
       const dt = last ? ts - last : 0;
       last = ts;
-
       for (let i = 0; i < this.rowStates.length; i++) {
         const s = this.rowStates[i];
         if (!s || s.paused || s.dragging) continue;
         s.offset += s.speed * s.dir * dt;
         this.setOffset(i);
       }
-
       this.rafId = requestAnimationFrame(loop);
     };
-
     this.rafId = requestAnimationFrame(loop);
   };
 
-  private onDown = (i: number, e: any) => {
+  private onDown = (i: number, e: PointerEvent | any) => {
     const s = this.rowStates[i];
     if (!s) return;
-    e.currentTarget.setPointerCapture?.(e.pointerId);
+    e.currentTarget?.setPointerCapture?.(e.pointerId);
     s.dragging = true;
     s.paused = true;
     s.moved = false;
@@ -340,83 +359,77 @@ class ImageGallery11 extends BaseImageGallery {
     s.startOffset = s.offset;
   };
 
-  private onMove = (i: number, e: any) => {
+  private onMove = (i: number, e: PointerEvent | any) => {
     const s = this.rowStates[i];
     if (!s?.dragging) return;
     const dx = e.clientX - s.startX;
-    s.moved ||= Math.abs(dx) > 5;
+    if (!s.moved && Math.abs(dx) > 5) s.moved = true;
     s.offset = s.startOffset + dx;
     this.setOffset(i, false);
   };
 
-  private onUp = (rows: any[], i: number, e: any) => {
+  private onUp = (i: number, e: PointerEvent | any) => {
     const s = this.rowStates[i];
     if (!s?.dragging) return;
-    e.currentTarget.releasePointerCapture?.(e.pointerId);
+    e.currentTarget?.releasePointerCapture?.(e.pointerId);
     s.dragging = false;
     this.setOffset(i);
-    !s.moved && this.tryOpenPopupFromPoint(rows, e.clientX, e.clientY);
-    s.paused = false;
+    let opened = false;
+    if (!s.moved) opened = this.tryOpenPopupFromPoint(this.getProcessedRows(), e.clientX, e.clientY);
+    if (!opened) s.paused = false;
   };
 
   private tryOpenPopupFromPoint(rows: GalleryRow[], x: number, y: number) {
-    const el = document.elementFromPoint(x, y) as HTMLElement | null;
-    const btn = el?.closest("[data-image-row-index]") as HTMLElement | null;
-    if (!btn) return;
-
-    const r = parseInt(btn.getAttribute("data-image-row-index") || "", 10);
-    const idx = parseInt(btn.getAttribute("data-image-original-index") || "", 10);
+    const btn = (document.elementFromPoint(x, y) as HTMLElement | null)?.closest("[data-image-row-index]") as HTMLElement | null;
+    if (!btn) return false;
+    const r = +(btn.dataset.imageRowIndex ?? -1);
+    const idx = +(btn.dataset.imageOriginalIndex ?? -1);
     const media = rows[r]?.images?.[idx]?.media;
-    if (media) this.openPopup(rows, media, r, idx);
+    if (media) {
+      this.openPopup(rows, media, r, idx);
+      return true;
+    }
+    return false;
   }
 
   private buildRowImages(row: GalleryRow, rtl: boolean) {
     const min = Math.max(MIN_DUPLICATED_SLIDES, row.images.length);
-    let base = row.images.length === 1 ? Array.from({ length: min }, () => row.images[0]) : [...row.images];
-    while (base.length < min) base = [...base, ...row.images];
-
+    let base = row.images.length === 1 ? Array(min).fill(row.images[0]) : [...row.images];
+    while (base.length < min) base = base.concat(row.images);
     const dup = Array.from({ length: REPEAT_COUNT }, () => base).flat();
-    const rowImages = rtl ? [...dup].reverse() : dup;
+    return { rowImages: rtl ? dup.slice().reverse() : dup, slidesToShow: row.images.length };
+  }
 
-    return { rowImages, slidesToShow: row.images.length };
+  private setPopupState(open: boolean, media?: TypeMediaInputValue | null, rowIndex?: number | null, imageIndex?: number | null, zoomed = false) {
+    this.setComponentState("imagePopupOpen", open);
+    this.setComponentState("imagePopupValue", media ?? null);
+    this.setComponentState("imagePopupRow", rowIndex ?? null);
+    this.setComponentState("imagePopupIndex", imageIndex ?? null);
+    this.setComponentState("imagePopupZoomed", zoomed);
+    this.setAllPaused(open);
   }
 
   private openPopup(rows: GalleryRow[], media: TypeMediaInputValue | undefined, rowIndex: number, imageIndex: number) {
     if (!media) return;
-
-    this.setComponentState("imagePopupOpen", true);
-    this.setComponentState("imagePopupValue", media);
-    this.setComponentState("imagePopupRow", rowIndex);
-    this.setComponentState("imagePopupIndex", imageIndex);
-    this.setComponentState("imagePopupZoomed", false);
-
-    this.setAllPaused(true);
+    this.setPopupState(true, media, rowIndex, imageIndex, false);
+    this.popupOpenRow = rowIndex;
+    if (this.rowStates[rowIndex]) this.rowStates[rowIndex].paused = true;
   }
 
   private closePopup(rows: GalleryRow[]) {
-    this.setComponentState("imagePopupOpen", false);
-    this.setComponentState("imagePopupValue", null);
-    this.setComponentState("imagePopupRow", null);
-    this.setComponentState("imagePopupIndex", null);
-    this.setComponentState("imagePopupZoomed", false);
-
-    this.setAllPaused(false);
+    this.setPopupState(false, null, null, null, false);
+    this.popupOpenRow = null;
   }
 
   private navigatePopup(rows: GalleryRow[], direction: "prev" | "next") {
     const rowIndex = this.getComponentState("imagePopupRow");
     if (rowIndex == null) return;
-
     const row = rows[rowIndex];
     if (!row || row.images.length === 0) return;
-
     const currentIndex = this.getComponentState("imagePopupIndex") ?? 0;
     const total = row.images.length;
     const nextIndex = direction === "next" ? (currentIndex + 1) % total : (currentIndex - 1 + total) % total;
-
-    this.setComponentState("imagePopupIndex", nextIndex);
-    this.setComponentState("imagePopupValue", row.images[nextIndex].media);
-    this.setComponentState("imagePopupZoomed", false);
+    this.setPopupState(true, row.images[nextIndex].media, rowIndex, nextIndex, false);
   }
 
   render() {
@@ -440,9 +453,7 @@ class ImageGallery11 extends BaseImageGallery {
     const showImageOverlay = !!this.getPropValue("imageOverlay");
 
     const alignment = Base.getContentAlignment();
-    const headingClasses = [this.decorateCSS("heading"), hasBackgroundMedia ? this.decorateCSS("with-bg") : ""]
-      .filter(Boolean)
-      .join(" ");
+    const headingClasses = [this.decorateCSS("heading"), hasBackgroundMedia && this.decorateCSS("with-bg")].filter(Boolean).join(" ");
     const headingProps = alignment === "center" ? { "data-alignment": "center" as const } : {};
 
     return (
@@ -480,7 +491,7 @@ class ImageGallery11 extends BaseImageGallery {
             {rows.map((row: GalleryRow, rowIndex: number) => {
               const rtl = rowIndex % 2 !== 0;
               const { rowImages, slidesToShow } = this.buildRowImages(row, rtl);
-              const sliderSettings = { ...baseSettings, slidesToShow, rtl };
+              const sliderSettings = { ...BASE_SETTINGS, slidesToShow, rtl };
 
               return (
                 <div
@@ -491,12 +502,12 @@ class ImageGallery11 extends BaseImageGallery {
                     this.refreshRows();
                   }}
                   onDragStart={this.preventDefault}
-                  onMouseEnter={() => this.rowStates[rowIndex] && (this.rowStates[rowIndex].paused = true)}
-                  onMouseLeave={() => this.rowStates[rowIndex] && (this.rowStates[rowIndex].paused = false)}
-                  onPointerDown={(e) => this.onDown(rowIndex, e)}
-                  onPointerMove={(e) => this.onMove(rowIndex, e)}
-                  onPointerUp={(e) => this.onUp(rows, rowIndex, e)}
-                  onPointerCancel={(e) => this.onUp(rows, rowIndex, e)}
+                onMouseEnter={this.getMouseEnter(rowIndex)}
+                onMouseLeave={this.getMouseLeave(rowIndex)}
+                onPointerDown={this.getPointerDown(rowIndex)}
+                onPointerMove={this.getPointerMove(rowIndex)}
+                onPointerUp={this.getPointerUp(rowIndex)}
+                onPointerCancel={this.getPointerUp(rowIndex)}
                 >
                   <ComposerSlider
                     ref={(s: any) => {
@@ -550,8 +561,7 @@ class ImageGallery11 extends BaseImageGallery {
                 >
                   <Base.Media
                     value={popupValue}
-                    className={`${this.decorateCSS("modal-image")} ${isPopupZoomed ? this.decorateCSS("zoom") : ""}`}
-                  />
+                    className={`${this.decorateCSS("modal-image")} ${isPopupZoomed && this.decorateCSS("zoom")}`}   />
                 </div>
               </div>
             </div>

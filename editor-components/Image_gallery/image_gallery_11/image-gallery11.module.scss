@@ -60,15 +60,14 @@
             }
           }
 
-          &.with-bg {
-
+          &.with-bg {           
             .title,
             .description {
-              color: white;
+              color: white !important;
             }
 
             .subtitle {
-              color: white;
+              color: white !important;
               background: transparent !important;
               padding: 0 !important;
 
@@ -97,10 +96,6 @@
         width: 100%;
         --track-offset: 0px;
         cursor: grab;
-
-        &.dragging {
-          cursor: grabbing;
-        }
 
         .slider {
           width: 100%;
@@ -163,13 +158,6 @@
   }
 
   .overlay {
-    inset: 0;
-    z-index: 20;
-    background: var(--composer-overlay-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     .modal-wrapper {
       width: 90%;
       height: 90%;
