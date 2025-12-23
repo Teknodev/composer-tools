@@ -52,12 +52,19 @@
         height: auto;
         position: relative;
 
-        .title, .description {
+        .title, .description, .subtitle {
           content: "";
           text-align: center;
           &.image{
             color: white;
           }
+        }
+        .subtitle {
+          transform: translateX(0);
+          text-align: center;
+            &::before {
+              display: none;
+            }
         }
         
       }
@@ -105,6 +112,12 @@
           overflow: hidden;
           margin: 0px;
           .cardTitle {
+            color: var(--composer-font-color-primary);
+            padding: var(--composer-gap-md);
+            margin: 0;
+            border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+          }
+          .card-subtitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
             margin: 0;

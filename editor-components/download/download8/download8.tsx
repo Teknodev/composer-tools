@@ -39,6 +39,13 @@ class Download8 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    }); 
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "If you want to download it",
@@ -49,6 +56,13 @@ class Download8 extends BaseDownload {
       key: "description",
       displayer: "Description",
       value: "By offering a clear call-to-action, businesses and developers can increase the chances that users will download and use their product.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "cardSubtitle",
+      displayer: "Card Subtitle",
+      value: "",
     });
 
     this.addProp({
@@ -140,10 +154,13 @@ class Download8 extends BaseDownload {
     const description = this.getPropValue("description");
     const cardTitle = this.getPropValue("cardTitle");
     const overlay = this.getPropValue("overlay");
-
+    const subtitle = this.getPropValue("subtitle");
+    const cardSubtitle = this.getPropValue("cardSubtitle");
     const titleExist = this.castToString(title);
+    const subtitleExist = this.castToString(subtitle);
     const descriptionExist = this.castToString(description);
     const cardTitleExist = this.castToString(cardTitle);
+    const cardSubtitleExist = this.castToString(cardSubtitle);
     const listExist = this.castToObject<any[]>("list").length > 0;
 
     const rightContent = document.getElementById("right-content");
@@ -164,8 +181,9 @@ class Download8 extends BaseDownload {
             </div>
           )}
           <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>
-            {(titleExist || descriptionExist) && (
+            {(subtitleExist || titleExist || descriptionExist) && (
               <Base.VerticalContent id={"left-content"} className={`${this.decorateCSS("left-content")} ${imageExist && this.decorateCSS("center")}`}>
+                {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
@@ -174,6 +192,7 @@ class Download8 extends BaseDownload {
           <div id={"right-content"} className={this.decorateCSS("right-content")}>
             <Base.VerticalContent className={this.decorateCSS("card")}>
               <div className={this.decorateCSS("card-up")}>
+                {cardSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{this.getPropValue("cardSubtitle")}</Base.SectionSubTitle>}
                 {cardTitleExist && <Base.H3 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</Base.H3>}
                 {listExist && (
                   <Base.VerticalContent className={this.decorateCSS("list-group")}>

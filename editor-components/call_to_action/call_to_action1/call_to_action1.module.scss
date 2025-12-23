@@ -10,6 +10,15 @@
                 color: var(--composer-primary-color);
             }
 
+            .subtitle {
+                text-align: center;
+                margin-left: 0;
+                transform: translateX(0);
+                &::before {
+                    display: none;
+                }
+            }
+
             .title {
                 text-align: center;
             }

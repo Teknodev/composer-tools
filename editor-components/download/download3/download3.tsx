@@ -12,6 +12,13 @@ class Download3 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Online Yoga, from Home",
@@ -63,9 +70,11 @@ class Download3 extends BaseDownload {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const overlay = this.getPropValue("overlay");
+    const subtitle = this.getPropValue("subtitle");
 
     const imageExist = this.getPropValue("image");
     const titleExist = this.castToString(title);
+    const subtitleExist = this.castToString(subtitle);  
     const descriptionExist = this.castToString(description);
 
     const buttonsExist = this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0;
@@ -83,6 +92,7 @@ class Download3 extends BaseDownload {
           <div className={this.decorateCSS("page")}>
             {alignmentValue === "left" && (
               <div className={this.decorateCSS("group-container")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!buttonsExist && this.decorateCSS("full")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                 <Base.SectionDescription className={`${this.decorateCSS("description")} ${!titleExist && this.decorateCSS("full")}`}>{this.getPropValue("description")}</Base.SectionDescription>
                 {buttonsExist && (
@@ -119,6 +129,7 @@ class Download3 extends BaseDownload {
 
             {alignmentValue === "center" && (
               <Base.VerticalContent className={this.decorateCSS("group-container-center")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 <div className={this.decorateCSS("button-group")}>

@@ -40,6 +40,14 @@
             width: 40%;
           }
         }
+        .subtitle {
+          content: "";
+          transform: translateX(0);
+          text-align: center;
+          &::before {
+            display: none;
+          }
+        }
         .description {
           color: var(--composer-font-color-primary);
           width: 60%;
