@@ -50,7 +50,9 @@ class About13 extends BaseAbout {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
     const hasImage = image?.url;
-    const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
+    const validButtons = buttons.filter((btn) => !!this.castToString(btn?.text));
+    const hasButtons = validButtons.length > 0;
+    const hasContent = subtitleExist || titleExist || descriptionExist || hasButtons;
     const isCenter = Base.getContentAlignment() === "center";
 
     return (
@@ -64,9 +66,9 @@ class About13 extends BaseAbout {
                   {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                   {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
 
-                  {buttons.length > 0 && (
+                  {hasButtons && (
                     <div className={this.decorateCSS("buttons-wrapper")}>
-                      {buttons.map((btn, i) => {
+                      {validButtons.map((btn, i) => {
                         const iconName = btn.icon?.name;
 
                         return (
