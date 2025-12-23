@@ -1,0 +1,177 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .page {
+      width: 100%;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      margin-bottom: var(--composer-gap-md);
+
+      .title,
+      .description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .subtitle {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+        transform: none;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    .list {
+      width: 100%;
+      gap: var(--composer-gap-xl);
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--composer-gap-sm);
+      width: 100%;
+      text-align: left;
+
+      &.no-bg-icon {
+        gap: var(--composer-gap-sm);
+
+        .icon {
+          width: 1.5rem;
+          height: 1.5rem;
+          font-size: 1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: var(--composer-primary-color);
+        }
+      }
+
+      .icon-wrapper {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        position: relative;
+        padding: 0;
+        flex: 0 0 2.5rem;
+
+        &.with-bg {
+          background: var(--composer-primary-color);
+
+          .icon {
+            color: var(--composer-font-color-secondary);
+          }
+        }
+      }
+
+      .icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--composer-primary-color);
+        object-fit: contain;
+      }
+
+      .text {
+        margin: 0;
+        color: var(--composer-font-color-primary);
+        text-align: left;
+        flex: 1;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: var(--composer-gap-lg);
+
+    }
+  }
+
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .list {
+        margin-top: 0;
+        gap: var(--composer-gap-sm) !important;
+        row-gap: var(--composer-gap-md) !important;
+      }
+
+      .buttons {
+        margin-top: var(--composer-gap-md);
+      }
+    }
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    .max-content {
+      .header {
+        margin-bottom: var(--composer-gap-xs);
+      }
+
+      .list {
+        gap: var(--composer-gap-sm) !important;
+        row-gap: var(--composer-gap-md) !important;
+      }
+
+      .row {
+        align-items: flex-start;
+
+        .icon-wrapper {
+          width: 2rem;
+          height: 2rem;
+          min-width: 2rem;
+          min-height: 2rem;
+          flex: 0 0 2rem;
+        }
+
+        .icon {
+          width: 1rem;
+          height: 1rem;
+          font-size: 1rem;
+        }
+
+        &.no-bg-icon {
+          gap: var(--composer-gap-xs);
+
+          .icon {
+            width: 1.125rem;
+            height: 1.125rem;
+            font-size: 1.125rem;
+          }
+        }
+      }
+
+      .buttons {
+        margin-top: var(--composer-gap-sm);
+        gap: var(--composer-gap-sm);
+      }
+    }
+  }
+}
