@@ -39,7 +39,6 @@
           position: relative;
           z-index: 3;
           text-align: center;
-          font-weight: bold;
 
           
 
@@ -51,6 +50,9 @@
             color: white;
             background: transparent !important;
             padding: 0 !important;
+            &:before {
+              background: white !important;
+            }
           }
         }
       }
@@ -60,7 +62,7 @@
       .max-content-no-image {
         .title-no-image,
         .subtitle-no-image {
-          content: "";
+          content:"";
         }
       }
     }

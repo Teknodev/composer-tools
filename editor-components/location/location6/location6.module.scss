@@ -168,13 +168,10 @@
 
               .button-element {
                 .button-text {
-                  .text {
-                    font-size: 1rem !important;
-                  }
-
-                  .info {
-                    font-size: 1rem !important;
-                  }
+                  content: "";
+                }
+                .icon {
+                  content: "";
                 }
               }
             }
