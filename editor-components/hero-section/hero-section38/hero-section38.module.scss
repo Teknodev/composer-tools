@@ -352,7 +352,8 @@
         }
 
         .navigation-wrapper {
-          gap: var(--composer-gap-lg);
+          gap: var(--composer-gap-sm);
+          margin-top: var(--composer-gap-xl);
 
           .arrow-button {
             border: none !important;
