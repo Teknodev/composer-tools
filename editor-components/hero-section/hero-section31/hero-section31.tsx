@@ -509,6 +509,13 @@ class HeroSection31 extends BaseHeroSection {
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22f7b03b007002cc7d6cc?alt=media" },
             },
             {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -561,6 +568,13 @@ class HeroSection31 extends BaseHeroSection {
               key: "leftImage",
               additionalParams: { availableTypes: ["image", "video"] },
               value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b22fd303b007002cc7d714?alt=media" },
+            },
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
             },
             {
               type: "string",
