@@ -21,7 +21,7 @@
             }
 
             .cards-container {
-                gap: var(--composer-gap-lg);
+                gap: var(--composer-gap-md);
                 align-items: stretch;
                 justify-items: stretch;
 
@@ -55,6 +55,16 @@
                         transform: translateZ(150px);
                         background-color: var(--composer-primary-color);
                         z-index: 2;
+
+                        .card-title {
+                            color: var(--composer-font-color-secondary);
+                        }
+
+                        .icon-wrapper {
+                            .icon {
+                                color: var(--composer-font-color-secondary);
+                            }
+                        }
                     }
 
                     .top {
