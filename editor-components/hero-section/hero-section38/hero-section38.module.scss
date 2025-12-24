@@ -78,20 +78,48 @@
               transition: opacity var(--composer-transition-duration-normal) ease;
             }
 
-            .title {
-              word-break: break-word;
-              white-space: normal;
+            .content-overlay {
               position: absolute;
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              text-align: center;
-              color: var(--composer-font-color-secondary);
-              margin: 0;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
               z-index: 2;
               width: 100%;
               padding: 0 var(--composer-gap-md);
               pointer-events: auto;
+            }
+
+            .subtitle {
+              position: static;
+              text-align: center;
+              transform: translateX(0);
+
+              &:before {
+                display: none;
+              }
+            }
+
+            .title,
+            .description {
+              position: static;
+              margin: 0;
+              text-align: center;
+              width: 100%;
+            }
+            
+            .content-overlay.has-image {
+              .subtitle,
+              .title,
+              .description {
+                color: white;
+              }
+              .subtitle {
+                background: transparent;
+
+              }
             }
           }
 
@@ -105,11 +133,9 @@
 
           &.no-image {
             .image-wrapper {
-              background-color: color-mix(
-                in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              );
+              background-color: color-mix(in srgb,
+                  var(--composer-html-background),
+                  var(--composer-font-color-primary) 5%);
               display: flex;
               align-items: center;
               justify-content: center;
@@ -121,11 +147,28 @@
                 top: auto;
                 left: auto;
                 transform: none;
-                color: var(--composer-font-color-primary);
                 padding: 0 var(--composer-gap-lg);
                 text-align: center;
                 width: 100%;
                 pointer-events: auto;
+              }
+
+
+              .title,
+              .subtitle,
+              .description {
+                position: static;
+                top: auto;
+                left: auto;
+                transform: none;
+                text-align: center;
+                margin: 0;
+                padding: 0 var(--composer-gap-lg);
+              }
+
+
+              .description {
+                width: 100%;
               }
             }
           }
@@ -334,6 +377,10 @@
                 min-height: 300px;
 
                 .title {
+                  padding: 0 var(--composer-gap-md);
+                }
+
+                .subtitle {
                   padding: 0 var(--composer-gap-md);
                 }
               }

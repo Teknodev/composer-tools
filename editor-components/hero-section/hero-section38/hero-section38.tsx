@@ -10,6 +10,8 @@ type SlideItem = {
   image: TypeMediaInputValue;
   name: React.JSX.Element;
   navigateTo: string;
+  subtitle?: string;
+  description?: string;
 };
 
 class HeroSection38 extends BaseHeroSection {
@@ -42,9 +44,21 @@ class HeroSection38 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "name",
               displayer: "Title",
               value: "Curitiba Brasil",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -73,9 +87,21 @@ class HeroSection38 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "name",
               displayer: "Title",
               value: "Ron Mccleny",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -104,9 +130,21 @@ class HeroSection38 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "name",
               displayer: "Title",
               value: "National Aquarium Denmark",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -135,9 +173,21 @@ class HeroSection38 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "name",
               displayer: "Title",
               value: "Seceda",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "page",
@@ -322,10 +372,14 @@ class HeroSection38 extends BaseHeroSection {
                   const isScaled = animation && scaledIndex === index;
                   const navigateTo = item.navigateTo;
                   const liveName = this.getPropValue(`slides.${index}.name`) ?? item.name;
+                  const slideSubtitle = this.getPropValue(`slides.${index}.subtitle`) ?? item.subtitle;
+                  const slideDescription = this.getPropValue(`slides.${index}.description`) ?? item.description;
                   const imageValue = (this.getPropValue(`slides.${index}.image`) as TypeMediaInputValue | undefined) ?? item.image;
                   const imageExists = this.hasImage(imageValue);
                   const isVideoMedia = imageValue?.type === "video";
                   const titleExists = !!liveName;
+                  const hasSubtitle = this.castToString(slideSubtitle);
+                  const hasDescription = this.castToString(slideDescription);
 
                   if (!imageExists && !titleExists) {
                     return null;
@@ -335,22 +389,24 @@ class HeroSection38 extends BaseHeroSection {
                   
                   const slideContent = (
                     <ComposerLink path={navigateTo}>
-                    <div className={this.decorateCSS("image-wrapper")}>
-                      {imageExists && (
-                        <>
-                          <Base.Media
-                            className={`${this.decorateCSS("image")} ${isVideoMedia ? this.decorateCSS("video-media") : ""}`.trim()}
-                            value={imageValue}
-                          />
-                          {overlay && (
-                            <div className={this.decorateCSS("overlay")} />
-                          )}
-                        </>
-                      )}
-                      <Base.H2 className={this.decorateCSS("title")}>
-                        {liveName}
-                      </Base.H2>
-                    </div>
+                      <div className={this.decorateCSS("image-wrapper")}>
+                        {imageExists && (
+                          <>
+                            <Base.Media
+                              className={`${this.decorateCSS("image")} ${isVideoMedia && this.decorateCSS("video-media")}`}
+                              value={imageValue}
+                            />
+                            {overlay && <div className={this.decorateCSS("overlay")} />}
+                          </>
+                        )}
+                        <div
+                          className={`${this.decorateCSS("content-overlay")} ${imageExists && this.decorateCSS("has-image")}`}
+                        >
+                          {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{slideSubtitle}</Base.SectionSubTitle>}
+                          <Base.SectionTitle className={this.decorateCSS("title")}>{liveName}</Base.SectionTitle>
+                          {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{slideDescription}</Base.SectionDescription>}
+                        </div>
+                      </div>
                     </ComposerLink>
                   );
 
