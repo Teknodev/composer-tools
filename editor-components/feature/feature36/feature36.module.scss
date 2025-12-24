@@ -1,23 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    position: relative;
     background: linear-gradient(to bottom,
             var(--composer-html-background) 60%,
             color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
 
-    &::before {
-        content: "";
-        position: absolute;
-        pointer-events: none;
-        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        opacity: 0;
-        z-index: 0;
-        inset: 0;
-    }
-
     .max-content {
-        position: relative;
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xl);
@@ -85,15 +73,15 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container::before {
-        opacity: 1 !important;
-    }
+    .container {
+        background: var(--composer-html-background);
 
-    .max-content {
-        .content-wrapper {
-            .cards-container {
-                flex-direction: row;
-                gap: var(--composer-gap-md);
+        .max-content {
+            .content-wrapper {
+                .cards-container {
+                    flex-direction: row;
+                    gap: var(--composer-gap-md);
+                }
             }
         }
     }
