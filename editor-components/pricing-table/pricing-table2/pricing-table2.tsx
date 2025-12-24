@@ -900,7 +900,10 @@ class PricingTable2 extends BasePricingTable {
 
                         {hasBottomContent && (
                           <Base.VerticalContent
-                            className={this.decorateCSS("card-bottom")}
+                          className={`${this.decorateCSS("card-bottom")} ${
+                            
+                            !hasUpperContent && this.decorateCSS("no-upper")
+                          }`}  
                           >
                             {hasCardIcon && (
                               <div className={this.decorateCSS("card-img")}>

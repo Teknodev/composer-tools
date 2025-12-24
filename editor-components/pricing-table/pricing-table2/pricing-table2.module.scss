@@ -119,11 +119,17 @@
                 flex-direction: row;
 
                 .card-button {
-                  .card-button {
+                  .button-text,
+                  .button-icon {
                     content: "";
                   }
                 }
               }
+            }
+
+            
+            .card-bottom.no-upper {
+              margin-top: 0;
             }
           }
         }
