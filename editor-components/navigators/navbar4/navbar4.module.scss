@@ -1,19 +1,21 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.laneContainer {
-  padding-top: calc(var(--composer-gap-md) * 1.5);
-  padding-bottom: calc(var(--composer-gap-md) * 1.5);
-  border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+.hamburgerActive {
+  background: inherit !important;
+}
+
+.upperContainer {
   position: relative;
   z-index: 101;
-  .laneContent {
+  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+
+  &.showLine {
+    border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+  }
+  .content {
     display: flex;
     align-items: center;
     position: relative;
-    p,
-    h6 {
-      margin: 0;
-    }
 
     .informationContainer {
       display: flex;
@@ -37,15 +39,13 @@
         flex-direction: column;
         gap: var(--composer-gap-xs);
         .informationTitle {
-          font-size: calc(1 * var(--composer-font-size-md));
-          font-weight: 600;
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
         .informationDescription {
-          font-size: calc(1 * var(--composer-font-size-md));
-          font-weight: 400;
           max-width: 200px;
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
       }
     }
@@ -74,21 +74,21 @@
         justify-content: center;
       }
     }
-    .logo-img{
+    .image {
       min-width: 40%;
       max-width: 100%;
     }
   }
 
-  .laneContent > :first-child {
+  .content > :first-child {
     justify-content: flex-start;
   }
-  .laneContent > :last-child {
+  .content > :last-child {
     display: flex;
     align-items: center;
     justify-content: flex-end;
   }
-  .laneContent > :only-child {
+  .content > :only-child {
     justify-content: center;
   }
 }
@@ -146,7 +146,6 @@
 
         .menuItemTitle {
           margin:0;
-          font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           &.animation1{
@@ -160,6 +159,9 @@
           font-size: calc(1 * var(--composer-font-size-md));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          width: 24px;
+          height: 14px;
+          object-fit: cover;
         }
 
         &:hover {
@@ -218,7 +220,6 @@
 
                 .dropdownItemTitle {
                   margin: 0;
-                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: all 0.3s ease;
                   &.animation1{
@@ -260,6 +261,9 @@
               font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -285,7 +289,6 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
-                font-weight: normal;
                 background-color: transparent;
                 &.animation3{
                   &:hover{
@@ -297,7 +300,6 @@
     
                 .dropdownItemTitle {
                   margin: 0;
-                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
                 }
@@ -336,7 +338,6 @@
     position: absolute;
     right: 0;
     .localizationLabel{
-      font-weight: normal;
       transition: all 0.3s ease;
       &.animation1{
         &:hover{
@@ -346,7 +347,6 @@
     }
     .localizationContent{
       .localizationItem{
-        font-weight: normal;
         transition: all 0.3s ease;
       }
       &.animation1{
@@ -359,7 +359,6 @@
     }
   }
   .localizationTitle, .localizationItem{
-    font-weight: normal;
     color: var(--composer-font-color-primary);
     transition: all 0.3s ease;
     &.animation1{
@@ -407,7 +406,6 @@
   
               .hamburgerMenuItemTitle {
                 margin: 0;
-                font-weight: 500;
                 color: var(--composer-font-color-primary);
               }
             }
@@ -442,7 +440,6 @@
                   }
                   .hamburgerMenuItemTitle, .hamburgerDropdownItemTitle {
                     margin: 0;
-                    font-weight: 400;
                     color: var(--composer-font-color-primary);
                   }
                   .rightIcon {
@@ -470,7 +467,6 @@
   
                     .hamburgerSubSubmenuItemTitle {
                       margin: 0;
-                      font-weight: 400;
                       color: var(--composer-font-color-primary);
                     }
                   }
@@ -520,8 +516,12 @@
   cursor: pointer;
   .hamburgerIcon,
   .closeIcon {
+    display: flex;
     font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
   }
   .hamburgerMenuTitle {
     margin: 0;
@@ -560,6 +560,9 @@
      }
      .languageIcon{
       color: white;
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
      }
     }
     .localizationItem, .localizationContent{
@@ -577,17 +580,34 @@
   }
 }
 
+
+@container (max-width: #{$composer-tablet-width}) {
+  .maxContent {
+    .pcNavbar {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .localizationContainer {
+      flex: unset;
+    }
+  }
+  .upperContainer {
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
-  .laneContainer {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  .upperContainer {
     background-color: color-mix(
       in srgb,
       var(--composer-html-background),
       var(--composer-font-color-primary) 5%
     );
-     border: none;
-    .laneContent {
+    border: none;
+    padding: var(--composer-gap-md) !important;
+    .content {
       flex-direction: row-reverse;
 
       .informationContainer {
@@ -647,18 +667,14 @@
     .hamburgerIconContainer {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: var(--composer-gap-xs);
-      width: 100%;
-
+      width: auto;
     }
     .hamburgerNav {
       display: block;
     }
   }
-
-
-
 
   .smallDevicelogo {
     display: flex;
@@ -666,34 +682,26 @@
     border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
     border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
   }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-  .maxContent {
-    .pcNavbar {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .localizationContainer {
-      flex: unset;
-    }
-  }
-}
-@container (max-width: #{$composer-phone-width}) {
-  .mobileRight{
+  .mobileRight {
     display: flex;
     width: 100%;
     position: relative;
-    .mobileLocalizationContainer{
-      top: 50%;
-      transform: translateY(-50%);
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--composer-gap-xs);
+    .mobileLocalizationContainer {
+      position: static;
+      right: auto;
+      top: auto;
+      transform: none;
+      display: flex;
+      align-items: center;
     }
   }
 
-  .overlay{
-    &.active{
+  .overlay {
+    &.active {
       display: block;
     }
   }

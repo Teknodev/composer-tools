@@ -1,5 +1,19 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+  .localizationContainer {
+    .localizationLabel, .languageIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
+  }
+  .localization {
+    .localizationLabel, .languageIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
+  }
+}
+
 .container{
   z-index: 101;
 }
@@ -95,6 +109,9 @@
             font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
+            height: 24px;
+            width: 24px;
+            object-fit: cover;
           }
 
           &:hover {
@@ -187,6 +204,9 @@
                 font-size: calc(1 * var(--composer-font-size-md));
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
+                width: 20px;
+                height: 20px;
+                object-fit: cover;
               }
 
               .subdropdown {
@@ -271,6 +291,8 @@
   }
   .mobileRight{
     display: none;
+    align-items: center;
+    gap: var(--composer-gap-sm);
   }
   .hamburgerNav {
     display: none;
@@ -281,6 +303,9 @@
     cursor: pointer;
     font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
   }
 
 
@@ -296,7 +321,7 @@
     transition: all 0.3s ease;
 
     &.active {
-      max-height: 50vh;
+      max-height: 100vh;
       opacity: 1;
       transition: all 0.3s ease-out;
     }
@@ -340,7 +365,7 @@
           padding-left: var(--composer-gap-md);
 
           &.active {
-            max-height: 1000px;
+            max-height: 100vh;
           }
 
           .hamburgerSubmenuItem {
@@ -447,7 +472,6 @@
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.2) !important;
   border-bottom: 2px solid var(--color-divider);
 }
 
@@ -478,6 +502,18 @@
     }
     .languageIcon{
       color: white;
+      width: 15px;
+      height: 15px;
+      object-fit: cover;
+    }
+  }
+
+  .localization {
+    .localizationLabel {
+      color: white !important;
+    }
+    .languageIcon {
+      color: white !important;
     }
   }
 
@@ -485,6 +521,19 @@
     .icon-container{
       .icon{
         color: white;
+      }
+    }
+  }
+
+  &.hamburgerActive {
+    .localizationContainer {
+      .localizationLabel, .languageIcon {
+        color: var(--composer-font-color-primary) !important;
+      }
+    }
+    .localization {
+      .localizationLabel, .languageIcon {
+        color: var(--composer-font-color-primary) !important;
       }
     }
   }
@@ -507,7 +556,7 @@
     }
     .hamburgerNav {
       .hamburgerContainer{
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
+        padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
       }
     }
     .mobileRight{
@@ -521,6 +570,7 @@
     }
     .hamburgerIcon {
       display: flex;
+      font-size: 1.5rem;
     }
 
     .hamburgerNav {
@@ -538,7 +588,7 @@
     }
     .hamburgerNav {
       .hamburgerContainer {
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-md) !important;
         .hamburgerMaxContent {
           .hamburgerMenuItem {
             .hamburgerMenuItemHeader {
