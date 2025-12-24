@@ -12,14 +12,13 @@
 
   .featuresGrid {
     display: flex;
-    align-items: center;
+    text-align: left;
     gap: var(--composer-gap-xl);
     width: 100%;
   }
 
   .featuresList {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: var(--composer-gap-xl);
     flex: 1;
     min-width: 0;
@@ -28,51 +27,39 @@
   .featureCard {
     display: flex;
     align-items: flex-start;
-    gap: var(--composer-gap-xl);
+    gap: var(--composer-gap-md);
     padding: var(--composer-padding-lg);
     border-radius: var(--composer-border-radius-sm);
-    text-align: left;
     color: var(--composer-font-color-primary);
-
-    .iconContainer {
-      flex-shrink: 0;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      width: var(--composer-gap-xl);
-      height: var(--composer-gap-xl);
-      min-width: var(--composer-gap-xl);
-
-      .icon {
-        font-size: 3rem;
-        color: var(--composer-primary-color);
-      }
-    }
 
     .content {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
-      align-items: flex-start !important;
-      text-align: left !important;
+      align-items: flex-start;
+      text-align: left;
+      overflow-wrap: break-word; /* Eklendi: Uzun metinlerin kartı genişletmesini önler, metni sarar */
+      word-break: break-word; /* Ek destek: Kelimeleri bölerek taşmayı önler */
+    }
+  }
 
-      .cardTitle {
-        color: var(--composer-font-color-primary);
-        text-align: left !important;
-      }
+  .iconContainer {
+    flex-shrink: 0;
+    width: var(--composer-gap-xl);
+    height: var(--composer-gap-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      .description {
-        text-align: left !important;
-      }
+    .icon {
+      font-size: 3rem;
+      color: var(--composer-primary-color);
     }
   }
 
   .imageWrapper {
     position: relative;
     flex: 1;
-    min-width: 0;
-    height: 100%;
-    border-radius: var(--composer-border-radius-md);
+    border-radius: var(--composer-border-radius-sm);
     overflow: hidden;
 
     .image {
@@ -80,19 +67,25 @@
       height: 100%;
       object-fit: cover;
     }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--composer-overlay-color);
+      pointer-events: none;
+      z-index: 1;
+    }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .featuresGrid {
-      gap: var(--composer-gap-xl);
-    }
-
     .featuresList {
+      display: flex;
+      flex-direction: column;
       gap: var(--composer-gap-md);
     }
-
+  
     .featureCard {
       gap: var(--composer-gap-sm);
 
@@ -110,6 +103,7 @@
       .image {
         width: 100%;
         min-height: 450px;
+        /* min-height: 450px; kaldırıldı: 960px genişlikte resim yüksekliği değişmesin */
       }
     }
   }
@@ -119,15 +113,11 @@
   .container {
     .featuresGrid {
       flex-direction: column;
-      gap: var(--composer-gap-xl);
-    }
-
-    .maxContent {
-      gap: var(--composer-gap-md);
     }
 
     .featuresList {
-      gap: var(--composer-gap-md);
+      display: flex;
+      flex-direction: column;
     }
 
     .imageWrapper {
@@ -137,8 +127,6 @@
     }
 
     .featureCard {
-      gap: var(--composer-gap-sm);
-
       .iconContainer {
         .icon {
           font-size: 1.75rem;

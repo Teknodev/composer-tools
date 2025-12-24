@@ -39,12 +39,26 @@ class Feature37 extends BaseFeature {
       key: "image",
       displayer: "Image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
         url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
       },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "itemsPerRow",
+      displayer: "Items Count in a Row",
+      value: 1,
     });
 
     this.addProp({
@@ -74,7 +88,9 @@ class Feature37 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon"] },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
               value: { type: "icon", name: "FaTools" },
             },
           ],
@@ -101,7 +117,9 @@ class Feature37 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon"] },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
               value: { type: "icon", name: "FaThumbsUp" },
             },
           ],
@@ -145,8 +163,15 @@ class Feature37 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const overlay = this.getPropValue("overlay");
+    const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const image = this.getPropValue("image");
     const list = this.castToObject<ListItem[]>("items");
+
+    const hasImage = image && (
+      (image.type === "image" && image.url) || 
+      (image.type === "video" && image.url)
+    );
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -155,34 +180,30 @@ class Feature37 extends BaseFeature {
           {(this.castToString(subtitle) ||
             this.castToString(title) ||
             this.castToString(description)) && (
-              <div className={this.decorateCSS("header")}>
-                <Base.VerticalContent>
-                  {this.castToString(subtitle) && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {subtitle}
-                    </Base.SectionSubTitle>
-                  )}
-
-                  {this.castToString(title) && (
-                    <Base.SectionTitle className={this.decorateCSS("heading")}>
-                      {title}
-                    </Base.SectionTitle>
-                  )}
-
-                  {this.castToString(description) && (
-                    <Base.SectionDescription
-                      className={this.decorateCSS("headerDescription")}
-                    >
-                      {description}
-                    </Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-              </div>
-            )}
+            <div className={this.decorateCSS("header")}>
+              <Base.VerticalContent>
+                {this.castToString(subtitle) && (
+                  <Base.SectionSubTitle>{subtitle}</Base.SectionSubTitle>
+                )}
+                {this.castToString(title) && (
+                  <Base.SectionTitle>{title}</Base.SectionTitle>
+                )}
+                {this.castToString(description) && (
+                  <Base.SectionDescription>{description}</Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            </div>
+          )}
 
           <Base.Row className={this.decorateCSS("featuresGrid")}>
 
-            <div className={this.decorateCSS("featuresList")}>
+            <div
+              className={this.decorateCSS("featuresList")}
+              style={{
+                gridTemplateColumns: `repeat(${itemsPerRow}, minmax(0, 1fr))`,
+                width: hasImage ? "" : "100%"
+              }}
+            >
               {list.map((item, index) => (
                 <div key={index} className={this.decorateCSS("featureCard")}>
                   <div className={this.decorateCSS("iconContainer")}>
@@ -193,12 +214,8 @@ class Feature37 extends BaseFeature {
                   </div>
 
                   <Base.VerticalContent className={this.decorateCSS("content")}>
-                    <Base.H4 className={this.decorateCSS("cardTitle")}>
-                      {item.title}
-                    </Base.H4>
-                    <Base.SectionDescription
-                      className={this.decorateCSS("description")}
-                    >
+                    <Base.H4>{item.title}</Base.H4>
+                    <Base.SectionDescription>
                       {item.text}
                     </Base.SectionDescription>
                   </Base.VerticalContent>
@@ -206,12 +223,15 @@ class Feature37 extends BaseFeature {
               ))}
             </div>
 
-            <div className={this.decorateCSS("imageWrapper")}>
-              <Base.Media
-                value={image}
-                className={this.decorateCSS("image")}
-              />
-            </div>
+            {hasImage && (
+              <div className={this.decorateCSS("imageWrapper")}>
+                <Base.Media
+                  value={image}
+                  className={this.decorateCSS("image")}
+                />
+                {overlay && <div className={this.decorateCSS("overlay")} />}
+              </div>
+            )}
 
           </Base.Row>
         </Base.MaxContent>
