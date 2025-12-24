@@ -1,4 +1,5 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -7,19 +8,21 @@
       flex-direction: column;
       gap: var(--composer-gap-md);
       .up-content {
-        .title, .subtitle, .description {
+        .title,
+        .subtitle,
+        .description {
           content: "";
         }
       }
 
       .item-div {
-        gap:var(--composer-gap-lg);
+        gap: var(--composer-gap-lg);
         .card-item-count {
           transition-duration: 0.8s;
-          &.animation1:hover{
+          &.animation1:hover {
             transform: scale(1.05);
           }
-          &.animation2:hover{
+          &.animation2:hover {
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
           }
           .item-card {
@@ -27,14 +30,14 @@
 
             .card-upper {
               margin-bottom: var(--composer-gap-md);
-              padding: var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg);
+              padding: var(--composer-gap-lg) var(--composer-gap-lg)
+                var(--composer-gap-xl) var(--composer-gap-lg);
               border-radius: var(--composer-border-radius-lg);
               background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
               z-index: 1;
 
               .card-title {
-                letter-spacing: 1px;
                 color: var(--composer-font-color-secondary);
               }
 
@@ -44,12 +47,7 @@
                 gap: var(--composer-gap-sm);
                 margin-bottom: var(--composer-gap-sm);
 
-                .price {
-                  color: var(--composer-font-color-secondary);
-                  letter-spacing: 1px;
-                  margin: 0;
-                }
-
+                .price,
                 .duration {
                   color: var(--composer-font-color-secondary);
                 }
@@ -72,7 +70,11 @@
 
               .card-img {
                 padding: var(--composer-gap-md);
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                background: color-mix(
+                  in srgb,
+                  var(--composer-html-background),
+                  var(--composer-font-color-primary) 5%
+                );
                 border-radius: var(--composer-border-radius-lg);
                 box-shadow: var(--box-shadow-active);
                 width: max-content;
@@ -81,6 +83,8 @@
 
                 .icon {
                   font-size: 2rem;
+                  width: 25px;
+                  height: 25px;
                 }
               }
 
@@ -97,18 +101,28 @@
                   }
 
                   .list-icon {
+                    display: flex;
+                    align-items: center;
                     width: 20px;
                     height: 20px;
                     color: var(--composer-font-color-primary);
                   }
                   .list-item {
-                    font-size: 1rem;
                     color: var(--composer-font-color-primary);
                   }
                 }
               }
-              .card-button{
-                content: "";
+              .action-buttons {
+                display: flex;
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
+                flex-direction: row;
+
+                .card-button {
+                  .card-button {
+                    content: "";
+                  }
+                }
               }
             }
           }
@@ -126,7 +140,8 @@
           .card-item-count {
             .item-card {
               .card-upper {
-                padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md);
+                padding: var(--composer-gap-md) var(--composer-gap-md)
+                  var(--composer-gap-lg) var(--composer-gap-md);
               }
 
               .card-bottom {
