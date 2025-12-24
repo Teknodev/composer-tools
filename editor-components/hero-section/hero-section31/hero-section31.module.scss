@@ -365,12 +365,6 @@
     }
 }
 
-:global(.slick-slide.slick-cloned div) {
-    width: fit-content !important;
-    >div {
-        width: auto !important;
-    }
-}
 
 @container (max-width: #{$composer-tablet-width}) {
 

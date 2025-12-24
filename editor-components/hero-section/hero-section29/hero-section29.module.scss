@@ -3,10 +3,10 @@
 .container {
   .max-content {
     .wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
       overflow-wrap: break-word;
       gap: var(--composer-gap-lg);
 
@@ -61,6 +61,7 @@
         flex: 1 1 50%;
         min-width: 0;
         position: relative;
+        align-self: stretch;
 
         .image {
           width: 100%;

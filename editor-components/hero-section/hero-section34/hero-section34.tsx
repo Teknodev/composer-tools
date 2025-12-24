@@ -249,7 +249,7 @@ class HeroSection34 extends BaseHeroSection {
     };
 
     return (
-      <div className={`${this.decorateCSS("container")} ${!!activeSlide.image == false && this.decorateCSS("no-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!!activeSlide.image == false && this.decorateCSS("no-image")}`}>
         <div
           className={this.decorateCSS("max-content")}
         >
@@ -285,22 +285,32 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
           >
               <Base.MaxContent className={this.decorateCSS("content")}>
-                <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                <Base.VerticalContent data-has-image={slides[overlayActiveIndex].image ? "true" : "false"} className={this.decorateCSS("text-content")}>
                   {slides[overlayActiveIndex].logo && (
-                    <Base.Media value={slides[overlayActiveIndex].logo} className={this.decorateCSS("logo")} />
+                    <Base.Media
+                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
+                      value={slides[overlayActiveIndex].logo}
+                      className={this.decorateCSS("logo")}
+                    />
                   )}
                   {this.castToString(slides[overlayActiveIndex].subtitle) && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    <Base.SectionSubTitle
+                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
+                      className={`${this.decorateCSS("subtitle")} ${slides[overlayActiveIndex].image && this.decorateCSS("subtitle-with-image")}`}>
                       {slides[overlayActiveIndex].subtitle}
                     </Base.SectionSubTitle>
                   )}
                   {this.castToString(slides[overlayActiveIndex].title) && (
-                    <Base.SectionTitle className={this.decorateCSS("content-title")}>
+                    <Base.SectionTitle
+                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
+                      className={`${this.decorateCSS("title")} ${slides[overlayActiveIndex].image && this.decorateCSS("title-with-image")}`}>
                       {slides[overlayActiveIndex].title}
                     </Base.SectionTitle>
                   )}
                   {this.castToString(slides[overlayActiveIndex].description) && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                    <Base.SectionDescription
+                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
+                      className={`${this.decorateCSS("description")} ${slides[overlayActiveIndex].image && this.decorateCSS("description-with-image")}`}>
                       {slides[overlayActiveIndex].description}
                     </Base.SectionDescription>
                   )}
@@ -368,7 +378,7 @@ class HeroSection34 extends BaseHeroSection {
             ))}
           </div>
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }

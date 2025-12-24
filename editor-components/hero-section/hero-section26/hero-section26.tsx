@@ -276,7 +276,7 @@ class HeroSection26 extends BaseHeroSection {
       type: "boolean",
       key: "enable_slider_animation",
       displayer: "Animation",
-      value: true
+    value: true
     })
 
     this.setComponentState("sliderRef", React.createRef());
