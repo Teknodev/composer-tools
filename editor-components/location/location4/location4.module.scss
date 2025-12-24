@@ -41,12 +41,16 @@
           text-align: center;
           font-weight: bold;
 
-          .icon {
-            font-size: 1.6rem;
-          }
+          
 
           .title {
             color: white;
+          }
+
+          .subtitle {
+            color: white;
+            background: transparent !important;
+            padding: 0 !important;
           }
         }
       }
@@ -54,8 +58,9 @@
 
     .content-container {
       .max-content-no-image {
-        .title-no-image {
-          margin: 0 !important;
+        .title-no-image,
+        .subtitle-no-image {
+          content: "";
         }
       }
     }

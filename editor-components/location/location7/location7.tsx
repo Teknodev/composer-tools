@@ -2,9 +2,6 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
-import { renderToStaticMarkup } from "react-dom/server";
-
 
 type Address = {
   type: string;
@@ -30,14 +27,6 @@ type MarkerObject = {
 class Location7 extends Location {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
-
     this.addProp({
       type: "string",
       key: "title",
@@ -46,7 +35,7 @@ class Location7 extends Location {
     });
     this.addProp({
       type: "array",
-      displayer: "Addresses",
+      displayer: "addresses",
       key: "addresses",
       value: [
         {
@@ -246,16 +235,10 @@ class Location7 extends Location {
     });
 
     this.addProp({
-      type: "media",
+      type: "image",
       key: "background-image",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "icon"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
-      },
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
     });
     this.setComponentState("activeMarkerIndex", null);
   }
@@ -278,14 +261,12 @@ class Location7 extends Location {
   };
 
   render() {
-    const addresses: Address[] = this.getPropValue("addresses") || [];
+    const addresses: Address[] = this.getPropValue("addresses");
     const title = this.getPropValue("title");
-    const hasTitle = this.castToString(title);
+    const titleExist = this.castToString(title);
     const activeMarkerIndex = this.getComponentState("activeMarkerIndex");
     const bgImage = this.getPropValue("background-image");
     const showTooltipLine = this.getPropValue("showTooltipLine");
-    const subtitle = this.getPropValue("subtitle");
-    const hasSubtitle = this.castToString(subtitle);
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
@@ -298,7 +279,7 @@ class Location7 extends Location {
           topPercent,
           popupTitle,
           description,
-          markerImage: "",
+          markerImage: "", 
           content: null,
         });
       }
@@ -306,37 +287,36 @@ class Location7 extends Location {
     }, []);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            <Base.VerticalContent className={this.decorateCSS("title-block")}>
-              {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-              {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-            </Base.VerticalContent>
-            <section className={this.decorateCSS("map-container")}>
-              <div className={this.decorateCSS("custom-map")}>
-                <div className={this.decorateCSS("overlay")} />
+      <Base.Container className={this.decorateCSS("container")}> 
+        <Base.MaxContent className={this.decorateCSS("max-content")}> 
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
+            {titleExist && (
+              <div className={this.decorateCSS("title-row")}> 
+                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+              </div>
+            )}
+            <section className={this.decorateCSS("map-container")}> 
+              <div
+                className={this.decorateCSS("custom-map")}>
                 {bgImage && (
-                  <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />
+                  <img src={bgImage} alt="World Map" className={this.decorateCSS("background-image")}/>
                 )}
                 {markers.map((marker, idx) => {
-                  const popupTitle = marker.popupTitle;
-                  const description = marker.description;
-                  const hasPopupTitle = this.castToString(popupTitle);
-                  const hasDescription = this.castToString(description);
-                  const hasTooltip = hasPopupTitle || hasDescription;
+                  const popupTitle = this.castToString(marker.popupTitle);
+                  const description = this.castToString(marker.description);
+                  const tooltipExist = popupTitle || description ;
 
                   return (
                     <React.Fragment key={idx}>
                       <div
-                        className={`${this.decorateCSS("marker")} ${activeMarkerIndex === idx ? this.decorateCSS("active") : ""}`}
+                        className={this.decorateCSS("marker") + (activeMarkerIndex === idx ? " active" : "")}
                         style={{
                           left: `${marker.leftPercent}%`,
                           top: `${marker.topPercent}%`,
                         }}
                         onClick={() => this.handleMarkerClick(idx)}
                       />
-                      {activeMarkerIndex === idx && hasTooltip && (
+                      {activeMarkerIndex === idx && tooltipExist && (
                         <div
                           className={this.decorateCSS("tooltip")}
                           style={{
@@ -344,9 +324,9 @@ class Location7 extends Location {
                             top: `${marker.topPercent}%`,
                           }}
                         >
-                          {hasPopupTitle && <div className={this.decorateCSS("tooltip-header")}>{popupTitle}</div>}
+                          {popupTitle && <div className={this.decorateCSS("tooltip-header")}>{marker.popupTitle}</div>}
                           {showTooltipLine && <div className={this.decorateCSS("tooltip-divider")}></div>}
-                          {hasDescription && <div className={this.decorateCSS("tooltip-content")}>{description}</div>}
+                          {description && <div className={this.decorateCSS("tooltip-content")}>{marker.description}</div>}
                         </div>
                       )}
                     </React.Fragment>

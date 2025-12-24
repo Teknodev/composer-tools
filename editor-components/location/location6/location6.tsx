@@ -504,7 +504,6 @@ class Location6 extends Location {
         <div className={this.decorateCSS("wrapper")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("left-side")}>
-              <div>
                 {buttons?.length > 0 && (
                   <Base.VerticalContent className={this.decorateCSS("button-container")}>
                     {buttons.map((button: any, index: number) => {
@@ -530,7 +529,6 @@ class Location6 extends Location {
                     })}
                   </Base.VerticalContent>
                 )}
-              </div>
             </div>
           </Base.MaxContent>
 

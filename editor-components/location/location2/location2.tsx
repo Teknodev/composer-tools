@@ -541,7 +541,7 @@ class Location2 extends Location {
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
 
-                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
+                <div className={`${this.decorateCSS("description-container")}`}>
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
                   {socials.length > 0 && (
                     <div className={this.decorateCSS("socials")}>

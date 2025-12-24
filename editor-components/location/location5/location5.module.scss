@@ -51,14 +51,10 @@
         width: 60%;
         min-height: 300px;
         box-shadow: var(--box-shadow-active);
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
 
-        .icon {
-          font-size: 1.6rem;
-        }
-
-        >div {
-          border-radius: var(--composer-border-radius-sm);
-        }
+        
 
         &.full-width {
           width: 100%;

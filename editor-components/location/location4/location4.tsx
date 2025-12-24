@@ -252,7 +252,7 @@ class Location4 extends Location {
     const titleExist = this.castToString(title);
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("page")}>
+        <div className={this.decorateCSS("page")}> 
           {media ? (
             <div className={this.decorateCSS("content")}>
               {overlay && media && <div className={this.decorateCSS("overlay")}></div>}
@@ -268,10 +268,11 @@ class Location4 extends Location {
 
             </div>
           ) : (
-            titleExist && (
+            (subtitleExist || titleExist) && (
               <Base.Container className={this.decorateCSS("content-container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content-no-image")}>
-                  <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle-no-image")}>{subtitle}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 </Base.MaxContent>
               </Base.Container>
             )
