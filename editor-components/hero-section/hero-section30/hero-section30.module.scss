@@ -5,6 +5,7 @@
   position: relative;
   overflow: hidden;
   color: white;
+  max-height: 100vh;
 
   &.withoutVideoContainer {
     color: var(--composer-font-color-primary);
