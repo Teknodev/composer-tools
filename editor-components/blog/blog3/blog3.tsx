@@ -271,7 +271,7 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image", 
+              displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -529,9 +529,9 @@ class Blog3 extends BaseBlog {
               </ComposerLink>
             )}
             {description && (
-              <Base.P className={this.decorateCSS("description")}>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {data.description}
-              </Base.P>
+              </Base.SectionDescription>
             )}
 
             {(data.profileImage || description || fullNameExist) && (
@@ -631,16 +631,16 @@ class Blog3 extends BaseBlog {
           {(descriptionExist || leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
               <Base.VerticalContent className={this.decorateCSS("title-container")}>
-              {leftSideTextExist && (
-                <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {this.getPropValue("leftSideText")}
-                </Base.SectionTitle>
-              )}
-              {descriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
-                </Base.SectionDescription>
-              )}
+                {leftSideTextExist && (
+                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                    {this.getPropValue("leftSideText")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
               </Base.VerticalContent>
               {(rightSideTextExist || !!icons.rightSideIcon) && (
                 <div className={this.decorateCSS("right-side")}>
@@ -663,7 +663,7 @@ class Blog3 extends BaseBlog {
               )}
             </header>
           )}
-          <Base.ListGrid gridCount={{ pc: itemCountInARow , tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
+          <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
           {(rightSideTextExist || !!icons.rightSideIcon) && (

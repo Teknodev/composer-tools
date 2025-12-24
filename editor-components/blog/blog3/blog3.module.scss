@@ -19,20 +19,27 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-xl);
+
     .header {
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: var(--composer-gap-md);
+
       .title-container {
-      .subtitle,
-      .section-title {
-        text-align: left;
+
+        .subtitle,
+        .section-title,
+        .description {
+          text-align: left;
+        }
+
+        .subtitle {
+          margin-left: 0px !important;
+        }
       }
-      .subtitle {
-        margin-left: 0px !important;
-      }
-      }
+
       .right-side {
         display: flex;
         column-gap: var(--composer-gap-md);
@@ -224,7 +231,7 @@
               color: var(--composer-tertiary-color);
               width: 100%;
               margin: 0;
-              text-align: start;
+              text-align: left !important;
             }
 
             .user-info {
@@ -274,6 +281,7 @@
           .link-container {
             .link-text {
               padding-bottom: var(--composer-gap-xs);
+
               .right-side-icon {
                 width: var(--composer-gap-md);
                 height: var(--composer-gap-md);
@@ -300,6 +308,7 @@
   .container {
     .max-content {
       gap: var(--composer-gap-md);
+
       .header {
         .section-title {
           margin-bottom: 0;
