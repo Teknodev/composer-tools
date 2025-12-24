@@ -35,19 +35,6 @@ class Feature37 extends BaseFeature {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
-      },
-    });
-
-    this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
@@ -59,6 +46,19 @@ class Feature37 extends BaseFeature {
       key: "itemsPerRow",
       displayer: "Items Count in a Row",
       value: 1,
+    });
+
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image","video"],
+      },
+      value: {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+      },
     });
 
     this.addProp({
@@ -88,9 +88,7 @@ class Feature37 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              additionalParams: { availableTypes: ["icon","image"] },
               value: { type: "icon", name: "FaTools" },
             },
           ],
@@ -117,9 +115,7 @@ class Feature37 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              additionalParams: { availableTypes: ["icon","image"] },
               value: { type: "icon", name: "FaThumbsUp" },
             },
           ],
@@ -146,7 +142,7 @@ class Feature37 extends BaseFeature {
               type: "media",
               key: "icon",
               displayer: "Icon",
-              additionalParams: { availableTypes: ["icon"] },
+              additionalParams: { availableTypes: ["icon","image"] },
               value: { type: "icon", name: "FaCar" },
             },
           ],
@@ -167,7 +163,6 @@ class Feature37 extends BaseFeature {
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const image = this.getPropValue("image");
     const list = this.castToObject<ListItem[]>("items");
-
     const hasImage = image && (
       (image.type === "image" && image.url) || 
       (image.type === "video" && image.url)
@@ -175,7 +170,7 @@ class Feature37 extends BaseFeature {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("maxContent")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
 
           {(this.castToString(subtitle) ||
             this.castToString(title) ||
@@ -183,13 +178,23 @@ class Feature37 extends BaseFeature {
             <div className={this.decorateCSS("header")}>
               <Base.VerticalContent>
                 {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle>{subtitle}</Base.SectionSubTitle>
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
                 )}
+
                 {this.castToString(title) && (
-                  <Base.SectionTitle>{title}</Base.SectionTitle>
+                  <Base.SectionTitle className={this.decorateCSS("heading")}>
+                    {title}
+                  </Base.SectionTitle>
                 )}
+
                 {this.castToString(description) && (
-                  <Base.SectionDescription>{description}</Base.SectionDescription>
+                  <Base.SectionDescription
+                    className={this.decorateCSS("header-description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
             </div>
@@ -213,12 +218,16 @@ class Feature37 extends BaseFeature {
                     />
                   </div>
 
-                  <Base.VerticalContent className={this.decorateCSS("content")}>
-                    <Base.H4>{item.title}</Base.H4>
-                    <Base.SectionDescription>
+                  <div className={this.decorateCSS("content")}>
+                    <Base.H4 className={this.decorateCSS("title")}>
+                      {item.title}
+                    </Base.H4>
+                    <Base.SectionDescription
+                      className={this.decorateCSS("description")}
+                    >
                       {item.text}
                     </Base.SectionDescription>
-                  </Base.VerticalContent>
+                  </div>
                 </div>
               ))}
             </div>

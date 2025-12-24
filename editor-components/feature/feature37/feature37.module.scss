@@ -3,16 +3,24 @@
 .container {
   width: 100%;
 
-  .maxContent {
+  .max-content {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: var(--composer-gap-xl);
   }
 
+  heading {
+    .subtitle,
+    .heading,
+    .header-description {
+      content: "";
+    }
+  }
+
   .featuresGrid {
     display: flex;
-    text-align: left;
+    align-items: left;
     gap: var(--composer-gap-xl);
     width: 100%;
   }
@@ -25,13 +33,25 @@
   }
 
   .featureCard {
-    display: flex;
     align-items: flex-start;
+    display: flex;
     gap: var(--composer-gap-md);
     padding: var(--composer-padding-lg);
     border-radius: var(--composer-border-radius-sm);
     color: var(--composer-font-color-primary);
     text-align: left;
+
+    .iconContainer {
+      flex-shrink: 0;
+      width: var(--composer-gap-xl);
+      height: var(--composer-gap-xl);
+      justify-content: center;
+
+      .icon {
+        font-size: 3rem;
+        color: var(--composer-primary-color);
+      }
+    }
 
     .content {
       display: flex;
@@ -48,21 +68,6 @@
         margin: 0;
         text-align: left;
       }
-    }
-  }
-  }
-
-  .iconContainer {
-    flex-shrink: 0;
-    width: var(--composer-gap-xl);
-    height: var(--composer-gap-xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .icon {
-      font-size: 3rem;
-      color: var(--composer-primary-color);
     }
   }
 
@@ -86,12 +91,11 @@
       z-index: 1;
     }
   }
-
+}
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .featuresList {
-      display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
     }
@@ -113,7 +117,6 @@
       .image {
         width: 100%;
         min-height: 450px;
-        /* min-height: 450px; kaldırıldı: 960px genişlikte resim yüksekliği değişmesin */
       }
     }
   }
