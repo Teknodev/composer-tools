@@ -1,0 +1,288 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding-left: var(--composer-gap-xl);
+        padding-right: 0;
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            gap: var(--composer-gap-lg);
+            padding: 0;
+
+            .left-content {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .vertical-content {
+                    width: 100%;
+                    align-items: flex-start;
+
+                    .rating-container {
+                        display: flex;
+                        align-items: flex-end;
+                        gap: var(--composer-gap-sm);
+                        color: var(--composer-primary-color);
+
+                        .rating-content {
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        .icon {
+                            height: var(--composer-gap-lg);
+                            font-size: 2.5rem;
+                            object-fit: contain;
+                            display: block;
+                        }
+
+                        .rating-number {
+                            margin: 0;
+                        }
+                    }
+
+                    .subtitle {
+                        margin-left: 0;
+                        text-align: left;
+                    }
+
+                    .title,
+                    .description {
+                        width: 100%;
+                        text-align: left;
+                    }
+
+                    .child-container {
+                        display: grid;
+                        gap: var(--composer-gap-md);
+                        justify-items: start;
+
+                        .button-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: var(--composer-gap-md);
+                            justify-content: left;
+                        }
+
+                        .stats-container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: var(--composer-gap-md);
+                            justify-content: left;
+                            align-items: normal;
+
+                            .stat-item {
+                                gap: var(--composer-gap-sm);
+                                display: flex;
+                                flex-direction: column;
+
+                                .stat-number {
+                                    display: flex;
+                                    color: var(--composer-font-color-primary);
+                                    justify-content: flex-start;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right-content {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+
+                .image-wrapper {
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    border-top-left-radius: var(--composer-border-radius-sm);
+                    border-bottom-left-radius: var(--composer-border-radius-sm);
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    .overlay {
+                        position: absolute;
+                        background-color: var(--composer-overlay-color);
+                        inset: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &.content-full-width {
+        .max-content {
+            padding-right: var(--composer-gap-xl);
+
+            .wrapper {
+                .left-content {
+                    width: 100%;
+
+                    .vertical-content {
+                        align-items: var(--composer-content-alignment);
+
+                        .title,
+                        .description {
+                            text-align: var(--composer-content-alignment);
+                        }
+
+                        .subtitle {
+                            margin-left: 0;
+                            margin-right: 0;
+                        }
+
+                        .child-container {
+                            justify-items: var(--composer-content-alignment);
+
+                            .button-container {
+                                justify-content: var(--composer-content-alignment);
+                            }
+
+
+                            .stats-container {
+                                .stat-item {
+                                    .stat-number {
+                                        justify-content: var(--composer-content-alignment);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.image-full-width {
+        .max-content {
+            padding-left: 0;
+            padding-right: 0;
+
+            .wrapper {
+                .right-content {
+                    width: 100%;
+
+                    .image-wrapper {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            padding-left: var(--composer-gap-lg) !important;
+            padding-right: 0 !important;
+
+            .wrapper {
+                gap: var(--composer-gap-md) !important
+            }
+
+            .stat-number {
+                font-size: 2rem !important;
+            }
+        }
+
+        &.content-full-width {
+            .max-content {
+                padding-right: var(--composer-gap-lg) !important;
+            }
+        }
+
+        &.image-full-width {
+            .max-content {
+                padding-left: 0 !important;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+
+            .wrapper {
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+
+                .left-content {
+                    width: 100%;
+                    padding-left: var(--composer-gap-md);
+                    padding-right: var(--composer-gap-md);
+
+                    .vertical-content {
+                        align-items: var(--composer-content-alignment);
+
+                        .subtitle,
+                        .title,
+                        .description {
+                            text-align: var(--composer-content-alignment);
+                        }
+
+                        .child-container {
+                            justify-items: var(--composer-content-alignment);
+
+                            .button-container {
+                                justify-content: var(--composer-content-alignment);
+
+                                .button {
+
+                                    .button-text,
+                                    .button-icon {
+                                        content: "";
+                                    }
+                                }
+                            }
+
+                            .stats-container {
+                                gap: var(--composer-gap-sm) !important;
+                                justify-content: var(--composer-content-alignment) !important;
+
+                                .stat-item {
+                                    align-items: var(--composer-content-alignment);
+
+                                    .stat-number {
+                                        font-size: 2rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .right-content {
+                    width: 100%;
+                    padding: 0;
+
+                    .image-wrapper {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+
+        &.content-full-width {
+            .max-content {
+                padding-right: 0px !important;
+            }
+        }
+    }
+}
