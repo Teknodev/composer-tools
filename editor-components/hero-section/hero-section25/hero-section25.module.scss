@@ -382,22 +382,19 @@
       .left-figure-container {
 
         .arrows {
-          left: 15%;
-          top: unset;
-          height: auto;
-          bottom: 20px;
-          max-width: 85%;
-          width: 100%;
-          justify-content: space-between;
-          padding: 0 var(--composer-gap-lg) 0 var(--composer-gap-md);
-          align-items: end;
+          display: flex;
+          gap: var(--composer-gap-lg);
+          z-index: 15;
+          position: absolute;
+          left: 17%;
+          top: calc(35% + var(--composer-gap-md));
+          height: fit-content;
+          width: fit-content;
+          max-width: 20%;
 
-          .arrow-text {
-            content: "";
-          }
 
           &.no-left-side {
-            left: 0%;
+             left: 0%;
             max-width: 100%;
             padding: 0 var(--composer-gap-lg);
           }
@@ -441,6 +438,15 @@
       .left-figure-container {
 
         .arrows {
+          left: 15%;
+          top: unset;
+          height: auto;
+          bottom: 20px;
+          max-width: 85%;
+          width: 100%;
+          justify-content: space-between;
+          padding: 0 var(--composer-gap-lg) 0 var(--composer-gap-md);
+          align-items: end;
           left: 20%;
           max-width: 80%;
           padding: 0 var(--composer-gap-md);
