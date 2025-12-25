@@ -278,7 +278,7 @@ class List6 extends BaseList {
                             <div className={this.decorateCSS("icon-container")}>
                               <Base.Media
                                 value={listItem.itemIcon}
-                                className={this.decorateCSS("icon")}
+                                className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
                               />
                             </div>
                           </div>

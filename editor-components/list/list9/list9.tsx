@@ -291,7 +291,7 @@ class List9 extends BaseList {
                                 <div className={this.decorateCSS("image-container")}>
                                     {card.image && (
                                         <Base.Media
-                                            className={this.decorateCSS("image")}
+                                            className={`${this.decorateCSS("image")} ${this.decorateCSS("media-el")}`}
                                             value={card.image}
                                         />
                                     )}
@@ -305,7 +305,7 @@ class List9 extends BaseList {
                                     {card.icon && (
                                         <Base.Media
                                             value={card.icon}
-                                            className={this.decorateCSS("icon")}
+                                            className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
                                         />
                                     )}
                                     {this.castToString(card.title) && (

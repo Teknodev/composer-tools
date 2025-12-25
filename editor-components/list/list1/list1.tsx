@@ -1,3 +1,4 @@
+import React from "react";
 import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list1.module.scss";
@@ -316,6 +317,7 @@ class List1 extends BaseList {
       arrows: false,
       centerMode: true,
       dotsClass: dotsClassName,
+      customPaging: (_i: number) => <button className={this.decorateCSS("dot-button")} />,
       centerPadding: "0px",
       beforeChange: (_previndex: number, currindex: number) => {
         this.setComponentState("active-index", currindex);
@@ -370,14 +372,11 @@ class List1 extends BaseList {
                   <Base.VerticalContent
                     key={indexSlider}
                     className={`${this.decorateCSS("card")} ${
-                      backgroundColor && this.getComponentState("active-index") === indexSlider
-                        ? this.decorateCSS("active")
-                        : ""
-                    }`}
+                      (backgroundColor && this.getComponentState("active-index") === indexSlider) && this.decorateCSS("active") }`}
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
                     {item.image && (
-                      <Base.Row className={`${this.decorateCSS("image-container")} ${isIcon ? this.decorateCSS("no-round") : ""}`}>
+                      <Base.Row className={`${this.decorateCSS("image-container")} ${isIcon && this.decorateCSS("no-round")}`}>
                         <Base.Media
                           className={this.decorateCSS("image")}
                           value={item.image}
@@ -414,7 +413,7 @@ class List1 extends BaseList {
                               </Base.P>
                               {item.button.icon && (
                                 <Base.Media
-                                  value={item.button.icon as unknown as TypeMediaInputValue}
+                                  value={item.button.icon}
                                   className={this.decorateCSS("icon")}
                                 />
                               )}

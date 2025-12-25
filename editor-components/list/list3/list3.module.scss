@@ -19,9 +19,7 @@
               align-items: flex-start !important;
               text-align: left !important;
             }
-            .event-text-top { text-align: left !important; }
-            .event-text-bottom { text-align: left !important; }
-            .divider { text-align: left !important; }
+            .event-text-top,.event-text-bottom,.divider { text-align: left !important; }
           }
         }
       }
@@ -296,17 +294,6 @@
           padding: var(--composer-gap-lg);
           align-items: flex-start;
           text-align: left;
-          
-          .intro-content {
-            gap: 0;
-            align-items: flex-start;
-            text-align: left;
-            .subtitle, .title, .description {
-              text-align: left;
-              margin-left: 0;
-              margin-right: auto;
-            }
-          }
           .button {
             align-self: flex-start;
           }
@@ -326,15 +313,6 @@
             transform-origin: left bottom;
           }
         }
-
-          .card {
-            .card-number {
-              left: var(--composer-gap-lg);
-              bottom: calc(var(--composer-gap-lg) * (-1.3));
-              transform: scale(2.5);
-              transform-origin: left bottom;
-            }
-          }
       }
     }
   }
@@ -353,15 +331,6 @@
           align-items: flex-start;
           text-align: left;
           .intro-content {
-            gap: 0;
-            align-items: flex-start;
-            text-align: left;
-            .subtitle, .title, .description { 
-              text-align: left; 
-              margin-left: 0;
-              margin-right: auto;
-            }
-            
             .subtitle {
               transform: translateX(0);
               &::before {

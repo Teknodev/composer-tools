@@ -2,20 +2,12 @@
   as *;
 .container {
   .max-content {
-    display: flex;
-    flex-direction: column;
-
     .header {
       width: 100%;
-      display: flex;
-      flex-direction: column;
       align-items: flex-start;
       text-align: left;
 
-      .subtitle {
-        content: "";
-      }
-      .title {
+      .subtitle, .title {
         content: "";
       }
     }
@@ -140,8 +132,6 @@
           margin-top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
 
           .card-body {
-            display: flex;
-            flex-direction: column;
             align-items: flex-start;
             text-align: left;
             padding: var(--composer-gap-md);
@@ -191,8 +181,7 @@
               display: inline-flex;
               align-items: center;
               justify-content: center;
-              :global(img),
-              :global(video) {
+              .media-el {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;

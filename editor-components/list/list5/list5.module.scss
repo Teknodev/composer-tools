@@ -14,8 +14,7 @@
     height: 100%;
     z-index: 0;
     object-fit: cover;
-    :global(img),
-    :global(video) {
+    .media-el {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -225,8 +224,7 @@
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    :global(img),
-                    :global(video) {
+                    .media-el {
                       width: 100%;
                       height: 100%;
                       object-fit: contain;
@@ -284,8 +282,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            :global(img),
-            :global(video) {
+            .media-el {
               width: 100%;
               height: 100%;
               object-fit: contain;

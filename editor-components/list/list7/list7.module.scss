@@ -2,15 +2,9 @@
   as *;
 
 .container {
-  .max-content {
-    display: flex;
-    flex-direction: column;
-    
+  .max-content {    
     .header-section {
-      .subtitle {
-        content: "";
-      }
-      .title {
+      .subtitle, .title {
         content: "";
       }
     }

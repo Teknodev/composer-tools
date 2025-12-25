@@ -233,7 +233,7 @@ class List8 extends BaseList {
                         <div className={this.decorateCSS("icon-container")}>
                           <Base.Media
                             value={item.icon}
-                            className={this.decorateCSS("icon")}
+                            className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
                           />
                         </div>
                       </div>

@@ -275,7 +275,7 @@ class List11 extends BaseList {
                                     <div className={this.decorateCSS("card-items")}>
                                         {item.itemImage && (
                                             <div className={this.decorateCSS("card-image-container")}>
-                                                <Base.Media className={this.decorateCSS("card-image")} value={item.itemImage} />
+                                                <Base.Media className={`${this.decorateCSS("card-image")} ${this.decorateCSS("media-el")}`} value={item.itemImage} />
                                                 {imageOverlay && (
                                                     <div className={this.decorateCSS("overlay")} />
                                                 )}
@@ -303,7 +303,7 @@ class List11 extends BaseList {
                                                         {item.icon && (
                                                             <Base.Media
                                                                 value={item.icon}
-                                                                className={this.decorateCSS("navigate-icon")}
+                                                                className={`${this.decorateCSS("navigate-icon")} ${this.decorateCSS("media-el")}`}
                                                             />
                                                         )}
                                                     </div>

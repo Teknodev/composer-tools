@@ -300,7 +300,7 @@ class List5 extends BaseList {
           {hasBackgroundMedia && (
             <Base.Media
               value={backgroundMedia as TypeMediaInputValue}
-              className={this.decorateCSS("background-media")}
+              className={`${this.decorateCSS("background-media")} ${this.decorateCSS("media-el")}`}
             />
           )}
           {imageOverlay && hasBackgroundMedia && (
@@ -348,7 +348,7 @@ class List5 extends BaseList {
                                       <div className={this.decorateCSS("icon-wrapper")}>
                                         <Base.Media
                                           value={listItem.uppericon}
-                                          className={this.decorateCSS("icon")}
+                                          className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
                                         />
                                       </div>
                                     </div>
@@ -377,9 +377,9 @@ class List5 extends BaseList {
                               </Base.P>
                             )}
                             {listItem.lowericon && (
-                              <Base.Media
+                            <Base.Media
                                 value={listItem.lowericon}
-                                className={this.decorateCSS("arrow-icon")}
+                                className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("media-el")}`}
                               />
                             )}
                           </div>

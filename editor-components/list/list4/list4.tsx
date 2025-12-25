@@ -236,7 +236,7 @@ class List4 extends BaseList {
                       {card.icon && (
                         <Base.Media
                           value={card.icon}
-                          className={this.decorateCSS("icon")}
+                          className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
                         />
                       )}
 

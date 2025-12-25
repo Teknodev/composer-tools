@@ -1,16 +1,10 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
   as *;
 .container {
-  background-color: var(--composer-html-background);
-  padding: 80px 50px !important;
   .max-content {
-    display: flex;
-    flex-direction: column;
     align-items: stretch;
 
     .header {
-      display: flex;
-      flex-direction: column;
       align-items: flex-start;
       text-align: left;
       width: 100%;
@@ -50,41 +44,38 @@
         right: 0;
         justify-content: center;
         z-index: 2 !important;
-        li {
-          button {
-            border: none;
-            transition: var(--composer-transition-duration-normal);
-            content-visibility: hidden;
-            background-color: var(--composer-primary-color);
-            width: var(--composer-gap-sm);
-            height: var(--composer-gap-sm);
-            border-radius: var(--composer-border-radius-xl);
-            cursor: pointer;
-          }
+        .dot-button {
+          border: none;
+          transition: var(--composer-transition-duration-normal);
+          content-visibility: hidden;
+          background-color: var(--composer-primary-color);
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-xl);
+          cursor: pointer;
+        }
+        :global(.slick-active) .dot-button {
+          transform: scale(1.35);
         }
       }
 
       .dots:not(.dots-colored) {
-        li {
-          button {
-            background-color: var(--composer-primary-color);
-          }
+        .dot-button {
+          background-color: var(--composer-primary-color);
         }
-        :global(li.slick-active) button {
+        :global(.slick-active) .dot-button {
           background-color: var(--composer-primary-color);
         }
       }
-      .dots :global(li.slick-active) button {
+      .dots :global(.slick-active) .dot-button {
         padding: 0 var(--composer-gap-md);
       }
 
       .dots-colored {
-        li {
-          button {
-            background-color: var(--composer-font-color-secondary);
-          }
+        .dot-button {
+          background-color: var(--composer-font-color-secondary);
         }
-        :global(li.slick-active) button {
+        :global(.slick-active) .dot-button {
           background-color: var(--composer-font-color-secondary);
         }
       }
@@ -94,10 +85,7 @@
         display: flex !important;
         flex-direction: column;
         align-items: flex-start;
-        padding-top: var(--composer-gap-lg);
-        padding-bottom: var(--composer-gap-lg);
-        padding-left: var(--composer-gap-lg);
-        padding-right: var(--composer-gap-lg);
+        padding: var(--composer-gap-lg);
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
@@ -150,8 +138,6 @@
         }
 
         .card-header {
-          display: flex;
-          flex-direction: column;
           gap: var(--composer-gap-md);
           margin: 0;
           align-items: flex-start;
@@ -299,8 +285,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px 40px !important;
-
     .carousel {
       padding:0 !important;
     }
@@ -319,7 +303,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 50px 20px !important;
     .carousel {
       padding:0 !important;
       .card.active::after {
