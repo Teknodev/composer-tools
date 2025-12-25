@@ -5,9 +5,9 @@ import { BaseBreadcrumb } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
-    title: any;
-    icon: any;
-    navigateTo: any;
+    title: string;
+    icon: string;
+    navigateTo: string;
 };
 
 
@@ -130,7 +130,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
-    const currentPage = this.castToObject<any>("currentPage");
+    const currentPage = this.castToObject("currentPage");
     const currentPageTitle = currentPage?.title || "";
     const currentPageIcon = currentPage?.icon || "";
     const showGradient = this.getPropValue("showGradient");

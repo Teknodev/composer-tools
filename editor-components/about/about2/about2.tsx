@@ -76,20 +76,15 @@ class About2 extends BaseAbout {
     const closeIcon: string = this.getPropValue("closeIcon");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const cover = this.getPropValue("cover-image");
-    const coverUrl = cover?.url ?? (typeof cover === "string" ? cover : "");
-    const coverIsVideo = cover?.type === "video";
     const rawVideo = this.getPropValue("videoUrl");
     const videoValue = rawVideo && (typeof rawVideo === "string" ? { type: "video", url: rawVideo } : rawVideo);
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}
-        style={{
-          backgroundImage: coverIsVideo ? undefined : `url(${coverUrl})`,
-        }}
         data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}
       >
-        {coverIsVideo && cover && <Base.Media value={cover} className={this.decorateCSS("cover-media")} />}
+        {cover && <Base.Media value={cover} className={this.decorateCSS("cover-media")} />}
         {this.getPropValue("overlay") && cover && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.Button onClick={() => {this.setComponentState("is_video_visible", true);}}

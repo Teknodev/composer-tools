@@ -48,7 +48,7 @@ class Feature12 extends BaseFeature {
         {
           type: "media",
           key: "backgroundImage",
-          displayer: "Background Image",
+          displayer: "Background Media",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -195,7 +195,7 @@ class Feature12 extends BaseFeature {
     const firstCardTitleExist = this.castToString(firstItem.title);
 
     const firstItemBackground = firstItem.backgroundImage;
-    const firstItemBackgroundUrl = firstItemBackground?.url ?? (typeof firstItemBackground === "string" ? firstItemBackground : "");
+    const firstItemBackgroundUrl = firstItemBackground?.url ?? firstItemBackground;
     const firstItemBackgroundIsVideo = firstItemBackground?.type === "video";
     const firstItemOverlay = firstItem.overlay;
 
@@ -225,13 +225,14 @@ class Feature12 extends BaseFeature {
             {renderFirstItem && (
               <div
                 className={this.decorateCSS("card-item-first")}
-                style={{
-                  backgroundImage: !firstItemBackgroundIsVideo && firstItemBackgroundUrl ? `${firstItemOverlay
-                    ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
-                    : ""
-                    } url(${firstItemBackgroundUrl})` : undefined,
-
-                }}
+                {...(!firstItemBackgroundIsVideo && firstItemBackgroundUrl && {
+                  style: {
+                    backgroundImage: `${firstItemOverlay
+                      ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
+                      : ""
+                      } url(${firstItemBackgroundUrl})`,
+                  },
+                })}
               >
                 {firstItemBackgroundIsVideo && firstItemBackground && (
                   <div className={this.decorateCSS("background-media")}>

@@ -70,7 +70,7 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomLeftSideImage",
-                    displayer: "Left Side Bottom Image",
+                    displayer: "Left Side Bottom Media",
                     additionalParams: {
                          availableTypes: ["image","video"],
                     },

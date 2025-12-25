@@ -3,6 +3,7 @@ import styles from "./intro-section2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 class IntroSection2 extends BaseIntroSection {
   constructor(props?: any) {
@@ -33,7 +34,7 @@ class IntroSection2 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "cover-image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -73,8 +74,6 @@ class IntroSection2 extends BaseIntroSection {
     const description =
       this.castToString(this.getPropValue("description")) || "";
     const coverImage = this.getPropValue("cover-image");
-    const coverUrl = coverImage?.url ?? (typeof coverImage === "string" ? coverImage : "");
-    const coverIsVideo = coverImage?.type === "video";
     const button = this.castToObject<any>("button");
     const hasButton = !!(button && this.castToString(button.text));
     const alignemnt = Base.getContentAlignment();
@@ -88,11 +87,8 @@ class IntroSection2 extends BaseIntroSection {
             ? this.decorateCSS("overlay")
             : ""
         }`}
-        style={{
-          backgroundImage: !coverIsVideo && coverUrl ? `url(${coverUrl})` : undefined,
-        }}
       >
-        {coverIsVideo && coverImage && (
+        {coverImage && (
           <div className={this.decorateCSS("background-media")}>
             <Base.Media value={coverImage} className={this.decorateCSS("background-media-element")} />
           </div>
