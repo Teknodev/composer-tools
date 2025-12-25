@@ -64,7 +64,7 @@ class Feature38 extends BaseFeature {
                             key: "frontIcon",
                             displayer: "Front Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -101,7 +101,7 @@ class Feature38 extends BaseFeature {
                             key: "frontIcon",
                             displayer: "Front Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -138,7 +138,7 @@ class Feature38 extends BaseFeature {
                             key: "frontIcon",
                             displayer: "Front Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -175,7 +175,7 @@ class Feature38 extends BaseFeature {
                             key: "frontIcon",
                             displayer: "Front Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -212,7 +212,7 @@ class Feature38 extends BaseFeature {
                             key: "frontIcon",
                             displayer: "Front Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -249,7 +249,7 @@ class Feature38 extends BaseFeature {
                             key: "frontIcon",
                             displayer: "Front Icon",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["icon", "image"],
                             },
                             value: {
                                 type: "icon",
@@ -292,6 +292,67 @@ class Feature38 extends BaseFeature {
         return "Feature 38";
     }
 
+    calculateMaxHeight = () => {
+        if (!this.cardsRootRef.current) return;
+        const cardElements = Array.from(this.cardsRootRef.current.querySelectorAll(`.${styles['card']}`)) as HTMLElement[];
+        const itemCount = this.getPropValue("itemCount") || 3;
+        const rows: HTMLElement[][] = [];
+
+        for (let i = 0; i < cardElements.length; i += itemCount) {
+            rows.push(cardElements.slice(i, i + itemCount));
+        }
+
+        rows.forEach((rowCards) => {
+            let rowMaxH = 0;
+            rowCards.forEach((card) => {
+
+                const frontFace = card.querySelector(`.${styles['front']}`) as HTMLElement;
+                const backFace = card.querySelector(`.${styles['top']}`) as HTMLElement;
+
+                if (frontFace) {
+                    frontFace.style.overflow = 'visible';
+                    frontFace.style.height = 'auto';
+                }
+                if (backFace) {
+                    backFace.style.overflow = 'visible';
+                    backFace.style.height = 'auto';
+                }
+
+                const frontH = frontFace ? frontFace.scrollHeight : 0;
+                const backH = backFace ? backFace.scrollHeight : 0;
+                rowMaxH = Math.max(rowMaxH, frontH, backH);
+
+                if (frontFace) {
+                    frontFace.style.overflow = '';
+                    frontFace.style.height = '';
+                }
+                if (backFace) {
+                    backFace.style.overflow = '';
+                    backFace.style.height = '';
+                }
+            });
+
+            rowMaxH = Math.max(rowMaxH, 300);
+            rowCards.forEach((card) => {
+                card.style.setProperty('--dynamic-card-height', `${rowMaxH}px`);
+            });
+        });
+    }
+
+    componentDidMount() {
+        this.calculateMaxHeight();
+        window.addEventListener('resize', this.calculateMaxHeight);
+        setTimeout(this.calculateMaxHeight, 500);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.calculateMaxHeight);
+    }
+
+    componentDidUpdate() {
+        this.calculateMaxHeight();
+    }
+
     render() {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
@@ -320,17 +381,20 @@ class Feature38 extends BaseFeature {
                                         const backTitleExist = this.castToString(card.backTitle);
                                         const backDescExist = this.castToString(card.backDescription);
                                         const iconExist = card.frontIcon;
+                                        const isImage = card.frontIcon?.type === "image";
                                         const cardHasContent = frontTitleExist || backTitleExist || backDescExist || iconExist;
                                         if (!cardHasContent) return null;
                                         return (
                                             <div key={index} className={this.decorateCSS("card")}>
-                                                <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
-                                                    {iconExist && (<div className={this.decorateCSS("icon-wrapper")}><Base.Media value={card.frontIcon} className={this.decorateCSS("icon")} />  </div>)}
-                                                    {frontTitleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.frontTitle}</Base.H3>)}
-                                                </div>
-                                                <div className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
-                                                    {backTitleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.backTitle}</Base.H3>)}
-                                                    {backDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.backDescription}</Base.P>)}
+                                                <div className={this.decorateCSS("card-inner")}>
+                                                    <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
+                                                        {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.frontIcon} className={`${this.decorateCSS("icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />  </div>)}
+                                                        {frontTitleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.frontTitle}</Base.H3>)}
+                                                    </div>
+                                                    <div className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
+                                                        {backTitleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.backTitle}</Base.H3>)}
+                                                        {backDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.backDescription}</Base.P>)}
+                                                    </div>
                                                 </div>
                                             </div>
                                         );

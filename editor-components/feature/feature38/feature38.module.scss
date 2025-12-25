@@ -4,7 +4,7 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-xl);
+        gap: var(--composer-gap-lg);
 
         .content-wrapper {
             display: flex;
@@ -24,35 +24,55 @@
                 gap: var(--composer-gap-md);
                 align-items: stretch;
                 justify-items: stretch;
+                --dynamic-card-height: 300px;
 
                 .card {
                     position: relative;
                     width: 100%;
-                    height: 300px;
-                    transform-style: preserve-3d;
-                    transition: transform 0.5s;
+                    height: var(--dynamic-card-height);
                     cursor: pointer;
                     background-color: transparent !important;
                     box-shadow: none !important;
                     padding: 0 !important;
                     border-radius: 0 !important;
 
+                    .card-inner {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        text-align: center;
+                        transition: transform 0.4s;
+                        transform-style: preserve-3d;
+                    }
+
+                    &:hover .card-inner {
+                        transform: rotateX(-90deg);
+                    }
+
                     .face {
                         position: absolute;
                         width: 100%;
                         height: 100%;
                         border-radius: var(--composer-border-radius-sm);
-                        box-shadow: var(box-shadow-active);
+                        box-shadow: var(--box-shadow-active);
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         padding: var(--composer-gap-lg);
                         box-sizing: border-box;
                         backface-visibility: hidden;
+                        overflow: hidden;
+
+                        .face-inner {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            height: 100%;
+                        }
                     }
 
                     .front {
-                        transform: translateZ(150px);
+                        transform: translateZ(calc(var(--dynamic-card-height) / 2));
                         background-color: var(--composer-primary-color);
                         z-index: 2;
 
@@ -68,25 +88,32 @@
                     }
 
                     .top {
-                        transform: rotateX(90deg) translateZ(150px);
+                        transform: rotateX(90deg) translateZ(calc(var(--dynamic-card-height) / 2));
                         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                         z-index: 1;
-                    }
-
-                    &:hover {
-                        transform: rotateX(-90deg);
                     }
 
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left !important;
+                        word-break: break-word;
                     }
 
                     .icon-wrapper {
+                        display: flex;
+                        margin-bottom: 1rem;
+
                         .icon {
+                            color: var(--composer-font-color-secondary);
                             font-size: 5rem;
-                            color: var(--composer-font-color-primary);
+
+                            &.is-image {
+                                width: 5rem;
+                                height: 5rem;
+                                object-fit: contain;
+                                display: block;
+                            }
                         }
                     }
                 }
@@ -112,6 +139,8 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            gap: calc(var(--composer-gap-sm) * 3);
+
             .content-wrapper {
                 gap: calc(var(--composer-gap-sm) * 3);
             }
