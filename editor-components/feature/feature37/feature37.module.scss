@@ -12,12 +12,9 @@
 
     .header {
         .subtitle,
-        .heading {
-            text-align: inherit;
-        }
-
+        .heading,
         .header-description {
-            text-align: inherit;
+            content: "";
         }
     }
 
@@ -50,7 +47,6 @@
     }
 
     .features-list {
-        display: grid;
         gap: var(--composer-gap-xl);
         flex: 1 1 0;
         min-width: 0;
@@ -60,6 +56,10 @@
 
     .features-list-empty {
         display: none;
+    }
+
+    .features-list-full {
+        width: 100%;
     }
 
     .feature-card {
@@ -72,6 +72,7 @@
         text-align: left;
         margin-bottom: 0;
         flex: 1;
+        min-width: 0;
 
         .icon-container {
             flex-shrink: 0;
@@ -192,10 +193,7 @@
         }
 
         .features-list {
-            display: flex;
-            flex-direction: column;
             gap: var(--composer-gap-md);
-            justify-content: center;
         }
 
         .image-wrapper {

@@ -163,9 +163,7 @@ class Feature37 extends BaseFeature {
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const image = this.getPropValue("image");
     const alignment = Base.getContentAlignment();
-    const list = (this.castToObject<ListItem[]>("items") || []).filter(
-      (item): item is ListItem => Boolean(item)
-    );
+    const list = (this.castToObject<ListItem[]>("items") || []);
     const filteredList = list.filter((item) => {
       const hasTitle = this.castToString(item.title);
       const hasText = this.castToString(item.text);
@@ -223,14 +221,15 @@ class Feature37 extends BaseFeature {
             }${isEmpty ? ` ${this.decorateCSS("features-grid-empty")}` : ""}`}
           >
 
-            <div
+            <Base.ListGrid
+              gridCount={{
+                pc: itemsPerRow,
+                tablet: 1,
+                phone: 1,
+              }}
               className={`${this.decorateCSS("features-list")}${
                 isEmpty ? ` ${this.decorateCSS("features-list-empty")}` : ""
-              }`}
-              style={{
-                gridTemplateColumns: `repeat(${itemsPerRow}, minmax(0, 1fr))`,
-                width: hasImage ? "" : "100%"
-              }}
+              }${hasImage ? "" : ` ${this.decorateCSS("features-list-full")}`}`}
             >
               {filteredList.map((item, index) => (
                 <div key={index} className={this.decorateCSS("feature-card")}>
@@ -253,7 +252,7 @@ class Feature37 extends BaseFeature {
                   </div>
                 </div>
               ))}
-            </div>
+            </Base.ListGrid>
 
             {hasImage && (
               <div
