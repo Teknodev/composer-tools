@@ -1,50 +1,64 @@
 import * as React from "react";
 import styles from "./portfolio2.module.scss";
-import { BasePortfolio } from "../../EditorComponent";
+import { BasePortfolio, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Side = "left" | "right";
+type SideCard = {
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  text: React.JSX.Element;
+  buttons: any[];
+};
 
 class Portfolio2 extends BasePortfolio {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "string",
-      key: "leftCardSubTitle",
-      displayer: "Left Card Subtitle",
-      value: "GANACHE",
-    });
-    this.addProp({
-      type: "string",
-      key: "leftCardTitle",
-      displayer: "Left Card Title",
-      value: "CREATION",
-    });
-    this.addProp({
-      type: "string",
-      key: "leftCardText",
-      displayer: "Left Card Text",
-      value:
-        "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
-    });
-    this.addProp({
-      type: "array",
-      key: "leftCardButtons",
-      displayer: "Left Card Buttons",
+      type: "object",
+      key: "leftCard",
+      displayer: "Left Card",
       value: [
-        INPUTS.BUTTON(
-          "leftCardButton",
-          "Left Card Button",
-          "READ MORE",
-          "",
-          "BsArrowRight",
-          null,
-          "Tertiary"
-        ),
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "GANACHE",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "CREATION",
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value:
+            "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
+        },
+        {
+          type: "array",
+          key: "leftCardButtons",
+          displayer: "Left Card Buttons",
+          value: [
+            INPUTS.BUTTON(
+              "button",
+              "Button",
+              "READ MORE",
+              "",
+              "BsArrowRight",
+              null,
+              "Tertiary"
+            ),
+          ],
+        },
       ],
     });
+
     this.addProp({
       type: "media",
       key: "image",
@@ -56,49 +70,58 @@ class Portfolio2 extends BasePortfolio {
         type: "image",
         url: "https://swissdelight.qodeinteractive.com/wp-content/uploads/2021/02/h2-img-1-729x1024.png",
       },
-     
     });
+
     this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
       value: false,
     });
+
     this.addProp({
-      type: "string",
-      key: "rightCardSubTitle",
-      displayer: "Right Card Subtitle",
-      value: "SWEET",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightCardTitle",
-      displayer: "Right Card Title",
-      value: "MASTERPIECES",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightCardText",
-      displayer: "Right Card Text",
-      value:
-        "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
-    });
-    this.addProp({
-      type: "array",
-      key: "rightCardButtons",
-      displayer: "Right Card Buttons",
+      type: "object",
+      key: "rightCard",
+      displayer: "Right Card",
       value: [
-        INPUTS.BUTTON(
-          "rightCardButton",
-          "Right Card Button",
-          "READ MORE",
-          "",
-          "BsArrowRight",
-          null,
-          "Tertiary"
-        ),
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "SWEET",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "MASTERPIECES",
+        },
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value:
+            "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
+        },
+        {
+          type: "array",
+          key: "rightCardButtons",
+          displayer: "Right Card Buttons",
+          value: [
+            INPUTS.BUTTON(
+              "button",
+              "Button",
+              "READ MORE",
+              "",
+              "BsArrowRight",
+              null,
+              "Tertiary"
+            ),
+          ],
+        },
       ],
     });
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -108,107 +131,213 @@ class Portfolio2 extends BasePortfolio {
         selectItems: ["animate1", "animate2"],
       },
     });
+  }
+
+  private getButtons(buttonsArray: string) {
+   
+    if (!Array.isArray(buttonsArray)) return [];
+
+    return buttonsArray.map((btn: any) => {
+      const parent = btn?.value ?? btn;
+      const icon = this.getPropValue("icon", { parent_object: parent });
+      const image = this.getPropValue("image", { parent_object: parent });
+      const media = icon || image || null;
+      return {
+        text: this.getPropValue("text", { parent_object: parent }),
+        type: this.getPropValue("type", { parent_object: parent }),
+        url: this.getPropValue("url", { parent_object: parent }),
+        media,
+      };
+    });
+  }
+
+  private hasAnyButton(
     
+    buttons: { text?: string; media?: TypeMediaInputValue }[]
+  ) {
+
+    return buttons.some((b: any) => {
+      
+      return (
+        this.castToString(b?.text) ||
+        (((b as any).icon?.name || (b as any).icon?.url))
+      );
+    });
   }
 
   static getName(): string {
     return "Portfolio 2";
   }
 
-  private renderSide(side: Side) {
-    const subTitle = this.getPropValue(`${side}CardSubTitle`);
-    const title = this.getPropValue(`${side}CardTitle`);
-    const text = this.getPropValue(`${side}CardText`);
-    const sideButtons = (this.castToObject(`${side}CardButtons`) ||
-      []) as INPUTS.CastedButton[];
+  private renderLeftSide() {
+    
+    
+    const card = this.castToObject<SideCard>("leftCard");
+    const buttons = this.getButtons("leftCardButtons");
 
-    const showNavigateContainer = sideButtons.some(
-      (b: INPUTS.CastedButton) => this.castToString(b?.text) || !!b?.icon
-    );
-    const showSideContainer =
-      this.castToString(subTitle) ||
-      this.castToString(title) ||
-      this.castToString(text) ||
-      showNavigateContainer;
+    const subtitle = card?.subtitle;
+    const title = card?.title;
+    const text = card?.text;
 
-      const hasTitle = this.castToString(title);
-      const hasSubTitle = this.castToString(subTitle);
-      const hasText = this.castToString(text);
+    const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
+    const hasText = this.castToString(text);
+    const hasButtons = this.hasAnyButton(buttons);
+    
+    
 
-    if (!showSideContainer) {
-      return null;
-    }
+    const hasContent = hasSubtitle || hasTitle || hasText || hasButtons;
+
+    if (!hasContent) return null;
 
     return (
-      <>
-        {showSideContainer && (
-          <div className={this.decorateCSS("side-container")}>
-            <Base.VerticalContent className={this.decorateCSS("side")}>
-              {hasSubTitle && (
-                <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                  {subTitle}
-                </Base.SectionSubTitle>
-              )}
-              {hasTitle && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
-              {hasText && (
-                <Base.SectionDescription className={this.decorateCSS("text")}>
-                  {text}
-                </Base.SectionDescription>
-              )}
-              {showNavigateContainer && (
-                <div className={this.decorateCSS("button-wrapper")}>
-                  {sideButtons.map((btn: INPUTS.CastedButton, idx: number) => {
-                    const btnTextExist = this.castToString(btn?.text);
-                    const buttonIcon = btn?.icon;
-                    const buttonIconExist = !!(
-                      buttonIcon &&
-                      (typeof buttonIcon === "string" ||
-                        (buttonIcon as any).name ||
-                        (buttonIcon as any).url)
-                    );
-                    if (!btnTextExist && !buttonIconExist) return null;
-                    const buttonUrl = btn?.url || "#";
-                    return (
-                      <Base.Button
-                        key={`side-btn-${side}-${idx}`}
-                        buttonType={btn.type}
-                        className={this.decorateCSS("button")}
-                        data-animation={this.getPropValue(
-                          "hoverAnimation"
-                        ).join(" ")}
-                      >
-                        <ComposerLink path={buttonUrl}>
-                          <div className={this.decorateCSS("text-and-icon")}>
-                            {btnTextExist && (
-                              <Base.P
-                                className={this.decorateCSS("navigate-text")}
-                              >
-                                {btn.text}
-                              </Base.P>
-                            )}
-                            {buttonIconExist && (
-                              <Base.Media
-                                value={buttonIcon as any}
-                                className={this.decorateCSS(
-                                  `${side}-navigate-icon`
-                                )}
-                              />
-                            )}
-                          </div>
-                        </ComposerLink>
-                      </Base.Button>
-                    );
-                  })}
-                </div>
-              )}
-            </Base.VerticalContent>
-          </div>
-        )}
-      </>
+      <div className={this.decorateCSS("left-side-container")}>
+        <Base.VerticalContent className={this.decorateCSS("side")}>
+          {hasSubtitle && (
+            <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+              {subtitle}
+            </Base.SectionSubTitle>
+          )}
+          {hasTitle && (
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {title}
+            </Base.SectionTitle>
+          )}
+          {hasText && (
+            <Base.SectionDescription className={this.decorateCSS("text")}>
+              {text}
+            </Base.SectionDescription>
+          )}
+          {hasButtons && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              {buttons.map((btn, btnIndex: number) => {
+                
+                
+                const buttonText = btn.text;
+                const buttonMedia = btn.icon;
+                const buttonUrl = btn.url || "#";
+                const buttonType = btn.type;
+
+                const btnTextExist = this.castToString(buttonText);
+                const buttonMediaExist =
+                  buttonMedia &&
+                  ((buttonMedia as any).name || (buttonMedia as any).url);
+
+                if (!btnTextExist && !buttonMediaExist) return null;
+
+                return (
+                  <ComposerLink path={buttonUrl} key={`left-btn-${btnIndex}`}>
+                    <Base.Button
+                      buttonType={buttonType}
+                      className={this.decorateCSS("button")}
+                      data-animation={this.getPropValue("hoverAnimation").join(
+                        " "
+                      )}
+                    >
+                      <div className={this.decorateCSS("text-and-icon")}>
+                        {btnTextExist && (
+                          <Base.P className={this.decorateCSS("navigate-text")}>
+                            {buttonText}
+                          </Base.P>
+                        )}
+                        {buttonMediaExist && (
+                          <Base.Media
+                            value={buttonMedia}
+                            className={this.decorateCSS("navigate-icon")}
+                          />
+                        )}
+                      </div>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
+        </Base.VerticalContent>
+      </div>
+    );
+  }
+
+  private renderRightSide() {
+    const card = this.castToObject<SideCard>("rightCard");
+    const buttons = this.getButtons("rightCardButtons");
+
+    const subtitle = card?.subtitle;
+    const title = card?.title;
+    const text = card?.text;
+
+    const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
+    const hasText = this.castToString(text);
+    const hasButtons = this.hasAnyButton(buttons);
+
+    const hasContent = hasSubtitle || hasTitle || hasText || hasButtons;
+
+    if (!hasContent) return null;
+
+    return (
+      <div className={this.decorateCSS("right-side-container")}>
+        <Base.VerticalContent className={this.decorateCSS("side")}>
+          {hasSubtitle && (
+            <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+              {subtitle}
+            </Base.SectionSubTitle>
+          )}
+          {hasTitle && (
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {title}
+            </Base.SectionTitle>
+          )}
+          {hasText && (
+            <Base.SectionDescription className={this.decorateCSS("text")}>
+              {text}
+            </Base.SectionDescription>
+          )}
+          {hasButtons && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              {buttons.map((btn, btnIndex: number) => {
+                const buttonText = btn.text;
+                const buttonMedia = btn?.icon;
+                const buttonUrl = btn.url || "#";
+                const buttonType = btn.type;
+
+                const btnTextExist = this.castToString(buttonText);
+                const buttonMediaExist =
+                  buttonMedia &&
+                  ((buttonMedia as any).name || (buttonMedia as any).url);
+
+                if (!btnTextExist && !buttonMediaExist) return null;
+
+                return (
+                  <ComposerLink path={buttonUrl} key={`right-btn-${btnIndex}`}>
+                    <Base.Button
+                      buttonType={buttonType}
+                      className={this.decorateCSS("button")}
+                      data-animation={this.getPropValue("hoverAnimation").join(
+                        " "
+                      )}
+                    >
+                      <div className={this.decorateCSS("text-and-icon")}>
+                        {btnTextExist && (
+                          <Base.P className={this.decorateCSS("navigate-text")}>
+                            {buttonText}
+                          </Base.P>
+                        )}
+                        {buttonMediaExist && (
+                          <Base.Media
+                            value={buttonMedia}
+                            className={this.decorateCSS("navigate-icon")}
+                          />
+                        )}
+                      </div>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
+        </Base.VerticalContent>
+      </div>
     );
   }
 
@@ -216,11 +345,14 @@ class Portfolio2 extends BasePortfolio {
     const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
 
+    const hasImage =
+      image && typeof image === "object" && "url" in image && image.url;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.renderSide("left")}
-          {image && (
+          {this.renderLeftSide()}
+          {hasImage && (
             <div
               className={this.decorateCSS("middle-container")}
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
@@ -236,7 +368,7 @@ class Portfolio2 extends BasePortfolio {
               </div>
             </div>
           )}
-          {this.renderSide("right")}
+          {this.renderRightSide()}
         </Base.MaxContent>
       </Base.Container>
     );
