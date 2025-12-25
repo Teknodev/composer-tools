@@ -72,7 +72,7 @@ class IntroSection1 extends BaseIntroSection {
           type: "media",
           key: "thumbnail",
           displayer: "Media Thumbnail",
-          additionalParams: { availableTypes: ["image"] },
+          additionalParams: { availableTypes: ["image","video"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690b2d873596a1002b1e6a4d?alt=media" }
         },
         {
