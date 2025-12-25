@@ -76,8 +76,8 @@
             .dot {
               display: inline-block;
               transition: 0.3s;
-              width: 6px;
-              height: 6px;
+              width: 4px;
+              height: 4px;
               background: white;
               border: none;
               border: 1px solid white;
@@ -399,7 +399,7 @@
     }
 
     .imageTitle {
-      font-size: 3.5rem !important;
+      font-size: 2.5rem !important;
       position: static;
       transform: none;
       top: unset;

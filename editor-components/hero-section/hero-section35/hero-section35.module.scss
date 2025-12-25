@@ -13,7 +13,7 @@
                 display: flex;
                 flex: 1;
                 position: relative;
-                border-radius: var(--composer-border-radius-lg);
+                border-radius: var(--composer-border-radius-md);
                 background-color: var(--composer-primary-color);
                 .pattern-bg{
                     width: 100%;
@@ -48,7 +48,6 @@
                             text-transform: uppercase;
                             font-size: 1.5rem;
                             color: var(--composer-font-color-secondary);
-                            margin-bottom: var(--composer-gap-md);
                             width: fit-content;
                             margin-left: 0;
                             background: transparent;
@@ -57,7 +56,6 @@
                             &.subtitle-has-image{
                                 background: transparent;
                                 padding: 0;
-                                margin-bottom: 0;
                                 &::before{
                                     background: white !important;
                                 }
@@ -68,7 +66,6 @@
                             font-size: 4.5rem;
                             line-height: 1;
                             color: var(--composer-font-color-secondary);
-                            margin-bottom: calc(1.5*var(--composer-gap-md));
                         }
                         .main-info-wrapper{
                             max-width: 475px;
@@ -83,7 +80,7 @@
                             }
                             .divider-top {
                                 width: 100%;
-                                border-top: 2px dashed white;
+                                border-top: 1px dashed var(--composer-tertiary-color);
                                 margin-bottom: var(--composer-gap-md);
                             }
                             .main-info{
@@ -107,7 +104,7 @@
                                 .divider-middle {
                                     width: 1px;
                                     align-self: stretch; 
-                                    border-left: 2px dashed white;
+                                    border-left: 1px dashed var(--composer-tertiary-color);
                                 }
                                 .description{
                                     font-size: 1.5rem;
@@ -117,7 +114,7 @@
                             }
                             .divider-bottom {
                                 width: 100%;
-                                border-top: 2px dashed white;
+                                border-top: 1px dashed var(--composer-tertiary-color);
                                 margin-top: var(--composer-gap-md);
                             }
                         }
@@ -160,13 +157,13 @@
                         top: 50%;
                         left: 50%;
                         width: 35px;
-                        height: 35px;
+                        height: auto;
                         border-radius: 50%;
                         .scroll-icon{
                             color: var(--composer-font-color-secondary);
                             font-size: 1rem;
-                            width: 30px;
-                            height: 30px;
+                            width: 15px;
+                            height: 15px;
                         }
                     }
                     &:hover{
@@ -190,7 +187,7 @@
                             position: relative;
                             overflow: hidden;
                             object-fit: cover;
-                            border-radius: var(--composer-border-radius-lg);
+                            border-radius: var(--composer-border-radius-md);
                             display: block;
                         }
                         .image-overlay{
@@ -200,30 +197,35 @@
                             width: 100%;
                             height: 100%;
                             background: var(--composer-overlay-color, rgba(0,0,0,0.35));
-                            border-radius: var(--composer-border-radius-lg);
+                            border-radius: var(--composer-border-radius-md);
                             pointer-events: none;
                             z-index: 3;
                         }
                     }
                     .box-area {
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        height: 35%;
-                        width: 40%;
-                        background-color: var(--composer-html-background);
-                        padding: 15px 15px 0 0;
-                        border-top-right-radius: var(--composer-border-radius-lg);
-                        border-bottom-left-radius: var(--composer-border-radius-lg);
-                        z-index: 5;
-                        
-                        &.full-size {
-                            position: relative;
-                            height: 100%;
-                            width: 100%;
-                            border-radius: var(--composer-border-radius-lg);
-                            padding: 0;
-                        }
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            height: auto;
+                            max-height: 50%;
+                            width: 40%;
+                            background-color: var(--composer-html-background);
+                            padding: 15px 15px 0 0;
+                            border-top-right-radius: var(--composer-border-radius-md);
+                            border-bottom-left-radius: var(--composer-border-radius-md);
+                            z-index: 5;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+                            overflow: visible;
+
+                            &.full-size {
+                                position: relative;
+                                height: 100%;
+                                width: 100%;
+                                border-radius: var(--composer-border-radius-md);
+                                padding: 0;
+                            }
                         &::before {
                             content: '';
                             position: absolute;
@@ -248,15 +250,16 @@
                         }
 
                         .customer-box {
-                            height: 100%;
+                            height: auto;
+                            max-height: 100%;
                             width: 100%;
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                            border-radius: var(--composer-border-radius-lg);
+                            border-radius: var(--composer-border-radius-md);
                             padding: calc(1.5 * var(--composer-gap-md));
                             display: flex;
                             flex-direction: column;
                             gap: var(--composer-gap-md);
-                            overflow: hidden;
+                            overflow: auto;
 
                             .customer-images {
                                 display: flex;
@@ -369,11 +372,11 @@
                 .left-card{
                     order: 1;
                     .left-content-wrapper{
-                        padding: var(--composer-gap-sm) 0;
+                        padding: var(--composer-gap-md) 0;
                         .left-content{
                             max-width: 720px;
                             margin: 0 auto;
-                            padding: var(--composer-gap-sm) var(--composer-gap-md);
+                            padding: 30px var(--composer-gap-md);
                             .title{
                                 font-size: 2.6rem;
                                 margin-bottom: var(--composer-gap-md);

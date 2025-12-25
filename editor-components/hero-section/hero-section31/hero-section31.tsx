@@ -898,10 +898,10 @@ class HeroSection31 extends BaseHeroSection {
                         )}
                         
                     {this.castToString(activeSlideObj.subtitle) && (
-                      <div
-                        className={`${this.decorateCSS("up-text")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
+                      <Base.SectionSubTitle
+                        className={`${this.decorateCSS("subtitle")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                           "subtitleAnimationClass"
-                        )}` : ""}`}
+                        )}` : ""} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-transparent") : ""}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "subtitleAnimationClass",
@@ -910,12 +910,8 @@ class HeroSection31 extends BaseHeroSection {
                           });
                         }}
                       >
-                        <Base.SectionSubTitle
-                          className={`${this.decorateCSS("subtitle")} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-transparent") : ""}`}
-                        >
-                          {activeSlideObj.subtitle}
-                        </Base.SectionSubTitle>
-                      </div>
+                        {activeSlideObj.subtitle}
+                      </Base.SectionSubTitle>
                     )}
 
                     {this.castToString(activeSlideObj.title) && (() => {

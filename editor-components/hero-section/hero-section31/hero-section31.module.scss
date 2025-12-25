@@ -205,23 +205,17 @@
                         color: white;
                     }
 
-                    .up-text {
-                        display: flex;
-                        align-items: center;
-                        gap: var(--composer-gap-sm);
-                        .subtitle {
-                            color: white;
-                            text-align: left;
-                            width: fit-content;
-                            &::before{
-                                background: white !important;
-                            }
-                            &.subtitle-transparent {
-                                background: transparent !important;
-                                padding: 0 !important;
-                            }
+                    .subtitle {
+                        color: white;
+                        text-align: left;
+                        width: fit-content;
+                        &::before{
+                            background: white !important;
                         }
-
+                        &.subtitle-transparent {
+                            background: transparent !important;
+                            padding: 0 !important;
+                        }
                     }
 
                     .title {
@@ -340,14 +334,12 @@
                             color: var(--composer-font-color-primary);
                         }
 
-                        .up-text {
                             .subtitle, .title, .description {
                                 color: var(--composer-font-color-primary);
                             }
                             .subtitle::before {
                                 background: var(--composer-font-color-primary) !important;
                             }
-                        }
 
                         .title {
                             color: var(--composer-font-color-primary);

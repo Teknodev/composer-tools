@@ -422,7 +422,7 @@ class HeroSection33 extends BaseHeroSection {
                                       this.decorateCSS("blackColor")
                                       }`}
                                   >
-                                    {button.button_text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.button_text}</Base.P>
                                   </button>
                                 </ComposerLink>
                               );

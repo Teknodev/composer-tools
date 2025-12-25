@@ -207,6 +207,8 @@
 
           .left-side{
             justify-content: flex-start;
+            margin: var(--composer-gap-xl) var(--composer-gap-md) 0px var(--composer-gap-md);
+            padding: 0;
 
             .left-side-content{
               width: 100%;
@@ -220,6 +222,12 @@
 
           .arrows {
             left: var(--composer-gap-md);
+            .up-arrow,
+            .down-arrow {
+              .icon {
+                font-size: 3rem;
+              }
+            }
           }
         }
       }

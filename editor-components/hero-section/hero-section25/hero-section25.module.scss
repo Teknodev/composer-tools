@@ -146,20 +146,22 @@
       }
 
       .top-figure {
-        width: 40vmin;
+        width: 35vmin;
         height: 35%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         z-index: 1;
         flex-direction: column;
         gap: var(--composer-gap-xs);
         padding-top: var(--composer-gap-xl);
 
         .pagination {
+          width: 100%;
+          margin-left: 30%;
           .active-slide {
             color: var(--composer-primary-color);
-            font-size: 10vh;
+            font-size: 4rem;
           }
 
           .slide-count-power {
@@ -171,7 +173,7 @@
             }
 
             .slide-count {
-              font-size: 3vh;
+              font-size: 1.5rem;
             }
           }
         }
@@ -183,13 +185,14 @@
           font-weight: bold;
           border-radius: var(--composer-border-radius-sm);
           z-index: 14;
-          margin-left: 50%;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          position: absolute;
+          bottom: -30px;
 
           .background-op-text {
             margin: 0;
@@ -401,9 +404,11 @@
         }
 
         .top-figure {
+          .pagination {
+            margin-left: 25%;
+          }
           .low-op-text {
             font-size: 5rem;
-            margin-left: 25%;
           }
         }
 
@@ -460,10 +465,11 @@
 
         .top-figure {
           width: 40%;
-          height: 20%;
+          height: 30%;
           padding-top: var(--composer-gap-md);
 
           .pagination {
+            margin-left: 22%;
             .active-slide {
               font-size: 6vh;
             }
@@ -479,7 +485,6 @@
 
           .low-op-text {
             font-size: 6vh;
-            margin-left: 65%;
           }
         }
 

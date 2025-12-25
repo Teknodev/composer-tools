@@ -240,6 +240,10 @@
               cursor: pointer;
               transition: transform 0.4s ease;
 
+              .button-text {
+                color: inherit;
+              }
+
               &.blackColor {
                 color: black;
                 border-bottom-color: black;
