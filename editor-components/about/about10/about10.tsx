@@ -178,18 +178,18 @@ class About10 extends BaseAbout {
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons").filter((btn) => {
       const text = this.castToString(btn.text || "");
-      const iconVal = btn.icon as { name?: string; url?: string } | undefined;
+      const iconVal = btn.icon as { name?: string; url?: string };
       return text || iconVal?.name || iconVal?.url;
     });
     const hasButtonIcon = buttons.some((btn) => {
-      const iconVal = btn.icon as { name?: string; url?: string } | undefined;
+      const iconVal = btn.icon as { name?: string; url?: string };
       return !!(iconVal?.name || iconVal?.url);
     });
     const hasButtonText = buttons.some((btn) => this.castToString(btn.text));
     const mainImage = this.getPropValue("mainImage");
     const features = this.castToObject<FeatureItem[]>("features");
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
-    const animationClass = hoverAnimation.length ? hoverAnimation.join(" ") : "";
+    const animationClass = hoverAnimation.length && hoverAnimation.join(" ");
 
     const hasSubtitleOrTitle = this.castToString(subtitle) || this.castToString(title);
     const hasDescriptionOrButton = this.castToString(description) || hasButtonText || hasButtonIcon;
@@ -200,7 +200,7 @@ class About10 extends BaseAbout {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("header")} ${!hasSubtitleOrTitle ? this.decorateCSS("no-left") : ""} ${!hasDescriptionOrButton ? this.decorateCSS("no-right") : ""}`}
+          className={`${this.decorateCSS("header")} ${!hasSubtitleOrTitle && this.decorateCSS("no-left")} ${!hasDescriptionOrButton && this.decorateCSS("no-right")}`}
           >
             {hasSubtitleOrTitle && (
                 <Base.VerticalContent className={this.decorateCSS("text-content")}>
@@ -234,7 +234,7 @@ class About10 extends BaseAbout {
                       return (
                         <ComposerLink key={`about10-btn-${idx}`} path={btn.url}>
                           <Base.Button className={this.decorateCSS("button")} buttonType={btn.type || "Primary"}>
-                            {btnHasIcon && <Base.Media value={iconVal as any} className={this.decorateCSS("button-icon")} />}
+                            {btnHasIcon && <Base.Media value={iconVal} className={this.decorateCSS("button-icon")} />}
                             {btnHasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                           </Base.Button>
                         </ComposerLink>
@@ -250,7 +250,7 @@ class About10 extends BaseAbout {
           {isImageExist && (
             <div 
               className={this.decorateCSS("image-section")}
-              data-animation={animationClass || undefined}
+              data-animation={animationClass}
             >
               <Base.Media
                 value={mainImage}
