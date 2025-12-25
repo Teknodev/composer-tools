@@ -154,7 +154,6 @@
         z-index: 1;
         flex-direction: column;
         gap: var(--composer-gap-xs);
-        padding-top: var(--composer-gap-xl);
 
         .pagination {
           width: 100%;
@@ -165,7 +164,7 @@
           }
 
           .slide-count-power {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             vertical-align: top;
 
             .divider {
@@ -466,7 +465,6 @@
         .top-figure {
           width: 40%;
           height: 30%;
-          padding-top: var(--composer-gap-md);
 
           .pagination {
             margin-left: 22%;
@@ -478,7 +476,7 @@
 
               .divider,
               .slide-count {
-                font-size: 2vh;
+                font-size: 1.25rem;
               }
             }
           }
