@@ -358,7 +358,7 @@
           .slide-item {
             width: 480px;
             max-width: 480px;
-            padding: 0 var(--composer-gap-lg);
+            padding: 0 calc(1.5 *var(--composer-gap-md));
             transform: translateY(var(--composer-gap-sm)) scale(0.9);
             height: min(40vh, 360px);
 
@@ -367,6 +367,15 @@
 
               .image {
                 object-position: center;
+              }
+            }
+
+            .content-overlay {
+              .title,
+              .subtitle,
+              .description {
+                transform: scale(0.9);
+                transform-origin: center;
               }
             }
 
