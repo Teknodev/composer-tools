@@ -22,7 +22,7 @@
           flex-direction: column;
           gap: var(--composer-gap-xs);
           .description {
-            content: "";
+            text-align: left !important;
           }
         }
 
