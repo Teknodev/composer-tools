@@ -3,7 +3,6 @@ import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
   image: TypeMediaInputValue;
@@ -62,9 +61,9 @@ class LogoComp1Page extends LogoClouds {
               },
             },
             {
-              type: "string",
+              type: "page",
               key: "imageLink",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -85,9 +84,9 @@ class LogoComp1Page extends LogoClouds {
               },
             },
             {
-              type: "string",
+              type: "page",
               key: "imageLink",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -108,9 +107,9 @@ class LogoComp1Page extends LogoClouds {
               },
             },
             {
-              type: "string",
+              type: "page",
               key: "imageLink",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -131,9 +130,9 @@ class LogoComp1Page extends LogoClouds {
               },
             },
             {
-              type: "string",
+              type: "page",
               key: "imageLink",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -154,9 +153,9 @@ class LogoComp1Page extends LogoClouds {
               },
             },
             {
-              type: "string",
+              type: "page",
               key: "imageLink",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -177,9 +176,9 @@ class LogoComp1Page extends LogoClouds {
               },
             },
             {
-              type: "string",
+              type: "page",
               key: "imageLink",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -235,12 +234,7 @@ class LogoComp1Page extends LogoClouds {
               className={this.decorateCSS("images-container")}
             >
               {images.map((image: any, index: number) => image.image && (
-                <ComposerLink
-                  path={
-                    typeof image.imageLink === "string"
-                      ? image.imageLink
-                      : image.imageLink && (image.imageLink.url || image.imageLink.path) ? (image.imageLink.url || image.imageLink.path) : "#"
-                  }
+                <ComposerLink path={image.imageLink}
                   key={index}
                 >
                   <div className={this.decorateCSS("image-item")}>

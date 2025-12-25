@@ -26,12 +26,168 @@ class LogoComp7Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-        INPUTS.LOGO("section", ""),
-        INPUTS.LOGO("section", ""),
-        INPUTS.LOGO("section", ""),
-        INPUTS.LOGO("section", ""),
-        INPUTS.LOGO("section", ""),
-        INPUTS.LOGO("section", ""),
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },        
+
       ],
     });
   }
