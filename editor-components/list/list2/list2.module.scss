@@ -18,6 +18,9 @@
         gap: var(--composer-gap-md);
         .header {
           text-align: center;
+          .subtitle,.title,.description {
+            content: "";
+          }
         }
 
       .cards-box {

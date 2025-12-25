@@ -25,7 +25,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; 
     height: 100%;
     background-color: var(--composer-overlay-color);
     pointer-events: none;
@@ -259,6 +259,7 @@
                   var(--composer-html-background),
                   var(--composer-font-color-primary) 5%
                 );
+                font-size: 5rem;
               }
             }
           }
@@ -302,7 +303,16 @@
       .cards-grid {
         .card-wrapper {
           &:nth-child(2n) {
-            margin-top: 0;
+            margin-top: 0 !important; 
+          }
+        }
+        .card {
+          .card-header {
+            .index-section {
+              .item-index {
+                font-size: 4rem !important;
+              }
+            }
           }
         }
       }
@@ -317,6 +327,32 @@
         .card-wrapper {
           &:nth-child(2n) {
             margin-top: 0;
+          }
+        }
+        .card {
+          .card-header {
+            .index-section {
+              .item-index {
+                font-size: 3rem !important;
+              }
+            }
+          }
+          .arrow-icon {
+            font-size: 2rem !important;
+          }
+          .card-header {
+            .icon-section {
+              .icon-badge {
+                .icon-wrapper {
+                  padding: (--composer-gap-sm) !important;
+                  .icon {
+                    width: 2rem !important;
+                    height: 2rem !important;
+                    font-size: 2rem !important;
+                  }
+                }
+              }
+            }
           }
         }
       }
