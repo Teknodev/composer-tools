@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Card = {
   image: TypeMediaInputValue;
   title: React.JSX.Element;
-  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
   overlay: boolean;
 };
@@ -70,8 +70,8 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
             INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -108,8 +108,8 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY ADDISON",
             },
             INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -146,8 +146,8 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
             INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -184,8 +184,8 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY CHARLES",
             },
             INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -222,8 +222,8 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
             INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -260,8 +260,8 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY ADDISON",
             },
             INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
@@ -363,7 +363,7 @@ class List1 extends BaseList {
               className={this.decorateCSS("carousel")}
             >
               {sliderItems.map((item: Card, indexSlider: number) => {
-                const cardExist  = this.castToString(item.title) || this.castToString(item.subtitle) || this.castToString(item.button.text) || item.image || item.button.icon;
+              const cardExist  = this.castToString(item.title) || this.castToString(item.description) || this.castToString(item.button.text) || item.image || item.button.icon;
                 
               const isIcon = !!item.image && (item.image as any).type === "icon";
               return cardExist && (
@@ -390,17 +390,17 @@ class List1 extends BaseList {
                     {backgroundColor && this.getComponentState("active-index") === indexSlider && (
                       <div className={this.decorateCSS("colored-area")} />
                     )}
-                    {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                    {(this.castToString(item.title) || this.castToString(item.description)) && (
                       <Base.VerticalContent className={this.decorateCSS("card-header")}>
                         {this.castToString(item.title) && (
-                          <Base.H4 className={this.decorateCSS("card-title")}>
+                          <Base.H5 className={this.decorateCSS("card-title")}>
                             {item.title}
-                          </Base.H4 >
+                          </Base.H5>
                         )}
-                        {this.castToString(item.subtitle) && (
-                          <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                            {item.subtitle}
-                          </Base.H6>
+                        {this.castToString(item.description) && (
+                          <Base.P className={this.decorateCSS("card-description")}>
+                            {item.description}
+                          </Base.P>
                         )}
                       </Base.VerticalContent>
                     )}

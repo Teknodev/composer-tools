@@ -152,6 +152,7 @@
             );
             transition: background-color var(--composer-transition-duration-slow) ease;
             border-radius: var(--composer-border-width-sm);
+            min-height: 225px;
 
             &[data-animation~="animate2"] {
               &:hover {
@@ -264,6 +265,9 @@
       }
       .service-item:nth-child(3n + 2) {
         transform: translateY(var(--composer-gap-sm));
+      }
+      .card-body {
+        min-height:320px !important;
       }
     }
   }

@@ -120,6 +120,7 @@
       .icon {
         width: 160px;
         height: 160px;
+        font-size: 8rem;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -142,6 +143,20 @@
           height: 100%;
           background-color: var(--composer-overlay-color);
           border-radius: inherit;
+        }
+      }
+
+      .no-circle {
+        border-radius: 0;
+        font-size:12rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: visible;
+        transition: transform 0.3s ease-in-out;
+        position: relative;
+        .img {
+          border-radius: 0;
         }
       }
 

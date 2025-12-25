@@ -87,7 +87,7 @@ class List6 extends BaseList {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Media",
               value: {
                 type: "icon",
                 name: "LuPenTool",
@@ -125,7 +125,7 @@ class List6 extends BaseList {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Media",
               value: {
                 type: "icon",
                 name: "BiCodeBlock",
@@ -163,7 +163,7 @@ class List6 extends BaseList {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Media",
               value: {
                 type: "icon",
                 name: "GoGoal",
@@ -201,7 +201,7 @@ class List6 extends BaseList {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Media",
               value: {
                 type: "icon",
                 name: "BiBookContent",

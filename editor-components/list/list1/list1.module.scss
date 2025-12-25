@@ -16,6 +16,10 @@
       width: 100%;
       padding: 0 var(--composer-gap-md);
 
+      .subtitle,.title{
+        content: "";
+      }
+
       .description {
         color: var(--composer-tertiary-color);
       }
@@ -84,13 +88,16 @@
           background-color: var(--composer-font-color-secondary);
         }
       }
-      .card {
+        .card {
         margin: 0;
         position: relative;
         display: flex !important;
         flex-direction: column;
         align-items: flex-start;
-        padding: var(--composer-gap-lg);
+        padding-top: var(--composer-gap-lg);
+        padding-bottom: var(--composer-gap-lg);
+        padding-left: var(--composer-gap-lg);
+        padding-right: var(--composer-gap-lg);
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
@@ -99,7 +106,7 @@
         border-radius: var(--composer-border-radius-md);
         gap: var(--composer-gap-md);
         height: 100%;
-        min-height: 550px;
+        min-height: 0;
         width: 100% !important;
 
         .image-container {
@@ -159,7 +166,7 @@
               color: var(--composer-primary-color);
             }
           }
-          .card-subtitle {
+          .card-description {
             content: "";
             color: var(--composer-tertiary-color);
             text-align: left !important;
@@ -172,6 +179,7 @@
           cursor: pointer;
           position: relative;
           overflow: hidden;
+          margin-bottom: 0;
           &::before {
             content: "";
             position: absolute;
@@ -195,6 +203,11 @@
         }
 
         &.active {
+          .colored-area {
+              content:"";
+              margin: 0;
+              display: none;
+          }
           &::after {
             content: "";
             position: absolute;
@@ -205,9 +218,7 @@
             background-color: var(--composer-primary-color);
             z-index: -1;
             border-radius: var(--composer-border-radius-sm);
-          .colored-area {
-              content:"";
-          }
+
         }
       }
 
@@ -292,6 +303,16 @@
 
     .carousel {
       padding:0 !important;
+    }
+    .carousel {
+      .card {
+        min-height: 0;
+        padding-top: calc(var(--composer-gap-md) * 1.2);
+        padding-bottom: calc(var(--composer-gap-md) * 1.2);
+        .button {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }

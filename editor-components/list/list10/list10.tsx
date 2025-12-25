@@ -48,13 +48,13 @@ class List10 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f2703b007002cc7f55e?alt=media",
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video", "icon"],
                             },
                         },
                         {
@@ -91,13 +91,13 @@ class List10 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f6f03b007002cc7f56e?alt=media",
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video", "icon"],
                             },
                         },
                         {
@@ -134,13 +134,13 @@ class List10 extends BaseList {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b351ed03b007002cc7f6d9?alt=media",
                             },
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video", "icon"],
                             },
                         },
                         {

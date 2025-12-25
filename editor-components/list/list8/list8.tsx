@@ -64,7 +64,7 @@ class List8 extends BaseList {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               value: { type: "icon", name: "FaMapLocationDot" },
               additionalParams: { availableTypes: ["icon", "image"] },
             },
@@ -97,7 +97,7 @@ class List8 extends BaseList {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               value: { type: "icon", name: "HiChartBar" },
               additionalParams: { availableTypes: ["icon", "image"] },
             },
@@ -130,7 +130,7 @@ class List8 extends BaseList {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               value: { type: "icon", name: "FaMoneyBillAlt" },
               additionalParams: { availableTypes: ["icon", "image"] },
             },

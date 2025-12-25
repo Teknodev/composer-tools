@@ -66,8 +66,8 @@ class List11 extends BaseList {
                         {
                             type: "media",
                             key: "itemImage",
-                            displayer: "Image",
-                            value: {
+                            displayer: "Media",
+                            value: {    
                                 type: "image",
                                 url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-01.svg"
                             },
@@ -121,7 +121,7 @@ class List11 extends BaseList {
                         {
                             type: "media",
                             key: "itemImage",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-02.svg"
@@ -176,7 +176,7 @@ class List11 extends BaseList {
                         {
                             type: "media",
                             key: "itemImage",
-                            displayer: "Image",
+                            displayer: "Media",
                             value: {
                                 type: "image",
                                 url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-03.svg"

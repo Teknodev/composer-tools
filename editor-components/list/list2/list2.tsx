@@ -75,7 +75,7 @@ class List2 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414e?alt=media&timestamp=1719483639150",
@@ -118,7 +118,7 @@ class List2 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414f?alt=media&timestamp=1719483639150",
@@ -131,7 +131,7 @@ class List2 extends BaseList {
               type: "string",
               key: "count",
               displayer: "Count",
-              value: "24",
+              value: "24",  
             },
             {
               type: "string",
@@ -161,7 +161,7 @@ class List2 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414d?alt=media&timestamp=1719483639150",
@@ -204,7 +204,7 @@ class List2 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414b?alt=media&timestamp=1719483639150",
@@ -247,7 +247,7 @@ class List2 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617b82bd2970002c62410f?alt=media&timestamp=1719483639150",
@@ -290,7 +290,7 @@ class List2 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414c?alt=media&timestamp=1719483639150",

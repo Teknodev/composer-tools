@@ -181,6 +181,52 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .items-wrapper {
+        .list-item {
+          .number-badge {
+            width: 60px !important;
+            height: 60px !important;
+            .index {
+              font-size: 2rem !important;
+            }
+          }
+          .icon {
+            font-size: 3rem !important;
+            width: 3rem !important;
+            height: 3rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .items-wrapper {
+        .list-item {
+          .number-badge {
+            width: 50px !important;
+            height: 50px !important;
+            .index {
+              font-size: 2rem !important;
+            }
+          }
+          .icon {
+            font-size: 2rem !important;
+            width: 2rem !important;
+            height: 2rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
 @keyframes swing {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);

@@ -63,7 +63,7 @@ class List4 extends BaseList {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               value: {
                 type: "icon",
                 name: "FaTooth",
@@ -95,7 +95,7 @@ class List4 extends BaseList {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               value: {
                 type: "icon",
                 name: "FaPencilAlt",
@@ -127,7 +127,7 @@ class List4 extends BaseList {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               value: {
                 type: "icon",
                 name: "FaSuitcaseRolling",
