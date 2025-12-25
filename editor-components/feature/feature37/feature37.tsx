@@ -51,7 +51,7 @@ class Feature37 extends BaseFeature {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image","video"],
       },
@@ -188,12 +188,9 @@ class Feature37 extends BaseFeature {
             this.castToString(title) ||
             this.castToString(description)) && (
             <div className={this.decorateCSS("header")}>
-              <Base.VerticalContent
-                className={this.decorateCSS("header-content")}
-                data-alignment={alignment}
-              >
+              <Base.VerticalContent>
                 {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("subheading")}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
