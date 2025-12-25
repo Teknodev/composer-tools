@@ -1,4 +1,5 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 
 @keyframes pulse {
   0% {
@@ -28,6 +29,27 @@
     .subtitle,
     .description {
       content: "";
+    }
+
+    .top-level-buttons {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      align-items: center;
+      .button {
+        .button-text {
+        }
+
+        .button-icon {
+          font-size: 1.5rem;
+          height: 25px;
+          width: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
 
@@ -150,27 +172,14 @@
           }
         }
 
-        .footer {
-          .button {
-            .button-text{
-              content: "";
-            }
-
-            .button-icon {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-          }
-        }
-
         .body {
           .items {
             .item {
               padding: var(--composer-gap-sm);
               width: 100%;
               color: var(--composer-font-color-primary);
-              border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+              border-bottom: 1px solid
+                rgba(var(--composer-font-color-primary-rgb), 0.2);
               text-align: center;
               position: relative;
 
@@ -184,6 +193,20 @@
                 bottom: -1px;
                 transition: width 0.8s ease, left 0.8s ease;
               }
+            }
+          }
+        }
+
+        .footer {
+          .button {
+            .button-text {
+              content: "";
+            }
+
+            .button-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
           }
         }

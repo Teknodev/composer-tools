@@ -1,13 +1,14 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+
 @keyframes breathe {
   0% {
     transform: scale(1.1);
   }
-  
+
   50% {
     transform: scale(1.05);
   }
-  
+
   100% {
     transform: scale(1.1);
   }
@@ -21,17 +22,43 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       width: 100%;
       padding-bottom: var(--composer-gap-md);
       gap: var(--composer-gap-md);
+
       .page-up {
         width: 100%;
         overflow: hidden;
         color: var(--composer-font-color-primary);
 
-        .title, .subtitle {
+        .title,
+        .subtitle {
           content: "";
         }
 
         .description {
           color: var(--composer-font-color-primary);
+        }
+
+        .top-level-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+          margin-top: var(--composer-gap-md);
+          align-items: center;
+          .button {
+            content: "";
+
+            .button-icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.5rem;
+              height: 25px;
+              width: 25px;
+            }
+
+            .button-text {
+              content: "";
+            }
+          }
         }
       }
 
@@ -47,24 +74,29 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             border-radius: var(--composer-border-radius-md);
             box-shadow: var(--box-shadow-active);
             overflow: hidden;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
             transition: 0.8s;
 
-            &.animation1:hover {              
+            &.animation1:hover {
               transform: translateY(calc(-1 * var(--composer-gap-sm)));
             }
 
-            &.animation2:hover {              
-              .card-up{
-                .card-up-texts{
+            &.animation2:hover {
+              .card-up {
+                .card-up-texts {
                   transform: scale(1.1);
                 }
               }
             }
-            &.animation3:hover{
-              .card-up{
-                .card-up-texts{
-                  .price-pricing{
+
+            &.animation3:hover {
+              .card-up {
+                .card-up-texts {
+                  .price-pricing {
                     animation-name: breathe;
                     animation-duration: 2s;
                     animation-timing-function: ease-in-out;
@@ -99,9 +131,19 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-primary);
                 padding: var(--composer-gap-lg);
                 transition: 0.8s;
-                
+
+                .price-title1 {
+                  color: var(--composer-font-color-primary);
+                }
+
                 .price-title2 {
+                  text-align: center;
                   color: var(--composer-tertiary-color);
+                }
+
+                .price-pricing {
+                  margin-top: var(--composer-gap-md);
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -129,8 +171,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                     width: var(--composer-gap-md);
                     height: var(--composer-gap-md);
                     color: var(--composer-primary-color);
+
+                    .icon {
+                      content: "";
+                    }
                   }
-                  .list-item-text{
+
+                  .list-item-text {
                     content: "";
                   }
                 }
@@ -145,25 +192,23 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               align-items: center;
               gap: var(--composer-gap-md);
               margin-bottom: var(--composer-gap-md);
-              .button{
+
+              .button {
                 content: "";
+
+                .button-icon {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+
+                .button-text {
+                  content: "";
+                }
               }
             }
           }
         }
-      }
-
-      .price-title1 {
-        color: var(--composer-font-color-primary);
-      }
-
-      .price-title2 {
-        text-align: center;
-        color: var(--composer-font-color-primary);
-      }
-      .price-pricing {
-        margin-top: var(--composer-gap-md);
-        color: var(--composer-font-color-primary);
       }
     }
   }
