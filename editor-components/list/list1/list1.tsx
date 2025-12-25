@@ -47,13 +47,13 @@ class List1 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d23a03b007002cc7aa52?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video","icon"],
               },
             },
             {
@@ -85,13 +85,13 @@ class List1 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d26803b007002cc7aa71?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video","icon"],
               },
             },
             {
@@ -123,13 +123,13 @@ class List1 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d2b303b007002cc7aa9f?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video","icon"],
               },
             },
             {
@@ -161,13 +161,13 @@ class List1 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d1ef03b007002cc7aa41?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video","icon"],
               },
             },
               {
@@ -199,13 +199,13 @@ class List1 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d30603b007002cc7aacf?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video","icon"],
               },
             },
             {
@@ -237,13 +237,13 @@ class List1 extends BaseList {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d32d03b007002cc7aae7?alt=media",
               },
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video","icon"],
               },
             },
               {
@@ -365,7 +365,8 @@ class List1 extends BaseList {
               {sliderItems.map((item: Card, indexSlider: number) => {
                 const cardExist  = this.castToString(item.title) || this.castToString(item.subtitle) || this.castToString(item.button.text) || item.image || item.button.icon;
                 
-                return cardExist && (
+              const isIcon = !!item.image && (item.image as any).type === "icon";
+              return cardExist && (
                   <Base.VerticalContent
                     key={indexSlider}
                     className={`${this.decorateCSS("card")} ${
@@ -376,7 +377,7 @@ class List1 extends BaseList {
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
                     {item.image && (
-                      <Base.Row className={this.decorateCSS("image-container")}>
+                      <Base.Row className={`${this.decorateCSS("image-container")} ${isIcon ? this.decorateCSS("no-round") : ""}`}>
                         <Base.Media
                           className={this.decorateCSS("image")}
                           value={item.image}
@@ -385,6 +386,9 @@ class List1 extends BaseList {
                           <div className={this.decorateCSS("overlay")} />
                         )}
                       </Base.Row>
+                    )}
+                    {backgroundColor && this.getComponentState("active-index") === indexSlider && (
+                      <div className={this.decorateCSS("colored-area")} />
                     )}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                       <Base.VerticalContent className={this.decorateCSS("card-header")}>

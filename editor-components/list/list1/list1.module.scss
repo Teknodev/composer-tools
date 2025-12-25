@@ -129,6 +129,17 @@
             background-color: var(--composer-overlay-color);
             border-radius: inherit;
           }
+          &.no-round {
+            border-radius: 0;
+            .image {
+              border-radius: 0;
+              font-size:15rem;
+            }
+            .overlay {
+              border-radius: 0;
+              opacity: 0;
+            }
+          }
         }
 
         .card-header {
@@ -194,8 +205,12 @@
             background-color: var(--composer-primary-color);
             z-index: -1;
             border-radius: var(--composer-border-radius-sm);
+          .colored-area {
+              content:"";
           }
         }
+      }
+
 
         &[data-animation~="animate1"]:hover {
           .card-title {
@@ -287,6 +302,9 @@
     .carousel {
       padding:0 !important;
       .card.active::after {
+        display: none;
+      }
+      .card .active-after {
         display: none;
       }
 
