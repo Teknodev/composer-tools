@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./portfolio1.module.scss";
 import { BasePortfolio, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -24,8 +23,8 @@ class Portfolio1 extends BasePortfolio {
     super(props, styles);
     this.addProp({
       type: "object",
-      key: "leftSideItem",
-      displayer: "Left Side Item",
+      key: "leftSideCard",
+      displayer: "Left Side Card",
       value: [
         {
           type: "boolean",
@@ -99,8 +98,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Right Side Top Left Item",
-      key: "rightSideTopLeftItem",
+      displayer: "Right Side Top Left Card",
+      key: "rightSideTopLeftCard",
       value: [
         {
           type: "boolean",
@@ -174,8 +173,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Right Side Top Right Item",
-      key: "rightSideTopRightItem",
+      displayer: "Right Side Top Right Card",
+      key: "rightSideTopRightCard",
       value: [
         {
           type: "boolean",
@@ -255,8 +254,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Right Side Bottom Left Item",
-      key: "rightSideBottomLeftItem",
+      displayer: "Right Side Bottom Left Card",
+      key: "rightSideBottomLeftCard",
       value: [
         {
           type: "boolean",
@@ -336,8 +335,8 @@ class Portfolio1 extends BasePortfolio {
     });
     this.addProp({
       type: "object",
-      displayer: "Right Side Bottom Right Item",
-      key: "rightSideBottomRightItem",
+      displayer: "Right Side Bottom Right Card",
+      key: "rightSideBottomRightCard",
       value: [
         {
           type: "boolean",
@@ -424,18 +423,18 @@ class Portfolio1 extends BasePortfolio {
   }
 
   render() {
-    const itemLeft = this.castToObject<PortfolioItem>("leftSideItem");
+    const itemLeft = this.castToObject<PortfolioItem>("leftSideCard");
     const itemTopRight = this.castToObject<PortfolioItem>(
-      "rightSideTopRightItem"
+      "rightSideTopRightCard"
     );
     const itemTopLeft = this.castToObject<PortfolioItem>(
-      "rightSideTopLeftItem"
+      "rightSideTopLeftCard"
     );
     const itemBottomLeft = this.castToObject<PortfolioItem>(
-      "rightSideBottomLeftItem"
+      "rightSideBottomLeftCard"
     );
     const itemBottomRight = this.castToObject<PortfolioItem>(
-      "rightSideBottomRightItem"
+      "rightSideBottomRightCard"
     );
 
     const isRenderableImage = (m: TypeMediaInputValue) =>
