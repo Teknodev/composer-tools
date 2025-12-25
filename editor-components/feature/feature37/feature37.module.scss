@@ -1,150 +1,221 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  width: 100%;
-
-  .max-content {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    gap: var(--composer-gap-xl);
-  }
 
-  heading {
-    .subtitle,
-    .heading,
-    .header-description {
-      content: "";
-    }
-  }
-
-  .featuresGrid {
-    display: flex;
-    align-items: left;
-    gap: var(--composer-gap-xl);
-    width: 100%;
-  }
-
-  .featuresList {
-    display: grid;
-    gap: var(--composer-gap-xl);
-    flex: 1;
-    min-width: 0;
-  }
-
-  .featureCard {
-    align-items: flex-start;
-    display: flex;
-    gap: var(--composer-gap-md);
-    padding: var(--composer-padding-lg);
-    border-radius: var(--composer-border-radius-sm);
-    color: var(--composer-font-color-primary);
-    text-align: left;
-
-    .iconContainer {
-      flex-shrink: 0;
-      width: var(--composer-gap-xl);
-      height: var(--composer-gap-xl);
-      justify-content: center;
-
-      .icon {
-        font-size: 3rem;
-        color: var(--composer-primary-color);
-      }
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: var(--composer-gap-xl);
     }
 
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
-      align-items: flex-start;
+    .header {
+        .subtitle,
+        .heading {
+            text-align: inherit;
+        }
 
-      .title {
-        margin: 0;
+        .header-description {
+            text-align: inherit;
+        }
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        &[data-alignment="left"] {
+            align-items: flex-start;
+            text-align: left;
+        }
+    }
+
+    .features-grid {
+        display: flex;
+        align-items: stretch;
+        gap: var(--composer-gap-lg);
+        width: 100%;
+        justify-content: center;
+    }
+
+    .features-grid-compact {
+        align-items: center;
+    }
+
+    .features-grid-empty {
+        justify-content: center;
+    }
+
+    .features-list {
+        display: grid;
+        gap: var(--composer-gap-xl);
+        flex: 1 1 0;
+        min-width: 0;
+        align-self: stretch;
+        align-items: start;
+    }
+
+    .features-list-empty {
+        display: none;
+    }
+
+    .feature-card {
+        display: flex;
+        gap: var(--composer-gap-md);
+        padding: var(--composer-padding-lg);
+        border-radius: var(--composer-border-radius-sm);
+        color: var(--composer-font-color-primary);
+        align-items: flex-start;
         text-align: left;
-      }
+        margin-bottom: 0;
+        flex: 1;
 
-      .description {
-        margin: 0;
-        text-align: left;
-      }
+        .icon-container {
+            flex-shrink: 0;
+            width: var(--composer-gap-xl);
+            height: var(--composer-gap-xl);
+
+            .icon {
+                font-size: 3rem;
+                color: var(--composer-primary-color);
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--composer-gap-md);
+            min-width: 0;
+
+            .title {
+                margin: 0;
+                text-align: left;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            .description {
+                margin: 0;
+                text-align: left;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+        }
     }
-  }
 
-  .imageWrapper {
-    position: relative;
-    flex: 1;
-    border-radius: var(--composer-border-radius-sm);
-    overflow: hidden;
+    .image-wrapper {
+        position: relative;
+        flex: 0 1 55%;
+        max-width: 900px;
+        width: 100%;
+        order: 2;
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
+        align-self: stretch;
+        aspect-ratio: 4 / 3;
 
-    .image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+        .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--composer-overlay-color);
+            pointer-events: none;
+            z-index: 1;
+        }
     }
 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: var(--composer-overlay-color);
-      pointer-events: none;
-      z-index: 1;
+    .image-wrapper-compact {
+        flex: 0 1 50%;
+        max-width: 760px;
+        aspect-ratio: 3 / 2;
     }
-  }
+
+    .image-wrapper-full {
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .featuresList {
-      flex-direction: column;
-      gap: var(--composer-gap-md);
-    }
-  
-    .featureCard {
-      gap: var(--composer-gap-sm);
-
-      .iconContainer {
-        .icon {
-          font-size: 2rem;
+    .container {
+        .features-grid {
+            gap: var(--composer-gap-xl);
         }
-      }
-    }
 
-    .imageWrapper {
-      width: 100%;
-      height: 100%;
+        .features-list {
+            gap: var(--composer-gap-md);
+        }
 
-      .image {
-        width: 100%;
-        min-height: 450px;
-      }
+        .feature-card {
+            gap: var(--composer-gap-sm);
+
+            .icon-container {
+                .icon {
+                    font-size: 2rem;
+                }
+            }
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            aspect-ratio: 4 / 3;
+
+            .image {
+                width: 100%;
+            }
+        }
     }
-  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .featuresGrid {
-      flex-direction: column;
-    }
-
-    .featuresList {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .imageWrapper {
-      .image {
-        min-height: 250px;
-      }
-    }
-
-    .featureCard {
-      .iconContainer {
-        .icon {
-          font-size: 1.75rem;
+    .container {
+        .features-grid {
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            justify-content: center;
         }
-      }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+
+            .image {
+                width: 100%;
+            }
+        }
+
+        .feature-card {
+            gap: var(--composer-gap-xs);
+
+            .icon-container {
+                .icon {
+                    font-size: 1.75rem;
+                }
+            }
+        }
     }
-  }
 }

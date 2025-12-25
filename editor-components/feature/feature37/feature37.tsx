@@ -4,8 +4,8 @@ import styles from "./feature37.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface ListItem {
-  title: string;
-  text: string;
+  title: React.JSX.Element;
+  text: React.JSX.Element;
   icon: TypeMediaInputValue;
 }
 
@@ -162,7 +162,21 @@ class Feature37 extends BaseFeature {
     const overlay = this.getPropValue("overlay");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const image = this.getPropValue("image");
-    const list = this.castToObject<ListItem[]>("items");
+    const alignment = Base.getContentAlignment();
+    const list = (this.castToObject<ListItem[]>("items") || []).filter(
+      (item): item is ListItem => Boolean(item)
+    );
+    const filteredList = list.filter((item) => {
+      const hasTitle = this.castToString(item.title);
+      const hasText = this.castToString(item.text);
+      const hasIcon =
+        (item.icon?.type === "icon" && item.icon.name) ||
+        ((item.icon?.type === "image" || item.icon?.type === "video") &&
+          item.icon.url);
+      return hasTitle || hasText || hasIcon;
+    });
+    const isSparse = filteredList.length > 0 && filteredList.length <= 2;
+    const isEmpty = filteredList.length === 0;
     const hasImage = image && (
       (image.type === "image" && image.url) || 
       (image.type === "video" && image.url)
@@ -176,7 +190,10 @@ class Feature37 extends BaseFeature {
             this.castToString(title) ||
             this.castToString(description)) && (
             <div className={this.decorateCSS("header")}>
-              <Base.VerticalContent>
+              <Base.VerticalContent
+                className={this.decorateCSS("header-content")}
+                data-alignment={alignment}
+              >
                 {this.castToString(subtitle) && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitle}
@@ -200,18 +217,24 @@ class Feature37 extends BaseFeature {
             </div>
           )}
 
-          <Base.Row className={this.decorateCSS("featuresGrid")}>
+          <Base.Row
+            className={`${this.decorateCSS("features-grid")}${
+              isSparse ? ` ${this.decorateCSS("features-grid-compact")}` : ""
+            }${isEmpty ? ` ${this.decorateCSS("features-grid-empty")}` : ""}`}
+          >
 
             <div
-              className={this.decorateCSS("featuresList")}
+              className={`${this.decorateCSS("features-list")}${
+                isEmpty ? ` ${this.decorateCSS("features-list-empty")}` : ""
+              }`}
               style={{
                 gridTemplateColumns: `repeat(${itemsPerRow}, minmax(0, 1fr))`,
                 width: hasImage ? "" : "100%"
               }}
             >
-              {list.map((item, index) => (
-                <div key={index} className={this.decorateCSS("featureCard")}>
-                  <div className={this.decorateCSS("iconContainer")}>
+              {filteredList.map((item, index) => (
+                <div key={index} className={this.decorateCSS("feature-card")}>
+                  <div className={this.decorateCSS("icon-container")}>
                     <Base.Media
                       value={item.icon}
                       className={this.decorateCSS("icon")}
@@ -233,7 +256,11 @@ class Feature37 extends BaseFeature {
             </div>
 
             {hasImage && (
-              <div className={this.decorateCSS("imageWrapper")}>
+              <div
+                className={`${this.decorateCSS("image-wrapper")}${
+                  isSparse ? ` ${this.decorateCSS("image-wrapper-compact")}` : ""
+                }${isEmpty ? ` ${this.decorateCSS("image-wrapper-full")}` : ""}`}
+              >
                 <Base.Media
                   value={image}
                   className={this.decorateCSS("image")}
