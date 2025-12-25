@@ -170,7 +170,7 @@
 
                 .back-image {
                     width: 75%;
-                    height: 75%;
+                    height: 80%;
                     margin-bottom: var(--composer-gap-xl);
                 }
 
@@ -178,9 +178,8 @@
                     position: absolute;
                     left: 0px;
                     bottom: 0px;
-                    width: 60%;
-                    height: 60%;
-
+                    max-width: 60%;
+                    height: 70%;
                 }
             }
         }
