@@ -102,7 +102,7 @@ class Portfolio3 extends BasePortfolio {
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_14.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3339f959f6002d79abb7?alt=media",
               },
             },
             {
@@ -337,7 +337,7 @@ class Portfolio3 extends BasePortfolio {
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_12.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e34ccf959f6002d79b18e?alt=media",
               },
             },
             {
@@ -454,7 +454,7 @@ class Portfolio3 extends BasePortfolio {
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_11.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e34dbf959f6002d79b1b0?alt=media",
               },
             },
             {

@@ -68,7 +68,7 @@ class Portfolio2 extends BasePortfolio {
       },
       value: {
         type: "image",
-        url: "https://swissdelight.qodeinteractive.com/wp-content/uploads/2021/02/h2-img-1-729x1024.png",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e35d6f959f6002d79b465?alt=media",
       },
     });
 

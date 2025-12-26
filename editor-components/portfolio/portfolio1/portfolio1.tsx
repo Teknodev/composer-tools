@@ -85,7 +85,7 @@ class Portfolio1 extends BasePortfolio {
           additionalParams: { availableTypes: ["image", "video"] },
           value: {
             type: "image",
-            url: "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-01.jpg",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3662f959f6002d79b56d?alt=media",
           },
         },
         {
@@ -160,7 +160,7 @@ class Portfolio1 extends BasePortfolio {
           additionalParams: { availableTypes: ["image", "video"] },
           value: {
             type: "image",
-            url: "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3672f959f6002d79b58a?alt=media",
           },
         },
         {
@@ -241,7 +241,7 @@ class Portfolio1 extends BasePortfolio {
           additionalParams: { availableTypes: ["image", "video"] },
           value: {
             type: "image",
-            url: "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3680f959f6002d79b5a4?alt=media",
           },
         },
         {
@@ -322,7 +322,7 @@ class Portfolio1 extends BasePortfolio {
           additionalParams: { availableTypes: ["image", "video"] },
           value: {
             type: "image",
-            url: "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-04.jpg",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e368df959f6002d79b5be?alt=media",
           },
         },
         {
@@ -397,7 +397,7 @@ class Portfolio1 extends BasePortfolio {
           additionalParams: { availableTypes: ["image", "video"] },
           value: {
             type: "image",
-            url: "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-05.jpg",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36a0f959f6002d79b610?alt=media",
           },
         },
         {
