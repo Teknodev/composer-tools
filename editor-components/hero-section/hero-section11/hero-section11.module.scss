@@ -136,8 +136,8 @@
       left: -50px;
       z-index: 2;
       .icon-wrapper{
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
         background-color: var(--composer-primary-color);
         border-radius: 100%;
         display: flex;
@@ -151,7 +151,7 @@
           color: var(--composer-font-color-secondary);
           .play-button {
             width: 26px;
-            height: 30px;
+            height: 32px;
             font-size: 2.5rem;
             object-fit: contain;
           }
@@ -196,39 +196,44 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container{
-    flex-direction: column-reverse;
+    flex-direction: row;
+    height: 100vh;
 
     &.no-background-image {
-      padding: 80px var(--composer-gap-lg) !important;
+      height: 100%;
+      padding: 80px var(--composer-gap-xl) !important;
     }
 
     .box {
-      width: 100% ;    
+      flex: 1;
       .max-content {
         .content {
-          padding: 0px 40px 80px 40px;
-          width: 100%;
-          .subtitle {
-            font-size: 2rem;
-          }
-          .title {
-            font-size: 5rem;
-          }
+          padding: var(--composer-gap-md) 0px var(--composer-gap-md) var(--composer-gap-xl);
+          .subtitle { font-size: 2.5rem; }
+          .title { font-size: 5rem; }
         }
       }
     }
+
     .right{
-      overflow: hidden;
+      flex: 2;
+      height: 100%;
+      position: relative;
+      overflow: visible;
       .icon-box {
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%;
+        left: -50px;
+        transform: translateY(-50%);
         .icon-wrapper {
-          width: 70px;
-          height: 70px;
+          width: 80px;
+          height: 80px;
           .icon {
+            width: 25px;
+            height: 30px;
             .play-button {
-              height: 35px;
-              width: 35px;
+              font-size: 2rem;
+              width: 25px;
+              height: 25px;
               object-fit: contain;
             }
           }
@@ -236,11 +241,12 @@
       }
     }
   }
-} 
+}
 
 @container (max-width: #{$composer-phone-width}) {
   .container{
     gap: 0px;
+    flex-direction: column-reverse;
 
     &.no-background-image {
       padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
@@ -264,7 +270,10 @@
       }
     }
     .right{
+      overflow: hidden;
       .icon-box {
+        left: 50%;
+        transform: translate(-50%, -50%);
         .icon-wrapper{
           width: 70px;
           height: 70px;

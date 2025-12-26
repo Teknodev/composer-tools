@@ -137,7 +137,7 @@ class HeroSection11 extends BaseHeroSection {
             <Base.MaxContent className={this.decorateCSS("max-content")}>
 
               <Base.VerticalContent className={`${this.decorateCSS("content")} ${!hasBackgroundImage && this.decorateCSS("no-image")} ${!hasBackgroundImage ? this.decorateCSS("without-background") : ""}`}>
-                {logo && (
+                {(logo?.name || logo?.url) && (
                   <Base.Media 
                     value={logo} 
                     className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 

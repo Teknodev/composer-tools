@@ -13,6 +13,7 @@ type SliderObject = {
   imageTitle: React.JSX.Element;
   image: TypeMediaInputValue;
   subtitle: React.JSX.Element;
+  ctaTitle: React.JSX.Element;
   description1: React.JSX.Element;
   icons: { icon: string; url: string }[];
   button: INPUTS.CastedButton[];
@@ -188,6 +189,12 @@ class HeroSection10 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Magnificent ",
@@ -219,14 +226,14 @@ class HeroSection10 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "ctaTitle",
+              displayer: "CTA Title",
               value: "Stay Tuned",
             },
             {
               type: "string",
               key: "description1",
-              displayer: "Description 1",
+              displayer: "CTA Description",
               value:
                 "We are 24/7 available through our social media. Follow us to stay up to date",
             },
@@ -269,6 +276,12 @@ class HeroSection10 extends BaseHeroSection {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Magnificent ",
@@ -300,14 +313,14 @@ class HeroSection10 extends BaseHeroSection {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "ctaTitle",
+              displayer: "CTA Title",
               value: "Stay Tuned",
             },
             {
               type: "string",
               key: "description1",
-              displayer: "Description 1",
+              displayer: "CTA Description",
               value:
                 "We are 24/7 available through our social media. Follow us to stay up to date",
             },
@@ -380,7 +393,8 @@ class HeroSection10 extends BaseHeroSection {
                   controls: false
                 }
               } : image;
-              const subtitle = this.castToString(item.subtitle);
+              const topSubtitle = this.castToString(item.subtitle);
+              const ctaTitle = this.castToString(item.ctaTitle);
               const description1 = this.castToString(item.description1);
               const leftPage =
                 title ||
@@ -389,7 +403,7 @@ class HeroSection10 extends BaseHeroSection {
                 nextIcon ||
                 prevIcon;
               const rightPage = !!(
-                subtitle ||
+                ctaTitle ||
                 description1 ||
                 item.icons.length > 0 ||
                 ampersandIcon
@@ -413,6 +427,11 @@ class HeroSection10 extends BaseHeroSection {
                               className={this.decorateCSS("logo")}
                             />
                           )}
+                          {topSubtitle && (
+                            <h5 className={this.decorateCSS("subtitleTop")}>
+                              {item.subtitle}
+                            </h5>
+                          )}
                           {(title || imageTitle) && (
                         <div className={this.decorateCSS("title-wrapper")}>
                           {title && (
@@ -421,7 +440,7 @@ class HeroSection10 extends BaseHeroSection {
                             </h1>
                           )}
                           {imageTitle && (
-                            <h1 className={this.decorateCSS("imagetitle")}>
+                            <h1 className={`${this.decorateCSS("imagetitle")} ${image && this.decorateCSS("imagetitleWhite")}`}>
                               {item.imageTitle}
                             </h1>
                           )}
@@ -543,7 +562,7 @@ class HeroSection10 extends BaseHeroSection {
                         </div>
                       }
 
-                      {(subtitle || description1 || item.icons.length > 0) && (
+                      {(ctaTitle || description1 || item.icons.length > 0) && (
                         <div
                           className={
                             this.decorateCSS("right-page-content") +
@@ -553,9 +572,9 @@ class HeroSection10 extends BaseHeroSection {
                               : "")
                           }
                         >
-                          {subtitle && (
-                            <h2 className={this.decorateCSS("subtitle")}>
-                              {item.subtitle}
+                          {ctaTitle && (
+                            <h2 className={this.decorateCSS("rightSubtitle")}>
+                              {item.ctaTitle}
                             </h2>
                           )}
                           {description1 && (

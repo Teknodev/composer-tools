@@ -39,7 +39,7 @@
       .icon{
         width: 30px;
         height: 30px;
-        font-size: 2rem;
+        font-size: 3rem;
       }
     }
   }
@@ -125,7 +125,7 @@
         .icon{
           width: 30px;
           height: 30px;
-          font-size: 2rem;
+          font-size: 3rem;
         }
       }
     
@@ -150,13 +150,13 @@
           color: white;
 
           .logo {
-            margin-bottom: var(--composer-gap-sm);
             font-size: 3rem;
             color: white;
-            margin-bottom: var(--composer-gap-sm);
-            aspect-ratio: 3/1;
-            object-fit: cover;
-            max-width: 150px;
+            &.logo-image {
+              aspect-ratio: 3/1;
+              object-fit: cover;
+              max-width: 150px;
+            }
           }
 
           .slider-item-subtitle {
@@ -171,7 +171,6 @@
             word-wrap: break-word;
             text-align: start;
             cursor: pointer;
-            margin: 0;
           }
 
           .slider-item-description {
@@ -221,7 +220,7 @@
         .icon{
           width: 30px;
           height: 30px;
-          font-size: 2rem;
+          font-size: 3rem;
         }
       }
 
@@ -247,15 +246,14 @@
           color: white;
 
           .logo {
-            margin-bottom: var(--composer-gap-sm);
             font-size: 3rem;
             color: white;
-            margin-bottom: var(--composer-gap-sm);
-            color: white;
-            aspect-ratio: 3/1;
-            object-fit: cover;
-            max-width: 150px;
             text-align: right;
+            &.logo-image {
+              object-fit: cover;
+              max-width: 150px;
+              aspect-ratio: 3/1;
+            }
           }
 
           .slider-item-subtitle {
@@ -270,7 +268,6 @@
             word-wrap: break-word;
             text-align: right;
             cursor: pointer;
-            margin: 0;
           }
 
           .slider-item-description {
@@ -355,6 +352,11 @@
               height: 40vh;
               object-fit: cover;
               box-sizing: border-box;
+            }
+            .slider-item-content {
+              .logo {
+                font-size: 2rem;
+              }
             }
           }
         }

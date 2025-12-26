@@ -313,14 +313,14 @@ class HeroSection2 extends BaseHeroSection {
                         <div className={this.decorateCSS("content-max-width")}>
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
-                              {item.logo && (
+                              {(item.logo?.url || item.logo?.name) && (
                                 <Base.Media 
                                   value={item.logo} 
                                   className={this.decorateCSS("logo")} 
                                 />
                               )}
                               {isCategoryExist && (
-                                <Base.H6 className={this.decorateCSS("category")}>{item.category}</Base.H6>
+                                <Base.P className={this.decorateCSS("category")}>{item.category}</Base.P>
                               )}
                               {isTitleExist && (
                                 <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>

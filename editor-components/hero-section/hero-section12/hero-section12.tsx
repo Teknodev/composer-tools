@@ -836,7 +836,7 @@ class HeroSection12 extends BaseHeroSection {
                       {item.logo && (
                         <Base.Media
                           value={item.logo}
-                          className={this.decorateCSS("logo")}
+                          className={`${this.decorateCSS("logo")} ${item.logo.type == "image" && this.decorateCSS("logo-image")}`}
                         />
                       )}
                       {this.castToString(item.subtitle) && (
@@ -905,7 +905,7 @@ class HeroSection12 extends BaseHeroSection {
                       {item.logo && (
                         <Base.Media
                           value={item.logo}
-                          className={this.decorateCSS("logo")}
+                          className={`${this.decorateCSS("logo")} ${item.logo.type == "image" && this.decorateCSS("logo-image")}`}
                         />
                       )}
                       {this.castToString(item.subtitle) && (

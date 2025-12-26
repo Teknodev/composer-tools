@@ -465,7 +465,7 @@ class HeroSection1 extends BaseHeroSection {
 
                         <h1 className={this.decorateCSS("sliderNumber")}>
                           {isLineActive && (
-                            <span className={`${this.decorateCSS("overlay")} ${!backgroundLayout && this.decorateCSS("dark")}`}></span>
+                            <span className={`${this.decorateCSS("line")} ${!backgroundLayout && this.decorateCSS("dark")}`}></span>
                           )}
                           <span className={`${this.decorateCSS("slider-number")} ${!backgroundLayout && this.decorateCSS("dark")}`}>
                             {item.sliderNumber}

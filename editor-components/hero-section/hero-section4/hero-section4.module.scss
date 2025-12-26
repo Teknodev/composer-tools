@@ -140,7 +140,7 @@
       position: absolute;
       bottom: var(--composer-gap-md);
       background: var(--composer-html-background);
-      right: var(--composer-gap-xl);
+      right: 100px;
       width: 35%;
       padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
@@ -233,7 +233,7 @@
           pointer-events: all;
           width: 60%;
           max-width: 500px;
-          right: var(--composer-gap-md);
+          right: var(--composer-gap-xl);
           bottom: var(--composer-gap-md);
           padding: var(--composer-gap-lg) var(--composer-gap-md);
         }

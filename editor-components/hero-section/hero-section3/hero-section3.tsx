@@ -81,7 +81,7 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
             {
               type: "boolean",
               key: "overlay",
@@ -146,7 +146,7 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
             {
               type: "boolean",
               key: "overlay",
@@ -212,7 +212,7 @@ class HeroSection3 extends BaseHeroSection {
                 selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
               },
             },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
             {
               type: "boolean",
               key: "overlay",

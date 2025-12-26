@@ -62,7 +62,7 @@ class HeroSection4 extends BaseHeroSection {
         maxElementCount: 2,
       },
       value: [
-        INPUTS.BUTTON("button", "Button", "More Projects", "", "", null, "Tertiary")
+        INPUTS.BUTTON("button", "Button", "More Projects", "", "FaArrowRightLong", null, "Tertiary")
       ],
     });
 
@@ -213,29 +213,27 @@ const getStyle = (direction: "up" | "down") => {
         <div className={`${this.decorateCSS("max-content")} ${!image && this.decorateCSS("no-image-wrapper")}`}>
           {image && (
             <div 
-            ref={this.imageRef} className={this.decorateCSS("image-container")}>
-              <div
-                className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
-                style={imageAnm ? getStyle("up") : undefined}
-              >
-                <Base.Media
-                  className={this.decorateCSS("image-element")}
-                  value={image?.type === "video" ? {
-                    ...image,
-                    settings: {
-                      autoplay: true,
-                      loop: true,
-                      muted: true,
-                      controls: false
-                    }
-                  } : image}
-                />
-                {overlay && image && (image.type === "image" || image.type === "video") && image.url && <div className={this.decorateCSS("overlay")} />}
-              </div>
+              ref={this.imageRef}
+              className={`${this.decorateCSS("image-container")} ${!imageAnm ? this.decorateCSS("no-img-anm") : ""}`}
+              style={imageAnm ? getStyle("up") : undefined}
+            >
+              <Base.Media
+                className={this.decorateCSS("image-element")}
+                value={image?.type === "video" ? {
+                  ...image,
+                  settings: {
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    controls: false
+                  }
+                } : image}
+              />
+              {overlay && image && (image.type === "image" || image.type === "video") && image.url && <div className={this.decorateCSS("overlay")} />}
             </div>
           )}
 
-         <Base.MaxContent className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("no-image")} ${!image ? this.decorateCSS("without-image") : ""}`}>
+         <div className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("no-image")} ${!image ? this.decorateCSS("without-image") : ""}`}>
           {showCard && (
               <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
                 {logo && (
@@ -279,7 +277,7 @@ const getStyle = (direction: "up" | "down") => {
                 {note && <Base.P className={this.decorateCSS("note")}>{this.getPropValue("note")}</Base.P>}
             </Base.VerticalContent>
             )}
-          </Base.MaxContent>
+          </div>
         </div>
       </Base.Container>
     );
