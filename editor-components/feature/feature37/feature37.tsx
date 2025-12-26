@@ -162,7 +162,6 @@ class Feature37 extends BaseFeature {
     const overlay = this.getPropValue("overlay");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const image = this.getPropValue("image");
-    const alignment = Base.getContentAlignment();
     const list = (this.castToObject<ListItem[]>("items") || []);
     const filteredList = list.filter((item) => {
       const hasTitle = this.castToString(item.title);
@@ -187,29 +186,27 @@ class Feature37 extends BaseFeature {
           {(this.castToString(subtitle) ||
             this.castToString(title) ||
             this.castToString(description)) && (
-            <div className={this.decorateCSS("header")}>
-              <Base.VerticalContent>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subheading")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
 
                 {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("heading")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
 
                 {this.castToString(description) && (
                   <Base.SectionDescription
-                    className={this.decorateCSS("header-description")}
+                    className={this.decorateCSS("description")}
                   >
                     {description}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
-            </div>
           )}
 
           <Base.Row
@@ -238,11 +235,11 @@ class Feature37 extends BaseFeature {
                   </div>
 
                   <div className={this.decorateCSS("content")}>
-                    <Base.H4 className={this.decorateCSS("title")}>
+                    <Base.H4 className={this.decorateCSS("item-title")}>
                       {item.title}
                     </Base.H4>
                     <Base.SectionDescription
-                      className={this.decorateCSS("description")}
+                      className={this.decorateCSS("item-description")}
                     >
                       {item.text}
                     </Base.SectionDescription>
