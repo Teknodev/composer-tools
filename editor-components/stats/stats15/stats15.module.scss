@@ -50,8 +50,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        .title , .description, .subtitle {
-          text-align: center;
+        .title , .description, .subtitle {          
           &.with-bg {
             color: white;
           }

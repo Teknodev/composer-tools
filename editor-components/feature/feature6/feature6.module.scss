@@ -17,6 +17,7 @@
         }
         .header-subtitle {
           transform: translateY(0px) !important;
+          text-align: center !important;
           &::before {
             display: none !important;
           }

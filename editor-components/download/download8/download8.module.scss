@@ -114,14 +114,16 @@
           .cardTitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
+            padding-top: var(--composer-gap-sm);
             margin: 0;
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
           }
           .card-subtitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
-            margin: 0;
-            border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+            &::before{
+              margin-left: var(--composer-gap-md);
+            }
           }
           .list-group {
             width: 100%;

@@ -36,6 +36,7 @@
       }
       .subtitle {
         transform: translateX(0);
+        text-align: center  !important;
         &::before {
           display: none;
         }
