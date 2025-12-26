@@ -11,14 +11,10 @@
     }
 
     .header {
-        > * {
-            margin: 0 !important;
-        }
-
         .subtitle,
         .title,
         .description {
-            margin: 0 !important;
+            content: "";
         }
     }
 
@@ -36,6 +32,7 @@
 
     .features-grid-empty {
         justify-content: center;
+        min-height: 100vh;
     }
 
     .features-list {
@@ -114,16 +111,15 @@
         border-radius: var(--composer-border-radius-sm);
         overflow: hidden;
         align-self: stretch;
-        height: 100%;
+        min-height: 500px;
         aspect-ratio: auto;
-        display: flex;
-        align-items: stretch;
 
         .image {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            flex: 1 1 auto;
+            object-fit: cover;
             display: block;
         }
 
@@ -149,6 +145,7 @@
         width: 100%;
         height: 100%;
         aspect-ratio: auto;
+        min-height: 100vh;
 
         .image {
             height: 100%;
@@ -186,17 +183,16 @@
 
         .image-wrapper {
             width: 100%;
-            height: 100%;
             max-width: 100%;
             flex: 0 1 55%;
             aspect-ratio: auto;
-            display: flex;
-            align-items: stretch;
 
             .image {
+                position: absolute;
+                inset: 0;
                 width: 100%;
                 height: 100%;
-                min-height: 600px;
+                min-height: 400px;
                 object-fit: cover;
                 display: block;
             }
@@ -216,11 +212,19 @@
             gap: var(--composer-gap-md);
         }
 
-         .image-wrapper {
-      .image {
-        min-height: 250px;
-      }
-    }
+        .image-wrapper {
+            width: 100%;
+            height: auto;
+            aspect-ratio: auto;
+
+            .image {
+                position: static;
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                display: block;
+            }
+        }
 
         .feature-card {
             gap: var(--composer-gap-xs);
