@@ -280,7 +280,7 @@ class Location4 extends Location {
 
           {markers.length > 0 && (
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
+            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
             </section>
           )}
         </div>

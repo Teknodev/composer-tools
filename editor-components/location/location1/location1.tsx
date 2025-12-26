@@ -2,11 +2,8 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location1.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
-import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -329,48 +326,26 @@ class Location1 extends Location {
         const markerData = address.value.find((addr: any) => addr.type === "location");
         const lat = markerData?.value.lat;
         const lng = markerData?.value.lng;
-        const description = address.getPropValue("description");
-        const popupTitle = address.getPropValue("popupTitle");
+        const description = this.castToString(address.getPropValue("description"));
+        const popupTitle = this.castToString(address.getPropValue("popupTitle"));
 
-        const popupButtonText = address.getPropValue("popupButtonText");
+        const popupButtonText = this.castToString(address.getPropValue("popupButtonText"));
 
-        const popupButtonUrl = address.getPropValue("navigateTo");
+        const popupButtonUrl = address.getPropValue("popupButtonUrl");
 
-        const markerImage = address.getPropValue("marker-image");
+        const markerMedia = address.getPropValue("marker-image");
 
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
+
         let iconUrl: string | undefined =
-          markerImage && typeof markerImage === "object" && markerImage.type === "image"
-            ? markerImage.url
-            : markerImage;
-
-        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-          try {
-            const iconName = (markerImage as any).name;
-            let ElementIcon: any = null;
-            for (const lib of iconLibraries) {
-              if (ElementIcon) break;
-              for (const [name, Comp] of Object.entries(lib)) {
-                if (name === iconName) {
-                  ElementIcon = Comp;
-                  break;
-                }
-              }
-            }
-
-            if (ElementIcon) {
-              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-            }
-          } catch (e) {
-            iconUrl = undefined;
-          }
-        }
+          markerMedia && typeof markerMedia === "object" && markerMedia.type === "image"
+            ? markerMedia.url
+            : markerMedia;
 
         if (lat !== undefined && lng !== undefined) {
           const content =
-            description || popupTitle || popupButtonText ? (
+            (description || popupTitle || popupButtonText) && (
               <div className={this.decorateCSS("popup")}>
                 {(popupTitle || description) && (
                   <div className={this.decorateCSS("popup-header")}>
@@ -379,22 +354,23 @@ class Location1 extends Location {
                   </div>
                 )}
                 {popupButtonText && (
-                  <ComposerLink path={popupButtonUrl} className={this.decorateCSS("popup-link")}>
-                    <div className={this.decorateCSS("popup-button")}>
-                      {popupButtonText && (popupButtonText.charAt ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}
-                    </div>
-                  </ComposerLink>
+                  <div className={this.decorateCSS("popup-link")}>
+                    <ComposerLink path={popupButtonUrl}>
+                      <div className={this.decorateCSS("popup-button")}>
+                        {popupButtonText && (popupButtonText.charAt ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}
+                      </div>
+                    </ComposerLink>
+                  </div>
                 )}
               </div>
-            ) : null;
+            );
 
-          const finalIconUrl = iconUrl || defaultMarkerIcon;
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: finalIconUrl,
+              url: iconUrl || defaultMarkerIcon,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,

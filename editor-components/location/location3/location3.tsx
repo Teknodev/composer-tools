@@ -353,7 +353,7 @@ class Location3 extends Location {
 
     const topExist = iconExist || hasTitle || hasDescription || continents.length > 0;
     return (
-      <div className={this.decorateCSS("wrapper")}>
+      <Base.VerticalContent className={this.decorateCSS("wrapper")}>
         {topExist && (
           <Base.Container className={this.decorateCSS("container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -392,7 +392,7 @@ class Location3 extends Location {
         <section className={this.decorateCSS("map-container")}>
           <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
         </section>
-      </div>
+      </Base.VerticalContent>
     );
   }
 }
