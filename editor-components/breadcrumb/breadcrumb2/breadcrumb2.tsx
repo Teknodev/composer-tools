@@ -189,23 +189,25 @@ class Breadcrumb2 extends BaseBreadcrumb {
                 </>
               )}
             </Base.Row>
-          </Base.MaxContent>
-        )}
-        {isTitleExist && (
-          <Base.VerticalContent>
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </Base.SectionTitle>
+            <Base.VerticalContent>
+            {isTitleExist && (
+            <div>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+            </div>
+          )}
+          {isDescriptionExist && (
+            <div>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
+            </div>
+          )}
           </Base.VerticalContent>
-        )}
-        {isDescriptionExist && (
-          <Base.VerticalContent>
-            <Base.SectionDescription className={this.decorateCSS("description")}>
-              {description}
-            </Base.SectionDescription>
-          </Base.VerticalContent>
-        )}
-      </Base.Container>
+            </Base.MaxContent>
+          )}
+        </Base.Container>
     );
   }
 }
