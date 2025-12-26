@@ -225,27 +225,45 @@ class Feature37 extends BaseFeature {
                 isEmpty ? ` ${this.decorateCSS("features-list-empty")}` : ""
               }${hasImage ? "" : ` ${this.decorateCSS("features-list-full")}`}`}
             >
-              {filteredList.map((item, index) => (
-                <div key={index} className={this.decorateCSS("feature-card")}>
-                  <div className={this.decorateCSS("icon-container")}>
-                    <Base.Media
-                      value={item.icon}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </div>
+              {filteredList.map((item, index) => {
+                const hasItemTitle = this.castToString(item.title);
+                const hasItemText = this.castToString(item.text);
+                const hasItemIcon =
+                  (item.icon?.type === "icon" && item.icon.name) ||
+                  ((item.icon?.type === "image" ||
+                    item.icon?.type === "video") &&
+                    item.icon.url);
 
-                  <div className={this.decorateCSS("content")}>
-                    <Base.H4 className={this.decorateCSS("item-title")}>
-                      {item.title}
-                    </Base.H4>
-                    <Base.SectionDescription
-                      className={this.decorateCSS("item-description")}
-                    >
-                      {item.text}
-                    </Base.SectionDescription>
+                return (
+                  <div key={index} className={this.decorateCSS("feature-card")}>
+                    {hasItemIcon && (
+                      <div className={this.decorateCSS("icon-container")}>
+                        <Base.Media
+                          value={item.icon}
+                          className={this.decorateCSS("icon")}
+                        />
+                      </div>
+                    )}
+
+                    {(hasItemTitle || hasItemText) && (
+                      <div className={this.decorateCSS("content")}>
+                        {hasItemTitle && (
+                          <Base.H4 className={this.decorateCSS("item-title")}>
+                            {item.title}
+                          </Base.H4>
+                        )}
+                        {hasItemText && (
+                          <Base.SectionDescription
+                            className={this.decorateCSS("item-description")}
+                          >
+                            {item.text}
+                          </Base.SectionDescription>
+                        )}
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </Base.ListGrid>
 
             {hasImage && (

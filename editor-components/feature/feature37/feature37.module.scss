@@ -36,7 +36,7 @@
     }
 
     .features-list {
-        gap: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+        gap: var(--composer-gap-md);
         flex: 1 1 0;
         min-width: 0;
         align-self: stretch;
@@ -49,7 +49,7 @@
 
     .features-list-full {
         width: 100%;
-        gap: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+        gap: var(--composer-gap-md);
     }
 
     .feature-card {
@@ -161,9 +161,9 @@
         }
 
         .features-list {
-            gap: var(--composer-gap-lg);
-            row-gap: var(--composer-gap-lg);
-            column-gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-sm);
+            row-gap: var(--composer-gap-sm);
+            column-gap: var(--composer-gap-sm);
         }
 
         .feature-card {
@@ -202,27 +202,33 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        .max-content {
+            gap: var(--composer-gap-sm);
+        }
+
         .features-grid {
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
             justify-content: center;
         }
 
         .features-list {
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-xs);
         }
 
         .image-wrapper {
             width: 100%;
-            height: auto;
             aspect-ratio: auto;
+            line-height: 0;
+            min-height: 250px;
 
             .image {
-                position: static;
+                position: absolute;
                 width: 100%;
-                height: auto;
-                object-fit: contain;
+                height: 100%;
+                object-fit: cover;
                 display: block;
+                min-height: 250px;
             }
         }
 
