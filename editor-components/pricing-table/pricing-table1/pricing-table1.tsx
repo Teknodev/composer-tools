@@ -693,8 +693,7 @@ class PricingTable1 extends BasePricingTable {
     return buttonsArray.map((btn: { value?: any }) => {
       const parent = btn?.value;
       const icon = this.getPropValue("icon", { parent_object: parent });
-      const image = this.getPropValue("image", { parent_object: parent });
-      const media = icon || image || null;
+      const media = icon || null;
       return {
         text: this.getPropValue("text", { parent_object: parent }),
         type: this.getPropValue("type", { parent_object: parent }),
