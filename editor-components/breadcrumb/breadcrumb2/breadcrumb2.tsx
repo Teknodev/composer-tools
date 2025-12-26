@@ -189,7 +189,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
                 </>
               )}
             </Base.Row>
-            <Base.VerticalContent>
+            <Base.VerticalContent className={this.decorateCSS("content-container")}>
             {isTitleExist && (
             <div>
               <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -197,7 +197,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
               </Base.SectionTitle>
             </div>
           )}
-          {isDescriptionExist && (
+            {isDescriptionExist && (
             <div>
               <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}

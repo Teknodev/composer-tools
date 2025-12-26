@@ -14,12 +14,8 @@
         flex-direction: column;
         align-items: flex-start;
 
-        .title {
+        .title, .description {
           text-align: left;
-        }
-
-        .description {
-          content: "";
         }
 
       }
