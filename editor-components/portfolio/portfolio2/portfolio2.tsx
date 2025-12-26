@@ -140,7 +140,6 @@ class Portfolio2 extends BasePortfolio {
     return buttonsArray.map((btn: any) => {
       const parent = btn?.value ?? btn;
       const icon = this.getPropValue("icon", { parent_object: parent });
-      const image = this.getPropValue("image", { parent_object: parent });
       const media = icon || null;
       return {
         text: this.getPropValue("text", { parent_object: parent }),
@@ -161,6 +160,51 @@ class Portfolio2 extends BasePortfolio {
         (b?.media && ((b as any).media?.name || (b as any).media?.url))
       );
     });
+  }
+
+  private renderButtons(
+    buttons: { text?: string; type?: string; url?: string; media?: TypeMediaInputValue }[],
+    keyPrefix: string
+  ) {
+    return (
+      <div className={this.decorateCSS("button-wrapper")}>
+        {buttons.map((btn, btnIndex: number) => {
+          const buttonText = btn.text;
+          const buttonMedia = btn.media;
+          const buttonUrl = btn.url || "#";
+          const buttonType = btn.type;
+
+          const btnTextExist = this.castToString(buttonText);
+          const buttonMediaExist =
+            buttonMedia &&
+            ((buttonMedia as any).name || (buttonMedia as any).url);
+
+          if (!btnTextExist && !buttonMediaExist) return null;
+
+          return (
+            <ComposerLink path={buttonUrl} key={`${keyPrefix}-btn-${btnIndex}`}>
+              <Base.Button
+                buttonType={buttonType}
+                className={this.decorateCSS("button")}
+                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              >
+                {btnTextExist && (
+                  <Base.P className={this.decorateCSS("navigate-text")}>
+                    {buttonText}
+                  </Base.P>
+                )}
+                {buttonMediaExist && (
+                  <Base.Media
+                    value={buttonMedia}
+                    className={this.decorateCSS("navigate-icon")}
+                  />
+                )}
+              </Base.Button>
+            </ComposerLink>
+          );
+        })}
+      </div>
+    );
   }
 
   static getName(): string {
@@ -202,47 +246,7 @@ class Portfolio2 extends BasePortfolio {
               {text}
             </Base.SectionDescription>
           )}
-          {hasButtons && (
-            <div className={this.decorateCSS("button-wrapper")}>
-              {buttons.map((btn, btnIndex: number) => {
-                const buttonText = btn.text;
-                const buttonMedia = btn.media;
-                const buttonUrl = btn.url || "#";
-                const buttonType = btn.type;
-
-                const btnTextExist = this.castToString(buttonText);
-                const buttonMediaExist =
-                  buttonMedia &&
-                  ((buttonMedia as any).name || (buttonMedia as any).url);
-
-                if (!btnTextExist && !buttonMediaExist) return null;
-
-                return (
-                  <ComposerLink path={buttonUrl} key={`left-btn-${btnIndex}`}>
-                    <Base.Button
-                      buttonType={buttonType}
-                      className={this.decorateCSS("button")}
-                      data-animation={this.getPropValue("hoverAnimation").join(
-                        " "
-                      )}
-                    >
-                      {btnTextExist && (
-                        <Base.P className={this.decorateCSS("navigate-text")}>
-                          {buttonText}
-                        </Base.P>
-                      )}
-                      {buttonMediaExist && (
-                        <Base.Media
-                          value={buttonMedia}
-                          className={this.decorateCSS("navigate-icon")}
-                        />
-                      )}
-                    </Base.Button>
-                  </ComposerLink>
-                );
-              })}
-            </div>
-          )}
+          {hasButtons && this.renderButtons(buttons, "left")}
         </Base.VerticalContent>
       </div>
     );
@@ -283,47 +287,7 @@ class Portfolio2 extends BasePortfolio {
               {text}
             </Base.SectionDescription>
           )}
-          {hasButtons && (
-            <div className={this.decorateCSS("button-wrapper")}>
-              {buttons.map((btn, btnIndex: number) => {
-                const buttonText = btn.text;
-                const buttonMedia = btn.media;
-                const buttonUrl = btn.url || "#";
-                const buttonType = btn.type;
-
-                const btnTextExist = this.castToString(buttonText);
-                const buttonMediaExist =
-                  buttonMedia &&
-                  ((buttonMedia as any).name || (buttonMedia as any).url);
-
-                if (!btnTextExist && !buttonMediaExist) return null;
-
-                return (
-                  <ComposerLink path={buttonUrl} key={`right-btn-${btnIndex}`}>
-                    <Base.Button
-                      buttonType={buttonType}
-                      className={this.decorateCSS("button")}
-                      data-animation={this.getPropValue("hoverAnimation").join(
-                        " "
-                      )}
-                    >
-                      {btnTextExist && (
-                        <Base.P className={this.decorateCSS("navigate-text")}>
-                          {buttonText}
-                        </Base.P>
-                      )}
-                      {buttonMediaExist && (
-                        <Base.Media
-                          value={buttonMedia}
-                          className={this.decorateCSS("navigate-icon")}
-                        />
-                      )}
-                    </Base.Button>
-                  </ComposerLink>
-                );
-              })}
-            </div>
-          )}
+          {hasButtons && this.renderButtons(buttons, "right")}
         </Base.VerticalContent>
       </div>
     );
