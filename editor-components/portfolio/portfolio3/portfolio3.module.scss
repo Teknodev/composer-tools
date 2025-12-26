@@ -47,24 +47,30 @@
       grid-template-columns: 1fr auto;
       align-items: end;
       width: 100%;
+      gap: var(--composer-gap-md);
 
       .header-text {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-      .section-title {
-        text-align: left;
-        text-transform: uppercase;
-        flex: 1;
-        line-height: 0.7;
-        color: var(--composer-font-color-primary);
-        font-size: 8rem;
-        margin-bottom: var(--composer-gap-xs);
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .title {
+          text-transform: uppercase;
+          flex: 1;
+
+          color: var(--composer-font-color-primary);
+          font-size: 8rem;
+          margin-bottom: var(--composer-gap-xs);
+        }
+        .subtitle {
+          margin: auto;
+          width: 100%;
+        }
+        .title,
+        .subtitle,
+        .description {
+          text-align: left;
+        }
       }
-      .sub-title, .section-description {
-        content: "";
-      }
-    }
       .header-buttons {
         flex-wrap: wrap;
         display: flex;
@@ -237,7 +243,6 @@
                       font-size: 30px !important;
                       color: white;
                       display: block !important;
-                      line-height: 1 !important;
                     }
                   }
                 }
@@ -291,35 +296,32 @@
     border-top-left-radius: var(--composer-border-radius-xl) !important;
     border-top-right-radius: var(--composer-border-radius-xl) !important;
 
-    
-      .max-content {
-        .header-content {
-          display: grid;
-          grid-template-columns: 1fr auto;
-          align-items: end;
-          gap: 0;
-          
-          .header-text {
-            gap: 0;
-            .section-title {
-              text-align: left;
-              
-              font-size: 4rem;
-            }
-          }
-          }
-          .view-all-button {
-            font-size: 1.5rem;
-            margin-bottom: var(--composer-gap-sm);
-            border-radius: var(--composer-border-radius-sm);
+    .max-content {
+      .header-content {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        gap: 0;
 
-            .button-icon {
-              font-size: 1.5rem;
-            }
+        .header-text {
+          gap: 0;
+          .title {
+            text-align: left;
+
+            font-size: 4rem;
           }
-        
+        }
       }
-    
+      .view-all-button {
+        font-size: 1.5rem;
+        margin-bottom: var(--composer-gap-sm);
+        border-radius: var(--composer-border-radius-sm);
+
+        .button-icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
 
     .games-section {
       .game-card {
@@ -354,7 +356,7 @@
 
                   .game-title {
                     font-size: 2rem;
-                    line-height: 1;
+
                     flex: 1;
                   }
 
@@ -395,34 +397,51 @@
       flex-direction: column;
     }
 
-
-      .max-content {
-        .header-content {
+    .max-content {
+      .header-content {
+        gap: 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .header-text {
           gap: 0;
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-          .header-text {
-            gap: 0;
-            width: 100%;
+          width: 100%;
 
-          
-
-          .section-title {
-            
+          .title {
             font-size: 2.5rem;
-            line-height: 0.8;
-          }
-}
-.header-buttons{
-  width: 100%;
-}
-          .view-all-button {
-            display: none;
           }
         }
+        .header-buttons {
+          width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+        }
+        .view-all-button {
+          display: none;
+        }
       }
-    
+
+      .header-content.center {
+        .header-text {
+          align-items: center;
+
+          .title,
+          .subtitle,
+          .description {
+            text-align: center;
+          }
+
+          .subtitle {
+            margin-left: auto;
+          }
+        }
+
+        .header-buttons {
+          align-items: center !important;
+        }
+      }
+    }
 
     .games-section {
       padding: var(--composer-gap-sm) 0 0;
@@ -460,7 +479,6 @@
 
                   .game-title {
                     font-size: 1.5rem;
-                    line-height: 1;
                   }
 
                   .platforms {

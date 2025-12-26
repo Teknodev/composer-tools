@@ -111,6 +111,7 @@ class Portfolio3 extends BasePortfolio {
               displayer: "Overlay",
               value: false,
             },
+
             {
               type: "array",
               key: "platforms",
@@ -542,6 +543,12 @@ class Portfolio3 extends BasePortfolio {
         },
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "enableAnimation",
+      displayer: "Enable Sticky Animation",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -549,7 +556,17 @@ class Portfolio3 extends BasePortfolio {
   }
 
   onComponentDidMount() {
-    this.initializeStickyObservers();
+    const enableAnimation = this.getPropValue("enableAnimation");
+    if (enableAnimation) {
+      this.initializeStickyObservers();
+    }
+  }
+
+  onComponentDidUpdate() {
+    const enableAnimation = this.getPropValue("enableAnimation");
+    if (enableAnimation) {
+      this.initializeStickyObservers();
+    }
   }
 
   onComponentWillUnmount() {
@@ -601,338 +618,301 @@ class Portfolio3 extends BasePortfolio {
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
-    
+
     const hasAnyButton =
       buttons &&
       buttons.some(
         (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
       );
 
-    const hasHeaderContent = hasSubtitle || hasTitle || hasDescription || hasAnyButton;
-    
+    const hasHeaderContent =
+      hasSubtitle || hasTitle || hasDescription || hasAnyButton;
+    const alignmentValue = Base.getContentAlignment();
+    const enableAnimation = this.getPropValue("enableAnimation");
+
     this.gameCardRefs = Array(games.length).fill(null);
     this.sentinelRefs = Array(games.length).fill(null);
 
     return (
-      <Base.Container className={`${this.decorateCSS("container-bg")} ${this.decorateCSS("container")}`}>
-          <div className={this.decorateCSS("content-wrapper")}>
-            
-            {hasHeaderContent && (
-              
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                  <div className={this.decorateCSS("header-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("header-text")}>
-                      {hasSubtitle && (
-                        <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                          {subtitle}
-                        </Base.SectionSubTitle>
-                      )}
-                      {hasTitle && (
-                        <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                          {title}
-                        </Base.SectionTitle>
-                      )}
-                      {hasDescription && (
-                        <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                          {description}
-                        </Base.SectionDescription>
-                      )}
-                    </Base.VerticalContent>
-                    {hasAnyButton && (
-                      <div className={this.decorateCSS("header-buttons")}>
-                        {buttons.map(
-                          (item: INPUTS.CastedButton, index: number) => {
-                            const buttonText = item.text;
-                            const buttonIcon = item.icon;
-                            const buttonUrl = item.url;
-                            const buttonType = item.type;
-
-                            const btnTextExist = this.castToString(buttonText);
-                            const buttonIconExist =
-                              buttonIcon?.name || buttonIcon?.url;
-
-                            if (!btnTextExist && !buttonIconExist) {
-                              return null;
-                            }
-
-                            const url = buttonUrl || "#";
-                            return (
-                              
-                                <ComposerLink
-                                  path={url}
-                                  key={`header-btn-${index}`}
-                                >
-                                  <Base.Button
-                                  buttonType={buttonType}
-                                  className={this.decorateCSS(
-                                    "button"
-                                  )}
-                                  >
-                                    {btnTextExist && (
-                                      <Base.P
-                                        className={this.decorateCSS(
-                                          "button-text"
-                                        )}
-                                      >
-                                        {buttonText}
-                                      </Base.P>
-                                    )}
-                                    {buttonIconExist && (
-                                      <Base.Media
-                                        value={buttonIcon}
-                                        className={this.decorateCSS(
-                                          "button-icon"
-                                        )}
-                                      />
-                                    )}
-                                  </Base.Button>
-                                </ComposerLink>
-                              
-                            );
-                          }
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </Base.MaxContent>
-              
-            )}
-
+      <Base.Container
+        className={`${this.decorateCSS("container-bg")} ${this.decorateCSS(
+          "container"
+        )}`}
+      >
+        <div className={this.decorateCSS("content-wrapper")}>
+          {hasHeaderContent && (
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <div className={this.decorateCSS("games-section")}>
-                {games.map((game: Game, index: number) => {
-                  const title = game?.title;
-                  const titlePage = game?.titlePage;
-                  const image = game?.image;
-                  const badge = game?.genreBadge;
-                  const gamePlatforms = game?.platforms;
-                  const overlay = game?.overlay;
+              <div
+                className={`${this.decorateCSS("header-content")} ${
+                  alignmentValue === "center" ? this.decorateCSS("center") : ""
+                }`}
+              >
+                <Base.VerticalContent
+                  className={this.decorateCSS("header-text")}
+                >
+                  {hasSubtitle && (
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("subtitle")}
+                    >
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {hasTitle && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
+                  )}
+                  {hasDescription && (
+                    <Base.SectionDescription
+                      className={this.decorateCSS("description")}
+                    >
+                      {description}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+                {hasAnyButton && (
+                  <div className={this.decorateCSS("header-buttons")}>
+                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                      const buttonText = item.text;
+                      const buttonIcon = item.icon;
+                      const buttonUrl = item.url;
+                      const buttonType = item.type;
 
-                  const gameTitle = this.castToString(title);
-                  const gamePage = titlePage || "#";
-                  const gameImageValue = image;
-                  const genreBadge = this.castToString(badge);
-                  const platforms = Array.isArray(gamePlatforms)
-                    ? gamePlatforms
-                    : [];
+                      const btnTextExist = this.castToString(buttonText);
+                      const buttonIconExist =
+                        buttonIcon?.name || buttonIcon?.url;
 
-                  
-                  const hasGameImage = !!(
-                    gameImageValue &&
-                    (typeof gameImageValue === "string" ||
-                      (gameImageValue as any)?.url)
-                  );
+                      if (!btnTextExist && !buttonIconExist) {
+                        return null;
+                      }
 
-                  
-                  const validPlatforms = platforms.filter(
-                    (platformWrapper: any) => {
-                      const platformIcon =
-                        platformWrapper?.platform?.icon ||
-                        platformWrapper?.icon;
-                      
-                      return !!(
-                        platformIcon &&
-                        (typeof platformIcon === "string" ||
-                          platformIcon?.name ||
-                          platformIcon?.url)
+                      const url = buttonUrl || "#";
+                      return (
+                        <ComposerLink path={url} key={`header-btn-${index}`}>
+                          <Base.Button
+                            buttonType={buttonType}
+                            className={this.decorateCSS("button")}
+                          >
+                            {btnTextExist && (
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {buttonText}
+                              </Base.P>
+                            )}
+                            {buttonIconExist && (
+                              <Base.Media
+                                value={buttonIcon}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
                       );
-                    }
-                  );
-                  const hasPlatforms = validPlatforms.length > 0;
+                    })}
+                  </div>
+                )}
+              </div>
+            </Base.MaxContent>
+          )}
 
-                  
-                  const hasOverlayContent = !!(
-                    genreBadge ||
-                    gameTitle ||
-                    hasPlatforms
-                  );
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("games-section")}>
+              {games.map((game: Game, index: number) => {
+                const title = game?.title;
+                const titlePage = game?.titlePage;
+                const image = game?.image;
+                const badge = game?.genreBadge;
+                const gamePlatforms = game?.platforms;
+                const overlay = game?.overlay;
 
-                  
-                  if (!hasGameImage && !hasOverlayContent) {
-                    return null;
+                const gameTitle = this.castToString(title);
+                const gamePage = titlePage || "#";
+                const gameImageValue = image;
+                const genreBadge = this.castToString(badge);
+                const platforms = Array.isArray(gamePlatforms)
+                  ? gamePlatforms
+                  : [];
+
+                const hasGameImage = !!(
+                  gameImageValue &&
+                  (typeof gameImageValue === "string" ||
+                    (gameImageValue as any)?.url)
+                );
+
+                const validPlatforms = platforms.filter(
+                  (platformWrapper: any) => {
+                    const platformIcon =
+                      platformWrapper?.platform?.icon || platformWrapper?.icon;
+
+                    return !!(
+                      platformIcon &&
+                      (typeof platformIcon === "string" ||
+                        platformIcon?.name ||
+                        platformIcon?.url)
+                    );
                   }
+                );
+                const hasPlatforms = validPlatforms.length > 0;
 
-                  return (
-                    <React.Fragment key={`game-${index}`}>
+                const hasOverlayContent = !!(
+                  genreBadge ||
+                  gameTitle ||
+                  hasPlatforms
+                );
+
+                if (!hasGameImage && !hasOverlayContent) {
+                  return null;
+                }
+
+                return (
+                  <React.Fragment key={`game-${index}`}>
+                    {enableAnimation && (
                       <div
                         ref={(el) => {
                           this.sentinelRefs[index] = el;
                         }}
                         className={styles.sentinel}
                       />
-                      <div
-                        ref={(el) => {
-                          this.gameCardRefs[index] = el;
-                        }}
-                        className={`${this.decorateCSS("game-card")} ${
-                          styles.gameCard
-                        }`}
-                        style={this.getTopStyle(index)}
-                      >
-                        <div className={this.decorateCSS("game-content")}>
-                          {hasGameImage ? (
-                            <div
-                              className={this.decorateCSS(
-                                "game-image-container"
-                              )}
-                            >
-                              <Base.Media
-                                value={image}
-                                className={this.decorateCSS("game-image")}
+                    )}
+                    <div
+                      ref={
+                        enableAnimation
+                          ? (el) => {
+                              this.gameCardRefs[index] = el;
+                            }
+                          : undefined
+                      }
+                      className={`${this.decorateCSS("game-card")} ${
+                        styles.gameCard
+                      }`}
+                      style={
+                        enableAnimation ? this.getTopStyle(index) : undefined
+                      }
+                    >
+                      <div className={this.decorateCSS("game-content")}>
+                        {hasGameImage ? (
+                          <div
+                            className={this.decorateCSS("game-image-container")}
+                          >
+                            <Base.Media
+                              value={image}
+                              className={this.decorateCSS("game-image")}
+                            />
+                            {overlay && (
+                              <div
+                                className={this.decorateCSS(
+                                  "thumbnail-overlay"
+                                )}
                               />
-                              {overlay && (
-                                <div
-                                  className={this.decorateCSS("thumbnail-overlay")}
-                                />
-                              )}
-                              {hasOverlayContent && (
-                                <div
-                                  className={this.decorateCSS("game-overlay")}
-                                >
-                                  <div
-                                    className={this.decorateCSS("game-info")}
-                                  >
-                                    {genreBadge && (
-                                      <span
+                            )}
+                            {hasOverlayContent && (
+                              <div className={this.decorateCSS("game-overlay")}>
+                                <div className={this.decorateCSS("game-info")}>
+                                  {genreBadge && (
+                                    <span
+                                      className={this.decorateCSS(
+                                        "genre-badge"
+                                      )}
+                                    >
+                                      <Base.P
                                         className={this.decorateCSS(
-                                          "genre-badge"
+                                          "badge-text"
                                         )}
                                       >
-                                        <Base.P
-                                          className={this.decorateCSS(
-                                            "badge-text"
-                                          )}
-                                        >
-                                          {genreBadge}
-                                        </Base.P>
-                                      </span>
-                                    )}
+                                        {genreBadge}
+                                      </Base.P>
+                                    </span>
+                                  )}
 
-                                    {(gameTitle || hasPlatforms) && (
-                                      <div
-                                        className={this.decorateCSS(
-                                          "title-platforms-row"
-                                        )}
-                                      >
-                                        {gameTitle && (
-                                          <ComposerLink path={gamePage}>
-                                            <Base.H3
-                                              className={this.decorateCSS(
-                                                "game-title"
-                                              )}
-                                            >
-                                              {gameTitle}
-                                            </Base.H3>
-                                          </ComposerLink>
-                                        )}
-
-                                        {hasPlatforms && (
-                                          <div
+                                  {(gameTitle || hasPlatforms) && (
+                                    <div
+                                      className={this.decorateCSS(
+                                        "title-platforms-row"
+                                      )}
+                                    >
+                                      {gameTitle && (
+                                        <ComposerLink path={gamePage}>
+                                          <Base.H3
                                             className={this.decorateCSS(
-                                              "platforms"
+                                              "game-title"
                                             )}
                                           >
-                                            {validPlatforms.map(
-                                              (
-                                                platformWrapper: any,
-                                                platformIndex: number
-                                              ) => {
-                                                const icon =
-                                                  platformWrapper?.platform
-                                                    ?.icon ||
-                                                  platformWrapper?.icon;
-                                                const page =
-                                                  platformWrapper?.platform
-                                                    ?.page ||
-                                                  platformWrapper?.page;
+                                            {gameTitle}
+                                          </Base.H3>
+                                        </ComposerLink>
+                                      )}
 
-                                                const platformIcon = icon;
-                                                const platformPage = page || "#";
+                                      {hasPlatforms && (
+                                        <div
+                                          className={this.decorateCSS(
+                                            "platforms"
+                                          )}
+                                        >
+                                          {validPlatforms.map(
+                                            (
+                                              platformWrapper: any,
+                                              platformIndex: number
+                                            ) => {
+                                              const icon =
+                                                platformWrapper?.platform
+                                                  ?.icon ||
+                                                platformWrapper?.icon;
+                                              const page =
+                                                platformWrapper?.platform
+                                                  ?.page ||
+                                                platformWrapper?.page;
 
-                                                return (
-                                                  <ComposerLink
-                                                    key={`platform-${index}-${platformIndex}`}
-                                                    path={platformPage}
+                                              const platformIcon = icon;
+                                              const platformPage = page || "#";
+
+                                              return (
+                                                <ComposerLink
+                                                  key={`platform-${index}-${platformIndex}`}
+                                                  path={platformPage}
+                                                >
+                                                  <div
+                                                    className={this.decorateCSS(
+                                                      "platform-icon"
+                                                    )}
                                                   >
-                                                    <div
+                                                    <Base.Media
+                                                      value={platformIcon}
                                                       className={this.decorateCSS(
-                                                        "platform-icon"
+                                                        "platform-icon-element"
                                                       )}
-                                                    >
-                                                      <Base.Media
-                                                        value={platformIcon}
-                                                        className={this.decorateCSS(
-                                                          "platform-icon-element"
-                                                        )}
-                                                      />
-                                                    </div>
-                                                  </ComposerLink>
-                                                );
-                                              }
-                                            )}
-                                          </div>
-                                        )}
-                                      </div>
-                                    )}
-                                  </div>
+                                                    />
+                                                  </div>
+                                                </ComposerLink>
+                                              );
+                                            }
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
                                 </div>
-                              )}
-                            </div>
-                          ) : (
-                            hasOverlayContent && (
-                              <div
-                                className={this.decorateCSS("game-placeholder")}
-                              >
-                                No image for {gameTitle}
                               </div>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    </React.Fragment>
-                  );
-                })}
-              </div>
-            </Base.MaxContent>
-
-            
-            {hasAnyButton && (
-              <div className={this.decorateCSS("mobile-button-section")}>
-                {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                  const buttonText = item.text;
-                  const buttonIcon = item.icon;
-                  const buttonUrl = item.url;
-                  const buttonType = item.type;
-
-                  const btnTextExist = this.castToString(buttonText);
-                  const buttonIconExist = buttonIcon?.name || buttonIcon?.url;
-
-                  if (!btnTextExist && !buttonIconExist) {
-                    return null;
-                  }
-
-                  const url = buttonUrl || "#";
-                  return (
-                    <ComposerLink path={url} key={`mobile-btn-${index}`}>
-                      <Base.Button
-                        buttonType={buttonType || "Tertiary"}
-                        className={this.decorateCSS("view-all-button")}
-                      >
-                        {btnTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>}
-                        {buttonIconExist && (
-                          <Base.Media
-                            value={buttonIcon}
-                            className={this.decorateCSS("button-icon")}
-                          />
+                            )}
+                          </div>
+                        ) : (
+                          hasOverlayContent && (
+                            <div
+                              className={this.decorateCSS("game-placeholder")}
+                            >
+                              No image for {gameTitle}
+                            </div>
+                          )
                         )}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </Base.Container>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                );
+              })}
+            </div>
+          </Base.MaxContent>
+        </div>
+      </Base.Container>
     );
   }
 }

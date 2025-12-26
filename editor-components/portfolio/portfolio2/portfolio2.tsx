@@ -9,7 +9,7 @@ type SideCard = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   text: React.JSX.Element;
-  buttons: any[];
+  buttons?: INPUTS.CastedButton[];
 };
 
 class Portfolio2 extends BasePortfolio {
@@ -42,8 +42,8 @@ class Portfolio2 extends BasePortfolio {
         },
         {
           type: "array",
-          key: "leftCardButtons",
-          displayer: "Left Card Buttons",
+          key: "buttons",
+          displayer: "Buttons",
           value: [
             INPUTS.BUTTON(
               "button",
@@ -105,8 +105,8 @@ class Portfolio2 extends BasePortfolio {
         },
         {
           type: "array",
-          key: "rightCardButtons",
-          displayer: "Right Card Buttons",
+          key: "buttons",
+          displayer: "Buttons",
           value: [
             INPUTS.BUTTON(
               "button",
@@ -133,15 +133,15 @@ class Portfolio2 extends BasePortfolio {
     });
   }
 
-  private getButtons(buttonsArray: string) {
-   
+  private getButtonsFromItem(item: SideCard) {
+    const buttonsArray = item?.buttons;
     if (!Array.isArray(buttonsArray)) return [];
 
     return buttonsArray.map((btn: any) => {
       const parent = btn?.value ?? btn;
       const icon = this.getPropValue("icon", { parent_object: parent });
       const image = this.getPropValue("image", { parent_object: parent });
-      const media = icon || image || null;
+      const media = icon || null;
       return {
         text: this.getPropValue("text", { parent_object: parent }),
         type: this.getPropValue("type", { parent_object: parent }),
@@ -152,15 +152,13 @@ class Portfolio2 extends BasePortfolio {
   }
 
   private hasAnyButton(
-    
     buttons: { text?: string; media?: TypeMediaInputValue }[]
   ) {
-
+    if (!Array.isArray(buttons)) return false;
     return buttons.some((b: any) => {
-      
       return (
         this.castToString(b?.text) ||
-        (((b as any).icon?.name || (b as any).icon?.url))
+        (b?.media && ((b as any).media?.name || (b as any).media?.url))
       );
     });
   }
@@ -170,10 +168,8 @@ class Portfolio2 extends BasePortfolio {
   }
 
   private renderLeftSide() {
-    
-    
     const card = this.castToObject<SideCard>("leftCard");
-    const buttons = this.getButtons("leftCardButtons");
+    const buttons = this.getButtonsFromItem(card);
 
     const subtitle = card?.subtitle;
     const title = card?.title;
@@ -183,8 +179,6 @@ class Portfolio2 extends BasePortfolio {
     const hasTitle = this.castToString(title);
     const hasText = this.castToString(text);
     const hasButtons = this.hasAnyButton(buttons);
-    
-    
 
     const hasContent = hasSubtitle || hasTitle || hasText || hasButtons;
 
@@ -211,10 +205,8 @@ class Portfolio2 extends BasePortfolio {
           {hasButtons && (
             <div className={this.decorateCSS("button-wrapper")}>
               {buttons.map((btn, btnIndex: number) => {
-                
-                
                 const buttonText = btn.text;
-                const buttonMedia = btn.icon;
+                const buttonMedia = btn.media;
                 const buttonUrl = btn.url || "#";
                 const buttonType = btn.type;
 
@@ -234,19 +226,17 @@ class Portfolio2 extends BasePortfolio {
                         " "
                       )}
                     >
-                      <div className={this.decorateCSS("text-and-icon")}>
-                        {btnTextExist && (
-                          <Base.P className={this.decorateCSS("navigate-text")}>
-                            {buttonText}
-                          </Base.P>
-                        )}
-                        {buttonMediaExist && (
-                          <Base.Media
-                            value={buttonMedia}
-                            className={this.decorateCSS("navigate-icon")}
-                          />
-                        )}
-                      </div>
+                      {btnTextExist && (
+                        <Base.P className={this.decorateCSS("navigate-text")}>
+                          {buttonText}
+                        </Base.P>
+                      )}
+                      {buttonMediaExist && (
+                        <Base.Media
+                          value={buttonMedia}
+                          className={this.decorateCSS("navigate-icon")}
+                        />
+                      )}
                     </Base.Button>
                   </ComposerLink>
                 );
@@ -260,7 +250,7 @@ class Portfolio2 extends BasePortfolio {
 
   private renderRightSide() {
     const card = this.castToObject<SideCard>("rightCard");
-    const buttons = this.getButtons("rightCardButtons");
+    const buttons = this.getButtonsFromItem(card);
 
     const subtitle = card?.subtitle;
     const title = card?.title;
@@ -297,7 +287,7 @@ class Portfolio2 extends BasePortfolio {
             <div className={this.decorateCSS("button-wrapper")}>
               {buttons.map((btn, btnIndex: number) => {
                 const buttonText = btn.text;
-                const buttonMedia = btn?.icon;
+                const buttonMedia = btn.media;
                 const buttonUrl = btn.url || "#";
                 const buttonType = btn.type;
 
@@ -317,19 +307,17 @@ class Portfolio2 extends BasePortfolio {
                         " "
                       )}
                     >
-                      <div className={this.decorateCSS("text-and-icon")}>
-                        {btnTextExist && (
-                          <Base.P className={this.decorateCSS("navigate-text")}>
-                            {buttonText}
-                          </Base.P>
-                        )}
-                        {buttonMediaExist && (
-                          <Base.Media
-                            value={buttonMedia}
-                            className={this.decorateCSS("navigate-icon")}
-                          />
-                        )}
-                      </div>
+                      {btnTextExist && (
+                        <Base.P className={this.decorateCSS("navigate-text")}>
+                          {buttonText}
+                        </Base.P>
+                      )}
+                      {buttonMediaExist && (
+                        <Base.Media
+                          value={buttonMedia}
+                          className={this.decorateCSS("navigate-icon")}
+                        />
+                      )}
                     </Base.Button>
                   </ComposerLink>
                 );
