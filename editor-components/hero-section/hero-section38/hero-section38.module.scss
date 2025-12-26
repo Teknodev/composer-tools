@@ -339,6 +339,8 @@
 
       .navigation-wrapper {
         margin-top: var(--composer-gap-sm) !important;
+        position: relative;
+
       }
     }
   }
@@ -351,6 +353,7 @@
 
       .slider-wrapper {
         .slider {
+          padding-bottom: 20px;
           :global(.slick-slide > div) {
             width: 480px !important;
           }
@@ -408,42 +411,41 @@
         }
 
         .navigation-wrapper {
-          gap: var(--composer-gap-sm);
-          margin-top: var(--composer-gap-xl);
+          gap: var(--composer-gap-xs);          
 
           .arrow-button {
             border: none !important;
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
 
             .arrow-icon {
-              font-size: 1.5rem;
-              width: 24px;
-              height: 24px;
+              font-size: 2rem;
+              width: 32px;
+              height: 32px;
             }
 
             .arrow-icon-media {
-              width: 24px;
-              height: 24px;
+              width: 32px;
+              height: 32px;
               object-fit: contain;
             }
           }
 
           .pagination {
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
 
             .pagination-dot {
               border: none !important;
-              width: 20px;
-              height: 20px;
+              width: 30px;
+              height: 30px;
 
               .dot-icon {
-                font-size: 24px;
+                font-size: 2rem;
               }
 
               .dot-icon-media {
-                width: 24px;
-                height: 24px;
+                width: 32px;
+                height: 32px;
                 object-fit: contain;
               }
             }
@@ -514,7 +516,7 @@
 
             .image-wrapper {
               min-height: 240px !important;
-              margin-bottom: var(--composer-gap-md);
+              margin-bottom: var(--composer-gap-sm);
             }
 
             &.no-image {
@@ -540,36 +542,41 @@
         }
 
         .navigation-wrapper {
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-xs);
+          margin-top: var(--composer-gap-sm);
 
           .arrow-button {
+            width: 30px;
+            height: 30px;
+
             .arrow-icon {
-              font-size: 1rem;
-              width: 15px;
-              height: 15px;
+              font-size: 1.5rem;
+              width: 30px;
+              height: 30px;
             }
 
             .arrow-icon-media {
-              width: 15px;
-              height: 15px;
+              width: 25px;
+              height: 25px;
+              font-size: 1.8rem;
               object-fit: contain;
             }
           }
 
           .pagination {
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
 
             .pagination-dot {
-              width: 20px;
-              height: 20px;
+              width: 30px;
+              height: 30px;
 
               .dot-icon {
-                font-size: 1.5rem;
+                font-size: 2rem;
               }
 
               .dot-icon-media {
-                width: 15px;
-                height: 15px;
+                width: 30px;
+                height: 30px;
                 object-fit: contain;
               }
             }
