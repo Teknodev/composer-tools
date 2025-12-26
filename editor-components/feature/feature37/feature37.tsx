@@ -57,7 +57,7 @@ class Feature37 extends BaseFeature {
       },
       value: {
         type: "image",
-        url: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
       },
     });
 
