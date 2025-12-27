@@ -62,6 +62,7 @@
         .subtitle {
           transform: translateX(0);
           text-align: center;
+          align-self: center;
             &::before {
               display: none;
             }
