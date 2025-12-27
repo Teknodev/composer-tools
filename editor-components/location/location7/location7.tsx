@@ -3,8 +3,6 @@ import { Location } from "../../EditorComponent";
 import styles from "./location7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-// Types
-
 type Address = {
   type: string;
   key: string;
@@ -270,7 +268,6 @@ class Location7 extends Location {
     const bgImage = this.getPropValue("background-image");
     const showTooltipLine = this.getPropValue("showTooltipLine");
 
-    // Prepare markers
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const leftPercent = address.getPropValue("leftPercent");
@@ -282,7 +279,7 @@ class Location7 extends Location {
           topPercent,
           popupTitle,
           description,
-          markerImage: "", // not used
+          markerImage: "", 
           content: null,
         });
       }

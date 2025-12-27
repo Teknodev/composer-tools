@@ -1,6 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
+
   .max-content {
     .wrapper {
       justify-content: center;
@@ -9,15 +11,23 @@
       height: 100%;
       gap: var(--composer-gap-xl);
 
-      .connect {
+      .header {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: var(--composer-gap-lg);
         width: 100%;
 
-        .title {
-          margin: 0;
+        .title-block {
+          width: 100%;
+          align-items: flex-start;
+
+          .subtitle,
+          .title {
+            content: "";
+            text-align: left;
+            margin-left: 0;
+          }
         }
 
         .divider {
@@ -41,6 +51,7 @@
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
               color: var(--composer-primary-color);
+              font-size: 1.8rem;
 
               &:hover {
                 color: var(--composer-secondary-color);
@@ -71,7 +82,6 @@
         justify-content: center;
 
         .bottom-title {
-          font-size: 2.5rem;
           padding-bottom: 2px;
           color: var(--composer-primary-color);
           max-width: 50%;
@@ -80,7 +90,6 @@
 
         .phone-container {
           .phone {
-            font-size: 2.5rem;
             color: var(--composer-primary-color);
             width: fit-content;
             border-bottom: solid 2px var(--composer-primary-color);
@@ -108,14 +117,12 @@
           padding: var(--composer-gap-md);
 
           .popup-title {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             margin: 0;
             text-align: center;
           }
 
           .popup-content {
-            font-size: 1.5rem;
             color: var(--composer-tertiary-color);
             text-align: center;
             margin: 0;
@@ -133,14 +140,14 @@
             cursor: pointer;
             width: 100%;
             padding: var(--composer-gap-md);
-            font-size: 1.5rem;
-            border-bottom-left-radius: var(--composer-border-radius-xs);
-            border-bottom-right-radius: var(--composer-border-radius-xs);
+            border-bottom-left-radius: var(--composer-border-radius-sm);
+            border-bottom-right-radius: var(--composer-border-radius-sm);
           }
         }
       }
     }
   }
+
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -151,17 +158,19 @@
 
         .popup {
           width: 200px;
+
           .popup-header {
             gap: var(--composer-gap-sm);
+
             .popup-title,
             .popup-content {
-              font-size: 1rem;
+              content: "";
             }
           }
 
           .popup-link {
             .popup-button {
-              font-size: 1rem;
+              content: "";
             }
           }
         }
@@ -176,16 +185,33 @@
       .wrapper {
         gap: var(--composer-gap-md);
 
-        .connect {
+        .header {
           display: flex;
           flex-direction: column;
+          align-items: center;
           gap: var(--composer-gap-sm);
+
+          .divider {
+            display: none;
+          }
+
+          .icon-container {
+            width: 100%;
+            justify-content: center;
+            margin-top: var(--composer-gap-sm);
+          }
+
+          .subtitle {
+            align-self: center !important;
+            margin-left: unset !important;
+          }
+        }
 
           .title {
             margin: 0;
             text-align: center;
           }
-        }
+        
 
         .map-container {
           .map {
@@ -200,7 +226,6 @@
           gap: 0;
 
           .bottom-title {
-            font-size: 1.5rem;
             max-width: 100%;
             text-align: center;
           }
