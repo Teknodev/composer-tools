@@ -24,6 +24,13 @@ class CallToAction8Page extends BaseCallToAction {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "media",
       key: "image",
       displayer: "Image",
@@ -48,6 +55,8 @@ class CallToAction8Page extends BaseCallToAction {
     const buttonText = this.castToString(button.text);
     const title = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -64,6 +73,11 @@ class CallToAction8Page extends BaseCallToAction {
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("title")}
                       </Base.SectionTitle>
+                  )}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
                   )}
                 </Base.VerticalContent>
                 {buttonText && (

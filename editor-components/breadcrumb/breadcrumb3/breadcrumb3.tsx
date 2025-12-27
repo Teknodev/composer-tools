@@ -27,6 +27,12 @@ class Breadcrumb3 extends BaseBreadcrumb {
       value: "About",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "array",
       key: "breadcrumbItems",
       displayer: "Breadcrumb Items",
@@ -121,6 +127,8 @@ class Breadcrumb3 extends BaseBreadcrumb {
 
   render() {
     const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
     const currentPage = this.castToObject("currentPage");
@@ -153,6 +161,11 @@ class Breadcrumb3 extends BaseBreadcrumb {
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
+              )}
+              {isDescriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
               )}
               {showBreadcrumb && <div className={this.decorateCSS("breadcrumb-items")}>
                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (

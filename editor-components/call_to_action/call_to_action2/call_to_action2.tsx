@@ -24,6 +24,12 @@ class CallToAction2Page extends BaseCallToAction {
       displayer: "Title",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -105,17 +111,19 @@ class CallToAction2Page extends BaseCallToAction {
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
         <div className={`${this.decorateCSS("background")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(titleExist || subtitleExist || (buttons.length > 0)) && (
+            {(titleExist || subtitleExist || descriptionExist || (buttons.length > 0)) && (
               <div
                 className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")}`}
               >
-                {(titleExist || subtitleExist) && (
+                {(titleExist || subtitleExist || descriptionExist) && (
                   <Base.VerticalContent className={this.decorateCSS("titles")}>
                     {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -126,6 +134,11 @@ class CallToAction2Page extends BaseCallToAction {
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("title")}
                       </Base.SectionTitle>
+                    )}
+                    {descriptionExist && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
                 )}

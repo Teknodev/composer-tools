@@ -25,6 +25,12 @@ class Faq8 extends BaseFAQ {
       value: "Frequently Asked Questions",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "media",
       key: "dot_icon",
       displayer: "Dot icon",
@@ -685,6 +691,8 @@ class Faq8 extends BaseFAQ {
   }
 
   render() {
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -696,6 +704,11 @@ class Faq8 extends BaseFAQ {
                 )}
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
             )}

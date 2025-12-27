@@ -7,7 +7,11 @@
         .section-title {
             content: "";
         }
-
+        .header {
+            .description {
+                content: "";
+            }
+        }
         .cards-container {
             gap: var(--composer-gap-xl);
             padding-bottom: var(--composer-gap-xl);

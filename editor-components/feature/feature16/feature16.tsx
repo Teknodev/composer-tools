@@ -18,7 +18,16 @@ class Feature16 extends BaseFeature {
             displayer: "Title",
             value: "We provide more than crypto"
 
+        })     
+
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: ""
+
         })
+
         this.addProp({
             type: "object",
             key: "topLeftSide",
@@ -371,7 +380,8 @@ class Feature16 extends BaseFeature {
         const middleRightSide = this.castToObject<any>("middleRightSide");
         const middleRightSide2 = this.castToObject<any>("middleRightSide2");
 
-        // Check if card has content (title, description, or image)
+        const description = this.castToString(this.getPropValue("description"));
+
         const hasTopLeftContent = topLeftSide.visibility && (
             this.castToString(topLeftSide.topLeftSideTitle) || 
             this.castToString(topLeftSide.topLeftSideDescription) || 
@@ -443,6 +453,11 @@ class Feature16 extends BaseFeature {
                             <Base.SectionTitle className={this.decorateCSS("title")}>
                                 {this.getPropValue("title")}
                             </Base.SectionTitle>
+                        )}
+                        {description && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {description}
+                            </Base.SectionDescription>
                         )}
                     </Base.VerticalContent>
                     <div className={this.decorateCSS("side-container")}>

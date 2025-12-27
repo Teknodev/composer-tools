@@ -19,6 +19,14 @@ class Breadcrumb1 extends BaseBreadcrumb {
             displayer: "Title",
             value: "Home",
         });
+
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+          });
+
         this.addProp({
             type: "media",
             key: "image",
@@ -122,6 +130,8 @@ class Breadcrumb1 extends BaseBreadcrumb {
     render() {
         const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
         const isTitleExist = this.castToString(this.getPropValue("title"));
+        const isDescriptionExist = this.castToString(this.getPropValue("description"));
+        const description = this.getPropValue("description");
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
         const currentPage = this.castToObject("currentPage");
         const currentPageTitle = currentPage?.title || "";
@@ -145,6 +155,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         {overlay && bgImage?.url && <div className={this.decorateCSS("overlay")}></div>}
 
                         {isTitleExist && (
+                            <Base.VerticalContent className={this.decorateCSS("left")}>
                             <Base.MaxContent className={this.decorateCSS("max-content")}>
                                 <Base.SectionTitle
                                     className={`${this.decorateCSS("title-main")} ${bgImage?.url && this.decorateCSS("title-with-bg")
@@ -152,7 +163,15 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                 >
                                     {this.getPropValue("title")}
                                 </Base.SectionTitle>
+                                {isDescriptionExist && (
+                                    <Base.MaxContent className={this.decorateCSS("max-content")}>
+                                        <Base.SectionDescription className={`${this.decorateCSS("description")} ${bgImage?.url && this.decorateCSS("title-with-bg")}`}>
+                                        {description}
+                                        </Base.SectionDescription>
+                                    </Base.MaxContent>
+                                )}
                             </Base.MaxContent>
+                            </Base.VerticalContent>
                         )}
                     </Base.Container>
                 )}
@@ -214,3 +233,4 @@ class Breadcrumb1 extends BaseBreadcrumb {
 }
 
 export default Breadcrumb1;
+

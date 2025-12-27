@@ -11,8 +11,7 @@
         gap: var(--composer-gap-lg);
         .header {
           .title,
-          .subtitle {
-            margin: 0px;
+          .subtitle, .description {
             text-align: left;
           }
         }

@@ -9,12 +9,18 @@ class IntroSection1 extends BaseIntroSection {
   constructor(props?: any) {
     super(props, styles);
 
-
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "The #1 Web Solution for Your Business"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "descriptionText",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -116,7 +122,7 @@ class IntroSection1 extends BaseIntroSection {
   }
 
   render() {
-    const title = this.getPropValue("title");
+  const title = this.getPropValue("title");
   const descriptions = this.castToObject<Array<any>>("description") || [];
   const videoSection = this.castToObject<any>("videoSection") || {};
   const video = videoSection.video;
@@ -126,13 +132,14 @@ class IntroSection1 extends BaseIntroSection {
   const buttons = this.castToObject<Array<any>>("buttons") || [];
   const isPlaying = this.getComponentState("isPlaying");
   const alignment = Base.getContentAlignment();
-
+  const descriptionText = this.getPropValue("descriptionText");
+  const descriptionExist = this.castToString(descriptionText);
   const isVideo = !!(video?.url);
   const hasRightContainer = !!(isVideo || thumbnail);
   const hasAnyDescription = Array.isArray(descriptions) && descriptions.some((d: any) => this.castToString(d?.title) || this.castToString(d?.text) || d?.icon);
   const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
   const hasTitle = this.castToString(title);
-  const hasLeftContainer = !!(hasTitle || hasAnyDescription || hasAnyButton);
+  const hasLeftContainer = !!(hasTitle || descriptionExist || hasAnyDescription || hasAnyButton);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -140,9 +147,16 @@ class IntroSection1 extends BaseIntroSection {
           <div className={`${this.decorateCSS("intro-wrapper")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")} ${hasLeftContainer && !hasRightContainer ? this.decorateCSS("left-container-alone") : ""}`}>
             {hasLeftContainer && (
             <div className={this.decorateCSS("text-content")}> 
+            <Base.VerticalContent className={this.decorateCSS("text-content-header")}>
               {hasTitle && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>
               )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {descriptionText}
+                </Base.SectionDescription>
+              )}
+              </Base.VerticalContent>
 
               {hasAnyDescription && (
                 <div className={this.decorateCSS("features-list")}>
@@ -232,3 +246,4 @@ class IntroSection1 extends BaseIntroSection {
 }
 
 export default IntroSection1;
+

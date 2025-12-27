@@ -43,6 +43,14 @@ class Feature4 extends BaseFeature {
       displayer: "Overlay",
       value: true,
     });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Empower Solutions",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -51,10 +59,11 @@ class Feature4 extends BaseFeature {
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Empower Solutions",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
+
     this.addProp(INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link"));
     this.addProp({
       type: "array",
@@ -387,7 +396,9 @@ class Feature4 extends BaseFeature {
     const imageOverlay = !!this.getPropValue("imageOverlay");
 
     const subtitleType = Base.getSectionSubTitleType();
-    
+
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
 
     return (
       <Base.Container
@@ -413,6 +424,11 @@ class Feature4 extends BaseFeature {
                   `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("black") : ""}`}>
+                    {description}
+                  </Base.SectionDescription>
                 )}
                 {linkTextExist && (
                   <Base.Row className={this.decorateCSS("card-link-container")} >
