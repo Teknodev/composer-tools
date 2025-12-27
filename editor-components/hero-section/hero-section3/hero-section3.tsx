@@ -73,21 +73,21 @@ class HeroSection3 extends BaseHeroSection {
               },
             },
             {
-              type: "select",
-              key: "type",
-              displayer: "Type",
-              value: "Left Image Layout",
-              additionalParams: {
-                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
-              },
-            },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
-            {
               type: "boolean",
               key: "overlay",
               displayer: "Overlay",
               value: false,
-            }
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Right Image Layout",
+              additionalParams: {
+                selectItems: ["Right Image Layout", "Left Image Layout", "Overlay on Image"],
+              },
+            },
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
           ],
         },
         {
@@ -138,21 +138,21 @@ class HeroSection3 extends BaseHeroSection {
               },
             },
             {
-              type: "select",
-              key: "type",
-              displayer: "Type",
-              value: "Right Image Layout",
-              additionalParams: {
-                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
-              },
-            },
-            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
-            {
               type: "boolean",
               key: "overlay",
               displayer: "Overlay",
               value: false,
-            }
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "Left Image Layout",
+              additionalParams: {
+                selectItems: ["Right Image Layout", "Left Image Layout", "Overlay on Image"],
+              },
+            },
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
           ],
         },
         {
@@ -204,21 +204,21 @@ class HeroSection3 extends BaseHeroSection {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "select",
               key: "type",
               displayer: "Type",
               value: "Overlay on Image",
               additionalParams: {
-                selectItems: ["Left Image Layout", "Right Image Layout", "Overlay on Image"],
+                selectItems: ["Right Image Layout", "Left Image Layout", "Overlay on Image"],
               },
             },
             INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Tertiary"),
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: false,
-            }
           ],
         },
       ],

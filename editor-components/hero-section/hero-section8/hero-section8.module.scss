@@ -193,8 +193,8 @@
         transition: transform 0.3s ease-in;
         .icon{
           font-size: 1.5rem;
-          height: 30px;
-          width: 30px;
+          height: var(--composer-gap-md);
+          width: var(--composer-gap-md);
           object-fit: contain;
         }
       }
@@ -253,8 +253,18 @@
 
 @container (max-width: #{$composer-tablet-width}){
   .container{
-    .carousel {
-      .arrow-wrapper{
+    .arrow-wrapper{
+        .pagination{
+          .current-page{
+            font-size: 1.25rem !important;
+          }
+          .slash{
+            font-size: 1.5rem !important;
+          }
+          .total-page{
+            font-size: 1.5rem !important;
+          }
+        }
         .arrow-prev-wrapper, .arrow-next-wrapper{
           &.next{
             &::after {
@@ -268,41 +278,13 @@
           }
         }
       }
-    }
     .max-content{
-      padding: 20px 40px;
+      padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
   }
 }
 @container (max-width: #{$composer-phone-width}){
   .container{
-    .carousel{
-      .arrow-wrapper{
-        .pagination{
-          .current-page{
-            font-size: 1rem;
-          }
-          .slash{
-            font-size: 2rem;
-          }
-          .total-page{
-            font-size: 1.5rem;
-          }
-        }
-        .arrow-prev-wrapper, .arrow-next-wrapper{
-          &.next{
-            &::after {
-              left: -20px;
-            }
-          }
-          &.prev{
-            &::after {
-              right: -20px;
-            }      
-          }
-        }
-      }
-    }
     .max-content{
       padding: 20px;
     }

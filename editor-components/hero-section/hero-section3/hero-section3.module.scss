@@ -64,14 +64,14 @@
 
       .page-number {
         cursor: pointer;
-        padding: var(--composer-gap-xs);
-        margin: var(--composer-gap-xs) 0;
-        color: var(--composer-font-color-primary);
+        padding: 0 var(--composer-gap-xs);
+        margin: 0 var(--composer-gap-xs);
+        color: var(--composer-tertiary-color);
         font-size: 1.5rem;
 
         &.active,
         &:hover {
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
         }
       }
     }

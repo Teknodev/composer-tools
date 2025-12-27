@@ -23,7 +23,7 @@
   -ms-overflow-style: none;
 
   &.no-background-image {
-    padding: 80px 50px !important;
+    padding: 80px var(--composer-gap-xl) !important;
   }
 
   &.center-alignment {
@@ -71,31 +71,20 @@
       height: 100vh;
       position: relative;
 
-      .image {
-        height: 130%;
+      .image-element {
         width: 100%;
-        inset: 0px;
-        color: transparent;
-        scale: none;
-        rotate: none;
+        height: 100%;
         object-fit: cover;
-        position: relative;
+      }
 
-        .image-element {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 1;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-        }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
       }
 
       .no-img-anm {
@@ -180,7 +169,7 @@
     padding: 0 !important;
 
     &.no-background-image {
-      padding: 80px 40px !important;
+      padding: 80px var(--composer-gap-lg) !important;
     }
 
     .max-content{
@@ -245,10 +234,11 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: fit-content;
+    min-height: fit-content;
     padding: 0 !important;
 
     &.no-background-image {
-      padding: 50px 20px !important;
+      padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
     }
 
     .max-content {
@@ -261,18 +251,11 @@
         height: 50vh;
         position: relative;
         order: 1;
-        
-        .image {
-          scale: 1;
-          height: 100%;
-          width: 100%;
-          transform: none !important;
           
-          .image-element {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-          }
+        .image-element {
+          width: 100%;
+          object-fit: cover;
+          height: 500px;
         }
       }
       

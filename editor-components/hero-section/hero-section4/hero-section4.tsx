@@ -195,7 +195,7 @@ const getStyle = (direction: "up" | "down") => {
   }
 
   if (direction === "down") {
-    const translateY = 100 - 200 * progress;
+    const translateY = 100 - 110 * progress;
     return {
       transform: `translate3d(0px, ${translateY}px, 0px)`,
     };
@@ -208,14 +208,14 @@ const getStyle = (direction: "up" | "down") => {
       <Base.Container
         className={`${this.decorateCSS("container")} ${
           !imageAnm && this.decorateCSS("no-image-anm")
-        } ${!image && this.decorateCSS("no-background-image")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}
+        } ${!image && this.decorateCSS("no-background-image")} ${alignment === "center" && this.decorateCSS("center-alignment")}`}
       >
         <div className={`${this.decorateCSS("max-content")} ${!image && this.decorateCSS("no-image-wrapper")}`}>
           {image && (
             <div 
               ref={this.imageRef}
-              className={`${this.decorateCSS("image-container")} ${!imageAnm ? this.decorateCSS("no-img-anm") : ""}`}
-              style={imageAnm ? getStyle("up") : undefined}
+              className={`${this.decorateCSS("image-container")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
+              style={imageAnm && getStyle("up")}
             >
               <Base.Media
                 className={this.decorateCSS("image-element")}

@@ -66,8 +66,17 @@
             color: var(--composer-font-color-primary);
           }
 
+          .count {
+            font-size: 1.25rem;
+          }
+
+          .active-number {
+            font-size: 2.5rem;
+          }
+
           .slash {
             margin: 0px var(--composer-gap-xs);
+            font-size: 1.25rem;
           }
         }
       }
