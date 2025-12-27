@@ -40,7 +40,7 @@
           transform-origin: center;
           transform: scale(0.95);
           z-index: 1;
-          height: min(56vh, 520px);
+          height: min(56vh, 490px);
           overflow: visible;
           transition: transform var(--composer-transition-duration-normal) ease;
 
@@ -353,7 +353,6 @@
 
       .slider-wrapper {
         .slider {
-          padding-bottom: 20px;
           :global(.slick-slide > div) {
             width: 480px !important;
           }
