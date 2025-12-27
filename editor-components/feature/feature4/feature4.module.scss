@@ -16,10 +16,12 @@
 
         .section-subtitle {
           text-align: left;
+          margin-left:0px;
          
         }
         .description {
           content: "";
+          text-align: left;
         }
 
         .black {
@@ -35,6 +37,8 @@
           background-color: transparent;
           transform: translateX(0);
           padding: 0;
+          margin-left:0px;
+          color:black;
         }
 
         .section-title {
