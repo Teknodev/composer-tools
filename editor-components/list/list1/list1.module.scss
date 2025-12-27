@@ -1,111 +1,188 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
   as *;
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
   .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
+    align-items: stretch;
 
-    .card-titles {
-      .subtitle {
+    .header {
+      align-items: flex-start;
+      text-align: left;
+      width: 100%;
+      padding: 0 var(--composer-gap-md);
+
+      .subtitle,.title{
         content: "";
       }
-      .title {
-        content: "";
+
+      .description {
+        color: var(--composer-tertiary-color);
       }
     }
 
     .carousel {
+      width: 100%;
       overflow: hidden;
-      > div {
-        > div {
-          display: flex;
-          align-items: stretch;
-          > div {
-            height: auto;
-            margin-bottom: calc(2 * var(--composer-gap-md));
-            > div {
-              height: 100%;
-            }
-          }
-        }
+      padding: 0 var(--composer-gap-md);
+      position: relative;
+
+      :global(.slick-slide) {
+        padding: 0 calc(var(--composer-gap-md) / 2);
+        margin-bottom: calc(2 * var(--composer-gap-md));
+        box-sizing: border-box;
+        height: auto;
+        display: flex;
+        align-items: stretch;
+      }
+      :global(.slick-list),
+      :global(.slick-track) {
+        display: flex;
+        align-items: stretch;
+      }
+      :global(.slick-slide) {
+        flex-direction: column;
+      }
+      :global(.slick-slide) > div {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
       }
 
       .dots {
         display: flex !important;
         width: 100%;
-        gap: var(--composer-gap-sm);
+        gap: calc(var(--composer-gap-sm) * 1.5);
         list-style-type: none;
         padding: 0;
         bottom: 0;
         position: absolute;
+        left: 0;
+        right: 0;
         justify-content: center;
-        li {
-          button {
-            border: none;
-            transition: var(--composer-transition-duration-normal);
-            content-visibility: hidden;
-            background-color: var(--composer-html-background);
-            width: var(--composer-gap-sm);
-            height: var(--composer-gap-sm);
-            border-radius: var(--composer-border-radius-xl);
-            cursor: pointer;
-          }
+        z-index: 2 !important;
+        .dot-button {
+          border: none;
+          transition: var(--composer-transition-duration-normal);
+          content-visibility: hidden;
+          background-color: var(--composer-primary-color);
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-xl);
+          cursor: pointer;
+        }
+        :global(.slick-active) .dot-button {
+          transform: scale(1.35);
         }
       }
-      .dots :global(li.slick-active) button {
+
+      .dots:not(.dots-colored) {
+        .dot-button {
+          background-color: var(--composer-primary-color);
+        }
+        :global(.slick-active) .dot-button {
+          background-color: var(--composer-primary-color);
+        }
+      }
+      .dots :global(.slick-active) .dot-button {
         padding: 0 var(--composer-gap-md);
       }
-      .card {
-        height: 100%;
-        margin: 0 var(--composer-gap-md);
+
+      .dots-colored {
+        .dot-button {
+          background-color: var(--composer-font-color-secondary);
+        }
+        :global(.slick-active) .dot-button {
+          background-color: var(--composer-font-color-secondary);
+        }
+      }
+        .card {
+        margin: 0;
         position: relative;
         display: flex !important;
         flex-direction: column;
+        align-items: flex-start;
         padding: var(--composer-gap-lg);
-        background-color: var(--composer-html-background);
-        border-radius: var(--composer-border-radius-xs);
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
+        border-radius: var(--composer-border-radius-md);
         gap: var(--composer-gap-md);
+        flex: 1 1 auto;
         height: 100%;
+        min-height: 0;
+        width: 100% !important;
 
-        .img-div {
+        .image-container {
           margin: 0;
           overflow: hidden;
-          border-radius: var(--composer-border-radius-full);
-          .img {
-            border-radius: var(--composer-border-radius-full);
+          border-radius: 50%;
+          position: relative;
+          width: 220px;
+          max-width: 100%;
+          aspect-ratio: 1 / 1;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          .image {
+            border-radius: inherit;
             width: 100%;
             height: 100%;
-            max-width: 200px;
-            max-height: 200px;
+            object-fit: cover;
             transition: all var(--composer-transition-duration-slow) var(--composer-transition-easing);
+          }
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            border-radius: inherit;
+          }
+          &.no-round {
+            border-radius: 0;
+            .image {
+              border-radius: 0;
+              font-size:15rem;
+            }
+            .overlay {
+              border-radius: 0;
+              opacity: 0;
+            }
           }
         }
 
-        .titles {
-          display: flex;
-          flex-direction: column;
+        .card-header {
           gap: var(--composer-gap-md);
           margin: 0;
+          align-items: flex-start;
           .card-title {
+            content: "";
             color: var(--composer-font-color-primary);
+            transition: color var(--composer-transition-duration-normal) ease;
+            cursor: pointer;
+            text-align: left !important;
+
+            &:hover {
+              color: var(--composer-primary-color);
+            }
           }
-          .card-subtitle {
+          .card-description {
+            content: "";
             color: var(--composer-tertiary-color);
+            text-align: left !important;
           }
         }
-        .link {
+        .button {
           display: flex;
           align-items: center;
           gap: var(--composer-gap-xs);
           cursor: pointer;
           position: relative;
           overflow: hidden;
+          margin-bottom: 0;
           &::before {
             content: "";
             position: absolute;
@@ -116,42 +193,57 @@
             background-color: var(--composer-primary-color);
           }
 
+          .button-text{
+            content: "";
+          }
+
           .icon {
             font-size: 1rem;
+            width: 1rem;
+            height: 1rem;
             min-width: fit-content;
           }
         }
 
         &.active {
+          .colored-area {
+              content:"";
+              margin: 0;
+              display: none;
+          }
           &::after {
             content: "";
             position: absolute;
-            width: calc(100% + var(--composer-gap-md) * 4);
+            width: calc(100% + var(--composer-gap-lg));
             height: 85%;
             bottom: calc(-2 * var(--composer-gap-md));
-            left: calc(0px - 2 * var(--composer-gap-md));
+            left: calc(-0.5 * var(--composer-gap-lg));
             background-color: var(--composer-primary-color);
             z-index: -1;
-            opacity: 1;
-            border-radius: var(--composer-border-radius-xs);
-          }
+            border-radius: var(--composer-border-radius-sm);
+
         }
+      }
+
 
         &[data-animation~="animate1"]:hover {
-          .img-div .img {
+          .card-title {
+            color: var(--composer-primary-color);
+          }
+          .image-container .image {
             transform: scale(1.1);
             transition: transform var(--composer-transition-duration-slow) ease-in-out;
           }
         }
 
         &[data-animation~="animate2"]:hover {
-          .img-div .img {
+          .image-container .image {
             transform: rotate(360deg);
             transition: transform var(--composer-transition-duration-normal) ease-in-out;
           }
         }
         &[data-animation~="animate3"]:hover {
-          .link {
+          .button {
             &::before {
               width: 100%;
               animation: slideIn var(--composer-transition-duration-slow) ease-in-out forwards;
@@ -166,7 +258,7 @@
         
 
         &[data-animation~="animate4"]:hover {
-          .link {
+          .button {
             animation: breathing 2s infinite ease-in-out;
           }
         }
@@ -175,21 +267,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .carousel {
-        .card {
-          &.active {
-            &::after {
-              visibility: hidden;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 @keyframes breathing {
   0% {
@@ -222,3 +299,51 @@
     transform: translateX(100%);
   }
 }
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .carousel {
+      padding:0 !important;
+    }
+    .carousel {
+      .card {
+        min-height: 0;
+        padding-top: calc(var(--composer-gap-md) * 1.2);
+        padding-bottom: calc(var(--composer-gap-md) * 1.2);
+        .button {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .carousel {
+      padding:0 !important;
+      .card.active::after {
+        display: none;
+      }
+      .card .active-after {
+        display: none;
+      }
+
+      :global(.slick-slide) {
+        padding: 0 !important;
+      }
+
+      .dots-colored {
+        li {
+          button {
+            background-color: var(--composer-font-color-primary) !important;
+          }
+        }
+        :global(li.slick-active) button {
+          background-color: var(--composer-font-color-primary) !important;
+        }
+      }
+    }
+  }
+}
+
