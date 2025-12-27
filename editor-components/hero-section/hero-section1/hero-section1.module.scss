@@ -26,6 +26,17 @@
   transform: translate(-50%, -50%) !important;
 }
 
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes moveUpDown {
   0% {
     transform: translateY(0);
@@ -52,12 +63,35 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-  padding: 0px 0px 20px 0px !important;
+  padding: 0px 0px var(--composer-gap-md) 0px !important;
   min-height: 100px;
 
   .background-layout {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
+    object-fit: cover;
+    
+    img,
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--composer-overlay-color);
+    pointer-events: none;
   }
   .image-container-2 {
     position: absolute;
@@ -77,6 +111,9 @@
     animation: moveUpDown 3s ease-in-out infinite;
   }
   .max-content {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
     .wrapper {
       height: 100%;
       width: 100%;
@@ -181,28 +218,12 @@
               transition: all 0.3s linear;
               @include textEllipsis(1);
 
-              > blinkpage {
-                width: 100%;
-                display: flex !important;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                word-break: break-word;
-                padding-bottom: var(--composer-gap-md);
-                > p {
-                  display: -webkit-box;
-                  -webkit-line-clamp: 2;
-                  -webkit-box-orient: vertical;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                }
-              }
               &.dark{
                 color: var(--composer-font-color-primary) ;
               }
             }
             .image {
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               margin: 0 auto;
               width: 100%;
               object-fit: cover;
@@ -211,11 +232,33 @@
               opacity: 0;
               max-height: 600px;
               object-fit: cover;
+              
+              img,
+              video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
+              }
             }
             .active-image {
               transform: scale(1);
               opacity: 1;
               width: 100%;
+            }
+            &.with-overlay {
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: var(--composer-overlay-color);
+                z-index: 1;
+                pointer-events: none;
+                border-radius: var(--composer-border-radius-sm);
+              }
             }
             .sliderNumber {
               position: absolute;
@@ -226,7 +269,7 @@
               align-items: center;
               justify-content: center;
               gap: var(--composer-gap-sm);
-              .overlay{
+              .line{
                 height: 1px;
                 width: 2rem;
                 background: white;
@@ -257,41 +300,25 @@
             z-index: 10;
             opacity: 0;
             transition: all 0.3s linear;
+            width: 100%;
             @include textEllipsis(3);
+            text-align: right;
+
+            .title-char {
+              opacity: 0;
+              transform: translateX(-30px);
+              white-space: pre;
+              display: inline-block;
+            }
+
             &.dark{
               color: var(--composer-font-color-primary); 
             }
             &.dark-without-image{
               color: var(--composer-font-color-primary);
-              > blinkpage {
-                > p {
-                  display: flex;
-                  overflow: visible;
-                  text-overflow: none;
-                  flex-wrap: wrap;
-                }
-              }
             }
             &.without-image{
-              > blinkpage {
-                > p {
-                  display: flex;
-                  overflow: visible;
-                  text-overflow: none;
-                  flex-wrap: wrap;
-                }
-              }
-            }
-
-            > blinkpage {
-              > p {
-                word-break: break-word;
-                display: -webkit-box;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
+              content: "";
             }
           }
 
@@ -301,6 +328,10 @@
           .content-container {
             .title {
               opacity: 1;
+
+              .title-char {
+                animation: slideInFromLeft 0.5s ease forwards;
+              }
             }
 
             .subtitle{
@@ -320,6 +351,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        gap: var(--composer-gap-xs);
         &.dark{
           li {
             button {
@@ -350,8 +382,9 @@
             color: transparent;
             position: relative;
             background: none;
-            border: none;
-            margin: var(--composer-gap-sm);
+            border: 1px solid transparent;
+            border-radius: 50%;
+            box-sizing: border-box;
             padding: var(--composer-gap-sm);
             width: 20px;
             height: 20px;
@@ -374,10 +407,89 @@
         }
       }
       .dots :global(li.slick-active) button {
-        border: 1px solid white;
+        border-color: white;
         border-radius: 50%;
-        &::before {
-          opacity: 1;
+        &::before { opacity: 1; }
+      }
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+  @include titleSize(6rem !important);
+
+  .container {
+    .image-container-2 {
+      max-width: 30%;
+      width: 30%;
+    }
+    .image-container-3 {
+      max-width: 60% !important;
+      width: 70% !important;
+      top: 33rem;
+      bottom: 0px;
+      left: -20rem;
+    }
+    .max-content {
+      .wrapper {
+        .return-container {
+          .background-container{
+            height: 150%;
+            top: -25%;
+            .background-text{
+              font-size: 50rem;
+            }
+          }
+          .content-container {
+            width: 70% !important;
+            .image-wrapper,
+            .without-image-wrapper {
+              width: 100%;
+              .image {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                margin: 0px;
+              }
+              .sliderNumber {
+                .overlay {
+                  width: 1.5rem;
+                }
+              }
+            }
+            .without-image-wrapper {
+              .subtitle {
+                left: -3rem !important;
+                width: 50vw !important;
+              }
+            }
+
+            .title{
+              right: unset;
+              @include absoluteCenter;
+              left: 60% !important;
+            }
+          }
+        }
+      }
+      .dots {
+        height: 100%;
+        margin: 0px;
+        display: block;
+        > li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    .dots {
+      li {
+        button {
+          &::before {
+            font-size: 1.75rem !important;
+          }
         }
       }
     }
@@ -385,7 +497,7 @@
 }
 
 @container (max-width : #{$composer-phone-width}) {
-  @include titleSize(4rem);
+  @include titleSize(4rem !important);
 
   .image-container-2 {
     width: 60% !important;
@@ -425,6 +537,12 @@
             }
             .title{
               @include absoluteCenter;
+              left: 50% !important;
+              font-size: 3rem !important;
+              width: 100% !important;
+              padding: var(--composer-gap-sm) !important;
+              top: 50% !important;
+              text-align: center !important;
             }
           }
         }
@@ -440,83 +558,18 @@
     align-items: flex-end !important;
     padding-bottom: var(--composer-gap-md) !important;
     max-height: 950px !important;
+    top: 0px !important;
   }
   .dots :global(li.slick-active) button,
   .dark-dots :global(li.slick-active) button {
     transform-origin: left !important;
   }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  @include titleSize(6rem !important);
-
-  .container {
-    .image-container-2 {
-      max-width: 30%;
-      width: 30%;
-    }
-    .image-container-3 {
-      max-width: 60% !important;
-      width: 70% !important;
-      top: 33rem;
-      bottom: 0px;
-      left: -20rem;
-    }
-    .max-content {
-      .wrapper {
-        .return-container {
-          .background-container{
-            height: 150%;
-            top: -25%;
-            .background-text{
-              font-size: 50rem;
-            }
-          }
-          .content-container {
-            width: 80% !important;
-            .image-wrapper,
-            .without-image-wrapper {
-              width: 100%;
-              .image {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-                margin: 0px;
-              }
-              .sliderNumber {
-                .overlay {
-                  width: 1.5rem;
-                }
-              }
-            }
-            .without-image-wrapper {
-              .subtitle {
-                left: -3rem !important;
-                width: 50vw !important;
-              }
-            }
-
-            .title{
-              right: unset;
-              @include absoluteCenter;
-            }
-          }
-        }
-      }
-      .dots {
-        height: 100%;
-        margin: 0px;
-        display: block;
-        > li {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
+  .dots,
+  .dark-dots {
+    li {
+      button {
+        &::before { font-size: 2rem !important; }
       }
     }
   }
-}
-
-@container (max-width : #{$composer-phone-width}) {
-  @include titleSize(4rem !important);
 }
