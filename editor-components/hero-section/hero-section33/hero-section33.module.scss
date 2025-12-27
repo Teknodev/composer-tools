@@ -162,7 +162,7 @@
             justify-content: center !important;
             align-items: center !important;
 
-            .content-subtitle, .content-title, .buttons-div {
+            .content-subtitle, .content-title, .content-description, .buttons-div {
               text-align: center !important;
               margin-right: 0 !important;
             }
@@ -210,6 +210,15 @@
             width: calc(100% - var(--composer-gap-lg));
             word-break: unset;
             margin-left: 0;
+
+            &.blackColor {
+              color: black;
+            }
+          }
+
+          .content-description {
+            font-size: 1.5rem;
+            text-align: left;
 
             &.blackColor {
               color: black;

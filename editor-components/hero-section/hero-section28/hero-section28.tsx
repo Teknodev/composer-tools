@@ -3,6 +3,8 @@ import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section28.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "composer-tools/composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 class HeroSection28 extends BaseHeroSection {
   constructor(props?: any) {
@@ -119,6 +121,14 @@ class HeroSection28 extends BaseHeroSection {
               displayer: "Text",
               value: "NOW AVAILABLE ON STREAMING SERVICES",
             },
+            {
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+              INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+            ]
+          }
           ],
         },
         {
@@ -177,6 +187,14 @@ class HeroSection28 extends BaseHeroSection {
               displayer: "Text",
               value: "NOW AVAILABLE ON STREAMING SERVICES",
             },
+            {
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+              INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+            ]
+          }
           ],
         },
         {
@@ -235,6 +253,14 @@ class HeroSection28 extends BaseHeroSection {
               displayer: "Text",
               value: "NOW AVAILABLE ON STREAMING SERVICES",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+              ]
+            }
           ],
         },
       ],
@@ -376,20 +402,43 @@ class HeroSection28 extends BaseHeroSection {
                     {item.getPropValue("text")}
                   </Base.P>
                 )}
+                {item.getPropValue("buttons") && (
+                  <div className={this.decorateCSS("buttons-container")}>
+                    {item.getPropValue("buttons").map((button: any, index: number) => {
+                      const isDescriptor = !!button.getPropValue;
+
+                      const text = isDescriptor && button.getPropValue("text");
+                      const url = isDescriptor && button.getPropValue("url");
+                      const icon = isDescriptor && button.getPropValue("icon");
+                      const type = isDescriptor && button.getPropValue("type");
+
+                      const buttonTextExist = this.castToString(text);
+                      const iconExist = !!(icon && (icon.name || icon.url));
+
+                      if (!(buttonTextExist || iconExist)) return null;
+
+                      return (
+                        <div key={`hs-28-btn-${index}`} className={this.decorateCSS("button")}>
+                          <ComposerLink path={url}>
+                            <Base.Button buttonType={type} className={this.decorateCSS("button-element")}>
+                              {iconExist && (
+                                <Base.Media
+                                  value={icon}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{text}</Base.P>}
+                            </Base.Button>
+                          </ComposerLink>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
-            </div>
+            </div>         
           ))}
         </ComposerSlider>
-        {slides.length > 1 && (
-          <div className={this.decorateCSS("slider-arrows")}>
-            <div className={this.decorateCSS("prev-icon")} onClick={() => this.getComponentState("sliderRef")?.current?.slickPrev()}>
-              <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("prev_icon")} />
-            </div>
-            <div className={this.decorateCSS("next-icon")} onClick={() => this.getComponentState("sliderRef")?.current?.slickNext()}>
-              <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("next_icon")} />
-            </div>
-          </div>
-        )}
         {this.getComponentState("play-video") && slides[this.getComponentState("active-index")]?.getPropValue("video") && (
           <Base.Overlay
             isVisible={this.getComponentState("play-video")}

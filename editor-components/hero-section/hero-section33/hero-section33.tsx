@@ -11,6 +11,7 @@ type Slide = {
   image: TypeMediaInputValue;
   subtitle?: React.JSX.Element;
   title: React.JSX.Element;
+  description?: React.JSX.Element;
   rotate_icon: string;
   rotate_text: React.JSX.Element;
   buttons: Button[];
@@ -42,7 +43,7 @@ class HeroSection33 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "rotate",
-      displayer: "Rotate",
+      displayer: "Rotate Animation",
       value: true,
     });
 
@@ -99,6 +100,12 @@ class HeroSection33 extends BaseHeroSection {
               key: "title",
               displayer: "Title",
               value: `<p><span style="white-space: pre-wrap;">Cloria</span></p><p><span style="white-space: pre-wrap;">by Wood</span></p>`,
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "array",
@@ -178,6 +185,12 @@ class HeroSection33 extends BaseHeroSection {
               value: "Kento - Chair",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
@@ -255,6 +268,12 @@ class HeroSection33 extends BaseHeroSection {
               value: `<p><span style="white-space: pre-wrap;">Wooden </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Floor Lamp</span></p>`,
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
@@ -302,6 +321,7 @@ class HeroSection33 extends BaseHeroSection {
       backgroundImage: { type: "image", url: "" },
       image: { type: "image", url: "" },
       title: <></>,
+      description: <></>,
       rotate_icon: "",
       rotate_text: <></>,
       buttons: []
@@ -406,6 +426,11 @@ class HeroSection33 extends BaseHeroSection {
                           >
                             {item.title}
                           </Base.SectionTitle>
+                        )}
+                        {this.castToString(item.description) && (
+                          <Base.SectionDescription className={`${this.decorateCSS("content-description")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}>
+                            {item.description}
+                          </Base.SectionDescription>
                         )}
                         {buttons?.length > 0 && (
                           <div className={this.decorateCSS("buttons-div")}>
