@@ -164,10 +164,8 @@ class Location4 extends Location {
 
         const lat = markerData?.value?.lat;
         const lng = markerData?.value?.lng;
-        const description = address.getPropValue("description");
-        const hasDescription = this.castToString(description);
-        const popupTitle = address.getPropValue("popupTitle");
-        const hasPopupTitle = this.castToString(popupTitle);
+        const description = this.castToString(address.getPropValue("description"));
+        const popupTitle = this.castToString(address.getPropValue("popupTitle"));
         const popupImage = address.getPropValue("popupImage");
 
         const markerImage = address.getPropValue("marker-image");
@@ -180,32 +178,9 @@ class Location4 extends Location {
             ? markerImage.url
             : markerImage;
 
-        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-          try {
-            const iconName = (markerImage as any).name;
-            let ElementIcon: any = null;
-            for (const lib of iconLibraries) {
-              if (ElementIcon) break;
-              for (const [name, Comp] of Object.entries(lib)) {
-                if (name === iconName) {
-                  ElementIcon = Comp;
-                  break;
-                }
-              }
-            }
-
-            if (ElementIcon) {
-              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-            }
-          } catch (e) {
-            iconUrl = undefined;
-          }
-        }
-
         if (lat !== undefined && lng !== undefined) {
           const content =
-            hasDescription || hasPopupTitle ? (
+            (description || popupTitle) ? (
               <div className={this.decorateCSS("popup")}>
                 {popupImage && (
                   <Base.Media
@@ -213,10 +188,10 @@ class Location4 extends Location {
                     value={popupImage}
                   />
                 )}
-                {(hasPopupTitle || hasDescription) && (
+                {(popupTitle || description) && (
                   <div className={this.decorateCSS("popup-texts")}>
-                    {hasPopupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle}</Base.P>}
-                    {hasDescription && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{typeof popupTitle === "string" ? popupTitle.charAt(0).toUpperCase() + popupTitle.slice(1) : popupTitle}</Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{typeof description === "string" ? description.charAt(0).toUpperCase() + description.slice(1) : description}</Base.P>}
                   </div>
                 )}
               </div>
@@ -280,7 +255,7 @@ class Location4 extends Location {
 
           {markers.length > 0 && (
             <section className={this.decorateCSS("map-container")}>
-            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
             </section>
           )}
         </div>

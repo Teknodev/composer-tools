@@ -3,8 +3,8 @@
 .wrapper {
   width: 100%;
   .container {
-    padding-bottom: 0;
-
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
     .max-content {
       .header {
         text-align: center;
@@ -23,7 +23,7 @@
 
         .subtitle,
         .title,
-        .description {
+        .description { 
           text-align: center;
         }
 
@@ -105,8 +105,28 @@
       .max-content {
         .header {
           .continents-wrapper {
-            min-width: 200px;
+            width: 100%;
+            justify-content: center;
+            min-width: 0;
             padding: 0;
+            gap: var(--composer-gap-sm);
+
+            .continent-item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+
+              .continent-name {
+                color: var(--composer-primary-color);
+                text-align: center !important;
+              }
+
+              .continent-count {
+                color: #ffffff;
+                text-align: center !important;
+              }
+            }
           }
         }
       }

@@ -267,12 +267,6 @@ class Location1 extends Location {
               displayer: "Popup Navigate To",
               value: "",
             },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Popup Navigate To",
-              value: "",
-            },
           ],
         },
       ],
