@@ -115,13 +115,14 @@
           .cardTitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
-            padding-top: var(--composer-gap-sm);
+            padding-top: var(--composer-gap-xs);
             margin: 0;
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
           }
           .card-subtitle {
             color: var(--composer-font-color-primary);
-            padding: var(--composer-gap-md);
+            margin-top: var(--composer-gap-md) !important;
+            margin-bottom:var(--composer-gap-xs);
             &::before{
               margin-left: var(--composer-gap-md);
             }
@@ -200,6 +201,9 @@
           opacity: 0;
         }
         .description {
+          opacity: 0;
+        }
+        .subtitle {
           opacity: 0;
         }
       }
