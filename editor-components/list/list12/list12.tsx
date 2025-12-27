@@ -25,6 +25,13 @@ class List12 extends BaseList {
     });
 
     this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Simplifying Payments, Fast and Secure",
+    });
+
+    this.addProp({
       type: "object",
       key: "box1",
       displayer: "Box 1",
@@ -32,7 +39,7 @@ class List12 extends BaseList {
         {
           type: "media",
           key: "item",
-          displayer: "Item 1",
+          displayer: "Media",
           value: {
             type: "image",
             url: "https://images.unsplash.com/photo-1599050751795-6cdaafbc2319?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -57,16 +64,9 @@ class List12 extends BaseList {
       displayer: "Box 2",
       value: [
         {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Simplifying Payments, Fast and Secure",
-        },
-        
-        {
           type: "media",
           key: "item",
-          displayer: "Item 2",
+          displayer: "Media",
           value: {
             type: "image",
             url: "https://plus.unsplash.com/premium_photo-1682511145669-a0b9d9c1dc21?q=80&w=1984&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -93,7 +93,7 @@ class List12 extends BaseList {
         {
           type: "media",
           key: "item",
-          displayer: "Item 3",
+          displayer: "Media",
           value: {
             type: "image",
             url: "https://images.unsplash.com/photo-1616077167599-cad3639f9cbd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -177,10 +177,10 @@ class List12 extends BaseList {
               )}
             </div>
             <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
-              {this.castToString(box2.title) && (
+              {this.castToString(this.getPropValue("title")) && (
                 <Base.SectionTitle className={this.decorateCSS("section-wrapper")}>
-                  <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia && this.decorateCSS("with-bg") }`}>{box2.title}</div>
-                </Base.SectionTitle>
+                  <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia && this.decorateCSS("with-bg") }`}>{this.getPropValue("title")}</div>
+                </Base.SectionTitle>  
               )}
               {box2.item && (
                 <div className={`${this.decorateCSS("circle")} ${box2IsIcon && this.decorateCSS("no-circle") } ${hasBackgroundMedia && this.decorateCSS("with-bg") } ${this.getPropValue("hoverAnimation").join(" ")}`}>

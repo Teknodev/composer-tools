@@ -252,9 +252,9 @@ class List3 extends BaseList {
                 >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
-                      <Base.H5 className={this.decorateCSS("card-title")}>
+                      <Base.H3 className={this.decorateCSS("card-title")}>
                         {listItem.itemTitle}
-                      </Base.H5>
+                      </Base.H3>
                     )}
                     {listItem.texts.map((item: TextItem, tIndex: number) => (
                       <Base.VerticalContent key={tIndex} className={this.decorateCSS("event-item")}>

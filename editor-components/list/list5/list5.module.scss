@@ -66,18 +66,23 @@
     .cards-grid {
       .card-wrapper {
         height: 100%;
+        width: 100% !important;
         display: flex;
         align-items: stretch;
         &:nth-child(2n) {
           margin-top: var(--composer-gap-lg);
         }
         .card {
+          width: 100% !important;
           position: relative;
           display: flex;
           flex-direction: column;
+          flex: 1 1 auto;
+          align-items: stretch;
           border-radius: var(--composer-border-radius-sm);
           background-color: var(--composer-html-background);
           padding: var(--composer-gap-lg);
+          padding-bottom: var(--composer-gap-sm);
           gap: var(--composer-gap-md);
           transition: all var(--composer-transition-duration-normal) ease;
 
@@ -199,6 +204,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex: 0 0 auto;
             .icon-section {
               flex: 1;
               .icon-badge {
@@ -266,11 +272,14 @@
             content: "";
             color: var(--composer-font-color-primary);
             text-align: left;
+            margin-bottom: var(--composer-gap-sm);
+            flex: 0 0 auto;
           }
           .card-description {
             content: "";
             color: var(--composer-font-color-primary);
             text-align: left;
+            flex: 1 1 auto;
           }
           .arrow-icon {
             font-size: 2.3rem;

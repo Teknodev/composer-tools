@@ -151,6 +151,7 @@
   .container {
     .max-content {
       .items-wrapper {
+        gap: var(--composer-gap-sm);
         .list-item {
           .item-content {
             padding: var(--composer-gap-md);
@@ -165,6 +166,7 @@
   .container {
     .max-content {
       .items-wrapper {
+        gap: var(--composer-gap-sm);
         .list-item {
           .item-content {
             padding: var(--composer-gap-sm);

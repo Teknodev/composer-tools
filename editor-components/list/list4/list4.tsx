@@ -242,11 +242,11 @@ class List4 extends BaseList {
 
                       <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
                         {this.castToString(card.title) && (
-                          <Base.H3
+                          <Base.H4
                             className={this.decorateCSS("item-title")}
                           >
                             {card.title}
-                          </Base.H3>
+                          </Base.H4>
                         )}
                         {this.castToString(card.description) && (
                           <Base.P className={this.decorateCSS("item-description")}>

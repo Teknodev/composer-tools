@@ -309,15 +309,13 @@ class List9 extends BaseList {
                                         />
                                     )}
                                     {this.castToString(card.title) && (
-                                        <Base.H3 className={this.decorateCSS("card-title")}>
+                                        <Base.H4 className={this.decorateCSS("card-title")}>
                                             {card.title}
-                                        </Base.H3>
+                                        </Base.H4>
                                     )}
-                                    {this.castToString(card.description) && (
                                         <Base.SectionDescription className={this.decorateCSS("card-description")}>
                                             {card.description}
                                         </Base.SectionDescription>
-                                    )}
                                 </Base.VerticalContent>
                             </div>
                         )

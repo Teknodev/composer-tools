@@ -112,8 +112,8 @@
           display: inline-flex;
           justify-content: flex-start;
           text-align: left;
-          font-size: 1.5rem;
-        }
+          font-size: 2rem !important;
+          }
 
         .item-content {
           flex: 5;
@@ -255,6 +255,9 @@
                 width: var(--composer-gap-xl);
                 height: var(--composer-gap-xl);
               }
+              .index {
+                font-size: 2rem !important;
+              }
             }
           }
         }
@@ -287,6 +290,9 @@
               height: 2.5rem;
               min-width: 2.5rem;
               min-height: 2.5rem;
+            }
+            .index {
+              font-size: 1.5rem !important;
             }
             .title {
               width: 100%;

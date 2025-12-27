@@ -335,11 +335,11 @@ class List5 extends BaseList {
                   (listItem: any, index: number) => {
                     return (
                       <div key={index} className={this.decorateCSS("card-wrapper")}>
-                        <ComposerLink path={listItem.url}>
                           <div
                             className={this.decorateCSS("card")}
                             data-animation={this.getPropValue("hoverAnimation").join(" ")}
                           >
+                           <ComposerLink path={listItem.url}>
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
                               <div className={this.decorateCSS("card-header")}>
                                 {listItem.uppericon && (
@@ -382,8 +382,8 @@ class List5 extends BaseList {
                                 className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("media-el")}`}
                               />
                             )}
+                            </ComposerLink>
                           </div>
-                        </ComposerLink>
                       </div>
                     );
                   }

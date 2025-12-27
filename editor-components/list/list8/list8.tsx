@@ -25,7 +25,7 @@ class List8 extends BaseList {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "How it works",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -241,9 +241,9 @@ class List8 extends BaseList {
                     {(this.castToString(item.title) || this.castToString(item.text)) && (
                       <div className={this.decorateCSS("item-content")}>
                         {this.castToString(item.title) && (
-                          <Base.H4 className={this.decorateCSS("item-title")}>
+                          <Base.H5 className={this.decorateCSS("item-title")}>
                             {item.title}
-                          </Base.H4>
+                          </Base.H5>
                         )}
                         {this.castToString(item.text) && (
                           <Base.P className={this.decorateCSS("item-text")}>
