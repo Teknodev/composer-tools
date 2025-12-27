@@ -1,14 +1,17 @@
 import * as React from "react";
 import styles from "./hero-section33.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type Slide = {
   centered: boolean;
-  backgroundImage: string;
-  image: string;
+  backgroundImage: TypeMediaInputValue;
+  image: TypeMediaInputValue;
+  subtitle?: React.JSX.Element;
   title: React.JSX.Element;
+  description?: React.JSX.Element;
   rotate_icon: string;
   rotate_text: React.JSX.Element;
   buttons: Button[];
@@ -26,7 +29,21 @@ class HeroSection33 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Content Animation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "rotate",
+      displayer: "Rotate Animation",
       value: true,
     });
 
@@ -47,24 +64,48 @@ class HeroSection33 extends BaseHeroSection {
               value: false,
             },
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
+              displayer: "Background Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "icon"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value: `<p><span style="white-space: pre-wrap;">Cloria</span></p><p><span style="white-space: pre-wrap;">by Wood</span></p>`,
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "array",
@@ -85,7 +126,7 @@ class HeroSection33 extends BaseHeroSection {
                     {
                       type: "page",
                       key: "button_link",
-                      displayer: "Button Navigate",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -106,24 +147,48 @@ class HeroSection33 extends BaseHeroSection {
               value: true,
             },
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
+              displayer: "Background Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "icon"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value: "Kento - Chair",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "array",
@@ -144,7 +209,7 @@ class HeroSection33 extends BaseHeroSection {
                     {
                       type: "page",
                       key: "button_link",
-                      displayer: "Button Navigate",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -165,24 +230,48 @@ class HeroSection33 extends BaseHeroSection {
               value: false,
             },
             {
-              type: "image",
+              type: "media",
               key: "backgroundImage",
-              displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
+              displayer: "Background Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "icon"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value: `<p><span style="white-space: pre-wrap;">Wooden </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Floor Lamp</span></p>`,
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "array",
@@ -203,7 +292,7 @@ class HeroSection33 extends BaseHeroSection {
                     {
                       type: "page",
                       key: "button_link",
-                      displayer: "Button Navigate",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -229,9 +318,10 @@ class HeroSection33 extends BaseHeroSection {
     const activeSlide: number = this.getComponentState("activeSlide");
     const currentSlide: Slide = slides[activeSlide] || {
       centered: false,
-      backgroundImage: "",
-      image: "",
+      backgroundImage: { type: "image", url: "" },
+      image: { type: "image", url: "" },
       title: <></>,
+      description: <></>,
       rotate_icon: "",
       rotate_text: <></>,
       buttons: []
@@ -243,7 +333,7 @@ class HeroSection33 extends BaseHeroSection {
       infinite: true,
       accessibility: false,
       speed: 500,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -262,7 +352,7 @@ class HeroSection33 extends BaseHeroSection {
                 className={`
                 ${this.decorateCSS("dotBullet")} 
               ${activeSlide == index && this.decorateCSS("withCenterDot")}
-              ${!currentSlide.backgroundImage && this.decorateCSS("primaryBackground")}
+              ${!currentSlide.backgroundImage?.url && this.decorateCSS("primaryBackground")}
               `}
               >
                 <div>{dot}</div>
@@ -273,9 +363,10 @@ class HeroSection33 extends BaseHeroSection {
     };
 
     const animation: boolean = this.getPropValue("animation");
+    const rotateActive: boolean = this.getPropValue("rotate");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {slides.length > 0 && (
             <ComposerSlider
@@ -286,50 +377,60 @@ class HeroSection33 extends BaseHeroSection {
               {slides.map((item: Slide, index: number) => {
                 const buttons = item.buttons;
                 const titleExist = this.castToString(item.title);
-                const render = buttons?.length > 0 || titleExist || item.image;
+                const render = buttons?.length > 0 || titleExist || item.image?.url;
 
                 if (!render) return null;
                 return (
                   <div className={this.decorateCSS("content")} key={index}>
-                    {item.backgroundImage && (
-                      <img
-                        src={item.backgroundImage}
-                        alt={this.castToString(item.title)}
-                        className={this.decorateCSS("background-image")}
-                      />
+                    {item.backgroundImage?.url && (
+                      <div className={this.decorateCSS("background-wrapper")}>
+                        <Base.Media
+                          value={item.backgroundImage}
+                          className={this.decorateCSS("background-image")}
+                        />
+                        {item.overlay && <div className={this.decorateCSS("background-overlay")} />}
+                      </div>
                     )}
                     <div className={this.decorateCSS("carousel-content-div")}>
-                      <div
+                      <Base.VerticalContent
                         className={`
                             ${this.decorateCSS("carousel-content")}
-                            ${animation
-                            ? this.decorateCSS("with-transition")
-                            : ""
+                            ${animation && this.decorateCSS("with-transition")
                           }
-                            ${activeSlide === index
-                            ? this.decorateCSS("fix-location")
-                            : ""
+                            ${activeSlide === index && this.decorateCSS("fix-location")
                           }
                             ${item.centered && this.decorateCSS("centered")}
                           `}
                       >
-                        {item.image && (
-                          <div className={this.decorateCSS("circle")}>
-                            <img
-                              src={item.image}
-                              className={this.decorateCSS("circle-image")}
-                              alt="circular"
-                            />
-                          </div>
+                        {item.image && (() => {
+                          const isIcon = item.image?.type === "icon";
+                          return (
+                            <div className={`${this.decorateCSS(isIcon ? "icon-wrapper" : "circle")} ${!isIcon && rotateActive ? this.decorateCSS("rotate") : ""}`}>
+                              <Base.Media
+                                value={item.image}
+                                className={`${this.decorateCSS(isIcon ? "icon-media" : "circle-image")} ${item.backgroundImage && this.decorateCSS("blackColor")}`}
+                              />
+                            </div>
+                          );
+                        })()}
+                        {this.castToString(item.subtitle) && (
+                          <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")} ${item.backgroundImage?.url && this.decorateCSS("subtitle-has-bg")}`}>
+                            {item.subtitle}
+                          </Base.SectionSubTitle>
                         )}
                         {titleExist && (
-                          <h1
-                            className={`${this.decorateCSS("content-title")} ${item.backgroundImage &&
+                          <Base.SectionTitle
+                            className={`${this.decorateCSS("content-title")} ${item.backgroundImage?.url &&
                               this.decorateCSS("blackColor")
                               }`}
                           >
                             {item.title}
-                          </h1>
+                          </Base.SectionTitle>
+                        )}
+                        {this.castToString(item.description) && (
+                          <Base.SectionDescription className={`${this.decorateCSS("content-description")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}>
+                            {item.description}
+                          </Base.SectionDescription>
                         )}
                         {buttons?.length > 0 && (
                           <div className={this.decorateCSS("buttons-div")}>
@@ -342,18 +443,18 @@ class HeroSection33 extends BaseHeroSection {
                                   path={button.button_link}
                                 >
                                   <button
-                                    className={`${this.decorateCSS("button")} ${item.backgroundImage &&
+                                    className={`${this.decorateCSS("button")} ${item.backgroundImage?.url &&
                                       this.decorateCSS("blackColor")
                                       }`}
                                   >
-                                    {button.button_text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.button_text}</Base.P>
                                   </button>
                                 </ComposerLink>
                               );
                             })}
                           </div>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     </div>
                   </div>
                 );
@@ -361,7 +462,7 @@ class HeroSection33 extends BaseHeroSection {
             </ComposerSlider>
           )}
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }
