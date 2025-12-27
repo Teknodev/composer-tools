@@ -21,6 +21,7 @@
 
         :global(.slick-list) {
           overflow: visible !important;
+          padding-bottom: var(--composer-gap-xs);
         }
 
         &.single-slide {
@@ -357,12 +358,16 @@
             width: 480px !important;
           }
 
+          :global(.slick-list) {
+            padding-bottom: 20px !important;
+          }
+
           .slide-item {
             width: 480px;
             max-width: 480px;
             padding: 0 calc(1.5 *var(--composer-gap-md));
             transform: translateY(var(--composer-gap-sm)) scale(0.9);
-            height: min(40vh, 360px);
+            height: min(40vh, 340px) !important;
 
             .image-wrapper {
               height: min(40vh, 300px);
@@ -410,7 +415,8 @@
         }
 
         .navigation-wrapper {
-          gap: var(--composer-gap-xs);          
+          gap: var(--composer-gap-xs);
+          margin-top: var(--composer-gap-sm) !important;
 
           .arrow-button {
             border: none !important;
@@ -542,7 +548,6 @@
 
         .navigation-wrapper {
           gap: var(--composer-gap-xs);
-          margin-top: var(--composer-gap-sm);
 
           .arrow-button {
             width: 30px;
