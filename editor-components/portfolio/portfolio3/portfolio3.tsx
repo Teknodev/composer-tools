@@ -98,7 +98,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
@@ -216,7 +216,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
@@ -333,7 +333,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
@@ -450,7 +450,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
@@ -608,6 +608,44 @@ class Portfolio3 extends BasePortfolio {
     return { top: `${index * 40}px` };
   }
 
+  renderButtons(buttons: INPUTS.CastedButton[], keyPrefix: string) {
+    return buttons.map((item: INPUTS.CastedButton, index: number) => {
+      const buttonText = item.text;
+      const buttonIcon = item.icon;
+      const buttonUrl = item.url;
+      const buttonType = item.type;
+
+      const btnTextExist = this.castToString(buttonText);
+      const buttonIconExist = buttonIcon?.name || buttonIcon?.url;
+
+      if (!btnTextExist && !buttonIconExist) {
+        return null;
+      }
+
+      const url = buttonUrl || "#";
+      return (
+        <ComposerLink path={url} key={`${keyPrefix}-${index}`}>
+          <Base.Button
+            buttonType={buttonType}
+            className={this.decorateCSS("button")}
+          >
+            {btnTextExist && (
+              <Base.P className={this.decorateCSS("button-text")}>
+                {buttonText}
+              </Base.P>
+            )}
+            {buttonIconExist && (
+              <Base.Media
+                value={buttonIcon}
+                className={this.decorateCSS("button-icon")}
+              />
+            )}
+          </Base.Button>
+        </ComposerLink>
+      );
+    });
+  }
+
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
@@ -672,44 +710,7 @@ class Portfolio3 extends BasePortfolio {
                 </Base.VerticalContent>
                 {hasAnyButton && (
                   <div className={this.decorateCSS("header-buttons")}>
-                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                      const buttonText = item.text;
-                      const buttonIcon = item.icon;
-                      const buttonUrl = item.url;
-                      const buttonType = item.type;
-
-                      const btnTextExist = this.castToString(buttonText);
-                      const buttonIconExist =
-                        buttonIcon?.name || buttonIcon?.url;
-
-                      if (!btnTextExist && !buttonIconExist) {
-                        return null;
-                      }
-
-                      const url = buttonUrl || "#";
-                      return (
-                        <ComposerLink path={url} key={`header-btn-${index}`}>
-                          <Base.Button
-                            buttonType={buttonType}
-                            className={this.decorateCSS("button")}
-                          >
-                            {btnTextExist && (
-                              <Base.P
-                                className={this.decorateCSS("button-text")}
-                              >
-                                {buttonText}
-                              </Base.P>
-                            )}
-                            {buttonIconExist && (
-                              <Base.Media
-                                value={buttonIcon}
-                                className={this.decorateCSS("button-icon")}
-                              />
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
+                    {this.renderButtons(buttons, "header-btn")}
                   </div>
                 )}
               </div>
@@ -911,6 +912,13 @@ class Portfolio3 extends BasePortfolio {
               })}
             </div>
           </Base.MaxContent>
+
+          {hasAnyButton && (
+              <div className={this.decorateCSS("mobile-button-section")}>
+                {this.renderButtons(buttons, "mobile-btn")}
+              </div>
+            
+          )}
         </div>
       </Base.Container>
     );

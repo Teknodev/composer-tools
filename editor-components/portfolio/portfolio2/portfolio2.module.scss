@@ -11,7 +11,7 @@
   .max-content {
     display: flex;
     align-items: stretch;
-    gap: calc(2 * var(--composer-gap-xl));
+    gap: calc(2 * var(--composer-gap-lg));
     width: 100%;
 
     .left-side-container,
@@ -139,6 +139,7 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
+          border-radius: var(--composer-gap-sm);
         }
 
         .thumbnail-overlay {
