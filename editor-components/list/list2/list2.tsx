@@ -19,7 +19,7 @@ class List2 extends BaseList {
     this.addProp({
       type: "string",
       key: "subtitle",
-      displayer: "Subtitle", 
+      displayer: "Subtitle",
       value: "Explore",
     });
 
@@ -131,7 +131,7 @@ class List2 extends BaseList {
               type: "string",
               key: "count",
               displayer: "Count",
-              value: "24",  
+              value: "24",
             },
             {
               type: "string",
@@ -328,7 +328,7 @@ class List2 extends BaseList {
       displayer: "Overlay",
       value: true,
     });
-    
+
     this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", null, null, null, "Primary"));
     this.addProp({
       type: "multiSelect",
@@ -403,6 +403,7 @@ class List2 extends BaseList {
                   }
                   return (
                     <ComposerLink key={index} path={item.url}>
+                       <div className={this.decorateCSS("card-link")}>
                       <div
                         className={cardClasses.join(" ")}
                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
@@ -441,6 +442,7 @@ class List2 extends BaseList {
                           </div>
                         </div>
                       </div>
+                      </div>
                     </ComposerLink>
                   );
                 })}
@@ -450,7 +452,7 @@ class List2 extends BaseList {
               <ComposerLink path={buttonType.url}>
                 <div className={this.decorateCSS("button-wrapper")}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                      <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
+                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
                   </Base.Button>
                 </div>
               </ComposerLink>
