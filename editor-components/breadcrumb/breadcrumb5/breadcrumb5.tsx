@@ -5,8 +5,8 @@ import { BaseBreadcrumb } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type BreadcrumbItem = {
-    title: React.JSX.Element;
-    icon: any;
+    title: string;
+    icon: string;
     navigateTo: string;
 };
 
@@ -50,19 +50,6 @@ class Breadcrumb5 extends BaseBreadcrumb {
                     ],
                 },
             ],
-        });
-        this.addProp({
-            type: "media",
-            key: "backgroundImage",
-            displayer: "Background Media",
-            additionalParams: { availableTypes: ["image", "video"] },
-            value: { type: "image", url: "" },
-        });
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
         });
         this.addProp({
             type: "boolean",
@@ -119,19 +106,9 @@ class Breadcrumb5 extends BaseBreadcrumb {
         const currentPage = this.castToObject<any>("currentPage");
         const currentPageTitle = currentPage?.title || "";
         const currentPageIcon = currentPage?.icon || "";
-        const backgroundImage = this.getPropValue("backgroundImage");
-        const overlay = this.getPropValue("overlay");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                {overlay && <div className={this.decorateCSS("overlay")} />}
-
-               {backgroundImage && (
-                    <Base.Media
-                        value={backgroundImage}
-                        className={this.decorateCSS("background-image")}
-                    />
-                )}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showBreadcrumb && (
                         <div className={this.decorateCSS("section")}>
