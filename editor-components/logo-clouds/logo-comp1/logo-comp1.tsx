@@ -3,7 +3,6 @@ import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
   image: TypeMediaInputValue;
@@ -46,12 +45,145 @@ class LogoComp1Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+
       ],
     });
   }
@@ -102,9 +234,19 @@ class LogoComp1Page extends LogoClouds {
               className={this.decorateCSS("images-container")}
             >
               {images.map((image: any, index: number) => image.image && (
-                <ComposerLink path={image.imageLink}>
-                  <div key={index} className={this.decorateCSS("image-item")}>
-                    <Base.Media value={image.image} className={this.decorateCSS("image")} />
+                <ComposerLink path={image.imageLink}
+                  key={index}
+                >
+                  <div className={this.decorateCSS("image-item")}>
+                    {typeof image.image === "string" || image.image?.type === "image" ? (
+                      <Base.Media value={image.image} className={this.decorateCSS("image")} />
+                    ) : image.image?.type === "video" ? (
+                      <div className={this.decorateCSS("background-media")}>
+                        <Base.Media value={image.image} className={this.decorateCSS("background-media-element")} />
+                      </div>
+                    ) : (
+                      <Base.Media value={image.image} className={this.decorateCSS("image")} />
+                    )}
                   </div>
                 </ComposerLink>
               ))}

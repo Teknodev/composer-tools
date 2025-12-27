@@ -21,7 +21,7 @@ class CallToAction4Page extends BaseCallToAction {
       key: "subtitle",
       displayer: "Subtitle",
       value: "Our Services",
-    })
+    })  
     this.addProp({
       type: "string",
       key: "title",
@@ -160,7 +160,7 @@ class CallToAction4Page extends BaseCallToAction {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },

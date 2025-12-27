@@ -13,7 +13,7 @@ class Form4 extends BaseContacts {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },

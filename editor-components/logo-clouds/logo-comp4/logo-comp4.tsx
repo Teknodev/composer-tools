@@ -3,7 +3,6 @@ import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
   image: TypeMediaInputValue;
@@ -47,7 +46,7 @@ class LogoComp4Page extends LogoClouds {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -61,10 +60,98 @@ class LogoComp4Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
-        INPUTS.LOGO("section", "Section"),
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "image-item",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
       ],
     });
   }

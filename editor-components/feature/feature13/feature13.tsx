@@ -49,7 +49,7 @@ class Feature13 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "slider-images",
-      displayer: "Slider Images",
+      displayer: "Slider Media",
       additionalParams: {
         maxElementCount: 4,
       },
@@ -57,7 +57,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "image",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "number",
@@ -68,9 +68,9 @@ class Feature13 extends BaseFeature {
             {
               type: "media",
               key: "imageSource",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -82,7 +82,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "image",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "number",
@@ -93,9 +93,9 @@ class Feature13 extends BaseFeature {
             {
               type: "media",
               key: "imageSource",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -107,7 +107,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "image",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "number",
@@ -118,9 +118,9 @@ class Feature13 extends BaseFeature {
             {
               type: "media",
               key: "imageSource",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",

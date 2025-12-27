@@ -51,9 +51,9 @@ class Blog2 extends BaseBlog {
         {
           type: "media",
           key: "videoImage",
-          displayer: "Video Image",
+          displayer: "Video Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image","video"],
           },
           value: {
             type: "image",

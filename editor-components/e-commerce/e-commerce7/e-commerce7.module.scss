@@ -44,6 +44,7 @@
                             height: 100%;
                             object-fit: cover;
                             border-radius: var(--composer-border-radius-xs);
+                            aspect-ratio: 1 / 1 !important;
                         }
                         .overlay{
                             position: absolute;

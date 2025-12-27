@@ -21,9 +21,9 @@ class About8 extends BaseAbout {
     this.addProp({
       type: "media",
       key: "image-1",
-      displayer: "Image 1",
+      displayer: "Media 1",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -34,9 +34,9 @@ class About8 extends BaseAbout {
     this.addProp({
       type: "media",
       key: "image-2",
-      displayer: "Image 2",
+      displayer: "Media 2",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",

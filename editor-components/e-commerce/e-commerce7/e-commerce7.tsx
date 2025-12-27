@@ -65,12 +65,12 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           value: [
             {
               type: "media",
               key: "item",
-              displayer: "Item",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -84,12 +84,12 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           value: [
             {
               type: "media",
               key: "item",
-              displayer: "Item",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -103,12 +103,12 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           value: [
             {
               type: "media",
               key: "item",
-              displayer: "Item",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -122,12 +122,12 @@ class ECommerce7 extends BaseECommerce {
         {
           type: "object",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           value: [
             {
               type: "media",
               key: "item",
-              displayer: "Item",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },

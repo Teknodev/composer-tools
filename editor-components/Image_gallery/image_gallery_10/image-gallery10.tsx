@@ -125,7 +125,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-16-768x768.jpg",
@@ -174,7 +174,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-21-768x768.jpg",
@@ -223,7 +223,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-27-768x768.jpg",
@@ -272,7 +272,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-18-768x768.jpg",
@@ -321,7 +321,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-23-768x768.jpg",
@@ -370,7 +370,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-25-768x768.jpg",
@@ -419,7 +419,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-6-1000x1000.jpg",
@@ -468,7 +468,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19-768x768.jpg",
@@ -517,7 +517,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Background Image",
+                            displayer: "Background Media",
                             value: {
                                 type: "image",
                                 url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-22-768x768.jpg",
@@ -646,7 +646,12 @@ class ImageGallery10 extends BaseImageGallery {
                                     <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>
                                             <div className={this.decorateCSS("item-container")}
-                                                style={{ backgroundImage: cardItem.image?.url ? `url(${cardItem.image.url})` : 'none' }}>
+                                                style={{ backgroundImage: cardItem.image && cardItem.image.type !== "video" && cardItem.image.url ? `url(${cardItem.image.url})` : undefined }}>
+                                                {cardItem.image && cardItem.image.type === "video" && (
+                                                    <div className={this.decorateCSS("background-media")}>
+                                                        <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                    </div>
+                                                )}
                                                 <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
                                                     {this.castToString(cardItem.title) && (
                                                         <Base.H4
