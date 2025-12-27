@@ -28,6 +28,7 @@
     z-index: 1;
     background-color: var(--composer-overlay-color);
   }
+  .left {
   .max-content {
     height: 100%;
     position: relative;
@@ -38,6 +39,7 @@
         color: #534931;
       }
     }
+  }
   }
 }
 .strip-container {
