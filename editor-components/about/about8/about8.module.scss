@@ -7,6 +7,15 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
+    .subtitle-container {
+      .subtitle {
+        gap: 0px !important;
+      }
+      .title {
+        content: "";
+      }
+    }
+
     .main-content {
       display: flex;
       gap: var(--composer-gap-lg);

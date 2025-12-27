@@ -15,6 +15,13 @@
         .header-title, .header-description {
           text-align: center;
         }
+        .header-subtitle {
+          transform: translateY(0px) !important;
+          text-align: center !important;
+          &::before {
+            display: none !important;
+          }
+        }
       }
 
       .button-container {

@@ -24,11 +24,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-
+      .title-container {
+      .subtitle,
       .section-title {
         text-align: left;
       }
-
+      .subtitle {
+        margin-left: 0px !important;
+      }
+      }
       .right-side {
         display: flex;
         column-gap: var(--composer-gap-md);

@@ -2,9 +2,11 @@
 
 .container {
   .max-content {
-    .section-title {
-      margin-top: 0;
-      margin-bottom: var(--composer-gap-md);
+    .header {
+      .subtitle,
+      .section-title {
+        content: "";
+      }
     }
 
     .row1 {

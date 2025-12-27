@@ -23,6 +23,12 @@ class CallToAction1Page extends BaseCallToAction {
     });
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Try It For Free",
@@ -49,6 +55,9 @@ class CallToAction1Page extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")}></Base.Media>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+            )}
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
             )}

@@ -34,7 +34,13 @@
       .title, .description {
         text-align: center;
       }
-      
+      .subtitle {
+        transform: translateX(0);
+        text-align: center  !important;
+        &::before {
+          display: none;
+        }
+      }
       .line {
         width: 5rem;
         height: 2.5px;

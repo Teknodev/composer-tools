@@ -9,6 +9,12 @@ class IntroSection1 extends BaseIntroSection {
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -116,7 +122,9 @@ class IntroSection1 extends BaseIntroSection {
   }
 
   render() {
-    const title = this.getPropValue("title");
+  const title = this.getPropValue("title");
+  const subtitle = this.getPropValue("subtitle");
+  const subtitleExist = this.castToString(subtitle);
   const descriptions = this.castToObject<Array<any>>("description") || [];
   const videoSection = this.castToObject<any>("videoSection") || {};
   const video = videoSection.video;
@@ -140,9 +148,16 @@ class IntroSection1 extends BaseIntroSection {
           <div className={`${this.decorateCSS("intro-wrapper")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")} ${hasLeftContainer && !hasRightContainer ? this.decorateCSS("left-container-alone") : ""}`}>
             {hasLeftContainer && (
             <div className={this.decorateCSS("text-content")}> 
-              {hasTitle && (
+            <Base.VerticalContent className={this.decorateCSS("text-content-header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+                            {hasTitle && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>
               )}
+              </Base.VerticalContent>
 
               {hasAnyDescription && (
                 <div className={this.decorateCSS("features-list")}>

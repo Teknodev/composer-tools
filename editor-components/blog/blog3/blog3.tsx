@@ -23,6 +23,13 @@ class Blog3 extends BaseBlog {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "leftSideText",
       displayer: "Title",
       value: "Featured Posts",
@@ -444,6 +451,8 @@ class Blog3 extends BaseBlog {
 
     const rightSideTextExist = this.castToString(this.getPropValue("rightSideText"));
     const rightSideUrl = this.getPropValue("url");
+      const subtitle = this.getPropValue("subtitle");
+      const subtitleText = this.castToString(subtitle);
 
     const icons = this.castToObject<{
       rightSideIcon: { type: "icon"; name: string };
@@ -459,6 +468,8 @@ class Blog3 extends BaseBlog {
       const fullNameExist = !!this.castToString(data.fullname);
       const readTimeExist = !!this.castToString(data.readTime);
       const dateExist = !!this.castToString(data.date);
+      const subtitleExist = !!this.castToString(this.getPropValue("subtitle"));
+      const subtitle = this.getPropValue("subtitle");
 
       return (
         <div
@@ -619,13 +630,20 @@ class Blog3 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
+          {(subtitleText || leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={this.decorateCSS("title-container")}>
+              {subtitleText && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {leftSideTextExist && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
                   {this.getPropValue("leftSideText")}
                 </Base.SectionTitle>
               )}
+              </Base.VerticalContent>
               {(rightSideTextExist || !!icons.rightSideIcon) && (
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
