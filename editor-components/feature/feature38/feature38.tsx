@@ -296,10 +296,24 @@ class Feature38 extends BaseFeature {
         if (!this.cardsRootRef.current) return;
         const cardElements = Array.from(this.cardsRootRef.current.querySelectorAll(`.${styles['card']}`)) as HTMLElement[];
         const itemCount = this.getPropValue("itemCount") || 3;
+
+        const containerWidth = this.cardsRootRef.current.offsetWidth;
+        const PHONE_WIDTH = 640;
+        const TABLET_WIDTH = 1024;
+
+        let itemsPerRow: number;
+        if (containerWidth <= PHONE_WIDTH) {
+            itemsPerRow = 1;
+        } else if (containerWidth <= TABLET_WIDTH) {
+            itemsPerRow = 2;
+        } else {
+            itemsPerRow = itemCount;
+        }
+
         const rows: HTMLElement[][] = [];
 
-        for (let i = 0; i < cardElements.length; i += itemCount) {
-            rows.push(cardElements.slice(i, i + itemCount));
+        for (let i = 0; i < cardElements.length; i += itemsPerRow) {
+            rows.push(cardElements.slice(i, i + itemsPerRow));
         }
 
         rows.forEach((rowCards) => {
@@ -389,10 +403,10 @@ class Feature38 extends BaseFeature {
                                                 <div className={this.decorateCSS("card-inner")}>
                                                     <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
                                                         {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.frontIcon} className={`${this.decorateCSS("icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />  </div>)}
-                                                        {frontTitleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.frontTitle}</Base.H3>)}
+                                                        {frontTitleExist && (<Base.H3 className={this.decorateCSS("front-title")}>{card.frontTitle}</Base.H3>)}
                                                     </div>
                                                     <div className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
-                                                        {backTitleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.backTitle}</Base.H3>)}
+                                                        {backTitleExist && (<Base.H3 className={this.decorateCSS("back-title")}>{card.backTitle}</Base.H3>)}
                                                         {backDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.backDescription}</Base.P>)}
                                                     </div>
                                                 </div>

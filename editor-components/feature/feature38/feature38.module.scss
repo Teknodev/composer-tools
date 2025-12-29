@@ -76,7 +76,7 @@
                         background-color: var(--composer-primary-color);
                         z-index: 2;
 
-                        .card-title {
+                        .front-title {
                             color: var(--composer-font-color-secondary);
                         }
 
@@ -93,7 +93,8 @@
                         z-index: 1;
                     }
 
-                    .card-title,
+                    .front-title,
+                    .back-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left !important;
@@ -102,7 +103,6 @@
 
                     .icon-wrapper {
                         display: flex;
-                        margin-bottom: 1rem;
 
                         .icon {
                             color: var(--composer-font-color-secondary);
@@ -143,6 +143,21 @@
 
             .content-wrapper {
                 gap: calc(var(--composer-gap-sm) * 3);
+
+                .cards-container {
+                    .card {
+                        .icon-wrapper {
+                            .icon {
+                                font-size: 3rem;
+
+                                &.is-image {
+                                    width: 3rem;
+                                    height: 3rem;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
