@@ -4,16 +4,11 @@
     .max-content {
         .wrapper {
             display: flex;
-            gap: var(--composer-gap-xl);
+            gap: calc(var(--composer-gap-lg) * 2);
             align-items: flex-start;
 
-            .left,
-            .right {
-                min-width: 0;
-            }
-
             .left {
-                flex: 3;
+                flex: 1;
                 align-items: flex-start;
 
                 .subtitle,
@@ -28,14 +23,12 @@
 
                 .button-container {
                     display: flex;
+                    justify-content: left;
                     flex-wrap: wrap;
-                    gap: var(--composer-gap-sm);
-                    align-items: center;
-                    width: 100%;
+                    flex-direction: row;
+                    gap: var(--composer-gap-md);
 
                     .button {
-                        flex: 0 1 auto;
-
                         .button-text {
                             content: "";
                         }
@@ -44,64 +37,56 @@
             }
 
             .right {
-                flex: 7;
+                flex: 2;
                 gap: var(--composer-gap-lg);
 
                 .card-container {
                     display: flex;
+                    gap: var(--composer-gap-sm);
                     flex-direction: column;
-                    gap: var(--composer-gap-md);
 
-                    .card-icon-wrapper {
-                        width: 55px;
-                        height: 55px;
-                        min-width: 55px;
-                        min-height: 55px;
-                        border-radius: 50%;
+                    .icon-box {
                         display: flex;
-                        align-items: center;
                         justify-content: center;
-                        flex-shrink: 0;
+                        align-items: center;
+                        background-color: var(--composer-primary-color);
+                        border-radius: var(--composer-border-radius-full);
+                        padding: var(--composer-gap-md);
+                        height: 70px;
+                        width: 70px;
 
-                        &.with-bg {
-                            background: var(--composer-primary-color);
+                        &.no-bg {
+                            background-color: transparent;
 
                             .card-icon {
-                                color: var(--composer-font-color-secondary);
+                                color: var(--composer-primary-color);
                             }
                         }
 
-                        &.no-bg {
-                            background: transparent;
-                        }
-
                         .card-icon {
-                            font-size: 2rem;
-                            width: 2rem;
-                            height: 2rem;
+                            font-size: 2.5rem;
+                            color: var(--composer-font-color-secondary);
                             display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: var(--composer-primary-color);
+
+                            &.is-image {
+                                width: 100%;
+                                height: 100%;
+                            }
                         }
                     }
 
                     .card-content {
                         flex: 1;
-                        min-width: 0;
                         align-items: flex-start;
-
-                        .card-title,
-                        .card-description {
-                            text-align: left;
-                        }
 
                         .card-title {
                             color: var(--composer-font-color-primary);
+                            text-align: left;
                         }
 
                         .card-description {
                             color: var(--composer-tertiary-color);
+                            text-align: left;
                         }
                     }
                 }
@@ -111,72 +96,55 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .wrapper {
-        gap: var(--composer-gap-lg);
+    .container {
+        .max-content {
+            .wrapper {
+                flex-direction: column;
+                gap: var(--composer-gap-xl);
 
-        .right {
-            gap: var(--composer-gap-md);
+                .left {
+                    width: 100%;
+
+                    &[data-alignment="center"] {
+                        align-items: center;
+
+                        .subtitle,
+                        .title,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                        }
+
+                        .button-container {
+                            justify-content: center;
+                        }
+                    }
+                }
+
+                .right {
+                    width: 100%;
+                    row-gap: var(--composer-gap-md);
+                }
+            }
         }
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .wrapper {
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-
-        &.has-buttons {
-            gap: var(--composer-gap-lg);
-        }
-
-        .left,
-        .right {
-            width: 100%;
-        }
-
-        .left {
-            &[data-alignment="center"] {
-                align-items: center;
-
-                .subtitle,
-                .title,
-                .description {
-                    text-align: center;
-                }
-
-                .subtitle {
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-
-                .button-container {
-                    justify-content: center;
-                }
-            }
-
-            .button-container {
-                gap: var(--composer-gap-sm);
-                row-gap: var(--composer-gap-md);
-            }
-
-            .button {
-                text-align: center;
-            }
-        }
-
-        .right {
-            gap: var(--composer-gap-md);
-
-            .card-container .card-icon-wrapper {
-                width: 50px;
-                height: 50px;
-                min-width: 50px;
-                min-height: 50px;
-
-                .card-icon {
-                    font-size: 1.5rem;
-                    width: 1.5rem;
-                    height: 1.5rem;
+    .container {
+        .max-content {
+            .wrapper {
+                .right {
+                    .card-container {
+                        .icon-box {
+                            .card-icon {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
                 }
             }
         }
