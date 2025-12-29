@@ -405,10 +405,10 @@ class Feature38 extends BaseFeature {
                                                         {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.frontIcon} className={`${this.decorateCSS("icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />  </div>)}
                                                         {frontTitleExist && (<Base.H3 className={this.decorateCSS("front-title")}>{card.frontTitle}</Base.H3>)}
                                                     </div>
-                                                    <div className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
+                                                    <Base.VerticalContent className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
                                                         {backTitleExist && (<Base.H3 className={this.decorateCSS("back-title")}>{card.backTitle}</Base.H3>)}
                                                         {backDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.backDescription}</Base.P>)}
-                                                    </div>
+                                                    </Base.VerticalContent>
                                                 </div>
                                             </div>
                                         );
