@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { useState, useEffect } from "react";
 
 type RatingItemType = {
-    icon: any;
+    icon: TypeMediaInputValue;
 }
 
 type StatItemType = {
@@ -22,7 +22,7 @@ class Stats13 extends BaseStats {
         this.addProp({
             type: "media",
             key: "image",
-            displayer: "Image",
+            displayer: "Media",
             value: {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367e0a496aa1002ca9b081?alt=media",
                 type: "image",
@@ -200,7 +200,7 @@ class Stats13 extends BaseStats {
             value: [
                 {
                     type: "object",
-                    key: "stat1",
+                    key: "stat",
                     displayer: "Stat Item",
                     value: [
                         {
@@ -225,7 +225,7 @@ class Stats13 extends BaseStats {
                 },
                 {
                     type: "object",
-                    key: "stat2",
+                    key: "stat",
                     displayer: "Stat Item",
                     value: [
                         {
@@ -257,53 +257,64 @@ class Stats13 extends BaseStats {
     }
 
     TypewriterText = ({ content, text, enableAnimation }: { content: any, text: string, enableAnimation: boolean }) => {
-        if (!enableAnimation || !text) { return <>{content}</>; }
+        if (!enableAnimation || !text) {
+            return <>{content}</>;
+        }
+
         const [displayedText, setDisplayedText] = useState("");
         const [isCompleted, setIsCompleted] = useState(false);
+        const TYPE_SPEED = 100;
+
         useEffect(() => {
             setIsCompleted(false);
             setDisplayedText("");
-            const textToAnimate = text;
-            const TYPE_SPEED = 100;
+
+            let currentIndex = 0;
             let timeoutId: NodeJS.Timeout;
-            let index = 0;
-            const animate = () => {
-                if (index < textToAnimate.length) {
-                    setDisplayedText(textToAnimate.substring(0, index + 1));
-                    index++;
-                    timeoutId = setTimeout(animate, TYPE_SPEED);
+
+            const typeNextChar = () => {
+                if (currentIndex < text.length) {
+                    setDisplayedText(text.slice(0, ++currentIndex));
+                    timeoutId = setTimeout(typeNextChar, TYPE_SPEED);
                 } else {
                     setIsCompleted(true);
                 }
             };
-            timeoutId = setTimeout(animate, TYPE_SPEED);
+
+            timeoutId = setTimeout(typeNextChar, TYPE_SPEED);
+
             return () => clearTimeout(timeoutId);
         }, [text, enableAnimation]);
-        if (isCompleted) { return <>{content}</>; }
+        if (isCompleted) {
+            return <>{content}</>;
+        }
         return <>{displayedText}</>;
     };
 
     AnimatedNumber = ({ targetValue, duration = 4000 }: { targetValue: number, duration?: number }) => {
         const [currentValue, setCurrentValue] = useState(0);
+
         useEffect(() => {
             const startTime = Date.now();
-            const startValue = 0;
-            const updateNumber = () => {
-                const now = Date.now();
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-                const newValue = startValue + (targetValue - startValue) * easeOutQuart;
-                setCurrentValue(newValue);
+            let animationId: number;
+            const easeOutQuart = (t: number): number => 1 - Math.pow(1 - t, 4);
+            const lerp = (start: number, end: number, t: number): number => start + (end - start) * t;
+
+            const animate = () => {
+                const progress = Math.min((Date.now() - startTime) / duration, 1);
+                const easedProgress = easeOutQuart(progress);
+
+                setCurrentValue(lerp(0, targetValue, easedProgress));
                 if (progress < 1) {
-                    requestAnimationFrame(updateNumber);
-                } else {
-                    setCurrentValue(targetValue);
+                    animationId = requestAnimationFrame(animate);
                 }
             };
-            requestAnimationFrame(updateNumber);
+            animationId = requestAnimationFrame(animate);
+            return () => cancelAnimationFrame(animationId);
         }, [targetValue, duration]);
-        return <span>{currentValue.toFixed(targetValue % 1 === 0 ? 0 : 1)}</span>;
+
+        const decimalPlaces = targetValue % 1 === 0 ? 0 : 1;
+        return <span>{currentValue.toFixed(decimalPlaces)}</span>;
     };
 
     render() {
@@ -312,7 +323,7 @@ class Stats13 extends BaseStats {
         const ratingItems = this.castToObject<RatingItemType[]>("rating");
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleProp = this.getPropValue("title");
-        const titleExist = this.castToString(titleProp) as string;
+        const titleExist = this.castToString(titleProp);
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableTextAnimation = this.getPropValue("enableTextAnimation");
         const enableStatAnimation = this.getPropValue("enableStatAnimation");
@@ -322,7 +333,7 @@ class Stats13 extends BaseStats {
         const hasContent = ratingItems.length > 0 || !!titleExist || buttons.length > 0 || statsItems.length > 0 || subtitleExist || descriptionExist;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist ? this.decorateCSS("content-full-width") : ""} ${!hasContent ? this.decorateCSS("image-full-width") : ""}`} isFull={true}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!isImageExist && this.decorateCSS("content-full-width")} ${!hasContent && this.decorateCSS("image-full-width")}`} isFull={true}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
@@ -333,7 +344,10 @@ class Stats13 extends BaseStats {
                                             {ratingItems.map((item: RatingItemType, index: number) => {
                                                 return (
                                                     <div key={index} className={this.decorateCSS("rating-content")}>
-                                                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                                        <Base.Media
+                                                            value={item.icon}
+                                                            className={this.decorateCSS("icon")}
+                                                        />
                                                     </div>
                                                 );
                                             })}
@@ -341,7 +355,7 @@ class Stats13 extends BaseStats {
                                         </Base.Row>
                                     )}
                                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
-                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}><this.TypewriterText content={titleProp} text={titleExist} enableAnimation={enableTextAnimation} /></Base.SectionTitle>)}
+                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}><this.TypewriterText content={titleProp} text={titleExist as string} enableAnimation={enableTextAnimation} /></Base.SectionTitle>)}
                                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
                                     <div className={this.decorateCSS("child-container")}>
                                         {buttons.length > 0 && (
@@ -350,10 +364,16 @@ class Stats13 extends BaseStats {
                                                     const buttonText = this.castToString(item.text || "");
                                                     const buttonUrl = item.url || "#";
                                                     if (!buttonText && !item.icon) return null;
+
                                                     return (
                                                         <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                                {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={{ type: "icon", name: item.icon }} />)}
+                                                                {item.icon && (
+                                                                    <Base.Media
+                                                                        className={this.decorateCSS("button-icon")}
+                                                                        value={{ type: "icon", name: item.icon }}
+                                                                    />
+                                                                )}
                                                                 {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                                             </Base.Button>
                                                         </ComposerLink>
@@ -368,12 +388,17 @@ class Stats13 extends BaseStats {
                                                     const parsedNumber = parseFloat(numberAsString as string) || 0;
                                                     const symbol = item.symbol;
                                                     const description = item.description;
+
                                                     return (
                                                         <div key={`stat-${index}`} className={this.decorateCSS("stat-item")}>
-                                                            <span className={this.decorateCSS("stat-number")}>
-                                                                {enableStatAnimation ? (<this.AnimatedNumber targetValue={parsedNumber} duration={3000} />) : (parsedNumber)}
+                                                            <Base.H2 className={this.decorateCSS("stat-number")}>
+                                                                {enableStatAnimation ? (
+                                                                    <this.AnimatedNumber targetValue={parsedNumber} duration={3000} />
+                                                                ) : (
+                                                                    parsedNumber
+                                                                )}
                                                                 <span className={this.decorateCSS("stat-symbol")}>{symbol}</span>
-                                                            </span>
+                                                            </Base.H2>
                                                             <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
                                                         </div>
                                                     );
@@ -387,8 +412,13 @@ class Stats13 extends BaseStats {
                         {isImageExist && (
                             <div className={this.decorateCSS("right-content")}>
                                 <div className={this.decorateCSS("image-wrapper")}>
-                                    <Base.Media value={image} className={this.decorateCSS("image")} />
-                                    {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
+                                    <Base.Media
+                                        value={image}
+                                        className={this.decorateCSS("image")}
+                                    />
+                                    {enableOverlay && (
+                                        <div className={this.decorateCSS("overlay")}></div>
+                                    )}
                                 </div>
                             </div>
                         )}
