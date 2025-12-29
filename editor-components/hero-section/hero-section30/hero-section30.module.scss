@@ -140,7 +140,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
-        margin-top: var(--composer-gap-lg);
+        margin-top: var(--composer-gap-md);
 
         .button {
           .button-text {
@@ -178,6 +178,10 @@
             max-width: 370px;
             object-fit: cover;
           }
+        }
+
+        .buttons {
+          margin-top: var(--composer-gap-sm);
         }
       }
     }

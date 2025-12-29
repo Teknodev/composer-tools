@@ -409,7 +409,7 @@
 
                 .middleImages-container {
                       .image-wrapper {
-                        height: 9vw;
+                        max-height: 9vw;
                         min-height: 80px;
                         display: flex;
                         align-items: center;
@@ -502,7 +502,6 @@
             }
 
             .middleDiv {
-              padding-bottom: var(--composer-gap-md);
               max-width: 100%;
 
               .middleDiv-content {

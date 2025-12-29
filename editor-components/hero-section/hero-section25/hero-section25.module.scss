@@ -404,9 +404,6 @@
         }
 
         .top-figure {
-          .pagination {
-            margin-left: 25%;
-          }
           .low-op-text {
             font-size: 5rem;
           }
@@ -468,16 +465,15 @@
           height: 30%;
 
           .pagination {
-            margin-left: 22%;
             .active-slide {
-              font-size: 6vh;
+              font-size: 5vh;
             }
 
             .slide-count-power {
 
               .divider,
               .slide-count {
-                font-size: 1.25rem;
+                font-size: 1;
               }
             }
           }
