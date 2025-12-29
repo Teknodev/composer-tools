@@ -56,13 +56,13 @@ class Feature38 extends BaseFeature {
                         {
                             type: "string",
                             key: "frontTitle",
-                            displayer: "Front Title",
+                            displayer: "Title",
                             value: "Quick Start",
                         },
                         {
                             type: "media",
                             key: "frontIcon",
-                            displayer: "Front Icon",
+                            displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -74,13 +74,13 @@ class Feature38 extends BaseFeature {
                         {
                             type: "string",
                             key: "backTitle",
-                            displayer: "Back Title",
+                            displayer: "Hover Title",
                             value: "Quick Start",
                         },
                         {
                             type: "string",
                             key: "backDescription",
-                            displayer: "Back Description",
+                            displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
                     ]
@@ -99,7 +99,7 @@ class Feature38 extends BaseFeature {
                         {
                             type: "media",
                             key: "frontIcon",
-                            displayer: "Front Icon",
+                            displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -111,13 +111,13 @@ class Feature38 extends BaseFeature {
                         {
                             type: "string",
                             key: "backTitle",
-                            displayer: "Back Title",
+                            displayer: "Hover Title",
                             value: "24/7 Support",
                         },
                         {
                             type: "string",
                             key: "backDescription",
-                            displayer: "Back Description",
+                            displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
                     ]
@@ -136,7 +136,7 @@ class Feature38 extends BaseFeature {
                         {
                             type: "media",
                             key: "frontIcon",
-                            displayer: "Front Icon",
+                            displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -148,13 +148,13 @@ class Feature38 extends BaseFeature {
                         {
                             type: "string",
                             key: "backTitle",
-                            displayer: "Back Title",
+                            displayer: "Hover Title",
                             value: "Free Guides",
                         },
                         {
                             type: "string",
                             key: "backDescription",
-                            displayer: "Back Description",
+                            displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
                     ]
@@ -173,7 +173,7 @@ class Feature38 extends BaseFeature {
                         {
                             type: "media",
                             key: "frontIcon",
-                            displayer: "Front Icon",
+                            displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -185,13 +185,13 @@ class Feature38 extends BaseFeature {
                         {
                             type: "string",
                             key: "backTitle",
-                            displayer: "Back Title",
+                            displayer: "Hover Title",
                             value: "Modern Design",
                         },
                         {
                             type: "string",
                             key: "backDescription",
-                            displayer: "Back Description",
+                            displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
                     ]
@@ -210,7 +210,7 @@ class Feature38 extends BaseFeature {
                         {
                             type: "media",
                             key: "frontIcon",
-                            displayer: "Front Icon",
+                            displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -222,13 +222,13 @@ class Feature38 extends BaseFeature {
                         {
                             type: "string",
                             key: "backTitle",
-                            displayer: "Back Title",
+                            displayer: "Hover Title",
                             value: "High Quality",
                         },
                         {
                             type: "string",
                             key: "backDescription",
-                            displayer: "Back Description",
+                            displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
                     ]
@@ -247,7 +247,7 @@ class Feature38 extends BaseFeature {
                         {
                             type: "media",
                             key: "frontIcon",
-                            displayer: "Front Icon",
+                            displayer: "Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -259,13 +259,13 @@ class Feature38 extends BaseFeature {
                         {
                             type: "string",
                             key: "backTitle",
-                            displayer: "Back Title",
+                            displayer: "Hover Title",
                             value: "Premium Addons",
                         },
                         {
                             type: "string",
                             key: "backDescription",
-                            displayer: "Back Description",
+                            displayer: "Hover Description",
                             value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                         },
                     ]
