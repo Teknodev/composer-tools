@@ -111,13 +111,16 @@
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          padding: var(--composer-gap-md);
+          margin: 0px;
           .cardTitle {
             color: var(--composer-font-color-primary);
-            padding-bottom: var(--composer-gap-sm);
+            padding: var(--composer-gap-md);
+            margin: 0;
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
           }
           .card-subtitle {
+            margin-left:var(--composer-gap-md);
+            margin-top:var(--composer-gap-md);
             &::before {
               display: block;
               color:white !important;           
@@ -128,7 +131,7 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-xs);
-            padding: 0;
+            padding: var(--composer-gap-md);
 
             .list-element {
               display: flex;
