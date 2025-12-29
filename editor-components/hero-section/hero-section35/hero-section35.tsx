@@ -25,6 +25,13 @@ class HeroSection35 extends BaseHeroSection {
                     } 
                 },
                {
+                    type: "media",
+                    key: "logo",
+                    displayer: "Logo",
+                    additionalParams: { availableTypes: ["icon", "image"] },
+                    value: { type: "icon", name: "" },
+               },
+               {
                     type: "string",
                     key: "subtitle",
                     displayer: "Subtitle",
@@ -131,34 +138,62 @@ class HeroSection35 extends BaseHeroSection {
                             value: true
                         },
                         {
-                            type: "media",
-                            key: "customer1Image",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "video"] },
-                            value: {
-                                type: "image",
-                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-1.webp",
-                            },
-                        },
-                        {
-                            type: "media",
-                            key: "customer2Image",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "video"] },
-                            value: {
-                                type: "image",
-                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-2.webp",
-                            },
-                        },
-                        {
-                            type: "media",
-                            key: "customer3Image",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "video"] },
-                            value: {
-                                type: "image",
-                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-3.webp",
-                            },
+                            type: "array",
+                            key: "customerImages",
+                            displayer: "Customer Images",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "customerImage",
+                                    displayer: "Customer Image",
+                                    value: [
+                                        {
+                                            type: "media",
+                                            key: "image",
+                                            displayer: "Image",
+                                            additionalParams: { availableTypes: ["image"] },
+                                            value: {
+                                                type: "image",
+                                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-1.webp",
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "customerImage",
+                                    displayer: "Customer Image",
+                                    value: [
+                                        {
+                                            type: "media",
+                                            key: "image",
+                                            displayer: "Image",
+                                            additionalParams: { availableTypes: ["image"] },
+                                            value: {
+                                                type: "image",
+                                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-2.webp",
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "customerImage",
+                                    displayer: "Customer Image",
+                                    value: [
+                                        {
+                                            type: "media",
+                                            key: "image",
+                                            displayer: "Image",
+                                            additionalParams: { availableTypes: ["image"] },
+                                            value: {
+                                                type: "image",
+                                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-3.webp",
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
                         },
                         {
                             type: "media",
@@ -220,9 +255,9 @@ class HeroSection35 extends BaseHeroSection {
         const leftCardTextExist = this.castToString(leftCard.text);
 
         const customerBoxDescriptionExist = this.castToString(customerBox.customerDesc);
-        const customerBoxImageExist = customerBox.customer1Image || customerBox.customer2Image || customerBox.customer3Image || customerBox.customerIcon;
+        const customerBoxImageExist = (customerBox.customerImages && customerBox.customerImages.length > 0) || customerBox.customerIcon;
         const customerBoxNumberExist = this.castToString(customerBox.customerNumber);
-        const leftCardExist = leftCard.pattern || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || leftCard.smallIcon || leftCard.mainIcon;
+        const leftCardExist = leftCard.pattern || leftCard.logo || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || leftCard.smallIcon || leftCard.mainIcon;
         const customerBoxExist = customerBoxImageExist || customerBoxDescriptionExist || customerBoxNumberExist;
         const rightCardExist = rightCard.image || (customerBoxExist && customerBox.visibility);
 
@@ -241,7 +276,15 @@ class HeroSection35 extends BaseHeroSection {
                                     </div>
                                 )}
                                 <div className={this.decorateCSS("left-content-wrapper")}>
-                                    {(leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
+                                    {(leftCard?.logo || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
+                                        {(leftCard?.logo?.url || leftCard?.logo?.name) && (
+                                        <div className={this.decorateCSS("logo-wrapper")}>
+                                            <Base.Media
+                                                value={leftCard.logo}
+                                                className={`${this.decorateCSS("logo")} ${leftCard.logo.type == "image" && this.decorateCSS("logo-image")}`}
+                                            />
+                                        </div>
+                                        )}
                                         {leftCardSubtitleExist && (
                                             <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${leftCard.pattern && this.decorateCSS("subtitle-has-image")}`}>
                                                 {leftCard.subtitle}
@@ -329,24 +372,17 @@ class HeroSection35 extends BaseHeroSection {
                                         <div className={`${this.decorateCSS("box-area")} ${!rightCard.image ? this.decorateCSS("full-size") : ""}`}>
                                             <div className={this.decorateCSS("customer-box")}>
                                                 {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
-                                                    {customerBox.customer1Image && (
-                                                        <Base.Media
-                                                            value={customerBox.customer1Image}
-                                                            className={this.decorateCSS("customer-img")}
-                                                        />
-                                                    )}
-                                                    {customerBox.customer2Image && (
-                                                        <Base.Media
-                                                            value={customerBox.customer2Image}
-                                                            className={this.decorateCSS("customer-img")}
-                                                        />
-                                                    )}
-                                                    {customerBox.customer3Image && (
-                                                        <Base.Media
-                                                            value={customerBox.customer3Image}
-                                                            className={this.decorateCSS("customer-img")}
-                                                        />
-                                                    )}
+                                                    {customerBox.customerImages && customerBox.customerImages.map((item: any, idx: number) => {
+                                                        const mediaField = Array.isArray(item?.value) ? item.value.find((v: any) => v.type === 'media' || v.key === 'image') : item?.value;
+                                                        const mediaValue = mediaField?.value ?? mediaField ?? item;
+                                                        return (
+                                                            <Base.Media
+                                                                key={idx}
+                                                                value={mediaValue}
+                                                                className={this.decorateCSS("customer-img")}
+                                                            />
+                                                        );
+                                                    })}
                                                     {customerBox.customerIcon && (
                                                         <div className={this.decorateCSS("customer-icon-container")}>
                                                             <Base.Media 

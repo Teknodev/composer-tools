@@ -8,6 +8,7 @@
         .content{
             display: flex;
             gap: var(--composer-gap-md);
+            align-items: stretch;
 
             .left-card{
                 display: flex;
@@ -67,16 +68,37 @@
                             line-height: 1;
                             color: var(--composer-font-color-secondary);
                         }
+                        .logo-wrapper{
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: 100%;
+                            margin-bottom: var(--composer-gap-sm);
+
+                            .logo{
+                                display: flex;
+                                color: var(--composer-font-color-secondary);
+                                font-size: 3rem;
+                                
+                                &.logo-image {
+                                    max-width: 150px;
+                                    width: 100%;
+                                    aspect-ratio: 3 / 1;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+
                         .main-info-wrapper{
                             max-width: 475px;
                             margin-inline-start: auto;
-                            margin-top: var(--composer-gap-xl);
+                            margin-top: var(--composer-gap-md);
                             margin-right: calc(2* var(--composer-gap-xl));
                             
                             &.center-wrapper {
                                 max-width: 50%;
                                 margin: 0 auto;
-                                margin-top: var(--composer-gap-xl);
+                                margin-top: var(--composer-gap-md);
                             }
                             .divider-top {
                                 width: 100%;
@@ -174,13 +196,16 @@
             .right-card,
             .right-card-no-left-card{
                 flex: 1;
+               
                 .image-container{
                     position: relative;
                     height: 100%;
+                  
                     .image-wrapper{
                         position: relative;
                         width: 100%;
                         height: 100%;
+                        
                         .image{
                             width: 100%;
                             height: 100%;
@@ -202,13 +227,13 @@
                             z-index: 3;
                         }
                     }
-                    .box-area {
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            height: auto;
-                            max-height: 50%;
-                            width: 40%;
+                            .box-area {
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                height: auto;
+                                max-height: 50%;
+                                width: 40%;
                             background-color: var(--composer-html-background);
                             padding: 15px 15px 0 0;
                             border-top-right-radius: var(--composer-border-radius-md);
@@ -220,12 +245,27 @@
                             overflow: visible;
 
                             &.full-size {
-                                position: relative;
-                                height: 100%;
-                                width: 100%;
-                                border-radius: var(--composer-border-radius-md);
-                                padding: 0;
-                            }
+                                    position: relative;
+                                    top: 0;
+                                    left: 0;
+                                    bottom: 0;
+                                    height: 100%;
+                                    max-height: none;
+                                    width: 100%;
+                                    border-radius: var(--composer-border-radius-md);
+                                    padding: 0;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+
+                                    .customer-box {
+                                        height: 100%;
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: flex-end;
+                                        align-items: stretch;
+                                    }
+                                }
                         &::before {
                             content: '';
                             position: absolute;

@@ -289,7 +289,9 @@
                 }
 
                 .count {
-                  @include flexCenter;
+                  display: grid;
+                  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+                  align-items: center;
                   gap: var(--composer-gap-md);
                   word-break: break-word;
                   flex: 1;
@@ -297,9 +299,15 @@
                   .count-items {
                     display: flex;
                     flex-direction: column;
-                    width: fit-content;
-                    text-align: left;
+                    justify-self: end;
+                    width: auto;
+                    max-width: 100%;
+                    min-width: 80px;
+                    padding-right: var(--composer-gap-sm);
                     gap: var(--composer-gap-sm);
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
 
                     .itemsNo {
                       font-size: 2rem;
@@ -318,18 +326,28 @@
                   }
 
                   .line {
+                    grid-column: 2 / 3;
+                    justify-self: center;
+                    align-self: center;
                     opacity: 0.4;
                     width: 1px;
                     background: var(--composer-font-color-primary);
-                    height: 100%;
+                    height: 60%;
+                    pointer-events: none;
                   }
 
                   .customers {
                     display: flex;
                     flex-direction: column;
-                    width: fit-content;
+                    justify-self: start;
+                    width: auto;
+                    max-width: 100%;
+                    min-width: 80px;
                     gap: var(--composer-gap-sm);
                     text-align: start;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
 
                     .customerNo {
                       margin: 0;
@@ -421,7 +439,6 @@
                   gap: var(--composer-gap-md);
 
                   .count {
-                    gap: var(--composer-gap-sm);
                     .count-items {
                       .itemsNo {
                         font-size: 2rem;

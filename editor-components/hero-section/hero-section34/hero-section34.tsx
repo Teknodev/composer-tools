@@ -12,6 +12,7 @@ interface Slider {
   title: React.JSX.Element;
   description?: React.JSX.Element;
   button: INPUTS.CastedButton;
+  overlay?: boolean;
 }
 
 class HeroSection34 extends BaseHeroSection {
@@ -64,6 +65,12 @@ class HeroSection34 extends BaseHeroSection {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -108,6 +115,12 @@ class HeroSection34 extends BaseHeroSection {
               },
             },
             {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -150,6 +163,12 @@ class HeroSection34 extends BaseHeroSection {
               value: { type: "image", url:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "string",
@@ -197,7 +216,7 @@ class HeroSection34 extends BaseHeroSection {
     const slides = this.castToObject<Slider[]>("slider");
 
     const activeIndex = this.getComponentState("active-index");
-    const activeSlide = slides[activeIndex] || { image: "" };
+    const activeSlide = slides[activeIndex] || { image: "", overlay: false };
     const slideStatus = this.getComponentState("slideStatus");
     const slideDirection = this.getComponentState("slide-direction");
     const overlayActiveIndex = this.getComponentState("overlay-active-index");
@@ -251,7 +270,7 @@ class HeroSection34 extends BaseHeroSection {
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!!activeSlide.image == false && this.decorateCSS("no-image")}`}>
         <div
-          className={this.decorateCSS("max-content")}
+          className={`${this.decorateCSS("max-content")} ${activeSlide.overlay ? this.decorateCSS("overlay-active") : ""}`}
         >
           <div className={this.decorateCSS("slider-container")}>
             <div
@@ -278,11 +297,7 @@ class HeroSection34 extends BaseHeroSection {
             </div>
           </div>
           <div
-            className={`${this.decorateCSS(
-              "contentContainer"
-            )} animate__animated ${this.getComponentState(
-              "contentAnimationClass"
-            )}`}
+            className={`${this.decorateCSS("contentContainer")} animate__animated ${this.getComponentState("contentAnimationClass")}`}
           >
               <Base.MaxContent className={this.decorateCSS("content")}>
                 <Base.VerticalContent data-has-image={slides[overlayActiveIndex].image ? "true" : "false"} className={this.decorateCSS("text-content")}>
