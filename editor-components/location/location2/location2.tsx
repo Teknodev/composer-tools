@@ -58,14 +58,14 @@ class Location2 extends Location {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Header Title",
+      displayer: "Title",
       value: "Connect with us",
     });
 
     this.addProp({
       type: "string",
       key: "headerDescription",
-      displayer: "Header Description",
+      displayer: "Description",
       value:
         "Each template in our ever growing studio library can be added and moved around within any page effortlessly with one click. Combine them, rearrange them and customize them further as much as you desire. Welcome to the future of building with WordPress.",
     });
@@ -541,7 +541,7 @@ class Location2 extends Location {
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
 
-                <div className={`${this.decorateCSS("description-container")}`}>
+                  <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
                   {socials.length > 0 && (
                     <div className={this.decorateCSS("socials")}>

@@ -52,12 +52,28 @@ class Location1 extends Location {
       displayer: "Title",
       value: "Connect with social media",
     });
+   
+    this.addProp({
+      type: "string",
+      key: "headerDescription",
+      displayer: "Description",
+      value: "",
+    });
 
     this.addProp({
       type: "boolean",
       key: "line",
       displayer: "Line",
       value: true,
+    });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
     });
 
     this.addProp({
@@ -343,15 +359,15 @@ class Location1 extends Location {
               <div className={this.decorateCSS("popup")}>
                 {(popupTitle || description) && (
                   <div className={this.decorateCSS("popup-header")}>
-                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle && (popupTitle.charAt ? popupTitle.charAt(0).toUpperCase() + popupTitle.slice(1) : popupTitle)}</Base.P>}
-                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description && (description.charAt ? description.charAt(0).toUpperCase() + description.slice(1) : description)}</Base.P>}
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{typeof popupTitle === "string" ? popupTitle.charAt(0).toUpperCase() + popupTitle.slice(1) : popupTitle}</Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{typeof description === "string" ? description.charAt(0).toUpperCase() + description.slice(1) : description}</Base.P>}
                   </div>
                 )}
                 {popupButtonText && (
                   <div className={this.decorateCSS("popup-link")}>
                     <ComposerLink path={popupButtonUrl}>
                       <div className={this.decorateCSS("popup-button")}>
-                        {popupButtonText && (popupButtonText.charAt ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}
+                        {popupButtonText && (typeof popupButtonText === "string" ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}
                       </div>
                     </ComposerLink>
                   </div>
@@ -384,33 +400,58 @@ class Location1 extends Location {
     const line = this.getPropValue("line");
     const description = buttom.description;
     const phone = buttom.phoneNumber;
+    const headerDescription = this.castToString(this.getPropValue("headerDescription"));
 
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
+
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {(hasTitle || icons.length > 0) && (
-              <div className={this.decorateCSS("header")}>
+              <div className={`${this.decorateCSS("header")} ${alignment === "center" ? this.decorateCSS("center") : ""} ${alignment === "left" ? this.decorateCSS("left") : ""}`}>
                 <Base.VerticalContent className={this.decorateCSS("title-block")}>
                   {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                   {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {headerDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{headerDescription}</Base.SectionDescription>}
                 </Base.VerticalContent>
-                {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
-                {icons.length > 0 && (
-                  <div className={this.decorateCSS("icon-container")}>
-                    {icons.map((icon: any, index: number) => {
-                      return (
-                        <div className={this.decorateCSS("icon-wrapper")} key={index}>
-                          <ComposerLink path={icon.getPropValue("path")}>
-                            <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
-                          </ComposerLink>
-                        </div>
-                      );
-                    })}
+                {alignment === "left" ? (
+                  <div className={this.decorateCSS("right-block")}>
+                    {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
+                    {icons.length > 0 && (
+                      <div className={this.decorateCSS("icon-container")}>
+                        {icons.map((icon: any, index: number) => {
+                          return (
+                            <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                              <ComposerLink path={icon.getPropValue("path")}>
+                                <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                              </ComposerLink>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
+                ) : (
+                  <>
+                    {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
+                    {icons.length > 0 && (
+                      <div className={this.decorateCSS("icon-container")}>
+                        {icons.map((icon: any, index: number) => {
+                          return (
+                            <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                              <ComposerLink path={icon.getPropValue("path")}>
+                                <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                              </ComposerLink>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             )}
@@ -420,12 +461,12 @@ class Location1 extends Location {
             </section>
 
             {(description || phone) && (
-              <div className={this.decorateCSS("bottom-container")}>
-                {description && <Base.P className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.P>}
+              <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" ? this.decorateCSS("center") : ""} ${alignment === "left" ? this.decorateCSS("left") : ""}`}>
+                {description && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
                 {phone && (
                   <Base.VerticalContent className={this.decorateCSS("phone-container")}>
                     <ComposerLink path={buttom.path}>
-                      <Base.P className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.P>
+                      <Base.H5 className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.H5>
                     </ComposerLink>
                   </Base.VerticalContent>
                 )}

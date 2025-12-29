@@ -1,4 +1,3 @@
-import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location5.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
@@ -20,7 +19,7 @@ class Location5 extends Location {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Header Title",
+      displayer: "Title",
       value: "Offices",
     });
 

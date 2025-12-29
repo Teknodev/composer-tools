@@ -12,18 +12,36 @@
           content: "";
         }
 
+        .subtitle, .title {
+          text-align: left !important;
+        }
+        .description-container .description-text {
+          text-align: left !important;
+        }
+
         .description-container {
           display: flex;
           align-items: center;
           gap: var(--composer-gap-md);
 
+          .socials,
+          &.center .socials,
+          &.left .socials {
+            justify-content: flex-start !important;
+            width: auto !important;
+            align-self: flex-start !important;
+          }
+
           .description-text {
             content: "";
           }
 
-          .socials {
+            .socials {
             display: flex;
             gap: var(--composer-gap-sm);
+            align-self: flex-start;
+            justify-content: flex-start !important;
+            width: auto !important;
 
             .socials-container {
               min-width: 5%;
@@ -49,7 +67,18 @@
           }
 
           &.center {
-            flex-direction: column;
+            .socials {
+              width: auto;
+              justify-content: flex-start;
+              align-self: center;
+            }
+          }
+          &.left {
+            .socials {
+              width: auto;
+              justify-content: flex-start;
+              align-self: center;
+            }
           }
         }
       }
