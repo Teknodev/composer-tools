@@ -89,9 +89,6 @@ class LogoComp8Page extends LogoClouds {
                             type:"media",
                             key: "image",
                             displayer: "Media",
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
                             value:{
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dfd1436675f002dbc47f9?alt=media",
@@ -113,7 +110,7 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type:"media",
                             key: "image",
-                            displayer: "Media",
+                            displayer: "Image",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },

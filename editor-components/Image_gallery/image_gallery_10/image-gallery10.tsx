@@ -645,13 +645,10 @@ class ImageGallery10 extends BaseImageGallery {
                                 {cardList.map((cardItem: any, index: number) => (
                                     <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>
-                                            <div className={this.decorateCSS("item-container")}
-                                                style={{ backgroundImage: cardItem.image && cardItem.image.type !== "video" && cardItem.image.url ? `url(${cardItem.image.url})` : undefined }}>
-                                                {cardItem.image && cardItem.image.type === "video" && (
-                                                    <div className={this.decorateCSS("background-media")}>
-                                                        <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
-                                                    </div>
-                                                )}
+                                            <div className={this.decorateCSS("item-container")}>
+                                                <div className={this.decorateCSS("background-media")}>
+                                                    <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                </div>
                                                 <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
                                                     {this.castToString(cardItem.title) && (
                                                         <Base.H4

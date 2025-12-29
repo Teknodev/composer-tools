@@ -99,11 +99,9 @@ class About2 extends BaseAbout {
               isVisible={true}
             >
               <div className={this.decorateCSS("video-container")}>
-                <div className={this.decorateCSS("video")}>
-                  <div onClick={(event: React.MouseEvent) => event.stopPropagation()}>
+                  <div className={this.decorateCSS("video")} onClick={(event: React.MouseEvent) => event.stopPropagation()}>
                     <Base.Media value={videoValue} className={this.decorateCSS("player")} />
                   </div>
-                </div>
               </div>
               {closeIcon && (
                 <div className={this.decorateCSS("close-icon-box")}>

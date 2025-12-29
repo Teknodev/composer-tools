@@ -214,9 +214,7 @@ class About7 extends BaseAbout {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         {bgMedia && (
-          <div className={this.decorateCSS("background-media")}>
             <Base.Media value={bgMedia} className={this.decorateCSS("background-media-element")} />
-          </div>
         )}
         {backgroundImage?.overlay && bgMedia && (
           <div className={this.decorateCSS("background-overlay")} />

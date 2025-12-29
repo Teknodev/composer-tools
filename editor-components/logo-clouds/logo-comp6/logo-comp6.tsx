@@ -89,7 +89,7 @@ class LogoComp6Page extends LogoClouds {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image"],
               },
               value: {
                 type: "image",
