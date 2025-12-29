@@ -114,6 +114,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             align-items: center;
             border-radius: var(--composer-border-radius-md);
             gap: var(--composer-gap-md);
+            padding-right: var(--composer-gap-xl);
+            padding-left: var(--composer-gap-xl);
 
             &.active {
               background-color: var(--composer-primary-color);
@@ -189,7 +191,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
-              margin-left: var(--composer-gap-xl);
+              // margin-left: var(--composer-gap-xl);
               color: var(--composer-font-color-primary);
 
               .icon {
@@ -203,23 +205,33 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
             }
 
-            .tag {
-              color: var(--composer-font-color-primary);
-              border-radius: var(--composer-border-radius-lg);
-              padding: var(--composer-gap-xs) var(--composer-gap-md);
-              border: 1px solid;
-              font-size: 1rem;
-              background-color: transparent;
-              color: var(--composer-font-color-primary);
-              border: 1px solid
-                rgba(var(--composer-font-color-primary-rgb), 0.5);
-            }
+            .tag-wrapper {
+              // display: inline-flex;
+              // align-items: center;
+              // justify-content: center;
+              // margin: 0;
+              // padding: 0;
+              width: 100%;
+              padding-left: var(--composer-gap-md);
 
+              .tag {
+                display: inline-block;
+                color: var(--composer-font-color-primary);
+                border-radius: var(--composer-border-radius-lg);
+                padding: var(--composer-gap-xs) var(--composer-gap-md);
+                font-size: 1rem;
+                background-color: transparent;
+                border: 1px solid
+                  rgba(var(--composer-font-color-primary-rgb), 0.5);
+                width: auto;
+                white-space: nowrap;
+              }
+            }
             .item-price {
               display: flex;
               align-items: center;
               justify-content: flex-end;
-              flex-grow: 1;
+              // flex-grow: 1;
               color: var(--composer-font-color-primary);
               transform: scale(1);
               transition: all 0.8s ease;
@@ -231,10 +243,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .price {
                 font-size: 2rem;
               }
+
+            .per {
+              white-space: inherit;
+            }
             }
             .per {
               color: var(--composer-tertiary-color);
-              margin-right: var(--composer-gap-xl);
             }
           }
         }
@@ -250,10 +265,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           display: flex;
           &.animation3:hover {
             .content {
-              .subtitle {
-                background-color: var(--composer-primary-color);
-                border: 1px solid var(--composer-primary-color);
-                color: var(--composer-font-color-secondary);
+              .header-wrapper {
+                .subtitle {
+                  background-color: var(--composer-primary-color);
+                  border: 1px solid var(--composer-primary-color);
+                  color: var(--composer-font-color-secondary);
+                }
               }
             }
           }
@@ -262,26 +279,40 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             flex-grow: 1;
             padding: 0;
             max-width: 100%;
-            margin-top: var(--composer-gap-md);
+            padding-top: var(--composer-gap-lg);
             gap: var(--composer-gap-md);
 
-            .subtitle {
-              background-color: transparent;
-              border: 1px solid var(--composer-tertiary-color);
-              color: var(--composer-font-color-primary);
-              padding: var(--composer-gap-sm);
-              align-self: flex-end;
-              border-radius: var(--composer-border-radius-sm);
-              margin: 0 var(--composer-gap-md);
-              font-size: 1rem;
-              transition: 0.8s;
-            }
-            .title {
-              color: var(--composer-font-color-primary);
+            .header-wrapper {
+              display: flex;
+              
+              gap: var(--composer-gap-md);
               padding: 0 var(--composer-gap-md);
-              margin: 0;
               width: 100%;
-              text-align: left;
+
+              .title {
+                color: var(--composer-font-color-primary);
+                // margin: 0;
+                // flex: 1;
+                text-align: left;
+              }
+
+              .subtitle-wrapper {
+                display: flex;
+                align-items: flex-start;
+                height: 100%;
+
+                .subtitle {
+                  background-color: transparent;
+                  border: 1px solid var(--composer-tertiary-color);
+                  color: var(--composer-font-color-primary);
+                  padding: 0 var(--composer-gap-sm);
+                  border-radius: var(--composer-border-radius-sm);
+                  transition: 0.8s;
+                  width: auto;
+                  position: relative;
+                  top: -10px;
+                }
+              }
             }
             .list-body {
               flex-grow: 1;
@@ -342,7 +373,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               width: 100%;
               gap: var(--composer-gap-md);
               align-items: center;
-              justify-content: space-between;
+              // justify-content: space-between;
               border-radius: var(--composer-border-radius-md);
 
               .button-container {
@@ -403,7 +434,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .down-page {
           .left-page {
             .listArray {
-              flex-direction: column;
               padding: var(--composer-gap-sm);
               height: auto;
               gap: 0;

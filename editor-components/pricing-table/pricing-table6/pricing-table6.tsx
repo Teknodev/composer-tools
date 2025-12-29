@@ -259,9 +259,9 @@ class PricingMultipleTwo extends BasePricingTable {
                             INPUTS.BUTTON(
                               "button",
                               "Button",
-                              "Join this plan",
+                              "LETS GO",
                               "",
-                              null,
+                              "",
                               null,
                               "Primary"
                             ),
@@ -444,7 +444,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               "Button",
                               "Join this plan",
                               "",
-                              null,
+                              "",
                               null,
                               "Primary"
                             ),
@@ -627,7 +627,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               "Button",
                               "Join this plan",
                               "",
-                              null,
+                              "",
                               null,
                               "Primary"
                             ),
@@ -829,7 +829,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               "Button",
                               "Join this plan",
                               "",
-                              null,
+                              "",
                               null,
                               "Primary"
                             ),
@@ -1012,7 +1012,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               "Button",
                               "Join this plan",
                               "",
-                              null,
+                              "",
                               null,
                               "Primary"
                             ),
@@ -1194,7 +1194,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               "Button",
                               "Join this plan",
                               "",
-                              null,
+                              "",
                               null,
                               "Primary"
                             ),
@@ -1431,10 +1431,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                 )}
                               </div>
                             )}
+                            
                             {tagText && (
-                              <Base.P className={this.decorateCSS("tag")}>
-                                {tab.tag}
-                              </Base.P>
+                              <div className={this.decorateCSS("tag-wrapper")}>
+                                <Base.P className={this.decorateCSS("tag")}>
+                                  {tab.tag}
+                                </Base.P>
+                              </div>
                             )}
                             {(priceText || perText) && (
                               <div className={this.decorateCSS("item-price")}>
@@ -1472,23 +1475,29 @@ class PricingMultipleTwo extends BasePricingTable {
                             const subtitleExist = this.castToString(subtitle);
                             const titleExist = this.castToString(title);
 
+                            if (!subtitleExist && !titleExist) {
+                              return null;
+                            }
+
                             return (
-                              <>
-                                {subtitleExist && (
-                                  <Base.H5
-                                    className={this.decorateCSS("subtitle")}
-                                  >
-                                    {subtitle}
-                                  </Base.H5>
-                                )}
+                              <div className={this.decorateCSS("header-wrapper")}>
                                 {titleExist && (
-                                  <Base.H2
+                                  <Base.H4
                                     className={this.decorateCSS("title")}
                                   >
                                     {title}
-                                  </Base.H2>
+                                  </Base.H4>
                                 )}
-                              </>
+                                {subtitleExist && (
+                                  <div className={this.decorateCSS("subtitle-wrapper")}>
+                                      <Base.P
+                                        className={this.decorateCSS("subtitle")}
+                                      >
+                                        {subtitle}
+                                      </Base.P>
+                                    </div>
+                                )}
+                              </div>
                             );
                           })()}
 
@@ -1549,7 +1558,7 @@ class PricingMultipleTwo extends BasePricingTable {
                             </div>
                           )}
 
-                          {plan[planIndex]?.right_items?.buttons?.length > 0 &&
+                          {(plan[planIndex]?.right_items?.buttons?.length > 0 || plan[planIndex]?.right_items?.text) &&
                             (() => {
                               const buttons = this.getButtonsFromItem(
                                 plan[planIndex].right_items.buttons
