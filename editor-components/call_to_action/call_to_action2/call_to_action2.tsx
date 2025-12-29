@@ -178,11 +178,10 @@ class CallToAction2Page extends BaseCallToAction {
                     className={this.decorateCSS("video")}
                     onClick={this.hideVideo}
                   >
-                    <video
-                      controls
-                      className={this.decorateCSS("player")}
-                      src={this.getPropValue("video").url}
-                    ></video>
+                      <Base.Media
+                        value={this.getPropValue("video")}
+                        className={this.decorateCSS("player")}
+                      />
                   </div>
                 </div>
                 {closeIcon && (
