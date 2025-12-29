@@ -44,8 +44,6 @@
     position: relative;
     height: 100%;
     margin: 0 auto;
-    margin-bottom: var(--composer-gap-sm);
-    padding-top: var(--composer-gap-xl);
   }
 
   .header-content {
@@ -58,7 +56,6 @@
     .header-text {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
 
       .subtitle {
         margin: auto;
@@ -84,21 +81,23 @@
       flex-wrap: wrap;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-end;
+      align-items: flex-end;
       gap: var(--composer-gap-sm);
       height: 100%;
+      padding-bottom: var(--composer-gap-md);
     }
   }
 
   .button {
     font-size: 1.5rem;
-
     .button-text {
       content: "";
     }
 
     .button-icon {
+      display: flex;
+    align-items: center;
       font-size: 1.5rem;
       width: 25px;
       height: 25px;
@@ -199,13 +198,16 @@
           .game-info {
             width: 100%;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
 
             .genre-badge {
               display: inline-block;
               font-size: 1.5rem;
               padding: var(--composer-gap-sm) calc(var(--composer-gap-lg));
+              width: fit-content;
               border-radius: var(--composer-border-radius-sm);
-              margin-bottom: var(--composer-gap-sm);
               background-color: transparent;
               color: white;
               border: 1.5px solid white;
@@ -229,6 +231,7 @@
                 cursor: pointer;
                 transition: color 0.3s ease-in-out;
                 flex: 1;
+                text-align: left;
 
                 &:hover {
                   color: var(--composer-primary-color) !important;
@@ -289,7 +292,11 @@
         );
         font-size: 1.5rem;
         border: 2px dashed
-          color-mix(in srgb, var(--composer-font-color-primary), transparent 70%);
+          color-mix(
+            in srgb,
+            var(--composer-font-color-primary),
+            transparent 70%
+          );
         border-radius: var(--composer-border-radius-lg);
       }
     }
@@ -323,7 +330,6 @@
 
       .button {
         font-size: 1.5rem;
-        margin-bottom: var(--composer-gap-sm);
         border-radius: var(--composer-border-radius-sm);
 
         .button-icon {
@@ -351,14 +357,11 @@
 
                 .genre-badge {
                   font-size: 1rem;
-                  padding: calc(var(--composer-gap-xs) * 1.5) var(--composer-gap-md);
+                  padding: calc(var(--composer-gap-xs) * 1.5)
+                    var(--composer-gap-md);
                 }
 
                 .title-platforms-row {
-                  flex-direction: row;
-                  align-items: flex-end;
-                  gap: var(--composer-gap-sm);
-
                   .game-title {
                     font-size: 2rem;
                     flex: 1;
@@ -481,7 +484,6 @@
               .title-platforms-row {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: var(--composer-gap-sm);
 
                 .game-title {
                   font-size: 1.5rem;
@@ -511,8 +513,14 @@
 
     .mobile-button-section {
       text-align: center;
-      display: block;
-      padding-top: var(--composer-gap-md);
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      margin-top: var(--composer-gap-sm);
+      margin-bottom: 0;
     }
   }
 }

@@ -46,7 +46,7 @@ class Portfolio3 extends BasePortfolio {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Discover our latest gaming experiences",
+      value: "Explore our curated collection of immersive worlds and handcrafted adventures designed to inspire discovery, strategy, and unforgettable gaming moments.",
     });
 
     this.addProp({
@@ -86,7 +86,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate Toe",
               value: "",
             },
             {
@@ -204,7 +204,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate Toe",
               value: "",
             },
             {
@@ -321,7 +321,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate Toe",
               value: "",
             },
             {
@@ -438,7 +438,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate Toe",
               value: "",
             },
             {
@@ -546,7 +546,7 @@ class Portfolio3 extends BasePortfolio {
     this.addProp({
       type: "boolean",
       key: "enableAnimation",
-      displayer: "Enable Sticky Animation",
+      displayer: "Animation",
       value: true,
     });
   }
@@ -914,10 +914,9 @@ class Portfolio3 extends BasePortfolio {
           </Base.MaxContent>
 
           {hasAnyButton && (
-              <div className={this.decorateCSS("mobile-button-section")}>
-                {this.renderButtons(buttons, "mobile-btn")}
-              </div>
-            
+            <div className={this.decorateCSS("mobile-button-section")}>
+              {this.renderButtons(buttons, "mobile-btn")}
+            </div>
           )}
         </div>
       </Base.Container>
