@@ -26,7 +26,7 @@
                     justify-content: left;
                     flex-wrap: wrap;
                     flex-direction: row;
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-sm);
 
                     .button {
                         .button-text {
@@ -127,6 +127,17 @@
                 .right {
                     width: 100%;
                     row-gap: var(--composer-gap-md);
+
+                    .card-container {
+                        .icon-box {
+                            height: 60px;
+                            width: 60px;
+
+                            .card-icon {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -138,10 +149,15 @@
         .max-content {
             .wrapper {
                 .right {
+                    gap: var(--composer-gap-lg);
+
                     .card-container {
                         .icon-box {
+                            height: 50px;
+                            width: 50px;
+
                             .card-icon {
-                                font-size: 2rem;
+                                font-size: 1.5rem;
                             }
                         }
                     }
