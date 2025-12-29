@@ -5,6 +5,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import Slider from "react-slick";
+ 
 
 type SlideItem = {
   image: TypeMediaInputValue;
@@ -239,18 +240,12 @@ class HeroSection38 extends BaseHeroSection {
         name: "FiArrowRight",
       },
     });
-
+    
     this.addProp({
-      type: "media",
-      key: "dotIcon",
-      displayer: "Dots Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "LuDot",
-      },
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: false,
     });
 
     this.sliderRef = React.createRef();
@@ -317,14 +312,13 @@ class HeroSection38 extends BaseHeroSection {
     const slides = this.getValidSlides();
     const overlay = !!this.getPropValue("overlay");
     const animation = !!this.getPropValue("animation");
-    const dotIconValue = this.getPropValue("dotIcon");
     const isSingleSlide = slides.length === 1;
-
+    const autoplay = this.castToString(this.getPropValue("autoplay")) ? true : false;
     const settings = {
       dots: false,
       infinite: slides.length > 1,
       speed: 1000,
-      autoplay: false,
+      autoplay: autoplay,
       slidesToShow: isSingleSlide ? 1 : 1.2,
       slidesToScroll: 1,
       centerMode: !isSingleSlide,
@@ -366,7 +360,7 @@ class HeroSection38 extends BaseHeroSection {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {slides.length > 0 && (
             <div className={this.decorateCSS("slider-wrapper")}>
-              <ComposerSlider ref={this.sliderRef} {...settings} className={`${this.decorateCSS("slider")} ${isSingleSlide ? this.decorateCSS("single-slide") : ""}`}>
+              <ComposerSlider ref={this.sliderRef} {...settings} className={`${this.decorateCSS("slider")} ${isSingleSlide && this.decorateCSS("single-slide")}`}>
                 {slides.map((item: SlideItem, index: number) => {
                   const scaledIndex = this.getComponentState("scaled-index");
                   const isScaled = animation && scaledIndex === index;
@@ -385,7 +379,7 @@ class HeroSection38 extends BaseHeroSection {
                     return null;
                   }
 
-                  const slideClass = `${this.decorateCSS("slide-item")} ${!imageExists && titleExists ? this.decorateCSS("no-image") : ""} ${isScaled ? this.decorateCSS("active-slide") : ""}`.trim();
+                  const slideClass = `${this.decorateCSS("slide-item")} ${!imageExists && titleExists && this.decorateCSS("no-image")} ${isScaled && this.decorateCSS("active-slide")}`.trim();
                   
                   const slideContent = (
                     <ComposerLink path={navigateTo}>
@@ -399,13 +393,13 @@ class HeroSection38 extends BaseHeroSection {
                             {overlay && <div className={this.decorateCSS("overlay")} />}
                           </>
                         )}
-                        <div
+                        <Base.VerticalContent
                           className={`${this.decorateCSS("content-overlay")} ${imageExists && this.decorateCSS("has-image")}`}
                         >
                           {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{slideSubtitle}</Base.SectionSubTitle>}
                           <Base.SectionTitle className={this.decorateCSS("title")}>{liveName}</Base.SectionTitle>
                           {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{slideDescription}</Base.SectionDescription>}
-                        </div>
+                        </Base.VerticalContent>
                       </div>
                     </ComposerLink>
                   );
@@ -430,22 +424,17 @@ class HeroSection38 extends BaseHeroSection {
                       />
                     </div>
                   )}
-                  {dotIconValue && (
                     <div className={this.decorateCSS("pagination")}>
                       {slides.map((_, index: number) => (
                         <Base.Button
                           key={`pagination-dot-${index}`}
-                          className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index ? this.decorateCSS("active") : ""}`}
+                          className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index && this.decorateCSS("active")}`}
                           onClick={() => this.sliderRef.current?.slickGoTo(index)}
                         >
-                          <Base.Media
-                            value={dotIconValue}
-                            className={`${this.decorateCSS("dot-icon")} ${this.decorateCSS("dot-icon-media")}`}
-                          />
+                          <div className={`${this.decorateCSS("dot-icon")} ${this.decorateCSS("dot-icon-media")}`} />
                         </Base.Button>
                       ))}
                     </div>
-                  )}
                   {this.getPropValue("nextArrow") && (
                     <div
                       className={this.decorateCSS("arrow-button")}
