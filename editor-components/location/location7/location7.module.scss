@@ -11,7 +11,6 @@
       align-items: center;
       width: 100%;
       height: 100%;
-      gap: var(--composer-gap-xl);
 
       .title-block {
         .subtitle,
@@ -19,19 +18,8 @@
           content: "";
         }
 
-        .subtitle {
-          transform: translateX(0);
-          align-self: center !important;
-
-          &::before {
-            display: none;
-          }
-        }
-
         .title {
           color: var(--composer-primary-color);
-          letter-spacing: 0.2em;
-          margin: 0;
           text-align: center;
         }
       }
@@ -39,6 +27,17 @@
       .title-row {
         text-align: center;
         margin-bottom: var(--composer-gap-md);
+      }
+
+      .subtitle-row {
+        .subtitle {
+          transform: translateX(0);
+          text-align: center !important;
+
+          &::before {
+            display: none !important;
+          }
+        }
       }
 
       .map-container {
@@ -53,17 +52,6 @@
           width: 100%;
           height: 0;
           padding-bottom: 56.25%;
-
-          .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--composer-overlay-color);
-            z-index: 1;
-            pointer-events: none;
-          }
         }
 
         .dot {
@@ -102,6 +90,17 @@
           }
         }
 
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+          z-index: 1;
+          pointer-events: none;
+        }
+
         .background-image {
           width: 100%;
           height: 100%;
@@ -111,7 +110,7 @@
           top: 0;
           z-index: 0;
           object-fit: contain;
-        }
+          }
 
         .marker-image {
           width: 100%;

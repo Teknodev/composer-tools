@@ -27,6 +27,14 @@ type MarkerObject = {
 class Location7 extends Location {
   constructor(props?: any) {
     super(props, styles);
+    
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+    
     this.addProp({
       type: "string",
       key: "title",
@@ -233,12 +241,25 @@ class Location7 extends Location {
       displayer: "Tooltip Line",
       value: true,
     });
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.addProp({
-      type: "image",
-      key: "background-image",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
+      type: "media",
+      key: "background-media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
+      },
     });
     this.setComponentState("activeMarkerIndex", null);
   }
@@ -263,10 +284,13 @@ class Location7 extends Location {
   render() {
     const addresses: Address[] = this.getPropValue("addresses");
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
     const titleExist = this.castToString(title);
+    const subtitleExist = this.castToString(subtitle);
     const activeMarkerIndex = this.getComponentState("activeMarkerIndex");
-    const bgImage = this.getPropValue("background-image");
+    const bgMedia = this.getPropValue("background-media");
     const showTooltipLine = this.getPropValue("showTooltipLine");
+    const imageOverlay = this.getPropValue("overlay");
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
@@ -290,6 +314,11 @@ class Location7 extends Location {
       <Base.Container className={this.decorateCSS("container")}> 
         <Base.MaxContent className={this.decorateCSS("max-content")}> 
           <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
+            {subtitleExist && ( 
+              <div className={this.decorateCSS("subtitle-row")}> 
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+              </div>
+            )}
             {titleExist && (
               <div className={this.decorateCSS("title-row")}> 
                 <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
@@ -298,12 +327,13 @@ class Location7 extends Location {
             <section className={this.decorateCSS("map-container")}> 
               <div
                 className={this.decorateCSS("custom-map")}>
-                {bgImage && (
-                  <img src={bgImage} alt="World Map" className={this.decorateCSS("background-image")}/>
+                {bgMedia && (
+                  <Base.Media value={bgMedia} className={this.decorateCSS("background-image")}/>
                 )}
+                {imageOverlay && <div className={this.decorateCSS("overlay")} />}
                 {markers.map((marker, idx) => {
-                  const popupTitle = this.castToString(marker.popupTitle);
-                  const description = this.castToString(marker.description);
+                  const popupTitle = marker.popupTitle;
+                  const description = marker.description;
                   const tooltipExist = popupTitle || description ;
 
                   return (

@@ -132,10 +132,16 @@ class Location3 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "",
+              },
             },
           ],
         },
@@ -307,7 +313,6 @@ class Location3 extends Location {
             : markerImage;
 
         if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-          try {
             const iconName = (markerImage as any).name;
             let ElementIcon: any = null;
             for (const lib of iconLibraries) {
@@ -324,14 +329,16 @@ class Location3 extends Location {
               const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
               iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
             }
-          } catch (e) {
-            iconUrl = undefined;
-          }
+   
         }
 
         if (lat !== undefined && lng !== undefined) {
-          const content = <></>;
           const finalIconUrl = iconUrl || defaultMarkerIcon;
+          const content = markerImage ? (
+            <Base.Media value={markerImage} className={this.decorateCSS("icon")} />
+          ) : (
+            <></>
+          );
 
           acc.push({
             content,
