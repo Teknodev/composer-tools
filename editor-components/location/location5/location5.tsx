@@ -1,8 +1,9 @@
-import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location5.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 class Location5 extends Location {
   constructor(props?: any) {
@@ -10,8 +11,15 @@ class Location5 extends Location {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
-      displayer: "Header Title",
+      displayer: "Title",
       value: "Offices",
     });
 
@@ -36,7 +44,7 @@ class Location5 extends Location {
       value: [
         {
           type: "object",
-          key: "firstadress",
+          key: "firstAddress",
           displayer: "First Location",
           value: [
             {
@@ -53,14 +61,14 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "adress",
-              displayer: "Enter the address",
+              key: "address",
+              displayer: "Address",
               value: "Rua Fernando Palha, 47A, 1950-130",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Enter the description",
+              displayer: "Description",
               value: "(We work by appointment)",
             },
             {
@@ -83,10 +91,16 @@ class Location5 extends Location {
                       },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "marker-image",
-                      displayer: "Marker Image",
-                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      displayer: "Marker Media",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      },
                     },
                   ],
                 },
@@ -96,7 +110,7 @@ class Location5 extends Location {
         },
         {
           type: "object",
-          key: "secondadress",
+          key: "secondAddress",
           displayer: "Second Location",
           value: [
             {
@@ -113,14 +127,14 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "adress",
-              displayer: "Enter the address",
+              key: "address",
+              displayer: "Address",
               value: "Lermontovsky prospect, 35A",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Enter the description",
+              displayer: "Description",
               value: "(We work by appointment)",
             },
             {
@@ -143,10 +157,16 @@ class Location5 extends Location {
                       },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "marker-image",
-                      displayer: "Marker Image",
-                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      displayer: "Marker Media",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      },
                     },
                   ],
                 },
@@ -165,6 +185,10 @@ class Location5 extends Location {
   render() {
     const locationAddresses = this.getPropValue("locationAddresses") || [];
 
+    const subtitle = this.getPropValue("subtitle");
+    const hasSubtitle = this.castToString(subtitle);
+    const title = this.getPropValue("title");
+    const hasTitle = this.castToString(title);
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
@@ -189,12 +213,41 @@ class Location5 extends Location {
           const width = 32;
           const height = 32;
 
+          let iconUrl: string | undefined =
+            markerImage && typeof markerImage === "object" && markerImage.type === "image"
+              ? markerImage.url
+              : markerImage;
+
+          if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+            try {
+              const iconName = (markerImage as any).name;
+              let ElementIcon: any = null;
+              for (const lib of iconLibraries) {
+                if (ElementIcon) break;
+                for (const [name, Comp] of Object.entries(lib)) {
+                  if (name === iconName) {
+                    ElementIcon = Comp;
+                    break;
+                  }
+                }
+              }
+
+              if (ElementIcon) {
+                const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+                iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+              }
+            } catch (e) {
+              iconUrl = undefined;
+            }
+          }
+
           if (lat !== undefined && lng !== undefined) {
+            const finalIconUrl = iconUrl || defaultMarkerIcon;
             return {
               lat,
               lng,
               icon: {
-                url: markerImage,
+                url: finalIconUrl,
                 scaledSize: new google.maps.Size(width, height),
               },
             };
@@ -209,37 +262,40 @@ class Location5 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+          <Base.VerticalContent className={this.decorateCSS("title-block")}>
+            {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+            {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+          </Base.VerticalContent>
           <div className={this.decorateCSS("wrapper")}>
             <section className={this.decorateCSS("map-container")}>
               {locationAddresses.map((location: any, index: number) => {
                 const markers = createMarkers(location);
 
                 const city = location.getPropValue("city");
-                const adress = location.getPropValue("adress");
+                const address = location.getPropValue("address");
                 const description = location.getPropValue("description");
                 const locationIndex = location.getPropValue("index");
 
-                const cityExist = this.castToString(city);
-                const adressExist = this.castToString(adress);
-                const descriptionExist = this.castToString(description);
+                const hasCity = this.castToString(city);
+                const hasAddress = this.castToString(address);
+                const hasDescription = this.castToString(description);
 
-                const hasItemsExist = cityExist || adressExist || descriptionExist || locationIndex;
+                const hasItemsExist = hasCity || hasAddress || hasDescription || locationIndex;
 
                 return (
                   <div key={index} className={this.decorateCSS("location-item")}>
                     {hasItemsExist && (
                       <Base.VerticalContent className={this.decorateCSS("location-items")}>
                         {locationIndex && <Base.H2 className={this.decorateCSS("location-index")}>{locationIndex}</Base.H2>}
-                        {cityExist && <Base.P className={this.decorateCSS("location-city")}>{city}</Base.P>}
-                        {adressExist && <Base.P className={this.decorateCSS("location-adress")}>{adress}</Base.P>}
-                        {descriptionExist && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
+                        {hasCity && <Base.P className={this.decorateCSS("location-city")}>{city}</Base.P>}
+                        {hasAddress && <Base.P className={this.decorateCSS("location-address")}>{address}</Base.P>}
+                        {hasDescription && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
                       </Base.VerticalContent>
                     )}
                     <ComposerMap
                       defaultMarkerIcon={defaultMarkerIcon}
                       markers={markers}
-                      styles={mapStyle.colors}
+                      styles={mapStyle?.colors}
                       className={`${this.decorateCSS("location-map")} ${!hasItemsExist && this.decorateCSS("full-width")}`}
                       defaultZoom={centerZoom}
                       handleMarkerZoom={markerZoom}

@@ -39,10 +39,20 @@
           position: relative;
           z-index: 3;
           text-align: center;
-          font-weight: bold;
+
+          
 
           .title {
             color: white;
+          }
+
+          .subtitle {
+            color: white;
+            background: transparent !important;
+            padding: 0 !important;
+            &:before {
+              background: white !important;
+            }
           }
         }
       }
@@ -50,8 +60,9 @@
 
     .content-container {
       .max-content-no-image {
-        .title-no-image {
-          margin: 0 !important;
+        .title-no-image,
+        .subtitle-no-image {
+          content:"";
         }
       }
     }
@@ -93,13 +104,11 @@
     margin: var(--composer-gap-md);
 
     .popup-title {
-      font-size: 1.5rem;
       margin: 0;
       color: var(--composer-font-color-primary);
     }
 
     .popup-content {
-      font-size: 1.5rem;
       margin: 0;
       color: var(--composer-tertiary-color);
     }
@@ -117,13 +126,6 @@
 
   .popup {
     width: 250px;
-
-    .popup-texts {
-      .popup-title,
-      .popup-content {
-        font-size: 1rem;
-      }
-    }
   }
 }
 

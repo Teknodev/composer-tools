@@ -6,8 +6,17 @@
   .content-container {
     .max-content {
       .header {
+
+        .subtitle,
         .title {
           content: "";
+        }
+
+        .subtitle, .title {
+          text-align: left !important;
+        }
+        .description-container .description-text {
+          text-align: left !important;
         }
 
         .description-container {
@@ -15,13 +24,24 @@
           align-items: center;
           gap: var(--composer-gap-md);
 
+          .socials,
+          &.center .socials,
+          &.left .socials {
+            justify-content: flex-start !important;
+            width: auto !important;
+            align-self: flex-start !important;
+          }
+
           .description-text {
             content: "";
           }
 
-          .socials {
+            .socials {
             display: flex;
             gap: var(--composer-gap-sm);
+            align-self: flex-start;
+            justify-content: flex-start !important;
+            width: auto !important;
 
             .socials-container {
               min-width: 5%;
@@ -36,7 +56,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 1rem;
                 border-radius: var(--composer-border-radius-sm);
 
                 &:hover {
@@ -48,7 +67,18 @@
           }
 
           &.center {
-            flex-direction: column;
+            .socials {
+              width: auto;
+              justify-content: flex-start;
+              align-self: center;
+            }
+          }
+          &.left {
+            .socials {
+              width: auto;
+              justify-content: flex-start;
+              align-self: center;
+            }
           }
         }
       }
@@ -63,7 +93,7 @@
     width: 100%;
 
     .middle-content-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      padding: 80px var(--composer-gap-xl);
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -79,6 +109,7 @@
           width: var(--composer-gap-xl);
           height: var(--composer-gap-xl);
           color: var(--composer-primary-color);
+          font-size: 3rem;
         }
 
         .content-title-container {
@@ -90,7 +121,6 @@
         }
 
         .content-description {
-          font-size: 1rem;
           margin-top: 0;
           color: var(--composer-font-color-primary);
           text-align: center;
