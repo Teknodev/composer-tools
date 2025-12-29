@@ -111,28 +111,24 @@
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          margin: 0px;
+          padding: var(--composer-gap-md);
           .cardTitle {
             color: var(--composer-font-color-primary);
-            padding: var(--composer-gap-md);
-            padding-top: var(--composer-gap-xs);
-            margin: 0;
+            padding-bottom: var(--composer-gap-sm);
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
           }
           .card-subtitle {
-            color: var(--composer-font-color-primary);
-            margin-top: var(--composer-gap-md) !important;
-            margin-bottom:var(--composer-gap-xs);
-            &::before{
-              margin-left: var(--composer-gap-md);
-            }
+            &::before {
+              display: block;
+              color:white !important;           
+             }
           }
           .list-group {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-xs);
-            padding: var(--composer-gap-md);
+            padding: 0;
 
             .list-element {
               display: flex;

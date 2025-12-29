@@ -191,7 +191,7 @@ class Download8 extends BaseDownload {
           </Base.MaxContent>
           <div id={"right-content"} className={this.decorateCSS("right-content")}>
             <Base.VerticalContent className={this.decorateCSS("card")}>
-              <div className={this.decorateCSS("card-up")}>
+            <Base.VerticalContent className={this.decorateCSS("card-up")}>
                 {cardSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{this.getPropValue("cardSubtitle")}</Base.SectionSubTitle>}
                 {cardTitleExist && <Base.H3 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</Base.H3>}
                 {listExist && (
@@ -215,7 +215,7 @@ class Download8 extends BaseDownload {
                     })}
                   </Base.VerticalContent>
                 )}
-              </div>
+              </Base.VerticalContent>
               {this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0 && (
                 <Base.Row className={this.decorateCSS("card-down")}>
                   <div className={this.decorateCSS("buttons-container")}>
