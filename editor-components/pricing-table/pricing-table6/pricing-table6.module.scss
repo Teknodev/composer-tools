@@ -75,6 +75,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           align-items: center;
           .button {
             .button-text {
+              content: "";
             }
 
             .button-icon {
@@ -191,7 +192,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
-              // margin-left: var(--composer-gap-xl);
               color: var(--composer-font-color-primary);
 
               .icon {
@@ -206,11 +206,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             .tag-wrapper {
-              // display: inline-flex;
-              // align-items: center;
-              // justify-content: center;
-              // margin: 0;
-              // padding: 0;
+              
               width: 100%;
               padding-left: var(--composer-gap-md);
 
@@ -231,7 +227,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               display: flex;
               align-items: center;
               justify-content: flex-end;
-              // flex-grow: 1;
               color: var(--composer-font-color-primary);
               transform: scale(1);
               transition: all 0.8s ease;
@@ -284,15 +279,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .header-wrapper {
               display: flex;
-              
               gap: var(--composer-gap-md);
               padding: 0 var(--composer-gap-md);
               width: 100%;
 
               .title {
                 color: var(--composer-font-color-primary);
-                // margin: 0;
-                // flex: 1;
                 text-align: left;
               }
 
@@ -373,7 +365,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               width: 100%;
               gap: var(--composer-gap-md);
               align-items: center;
-              // justify-content: space-between;
               border-radius: var(--composer-border-radius-md);
 
               .button-container {
