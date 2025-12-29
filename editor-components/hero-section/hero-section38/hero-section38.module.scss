@@ -359,7 +359,7 @@
           }
 
           :global(.slick-list) {
-            padding-bottom: 20px !important;
+            padding-bottom: var(--composer-gap-md) !important;
           }
 
           .slide-item {
