@@ -12,10 +12,10 @@ type ButtonTypeObj = {
 }
 
 type Card = {
-    frontTitle: React.JSX.Element;
-    backTitle: React.JSX.Element;
-    backDescription: React.JSX.Element;
-    frontIcon: TypeMediaInputValue;
+    title: React.JSX.Element;
+    icon: TypeMediaInputValue;
+    hoverTitle: React.JSX.Element;
+    hoverDescription: React.JSX.Element;
 };
 
 class Feature38 extends BaseFeature {
@@ -391,23 +391,23 @@ class Feature38 extends BaseFeature {
                             {cards?.length > 0 && (
                                 <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card, index: number) => {
-                                        const frontTitleExist = this.castToString(card.frontTitle);
-                                        const backTitleExist = this.castToString(card.backTitle);
-                                        const backDescExist = this.castToString(card.backDescription);
-                                        const iconExist = card.frontIcon;
-                                        const isImage = card.frontIcon?.type === "image";
-                                        const cardHasContent = frontTitleExist || backTitleExist || backDescExist || iconExist;
+                                        const titleExist = this.castToString(card.title);
+                                        const hoverTitleExist = this.castToString(card.hoverTitle);
+                                        const hoverDescExist = this.castToString(card.hoverDescription);
+                                        const iconExist = card.icon;
+                                        const isImage = card.icon?.type === "image";
+                                        const cardHasContent = titleExist || hoverTitleExist || hoverDescExist || iconExist;
                                         if (!cardHasContent) return null;
                                         return (
                                             <div key={index} className={this.decorateCSS("card")}>
                                                 <div className={this.decorateCSS("card-inner")}>
                                                     <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
-                                                        {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.frontIcon} className={`${this.decorateCSS("icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />  </div>)}
-                                                        {frontTitleExist && (<Base.H3 className={this.decorateCSS("front-title")}>{card.frontTitle}</Base.H3>)}
+                                                        {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />  </div>)}
+                                                        {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
                                                     </div>
                                                     <Base.VerticalContent className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
-                                                        {backTitleExist && (<Base.H3 className={this.decorateCSS("back-title")}>{card.backTitle}</Base.H3>)}
-                                                        {backDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.backDescription}</Base.P>)}
+                                                        {hoverTitleExist && (<Base.H3 className={this.decorateCSS("card-hover-title")}>{card.hoverTitle}</Base.H3>)}
+                                                        {hoverDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.hoverDescription}</Base.P>)}
                                                     </Base.VerticalContent>
                                                 </div>
                                             </div>

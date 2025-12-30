@@ -76,12 +76,12 @@
                         background-color: var(--composer-primary-color);
                         z-index: 2;
 
-                        .front-title {
+                        .card-title {
                             color: var(--composer-font-color-secondary);
                         }
 
                         .icon-wrapper {
-                            .icon {
+                            .card-icon {
                                 color: var(--composer-font-color-secondary);
                             }
                         }
@@ -93,8 +93,8 @@
                         z-index: 1;
                     }
 
-                    .front-title,
-                    .back-title,
+                    .card-title,
+                    .card-hover-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left !important;
@@ -104,7 +104,7 @@
                     .icon-wrapper {
                         display: flex;
 
-                        .icon {
+                        .card-icon {
                             color: var(--composer-font-color-secondary);
                             font-size: 5rem;
 
@@ -113,6 +113,7 @@
                                 height: 5rem;
                                 object-fit: contain;
                                 display: block;
+                                margin-bottom: 1rem;
                             }
                         }
                     }
@@ -147,7 +148,7 @@
                 .cards-container {
                     .card {
                         .icon-wrapper {
-                            .icon {
+                            .card-icon {
                                 font-size: 3rem;
 
                                 &.is-image {
