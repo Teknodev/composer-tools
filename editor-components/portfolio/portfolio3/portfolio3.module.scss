@@ -44,6 +44,7 @@
     position: relative;
     height: 100%;
     margin: 0 auto;
+    padding-top: var(--composer-gap-md);
   }
 
   .header-content {
@@ -58,9 +59,9 @@
       flex-direction: column;
 
       .subtitle {
-        margin: auto;
-        width: 100%;
+        margin: 0;
         text-align: left;
+        align-self: flex-start;
       }
 
       .title {
@@ -109,7 +110,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-sm);
+    gap: var(--composer-gap-md);
 
     .sentinel {
       height: 1px;
@@ -433,6 +434,8 @@
 
           .subtitle {
             margin-left: auto;
+            margin-right: auto;
+            text-align: center;
           }
         }
 
