@@ -370,7 +370,7 @@ class HeroSection38 extends BaseHeroSection {
                   const imageValue = (this.getPropValue(`slides.${index}.image`) as TypeMediaInputValue | undefined) ?? item.image;
                   const imageExists = this.hasImage(imageValue);
                   const isVideoMedia = imageValue?.type === "video";
-                  const titleExists = !!liveName;
+                  const titleExists = this.castToString(liveName);
                   const hasSubtitle = this.castToString(slideSubtitle);
                   const hasDescription = this.castToString(slideDescription);
 
