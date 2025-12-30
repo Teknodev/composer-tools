@@ -1,9 +1,7 @@
 import * as React from "react";
-import { BaseNavigator } from "../../EditorComponent";
+import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
-import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -15,13 +13,13 @@ interface MenuItems {
 }
 
 interface Logo {
-  image: string;
+  image: TypeMediaInputValue;
   navigateTo: string;
 }
 
 interface Language {
   label: "code" | "name";
-  icon: string;
+  icon: TypeMediaInputValue;
   showLanguage: boolean;
   showLocalizationAlways: boolean;
   showDivider: boolean;
@@ -32,7 +30,7 @@ class Navbar1 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Type"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Type"));
 
     this.addProp({
       type: "object",
@@ -40,11 +38,16 @@ class Navbar1 extends BaseNavigator {
       displayer: "Default Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -61,11 +64,16 @@ class Navbar1 extends BaseNavigator {
       displayer: "Absolute Logo",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           displayer: "Image",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+          },
         },
         {
           type: "page",
@@ -95,7 +103,7 @@ class Navbar1 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -124,7 +132,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -146,7 +154,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -169,7 +177,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -191,7 +199,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -214,7 +222,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -236,7 +244,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -259,7 +267,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -281,7 +289,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -304,7 +312,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -326,7 +334,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -349,7 +357,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -371,7 +379,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -398,7 +406,7 @@ class Navbar1 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -427,7 +435,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -449,7 +457,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -476,7 +484,7 @@ class Navbar1 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -505,7 +513,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -527,7 +535,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -550,7 +558,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -572,7 +580,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -595,7 +603,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -617,7 +625,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -640,7 +648,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -662,7 +670,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -685,7 +693,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -707,7 +715,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -730,7 +738,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -752,7 +760,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -779,7 +787,7 @@ class Navbar1 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -808,7 +816,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -830,7 +838,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -853,7 +861,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -882,7 +890,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -909,7 +917,7 @@ class Navbar1 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -938,7 +946,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -960,7 +968,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -987,7 +995,7 @@ class Navbar1 extends BaseNavigator {
             {
               type: "page",
               key: "navigate_to",
-              displayer: "Navigate to",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -1016,7 +1024,7 @@ class Navbar1 extends BaseNavigator {
                     {
                       type: "page",
                       key: "navigate_to",
-                      displayer: "Navigate to",
+                      displayer: "Navigate To",
                       value: "",
                     },
                     {
@@ -1038,7 +1046,7 @@ class Navbar1 extends BaseNavigator {
                             {
                               type: "page",
                               key: "navigate_to",
-                              displayer: "Navigate to",
+                              displayer: "Navigate To",
                               value: "",
                             },
                           ],
@@ -1071,29 +1079,59 @@ class Navbar1 extends BaseNavigator {
       ],
     });
     this.addProp({
-      type: "icon",
-      key: "hamburgerIcon",
-      displayer: "Hamburger Icon",
-      value: "RxHamburgerMenu",
-    });
-    this.addProp({
-      type: "icon",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      value: "RxCross2",
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "dropdownIcon",
-      displayer: "Dropdown Icon",
-      value: "MdArrowDropDown",
-    });
-    this.addProp({
-      type: "icon",
-      key: "rightIcon",
-      displayer: "Right Arrow Icon",
-      value: "MdKeyboardArrowRight",
+      type: "object",
+      key: "navigationIcons",
+      displayer: "Navigation Icons",
+      value: [
+        {
+          type: "media",
+          key: "hamburgerIcon",
+          displayer: "Hamburger Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "RxHamburgerMenu",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "RxCross2",
+          },
+        },
+        {
+          type: "media",
+          key: "dropdownIcon",
+          displayer: "Dropdown Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdArrowDropDown",
+          },
+        },
+        {
+          type: "media",
+          key: "rightIcon",
+          displayer: "Right Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdKeyboardArrowRight",
+          },
+        },
+      ],
     });
     this.addProp({
       type: "object",
@@ -1103,17 +1141,23 @@ class Navbar1 extends BaseNavigator {
         {
           type: "select",
           key: "label",
-          displayer: "Language Label",
+          displayer: "Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
           },
         },
         {
-          type: "icon",
+          type: "media",
           key: "icon",
           displayer: "Icon",
-          value: "GrLanguage",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "GrLanguage",
+          },
         },
         {
           type: "boolean",
@@ -1130,7 +1174,7 @@ class Navbar1 extends BaseNavigator {
         {
           type: "boolean",
           key: "showDivider",
-          displayer: "Show Divider",
+          displayer: "Divider",
           value: true,
         },
       ],
@@ -1170,7 +1214,7 @@ class Navbar1 extends BaseNavigator {
   handleOpenMenu = () => {
     Base.Navigator.changeScrollBehaviour("hidden");
     const wrapper = Base.Navigator.getWrapperContainer();
-    this.setComponentState("changeBackground", wrapper.scrollY === 0);
+    this.setComponentState("changeBackground", wrapper?.scrollY === 0);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
       setTimeout(() => {
@@ -1216,6 +1260,12 @@ class Navbar1 extends BaseNavigator {
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const isScrolled = this.getComponentState("isScrolled");
     const isBigScreen = this.getComponentState("isBigScreen");
+    const navigationIcons = this.castToObject<{
+      hamburgerIcon: TypeMediaInputValue;
+      closeIcon: TypeMediaInputValue;
+      dropdownIcon: TypeMediaInputValue;
+      rightIcon: TypeMediaInputValue;
+    }>("navigationIcons");
 
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
@@ -1243,7 +1293,7 @@ class Navbar1 extends BaseNavigator {
           position={position}
           hamburgerNavActive={hamburgerNavActive}
           positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""
-            }`}
+            } ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
           className={this.decorateCSS("filledBackground")}
@@ -1259,8 +1309,8 @@ class Navbar1 extends BaseNavigator {
                 this.handleCloseMenu()
               }} className={this.decorateCSS("logo")}>
                 <ComposerLink path={currentLogo.navigateTo}>
-                  <img
-                    src={currentLogo.image}
+                  <Base.Media
+                    value={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />
                 </ComposerLink>
@@ -1280,11 +1330,9 @@ class Navbar1 extends BaseNavigator {
                             <div className={this.decorateCSS("menuItem")}>
                               <Base.P className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>{item.title}</Base.P>
                               {item.menuType === "Dropdown" && (
-                                <Base.Icon
-                                  name={this.getPropValue("dropdownIcon")}
-                                  propsIcon={{
-                                    className: this.decorateCSS("dropdownIcon"),
-                                  }}
+                                <Base.Media
+                                  value={navigationIcons?.dropdownIcon}
+                                  className={this.decorateCSS("dropdownIcon")}
                                 />
                               )}
                             </div>
@@ -1318,14 +1366,9 @@ class Navbar1 extends BaseNavigator {
                                           subItem.sub_items.some((item: any) =>
                                             this.castToString(item.title)
                                           ) && (
-                                            <Base.Icon
-                                              name={this.getPropValue(
-                                                "rightIcon"
-                                              )}
-                                              propsIcon={{
-                                                className:
-                                                  this.decorateCSS("rightIcon"),
-                                              }}
+                                            <Base.Media
+                                              value={navigationIcons?.rightIcon}
+                                              className={this.decorateCSS("rightIcon")}
                                             />
                                           )}
                                       </div>
@@ -1372,10 +1415,10 @@ class Navbar1 extends BaseNavigator {
               </nav>
             )}
 
-            <div className={this.decorateCSS("rightSide")}>
+            <div className={`${this.decorateCSS("rightSide")} ${hamburgerNavActive ? this.decorateCSS("hamburgerActive") : ""}`}>
               {buttons.length > 0 && (
                 <div className={this.decorateCSS("buttons")}>
-                  {buttons.map((button) => (
+                  {buttons.map((button) => this.castToString(button.text) && (
                     <ComposerLink path={button.url}>
                       <Base.Button
                         className={`${this.decorateCSS("button")} ${transparentBackground && !hamburgerNavActive
@@ -1384,7 +1427,7 @@ class Navbar1 extends BaseNavigator {
                           }`}
                         buttonType={button.type}
                       >
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   ))}
@@ -1395,7 +1438,6 @@ class Navbar1 extends BaseNavigator {
                 <Base.Language
                   type="dropdown"
                   title={language.label}
-                  icon={language.icon}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}  ${animations}`}
                   iconClassName={`${this.decorateCSS("languageIcon")} ${animations}`}
                   dropdownButtonClassName={`${this.decorateCSS("localization")} ${language.showLocalizationAlways && this.decorateCSS("active")}`}
@@ -1405,22 +1447,22 @@ class Navbar1 extends BaseNavigator {
                 />
               )}
 
-              {hamburgerNavActive ? (
-                <Base.Icon
-                  name={this.getPropValue("closeIcon")}
-                  propsIcon={{
-                    className: this.decorateCSS("closeIcon"),
-                    onClick: () => this.handleCloseMenu(),
-                  }}
-                />
-              ) : (
-                <Base.Icon
-                  name={this.getPropValue("hamburgerIcon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("hamburgerIcon")}`,
-                    onClick: () => this.handleOpenMenu(),
-                  }}
-                />
+              {!isBigScreen && (
+                <>
+                  {hamburgerNavActive ? (
+                    <Base.Media
+                      onClick={() => this.handleCloseMenu()}
+                      value={navigationIcons?.closeIcon}
+                      className={this.decorateCSS("closeIcon")}
+                    />
+                  ) : (
+                    <Base.Media
+                      onClick={() => this.handleOpenMenu()}
+                      value={navigationIcons?.hamburgerIcon}
+                      className={this.decorateCSS("hamburgerIcon")}
+                    />
+                  )}
+                </>
               )}
             </div>
           </Base.MaxContent>
@@ -1453,15 +1495,13 @@ class Navbar1 extends BaseNavigator {
                             </Base.P>
                           </ComposerLink>
                           {item.menuType === "Dropdown" && (
-                            <Base.Icon
-                              name={this.getPropValue("dropdownIcon")}
-                              propsIcon={{
-                                className: `${this.decorateCSS("dropdownIcon")} ${this.getComponentState("subNavActiveIndex") ===
-                                    index
-                                    ? this.decorateCSS("active")
-                                    : ""
-                                  }`,
-                              }}
+                            <Base.Media
+                              value={navigationIcons?.dropdownIcon}
+                              className={`${this.decorateCSS("dropdownIcon")} ${this.getComponentState("subNavActiveIndex") ===
+                                  index
+                                  ? this.decorateCSS("active")
+                                  : ""
+                                }`}
                             />
                           )}
                         </div>
@@ -1499,18 +1539,16 @@ class Navbar1 extends BaseNavigator {
                                         subItem.sub_items.some((item: any) =>
                                           this.castToString(item.title)
                                         ) && (
-                                          <Base.Icon
-                                            name={this.getPropValue("rightIcon")}
-                                            propsIcon={{
-                                              className: `${this.decorateCSS(
-                                                "rightIcon"
-                                              )} ${this.getComponentState(
-                                                "subNavActive"
-                                              ) === `${index}-${subIndex}`
-                                                  ? this.decorateCSS("active")
-                                                  : ""
-                                                }`,
-                                            }}
+                                          <Base.Media
+                                            value={navigationIcons?.rightIcon}
+                                            className={`${this.decorateCSS(
+                                              "rightIcon"
+                                            )} ${this.getComponentState(
+                                              "subNavActive"
+                                            ) === `${index}-${subIndex}`
+                                                ? this.decorateCSS("active")
+                                                : ""
+                                              }`}
                                           />
                                         )}
                                     </div>
@@ -1556,7 +1594,7 @@ class Navbar1 extends BaseNavigator {
                         )}
                       </div>
                     ))}
-                    {divider && language.showLanguage && !language.showLocalizationAlways && (
+                    {divider && language.showLanguage && (
                       <div className={this.decorateCSS("divider")}></div>
                     )}
                     <div className={`${this.decorateCSS("accordionLocalization")} ${!language.showLocalizationAlways && this.decorateCSS("active")}`}>
@@ -1570,6 +1608,21 @@ class Navbar1 extends BaseNavigator {
                         />
                       )}
                     </div>
+                    {buttons.length > 0 && (
+                      <div className={this.decorateCSS("hamburgerButtons")}>
+                        {buttons.map((button) => this.castToString(button.text) && (
+                          <ComposerLink key={button.url} path={button.url}>
+                            <Base.Button
+                              className={this.decorateCSS("hamburgerButton")}
+                              buttonType={button.type}
+                              onClick={() => this.handleCloseMenu()}
+                            >
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        ))}
+                      </div>
+                    )}
                   </nav>
                 )}
               </Base.MaxContent>

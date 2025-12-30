@@ -19,6 +19,13 @@ class About8 extends BaseAbout {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "media",
       key: "image-1",
       displayer: "Media 1",
@@ -121,15 +128,27 @@ class About8 extends BaseAbout {
     const hasImage2 = !!image2?.url;
     const hasImages = hasImage1 || hasImage2;
 
+    const description = this.getPropValue("description");
+    const descriptionExist = this.castToString(description);
+
     if (!hasTitle && !hasImages && !hasTexts && !hasButton) return null;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {hasTitle && (
+          {(descriptionExist || hasTitle) && (
+            <Base.VerticalContent className={this.decorateCSS("title-container")}>
+              {hasTitle && (
             <Base.SectionTitle className={this.decorateCSS("title")}>
               {title}
             </Base.SectionTitle>
+          )}
+          {descriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
           )}
 
           <div
@@ -207,3 +226,4 @@ class About8 extends BaseAbout {
 }
 
 export default About8;
+

@@ -15,7 +15,7 @@
     flex-direction: column;
     gap: var(--composer-gap-md);
     .header {
-      .subtitle, .title {
+      .subtitle, .title, .description {
         content: "";
       }
     }

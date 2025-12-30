@@ -35,6 +35,12 @@ class Feature12 extends BaseFeature {
       value: "Services",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "object",
       key: "firstItem",
       displayer: "First Card",
@@ -183,7 +189,8 @@ class Feature12 extends BaseFeature {
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
 
@@ -218,6 +225,11 @@ class Feature12 extends BaseFeature {
               )}
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
               )}
             </Base.VerticalContent>
           )}
