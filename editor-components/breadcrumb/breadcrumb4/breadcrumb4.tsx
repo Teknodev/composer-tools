@@ -92,6 +92,12 @@ class Breadcrumb4 extends BaseBreadcrumb {
       value: "About Us",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "array",
       key: "breadcrumbItems",
       displayer: "Breadcrumb Items",
@@ -190,6 +196,8 @@ class Breadcrumb4 extends BaseBreadcrumb {
     const currentPage = this.castToObject<any>("currentPage");
     const currentPageTitle = currentPage?.title || "";
     const currentPageIcon = currentPage?.icon || "";
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
 
     const titleExist = this.castToString(title);
 
@@ -226,6 +234,11 @@ class Breadcrumb4 extends BaseBreadcrumb {
               <Base.VerticalContent className={this.decorateCSS("items")}>
                 {titleExist && (
                   <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImage && this.decorateCSS("image")}`}>{title}</Base.SectionTitle>
+                )}
+                {isDescriptionExist && (
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImage && this.decorateCSS("image")}`}>
+                    {description}
+                  </Base.SectionDescription>
                 )}
                 {showBreadcrumb && (
                   <div className={this.decorateCSS("pages")}>

@@ -150,6 +150,9 @@
             }
         }
     }
+    .description {
+        text-align: left !important;
+    }
 }
 
 @container (max-width: #{$composer-tablet-width}) {

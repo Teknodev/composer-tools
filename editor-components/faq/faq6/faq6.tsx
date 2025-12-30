@@ -59,7 +59,12 @@ class Faq6 extends BaseFAQ {
       displayer: "Title",
       value: "Frequently Asked Questions"
     },)
-
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    })
     this.addProp({
       type: "array",
       displayer: "List Items",
@@ -163,6 +168,8 @@ class Faq6 extends BaseFAQ {
   }
 
   render() {
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -181,6 +188,11 @@ class Faq6 extends BaseFAQ {
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("title")}
                       </Base.SectionTitle>
+                      {descriptionExist && (
+                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                          {description}
+                        </Base.SectionDescription>
+                      )}
                     </Base.VerticalContent>
                   )}
                   {(this.getPropValue("list_items").length > 0) && (
