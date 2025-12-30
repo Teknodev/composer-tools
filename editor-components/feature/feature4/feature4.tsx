@@ -426,8 +426,8 @@ class Feature4 extends BaseFeature {
                   </Base.SectionTitle>
                 )}
                 {descriptionExist && (
-                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("black") : ""}`}>
-                    {description}
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("backgroundImage")?.url && this.decorateCSS("black")}`}>                    
+                  {description}
                   </Base.SectionDescription>
                 )}
                 {linkTextExist && (

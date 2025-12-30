@@ -227,7 +227,7 @@ class CallToAction9Page extends BaseCallToAction {
               </ComposerLink>
             )}
             {this.castToString(this.getPropValue("itemDescription")) && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
+              <Base.SectionDescription className={this.decorateCSS("item-description")}>
                 {this.getPropValue("itemDescription")}
               </Base.SectionDescription>
             )}

@@ -155,8 +155,8 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         {overlay && bgImage?.url && <div className={this.decorateCSS("overlay")}></div>}
 
                         {isTitleExist && (
-                            <Base.VerticalContent className={this.decorateCSS("left")}>
                             <Base.MaxContent className={this.decorateCSS("max-content")}>
+                            <Base.VerticalContent className={this.decorateCSS("left")}>
                                 <Base.SectionTitle
                                     className={`${this.decorateCSS("title-main")} ${bgImage?.url && this.decorateCSS("title-with-bg")
                                         } }`}
@@ -170,8 +170,8 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                         </Base.SectionDescription>
                                     </Base.MaxContent>
                                 )}
-                            </Base.MaxContent>
                             </Base.VerticalContent>
+                            </Base.MaxContent>
                         )}
                     </Base.Container>
                 )}
