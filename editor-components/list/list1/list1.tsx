@@ -386,9 +386,6 @@ class List1 extends BaseList {
                         )}
                       </Base.Row>
                     )}
-                    {backgroundColor && this.getComponentState("active-index") === indexSlider && (
-                      <div className={this.decorateCSS("colored-area")} />
-                    )}
                     {(this.castToString(item.title) || this.castToString(item.description)) && (
                       <Base.VerticalContent className={this.decorateCSS("card-header")}>
                         {this.castToString(item.title) && (

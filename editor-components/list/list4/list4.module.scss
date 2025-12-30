@@ -262,7 +262,17 @@
       .service-item:nth-child(3n + 2) {
         transform: translateY(var(--composer-gap-sm));
       }
-
+      .service-item {
+        .card-content {
+          .card-body {
+            .icon {
+              width: 1.75rem;
+              height: 1.75rem;
+              font-size: 1.75rem;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -305,6 +315,15 @@
             .border-right {
               top: calc(-2 * var(--composer-gap-sm));
               height: calc(100% + var(--composer-gap-xl) + var(--composer-gap-sm));
+            }
+          }
+          .card-content {
+            .card-body {
+              .icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 1.5rem;
+              }
             }
           }
           &:nth-child(3n + 2) {

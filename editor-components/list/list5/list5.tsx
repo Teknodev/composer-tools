@@ -293,6 +293,7 @@ class List5 extends BaseList {
       this.castToString(subtitle) ||
       this.castToString(header) ||
       this.castToString(description);
+    const isSingleColumn = this.getPropValue("itemCount") === 1;
 
     return (
       <>
@@ -328,7 +329,7 @@ class List5 extends BaseList {
             )}
             {(ListItems.length > 0) && (
               <Base.ListGrid
-                className={this.decorateCSS("cards-grid")}
+                className={`${this.decorateCSS("cards-grid")} ${isSingleColumn && this.decorateCSS("single-column")}`}
                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3}}
               >
                 {ListItems.map(

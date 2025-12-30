@@ -65,8 +65,8 @@
           transition: var(--composer-transition-duration-normal);
           content-visibility: hidden;
           background-color: var(--composer-primary-color);
-          width: var(--composer-gap-sm);
-          height: var(--composer-gap-sm);
+          width: 3px;
+          height: 10px;
           border-radius: var(--composer-border-radius-xl);
           cursor: pointer;
         }
@@ -206,11 +206,6 @@
         }
 
         &.active {
-          .colored-area {
-              content:"";
-              margin: 0;
-              display: none;
-          }
           &::after {
             content: "";
             position: absolute;
@@ -313,6 +308,9 @@
         .button {
           margin-bottom: 0;
         }
+      .image-container {
+        width: 170px !important;
+       }
       }
     }
   }
@@ -344,6 +342,9 @@
         }
       }
     }
+  }
+  .image-container {
+    width: 150px !important;
   }
 }
 
