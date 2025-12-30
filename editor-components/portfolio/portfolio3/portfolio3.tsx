@@ -46,7 +46,8 @@ class Portfolio3 extends BasePortfolio {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Explore our curated collection of immersive worlds and handcrafted adventures designed to inspire discovery, strategy, and unforgettable gaming moments.",
+      value:
+        "Explore our curated collection of immersive worlds and handcrafted adventures designed to inspire discovery, strategy, and unforgettable gaming moments.",
     });
 
     this.addProp({
@@ -86,7 +87,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Navigate Toe",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -204,7 +205,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Navigate Toe",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -321,7 +322,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Navigate Toe",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -438,7 +439,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Navigate Toe",
+              displayer: "Navigate To",
               value: "",
             },
             {

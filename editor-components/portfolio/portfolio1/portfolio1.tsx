@@ -234,8 +234,8 @@ class Portfolio1 extends BasePortfolio {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
-      }
+        selectItems: ["animate1", "animate2"],
+      },
     });
   }
   static getName(): string {
@@ -261,11 +261,13 @@ class Portfolio1 extends BasePortfolio {
           {itemLeft.Visibility && (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
-                <div 
-                  className={`${this.decorateCSS("item")} ${!itemLeft.image ? this.decorateCSS("no-media") : ""}`}
+                <div
+                  className={`${this.decorateCSS("item")} ${
+                    !itemLeft.image ? this.decorateCSS("no-media") : ""
+                  }`}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
-                  {itemLeft.image &&
+                  {itemLeft.image && (
                     <div className={this.decorateCSS("background-media")}>
                       <img
                         src={itemLeft.image}
@@ -273,7 +275,7 @@ class Portfolio1 extends BasePortfolio {
                         className={this.decorateCSS("media")}
                       />
                     </div>
-                  }
+                  )}
                   {(itemLeft.title || itemLeft.icon || itemLeft.icon2) && (
                     <div className={this.decorateCSS("content")}>
                       {itemLeft.title && (
@@ -308,9 +310,13 @@ class Portfolio1 extends BasePortfolio {
                 <div className={this.decorateCSS("top")}>
                   {itemTopRight.Visibility ? (
                     <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                      <div 
-                        className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-media") : ""}`}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      <div
+                        className={`${this.decorateCSS("item")} ${
+                          !itemTopLeft.image ? this.decorateCSS("no-media") : ""
+                        }`}
+                        data-animation={this.getPropValue(
+                          "hoverAnimation"
+                        ).join(" ")}
                       >
                         {itemTopRight.image && (
                           <div className={this.decorateCSS("background-media")}>
@@ -324,40 +330,44 @@ class Portfolio1 extends BasePortfolio {
                         {(itemTopRight.title ||
                           itemTopRight.icon ||
                           itemTopRight.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemTopRight.title && (
-                                <Base.H2 className={this.decorateCSS("title")}>
-                                  {itemTopRight.title}
-                                </Base.H2>
+                          <div className={this.decorateCSS("content")}>
+                            {itemTopRight.title && (
+                              <Base.H2 className={this.decorateCSS("title")}>
+                                {itemTopRight.title}
+                              </Base.H2>
+                            )}
+                            <div className={this.decorateCSS("icons")}>
+                              {itemTopRight.icon && (
+                                <Base.Icon
+                                  name={itemTopRight.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon1"),
+                                  }}
+                                />
                               )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemTopRight.icon && (
-                                  <Base.Icon
-                                    name={itemTopRight.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemTopRight.icon2 && (
-                                  <Base.Icon
-                                    name={itemTopRight.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
+                              {itemTopRight.icon2 && (
+                                <Base.Icon
+                                  name={itemTopRight.icon2}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon2"),
+                                  }}
+                                />
+                              )}
                             </div>
-                          )}
+                          </div>
+                        )}
                       </div>
                     </ComposerLink>
                   ) : null}
                   {itemTopLeft.Visibility ? (
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                      <div 
-                        className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-media") : ""}`}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      <div
+                        className={`${this.decorateCSS("item")} ${
+                          !itemTopLeft.image ? this.decorateCSS("no-media") : ""
+                        }`}
+                        data-animation={this.getPropValue(
+                          "hoverAnimation"
+                        ).join(" ")}
                       >
                         {itemTopLeft.image && (
                           <div className={this.decorateCSS("background-media")}>
@@ -371,32 +381,32 @@ class Portfolio1 extends BasePortfolio {
                         {(itemTopLeft.title ||
                           itemTopLeft.icon ||
                           itemTopLeft.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemTopLeft.title && (
-                                <Base.H2 className={this.decorateCSS("title")}>
-                                  {itemTopLeft.title}
-                                </Base.H2>
+                          <div className={this.decorateCSS("content")}>
+                            {itemTopLeft.title && (
+                              <Base.H2 className={this.decorateCSS("title")}>
+                                {itemTopLeft.title}
+                              </Base.H2>
+                            )}
+                            <div className={this.decorateCSS("icons")}>
+                              {itemTopLeft.icon && (
+                                <Base.Icon
+                                  name={itemTopLeft.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon1"),
+                                  }}
+                                />
                               )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemTopLeft.icon && (
-                                  <Base.Icon
-                                    name={itemTopLeft.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemTopLeft.icon2 && (
-                                  <Base.Icon
-                                    name={itemTopLeft.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
+                              {itemTopLeft.icon2 && (
+                                <Base.Icon
+                                  name={itemTopLeft.icon2}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon2"),
+                                  }}
+                                />
+                              )}
                             </div>
-                          )}
+                          </div>
+                        )}
                       </div>
                     </ComposerLink>
                   ) : null}
@@ -407,10 +417,16 @@ class Portfolio1 extends BasePortfolio {
                   {itemBottomLeft.Visibility ? (
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
                       <div
-                        className={`${this.decorateCSS("item")} ${!itemBottomLeft.image ? this.decorateCSS("no-media") : ""}`}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                        className={`${this.decorateCSS("item")} ${
+                          !itemBottomLeft.image
+                            ? this.decorateCSS("no-media")
+                            : ""
+                        }`}
+                        data-animation={this.getPropValue(
+                          "hoverAnimation"
+                        ).join(" ")}
                       >
-                        {itemBottomLeft.image &&
+                        {itemBottomLeft.image && (
                           <div className={this.decorateCSS("background-media")}>
                             <img
                               src={itemBottomLeft.image}
@@ -418,46 +434,52 @@ class Portfolio1 extends BasePortfolio {
                               className={this.decorateCSS("media")}
                             />
                           </div>
-                        }
+                        )}
                         {(itemBottomLeft.title ||
                           itemBottomLeft.icon ||
                           itemBottomLeft.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemBottomLeft.title && (
-                                <Base.H2 className={this.decorateCSS("title")}>
-                                  {itemBottomLeft.title}
-                                </Base.H2>
+                          <div className={this.decorateCSS("content")}>
+                            {itemBottomLeft.title && (
+                              <Base.H2 className={this.decorateCSS("title")}>
+                                {itemBottomLeft.title}
+                              </Base.H2>
+                            )}
+                            <div className={this.decorateCSS("icons")}>
+                              {itemBottomLeft.icon && (
+                                <Base.Icon
+                                  name={itemBottomLeft.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon1"),
+                                  }}
+                                />
                               )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemBottomLeft.icon && (
-                                  <Base.Icon
-                                    name={itemBottomLeft.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemBottomLeft.icon2 && (
-                                  <Base.Icon
-                                    name={itemBottomLeft.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
+                              {itemBottomLeft.icon2 && (
+                                <Base.Icon
+                                  name={itemBottomLeft.icon2}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon2"),
+                                  }}
+                                />
+                              )}
                             </div>
-                          )}
+                          </div>
+                        )}
                       </div>
                     </ComposerLink>
                   ) : null}
                   {itemBottomRight.Visibility ? (
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                      <div 
-                        className={`${this.decorateCSS("item")} ${!itemBottomRight.image ? this.decorateCSS("no-media") : ""}`}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      <div
+                        className={`${this.decorateCSS("item")} ${
+                          !itemBottomRight.image
+                            ? this.decorateCSS("no-media")
+                            : ""
+                        }`}
+                        data-animation={this.getPropValue(
+                          "hoverAnimation"
+                        ).join(" ")}
                       >
-                        {itemBottomRight.image &&
+                        {itemBottomRight.image && (
                           <div className={this.decorateCSS("background-media")}>
                             <img
                               src={itemBottomRight.image}
@@ -465,36 +487,36 @@ class Portfolio1 extends BasePortfolio {
                               className={this.decorateCSS("media")}
                             />
                           </div>
-                        }
+                        )}
                         {(itemBottomRight.title ||
                           itemBottomRight.icon ||
                           itemBottomRight.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemBottomRight.title && (
-                                <Base.H2 className={this.decorateCSS("title")}>
-                                  {itemBottomRight.title}
-                                </Base.H2>
+                          <div className={this.decorateCSS("content")}>
+                            {itemBottomRight.title && (
+                              <Base.H2 className={this.decorateCSS("title")}>
+                                {itemBottomRight.title}
+                              </Base.H2>
+                            )}
+                            <div className={this.decorateCSS("icons")}>
+                              {itemBottomRight.icon && (
+                                <Base.Icon
+                                  name={itemBottomRight.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon1"),
+                                  }}
+                                />
                               )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemBottomRight.icon && (
-                                  <Base.Icon
-                                    name={itemBottomRight.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemBottomRight.icon2 && (
-                                  <Base.Icon
-                                    name={itemBottomRight.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
+                              {itemBottomRight.icon2 && (
+                                <Base.Icon
+                                  name={itemBottomRight.icon2}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon2"),
+                                  }}
+                                />
+                              )}
                             </div>
-                          )}
+                          </div>
+                        )}
                       </div>
                     </ComposerLink>
                   ) : null}

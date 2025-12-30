@@ -1,4 +1,5 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -20,7 +21,6 @@
         width: 100%;
 
         .title {
-          
           margin-bottom: var(--composer-gap-sm);
         }
       }
@@ -58,19 +58,19 @@
       var(--composer-font-color-primary) 5%
     );
 
-    &.no-image {
+    &.no-media {
       .content {
         color: var(--composer-font-color-primary);
       }
     }
 
-    .background-image {
+    .background-media {
       position: absolute;
       inset: 0;
       overflow: hidden;
       z-index: 0;
 
-      .media-image {
+      .media {
         position: absolute;
         inset: 0;
         width: calc(100% + var(--composer-gap-md));
@@ -93,7 +93,7 @@
       }
     }
 
-    .background-image ~ .content {
+    .background-media ~ .content {
       color: white !important;
 
       .subtitle,
@@ -106,7 +106,6 @@
       }
 
       .subtitle {
-
         margin-left: inherit;
         background: none;
         padding: 0;
@@ -122,12 +121,12 @@
     }
 
     &[data-animation~="animate1"] {
-      .background-image .media-image {
+      .background-media .media {
         transform: translateX(-6px);
       }
 
       &:hover {
-        .background-image .media-image {
+        .background-media .media {
           transform: translateX(0);
         }
 
@@ -138,12 +137,12 @@
     }
 
     &[data-animation~="animate2"] {
-      .background-image .media-image {
+      .background-media .media {
         transform: scale(1);
       }
 
       &:hover {
-        .background-image .media-image {
+        .background-media .media {
           transform: scale(1.1);
         }
 
@@ -160,7 +159,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      
+
       margin-top: auto;
       white-space: normal;
       width: 100%;
@@ -207,24 +206,23 @@
         align-items: center;
         gap: var(--composer-gap-sm);
         justify-content: space-between;
-      
 
-      .icons-wrapper {
-        display: flex;
-        gap: var(--composer-gap-xs);
-        align-items: center;
-        margin-left: var(--composer-gap-sm);
-        font-size: 45px;
-
-        .icon1,
-        .icon2 {
-          display: inline-flex;
+        .icons-wrapper {
+          display: flex;
+          gap: var(--composer-gap-xs);
           align-items: center;
-          justify-content: center;
-          width: 45px;
-          height: 45px;
+          margin-left: var(--composer-gap-sm);
+          font-size: 45px;
+
+          .icon1,
+          .icon2 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+          }
         }
-      }
       }
     }
   }
@@ -257,7 +255,6 @@
     }
 
     .right {
-      
       gap: var(--composer-gap-md);
       height: auto;
 

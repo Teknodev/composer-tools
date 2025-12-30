@@ -163,7 +163,12 @@ class Portfolio2 extends BasePortfolio {
   }
 
   private renderButtons(
-    buttons: { text?: string; type?: string; url?: string; media?: TypeMediaInputValue }[],
+    buttons: {
+      text?: string;
+      type?: string;
+      url?: string;
+      media?: TypeMediaInputValue;
+    }[],
     keyPrefix: string
   ) {
     return (
