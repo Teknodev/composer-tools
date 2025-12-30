@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -16,11 +15,11 @@
       width: 100%;
       align-items: flex-start;
       padding: var(--composer-gap-lg) var(--composer-gap-xl);
-
       .content {
         width: 100%;
 
         .title {
+          
           margin-bottom: var(--composer-gap-sm);
         }
       }
@@ -46,6 +45,7 @@
 
   .item {
     padding: var(--composer-gap-lg);
+    border-radius: var(--composer-border-radius-sm);
     display: flex;
     justify-content: flex-start;
     position: relative;
@@ -70,7 +70,7 @@
       overflow: hidden;
       z-index: 0;
 
-      .media {
+      .media-element {
         position: absolute;
         inset: 0;
         width: calc(100% + var(--composer-gap-md));
@@ -106,6 +106,7 @@
       }
 
       .subtitle {
+
         margin-left: inherit;
         background: none;
         padding: 0;
@@ -121,12 +122,12 @@
     }
 
     &[data-animation~="animate1"] {
-      .background-media .media {
+      .background-media .media-element {
         transform: translateX(-6px);
       }
 
       &:hover {
-        .background-media .media {
+        .background-media .media-element {
           transform: translateX(0);
         }
 
@@ -137,12 +138,12 @@
     }
 
     &[data-animation~="animate2"] {
-      .background-media .media {
+      .background-media .media-element {
         transform: scale(1);
       }
 
       &:hover {
-        .background-media .media {
+        .background-media .media-element {
           transform: scale(1.1);
         }
 
@@ -159,7 +160,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-
+      
       margin-top: auto;
       white-space: normal;
       width: 100%;
@@ -206,23 +207,26 @@
         align-items: center;
         gap: var(--composer-gap-sm);
         justify-content: space-between;
+      
 
-        .icons-wrapper {
-          display: flex;
-          gap: var(--composer-gap-xs);
+      .icons-wrapper {
+        display: flex;
+        gap: var(--composer-gap-xs);
+        align-items: center;
+        margin-left: var(--composer-gap-sm);
+        font-size: 90px;
+
+        .icon1,
+        .icon2 {
+          display: inline-flex;
           align-items: center;
-          margin-left: var(--composer-gap-sm);
-          font-size: 45px;
-
-          .icon1,
-          .icon2 {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-          }
+          justify-content: center;
+          width: 1em;
+          height: 1em;
+          font-size: inherit;
+          line-height: 1;
         }
+      }
       }
     }
   }
@@ -255,6 +259,7 @@
     }
 
     .right {
+      
       gap: var(--composer-gap-md);
       height: auto;
 
