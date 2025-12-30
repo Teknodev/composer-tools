@@ -6,6 +6,22 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 800px;
+    .subtitle.subtitle-badge-hidden {
+      background: transparent !important;
+      padding-left: 0px !important;
+    }
+    .max-content {
+      .wrapper {
+        .content {
+          .subtitle {
+            color: white !important;
+            &::before {
+              background: white !important;
+            }
+          }
+        }
+      }
+    }
   }
   &.overlay-active {
     position: relative;
@@ -33,10 +49,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: white;
         justify-content: center;
-        .title , .description {
-          text-align: center;
+        .title , .description, .subtitle {          
           &.with-bg {
             color: white;
           }

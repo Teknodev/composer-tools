@@ -18,6 +18,13 @@ class Feature20 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "High Quality Services",
@@ -164,6 +171,8 @@ class Feature20 extends BaseFeature {
 
   render() {
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const items = this.castToObject<Item[]>("items") || [];
     const showLine = this.getPropValue("showLine") as boolean;
@@ -174,6 +183,11 @@ class Feature20 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
            {(this.castToString(title) || this.castToString(description)) && <div className={this.decorateCSS("header")}>
+            {subtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
               {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {showLine && <div className={this.decorateCSS("line")} />}
               {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}

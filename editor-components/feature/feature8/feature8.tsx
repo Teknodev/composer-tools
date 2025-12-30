@@ -23,6 +23,13 @@ class Feature8 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Collections are your most important pages, but are frustrating to manage",
@@ -392,15 +399,26 @@ class Feature8 extends BaseFeature {
   render() {
     const titleExist = this.castToString(this.getPropValue("title"));
     const title = this.getPropValue("title");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const subtitle = this.getPropValue("subtitle");
     const cards = this.castToObject<Card[]>("cards");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {titleExist && (
-            <Base.SectionTitle className={this.decorateCSS("section-title")}>
-              {title}
-            </Base.SectionTitle>
+          {(titleExist || subtitleExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+            {titleExist && (
+              <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                {title}
+              </Base.SectionTitle>
+            )}
+          </Base.VerticalContent>
           )}
           {cards?.length > 0 && (
             <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 , tablet: 3 }} className={this.decorateCSS("cards-container")}>
