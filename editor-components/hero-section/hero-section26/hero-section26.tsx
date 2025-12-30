@@ -366,7 +366,7 @@ class HeroSection26 extends BaseHeroSection {
                             {logoExist && (
                               <Base.Media
                                 value={item.logo}
-                                className={this.decorateCSS("logo")}
+                                className={`${this.decorateCSS("logo")} ${item.logo.type === "image" && this.decorateCSS("logo-image")}`}
                               />
                             )}
                              {subtitleExist && (

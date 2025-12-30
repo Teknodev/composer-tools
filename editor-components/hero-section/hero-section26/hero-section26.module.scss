@@ -58,10 +58,13 @@
             .logo {
               margin-bottom: var(--composer-gap-sm);
               font-size: 2rem;
-              aspect-ratio: 3 / 1;
-              object-fit: cover;
-              max-width: 150px;
               color: var(--composer-font-color-primary);
+
+              &.logo-image {
+                aspect-ratio: 3 / 1;
+                object-fit: cover;
+                max-width: 150px;
+              }
             }
 
             .title {
