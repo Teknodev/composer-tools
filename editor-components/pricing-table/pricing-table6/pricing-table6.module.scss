@@ -230,6 +230,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               color: var(--composer-font-color-primary);
               transform: scale(1);
               transition: all 0.8s ease;
+              width: inherit;
               .price,
               .per {
                 padding: var(--composer-gap-xs);
@@ -237,10 +238,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
               .price {
                 font-size: 2rem;
+                width: fit-content;
               }
 
             .per {
               white-space: inherit;
+              width: fit-content;
             }
             }
             .per {
