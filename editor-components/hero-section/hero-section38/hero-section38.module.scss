@@ -518,6 +518,7 @@
             .image-wrapper {
               min-height: 240px !important;
               margin-bottom: var(--composer-gap-sm);
+              border-radius: 0px;
             }
 
             &.no-image {
