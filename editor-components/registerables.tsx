@@ -104,6 +104,7 @@ import HeroSection32 from "./hero-section/hero-section32/hero-section32";
 import HeroSection33 from "./hero-section/hero-section33/hero-section33";
 import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
+import HeroSection38 from "./hero-section/hero-section38/hero-section38";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
@@ -427,6 +428,7 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection33,
     HeroSection34,
     HeroSection35,
+    HeroSection38,
     IntroSection1,
     IntroSection2,
     IntroSection4,
