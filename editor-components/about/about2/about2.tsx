@@ -77,7 +77,6 @@ class About2 extends BaseAbout {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const cover = this.getPropValue("cover-image");
     const rawVideo = this.getPropValue("videoUrl");
-    const videoValue = rawVideo && (typeof rawVideo === "string" ? { type: "video", url: rawVideo } : rawVideo);
 
     return (
       <Base.Container
@@ -100,7 +99,7 @@ class About2 extends BaseAbout {
             >
               <div className={this.decorateCSS("video-container")}>
                   <div className={this.decorateCSS("video")} onClick={(event: React.MouseEvent) => event.stopPropagation()}>
-                    <Base.Media value={videoValue} className={this.decorateCSS("player")} />
+                    <Base.Media value={rawVideo} className={this.decorateCSS("player")} />
                   </div>
               </div>
               {closeIcon && (
