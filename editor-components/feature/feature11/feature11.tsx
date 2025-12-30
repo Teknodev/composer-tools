@@ -1,19 +1,12 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type LeftContent = {
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-};
-
 type Card = {
-  icon: string;
+  icon: TypeMediaInputValue;
   title: React.JSX.Element;
   description: React.JSX.Element;
 };
@@ -21,32 +14,29 @@ type Card = {
 class Feature11 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+    
 
     this.addProp({
-      type: "object",
-      key: "leftContent",
-      displayer: "Left Content",
-      value: [
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Everything You Need"
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "The universal UI kit and design system"
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "Powerful tool for creating landing pages, websites and dashboards in Figma. Contains UI Kit (web), Data Visualization, Icon Set."
-        },
-      ]
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Everything You Need"
     });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "The universal UI kit and design system"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Powerful tool for creating landing pages, websites and dashboards in Figma. Contains UI Kit (web), Data Visualization, Icon Set."
+    });
+
     this.addProp(INPUTS.BUTTON("button", "Button", "Start Creating", "", null, null, "Primary"));
 
     this.addProp({
@@ -60,10 +50,16 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "GrDrag"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "GrDrag"
+              }
             },
             {
               type: "string",
@@ -85,10 +81,16 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "CgDisplayFlex"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "CgDisplayFlex"
+              }
             },
             {
               type: "string",
@@ -110,10 +112,16 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "IoColorFilterSharp"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoColorFilterSharp"
+              }
             },
             {
               type: "string",
@@ -135,10 +143,16 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaBox"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaBox"
+              }
             },
             {
               type: "string",
@@ -160,10 +174,16 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaFileArchive"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFileArchive"
+              }
             },
             {
               type: "string",
@@ -185,10 +205,16 @@ class Feature11 extends BaseFeature {
           displayer: "Card",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "LuReplaceAll"
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "LuReplaceAll"
+              }
             },
             {
               type: "string",
@@ -212,6 +238,9 @@ class Feature11 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 2,
+      additionalParams: {
+        maxElementCount: 5,
+      },
     });
   }
 
@@ -220,39 +249,44 @@ class Feature11 extends BaseFeature {
   }
 
   render() {
-    const leftContent = this.castToObject<LeftContent>("leftContent");
     const cards = this.castToObject<Card[]>("cards");
     const button = this.castToObject<INPUTS.CastedButton>("button");
-
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const alignment = Base.getContentAlignment();
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(leftContent.subtitle) || this.castToString(leftContent.title) ||
-              this.castToString(leftContent.description) || this.castToString(button.text)) && (
-                <Base.VerticalContent className={this.decorateCSS("left")}>
-                  {this.castToString(leftContent.subtitle) && (
+            {(this.castToString(subtitle) || this.castToString(title) ||
+              this.castToString(description) || this.castToString(button.text)) && (
+                <Base.VerticalContent 
+                  className={this.decorateCSS("left")}
+                  data-alignment={alignment}
+                >
+                  {this.castToString(subtitle) && (
                     <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
-                      {leftContent.subtitle}
+                      {subtitle}
                     </Base.SectionSubTitle>
                   )}
 
-                  {this.castToString(leftContent.title) && (
+                  {this.castToString(title) && (
                     <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                      {leftContent.title}
+                      {title}
                     </Base.SectionTitle>
                   )}
 
-                  {this.castToString(leftContent.description) && (
+                  {this.castToString(description) && (
                     <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                      {leftContent.description}
+                      {description}
                     </Base.SectionDescription>
                   )}
 
                   {this.castToString(button.text) && (
                     <ComposerLink path={button.url}>
                       <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   )}
@@ -275,7 +309,7 @@ class Feature11 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
-                      {card.icon && <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("card-icon") }} />}
+                      {card.icon && <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {titleExist && (
                           <Base.H3 className={this.decorateCSS("card-title")}>

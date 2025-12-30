@@ -1,7 +1,15 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) var(--composer-gap-xl);
+  padding: 80px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl) !important;
+
+  &.absolute {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+  }
   .max-content {
     .footer-page {
       justify-content: center;
@@ -11,13 +19,15 @@
         text-align: center;
         align-items: center;
 
-        .subtitle {
-          color: var(--composer-font-color-primary);
-          font-size: 2rem;
+        .subtitle, .title{
+          text-align: center;
         }
-        .title {
-          font-size: 3rem;
-          margin: 0;
+
+        .subtitle{
+          transform: translateX(0);
+          &::before{
+            display: none;
+          }
         }
       }
 
@@ -32,14 +42,15 @@
           flex: 1 1 290px;
           max-width: 290px;
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
 
           .list-title {
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
 
           .text {
-            font-size: 1rem;
             color: var(--composer-font-color-primary);
             position: relative;
             transition: all 0.3s ease;
@@ -83,14 +94,9 @@
         }
       }
 
-      .bottom-container {
-        display: flex;
-        justify-content: center;
-        .bottom-text {
-          font-size: 1rem;
-          text-align: center;
-          color: var(--composer-font-color-primary);
-        }
+      .bottom-text {
+        text-align: center;
+        color: var(--composer-font-color-primary);
       }
     }
   }
@@ -98,7 +104,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: var(--composer-gap-md) var(--composer-gap-lg);
+    padding: 80px var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg) !important;
     .max-content {
       .footer-page {
         gap: var(--composer-gap-md);
@@ -118,20 +124,12 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-md);
+    padding: 80px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) !important;
     .max-content {
       .footer-page {
         justify-content: center;
         align-items: center;
         gap: var(--composer-gap-sm);
-        .header {
-          .subtitle {
-            font-size: 1rem;
-          }
-          .title {
-            font-size: 1.5rem;
-          }
-        }
 
         .middle-container {
           display: flex;
@@ -146,8 +144,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            .text{
-
+            .text, .list-title{
               text-align: center;
             }
           }

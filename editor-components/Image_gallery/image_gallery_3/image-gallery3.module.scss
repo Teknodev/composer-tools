@@ -1,6 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-lg);
   .max-content {
     display: flex;
     justify-content: center;
@@ -20,13 +23,8 @@
 
       .title,
       .subtitle {
-        margin: 0;
         color: var(--composer-primary-color);
-        letter-spacing: 6px;
-      }
-
-      .subtitle {
-        font-style: italic;
+        width: fit-content;
       }
 
       .line {
@@ -38,6 +36,7 @@
 
     .image-box {
       flex: 1;
+      position: relative;
 
       .image {
         width: 100%;
@@ -45,6 +44,16 @@
         aspect-ratio: 8 / 9;
         object-fit: cover;
         max-height: 500px;
+        border-radius: var(--composer-border-radius-sm);
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
         border-radius: var(--composer-border-radius-sm);
       }
     }
@@ -64,6 +73,7 @@
         .image-box {
           flex: 1;
           max-width: calc(33.333% - var(--composer-gap-md));
+          position: relative;
 
           .image {
             width: 100%;
@@ -71,6 +81,16 @@
             aspect-ratio: 8 / 9;
             object-fit: cover;
             max-height: 500px;
+            border-radius: var(--composer-border-radius-sm);
+          }
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
             border-radius: var(--composer-border-radius-sm);
           }
         }
@@ -99,16 +119,18 @@
   .button-wrapper {
     display: flex;
     justify-content: center;
-    margin-top: var(--composer-gap-lg);
     
     .button {
-      content: "";
+      .button-text{
+        content: "";
+      }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container{
+    gap: var(--composer-gap-md);
     .max-content{
       flex-direction: column;
       .header{
