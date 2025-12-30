@@ -34,7 +34,7 @@
 
                             .icon {
                                 height: calc(var(--composer-gap-sm) * 3);
-                                font-size: calc(var(--composer-gap-sm) * 3);
+                                font-size: 2rem;
                                 object-fit: contain;
                                 display: block;
                             }
@@ -238,7 +238,7 @@
 
                     .image-wrapper {
                         border-top-left-radius: var(--composer-border-radius-sm);
-                        border-bottom-left-radius: var(--border-radius-sm);
+                        border-bottom-left-radius: var(--composer-border-radius-sm);
                     }
                 }
             }
