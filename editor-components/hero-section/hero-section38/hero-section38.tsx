@@ -378,7 +378,7 @@ class HeroSection38 extends BaseHeroSection {
                     return null;
                   }
 
-                  const slideClass = `${this.decorateCSS("slide-item")} ${!imageExists && titleExists && this.decorateCSS("no-image")} ${isScaled && this.decorateCSS("active-slide")}`.trim();
+                  const slideClass = `${this.decorateCSS("slide-item")} ${!imageExists && titleExists && this.decorateCSS("no-image")} ${isScaled && this.decorateCSS("active-slide")}`;
                   
                   const slideContent = (
                     <ComposerLink path={navigateTo}>

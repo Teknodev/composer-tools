@@ -191,7 +191,6 @@
 
         :global(.slick-slide > div) {
           width: 1000px !important;
-          max-width: 1000px !important;
         }
       }
 
@@ -400,11 +399,11 @@
           }
 
           .active-slide {
-            transform: translateY(var(--composer-gap-sm)) scale(1.18);
+            transform: translateY(var(--composer-gap-sm)) scale(1.20);
 
             .image-wrapper {
               .image {
-                transform: scale(1.18);
+                transform: scale(1.20);
               }
             }
           }
