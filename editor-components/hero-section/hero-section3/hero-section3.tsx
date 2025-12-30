@@ -15,6 +15,8 @@ type ISliderData = {
   button: INPUTS.CastedButton;
   logo: TypeMediaInputValue;
   overlay: boolean;
+  backgroundImage?: TypeMediaInputValue;
+  animation?: boolean;
 };
 
 class HeroSection3 extends BaseHeroSection {
@@ -71,6 +73,21 @@ class HeroSection3 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
               },
+            },
+            {
+              type: "media",
+              key: "background-image",
+              displayer: "Background Image",
+              value:  {type: "image", url: "https://livewp.site/wp/md/wizestore/wp-content/uploads/sites/17/revslider/home-store-01/home_01_img1.png"},
+              additionalParams: {
+                selectItems: ["image"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "animation",
+              displayer: "Animation",
+              value: true,
             },
             {
               type: "boolean",
@@ -138,6 +155,21 @@ class HeroSection3 extends BaseHeroSection {
               },
             },
             {
+              type: "media",
+              key: "background-image",
+              displayer: "Background Image",
+              value:  {type: "image", url: ""},
+              additionalParams: {
+                selectItems: ["image"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "animation",
+              displayer: "Animation",
+              value: true,
+            },
+            {
               type: "boolean",
               key: "overlay",
               displayer: "Overlay",
@@ -202,6 +234,21 @@ class HeroSection3 extends BaseHeroSection {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
               },
+            },
+            {
+              type: "media",
+              key: "background-image",
+              displayer: "Background Image",
+              value:  {type: "image", url: ""},
+              additionalParams: {
+                selectItems: ["image"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "animation",
+              displayer: "Animation",
+              value: true,
             },
             {
               type: "boolean",
@@ -306,6 +353,9 @@ class HeroSection3 extends BaseHeroSection {
               };
               const typeClass = typeClassMap[item.type] || "1";
 
+              const slideBg = item["background-image"] ?? item.backgroundImage;
+              const slideBgAnim = item["animation"] ?? item.animation ?? false;
+
               return (
                 <div
                   className={`${this.decorateCSS("wrapper")} ${this.decorateCSS(
@@ -316,6 +366,12 @@ class HeroSection3 extends BaseHeroSection {
                   ${item.image && this.decorateCSS("has-image")}
                   `}
                 >
+                  {slideBg && (
+                    <div className={this.decorateCSS("slide-bg")}>
+                      <Base.Media value={slideBg} className={`${this.decorateCSS("slide-bg-image")} ${slideBgAnim ? this.decorateCSS("slide-bg-image-animated") : ""}`} />
+                    </div>
+                  )}
+
                   {!showContent && item.type === "Overlay on Image" ? null : (
                     <div className={this.decorateCSS("content-bg")} />
                   )}

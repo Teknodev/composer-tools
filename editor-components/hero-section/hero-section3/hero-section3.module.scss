@@ -29,8 +29,7 @@
 }
 
 .container {
-  background: var(--composer-html-background);
-  padding: 0px 0px var(--composer-gap-xl) 0px !important;
+  padding: 0 var(--composer-gap-xl) !important;
 
   &.center-alignment {
     .max-content {
@@ -184,7 +183,7 @@
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          width: calc(100% - 4vw);
+          width: calc(100% - 6vw);
           height: 34vw;
           left: -100%;
           border-radius: var(--composer-border-radius-md);
@@ -193,6 +192,35 @@
             var(--composer-html-background),
             var(--composer-font-color-primary) 5%
           );
+        }
+
+        .slide-bg {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: auto;
+          z-index: -3;
+          overflow: hidden;
+          height: 50vh;
+
+           .slide-bg-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            display: block;
+          }
+        }
+
+        .slide-bg-image-animated {
+          transform-origin: center center;
+          animation: slideBgRotate 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes slideBgRotate {
+          0% { transform: rotate(-3deg); }
+          50% { transform: rotate(3deg); }
+          100% { transform: rotate(-3deg); }
         }
 
         .content {
@@ -340,7 +368,15 @@
 
           .content-bg,
           .content .text-container {
-            width: calc(50% - 5vw);
+            // width: calc(50% - 5vw);
+            width: 100%;
+            .logo-container, .button-container {
+              display: flex;
+              justify-content: center;
+            }
+            .title, .description {
+              text-align: center;
+            }
           }
 
           .image-container {
@@ -398,7 +434,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0px 0px var(--composer-gap-lg) 0px !important;
+    padding: 0 var(--composer-gap-lg)!important;
     .max-content {
       .pagination {
         .page-number {
