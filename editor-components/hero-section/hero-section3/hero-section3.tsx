@@ -17,6 +17,7 @@ type ISliderData = {
   overlay: boolean;
   backgroundImage?: TypeMediaInputValue;
   animation?: boolean;
+  line?: boolean;
 };
 
 class HeroSection3 extends BaseHeroSection {
@@ -91,6 +92,12 @@ class HeroSection3 extends BaseHeroSection {
             },
             {
               type: "boolean",
+              key: "line",
+              displayer: "Line",
+              value: true,
+            },
+            {
+              type: "boolean",
               key: "overlay",
               displayer: "Overlay",
               value: false,
@@ -140,7 +147,7 @@ class HeroSection3 extends BaseHeroSection {
               type: "string",
               displayer: "Description",
               key: "description",
-              value: "",
+              value: "Your Fashion Summer Collection is Here!",
             },
             {
               type: "media",
@@ -167,6 +174,12 @@ class HeroSection3 extends BaseHeroSection {
               type: "boolean",
               key: "animation",
               displayer: "Animation",
+              value: true,
+            },
+            {
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
               value: true,
             },
             {
@@ -248,6 +261,12 @@ class HeroSection3 extends BaseHeroSection {
               type: "boolean",
               key: "animation",
               displayer: "Animation",
+              value: true,
+            },
+            {
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
               value: true,
             },
             {
@@ -355,6 +374,7 @@ class HeroSection3 extends BaseHeroSection {
 
               const slideBg = item["background-image"] ?? item.backgroundImage;
               const slideBgAnim = item["animation"] ?? item.animation ?? false;
+              const showLine = item["line"] ?? item.line ?? true;
 
               return (
                 <div
@@ -390,7 +410,13 @@ class HeroSection3 extends BaseHeroSection {
                         {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                         {title && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                         {description && (
-                          <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>
+                            <div className={this.decorateCSS("description-with-line")}>
+                              {(showLine && (typeClass === "1" || typeClass === "3")) && <Base.P className={this.decorateCSS("desc-line")} />}
+                              <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {item.description}
+                              </Base.SectionDescription>
+                              {(showLine && typeClass === "2") && <Base.P className={this.decorateCSS("desc-line")} />}
+                          </div>
                         )}
                         {buttonText && (
                           <div className={this.decorateCSS("button-container")}>

@@ -4,6 +4,21 @@
   transition: all $second ease-out;
 }
 
+.wrapper.type-3 {
+  .text-container {
+    .description-with-line {
+      flex-direction: column !important;
+      width: 100% !important;
+      gap: calc(var(--composer-gap-sm) / 2) !important;
+      align-items: center !important;
+    }
+    .description {
+      width: 100% !important;
+    }
+  }
+}
+
+
 @mixin transitionOpacity {
   transition: opacity 0.1s linear;
 }
@@ -64,6 +79,32 @@
       .page-number {
         cursor: pointer;
         padding: 0 var(--composer-gap-xs);
+
+            .content {
+              .text-container {
+                .description-with-line {
+                  flex-direction: column !important;
+                  gap: calc(var(--composer-gap-sm) / 2) !important;
+                  align-items: center;
+                }
+                .desc-line {
+                  margin: 0 0 calc(var(--composer-gap-sm) / 2) 0 !important;
+                  width: 4rem;
+                  height: 2px;
+                }
+              }
+            }
+            .text-container {
+              .description-with-line {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: calc(var(--composer-gap-sm) / 2) !important;
+                align-items: center !important;
+              }
+              .description {
+                width: 100% !important;
+              }
+            }
         margin: 0 var(--composer-gap-xs);
         color: var(--composer-tertiary-color);
         font-size: 1.5rem;
@@ -235,7 +276,7 @@
           flex: 1;
           @include flexCenter;
           margin-left: var(--composer-gap-xl);
-          margin: 5%;
+          margin: 10%;
 
           .logo-container {
             width: 100%;
@@ -269,6 +310,50 @@
             text-align: left;
             @include transitionOpacity;
             color: var(--composer-font-color-primary);
+          }
+
+          .description-with-line {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-md);
+          }
+
+          .desc-line {
+            display: block;
+            width: 8vw;
+            height: 2px;
+            background: rgb(177, 186, 133);
+            flex-shrink: 0;
+            margin-bottom: var(--composer-gap-md);
+          }
+
+          .wrapper.type-1 & .description-with-line {
+            flex-direction: row; 
+          }
+
+          .wrapper.type-2 & .description-with-line {
+            flex-direction: row-reverse; 
+          }
+
+          .wrapper.type-3 & .description-with-line {
+            flex-direction: column;
+            gap: calc(var(--composer-gap-sm) / 2);
+            width: 100%;
+          }
+
+          .wrapper.type-3 & .description-with-line .description {
+            width: 100%;
+          }
+
+          .wrapper.type-3 .text-container .description-with-line {
+            flex-direction: column;
+            gap: calc(var(--composer-gap-sm) / 2);
+            width: 100%;
+            align-items: center;
+          }
+
+          .wrapper.type-3 .text-container .description {
+            width: 100%;
           }
 
           .button-container {
@@ -341,7 +426,7 @@
         &.type-2 {
           &.active-slide 
             .text-container {
-              margin-left: clamp(8%, 9%, 10%);
+              margin-left: clamp(8%, 10%, 10%);
 
             }
             .image-container .image {
@@ -366,9 +451,11 @@
             }
           }
 
-          .content-bg,
+          .content-bg {
+            right: 60% !important;
+          }
+
           .content .text-container {
-            // width: calc(50% - 5vw);
             width: 100%;
             .logo-container, .button-container {
               display: flex;
@@ -467,7 +554,7 @@
           &.type-3 {
             .content-bg,
             .content .text-container {
-              width: 46%;
+              width: 100%;
             }
           }
         }
@@ -637,6 +724,40 @@
           &.type-3 {
             .content {
               flex-direction: column !important;
+            }
+          }
+
+          &.type-1,
+          &.type-2,
+          &.type-3 {
+            .text-container {
+              .description-with-line {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: calc(var(--composer-gap-sm) / 2) !important;
+                align-items: center !important;
+              }
+              .description {
+                width: 100% !important;
+              }
+            }
+          }
+
+          &.has-image {
+            .text-container {
+              .description-with-line {
+                .desc-line {
+                  background: white !important;
+                }
+              }
+            }
+          }
+
+          &.type-2 {
+            .text-container {
+              .description-with-line {
+                flex-direction: column-reverse !important;
+              }
             }
           }
 

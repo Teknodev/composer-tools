@@ -1,5 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+/* Ensure no border from slick's global CSS affects this project */
+:global(.slick-vertical .slick-slide) {
+  border: none !important;
+}
+
 .container {
   margin: 0;
   padding: 0;
@@ -298,6 +303,12 @@
   }
 }
 
+:global(.slick-vertical) {
+  :global(.slick-side) {
+    border: none !important;
+  }
+}
+
 @container (max-width : #{$composer-tablet-width}) {
   .container {
     .max-content {
@@ -391,6 +402,10 @@
             .slick-slide {
               height: 100%;
             }
+          }
+
+          :global(.slick-vertical .slick-slide) {
+            border: none !important;
           }
         }
       }
