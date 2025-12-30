@@ -43,8 +43,8 @@ class Feature27Component extends BaseFeature {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
-      additionalParams: { availableTypes: ["image"] },
+      displayer: "Media",
+      additionalParams: { availableTypes: ["image","video"] },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6908b7c52d05c1002bf4d35e?alt=media",

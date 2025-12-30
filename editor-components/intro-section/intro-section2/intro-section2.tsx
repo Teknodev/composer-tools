@@ -1,9 +1,9 @@
-import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 class IntroSection2 extends BaseIntroSection {
   constructor(props?: any) {
@@ -34,9 +34,9 @@ class IntroSection2 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "cover-image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -87,10 +87,12 @@ class IntroSection2 extends BaseIntroSection {
             ? this.decorateCSS("overlay")
             : ""
         }`}
-        style={{
-          backgroundImage: coverImage ? `url(${coverImage.url})` : undefined,
-        }}
       >
+        {coverImage && (
+          <div className={this.decorateCSS("background-media")}>
+            <Base.Media value={coverImage} className={this.decorateCSS("background-media-element")} />
+          </div>
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent
             className={this.decorateCSS("vertical-content")}

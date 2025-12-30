@@ -28,10 +28,10 @@ class Feature15 extends BaseFeature {
 
         this.addProp({
             type: "media",
-            displayer: "Cover Image",
+            displayer: "Cover Media",
             key: "cover_image",
             additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
             },
             value: {
                 type: "image",

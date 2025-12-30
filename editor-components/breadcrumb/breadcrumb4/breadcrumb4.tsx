@@ -74,10 +74,11 @@ class Breadcrumb4 extends BaseBreadcrumb {
       ],
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da9c05fb049c002cc245da?alt=media",
+      displayer: "Background Media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da9c05fb049c002cc245da?alt=media" },
     });
     this.addProp({
       type: "boolean",
@@ -224,7 +225,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
         <div className={this.decorateCSS("section")}>
           {backgroundImage && (
             <Base.Media
-              value={{ type: "image", url: backgroundImage }}
+              value={backgroundImage}
               className={this.decorateCSS("background-image")}
             />
           )}

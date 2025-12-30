@@ -13,9 +13,9 @@ class Download7 extends BaseDownload {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",
@@ -87,6 +87,7 @@ class Download7 extends BaseDownload {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
+        <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")} style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}>
             {overlay && backgroundImageUrl && <div className={this.decorateCSS("overlay")}></div>}

@@ -42,9 +42,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topLeftSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -79,9 +79,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomLeftSideImage",
-                    displayer: "Left Side Bottom Image",
+                    displayer: "Left Side Bottom Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -116,9 +116,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -153,9 +153,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -190,9 +190,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "middleRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -227,9 +227,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "middleRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -264,9 +264,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -301,9 +301,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                    availableTypes: ["image", "icon"],
                     },
                     value: {
                         type: "image",
@@ -347,7 +347,7 @@ class Feature16 extends BaseFeature {
 
         return (
             <Base.VerticalContent className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                {cardData[`${prefix}Image`]?.url && (
+                {cardData[`${prefix}Image`] && (
                     <div className={this.decorateCSS("card-image")}>
                         <Base.Media value={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} />
                     </div>

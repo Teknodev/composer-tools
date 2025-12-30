@@ -79,6 +79,7 @@
         .image {
           width: 100%;
           min-width: 480px;
+          max-width: 480px;
           border-radius: var(--composer-border-radius-sm);
           box-shadow: var(--composer-box-shadow);
           object-fit: cover;

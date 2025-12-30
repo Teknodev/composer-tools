@@ -16,7 +16,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media" },
     });

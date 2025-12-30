@@ -35,7 +35,7 @@ class Faq6 extends BaseFAQ {
 
     this.addProp({
       type: "media",
-      displayer: "Image",
+      displayer: "Media",
       key: "image",
       additionalParams: {
         availableTypes: ["image", "video"],

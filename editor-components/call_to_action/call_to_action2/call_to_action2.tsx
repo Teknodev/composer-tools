@@ -39,9 +39,9 @@ class CallToAction2Page extends BaseCallToAction {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -160,12 +160,13 @@ class CallToAction2Page extends BaseCallToAction {
             )}
             {image && (
               <div
-                style={{
-                  backgroundImage: `url(${this.getPropValue("image").url})`,
-                }}
                 className={this.decorateCSS("image-container")}
                 onClick={this.showVideo}
               >
+                <Base.Media
+                  value={image}
+                  className={this.decorateCSS("image")}
+                />
                 {playIcon && (
                   <div
                     className={this.decorateCSS("play-icon-box")}
@@ -190,11 +191,10 @@ class CallToAction2Page extends BaseCallToAction {
                     className={this.decorateCSS("video")}
                     onClick={this.hideVideo}
                   >
-                    <video
-                      controls
-                      className={this.decorateCSS("player")}
-                      src={this.getPropValue("video").url}
-                    ></video>
+                      <Base.Media
+                        value={this.getPropValue("video")}
+                        className={this.decorateCSS("player")}
+                      />
                   </div>
                 </div>
                 {closeIcon && (
