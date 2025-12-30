@@ -191,7 +191,7 @@ class Feature33 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 2,
       additionalParams: {
         maxElementCount: 5,
@@ -260,14 +260,16 @@ class Feature33 extends BaseFeature {
                       className={this.decorateCSS("card-container")}
                     >
                       {card.icon &&
-                        <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
-                          <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />
+                        <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                          <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
                         </div>
                       }
-                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                        {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>}
-                        {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                      </Base.VerticalContent>
+                      {(titleExist || descExist) &&
+                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                          {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>}
+                          {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                        </Base.VerticalContent>
+                      }
                     </div>
                   );
                 })}
