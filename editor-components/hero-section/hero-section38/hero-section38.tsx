@@ -396,7 +396,7 @@ class HeroSection38 extends BaseHeroSection {
                           className={`${this.decorateCSS("content-overlay")} ${imageExists && this.decorateCSS("has-image")}`}
                         >
                           {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{slideSubtitle}</Base.SectionSubTitle>}
-                          <Base.SectionTitle className={this.decorateCSS("title")}>{liveName}</Base.SectionTitle>
+                          {titleExists && <Base.SectionTitle className={this.decorateCSS("title")}>{liveName}</Base.SectionTitle>}
                           {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{slideDescription}</Base.SectionDescription>}
                         </Base.VerticalContent>
                       </div>
