@@ -251,6 +251,7 @@ class HeroSection38 extends BaseHeroSection {
     this.sliderRef = React.createRef();
     this.setComponentState("active-index", 1);
     this.setComponentState("scaled-index", null);
+    this.setComponentState("autoplay-prev", !!this.getPropValue("autoplay"));
   }
 
   static getName(): string {
@@ -274,6 +275,18 @@ class HeroSection38 extends BaseHeroSection {
   componentDidMount() {
     this.setScaledIndexWithDelay();
   }
+  onComponentDidUpdate() {
+    const autoplay = !!this.getPropValue("autoplay");
+    const prevAutoplay = this.getComponentState("autoplay-prev");
+  
+    if (autoplay === prevAutoplay) return;
+  
+    const slider = this.sliderRef?.current;
+    slider?.[autoplay ? "slickPlay" : "slickPause"]?.();
+  
+    this.setComponentState("autoplay-prev", autoplay);
+  }
+  
 
   startScaleDelay = () => {
     this.setScaledIndexWithDelay(true);
@@ -313,12 +326,12 @@ class HeroSection38 extends BaseHeroSection {
     const overlay = !!this.getPropValue("overlay");
     const animation = !!this.getPropValue("animation");
     const isSingleSlide = slides.length === 1;
-    const autoplay = this.castToString(this.getPropValue("autoplay")) ? true : false;
     const settings = {
       dots: false,
       infinite: slides.length > 1,
+      autoplaySpeed: 4000,
       speed: 1000,
-      autoplay: autoplay,
+      autoplay: this.getPropValue("autoplay"),
       slidesToShow: isSingleSlide ? 1 : 1.2,
       slidesToScroll: 1,
       centerMode: !isSingleSlide,
