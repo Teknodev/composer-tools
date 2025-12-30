@@ -165,6 +165,8 @@ class Download8 extends BaseDownload {
 
     const rightContent = document.getElementById("right-content");
     const leftContent = document.getElementById("left-content");
+    const subtitleType = Base.getSectionSubTitleType();
+    const alignment = Base.getContentAlignment();
 
     if (rightContent && leftContent) {
       const rightHeight = rightContent.clientHeight;
@@ -192,7 +194,7 @@ class Download8 extends BaseDownload {
           <div id={"right-content"} className={this.decorateCSS("right-content")}>
             <Base.VerticalContent className={this.decorateCSS("card")}>
             <Base.VerticalContent className={this.decorateCSS("card-up")}>
-                {cardSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{this.getPropValue("cardSubtitle")}</Base.SectionSubTitle>}
+                {cardSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("card-subtitle")} ${ alignment === "center" && this.decorateCSS("center-badge")}`}>{this.getPropValue("cardSubtitle")}</Base.SectionSubTitle>}
                 {cardTitleExist && <Base.H3 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</Base.H3>}
                 {listExist && (
                   <Base.VerticalContent className={this.decorateCSS("list-group")}>
