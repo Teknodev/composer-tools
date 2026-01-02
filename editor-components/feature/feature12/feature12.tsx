@@ -35,6 +35,12 @@ class Feature12 extends BaseFeature {
       value: "Services",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "object",
       key: "firstItem",
       displayer: "First Card",
@@ -48,9 +54,9 @@ class Feature12 extends BaseFeature {
         {
           type: "media",
           key: "backgroundImage",
-          displayer: "Background Image",
+          displayer: "Background Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -183,7 +189,8 @@ class Feature12 extends BaseFeature {
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
 
@@ -194,7 +201,9 @@ class Feature12 extends BaseFeature {
 
     const firstCardTitleExist = this.castToString(firstItem.title);
 
-    const firstItemBackgroundImage = firstItem.backgroundImage?.url;
+    const firstItemBackground = firstItem.backgroundImage;
+    const firstItemBackgroundUrl = firstItemBackground?.url ?? firstItemBackground;
+    const firstItemBackgroundIsVideo = firstItemBackground?.type === "video";
     const firstItemOverlay = firstItem.overlay;
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
@@ -202,7 +211,7 @@ class Feature12 extends BaseFeature {
     const buttonTextExist = this.castToString(button.text)
 
     const renderFirstItem =
-      firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
+      firstCardTitleExist || buttonTextExist || !!firstItemBackgroundUrl;
     const renderHeader = subtitleExist || titleExist;
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -217,20 +226,32 @@ class Feature12 extends BaseFeature {
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
               )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
             </Base.VerticalContent>
           )}
           <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2 }} className={this.decorateCSS("wrapper")}>
             {renderFirstItem && (
               <div
                 className={this.decorateCSS("card-item-first")}
-                style={{
-                  backgroundImage: `${firstItemOverlay
-                    ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
-                    : ""
-                    } url(${firstItemBackgroundImage})`,
-
-                }}
+                {...(!firstItemBackgroundIsVideo && firstItemBackgroundUrl && {
+                  style: {
+                    backgroundImage: `${firstItemOverlay
+                      ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
+                      : ""
+                      } url(${firstItemBackgroundUrl})`,
+                  },
+                })}
               >
+                {firstItemBackgroundIsVideo && firstItemBackground && (
+                  <div className={this.decorateCSS("background-media")}>
+                    <Base.Media value={firstItemBackground} className={this.decorateCSS("background-media-element")} />
+                    {firstItemOverlay && <div className={this.decorateCSS("background-overlay")} />}
+                  </div>
+                )}
                 {firstCardTitleExist && (
                   <Base.H3 className={this.decorateCSS("first-card-title")}>
                     {firstItem.title}

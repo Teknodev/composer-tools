@@ -30,9 +30,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -74,9 +74,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -118,9 +118,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -162,9 +162,9 @@ class Feature21 extends BaseFeature{
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image","video"],
                             },
                             value: {
                                 type: "image",
@@ -176,7 +176,7 @@ class Feature21 extends BaseFeature{
                             key: "video",
                             displayer: "Video",
                             additionalParams: {
-                                availableTypes: ["video"],
+                                availableTypes: ["image"],
                             },
                             value: {
                                 type: "video",

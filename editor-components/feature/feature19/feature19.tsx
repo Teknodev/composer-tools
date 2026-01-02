@@ -35,9 +35,9 @@ class Feature19 extends BaseFeature {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",

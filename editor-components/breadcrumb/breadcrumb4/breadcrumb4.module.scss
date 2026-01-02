@@ -108,6 +108,13 @@
                         }
                     }
 
+                    .description {
+                        content: "";
+                        &.image {
+                            color: black !important;
+                        }
+                    }
+
                     .pages {
                         display: flex;
                         flex-direction: row;

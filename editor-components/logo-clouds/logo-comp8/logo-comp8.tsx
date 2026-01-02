@@ -38,9 +38,9 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type:"media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                             value:{
                                 type: "image",
@@ -63,9 +63,9 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type:"media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                             value:{
                                 type: "image",
@@ -88,7 +88,7 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type:"media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             value:{
                                 type: "image",
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/689dfd1436675f002dbc47f9?alt=media",
@@ -112,7 +112,7 @@ class LogoComp8Page extends LogoClouds {
                             key: "image",
                             displayer: "Image",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                             value:{
                                 type: "image",
@@ -135,9 +135,9 @@ class LogoComp8Page extends LogoClouds {
                         {
                             type:"media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["image"],
+                                availableTypes: ["image", "video"],
                             },
                             value:{
                                 type: "image",

@@ -24,7 +24,7 @@ class LogoComp7Page extends LogoClouds {
     this.addProp({
       type: "array",
       key: "image-items",
-      displayer: "Images",
+      displayer: "Media Items",
       value: [
         INPUTS.LOGO("section", ""),
         INPUTS.LOGO("section", ""),
