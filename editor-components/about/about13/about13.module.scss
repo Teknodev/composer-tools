@@ -1,0 +1,161 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .content {
+      .wrapper {
+        display: flex;
+        gap: var(--composer-gap-xl);
+        align-items: stretch;
+      }
+
+      .content-inner {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .subtitle,
+        .title,
+        .description {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .buttons-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
+          .button {
+            .icon {
+              width: 1rem;
+              height: 1rem;
+            }
+
+            .button-text {
+              margin: 0;
+              padding: 0;
+              display: inline;
+              overflow-wrap: anywhere;
+              word-break: break-word;
+            }
+          }
+        }
+      }
+
+      .image-wrapper {
+        flex: 1;
+        min-width: 0;
+        min-height: 300px;
+        position: relative;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+          display: block;
+        }
+
+        .overlay {
+          position: absolute;
+          inset: 0;
+          background-color: var(--composer-overlay-color);
+        }
+      }
+    }
+  }
+
+  &:not(.no-image) {
+    .max-content {
+      .content {
+        .content-inner {
+          align-items: flex-start;
+
+          .subtitle,
+          .title,
+          .description {
+            text-align: left;
+          }
+
+          .subtitle {
+            margin-left: 0;
+            margin-right: auto;
+          }
+
+          .buttons-wrapper {
+            justify-content: flex-start;
+
+            .button {
+              .button-text {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.no-image {
+    .max-content {
+      .content {
+        .content-inner {
+          flex: none;
+          width: 100%;
+
+          &.center {
+            .buttons-wrapper {
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        .wrapper {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+        }
+
+        .content-inner {
+          &.center {
+            align-items: center;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center;
+            }
+
+            .subtitle {
+              margin-left: auto;
+              margin-right: auto;
+              transform: none;
+
+              &::before {
+                display: none;
+              }
+            }
+
+            .buttons-wrapper {
+              justify-content: center;
+            }
+          }
+        }
+
+        .image-wrapper {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
