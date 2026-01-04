@@ -301,6 +301,7 @@ import About9 from "./about/about9/about9";
 import About10 from "./about/about10/about10";
 import About11 from "./about/about11/about11";
 import About12 from "./about/about12/about12";
+import About13 from "./about/about13/about13";
 import About14 from "./about/about14/about14";
 import About15 from "./about/about15/about15";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
@@ -612,6 +613,7 @@ function Registerables(composer: ComponentsRegistery) {
     About10,
     About11,
     About12,
+    About13,
     About14,
     About15,
     Portfolio1,

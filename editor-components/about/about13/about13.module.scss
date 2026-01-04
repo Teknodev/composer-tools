@@ -1,0 +1,155 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .wrapper {
+            display: flex;
+            gap: var(--composer-gap-xl);
+
+            .left-content {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                .vertical-content {
+                    width: 100%;
+
+                    .subtitle {
+                        width: fit-content;
+                    }
+
+                    .title,
+                    .description {
+                        overflow-wrap: anywhere;
+                        width: 100%;
+                    }
+
+                    .button-container {
+                        display: flex;
+                        gap: var(--composer-gap-sm);
+                        flex-wrap: wrap;
+                        width: 100%;
+
+                        .button {
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right-content {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+
+                .image-wrapper {
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    position: relative;
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        border-radius: inherit;
+                        background-color: var(--composer-overlay-color);
+                    }
+                }
+
+                &.image-full-width {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &.has-image {
+        .max-content {
+            .wrapper {
+                .left-content {
+
+                    .vertical-content {
+                        text-align: left;
+
+                        .subtitle {
+                            margin-left: 0;
+                        }
+
+                        .title,
+                        .description {
+                            text-align: left;
+                        }
+
+                        .button-container {
+                            justify-content: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.content-full-width {
+        .max-content {
+            .wrapper {
+                .left-content {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                flex-direction: column;
+
+                .left-content {
+                    width: 100%;
+                }
+
+                .right-content {
+                    width: 100%;
+                }
+            }
+        }
+
+        &.has-image {
+            .max-content {
+                .wrapper {
+                    .left-content {
+                        .vertical-content {
+                            text-align: var(--composer-content-alignment);
+
+                            .subtitle {
+                                margin-left: auto;
+                            }
+
+                            .title,
+                            .description {
+                                text-align: var(--composer-content-alignment);
+                            }
+
+                            .button-container {
+                                justify-content: var(--composer-content-alignment);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
