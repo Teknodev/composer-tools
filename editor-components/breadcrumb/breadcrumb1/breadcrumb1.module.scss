@@ -32,13 +32,18 @@
     height: 100%;
     position: relative;
     z-index: 2;
-    .title-main {
+
+    .left {
+      content: "";
+    }
+    .title-main, .description {
       content: "";
       &.title-with-bg {
         color: #534931;
       }
     }
   }
+
 }
 .strip-container {
   display: flex;
