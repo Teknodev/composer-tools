@@ -66,6 +66,7 @@
       }
 
       .button-container {
+        justify-content: center !important;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
 
