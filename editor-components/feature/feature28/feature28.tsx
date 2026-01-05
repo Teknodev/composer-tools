@@ -61,7 +61,7 @@ class Feature28Component extends BaseFeature {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "About us", "", "", null, "White"),
-        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaArrowRight", null, "White"),
+        INPUTS.BUTTON("button", "Button", "Watch how we work", "", "FaPlayCircle", null, "White"),
       ],
     });
   }
