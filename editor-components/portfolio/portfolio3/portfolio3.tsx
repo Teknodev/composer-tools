@@ -673,11 +673,10 @@ class Portfolio3 extends BasePortfolio {
     this.sentinelRefs = Array(games.length).fill(null);
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container-bg")} ${this.decorateCSS(
-          "container"
-        )}`}
-      >
+      <div className={this.decorateCSS("container-bg")}>
+        <Base.Container
+          className={this.decorateCSS("container")}
+        >
         <div className={this.decorateCSS("content-wrapper")}>
           {hasHeaderContent && (
             <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -921,6 +920,7 @@ class Portfolio3 extends BasePortfolio {
           )}
         </div>
       </Base.Container>
+      </div>
     );
   }
 }

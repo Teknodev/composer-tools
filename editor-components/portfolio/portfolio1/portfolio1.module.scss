@@ -207,24 +207,29 @@
         align-items: center;
         gap: var(--composer-gap-sm);
         justify-content: space-between;
-      
 
       .icons-wrapper {
         display: flex;
-        gap: var(--composer-gap-xs);
         align-items: center;
+        margin-left: 0;
+        font-size: 4rem;
+        position: relative;
+        width: 100px;
         margin-left: var(--composer-gap-sm);
-        font-size: 90px;
 
         .icon1,
         .icon2 {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
+          position: absolute;
           width: 1em;
           height: 1em;
-          font-size: inherit;
-          line-height: 1;
+        }
+
+        .icon1 {
+          left: 0;
+        }
+
+        .icon2 {
+          left: 25px;
         }
       }
       }
