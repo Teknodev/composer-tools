@@ -293,66 +293,25 @@ class Feature38 extends BaseFeature {
     }
 
     calculateMaxHeight = () => {
-        if (!this.cardsRootRef.current) return;
-        const cardElements = Array.from(this.cardsRootRef.current.querySelectorAll(`.${styles['card']}`)) as HTMLElement[];
-        const itemCount = this.getPropValue("itemCount") || 3;
-
-        const containerWidth = this.cardsRootRef.current.offsetWidth;
-        const PHONE_WIDTH = 640;
-        const TABLET_WIDTH = 1024;
-
-        let itemsPerRow: number;
-        if (containerWidth <= PHONE_WIDTH) {
-            itemsPerRow = 1;
-        } else if (containerWidth <= TABLET_WIDTH) {
-            itemsPerRow = 3;
-        } else {
-            itemsPerRow = itemCount;
+        const container = this.cardsRootRef.current;
+        if (!container) return;
+        const width = container.offsetWidth;
+        const cards = Array.from(container.querySelectorAll(`.${styles['card']}`)) as HTMLElement[];
+        const perRow = width <= 640 ? 1 : width <= 1024 ? 3 : (this.getPropValue("itemCount") || 3);
+        const minH = width <= 640 ? 200 : 300;
+        for (let i = 0; i < cards.length; i += perRow) {
+            const row = cards.slice(i, i + perRow);
+            const maxH = Math.max(minH, ...row.map(card => {
+                const front = card.querySelector(`.${styles['front']}`) as HTMLElement;
+                const back = card.querySelector(`.${styles['top']}`) as HTMLElement;
+                [front, back].forEach(el => el && Object.assign(el.style, { overflow: 'visible', height: 'auto' }));
+                const h = Math.max(front?.scrollHeight || 0, back?.scrollHeight || 0);
+                [front, back].forEach(el => el && Object.assign(el.style, { overflow: '', height: '' }));
+                return h;
+            }));
+            row.forEach(card => card.style.setProperty('--dynamic-card-height', `${maxH}px`));
         }
-
-        const rows: HTMLElement[][] = [];
-
-        for (let i = 0; i < cardElements.length; i += itemsPerRow) {
-            rows.push(cardElements.slice(i, i + itemsPerRow));
-        }
-
-        rows.forEach((rowCards) => {
-            let rowMaxH = 0;
-            rowCards.forEach((card) => {
-
-                const frontFace = card.querySelector(`.${styles['front']}`) as HTMLElement;
-                const backFace = card.querySelector(`.${styles['top']}`) as HTMLElement;
-
-                if (frontFace) {
-                    frontFace.style.overflow = 'visible';
-                    frontFace.style.height = 'auto';
-                }
-                if (backFace) {
-                    backFace.style.overflow = 'visible';
-                    backFace.style.height = 'auto';
-                }
-
-                const frontH = frontFace ? frontFace.scrollHeight : 0;
-                const backH = backFace ? backFace.scrollHeight : 0;
-                rowMaxH = Math.max(rowMaxH, frontH, backH);
-
-                if (frontFace) {
-                    frontFace.style.overflow = '';
-                    frontFace.style.height = '';
-                }
-                if (backFace) {
-                    backFace.style.overflow = '';
-                    backFace.style.height = '';
-                }
-            });
-
-            const minHeight = containerWidth <= PHONE_WIDTH ? 200 : 300;
-            rowMaxH = Math.max(rowMaxH, minHeight);
-            rowCards.forEach((card) => {
-                card.style.setProperty('--dynamic-card-height', `${rowMaxH}px`);
-            });
-        });
-    }
+    };
 
     componentDidMount() {
         this.calculateMaxHeight();
