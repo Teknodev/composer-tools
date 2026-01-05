@@ -33,14 +33,14 @@ class Feature38 extends BaseFeature {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Built-In Advantages",
+            value: "Main Product Features",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Goodbuy unconvenient widget-oriented content of footer areas! Customize your footer as any other page section!",
+            value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key indicators offline to maximise the long tail.",
         });
 
         this.addProp({
