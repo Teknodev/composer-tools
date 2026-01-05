@@ -303,7 +303,7 @@ class Feature24 extends BaseFeature {
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 4,
+      value: 3,
     });
   }
 
@@ -335,7 +335,7 @@ class Feature24 extends BaseFeature {
             {cards?.length > 0 && (
               <Base.ListGrid
                 className={this.decorateCSS("features-content")}
-                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 2 }}
+                gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
               >
                 {cards.map((card: Card, index: number) => {
                   const titleExist = this.castToString(card.title);
@@ -350,7 +350,7 @@ class Feature24 extends BaseFeature {
                         </div>
                       )}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                        {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
+                        {titleExist && (<Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>)}
                       </Base.VerticalContent>
                     </div>
                   );
