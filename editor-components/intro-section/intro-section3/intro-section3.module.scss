@@ -4,6 +4,13 @@
   .max-content {
     .wrapper {
       .vertical-content {
+
+        .subtitle,
+        .title,
+        .description {
+          content: "";
+        }
+
         .button-group-container {
           display: flex;
           align-items: center;
@@ -36,7 +43,6 @@
             .label2 {
               color: var(--composer-font-color-primary);
               display: flex;
-              justify-content: flex-start;
             }
 
             .label1 {
