@@ -170,16 +170,16 @@
                   justify-content: center;
                   align-items: center;
                   overflow: hidden;
-                  position: relative; 
+                  position: relative;
+                  flex: 1;
+                  height: 10vw;
+                  min-height: 80px;
 
                   .middleImages {
-                    max-height: 10vw;
-                    min-height: 80px;
                     border-radius: 90px;
                     object-fit: cover;
-                    height: auto;
+                    height: 100%;
                     width: 100%;
-                    max-width: 100%;
                     position: relative;
                     z-index: 2; 
                   }
@@ -420,7 +420,6 @@
                           height: 100%;
                           width: 100%;
                           object-fit: cover;
-                          max-height: none;
                         }
                       }
                 }
@@ -457,6 +456,26 @@
                       .customerDesc {
                         font-size: 1rem;
                       }
+                    }
+                  }
+                }
+              }
+
+              .figure {
+                .pagination {
+                  .active-slide {
+                    font-size: 2.5rem !important;
+                    padding-right: var(--composer-gap-xs) !important;
+                  }
+
+                  .slide-count-power {
+                    .divider {
+                      font-size: 1.5rem !important;
+                    }
+
+                    .slide-count {
+                      font-size: 1.25rem !important;
+                      padding-left: var(--composer-gap-xs);
                     }
                   }
                 }

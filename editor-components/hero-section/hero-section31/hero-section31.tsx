@@ -901,7 +901,7 @@ class HeroSection31 extends BaseHeroSection {
                       <Base.SectionSubTitle
                         className={`${this.decorateCSS("subtitle")} ${textAnimationEnabled ? `animate__animated ${this.getComponentState(
                           "subtitleAnimationClass"
-                        )}` : ""} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-transparent") : ""}`}
+                        )}` : ""} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-transparent") : ""} ${activeSlideObj.rightImage ? this.decorateCSS("subtitle-with-image") : ""}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "subtitleAnimationClass",
@@ -921,7 +921,7 @@ class HeroSection31 extends BaseHeroSection {
                       const isTitleAnimatingOut = titleState && (titleState === "letter-out" || titleState.indexOf("fadeOut") > -1);
                       return (
                         <Base.SectionTitle
-                          className={`${this.decorateCSS("title")} ${textAnimationEnabled ? "animate__animated" : ""} ${textAnimationEnabled && titleState === "letter-out" ? this.decorateCSS("letter-animate-out") : ""} ${textAnimationEnabled && isTitleAnimatingOut && titleState !== "letter-out" ? titleState : ""} ${textAnimationEnabled && isTitleAnimatingIn ? this.decorateCSS("letter-animate") : ""}`}
+                          className={`${this.decorateCSS("title")} ${textAnimationEnabled ? "animate__animated" : ""} ${textAnimationEnabled && titleState === "letter-out" ? this.decorateCSS("letter-animate-out") : ""} ${textAnimationEnabled && isTitleAnimatingOut && titleState !== "letter-out" ? titleState : ""} ${textAnimationEnabled && isTitleAnimatingIn ? this.decorateCSS("letter-animate") : ""} ${activeSlideObj.rightImage ? this.decorateCSS("title-with-image") : ""}`}
                           onAnimationEnd={() => {
                             this.handleAnimationEnd({
                               animationState: "titleAnimationClass",

@@ -183,9 +183,9 @@
           }
         }
         .subtitle {
-          color: white;
           text-align: center;
           &[data-has-image="true"] {
+            color: white;
             background: transparent;
             padding: 0;
             transform: translateX(0);

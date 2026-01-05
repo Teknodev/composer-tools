@@ -207,7 +207,6 @@
                     }
 
                     .subtitle {
-                        color: white;
                         text-align: left;
                         width: fit-content;
                         margin-left: 0;
@@ -218,14 +217,20 @@
                             background: transparent !important;
                             padding: 0 !important;
                         }
+                        &.subtitle-with-image {
+                            color: white !important;
+                        }
                     }
 
                     .title {
                         font-size: 5rem;
-                        color: white;
                         overflow: hidden;
                         line-height: normal;
                         text-align: left;
+
+                        &.title-with-image {
+                            color: white !important;
+                        }
 
                         &.letter-animate {
                             .char {
@@ -336,17 +341,11 @@
                             color: var(--composer-font-color-primary);
                         }
 
-                            .subtitle, .title, .description {
+                            .description {
                                 color: var(--composer-font-color-primary);
-                            }
-                            .subtitle::before {
-                                background: var(--composer-font-color-primary) !important;
                             }
 
                         .title {
-                            color: var(--composer-font-color-primary);
-                            -webkit-text-stroke-color: var(--composer-font-color-primary);
-                            stroke: var(--composer-font-color-primary);
                         }
 
                         .description {
