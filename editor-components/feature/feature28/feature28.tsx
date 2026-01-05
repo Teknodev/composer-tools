@@ -81,7 +81,7 @@ class Feature28Component extends BaseFeature {
     const hasContent = subtitle || title || description || buttonItem.length > 0;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${hasMedia && this.decorateCSS("has-media")}`}>
         {hasMedia && (
           <div className={this.decorateCSS("background-container")}>
             <Base.Media value={coverImage} className={this.decorateCSS("background-media")} />
@@ -101,7 +101,7 @@ class Feature28Component extends BaseFeature {
                       const buttonText = this.castToString(buttonObj.text);
                       const iconExist = buttonObj.icon && buttonObj.icon.type === "icon" && buttonObj.icon.name;
                       if (!buttonText && !iconExist) { return null; }
-                      return buttonText && (
+                      return (buttonText || iconExist) && (
                         <ComposerLink key={index} path={buttonObj.url}>
                           <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
                             {iconExist && (<Base.Media value={buttonObj.icon} className={this.decorateCSS("icon")} />)}

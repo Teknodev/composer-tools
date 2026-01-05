@@ -62,13 +62,7 @@
       width: 100%;
       flex-wrap: wrap;
 
-      .subtitle {
-
-        &::before {
-          display: inline-block !important;
-        }
-      }
-
+      .subtitle,
       .title,
       .description {
         content: "";
