@@ -104,3 +104,23 @@
     }
   }
 }
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        .features-content {
+          gap: var(--composer-gap-sm);
+          row-gap: var(--composer-gap-md);
+
+          .card-container {
+            gap: var(--composer-gap-sm);
+          }
+        }
+      }
+    }
+  }
+}
