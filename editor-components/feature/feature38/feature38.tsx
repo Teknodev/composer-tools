@@ -305,7 +305,7 @@ class Feature38 extends BaseFeature {
         if (containerWidth <= PHONE_WIDTH) {
             itemsPerRow = 1;
         } else if (containerWidth <= TABLET_WIDTH) {
-            itemsPerRow = 2;
+            itemsPerRow = 3;
         } else {
             itemsPerRow = itemCount;
         }
@@ -346,7 +346,8 @@ class Feature38 extends BaseFeature {
                 }
             });
 
-            rowMaxH = Math.max(rowMaxH, 300);
+            const minHeight = containerWidth <= PHONE_WIDTH ? 200 : 300;
+            rowMaxH = Math.max(rowMaxH, minHeight);
             rowCards.forEach((card) => {
                 card.style.setProperty('--dynamic-card-height', `${rowMaxH}px`);
             });
@@ -389,7 +390,7 @@ class Feature38 extends BaseFeature {
                                 </Base.VerticalContent>
                             )}
                             {cards?.length > 0 && (
-                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2 }} className={this.decorateCSS("cards-container")}>
+                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3 }} className={this.decorateCSS("cards-container")}>
                                     {cards.map((card: Card, index: number) => {
                                         const titleExist = this.castToString(card.title);
                                         const hoverTitleExist = this.castToString(card.hoverTitle);

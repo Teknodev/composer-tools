@@ -153,9 +153,9 @@
             gap: calc(var(--composer-gap-sm) * 3);
 
             .content-wrapper {
-                gap: calc(var(--composer-gap-sm) * 3);
-
                 .cards-container {
+                    --dynamic-card-height: 200px;
+
                     .card {
                         .icon-wrapper {
                             .card-icon {
