@@ -49,6 +49,7 @@
                 .image-wrapper {
                     width: 100%;
                     height: 100%;
+                    border-radius: var(--composer-border-radius-sm);
                     overflow: hidden;
                     position: relative;
 
@@ -135,7 +136,7 @@
                             text-align: var(--composer-content-alignment);
 
                             .subtitle {
-                                margin-left: auto;
+                                margin-right: 0;
                             }
 
                             .title,
