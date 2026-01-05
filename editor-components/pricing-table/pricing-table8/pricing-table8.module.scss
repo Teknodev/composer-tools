@@ -165,6 +165,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
+            gap: calc(1.5 * var(--composer-gap-md));
             .bar-desc {
               display: flex;
               flex-direction: row;
@@ -179,7 +180,7 @@
               .bar-percent {
                 position: relative;
                 width: 85%;
-                height: var(--composer-gap-md);
+                height: calc(1.5 * var(--composer-gap-md));
                 background-color: var(--composer-html-background);
                 border-radius: var(--composer-border-radius-lg);
                 transition: all 0.3s;
@@ -197,6 +198,8 @@
             }
           }
         }
+
+        
       }
 
       .button-position {
@@ -208,6 +211,12 @@
         right: 0;
         margin: 0 auto;
         gap: var(--composer-gap-md);
+
+        
+          .button{
+            border-radius: var(--composer-gap-md);
+          }
+        
       }
 
       .prev_icon {

@@ -194,7 +194,7 @@ class PricingTable8 extends BasePricingTable {
                   type: "icon",
                   key: "icon",
                   displayer: "Button Icon",
-                  value: "AiOutlinePlus",
+                  value: "MdDoneAll",
                 },
                 {
                   type: "page",
