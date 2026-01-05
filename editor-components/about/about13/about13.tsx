@@ -72,7 +72,7 @@ class About13 extends BaseAbout {
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${isImageExist ? this.decorateCSS("has-image") : this.decorateCSS("content-full-width")}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${isImageExist && this.decorateCSS("has-image")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (

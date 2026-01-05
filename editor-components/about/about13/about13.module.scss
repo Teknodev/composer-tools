@@ -7,7 +7,7 @@
             gap: var(--composer-gap-xl);
 
             .left-content {
-                width: 50%;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -22,8 +22,7 @@
 
                     .title,
                     .description {
-                        overflow-wrap: anywhere;
-                        width: 100%;
+                        content: "";
                     }
 
                     .button-container {
@@ -79,6 +78,7 @@
         .max-content {
             .wrapper {
                 .left-content {
+                    width: 50%;
 
                     .vertical-content {
                         text-align: left;
@@ -100,16 +100,6 @@
             }
         }
     }
-
-    &.content-full-width {
-        .max-content {
-            .wrapper {
-                .left-content {
-                    width: 100%;
-                }
-            }
-        }
-    }
 }
 
 @container (max-width: #{$composer-phone-width}) {
@@ -118,12 +108,8 @@
             .wrapper {
                 flex-direction: column;
 
-                .left-content {
-                    width: 100%;
-                }
-
                 .right-content {
-                    width: 100%;
+                    width: 100% !important;
                 }
             }
         }
@@ -132,6 +118,8 @@
             .max-content {
                 .wrapper {
                     .left-content {
+                        width: 100% !important;
+
                         .vertical-content {
                             text-align: var(--composer-content-alignment);
 
