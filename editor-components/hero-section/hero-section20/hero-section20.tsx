@@ -771,7 +771,7 @@ class HeroSection20 extends BaseHeroSection {
       this.sliderRef.current.slickGoTo(nextSlide);
     }
     if (this.titleSliderRef.current) {
-      this.titleSliderRef.current.slickGoTo(nextSlide);
+      this.titleSliderRef.current.slickGoTo(nextSlide + 1);
     }
     if (this.commentSliderRef.current) {
       this.commentSliderRef.current.slickGoTo(nextSlide);
@@ -823,9 +823,21 @@ class HeroSection20 extends BaseHeroSection {
       draggable: true,
       autoplay: this.getPropValue("autoplay"),
       beforeChange: (current: number, next: number) => {
+        const maxSlide = this.castToObject<SliderItem[]>("slider").length - 1;
+        const isLoopingForward = current === maxSlide && next === 0;
+        const isLoopingBackward = current === 0 && next === maxSlide;
+        const skipAnimation = isLoopingForward || isLoopingBackward;
+        
         this.setComponentState("slider", next);
         this.setComponentState("titleSlider", next);
         this.setComponentState("commentSlider", next);
+        
+        if (this.titleSliderRef.current) {
+          this.titleSliderRef.current.slickGoTo(next + 1, skipAnimation);
+        }
+        if (this.commentSliderRef.current) {
+          this.commentSliderRef.current.slickGoTo(next);
+        }
       },
     };
 
@@ -834,11 +846,17 @@ class HeroSection20 extends BaseHeroSection {
       infinite: false,
       slidesToShow: 3,
       slidesToScroll: 1,
+      autoplay: false,
       arrows: false,
       vertical: true,
-      verticalSwiping: true,
+      verticalSwiping: false,
+      swipeToSlide: false,
+      draggable: false,
       centerMode: true,
       centerPadding: "0",
+      speed: 600,
+      cssEase: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+      initialSlide: 1,
     };
 
     const slider = this.castToObject<SliderItem[]>("slider");
@@ -869,23 +887,48 @@ class HeroSection20 extends BaseHeroSection {
               <div className={`${this.decorateCSS("content-container")} ${imageless && this.decorateCSS("imageless")}`}>
                 <div className={this.decorateCSS("title-container")}>
                   <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
-                    {this.getTitlesToShow(currentSlide).map((slide, index) => (
-                      <div key={`title-${index}`} className={this.decorateCSS(slide.position)}>
-                        {slide.position === "current" && slide.link ? (
-                          <ComposerLink path={slide.link} isFullWidth={true}>
-                            <h2 className={this.decorateCSS("title")}>{slide.title}</h2>
-                            <span className={this.decorateCSS("number")}>{slide.number}</span>
-                          </ComposerLink>
-                        ) : slide.isPlaceholder ? (
-                          <h2 className={this.decorateCSS("title")}>&nbsp;</h2>
-                        ) : (
-                          <h2 className={`${this.decorateCSS("title")} ${this.decorateCSS(slide.position)}`}>
-                            {slide.title}
-                            <span className={this.decorateCSS("number")}>{slide.number}</span>
-                          </h2>
-                        )}
+                    <div key="placeholder-start">
+                      <div className={this.decorateCSS("title-wrapper")}>
+                        <h2 className={this.decorateCSS("title-stroke")}>&nbsp;</h2>
                       </div>
-                    ))}
+                    </div>
+                    {slider.map((slide, index) => {
+                      const isCurrent = index === currentSlide;
+                      return (
+                        <div key={`title-${index}`}>
+                          {slide.link && isCurrent ? (
+                            <ComposerLink path={slide.link} isFullWidth={true}>
+                              <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""}`}>
+                                <h2 className={this.decorateCSS("title-stroke")}>
+                                  {slide.title}
+                                  <span className={this.decorateCSS("number")}>{slide.number}</span>
+                                </h2>
+                                <h2 className={this.decorateCSS("title-solid")}>
+                                  {slide.title}
+                                  <span className={this.decorateCSS("number")}>{slide.number}</span>
+                                </h2>
+                              </div>
+                            </ComposerLink>
+                          ) : (
+                            <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""}`}>
+                              <h2 className={this.decorateCSS("title-stroke")}>
+                                {slide.title}
+                                <span className={this.decorateCSS("number")}>{slide.number}</span>
+                              </h2>
+                              <h2 className={this.decorateCSS("title-solid")}>
+                                {slide.title}
+                                <span className={this.decorateCSS("number")}>{slide.number}</span>
+                              </h2>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                    <div key="placeholder-end">
+                      <div className={this.decorateCSS("title-wrapper")}>
+                        <h2 className={this.decorateCSS("title-stroke")}>&nbsp;</h2>
+                      </div>
+                    </div>
                   </ComposerSlider>
                 </div>
                 <div className={this.decorateCSS("buttomRow")}>

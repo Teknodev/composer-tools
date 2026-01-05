@@ -71,6 +71,60 @@
           color: white;
           text-align: center;
 
+          :global(.slick-track) {
+            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+          }
+
+          :global(.slick-slide) {
+            transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+          }
+
+          .title-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 100%;
+
+            .title-stroke {
+              padding-bottom: calc(var(--composer-gap-md) * 3);
+              margin: 0;
+              display: flex;
+              font-size: 5.5rem;
+              color: transparent;
+              -webkit-text-stroke: 1px #777;
+              max-width: fit-content; 
+            }
+
+            .title-solid {
+              position: absolute;
+              top: 0;
+              left: 0;
+              padding-bottom: calc(var(--composer-gap-md) * 3);
+              margin: 0;
+              display: flex;
+              font-size: 5.5rem;
+              color: white;
+              -webkit-text-stroke: none;
+              width: fit-content;
+              clip-path: inset(100% 0 0 0);
+              transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            }
+
+            &.current .title-solid {
+              clip-path: inset(0 0 0 0);
+            }
+
+            &.leaving-down .title-solid {
+              clip-path: inset(0 0 100% 0);
+              transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            }
+
+            &.entering-up .title-solid {
+              clip-path: inset(0 0 0 0);
+              transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            }
+          }
+
           .title {
             padding-bottom: calc(var(--composer-gap-md) * 3);
             color: white;
@@ -280,6 +334,13 @@
               font-size: 3.5rem;
             }
 
+            .title-wrapper {
+              .title-stroke,
+              .title-solid {
+                font-size: 3.5rem;
+              }
+            }
+
             .number {
               font-size: 1rem;
             }
@@ -328,11 +389,18 @@
             width: 100vw;
 
             .title {
-              font-size: 2.5rem;
+              font-size: 2rem;
+            }
+
+            .title-wrapper {
+              .title-stroke,
+              .title-solid {
+                font-size: 2rem;
+              }
             }
 
             .number {
-              font-size: 1rem;
+              font-size: 0.75rem;
             }
           }
 
