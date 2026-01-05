@@ -100,12 +100,11 @@ class Feature28Component extends BaseFeature {
                     (buttonObj, index: number) => {
                       const buttonText = this.castToString(buttonObj.text);
                       const iconExist = buttonObj.icon && buttonObj.icon.type === "icon" && buttonObj.icon.name;
-                      if (!buttonText && !iconExist) { return null; }
                       return (buttonText || iconExist) && (
                         <ComposerLink key={index} path={buttonObj.url}>
                           <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
                             {iconExist && (<Base.Media value={buttonObj.icon} className={this.decorateCSS("icon")} />)}
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
+                            {buttonText && (<Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>)}
                           </Base.Button>
                         </ComposerLink>
                       );
