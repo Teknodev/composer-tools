@@ -36,16 +36,6 @@
   }
 }
 
-@mixin blink-page {
-  > blinkpage {
-    display: -webkit-box !important;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
 @keyframes zoomOutToIn {
   0% {
     transform: scale(1);
@@ -62,6 +52,7 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+  background: var(--composer-html-background);
   .max-content {
     .wrapper {
       position: relative;
@@ -105,11 +96,11 @@
             .dotIndex {
               display: none;
               color: white;
-              font-size: 1rem;
+              font-size: 1.25rem;
               margin-top: -30px;
-              transform: translateY(-10%);
+              transform: translateY(-15%);
               rotate: 270deg;
-              padding-left: var(--composer-gap-xs);
+              padding-left: var(--composer-gap-sm);
               &.colored{
                 color: var(--composer-font-color-primary);
               }
@@ -179,15 +170,10 @@
                   animation: slideDownUp 1s ease-out;
                 }
 
-                h2 {
-                  @include blink-page;
-                }
-                p {
-                  @include blink-page;
-                }
-
                 .imageTitle {
                   font-size: 7rem;
+                  line-height: normal !important;
+                  width: auto;
                   position: absolute;
                   text-align: center;
                   top: 40%;
@@ -238,7 +224,6 @@
                     width: 0.5px;
                     background-color: var(--composer-font-color-primary);
                     height: 100px;
-                    opacity: 0.2;
                     align-self: center;
                   }
 
@@ -252,10 +237,8 @@
                       width: 100% !important;
                     }
                     .urlTitles {
-                      font-size: 1rem;
-                      line-height: 1.5;
                       max-width: 100%;
-                      text-align: center;
+                      text-align: left;
                       margin: 0;
                       opacity: 1;
                       padding-right: var(--composer-gap-md);
@@ -359,13 +342,13 @@
       left: 20%;
     }
     .imageTitle {
-      font-size: 4rem;
+      font-size: 4rem !important;
     }
     .image-details {
       width: 70%;
       height: 15%;
       .description {
-        font-size: 1rem;
+        content: "";
       }
       .stick {
         height: 80px;
@@ -374,21 +357,26 @@
       }
       .url-container {
         .urlTitles {
-          font-size: 1rem;
+          content: "";
         }
       }
     }
     .nav-buttons {
       gap: var(--composer-gap-sm);
       .nav-button {
-        width: 60px;
-        height: 60px;
+        width: 40px;
+        height: 40px;
+        .icon{
+          font-size: 1rem;
+          width: 30px;
+          height: 15px;
+        }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container .max-content .wrapper .slider-parent .dots {
     content-visibility: hidden;
   }
@@ -396,27 +384,84 @@
   .container .max-content .wrapper .slider-parent .carousel .slide-inner .content .content-inner {
     background-size: cover !important;
     background-position: center !important;
+    transform: none;
+    top: unset;
+    left: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: var(--composer-gap-md);
+
     .slideShape {
       display: none;
     }
 
     .imageTitle {
-      font-size: 3.5rem;
+      font-size: 2.5rem !important;
+      position: static;
+      transform: none;
+      top: unset;
+      left: unset;
+      margin-bottom: var(--composer-gap-sm);
+      text-align: center;
+      width: 100%;
     }
 
     .image-details {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      bottom: unset;
+      right: unset;
+      background-color: transparent;
+      color: white;
+      gap: var(--composer-gap-sm);
+      padding: var(--composer-gap-md) var(--composer-gap-sm);
+      min-height: auto;
+
+      .description {
+        width: 100%;
+        font-size: 1rem;
+        text-align: center;
+        margin: 0;
+        line-height: 1.5;
+        padding-left: 0;
+        opacity: 1;
+      }
+
+      .stick {
+        display: none;
+      }
+
+      .url-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: var(--composer-gap-sm);
+
+        .urlTitles {
+          max-width: 100%;
+          text-align: center;
+          margin: 0;
+          opacity: 1;
+          padding-right: 0;
+        }
+      }
     }
 
     .nav-buttons {
       gap: var(--composer-gap-xs);
       flex-direction: row;
-      justify-content: center;
+      justify-content: flex-end;
       bottom: var(--composer-gap-lg);
       top: auto;
-      left: 50%;
+      left: 45%;
       transform: translateX(-50%);
       right: auto;
+      width: 100%;
       .nav-button {
         width: 35px;
         height: 35px;

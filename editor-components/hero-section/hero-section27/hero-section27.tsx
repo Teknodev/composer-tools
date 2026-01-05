@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section27.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -8,12 +8,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
-  background: string;
+  background:TypeMediaInputValue;
   upTitle: React.JSX.Element;
   downTitle: React.JSX.Element;
-  upImage: string;
+  upImage: TypeMediaInputValue
   imageArray: {
-    downImage: string;
+    downImage: TypeMediaInputValue
+    overlay: boolean;
   }[];
   leftDescription: React.JSX.Element;
   itemNo: React.JSX.Element;
@@ -24,6 +25,8 @@ type SliderItemType = {
   rightDescription: React.JSX.Element;
   button: INPUTS.CastedButton;
   pageNumberPart: boolean;
+  bgOverlay: boolean;
+  upOverlay: boolean;
 };
 
 class HeroSection27 extends BaseHeroSection {
@@ -32,6 +35,13 @@ class HeroSection27 extends BaseHeroSection {
   }
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -44,11 +54,22 @@ class HeroSection27 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "background",
-              displayer: "Background",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
+              displayer: "Background Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              displayer: "Background Overlay",
+              key: "bgOverlay",
+              value: false,
             },
             {
               type: "string",
@@ -57,11 +78,22 @@ class HeroSection27 extends BaseHeroSection {
               value: "COFFEE",
             },
             {
-              type: "image",
-              displayer: "Up Image",
+              type: "media",
+              displayer: "Up Media",
               key: "upImage",
-              value:
-                "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+              },
+            },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "upOverlay",
+              value: false,
             },
             {
               type: "string",
@@ -72,7 +104,7 @@ class HeroSection27 extends BaseHeroSection {
             {
               type: "array",
               key: "imageArray",
-              displayer: "Down Images",
+              displayer: "Down Medias",
               additionalParams: {
                 maxElementCount: 3,
               },
@@ -80,42 +112,75 @@ class HeroSection27 extends BaseHeroSection {
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Media",
                   value: [
                     {
-                      type: "image",
-                      displayer: "Down Image 1",
+                      type: "media",
+                      displayer: "Media",
                       key: "downImage",
-                      value:
-                        "https://media.istockphoto.com/id/1503772186/tr/foto%C4%9Fraf/cups-of-assorted-coffee-on-light-background.jpg?s=612x612&w=0&k=20&c=V9JNNlMkgAMZlAtNO6u4hGiydn8Y1oJUEiUWBXaNC_k=",
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://media.istockphoto.com/id/1503772186/tr/foto%C4%9Fraf/cups-of-assorted-coffee-on-light-background.jpg?s=612x612&w=0&k=20&c=V9JNNlMkgAMZlAtNO6u4hGiydn8Y1oJUEiUWBXaNC_k=",
+                      },
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Overlay",
+                      key: "overlay",
+                      value: false,
                     },
                   ],
                 },
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
-                      type: "image",
-                      displayer: "Down Image 2",
+                      type: "media",
+                      displayer: "Media",
                       key: "downImage",
-                      value:
-                        "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      },
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Overlay",
+                      key: "overlay",
+                      value: false,
                     },
                   ],
                 },
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
-                      type: "image",
-                      displayer: "Down Image 3",
+                      type: "media",
+                      displayer: "Media",
                       key: "downImage",
-                      value:
-                        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      },
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Overlay",
+                      key: "overlay",
+                      value: false,
                     },
                   ],
                 },
@@ -137,13 +202,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 1",
+              displayer: "Stat 1",
               key: "itemNo",
               value: "30+",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 1",
+              displayer: "Stat Text 1",
               key: "itemDesc",
               value: "Items Of Coffee",
             },
@@ -155,13 +220,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 2",
+              displayer: "Stat 2",
               key: "customerNo",
               value: "3k+",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 2",
+              displayer: "Stat Text 2",
               key: "customerDesc",
               value: "Happy Customer",
             },
@@ -180,11 +245,22 @@ class HeroSection27 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "background",
-              displayer: "Background",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
+              displayer: "Background Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              displayer: "Background Overlay",
+              key: "bgOverlay",
+              value: false,
             },
             {
               type: "string",
@@ -193,11 +269,22 @@ class HeroSection27 extends BaseHeroSection {
               value: "SPECIAL",
             },
             {
-              type: "image",
-              displayer: "Up Image",
+              type: "media",
+              displayer: "Up Media",
               key: "upImage",
-              value:
-                "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+              },
+            },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "upOverlay",
+              value: false,
             },
             {
               type: "string",
@@ -208,47 +295,80 @@ class HeroSection27 extends BaseHeroSection {
             {
               type: "array",
               key: "imageArray",
-              displayer: "Down Images",
+              displayer: "Down Medias",
               value: [
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
-                      type: "image",
-                      displayer: "Down Image 1",
+                      type: "media",
+                      displayer: "Media",
                       key: "downImage",
-                      value:
-                        "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      },
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Overlay",
+                      key: "overlay",
+                      value: false,
                     },
                   ],
                 },
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
-                      type: "image",
-                      displayer: "Down Image 2",
+                      type: "media",
+                      displayer: "Media",
                       key: "downImage",
-                      value:
-                        "https://images.unsplash.com/photo-1606791405792-1004f1718d0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      additionalParams: { 
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://images.unsplash.com/photo-1606791405792-1004f1718d0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                      },
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Overlay",
+                      key: "overlay",
+                      value: false,
                     },
                   ],
                 },
                 {
                   type: "object",
                   key: "images",
-                  displayer: "Images",
+                  displayer: "Medias",
                   value: [
                     {
-                      type: "image",
-                      displayer: "Down Image 3",
+                      type: "media",
+                      displayer: "Media",
                       key: "downImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670792d497fe08002c74f4a3?alt=media",
+                      additionalParams: {
+                        availableTypes: ["image", "video"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670792d497fe08002c74f4a3?alt=media",
+                      },
+                    },
+                    {
+                      type: "boolean",
+                      displayer: "Overlay",
+                      key: "overlay",
+                      value: false,
                     },
                   ],
                 },
@@ -270,13 +390,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 1",
+              displayer: "Stat 1",
               key: "itemNo",
               value: "100%",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 1",
+              displayer: "Stat Text 1",
               key: "itemDesc",
               value: "Fresh Coffee",
             },
@@ -288,13 +408,13 @@ class HeroSection27 extends BaseHeroSection {
             },
             {
               type: "string",
-              displayer: "Rate No. 2",
+              displayer: "Stat 2",
               key: "customerNo",
               value: "20+",
             },
             {
               type: "string",
-              displayer: "Rate Desc. 2",
+              displayer: "Stat Text 2",
               key: "customerDesc",
               value: "Different Countries",
             },
@@ -324,7 +444,7 @@ class HeroSection27 extends BaseHeroSection {
       infinite: sliderCount > 1,
       fade: sliderCount > 1,
       speed: 700,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: Math.min(sliderCount, 1),
       slidesToScroll: 1,
@@ -353,14 +473,31 @@ class HeroSection27 extends BaseHeroSection {
       ?.clientHeight;
 
     if (!slider.length) return <></>
+    
+    const activeBackground = slider[this.getComponentState("active-index")]?.background;
+    const backgroundWithSettings = activeBackground?.type === "video" ? {
+      ...activeBackground,
+      settings: {
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false
+      }
+    } : activeBackground;
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: `url(${slider[this.getComponentState("active-index")].background
-            })`,
-        }}
       >
+        {activeBackground && (
+          <Base.Media
+            value={backgroundWithSettings}
+            className={this.decorateCSS("background-media")}
+          />
+        )}
+        {slider[this.getComponentState("active-index")]?.bgOverlay && (
+          <div className={this.decorateCSS("background-overlay")} />
+        )}
         <div className={this.decorateCSS("content")}>
           <div
             className={this.decorateCSS("slider-parent")}
@@ -396,10 +533,13 @@ class HeroSection27 extends BaseHeroSection {
                             <div
                               className={this.decorateCSS("upImage-container")}
                             >
-                              <img
+                              <Base.Media
                                 className={this.decorateCSS("upImage")}
-                                src={item.upImage}
+                                value={item.upImage}
                               />
+                              {item.upOverlay && (
+                                <div className={this.decorateCSS("image-overlay")} />
+                              )}
                             </div>
                           )}
                         </div>
@@ -421,9 +561,12 @@ class HeroSection27 extends BaseHeroSection {
                                       }}
                                       key={imageIndex}
                                     >
-                                      <img className={this.decorateCSS("middleImages")}
-                                        src={imageItems.downImage}
+                                      <Base.Media className={this.decorateCSS("middleImages")}
+                                        value={imageItems.downImage}
                                       />
+                                      {imageItems.overlay && (
+                                        <div className={this.decorateCSS("image-overlay")} />
+                                      )}
                                     </div>
                                   )
                                 );
@@ -452,16 +595,12 @@ class HeroSection27 extends BaseHeroSection {
                                     <Base.Button buttonType={item.button.type}
                                       className={`${this.decorateCSS("button")}`}
                                     >
-                                      {item.button.text}
+                                      <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
                                       {item.button.icon && (
-                                        <Base.Icon
-                                          name={item.button.icon}
-                                          propsIcon={{
-                                            className:
-                                              this.decorateCSS("button-icon"),
-                                            size: 20,
-                                          }}
-                                        />
+                                        <Base.Media
+                                          value={item.button.icon}
+                                          className={this.decorateCSS("button-icon")}
+                                          />
                                       )}
                                     </Base.Button>
                                   </ComposerLink>
