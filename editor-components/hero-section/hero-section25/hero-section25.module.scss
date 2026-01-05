@@ -157,7 +157,9 @@
 
         .pagination {
           width: 100%;
-          margin-left: 50%;
+          display: flex;
+          justify-content: center;
+          
           .active-slide {
             color: var(--composer-primary-color);
             font-size: 4rem;
@@ -404,6 +406,22 @@
         }
 
         .top-figure {
+          .pagination {
+            .active-slide {
+              font-size: 3.5rem !important;
+            }
+
+            .slide-count-power {
+              .divider {
+                font-size: 1.5rem !important;
+              }
+
+              .slide-count {
+                font-size: 1rem !important;
+              }
+            }
+          }
+
           .low-op-text {
             font-size: 5rem;
           }
@@ -461,19 +479,21 @@
         }
 
         .top-figure {
-          width: 40%;
+          width: 50%;
           height: 30%;
 
           .pagination {
             .active-slide {
-              font-size: 5vh;
+              font-size: 2.5rem !important;
             }
 
             .slide-count-power {
+              .divider {
+                font-size: 1rem !important;
+              }
 
-              .divider,
               .slide-count {
-                font-size: 1;
+                font-size: 1rem !important;
               }
             }
           }
