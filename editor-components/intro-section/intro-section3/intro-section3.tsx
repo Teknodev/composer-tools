@@ -82,6 +82,7 @@ class IntroSection3 extends BaseIntroSection {
     const isImageExist = !!image?.url;
     const enableOverlay = this.getPropValue("overlay");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const label1 = this.castToString(this.getPropValue("label1"));
     const label2 = this.castToString(this.getPropValue("label2"));
     const hasTitleGroup = label1 || label2;
@@ -96,9 +97,9 @@ class IntroSection3 extends BaseIntroSection {
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                {(buttons.length > 0 || hasTitleGroup) && (
-                  <div className={this.decorateCSS("button-group-container")}>
-                    {buttons.length > 0 && (
+                {(visibleButtons.length > 0 || hasTitleGroup) && (
+                  <div className={this.decorateCSS("button-group-container")} data-has-buttons={visibleButtons.length > 0}>
+                    {visibleButtons.length > 0 && (
                       <Base.Row className={this.decorateCSS("button-container")}>
                         {buttons.map((item, index) => {
                           const buttonText = this.castToString(item.text || "");

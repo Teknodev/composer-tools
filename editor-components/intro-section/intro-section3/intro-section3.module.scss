@@ -19,6 +19,18 @@
           flex-wrap: wrap;
           width: 100%;
 
+          &[data-has-buttons="true"] {
+            .label-group {
+              align-items: flex-start;
+
+              .label1,
+              .label2 {
+                align-items: flex-start;
+                justify-content: flex-start;
+              }
+            }
+          }
+
           .button-container {
             display: flex;
             gap: var(--composer-gap-sm);
@@ -38,11 +50,13 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-xs);
+            align-items: var(--composer-content-alignment);
 
             .label1,
             .label2 {
               color: var(--composer-font-color-primary);
               display: flex;
+              text-align: inherit;
             }
 
             .label1 {
@@ -50,6 +64,7 @@
             }
           }
         }
+
       }
 
       .image-content {
