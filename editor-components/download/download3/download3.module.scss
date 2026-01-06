@@ -41,7 +41,7 @@
           justify-content: center;
           .subtitle {
             content: "";
-            text-align: left;
+            text-align: center;
             margin-bottom: calc(var(--composer-gap-xs));
 
           }
@@ -144,6 +144,15 @@
             text-align: center;
             width: 100%;
           }
+
+          .subtitle {
+            text-align: center;
+            transform: translateX(0);
+            width: 100%;
+            &::before {
+              display: none;
+            }
+          }
           .button-group {
             flex-direction: row;
             flex-wrap: wrap;
@@ -176,6 +185,9 @@
           gap: var(--composer-gap-sm);
           padding: var(--composer-gap-md);
 
+          .title-block {
+            width: 50%;
+          }
           .button-group {
             gap: var(--composer-gap-sm);
             .button {
