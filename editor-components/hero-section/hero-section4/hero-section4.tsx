@@ -7,6 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class HeroSection4 extends BaseHeroSection {
   imageRef: React.RefObject<HTMLDivElement | null>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   rafId: number | null = null;
   constructor(props?: any) {
     super(props, styles);
@@ -96,6 +97,7 @@ class HeroSection4 extends BaseHeroSection {
     this.setComponentState("scrollY", 0);
     this.setComponentState("animate", false);
     this.imageRef = React.createRef<HTMLDivElement>();
+    this.containerRef = React.createRef<HTMLDivElement>();
   }
 
   onComponentDidMount() {
@@ -195,7 +197,10 @@ const getStyle = (direction: "up" | "down") => {
   }
 
   if (direction === "down") {
-    const translateY = 100 - 110 * progress;
+    const containerWidth = this.containerRef.current?.offsetWidth || window.innerWidth;
+    const isMobile = containerWidth <= 640;
+    const multiplier = isMobile ? 100: 400;
+    const translateY = 100 - multiplier * progress;
     return {
       transform: `translate3d(0px, ${translateY}px, 0px)`,
     };
@@ -206,6 +211,7 @@ const getStyle = (direction: "up" | "down") => {
 
     return (
       <Base.Container
+        ref={this.containerRef}
         className={`${this.decorateCSS("container")} ${
           !imageAnm && this.decorateCSS("no-image-anm")
         } ${!image && this.decorateCSS("no-background-image")} ${alignment === "center" && this.decorateCSS("center-alignment")}`}

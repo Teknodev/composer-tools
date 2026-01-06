@@ -114,7 +114,7 @@
           }
 
           .category {
-            border-radius: var(--composer-border-radius-sm);
+            border-radius: var(--composer-border-radius-md);
             background-color: var(--composer-primary-color);
             color: var(--composer-font-color-secondary);
             position: absolute;
@@ -149,20 +149,22 @@
             color: var(--composer-font-color-primary);
             .author {
               display: flex;
-              gap: var(--composer-gap-sm);
+              gap: var(--composer-gap-xs);
               max-width: 50%;
               width: fit-content;
               margin: 0;
+              font-size: 0.75rem;
             }
             .dot::before {
               content: "•";
-              font-size: 1.5rem;
+              font-size: 1.25rem;
             }
             .date {
               text-transform: uppercase;
               max-width: 50%;
               width: fit-content;
               margin: 0;
+              font-size: 0.75rem;
             }
           }
           .button-container {
@@ -284,6 +286,9 @@
           }
           .title {
             @include textEllipsis(2, !important);
+          }
+          .button {
+            display: none !important;
           }
         }
       }

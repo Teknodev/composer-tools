@@ -166,6 +166,18 @@
         justify-content: center;
         align-items: center;
 
+        &.type-1 {
+          .text-container {
+            .description-with-line {
+              width: fit-content;
+            }
+            .button-container.with-line {
+              width: fit-content;
+              padding-left: calc(8vw + var(--composer-gap-md));
+            }
+          }
+        }
+
         &.active-slide {
           opacity: 1;
 
@@ -277,6 +289,7 @@
           @include flexCenter;
           margin-left: var(--composer-gap-xl);
           margin: 10%;
+          align-items: baseline;
 
           .logo-container {
             width: 100%;

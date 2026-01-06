@@ -249,7 +249,6 @@
       .left-content {
         align-self: center;
         max-width: 100%;
-        gap: var(--composer-gap-md);
         .title-container {
           @include textFull;
           .title,
@@ -266,7 +265,6 @@
       .right-content {
         align-items: center;
         word-wrap: break-word;
-        /* keep positioned so absolutely-positioned .image2 is contained */
         position: relative;
         width: 100%;
         min-height: 200px;
@@ -301,7 +299,6 @@
       gap: var(--composer-gap-md);
       .left-content {
         min-width: fit-content;
-        gap: var(--composer-gap-md);
 
         .title,
         .title2 {
@@ -311,7 +308,6 @@
           line-height: 40px !important;
         }
         .description {
-          width: 85%;
           line-height: 20px !important;
           z-index: 2;
         }

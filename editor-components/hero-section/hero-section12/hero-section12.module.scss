@@ -1,6 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-/* Ensure no border from slick's global CSS affects this project */
 :global(.slick-vertical .slick-slide) {
   border: none !important;
 }
@@ -27,7 +26,7 @@
     transform: translateY(-50%);
     display: flex;
     justify-content: space-between;
-    padding: 0 var(--composer-gap-md);
+    padding: 0 var(--composer-gap-xs);
     pointer-events: none;
     z-index: 100;
 
@@ -419,10 +418,12 @@
       .mobile-slider-buttons {
         .left-slider-button {
           transform: rotate(90deg);
+          font-size: 2.5rem !important;
         }
         
         .right-slider-button {
           transform: rotate(90deg);
+          font-size: 2.5rem !important;
         }
       }
       

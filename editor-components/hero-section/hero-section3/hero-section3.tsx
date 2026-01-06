@@ -419,7 +419,7 @@ class HeroSection3 extends BaseHeroSection {
                           </div>
                         )}
                         {buttonText && (
-                          <div className={this.decorateCSS("button-container")}>
+                          <div className={`${this.decorateCSS("button-container")} ${showLine ? this.decorateCSS("with-line") : ""}`}>
                             <ComposerLink path={item.button.url}>
                               <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
                                 <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>

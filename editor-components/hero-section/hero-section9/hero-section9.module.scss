@@ -57,6 +57,7 @@
 
         .text {
           margin-right: var(--composer-gap-md);
+          font-size: 1.25rem !important;
         }
 
         .counter-wrapper {
@@ -67,16 +68,16 @@
           }
 
           .count {
-            font-size: 1.25rem;
+            font-size: 1.25rem !important;
           }
 
           .active-number {
-            font-size: 2.5rem;
+            font-size: 2.5rem !important;
           }
 
           .slash {
             margin: 0px var(--composer-gap-xs);
-            font-size: 1.25rem;
+            font-size: 1.25rem !important;
           }
         }
       }
@@ -200,6 +201,10 @@
         .left-content {
           .buttons {
             left: 40px;
+
+            .active-number {
+              font-size: 2rem !important;
+            }
           }
           .tab-buttons {
             padding-right: var(--composer-gap-lg);
@@ -235,6 +240,7 @@
             align-items: center;
             padding: 0;
             max-height: unset !important;
+            width: 100%;
 
             .tabText {
               font-size: 1.5rem;
