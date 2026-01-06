@@ -30,7 +30,6 @@
             align-items: center;
             background-color: var(--composer-primary-color);
             border-radius: var(--composer-border-radius-full);
-            padding: var(--composer-gap-md);
             width: var(--composer-gap-xl);
             height: var(--composer-gap-xl);
 
@@ -50,6 +49,7 @@
               &.is-image {
                 width: 100%;
                 height: 100%;
+                padding: calc(var(--composer-gap-xs) * 3);
               }
             }
           }
@@ -91,12 +91,15 @@
 
           .card-container {
             .icon-box {
-              padding: var(--composer-gap-md);
               width: var(--composer-gap-lg);
               height: var(--composer-gap-lg);
 
               .card-icon {
                 font-size: 1.5rem;
+
+                &.is-image {
+                  padding: var(--composer-gap-sm);
+                }
               }
             }
           }
