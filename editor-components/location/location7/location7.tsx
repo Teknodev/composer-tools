@@ -27,6 +27,19 @@ type MarkerObject = {
 class Location7 extends Location {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "media",
+      key: "icon",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
     
     this.addProp({
       type: "string",
@@ -39,8 +52,17 @@ class Location7 extends Location {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "We Are Worldwide",
+      value: "We Are <span style='color: var(--composer-primary-color)'>Worldwide</span>",
     });
+
+        
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp({
       type: "array",
       displayer: "addresses",
@@ -285,12 +307,17 @@ class Location7 extends Location {
     const addresses: Address[] = this.getPropValue("addresses");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
     const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
     const subtitleExist = this.castToString(subtitle);
     const activeMarkerIndex = this.getComponentState("activeMarkerIndex");
     const bgMedia = this.getPropValue("background-media");
     const showTooltipLine = this.getPropValue("showTooltipLine");
     const imageOverlay = this.getPropValue("overlay");
+    const icon = this.getPropValue("icon");
+    const iconExist = (icon?.type === "icon" && !!icon?.name) || (icon?.type === "image" && !!icon?.url);
+
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
@@ -314,6 +341,11 @@ class Location7 extends Location {
       <Base.Container className={this.decorateCSS("container")}> 
         <Base.MaxContent className={this.decorateCSS("max-content")}> 
           <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
+            {iconExist && (
+              <div className={this.decorateCSS("icon-row")}> 
+                <Base.Media value={icon} className={this.decorateCSS("icon")}/>
+              </div>
+            )}
             {subtitleExist && ( 
               <div className={this.decorateCSS("subtitle-row")}> 
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
@@ -322,6 +354,11 @@ class Location7 extends Location {
             {titleExist && (
               <div className={this.decorateCSS("title-row")}> 
                 <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+              </div>
+            )}
+            {descriptionExist && (
+              <div className={this.decorateCSS("description-row")}> 
+                <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
               </div>
             )}
             <section className={this.decorateCSS("map-container")}> 
