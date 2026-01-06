@@ -614,11 +614,11 @@ class Footer8Page extends BaseFooter {
             {
               <div className={this.decorateCSS("items")}>
                 {logo?.url && (
-                  <ComposerLink path={logoUrl}>
-                    <div className={this.decorateCSS("header")}>
+                  <div className={this.decorateCSS("header")}>
+                    <ComposerLink path={logoUrl}>
                       <Base.Media value={logo} className={this.decorateCSS("image")} />
-                    </div>
-                  </ComposerLink>
+                    </ComposerLink>
+                  </div>
                 )}
 
                 {footer.length > 0 &&

@@ -1,0 +1,144 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .wrapper {
+            display: flex;
+            gap: var(--composer-gap-xl);
+
+            .left-content {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                .vertical-content {
+                    width: 100%;
+
+                    .subtitle {
+                        width: fit-content;
+                    }
+
+                    .title,
+                    .description {
+                        content: "";
+                    }
+
+                    .button-container {
+                        display: flex;
+                        gap: var(--composer-gap-sm);
+                        flex-wrap: wrap;
+                        width: 100%;
+
+                        .button {
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right-content {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+
+                .image-wrapper {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
+                    position: relative;
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        border-radius: inherit;
+                        background-color: var(--composer-overlay-color);
+                    }
+                }
+
+                &.image-full-width {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &.has-image {
+        .max-content {
+            .wrapper {
+                .left-content {
+                    width: 50%;
+
+                    .vertical-content {
+                        text-align: left;
+
+                        .subtitle {
+                            margin-left: 0;
+                        }
+
+                        .title,
+                        .description {
+                            text-align: left;
+                        }
+
+                        .button-container {
+                            justify-content: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                flex-direction: column;
+
+                .right-content {
+                    width: 100% !important;
+                }
+            }
+        }
+
+        &.has-image {
+            .max-content {
+                .wrapper {
+                    .left-content {
+                        width: 100% !important;
+
+                        .vertical-content {
+                            text-align: var(--composer-content-alignment);
+
+                            .subtitle {
+                                margin-right: 0;
+                            }
+
+                            .title,
+                            .description {
+                                text-align: var(--composer-content-alignment);
+                            }
+
+                            .button-container {
+                                justify-content: var(--composer-content-alignment);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

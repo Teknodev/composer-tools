@@ -11,11 +11,16 @@ class CallToAction6Page extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
+      },
     });
 
     this.addProp({
@@ -30,6 +35,13 @@ class CallToAction6Page extends BaseCallToAction {
       key: "title",
       displayer: "Title",
       value: "Get notified on latest updates and new releases.",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -102,6 +114,8 @@ class CallToAction6Page extends BaseCallToAction {
     const titleExist = this.castToString(this.getPropValue("title"));
     const placeholderExist = this.castToString(this.getPropValue("placeholder"));
     const commentExist = this.castToString(this.getPropValue("comment"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -111,10 +125,13 @@ class CallToAction6Page extends BaseCallToAction {
       <Base.Container
         className={`${this.decorateCSS("container")}
         ${this.getPropValue("overlay") && this.getPropValue("backgroundImage") ? this.decorateCSS("overlay-active") : ""}`}
-        style={{
-          backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
-        }}
       >
+        {this.getPropValue("backgroundImage") && (
+          <Base.Media
+            value={this.getPropValue("backgroundImage")}
+            className={this.decorateCSS("background-image")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             {subtitleExist && (
@@ -127,7 +144,11 @@ class CallToAction6Page extends BaseCallToAction {
                 {this.getPropValue("title")}
               </Base.SectionTitle>
             )}  
-
+            {descriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
+            )}
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
                 <div className={this.decorateCSS("space")} />

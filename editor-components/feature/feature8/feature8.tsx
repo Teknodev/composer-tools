@@ -29,6 +29,13 @@ class Feature8 extends BaseFeature {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -392,16 +399,25 @@ class Feature8 extends BaseFeature {
   render() {
     const titleExist = this.castToString(this.getPropValue("title"));
     const title = this.getPropValue("title");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const cards = this.castToObject<Card[]>("cards");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
           {titleExist && (
             <Base.SectionTitle className={this.decorateCSS("section-title")}>
               {title}
             </Base.SectionTitle>
           )}
+          {descriptionExist && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {description}
+            </Base.SectionDescription>
+          )}
+          </Base.VerticalContent>
           {cards?.length > 0 && (
             <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 , tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card) => {
