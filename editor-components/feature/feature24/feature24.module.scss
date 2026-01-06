@@ -2,78 +2,76 @@
 
 .container {
   .max-content {
-    .wrapper {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .text-content {
+
+      .subtitle,
+      .title,
+      .description {
+        content: ""
+      }
+    }
+
+    .features-content {
       gap: var(--composer-gap-lg);
 
-      .text-content {
+      .card-container {
+        display: flex;
+        gap: var(--composer-gap-md);
+        align-items: center;
 
-        .subtitle,
-        .title,
-        .description {
-          content: ""
-        }
-      }
-
-      .features-content {
-        gap: var(--composer-gap-lg);
-
-        .card-container {
+        .icon-box {
           display: flex;
-          gap: var(--composer-gap-md);
+          justify-content: center;
           align-items: center;
+          background-color: var(--composer-primary-color);
+          border-radius: var(--composer-border-radius-full);
+          width: var(--composer-gap-xl);
+          height: var(--composer-gap-xl);
 
-          .icon-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--composer-primary-color);
-            border-radius: var(--composer-border-radius-full);
-            width: var(--composer-gap-xl);
-            height: var(--composer-gap-xl);
-
-            &.no-bg {
-              background-color: transparent;
-
-              .card-icon {
-                color: var(--composer-primary-color);
-              }
-            }
+          &.no-bg {
+            background-color: transparent;
 
             .card-icon {
-              font-size: 2rem;
-              color: var(--composer-font-color-secondary);
-              display: flex;
-
-              &.is-image {
-                width: 100%;
-                height: 100%;
-                padding: calc(var(--composer-gap-xs) * 3);
-              }
+              color: var(--composer-primary-color);
             }
           }
 
-          .card-content {
-            flex: 1;
+          .card-icon {
+            font-size: 2rem;
+            color: var(--composer-font-color-secondary);
+            display: flex;
 
-            .card-title {
-              color: var(--composer-font-color-primary);
-              text-align: left !important;
+            &.is-image {
+              width: 100%;
+              height: 100%;
+              padding: calc(var(--composer-gap-xs) * 3);
             }
           }
         }
-      }
 
-      .button-container {
-        justify-content: center !important;
-        gap: var(--composer-gap-sm);
-        flex-wrap: wrap;
+        .card-content {
+          flex: 1;
 
-        .button {
-          .button-text {
-            content: "";
+          .card-title {
+            color: var(--composer-font-color-primary);
+            text-align: left !important;
           }
+        }
+      }
+    }
+
+    .button-container {
+      justify-content: center !important;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+
+      .button {
+        .button-text {
+          content: "";
         }
       }
     }
@@ -83,23 +81,19 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .wrapper {
-        flex-direction: column;
+      .features-content {
+        gap: var(--composer-gap-md);
 
-        .features-content {
-          gap: var(--composer-gap-md);
+        .card-container {
+          .icon-box {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
 
-          .card-container {
-            .icon-box {
-              width: var(--composer-gap-lg);
-              height: var(--composer-gap-lg);
+            .card-icon {
+              font-size: 1.5rem;
 
-              .card-icon {
-                font-size: 1.5rem;
-
-                &.is-image {
-                  padding: var(--composer-gap-sm);
-                }
+              &.is-image {
+                padding: var(--composer-gap-sm);
               }
             }
           }
@@ -112,17 +106,14 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .wrapper {
-        flex-direction: column;
-        gap: var(--composer-gap-md);
+      gap: var(--composer-gap-md);
 
-        .features-content {
+      .features-content {
+        gap: var(--composer-gap-sm);
+        row-gap: var(--composer-gap-md);
+
+        .card-container {
           gap: var(--composer-gap-sm);
-          row-gap: var(--composer-gap-md);
-
-          .card-container {
-            gap: var(--composer-gap-sm);
-          }
         }
       }
     }

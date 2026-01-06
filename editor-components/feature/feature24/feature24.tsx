@@ -324,56 +324,54 @@ class Feature24 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            {hasContent && (
-              <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-              </Base.VerticalContent>
-            )}
-            {cards?.length > 0 && (
-              <Base.ListGrid
-                className={this.decorateCSS("features-content")}
-                gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
-              >
-                {cards.map((card: Card, index: number) => {
-                  const titleExist = this.castToString(card.title);
-                  const isImage = card.media?.type === "image";
-                  if (!titleExist && !card.media) return null;
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("text-content")}>
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+              {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+            </Base.VerticalContent>
+          )}
+          {cards?.length > 0 && (
+            <Base.ListGrid
+              className={this.decorateCSS("features-content")}
+              gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
+            >
+              {cards.map((card: Card, index: number) => {
+                const titleExist = this.castToString(card.title);
+                const isImage = card.media?.type === "image";
+                if (!titleExist && !card.media) return null;
 
-                  return (
-                    <div key={index} className={this.decorateCSS("card-container")}>
-                      {card.media && (
-                        <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
-                          <Base.Media value={card.media} className={`${this.decorateCSS("card-icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />
-                        </div>
-                      )}
-                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                        {titleExist && (<Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>)}
-                      </Base.VerticalContent>
-                    </div>
+                return (
+                  <div key={index} className={this.decorateCSS("card-container")}>
+                    {card.media && (
+                      <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                        <Base.Media value={card.media} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                      </div>
+                    )}
+                    <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                      {titleExist && (<Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>)}
+                    </Base.VerticalContent>
+                  </div>
+                );
+              })}
+            </Base.ListGrid>
+          )}
+          {textButtons.length > 0 && (
+            <Base.Row className={this.decorateCSS("button-container")}>
+              {buttons.map(
+                (buttonObj, index: number) => {
+                  const buttonText = this.castToString(buttonObj.text);
+                  return buttonText && (
+                    <ComposerLink key={index} path={buttonObj.url}>
+                      <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
                   );
-                })}
-              </Base.ListGrid>
-            )}
-            {textButtons.length > 0 && (
-              <Base.Row className={this.decorateCSS("button-container")}>
-                {buttons.map(
-                  (buttonObj, index: number) => {
-                    const buttonText = this.castToString(buttonObj.text);
-                    return buttonText && (
-                      <ComposerLink key={index} path={buttonObj.url}>
-                        <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </Base.Row>
-            )}
-          </div>
+                }
+              )}
+            </Base.Row>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
