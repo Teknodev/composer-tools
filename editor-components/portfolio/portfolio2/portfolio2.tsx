@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type SideCard = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
-  text: React.JSX.Element;
+  description: React.JSX.Element;
   buttons?: INPUTS.CastedButton[];
 };
 
@@ -35,8 +35,8 @@ class Portfolio2 extends BasePortfolio {
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Text",
+          key: "description",
+          displayer: "Description",
           value:
             "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
         },
@@ -61,8 +61,8 @@ class Portfolio2 extends BasePortfolio {
 
     this.addProp({
       type: "media",
-      key: "image",
-      displayer: "Image",
+      key: "media",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -98,8 +98,8 @@ class Portfolio2 extends BasePortfolio {
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Text",
+          key: "description",
+          displayer: "Description",
           value:
             "Lorem ipsum dolor sit amet, ea mel modo qualisque, possit nemore facilis vel te. Laudem aeterno dolorum no vix, ea sed falli option. Doming legendos his cu. Te nonumy eleifend expetenda usu. Quo appetere gubergren et.",
         },
@@ -222,14 +222,14 @@ class Portfolio2 extends BasePortfolio {
 
     const subtitle = card?.subtitle;
     const title = card?.title;
-    const text = card?.text;
+    const description = card?.description;
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
-    const hasText = this.castToString(text);
+    const hasDescription = this.castToString(description);
     const hasButtons = this.hasAnyButton(buttons);
 
-    const hasContent = hasSubtitle || hasTitle || hasText || hasButtons;
+    const hasContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
     if (!hasContent) return null;
 
@@ -246,9 +246,9 @@ class Portfolio2 extends BasePortfolio {
               {title}
             </Base.SectionTitle>
           )}
-          {hasText && (
-            <Base.SectionDescription className={this.decorateCSS("text")}>
-              {text}
+          {hasDescription && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {description}
             </Base.SectionDescription>
           )}
           {hasButtons && this.renderButtons(buttons, "left")}
@@ -263,14 +263,14 @@ class Portfolio2 extends BasePortfolio {
 
     const subtitle = card?.subtitle;
     const title = card?.title;
-    const text = card?.text;
+    const description = card?.description;
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
-    const hasText = this.castToString(text);
+    const hasDescription = this.castToString(description);
     const hasButtons = this.hasAnyButton(buttons);
 
-    const hasContent = hasSubtitle || hasTitle || hasText || hasButtons;
+    const hasContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
     if (!hasContent) return null;
 
@@ -287,9 +287,9 @@ class Portfolio2 extends BasePortfolio {
               {title}
             </Base.SectionTitle>
           )}
-          {hasText && (
-            <Base.SectionDescription className={this.decorateCSS("text")}>
-              {text}
+          {hasDescription && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {description}
             </Base.SectionDescription>
           )}
           {hasButtons && this.renderButtons(buttons, "right")}
@@ -299,25 +299,25 @@ class Portfolio2 extends BasePortfolio {
   }
 
   render() {
-    const image = this.getPropValue("image");
+    const media = this.getPropValue("media");
     const overlay = this.getPropValue("overlay");
 
-    const hasImage =
-      image && typeof image === "object" && "url" in image && image.url;
+    const hasMedia =
+      media && typeof media === "object" && ("url" in media ? media.url : true);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {this.renderLeftSide()}
-          {hasImage && (
+          {hasMedia && (
             <div
               className={this.decorateCSS("middle-container")}
               data-animation={this.getPropValue("hoverAnimation").join(" ")}
             >
               <div className={this.decorateCSS("middle")}>
                 <Base.Media
-                  value={image}
-                  className={this.decorateCSS("image")}
+                  value={media}
+                  className={this.decorateCSS("media")}
                 />
                 {overlay && (
                   <div className={this.decorateCSS("thumbnail-overlay")} />

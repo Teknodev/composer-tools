@@ -136,7 +136,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -159,7 +159,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -182,7 +182,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -253,7 +253,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -276,7 +276,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -299,7 +299,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -370,7 +370,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -393,7 +393,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -416,7 +416,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -487,7 +487,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -510,7 +510,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -533,7 +533,7 @@ class Portfolio3 extends BasePortfolio {
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
