@@ -12,7 +12,7 @@ class IntroSection3 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: {
         type: "image",
